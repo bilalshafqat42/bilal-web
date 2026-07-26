@@ -7,29 +7,29 @@ const audiences = [
     icon: Building2,
     title: "Startups & Founders",
     description:
-      "Early-stage and scaling startups looking to build traction and establish repeatable growth systems.",
-    bullets: ["Growth strategy & channel prioritization", "Paid ads, funnels & landing pages", "Messaging, positioning & conversion optimization"],
-    note: "Founders who need both strategy and execution without hiring multiple specialists.",
+      "Early-stage and scaling startups needing paid marketing, a website, or an MVP application without hiring a full team.",
+    bullets: ["Paid ads, funnels & landing pages", "Web & mobile MVP development", "Brand visuals & messaging"],
+    note: "Founders who need strategy and execution without hiring multiple specialists.",
   },
   {
     icon: Home,
     title: "Real Estate Developers & Agencies (UAE)",
-    description: "Specialized growth support for off-plan and ready property marketing in competitive markets.",
-    bullets: ["Campaign-specific landing pages & funnels", "Paid ads, funnels & landing pages", "CRM-ready lead capture & qualification"],
+    description: "Specialized marketing and web support for off-plan and ready property sales in competitive markets.",
+    bullets: ["Campaign-specific landing pages & funnels", "Paid ads targeting investors & buyers", "CRM-ready lead capture & qualification"],
     note: "Teams focused on high-intent leads and cost efficiency.",
   },
   {
     icon: Users,
     title: "In-House Teams & Growing Companies",
-    description: "I work as an extension of internal teams to support execution, optimization, and growth leadership.",
-    bullets: ["Funnel, UX & conversion optimization", "Marketing strategy aligned with execution", "Automation, tracking & performance insights"],
+    description: "I work as an extension of internal teams to support marketing, design, or development capacity.",
+    bullets: ["Paid marketing & funnel optimization", "Web, mobile & custom app development", "Design & social content support"],
     note: "Companies needing hands-on expertise without full-time overhead.",
   },
   {
     icon: Network,
     title: "Agencies & Consulting Partners",
-    description: "White-label or collaborative support for agencies that need reliable execution and growth thinking.",
-    bullets: ["Paid ads & landing page execution", "UX, CRO & performance optimization", "Technical setup & automation support"],
+    description: "White-label or collaborative support for agencies that need reliable delivery on marketing, design, or dev.",
+    bullets: ["Paid ads & landing page execution", "Web, mobile & MERN development support", "Design & social content production"],
     note: "Agencies that value clarity, quality, and dependable delivery.",
   },
 ];
@@ -75,7 +75,7 @@ export default function WhoIWorkWith() {
               href="#contact"
               className="mt-5 btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow"
             >
-              Let&apos;s Talk <ArrowRight size={16} />
+              Get a Quote <ArrowRight size={16} />
             </a>
           </div>
         </Reveal>

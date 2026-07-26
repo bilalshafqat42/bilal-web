@@ -1,39 +1,39 @@
-import { UserRound, FileText, Send, Clock, ArrowRight } from "lucide-react";
+import { Package, RefreshCw, Users2, Send, ArrowRight } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import Reveal, { RevealStagger, RevealItem } from "./Reveal";
 
 const models = [
   {
-    icon: UserRound,
-    title: "Full-Time / In-House",
-    description: "For companies looking to bring growth leadership and execution capabilities in-house.",
-    idealFor: ["Ownership of growth & performance marketing", "Alignment between strategy, UX, technology, and execution", "A hands-on leader who can collaborate across teams"],
-    contribute: ["Growth strategy & performance ownership", "Paid ads, funnels, and conversion optimization", "UX, landing pages, automation & analytics"],
-    bestFor: "Best for companies building long-term, scalable growth.",
+    icon: Package,
+    title: "Project-Based",
+    description: "A defined deliverable with a clear scope, timeline, and price.",
+    idealFor: ["A website, app, or ad campaign with a clear brief", "Graphic design or social content for a launch", "A one-off build with no ongoing commitment"],
+    contribute: ["Fixed-scope proposal and timeline", "Design, development, or campaign delivery", "Handover with documentation or training"],
+    bestFor: "Best for focused projects with clear goals and timelines.",
   },
   {
-    icon: FileText,
-    title: "Contract / Fractional Growth Manager",
-    description: "Senior growth support without the commitment of a full-time hire.",
-    idealFor: ["Immediate growth expertise", "Strategic direction + hands-on execution", "Short- to mid-term leadership for growth initiatives"],
-    contribute: ["Growth audits & roadmaps", "Funnel strategy, paid ads & UX optimization", "Tracking, reporting & performance improvements"],
+    icon: RefreshCw,
+    title: "Monthly Retainer",
+    description: "Ongoing marketing, design, or development support on a recurring basis.",
+    idealFor: ["Continuous paid ad management", "Regular social content & posting", "Ongoing feature development or site updates"],
+    contribute: ["Monthly deliverables & reporting", "Priority turnaround on requests", "A single point of contact across disciplines"],
+    bestFor: "Best for businesses needing consistent, ongoing output.",
+  },
+  {
+    icon: Users2,
+    title: "Ongoing Partner / Dedicated Support",
+    description: "Embedded support alongside your team for larger or longer-running initiatives.",
+    idealFor: ["Multi-channel campaigns running in parallel", "A product roadmap with continuous development", "Teams that need extra hands without a full hire"],
+    contribute: ["Cross-functional marketing, design & dev support", "Direct collaboration with your internal team", "Flexible capacity as needs change"],
     bestFor: "Best for scaling teams or fast-moving projects.",
   },
   {
     icon: Send,
-    title: "Consulting & Strategy",
-    description: "High-level guidance focused on clarity, direction, and measurable outcomes.",
-    idealFor: ["A clear growth strategy or funnel redesign", "Expert input on performance or UX challenges", "Independent insights without execution dependency"],
-    contribute: ["Growth & funnel strategy development", "UX, conversion & performance reviews", "Analytics, tracking & optimization plans"],
+    title: "Consulting & Audit",
+    description: "High-level review and guidance focused on clarity and measurable outcomes.",
+    idealFor: ["A marketing, UX, or technical audit", "Expert input before a bigger investment", "Independent insight without execution dependency"],
+    contribute: ["Marketing, UX & technical performance review", "A prioritized action plan", "Optional support to implement recommendations"],
     bestFor: "Best for leadership teams needing clarity and direction.",
-  },
-  {
-    icon: Clock,
-    title: "Freelance / Project-Based",
-    description: "Hands-on execution for defined deliverables and outcomes.",
-    idealFor: ["Landing pages, funnels, or paid ad campaigns", "UX or conversion-focused improvements", "Technical or automation support for marketing"],
-    contribute: ["Campaign-specific landing pages & funnels", "Paid ads setup & optimization", "UX, CRO & performance improvements"],
-    bestFor: "Best for focused projects with clear goals and timelines.",
   },
 ];
 
@@ -42,10 +42,10 @@ export default function Engagement() {
     <section id="engagement" className="relative py-24 sm:py-32 bg-bg-soft/40">
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeading
-          eyebrow="Let's Work Together"
+          eyebrow="Pricing & Engagement"
           title="Flexible Engagement Models,"
-          highlight="Built To Match Your Stage"
-          description="I adapt my role to whatever creates the most impact — leading growth initiatives, supporting execution, or building scalable systems alongside your team."
+          highlight="Built To Match Your Project"
+          description="Work with me however fits best — a single project, a monthly retainer, embedded support, or an independent audit."
         />
 
         <RevealStagger className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -95,7 +95,7 @@ export default function Engagement() {
               href="#contact"
               className="mt-5 btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow"
             >
-              Let&apos;s Talk <ArrowRight size={16} />
+              Get a Quote <ArrowRight size={16} />
             </a>
           </div>
         </Reveal>

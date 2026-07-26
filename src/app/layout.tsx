@@ -2,21 +2,22 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Bilal Shafqat — Growth Strategist, Performance Marketer & Digital Builder",
+  title: "Bilal Shafqat — Paid Marketing, Web/Mobile Development & Design Studio",
   description:
-    "I help brands grow through performance marketing, UX/UI design, web & mobile development, and automation. Digital Marketing Manager & Growth Strategist based in Dubai, UAE, working with founders, real estate developers, and agencies worldwide.",
+    "One partner for paid marketing (Google & social), performance marketing, web design, MERN stack development, mobile app development, graphic design, and social media management. Based in Dubai, UAE, working with founders, real estate developers, and agencies worldwide.",
   keywords: [
-    "performance marketing",
-    "growth strategist",
-    "UX UI designer",
-    "web developer",
-    "UAE real estate marketing",
-    "freelance digital marketer Dubai",
+    "paid marketing Dubai",
+    "performance marketing UAE",
+    "MERN stack developer",
+    "web design and development",
+    "mobile app development Dubai",
+    "graphic design freelancer",
+    "social media management UAE",
   ],
   openGraph: {
-    title: "Bilal Shafqat — Growth Strategist, Performance Marketer & Digital Builder",
+    title: "Bilal Shafqat — Paid Marketing, Web/Mobile Development & Design Studio",
     description:
-      "Bridging marketing leadership with hands-on design, development, and AI. Available for freelance, consulting, and full-time growth roles.",
+      "Google & social ads, performance marketing, web design, MERN development, mobile apps, graphic design, and social media management — one partner, six disciplines.",
     type: "website",
   },
 };

@@ -6,53 +6,53 @@ const steps = [
   {
     icon: Compass,
     step: "01",
-    title: "Understand the Business & Market",
+    title: "Understand the Brief",
     description:
-      "I start by deeply understanding the business, audience, and market dynamics before proposing solutions.",
+      "I start by understanding the business, audience, and goals before proposing a marketing, design, or development approach.",
     bullets: [
-      "Business goals & KPIs",
-      "Target audience & buyer intent",
+      "Business goals & success metrics",
+      "Target audience & user needs",
       "Market positioning & competitors",
-      "Existing data, tools, and constraints",
+      "Existing tools, data, and constraints",
     ],
   },
   {
     icon: PenTool,
     step: "02",
-    title: "Design the Growth Strategy",
+    title: "Plan & Design",
     description:
-      "Based on insights, I design a clear growth roadmap aligned with both marketing and business objectives.",
+      "Based on the brief, I plan the campaign, application, or design system and map out how each piece fits together.",
     bullets: [
-      "Funnel & channel strategy",
-      "Messaging & value proposition",
-      "UX, conversion & landing page planning",
-      "Tracking & measurement setup",
+      "Campaign or funnel strategy",
+      "UX wireframes & UI design",
+      "Technical architecture (for apps)",
+      "Content & creative direction",
     ],
   },
   {
     icon: Rocket,
     step: "03",
-    title: "Execute, Test & Optimize",
+    title: "Build & Launch",
     description:
-      "Execution is hands-on and performance-driven, with continuous testing and iteration.",
+      "Execution is hands-on — building, testing, and shipping the campaign, website, or application.",
     bullets: [
-      "Paid advertising & campaign execution",
-      "Conversion-focused landing pages & UX",
-      "Performance monitoring & analysis",
-      "Ongoing testing and optimization",
+      "Paid campaign setup & launch",
+      "Development, QA & deployment",
+      "Design production & asset delivery",
+      "Tracking & analytics setup",
     ],
   },
   {
     icon: TrendingUp,
     step: "04",
-    title: "Scale & Systemize Growth",
+    title: "Optimize & Scale",
     description:
-      "Once performance is validated, I focus on building scalable and repeatable growth systems.",
+      "Once live, I focus on measuring performance and improving it — whether that's ad spend, conversion rate, or app usage.",
     bullets: [
-      "Automation & CRM-ready workflows",
-      "Process documentation & handover",
-      "Performance scaling & efficiency improvements",
-      "Long-term growth sustainability",
+      "Performance monitoring & reporting",
+      "Ongoing testing and iteration",
+      "Automation & workflow improvements",
+      "Handover or ongoing support",
     ],
   },
 ];
@@ -64,8 +64,8 @@ export default function Process() {
         <SectionHeading
           eyebrow="How I Work"
           title="A Structured Path From"
-          highlight="Strategy To Execution"
-          description="I believe sustainable growth comes from clarity, alignment, and continuous optimization — with marketing tied directly to business goals and real-world execution."
+          highlight="Brief To Shipped Work"
+          description="Whether it's a paid campaign, a website, or a custom application, every project follows the same clear process — from brief to launch to optimization."
         />
 
         <RevealStagger className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">

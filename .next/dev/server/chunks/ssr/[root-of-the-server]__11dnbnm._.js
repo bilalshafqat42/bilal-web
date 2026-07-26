@@ -133,13 +133,13 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Reveal$
 ;
 ;
 const ticker = [
+    "Paid Marketing (Google & Social)",
     "Performance Marketing",
-    "Paid Ads",
-    "UX / UI Design",
-    "Web & Mobile Development",
-    "CRM Automation",
-    "AI Workflows",
-    "Growth Strategy"
+    "Web Design & Development",
+    "MERN Stack Development",
+    "Mobile App Development",
+    "Graphic Design",
+    "Social Media Management"
 ];
 function Hero() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -185,7 +185,7 @@ function Hero() {
                                                 lineNumber: 28,
                                                 columnNumber: 17
                                             }, this),
-                                            " Growth Strategist · Performance Marketer · Digital Builder"
+                                            " Marketing · Design · Development Studio"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/Hero.tsx",
@@ -195,11 +195,11 @@ function Hero() {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                                         className: "mt-6 text-4xl sm:text-5xl lg:text-[3.4rem] font-semibold leading-[1.1] text-ink",
                                         children: [
-                                            "I build growth engines from",
+                                            "One partner for everything from",
                                             " ",
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 className: "text-gradient",
-                                                children: "strategy to shipped product."
+                                                children: "paid ads to shipped product."
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Hero.tsx",
                                                 lineNumber: 33,
@@ -213,7 +213,7 @@ function Hero() {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         className: "mt-6 text-lg text-ink/90 font-medium",
-                                        children: "Digital Marketing Manager & Growth Strategist"
+                                        children: "Paid Marketing · Web & Mobile Development · Design"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Hero.tsx",
                                         lineNumber: 36,
@@ -221,7 +221,7 @@ function Hero() {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         className: "mt-3 max-w-xl text-base sm:text-lg text-muted leading-relaxed",
-                                        children: "One partner for performance marketing, UX/UI design, web & mobile development, and automation — so growth never stalls between teams. Based in Dubai, working with clients across the UAE and worldwide."
+                                        children: "Google & social ads, performance marketing, web design, MERN stack development, mobile apps, graphic design, and social media management — under one roof, so your growth never stalls between vendors. Based in Dubai, working with clients across the UAE and worldwide."
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Hero.tsx",
                                         lineNumber: 39,
@@ -239,28 +239,28 @@ function Hero() {
                                                         size: 16
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/Hero.tsx",
-                                                        lineNumber: 50,
+                                                        lineNumber: 51,
                                                         columnNumber: 32
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/Hero.tsx",
-                                                lineNumber: 46,
+                                                lineNumber: 47,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                                 href: "#contact",
                                                 className: "inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors",
-                                                children: "Let's Talk"
+                                                children: "Get a Quote"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Hero.tsx",
-                                                lineNumber: 52,
+                                                lineNumber: 53,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/Hero.tsx",
-                                        lineNumber: 45,
+                                        lineNumber: 46,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -271,31 +271,31 @@ function Hero() {
                                                 children: "15+ Years"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Hero.tsx",
-                                                lineNumber: 61,
+                                                lineNumber: 62,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 className: "hidden sm:inline text-border",
                                                 children: "|"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/Hero.tsx",
-                                                lineNumber: 62,
-                                                columnNumber: 17
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "font-semibold text-ink",
-                                                children: "500+ Projects Delivered"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Hero.tsx",
                                                 lineNumber: 63,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "font-semibold text-ink",
+                                                children: "6 Services, One Partner"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/Hero.tsx",
+                                                lineNumber: 64,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 className: "hidden sm:inline text-border",
                                                 children: "|"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Hero.tsx",
-                                                lineNumber: 64,
+                                                lineNumber: 65,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -306,20 +306,20 @@ function Hero() {
                                                         className: "text-gold"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/Hero.tsx",
-                                                        lineNumber: 66,
+                                                        lineNumber: 67,
                                                         columnNumber: 19
                                                     }, this),
                                                     " Dubai, UAE"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/Hero.tsx",
-                                                lineNumber: 65,
+                                                lineNumber: 66,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/Hero.tsx",
-                                        lineNumber: 60,
+                                        lineNumber: 61,
                                         columnNumber: 15
                                     }, this)
                                 ]
@@ -342,26 +342,26 @@ function Hero() {
                                         className: "absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-gold/20 via-transparent to-violet/25 blur-2xl"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Hero.tsx",
-                                        lineNumber: 74,
+                                        lineNumber: 75,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "relative rounded-[2rem] border border-border glass overflow-hidden",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                                             src: "/images/bilal-hero.jpg",
-                                            alt: "Bilal Shafqat, Digital Marketing Manager and Growth Strategist",
+                                            alt: "Bilal Shafqat, marketing, design and development studio",
                                             width: 800,
                                             height: 816,
                                             priority: true,
                                             className: "h-full w-full object-cover"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Hero.tsx",
-                                            lineNumber: 76,
+                                            lineNumber: 77,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Hero.tsx",
-                                        lineNumber: 75,
+                                        lineNumber: 76,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -369,35 +369,35 @@ function Hero() {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 className: "font-semibold text-ink",
-                                                children: "UAE Real Estate"
+                                                children: "Bilal Shafqat"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Hero.tsx",
-                                                lineNumber: 86,
+                                                lineNumber: 87,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 className: "text-muted",
-                                                children: "Growth Specialist"
+                                                children: "Marketing, Design & Dev"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Hero.tsx",
-                                                lineNumber: 87,
+                                                lineNumber: 88,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/Hero.tsx",
-                                        lineNumber: 85,
+                                        lineNumber: 86,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/Hero.tsx",
-                                lineNumber: 73,
+                                lineNumber: 74,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/Hero.tsx",
-                            lineNumber: 72,
+                            lineNumber: 73,
                             columnNumber: 11
                         }, this)
                     ]
@@ -426,23 +426,23 @@ function Hero() {
                                     className: "h-1.5 w-1.5 rounded-full bg-gold"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Hero.tsx",
-                                    lineNumber: 103,
+                                    lineNumber: 104,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, i, true, {
                             fileName: "[project]/src/components/Hero.tsx",
-                            lineNumber: 98,
+                            lineNumber: 99,
                             columnNumber: 13
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/src/components/Hero.tsx",
-                    lineNumber: 96,
+                    lineNumber: 97,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/Hero.tsx",
-                lineNumber: 95,
+                lineNumber: 96,
                 columnNumber: 7
             }, this)
         ]
@@ -527,9 +527,12 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.js [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$megaphone$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Megaphone$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/megaphone.mjs [app-rsc] (ecmascript) <export default as Megaphone>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$pen$2d$tool$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__PenTool$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/pen-tool.mjs [app-rsc] (ecmascript) <export default as PenTool>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$monitor$2d$smartphone$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__MonitorSmartphone$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/monitor-smartphone.mjs [app-rsc] (ecmascript) <export default as MonitorSmartphone>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$layers$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Layers$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/layers.mjs [app-rsc] (ecmascript) <export default as Layers>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trending-up.mjs [app-rsc] (ecmascript) <export default as TrendingUp>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$globe$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Globe$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/globe.mjs [app-rsc] (ecmascript) <export default as Globe>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$code$2d$xml$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Code2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/code-xml.mjs [app-rsc] (ecmascript) <export default as Code2>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$smartphone$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Smartphone$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/smartphone.mjs [app-rsc] (ecmascript) <export default as Smartphone>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$palette$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Palette$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/palette.mjs [app-rsc] (ecmascript) <export default as Palette>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$share$2d$2$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Share2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/share-2.mjs [app-rsc] (ecmascript) <export default as Share2>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$up$2d$right$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowUpRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/arrow-up-right.mjs [app-rsc] (ecmascript) <export default as ArrowUpRight>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$SectionHeading$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/SectionHeading.tsx [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Reveal$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/Reveal.tsx [app-rsc] (ecmascript)");
@@ -537,32 +540,113 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Reveal$
 ;
 ;
 ;
-const services = [
+const pillars = [
     {
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$megaphone$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Megaphone$3e$__["Megaphone"],
-        title: "Performance Marketing & Growth",
-        description: "Data-driven paid media, funnel strategy, and growth management aligned with real business KPIs — not vanity metrics.",
-        cta: "View Growth Work"
+        label: "Marketing & Growth",
+        accent: "gold",
+        services: [
+            {
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$megaphone$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Megaphone$3e$__["Megaphone"],
+                title: "Paid Marketing (Google & Social)",
+                description: "Google Ads and paid social campaigns built around real business KPIs, not vanity metrics.",
+                bullets: [
+                    "Search, Display & Shopping Ads",
+                    "Meta, Instagram & TikTok Ads",
+                    "Audience targeting & A/B testing"
+                ]
+            },
+            {
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"],
+                title: "Performance Marketing",
+                description: "Funnel strategy, conversion tracking, and ongoing optimization to lower cost-per-lead over time.",
+                bullets: [
+                    "Funnel & landing page strategy",
+                    "Conversion tracking & analytics",
+                    "Budget pacing & ROAS optimization"
+                ]
+            }
+        ]
     },
     {
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$pen$2d$tool$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__PenTool$3e$__["PenTool"],
-        title: "UX, UI & Conversion Design",
-        description: "Experiences engineered to convert. From research and wireframes to interface design focused on clarity and results.",
-        cta: "View UX Work"
+        label: "Product & Engineering",
+        accent: "violet",
+        services: [
+            {
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$globe$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Globe$3e$__["Globe"],
+                title: "Web Design & Development",
+                description: "High-performance, conversion-ready websites designed and built to support your marketing goals.",
+                bullets: [
+                    "UX/UI design & responsive builds",
+                    "SEO-ready page structure",
+                    "CMS integration"
+                ]
+            },
+            {
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$code$2d$xml$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Code2$3e$__["Code2"],
+                title: "MERN Stack Development",
+                description: "Custom web applications and marketing tools built on MongoDB, Express, React, and Node.js.",
+                bullets: [
+                    "Custom marketing applications",
+                    "Dashboards, CRMs & internal tools",
+                    "APIs & third-party integrations"
+                ]
+            },
+            {
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$smartphone$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Smartphone$3e$__["Smartphone"],
+                title: "Mobile App Development",
+                description: "Cross-platform mobile apps that extend your product or campaigns onto iOS and Android.",
+                bullets: [
+                    "React Native app builds",
+                    "App store setup & submission",
+                    "Push notifications & analytics"
+                ]
+            }
+        ]
     },
     {
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$monitor$2d$smartphone$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__MonitorSmartphone$3e$__["MonitorSmartphone"],
-        title: "Web & Mobile Development",
-        description: "High-performance websites and applications built to support marketing goals, scalability, and long-term growth.",
-        cta: "View Developments"
-    },
-    {
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$layers$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Layers$3e$__["Layers"],
-        title: "CMS & Automation Solutions",
-        description: "Custom CMS builds and automation workflows that simplify content management and remove manual, repetitive work.",
-        cta: "View Solutions"
+        label: "Brand & Content",
+        accent: "cyan",
+        services: [
+            {
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$palette$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Palette$3e$__["Palette"],
+                title: "Graphic Design",
+                description: "Brand and campaign visuals designed to be consistent, on-brief, and ready for every channel.",
+                bullets: [
+                    "Social media creatives",
+                    "Ad & landing page visuals",
+                    "Brand collateral"
+                ]
+            },
+            {
+                icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$share$2d$2$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Share2$3e$__["Share2"],
+                title: "Social Media Management",
+                description: "Content planning, design, and posting that keeps your channels active and on-brand.",
+                bullets: [
+                    "Content calendars & posting",
+                    "Caption & creative direction",
+                    "Engagement & reporting"
+                ]
+            }
+        ]
     }
 ];
+const accentClasses = {
+    gold: {
+        icon: "text-gold",
+        bg: "from-gold/20 to-gold-2/10",
+        dot: "bg-gold"
+    },
+    violet: {
+        icon: "text-violet",
+        bg: "from-violet/20 to-violet/5",
+        dot: "bg-violet"
+    },
+    cyan: {
+        icon: "text-cyan",
+        bg: "from-cyan/20 to-cyan/5",
+        dot: "bg-cyan"
+    }
+};
 function Services() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         id: "services",
@@ -572,94 +656,160 @@ function Services() {
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$SectionHeading$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                     eyebrow: "What I Do",
-                    title: "How I Help Brands",
-                    highlight: "Grow",
-                    description: "Strategic services designed to drive growth, performance, and scalability — end to end, under one roof."
+                    title: "Seven Services, One Point Of",
+                    highlight: "Contact",
+                    description: "From the first ad click to the shipped product — strategy, design, and development handled under one roof."
                 }, void 0, false, {
                     fileName: "[project]/src/components/Services.tsx",
-                    lineNumber: 40,
+                    lineNumber: 108,
                     columnNumber: 9
                 }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Reveal$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["RevealStagger"], {
-                    className: "mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5",
-                    children: services.map((service)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Reveal$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["RevealItem"], {
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "card-hover group h-full rounded-2xl border border-border glass p-7 flex flex-col",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-gold/20 to-violet/20 border border-border text-gold",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(service.icon, {
-                                            size: 22
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "mt-16 flex flex-col gap-14",
+                    children: pillars.map((pillar)=>{
+                        const accent = accentClasses[pillar.accent];
+                        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex items-center gap-3",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: `h-2 w-2 rounded-full ${accent.dot}`
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Services.tsx",
-                                            lineNumber: 52,
+                                            lineNumber: 121,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                            className: "text-sm font-semibold uppercase tracking-wide text-ink/80",
+                                            children: pillar.label
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/Services.tsx",
+                                            lineNumber: 122,
                                             columnNumber: 19
                                         }, this)
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/Services.tsx",
-                                        lineNumber: 51,
-                                        columnNumber: 17
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                        className: "mt-6 text-lg font-semibold text-ink",
-                                        children: service.title
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/Services.tsx",
-                                        lineNumber: 54,
-                                        columnNumber: 17
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "mt-3 text-sm text-muted leading-relaxed flex-1",
-                                        children: service.description
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/Services.tsx",
-                                        lineNumber: 55,
-                                        columnNumber: 17
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                        href: "#case-studies",
-                                        className: "mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-ink/90 group-hover:text-gold transition-colors",
-                                        children: [
-                                            service.cta,
-                                            " ",
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$up$2d$right$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowUpRight$3e$__["ArrowUpRight"], {
-                                                size: 15
-                                            }, void 0, false, {
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/components/Services.tsx",
+                                    lineNumber: 120,
+                                    columnNumber: 17
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Reveal$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["RevealStagger"], {
+                                    className: `mt-6 grid grid-cols-1 sm:grid-cols-2 ${pillar.services.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-2"} gap-5`,
+                                    children: pillar.services.map((service)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Reveal$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["RevealItem"], {
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "card-hover group h-full rounded-2xl border border-border glass p-7 flex flex-col",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: `flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${accent.bg} border border-border ${accent.icon}`,
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(service.icon, {
+                                                            size: 22
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/components/Services.tsx",
+                                                            lineNumber: 138,
+                                                            columnNumber: 27
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/Services.tsx",
+                                                        lineNumber: 135,
+                                                        columnNumber: 25
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
+                                                        className: "mt-6 text-lg font-semibold text-ink",
+                                                        children: service.title
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/Services.tsx",
+                                                        lineNumber: 140,
+                                                        columnNumber: 25
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                        className: "mt-3 text-sm text-muted leading-relaxed",
+                                                        children: service.description
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/Services.tsx",
+                                                        lineNumber: 141,
+                                                        columnNumber: 25
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
+                                                        className: "mt-4 space-y-1.5",
+                                                        children: service.bullets.map((b)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                                                className: "text-xs text-muted flex gap-2",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                        className: accent.icon,
+                                                                        children: "—"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/src/components/Services.tsx",
+                                                                        lineNumber: 145,
+                                                                        columnNumber: 31
+                                                                    }, this),
+                                                                    b
+                                                                ]
+                                                            }, b, true, {
+                                                                fileName: "[project]/src/components/Services.tsx",
+                                                                lineNumber: 144,
+                                                                columnNumber: 29
+                                                            }, this))
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/components/Services.tsx",
+                                                        lineNumber: 142,
+                                                        columnNumber: 25
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                                        href: "#case-studies",
+                                                        className: "mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-ink/90 group-hover:text-gold transition-colors",
+                                                        children: [
+                                                            "View Work ",
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$up$2d$right$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowUpRight$3e$__["ArrowUpRight"], {
+                                                                size: 15
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/components/Services.tsx",
+                                                                lineNumber: 154,
+                                                                columnNumber: 37
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/src/components/Services.tsx",
+                                                        lineNumber: 150,
+                                                        columnNumber: 25
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
                                                 fileName: "[project]/src/components/Services.tsx",
-                                                lineNumber: 62,
-                                                columnNumber: 33
+                                                lineNumber: 134,
+                                                columnNumber: 23
                                             }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/components/Services.tsx",
-                                        lineNumber: 58,
-                                        columnNumber: 17
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/components/Services.tsx",
-                                lineNumber: 50,
-                                columnNumber: 15
-                            }, this)
-                        }, service.title, false, {
+                                        }, service.title, false, {
+                                            fileName: "[project]/src/components/Services.tsx",
+                                            lineNumber: 133,
+                                            columnNumber: 21
+                                        }, this))
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/Services.tsx",
+                                    lineNumber: 127,
+                                    columnNumber: 17
+                                }, this)
+                            ]
+                        }, pillar.label, true, {
                             fileName: "[project]/src/components/Services.tsx",
-                            lineNumber: 49,
-                            columnNumber: 13
-                        }, this))
+                            lineNumber: 119,
+                            columnNumber: 15
+                        }, this);
+                    })
                 }, void 0, false, {
                     fileName: "[project]/src/components/Services.tsx",
-                    lineNumber: 47,
+                    lineNumber: 115,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/Services.tsx",
-            lineNumber: 39,
+            lineNumber: 107,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/Services.tsx",
-        lineNumber: 38,
+        lineNumber: 106,
         columnNumber: 5
     }, this);
 }
@@ -702,7 +852,12 @@ const bars = [
         95
     ]
 ];
-function DashboardGraphic({ variant = 0 }) {
+const defaultMetrics = [
+    "Reach",
+    "Leads",
+    "Conversion"
+];
+function DashboardGraphic({ variant = 0, label = "Campaign Performance", metrics = defaultMetrics }) {
     const data = bars[variant % bars.length];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "relative h-full w-full rounded-2xl border border-border bg-gradient-to-br from-surface to-bg-soft p-6 overflow-hidden",
@@ -711,14 +866,14 @@ function DashboardGraphic({ variant = 0 }) {
                 className: "absolute -top-10 -right-10 h-40 w-40 rounded-full bg-gold/10 blur-3xl"
             }, void 0, false, {
                 fileName: "[project]/src/components/DashboardGraphic.tsx",
-                lineNumber: 11,
+                lineNumber: 23,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-violet/15 blur-3xl"
             }, void 0, false, {
                 fileName: "[project]/src/components/DashboardGraphic.tsx",
-                lineNumber: 12,
+                lineNumber: 24,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -731,41 +886,41 @@ function DashboardGraphic({ variant = 0 }) {
                                 className: "h-2.5 w-2.5 rounded-full bg-gold/70"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/DashboardGraphic.tsx",
-                                lineNumber: 16,
+                                lineNumber: 28,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 className: "h-2.5 w-2.5 rounded-full bg-violet/70"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/DashboardGraphic.tsx",
-                                lineNumber: 17,
+                                lineNumber: 29,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 className: "h-2.5 w-2.5 rounded-full bg-cyan/70"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/DashboardGraphic.tsx",
-                                lineNumber: 18,
+                                lineNumber: 30,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/DashboardGraphic.tsx",
-                        lineNumber: 15,
+                        lineNumber: 27,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                         className: "text-[10px] uppercase tracking-wider text-muted",
-                        children: "Campaign Performance"
+                        children: label
                     }, void 0, false, {
                         fileName: "[project]/src/components/DashboardGraphic.tsx",
-                        lineNumber: 20,
+                        lineNumber: 32,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/DashboardGraphic.tsx",
-                lineNumber: 14,
+                lineNumber: 26,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -777,53 +932,49 @@ function DashboardGraphic({ variant = 0 }) {
                         }
                     }, i, false, {
                         fileName: "[project]/src/components/DashboardGraphic.tsx",
-                        lineNumber: 25,
+                        lineNumber: 37,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/components/DashboardGraphic.tsx",
-                lineNumber: 23,
+                lineNumber: 35,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "relative mt-6 grid grid-cols-3 gap-3",
-                children: [
-                    "Reach",
-                    "Leads",
-                    "Conversion"
-                ].map((label)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                children: metrics.map((m)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "rounded-xl border border-border bg-bg/40 p-3 text-center",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 className: "h-1.5 w-1.5 mx-auto block rounded-full bg-gold/70 mb-2"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/DashboardGraphic.tsx",
-                                lineNumber: 36,
+                                lineNumber: 48,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "text-[10px] text-muted uppercase tracking-wide",
-                                children: label
+                                children: m
                             }, void 0, false, {
                                 fileName: "[project]/src/components/DashboardGraphic.tsx",
-                                lineNumber: 37,
+                                lineNumber: 49,
                                 columnNumber: 13
                             }, this)
                         ]
-                    }, label, true, {
+                    }, m, true, {
                         fileName: "[project]/src/components/DashboardGraphic.tsx",
-                        lineNumber: 35,
+                        lineNumber: 47,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/components/DashboardGraphic.tsx",
-                lineNumber: 33,
+                lineNumber: 45,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/DashboardGraphic.tsx",
-        lineNumber: 10,
+        lineNumber: 22,
         columnNumber: 5
     }, this);
 }
@@ -848,6 +999,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Dashboa
 const cases = [
     {
         title: "Lead Generation for Off-Plan Properties",
+        graphicLabel: "Campaign Performance",
         tags: {
             Market: "UAE Real Estate",
             Audience: "Property investors & end-users",
@@ -866,6 +1018,7 @@ const cases = [
     },
     {
         title: "Real Estate Project Launch Campaign",
+        graphicLabel: "Campaign Performance",
         tags: {
             Market: "UAE Real Estate",
             Audience: "Investors & buyers",
@@ -883,6 +1036,7 @@ const cases = [
     },
     {
         title: "Continuous Lead Generation for Real Estate Agencies",
+        graphicLabel: "Campaign Performance",
         tags: {
             Market: "UAE Real Estate",
             Audience: "Buyers & sellers",
@@ -897,6 +1051,52 @@ const cases = [
             "Supported agents with campaign-ready landing pages"
         ],
         outcome: "Established a sustainable digital funnel supporting continuous real estate lead generation."
+    },
+    {
+        title: "Custom Marketing Application (MERN Stack)",
+        graphicLabel: "Application Metrics",
+        graphicMetrics: [
+            "Users",
+            "Releases",
+            "Uptime"
+        ],
+        tags: {
+            Market: "[Client Industry]",
+            Audience: "[Target Audience]",
+            Channels: "Custom Web Application, CRM Integration"
+        },
+        goal: "[Add the real business goal — e.g. replace a manual process or support a specific campaign operation.]",
+        role: "End-to-end MERN stack development — architecture, frontend, backend, and deployment.",
+        bullets: [
+            "Designed and built a MongoDB / Express / React / Node.js application",
+            "Integrated lead capture with CRM and reporting workflows",
+            "Built an admin dashboard for campaign and performance tracking",
+            "Optimized for performance, security, and mobile responsiveness"
+        ],
+        outcome: "[Add real results once available — e.g. hours saved, leads processed, or feature scope delivered.]"
+    },
+    {
+        title: "Mobile App, Brand & Social Launch",
+        graphicLabel: "Launch Metrics",
+        graphicMetrics: [
+            "Installs",
+            "Engagement",
+            "Retention"
+        ],
+        tags: {
+            Market: "[Client Industry]",
+            Audience: "[Target Audience]",
+            Channels: "Mobile App, Graphic Design, Social Media"
+        },
+        goal: "[Add the real business goal for this launch.]",
+        role: "Mobile app development (React Native), brand visuals, and social media management for launch.",
+        bullets: [
+            "Built and shipped a cross-platform mobile app",
+            "Designed app store assets and supporting brand visuals",
+            "Produced launch creatives for social channels",
+            "Managed the content and posting calendar through launch"
+        ],
+        outcome: "[Add real results — downloads, engagement, or launch metrics.]"
     }
 ];
 function CaseStudies() {
@@ -908,12 +1108,12 @@ function CaseStudies() {
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$SectionHeading$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                     eyebrow: "Proof Of Work",
-                    title: "Real Estate Growth &",
-                    highlight: "Paid Advertising (UAE)",
-                    description: "Focused case studies highlighting paid advertising, lead generation, and growth execution for the UAE real estate market."
+                    title: "Case Studies Across",
+                    highlight: "Marketing, Design & Development",
+                    description: "A spread of work across paid advertising, custom application development, and mobile/brand launches. Newer service lines below are marked for the next real project."
                 }, void 0, false, {
                     fileName: "[project]/src/components/CaseStudies.tsx",
-                    lineNumber: 68,
+                    lineNumber: 111,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -926,15 +1126,17 @@ function CaseStudies() {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: `${i % 2 === 1 ? "lg:order-2" : ""} h-72 sm:h-80`,
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$DashboardGraphic$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
-                                            variant: i
+                                            variant: i,
+                                            label: c.graphicLabel,
+                                            metrics: c.graphicMetrics
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/CaseStudies.tsx",
-                                            lineNumber: 80,
+                                            lineNumber: 123,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/CaseStudies.tsx",
-                                        lineNumber: 79,
+                                        lineNumber: 122,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -947,7 +1149,7 @@ function CaseStudies() {
                                                     children: c.title
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/CaseStudies.tsx",
-                                                    lineNumber: 85,
+                                                    lineNumber: 128,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -963,7 +1165,7 @@ function CaseStudies() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/components/CaseStudies.tsx",
-                                                                    lineNumber: 93,
+                                                                    lineNumber: 136,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 " ",
@@ -971,12 +1173,12 @@ function CaseStudies() {
                                                             ]
                                                         }, label, true, {
                                                             fileName: "[project]/src/components/CaseStudies.tsx",
-                                                            lineNumber: 89,
+                                                            lineNumber: 132,
                                                             columnNumber: 25
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/CaseStudies.tsx",
-                                                    lineNumber: 87,
+                                                    lineNumber: 130,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -989,7 +1191,7 @@ function CaseStudies() {
                                                                     children: "Business Goal"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/CaseStudies.tsx",
-                                                                    lineNumber: 100,
+                                                                    lineNumber: 143,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -997,13 +1199,13 @@ function CaseStudies() {
                                                                     children: c.goal
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/CaseStudies.tsx",
-                                                                    lineNumber: 103,
+                                                                    lineNumber: 146,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/CaseStudies.tsx",
-                                                            lineNumber: 99,
+                                                            lineNumber: 142,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1013,7 +1215,7 @@ function CaseStudies() {
                                                                     children: "My Role"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/CaseStudies.tsx",
-                                                                    lineNumber: 106,
+                                                                    lineNumber: 149,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1021,19 +1223,19 @@ function CaseStudies() {
                                                                     children: c.role
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/CaseStudies.tsx",
-                                                                    lineNumber: 109,
+                                                                    lineNumber: 152,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/CaseStudies.tsx",
-                                                            lineNumber: 105,
+                                                            lineNumber: 148,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/CaseStudies.tsx",
-                                                    lineNumber: 98,
+                                                    lineNumber: 141,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1044,7 +1246,7 @@ function CaseStudies() {
                                                             children: "Strategy & Execution"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/CaseStudies.tsx",
-                                                            lineNumber: 114,
+                                                            lineNumber: 157,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -1057,25 +1259,25 @@ function CaseStudies() {
                                                                             className: "mt-0.5 shrink-0 text-gold"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/components/CaseStudies.tsx",
-                                                                            lineNumber: 120,
+                                                                            lineNumber: 163,
                                                                             columnNumber: 29
                                                                         }, this),
                                                                         b
                                                                     ]
                                                                 }, b, true, {
                                                                     fileName: "[project]/src/components/CaseStudies.tsx",
-                                                                    lineNumber: 119,
+                                                                    lineNumber: 162,
                                                                     columnNumber: 27
                                                                 }, this))
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/CaseStudies.tsx",
-                                                            lineNumber: 117,
+                                                            lineNumber: 160,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/CaseStudies.tsx",
-                                                    lineNumber: 113,
+                                                    lineNumber: 156,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1086,7 +1288,7 @@ function CaseStudies() {
                                                             children: "Outcome"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/CaseStudies.tsx",
-                                                            lineNumber: 128,
+                                                            lineNumber: 171,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1094,51 +1296,51 @@ function CaseStudies() {
                                                             children: c.outcome
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/CaseStudies.tsx",
-                                                            lineNumber: 131,
+                                                            lineNumber: 174,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/CaseStudies.tsx",
-                                                    lineNumber: 127,
+                                                    lineNumber: 170,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/CaseStudies.tsx",
-                                            lineNumber: 84,
+                                            lineNumber: 127,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/CaseStudies.tsx",
-                                        lineNumber: 83,
+                                        lineNumber: 126,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/CaseStudies.tsx",
-                                lineNumber: 78,
+                                lineNumber: 121,
                                 columnNumber: 15
                             }, this)
                         }, c.title, false, {
                             fileName: "[project]/src/components/CaseStudies.tsx",
-                            lineNumber: 77,
+                            lineNumber: 120,
                             columnNumber: 13
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/src/components/CaseStudies.tsx",
-                    lineNumber: 75,
+                    lineNumber: 118,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/CaseStudies.tsx",
-            lineNumber: 67,
+            lineNumber: 110,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/CaseStudies.tsx",
-        lineNumber: 66,
+        lineNumber: 109,
         columnNumber: 5
     }, this);
 }
@@ -1160,15 +1362,15 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Reveal$
 ;
 ;
 const intersection = [
-    "Growth & performance marketing",
-    "UX, conversion & funnel design",
-    "Technology, automation & AI-supported workflows"
+    "Paid marketing & performance advertising",
+    "Web, mobile & MERN stack development",
+    "Graphic design & social media management"
 ];
 const bestAt = [
-    "Driving growth through paid ads and funnel strategy",
-    "Designing conversion-focused landing pages and UX",
-    "Aligning marketing strategy with technical execution",
-    "Building scalable, automation-ready marketing systems"
+    "Running paid Google & social campaigns that convert",
+    "Designing and building websites and marketing applications",
+    "Shipping mobile apps end-to-end, from design to release",
+    "Producing on-brand creative and managing social channels"
 ];
 function About() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1253,24 +1455,24 @@ function About() {
                                     className: "mt-6 space-y-4 text-muted leading-relaxed",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            children: "I'm a Digital Marketing Manager & Growth Strategist who bridges the gap between marketing strategy and real-world execution."
+                                            children: "I run paid marketing campaigns, design and build websites and mobile apps, develop custom applications on the MERN stack, and produce the graphic design and social content that goes around them — as one point of contact."
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/About.tsx",
                                             lineNumber: 48,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            children: "I help businesses grow by combining marketing leadership with hands-on execution — from paid advertising and funnel strategy to UX, web, automation, and performance optimization."
+                                            children: "Instead of briefing an agency, a developer, and a designer separately, you work with one person who understands how the ad, the landing page, the application behind it, and the social content promoting it all fit together."
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/About.tsx",
-                                            lineNumber: 52,
+                                            lineNumber: 53,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            children: "My background as a UI/UX designer and web developer lets me work end-to-end on growth systems. Instead of relying on multiple teams, I design, build, test, and optimize marketing experiences focused on clarity, conversion, and measurable outcomes."
+                                            children: "On the technical side, I build with MongoDB, Express, React, and Node.js — including custom marketing applications, dashboards, and mobile apps — so campaigns aren't limited by off-the-shelf tools."
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/About.tsx",
-                                            lineNumber: 57,
+                                            lineNumber: 58,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1379,7 +1581,7 @@ function About() {
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     className: "mt-8 text-muted leading-relaxed",
-                                    children: "Whether it's leading growth initiatives, supporting teams with execution, or building scalable marketing systems, my focus stays on clarity, performance, and real business impact. Open to full-time roles, consulting, and freelance growth-focused collaborations."
+                                    children: "Whether you need a single project delivered or an ongoing partner across marketing, design, and development, my focus stays on clarity, performance, and real business impact. Available for project-based work, retainers, and consulting engagements."
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/About.tsx",
                                     lineNumber: 95,
@@ -1389,13 +1591,13 @@ function About() {
                                     href: "#contact",
                                     className: "mt-8 btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow",
                                     children: [
-                                        "Let's Talk ",
+                                        "Get a Quote ",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
                                             size: 16
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/About.tsx",
                                             lineNumber: 106,
-                                            columnNumber: 33
+                                            columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
@@ -1454,49 +1656,49 @@ const steps = [
     {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$compass$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Compass$3e$__["Compass"],
         step: "01",
-        title: "Understand the Business & Market",
-        description: "I start by deeply understanding the business, audience, and market dynamics before proposing solutions.",
+        title: "Understand the Brief",
+        description: "I start by understanding the business, audience, and goals before proposing a marketing, design, or development approach.",
         bullets: [
-            "Business goals & KPIs",
-            "Target audience & buyer intent",
+            "Business goals & success metrics",
+            "Target audience & user needs",
             "Market positioning & competitors",
-            "Existing data, tools, and constraints"
+            "Existing tools, data, and constraints"
         ]
     },
     {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$pen$2d$tool$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__PenTool$3e$__["PenTool"],
         step: "02",
-        title: "Design the Growth Strategy",
-        description: "Based on insights, I design a clear growth roadmap aligned with both marketing and business objectives.",
+        title: "Plan & Design",
+        description: "Based on the brief, I plan the campaign, application, or design system and map out how each piece fits together.",
         bullets: [
-            "Funnel & channel strategy",
-            "Messaging & value proposition",
-            "UX, conversion & landing page planning",
-            "Tracking & measurement setup"
+            "Campaign or funnel strategy",
+            "UX wireframes & UI design",
+            "Technical architecture (for apps)",
+            "Content & creative direction"
         ]
     },
     {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$rocket$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Rocket$3e$__["Rocket"],
         step: "03",
-        title: "Execute, Test & Optimize",
-        description: "Execution is hands-on and performance-driven, with continuous testing and iteration.",
+        title: "Build & Launch",
+        description: "Execution is hands-on — building, testing, and shipping the campaign, website, or application.",
         bullets: [
-            "Paid advertising & campaign execution",
-            "Conversion-focused landing pages & UX",
-            "Performance monitoring & analysis",
-            "Ongoing testing and optimization"
+            "Paid campaign setup & launch",
+            "Development, QA & deployment",
+            "Design production & asset delivery",
+            "Tracking & analytics setup"
         ]
     },
     {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"],
         step: "04",
-        title: "Scale & Systemize Growth",
-        description: "Once performance is validated, I focus on building scalable and repeatable growth systems.",
+        title: "Optimize & Scale",
+        description: "Once live, I focus on measuring performance and improving it — whether that's ad spend, conversion rate, or app usage.",
         bullets: [
-            "Automation & CRM-ready workflows",
-            "Process documentation & handover",
-            "Performance scaling & efficiency improvements",
-            "Long-term growth sustainability"
+            "Performance monitoring & reporting",
+            "Ongoing testing and iteration",
+            "Automation & workflow improvements",
+            "Handover or ongoing support"
         ]
     }
 ];
@@ -1510,8 +1712,8 @@ function Process() {
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$SectionHeading$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                     eyebrow: "How I Work",
                     title: "A Structured Path From",
-                    highlight: "Strategy To Execution",
-                    description: "I believe sustainable growth comes from clarity, alignment, and continuous optimization — with marketing tied directly to business goals and real-world execution."
+                    highlight: "Brief To Shipped Work",
+                    description: "Whether it's a paid campaign, a website, or a custom application, every project follows the same clear process — from brief to launch to optimization."
                 }, void 0, false, {
                     fileName: "[project]/src/components/Process.tsx",
                     lineNumber: 64,
@@ -1638,21 +1840,21 @@ const audiences = [
     {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$building$2d$2$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Building2$3e$__["Building2"],
         title: "Startups & Founders",
-        description: "Early-stage and scaling startups looking to build traction and establish repeatable growth systems.",
+        description: "Early-stage and scaling startups needing paid marketing, a website, or an MVP application without hiring a full team.",
         bullets: [
-            "Growth strategy & channel prioritization",
             "Paid ads, funnels & landing pages",
-            "Messaging, positioning & conversion optimization"
+            "Web & mobile MVP development",
+            "Brand visuals & messaging"
         ],
-        note: "Founders who need both strategy and execution without hiring multiple specialists."
+        note: "Founders who need strategy and execution without hiring multiple specialists."
     },
     {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$house$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Home$3e$__["Home"],
         title: "Real Estate Developers & Agencies (UAE)",
-        description: "Specialized growth support for off-plan and ready property marketing in competitive markets.",
+        description: "Specialized marketing and web support for off-plan and ready property sales in competitive markets.",
         bullets: [
             "Campaign-specific landing pages & funnels",
-            "Paid ads, funnels & landing pages",
+            "Paid ads targeting investors & buyers",
             "CRM-ready lead capture & qualification"
         ],
         note: "Teams focused on high-intent leads and cost efficiency."
@@ -1660,22 +1862,22 @@ const audiences = [
     {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"],
         title: "In-House Teams & Growing Companies",
-        description: "I work as an extension of internal teams to support execution, optimization, and growth leadership.",
+        description: "I work as an extension of internal teams to support marketing, design, or development capacity.",
         bullets: [
-            "Funnel, UX & conversion optimization",
-            "Marketing strategy aligned with execution",
-            "Automation, tracking & performance insights"
+            "Paid marketing & funnel optimization",
+            "Web, mobile & custom app development",
+            "Design & social content support"
         ],
         note: "Companies needing hands-on expertise without full-time overhead."
     },
     {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$network$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Network$3e$__["Network"],
         title: "Agencies & Consulting Partners",
-        description: "White-label or collaborative support for agencies that need reliable execution and growth thinking.",
+        description: "White-label or collaborative support for agencies that need reliable delivery on marketing, design, or dev.",
         bullets: [
             "Paid ads & landing page execution",
-            "UX, CRO & performance optimization",
-            "Technical setup & automation support"
+            "Web, mobile & MERN development support",
+            "Design & social content production"
         ],
         note: "Agencies that value clarity, quality, and dependable delivery."
     }
@@ -1797,13 +1999,13 @@ function WhoIWorkWith() {
                                 href: "#contact",
                                 className: "mt-5 btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow",
                                 children: [
-                                    "Let's Talk ",
+                                    "Get a Quote ",
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
                                         size: 16
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/WhoIWorkWith.tsx",
                                         lineNumber: 78,
-                                        columnNumber: 31
+                                        columnNumber: 27
                                     }, this)
                                 ]
                             }, void 0, true, {
@@ -1843,10 +2045,10 @@ __turbopack_context__.s([
     ()=>Engagement
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.js [app-rsc] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2d$round$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__UserRound$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/user-round.mjs [app-rsc] (ecmascript) <export default as UserRound>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$text$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__FileText$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/file-text.mjs [app-rsc] (ecmascript) <export default as FileText>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$package$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Package$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/package.mjs [app-rsc] (ecmascript) <export default as Package>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/refresh-cw.mjs [app-rsc] (ecmascript) <export default as RefreshCw>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2d$round$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Users2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/users-round.mjs [app-rsc] (ecmascript) <export default as Users2>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$send$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Send$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/send.mjs [app-rsc] (ecmascript) <export default as Send>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clock$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Clock$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/clock.mjs [app-rsc] (ecmascript) <export default as Clock>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/arrow-right.mjs [app-rsc] (ecmascript) <export default as ArrowRight>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$SectionHeading$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/SectionHeading.tsx [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Reveal$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/Reveal.tsx [app-rsc] (ecmascript)");
@@ -1856,68 +2058,68 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Reveal$
 ;
 const models = [
     {
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2d$round$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__UserRound$3e$__["UserRound"],
-        title: "Full-Time / In-House",
-        description: "For companies looking to bring growth leadership and execution capabilities in-house.",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$package$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Package$3e$__["Package"],
+        title: "Project-Based",
+        description: "A defined deliverable with a clear scope, timeline, and price.",
         idealFor: [
-            "Ownership of growth & performance marketing",
-            "Alignment between strategy, UX, technology, and execution",
-            "A hands-on leader who can collaborate across teams"
+            "A website, app, or ad campaign with a clear brief",
+            "Graphic design or social content for a launch",
+            "A one-off build with no ongoing commitment"
         ],
         contribute: [
-            "Growth strategy & performance ownership",
-            "Paid ads, funnels, and conversion optimization",
-            "UX, landing pages, automation & analytics"
+            "Fixed-scope proposal and timeline",
+            "Design, development, or campaign delivery",
+            "Handover with documentation or training"
         ],
-        bestFor: "Best for companies building long-term, scalable growth."
+        bestFor: "Best for focused projects with clear goals and timelines."
     },
     {
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$text$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__FileText$3e$__["FileText"],
-        title: "Contract / Fractional Growth Manager",
-        description: "Senior growth support without the commitment of a full-time hire.",
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__["RefreshCw"],
+        title: "Monthly Retainer",
+        description: "Ongoing marketing, design, or development support on a recurring basis.",
         idealFor: [
-            "Immediate growth expertise",
-            "Strategic direction + hands-on execution",
-            "Short- to mid-term leadership for growth initiatives"
+            "Continuous paid ad management",
+            "Regular social content & posting",
+            "Ongoing feature development or site updates"
         ],
         contribute: [
-            "Growth audits & roadmaps",
-            "Funnel strategy, paid ads & UX optimization",
-            "Tracking, reporting & performance improvements"
+            "Monthly deliverables & reporting",
+            "Priority turnaround on requests",
+            "A single point of contact across disciplines"
+        ],
+        bestFor: "Best for businesses needing consistent, ongoing output."
+    },
+    {
+        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2d$round$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Users2$3e$__["Users2"],
+        title: "Ongoing Partner / Dedicated Support",
+        description: "Embedded support alongside your team for larger or longer-running initiatives.",
+        idealFor: [
+            "Multi-channel campaigns running in parallel",
+            "A product roadmap with continuous development",
+            "Teams that need extra hands without a full hire"
+        ],
+        contribute: [
+            "Cross-functional marketing, design & dev support",
+            "Direct collaboration with your internal team",
+            "Flexible capacity as needs change"
         ],
         bestFor: "Best for scaling teams or fast-moving projects."
     },
     {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$send$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Send$3e$__["Send"],
-        title: "Consulting & Strategy",
-        description: "High-level guidance focused on clarity, direction, and measurable outcomes.",
+        title: "Consulting & Audit",
+        description: "High-level review and guidance focused on clarity and measurable outcomes.",
         idealFor: [
-            "A clear growth strategy or funnel redesign",
-            "Expert input on performance or UX challenges",
-            "Independent insights without execution dependency"
+            "A marketing, UX, or technical audit",
+            "Expert input before a bigger investment",
+            "Independent insight without execution dependency"
         ],
         contribute: [
-            "Growth & funnel strategy development",
-            "UX, conversion & performance reviews",
-            "Analytics, tracking & optimization plans"
+            "Marketing, UX & technical performance review",
+            "A prioritized action plan",
+            "Optional support to implement recommendations"
         ],
         bestFor: "Best for leadership teams needing clarity and direction."
-    },
-    {
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clock$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Clock$3e$__["Clock"],
-        title: "Freelance / Project-Based",
-        description: "Hands-on execution for defined deliverables and outcomes.",
-        idealFor: [
-            "Landing pages, funnels, or paid ad campaigns",
-            "UX or conversion-focused improvements",
-            "Technical or automation support for marketing"
-        ],
-        contribute: [
-            "Campaign-specific landing pages & funnels",
-            "Paid ads setup & optimization",
-            "UX, CRO & performance improvements"
-        ],
-        bestFor: "Best for focused projects with clear goals and timelines."
     }
 ];
 function Engagement() {
@@ -1928,10 +2130,10 @@ function Engagement() {
             className: "mx-auto max-w-7xl px-6",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$SectionHeading$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
-                    eyebrow: "Let's Work Together",
+                    eyebrow: "Pricing & Engagement",
                     title: "Flexible Engagement Models,",
-                    highlight: "Built To Match Your Stage",
-                    description: "I adapt my role to whatever creates the most impact — leading growth initiatives, supporting execution, or building scalable systems alongside your team."
+                    highlight: "Built To Match Your Project",
+                    description: "Work with me however fits best — a single project, a monthly retainer, embedded support, or an independent audit."
                 }, void 0, false, {
                     fileName: "[project]/src/components/Engagement.tsx",
                     lineNumber: 44,
@@ -2079,13 +2281,13 @@ function Engagement() {
                                 href: "#contact",
                                 className: "mt-5 btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow",
                                 children: [
-                                    "Let's Talk ",
+                                    "Get a Quote ",
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
                                         size: 16
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Engagement.tsx",
                                         lineNumber: 98,
-                                        columnNumber: 31
+                                        columnNumber: 27
                                     }, this)
                                 ]
                             }, void 0, true, {
@@ -2138,12 +2340,12 @@ const stats = [
     {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clock$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Clock$3e$__["Clock"],
         title: "15+ Years Experience",
-        description: "Across digital marketing, UX, and web technologies"
+        description: "Across digital marketing, design, and web/mobile development"
     },
     {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$text$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__FileText$3e$__["FileText"],
-        title: "500+ Projects Delivered",
-        description: "Including websites, funnels, landing pages, and growth systems"
+        title: "6 Services, One Partner",
+        description: "Paid marketing, web, mobile, MERN development, and design under one roof"
     },
     {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$house$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Home$3e$__["Home"],
@@ -2158,14 +2360,14 @@ const stats = [
 ];
 const testimonials = [
     {
-        quote: "Bilal took full ownership of our growth funnel — from paid acquisition to landing pages and tracking. His ability to connect strategy with execution made a measurable impact within weeks.",
-        name: "Marketing Manager",
-        org: "UAE Real Estate Company"
+        quote: "[Add a real client quote — e.g. what this client hired you for and the result they saw.]",
+        name: "[Client Name]",
+        org: "[Company / Project]"
     },
     {
-        quote: "What sets Bilal apart is his understanding of both marketing strategy and technical execution. He helped us improve lead quality, conversion rates, and reporting clarity without adding operational complexity.",
-        name: "Founder",
-        org: "SaaS / Web Platform"
+        quote: "[Add a real client quote here once the first studio project is complete.]",
+        name: "[Client Name]",
+        org: "[Company / Project]"
     }
 ];
 function Results() {
@@ -2192,14 +2394,14 @@ function Results() {
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                                             className: "mt-5 text-3xl sm:text-4xl font-semibold text-ink",
                                             children: [
-                                                "Measurable outcomes from ",
+                                                "Measurable outcomes across ",
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "text-gradient",
-                                                    children: "growth-focused execution."
+                                                    children: "marketing, design & development."
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Results.tsx",
                                                     lineNumber: 38,
-                                                    columnNumber: 44
+                                                    columnNumber: 46
                                                 }, this)
                                             ]
                                         }, void 0, true, {
@@ -2209,7 +2411,7 @@ function Results() {
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "mt-4 text-muted leading-relaxed max-w-lg",
-                                            children: "I focus on building scalable marketing systems that deliver consistent, trackable business results — especially across UAE real estate, eCommerce, and service-based businesses."
+                                            children: "I focus on delivering consistent, trackable results — whether that's lead volume, conversion rate, or a shipped product — especially across UAE real estate, eCommerce, and service-based businesses."
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Results.tsx",
                                             lineNumber: 40,
@@ -2280,7 +2482,7 @@ function Results() {
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Reveal$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["RevealStagger"], {
                         className: "flex flex-col gap-5",
-                        children: testimonials.map((t)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Reveal$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["RevealItem"], {
+                        children: testimonials.map((t, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Reveal$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["RevealItem"], {
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "rounded-2xl border border-border glass-strong p-7",
                                     children: [
@@ -2319,7 +2521,7 @@ function Results() {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-gold/30 to-violet/30 text-sm font-semibold text-ink",
-                                                    children: t.org.charAt(0)
+                                                    children: t.org.replace(/^\[/, "").charAt(0)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Results.tsx",
                                                     lineNumber: 74,
@@ -2361,7 +2563,7 @@ function Results() {
                                     lineNumber: 64,
                                     columnNumber: 17
                                 }, this)
-                            }, t.name, false, {
+                            }, i, false, {
                                 fileName: "[project]/src/components/Results.tsx",
                                 lineNumber: 63,
                                 columnNumber: 15
@@ -2434,7 +2636,7 @@ function Contact() {
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     className: "inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase",
-                                    children: "Let's Talk"
+                                    children: "Get A Quote"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Contact.tsx",
                                     lineNumber: 14,
@@ -2443,14 +2645,14 @@ function Contact() {
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                                     className: "mt-5 text-3xl sm:text-4xl font-semibold text-ink",
                                     children: [
-                                        "Have a growth challenge? ",
+                                        "Have a project in mind? ",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "text-gradient",
-                                            children: "Let's solve it."
+                                            children: "Let's start it."
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Contact.tsx",
                                             lineNumber: 18,
-                                            columnNumber: 42
+                                            columnNumber: 41
                                         }, this)
                                     ]
                                 }, void 0, true, {
@@ -2460,7 +2662,7 @@ function Contact() {
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     className: "mt-4 max-w-xl mx-auto text-muted leading-relaxed",
-                                    children: "Whether it's a freelance project, a fractional growth role, or a full-time position — I'm happy to talk through what you need and how I can help."
+                                    children: "Whether it's a paid campaign, a website or app, or ongoing design and social support — tell me what you need and I'll get back to you with next steps."
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Contact.tsx",
                                     lineNumber: 20,
@@ -2473,13 +2675,13 @@ function Contact() {
                                             href: "mailto:bilalshafqat42@gmail.com",
                                             className: "btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow",
                                             children: [
-                                                "Email Me ",
+                                                "Get A Quote ",
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$up$2d$right$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowUpRight$3e$__["ArrowUpRight"], {
                                                     size: 16
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Contact.tsx",
                                                     lineNumber: 31,
-                                                    columnNumber: 28
+                                                    columnNumber: 31
                                                 }, this)
                                             ]
                                         }, void 0, true, {
@@ -2652,19 +2854,23 @@ const socials = [
 ];
 const quickLinks = [
     {
+        label: "Services",
+        href: "#services"
+    },
+    {
+        label: "Work",
+        href: "#case-studies"
+    },
+    {
         label: "About",
         href: "#about"
     },
     {
-        label: "Case Studies",
-        href: "#case-studies"
-    },
-    {
-        label: "How I Work",
+        label: "Process",
         href: "#process"
     },
     {
-        label: "Work Together",
+        label: "Pricing",
         href: "#engagement"
     },
     {
@@ -2688,23 +2894,23 @@ function Footer() {
                                     children: "Bilal Shafqat"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Footer.tsx",
-                                    lineNumber: 27,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "mt-1 text-sm font-medium text-gold",
-                                    children: "Digital Marketing Manager & Growth Strategist"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/Footer.tsx",
                                     lineNumber: 28,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "mt-3 max-w-sm text-sm text-muted leading-relaxed",
-                                    children: "Helping brands grow through performance marketing, UX, and technology."
+                                    className: "mt-1 text-sm font-medium text-gold",
+                                    children: "Paid Marketing, Design & Development Studio"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Footer.tsx",
-                                    lineNumber: 31,
+                                    lineNumber: 29,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "mt-3 max-w-sm text-sm text-muted leading-relaxed",
+                                    children: "Paid marketing, web & mobile development, and design — under one roof."
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/Footer.tsx",
+                                    lineNumber: 32,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2716,18 +2922,18 @@ function Footer() {
                                             children: s.label
                                         }, s.name, false, {
                                             fileName: "[project]/src/components/Footer.tsx",
-                                            lineNumber: 36,
+                                            lineNumber: 37,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Footer.tsx",
-                                    lineNumber: 34,
+                                    lineNumber: 35,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/Footer.tsx",
-                            lineNumber: 26,
+                            lineNumber: 27,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2737,7 +2943,7 @@ function Footer() {
                                     children: "Quick Links"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Footer.tsx",
-                                    lineNumber: 49,
+                                    lineNumber: 50,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -2749,23 +2955,23 @@ function Footer() {
                                                 children: l.label
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Footer.tsx",
-                                                lineNumber: 53,
+                                                lineNumber: 54,
                                                 columnNumber: 19
                                             }, this)
                                         }, l.label, false, {
                                             fileName: "[project]/src/components/Footer.tsx",
-                                            lineNumber: 52,
+                                            lineNumber: 53,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Footer.tsx",
-                                    lineNumber: 50,
+                                    lineNumber: 51,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/Footer.tsx",
-                            lineNumber: 48,
+                            lineNumber: 49,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2775,7 +2981,7 @@ function Footer() {
                                     children: "Contact & Trust"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Footer.tsx",
-                                    lineNumber: 62,
+                                    lineNumber: 63,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -2788,12 +2994,12 @@ function Footer() {
                                                 children: "bilalshafqat42@gmail.com"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Footer.tsx",
-                                                lineNumber: 65,
+                                                lineNumber: 66,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Footer.tsx",
-                                            lineNumber: 64,
+                                            lineNumber: 65,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -2803,12 +3009,12 @@ function Footer() {
                                                 children: "+971 52 976 6006"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Footer.tsx",
-                                                lineNumber: 70,
+                                                lineNumber: 71,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Footer.tsx",
-                                            lineNumber: 69,
+                                            lineNumber: 70,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -2818,37 +3024,37 @@ function Footer() {
                                                 children: "+971 56 604 7396"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Footer.tsx",
-                                                lineNumber: 75,
+                                                lineNumber: 76,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Footer.tsx",
-                                            lineNumber: 74,
+                                            lineNumber: 75,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                             children: "Dubai, UAE"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Footer.tsx",
-                                            lineNumber: 79,
+                                            lineNumber: 80,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/Footer.tsx",
-                                    lineNumber: 63,
+                                    lineNumber: 64,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/Footer.tsx",
-                            lineNumber: 61,
+                            lineNumber: 62,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/Footer.tsx",
-                    lineNumber: 25,
+                    lineNumber: 26,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2862,31 +3068,31 @@ function Footer() {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/Footer.tsx",
-                            lineNumber: 85,
+                            lineNumber: 86,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                             children: "Built with Next.js & Tailwind CSS."
                         }, void 0, false, {
                             fileName: "[project]/src/components/Footer.tsx",
-                            lineNumber: 86,
+                            lineNumber: 87,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/Footer.tsx",
-                    lineNumber: 84,
+                    lineNumber: 85,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/Footer.tsx",
-            lineNumber: 24,
+            lineNumber: 25,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/Footer.tsx",
-        lineNumber: 23,
+        lineNumber: 24,
         columnNumber: 5
     }, this);
 }

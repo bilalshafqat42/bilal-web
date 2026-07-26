@@ -12,15 +12,15 @@ export default function Contact() {
 
             <div className="relative">
               <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
-                Let&apos;s Talk
+                Get A Quote
               </span>
               <h2 className="mt-5 text-3xl sm:text-4xl font-semibold text-ink">
-                Have a growth challenge? <span className="text-gradient">Let&apos;s solve it.</span>
+                Have a project in mind? <span className="text-gradient">Let&apos;s start it.</span>
               </h2>
               <p className="mt-4 max-w-xl mx-auto text-muted leading-relaxed">
-                Whether it&apos;s a freelance project, a fractional growth role, or a
-                full-time position — I&apos;m happy to talk through what you need and how I
-                can help.
+                Whether it&apos;s a paid campaign, a website or app, or ongoing design and
+                social support — tell me what you need and I&apos;ll get back to you with
+                next steps.
               </p>
 
               <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
@@ -28,7 +28,7 @@ export default function Contact() {
                   href="mailto:bilalshafqat42@gmail.com"
                   className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow"
                 >
-                  Email Me <ArrowUpRight size={16} />
+                  Get A Quote <ArrowUpRight size={16} />
                 </a>
                 <a
                   href="tel:+971529766006"

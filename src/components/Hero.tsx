@@ -3,13 +3,13 @@ import { ArrowRight, MapPin, Sparkles } from "lucide-react";
 import Reveal from "./Reveal";
 
 const ticker = [
+  "Paid Marketing (Google & Social)",
   "Performance Marketing",
-  "Paid Ads",
-  "UX / UI Design",
-  "Web & Mobile Development",
-  "CRM Automation",
-  "AI Workflows",
-  "Growth Strategy",
+  "Web Design & Development",
+  "MERN Stack Development",
+  "Mobile App Development",
+  "Graphic Design",
+  "Social Media Management",
 ];
 
 export default function Hero() {
@@ -25,20 +25,21 @@ export default function Hero() {
           <Reveal>
             <div>
               <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
-                <Sparkles size={14} /> Growth Strategist · Performance Marketer · Digital Builder
+                <Sparkles size={14} /> Marketing · Design · Development Studio
               </span>
 
               <h1 className="mt-6 text-4xl sm:text-5xl lg:text-[3.4rem] font-semibold leading-[1.1] text-ink">
-                I build growth engines from{" "}
-                <span className="text-gradient">strategy to shipped product.</span>
+                One partner for everything from{" "}
+                <span className="text-gradient">paid ads to shipped product.</span>
               </h1>
 
               <p className="mt-6 text-lg text-ink/90 font-medium">
-                Digital Marketing Manager &amp; Growth Strategist
+                Paid Marketing · Web &amp; Mobile Development · Design
               </p>
               <p className="mt-3 max-w-xl text-base sm:text-lg text-muted leading-relaxed">
-                One partner for performance marketing, UX/UI design, web &amp; mobile
-                development, and automation — so growth never stalls between teams.
+                Google &amp; social ads, performance marketing, web design, MERN stack
+                development, mobile apps, graphic design, and social media management —
+                under one roof, so your growth never stalls between vendors.
                 Based in Dubai, working with clients across the UAE and worldwide.
               </p>
 
@@ -53,14 +54,14 @@ export default function Hero() {
                   href="#contact"
                   className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
                 >
-                  Let&apos;s Talk
+                  Get a Quote
                 </a>
               </div>
 
               <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted">
                 <span className="font-semibold text-ink">15+ Years</span>
                 <span className="hidden sm:inline text-border">|</span>
-                <span className="font-semibold text-ink">500+ Projects Delivered</span>
+                <span className="font-semibold text-ink">6 Services, One Partner</span>
                 <span className="hidden sm:inline text-border">|</span>
                 <span className="flex items-center gap-1.5 font-semibold text-ink">
                   <MapPin size={14} className="text-gold" /> Dubai, UAE
@@ -75,7 +76,7 @@ export default function Hero() {
               <div className="relative rounded-[2rem] border border-border glass overflow-hidden">
                 <Image
                   src="/images/bilal-hero.jpg"
-                  alt="Bilal Shafqat, Digital Marketing Manager and Growth Strategist"
+                  alt="Bilal Shafqat, marketing, design and development studio"
                   width={800}
                   height={816}
                   priority
@@ -83,8 +84,8 @@ export default function Hero() {
                 />
               </div>
               <div className="absolute -bottom-5 -left-5 glass-strong rounded-2xl px-5 py-3 text-xs">
-                <p className="font-semibold text-ink">UAE Real Estate</p>
-                <p className="text-muted">Growth Specialist</p>
+                <p className="font-semibold text-ink">Bilal Shafqat</p>
+                <p className="text-muted">Marketing, Design &amp; Dev</p>
               </div>
             </div>
           </Reveal>

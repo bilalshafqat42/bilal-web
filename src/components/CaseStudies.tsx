@@ -6,6 +6,7 @@ import DashboardGraphic from "./DashboardGraphic";
 const cases = [
   {
     title: "Lead Generation for Off-Plan Properties",
+    graphicLabel: "Campaign Performance",
     tags: {
       Market: "UAE Real Estate",
       Audience: "Property investors & end-users",
@@ -27,6 +28,7 @@ const cases = [
   },
   {
     title: "Real Estate Project Launch Campaign",
+    graphicLabel: "Campaign Performance",
     tags: {
       Market: "UAE Real Estate",
       Audience: "Investors & buyers",
@@ -44,6 +46,7 @@ const cases = [
   },
   {
     title: "Continuous Lead Generation for Real Estate Agencies",
+    graphicLabel: "Campaign Performance",
     tags: {
       Market: "UAE Real Estate",
       Audience: "Buyers & sellers",
@@ -59,6 +62,46 @@ const cases = [
     ],
     outcome: "Established a sustainable digital funnel supporting continuous real estate lead generation.",
   },
+  {
+    title: "Custom Marketing Application (MERN Stack)",
+    graphicLabel: "Application Metrics",
+    graphicMetrics: ["Users", "Releases", "Uptime"],
+    tags: {
+      Market: "[Client Industry]",
+      Audience: "[Target Audience]",
+      Channels: "Custom Web Application, CRM Integration",
+    },
+    goal:
+      "[Add the real business goal — e.g. replace a manual process or support a specific campaign operation.]",
+    role: "End-to-end MERN stack development — architecture, frontend, backend, and deployment.",
+    bullets: [
+      "Designed and built a MongoDB / Express / React / Node.js application",
+      "Integrated lead capture with CRM and reporting workflows",
+      "Built an admin dashboard for campaign and performance tracking",
+      "Optimized for performance, security, and mobile responsiveness",
+    ],
+    outcome:
+      "[Add real results once available — e.g. hours saved, leads processed, or feature scope delivered.]",
+  },
+  {
+    title: "Mobile App, Brand & Social Launch",
+    graphicLabel: "Launch Metrics",
+    graphicMetrics: ["Installs", "Engagement", "Retention"],
+    tags: {
+      Market: "[Client Industry]",
+      Audience: "[Target Audience]",
+      Channels: "Mobile App, Graphic Design, Social Media",
+    },
+    goal: "[Add the real business goal for this launch.]",
+    role: "Mobile app development (React Native), brand visuals, and social media management for launch.",
+    bullets: [
+      "Built and shipped a cross-platform mobile app",
+      "Designed app store assets and supporting brand visuals",
+      "Produced launch creatives for social channels",
+      "Managed the content and posting calendar through launch",
+    ],
+    outcome: "[Add real results — downloads, engagement, or launch metrics.]",
+  },
 ];
 
 export default function CaseStudies() {
@@ -67,9 +110,9 @@ export default function CaseStudies() {
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeading
           eyebrow="Proof Of Work"
-          title="Real Estate Growth &"
-          highlight="Paid Advertising (UAE)"
-          description="Focused case studies highlighting paid advertising, lead generation, and growth execution for the UAE real estate market."
+          title="Case Studies Across"
+          highlight="Marketing, Design & Development"
+          description="A spread of work across paid advertising, custom application development, and mobile/brand launches. Newer service lines below are marked for the next real project."
         />
 
         <div className="mt-16 flex flex-col gap-16">
@@ -77,7 +120,7 @@ export default function CaseStudies() {
             <Reveal key={c.title} delay={0.05}>
               <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-8 lg:gap-12 items-center">
                 <div className={`${i % 2 === 1 ? "lg:order-2" : ""} h-72 sm:h-80`}>
-                  <DashboardGraphic variant={i} />
+                  <DashboardGraphic variant={i} label={c.graphicLabel} metrics={c.graphicMetrics} />
                 </div>
 
                 <div className={i % 2 === 1 ? "lg:order-1" : ""}>

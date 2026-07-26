@@ -5,11 +5,11 @@ import { Menu, X } from "lucide-react";
 
 const links = [
   { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
-  { label: "Case Studies", href: "#case-studies" },
-  { label: "How I Work", href: "#process" },
-  { label: "Work Together", href: "#engagement" },
+  { label: "Work", href: "#case-studies" },
+  { label: "About", href: "#about" },
+  { label: "Process", href: "#process" },
+  { label: "Pricing", href: "#engagement" },
 ];
 
 export default function Nav() {
@@ -59,7 +59,7 @@ export default function Nav() {
               href="#contact"
               className="hidden sm:inline-flex btn-primary items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-shadow"
             >
-              Let&apos;s Talk
+              Get a Quote
             </a>
             <button
               onClick={() => setOpen((v) => !v)}
@@ -88,7 +88,7 @@ export default function Nav() {
               onClick={() => setOpen(false)}
               className="mt-2 btn-primary text-center rounded-full px-5 py-2.5 text-sm font-semibold"
             >
-              Let&apos;s Talk
+              Get a Quote
             </a>
           </div>
         ) : null}

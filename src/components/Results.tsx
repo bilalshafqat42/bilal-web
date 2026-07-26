@@ -2,8 +2,8 @@ import { Clock, FileText, Home, TrendingUp, Star } from "lucide-react";
 import Reveal, { RevealStagger, RevealItem } from "./Reveal";
 
 const stats = [
-  { icon: Clock, title: "15+ Years Experience", description: "Across digital marketing, UX, and web technologies" },
-  { icon: FileText, title: "500+ Projects Delivered", description: "Including websites, funnels, landing pages, and growth systems" },
+  { icon: Clock, title: "15+ Years Experience", description: "Across digital marketing, design, and web/mobile development" },
+  { icon: FileText, title: "6 Services, One Partner", description: "Paid marketing, web, mobile, MERN development, and design under one roof" },
   { icon: Home, title: "UAE Real Estate Growth Specialist", description: "Hands-on experience with off-plan & lead-driven campaigns" },
   { icon: TrendingUp, title: "Strategy → Execution Ownership", description: "From planning and design to launch, tracking, and optimization" },
 ];
@@ -11,15 +11,15 @@ const stats = [
 const testimonials = [
   {
     quote:
-      "Bilal took full ownership of our growth funnel — from paid acquisition to landing pages and tracking. His ability to connect strategy with execution made a measurable impact within weeks.",
-    name: "Marketing Manager",
-    org: "UAE Real Estate Company",
+      "[Add a real client quote — e.g. what this client hired you for and the result they saw.]",
+    name: "[Client Name]",
+    org: "[Company / Project]",
   },
   {
     quote:
-      "What sets Bilal apart is his understanding of both marketing strategy and technical execution. He helped us improve lead quality, conversion rates, and reporting clarity without adding operational complexity.",
-    name: "Founder",
-    org: "SaaS / Web Platform",
+      "[Add a real client quote here once the first studio project is complete.]",
+    name: "[Client Name]",
+    org: "[Company / Project]",
   },
 ];
 
@@ -35,12 +35,12 @@ export default function Results() {
                   Results &amp; Impact
                 </span>
                 <h2 className="mt-5 text-3xl sm:text-4xl font-semibold text-ink">
-                  Measurable outcomes from <span className="text-gradient">growth-focused execution.</span>
+                  Measurable outcomes across <span className="text-gradient">marketing, design & development.</span>
                 </h2>
                 <p className="mt-4 text-muted leading-relaxed max-w-lg">
-                  I focus on building scalable marketing systems that deliver consistent,
-                  trackable business results — especially across UAE real estate, eCommerce,
-                  and service-based businesses.
+                  I focus on delivering consistent, trackable results — whether that&apos;s
+                  lead volume, conversion rate, or a shipped product — especially across
+                  UAE real estate, eCommerce, and service-based businesses.
                 </p>
               </div>
             </Reveal>
@@ -59,8 +59,8 @@ export default function Results() {
           </div>
 
           <RevealStagger className="flex flex-col gap-5">
-            {testimonials.map((t) => (
-              <RevealItem key={t.name}>
+            {testimonials.map((t, i) => (
+              <RevealItem key={i}>
                 <div className="rounded-2xl border border-border glass-strong p-7">
                   <div className="flex gap-1 text-gold">
                     {Array.from({ length: 5 }).map((_, i) => (
@@ -72,7 +72,7 @@ export default function Results() {
                   </p>
                   <div className="mt-5 flex items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-gold/30 to-violet/30 text-sm font-semibold text-ink">
-                      {t.org.charAt(0)}
+                      {t.org.replace(/^\[/, "").charAt(0)}
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-ink">{t.org}</p>

@@ -11,10 +11,11 @@ const socials = [
 ];
 
 const quickLinks = [
+  { label: "Services", href: "#services" },
+  { label: "Work", href: "#case-studies" },
   { label: "About", href: "#about" },
-  { label: "Case Studies", href: "#case-studies" },
-  { label: "How I Work", href: "#process" },
-  { label: "Work Together", href: "#engagement" },
+  { label: "Process", href: "#process" },
+  { label: "Pricing", href: "#engagement" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -26,10 +27,10 @@ export default function Footer() {
           <div>
             <h3 className="font-display text-xl font-semibold text-ink">Bilal Shafqat</h3>
             <p className="mt-1 text-sm font-medium text-gold">
-              Digital Marketing Manager &amp; Growth Strategist
+              Paid Marketing, Design &amp; Development Studio
             </p>
             <p className="mt-3 max-w-sm text-sm text-muted leading-relaxed">
-              Helping brands grow through performance marketing, UX, and technology.
+              Paid marketing, web &amp; mobile development, and design — under one roof.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {socials.map((s) => (

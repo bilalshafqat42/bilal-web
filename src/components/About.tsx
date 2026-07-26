@@ -3,16 +3,16 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import Reveal from "./Reveal";
 
 const intersection = [
-  "Growth & performance marketing",
-  "UX, conversion & funnel design",
-  "Technology, automation & AI-supported workflows",
+  "Paid marketing & performance advertising",
+  "Web, mobile & MERN stack development",
+  "Graphic design & social media management",
 ];
 
 const bestAt = [
-  "Driving growth through paid ads and funnel strategy",
-  "Designing conversion-focused landing pages and UX",
-  "Aligning marketing strategy with technical execution",
-  "Building scalable, automation-ready marketing systems",
+  "Running paid Google & social campaigns that convert",
+  "Designing and building websites and marketing applications",
+  "Shipping mobile apps end-to-end, from design to release",
+  "Producing on-brand creative and managing social channels",
 ];
 
 export default function About() {
@@ -46,19 +46,19 @@ export default function About() {
 
               <div className="mt-6 space-y-4 text-muted leading-relaxed">
                 <p>
-                  I&apos;m a Digital Marketing Manager &amp; Growth Strategist who bridges the
-                  gap between marketing strategy and real-world execution.
+                  I run paid marketing campaigns, design and build websites and mobile apps,
+                  develop custom applications on the MERN stack, and produce the graphic
+                  design and social content that goes around them — as one point of contact.
                 </p>
                 <p>
-                  I help businesses grow by combining marketing leadership with hands-on
-                  execution — from paid advertising and funnel strategy to UX, web,
-                  automation, and performance optimization.
+                  Instead of briefing an agency, a developer, and a designer separately, you
+                  work with one person who understands how the ad, the landing page, the
+                  application behind it, and the social content promoting it all fit together.
                 </p>
                 <p>
-                  My background as a UI/UX designer and web developer lets me work end-to-end
-                  on growth systems. Instead of relying on multiple teams, I design, build,
-                  test, and optimize marketing experiences focused on clarity, conversion, and
-                  measurable outcomes.
+                  On the technical side, I build with MongoDB, Express, React, and Node.js —
+                  including custom marketing applications, dashboards, and mobile apps — so
+                  campaigns aren&apos;t limited by off-the-shelf tools.
                 </p>
                 <p>
                   Over the years, I&apos;ve worked across real estate, eCommerce, and
@@ -93,17 +93,17 @@ export default function About() {
               </div>
 
               <p className="mt-8 text-muted leading-relaxed">
-                Whether it&apos;s leading growth initiatives, supporting teams with execution,
-                or building scalable marketing systems, my focus stays on clarity,
-                performance, and real business impact. Open to full-time roles, consulting,
-                and freelance growth-focused collaborations.
+                Whether you need a single project delivered or an ongoing partner across
+                marketing, design, and development, my focus stays on clarity, performance,
+                and real business impact. Available for project-based work, retainers, and
+                consulting engagements.
               </p>
 
               <a
                 href="#contact"
                 className="mt-8 btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow"
               >
-                Let&apos;s Talk <ArrowRight size={16} />
+                Get a Quote <ArrowRight size={16} />
               </a>
             </div>
           </Reveal>

@@ -21,23 +21,23 @@ const links = [
         href: "#home"
     },
     {
-        label: "About",
-        href: "#about"
-    },
-    {
         label: "Services",
         href: "#services"
     },
     {
-        label: "Case Studies",
+        label: "Work",
         href: "#case-studies"
     },
     {
-        label: "How I Work",
+        label: "About",
+        href: "#about"
+    },
+    {
+        label: "Process",
         href: "#process"
     },
     {
-        label: "Work Together",
+        label: "Pricing",
         href: "#engagement"
     }
 ];
@@ -115,7 +115,7 @@ function Nav() {
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                     href: "#contact",
                                     className: "hidden sm:inline-flex btn-primary items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-shadow",
-                                    children: "Let's Talk"
+                                    children: "Get a Quote"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Nav.tsx",
                                     lineNumber: 58,
@@ -172,7 +172,7 @@ function Nav() {
                             href: "#contact",
                             onClick: ()=>setOpen(false),
                             className: "mt-2 btn-primary text-center rounded-full px-5 py-2.5 text-sm font-semibold",
-                            children: "Let's Talk"
+                            children: "Get a Quote"
                         }, void 0, false, {
                             fileName: "[project]/src/components/Nav.tsx",
                             lineNumber: 86,

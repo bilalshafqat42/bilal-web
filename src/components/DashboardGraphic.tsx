@@ -4,7 +4,19 @@ const bars = [
   [30, 60, 85, 45, 70, 55, 95],
 ];
 
-export default function DashboardGraphic({ variant = 0 }: { variant?: number }) {
+const defaultMetrics = ["Reach", "Leads", "Conversion"];
+
+type DashboardGraphicProps = {
+  variant?: number;
+  label?: string;
+  metrics?: string[];
+};
+
+export default function DashboardGraphic({
+  variant = 0,
+  label = "Campaign Performance",
+  metrics = defaultMetrics,
+}: DashboardGraphicProps) {
   const data = bars[variant % bars.length];
   return (
     <div className="relative h-full w-full rounded-2xl border border-border bg-gradient-to-br from-surface to-bg-soft p-6 overflow-hidden">
@@ -17,7 +29,7 @@ export default function DashboardGraphic({ variant = 0 }: { variant?: number }) 
           <span className="h-2.5 w-2.5 rounded-full bg-violet/70" />
           <span className="h-2.5 w-2.5 rounded-full bg-cyan/70" />
         </div>
-        <span className="text-[10px] uppercase tracking-wider text-muted">Campaign Performance</span>
+        <span className="text-[10px] uppercase tracking-wider text-muted">{label}</span>
       </div>
 
       <div className="relative mt-8 flex items-end gap-2.5 h-32">
@@ -31,10 +43,10 @@ export default function DashboardGraphic({ variant = 0 }: { variant?: number }) 
       </div>
 
       <div className="relative mt-6 grid grid-cols-3 gap-3">
-        {["Reach", "Leads", "Conversion"].map((label) => (
-          <div key={label} className="rounded-xl border border-border bg-bg/40 p-3 text-center">
+        {metrics.map((m) => (
+          <div key={m} className="rounded-xl border border-border bg-bg/40 p-3 text-center">
             <span className="h-1.5 w-1.5 mx-auto block rounded-full bg-gold/70 mb-2" />
-            <p className="text-[10px] text-muted uppercase tracking-wide">{label}</p>
+            <p className="text-[10px] text-muted uppercase tracking-wide">{m}</p>
           </div>
         ))}
       </div>
