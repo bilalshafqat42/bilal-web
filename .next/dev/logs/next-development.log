@@ -1,17 +1,1 @@
-{"timestamp":"00:00:00.863","source":"Server","level":"LOG","message":""}
-{"timestamp":"00:38:53.659","source":"Server","level":"LOG","message":"✓ Compiled in 31ms"}
-{"timestamp":"00:41:16.111","source":"Server","level":"LOG","message":"✓ Compiled in 65ms"}
-{"timestamp":"00:46:13.800","source":"Browser","level":"ERROR","message":"Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. [Client Name]"}
-{"timestamp":"00:46:13.828","source":"Server","level":"ERROR","message":"[browser] \"Encountered two children with the same key, `[Client Name]`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.\" \"\""}
-{"timestamp":"00:46:13.828","source":"Browser","level":"ERROR","message":"Encountered two children with the same key, `[Client Name]`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. \"\""}
-{"timestamp":"00:50:53.085","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
-{"timestamp":"00:50:55.288","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
-{"timestamp":"00:51:07.699","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
-{"timestamp":"00:51:09.193","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
-{"timestamp":"00:52:00.407","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
-{"timestamp":"00:52:18.581","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
-{"timestamp":"00:53:04.782","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
-{"timestamp":"00:54:36.551","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
-{"timestamp":"00:54:37.244","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
-{"timestamp":"00:55:19.187","source":"Server","level":"LOG","message":"✓ Compiled in 26ms"}
-{"timestamp":"00:55:56.824","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:00:00.961","source":"Server","level":"LOG","message":""}

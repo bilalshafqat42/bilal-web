@@ -18,27 +18,27 @@ var _s = __turbopack_context__.k.signature();
 const links = [
     {
         label: "Home",
-        href: "#home"
+        href: "/#home"
     },
     {
         label: "Services",
-        href: "#services"
+        href: "/#services"
     },
     {
         label: "Work",
-        href: "#case-studies"
+        href: "/portfolio"
     },
     {
         label: "About",
-        href: "#about"
+        href: "/#about"
     },
     {
         label: "Process",
-        href: "#process"
+        href: "/#process"
     },
     {
         label: "Pricing",
-        href: "#engagement"
+        href: "/#engagement"
     }
 ];
 function Nav() {
@@ -68,7 +68,7 @@ function Nav() {
                     className: `flex items-center justify-between rounded-2xl px-4 py-2.5 transition-all duration-300 ${scrolled ? "glass-strong shadow-lg shadow-black/20" : "bg-transparent"}`,
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                            href: "#home",
+                            href: "/#home",
                             className: "flex items-center gap-2 font-display font-semibold text-lg",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -113,9 +113,9 @@ function Nav() {
                             className: "flex items-center gap-3",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                    href: "#contact",
+                                    href: "/#contact",
                                     className: "hidden sm:inline-flex btn-primary items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-shadow",
-                                    children: "Get a Quote"
+                                    children: "Book a free consultation"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Nav.tsx",
                                     lineNumber: 58,
@@ -169,10 +169,10 @@ function Nav() {
                                 columnNumber: 15
                             }, this)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                            href: "#contact",
+                            href: "/#contact",
                             onClick: ()=>setOpen(false),
                             className: "mt-2 btn-primary text-center rounded-full px-5 py-2.5 text-sm font-semibold",
-                            children: "Get a Quote"
+                            children: "Book a free consultation"
                         }, void 0, false, {
                             fileName: "[project]/src/components/Nav.tsx",
                             lineNumber: 86,

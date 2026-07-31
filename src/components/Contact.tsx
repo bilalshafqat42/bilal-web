@@ -12,7 +12,7 @@ export default function Contact() {
 
             <div className="relative">
               <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
-                Get A Quote
+                Book A Consultation
               </span>
               <h2 className="mt-5 text-3xl sm:text-4xl font-semibold text-ink">
                 Have a project in mind? <span className="text-gradient">Let&apos;s start it.</span>
@@ -28,7 +28,7 @@ export default function Contact() {
                   href="mailto:bilalshafqat42@gmail.com"
                   className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow"
                 >
-                  Get A Quote <ArrowUpRight size={16} />
+                  Book a free consultation <ArrowUpRight size={16} />
                 </a>
                 <a
                   href="tel:+971529766006"

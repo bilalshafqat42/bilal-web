@@ -231,16 +231,16 @@ function Hero() {
                                         className: "mt-9 flex flex-wrap items-center gap-4",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                                href: "#case-studies",
+                                                href: "#contact",
                                                 className: "btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow",
                                                 children: [
-                                                    "View My Work ",
+                                                    "Book a free consultation ",
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
                                                         size: 16
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/Hero.tsx",
                                                         lineNumber: 51,
-                                                        columnNumber: 32
+                                                        columnNumber: 44
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
@@ -249,9 +249,9 @@ function Hero() {
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                                href: "#contact",
+                                                href: "#case-studies",
                                                 className: "inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors",
-                                                children: "Get a Quote"
+                                                children: "View my work"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Hero.tsx",
                                                 lineNumber: 53,
@@ -1591,13 +1591,13 @@ function About() {
                                     href: "#contact",
                                     className: "mt-8 btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow",
                                     children: [
-                                        "Get a Quote ",
+                                        "Book a free consultation ",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
                                             size: 16
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/About.tsx",
                                             lineNumber: 106,
-                                            columnNumber: 29
+                                            columnNumber: 42
                                         }, this)
                                     ]
                                 }, void 0, true, {
@@ -1999,13 +1999,13 @@ function WhoIWorkWith() {
                                 href: "#contact",
                                 className: "mt-5 btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow",
                                 children: [
-                                    "Get a Quote ",
+                                    "Book a free consultation ",
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
                                         size: 16
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/WhoIWorkWith.tsx",
                                         lineNumber: 78,
-                                        columnNumber: 27
+                                        columnNumber: 40
                                     }, this)
                                 ]
                             }, void 0, true, {
@@ -2281,13 +2281,13 @@ function Engagement() {
                                 href: "#contact",
                                 className: "mt-5 btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow",
                                 children: [
-                                    "Get a Quote ",
+                                    "Book a free consultation ",
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
                                         size: 16
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Engagement.tsx",
                                         lineNumber: 98,
-                                        columnNumber: 27
+                                        columnNumber: 40
                                     }, this)
                                 ]
                             }, void 0, true, {
@@ -2636,7 +2636,7 @@ function Contact() {
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     className: "inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase",
-                                    children: "Get A Quote"
+                                    children: "Book A Consultation"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Contact.tsx",
                                     lineNumber: 14,
@@ -2675,13 +2675,13 @@ function Contact() {
                                             href: "mailto:bilalshafqat42@gmail.com",
                                             className: "btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow",
                                             children: [
-                                                "Get A Quote ",
+                                                "Book a free consultation ",
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$up$2d$right$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowUpRight$3e$__["ArrowUpRight"], {
                                                     size: 16
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Contact.tsx",
                                                     lineNumber: 31,
-                                                    columnNumber: 31
+                                                    columnNumber: 44
                                                 }, this)
                                             ]
                                         }, void 0, true, {

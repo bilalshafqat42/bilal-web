@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { label: "Home", href: "#home" },
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#case-studies" },
-  { label: "About", href: "#about" },
-  { label: "Process", href: "#process" },
-  { label: "Pricing", href: "#engagement" },
+  { label: "Home", href: "/#home" },
+  { label: "Services", href: "/#services" },
+  { label: "Work", href: "/portfolio" },
+  { label: "About", href: "/#about" },
+  { label: "Process", href: "/#process" },
+  { label: "Pricing", href: "/#engagement" },
 ];
 
 export default function Nav() {
@@ -35,7 +35,7 @@ export default function Nav() {
             scrolled ? "glass-strong shadow-lg shadow-black/20" : "bg-transparent"
           }`}
         >
-          <a href="#home" className="flex items-center gap-2 font-display font-semibold text-lg">
+          <a href="/#home" className="flex items-center gap-2 font-display font-semibold text-lg">
             <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-gold to-gold-2 text-[#14140f] font-bold">
               BS
             </span>
@@ -56,10 +56,10 @@ export default function Nav() {
 
           <div className="flex items-center gap-3">
             <a
-              href="#contact"
+              href="/#contact"
               className="hidden sm:inline-flex btn-primary items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-shadow"
             >
-              Get a Quote
+              Book a free consultation
             </a>
             <button
               onClick={() => setOpen((v) => !v)}
@@ -84,11 +84,11 @@ export default function Nav() {
               </a>
             ))}
             <a
-              href="#contact"
+              href="/#contact"
               onClick={() => setOpen(false)}
               className="mt-2 btn-primary text-center rounded-full px-5 py-2.5 text-sm font-semibold"
             >
-              Get a Quote
+              Book a free consultation
             </a>
           </div>
         ) : null}

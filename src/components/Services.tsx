@@ -148,7 +148,7 @@ export default function Services() {
                           ))}
                         </ul>
                         <a
-                          href="#case-studies"
+                          href="/portfolio"
                           className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-ink/90 group-hover:text-gold transition-colors"
                         >
                           View Work <ArrowUpRight size={15} />

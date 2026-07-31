@@ -95,7 +95,7 @@ export default function Engagement() {
               href="#contact"
               className="mt-5 btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow"
             >
-              Get a Quote <ArrowRight size={16} />
+              Book a free consultation <ArrowRight size={16} />
             </a>
           </div>
         </Reveal>

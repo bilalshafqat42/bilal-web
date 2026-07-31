@@ -104,7 +104,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "/Users/bilalshafqat/Desktop/bilal",
+    "outputFileTracingRoot": "/Users/bilalshafqat/Desktop/bilal/bilal-web",
     "cacheComponents": false,
     "cacheLife": {
       "default": {
@@ -304,11 +304,11 @@
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.ts",
     "turbopack": {
-      "root": "/Users/bilalshafqat/Desktop/bilal"
+      "root": "/Users/bilalshafqat/Desktop/bilal/bilal-web"
     },
     "distDirRoot": ".next"
   },
-  "appDir": "/Users/bilalshafqat/Desktop/bilal",
+  "appDir": "/Users/bilalshafqat/Desktop/bilal/bilal-web",
   "relativeAppDir": "",
   "files": [
     ".next/package.json",

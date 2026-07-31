@@ -1,7 +1,7 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
-import CaseStudies from "@/components/CaseStudies";
+import LogoWall from "@/components/LogoWall";
 import About from "@/components/About";
 import Process from "@/components/Process";
 import WhoIWorkWith from "@/components/WhoIWorkWith";
@@ -17,7 +17,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Services />
-        <CaseStudies />
+        <LogoWall />
         <About />
         <Process />
         <WhoIWorkWith />
