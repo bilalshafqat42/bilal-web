@@ -1704,10 +1704,10 @@ const models = [
     },
     {
         icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$send$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$export__default__as__Send$3e$__["Send"],
-        title: "Consulting & Audit",
+        title: "Consulting & Advisory",
         description: "High-level review and guidance focused on clarity and measurable outcomes.",
         idealFor: [
-            "A marketing, UX, or technical audit",
+            "A marketing, UX, or technical review",
             "Expert input before a bigger investment",
             "Independent insight without execution dependency"
         ],
@@ -1730,7 +1730,7 @@ function Engagement() {
                     eyebrow: "Pricing & Engagement",
                     title: "Flexible Engagement Models,",
                     highlight: "Built To Match Your Project",
-                    description: "Work with me however fits best — a single project, a monthly retainer, embedded support, or an independent audit."
+                    description: "Work with me however fits best — a single project, a monthly retainer, embedded support, or independent advisory."
                 }, void 0, false, {
                     fileName: "[project]/src/components/Engagement.tsx",
                     lineNumber: 44,

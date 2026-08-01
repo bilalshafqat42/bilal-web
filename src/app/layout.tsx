@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import LeadFormPopup from "@/components/LeadFormPopup";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -29,7 +30,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-bg text-ink">{children}</body>
+      <body className="min-h-full flex flex-col bg-bg text-ink">
+        {children}
+        <LeadFormPopup />
+      </body>
     </html>
   );
 }

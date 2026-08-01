@@ -29,9 +29,9 @@ const models = [
   },
   {
     icon: Send,
-    title: "Consulting & Audit",
+    title: "Consulting & Advisory",
     description: "High-level review and guidance focused on clarity and measurable outcomes.",
-    idealFor: ["A marketing, UX, or technical audit", "Expert input before a bigger investment", "Independent insight without execution dependency"],
+    idealFor: ["A marketing, UX, or technical review", "Expert input before a bigger investment", "Independent insight without execution dependency"],
     contribute: ["Marketing, UX & technical performance review", "A prioritized action plan", "Optional support to implement recommendations"],
     bestFor: "Best for leadership teams needing clarity and direction.",
   },
@@ -45,7 +45,7 @@ export default function Engagement() {
           eyebrow="Pricing & Engagement"
           title="Flexible Engagement Models,"
           highlight="Built To Match Your Project"
-          description="Work with me however fits best — a single project, a monthly retainer, embedded support, or an independent audit."
+          description="Work with me however fits best — a single project, a monthly retainer, embedded support, or independent advisory."
         />
 
         <RevealStagger className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
