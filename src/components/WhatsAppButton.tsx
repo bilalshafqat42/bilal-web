@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
-import { MessageCircle, X, CheckCircle2 } from "lucide-react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { MessageCircle, X, Send } from "lucide-react";
 
 const WHATSAPP_NUMBER = "971529766006";
 
@@ -16,40 +16,84 @@ const SERVICES = [
   "Something else",
 ];
 
-function buildWhatsAppMessage({
-  name,
-  phone,
-  email,
-  service,
-  meetingTime,
-}: {
-  name: string;
-  phone: string;
-  email: string;
-  service: string;
-  meetingTime: string;
-}) {
-  const formattedTime = meetingTime
-    ? new Date(meetingTime).toLocaleString("en-GB", {
-        dateStyle: "medium",
-        timeStyle: "short",
-      })
+type FieldKey = "name" | "email" | "phone" | "service" | "meetingTime";
+type Answers = Partial<Record<FieldKey, string>>;
+
+type Step = {
+  key: FieldKey;
+  bot: (a: Answers) => string;
+  type: "text" | "email" | "tel" | "chips" | "datetime-local";
+  placeholder?: string;
+};
+
+const STEPS: Step[] = [
+  {
+    key: "name",
+    bot: () =>
+      "Hi! I'm here on Bilal's behalf so he can personally follow up with you. What's your name?",
+    type: "text",
+    placeholder: "Your name",
+  },
+  {
+    key: "email",
+    bot: (a) => `Nice to meet you, ${a.name}. What's your email address?`,
+    type: "email",
+    placeholder: "you@company.com",
+  },
+  {
+    key: "phone",
+    bot: () => "And the best phone number to reach you on?",
+    type: "tel",
+    placeholder: "+971 5X XXX XXXX",
+  },
+  {
+    key: "service",
+    bot: () => "Which service are you interested in?",
+    type: "chips",
+  },
+  {
+    key: "meetingTime",
+    bot: () => "Last thing — when would you like to schedule a quick call?",
+    type: "datetime-local",
+  },
+];
+
+type Message = { from: "bot" | "user"; text: string };
+
+function buildWhatsAppMessage(a: Answers) {
+  const formattedTime = a.meetingTime
+    ? new Date(a.meetingTime).toLocaleString("en-GB", { dateStyle: "medium", timeStyle: "short" })
     : "Not specified";
 
   return [
     "Hi Bilal, I'd like to talk about a project.",
     "",
-    `Name: ${name}`,
-    `Email: ${email}`,
-    `Phone: ${phone}`,
-    `Service: ${service}`,
+    `Name: ${a.name}`,
+    `Email: ${a.email}`,
+    `Phone: ${a.phone}`,
+    `Service: ${a.service}`,
     `Preferred meeting time: ${formattedTime}`,
   ].join("\n");
 }
 
+function formatAnswerForDisplay(step: Step, value: string) {
+  if (step.type === "datetime-local") {
+    return new Date(value).toLocaleString("en-GB", { dateStyle: "medium", timeStyle: "short" });
+  }
+  return value;
+}
+
 export default function WhatsAppButton() {
   const [open, setOpen] = useState(false);
-  const [done, setDone] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [stepIndex, setStepIndex] = useState(0);
+  const [answers, setAnswers] = useState<Answers>({});
+  const [typing, setTyping] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const [finished, setFinished] = useState(false);
+  const [botTripped, setBotTripped] = useState(false);
+  const transcriptEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -64,59 +108,110 @@ export default function WhatsAppButton() {
     };
   }, [open]);
 
+  useEffect(() => {
+    transcriptEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+  }, [messages, typing]);
+
+  useEffect(() => {
+    if (!open || messages.length > 0) return;
+    setTyping(true);
+    const t = setTimeout(() => {
+      setTyping(false);
+      setMessages([{ from: "bot", text: STEPS[0].bot({}) }]);
+    }, 500);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
+
+  useEffect(() => {
+    if (open) inputRef.current?.focus();
+  }, [stepIndex, open]);
+
+  const openReset = () => setOpen(true);
+
   const closeAndReset = () => {
     setOpen(false);
-    setTimeout(() => setDone(false), 300);
+    setTimeout(() => {
+      setMessages([]);
+      setStepIndex(0);
+      setAnswers({});
+      setInputValue("");
+      setFinished(false);
+      setBotTripped(false);
+    }, 300);
   };
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
+  function advance(nextAnswers: Answers) {
+    const nextIndex = stepIndex + 1;
+    setInputValue("");
 
-    if (data.get("botcheck") === "on") return;
+    if (nextIndex >= STEPS.length) {
+      const waMessage = buildWhatsAppMessage(nextAnswers);
+      // Opened synchronously inside the click/submit handler that led here,
+      // so browsers treat it as a direct user gesture, not a blocked popup.
+      window.open(
+        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`,
+        "_blank",
+        "noopener,noreferrer"
+      );
 
-    const name = String(data.get("name") || "");
-    const email = String(data.get("email") || "");
-    const phone = String(data.get("phone") || "");
-    const service = String(data.get("service") || "");
-    const meetingTime = String(data.get("meetingTime") || "");
+      fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...nextAnswers,
+          message: `Requested via WhatsApp assistant — service: ${nextAnswers.service}`,
+          source: "whatsapp-chat",
+        }),
+      }).catch(() => {});
 
-    // Open WhatsApp synchronously, in direct response to the click, so browsers
-    // don't treat it as a blocked popup once the CRM fetch below is in flight.
-    const waMessage = buildWhatsAppMessage({ name, phone, email, service, meetingTime });
-    window.open(
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`,
-      "_blank",
-      "noopener,noreferrer"
-    );
+      setTyping(true);
+      setTimeout(() => {
+        setTyping(false);
+        setMessages((m) => [
+          ...m,
+          {
+            from: "bot",
+            text: `All set, ${nextAnswers.name}. I've opened WhatsApp with everything filled in — just hit send there and Bilal will get back to you directly.`,
+          },
+        ]);
+        setFinished(true);
+      }, 600);
+      return;
+    }
 
-    // Best-effort CRM copy — doesn't block or affect the WhatsApp flow above.
-    fetch("/api/lead", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name,
-        email,
-        phone,
-        service,
-        meetingTime,
-        message: `Requested via WhatsApp enquiry — service: ${service}`,
-        source: "whatsapp-popup",
-      }),
-    }).catch(() => {
-      // Silent: WhatsApp is the primary channel here, CRM sync is a bonus.
-    });
-
-    setDone(true);
-    form.reset();
+    setStepIndex(nextIndex);
+    setTyping(true);
+    setTimeout(() => {
+      setTyping(false);
+      setMessages((m) => [...m, { from: "bot", text: STEPS[nextIndex].bot(nextAnswers) }]);
+    }, 550);
   }
+
+  function submitAnswer(rawValue: string) {
+    if (botTripped) return;
+    const step = STEPS[stepIndex];
+    const value = rawValue.trim();
+    if (!value) return;
+
+    setMessages((m) => [...m, { from: "user", text: formatAnswerForDisplay(step, value) }]);
+    const nextAnswers = { ...answers, [step.key]: value };
+    setAnswers(nextAnswers);
+    advance(nextAnswers);
+  }
+
+  function handleInputSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    submitAnswer(inputValue);
+  }
+
+  const step = STEPS[stepIndex];
 
   return (
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={openReset}
         aria-label="Chat on WhatsApp"
         aria-haspopup="dialog"
         className="fixed bottom-24 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/30 transition-shadow hover:shadow-xl"
@@ -128,144 +223,117 @@ export default function WhatsAppButton() {
         <div
           role="dialog"
           aria-modal="true"
-          aria-labelledby="whatsapp-form-heading"
+          aria-labelledby="whatsapp-chat-heading"
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
         >
           <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={closeAndReset} />
 
-          <div className="glass-strong relative w-full max-w-md rounded-2xl border border-border p-7 sm:p-8">
-            <button
-              type="button"
-              onClick={closeAndReset}
-              aria-label="Close"
-              className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-lg text-muted hover:bg-white/5 hover:text-ink transition-colors"
-            >
-              <X size={18} />
-            </button>
+          <div className="glass-strong relative flex w-full max-w-md flex-col overflow-hidden rounded-2xl border border-border" style={{ maxHeight: "85vh" }}>
+            <div className="flex items-center gap-3 border-b border-border px-5 py-4">
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#25D366]/15 text-[#25D366]">
+                <MessageCircle size={18} fill="currentColor" strokeWidth={0} />
+              </div>
+              <div>
+                <h3 id="whatsapp-chat-heading" className="text-sm font-semibold text-ink">
+                  Bilal&apos;s Assistant
+                </h3>
+                <p className="text-xs text-muted">Usually replies within a business day</p>
+              </div>
+              <button
+                type="button"
+                onClick={closeAndReset}
+                aria-label="Close"
+                className="ml-auto flex h-8 w-8 items-center justify-center rounded-lg text-muted hover:bg-white/5 hover:text-ink transition-colors"
+              >
+                <X size={18} />
+              </button>
+            </div>
 
-            {done ? (
-              <div className="py-6 text-center">
-                <CheckCircle2 size={40} className="mx-auto text-[#25D366]" />
-                <h3 className="mt-4 text-lg font-semibold text-ink">WhatsApp opened</h3>
-                <p className="mt-2 text-sm text-muted leading-relaxed">
-                  Your details are pre-filled in WhatsApp — just hit send there to reach
-                  Bilal directly.
-                </p>
+            <div className="flex-1 overflow-y-auto px-5 py-5" style={{ minHeight: 280 }}>
+              <div className="flex flex-col gap-3">
+                {messages.map((m, i) => (
+                  <div
+                    key={i}
+                    className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
+                      m.from === "bot"
+                        ? "self-start bg-surface/70 border border-border text-ink/90"
+                        : "self-end bg-[#25D366]/20 border border-[#25D366]/30 text-ink"
+                    }`}
+                  >
+                    {m.text}
+                  </div>
+                ))}
+
+                {typing ? (
+                  <div className="self-start flex items-center gap-1 rounded-2xl border border-border bg-surface/70 px-4 py-3">
+                    <span className="h-1.5 w-1.5 rounded-full bg-muted animate-bounce [animation-delay:-0.2s]" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-muted animate-bounce [animation-delay:-0.1s]" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-muted animate-bounce" />
+                  </div>
+                ) : null}
+
+                <div ref={transcriptEndRef} />
+              </div>
+            </div>
+
+            {!finished && !typing ? (
+              <div className="border-t border-border p-4">
+                <input
+                  type="checkbox"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  className="hidden"
+                  style={{ display: "none" }}
+                  onChange={(e) => setBotTripped(e.target.checked)}
+                />
+
+                {step.type === "chips" ? (
+                  <div className="flex flex-wrap gap-2">
+                    {SERVICES.map((s) => (
+                      <button
+                        key={s}
+                        type="button"
+                        onClick={() => submitAnswer(s)}
+                        className="rounded-full border border-border bg-surface/60 px-3.5 py-1.5 text-xs text-ink hover:border-[#25D366]/50 hover:text-[#25D366] transition-colors"
+                      >
+                        {s}
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <form onSubmit={handleInputSubmit} className="flex items-center gap-2">
+                    <input
+                      ref={inputRef}
+                      type={step.type}
+                      required
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                      placeholder={step.placeholder}
+                      className="flex-1 rounded-xl border border-border bg-surface/60 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-[#25D366]/50 [color-scheme:dark]"
+                    />
+                    <button
+                      type="submit"
+                      aria-label="Send"
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white transition-shadow hover:shadow-lg hover:shadow-[#25D366]/30"
+                    >
+                      <Send size={16} />
+                    </button>
+                  </form>
+                )}
+              </div>
+            ) : null}
+
+            {finished ? (
+              <div className="border-t border-border p-4">
                 <button
                   type="button"
                   onClick={closeAndReset}
-                  className="mt-6 btn-primary inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold"
+                  className="w-full btn-primary inline-flex items-center justify-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold"
                 >
                   Close
                 </button>
               </div>
-            ) : (
-              <>
-                <h3 id="whatsapp-form-heading" className="text-lg font-semibold text-ink">
-                  Chat on WhatsApp
-                </h3>
-                <p className="mt-1.5 text-sm text-muted leading-relaxed">
-                  Share a few details and I&apos;ll open WhatsApp with everything filled
-                  in, ready to send.
-                </p>
-
-                <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
-                  <input
-                    type="checkbox"
-                    name="botcheck"
-                    className="hidden"
-                    style={{ display: "none" }}
-                    tabIndex={-1}
-                    autoComplete="off"
-                  />
-
-                  <div>
-                    <label htmlFor="wa-name" className="text-xs font-medium text-muted">
-                      Name
-                    </label>
-                    <input
-                      id="wa-name"
-                      name="name"
-                      type="text"
-                      required
-                      className="mt-1.5 w-full rounded-xl border border-border bg-surface/60 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-[#25D366]/50"
-                      placeholder="Your name"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="wa-email" className="text-xs font-medium text-muted">
-                      Email
-                    </label>
-                    <input
-                      id="wa-email"
-                      name="email"
-                      type="email"
-                      required
-                      className="mt-1.5 w-full rounded-xl border border-border bg-surface/60 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-[#25D366]/50"
-                      placeholder="you@company.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="wa-phone" className="text-xs font-medium text-muted">
-                      Phone
-                    </label>
-                    <input
-                      id="wa-phone"
-                      name="phone"
-                      type="tel"
-                      required
-                      className="mt-1.5 w-full rounded-xl border border-border bg-surface/60 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-[#25D366]/50"
-                      placeholder="+971 5X XXX XXXX"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="wa-service" className="text-xs font-medium text-muted">
-                      Service you&apos;re looking for
-                    </label>
-                    <select
-                      id="wa-service"
-                      name="service"
-                      required
-                      defaultValue=""
-                      className="mt-1.5 w-full rounded-xl border border-border bg-surface/60 px-4 py-2.5 text-sm text-ink outline-none focus:border-[#25D366]/50"
-                    >
-                      <option value="" disabled>
-                        Select a service
-                      </option>
-                      {SERVICES.map((s) => (
-                        <option key={s} value={s} className="bg-bg-soft">
-                          {s}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="wa-meeting" className="text-xs font-medium text-muted">
-                      Preferred meeting time
-                    </label>
-                    <input
-                      id="wa-meeting"
-                      name="meetingTime"
-                      type="datetime-local"
-                      required
-                      className="mt-1.5 w-full rounded-xl border border-border bg-surface/60 px-4 py-2.5 text-sm text-ink outline-none focus:border-[#25D366]/50 [color-scheme:dark]"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="mt-1 inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white transition-shadow hover:shadow-lg hover:shadow-[#25D366]/30"
-                  >
-                    <MessageCircle size={16} fill="white" strokeWidth={0} />
-                    Open WhatsApp
-                  </button>
-                </form>
-              </>
-            )}
+            ) : null}
           </div>
         </div>
       ) : null}

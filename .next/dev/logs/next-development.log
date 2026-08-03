@@ -1,2 +1,3 @@
-{"timestamp":"00:00:00.700","source":"Server","level":"LOG","message":""}
-{"timestamp":"00:00:34.276","source":"Server","level":"ERROR","message":"CRM_LEAD_API_URL is not configured — lead was not forwarded."}
+{"timestamp":"00:00:00.763","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:18.132","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:00:23.574","source":"Server","level":"ERROR","message":"CRM_LEAD_API_URL is not configured — lead was not forwarded."}
