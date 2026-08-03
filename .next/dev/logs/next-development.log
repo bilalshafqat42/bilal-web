@@ -1,3 +1,4 @@
-{"timestamp":"00:00:00.795","source":"Server","level":"LOG","message":""}
-{"timestamp":"00:00:15.032","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
-{"timestamp":"00:00:42.603","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:00:00.562","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:17.683","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:00:21.672","source":"Server","level":"ERROR","message":"CRM_LEAD_API_URL is not configured — lead was not forwarded."}
+{"timestamp":"00:00:23.508","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}

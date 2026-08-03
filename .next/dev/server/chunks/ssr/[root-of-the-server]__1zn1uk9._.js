@@ -465,38 +465,20 @@ const STEPS = [
     },
     {
         key: "service",
-        bot: ()=>"Which service are you interested in?",
+        bot: ()=>"Last thing — which service are you interested in?",
         type: "chips"
-    },
-    {
-        key: "meetingTime",
-        bot: ()=>"Last thing — when would you like to schedule a quick call?",
-        type: "datetime-local"
     }
 ];
 function buildWhatsAppMessage(a) {
-    const formattedTime = a.meetingTime ? new Date(a.meetingTime).toLocaleString("en-GB", {
-        dateStyle: "medium",
-        timeStyle: "short"
-    }) : "Not specified";
-    return [
+    const lines = [
         "Hi Bilal, I'd like to talk about a project.",
-        "",
-        `Name: ${a.name}`,
-        `Email: ${a.email}`,
-        `Phone: ${a.phone}`,
-        `Service: ${a.service}`,
-        `Preferred meeting time: ${formattedTime}`
-    ].join("\n");
-}
-function formatAnswerForDisplay(step, value) {
-    if (step.type === "datetime-local") {
-        return new Date(value).toLocaleString("en-GB", {
-            dateStyle: "medium",
-            timeStyle: "short"
-        });
-    }
-    return value;
+        ""
+    ];
+    if (a.name) lines.push(`Name: ${a.name}`);
+    if (a.email) lines.push(`Email: ${a.email}`);
+    if (a.phone) lines.push(`Phone: ${a.phone}`);
+    if (a.service) lines.push(`Service: ${a.service}`);
+    return lines.join("\n");
 }
 function WhatsAppButton() {
     const [open, setOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
@@ -511,13 +493,17 @@ function WhatsAppButton() {
     const transcriptEndRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const inputRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const startedRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(false);
-    // Proactive open once per session, after the visitor has scrolled a bit —
-    // mimics a sales rep stepping in rather than a static widget.
+    // Proactive open once per session — whichever comes first: scrolling past the
+    // 2nd homepage section (Services), or 30 seconds on the page. Mimics a sales
+    // rep stepping in rather than a static widget waiting to be clicked.
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         if ("TURBOPACK compile-time truthy", 1) return;
         //TURBOPACK unreachable
         ;
+        let triggered;
+        const trigger = undefined;
         const onScroll = undefined;
+        const timer = undefined;
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
@@ -666,7 +652,7 @@ function WhatsAppButton() {
                 ...m,
                 {
                     from: "user",
-                    text: formatAnswerForDisplay(step, value)
+                    text: value
                 }
             ]);
         const nextAnswers = {
@@ -679,6 +665,35 @@ function WhatsAppButton() {
     function handleInputSubmit(e) {
         e.preventDefault();
         submitAnswer(inputValue);
+    }
+    function skipToWhatsApp() {
+        const waMessage = buildWhatsAppMessage(answers);
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`, "_blank", "noopener,noreferrer");
+        if (answers.name && answers.email) {
+            fetch("/api/lead", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    ...answers,
+                    message: "Requested via WhatsApp assistant — skipped ahead to chat directly",
+                    source: "whatsapp-chat-skip"
+                })
+            }).catch(()=>{});
+        }
+        setTyping(true);
+        setTimeout(()=>{
+            setTyping(false);
+            setMessages((m)=>[
+                    ...m,
+                    {
+                        from: "bot",
+                        text: "No problem — I've opened WhatsApp so you can message Bilal directly."
+                    }
+                ]);
+            setFinished(true);
+        }, 500);
     }
     const step = STEPS[stepIndex];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -694,7 +709,7 @@ function WhatsAppButton() {
                     size: 20
                 }, void 0, false, {
                     fileName: "[project]/src/components/WhatsAppButton.tsx",
-                    lineNumber: 268,
+                    lineNumber: 297,
                     columnNumber: 11
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                     children: [
@@ -704,21 +719,21 @@ function WhatsAppButton() {
                             strokeWidth: 0
                         }, void 0, false, {
                             fileName: "[project]/src/components/WhatsAppButton.tsx",
-                            lineNumber: 271,
+                            lineNumber: 300,
                             columnNumber: 13
                         }, this),
                         hasUnread ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                             className: "absolute -top-1 -right-1 h-3.5 w-3.5 rounded-full bg-red-500 border-2 border-[#08080b]"
                         }, void 0, false, {
                             fileName: "[project]/src/components/WhatsAppButton.tsx",
-                            lineNumber: 273,
+                            lineNumber: 302,
                             columnNumber: 15
                         }, this) : null
                     ]
                 }, void 0, true)
             }, void 0, false, {
                 fileName: "[project]/src/components/WhatsAppButton.tsx",
-                lineNumber: 259,
+                lineNumber: 288,
                 columnNumber: 7
             }, this),
             open ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -740,12 +755,12 @@ function WhatsAppButton() {
                                     strokeWidth: 0
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                    lineNumber: 288,
+                                    lineNumber: 317,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                lineNumber: 287,
+                                lineNumber: 316,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -756,7 +771,7 @@ function WhatsAppButton() {
                                         children: "Bilal's Assistant"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                        lineNumber: 291,
+                                        lineNumber: 320,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -764,13 +779,13 @@ function WhatsAppButton() {
                                         children: "Usually replies within a business day"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                        lineNumber: 294,
+                                        lineNumber: 323,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                lineNumber: 290,
+                                lineNumber: 319,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -782,18 +797,18 @@ function WhatsAppButton() {
                                     size: 18
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                    lineNumber: 302,
+                                    lineNumber: 331,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                lineNumber: 296,
+                                lineNumber: 325,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/WhatsAppButton.tsx",
-                        lineNumber: 286,
+                        lineNumber: 315,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -806,7 +821,7 @@ function WhatsAppButton() {
                                         children: m.text
                                     }, i, false, {
                                         fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                        lineNumber: 309,
+                                        lineNumber: 338,
                                         columnNumber: 17
                                     }, this)),
                                 typing ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -816,45 +831,45 @@ function WhatsAppButton() {
                                             className: "h-1.5 w-1.5 rounded-full bg-muted animate-bounce [animation-delay:-0.2s]"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                            lineNumber: 323,
+                                            lineNumber: 352,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "h-1.5 w-1.5 rounded-full bg-muted animate-bounce [animation-delay:-0.1s]"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                            lineNumber: 324,
+                                            lineNumber: 353,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "h-1.5 w-1.5 rounded-full bg-muted animate-bounce"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                            lineNumber: 325,
+                                            lineNumber: 354,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                    lineNumber: 322,
+                                    lineNumber: 351,
                                     columnNumber: 17
                                 }, this) : null,
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     ref: transcriptEndRef
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                    lineNumber: 329,
+                                    lineNumber: 358,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/WhatsAppButton.tsx",
-                            lineNumber: 307,
+                            lineNumber: 336,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/WhatsAppButton.tsx",
-                        lineNumber: 306,
+                        lineNumber: 335,
                         columnNumber: 11
                     }, this),
                     !finished && !typing ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -871,7 +886,7 @@ function WhatsAppButton() {
                                 onChange: (e)=>setBotTripped(e.target.checked)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                lineNumber: 335,
+                                lineNumber: 364,
                                 columnNumber: 15
                             }, this),
                             step.type === "chips" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -883,12 +898,12 @@ function WhatsAppButton() {
                                         children: s
                                     }, s, false, {
                                         fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                        lineNumber: 347,
+                                        lineNumber: 376,
                                         columnNumber: 21
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                lineNumber: 345,
+                                lineNumber: 374,
                                 columnNumber: 17
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
                                 onSubmit: handleInputSubmit,
@@ -904,7 +919,7 @@ function WhatsAppButton() {
                                         className: "flex-1 rounded-xl border border-border bg-surface/60 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-[#25D366]/50 [color-scheme:dark]"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                        lineNumber: 359,
+                                        lineNumber: 388,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -915,24 +930,34 @@ function WhatsAppButton() {
                                             size: 16
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                            lineNumber: 373,
+                                            lineNumber: 402,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                        lineNumber: 368,
+                                        lineNumber: 397,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                lineNumber: 358,
+                                lineNumber: 387,
                                 columnNumber: 17
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                type: "button",
+                                onClick: skipToWhatsApp,
+                                className: "mt-2.5 text-xs text-muted hover:text-[#25D366] underline underline-offset-2 transition-colors",
+                                children: "Prefer to skip ahead and message Bilal directly?"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/WhatsAppButton.tsx",
+                                lineNumber: 407,
+                                columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/WhatsAppButton.tsx",
-                        lineNumber: 334,
+                        lineNumber: 363,
                         columnNumber: 13
                     }, this) : null,
                     finished ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -947,18 +972,18 @@ function WhatsAppButton() {
                             children: "Close"
                         }, void 0, false, {
                             fileName: "[project]/src/components/WhatsAppButton.tsx",
-                            lineNumber: 382,
+                            lineNumber: 419,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/WhatsAppButton.tsx",
-                        lineNumber: 381,
+                        lineNumber: 418,
                         columnNumber: 13
                     }, this) : null
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/WhatsAppButton.tsx",
-                lineNumber: 280,
+                lineNumber: 309,
                 columnNumber: 9
             }, this) : null
         ]

@@ -18,13 +18,13 @@ const SERVICES = [
   "Something else",
 ];
 
-type FieldKey = "name" | "email" | "phone" | "service" | "meetingTime";
+type FieldKey = "name" | "email" | "phone" | "service";
 type Answers = Partial<Record<FieldKey, string>>;
 
 type Step = {
   key: FieldKey;
   bot: (a: Answers) => string;
-  type: "text" | "email" | "tel" | "chips" | "datetime-local";
+  type: "text" | "email" | "tel" | "chips";
   placeholder?: string;
 };
 
@@ -50,39 +50,20 @@ const STEPS: Step[] = [
   },
   {
     key: "service",
-    bot: () => "Which service are you interested in?",
+    bot: () => "Last thing — which service are you interested in?",
     type: "chips",
-  },
-  {
-    key: "meetingTime",
-    bot: () => "Last thing — when would you like to schedule a quick call?",
-    type: "datetime-local",
   },
 ];
 
 type Message = { from: "bot" | "user"; text: string };
 
 function buildWhatsAppMessage(a: Answers) {
-  const formattedTime = a.meetingTime
-    ? new Date(a.meetingTime).toLocaleString("en-GB", { dateStyle: "medium", timeStyle: "short" })
-    : "Not specified";
-
-  return [
-    "Hi Bilal, I'd like to talk about a project.",
-    "",
-    `Name: ${a.name}`,
-    `Email: ${a.email}`,
-    `Phone: ${a.phone}`,
-    `Service: ${a.service}`,
-    `Preferred meeting time: ${formattedTime}`,
-  ].join("\n");
-}
-
-function formatAnswerForDisplay(step: Step, value: string) {
-  if (step.type === "datetime-local") {
-    return new Date(value).toLocaleString("en-GB", { dateStyle: "medium", timeStyle: "short" });
-  }
-  return value;
+  const lines = ["Hi Bilal, I'd like to talk about a project.", ""];
+  if (a.name) lines.push(`Name: ${a.name}`);
+  if (a.email) lines.push(`Email: ${a.email}`);
+  if (a.phone) lines.push(`Phone: ${a.phone}`);
+  if (a.service) lines.push(`Service: ${a.service}`);
+  return lines.join("\n");
 }
 
 export default function WhatsAppButton() {
@@ -99,21 +80,38 @@ export default function WhatsAppButton() {
   const inputRef = useRef<HTMLInputElement>(null);
   const startedRef = useRef(false);
 
-  // Proactive open once per session, after the visitor has scrolled a bit —
-  // mimics a sales rep stepping in rather than a static widget.
+  // Proactive open once per session — whichever comes first: scrolling past the
+  // 2nd homepage section (Services), or 30 seconds on the page. Mimics a sales
+  // rep stepping in rather than a static widget waiting to be clicked.
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (sessionStorage.getItem(AUTO_OPEN_SESSION_KEY)) return;
 
+    let triggered = false;
+    const trigger = () => {
+      if (triggered) return;
+      triggered = true;
+      window.removeEventListener("scroll", onScroll);
+      clearTimeout(timer);
+      sessionStorage.setItem(AUTO_OPEN_SESSION_KEY, "1");
+      startConversation(true);
+    };
+
     const onScroll = () => {
-      if (window.scrollY > AUTO_OPEN_SCROLL_PX) {
-        window.removeEventListener("scroll", onScroll);
-        sessionStorage.setItem(AUTO_OPEN_SESSION_KEY, "1");
-        startConversation(true);
+      const servicesSection = document.getElementById("services");
+      if (servicesSection) {
+        if (servicesSection.getBoundingClientRect().bottom < 0) trigger();
+      } else if (window.scrollY > AUTO_OPEN_SCROLL_PX) {
+        trigger();
       }
     };
+
+    const timer = setTimeout(trigger, 30000);
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      clearTimeout(timer);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -241,7 +239,7 @@ export default function WhatsAppButton() {
     const value = rawValue.trim();
     if (!value) return;
 
-    setMessages((m) => [...m, { from: "user", text: formatAnswerForDisplay(step, value) }]);
+    setMessages((m) => [...m, { from: "user", text: value }]);
     const nextAnswers = { ...answers, [step.key]: value };
     setAnswers(nextAnswers);
     advance(nextAnswers);
@@ -250,6 +248,37 @@ export default function WhatsAppButton() {
   function handleInputSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     submitAnswer(inputValue);
+  }
+
+  function skipToWhatsApp() {
+    const waMessage = buildWhatsAppMessage(answers);
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
+
+    if (answers.name && answers.email) {
+      fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...answers,
+          message: "Requested via WhatsApp assistant — skipped ahead to chat directly",
+          source: "whatsapp-chat-skip",
+        }),
+      }).catch(() => {});
+    }
+
+    setTyping(true);
+    setTimeout(() => {
+      setTyping(false);
+      setMessages((m) => [
+        ...m,
+        { from: "bot", text: "No problem — I've opened WhatsApp so you can message Bilal directly." },
+      ]);
+      setFinished(true);
+    }, 500);
   }
 
   const step = STEPS[stepIndex];
@@ -374,6 +403,14 @@ export default function WhatsAppButton() {
                   </button>
                 </form>
               )}
+
+              <button
+                type="button"
+                onClick={skipToWhatsApp}
+                className="mt-2.5 text-xs text-muted hover:text-[#25D366] underline underline-offset-2 transition-colors"
+              >
+                Prefer to skip ahead and message Bilal directly?
+              </button>
             </div>
           ) : null}
 
