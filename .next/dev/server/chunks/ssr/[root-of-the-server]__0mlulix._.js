@@ -23,7 +23,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 ;
 ;
 ;
-const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
 function LeadFormPopup() {
     const [open, setOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [status, setStatus] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("idle");
@@ -51,12 +50,18 @@ function LeadFormPopup() {
         const form = e.currentTarget;
         const data = new FormData(form);
         try {
-            const res = await fetch("https://api.web3forms.com/submit", {
+            const res = await fetch("/api/lead", {
                 method: "POST",
                 headers: {
-                    Accept: "application/json"
+                    "Content-Type": "application/json"
                 },
-                body: data
+                body: JSON.stringify({
+                    name: data.get("name"),
+                    email: data.get("email"),
+                    phone: data.get("phone"),
+                    message: data.get("message"),
+                    botcheck: data.get("botcheck") === "on"
+                })
             });
             const result = await res.json();
             if (result.success) {
@@ -81,7 +86,7 @@ function LeadFormPopup() {
                         size: 18
                     }, void 0, false, {
                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                        lineNumber: 65,
+                        lineNumber: 69,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -89,13 +94,13 @@ function LeadFormPopup() {
                         children: "Quick Enquiry"
                     }, void 0, false, {
                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                        lineNumber: 66,
+                        lineNumber: 70,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/LeadFormPopup.tsx",
-                lineNumber: 59,
+                lineNumber: 63,
                 columnNumber: 7
             }, this),
             open ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -109,7 +114,7 @@ function LeadFormPopup() {
                         onClick: closeAndReset
                     }, void 0, false, {
                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                        lineNumber: 76,
+                        lineNumber: 80,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -124,12 +129,12 @@ function LeadFormPopup() {
                                     size: 18
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                    lineNumber: 88,
+                                    lineNumber: 92,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                lineNumber: 82,
+                                lineNumber: 86,
                                 columnNumber: 13
                             }, this),
                             status === "success" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -140,7 +145,7 @@ function LeadFormPopup() {
                                         className: "mx-auto text-gold"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                        lineNumber: 93,
+                                        lineNumber: 97,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -148,7 +153,7 @@ function LeadFormPopup() {
                                         children: "Query sent"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                        lineNumber: 94,
+                                        lineNumber: 98,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -156,7 +161,7 @@ function LeadFormPopup() {
                                         children: "Thanks for reaching out. I'll get back to you shortly."
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                        lineNumber: 95,
+                                        lineNumber: 99,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -166,13 +171,13 @@ function LeadFormPopup() {
                                         children: "Close"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                        lineNumber: 98,
+                                        lineNumber: 102,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                lineNumber: 92,
+                                lineNumber: 96,
                                 columnNumber: 15
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                                 children: [
@@ -182,7 +187,7 @@ function LeadFormPopup() {
                                         children: "Send a quick query"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                        lineNumber: 108,
+                                        lineNumber: 112,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -190,40 +195,13 @@ function LeadFormPopup() {
                                         children: "Tell me a bit about what you need and I'll follow up directly."
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                        lineNumber: 111,
+                                        lineNumber: 115,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
                                         onSubmit: handleSubmit,
                                         className: "mt-6 flex flex-col gap-4",
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                type: "hidden",
-                                                name: "access_key",
-                                                value: WEB3FORMS_ACCESS_KEY
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                lineNumber: 116,
-                                                columnNumber: 19
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                type: "hidden",
-                                                name: "subject",
-                                                value: "New lead from website popup"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                lineNumber: 117,
-                                                columnNumber: 19
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                type: "hidden",
-                                                name: "from_name",
-                                                value: "Website Quick Enquiry"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                lineNumber: 118,
-                                                columnNumber: 19
-                                            }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                                 type: "checkbox",
                                                 name: "botcheck",
@@ -235,7 +213,7 @@ function LeadFormPopup() {
                                                 autoComplete: "off"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                lineNumber: 119,
+                                                lineNumber: 120,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -246,7 +224,7 @@ function LeadFormPopup() {
                                                         children: "Name"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                        lineNumber: 129,
+                                                        lineNumber: 130,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -258,13 +236,13 @@ function LeadFormPopup() {
                                                         placeholder: "Your name"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                        lineNumber: 132,
+                                                        lineNumber: 133,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                lineNumber: 128,
+                                                lineNumber: 129,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -275,7 +253,7 @@ function LeadFormPopup() {
                                                         children: "Email"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                        lineNumber: 143,
+                                                        lineNumber: 144,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -287,13 +265,13 @@ function LeadFormPopup() {
                                                         placeholder: "you@company.com"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                        lineNumber: 146,
+                                                        lineNumber: 147,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                lineNumber: 142,
+                                                lineNumber: 143,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -304,7 +282,7 @@ function LeadFormPopup() {
                                                         children: "Phone (optional)"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                        lineNumber: 157,
+                                                        lineNumber: 158,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -315,13 +293,13 @@ function LeadFormPopup() {
                                                         placeholder: "+971 5X XXX XXXX"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                        lineNumber: 160,
+                                                        lineNumber: 161,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                lineNumber: 156,
+                                                lineNumber: 157,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -332,7 +310,7 @@ function LeadFormPopup() {
                                                         children: "What do you need help with?"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                        lineNumber: 170,
+                                                        lineNumber: 171,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -344,13 +322,13 @@ function LeadFormPopup() {
                                                         placeholder: "Briefly describe your project or query"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                        lineNumber: 173,
+                                                        lineNumber: 174,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                lineNumber: 169,
+                                                lineNumber: 170,
                                                 columnNumber: 19
                                             }, this),
                                             status === "error" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -361,7 +339,7 @@ function LeadFormPopup() {
                                                         className: "mt-0.5 shrink-0"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                        lineNumber: 185,
+                                                        lineNumber: 186,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -374,7 +352,7 @@ function LeadFormPopup() {
                                                                 children: "bilalshafqat42@gmail.com"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                                lineNumber: 188,
+                                                                lineNumber: 189,
                                                                 columnNumber: 25
                                                             }, this),
                                                             " ",
@@ -382,13 +360,13 @@ function LeadFormPopup() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                        lineNumber: 186,
+                                                        lineNumber: 187,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                lineNumber: 184,
+                                                lineNumber: 185,
                                                 columnNumber: 21
                                             }, this) : null,
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -402,7 +380,7 @@ function LeadFormPopup() {
                                                             className: "animate-spin"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                            lineNumber: 203,
+                                                            lineNumber: 204,
                                                             columnNumber: 25
                                                         }, this),
                                                         " Sending..."
@@ -410,13 +388,13 @@ function LeadFormPopup() {
                                                 }, void 0, true) : "Send query"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                                lineNumber: 196,
+                                                lineNumber: 197,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                                        lineNumber: 115,
+                                        lineNumber: 119,
                                         columnNumber: 17
                                     }, this)
                                 ]
@@ -424,13 +402,13 @@ function LeadFormPopup() {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/LeadFormPopup.tsx",
-                        lineNumber: 81,
+                        lineNumber: 85,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/LeadFormPopup.tsx",
-                lineNumber: 70,
+                lineNumber: 74,
                 columnNumber: 9
             }, this) : null
         ]

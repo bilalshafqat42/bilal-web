@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import LeadFormPopup from "@/components/LeadFormPopup";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -32,6 +33,7 @@ export default function RootLayout({
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col bg-bg text-ink">
         {children}
+        <WhatsAppButton />
         <LeadFormPopup />
       </body>
     </html>

@@ -5,8 +5,6 @@ import { MessageSquarePlus, X, Loader2, CheckCircle2, AlertCircle } from "lucide
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
-
 export default function LeadFormPopup() {
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
@@ -37,10 +35,16 @@ export default function LeadFormPopup() {
     const data = new FormData(form);
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("/api/lead", {
         method: "POST",
-        headers: { Accept: "application/json" },
-        body: data,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          phone: data.get("phone"),
+          message: data.get("message"),
+          botcheck: data.get("botcheck") === "on",
+        }),
       });
       const result = await res.json();
       if (result.success) {
@@ -113,9 +117,6 @@ export default function LeadFormPopup() {
                 </p>
 
                 <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
-                  <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
-                  <input type="hidden" name="subject" value="New lead from website popup" />
-                  <input type="hidden" name="from_name" value="Website Quick Enquiry" />
                   <input
                     type="checkbox"
                     name="botcheck"
