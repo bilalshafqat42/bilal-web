@@ -432,6 +432,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 ;
 ;
 const WHATSAPP_NUMBER = "971529766006";
+const AUTO_OPEN_SCROLL_PX = 700;
+const AUTO_OPEN_SESSION_KEY = "bilal_wa_widget_shown";
 const SERVICES = [
     "Paid Marketing (Google & Social)",
     "Performance Marketing",
@@ -445,7 +447,7 @@ const SERVICES = [
 const STEPS = [
     {
         key: "name",
-        bot: ()=>"Hi! I'm here on Bilal's behalf so he can personally follow up with you. What's your name?",
+        bot: ()=>"I'm here on Bilal's behalf so he can personally follow up with you. What's your name?",
         type: "text",
         placeholder: "Your name"
     },
@@ -505,46 +507,37 @@ function WhatsAppButton() {
     const [inputValue, setInputValue] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [finished, setFinished] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [botTripped, setBotTripped] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [hasUnread, setHasUnread] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const transcriptEndRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const inputRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const startedRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(false);
+    // Proactive open once per session, after the visitor has scrolled a bit —
+    // mimics a sales rep stepping in rather than a static widget.
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if ("TURBOPACK compile-time truthy", 1) return;
+        //TURBOPACK unreachable
+        ;
+        const onScroll = undefined;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         if (!open) return;
         const onKeyDown = (e)=>{
             if (e.key === "Escape") setOpen(false);
         };
         document.addEventListener("keydown", onKeyDown);
-        document.body.style.overflow = "hidden";
-        return ()=>{
-            document.removeEventListener("keydown", onKeyDown);
-            document.body.style.overflow = "";
-        };
+        return ()=>document.removeEventListener("keydown", onKeyDown);
     }, [
         open
     ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        transcriptEndRef.current?.scrollIntoView({
+        if (open) transcriptEndRef.current?.scrollIntoView({
             behavior: "smooth",
             block: "end"
         });
     }, [
         messages,
-        typing
-    ]);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        if (!open || messages.length > 0) return;
-        setTyping(true);
-        const t = setTimeout(()=>{
-            setTyping(false);
-            setMessages([
-                {
-                    from: "bot",
-                    text: STEPS[0].bot({})
-                }
-            ]);
-        }, 500);
-        return ()=>clearTimeout(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [
+        typing,
         open
     ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
@@ -553,18 +546,71 @@ function WhatsAppButton() {
         stepIndex,
         open
     ]);
-    const openReset = ()=>setOpen(true);
+    function startConversation(greetFirst) {
+        if (startedRef.current) {
+            setOpen(true);
+            return;
+        }
+        startedRef.current = true;
+        sessionStorage.setItem(AUTO_OPEN_SESSION_KEY, "1");
+        setOpen(true);
+        setHasUnread(true);
+        setTyping(true);
+        if (greetFirst) {
+            setTimeout(()=>{
+                setTyping(false);
+                setMessages([
+                    {
+                        from: "bot",
+                        text: "Hi there! Thanks for stopping by — how can I help you today?"
+                    }
+                ]);
+                setTimeout(()=>{
+                    setTyping(true);
+                    setTimeout(()=>{
+                        setTyping(false);
+                        setMessages((m)=>[
+                                ...m,
+                                {
+                                    from: "bot",
+                                    text: STEPS[0].bot({})
+                                }
+                            ]);
+                    }, 550);
+                }, 900);
+            }, 500);
+        } else {
+            setTimeout(()=>{
+                setTyping(false);
+                setMessages([
+                    {
+                        from: "bot",
+                        text: STEPS[0].bot({})
+                    }
+                ]);
+            }, 500);
+        }
+    }
+    function handleLauncherClick() {
+        if (open) {
+            setOpen(false);
+            return;
+        }
+        setHasUnread(false);
+        startConversation(false);
+    }
     const closeAndReset = ()=>{
         setOpen(false);
-        setTimeout(()=>{
-            setMessages([]);
-            setStepIndex(0);
-            setAnswers({});
-            setInputValue("");
-            setFinished(false);
-            setBotTripped(false);
-        }, 300);
     };
+    function resetForNextTime() {
+        setMessages([]);
+        setStepIndex(0);
+        setAnswers({});
+        setInputValue("");
+        setFinished(false);
+        setBotTripped(false);
+        startedRef.current = false;
+    }
     function advance(nextAnswers) {
         const nextIndex = stepIndex + 1;
         setInputValue("");
@@ -639,280 +685,280 @@ function WhatsAppButton() {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                 type: "button",
-                onClick: openReset,
-                "aria-label": "Chat on WhatsApp",
+                onClick: handleLauncherClick,
+                "aria-label": open ? "Close chat" : "Chat with us",
                 "aria-haspopup": "dialog",
+                "aria-expanded": open,
                 className: "fixed bottom-24 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/30 transition-shadow hover:shadow-xl",
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$message$2d$circle$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__MessageCircle$3e$__["MessageCircle"], {
-                    size: 22,
-                    fill: "white",
-                    strokeWidth: 0
+                children: open ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
+                    size: 20
                 }, void 0, false, {
                     fileName: "[project]/src/components/WhatsAppButton.tsx",
-                    lineNumber: 219,
-                    columnNumber: 9
-                }, this)
+                    lineNumber: 268,
+                    columnNumber: 11
+                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$message$2d$circle$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__MessageCircle$3e$__["MessageCircle"], {
+                            size: 22,
+                            fill: "white",
+                            strokeWidth: 0
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/WhatsAppButton.tsx",
+                            lineNumber: 271,
+                            columnNumber: 13
+                        }, this),
+                        hasUnread ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: "absolute -top-1 -right-1 h-3.5 w-3.5 rounded-full bg-red-500 border-2 border-[#08080b]"
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/WhatsAppButton.tsx",
+                            lineNumber: 273,
+                            columnNumber: 15
+                        }, this) : null
+                    ]
+                }, void 0, true)
             }, void 0, false, {
                 fileName: "[project]/src/components/WhatsAppButton.tsx",
-                lineNumber: 212,
+                lineNumber: 259,
                 columnNumber: 7
             }, this),
             open ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 role: "dialog",
-                "aria-modal": "true",
                 "aria-labelledby": "whatsapp-chat-heading",
-                className: "fixed inset-0 z-50 flex items-center justify-center p-4",
+                className: "fixed bottom-40 right-4 left-4 sm:left-auto sm:right-6 z-40 flex w-auto sm:w-[380px] flex-col overflow-hidden rounded-2xl border border-border glass-strong shadow-2xl shadow-black/40",
+                style: {
+                    height: "min(560px, 65vh)"
+                },
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "absolute inset-0 bg-black/70 backdrop-blur-sm",
-                        onClick: closeAndReset
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/WhatsAppButton.tsx",
-                        lineNumber: 229,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "glass-strong relative flex w-full max-w-md flex-col overflow-hidden rounded-2xl border border-border",
-                        style: {
-                            maxHeight: "85vh"
-                        },
+                        className: "flex items-center gap-3 border-b border-border px-5 py-4",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center gap-3 border-b border-border px-5 py-4",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex h-9 w-9 items-center justify-center rounded-full bg-[#25D366]/15 text-[#25D366]",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$message$2d$circle$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__MessageCircle$3e$__["MessageCircle"], {
-                                            size: 18,
-                                            fill: "currentColor",
-                                            strokeWidth: 0
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                            lineNumber: 234,
-                                            columnNumber: 17
-                                        }, this)
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                        lineNumber: 233,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                id: "whatsapp-chat-heading",
-                                                className: "text-sm font-semibold text-ink",
-                                                children: "Bilal's Assistant"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                                lineNumber: 237,
-                                                columnNumber: 17
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-xs text-muted",
-                                                children: "Usually replies within a business day"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                                lineNumber: 240,
-                                                columnNumber: 17
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                        lineNumber: 236,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                        type: "button",
-                                        onClick: closeAndReset,
-                                        "aria-label": "Close",
-                                        className: "ml-auto flex h-8 w-8 items-center justify-center rounded-lg text-muted hover:bg-white/5 hover:text-ink transition-colors",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
-                                            size: 18
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                            lineNumber: 248,
-                                            columnNumber: 17
-                                        }, this)
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                        lineNumber: 242,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                lineNumber: 232,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex-1 overflow-y-auto px-5 py-5",
-                                style: {
-                                    minHeight: 280
-                                },
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex flex-col gap-3",
-                                    children: [
-                                        messages.map((m, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: `max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${m.from === "bot" ? "self-start bg-surface/70 border border-border text-ink/90" : "self-end bg-[#25D366]/20 border border-[#25D366]/30 text-ink"}`,
-                                                children: m.text
-                                            }, i, false, {
-                                                fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                                lineNumber: 255,
-                                                columnNumber: 19
-                                            }, this)),
-                                        typing ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "self-start flex items-center gap-1 rounded-2xl border border-border bg-surface/70 px-4 py-3",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "h-1.5 w-1.5 rounded-full bg-muted animate-bounce [animation-delay:-0.2s]"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                                    lineNumber: 269,
-                                                    columnNumber: 21
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "h-1.5 w-1.5 rounded-full bg-muted animate-bounce [animation-delay:-0.1s]"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                                    lineNumber: 270,
-                                                    columnNumber: 21
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "h-1.5 w-1.5 rounded-full bg-muted animate-bounce"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                                    lineNumber: 271,
-                                                    columnNumber: 21
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                            lineNumber: 268,
-                                            columnNumber: 19
-                                        }, this) : null,
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            ref: transcriptEndRef
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                            lineNumber: 275,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
+                                className: "flex h-9 w-9 items-center justify-center rounded-full bg-[#25D366]/15 text-[#25D366]",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$message$2d$circle$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__MessageCircle$3e$__["MessageCircle"], {
+                                    size: 18,
+                                    fill: "currentColor",
+                                    strokeWidth: 0
+                                }, void 0, false, {
                                     fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                    lineNumber: 253,
+                                    lineNumber: 288,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                lineNumber: 252,
+                                lineNumber: 287,
                                 columnNumber: 13
                             }, this),
-                            !finished && !typing ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "border-t border-border p-4",
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                        type: "checkbox",
-                                        tabIndex: -1,
-                                        autoComplete: "off",
-                                        className: "hidden",
-                                        style: {
-                                            display: "none"
-                                        },
-                                        onChange: (e)=>setBotTripped(e.target.checked)
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                        lineNumber: 281,
-                                        columnNumber: 17
-                                    }, this),
-                                    step.type === "chips" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex flex-wrap gap-2",
-                                        children: SERVICES.map((s)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                type: "button",
-                                                onClick: ()=>submitAnswer(s),
-                                                className: "rounded-full border border-border bg-surface/60 px-3.5 py-1.5 text-xs text-ink hover:border-[#25D366]/50 hover:text-[#25D366] transition-colors",
-                                                children: s
-                                            }, s, false, {
-                                                fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                                lineNumber: 293,
-                                                columnNumber: 23
-                                            }, this))
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                        id: "whatsapp-chat-heading",
+                                        className: "text-sm font-semibold text-ink",
+                                        children: "Bilal's Assistant"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/WhatsAppButton.tsx",
                                         lineNumber: 291,
-                                        columnNumber: 19
-                                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
-                                        onSubmit: handleInputSubmit,
-                                        className: "flex items-center gap-2",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                ref: inputRef,
-                                                type: step.type,
-                                                required: true,
-                                                value: inputValue,
-                                                onChange: (e)=>setInputValue(e.target.value),
-                                                placeholder: step.placeholder,
-                                                className: "flex-1 rounded-xl border border-border bg-surface/60 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-[#25D366]/50 [color-scheme:dark]"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                                lineNumber: 305,
-                                                columnNumber: 21
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                type: "submit",
-                                                "aria-label": "Send",
-                                                className: "flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white transition-shadow hover:shadow-lg hover:shadow-[#25D366]/30",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$send$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Send$3e$__["Send"], {
-                                                    size: 16
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                                    lineNumber: 319,
-                                                    columnNumber: 23
-                                                }, this)
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                                lineNumber: 314,
-                                                columnNumber: 21
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-xs text-muted",
+                                        children: "Usually replies within a business day"
+                                    }, void 0, false, {
                                         fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                        lineNumber: 304,
+                                        lineNumber: 294,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/WhatsAppButton.tsx",
+                                lineNumber: 290,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                type: "button",
+                                onClick: closeAndReset,
+                                "aria-label": "Close",
+                                className: "ml-auto flex h-8 w-8 items-center justify-center rounded-lg text-muted hover:bg-white/5 hover:text-ink transition-colors",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
+                                    size: 18
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/WhatsAppButton.tsx",
+                                    lineNumber: 302,
+                                    columnNumber: 15
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/WhatsAppButton.tsx",
+                                lineNumber: 296,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/WhatsAppButton.tsx",
+                        lineNumber: 286,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex-1 overflow-y-auto px-5 py-5",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex flex-col gap-3",
+                            children: [
+                                messages.map((m, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: `max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${m.from === "bot" ? "self-start bg-surface/70 border border-border text-ink/90" : "self-end bg-[#25D366]/20 border border-[#25D366]/30 text-ink"}`,
+                                        children: m.text
+                                    }, i, false, {
+                                        fileName: "[project]/src/components/WhatsAppButton.tsx",
+                                        lineNumber: 309,
+                                        columnNumber: 17
+                                    }, this)),
+                                typing ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "self-start flex items-center gap-1 rounded-2xl border border-border bg-surface/70 px-4 py-3",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "h-1.5 w-1.5 rounded-full bg-muted animate-bounce [animation-delay:-0.2s]"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/WhatsAppButton.tsx",
+                                            lineNumber: 323,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "h-1.5 w-1.5 rounded-full bg-muted animate-bounce [animation-delay:-0.1s]"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/WhatsAppButton.tsx",
+                                            lineNumber: 324,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "h-1.5 w-1.5 rounded-full bg-muted animate-bounce"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/WhatsAppButton.tsx",
+                                            lineNumber: 325,
+                                            columnNumber: 19
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/components/WhatsAppButton.tsx",
+                                    lineNumber: 322,
+                                    columnNumber: 17
+                                }, this) : null,
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    ref: transcriptEndRef
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/WhatsAppButton.tsx",
+                                    lineNumber: 329,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/components/WhatsAppButton.tsx",
+                            lineNumber: 307,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/WhatsAppButton.tsx",
+                        lineNumber: 306,
+                        columnNumber: 11
+                    }, this),
+                    !finished && !typing ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "border-t border-border p-4",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                type: "checkbox",
+                                tabIndex: -1,
+                                autoComplete: "off",
+                                className: "hidden",
+                                style: {
+                                    display: "none"
+                                },
+                                onChange: (e)=>setBotTripped(e.target.checked)
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/WhatsAppButton.tsx",
+                                lineNumber: 335,
+                                columnNumber: 15
+                            }, this),
+                            step.type === "chips" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex flex-wrap gap-2",
+                                children: SERVICES.map((s)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        type: "button",
+                                        onClick: ()=>submitAnswer(s),
+                                        className: "rounded-full border border-border bg-surface/60 px-3.5 py-1.5 text-xs text-ink hover:border-[#25D366]/50 hover:text-[#25D366] transition-colors",
+                                        children: s
+                                    }, s, false, {
+                                        fileName: "[project]/src/components/WhatsAppButton.tsx",
+                                        lineNumber: 347,
+                                        columnNumber: 21
+                                    }, this))
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/WhatsAppButton.tsx",
+                                lineNumber: 345,
+                                columnNumber: 17
+                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
+                                onSubmit: handleInputSubmit,
+                                className: "flex items-center gap-2",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                        ref: inputRef,
+                                        type: step.type,
+                                        required: true,
+                                        value: inputValue,
+                                        onChange: (e)=>setInputValue(e.target.value),
+                                        placeholder: step.placeholder,
+                                        className: "flex-1 rounded-xl border border-border bg-surface/60 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-[#25D366]/50 [color-scheme:dark]"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/WhatsAppButton.tsx",
+                                        lineNumber: 359,
+                                        columnNumber: 19
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        type: "submit",
+                                        "aria-label": "Send",
+                                        className: "flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white transition-shadow hover:shadow-lg hover:shadow-[#25D366]/30",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$send$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Send$3e$__["Send"], {
+                                            size: 16
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/WhatsAppButton.tsx",
+                                            lineNumber: 373,
+                                            columnNumber: 21
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/WhatsAppButton.tsx",
+                                        lineNumber: 368,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                lineNumber: 280,
-                                columnNumber: 15
-                            }, this) : null,
-                            finished ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "border-t border-border p-4",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    type: "button",
-                                    onClick: closeAndReset,
-                                    className: "w-full btn-primary inline-flex items-center justify-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold",
-                                    children: "Close"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                    lineNumber: 328,
-                                    columnNumber: 17
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/WhatsAppButton.tsx",
-                                lineNumber: 327,
-                                columnNumber: 15
-                            }, this) : null
+                                lineNumber: 358,
+                                columnNumber: 17
+                            }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/WhatsAppButton.tsx",
-                        lineNumber: 231,
-                        columnNumber: 11
-                    }, this)
+                        lineNumber: 334,
+                        columnNumber: 13
+                    }, this) : null,
+                    finished ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "border-t border-border p-4",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                            type: "button",
+                            onClick: ()=>{
+                                closeAndReset();
+                                resetForNextTime();
+                            },
+                            className: "w-full btn-primary inline-flex items-center justify-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold",
+                            children: "Close"
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/WhatsAppButton.tsx",
+                            lineNumber: 382,
+                            columnNumber: 15
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/WhatsAppButton.tsx",
+                        lineNumber: 381,
+                        columnNumber: 13
+                    }, this) : null
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/WhatsAppButton.tsx",
-                lineNumber: 223,
+                lineNumber: 280,
                 columnNumber: 9
             }, this) : null
         ]

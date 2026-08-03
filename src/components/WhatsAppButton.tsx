@@ -4,6 +4,8 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { MessageCircle, X, Send } from "lucide-react";
 
 const WHATSAPP_NUMBER = "971529766006";
+const AUTO_OPEN_SCROLL_PX = 700;
+const AUTO_OPEN_SESSION_KEY = "bilal_wa_widget_shown";
 
 const SERVICES = [
   "Paid Marketing (Google & Social)",
@@ -30,7 +32,7 @@ const STEPS: Step[] = [
   {
     key: "name",
     bot: () =>
-      "Hi! I'm here on Bilal's behalf so he can personally follow up with you. What's your name?",
+      "I'm here on Bilal's behalf so he can personally follow up with you. What's your name?",
     type: "text",
     placeholder: "Your name",
   },
@@ -92,8 +94,28 @@ export default function WhatsAppButton() {
   const [inputValue, setInputValue] = useState("");
   const [finished, setFinished] = useState(false);
   const [botTripped, setBotTripped] = useState(false);
+  const [hasUnread, setHasUnread] = useState(false);
   const transcriptEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const startedRef = useRef(false);
+
+  // Proactive open once per session, after the visitor has scrolled a bit —
+  // mimics a sales rep stepping in rather than a static widget.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (sessionStorage.getItem(AUTO_OPEN_SESSION_KEY)) return;
+
+    const onScroll = () => {
+      if (window.scrollY > AUTO_OPEN_SCROLL_PX) {
+        window.removeEventListener("scroll", onScroll);
+        sessionStorage.setItem(AUTO_OPEN_SESSION_KEY, "1");
+        startConversation(true);
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -101,45 +123,70 @@ export default function WhatsAppButton() {
       if (e.key === "Escape") setOpen(false);
     };
     document.addEventListener("keydown", onKeyDown);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = "";
-    };
+    return () => document.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
   useEffect(() => {
-    transcriptEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-  }, [messages, typing]);
-
-  useEffect(() => {
-    if (!open || messages.length > 0) return;
-    setTyping(true);
-    const t = setTimeout(() => {
-      setTyping(false);
-      setMessages([{ from: "bot", text: STEPS[0].bot({}) }]);
-    }, 500);
-    return () => clearTimeout(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open]);
+    if (open) transcriptEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+  }, [messages, typing, open]);
 
   useEffect(() => {
     if (open) inputRef.current?.focus();
   }, [stepIndex, open]);
 
-  const openReset = () => setOpen(true);
+  function startConversation(greetFirst: boolean) {
+    if (startedRef.current) {
+      setOpen(true);
+      return;
+    }
+    startedRef.current = true;
+    sessionStorage.setItem(AUTO_OPEN_SESSION_KEY, "1");
+    setOpen(true);
+    setHasUnread(true);
+    setTyping(true);
+
+    if (greetFirst) {
+      setTimeout(() => {
+        setTyping(false);
+        setMessages([{ from: "bot", text: "Hi there! Thanks for stopping by — how can I help you today?" }]);
+        setTimeout(() => {
+          setTyping(true);
+          setTimeout(() => {
+            setTyping(false);
+            setMessages((m) => [...m, { from: "bot", text: STEPS[0].bot({}) }]);
+          }, 550);
+        }, 900);
+      }, 500);
+    } else {
+      setTimeout(() => {
+        setTyping(false);
+        setMessages([{ from: "bot", text: STEPS[0].bot({}) }]);
+      }, 500);
+    }
+  }
+
+  function handleLauncherClick() {
+    if (open) {
+      setOpen(false);
+      return;
+    }
+    setHasUnread(false);
+    startConversation(false);
+  }
 
   const closeAndReset = () => {
     setOpen(false);
-    setTimeout(() => {
-      setMessages([]);
-      setStepIndex(0);
-      setAnswers({});
-      setInputValue("");
-      setFinished(false);
-      setBotTripped(false);
-    }, 300);
   };
+
+  function resetForNextTime() {
+    setMessages([]);
+    setStepIndex(0);
+    setAnswers({});
+    setInputValue("");
+    setFinished(false);
+    setBotTripped(false);
+    startedRef.current = false;
+  }
 
   function advance(nextAnswers: Answers) {
     const nextIndex = stepIndex + 1;
@@ -211,130 +258,139 @@ export default function WhatsAppButton() {
     <>
       <button
         type="button"
-        onClick={openReset}
-        aria-label="Chat on WhatsApp"
+        onClick={handleLauncherClick}
+        aria-label={open ? "Close chat" : "Chat with us"}
         aria-haspopup="dialog"
+        aria-expanded={open}
         className="fixed bottom-24 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/30 transition-shadow hover:shadow-xl"
       >
-        <MessageCircle size={22} fill="white" strokeWidth={0} />
+        {open ? (
+          <X size={20} />
+        ) : (
+          <>
+            <MessageCircle size={22} fill="white" strokeWidth={0} />
+            {hasUnread ? (
+              <span className="absolute -top-1 -right-1 h-3.5 w-3.5 rounded-full bg-red-500 border-2 border-[#08080b]" />
+            ) : null}
+          </>
+        )}
       </button>
 
       {open ? (
         <div
           role="dialog"
-          aria-modal="true"
           aria-labelledby="whatsapp-chat-heading"
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          className="fixed bottom-40 right-4 left-4 sm:left-auto sm:right-6 z-40 flex w-auto sm:w-[380px] flex-col overflow-hidden rounded-2xl border border-border glass-strong shadow-2xl shadow-black/40"
+          style={{ height: "min(560px, 65vh)" }}
         >
-          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={closeAndReset} />
+          <div className="flex items-center gap-3 border-b border-border px-5 py-4">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#25D366]/15 text-[#25D366]">
+              <MessageCircle size={18} fill="currentColor" strokeWidth={0} />
+            </div>
+            <div>
+              <h3 id="whatsapp-chat-heading" className="text-sm font-semibold text-ink">
+                Bilal&apos;s Assistant
+              </h3>
+              <p className="text-xs text-muted">Usually replies within a business day</p>
+            </div>
+            <button
+              type="button"
+              onClick={closeAndReset}
+              aria-label="Close"
+              className="ml-auto flex h-8 w-8 items-center justify-center rounded-lg text-muted hover:bg-white/5 hover:text-ink transition-colors"
+            >
+              <X size={18} />
+            </button>
+          </div>
 
-          <div className="glass-strong relative flex w-full max-w-md flex-col overflow-hidden rounded-2xl border border-border" style={{ maxHeight: "85vh" }}>
-            <div className="flex items-center gap-3 border-b border-border px-5 py-4">
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#25D366]/15 text-[#25D366]">
-                <MessageCircle size={18} fill="currentColor" strokeWidth={0} />
-              </div>
-              <div>
-                <h3 id="whatsapp-chat-heading" className="text-sm font-semibold text-ink">
-                  Bilal&apos;s Assistant
-                </h3>
-                <p className="text-xs text-muted">Usually replies within a business day</p>
-              </div>
+          <div className="flex-1 overflow-y-auto px-5 py-5">
+            <div className="flex flex-col gap-3">
+              {messages.map((m, i) => (
+                <div
+                  key={i}
+                  className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
+                    m.from === "bot"
+                      ? "self-start bg-surface/70 border border-border text-ink/90"
+                      : "self-end bg-[#25D366]/20 border border-[#25D366]/30 text-ink"
+                  }`}
+                >
+                  {m.text}
+                </div>
+              ))}
+
+              {typing ? (
+                <div className="self-start flex items-center gap-1 rounded-2xl border border-border bg-surface/70 px-4 py-3">
+                  <span className="h-1.5 w-1.5 rounded-full bg-muted animate-bounce [animation-delay:-0.2s]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-muted animate-bounce [animation-delay:-0.1s]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-muted animate-bounce" />
+                </div>
+              ) : null}
+
+              <div ref={transcriptEndRef} />
+            </div>
+          </div>
+
+          {!finished && !typing ? (
+            <div className="border-t border-border p-4">
+              <input
+                type="checkbox"
+                tabIndex={-1}
+                autoComplete="off"
+                className="hidden"
+                style={{ display: "none" }}
+                onChange={(e) => setBotTripped(e.target.checked)}
+              />
+
+              {step.type === "chips" ? (
+                <div className="flex flex-wrap gap-2">
+                  {SERVICES.map((s) => (
+                    <button
+                      key={s}
+                      type="button"
+                      onClick={() => submitAnswer(s)}
+                      className="rounded-full border border-border bg-surface/60 px-3.5 py-1.5 text-xs text-ink hover:border-[#25D366]/50 hover:text-[#25D366] transition-colors"
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <form onSubmit={handleInputSubmit} className="flex items-center gap-2">
+                  <input
+                    ref={inputRef}
+                    type={step.type}
+                    required
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    placeholder={step.placeholder}
+                    className="flex-1 rounded-xl border border-border bg-surface/60 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-[#25D366]/50 [color-scheme:dark]"
+                  />
+                  <button
+                    type="submit"
+                    aria-label="Send"
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white transition-shadow hover:shadow-lg hover:shadow-[#25D366]/30"
+                  >
+                    <Send size={16} />
+                  </button>
+                </form>
+              )}
+            </div>
+          ) : null}
+
+          {finished ? (
+            <div className="border-t border-border p-4">
               <button
                 type="button"
-                onClick={closeAndReset}
-                aria-label="Close"
-                className="ml-auto flex h-8 w-8 items-center justify-center rounded-lg text-muted hover:bg-white/5 hover:text-ink transition-colors"
+                onClick={() => {
+                  closeAndReset();
+                  resetForNextTime();
+                }}
+                className="w-full btn-primary inline-flex items-center justify-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold"
               >
-                <X size={18} />
+                Close
               </button>
             </div>
-
-            <div className="flex-1 overflow-y-auto px-5 py-5" style={{ minHeight: 280 }}>
-              <div className="flex flex-col gap-3">
-                {messages.map((m, i) => (
-                  <div
-                    key={i}
-                    className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
-                      m.from === "bot"
-                        ? "self-start bg-surface/70 border border-border text-ink/90"
-                        : "self-end bg-[#25D366]/20 border border-[#25D366]/30 text-ink"
-                    }`}
-                  >
-                    {m.text}
-                  </div>
-                ))}
-
-                {typing ? (
-                  <div className="self-start flex items-center gap-1 rounded-2xl border border-border bg-surface/70 px-4 py-3">
-                    <span className="h-1.5 w-1.5 rounded-full bg-muted animate-bounce [animation-delay:-0.2s]" />
-                    <span className="h-1.5 w-1.5 rounded-full bg-muted animate-bounce [animation-delay:-0.1s]" />
-                    <span className="h-1.5 w-1.5 rounded-full bg-muted animate-bounce" />
-                  </div>
-                ) : null}
-
-                <div ref={transcriptEndRef} />
-              </div>
-            </div>
-
-            {!finished && !typing ? (
-              <div className="border-t border-border p-4">
-                <input
-                  type="checkbox"
-                  tabIndex={-1}
-                  autoComplete="off"
-                  className="hidden"
-                  style={{ display: "none" }}
-                  onChange={(e) => setBotTripped(e.target.checked)}
-                />
-
-                {step.type === "chips" ? (
-                  <div className="flex flex-wrap gap-2">
-                    {SERVICES.map((s) => (
-                      <button
-                        key={s}
-                        type="button"
-                        onClick={() => submitAnswer(s)}
-                        className="rounded-full border border-border bg-surface/60 px-3.5 py-1.5 text-xs text-ink hover:border-[#25D366]/50 hover:text-[#25D366] transition-colors"
-                      >
-                        {s}
-                      </button>
-                    ))}
-                  </div>
-                ) : (
-                  <form onSubmit={handleInputSubmit} className="flex items-center gap-2">
-                    <input
-                      ref={inputRef}
-                      type={step.type}
-                      required
-                      value={inputValue}
-                      onChange={(e) => setInputValue(e.target.value)}
-                      placeholder={step.placeholder}
-                      className="flex-1 rounded-xl border border-border bg-surface/60 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-[#25D366]/50 [color-scheme:dark]"
-                    />
-                    <button
-                      type="submit"
-                      aria-label="Send"
-                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white transition-shadow hover:shadow-lg hover:shadow-[#25D366]/30"
-                    >
-                      <Send size={16} />
-                    </button>
-                  </form>
-                )}
-              </div>
-            ) : null}
-
-            {finished ? (
-              <div className="border-t border-border p-4">
-                <button
-                  type="button"
-                  onClick={closeAndReset}
-                  className="w-full btn-primary inline-flex items-center justify-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold"
-                >
-                  Close
-                </button>
-              </div>
-            ) : null}
-          </div>
+          ) : null}
         </div>
       ) : null}
     </>
