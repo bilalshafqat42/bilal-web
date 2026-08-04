@@ -3,36 +3,11 @@ import { ArrowUpRight, Mail, ChevronDown, Sparkles } from "lucide-react";
 
 export default function HeroAlt() {
   return (
-    <section className="bg-bg text-ink px-4 py-8 sm:px-8 sm:py-10">
-      <div className="mx-auto max-w-[1400px] rounded-[2.5rem] border border-border bg-bg-soft p-6 sm:p-10">
-        {/* Nav */}
-        <header className="flex flex-wrap items-center justify-between gap-4 rounded-full border border-border bg-surface/60 px-6 py-3">
-          <a href="#" className="flex items-center gap-2 font-semibold text-lg">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-ink text-xs font-bold text-bg">
-              BS
-            </span>
-            Bilal Shafqat
-          </a>
-
-          <nav className="hidden items-center gap-8 text-sm text-muted lg:flex">
-            <a href="#" className="hover:text-ink transition-colors">Services</a>
-            <a href="#" className="hover:text-ink transition-colors">Work</a>
-            <a href="#" className="hover:text-ink transition-colors">About</a>
-            <a href="#" className="font-medium text-ink underline underline-offset-4">Talk to us</a>
-          </nav>
-
-          <div className="flex items-center gap-1 rounded-full bg-white/5 p-1">
-            <a href="#" className="rounded-full px-4 py-2 text-sm text-muted">
-              View work
-            </a>
-            <a href="#" className="btn-primary rounded-full px-4 py-2 text-sm font-medium">
-              Book a free consultation
-            </a>
-          </div>
-        </header>
-
+    <section className="relative overflow-hidden bg-bg text-ink px-4 py-16 sm:px-8 sm:py-20">
+      <div className="pointer-events-none absolute inset-0 grid-fade" />
+      <div className="relative mx-auto max-w-[1400px]">
         {/* Hero content */}
-        <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           {/* Left: headline */}
           <div>
             <div className="flex flex-wrap gap-2">
@@ -53,6 +28,8 @@ export default function HeroAlt() {
               <br />
               <Sparkles size={30} className="inline -translate-y-1 text-muted" /> never stalls
             </h1>
+
+            <div className="mt-6 h-px w-full max-w-sm bg-border" />
 
             <p className="mt-6 max-w-sm text-base text-muted leading-relaxed">
               Paid marketing, web &amp; mobile development, and design — under one
@@ -92,47 +69,44 @@ export default function HeroAlt() {
             </div>
           </div>
 
-          {/* Right: single photo with floating stats + rotating badge */}
-          <div className="relative">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] border border-border">
-              <Image
-                src="/images/bilal-hero.jpg"
-                alt="Bilal Shafqat"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute right-4 top-4 flex gap-1.5">
-                <span className="h-2 w-2 rounded-full bg-white/60" />
-                <span className="h-2 w-2 rounded-full bg-white/60" />
-              </div>
-              <div className="absolute right-4 top-4 max-w-[170px] rounded-2xl bg-black/50 p-4 text-white backdrop-blur-md">
-                <div className="flex items-center justify-between">
-                  <span className="text-2xl font-semibold">15+</span>
-                  <ArrowUpRight size={16} />
-                </div>
-                <p className="mt-1 text-xs text-white/80">Years across marketing, design &amp; dev</p>
-              </div>
-              <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
-                <span className="rounded-full bg-black/50 px-3 py-1.5 text-xs text-white backdrop-blur-md">
-                  Dubai, UAE
-                </span>
-                <span className="rounded-full bg-black/50 px-3 py-1.5 text-xs text-white backdrop-blur-md">
-                  6 Services, One Partner
-                </span>
-              </div>
-            </div>
+          {/* Right: single photo with floating stats + rotating badge, all contained within the frame */}
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem]">
+            <Image
+              src="/images/bilal-hero.jpg"
+              alt="Bilal Shafqat"
+              fill
+              className="object-cover"
+            />
 
-            <div className="absolute -bottom-8 -right-8 flex h-20 w-20 items-center justify-center">
-              <div className="absolute inset-0 animate-spin rounded-full border border-dashed border-border [animation-duration:12s]" />
+            {/* Rotating "view work" badge — top-right, fully inside the frame */}
+            <div className="absolute right-4 top-4 flex h-16 w-16 items-center justify-center">
+              <div className="absolute inset-0 animate-spin rounded-full border border-dashed border-white/40 [animation-duration:12s]" />
               <a
                 href="#"
-                className="flex flex-col items-center justify-center gap-0.5 text-center text-[10px] font-medium leading-tight text-ink"
+                className="flex flex-col items-center justify-center gap-0.5 text-center text-[9px] font-medium leading-tight text-white"
               >
-                View my
+                View
                 <br />
                 work
-                <ArrowUpRight size={12} className="mt-0.5" />
+                <ArrowUpRight size={10} className="mt-0.5" />
               </a>
+            </div>
+
+            <div className="absolute right-4 top-1/3 max-w-[170px] rounded-2xl bg-black/50 p-4 text-white backdrop-blur-md">
+              <div className="flex items-center justify-between">
+                <span className="text-2xl font-semibold">15+</span>
+                <ArrowUpRight size={16} />
+              </div>
+              <p className="mt-1 text-xs text-white/80">Years across marketing, design &amp; dev</p>
+            </div>
+
+            <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
+              <span className="rounded-full bg-black/50 px-3 py-1.5 text-xs text-white backdrop-blur-md">
+                Dubai, UAE
+              </span>
+              <span className="rounded-full bg-black/50 px-3 py-1.5 text-xs text-white backdrop-blur-md">
+                6 Services, One Partner
+              </span>
             </div>
           </div>
         </div>
