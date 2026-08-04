@@ -1,8 +1,21 @@
-import { Package, RefreshCw, Users2, Send, ArrowRight } from "lucide-react";
+"use client";
+
+import { useState } from "react";
+import { Package, RefreshCw, Users2, Send, ArrowRight, ChevronDown, type LucideIcon } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import Reveal, { RevealStagger, RevealItem } from "./Reveal";
 
-const models = [
+type Model = {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  idealFor: string[];
+  contribute: string[];
+  bestFor: string;
+};
+
+const models: Model[] = [
   {
     icon: Package,
     title: "Project-Based",
@@ -37,6 +50,69 @@ const models = [
   },
 ];
 
+function EngagementCard({ model }: { model: Model }) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="card-hover h-full rounded-2xl border border-border glass p-7 flex flex-col">
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-gold/20 to-violet/20 border border-border text-gold">
+        <model.icon size={22} />
+      </div>
+      <h3 className="mt-6 text-lg font-semibold text-ink leading-snug">{model.title}</h3>
+      <p className="mt-3 text-sm text-muted leading-relaxed">{model.description}</p>
+      <p className="mt-4 text-xs italic text-muted/80">{model.bestFor}</p>
+
+      <button
+        type="button"
+        onClick={() => setExpanded((v) => !v)}
+        aria-expanded={expanded}
+        className="mt-5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-gold hover:text-gold-2 transition-colors"
+      >
+        {expanded ? "Hide details" : "See details"}
+        <ChevronDown size={14} className={`transition-transform ${expanded ? "rotate-180" : ""}`} />
+      </button>
+
+      <AnimatePresence initial={false}>
+        {expanded ? (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="pt-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-gold">
+                Ideal when you need
+              </p>
+              <ul className="mt-2 space-y-1.5">
+                {model.idealFor.map((b) => (
+                  <li key={b} className="text-xs text-muted flex gap-2">
+                    <span className="text-gold">—</span>
+                    {b}
+                  </li>
+                ))}
+              </ul>
+
+              <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gold">
+                How I contribute
+              </p>
+              <ul className="mt-2 space-y-1.5">
+                {model.contribute.map((b) => (
+                  <li key={b} className="text-xs text-muted flex gap-2">
+                    <span className="text-gold">—</span>
+                    {b}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export default function Engagement() {
   return (
     <section id="engagement" className="relative py-24 sm:py-32 bg-bg-soft/40">
@@ -51,39 +127,7 @@ export default function Engagement() {
         <RevealStagger className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {models.map((m) => (
             <RevealItem key={m.title}>
-              <div className="card-hover h-full rounded-2xl border border-border glass p-7 flex flex-col">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-gold/20 to-violet/20 border border-border text-gold">
-                  <m.icon size={22} />
-                </div>
-                <h3 className="mt-6 text-lg font-semibold text-ink leading-snug">{m.title}</h3>
-                <p className="mt-3 text-sm text-muted leading-relaxed">{m.description}</p>
-
-                <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gold">
-                  Ideal when you need
-                </p>
-                <ul className="mt-2 space-y-1.5">
-                  {m.idealFor.map((b) => (
-                    <li key={b} className="text-xs text-muted flex gap-2">
-                      <span className="text-gold">—</span>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-
-                <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gold">
-                  How I contribute
-                </p>
-                <ul className="mt-2 space-y-1.5 flex-1">
-                  {m.contribute.map((b) => (
-                    <li key={b} className="text-xs text-muted flex gap-2">
-                      <span className="text-gold">—</span>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-
-                <p className="mt-4 text-xs italic text-muted/80">{m.bestFor}</p>
-              </div>
+              <EngagementCard model={m} />
             </RevealItem>
           ))}
         </RevealStagger>

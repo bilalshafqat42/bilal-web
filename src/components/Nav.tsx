@@ -29,10 +29,16 @@ export default function Nav() {
         scrolled ? "py-3" : "py-5"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6">
+      <div
+        className={`mx-auto transition-all duration-500 ease-out ${
+          scrolled ? "max-w-7xl px-6" : "max-w-full px-4 sm:px-8"
+        }`}
+      >
         <div
-          className={`flex items-center justify-between rounded-2xl px-4 py-2.5 transition-all duration-300 ${
-            scrolled ? "glass-strong shadow-lg shadow-black/20" : "bg-transparent"
+          className={`flex items-center justify-between transition-all duration-500 ease-out ${
+            scrolled
+              ? "rounded-2xl px-4 py-2.5 glass-strong shadow-lg shadow-black/20"
+              : "rounded-none px-0 py-2.5 bg-transparent"
           }`}
         >
           <a href="/#home" className="flex items-center gap-2 font-display font-semibold text-lg">

@@ -1,8 +1,20 @@
-import { Building2, Home, Network, Users, ArrowRight } from "lucide-react";
+"use client";
+
+import { useState } from "react";
+import { Building2, Home, Network, Users, ArrowRight, ChevronDown, type LucideIcon } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import Reveal, { RevealStagger, RevealItem } from "./Reveal";
 
-const audiences = [
+type Audience = {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  bullets: string[];
+  note: string;
+};
+
+const audiences: Audience[] = [
   {
     icon: Building2,
     title: "Startups & Founders",
@@ -34,6 +46,52 @@ const audiences = [
   },
 ];
 
+function AudienceCard({ audience }: { audience: Audience }) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="card-hover h-full rounded-2xl border border-border glass p-7 flex flex-col">
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-gold/20 to-violet/20 border border-border text-gold">
+        <audience.icon size={22} />
+      </div>
+      <h3 className="mt-6 text-lg font-semibold text-ink leading-snug">{audience.title}</h3>
+      <p className="mt-3 text-sm text-muted leading-relaxed">{audience.description}</p>
+      <p className="mt-4 text-xs italic text-muted/80 flex-1">{audience.note}</p>
+
+      <button
+        type="button"
+        onClick={() => setExpanded((v) => !v)}
+        aria-expanded={expanded}
+        className="mt-5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-gold hover:text-gold-2 transition-colors"
+      >
+        {expanded ? "Hide details" : "See details"}
+        <ChevronDown size={14} className={`transition-transform ${expanded ? "rotate-180" : ""}`} />
+      </button>
+
+      <AnimatePresence initial={false}>
+        {expanded ? (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden"
+          >
+            <ul className="pt-4 space-y-1.5">
+              {audience.bullets.map((b) => (
+                <li key={b} className="text-xs text-muted flex gap-2">
+                  <span className="text-gold">—</span>
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export default function WhoIWorkWith() {
   return (
     <section className="relative py-24 sm:py-32">
@@ -48,22 +106,7 @@ export default function WhoIWorkWith() {
         <RevealStagger className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {audiences.map((a) => (
             <RevealItem key={a.title}>
-              <div className="card-hover h-full rounded-2xl border border-border glass p-7 flex flex-col">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-gold/20 to-violet/20 border border-border text-gold">
-                  <a.icon size={22} />
-                </div>
-                <h3 className="mt-6 text-lg font-semibold text-ink leading-snug">{a.title}</h3>
-                <p className="mt-3 text-sm text-muted leading-relaxed">{a.description}</p>
-                <ul className="mt-4 space-y-1.5">
-                  {a.bullets.map((b) => (
-                    <li key={b} className="text-xs text-muted flex gap-2">
-                      <span className="text-gold">—</span>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-4 text-xs italic text-muted/80 flex-1">{a.note}</p>
-              </div>
+              <AudienceCard audience={a} />
             </RevealItem>
           ))}
         </RevealStagger>

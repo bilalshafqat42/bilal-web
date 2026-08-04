@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import {
   Megaphone,
   TrendingUp,
@@ -6,11 +9,11 @@ import {
   Smartphone,
   Palette,
   Share2,
-  ArrowUpRight,
   type LucideIcon,
 } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
-import { RevealStagger, RevealItem } from "./Reveal";
+import Reveal from "./Reveal";
 
 type Service = {
   icon: LucideIcon;
@@ -95,13 +98,23 @@ const pillars: Pillar[] = [
   },
 ];
 
-const accentClasses: Record<Pillar["accent"], { icon: string; bg: string; dot: string }> = {
-  gold: { icon: "text-gold", bg: "from-gold/20 to-gold-2/10", dot: "bg-gold" },
-  violet: { icon: "text-violet", bg: "from-violet/20 to-violet/5", dot: "bg-violet" },
-  cyan: { icon: "text-cyan", bg: "from-cyan/20 to-cyan/5", dot: "bg-cyan" },
+const accentClasses: Record<Pillar["accent"], { icon: string; bg: string; dot: string; glow: string }> = {
+  gold: { icon: "text-gold", bg: "from-gold/25 to-gold-2/10", dot: "bg-gold", glow: "bg-gold/25" },
+  violet: { icon: "text-violet", bg: "from-violet/25 to-violet/10", dot: "bg-violet", glow: "bg-violet/25" },
+  cyan: { icon: "text-cyan", bg: "from-cyan/25 to-cyan/10", dot: "bg-cyan", glow: "bg-cyan/25" },
 };
 
+type FlatService = Service & { accent: Pillar["accent"]; pillarLabel: string; number: string };
+
+const flatServices: FlatService[] = pillars.flatMap((pillar) =>
+  pillar.services.map((service) => ({ ...service, accent: pillar.accent, pillarLabel: pillar.label }))
+).map((service, i) => ({ ...service, number: String(i + 1).padStart(2, "0") }));
+
 export default function Services() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const active = flatServices[activeIndex];
+  const accent = accentClasses[active.accent];
+
   return (
     <section id="services" className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6">
@@ -109,57 +122,96 @@ export default function Services() {
           eyebrow="What I Do"
           title="Seven Services, One Point Of"
           highlight="Contact"
-          description="From the first ad click to the shipped product — strategy, design, and development handled under one roof."
+          description="From the first ad click to the shipped product — strategy, design, and development handled under one roof. Hover or tap a service to preview it."
         />
 
-        <div className="mt-16 flex flex-col gap-14">
-          {pillars.map((pillar) => {
-            const accent = accentClasses[pillar.accent];
-            return (
-              <div key={pillar.label}>
-                <div className="flex items-center gap-3">
-                  <span className={`h-2 w-2 rounded-full ${accent.dot}`} />
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-ink/80">
-                    {pillar.label}
-                  </h3>
+        <div className="mt-16 grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-14 items-start">
+          <div className="order-1 lg:sticky lg:top-32">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active.title}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="relative rounded-2xl border border-border glass p-8 overflow-hidden min-h-[340px]"
+              >
+                <div className={`absolute -top-12 -right-12 h-48 w-48 rounded-full blur-3xl ${accent.glow}`} />
+
+                <div
+                  className={`relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${accent.bg} border border-border ${accent.icon}`}
+                >
+                  <active.icon size={26} />
                 </div>
 
-                <RevealStagger
-                  className={`mt-6 grid grid-cols-1 sm:grid-cols-2 ${
-                    pillar.services.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-2"
-                  } gap-5`}
-                >
-                  {pillar.services.map((service) => (
-                    <RevealItem key={service.title}>
-                      <div className="card-hover group h-full rounded-2xl border border-border glass p-7 flex flex-col">
-                        <div
-                          className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${accent.bg} border border-border ${accent.icon}`}
-                        >
-                          <service.icon size={22} />
-                        </div>
-                        <h4 className="mt-6 text-lg font-semibold text-ink">{service.title}</h4>
-                        <p className="mt-3 text-sm text-muted leading-relaxed">{service.description}</p>
-                        <ul className="mt-4 space-y-1.5">
-                          {service.bullets.map((b) => (
-                            <li key={b} className="text-xs text-muted flex gap-2">
-                              <span className={accent.icon}>—</span>
-                              {b}
-                            </li>
-                          ))}
-                        </ul>
-                        <a
-                          href="/portfolio"
-                          className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-ink/90 group-hover:text-gold transition-colors"
-                        >
-                          View Work <ArrowUpRight size={15} />
-                        </a>
-                      </div>
-                    </RevealItem>
+                <p className={`relative mt-6 text-xs font-semibold uppercase tracking-wide ${accent.icon}`}>
+                  {active.pillarLabel}
+                </p>
+                <h3 className="relative mt-2 text-xl sm:text-2xl font-semibold text-ink">{active.title}</h3>
+                <p className="relative mt-3 text-sm text-muted leading-relaxed">{active.description}</p>
+
+                <ul className="relative mt-5 flex flex-wrap gap-2">
+                  {active.bullets.map((b) => (
+                    <li
+                      key={b}
+                      className="rounded-full border border-border bg-surface/60 px-3 py-1.5 text-xs text-muted"
+                    >
+                      {b}
+                    </li>
                   ))}
-                </RevealStagger>
+                </ul>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          <div className="order-2 flex flex-col">
+            {pillars.map((pillar) => (
+              <div key={pillar.label} className="mb-2 mt-8 first:mt-0">
+                <div className="flex items-center gap-3 mb-1">
+                  <span className={`h-2 w-2 rounded-full ${accentClasses[pillar.accent].dot}`} />
+                  <h4 className="text-xs font-semibold uppercase tracking-wide text-ink/60">{pillar.label}</h4>
+                </div>
+
+                {pillar.services.map((service) => {
+                  const flatIndex = flatServices.findIndex((s) => s.title === service.title);
+                  const isActive = flatIndex === activeIndex;
+                  return (
+                    <button
+                      key={service.title}
+                      type="button"
+                      onMouseEnter={() => setActiveIndex(flatIndex)}
+                      onClick={() => setActiveIndex(flatIndex)}
+                      className="w-full flex items-center gap-5 border-b border-border py-5 text-left transition-colors"
+                    >
+                      <span
+                        className={`text-sm font-medium tabular-nums transition-colors ${
+                          isActive ? accentClasses[pillar.accent].icon : "text-muted/50"
+                        }`}
+                      >
+                        {flatServices[flatIndex].number}
+                      </span>
+                      <span
+                        className={`text-lg sm:text-xl font-medium transition-colors ${
+                          isActive ? "text-ink" : "text-muted"
+                        }`}
+                      >
+                        {service.title}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
-            );
-          })}
+            ))}
+
+            <Reveal className="mt-8">
+              <a
+                href="/portfolio"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink/90 hover:text-gold transition-colors"
+              >
+                See work across these services →
+              </a>
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>
