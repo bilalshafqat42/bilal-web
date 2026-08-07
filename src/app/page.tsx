@@ -1,5 +1,5 @@
 import Nav from "@/components/Nav";
-import Hero from "@/components/Hero";
+import HeroAlt from "@/components/HeroAlt";
 import Services from "@/components/Services";
 import LogoWall from "@/components/LogoWall";
 import About from "@/components/About";
@@ -15,7 +15,7 @@ export default function Home() {
     <>
       <Nav />
       <main className="flex-1">
-        <Hero />
+        <HeroAlt />
         <Services />
         <LogoWall />
         <About />

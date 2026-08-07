@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const links = [
@@ -40,12 +41,17 @@ export default function Nav() {
               ? "rounded-2xl px-4 py-2.5 glass-strong shadow-lg shadow-black/20"
               : "rounded-none px-0 py-2.5 bg-transparent"
           }`}
+          style={{ borderWidth: 0 }}
         >
-          <a href="/#home" className="flex items-center gap-2 font-display font-semibold text-lg">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-gold to-gold-2 text-[#14140f] font-bold">
-              BS
-            </span>
-            <span className="hidden sm:inline text-ink">Bilal Shafqat</span>
+          <a href="/#home" className="flex items-center">
+            <Image
+              src="/logo/bs-logo.svg"
+              alt="Bilal Shafqat"
+              width={161}
+              height={63}
+              priority
+              className="h-9 w-auto"
+            />
           </a>
 
           <nav className="hidden lg:flex items-center gap-1">

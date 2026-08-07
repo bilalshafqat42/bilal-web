@@ -22,6 +22,9 @@ export const metadata: Metadata = {
       "Google & social ads, performance marketing, web design, MERN development, mobile apps, graphic design, and social media management — one partner, six disciplines.",
     type: "website",
   },
+  icons: {
+    icon: "/logo/bs.svg",
+  },
 };
 
 export default function RootLayout({

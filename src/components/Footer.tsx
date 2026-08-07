@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 function FacebookIcon() {
   return (
     <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
@@ -52,8 +54,14 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 md:grid-cols-[1.3fr_0.8fr_0.9fr] gap-10">
           <div>
-            <h3 className="font-display text-xl font-semibold text-ink">Bilal Shafqat</h3>
-            <p className="mt-1 text-sm font-medium text-gold">
+            <Image
+              src="/logo/bs-logo.svg"
+              alt="Bilal Shafqat"
+              width={161}
+              height={63}
+              className="h-8 w-auto"
+            />
+            <p className="mt-3 text-sm font-medium text-gold">
               Paid Marketing, Design &amp; Development Studio
             </p>
             <p className="mt-3 max-w-sm text-sm text-muted leading-relaxed">
