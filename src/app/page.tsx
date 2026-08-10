@@ -2,7 +2,6 @@ import Nav from "@/components/Nav";
 import HeroAlt from "@/components/HeroAlt";
 import Services from "@/components/Services";
 import LogoWall from "@/components/LogoWall";
-import About from "@/components/About";
 import Process from "@/components/Process";
 import WhoIWorkWith from "@/components/WhoIWorkWith";
 import Engagement from "@/components/Engagement";
@@ -18,7 +17,6 @@ export default function Home() {
         <HeroAlt />
         <Services />
         <LogoWall />
-        <About />
         <Process />
         <WhoIWorkWith />
         <Engagement />

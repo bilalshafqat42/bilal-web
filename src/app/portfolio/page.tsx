@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Portfolio & Case Studies — Bilal Shafqat",
   description:
     "Detailed case studies across paid marketing, real estate lead generation, MERN stack development, and mobile app launches, with real goals, execution, and outcomes.",
+  alternates: {
+    canonical: "/portfolio",
+  },
 };
 
 export default function PortfolioPage() {

@@ -15,13 +15,12 @@ const intersection = [
   "Graphic design & social media management",
 ];
 
-export default function HeroAlt() {
+export default function HeroYellowTest() {
   const heroRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<HTMLDivElement>(null);
 
-  // Yellow "About Me" box starts at the same width as the heading above (max-w-7xl)
-  // and 80vh tall, expands to 100% width / 100vh height on scroll, corners
-  // squaring off as it reaches full bleed.
+  // Yellow "About Me" box starts at 80% width / 80vh height, expands to
+  // 100% / 100vh on scroll, corners squaring off as it reaches full bleed.
   useGSAP(
     () => {
       if (!frameRef.current) return;
@@ -47,7 +46,7 @@ export default function HeroAlt() {
 
   return (
     <div ref={heroRef}>
-      {/* Top row: headline 70% / supporting text + CTA 30%, plain black background */}
+      {/* Top row: headline 70% / supporting text + CTA 30%, plain black background, unchanged from before */}
       <section id="home" className="relative overflow-hidden bg-bg text-ink pt-40 pb-16 sm:pt-48 sm:pb-20">
         <div className="pointer-events-none absolute inset-0 grid-fade" />
 

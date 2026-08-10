@@ -58,7 +58,7 @@ function EngagementCard({ model }: { model: Model }) {
       <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-gold/20 to-violet/20 border border-border text-gold">
         <model.icon size={22} />
       </div>
-      <h3 className="mt-6 text-lg font-semibold text-ink leading-snug">{model.title}</h3>
+      <h3 className="mt-6 text-lg sm:text-xl font-semibold text-ink leading-snug">{model.title}</h3>
       <p className="mt-3 text-sm text-muted leading-relaxed">{model.description}</p>
       <p className="mt-4 text-xs italic text-muted/80">{model.bestFor}</p>
 

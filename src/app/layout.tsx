@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
 import LeadFormPopup from "@/components/LeadFormPopup";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import StructuredData from "@/components/StructuredData";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://bilalshafqat.com"),
   title: "Bilal Shafqat — Paid Marketing, Web/Mobile Development & Design Studio",
   description:
     "One partner for paid marketing (Google & social), performance marketing, web design, MERN stack development, mobile app development, graphic design, and social media management. Based in Dubai, UAE, working with founders, real estate developers, and agencies worldwide.",
+  alternates: {
+    canonical: "/",
+  },
   keywords: [
     "paid marketing Dubai",
     "performance marketing UAE",
@@ -35,6 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col bg-bg text-ink">
+        <StructuredData />
         {children}
         <WhatsAppButton />
         <LeadFormPopup />

@@ -19,23 +19,8 @@ export default function About() {
   return (
     <section id="about" className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-[0.7fr_1.3fr] gap-14 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-14 items-start">
           <Reveal>
-            <div className="relative mx-auto max-w-xs lg:mx-0">
-              <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-violet/20 via-transparent to-gold/20 blur-2xl" />
-              <div className="relative rounded-[2rem] border border-border glass overflow-hidden">
-                <Image
-                  src="/images/bilal-about.jpg"
-                  alt="Portrait of Bilal Shafqat"
-                  width={800}
-                  height={784}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.1}>
             <div>
               <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
                 About Me
@@ -105,6 +90,21 @@ export default function About() {
               >
                 Book a free consultation <ArrowRight size={16} />
               </a>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <div className="relative mx-auto max-w-xs lg:mx-0">
+              <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-violet/20 via-transparent to-gold/20 blur-2xl" />
+              <div className="relative rounded-[2rem] border border-border glass overflow-hidden">
+                <Image
+                  src="/images/bilal-about.jpg"
+                  alt="Portrait of Bilal Shafqat"
+                  width={800}
+                  height={784}
+                  className="h-full w-full object-cover"
+                />
+              </div>
             </div>
           </Reveal>
         </div>

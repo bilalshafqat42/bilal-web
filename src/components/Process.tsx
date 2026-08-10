@@ -78,7 +78,7 @@ export default function Process() {
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-gold/20 to-violet/20 border border-border text-gold">
                   <step.icon size={22} />
                 </div>
-                <h3 className="mt-6 text-lg font-semibold text-ink leading-snug">{step.title}</h3>
+                <h3 className="mt-6 text-lg sm:text-xl font-semibold text-ink leading-snug">{step.title}</h3>
                 <p className="mt-3 text-sm text-muted leading-relaxed">{step.description}</p>
                 <ul className="mt-4 space-y-1.5">
                   {step.bullets.map((b) => (

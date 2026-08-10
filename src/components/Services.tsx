@@ -147,7 +147,7 @@ export default function Services() {
                 <p className={`relative mt-6 text-xs font-semibold uppercase tracking-wide ${accent.icon}`}>
                   {active.pillarLabel}
                 </p>
-                <h3 className="relative mt-2 text-xl sm:text-2xl font-semibold text-ink">{active.title}</h3>
+                <h3 className="relative mt-2 text-2xl sm:text-[2rem] font-semibold leading-tight text-ink">{active.title}</h3>
                 <p className="relative mt-3 text-sm text-muted leading-relaxed">{active.description}</p>
 
                 <ul className="relative mt-5 flex flex-wrap gap-2">

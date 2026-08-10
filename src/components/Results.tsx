@@ -34,7 +34,7 @@ export default function Results() {
                 <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
                   Results &amp; Impact
                 </span>
-                <h2 className="mt-5 text-3xl sm:text-4xl font-semibold text-ink">
+                <h2 className="mt-5 text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
                   Measurable outcomes across <span className="text-gradient">marketing, design & development.</span>
                 </h2>
                 <p className="mt-4 text-muted leading-relaxed max-w-lg">

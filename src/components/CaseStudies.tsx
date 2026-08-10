@@ -125,7 +125,7 @@ export default function CaseStudies() {
 
                 <div className={i % 2 === 1 ? "lg:order-1" : ""}>
                   <div className="rounded-2xl border border-border glass p-7 sm:p-9">
-                    <h3 className="text-xl sm:text-2xl font-semibold text-ink">{c.title}</h3>
+                    <h3 className="text-2xl sm:text-[2rem] font-semibold leading-tight text-ink">{c.title}</h3>
 
                     <div className="mt-5 flex flex-wrap gap-2">
                       {Object.entries(c.tags).map(([label, value]) => (
