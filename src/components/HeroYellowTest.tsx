@@ -126,10 +126,10 @@ export default function HeroYellowTest() {
 
               <div className="relative mx-auto w-full max-w-xs overflow-hidden rounded-[1.5rem] border border-[#14140f]/15">
                 <Image
-                  src="/images/bilal-about.jpg"
+                  src="/images/bilal-shafqat-coat.avif"
                   alt="Portrait of Bilal Shafqat"
-                  width={800}
-                  height={784}
+                  width={1412}
+                  height={1186}
                   className="h-full w-full object-cover"
                 />
               </div>

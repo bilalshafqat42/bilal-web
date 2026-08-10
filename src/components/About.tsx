@@ -98,10 +98,10 @@ export default function About() {
               <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-violet/20 via-transparent to-gold/20 blur-2xl" />
               <div className="relative rounded-[2rem] border border-border glass overflow-hidden">
                 <Image
-                  src="/images/bilal-about.jpg"
+                  src="/images/bilal-shafqat-coat.avif"
                   alt="Portrait of Bilal Shafqat"
-                  width={800}
-                  height={784}
+                  width={1412}
+                  height={1186}
                   className="h-full w-full object-cover"
                 />
               </div>

@@ -16,7 +16,7 @@ const structuredData = {
   name: "Bilal Shafqat",
   jobTitle: "Digital Marketing, Design & Development Specialist",
   url: SITE_URL,
-  image: `${SITE_URL}/images/bilal-hero.jpg`,
+  image: `${SITE_URL}/images/bilal-shafqat-coat.avif`,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Dubai",

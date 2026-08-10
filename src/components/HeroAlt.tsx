@@ -89,49 +89,68 @@ export default function HeroAlt() {
         </div>
       </section>
 
-      {/* Separate yellow "About Me" box, own panel, its own scroll-expand animation.
-          Initial width matches the heading's own max-w-7xl container above. */}
+      {/* Separate "About Me" panel, own scroll-expand animation. Initial width
+          matches the heading's own max-w-7xl container above. Glassmorphism
+          panel (glass-strong, same style as Contact's card) instead of a solid
+          fill, with blurred glow shapes behind it. Centered badge/headline/
+          subtitle/photo layout — reference: a Behance profile page Bilal
+          shared (centered "[Name] is [Role]" headline over a large photo). */}
       <section id="about" className="relative overflow-hidden bg-bg pb-16 sm:pb-20">
         <div
           ref={frameRef}
-          className="relative mx-auto overflow-hidden bg-gold"
+          className="glass-strong relative mx-auto overflow-hidden"
           style={{ width: "min(80rem, 100%)", height: "80vh", borderRadius: "1.75rem" }}
         >
-          <div className="flex h-full flex-col justify-center overflow-y-auto px-6 py-10 sm:px-12 sm:py-14">
-            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[6fr_4fr]">
-              <div>
-                <span className="inline-flex items-center gap-2 rounded-full border border-[#14140f]/20 bg-[#14140f]/5 px-4 py-1.5 text-xs font-medium tracking-wide text-[#14140f] uppercase">
-                  About Me
-                </span>
-                <h2 className="mt-4 text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-[#14140f]">
-                  Strategy and execution, under one roof.
-                </h2>
-                <p className="mt-4 text-sm sm:text-base text-[#14140f]/80 leading-relaxed">
-                  I run paid marketing campaigns, design and build websites
-                  and mobile apps, develop custom applications on the MERN
-                  stack, and produce the graphic design and social content
-                  that goes around them — as one point of contact. Instead of
-                  briefing an agency, a developer, and a designer separately,
-                  you work with one person who understands how it all fits
-                  together.
-                </p>
-                <ul className="mt-5 space-y-2">
-                  {intersection.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-[#14140f]">
-                      <CheckCircle2 size={15} className="mt-0.5 shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <div
+            className="blob pointer-events-none absolute -top-24 left-1/4 h-72 w-72 rounded-full bg-gold/40"
+            style={{ animationDelay: "-3s" }}
+          />
+          <div
+            className="blob pointer-events-none absolute -bottom-24 right-1/4 h-80 w-80 rounded-full bg-violet/40"
+            style={{ animationDelay: "-8s" }}
+          />
 
-              <div className="relative mx-auto w-full max-w-xs overflow-hidden rounded-[1.5rem] border border-[#14140f]/15">
+          <div className="relative flex h-full flex-col items-center justify-center overflow-y-auto px-6 py-14 text-center sm:px-12">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
+              About Me
+            </span>
+            <h2 className="mt-4 max-w-2xl text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+              Strategy and execution, under one roof.
+            </h2>
+            <p className="mt-4 max-w-2xl text-sm sm:text-base text-muted leading-relaxed">
+              I run paid marketing campaigns, design and build websites and
+              mobile apps, develop custom applications on the MERN stack, and
+              produce the graphic design and social content that goes around
+              them — as one point of contact. Instead of briefing an agency, a
+              developer, and a designer separately, you work with one person
+              who understands how it all fits together.
+            </p>
+
+            <div className="mt-5 flex max-w-2xl flex-wrap items-center justify-center gap-2">
+              {intersection.map((item) => (
+                <span
+                  key={item}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface/60 px-3.5 py-1.5 text-xs text-muted"
+                >
+                  <CheckCircle2 size={13} className="text-gold" />
+                  {item}
+                </span>
+              ))}
+            </div>
+
+            <div className="relative mt-10 w-full max-w-xs sm:max-w-sm">
+              <div
+                className="relative aspect-[1412/1186] w-full"
+                style={{
+                  maskImage: "linear-gradient(to bottom, transparent, black 18%)",
+                  WebkitMaskImage: "linear-gradient(to bottom, transparent, black 18%)",
+                }}
+              >
                 <Image
-                  src="/images/bilal-about.jpg"
+                  src="/images/bilal-shafqat-coat.avif"
                   alt="Portrait of Bilal Shafqat"
-                  width={800}
-                  height={784}
-                  className="h-full w-full object-cover"
+                  fill
+                  className="object-contain"
                 />
               </div>
             </div>

@@ -114,7 +114,7 @@ export default function HeroWordmarkTest() {
               className="absolute inset-y-0 left-1/2 z-10 w-full -translate-x-1/2 overflow-hidden sm:w-[46%]"
             >
               <Image
-                src="/images/bilal-hero.jpg"
+                src="/images/bilal-shirt.avif"
                 alt="Bilal Shafqat"
                 fill
                 priority

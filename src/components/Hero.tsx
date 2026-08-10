@@ -75,10 +75,10 @@ export default function Hero() {
               <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-gold/20 via-transparent to-violet/25 blur-2xl" />
               <div className="relative rounded-[2rem] border border-border glass overflow-hidden">
                 <Image
-                  src="/images/bilal-hero.jpg"
+                  src="/images/bilal-shirt.avif"
                   alt="Bilal Shafqat, marketing, design and development studio"
-                  width={800}
-                  height={816}
+                  width={1412}
+                  height={1186}
                   priority
                   className="h-full w-full object-cover"
                 />
