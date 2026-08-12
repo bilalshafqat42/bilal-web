@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
-import { pillars, accentClasses, slugify } from "@/data/pillars";
+import { accentClasses, megaMenuGroups, slugify } from "@/data/pillars";
 
 const links = [
   { label: "Home", href: "/#home" },
@@ -18,12 +18,28 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openServicesMenu = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setServicesOpen(true);
+  };
+
+  const closeServicesMenu = () => {
+    closeTimer.current = setTimeout(() => setServicesOpen(false), 250);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimer.current) clearTimeout(closeTimer.current);
+    };
   }, []);
 
   return (
@@ -59,11 +75,7 @@ export default function Nav() {
           <nav className="hidden lg:flex items-center gap-1">
             {links.map((link) =>
               link.label === "Services" ? (
-                <div
-                  key={link.href}
-                  onMouseEnter={() => setServicesOpen(true)}
-                  onMouseLeave={() => setServicesOpen(false)}
-                >
+                <div key={link.href} onMouseEnter={openServicesMenu} onMouseLeave={closeServicesMenu}>
                   <a
                     href={link.href}
                     className="flex items-center gap-1 px-3.5 py-2 text-sm text-muted hover:text-ink transition-colors rounded-lg hover:bg-white/5"
@@ -79,33 +91,24 @@ export default function Nav() {
                     <div className="absolute inset-x-0 top-full">
                       <div className="glass-nav border-t border-border shadow-2xl shadow-black/40">
                         <div className="mx-auto max-w-7xl px-6 py-10">
-                          <div className="grid grid-cols-4 gap-8">
-                            {pillars.map((pillar) => {
-                              const accent = accentClasses[pillar.accent];
+                          <div className="grid grid-cols-4 gap-x-8 gap-y-8">
+                            {megaMenuGroups.map((group) => {
+                              const accent = accentClasses[group.accent];
                               return (
-                                <div key={pillar.slug}>
-                                  <a
-                                    href={`/services/${pillar.slug}`}
-                                    className="flex items-center gap-2.5 group"
-                                  >
-                                    <span
-                                      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${accent.bg} border border-border ${accent.icon}`}
-                                    >
-                                      <pillar.icon size={16} />
-                                    </span>
-                                    <span className="text-sm font-semibold text-ink group-hover:text-gold transition-colors">
-                                      {pillar.label}
-                                    </span>
-                                  </a>
+                                <div key={group.title}>
+                                  <div className="flex items-center gap-2">
+                                    <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${accent.dot}`} />
+                                    <span className="text-sm font-semibold text-ink">{group.title}</span>
+                                  </div>
 
-                                  <ul className="mt-4 space-y-2.5 border-l border-border pl-4">
-                                    {pillar.sections.map((section) => (
-                                      <li key={section.title}>
+                                  <ul className="mt-3 space-y-2.5">
+                                    {group.items.map((item) => (
+                                      <li key={item.title}>
                                         <a
-                                          href={`/services/${pillar.slug}#${slugify(section.title)}`}
+                                          href={`/services/${item.pillarSlug}#${slugify(item.title)}`}
                                           className="text-sm text-muted hover:text-ink transition-colors"
                                         >
-                                          {section.title}
+                                          {item.title}
                                         </a>
                                       </li>
                                     ))}

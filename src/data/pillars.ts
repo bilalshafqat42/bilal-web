@@ -34,12 +34,12 @@ export const pillars: Pillar[] = [
     shortDescription:
       "I plan and run paid campaigns across Google and social platforms to bring in qualified leads, not just clicks.",
     capabilities: [
-      "Google Search & Performance Max",
-      "Meta, LinkedIn & TikTok Ad Campaigns",
+      "Google, Meta, TikTok & Snapchat Ads",
+      "Email & WhatsApp Marketing",
       "Lead Generation & Demand Generation",
     ],
     heroDescription:
-      "Paid media only works if it's built around your actual sales pipeline, not vanity metrics. I plan, launch, and manage campaigns across Google and the major social platforms, then track every lead back to cost per acquisition and revenue, not just clicks and impressions.",
+      "Paid media only works if it's built around your actual sales pipeline, not vanity metrics. I plan, launch, and manage campaigns across every major platform, then track every lead back to cost per acquisition and revenue, not just clicks and impressions.",
     sections: [
       {
         title: "Google Ads & Performance Max",
@@ -47,14 +47,49 @@ export const pillars: Pillar[] = [
         bullets: ["Search & Shopping campaigns", "Performance Max setup", "Conversion tracking & attribution"],
       },
       {
-        title: "Meta, LinkedIn & TikTok Advertising",
-        body: "Paid social campaigns across Meta (Facebook & Instagram), LinkedIn, and TikTok, matched to where your specific audience actually spends time, not run everywhere by default.",
-        bullets: ["Audience targeting & creative testing", "Campaign structure & budget pacing", "Platform-specific creative formats"],
+        title: "Meta Ads",
+        body: "Facebook and Instagram campaigns built around real business KPIs, from awareness through to lead capture, not vanity engagement.",
+        bullets: ["Campaign structure & audience targeting", "Creative testing & iteration", "Retargeting & lookalike audiences"],
       },
       {
-        title: "Performance Marketing & Lead Generation",
-        body: "Ongoing optimisation once campaigns are live: lowering cost per lead over time, building landing pages that convert, and setting up demand generation for longer sales cycles.",
-        bullets: ["Funnel & landing page strategy", "Cost-per-lead optimisation", "Demand generation for B2B pipelines"],
+        title: "TikTok Ads",
+        body: "TikTok campaigns built for how that audience actually watches: native-feeling creative and fast testing cycles rather than repurposed static ads.",
+        bullets: ["In-feed & Spark ads", "Creative testing", "Audience & interest targeting"],
+      },
+      {
+        title: "Snapchat Ads",
+        body: "Snapchat campaigns for reaching a younger, mobile-first audience, useful alongside a broader UAE social strategy.",
+        bullets: ["Story & collection ads", "Audience targeting", "Campaign setup & tracking"],
+      },
+      {
+        title: "LinkedIn Advertising",
+        body: "LinkedIn campaigns for B2B lead generation and account-based targeting, where the buyer is a company, not just an individual.",
+        bullets: ["Lead gen forms", "Account-based targeting", "Sponsored content & InMail"],
+      },
+      {
+        title: "Demand Generation",
+        body: "Building awareness and interest before someone is ready to buy, so there's a pipeline to convert later, not just bottom-of-funnel capture.",
+        bullets: ["Top-of-funnel content & campaigns", "Retargeting sequences", "Pipeline nurturing"],
+      },
+      {
+        title: "Lead Generation",
+        body: "Turning that interest into an actual list of qualified contacts, built through landing pages, gated offers, and forms designed to capture the right leads, not just the most leads.",
+        bullets: ["Landing pages & lead capture forms", "Gated content & lead magnets", "Lead qualification & CRM handoff"],
+      },
+      {
+        title: "Email Marketing",
+        body: "Email sequences and campaigns that follow up on leads and keep past clients engaged, tied into the same CRM and automation setup.",
+        bullets: ["Welcome & nurture sequences", "Campaign design & copy", "List segmentation"],
+      },
+      {
+        title: "WhatsApp Marketing",
+        body: "WhatsApp is the default business channel across the UAE. I set up broadcast lists, automated replies, and lead capture flows that meet clients where they already are.",
+        bullets: ["Broadcast campaigns", "Automated replies & flows", "Lead capture via WhatsApp"],
+      },
+      {
+        title: "Performance Marketing & Optimisation",
+        body: "Ongoing optimisation once campaigns are live: lowering cost per lead over time and improving the landing pages that campaigns send traffic to.",
+        bullets: ["Funnel & landing page strategy", "Cost-per-lead optimisation", "Budget pacing & ROAS tracking"],
       },
     ],
     faqs: [
@@ -132,17 +167,57 @@ export const pillars: Pillar[] = [
     shortDescription:
       "I create the visuals and content behind your campaigns, then optimise the pages that turn visitors into leads.",
     capabilities: [
-      "Social Media Strategy & Asset Design",
-      "High-Ticket B2B & Real Estate Video Editing",
-      "Conversion Rate Optimization (CRO)",
+      "UI/UX, Web & App Design",
+      "Branding & Brand Guidelines",
+      "Social Media Strategy & Video",
     ],
     heroDescription:
-      "Good design and content should do more than look right, they should move someone from scrolling to clicking to booking a call. I handle the visuals, video, and page-level testing that support that whole path, not just one piece of it.",
+      "Good design and content should do more than look right, they should move someone from scrolling to clicking to booking a call. I handle the branding, visuals, video, and page-level testing that support that whole path, not just one piece of it.",
     sections: [
       {
+        title: "UI/UX Design",
+        body: "Interface design for websites and apps focused on how someone actually uses the product, not just how it looks in a mockup.",
+        bullets: ["Wireframing & prototyping", "Interface design", "Usability & accessibility"],
+      },
+      {
+        title: "Web Design",
+        body: "Visual design for websites, built to hand off cleanly into development rather than existing as a disconnected mockup.",
+        bullets: ["Landing page design", "Design systems", "Responsive layouts"],
+      },
+      {
+        title: "Mobile App Design",
+        body: "App interface design for iOS and Android, designed around each platform's own conventions rather than a single generic layout.",
+        bullets: ["App UI design", "Design systems for apps", "App store visuals"],
+      },
+      {
+        title: "Branding",
+        body: "Logo, colour, and typography systems built to hold up across a website, social channels, and printed materials, not just a single logo file.",
+        bullets: ["Logo design", "Colour & typography systems", "Brand identity"],
+      },
+      {
+        title: "Brand Guidelines",
+        body: "A documented brand guideline deck so anyone working on your brand, an agency, a new hire, a freelancer, applies it consistently.",
+        bullets: ["Logo usage rules", "Colour & typography specs", "Templates & stationery"],
+      },
+      {
+        title: "Business Profile",
+        body: "Company profile decks and one-pagers used for pitching, partnerships, or investor conversations.",
+        bullets: ["Company profile design", "Pitch deck design", "Print-ready layouts"],
+      },
+      {
         title: "Social Media Strategy & Design",
-        body: "Content calendars, creative direction, and the actual asset design for the channels you're active on, kept consistent with your brand and built to support paid campaigns rather than sit separately from them.",
-        bullets: ["Content calendars & posting", "Social media creatives", "Brand collateral"],
+        body: "Creative direction and the actual asset design for the channels you're active on, kept consistent with your brand and built to support paid campaigns rather than sit separately from them.",
+        bullets: ["Social media creatives", "Brand collateral", "Campaign-specific asset sets"],
+      },
+      {
+        title: "Social Media Marketing",
+        body: "Running the actual posting, engagement, and channel growth, not just designing assets and handing them over.",
+        bullets: ["Channel management", "Community engagement", "Performance reporting"],
+      },
+      {
+        title: "Social Media Planning",
+        body: "Content calendars and campaign planning that align social content with what's actually running in paid campaigns.",
+        bullets: ["Content calendars", "Campaign planning", "Cross-channel alignment"],
       },
       {
         title: "B2B & Real Estate Video Editing",
@@ -203,6 +278,11 @@ export const pillars: Pillar[] = [
         body: "Automated follow-up sequences, lead scoring, and internal notifications, so a new lead gets a response in minutes, not whenever someone next opens their inbox.",
         bullets: ["Automated email & follow-up sequences", "Lead scoring & routing", "Internal notifications & alerts"],
       },
+      {
+        title: "Growth Marketing",
+        body: "Running structured experiments across acquisition, conversion, and retention together, not just one channel in isolation, so a win in one place compounds instead of staying stuck there.",
+        bullets: ["Cross-channel experimentation", "Full-funnel testing, not just ads", "Retention & lifecycle campaigns"],
+      },
     ],
     faqs: [
       {
@@ -227,6 +307,103 @@ export const pillars: Pillar[] = [
 export function getPillarBySlug(slug: string): Pillar | undefined {
   return pillars.find((pillar) => pillar.slug === slug);
 }
+
+export type MegaMenuItem = {
+  title: string;
+  pillarSlug: string;
+};
+
+export type MegaMenuGroup = {
+  title: string;
+  accent: Accent;
+  items: MegaMenuItem[];
+};
+
+// Curated mega-menu grouping: 8 standalone columns by discipline (paid ads,
+// social/digital marketing, dev, UI/UX, graphic design, CRM/MarTech, video),
+// independent of the underlying 4 pillar pages. Each item carries its own
+// pillarSlug since "CRM & MarTech Integration" deliberately pulls Performance
+// Marketing in from the Paid Marketing pillar. Every item title must exactly
+// match a section title on its pillarSlug's page, since the link is built
+// from `slugify(item.title)` matching that section's anchor id.
+export const megaMenuGroups: MegaMenuGroup[] = [
+  {
+    title: "Paid Marketing",
+    accent: "gold",
+    items: [
+      { title: "Google Ads & Performance Max", pillarSlug: "paid-marketing" },
+      { title: "Meta Ads", pillarSlug: "paid-marketing" },
+      { title: "TikTok Ads", pillarSlug: "paid-marketing" },
+      { title: "Snapchat Ads", pillarSlug: "paid-marketing" },
+      { title: "LinkedIn Advertising", pillarSlug: "paid-marketing" },
+    ],
+  },
+  {
+    title: "Social Media Marketing",
+    accent: "cyan",
+    items: [
+      { title: "Social Media Strategy & Design", pillarSlug: "design-content-conversion" },
+      { title: "Social Media Marketing", pillarSlug: "design-content-conversion" },
+      { title: "Social Media Planning", pillarSlug: "design-content-conversion" },
+    ],
+  },
+  {
+    title: "Digital Marketing & Outreach",
+    accent: "gold",
+    items: [
+      { title: "Demand Generation", pillarSlug: "paid-marketing" },
+      { title: "Lead Generation", pillarSlug: "paid-marketing" },
+      { title: "Email Marketing", pillarSlug: "paid-marketing" },
+      { title: "WhatsApp Marketing", pillarSlug: "paid-marketing" },
+    ],
+  },
+  {
+    title: "Website & App Development",
+    accent: "violet",
+    items: [
+      { title: "Website Design & Development", pillarSlug: "website-app-development" },
+      { title: "Mobile App Development", pillarSlug: "website-app-development" },
+      { title: "Custom Marketing Tools & Calculators", pillarSlug: "website-app-development" },
+    ],
+  },
+  {
+    title: "UI/UX Design",
+    accent: "cyan",
+    items: [
+      { title: "UI/UX Design", pillarSlug: "design-content-conversion" },
+      { title: "Web Design", pillarSlug: "design-content-conversion" },
+      { title: "Mobile App Design", pillarSlug: "design-content-conversion" },
+    ],
+  },
+  {
+    title: "Graphic Design & Branding",
+    accent: "cyan",
+    items: [
+      { title: "Branding", pillarSlug: "design-content-conversion" },
+      { title: "Brand Guidelines", pillarSlug: "design-content-conversion" },
+      { title: "Business Profile", pillarSlug: "design-content-conversion" },
+    ],
+  },
+  {
+    title: "CRM & MarTech Integration",
+    accent: "gold",
+    items: [
+      { title: "CRM Setup (HubSpot, Zoho & Salesforce)", pillarSlug: "crm-marketing-automation" },
+      { title: "Server-Side Tracking & Conversions API", pillarSlug: "crm-marketing-automation" },
+      { title: "Marketing Automation Workflows", pillarSlug: "crm-marketing-automation" },
+      { title: "Performance Marketing & Optimisation", pillarSlug: "paid-marketing" },
+      { title: "Growth Marketing", pillarSlug: "crm-marketing-automation" },
+    ],
+  },
+  {
+    title: "Video & Conversion",
+    accent: "cyan",
+    items: [
+      { title: "B2B & Real Estate Video Editing", pillarSlug: "design-content-conversion" },
+      { title: "Conversion Rate Optimization (CRO)", pillarSlug: "design-content-conversion" },
+    ],
+  },
+];
 
 export function slugify(title: string): string {
   return title

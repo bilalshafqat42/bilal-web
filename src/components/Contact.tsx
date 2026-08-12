@@ -1,5 +1,6 @@
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import Reveal from "./Reveal";
+import SocialLinks from "./SocialLinks";
 
 export default function Contact() {
   return (
@@ -53,6 +54,8 @@ export default function Contact() {
                   <MapPin size={15} className="text-gold" /> Dubai, UAE
                 </span>
               </div>
+
+              <SocialLinks className="mt-8 justify-center" />
             </div>
           </div>
         </Reveal>
