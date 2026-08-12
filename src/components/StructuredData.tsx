@@ -1,13 +1,14 @@
 const SITE_URL = "https://bilalshafqat.com";
 
 const services = [
-  "Paid Marketing (Google & Social)",
-  "Performance Marketing",
-  "Web Design & Development",
-  "MERN Stack Development",
-  "Mobile App Development",
-  "Graphic Design",
-  "Social Media Management",
+  "Paid Marketing & Lead Generation",
+  "Website & App Development",
+  "Design, Content & Conversion Optimization",
+  "CRM & Marketing Automation",
+  "Google Ads & Performance Max",
+  "Meta, LinkedIn & TikTok Advertising",
+  "HubSpot, Zoho & Salesforce CRM Setup",
+  "Conversion Rate Optimization (CRO)",
 ];
 
 const structuredData = {

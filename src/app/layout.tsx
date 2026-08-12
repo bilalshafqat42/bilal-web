@@ -8,23 +8,26 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://bilalshafqat.com"),
   title: "Bilal Shafqat — Paid Marketing, Web/Mobile Development & Design Studio",
   description:
-    "One partner for paid marketing (Google & social), performance marketing, web design, MERN stack development, mobile app development, graphic design, and social media management. Based in Dubai, UAE, working with founders, real estate developers, and agencies worldwide.",
+    "One senior partner for paid marketing and lead generation, website and app development, design and content, and CRM and marketing automation. Based in Dubai, UAE, working with founders, real estate developers, and agencies worldwide.",
   alternates: {
     canonical: "/",
   },
   keywords: [
     "paid marketing Dubai",
-    "performance marketing UAE",
+    "lead generation UAE",
     "MERN stack developer",
     "web design and development",
     "mobile app development Dubai",
+    "CRM setup Dubai",
+    "HubSpot Zoho Salesforce freelancer",
+    "marketing automation UAE",
     "graphic design freelancer",
     "social media management UAE",
   ],
   openGraph: {
     title: "Bilal Shafqat — Paid Marketing, Web/Mobile Development & Design Studio",
     description:
-      "Google & social ads, performance marketing, web design, MERN development, mobile apps, graphic design, and social media management — one partner, six disciplines.",
+      "Paid marketing and lead generation, website and app development, design and content, and CRM and marketing automation — one senior partner, four pillars.",
     type: "website",
   },
   icons: {

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { pillars } from "@/data/pillars";
 
 const baseUrl = "https://bilalshafqat.com";
 
@@ -16,5 +17,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/services`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    ...pillars.map((pillar) => ({
+      url: `${baseUrl}/services/${pillar.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
   ];
 }

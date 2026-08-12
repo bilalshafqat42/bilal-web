@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
+import { pillars, accentClasses, slugify } from "@/data/pillars";
 
 const links = [
   { label: "Home", href: "/#home" },
-  { label: "Services", href: "/#services" },
+  { label: "Services", href: "/services" },
   { label: "Work", href: "/portfolio" },
   { label: "About", href: "/#about" },
   { label: "Process", href: "/#process" },
@@ -16,6 +17,7 @@ const links = [
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -55,15 +57,87 @@ export default function Nav() {
           </a>
 
           <nav className="hidden lg:flex items-center gap-1">
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="px-3.5 py-2 text-sm text-muted hover:text-ink transition-colors rounded-lg hover:bg-white/5"
-              >
-                {link.label}
-              </a>
-            ))}
+            {links.map((link) =>
+              link.label === "Services" ? (
+                <div
+                  key={link.href}
+                  onMouseEnter={() => setServicesOpen(true)}
+                  onMouseLeave={() => setServicesOpen(false)}
+                >
+                  <a
+                    href={link.href}
+                    className="flex items-center gap-1 px-3.5 py-2 text-sm text-muted hover:text-ink transition-colors rounded-lg hover:bg-white/5"
+                  >
+                    {link.label}
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""}`}
+                    />
+                  </a>
+
+                  {servicesOpen ? (
+                    <div className="absolute inset-x-0 top-full">
+                      <div className="glass-nav border-t border-border shadow-2xl shadow-black/40">
+                        <div className="mx-auto max-w-7xl px-6 py-10">
+                          <div className="grid grid-cols-4 gap-8">
+                            {pillars.map((pillar) => {
+                              const accent = accentClasses[pillar.accent];
+                              return (
+                                <div key={pillar.slug}>
+                                  <a
+                                    href={`/services/${pillar.slug}`}
+                                    className="flex items-center gap-2.5 group"
+                                  >
+                                    <span
+                                      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${accent.bg} border border-border ${accent.icon}`}
+                                    >
+                                      <pillar.icon size={16} />
+                                    </span>
+                                    <span className="text-sm font-semibold text-ink group-hover:text-gold transition-colors">
+                                      {pillar.label}
+                                    </span>
+                                  </a>
+
+                                  <ul className="mt-4 space-y-2.5 border-l border-border pl-4">
+                                    {pillar.sections.map((section) => (
+                                      <li key={section.title}>
+                                        <a
+                                          href={`/services/${pillar.slug}#${slugify(section.title)}`}
+                                          className="text-sm text-muted hover:text-ink transition-colors"
+                                        >
+                                          {section.title}
+                                        </a>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              );
+                            })}
+                          </div>
+
+                          <div className="mt-8 border-t border-border pt-6">
+                            <a
+                              href="/services"
+                              className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold hover:opacity-80 transition-opacity"
+                            >
+                              View all services <ArrowRight size={15} />
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="px-3.5 py-2 text-sm text-muted hover:text-ink transition-colors rounded-lg hover:bg-white/5"
+                >
+                  {link.label}
+                </a>
+              )
+            )}
           </nav>
 
           <div className="flex items-center gap-3">

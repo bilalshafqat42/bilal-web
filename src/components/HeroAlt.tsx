@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -11,8 +10,9 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const intersection = [
   "Paid marketing & performance advertising",
-  "Web, mobile & MERN stack development",
+  "Web, mobile & app development",
   "Graphic design & social media management",
+  "CRM & marketing automation",
 ];
 
 export default function HeroAlt() {
@@ -57,7 +57,7 @@ export default function HeroAlt() {
               <span className="underline decoration-gold decoration-4 underline-offset-4">
                 15 years
               </span>{" "}
-              of marketing, design, and development experience — in{" "}
+              of marketing, design, and development experience, in{" "}
               <span className="underline decoration-gold decoration-4 underline-offset-4">
                 one senior partner
               </span>
@@ -65,10 +65,11 @@ export default function HeroAlt() {
 
             <div className="lg:pt-3">
               <p className="text-lg text-muted leading-relaxed">
-                A hands-on specialist in performance marketing, product
-                design, and full-stack development — working directly with
-                clients across the UAE and worldwide, no account managers or
-                junior staff in between.
+                Direct access to senior-level expertise, no account managers,
+                no junior staff, & no handoffs between departments. Trusted
+                by businesses across the UAE for paid marketing, web & app
+                development, design, & automation, delivered personally from
+                strategy to launch.
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <a
@@ -110,23 +111,23 @@ export default function HeroAlt() {
             style={{ animationDelay: "-8s" }}
           />
 
-          <div className="relative flex h-full flex-col items-center justify-center overflow-y-auto px-6 py-14 text-center sm:px-12">
+          <div className="no-scrollbar relative flex h-full flex-col items-center overflow-y-auto px-6 pt-14 text-center sm:px-12">
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
               About Me
             </span>
-            <h2 className="mt-4 max-w-2xl text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+            <h2 className="mt-4 max-w-3xl lg:max-w-4xl text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
               Strategy and execution, under one roof.
             </h2>
-            <p className="mt-4 max-w-2xl text-sm sm:text-base text-muted leading-relaxed">
-              I run paid marketing campaigns, design and build websites and
-              mobile apps, develop custom applications on the MERN stack, and
-              produce the graphic design and social content that goes around
-              them — as one point of contact. Instead of briefing an agency, a
-              developer, and a designer separately, you work with one person
-              who understands how it all fits together.
+            <p className="mt-4 max-w-3xl lg:max-w-4xl text-sm sm:text-base text-muted leading-relaxed">
+              Companies usually hire an agency for marketing, a developer for
+              the website, and a freelancer for design, then manage the
+              handoffs between them. I do all of it myself, paid marketing,
+              web and app development, design, and the automation that
+              connects them, as one senior partner who understands how the
+              whole picture fits together.
             </p>
 
-            <div className="mt-5 flex max-w-2xl flex-wrap items-center justify-center gap-2">
+            <div className="mt-5 flex max-w-3xl lg:max-w-4xl flex-wrap items-center justify-center gap-2">
               {intersection.map((item) => (
                 <span
                   key={item}
@@ -138,22 +139,19 @@ export default function HeroAlt() {
               ))}
             </div>
 
-            <div className="relative mt-10 w-full max-w-xs sm:max-w-sm">
-              <div
-                className="relative aspect-[1412/1186] w-full"
-                style={{
-                  maskImage: "linear-gradient(to bottom, transparent, black 18%)",
-                  WebkitMaskImage: "linear-gradient(to bottom, transparent, black 18%)",
-                }}
-              >
-                <Image
-                  src="/images/bilal-shafqat-coat.avif"
-                  alt="Portrait of Bilal Shafqat"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </div>
+            <div
+              role="img"
+              aria-label="Portrait of Bilal Shafqat"
+              className="relative mt-6 w-full max-w-sm flex-1 sm:max-w-md lg:max-w-lg"
+              style={{
+                backgroundImage: "url(/images/bilal-shirt.avif)",
+                backgroundSize: "150%",
+                backgroundPosition: "center 25%",
+                backgroundRepeat: "no-repeat",
+                maskImage: "linear-gradient(to bottom, transparent, black 18%)",
+                WebkitMaskImage: "linear-gradient(to bottom, transparent, black 18%)",
+              }}
+            />
           </div>
         </div>
       </section>

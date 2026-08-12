@@ -1,6 +1,6 @@
 # Bilal Shafqat
 
-> One-person digital marketing, design, and development studio based in Dubai, UAE, with 15+ years of experience. Bilal personally handles paid marketing, performance marketing, web and mobile development, graphic design, and social media management for clients across the UAE and worldwide, without agency handoffs between departments.
+> One-person digital marketing, design, and development studio based in Dubai, UAE, with 15+ years of experience. Bilal personally handles paid marketing, web and mobile development, design and content, and CRM/marketing automation for clients across the UAE and worldwide, without agency handoffs between departments.
 
 ## Who this is for
 
@@ -8,13 +8,10 @@ Startups and founders, real estate developers and agencies (UAE), in-house teams
 
 ## Services
 
-- Paid Marketing (Google & Social)
-- Performance Marketing
-- Web Design & Development
-- MERN Stack Development
-- Mobile App Development
-- Graphic Design
-- Social Media Management
+- Paid Marketing & Lead Generation: Google Search & Performance Max, Meta/LinkedIn/TikTok ad campaigns, lead and demand generation.
+- Website & App Development: high-converting landing pages (Next.js), custom web and mobile apps, marketing tools and calculators.
+- Design, Content & Conversion: social media strategy and asset design, B2B and real estate video editing, conversion rate optimization (CRO).
+- CRM & Marketing Automation: HubSpot, Zoho, and Salesforce CRM setup, server-side tracking and Conversions API, marketing automation workflows.
 
 ## Engagement models
 

@@ -61,6 +61,16 @@ h1, h2, h3, h4, .font-display {
   -webkit-backdrop-filter: blur(20px);
 }
 
+/* Nearly-opaque glass for panels sitting directly over dense page content
+   (e.g. the nav mega menu), where glass-strong's 0.72 opacity lets busy
+   content behind it fight with the panel's own text for legibility. */
+.glass-nav {
+  background: rgba(10, 10, 13, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
 .text-gradient {
   background: linear-gradient(92deg, #ffffff 10%, #f2c94c 55%, #f7a53b 85%);
   -webkit-background-clip: text;
@@ -120,6 +130,16 @@ h1, h2, h3, h4, .font-display {
 @keyframes blob-float {
   0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.35; }
   50% { transform: translate(6%, -8%) scale(1.2); opacity: 0.55; }
+}
+
+/* Hide scrollbar while keeping the element scrollable */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 /* Floating service nodes */
