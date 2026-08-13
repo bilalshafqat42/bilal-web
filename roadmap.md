@@ -234,6 +234,37 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - Validated all 28 (title, pillarSlug) pairs programmatically (28 now, up from 26) before touching any UI code, then separately verified both new links resolve to real rendered H2 sections with real body text on the live pages, not just checking the data file.
     - Verified: `npm run build` clean, zero console errors, screenshot confirms both new items appear in their intended columns without disrupting the existing 8-column layout from item 38.
 
+40. **Keyword strategy for winning freelance work — full tier list (2026-08-13)** — **researched, build pending.** Bilal asked for keyword rankings mapped to his actual skills, specifically to win freelance clients. Built from the real 28 sections in `src/data/pillars.ts`, not from a generic keyword list.
+    - **No search volume figures are recorded here on purpose.** Accurate Dubai-specific volumes cannot be produced without pulling Google Keyword Planner, and inventing them would be worse than useless. Bilal already runs Google Ads so Planner access is free to him. Tiers below are therefore ranked by **buyer intent × realistic winnability**, which is the metric that actually decides revenue for a solo freelancer, rather than by raw volume.
+    - **The real bottleneck is pages, not keywords.** 28 services currently sit on 6 indexable pages (`/`, `/services`, 4 pillar pages, `/portfolio`). Google ranks pages, not `#fragments`, so a mega-menu link to `/services/design-content-conversion#ui-ux-design` can never rank for "freelance UI UX designer Dubai". Most of the tier-1 list below is blocked on page creation, not on copy tweaks.
+
+    **Tier 1 — target first. High hire intent; the "freelance" modifier filters out agencies Bilal cannot yet outrank.**
+    | Keyword | Why it wins | Target page |
+    |---|---|---|
+    | freelance digital marketer Dubai | Single best commercial term for his positioning | Homepage |
+    | freelance web developer Dubai | Huge hire intent, freelancer-qualified | needs building |
+    | freelance Google Ads specialist Dubai | Buyer already knows what they want | needs building |
+    | freelance UI UX designer Dubai | Lower competition than "web designer" | needs building |
+    | freelance graphic designer Dubai | High volume, weak competitors | needs building |
+    | freelance mobile app developer Dubai | Expensive service, few real freelancers | needs building |
+    | Next.js developer Dubai | Very low competition, he genuinely qualifies | needs building |
+    | freelance HubSpot consultant UAE | Small volume, very high value per lead | needs building |
+
+    **Tier 2 — the unfair advantage.** Low volume, near-zero competition, high conversion because the searcher has a specific technical problem and no idea who solves it: `Meta Conversions API setup Dubai`, `server-side tracking setup UAE`, `server side GTM consultant Dubai`, `Zoho CRM setup Dubai`, `HubSpot Meta Ads integration`, `MERN stack developer Dubai`, `WhatsApp marketing Dubai`, `conversion rate optimisation freelancer Dubai`. **Server-side tracking is the standout**: most Dubai marketers cannot implement it, most developers don't understand why it matters, and Bilal does both. Genuinely defensible.
+
+    **Tier 3 — the real estate vertical (strongest unplayed card).** Property is Dubai's largest ad-spend category and Bilal has real developer-side experience: `real estate lead generation Dubai`, `real estate marketing freelancer Dubai`, `off plan property lead generation`, `property developer marketing Dubai`, `real estate video editing Dubai`, `Dubai real estate Google Ads`. Note the `B2B & Real Estate Video Editing` section is currently buried inside the design pillar and deserves its own page.
+
+    **Tier 4 — AI search works on questions, not keywords.** ChatGPT/Claude/Perplexity match phrasing and cite whoever answers cleanly: "who can build a website and run the ads for it in Dubai", "freelance alternative to a marketing agency in Dubai", "how much does a freelance web developer charge in Dubai", "do I need an agency or a freelancer for Google Ads". The existing `FAQPage` schema on pillar pages is the right mechanism already; it just needs more entries phrased as questions people ask out loud.
+
+    **Tier 5 — deliberately skip.** Do not chase `digital marketing agency Dubai`, `SEO company Dubai`, `web design Dubai`, `PPC Dubai`. Established agencies own these on years of backlinks; a year of effort would land page 4. Revisit only after domain authority builds.
+
+    - **Pages to build, priority order:** (1) `/contact` — currently only a `#contact` anchor, so there is no local ranking signal and nothing for a Maps listing to point at; (2) 8 standalone tier-1 service pages: `google-ads`, `meta-ads`, `website-development`, `mobile-app-development`, `ui-ux-design`, `graphic-design`, `crm-setup`, `server-side-tracking` — content for all 8 already exists in `pillars.ts`, so this is mostly restructure, not new writing; (3) `/about` — same anchor problem, and this is the page that ranks for his name and feeds AI systems his credentials; (4) `/real-estate-marketing` vertical page; (5) `/pricing` — "how much does X cost Dubai" is a large query family and almost no Dubai freelancer publishes numbers.
+    - **Three technical gaps found while auditing (all still open):**
+      - `StructuredData.tsx` lists **only Behance** in `sameAs`, while `SocialLinks.tsx` holds 9 real profile URLs. `sameAs` is the primary mechanism Google and AI models use to confirm one real person across the web. Adding the other 8 is a five-minute change with real entity-recognition value.
+      - **No Google Business Profile signal.** Maps ranking comes almost entirely from a verified Google Business Profile, not from the website. The `Person` schema has no `telephone` and no `LocalBusiness` type, so nothing links the site to a listing. Set up the profile as a service-area business.
+      - **Three preview routes are crawlable.** `/preview-hero-alt`, `/preview-hero-wordmark`, `/preview-hero-yellow` are excluded from `sitemap.ts` but `robots.txt` is `Allow: /`. They need `noindex` or they risk duplicate-homepage content.
+    - **Off-site, same wording.** Use the identical tier-1 phrasing in the LinkedIn headline, Upwork and Fiverr profile titles, and Behance description. Those platforms rank in Google for these terms far faster than a new personal domain, and consistent wording across all of them reinforces the entity.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
