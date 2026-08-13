@@ -76,7 +76,7 @@ export default async function PillarPage({ params }: PageProps) {
             </li>
             <li aria-hidden="true">/</li>
             <li>
-              <a href="/services" className="hover:text-ink transition-colors">
+              <a href="/services/" className="hover:text-ink transition-colors">
                 Services
               </a>
             </li>
@@ -106,7 +106,7 @@ export default async function PillarPage({ params }: PageProps) {
                 Book a free consultation <ArrowRight size={16} />
               </a>
               <a
-                href="/portfolio"
+                href="/portfolio/"
                 className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
               >
                 View my work
@@ -163,7 +163,7 @@ export default async function PillarPage({ params }: PageProps) {
                 return (
                   <a
                     key={p.slug}
-                    href={`/services/${p.slug}`}
+                    href={`/services/${p.slug}/`}
                     className="card-hover flex items-center gap-3 rounded-xl border border-border glass p-4"
                   >
                     <div

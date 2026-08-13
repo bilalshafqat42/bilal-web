@@ -7,11 +7,12 @@ import { accentClasses, megaMenuGroups, slugify } from "@/data/pillars";
 
 const links = [
   { label: "Home", href: "/#home" },
-  { label: "Services", href: "/services" },
-  { label: "Work", href: "/portfolio" },
-  { label: "About", href: "/#about" },
-  { label: "Process", href: "/#process" },
-  { label: "Pricing", href: "/#engagement" },
+  { label: "Services", href: "/services/" },
+  { label: "Work", href: "/portfolio/" },
+  { label: "Blog", href: "/blog/" },
+  { label: "Training", href: "/training/" },
+  { label: "About", href: "/about-me/" },
+  { label: "Contact", href: "/contact-us/" },
 ];
 
 export default function Nav() {
@@ -105,7 +106,7 @@ export default function Nav() {
                                     {group.items.map((item) => (
                                       <li key={item.title}>
                                         <a
-                                          href={`/services/${item.pillarSlug}#${slugify(item.title)}`}
+                                          href={`/services/${item.pillarSlug}/#${slugify(item.title)}`}
                                           className="text-sm text-muted hover:text-ink transition-colors"
                                         >
                                           {item.title}
@@ -120,7 +121,7 @@ export default function Nav() {
 
                           <div className="mt-8 border-t border-border pt-6">
                             <a
-                              href="/services"
+                              href="/services/"
                               className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold hover:opacity-80 transition-opacity"
                             >
                               View all services <ArrowRight size={15} />
