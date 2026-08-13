@@ -38,7 +38,7 @@ export default function LogoWall() {
 
         <div className="mt-10 text-center">
           <a
-            href="/portfolio/"
+            href="/portfolio"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink/90 hover:text-gold transition-colors"
           >
             View full case studies <ArrowUpRight size={15} />

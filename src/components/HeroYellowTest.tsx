@@ -77,7 +77,7 @@ export default function HeroYellowTest() {
                   Book a free consultation <ArrowRight size={16} />
                 </a>
                 <a
-                  href="/portfolio/"
+                  href="/portfolio"
                   className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
                 >
                   View my work

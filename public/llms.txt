@@ -23,12 +23,7 @@ Startups and founders, real estate developers and agencies (UAE), in-house teams
 ## Pages
 
 - [Home](https://bilalshafqat.com/): overview, services, and how to get in touch.
-- [Services](https://bilalshafqat.com/services/): the four service pillars, each with its own detail page.
-- [Portfolio](https://bilalshafqat.com/portfolio/): detailed case studies with goals, execution, and outcomes.
-- [Blog](https://bilalshafqat.com/blog/): 50+ in-depth technical articles on React, JavaScript, TypeScript, CSS, UI/UX design, and developer tooling.
-- [About](https://bilalshafqat.com/about-me/): career history, education, and experience.
-- [Training](https://bilalshafqat.com/training/): one-to-one courses in React.js, frontend development, and web/graphic design.
-- [Contact](https://bilalshafqat.com/contact-us/): email, phone, and social channels.
+- [Portfolio](https://bilalshafqat.com/portfolio): detailed case studies with goals, execution, and outcomes.
 
 ## Contact
 

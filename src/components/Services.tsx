@@ -58,7 +58,7 @@ export default function Services() {
                 </ul>
 
                 <a
-                  href={`/services/${active.slug}/`}
+                  href={`/services/${active.slug}`}
                   className={`relative mt-6 inline-flex items-center gap-1.5 text-sm font-semibold transition-colors ${accent.icon} hover:opacity-80`}
                 >
                   Learn more about this pillar <ArrowRight size={15} />
@@ -98,13 +98,13 @@ export default function Services() {
 
             <Reveal className="mt-8 flex flex-wrap items-center gap-5">
               <a
-                href="/services/"
+                href="/services"
                 className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink/90 hover:text-gold transition-colors"
               >
                 Explore all services in detail →
               </a>
               <a
-                href="/portfolio/"
+                href="/portfolio"
                 className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink/90 hover:text-gold transition-colors"
               >
                 See work across these services →
