@@ -6,18 +6,21 @@ import { RevealStagger, RevealItem } from "./Reveal";
 // A logo with `src` renders as a real, clickable mark linking to its case study.
 // Entries without one stay as text placeholders until that client's logo and
 // written permission are in hand.
-type Logo = { name: string; src?: string; href?: string };
+// `id` is the React key, not `name`: two placeholders legitimately share the
+// same label, and using the label as the key produced a duplicate-key warning.
+type Logo = { id: string; name: string; src?: string; href?: string };
 
 const logos: Logo[] = [
   {
+    id: "leos",
     name: "LEOS Developments",
     src: "/portfolio/leos/logo/leos-logo.svg",
     href: "/portfolio/leos-developments",
   },
-  { name: "[Client Logo — Real Estate Agency]" },
-  { name: "[Client Logo — Real Estate Agency]" },
-  { name: "[Client Logo — SaaS / MERN Project]" },
-  { name: "[Client Logo — Mobile App Launch]" },
+  { id: "placeholder-agency-1", name: "[Client Logo — Real Estate Agency]" },
+  { id: "placeholder-agency-2", name: "[Client Logo — Real Estate Agency]" },
+  { id: "placeholder-saas", name: "[Client Logo — SaaS / MERN Project]" },
+  { id: "placeholder-app", name: "[Client Logo — Mobile App Launch]" },
 ];
 
 export default function LogoWall() {
@@ -36,7 +39,7 @@ export default function LogoWall() {
             const tile =
               "flex h-24 items-center justify-center gap-2 rounded-2xl border border-border bg-surface/40 px-4 text-center transition";
             return (
-              <RevealItem key={logo.name}>
+              <RevealItem key={logo.id}>
                 {logo.src && logo.href ? (
                   <a
                     href={logo.href}

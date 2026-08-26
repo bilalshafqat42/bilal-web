@@ -13,6 +13,11 @@ Startups and founders, real estate developers and agencies (UAE), in-house teams
 - Design, Content & Conversion: social media strategy and asset design, B2B and real estate video editing, conversion rate optimization (CRO).
 - CRM & Marketing Automation: HubSpot, Zoho, and Salesforce CRM setup, server-side tracking and Conversions API, marketing automation workflows.
 
+## Case studies
+
+- LEOS Developments (https://bilalshafqat.com/portfolio/leos-developments): two-year engagement with a UK-headquartered residential developer that has offices in London and an experience centre in Dubai. Scope: corporate website build, brand social creative, and off-plan launch campaigns. Notable in that one person delivered both the website campaigns pointed at and the creative that drove traffic to it.
+- Hadley Heights, for LEOS Developments (https://bilalshafqat.com/portfolio/leos-developments/hadley-heights): off-plan launch campaign for a 216-apartment development in Jumeirah Village Circle, Dubai, with 1 and 2 bedroom apartments from AED 1 million. Deliverables: a lead capture landing page with a callback form and a brochure-download second entry point, plus a five-slide campaign carousel for paid and organic social.
+
 ## Engagement models
 
 - Project-Based: a defined deliverable with a clear scope, timeline, and price.

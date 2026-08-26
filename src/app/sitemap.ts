@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { pillars } from "@/data/pillars";
+import { caseStudyUrls } from "@/data/caseStudies";
 
 const baseUrl = "https://bilalshafqat.com";
 
@@ -24,12 +25,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/portfolio/leos-developments`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
       url: `${baseUrl}/portfolio`,
       lastModified: new Date(),
       changeFrequency: "monthly",
@@ -41,6 +36,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    ...caseStudyUrls().map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
     ...pillars.map((pillar) => ({
       url: `${baseUrl}/services/${pillar.slug}`,
       lastModified: new Date(),

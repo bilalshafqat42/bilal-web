@@ -18,6 +18,24 @@ export default function PortfolioPage() {
     <>
       <Nav />
       <main className="flex-1 pt-28">
+        <section className="mx-auto max-w-7xl px-6">
+          <a
+            href="/portfolio/leos-developments"
+            className="card-hover group flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border glass px-7 py-6"
+          >
+            <span>
+              <span className="text-xs font-medium uppercase tracking-wide text-gold">
+                Featured case study
+              </span>
+              <span className="mt-1.5 block text-xl font-semibold text-ink">
+                LEOS Developments — website, brand social &amp; the Hadley Heights launch
+              </span>
+            </span>
+            <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
+              View case study →
+            </span>
+          </a>
+        </section>
         <CaseStudies />
         <Contact />
       </main>
