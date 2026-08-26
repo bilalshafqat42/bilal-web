@@ -23,7 +23,17 @@ const structuredData = {
     addressLocality: "Dubai",
     addressCountry: "AE",
   },
-  sameAs: ["https://www.behance.net/bilalshafqat"],
+  sameAs: [
+    "https://www.linkedin.com/in/bilalshafqat42",
+    "https://www.behance.net/bilalshafqat",
+    "https://dribbble.com/bilalshafqat",
+    "https://www.instagram.com/imbilalshafqat/",
+    "https://www.facebook.com/imBilalshafqat",
+    "https://x.com/bilalshafqat42",
+    "https://www.youtube.com/@bilalshafqat42",
+    "https://www.tiktok.com/@imbilalshafqat",
+    "https://www.pinterest.com/bilalshafqat42/",
+  ],
   knowsAbout: services,
   areaServed: ["United Arab Emirates", "Worldwide"],
   makesOffer: services.map((name) => ({

@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import HeroAlt from "@/components/HeroAlt";
+
+// Internal design-comparison route, not part of the public site. Kept out of
+// the index so it can't compete with the real homepage as duplicate content.
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export default function PreviewHeroAltPage() {
   return (

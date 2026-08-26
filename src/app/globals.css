@@ -51,24 +51,34 @@ h1, h2, h3, h4, .font-display {
   background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
   border: 1px solid var(--color-border);
   backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
 }
 
 .glass-strong {
   background: rgba(18, 18, 24, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
 }
 
-/* Nearly-opaque glass for panels sitting directly over dense page content
-   (e.g. the nav mega menu), where glass-strong's 0.72 opacity lets busy
-   content behind it fight with the panel's own text for legibility. */
+/* Frosted glass for the nav mega menu. This was previously 0.97 opacity, which
+   made the panel effectively solid and wasted its own backdrop-filter, since a
+   97%-opaque fill leaves nothing of the page visible to blur. It is now genuinely
+   translucent, and legibility is protected instead by .mega-backdrop below, which
+   blurs and dims the whole page behind the panel. That combination is what makes
+   the blur visible without the hero headline fighting the menu text.
+   Opacity is set so the panel stays legible even where backdrop-filter does not
+   render (older browsers, blur disabled, GPU-less environments) — the blur is an
+   enhancement here, never the thing legibility depends on. */
 .glass-nav {
-  background: rgba(10, 10, 13, 0.97);
+  background: rgba(12, 12, 16, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(36px) saturate(140%);
+}
+
+/* Full-viewport scrim behind the mega menu: blurs and dims the page so the
+   translucent panel above it stays readable over any section. */
+.mega-backdrop {
+  background: rgba(6, 6, 9, 0.82);
+  backdrop-filter: blur(18px) saturate(115%);
 }
 
 .text-gradient {

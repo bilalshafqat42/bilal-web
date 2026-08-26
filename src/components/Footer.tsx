@@ -4,10 +4,10 @@ import SocialLinks from "./SocialLinks";
 const quickLinks = [
   { label: "Services", href: "/services" },
   { label: "Work", href: "/portfolio" },
-  { label: "About", href: "/#about" },
+  { label: "About", href: "/about" },
   { label: "Process", href: "/#process" },
   { label: "Pricing", href: "/#engagement" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Footer() {
