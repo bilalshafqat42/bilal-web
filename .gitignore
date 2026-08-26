@@ -4,3 +4,9 @@ node_modules
 
 # TypeScript incremental build cache
 tsconfig.tsbuildinfo
+
+# Raw client material staging area — never published or committed
+_incoming
+
+# macOS folder metadata
+.DS_Store
