@@ -26,7 +26,14 @@ const nextConfig: NextConfig = {
     // Trimmed to the widths this layout actually requests. 2048 and 3840 are
     // dropped because no source image here is wider than 1928px, so they only
     // ever produced upscales.
-    deviceSizes: [640, 828, 1080, 1440, 1920],
+    // 800 rather than Next's legacy 828: the social sources are exactly 800px,
+    // and a 2x phone needs ~680px for these tiles. With 828 in the list Next
+    // upscaled 800 -> 828 and re-encoded an already-lossy AVIF, which added
+    // weight with no extra detail. 800 gives an exact match instead.
+    // Capped at 1600 because that is now the widest raster source on the site.
+    // Any larger entry only ever produced an upscale — more bytes, no more
+    // detail, and a re-encode of already-lossy AVIF on our own CPU.
+    deviceSizes: [640, 800, 1080, 1280, 1600],
     imageSizes: [128, 256, 384],
 
     // Default is 4 hours, after which a variant is re-encoded from scratch on

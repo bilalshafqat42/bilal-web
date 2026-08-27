@@ -30,10 +30,14 @@ export function CaptureFrame({ capture }: { capture: Capture }) {
 /** Captioned image grid. Captions matter beyond decoration: they are extractable
  *  text, so an unlabelled gallery is invisible to search and AI systems. */
 export function GalleryGrid({ gallery }: { gallery: Gallery }) {
-  // Forced square tiles: these assets mix 1:1 and 5:4, so without a fixed ratio
-  // the grid rows come out ragged. Wider assets are centre-cropped.
+  // Forced square tiles: without a fixed ratio the grid rows come out ragged.
+  //
+  // Two columns on phones, not one. A single full-width column made each tile
+  // ~680 real pixels on a 2x phone, so mobile downloaded *more* image data than
+  // desktop (where four tiles share the row and need ~580px each). Two columns
+  // drops each tile to ~380px and roughly halves mobile image weight.
   return (
-    <div className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="mt-7 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
       {gallery.items.map((item, i) => (
         <Reveal key={item.file} delay={(i % 3) * 0.08}>
           <figure className="overflow-hidden rounded-2xl border border-border bg-surface/40">
@@ -42,7 +46,12 @@ export function GalleryGrid({ gallery }: { gallery: Gallery }) {
               alt={item.alt}
               width={gallery.width}
               height={gallery.height}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+              // Accurate `sizes` matters more than any other image setting: it is
+              // what Next uses to pick a variant. "25vw" was wrong — the grid sits
+              // inside max-w-7xl with padding and gaps, so a tile is ~293px fixed
+              // on large screens, not 25% of a 1440px viewport (360px). That gap
+              // alone made desktop fetch an 800px file instead of a 640px one.
+              sizes="(min-width: 1024px) 300px, 45vw"
               className="aspect-square w-full object-cover"
             />
             <figcaption className="border-t border-border px-4 py-3 text-xs text-muted">

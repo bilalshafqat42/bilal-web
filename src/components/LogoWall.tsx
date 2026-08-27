@@ -18,6 +18,10 @@ type Logo = {
   id: string;
   name: string;
   src: string;
+  /** Optional second mark shown on hover. When set, this replaces the generic
+   *  grayscale-to-colour treatment: an explicit art-directed swap beats a CSS
+   *  filter, because the brand controls exactly what each state looks like. */
+  srcHover?: string;
   width: number;
   height: number;
   heightClass: string;
@@ -28,7 +32,8 @@ const logos: Logo[] = [
   {
     id: "leos",
     name: "LEOS Developments",
-    src: "/portfolio/leos/logo/leos-logo.svg",
+    src: "/portfolio/leos/logo/leos-white.svg",
+    srcHover: "/portfolio/leos/logo/leos-dark.svg",
     width: 2000,
     height: 551,
     heightClass: "max-h-8",
@@ -67,13 +72,34 @@ export default function LogoWall() {
           {logos.map((logo) => {
             const tile =
               "flex h-28 items-center justify-center rounded-2xl border border-border bg-surface/40 px-6 transition";
-            const mark = (
+            const imgClass = `${logo.heightClass} w-auto max-w-full object-contain`;
+            const mark = logo.srcHover ? (
+              // Both marks are stacked and cross-faded rather than swapping src,
+              // so the hover state never flashes while the second file loads.
+              <span className="relative inline-flex items-center justify-center">
+                <Image
+                  src={logo.src}
+                  alt={logo.name}
+                  width={logo.width}
+                  height={logo.height}
+                  className={`${imgClass} transition-opacity duration-300 group-hover:opacity-0`}
+                />
+                <Image
+                  src={logo.srcHover}
+                  alt=""
+                  aria-hidden="true"
+                  width={logo.width}
+                  height={logo.height}
+                  className={`${imgClass} absolute inset-0 m-auto opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
+                />
+              </span>
+            ) : (
               <Image
                 src={logo.src}
                 alt={logo.name}
                 width={logo.width}
                 height={logo.height}
-                className={`${logo.heightClass} w-auto max-w-full object-contain`}
+                className={imgClass}
               />
             );
             return (
@@ -82,12 +108,16 @@ export default function LogoWall() {
                   <a
                     href={logo.href}
                     aria-label={`${logo.name} case study`}
-                    className={`${tile} opacity-70 grayscale hover:opacity-100 hover:grayscale-0 hover:border-gold/35`}
+                    className={`${tile} group hover:border-gold/35 ${
+                      logo.srcHover
+                        ? "opacity-90 hover:opacity-100"
+                        : "opacity-70 grayscale hover:opacity-100 hover:grayscale-0"
+                    }`}
                   >
                     {mark}
                   </a>
                 ) : (
-                  <div className={`${tile} opacity-60 grayscale hover:opacity-90 hover:grayscale-0`}>
+                  <div className={`${tile} group opacity-60 grayscale hover:opacity-90 hover:grayscale-0`}>
                     {mark}
                   </div>
                 )}
