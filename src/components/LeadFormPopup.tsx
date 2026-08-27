@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import { MessageSquarePlus, X, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { getAttribution } from "@/lib/attribution";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -44,6 +45,8 @@ export default function LeadFormPopup() {
           phone: data.get("phone"),
           message: data.get("message"),
           botcheck: data.get("botcheck") === "on",
+          source: "website-popup",
+          attribution: getAttribution(),
         }),
       });
       const result = await res.json();

@@ -1,26 +1,55 @@
 import Image from "next/image";
-import { Building2, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import { RevealStagger, RevealItem } from "./Reveal";
 
 // A logo with `src` renders as a real, clickable mark linking to its case study.
 // Entries without one stay as text placeholders until that client's logo and
 // written permission are in hand.
-// `id` is the React key, not `name`: two placeholders legitimately share the
-// same label, and using the label as the key produced a duplicate-key warning.
-type Logo = { id: string; name: string; src?: string; href?: string };
+// `id` is the React key, not `name`: two entries could legitimately share a
+// display label, and keying on the label caused a duplicate-key warning.
+//
+// `href` is set only once a client has a real case study to link to. A logo with
+// no href still renders as a real mark — it just isn't clickable yet.
+//
+// `heightClass` tunes optical weight per logo: a stacked lockup (Tomorrow World)
+// needs more height than a wide wordmark (LEOS) to read as the same size.
+type Logo = {
+  id: string;
+  name: string;
+  src: string;
+  width: number;
+  height: number;
+  heightClass: string;
+  href?: string;
+};
 
 const logos: Logo[] = [
   {
     id: "leos",
     name: "LEOS Developments",
     src: "/portfolio/leos/logo/leos-logo.svg",
+    width: 2000,
+    height: 551,
+    heightClass: "max-h-8",
     href: "/portfolio/leos-developments",
   },
-  { id: "placeholder-agency-1", name: "[Client Logo — Real Estate Agency]" },
-  { id: "placeholder-agency-2", name: "[Client Logo — Real Estate Agency]" },
-  { id: "placeholder-saas", name: "[Client Logo — SaaS / MERN Project]" },
-  { id: "placeholder-app", name: "[Client Logo — Mobile App Launch]" },
+  {
+    id: "tomorrow-world",
+    name: "Tomorrow World Real Estate",
+    src: "/portfolio/tomorrow/logo/tomorrow-world-logo.svg",
+    width: 2004,
+    height: 1220,
+    heightClass: "max-h-14",
+  },
+  {
+    id: "refine",
+    name: "Refine",
+    src: "/portfolio/refine/logo/refine-dubai-logo.svg",
+    width: 2000,
+    height: 648,
+    heightClass: "max-h-10",
+  },
 ];
 
 export default function LogoWall() {
@@ -30,38 +59,36 @@ export default function LogoWall() {
         <SectionHeading
           eyebrow="Companies I've Worked With"
           title="Trusted Across"
-          highlight="Real Estate, SaaS & Startups"
-          description="Logos go here once approved by each client. Full write-ups with real numbers live on the Portfolio page."
+          highlight="UK & UAE Real Estate"
+          description="Property developers in the UK and UAE, across corporate websites, off-plan launch campaigns, and the brand work around them."
         />
 
-        <RevealStagger className="mt-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+        <RevealStagger className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3">
           {logos.map((logo) => {
             const tile =
-              "flex h-24 items-center justify-center gap-2 rounded-2xl border border-border bg-surface/40 px-4 text-center transition";
+              "flex h-28 items-center justify-center rounded-2xl border border-border bg-surface/40 px-6 transition";
+            const mark = (
+              <Image
+                src={logo.src}
+                alt={logo.name}
+                width={logo.width}
+                height={logo.height}
+                className={`${logo.heightClass} w-auto max-w-full object-contain`}
+              />
+            );
             return (
               <RevealItem key={logo.id}>
-                {logo.src && logo.href ? (
+                {logo.href ? (
                   <a
                     href={logo.href}
                     aria-label={`${logo.name} case study`}
-                    className={`${tile} group opacity-60 grayscale hover:opacity-100 hover:grayscale-0 hover:border-gold/35`}
+                    className={`${tile} opacity-70 grayscale hover:opacity-100 hover:grayscale-0 hover:border-gold/35`}
                   >
-                    <Image
-                      src={logo.src}
-                      alt={logo.name}
-                      width={2000}
-                      height={551}
-                      className="max-h-9 w-auto object-contain"
-                    />
+                    {mark}
                   </a>
                 ) : (
-                  <div
-                    role="img"
-                    aria-label={logo.name}
-                    className={`${tile} grayscale opacity-70 hover:opacity-100 hover:grayscale-0`}
-                  >
-                    <Building2 size={18} className="shrink-0 text-muted" />
-                    <span className="text-xs font-medium text-muted leading-snug">{logo.name}</span>
+                  <div className={`${tile} opacity-60 grayscale hover:opacity-90 hover:grayscale-0`}>
+                    {mark}
                   </div>
                 )}
               </RevealItem>

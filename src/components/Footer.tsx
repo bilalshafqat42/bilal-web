@@ -71,7 +71,10 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border pt-6 text-xs text-muted">
           <p>© {new Date().getFullYear()} Bilal Shafqat. All rights reserved.</p>
-          <p>Built with Next.js &amp; Tailwind CSS.</p>
+          <p className="flex items-center gap-4">
+            <a href="/privacy" className="hover:text-gold transition-colors">Privacy</a>
+            <span>Built with Next.js &amp; Tailwind CSS.</span>
+          </p>
         </div>
       </div>
     </footer>

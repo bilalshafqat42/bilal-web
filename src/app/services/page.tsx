@@ -18,8 +18,8 @@ export default function ServicesPage() {
   return (
     <>
       <Nav />
-      <main className="flex-1 pt-32 pb-16 sm:pt-40 sm:pb-20">
-        <section className="relative overflow-hidden">
+      <main className="flex-1 pb-16 sm:pb-20">
+        <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="relative mx-auto max-w-4xl px-6 text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">

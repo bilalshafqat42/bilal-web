@@ -3,6 +3,7 @@ import { ArrowUpRight, Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
+import ContactForm from "@/components/ContactForm";
 import SocialLinks from "@/components/SocialLinks";
 
 const SITE_URL = "https://bilalshafqat.com";
@@ -38,14 +39,6 @@ const channels = [
     href: "tel:+971529766006",
     note: "Alternate line: +971 56 604 7396.",
   },
-];
-
-const briefPrompts = [
-  "What you're trying to achieve, in your own words",
-  "Which of the four pillars it touches, if you already know",
-  "Any deadline or launch date you're working towards",
-  "Whether you have an existing website, CRM, or ad account in place",
-  "A rough budget range, so I can tell you honestly whether it fits",
 ];
 
 const contactSchema = {
@@ -93,8 +86,8 @@ export default function ContactPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
       />
       <Nav />
-      <main className="flex-1 pt-32 pb-16 sm:pt-40 sm:pb-20">
-        <section className="relative overflow-hidden">
+      <main className="flex-1 pb-16 sm:pb-20">
+        <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="relative mx-auto max-w-4xl px-6 text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
@@ -150,10 +143,14 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section className="relative mt-16 sm:mt-20">
+        <section id="enquiry" className="relative mt-16 scroll-mt-28 sm:mt-20">
           <div className="mx-auto max-w-7xl px-6">
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.35fr_0.65fr]">
               <Reveal>
+                <ContactForm />
+              </Reveal>
+
+              <Reveal delay={0.1}>
                 <div className="h-full rounded-2xl border border-border glass p-7">
                   <h2 className="text-xl font-semibold text-ink">Where I am and when</h2>
                   <ul className="mt-5 space-y-4 text-sm text-muted">
@@ -176,28 +173,6 @@ export default function ContactPage() {
                     </li>
                   </ul>
                   <SocialLinks className="mt-7" />
-                </div>
-              </Reveal>
-
-              <Reveal delay={0.1}>
-                <div className="h-full rounded-2xl border border-border glass p-7">
-                  <h2 className="text-xl font-semibold text-ink">
-                    What to include in your first message
-                  </h2>
-                  <p className="mt-3 text-sm text-muted leading-relaxed">
-                    None of this is required, but the more of it you send, the
-                    more useful my first reply will be.
-                  </p>
-                  <ul className="mt-5 space-y-3">
-                    {briefPrompts.map((prompt, i) => (
-                      <li key={prompt} className="flex items-start gap-3 text-sm text-muted">
-                        <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-border bg-surface/60 text-[11px] font-semibold text-gold">
-                          {i + 1}
-                        </span>
-                        {prompt}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               </Reveal>
             </div>

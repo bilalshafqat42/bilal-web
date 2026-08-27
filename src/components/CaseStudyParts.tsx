@@ -30,8 +30,10 @@ export function CaptureFrame({ capture }: { capture: Capture }) {
 /** Captioned image grid. Captions matter beyond decoration: they are extractable
  *  text, so an unlabelled gallery is invisible to search and AI systems. */
 export function GalleryGrid({ gallery }: { gallery: Gallery }) {
+  // Forced square tiles: these assets mix 1:1 and 5:4, so without a fixed ratio
+  // the grid rows come out ragged. Wider assets are centre-cropped.
   return (
-    <div className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {gallery.items.map((item, i) => (
         <Reveal key={item.file} delay={(i % 3) * 0.08}>
           <figure className="overflow-hidden rounded-2xl border border-border bg-surface/40">
@@ -40,8 +42,8 @@ export function GalleryGrid({ gallery }: { gallery: Gallery }) {
               alt={item.alt}
               width={gallery.width}
               height={gallery.height}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="h-auto w-full"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+              className="aspect-square w-full object-cover"
             />
             <figcaption className="border-t border-border px-4 py-3 text-xs text-muted">
               {item.caption}

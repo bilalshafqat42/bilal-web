@@ -102,8 +102,8 @@ export default async function ProjectCaseStudy({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <Nav />
-      <main className="flex-1 pt-32 pb-16 sm:pt-40 sm:pb-20">
-        <section className="relative overflow-hidden">
+      <main className="flex-1 pb-16 sm:pb-20">
+        <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="relative mx-auto max-w-7xl px-6">
             <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-muted">

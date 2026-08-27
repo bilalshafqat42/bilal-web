@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import LeadFormPopup from "@/components/LeadFormPopup";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import StructuredData from "@/components/StructuredData";
+import CookieConsent from "@/components/CookieConsent";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -47,6 +48,7 @@ export default function RootLayout({
         {children}
         <WhatsAppButton />
         <LeadFormPopup />
+        <CookieConsent />
       </body>
     </html>
   );

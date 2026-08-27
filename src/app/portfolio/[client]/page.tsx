@@ -83,8 +83,8 @@ export default async function ClientCaseStudy({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <Nav />
-      <main className="flex-1 pt-32 pb-16 sm:pt-40 sm:pb-20">
-        <section className="relative overflow-hidden">
+      <main className="flex-1 pb-16 sm:pb-20">
+        <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="relative mx-auto max-w-7xl px-6">
             <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted">
@@ -112,50 +112,6 @@ export default async function ClientCaseStudy({ params }: Props) {
             </Reveal>
           </div>
         </section>
-
-        {c.projects.length > 0 ? (
-          <section id="projects" className="relative mt-20 scroll-mt-28 sm:mt-28">
-            <div className="mx-auto max-w-7xl px-6">
-              <Reveal>
-                <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
-                  {c.projects.length === 1 ? "Development campaign" : "Development campaigns"}
-                </h2>
-                <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">
-                  Each launch ran the same way: a landing page built to capture
-                  qualified leads, and the campaign creative that fed it.
-                </p>
-              </Reveal>
-
-              <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {c.projects.map((p, i) => (
-                  <Reveal key={p.slug} delay={i * 0.08}>
-                    <a
-                      href={`/portfolio/${c.slug}/${p.slug}`}
-                      className="card-hover group flex h-full flex-col overflow-hidden rounded-2xl border border-border glass"
-                    >
-                      <Image
-                        src={p.cardImage}
-                        alt={`${p.name} campaign creative`}
-                        width={1400}
-                        height={1400}
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        className="aspect-[4/3] w-full object-cover"
-                      />
-                      <div className="flex flex-1 flex-col p-6">
-                        <h3 className="text-xl font-semibold text-ink">{p.name}</h3>
-                        <p className="mt-2.5 flex-1 text-sm text-muted leading-relaxed">{p.cardBlurb}</p>
-                        <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
-                          View the campaign{" "}
-                          <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
-                        </span>
-                      </div>
-                    </a>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          </section>
-        ) : null}
 
         <section className="relative mt-20 sm:mt-28">
           <div className="mx-auto max-w-7xl px-6">
@@ -206,6 +162,50 @@ export default async function ClientCaseStudy({ params }: Props) {
                 <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">{c.brandSocial.body}</p>
               </Reveal>
               <GalleryGrid gallery={c.brandSocial} />
+            </div>
+          </section>
+        ) : null}
+
+        {c.projects.length > 0 ? (
+          <section id="projects" className="relative mt-20 scroll-mt-28 border-t border-border pt-20 sm:mt-28 sm:pt-24">
+            <div className="mx-auto max-w-7xl px-6">
+              <Reveal>
+                <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+                  {c.projects.length === 1 ? "Development campaign" : "Development campaigns"}
+                </h2>
+                <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">
+                  Each launch ran the same way: a landing page built to capture
+                  qualified leads, and the campaign creative that fed it.
+                </p>
+              </Reveal>
+
+              <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {c.projects.map((p, i) => (
+                  <Reveal key={p.slug} delay={i * 0.08}>
+                    <a
+                      href={`/portfolio/${c.slug}/${p.slug}`}
+                      className="card-hover group flex h-full flex-col overflow-hidden rounded-2xl border border-border glass"
+                    >
+                      <Image
+                        src={p.cardImage}
+                        alt={`${p.name} campaign creative`}
+                        width={1400}
+                        height={1400}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="aspect-[4/3] w-full object-cover"
+                      />
+                      <div className="flex flex-1 flex-col p-6">
+                        <h3 className="text-xl font-semibold text-ink">{p.name}</h3>
+                        <p className="mt-2.5 flex-1 text-sm text-muted leading-relaxed">{p.cardBlurb}</p>
+                        <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
+                          View the campaign{" "}
+                          <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
+                        </span>
+                      </div>
+                    </a>
+                  </Reveal>
+                ))}
+              </div>
             </div>
           </section>
         ) : null}

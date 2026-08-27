@@ -53,8 +53,8 @@ export default function AboutPage() {
   return (
     <>
       <Nav />
-      <main className="flex-1 pt-32 pb-16 sm:pt-40 sm:pb-20">
-        <section className="relative overflow-hidden">
+      <main className="flex-1 pb-16 sm:pb-20">
+        <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[1.15fr_0.85fr]">
             <Reveal>

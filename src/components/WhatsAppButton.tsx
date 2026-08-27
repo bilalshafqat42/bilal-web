@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { MessageCircle, X, Send } from "lucide-react";
+import { getAttribution } from "@/lib/attribution";
 
 const WHATSAPP_NUMBER = "971529766006";
 const AUTO_OPEN_SCROLL_PX = 700;
@@ -207,6 +208,7 @@ export default function WhatsAppButton() {
           ...nextAnswers,
           message: `Requested via WhatsApp assistant — service: ${nextAnswers.service}`,
           source: "whatsapp-chat",
+          attribution: getAttribution(),
         }),
       }).catch(() => {});
 
@@ -266,6 +268,7 @@ export default function WhatsAppButton() {
           ...answers,
           message: "Requested via WhatsApp assistant — skipped ahead to chat directly",
           source: "whatsapp-chat-skip",
+          attribution: getAttribution(),
         }),
       }).catch(() => {});
     }
