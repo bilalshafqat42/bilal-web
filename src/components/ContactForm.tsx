@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { ArrowRight, Check, Loader2, MessageCircle } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowRight, Check, FileText, Loader2, MessageCircle } from "lucide-react";
 import { pillars } from "@/data/pillars";
 import { getAttribution } from "@/lib/attribution";
 import { trackLead, trackWhatsApp } from "@/lib/analytics";
@@ -11,12 +11,40 @@ const EMAIL = "bilalshafqat42@gmail.com";
 
 type Status = "idle" | "submitting" | "success" | "fallback" | "error";
 
+/** "/portfolio/leos-developments/hadley-heights" -> "Portfolio / Leos Developments / Hadley Heights" */
+function prettyPath(path: string): string {
+  const clean = path.split("?")[0].replace(/\/$/, "");
+  if (!clean || clean === "/") return "Home";
+  return clean
+    .split("/")
+    .filter(Boolean)
+    .map((seg) =>
+      seg
+        .split("-")
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(" ")
+    )
+    .join(" / ");
+}
+
 const fieldClass =
   "w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink placeholder:text-muted/70 outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
+  // Which page the enquiry is about. On /contact the current page is useless,
+  // so prefer the in-site page they clicked through from. Read after mount
+  // because it depends on browser APIs.
+  const [pageContext, setPageContext] = useState<{ path: string; url: string } | null>(null);
+
+  useEffect(() => {
+    const a = getAttribution();
+    const path = a.pageOfInterest || "";
+    if (path && path !== "/contact") {
+      setPageContext({ path, url: a.pageUrl || window.location.href });
+    }
+  }, []);
   const [values, setValues] = useState({
     name: "",
     email: "",
@@ -121,6 +149,20 @@ export default function ContactForm() {
         <label htmlFor="company">Company</label>
         <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
       </div>
+
+      {pageContext ? (
+        <div className="mt-6 flex items-start gap-3 rounded-xl border border-border bg-surface/40 px-4 py-3">
+          <FileText size={15} className="mt-0.5 shrink-0 text-gold" />
+          <div className="min-w-0">
+            <p className="text-xs font-medium uppercase tracking-wide text-muted">
+              Enquiring about
+            </p>
+            <p className="mt-0.5 truncate text-sm text-ink" title={pageContext.path}>
+              {prettyPath(pageContext.path)}
+            </p>
+          </div>
+        </div>
+      ) : null}
 
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>

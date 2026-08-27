@@ -16,6 +16,9 @@ type Attribution = {
   referrer?: string;
   landingPage?: string;
   submittedFrom?: string;
+  pageUrl?: string;
+  internalReferrer?: string;
+  pageOfInterest?: string;
 };
 
 type LeadPayload = {
@@ -119,7 +122,15 @@ export async function POST(request: Request) {
   const resolvedUtmCampaign = attribution?.utm_campaign || utmCampaign;
   const resolvedUtmContent = attribution?.utm_content || utmContent;
   const resolvedUtmTerm = attribution?.utm_term || utmTerm;
-  const resolvedPageUrl = attribution?.submittedFrom || attribution?.landingPage || pageUrl;
+  // Full URL first, then the in-site page they came from (more useful than
+  // "/contact" when the form lives on a dedicated contact page), then fallbacks.
+  const resolvedPageUrl =
+    attribution?.pageOfInterest ||
+    attribution?.pageUrl ||
+    attribution?.internalReferrer ||
+    attribution?.submittedFrom ||
+    attribution?.landingPage ||
+    pageUrl;
 
   // Performo's public intake API (the CRM this currently points at) expects
   // its own field names and an x-api-key header, not Authorization: Bearer —

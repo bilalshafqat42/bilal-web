@@ -20,6 +20,18 @@ export type Attribution = Partial<Record<(typeof PARAMS)[number], string>> & {
   referrer?: string;
   landingPage?: string;
   submittedFrom?: string;
+  /** Full URL of the page the form was submitted from. */
+  pageUrl?: string;
+  /** The previous page on this site, when they arrived by clicking an internal
+   *  link. On /contact this is the page they were actually reading, which is far
+   *  more useful than "/contact" itself. */
+  internalReferrer?: string;
+  /** The page the enquiry is *about*, and the single value the CRM should store.
+   *  On a dedicated contact page that means the page they clicked through from;
+   *  anywhere else (popup, chat) it is the page they were on. This is also
+   *  exactly what the form displays, so what a visitor sees and what the CRM
+   *  records can never disagree. */
+  pageOfInterest?: string;
 };
 
 const KEY = "bs-attribution";
@@ -71,9 +83,30 @@ export function getAttribution(): Attribution {
   } catch {
     stored = {};
   }
+  // Same-origin referrer only. An external referrer is already captured as
+  // `referrer` at landing; here we want "which of my pages sent them here".
+  let internalReferrer: string | undefined;
+  try {
+    if (document.referrer) {
+      const r = new URL(document.referrer);
+      if (r.origin === window.location.origin && r.pathname !== window.location.pathname) {
+        internalReferrer = r.pathname + r.search;
+      }
+    }
+  } catch {
+    internalReferrer = undefined;
+  }
+
+  const path = window.location.pathname;
+  const isContactPage = path === "/contact";
+  const pageOfInterest = isContactPage ? internalReferrer || path : path;
+
   return {
     ...stored,
     ...fromCurrentUrl(),
-    submittedFrom: window.location.pathname,
+    submittedFrom: path,
+    pageUrl: window.location.href,
+    internalReferrer,
+    pageOfInterest,
   };
 }

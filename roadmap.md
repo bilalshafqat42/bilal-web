@@ -506,6 +506,15 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Needed from Bilal**: create a GTM container, add `NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX`, then build GA4 and the platform pixels inside it. `.env.local.example` documents the setup and the full event contract.
     - **Note on process**: env overrides were passed inline for testing (`NEXT_PUBLIC_GTM_ID=… npx next dev`) rather than editing `.env.local`, per the rule added in item 52 after that file's real credentials were clobbered. Confirmed afterwards that `.env.local` still holds the Performo values and gained nothing.
 
+56. **Page context captured and shown on the enquiry form (2026-08-27)** — **done.** Bilal asked for the current page URL to be captured automatically and displayed on the form.
+    - **The obvious implementation would have been useless.** The contact form lives on `/contact`, so "current page" is always `/contact` — it tells him nothing. What is actually valuable is the page the visitor was *reading* before they clicked through. `getAttribution()` now derives `pageOfInterest`: on `/contact` it is the same-origin referring page, and anywhere else (the popup, the WhatsApp chat, which can appear on any page) it is the current page.
+    - **The form displays it, prettified**: `/portfolio/leos-developments/hadley-heights` renders as "Portfolio / Leos Developments / Hadley Heights" in an "Enquiring about" row above the fields, with the raw path on hover. It only renders when there is something meaningful to show, so a visitor who lands on `/contact` directly sees no empty box.
+    - **Fixed a mismatch found in testing**: the first pass displayed the case study but sent `pageUrl: /contact` to Performo, because the route preferred the full URL of wherever the form happened to live. Display and payload disagreeing is worse than not showing it at all. Both now read the same `pageOfInterest` field, so what the visitor sees and what the CRM records can never diverge.
+    - **Verified against the realistic journey**, not an isolated page load: arrived on the Hadley Heights case study from a Google campaign, accepted consent, clicked through to `/contact`, submitted. Form displayed "Portfolio / Leos Developments / Hadley Heights"; Performo received `pageUrl: /portfolio/leos-developments/hadley-heights?utm_source=google&utm_campaign=hadley` alongside `utmSource: google`. Campaign attribution and page context both survived the two-page journey.
+    - `internalReferrer` is same-origin only — an external referrer is already captured separately as `referrer` at landing, so the two do not overwrite each other.
+    - **A testing slip worth noting**: truncating the mock server's log with `: > file` while the process still held it open produced an empty log and a confusing JSON parse error. Restarted the mock instead. Not a product issue, but it cost a cycle.
+    - Verified: `tsc --noEmit` clean, `npm run build` clean at 20 pages, zero console errors.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
