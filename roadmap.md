@@ -603,6 +603,11 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - Verified: `tsc` and `npm run build` clean at **26 pages** (up from 22), all 8 categories returning 200 with exactly 1 `<h1>` and titles ≤60 chars, the retired URL redirecting, and zero console errors.
     - **Next stage, deliberately not started**: sub-pages under each category, written at 400+ words and prioritised by real search demand. Not all 28 warrant one — `Business Profile` at 15 words almost certainly does not.
 
+68. **Sitemap fix: the four new category pages were live but undiscoverable (2026-08-28)** — **done.** Caught while reviewing what to do next, not by any tool.
+    - Item 67 repointed `/services/[slug]` at `megaMenuGroups` but left `sitemap.ts` generating from `pillars`. The result: 8 category pages served 200 in production while the sitemap advertised only the 4 old pillar slugs, so the 4 genuinely new pages (`social-media-marketing`, `digital-marketing`, `ui-ux-design`, `graphic-design-branding`, `video-conversion`) had no discovery path beyond internal links.
+    - **A build passing is not evidence a page is discoverable.** Same class of gap as item 59's runtime 404s: the type system cannot catch a page that exists but is not advertised.
+    - Fixed by generating the sitemap from the same `megaMenuGroups` list the routes and menu use, so a new category can never again be live-but-missing. Sitemap went **14 → 18 URLs**.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { pillars } from "@/data/pillars";
+import { megaMenuGroups } from "@/data/pillars";
 import { caseStudyUrls } from "@/data/caseStudies";
 
 const baseUrl = "https://bilalshafqat.com";
@@ -48,8 +48,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
-    ...pillars.map((pillar) => ({
-      url: `${baseUrl}/services/${pillar.slug}`,
+    // Generated from the same list the mega menu uses, so a new category is
+    // never live-but-undiscoverable. This previously read `pillars`, which left
+    // the four new category pages out of the sitemap entirely.
+    ...megaMenuGroups.map((category) => ({
+      url: `${baseUrl}/services/${category.slug}`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.7,
