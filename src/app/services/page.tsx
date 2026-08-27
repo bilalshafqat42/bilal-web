@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import Nav from "@/components/Nav";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import { pillars, accentClasses } from "@/data/pillars";
+import { megaMenuGroups, accentClasses } from "@/data/pillars";
 
 export const metadata: Metadata = {
   title: "Services — Marketing, Development, Design & CRM Automation",
@@ -26,7 +26,7 @@ export default function ServicesPage() {
               Services
             </span>
             <h1 className="mt-5 text-4xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.05] tracking-tight text-ink">
-              Four pillars, one senior partner
+              Eight services, one senior partner
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted leading-relaxed">
               Paid marketing, website and app development, design and conversion,
@@ -40,7 +40,7 @@ export default function ServicesPage() {
         <section className="relative mt-16 sm:mt-20">
           <div className="mx-auto max-w-7xl px-6">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-              {pillars.map((pillar) => {
+              {megaMenuGroups.map((pillar) => {
                 const accent = accentClasses[pillar.accent];
                 return (
                   <a
@@ -51,23 +51,23 @@ export default function ServicesPage() {
                     <div className={`absolute -top-12 -right-12 h-48 w-48 rounded-full blur-3xl ${accent.glow}`} />
 
                     <div
-                      className={`relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${accent.bg} border border-border ${accent.icon}`}
+                      className={`relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${accent.bg} border border-border`}
                     >
-                      <pillar.icon size={26} />
+                      <span className={`h-2.5 w-2.5 rounded-full ${accent.dot}`} />
                     </div>
 
                     <h2 className="relative mt-6 text-2xl font-semibold leading-tight text-ink">
-                      {pillar.label}
+                      {pillar.title}
                     </h2>
-                    <p className="relative mt-3 text-sm text-muted leading-relaxed">{pillar.shortDescription}</p>
+                    <p className="relative mt-3 text-sm text-muted leading-relaxed">{pillar.metaDescription}</p>
 
                     <ul className="relative mt-5 flex flex-wrap gap-2">
-                      {pillar.capabilities.map((c) => (
+                      {pillar.items.map((c) => (
                         <li
-                          key={c}
+                          key={c.title}
                           className="rounded-full border border-border bg-surface/60 px-3 py-1.5 text-xs text-muted"
                         >
-                          {c}
+                          {c.title}
                         </li>
                       ))}
                     </ul>

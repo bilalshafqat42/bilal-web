@@ -188,16 +188,21 @@ export default function Nav() {
                               const accent = accentClasses[group.accent];
                               return (
                                 <div key={group.title} data-mega-group>
-                                  <div className="flex items-center gap-2">
+                                  <a
+                                    href={`/services/${group.slug}`}
+                                    className="group/head flex items-center gap-2"
+                                  >
                                     <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${accent.dot}`} />
-                                    <span className="text-sm font-semibold text-ink">{group.title}</span>
-                                  </div>
+                                    <span className="text-sm font-semibold text-ink group-hover/head:text-gold transition-colors">
+                                      {group.title}
+                                    </span>
+                                  </a>
 
                                   <ul className="mt-3 space-y-2.5">
                                     {group.items.map((item) => (
                                       <li key={item.title}>
                                         <a
-                                          href={`/services/${item.pillarSlug}#${slugify(item.title)}`}
+                                          href={`/services/${group.slug}#${slugify(item.title)}`}
                                           className="text-sm text-muted hover:text-ink transition-colors"
                                         >
                                           {item.title}

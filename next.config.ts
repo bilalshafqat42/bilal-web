@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
       // history, so it is redirected rather than left to 404. 308 is permanent,
       // which is what passes the old page's equity to the new one.
       { source: "/about-me", destination: "/about", permanent: true },
+      // Retired 2026-08-28: this pillar's content split across four narrower
+      // category pages (UI/UX, Graphic Design, Video & Conversion, Social Media),
+      // so there is no single successor. The hub lists all four, which makes it a
+      // genuine destination rather than a soft 404.
+      { source: "/services/design-content-conversion", destination: "/services", permanent: true },
       // Deliberately NOT redirecting /training or the course URLs. Bilal has
       // stopped offering training, and pointing a tutorial-intent URL at a
       // marketing page is a soft 404 — Google treats it as a poor match and it

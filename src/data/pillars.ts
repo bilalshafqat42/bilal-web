@@ -314,10 +314,32 @@ export type MegaMenuItem = {
 };
 
 export type MegaMenuGroup = {
+  /** Category page slug. Three deliberately reuse existing pillar slugs
+   *  (paid-marketing, website-app-development, crm-marketing-automation) so those
+   *  already-indexed URLs keep working rather than needing redirects. */
+  slug: string;
   title: string;
   accent: Accent;
+  /** Page-level copy. Kept here rather than in a separate file so the menu and
+   *  the page it points at can never describe different things. */
+  headline: string;
+  intro: string;
+  metaTitle: string;
+  metaDescription: string;
+  faqs: Faq[];
   items: MegaMenuItem[];
 };
+
+/** Resolves a menu item to the section that holds its actual content. */
+export function resolveItem(item: MegaMenuItem) {
+  const pillar = getPillarBySlug(item.pillarSlug);
+  const section = pillar?.sections.find((sec) => sec.title === item.title);
+  return section && pillar ? { pillar, section } : undefined;
+}
+
+export function getCategoryBySlug(slug: string): MegaMenuGroup | undefined {
+  return megaMenuGroups.find((g) => g.slug === slug);
+}
 
 // Curated mega-menu grouping: 8 standalone columns by discipline (paid ads,
 // social/digital marketing, dev, UI/UX, graphic design, CRM/MarTech, video),
@@ -328,7 +350,31 @@ export type MegaMenuGroup = {
 // from `slugify(item.title)` matching that section's anchor id.
 export const megaMenuGroups: MegaMenuGroup[] = [
   {
+    slug: "paid-marketing",
     title: "Paid Marketing",
+    headline: "Paid marketing that reports cost per lead, not impressions",
+    intro:
+      "Paid media only works when it is built around the sales pipeline it feeds. I plan, launch and manage campaigns across Google and every major social platform, with conversion tracking configured before a dirham is spent, so performance is measured against real enquiries rather than clicks and reach.",
+    metaTitle: "Paid Marketing & Ads Management — Bilal Shafqat",
+    metaDescription:
+      "Google, Meta, TikTok, Snapchat and LinkedIn campaign management by a Dubai-based freelance specialist. Conversion tracking from day one, reported as cost per lead.",
+    faqs: [
+      {
+        question: "Which platforms do you manage?",
+        answer:
+          "Google Search, Shopping, Display and Performance Max, Meta across Facebook and Instagram, plus TikTok, Snapchat and LinkedIn. I recommend the mix based on where your buyers actually are rather than running every channel by default.",
+      },
+      {
+        question: "Do you handle the creative as well as the buying?",
+        answer:
+          "Yes. Ad creative and copy come from the same person managing the spend, so there is no handoff between a media buyer and a separate designer.",
+      },
+      {
+        question: "What does reporting look like?",
+        answer:
+          "Cost per lead and cost per acquisition tied to real enquiries, not impressions and engagement. Tracking is configured before launch so the numbers mean something from the first week.",
+      },
+    ],
     accent: "gold",
     items: [
       { title: "Google Ads & Performance Max", pillarSlug: "paid-marketing" },
@@ -339,7 +385,26 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     ],
   },
   {
+    slug: "social-media-marketing",
     title: "Social Media Marketing",
+    headline: "Social media handled end to end, not just designed and handed over",
+    intro:
+      "Most social work stops at delivering assets. This covers the whole thing: the strategy, the content calendar, the creative itself, and the actual posting and engagement. Because the same person also runs the paid campaigns, organic and paid reinforce each other instead of running as separate projects.",
+    metaTitle: "Social Media Marketing & Management — Bilal Shafqat",
+    metaDescription:
+      "Social media strategy, content design, planning and channel management from a Dubai-based freelance specialist, aligned with the paid campaigns running alongside it.",
+    faqs: [
+      {
+        question: "Do you post as well as design?",
+        answer:
+          "Yes. Channel management, community engagement and performance reporting are included, not just handing over a folder of assets.",
+      },
+      {
+        question: "How does this connect to paid campaigns?",
+        answer:
+          "The same creative direction runs across both, so an organic post and a paid ad look like they came from one brand. That is the practical advantage of one person covering both.",
+      },
+    ],
     accent: "cyan",
     items: [
       { title: "Social Media Strategy & Design", pillarSlug: "design-content-conversion" },
@@ -348,7 +413,26 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     ],
   },
   {
+    slug: "digital-marketing",
     title: "Digital Marketing & Outreach",
+    headline: "Turning interest into a list of qualified, contactable buyers",
+    intro:
+      "Demand generation builds awareness before someone is ready to buy. Lead generation captures it. Email and WhatsApp follow up on it. Treated separately these leak; run as one sequence they compound. This covers the full path from first awareness to a contact sitting in your CRM with a next action against it.",
+    metaTitle: "Lead Generation & Demand Generation — Bilal Shafqat",
+    metaDescription:
+      "Demand generation, lead capture, email and WhatsApp marketing from a Dubai-based freelance specialist. Built as one sequence rather than disconnected tactics.",
+    faqs: [
+      {
+        question: "What is the difference between demand generation and lead generation?",
+        answer:
+          "Demand generation builds awareness and interest among people who are not ready to buy. Lead generation captures contact details from those who are. You need both: capture alone runs out of people to capture.",
+      },
+      {
+        question: "Why WhatsApp?",
+        answer:
+          "It is the default business channel across the UAE. Broadcast campaigns, automated replies and lead capture flows there reach people where they already are, rather than where a marketing textbook says they should be.",
+      },
+    ],
     accent: "gold",
     items: [
       { title: "Demand Generation", pillarSlug: "paid-marketing" },
@@ -358,7 +442,31 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     ],
   },
   {
+    slug: "website-app-development",
     title: "Website & App Development",
+    headline: "Websites and apps built to support the marketing pointed at them",
+    intro:
+      "A site that looks good but does not convert is a cost, not an asset. I build on Next.js for speed and search performance, React Native for mobile, and the MERN stack for custom tools, designed from the start around whatever campaigns will be sending traffic to them.",
+    metaTitle: "Website & App Development, Dubai — Bilal Shafqat",
+    metaDescription:
+      "Next.js websites, high-converting landing pages, cross-platform mobile apps and custom MERN tools, built by a Dubai-based freelance developer who also runs the campaigns.",
+    faqs: [
+      {
+        question: "What do you build with?",
+        answer:
+          "Next.js for websites and landing pages, React Native for mobile apps, and the MERN stack for custom applications and dashboards.",
+      },
+      {
+        question: "Can you improve our existing site instead of rebuilding?",
+        answer:
+          "Often, yes. Many engagements extend or fix what is already there rather than starting over. We work out which makes sense once I have seen it.",
+      },
+      {
+        question: "Do you design as well as build?",
+        answer:
+          "Yes, so what gets designed is what gets built, with nothing lost between a designer's file and a developer's implementation.",
+      },
+    ],
     accent: "violet",
     items: [
       { title: "Website Design & Development", pillarSlug: "website-app-development" },
@@ -367,7 +475,26 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     ],
   },
   {
+    slug: "ui-ux-design",
     title: "UI/UX Design",
+    headline: "Interface design judged on how it is used, not how it presents",
+    intro:
+      "A mockup that wins approval and then confuses users has failed. UI and UX work here covers wireframing, prototyping and interface design for both web and mobile, with each platform's own conventions respected rather than one generic layout stretched across both. Designs hand off cleanly into development because the same person builds them.",
+    metaTitle: "UI/UX & Product Design — Bilal Shafqat",
+    metaDescription:
+      "Wireframing, prototyping, web and mobile interface design and design systems, from a Dubai-based freelance designer who also develops the build.",
+    faqs: [
+      {
+        question: "Do you deliver design systems or one-off screens?",
+        answer:
+          "Design systems where the product will keep growing, single screens where it will not. Building a system for a one-page campaign site is wasted effort.",
+      },
+      {
+        question: "Is accessibility part of this?",
+        answer:
+          "Usability and accessibility are considered as part of the design rather than retrofitted, which is considerably cheaper than fixing it later.",
+      },
+    ],
     accent: "cyan",
     items: [
       { title: "UI/UX Design", pillarSlug: "design-content-conversion" },
@@ -376,7 +503,26 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     ],
   },
   {
+    slug: "graphic-design-branding",
     title: "Graphic Design & Branding",
+    headline: "Identity that holds up beyond the logo file",
+    intro:
+      "A logo is the easy part. What matters is whether the identity still works on a website, an ad, a brochure and a pitch deck once other people are applying it. This covers logo, colour and typography systems, documented brand guidelines so anyone can apply them consistently, and the company profile and pitch materials that carry the brand into a room.",
+    metaTitle: "Branding & Graphic Design, Dubai — Bilal Shafqat",
+    metaDescription:
+      "Logo design, colour and typography systems, documented brand guidelines, company profiles and pitch decks, from a Dubai-based freelance designer.",
+    faqs: [
+      {
+        question: "Do we need a full rebrand?",
+        answer:
+          "Usually not. Existing brand guidelines are a starting point, not a blocker, and most engagements build on what you already have.",
+      },
+      {
+        question: "What is in a brand guidelines deck?",
+        answer:
+          "Logo usage rules, colour and typography specifications, and templates, so an agency, a new hire or a freelancer applies your brand the same way you would.",
+      },
+    ],
     accent: "cyan",
     items: [
       { title: "Branding", pillarSlug: "design-content-conversion" },
@@ -385,7 +531,31 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     ],
   },
   {
+    slug: "crm-marketing-automation",
     title: "CRM & MarTech Integration",
+    headline: "The layer that stops leads being lost between systems",
+    intro:
+      "Most leads a business loses were not lost to bad marketing. They were lost to a follow-up that never happened, because nothing was tracking them properly. This connects campaigns, website and CRM into one system: HubSpot, Zoho or Salesforce configured around how your team actually sells, server-side tracking so conversion data survives browser restrictions, and automation so a new enquiry gets a response in minutes.",
+    metaTitle: "CRM Setup & Marketing Automation — Bilal Shafqat",
+    metaDescription:
+      "HubSpot, Zoho and Salesforce setup, server-side tracking and Conversions API, and marketing automation workflows, from a Dubai-based freelance specialist.",
+    faqs: [
+      {
+        question: "Which CRMs do you work with?",
+        answer:
+          "HubSpot, Zoho and Salesforce most often. If you use something else, get in touch and we will confirm fit.",
+      },
+      {
+        question: "What is server-side tracking and why does it matter?",
+        answer:
+          "It sends conversion data, such as a completed form, directly from your server to platforms like Meta and Google, instead of relying only on a browser pixel. It matters because ad blockers, cookie restrictions and iOS privacy changes have made browser tracking substantially less reliable.",
+      },
+      {
+        question: "We already have a CRM. Can you just fix the automation?",
+        answer:
+          "Yes. Most of this work improves or rebuilds automation inside a CRM you already own rather than replacing it.",
+      },
+    ],
     accent: "gold",
     items: [
       { title: "CRM Setup (HubSpot, Zoho & Salesforce)", pillarSlug: "crm-marketing-automation" },
@@ -396,7 +566,26 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     ],
   },
   {
+    slug: "video-conversion",
     title: "Video & Conversion",
+    headline: "Video that gets watched, and pages that convert what it sends",
+    intro:
+      "Video and conversion work belong together: one drives attention, the other decides whether that attention turns into an enquiry. This covers video editing for how high-consideration audiences actually watch, alongside conversion rate work on the pages that traffic lands on, tested against real behaviour rather than opinion.",
+    metaTitle: "Video Editing & Conversion Rate Optimisation — Bilal Shafqat",
+    metaDescription:
+      "Video editing for high-consideration marketing plus conversion rate optimisation, landing page audits and A/B testing, from a Dubai-based freelance specialist.",
+    faqs: [
+      {
+        question: "What kind of video do you edit?",
+        answer:
+          "Project and property walkthroughs, testimonial and case study films, and cut-downs for paid and organic social. The editing is shaped by how that particular audience watches.",
+      },
+      {
+        question: "What does a CRO engagement involve?",
+        answer:
+          "An audit of your pages against real user behaviour, a prioritised list of changes, then implementing and testing them rather than guessing which might help.",
+      },
+    ],
     accent: "cyan",
     items: [
       { title: "B2B & Real Estate Video Editing", pillarSlug: "design-content-conversion" },
