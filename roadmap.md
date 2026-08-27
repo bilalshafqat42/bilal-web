@@ -550,6 +550,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - Verified: `tsc` and `npm run build` clean at **21 pages**, the new route prerendered, 1 `<h1>`, correct title, all three JSON-LD blocks present, **0** broken images, no console errors, and the client hub now correctly lists two project cards (Hadley Heights, Weybridge Gardens 2). 95 variants warmed in 7.3s with none needing an encode.
     - **Sixth sighting of the same UX problem**: the auto-opening chat widget covers the mobile capture on this page. It has now obscured content in every layout check across six sessions. Still not actioned without sign-off, but it is the most consistently observed issue on the site.
 
+61. **Weybridge split into two real projects; LEOS now has three case studies (2026-08-27)** — **done.** Bilal reorganised the assets into `weybridge-gardens` and `weybridge-gardens-2`, which turned out to be two genuinely different developments rather than a rename.
+    - **Checked the captures before assuming.** The two are distinct products sold on different propositions: **Weybridge Gardens** is studios and one-beds in Dubailand, UK-designed, sold on brutalist-meets-contemporary design language with no price on the page; **Weybridge Gardens 2** is the Provence Edition — 288 homes, studios through three-bed, from AED 600,000, French-themed. Same location, opposite pitch. Treating them as one project would have merged two incompatible sets of facts.
+    - Each has its own logo, and both are true vectors in white: the original is a "WG" wordmark, phase two is a circular lavender emblem (fitting, given the Provence theme). Confirmed by rendering, not by filename.
+    - **Corrected an attribution from item 59**: the aerial rooftop creative in the LEOS brand set carries the **original** WG wordmark, so it belongs to phase one. It is now phase one's card image rather than phase two's.
+    - **Added `cardImagePosition`** because phase two has no project creative yet and its card falls back to the page capture. A 4:3 centre crop of a 4,534px-tall strip shows a meaningless middle slice; `object-top` keeps the hero, which is the part worth showing. Defaults to centre so nothing else changes.
+    - **The new phase-one capture is 1600×6644**, replacing the soft 1041px one flagged in item 60. Phase two still uses the 1041px desktop capture — worth re-exporting at 1600 for consistency, though it is less visible there since the mobile capture sits beside it.
+    - Verified: `tsc` and `npm run build` clean at **22 pages**, all three project routes prerendered with 1 `<h1>` and correct unique titles, **0** broken images across all three, no console errors, the client hub listing all three cards in order, and 102 variants warmed in 8.8s with only one needing an encode.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

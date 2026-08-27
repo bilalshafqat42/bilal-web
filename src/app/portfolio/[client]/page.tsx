@@ -192,7 +192,9 @@ export default async function ClientCaseStudy({ params }: Props) {
                         width={1400}
                         height={1400}
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        className="aspect-[4/3] w-full object-cover"
+                        className={`aspect-[4/3] w-full object-cover ${
+                          p.cardImagePosition === "top" ? "object-top" : ""
+                        }`}
                       />
                       <div className="flex flex-1 flex-col p-6">
                         <h3 className="text-xl font-semibold text-ink">{p.name}</h3>

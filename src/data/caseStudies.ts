@@ -41,6 +41,9 @@ export type Project = {
   name: string;
   logo?: string;
   cardImage: string;
+  /** Page captures are tall strips, so a centre crop shows a meaningless middle
+   *  slice. "top" keeps the hero, which is the part worth showing. */
+  cardImagePosition?: "top" | "center";
   cardBlurb: string;
   headline: string;
   summary: string;
@@ -156,17 +159,59 @@ const hadleyHeights: Project = {
 
 const weybridgeGardens: Project = {
   slug: "weybridge-gardens",
-  name: "Weybridge Gardens 2",
+  name: "Weybridge Gardens",
   logo: "/portfolio/leos/weybridge-gardens/logo/weybridge-logo.svg",
-  // No project-specific social set yet, so the card uses the Weybridge Gardens
-  // creative that already sits in the LEOS brand set rather than cropping a
-  // 4,500px-tall page capture into an unreadable thumbnail.
+  // This creative carries the original WG wordmark, so it belongs to phase one
+  // rather than the Provence Edition.
   cardImage: "/portfolio/leos/social-media/3.avif",
   cardBlurb:
-    "French-inspired launch for a 288-unit development in Dubailand. Desktop and mobile landing pages built for registration capture.",
+    "Launch campaign for the first Weybridge Gardens in Dubailand — studios and one-bed apartments, sold on design rather than discount.",
+  headline: "Weybridge Gardens — the Dubailand launch",
+  summary:
+    "The first Weybridge Gardens: a UK-designed residential community in Dubailand built around brutalist architecture softened by contemporary interiors. A studio and one-bed product competes on a crowded price shelf, so the page leads on design credibility rather than square footage.",
+  facts: [
+    { label: "Location", value: "Dubailand, Dubai" },
+    { label: "Unit mix", value: "Studios & 1 bed apartments" },
+    { label: "Design", value: "UK-designed, brutalist" },
+    { label: "Goal", value: "Register your interest" },
+  ],
+  landingPage: {
+    heading: "Landing page",
+    body: "A single conversion goal, Register Your Interest, with the button placed inside the hero so it is visible before any scrolling. The copy leads with design language — brutalist architecture, bespoke contemporary design, an urban oasis — because at the studio and one-bed end of the market the differentiator is character, not price. Scroll inside the frame to view the full page.",
+    capture: {
+      src: "/portfolio/leos/weybridge-gardens/landing-page/weybridge-gardens-landing-page.avif",
+      width: 1600,
+      height: 6644,
+      alt: "Full-page view of the Weybridge Gardens landing page, showing the balcony hero with the register-your-interest call to action and the bespoke contemporary design section",
+      label: "Weybridge Gardens — desktop",
+    },
+  },
+  place: {
+    locality: "Dubailand",
+    region: "Dubai",
+    description:
+      "Residential development by LEOS Developments in Dubailand, Dubai, offering studio and one bedroom apartments.",
+  },
+  keywords: [
+    "Weybridge Gardens",
+    "Dubailand",
+    "off-plan launch campaign",
+    "studio apartments Dubai",
+    "real estate landing page Dubai",
+  ],
+};
+
+const weybridgeGardens2: Project = {
+  slug: "weybridge-gardens-2",
+  name: "Weybridge Gardens 2",
+  logo: "/portfolio/leos/weybridge-gardens-2/logo/weybridge-gardens-2-logo.svg",
+  cardImage: "/portfolio/leos/weybridge-gardens-2/landing-page/weybridge-landing-page.avif",
+  cardImagePosition: "top",
+  cardBlurb:
+    "French-inspired follow-up: 288 homes in Dubailand, from AED 600K. Desktop and mobile landing pages built for registration capture.",
   headline: "Weybridge Gardens 2 — the Provence Edition launch",
   summary:
-    "A 288-home development in Dubailand positioned around a specific idea rather than a generic luxury pitch: Provence, French-inspired living, from AED 600,000. The landing page had to carry that theme while still doing its real job, which is turning interest into registered, contactable buyers.",
+    "The second phase took the same Dubailand location in a completely different direction: Provence, French-inspired living, 288 homes from AED 600,000. A themed launch only works if the theme survives contact with the conversion path, so the page had to carry it while still turning interest into registered, contactable buyers.",
   facts: [
     { label: "Location", value: "Dubailand, Dubai" },
     { label: "Scale", value: "288 homes" },
@@ -177,14 +222,14 @@ const weybridgeGardens: Project = {
     heading: "Landing page, desktop and mobile",
     body: "Built around a single conversion goal, Register Your Interest, with the price qualifier (from AED 600K) placed high so unqualified traffic filters itself out early. A secondary Check Construction Progress route gives existing buyers somewhere to go without competing with the primary call to action. The mobile build is not a squeezed desktop layout: the hero crops to keep the tower and the development name legible at 366px, and the registration button sits within thumb reach rather than below the fold.",
     capture: {
-      src: "/portfolio/leos/weybridge-gardens/landing-page/wey-bridge-landing-page.avif",
+      src: "/portfolio/leos/weybridge-gardens-2/landing-page/weybridge-landing-page.avif",
       width: 1041,
       height: 4534,
       alt: "Full-page view of the Weybridge Gardens 2 desktop landing page, showing the Provence Edition hero, the register-your-interest call to action and the pricing section",
       label: "Weybridge Gardens 2 — desktop",
     },
     mobileCapture: {
-      src: "/portfolio/leos/weybridge-gardens/landing-page/weybridge-mobile.avif",
+      src: "/portfolio/leos/weybridge-gardens-2/landing-page/weybridge-mobile.avif",
       width: 366,
       height: 4549,
       alt: "Full-page view of the Weybridge Gardens 2 mobile landing page, showing the cropped hero, development name and register-your-interest button above the fold",
@@ -296,7 +341,7 @@ export const clients: Client[] = [
         },
       ],
     },
-    projects: [hadleyHeights, weybridgeGardens],
+    projects: [hadleyHeights, weybridgeGardens, weybridgeGardens2],
     keywords: [
       "real estate marketing",
       "off-plan property marketing",
