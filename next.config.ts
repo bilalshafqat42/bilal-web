@@ -18,8 +18,22 @@ const nextConfig: NextConfig = {
     // Next's default is ["image/webp"] only, so AVIF sources were being
     // re-encoded down to WebP. Listing AVIF first lets browsers that accept it
     // (all current ones) negotiate the smaller format, with WebP as the fallback.
-    // AVIF encodes more slowly, but each variant is generated once and cached.
     formats: ["image/avif", "image/webp"],
+
+    // This site is self-hosted on Hostinger, so every variant is encoded by our
+    // own CPU rather than a CDN's. Next's defaults allow 8 device widths + 7
+    // image widths = up to 15 sizes per image, doubled across two formats.
+    // Trimmed to the widths this layout actually requests. 2048 and 3840 are
+    // dropped because no source image here is wider than 1928px, so they only
+    // ever produced upscales.
+    deviceSizes: [640, 828, 1080, 1440, 1920],
+    imageSizes: [128, 256, 384],
+
+    // Default is 4 hours, after which a variant is re-encoded from scratch on
+    // the next request — repeated CPU cost for an image that never changes.
+    // Filenames are content-addressed, so a long TTL is safe: a changed image
+    // gets a new URL rather than a stale cache hit.
+    minimumCacheTTL: 2592000, // 30 days
   },
 };
 
