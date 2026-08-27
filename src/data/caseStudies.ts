@@ -45,7 +45,15 @@ export type Project = {
   headline: string;
   summary: string;
   facts: Fact[];
-  landingPage?: { heading: string; body: string; capture: Capture };
+  landingPage?: {
+    heading: string;
+    body: string;
+    capture: Capture;
+    /** Optional phone capture shown beside the desktop one. Worth showing where
+     *  it exists: a client can see the same page works on both, which is the
+     *  part of the job that usually goes unseen. */
+    mobileCapture?: Capture;
+  };
   gallery?: Gallery;
   place?: PlaceSchema;
   keywords: string[];
@@ -146,6 +154,59 @@ const hadleyHeights: Project = {
   ],
 };
 
+const weybridgeGardens: Project = {
+  slug: "weybridge-gardens",
+  name: "Weybridge Gardens 2",
+  logo: "/portfolio/leos/weybridge-gardens/logo/weybridge-logo.svg",
+  // No project-specific social set yet, so the card uses the Weybridge Gardens
+  // creative that already sits in the LEOS brand set rather than cropping a
+  // 4,500px-tall page capture into an unreadable thumbnail.
+  cardImage: "/portfolio/leos/social-media/3.avif",
+  cardBlurb:
+    "French-inspired launch for a 288-unit development in Dubailand. Desktop and mobile landing pages built for registration capture.",
+  headline: "Weybridge Gardens 2 — the Provence Edition launch",
+  summary:
+    "A 288-home development in Dubailand positioned around a specific idea rather than a generic luxury pitch: Provence, French-inspired living, from AED 600,000. The landing page had to carry that theme while still doing its real job, which is turning interest into registered, contactable buyers.",
+  facts: [
+    { label: "Location", value: "Dubailand, Dubai" },
+    { label: "Scale", value: "288 homes" },
+    { label: "Unit mix", value: "Studios, 1, 2 & 3 bedroom" },
+    { label: "Entry price", value: "From AED 600,000" },
+  ],
+  landingPage: {
+    heading: "Landing page, desktop and mobile",
+    body: "Built around a single conversion goal, Register Your Interest, with the price qualifier (from AED 600K) placed high so unqualified traffic filters itself out early. A secondary Check Construction Progress route gives existing buyers somewhere to go without competing with the primary call to action. The mobile build is not a squeezed desktop layout: the hero crops to keep the tower and the development name legible at 366px, and the registration button sits within thumb reach rather than below the fold.",
+    capture: {
+      src: "/portfolio/leos/weybridge-gardens/landing-page/wey-bridge-landing-page.avif",
+      width: 1041,
+      height: 4534,
+      alt: "Full-page view of the Weybridge Gardens 2 desktop landing page, showing the Provence Edition hero, the register-your-interest call to action and the pricing section",
+      label: "Weybridge Gardens 2 — desktop",
+    },
+    mobileCapture: {
+      src: "/portfolio/leos/weybridge-gardens/landing-page/weybridge-mobile.avif",
+      width: 366,
+      height: 4549,
+      alt: "Full-page view of the Weybridge Gardens 2 mobile landing page, showing the cropped hero, development name and register-your-interest button above the fold",
+      label: "Weybridge Gardens 2 — mobile",
+    },
+  },
+  place: {
+    units: 288,
+    locality: "Dubailand",
+    region: "Dubai",
+    description:
+      "Residential development by LEOS Developments in Dubailand, Dubai, comprising 288 studio, one, two and three bedroom homes, themed as the Provence Edition.",
+  },
+  keywords: [
+    "Weybridge Gardens 2",
+    "Provence Edition",
+    "Dubailand",
+    "off-plan launch campaign",
+    "real estate landing page Dubai",
+  ],
+};
+
 export const clients: Client[] = [
   {
     slug: "leos-developments",
@@ -235,7 +296,7 @@ export const clients: Client[] = [
         },
       ],
     },
-    projects: [hadleyHeights],
+    projects: [hadleyHeights, weybridgeGardens],
     keywords: [
       "real estate marketing",
       "off-plan property marketing",

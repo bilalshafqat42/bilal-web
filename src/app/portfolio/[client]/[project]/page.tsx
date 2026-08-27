@@ -149,8 +149,19 @@ export default async function ProjectCaseStudy({ params }: Props) {
                 <p className="mt-4 max-w-3xl text-lg text-muted leading-relaxed">{p.landingPage.body}</p>
               </Reveal>
               <Reveal delay={0.1}>
-                <div className="mt-10">
+                <div
+                  className={`mt-10 ${
+                    p.landingPage.mobileCapture
+                      ? "grid grid-cols-1 gap-6 lg:grid-cols-[1fr_340px] lg:items-start"
+                      : ""
+                  }`}
+                >
                   <CaptureFrame capture={p.landingPage.capture} />
+                  {p.landingPage.mobileCapture ? (
+                    <div className="mx-auto w-full max-w-[280px] lg:max-w-none">
+                      <CaptureFrame capture={p.landingPage.mobileCapture} variant="phone" />
+                    </div>
+                  ) : null}
                 </div>
               </Reveal>
             </div>

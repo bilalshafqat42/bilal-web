@@ -4,14 +4,31 @@ import type { Capture, Gallery } from "@/data/caseStudies";
 
 /** A full-page screenshot shown inside browser chrome, scrollable so a very tall
  *  capture (these run 6,000px+) can be viewed without dominating the page. */
-export function CaptureFrame({ capture }: { capture: Capture }) {
+export function CaptureFrame({
+  capture,
+  variant = "browser",
+}: {
+  capture: Capture;
+  variant?: "browser" | "phone";
+}) {
+  const isPhone = variant === "phone";
   return (
-    <div className="overflow-hidden rounded-2xl border border-border glass">
+    <div
+      className={`overflow-hidden border border-border glass ${
+        isPhone ? "rounded-[1.75rem]" : "rounded-2xl"
+      }`}
+    >
       <div className="flex items-center gap-2 border-b border-border px-4 py-3">
-        <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-        <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-        <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-        <span className="ml-3 truncate text-xs text-muted">{capture.label}</span>
+        {isPhone ? (
+          <span className="mx-auto h-1 w-14 rounded-full bg-white/15" />
+        ) : (
+          <>
+            <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+            <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+            <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+            <span className="ml-3 truncate text-xs text-muted">{capture.label}</span>
+          </>
+        )}
       </div>
       <div className="no-scrollbar max-h-[70vh] overflow-y-auto">
         <Image
@@ -19,10 +36,17 @@ export function CaptureFrame({ capture }: { capture: Capture }) {
           alt={capture.alt}
           width={capture.width}
           height={capture.height}
-          sizes="(max-width: 1280px) 100vw, 1280px"
+          // A phone capture is only ever a narrow column, so asking for a
+          // full-width variant would fetch several times the pixels needed.
+          sizes={isPhone ? "(min-width: 1024px) 320px, 60vw" : "(max-width: 1280px) 100vw, 1230px"}
           className="w-full"
         />
       </div>
+      {isPhone ? (
+        <p className="border-t border-border px-4 py-2.5 text-center text-xs text-muted">
+          {capture.label}
+        </p>
+      ) : null}
     </div>
   );
 }
