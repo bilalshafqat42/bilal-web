@@ -50,7 +50,7 @@ for (const p of pages) {
 }
 
 console.log(`Found ${all.size} image variants. Requesting each...\n`);
-let done = 0, slow = 0, failed = 0, total = 0;
+let done = 0, miss = 0, hit = 0, failed = 0, total = 0;
 // Sequential on purpose: parallel decodes are what would blow the memory ceiling
 // on a small plan, which is the exact thing this script exists to avoid.
 for (const url of all) {
@@ -62,11 +62,29 @@ for (const url of all) {
     if (!res.ok) { failed++; continue; }
     await res.arrayBuffer();
     done++;
-    if (ms > 400) { slow++; console.log(`  ${String(ms).padStart(5)}ms  ${decodeURIComponent(url).split("url=")[1]?.slice(0, 60)}`); }
+    // Next reports cache state directly. An earlier version of this script
+    // inferred it from response time (>400ms = "encoded"), which is wrong over
+    // the internet: a cached 150KB image can easily take longer than that to
+    // transfer, so it reported phantom encodes and the count moved around
+    // randomly between runs. Trust the header, not the clock.
+    const state = res.headers.get("x-nextjs-cache");
+    if (state === "MISS") {
+      miss++;
+      console.log(`  encoded  ${String(ms).padStart(5)}ms  ${decodeURIComponent(url).split("url=")[1]?.slice(0, 58)}`);
+    } else if (state === "HIT") {
+      hit++;
+    }
   } catch {
     failed++;
   }
 }
 
-console.log(`\nWarmed ${done} variants (${slow} needed encoding), ${failed} failed, ${(total / 1000).toFixed(1)}s total.`);
-console.log("Real visitors will now be served these from cache.");
+const unknown = done - hit - miss;
+console.log(`\nWarmed ${done} variants in ${(total / 1000).toFixed(1)}s.`);
+console.log(`  already cached : ${hit}`);
+console.log(`  newly encoded  : ${miss}`);
+if (unknown) console.log(`  cache state not reported : ${unknown}`);
+if (failed) console.log(`  failed : ${failed}`);
+console.log(miss === 0 && failed === 0
+  ? "\nEverything was already cached — nothing for a visitor to wait on."
+  : "\nThose are now cached; real visitors will be served them from disk.");

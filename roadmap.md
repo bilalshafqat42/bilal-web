@@ -558,6 +558,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **The new phase-one capture is 1600×6644**, replacing the soft 1041px one flagged in item 60. Phase two still uses the 1041px desktop capture — worth re-exporting at 1600 for consistency, though it is less visible there since the mobile capture sits beside it.
     - Verified: `tsc` and `npm run build` clean at **22 pages**, all three project routes prerendered with 1 `<h1>` and correct unique titles, **0** broken images across all three, no console errors, the client hub listing all three cards in order, and 102 variants warmed in 8.8s with only one needing an encode.
 
+62. **Warm script was reporting phantom encodes — fixed to read the cache header (2026-08-27)** — **done, and it corrects a wrong claim made in this file's own reporting.**
+    - **The bug was mine.** `scripts/warm-images.mjs` (item 58) inferred cache state from response time: anything over 400ms was counted as "needed encoding". That works against `localhost`, where a cached image returns in ~2ms. Against production over the internet it is meaningless — a cached 150KB AVIF routinely takes longer than 400ms just to transfer, so the script reported encodes that never happened.
+    - **How it surfaced**: consecutive runs reported 96, then 46, then 9, then **17** encodes. A count going *up* on a second consecutive run is impossible if the cache were genuinely cold, which is what made the number obviously untrustworthy rather than merely alarming.
+    - **Fixed by reading `x-nextjs-cache`**, which Next sets to `HIT` or `MISS` on every optimised image response. Re-run against production: **102 variants, 102 already cached, 0 newly encoded.** The output now reports hits and misses separately and only prints a line for a real encode.
+    - **Correction to item 58 and to what was reported to Bilal**: the claim that "96 of 102 variants were cold, so every visitor was making the server encode on demand" was **wrong**. Production images were already cached and serving from disk — the earlier measurement of "slowest image 0ms" was the accurate signal and should have been trusted over the script's own count.
+    - **Lesson, and it is the same one as items 43, 45 and 50**: prefer the value the system reports over a proxy inferred from timing. Every one of those four was a measurement artefact mistaken for a product problem, and in this case the flawed measurement was baked into a committed tool rather than a throwaway check.
+    - Warming remains worth running after a deploy — a genuinely cold cache still costs a visitor ~1-2s on the large captures. It just was not cold here.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
