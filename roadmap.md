@@ -155,7 +155,7 @@ Bilal is working online only with no office, so he has parked this. **Worth reco
 
 26. **Two oversized hero images**: `bilal-shafqat-coat.avif` (666KB) and `bilal-shirt.avif` (568KB), both loaded as CSS `background-image` and therefore bypassing `next/image` entirely — no responsive sizing, no lazy loading, full weight on every visit. This was a deliberate trade in item 30 to get literal `background-size` control, and it is now the main risk to this file's own LCP-under-2.0s target. Generate properly sized variants rather than reverting the crop control.
 27. **`llms.txt` is stale** — zero mentions of `/about` or `/contact`, and it carries no URL index at all. It also drifts from `pillars.ts` by hand, the same failure mode as item 33. Refresh it and add a page list.
-28. **No custom 404** — using the Next default. The 2026-08-17 session built one and the revert removed it.
+28. ~~**No custom 404**~~ — **done 2026-08-27, see item 63.**
 29. **Harden `/api/lead`** once it is actually live: it has a honeypot and env-based auth with no hardcoded secrets (good), but no rate limiting and no email-format validation.
 30. **Delete `About.tsx`** — the only genuinely unreferenced component (the three `Hero*` files are still used by the preview routes).
 
@@ -565,6 +565,13 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Correction to item 58 and to what was reported to Bilal**: the claim that "96 of 102 variants were cold, so every visitor was making the server encode on demand" was **wrong**. Production images were already cached and serving from disk — the earlier measurement of "slowest image 0ms" was the accurate signal and should have been trusted over the script's own count.
     - **Lesson, and it is the same one as items 43, 45 and 50**: prefer the value the system reports over a proxy inferred from timing. Every one of those four was a measurement artefact mistaken for a product problem, and in this case the flawed measurement was baked into a committed tool rather than a throwaway check.
     - Warming remains worth running after a deploy — a genuinely cold cache still costs a visitor ~1-2s on the large captures. It just was not cold here.
+
+63. **Custom 404 built, prompted by real Search Console data (2026-08-27)** — **done.** Bilal shared Search Console showing **31 indexed / 93 not indexed** pages and two old WordPress posts still earning impressions, one up 122%.
+    - **Verified rather than assumed**: both of those URLs currently return **308 → 404**, and the 404 was the bare Next default ("404: This page could not be found."), with no branding and no way back into the site. With ~93 dead WordPress URLs still in Google's index, that page was plausibly the most-visited thing on the domain — and it was a dead end.
+    - **Written for who actually lands there.** Most arrivals come from search results for the retired blog, so the copy says what happened ("this site used to host a blog of development and design tutorials; those articles have been retired") rather than implying a mistyped link. Then it routes them: contact, portfolio, and all four service pillars — six ways out of a dead end where there were none.
+    - **Correctly a 404, not a soft 404.** Confirmed the status code is still **404** and the page carries `noindex, follow`, so the dead URLs de-index cleanly while any link equity still flows through the outbound links.
+    - **Search Console position, recorded so it is not misread later**: the sitemap is valid, discoverable via `robots.txt`, and lists all 14 real URLs. The **indexed count will fall from 31 toward ~14** as Google re-crawls, and that is the correct outcome, not a regression — the 31 is mostly stale WordPress content. Core Web Vitals showing "No data" is a traffic-volume issue, not a site defect.
+    - **Open question for Bilal**: before letting all ~93 die, check Search Console's **Links** report. If any retired post has genuine external backlinks, that one is worth a targeted redirect to a relevant page to keep its equity. Blanket-redirecting tutorials to a marketing page remains a soft 404 and is still the wrong move.
 
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
