@@ -35,6 +35,13 @@ export const metadata: Metadata = {
   icons: {
     icon: "/logo/bs.svg",
   },
+  // Search Console verification. Set NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION to the
+  // token Google gives you under the "HTML tag" method; leaving it unset simply
+  // omits the tag. Verifying in the app itself means verification survives every
+  // rebuild and redeploy, unlike an uploaded HTML file that a deploy can wipe.
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+    : undefined,
 };
 
 export default function RootLayout({

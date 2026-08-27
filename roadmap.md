@@ -573,6 +573,13 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Search Console position, recorded so it is not misread later**: the sitemap is valid, discoverable via `robots.txt`, and lists all 14 real URLs. The **indexed count will fall from 31 toward ~14** as Google re-crawls, and that is the correct outcome, not a regression — the 31 is mostly stale WordPress content. Core Web Vitals showing "No data" is a traffic-volume issue, not a site defect.
     - **Open question for Bilal**: before letting all ~93 die, check Search Console's **Links** report. If any retired post has genuine external backlinks, that one is worth a targeted redirect to a relevant page to keep its equity. Blanket-redirecting tutorials to a marketing page remains a soft 404 and is still the wrong move.
 
+64. **Search Console verification made permanent, and a fragile setup found (2026-08-27)** — **done, pending Bilal's token.**
+    - **Finding: the site carries no ownership proof at all.** Checked all three methods — no `google-site-verification` meta tag in the HTML, no verification file (404), and the only DNS TXT record is the Titan email SPF. The property still reports data, so it is verified today, but almost certainly by a file that lived on the old WordPress install and no longer exists. Google re-checks ownership periodically, so **this can silently drop and take Search Console access with it.**
+    - **Fixed in the app rather than as an uploaded file.** `layout.tsx` now emits the verification tag from `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` via Next's `metadata.verification`. Verification then survives every rebuild and redeploy, which an uploaded HTML file does not.
+    - **Degrades safely**: with the variable unset the tag is simply omitted — confirmed 0 tags rendered and nothing else changed.
+    - **Important operational detail, verified the hard way**: `NEXT_PUBLIC_*` values are inlined at **build** time, not read at runtime. The first test set the variable when starting the server and the tag did not appear. On Hostinger the variable must be present **before the build runs**, or the tag will be missing in production despite being configured.
+    - **Recommended to Bilal**: add a **Domain property** verified by DNS TXT alongside the existing URL-prefix property. DNS verification covers www/non-www and http/https in one place and is independent of the site entirely, so it cannot be broken by a rebuild, a hosting migration, or a future framework change.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
