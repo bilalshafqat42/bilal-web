@@ -15,7 +15,8 @@ const links = [
   { label: "Work", href: "/portfolio" },
   { label: "About", href: "/about" },
   { label: "Process", href: "/#process" },
-  { label: "Pricing", href: "/#engagement" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "FAQ", href: "/faq" },
 ];
 
 export default function Nav() {
