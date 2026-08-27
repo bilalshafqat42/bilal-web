@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import { pillars, accentClasses } from "@/data/pillars";
 
 export const metadata: Metadata = {
-  title: "Services — Paid Marketing, Web & App Development, Design & CRM Automation | Bilal Shafqat",
+  title: "Services — Marketing, Development, Design & CRM Automation",
   description:
     "Four services, one senior partner: paid marketing & lead generation, website & app development, design & conversion, and CRM & marketing automation. Based in Dubai, UAE, serving clients across the UAE and worldwide.",
   alternates: {

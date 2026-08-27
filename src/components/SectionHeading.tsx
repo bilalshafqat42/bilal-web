@@ -6,6 +6,10 @@ type SectionHeadingProps = {
   highlight?: string;
   description?: string;
   align?: "center" | "left";
+  /** Every page needs exactly one <h1>. A page whose only heading comes from
+   *  this component (e.g. /portfolio) must pass as="h1", or it ships with none —
+   *  which is exactly the defect Bing's site scan reported. */
+  as?: "h1" | "h2";
 };
 
 export default function SectionHeading({
@@ -14,6 +18,7 @@ export default function SectionHeading({
   highlight,
   description,
   align = "center",
+  as: Heading = "h2",
 }: SectionHeadingProps) {
   const isCenter = align === "center";
   return (
@@ -24,9 +29,9 @@ export default function SectionHeading({
             {eyebrow}
           </span>
         ) : null}
-        <h2 className="mt-5 text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+        <Heading className="mt-5 text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
           {title} {highlight ? <span className="text-gradient">{highlight}</span> : null}
-        </h2>
+        </Heading>
         {description ? (
           <p className="mt-5 text-lg sm:text-xl text-muted leading-relaxed">{description}</p>
         ) : null}

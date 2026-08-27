@@ -7,7 +7,7 @@ import SocialLinks from "@/components/SocialLinks";
 import { pillars, accentClasses } from "@/data/pillars";
 
 export const metadata: Metadata = {
-  title: "About Bilal Shafqat — Freelance Digital Marketer & Developer in Dubai",
+  title: "About Bilal Shafqat — Digital Marketer & Developer, Dubai",
   description:
     "15 years across paid marketing, web and app development, design, and CRM automation. Based in Dubai, working directly with founders, real estate developers, and in-house teams as one senior partner.",
   alternates: {

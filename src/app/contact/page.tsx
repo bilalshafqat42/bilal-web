@@ -9,7 +9,7 @@ import SocialLinks from "@/components/SocialLinks";
 const SITE_URL = "https://bilalshafqat.com";
 
 export const metadata: Metadata = {
-  title: "Contact — Freelance Digital Marketer & Developer in Dubai | Bilal Shafqat",
+  title: "Contact Bilal Shafqat — Digital Marketer & Developer, Dubai",
   description:
     "Get in touch with Bilal Shafqat, a Dubai-based freelance digital marketer, web and app developer, and designer. Email, phone, or WhatsApp, with a reply typically within one business day.",
   alternates: {

@@ -8,7 +8,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bilalshafqat.com"),
-  title: "Bilal Shafqat — Paid Marketing, Web/Mobile Development & Design Studio",
+  title: "Bilal Shafqat — Freelance Digital Marketer & Developer Dubai",
   description:
     "One senior partner for paid marketing and lead generation, website and app development, design and content, and CRM and marketing automation. Based in Dubai, UAE, working with founders, real estate developers, and agencies worldwide.",
   alternates: {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     "social media management UAE",
   ],
   openGraph: {
-    title: "Bilal Shafqat — Paid Marketing, Web/Mobile Development & Design Studio",
+    title: "Bilal Shafqat — Freelance Digital Marketer & Developer Dubai",
     description:
       "Paid marketing and lead generation, website and app development, design and content, and CRM and marketing automation — one senior partner, four pillars.",
     type: "website",
