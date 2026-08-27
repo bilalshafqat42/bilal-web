@@ -39,9 +39,16 @@ export const metadata: Metadata = {
   // token Google gives you under the "HTML tag" method; leaving it unset simply
   // omits the tag. Verifying in the app itself means verification survives every
   // rebuild and redeploy, unlike an uploaded HTML file that a deploy can wipe.
-  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
-    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
-    : undefined,
+  verification: {
+    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+      ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+      : {}),
+    // Bing Webmaster Tools. Same reasoning as Google: proving ownership from
+    // the app means it survives rebuilds, unlike an uploaded BingSiteAuth.xml.
+    ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { other: { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION } }
+      : {}),
+  },
 };
 
 export default function RootLayout({
