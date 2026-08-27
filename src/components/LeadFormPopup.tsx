@@ -3,6 +3,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { MessageSquarePlus, X, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { getAttribution } from "@/lib/attribution";
+import { trackLead } from "@/lib/analytics";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -51,6 +52,7 @@ export default function LeadFormPopup() {
       });
       const result = await res.json();
       if (result.success) {
+        trackLead("website-popup");
         setStatus("success");
         form.reset();
       } else {

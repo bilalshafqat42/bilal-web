@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { MessageCircle, X, Send } from "lucide-react";
 import { getAttribution } from "@/lib/attribution";
+import { trackLead, trackWhatsApp } from "@/lib/analytics";
 
 const WHATSAPP_NUMBER = "971529766006";
 const AUTO_OPEN_SCROLL_PX = 700;
@@ -195,6 +196,7 @@ export default function WhatsAppButton() {
       const waMessage = buildWhatsAppMessage(nextAnswers);
       // Opened synchronously inside the click/submit handler that led here,
       // so browsers treat it as a direct user gesture, not a blocked popup.
+      trackWhatsApp("chat-completed");
       window.open(
         `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`,
         "_blank",
@@ -210,7 +212,11 @@ export default function WhatsAppButton() {
           source: "whatsapp-chat",
           attribution: getAttribution(),
         }),
-      }).catch(() => {});
+      })
+        .then((r) => {
+          if (r.ok) trackLead("whatsapp-chat", nextAnswers.service);
+        })
+        .catch(() => {});
 
       setTyping(true);
       setTimeout(() => {
@@ -254,6 +260,7 @@ export default function WhatsAppButton() {
 
   function skipToWhatsApp() {
     const waMessage = buildWhatsAppMessage(answers);
+    trackWhatsApp("chat-skipped-ahead");
     window.open(
       `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`,
       "_blank",
@@ -270,7 +277,11 @@ export default function WhatsAppButton() {
           source: "whatsapp-chat-skip",
           attribution: getAttribution(),
         }),
-      }).catch(() => {});
+      })
+        .then((r) => {
+          if (r.ok) trackLead("whatsapp-chat", answers.service);
+        })
+        .catch(() => {});
     }
 
     setTyping(true);

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowRight, Check, Loader2, MessageCircle } from "lucide-react";
 import { pillars } from "@/data/pillars";
 import { getAttribution } from "@/lib/attribution";
+import { trackLead, trackWhatsApp } from "@/lib/analytics";
 
 const WHATSAPP = "971529766006";
 const EMAIL = "bilalshafqat42@gmail.com";
@@ -68,6 +69,9 @@ export default function ContactForm() {
       const data = await res.json().catch(() => ({}));
 
       if (res.ok && data.success) {
+        // Fired only on confirmed delivery, so the conversion count matches
+        // what actually reached the CRM rather than counting button presses.
+        trackLead("contact-page-form", values.service);
         setStatus("success");
         return;
       }
@@ -92,6 +96,7 @@ export default function ContactForm() {
         </p>
         <a
           href={`https://wa.me/${WHATSAPP}`}
+          onClick={() => trackWhatsApp("contact-form-success")}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-6 inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
