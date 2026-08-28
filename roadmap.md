@@ -693,6 +693,13 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Honest caveat carried forward from earlier in this file**: as of 2026, most AI crawler traffic ignores `llms.txt` and reads the HTML directly. These files are cheap and correct to have, but clean semantic markup and real structured data do the actual work.
     - Verified: `llms.txt` 200 with 21 links, `llms-full.txt` 200 at 24KB, `dateModified` present on the homepage plus both schema blocks on service, client and project pages, build clean at 31 routes.
 
+77. **Portfolio carousel cards redesigned, and a pinned-section overflow bug fixed (2026-08-28)** — **done.** Bilal said the cards did not look good. Looking at them showed why, and measuring showed a functional bug underneath the cosmetic one.
+    - **They were not cards.** An image sat loose with a heading and paragraph floating underneath — no container, no border, nothing tying the three together. Rebuilt as a single bordered `glass` article holding image and copy, with the image clipped to the card's rounded top edge.
+    - **Three oversized accent-coloured titles in a row read as noise.** Gold, violet and cyan headlines competed with each other and with the section heading. The accent now does its work as a small coloured dot inside a category chip over the image, with the title in plain ink. Colour used sparingly reads as deliberate; three coloured headlines read as decoration.
+    - Added a label chip (Creative / Build / Design) over a bottom gradient scrim, so it stays legible over any screenshot regardless of whether that screenshot is light or dark — and an explicit `Explore →` affordance, since nothing previously signalled the cards were clickable.
+    - **The real bug, found by measuring rather than looking**: each card ran **233px past the viewport bottom at 900px height, 313px at 800px**. In a pinned section that is not a cosmetic issue — scrolling moves the track sideways, so everything below the fold is **permanently unreachable**. The title, blurb and Explore link were all effectively invisible on a laptop.
+    - Fixed by sizing the image to the viewport (`h-[clamp(160px,27vh,340px)]`) rather than a fixed `aspect-[4/3]`, plus tighter section padding. **A fixed aspect ratio cannot work inside a pinned section**, because card height then scales with card *width* while the space available is governed by viewport *height*. Verified **0px overflow at both 900px and 800px**, with the 20% third-card peek from item 71 unchanged.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

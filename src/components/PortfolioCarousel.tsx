@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -16,7 +17,7 @@ const cards = [
     href: "/services/social-media-marketing",
     image: "/portfolio/leos/social-media/1.avif",
     alt: "Award-winner social creative for LEOS Developments over a residential high-rise",
-    accent: "text-gold",
+    accent: "bg-gold", label: "Creative",
   },
   {
     title: "App Development",
@@ -24,7 +25,7 @@ const cards = [
     href: "/services/website-app-development",
     image: "/portfolio/leos/hadley-heights/landing-page/hadley-heights-landing-page.avif",
     alt: "Hadley Heights lead capture landing page",
-    accent: "text-violet",
+    accent: "bg-violet", label: "Build",
   },
   {
     title: "Mobile Development",
@@ -32,7 +33,7 @@ const cards = [
     href: "/services/website-app-development",
     image: "/portfolio/leos/weybridge-gardens-2/landing-page/weybridge-mobile.avif",
     alt: "Weybridge Gardens 2 mobile landing page",
-    accent: "text-cyan",
+    accent: "bg-cyan", label: "Build",
   },
   {
     title: "UI/UX Design",
@@ -40,7 +41,7 @@ const cards = [
     href: "/services/ui-ux-design",
     image: "/portfolio/leos/landing-page/leos-landing-page.avif",
     alt: "LEOS Developments corporate website interface",
-    accent: "text-cyan",
+    accent: "bg-cyan", label: "Design",
   },
 ];
 
@@ -102,7 +103,7 @@ export default function PortfolioCarousel() {
     <section
       ref={sectionRef}
       id="work-carousel"
-      className="relative overflow-hidden py-24 sm:py-28"
+      className="relative overflow-hidden py-10 sm:py-14"
       onMouseMove={onMove}
       onMouseEnter={() => setCursorOn(true)}
       onMouseLeave={() => setCursorOn(false)}
@@ -118,7 +119,7 @@ export default function PortfolioCarousel() {
       </div>
 
       {/* On touch and reduced-motion this stays a plain scrollable row with snap. */}
-      <div className="no-scrollbar mt-14 overflow-x-auto lg:overflow-visible">
+      <div className="no-scrollbar mt-6 overflow-x-auto lg:overflow-visible">
         <div
           ref={trackRef}
           className="flex w-max gap-6 px-6 will-change-transform lg:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))]"
@@ -137,19 +138,41 @@ export default function PortfolioCarousel() {
               // A fixed rem width cannot hold the ratio, because that padding moves.
               className="group relative w-[80vw] shrink-0 snap-start sm:w-[60vw] lg:w-[calc((100vw-72px)/2.2)] xl:w-[calc((50vw+568px)/2.2)]"
             >
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.75rem] border border-border bg-surface/40">
-                <Image
-                  src={card.image}
-                  alt={card.alt}
-                  fill
-                  sizes="(max-width: 640px) 80vw, (max-width: 1024px) 60vw, 610px"
-                  className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-                />
-              </div>
-              <h3 className={`mt-6 text-2xl sm:text-3xl font-semibold ${card.accent}`}>
-                {card.title}
-              </h3>
-              <p className="mt-3 max-w-md text-sm text-muted leading-relaxed">{card.blurb}</p>
+              {/* One bordered container holding image and copy. Previously the
+                  image floated with text loose underneath, which read as three
+                  stray elements rather than a card. */}
+              <article className="card-hover flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border glass">
+                <div className="relative h-[clamp(160px,27vh,340px)] shrink-0 overflow-hidden">
+                  <Image
+                    src={card.image}
+                    alt={card.alt}
+                    fill
+                    sizes="(max-width: 640px) 80vw, (max-width: 1024px) 60vw, 610px"
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                  {/* Scrim so the label stays legible over any screenshot,
+                      light or dark, without knowing which it is. */}
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent" />
+                  <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3 py-1.5 text-[11px] font-medium uppercase tracking-wide text-white/90 backdrop-blur-sm">
+                    <span className={`h-1.5 w-1.5 rounded-full ${card.accent}`} />
+                    {card.label}
+                  </span>
+                </div>
+
+                <div className="flex flex-1 flex-col p-5 sm:p-6">
+                  <h3 className="text-xl sm:text-2xl font-semibold leading-tight text-ink">
+                    {card.title}
+                  </h3>
+                  <p className="mt-3 flex-1 text-sm text-muted leading-relaxed">{card.blurb}</p>
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
+                    Explore
+                    <ArrowRight
+                      size={15}
+                      className="transition-transform duration-300 group-hover:translate-x-1"
+                    />
+                  </span>
+                </div>
+              </article>
             </a>
           ))}
         </div>
