@@ -722,7 +722,8 @@ Bilal asked for a running list of ideas to make the site read more professional 
 
 81. **Footer rebuilt on the ZeeFrames layout (2026-08-28)** — **done.** Bilal supplied a reference screenshot and asked for that placement.
     - Structure now: coverage strip, oversized wordmark, four columns (description / Company / Services / Industries), then a bottom bar with copyright, legal links and socials. The wordmark **opens** the footer rather than closing it.
-    - **The reference lists three branch offices with addresses and phone numbers. Bilal has none**, so those became a coverage strip instead: region, time offset from London and New York, and how the working hours overlap. It answers the first objection an overseas client raises without implying a presence that does not exist.
+    - **The reference lists three branch offices with addresses and phone numbers.** A first pass turned these into a UK / North America / Middle East coverage strip. Bilal removed the first two: they are markets he sells into, not addresses he holds. The strip is now **UAE and Pakistan only** — real locations, nothing implied.
+    - Still outstanding for the Pakistan entry: **city and a local phone number**. Until Bilal supplies them it shows country, timezone and email only, rather than a guessed address.
     - Industries are **plain text, not links**, because no industry pages exist. They become links the moment one earns a page.
     - Removed the "Built with Next.js & Tailwind CSS" credit at Bilal's request.
     - Verified: all 13 footer internal links resolve, no horizontal overflow at 390, 1024 or 1440px, no console errors.
