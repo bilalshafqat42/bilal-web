@@ -1,14 +1,9 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import SectionHeading from "./SectionHeading";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const cards = [
   {
@@ -17,7 +12,8 @@ const cards = [
     href: "/services/social-media-marketing",
     image: "/portfolio/leos/social-media/1.avif",
     alt: "Award-winner social creative for LEOS Developments over a residential high-rise",
-    accent: "bg-gold", label: "Creative",
+    accent: "bg-gold",
+    label: "Creative",
   },
   {
     title: "App Development",
@@ -25,7 +21,8 @@ const cards = [
     href: "/services/website-app-development",
     image: "/portfolio/leos/hadley-heights/landing-page/hadley-heights-landing-page.avif",
     alt: "Hadley Heights lead capture landing page",
-    accent: "bg-violet", label: "Build",
+    accent: "bg-violet",
+    label: "Build",
   },
   {
     title: "Mobile Development",
@@ -33,7 +30,8 @@ const cards = [
     href: "/services/website-app-development",
     image: "/portfolio/leos/weybridge-gardens-2/landing-page/weybridge-mobile.avif",
     alt: "Weybridge Gardens 2 mobile landing page",
-    accent: "bg-cyan", label: "Build",
+    accent: "bg-cyan",
+    label: "Build",
   },
   {
     title: "UI/UX Design",
@@ -41,58 +39,50 @@ const cards = [
     href: "/services/ui-ux-design",
     image: "/portfolio/leos/landing-page/leos-landing-page.avif",
     alt: "LEOS Developments corporate website interface",
-    accent: "bg-cyan", label: "Design",
+    accent: "bg-cyan",
+    label: "Design",
   },
 ];
 
 export default function PortfolioCarousel() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
   const [cursorOn, setCursorOn] = useState(false);
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
 
-  useGSAP(
-    () => {
-      const track = trackRef.current;
-      const section = sectionRef.current;
-      if (!track || !section) return;
+  // Native horizontal scroll with snap, rather than a pinned GSAP scrub.
+  // Scroll-snap is what makes it advance exactly one column, and it gives
+  // trackpad, touch, drag and keyboard navigation for free — none of which a
+  // pinned scrub supports. It also stops the section hijacking page scroll.
+  const step = useCallback((dir: 1 | -1) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.querySelector<HTMLElement>("[data-card]");
+    if (!card) return;
+    const gap = parseFloat(getComputedStyle(track).columnGap || "0");
+    track.scrollBy({ left: dir * (card.offsetWidth + gap), behavior: "smooth" });
+  }, []);
 
-      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const coarse = window.matchMedia("(pointer: coarse)").matches;
-      // Touch devices keep native horizontal swipe, and reduced-motion users get
-      // a plain scrollable row. Pinning the page would take control away from
-      // both, which is the usual failing of this pattern.
-      if (reduce || coarse) return;
+  const syncEdges = useCallback(() => {
+    const t = trackRef.current;
+    if (!t) return;
+    setAtStart(t.scrollLeft < 8);
+    setAtEnd(t.scrollLeft + t.clientWidth >= t.scrollWidth - 8);
+  }, []);
 
-      const distance = () => track.scrollWidth - section.clientWidth;
+  useEffect(() => {
+    const t = trackRef.current;
+    if (!t) return;
+    syncEdges();
+    t.addEventListener("scroll", syncEdges, { passive: true });
+    window.addEventListener("resize", syncEdges);
+    return () => {
+      t.removeEventListener("scroll", syncEdges);
+      window.removeEventListener("resize", syncEdges);
+    };
+  }, [syncEdges]);
 
-      const tween = gsap.to(track, {
-        x: () => -distance(),
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          // Scroll distance equals the horizontal travel, so one screen of
-          // vertical scroll moves one screen of cards. Any other ratio feels
-          // either sticky or runaway.
-          end: () => `+=${distance()}`,
-          pin: true,
-          scrub: 1,
-          invalidateOnRefresh: true,
-          anticipatePin: 1,
-        },
-      });
-
-      return () => {
-        tween.scrollTrigger?.kill();
-        tween.kill();
-      };
-    },
-    { scope: sectionRef }
-  );
-
-  // Custom cursor. Position is written straight to the element rather than held
-  // in state — re-rendering on every mousemove would be visibly janky.
   const onMove = (e: React.MouseEvent) => {
     const c = cursorRef.current;
     if (!c) return;
@@ -101,85 +91,94 @@ export default function PortfolioCarousel() {
 
   return (
     <section
-      ref={sectionRef}
       id="work-carousel"
-      className="relative overflow-hidden py-10 sm:py-14"
+      className="relative overflow-hidden py-20 sm:py-24"
       onMouseMove={onMove}
       onMouseEnter={() => setCursorOn(true)}
       onMouseLeave={() => setCursorOn(false)}
     >
       <div className="mx-auto max-w-7xl px-6">
-        <SectionHeading
-          eyebrow="Selected Work"
-          title="What I Actually"
-          highlight="Build"
-          description="Scroll to move through it. Every piece here is work that shipped, not a concept."
-          align="left"
-        />
-      </div>
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <SectionHeading
+            eyebrow="Selected Work"
+            title="What I Actually"
+            highlight="Build"
+            description="Every piece here is work that shipped, not a concept."
+            align="left"
+          />
 
-      {/* On touch and reduced-motion this stays a plain scrollable row with snap. */}
-      <div className="no-scrollbar mt-6 overflow-x-auto lg:overflow-visible">
-        <div
-          ref={trackRef}
-          className="flex w-max gap-6 px-6 will-change-transform lg:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))]"
-        >
-          {cards.map((card) => (
-            <a
-              key={card.title}
-              href={card.href}
-              // ~45% each means two full cards plus roughly a fifth of the third,
-              // which is the peek that signals "there is more this way".
-              // Card width is solved, not guessed, so the third card peeks at
-              // exactly 20% at any width. Wanted: padding + 2W + 2*gap + 0.2W = 100vw.
-              // Below 1280 the container padding is a flat 24px, so W = (100vw-72)/2.2.
-              // Above it the max-w-7xl container centres, padding grows as
-              // (100vw-1280)/2+24, which reduces to W = (50vw+568)/2.2.
-              // A fixed rem width cannot hold the ratio, because that padding moves.
-              className="group relative w-[80vw] shrink-0 snap-start sm:w-[60vw] lg:w-[calc((100vw-72px)/2.2)] xl:w-[calc((50vw+568px)/2.2)]"
+          {/* Manual controls. Hidden from screen readers' tab order is wrong here —
+              they are the only non-drag way to advance, so they stay focusable. */}
+          <div className="flex shrink-0 items-center gap-2">
+            <button
+              onClick={() => step(-1)}
+              disabled={atStart}
+              aria-label="Previous"
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-border text-ink transition-colors hover:border-gold/40 hover:bg-white/5 disabled:opacity-30 disabled:hover:border-border disabled:hover:bg-transparent"
             >
-              {/* One bordered container holding image and copy. Previously the
-                  image floated with text loose underneath, which read as three
-                  stray elements rather than a card. */}
-              <article className="card-hover flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border glass">
-                <div className="relative h-[clamp(160px,27vh,340px)] shrink-0 overflow-hidden">
-                  <Image
-                    src={card.image}
-                    alt={card.alt}
-                    fill
-                    sizes="(max-width: 640px) 80vw, (max-width: 1024px) 60vw, 610px"
-                    className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
-                  />
-                  {/* Scrim so the label stays legible over any screenshot,
-                      light or dark, without knowing which it is. */}
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent" />
-                  <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3 py-1.5 text-[11px] font-medium uppercase tracking-wide text-white/90 backdrop-blur-sm">
-                    <span className={`h-1.5 w-1.5 rounded-full ${card.accent}`} />
-                    {card.label}
-                  </span>
-                </div>
-
-                <div className="flex flex-1 flex-col p-5 sm:p-6">
-                  <h3 className="text-xl sm:text-2xl font-semibold leading-tight text-ink">
-                    {card.title}
-                  </h3>
-                  <p className="mt-3 flex-1 text-sm text-muted leading-relaxed">{card.blurb}</p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
-                    Explore
-                    <ArrowRight
-                      size={15}
-                      className="transition-transform duration-300 group-hover:translate-x-1"
-                    />
-                  </span>
-                </div>
-              </article>
-            </a>
-          ))}
+              <ArrowLeft size={17} />
+            </button>
+            <button
+              onClick={() => step(1)}
+              disabled={atEnd}
+              aria-label="Next"
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-border text-ink transition-colors hover:border-gold/40 hover:bg-white/5 disabled:opacity-30 disabled:hover:border-border disabled:hover:bg-transparent"
+            >
+              <ArrowRight size={17} />
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* mix-blend-difference inverts whatever is beneath, so the circle reads on
-          both the dark background and a light image without needing to know which. */}
+      <div
+        ref={trackRef}
+        // scroll-padding matters as much as padding here: without it, snap-start
+        // aligns the first card to the container edge and scrolls the left inset
+        // away, which pushed the third card's peek from 20% to 38%.
+        className="no-scrollbar mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-6 scroll-pl-6 lg:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] lg:scroll-pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))]"
+      >
+        {cards.map((card) => (
+          <a
+            key={card.title}
+            data-card
+            href={card.href}
+            // Widths solved so the third card peeks at 20% at any viewport width:
+            // padding + 2W + 2·gap + 0.2W = 100vw.
+            className="group h-[clamp(400px,64vh,580px)] w-[80vw] shrink-0 snap-start sm:w-[60vw] lg:w-[calc((100vw-72px)/2.2)] xl:w-[calc((50vw+568px)/2.2)]"
+          >
+            <article className="card-hover flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border glass">
+              {/* 70/30 split. basis + shrink-0 rather than percentage heights, so
+                  the ratio holds even when the blurb wraps to a third line. */}
+              <div className="relative shrink-0 basis-[70%] overflow-hidden">
+                <Image
+                  src={card.image}
+                  alt={card.alt}
+                  fill
+                  sizes="(max-width: 640px) 80vw, (max-width: 1024px) 60vw, 610px"
+                  className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
+                />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent" />
+                <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3 py-1.5 text-[11px] font-medium uppercase tracking-wide text-white/90 backdrop-blur-sm">
+                  <span className={`h-1.5 w-1.5 rounded-full ${card.accent}`} />
+                  {card.label}
+                </span>
+              </div>
+
+              <div className="flex basis-[30%] flex-col justify-center px-6 py-4">
+                <h3 className="text-xl sm:text-2xl font-semibold leading-tight text-ink">
+                  {card.title}
+                </h3>
+                <p className="mt-2 line-clamp-2 text-sm text-muted leading-relaxed">{card.blurb}</p>
+                <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
+                  Explore
+                  <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+              </div>
+            </article>
+          </a>
+        ))}
+      </div>
+
       <div
         ref={cursorRef}
         aria-hidden="true"
