@@ -20,3 +20,8 @@ Allow: /
 Disallow: /api/
 
 Sitemap: https://bilalshafqat.com/sitemap.xml
+
+# Plain-text content for language models
+# llms.txt is the index; llms-full.txt is the full site content.
+# https://bilalshafqat.com/llms.txt
+# https://bilalshafqat.com/llms-full.txt

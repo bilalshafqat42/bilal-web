@@ -58,6 +58,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
     url,
     provider: { "@type": "Person", name: "Bilal Shafqat", url: SITE_URL },
     areaServed: ["United Arab Emirates", "Worldwide"],
+    dateModified: new Date().toISOString().split("T")[0],
     // Each sub-service is listed so search engines can see the page's real
     // scope rather than inferring it from prose alone.
     hasOfferCatalog: {

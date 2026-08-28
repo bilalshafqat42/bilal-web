@@ -55,6 +55,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
     description: p.summary,
     url,
     inLanguage: "en",
+    dateModified: new Date().toISOString().split("T")[0],
     genre: "Real estate marketing case study",
     image: `${SITE}${p.cardImage}`,
     creator: {

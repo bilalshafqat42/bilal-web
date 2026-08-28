@@ -50,6 +50,7 @@ export default async function ClientCaseStudy({ params }: Props) {
     description: c.description,
     url,
     inLanguage: "en",
+    dateModified: new Date().toISOString().split("T")[0],
     genre: "Real estate marketing case study",
     image: `${SITE}${c.ogImage}`,
     creator: {

@@ -23,6 +23,9 @@ const structuredData = {
     addressLocality: "Dubai",
     addressCountry: "AE",
   },
+  // Build timestamp. Honest (the content really was current at build) and it
+  // gives AI systems and search engines the freshness signal the site had none of.
+  dateModified: new Date().toISOString().split("T")[0],
   sameAs: [
     "https://www.linkedin.com/in/bilalshafqat42",
     "https://www.behance.net/bilalshafqat",

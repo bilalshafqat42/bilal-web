@@ -167,7 +167,7 @@ Bilal is working online only with no office, so he has parked this. **Worth reco
 ("Upkeep" = small maintenance jobs that keep the site fast, accurate and easy to work on. Individually minor; left alone they compound.)
 
 28. **Two oversized hero images**: `bilal-shafqat-coat.avif` (666KB) and `bilal-shirt.avif` (568KB), both loaded as CSS `background-image` and therefore bypassing `next/image` entirely — no responsive sizing, no lazy loading, full weight on every visit. This was a deliberate trade in item 30 to get literal `background-size` control, and it is now the main risk to this file's own LCP-under-2.0s target. Generate properly sized variants rather than reverting the crop control.
-29. **`llms.txt` is stale** — zero mentions of `/about` or `/contact`, and it carries no URL index at all. It also drifts from `pillars.ts` by hand, the same failure mode as item 33. Refresh it and add a page list.
+29. ~~**`llms.txt` is stale**~~ **fixed 2026-08-28, see item 76.** — zero mentions of `/about` or `/contact`, and it carries no URL index at all. It also drifts from `pillars.ts` by hand, the same failure mode as item 33. Refresh it and add a page list.
 30. ~~**No custom 404**~~ — **done 2026-08-27, see item 63.**
 31. **Harden `/api/lead`** once it is actually live: it has a honeypot and env-based auth with no hardcoded secrets (good), but no rate limiting and no email-format validation.
 32. **Delete `About.tsx`** — the only genuinely unreferenced component (the three `Hero*` files are still used by the preview routes).
@@ -683,6 +683,15 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Empty state asks the question rather than showing a blank box**: "How can I help?" with four starter phrasings, so a visitor who does not know what to type has somewhere to start.
     - **No-match state is honest** — says nothing on the site matches and offers to ask Bilal directly, rather than padding with irrelevant results.
     - Verified end to end from `/services`: ⌘K opens, focus lands in the input, page scroll locks, arrow keys move the selection, Escape closes and restores scroll, and the nav button opens the same panel. Zero console errors, build clean at 29 pages.
+
+76. **AI-readiness pass: generated `llms.txt`, new `llms-full.txt`, freshness signals (2026-08-28)** — **done.** Bilal asked how to make the site fully AI-compatible. Audited first rather than assuming, which found three real gaps against an otherwise strong baseline.
+    - **Baseline was already good**: `robots.txt` explicitly allows GPTBot, ClaudeBot and PerplexityBot; every page carries Schema.org data; service and FAQ pages emit `FAQPage` with real Q&A; case studies emit `CreativeWork` and `ApartmentComplex`. Clean semantic HTML remains the single biggest factor, and that was already in place.
+    - **Gap 1 — `llms.txt` listed 6 of 20 pages.** It was a hand-maintained static file and had fallen behind every page shipped since. Replaced with a **generated route** built from `pillars.ts`, `caseStudies.ts` and `faqs.ts`, so it cannot drift again. Now **21 page links** plus every FAQ question and answer inline.
+    - **Gap 2 — no `llms-full.txt`.** Added as the companion convention: `llms.txt` is the index, `llms-full.txt` is the full site content as plain text (24,028 characters). It reuses the exact corpus the on-site assistant reads, so an external model and the site's own assistant answer from identical source material.
+    - **Gap 3 — zero date signals sitewide.** No `datePublished` or `dateModified` anywhere, which both AI systems and Google use as freshness signals. Added `dateModified` to the global `Person` schema and to the `Service`, `CreativeWork` (client) and `CreativeWork` (project) blocks — build date, which is honest since the content genuinely was current at build.
+    - **A process note**: a batched edit script asserted mid-loop and wrote only its first change, leaving the per-page schemas untouched while the global one succeeded — the same failure recorded in item 70. Verified by grepping the rendered HTML rather than trusting the script's output, which is how the gap surfaced.
+    - **Honest caveat carried forward from earlier in this file**: as of 2026, most AI crawler traffic ignores `llms.txt` and reads the HTML directly. These files are cheap and correct to have, but clean semantic markup and real structured data do the actual work.
+    - Verified: `llms.txt` 200 with 21 links, `llms-full.txt` 200 at 24KB, `dateModified` present on the homepage plus both schema blocks on service, client and project pages, build clean at 31 routes.
 
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
