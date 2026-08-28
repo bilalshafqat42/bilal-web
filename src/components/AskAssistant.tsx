@@ -1,9 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Loader2, Sparkles } from "lucide-react";
+import { ArrowRight, Loader2, Search, Sparkles } from "lucide-react";
+import { buildIndex, search, type Chunk } from "@/lib/searchIndex";
 
-type Turn = { role: "user" | "assistant"; content: string };
+// Built once. ~25KB of text shipped to the browser, which buys instant,
+// zero-cost answers with no API key and no server round-trip.
+const INDEX = buildIndex();
+
+type Turn = { role: "user" | "assistant"; content: string; results?: Chunk[] };
 
 const SUGGESTIONS = [
   "Do you build mobile apps?",
@@ -41,7 +46,10 @@ export default function AskAssistant() {
     setError("");
     setQuestion("");
     const history = turns;
-    setTurns([...history, { role: "user", content: q }, { role: "assistant", content: "" }]);
+    // Local search first: it is instant and free, so the visitor always gets
+    // something useful even if the model is unconfigured or unreachable.
+    const results = search(INDEX, q);
+    setTurns([...history, { role: "user", content: q }, { role: "assistant", content: "", results }]);
     setStreaming(true);
 
     try {
@@ -52,9 +60,15 @@ export default function AskAssistant() {
       });
 
       if (!res.ok || !res.body) {
-        const data = await res.json().catch(() => ({}));
-        setError(data.error || "The assistant isn't available right now.");
-        setTurns(history);
+        // No key, rate limited, or the model is down — the search results are
+        // already on screen, so this is a downgrade rather than a failure.
+        if (!results.length) {
+          const data = await res.json().catch(() => ({}));
+          setError(
+            data.error ||
+              "Nothing on the site matches that. Ask Bilal directly and he'll answer personally."
+          );
+        }
         return;
       }
 
@@ -69,19 +83,18 @@ export default function AskAssistant() {
         acc += decoder.decode(value, { stream: true });
         setTurns((prev) => {
           const next = [...prev];
-          next[next.length - 1] = { role: "assistant", content: acc };
+          next[next.length - 1] = { role: "assistant", content: acc, results };
           return next;
         });
       }
     } catch {
-      setError("Couldn't reach the assistant. Email bilalshafqat42@gmail.com.");
-      setTurns(history);
+      if (!results.length) setError("Couldn't reach the assistant. Email bilalshafqat42@gmail.com.");
     } finally {
       setStreaming(false);
     }
   }
 
-  const answered = turns.filter((t) => t.role === "assistant" && t.content).length;
+  const answered = turns.filter((t) => t.role === "assistant" && (t.content || t.results?.length)).length;
 
   return (
     <section id="ask" className="relative py-24 scroll-mt-28 sm:py-28">
@@ -147,8 +160,36 @@ export default function AskAssistant() {
                 {t.content}
               </p>
             ) : (
-              <div key={i} className="max-w-[92%] rounded-2xl border border-border glass px-5 py-4 text-sm text-muted leading-relaxed whitespace-pre-wrap">
-                {t.content ? withLinks(t.content) : <Loader2 size={15} className="animate-spin text-gold" />}
+              <div key={i} className="max-w-[92%] space-y-3">
+                {t.content ? (
+                  <div className="rounded-2xl border border-border glass px-5 py-4 text-sm text-muted leading-relaxed whitespace-pre-wrap">
+                    {withLinks(t.content)}
+                  </div>
+                ) : null}
+                {t.results?.length ? (
+                  <div className="rounded-2xl border border-border bg-surface/40 p-4">
+                    <p className="flex items-center gap-1.5 px-1 text-xs font-medium uppercase tracking-wide text-muted">
+                      <Search size={12} /> From this site
+                    </p>
+                    <div className="mt-2 space-y-1">
+                      {t.results.map((r) => (
+                        <a
+                          key={r.url + r.title}
+                          href={r.url}
+                          className="block rounded-xl px-3 py-2.5 transition-colors hover:bg-white/5"
+                        >
+                          <span className="block text-sm font-medium text-ink">{r.title}</span>
+                          <span className="mt-0.5 line-clamp-2 block text-xs text-muted leading-relaxed">
+                            {r.body}
+                          </span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
+                {!t.content && !t.results?.length ? (
+                  <Loader2 size={15} className="animate-spin text-gold" />
+                ) : null}
               </div>
             )
           )}
