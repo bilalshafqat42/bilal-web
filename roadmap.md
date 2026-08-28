@@ -708,6 +708,26 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **A subtle bug the numbers caught**: with snap enabled the peek jumped from 20% to **38%**, because `snap-start` aligns the first card to the container's edge and scrolls the left inset away. Fixed with matching `scroll-pl-*`. **Scroll-padding matters as much as padding in a snap container** — a distinction that is invisible until measured. Back to exactly 20%.
     - Verified: arrows step one column and disable correctly at both ends, image share exactly 70%, peek exactly 20%, the section no longer pins, mobile keeps native swipe with the arrows still available, zero console errors, build clean at 31 routes.
 
+79. **12-column site grid, carousel navigation finished (2026-08-28)** — **done.** Bilal asked for two full cards plus a half, one-card stepping, mouse drag, and a 12-column desktop grid using the middle 10.
+    - `.site-container` at 83.3333% on lg+, full width with 1.5rem padding below. Migrated across ~21 files. Measured **83.2%** at 1024, 1440 and 1920px, no mobile overflow.
+    - Card width solved against the 10-column container rather than the viewport. Rest state measured **100, 100, 50, 0**.
+    - **Mouse drag needed three separate fixes**, and only the last was obvious in hindsight. Snap and `scroll-behavior: smooth` both have to be off mid-drag, because with smooth on every `scrollLeft` write starts an animation the next write cancels, so the track never moves. The real blocker: **cards are links, and pressing a link starts the browser's native link drag**, which captures the pointer and starves `pointermove` entirely. That is why early attempts measured a 6px change instead of a full card. A drag ending on a card must also not follow its link.
+    - **A pinned scroll-driven version was built first and abandoned.** Scroll stepping and drag both worked in it, but the arrows never became reliable across five attempts. Reverting to native snap was the right call: simpler, and all three controls verify cleanly. **Scroll-driven stepping is therefore not implemented** — the section no longer pins.
+
+80. **Search moved out of the nav into a floating AI Search pill (2026-08-28)** — **done.** Bilal wanted it hidden from the top menu, appearing automatically, presented as AI Search, modern, fast and cheap.
+    - Floating pill bottom-left, mounted in the root layout rather than the header so it is present on every page. Slides up on first scroll or after 2.2s, whichever comes first, once only.
+    - Still backed by the local index, so answers are instant and cost nothing per query. No API key involved.
+    - Inert whenever invisible (`pointer-events-none`, `tabIndex -1`), so it can never be clicked or tabbed to while transparent. It also **steps aside when the footer is in view**, since both occupy the bottom-left.
+    - **Bug found and fixed**: the cookie banner's outer wrapper spans the full page width but only its inner card is visible, so its empty padding was swallowing clicks across the bottom strip of **every** page. It blocked the pill in testing and would have blocked anything else placed there.
+
+81. **Footer rebuilt on the ZeeFrames layout (2026-08-28)** — **done.** Bilal supplied a reference screenshot and asked for that placement.
+    - Structure now: coverage strip, oversized wordmark, four columns (description / Company / Services / Industries), then a bottom bar with copyright, legal links and socials. The wordmark **opens** the footer rather than closing it.
+    - **The reference lists three branch offices with addresses and phone numbers. Bilal has none**, so those became a coverage strip instead: region, time offset from London and New York, and how the working hours overlap. It answers the first objection an overseas client raises without implying a presence that does not exist.
+    - Industries are **plain text, not links**, because no industry pages exist. They become links the moment one earns a page.
+    - Removed the "Built with Next.js & Tailwind CSS" credit at Bilal's request.
+    - Verified: all 13 footer internal links resolve, no horizontal overflow at 390, 1024 or 1440px, no console errors.
+    - **Open issue, needs Bilal's decision**: the WhatsApp chat auto-opens once per session on scroll past the services section, and its panel **completely covers the Industries column** on the homepage footer. The Quick Enquiry button also clips the last social icon in the bottom bar. Three floating elements now compete for the bottom of the screen. Flagged, not changed — this is his lead-capture tooling.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
