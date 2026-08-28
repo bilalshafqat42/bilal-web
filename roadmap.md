@@ -131,38 +131,48 @@ Full-app audit run on 2026-08-18: build, lint, types, rendered HTML per route, s
     - **International note** (see the cross-cutting section below): hosting itself travels fine, since the platforms are global. Support **hours** do not. A UK client overlaps most of Bilal's working day; a US Pacific client does not. Any SLA offered to North American clients should be async-friendly and say so, rather than implying live coverage.
     - **Where it lives on the site**: a page in the item-15 set, plus a real presence in the existing **Engagement Models** section, where it fits under Monthly Retainer. Price it off actual measured infra cost plus margin — do not publish a figure until the underlying platform cost per site is known, and quote in AED with a USD equivalent per the dual-currency prerequisite.
     - **Sequencing**: deliberately after the audits, not before. Audits are pure upside with a defined end; this one adds permanent obligation, so it should launch once there is a steady client base worth retaining.
-17. **Blog** — the last unbuilt route from this file's own sitemap. Deliberately last: it is the highest-effort, slowest-returning item, and the 2026-08-17 session already established that thin migrated posts were worse than none.
+17. **Faceted portfolio: slice the same work by deliverable type and by industry (2026-08-28).** Bilal wants the work browsable three ways, not one: by client (current), by **deliverable type** ("show me all the landing pages", "all the mobile apps", "all the social media design"), and by **industry**.
+    - **Structure**: `/portfolio` stays the hub. Add `/portfolio/type/<slug>` (landing-pages, websites, social-media-design, mobile-apps, branding, video) and `/portfolio/industry/<slug>` (real-estate, production, hospitality). Each project and each deliverable gets tagged in `caseStudies.ts`; the category pages are generated, so tagging is the only per-project work.
+    - **SEO value is real**: `/portfolio/type/landing-pages` targets "landing page designer Dubai" and similar, which the client-based structure cannot rank for. Industry pages are also the honest answer to Bilal's concern about looking real-estate-only — a page per industry *demonstrates* range rather than asserting it, but only once more than one industry is published.
+    - **Blocked on volume, not on code.** Current inventory: **3 landing pages, 2 social/campaign sets, 1 corporate website, and zero mobile apps, branding or video**. Publishing six category pages against that would produce several near-empty pages, which is the same thin-content trap flagged in item 67. **Rule: publish a category page only once it holds 3+ genuine items.** Today only Landing Pages qualifies.
+    - **Sequence**: tag the taxonomy into the data now so every incoming project is categorised on arrival, then publish each category page as it crosses the threshold. Cavendish Square, Tomorrow World (2 projects) and Choppershoot together take Landing Pages to ~6 and open Video.
+18. **Choppershoot — production house and aerial filming (added 2026-08-28).** Bilal's next client after Cavendish Square and Tomorrow World. Production house and drone/aerial filming company operating across **Dubai, Abu Dhabi and Saudi Arabia**.
+    - **Strategically the most valuable client on the list**, for a reason unrelated to its size: it is the first **non-property** client that will be published. Every case study currently live is real estate, which is exactly the positioning Bilal said on 2026-08-28 he wants to avoid. One production-house case study does more to establish industry range than any amount of copy claiming it.
+    - It also unlocks the **Video** category in item 17's taxonomy, which currently has zero items, and gives `/services/video-conversion` real supporting work.
+    - **Geographic angle worth using**: Dubai, Abu Dhabi and KSA is genuinely regional rather than Dubai-only, which supports the broader GCC positioning without overstating it.
+    - Assets needed in the usual shape under `public/portfolio/choppershoot/`: logo (SVG, white for the dark theme), any landing page or website captures at 1600px wide, and social/campaign creative at 800×800. Video work will need a decision on presentation — stills, or embedded/hosted video, which has its own weight and privacy implications worth settling before assets arrive.
+19. **Blog** — the last unbuilt route from this file's own sitemap. Deliberately last: it is the highest-effort, slowest-returning item, and the 2026-08-17 session already established that thin migrated posts were worse than none.
 
 ### Phase 4 — trust content (blocked on Bilal, cannot be built without him)
 
-18. **Real testimonials** — 2 placeholders in `Results.tsx`. Also the gate on `Review` JSON-LD, which stays deliberately unbuilt because fabricated review markup is actively penalised.
-19. **Real client logos** — 5 placeholders in `LogoWall.tsx`. Now has named targets: Mövenpick, Oceara / Refine, and Leos Development (Hadley Heights), as monochrome vectors. Needed for the logo-wall entry point in Phase 3 item 14.
-20. **Case study assets** — Bilal is actively collecting these as of 2026-08-26. Per brand (Mövenpick, Oceara, Hadley Heights): landing page screenshots at full width, social/paid ad creatives, email template screenshots, and any shareable result figures. Supersedes the older "2 unfinished case studies" note, since Phase 3 item 14 replaces all 5 existing write-ups rather than finishing 2 of them. Also needs written permission per brand before publishing (Oceara is a Refine project, Hadley Heights is Leos Development).
-21. **CRM credentials** — endpoint URL, auth token, and expected field names. Unblocks Phase 0 item 1(b) and an inline form on `/contact`.
-22. **CallMeBot API key** — the last open piece of item 12, for a silent WhatsApp push to Bilal on each new lead.
-23. **Confirm two things written on his behalf**: the "reply within one business day, same day on WhatsApp" commitment on `/contact`, and which languages to list in `availableLanguage` (currently English only, because inferring more would have been a guess).
+20. **Real testimonials** — 2 placeholders in `Results.tsx`. Also the gate on `Review` JSON-LD, which stays deliberately unbuilt because fabricated review markup is actively penalised.
+21. **Real client logos** — 5 placeholders in `LogoWall.tsx`. Now has named targets: Mövenpick, Oceara / Refine, and Leos Development (Hadley Heights), as monochrome vectors. Needed for the logo-wall entry point in Phase 3 item 14.
+22. **Case study assets** — Bilal is actively collecting these as of 2026-08-26. Per brand (Mövenpick, Oceara, Hadley Heights): landing page screenshots at full width, social/paid ad creatives, email template screenshots, and any shareable result figures. Supersedes the older "2 unfinished case studies" note, since Phase 3 item 14 replaces all 5 existing write-ups rather than finishing 2 of them. Also needs written permission per brand before publishing (Oceara is a Refine project, Hadley Heights is Leos Development).
+23. **CRM credentials** — endpoint URL, auth token, and expected field names. Unblocks Phase 0 item 1(b) and an inline form on `/contact`.
+24. **CallMeBot API key** — the last open piece of item 12, for a silent WhatsApp push to Bilal on each new lead.
+25. **Confirm two things written on his behalf**: the "reply within one business day, same day on WhatsApp" commitment on `/contact`, and which languages to list in `availableLanguage` (currently English only, because inferring more would have been a guess).
 
 ### Phase 5 — local and Maps visibility — **DEFERRED at Bilal's decision, 2026-08-27**
 
 Bilal is working online only with no office, so he has parked this. **Worth recording that "no office" is not actually a blocker**: Google Business Profile supports *service-area businesses*, which hide the address entirely and list the areas served instead — that is the standard setup for freelancers and home-based businesses, and it is why this phase already said "set up as a service-area business". What it does require is verification, which takes effort and documentation, so deferring is a reasonable call — just not for the reason given. Revisit when local search becomes worth the setup time, or if he ever takes an office.
 
-24. **Google Business Profile**, set up as a service-area business. Maps ranking comes almost entirely from a verified listing, not from the site, so no amount of on-page work substitutes for this. `/contact` now carries `ContactPage` + `Person` schema with both phone numbers and a `PostalAddress` for the listing to reconcile against.
-25. Add `telephone` to the global `Person` schema in `StructuredData.tsx`, and evaluate whether a `ProfessionalService` type alongside `Person` is warranted once the listing exists.
+26. **Google Business Profile**, set up as a service-area business. Maps ranking comes almost entirely from a verified listing, not from the site, so no amount of on-page work substitutes for this. `/contact` now carries `ContactPage` + `Person` schema with both phone numbers and a `PostalAddress` for the listing to reconcile against.
+27. Add `telephone` to the global `Person` schema in `StructuredData.tsx`, and evaluate whether a `ProfessionalService` type alongside `Person` is warranted once the listing exists.
 
 ### Phase 6 — speed and upkeep
 
 ("Upkeep" = small maintenance jobs that keep the site fast, accurate and easy to work on. Individually minor; left alone they compound.)
 
-26. **Two oversized hero images**: `bilal-shafqat-coat.avif` (666KB) and `bilal-shirt.avif` (568KB), both loaded as CSS `background-image` and therefore bypassing `next/image` entirely — no responsive sizing, no lazy loading, full weight on every visit. This was a deliberate trade in item 30 to get literal `background-size` control, and it is now the main risk to this file's own LCP-under-2.0s target. Generate properly sized variants rather than reverting the crop control.
-27. **`llms.txt` is stale** — zero mentions of `/about` or `/contact`, and it carries no URL index at all. It also drifts from `pillars.ts` by hand, the same failure mode as item 33. Refresh it and add a page list.
-28. ~~**No custom 404**~~ — **done 2026-08-27, see item 63.**
-29. **Harden `/api/lead`** once it is actually live: it has a honeypot and env-based auth with no hardcoded secrets (good), but no rate limiting and no email-format validation.
-30. **Delete `About.tsx`** — the only genuinely unreferenced component (the three `Hero*` files are still used by the preview routes).
+28. **Two oversized hero images**: `bilal-shafqat-coat.avif` (666KB) and `bilal-shirt.avif` (568KB), both loaded as CSS `background-image` and therefore bypassing `next/image` entirely — no responsive sizing, no lazy loading, full weight on every visit. This was a deliberate trade in item 30 to get literal `background-size` control, and it is now the main risk to this file's own LCP-under-2.0s target. Generate properly sized variants rather than reverting the crop control.
+29. **`llms.txt` is stale** — zero mentions of `/about` or `/contact`, and it carries no URL index at all. It also drifts from `pillars.ts` by hand, the same failure mode as item 33. Refresh it and add a page list.
+30. ~~**No custom 404**~~ — **done 2026-08-27, see item 63.**
+31. **Harden `/api/lead`** once it is actually live: it has a honeypot and env-based auth with no hardcoded secrets (good), but no rate limiting and no email-format validation.
+32. **Delete `About.tsx`** — the only genuinely unreferenced component (the three `Hero*` files are still used by the preview routes).
 
 ### Phase 7 — deferred, revisit when Phases 0-4 are clear
 
-31. Remaining suggestions-queue items not folded in above: plain-language subtitles on technical services (5), privacy policy page (6), regions-served line (7), trust/partner badges (8), Arabic version with RTL (10). Item 3 (time zone) closed on 2026-08-18 via `/contact`; item 2 (WhatsApp) closed in item 13.
-32. Retire or repurpose the 3 `preview-hero-*` routes. They are `noindex` as of item 41 so they are no longer an SEO risk, only clutter.
+33. Remaining suggestions-queue items not folded in above: plain-language subtitles on technical services (5), privacy policy page (6), regions-served line (7), trust/partner badges (8), Arabic version with RTL (10). Item 3 (time zone) closed on 2026-08-18 via `/contact`; item 2 (WhatsApp) closed in item 13.
+34. Retire or repurpose the 3 `preview-hero-*` routes. They are `noindex` as of item 41 so they are no longer an SEO risk, only clutter.
 
 ### Cross-cutting: targeting UK, US and Canada (added 2026-08-26)
 
