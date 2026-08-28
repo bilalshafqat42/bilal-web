@@ -675,6 +675,15 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **The recommendation to Bilal**: run key-less by default, since it costs nothing and never invents anything. Add the key when he wants composed answers and lead qualification — the code is already there and switches on by itself.
     - Verified with **no key configured**: question answered from local search with three correct links to `/services/website-app-development`, no error shown, zero console errors, build clean at 29 pages.
 
+75. **Spotlight-style site search (2026-08-28)** — **done.** Bilal asked for a macOS Spotlight-like overlay: it appears, asks what the visitor needs, they type "I need a website", and it answers.
+    - **Site-wide, two ways in**: ⌘K / Ctrl+K from any page, plus a visible `Search ⌘K` button in the nav — the shortcut alone would be invisible to most visitors, and the button alone would annoy anyone who expects the shortcut.
+    - **Results as you type**, because the index runs in the browser. No server round-trip, no API key, no per-query cost.
+    - **Full keyboard model**: ↑↓ to move with the highlighted row scrolled into view, ↵ to open, Escape to close. Opening moves focus into the input and locks page scroll; closing restores both and returns focus to whatever was focused before — the part that is usually skipped and makes a modal feel broken for keyboard users.
+    - **Conversational phrasing was the real work.** "I need a website" first returned the FAQ *"What do you need from me to get started?"* above the actual services page, because "need" was being treated as a content word. Added conversational filler — need, want, looking, help, get, like, please, hi, hello — to the stop list. People phrase these as requests, not keywords, and the index has to expect that. After the change every test phrasing resolves correctly: "I need a website" → Website & App Development, "looking for help with google ads" → Google Ads, "I want a brand identity" → Graphic Design & Branding, "set up my CRM" → CRM setup.
+    - **Empty state asks the question rather than showing a blank box**: "How can I help?" with four starter phrasings, so a visitor who does not know what to type has somewhere to start.
+    - **No-match state is honest** — says nothing on the site matches and offers to ask Bilal directly, rather than padding with irrelevant results.
+    - Verified end to end from `/services`: ⌘K opens, focus lands in the input, page scroll locks, arrow keys move the selection, Escape closes and restores scroll, and the nav button opens the same panel. Zero console errors, build clean at 29 pages.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

@@ -83,7 +83,10 @@ export function buildIndex(): Chunk[] {
   return chunks;
 }
 
-const STOP = new Set(["the","a","an","and","or","is","are","do","does","you","your","can","i","to","for","of","in","on","with","it","me","my","we","what","how","much","have","has","be","this","that","any"]);
+// Includes conversational filler, not just grammar words. People phrase these
+// as requests — "I need a website", "looking for help with ads" — and treating
+// "need" or "looking" as content made them outrank the thing actually asked for.
+const STOP = new Set(["the","a","an","and","or","is","are","do","does","you","your","can","i","to","for","of","in","on","with","it","me","my","we","what","how","much","have","has","be","this","that","any","need","want","looking","help","get","would","like","some","please","hi","hello"]);
 
 /**
  * Crude suffix stripping, not a real stemmer.

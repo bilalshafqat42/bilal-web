@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import { accentClasses, megaMenuGroups, slugify } from "@/data/pillars";
+import SpotlightSearch from "./SpotlightSearch";
 
 gsap.registerPlugin(useGSAP);
 
@@ -275,6 +276,7 @@ export default function Nav() {
           </nav>
 
           <div className="flex items-center gap-3">
+            <SpotlightSearch />
             <a
               href="/contact"
               className="hidden sm:inline-flex btn-primary items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-shadow"
