@@ -2,6 +2,7 @@ import Nav from "@/components/Nav";
 import HeroAlt from "@/components/HeroAlt";
 import Services from "@/components/Services";
 import PortfolioCarousel from "@/components/PortfolioCarousel";
+import AskAssistant from "@/components/AskAssistant";
 import LogoWall from "@/components/LogoWall";
 import Process from "@/components/Process";
 import WhoIWorkWith from "@/components/WhoIWorkWith";
@@ -23,6 +24,7 @@ export default function Home() {
         <WhoIWorkWith />
         <Engagement />
         <Results />
+        <AskAssistant />
         <Contact />
       </main>
       <Footer />
