@@ -107,7 +107,7 @@ const cases = [
 export default function CaseStudies() {
   return (
     <section id="case-studies" className="relative py-24 sm:py-32 bg-bg-soft/40">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="site-container">
         <SectionHeading
           as="h1"
           eyebrow="Proof Of Work"

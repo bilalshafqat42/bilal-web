@@ -87,7 +87,7 @@ export default async function ClientCaseStudy({ params }: Props) {
       <main className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="relative mx-auto max-w-7xl px-6">
+          <div className="site-container relative">
             <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted">
               <a href="/" className="hover:text-ink transition-colors">Home</a>
               <ChevronRight size={13} />
@@ -115,7 +115,7 @@ export default async function ClientCaseStudy({ params }: Props) {
         </section>
 
         <section className="relative mt-20 sm:mt-28">
-          <div className="mx-auto max-w-7xl px-6">
+          <div className="site-container">
             <Reveal>
               <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
                 Scope of work
@@ -137,7 +137,7 @@ export default async function ClientCaseStudy({ params }: Props) {
 
         {c.website ? (
           <section className="relative mt-20 sm:mt-28">
-            <div className="mx-auto max-w-7xl px-6">
+            <div className="site-container">
               <Reveal>
                 <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
                   {c.website.heading}
@@ -155,7 +155,7 @@ export default async function ClientCaseStudy({ params }: Props) {
 
         {c.brandSocial ? (
           <section className="relative mt-20 sm:mt-28">
-            <div className="mx-auto max-w-7xl px-6">
+            <div className="site-container">
               <Reveal>
                 <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
                   {c.brandSocial.heading}
@@ -169,7 +169,7 @@ export default async function ClientCaseStudy({ params }: Props) {
 
         {c.projects.length > 0 ? (
           <section id="projects" className="relative mt-20 scroll-mt-28 border-t border-border pt-20 sm:mt-28 sm:pt-24">
-            <div className="mx-auto max-w-7xl px-6">
+            <div className="site-container">
               <Reveal>
                 <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
                   {c.projects.length === 1 ? "Development campaign" : "Development campaigns"}

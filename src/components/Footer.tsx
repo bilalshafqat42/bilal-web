@@ -15,7 +15,7 @@ const quickLinks = [
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-border pt-14 pb-6">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="site-container">
         <div className="grid grid-cols-1 md:grid-cols-[1.3fr_0.8fr_0.9fr] gap-10">
           <div>
             <Image

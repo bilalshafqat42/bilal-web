@@ -14,7 +14,7 @@ export default function Services() {
 
   return (
     <section id="services" className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="site-container">
         <SectionHeading
           eyebrow="What I Do"
           title="Four Pillars, One Point Of"

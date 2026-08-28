@@ -38,6 +38,27 @@ h1, h2, h3, h4, .font-display {
   color: #14140f;
 }
 
+/* 12-column desktop layout: content occupies the middle 10 columns, leaving one
+   column of margin on each side. Below the lg breakpoint a 12-column grid is
+   meaningless on a phone, so it falls back to simple padding.
+
+   Deliberately uncapped: prose sections carry their own max-w-3xl/4xl, so the
+   only things that stretch on a very wide monitor are card grids, which is the
+   intent of a fluid column system. Add a max-width here if that ever reads too
+   wide on an ultrawide display. */
+.site-container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .site-container {
+    width: 83.3333%;
+    padding-inline: 0;
+  }
+}
+
 /* Ambient background grid + glow */
 .grid-fade {
   background-image:

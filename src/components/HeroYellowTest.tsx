@@ -50,7 +50,7 @@ export default function HeroYellowTest() {
       <section id="home" className="relative overflow-hidden bg-bg text-ink pt-40 pb-16 sm:pt-48 sm:pb-20">
         <div className="pointer-events-none absolute inset-0 grid-fade" />
 
-        <div className="relative mx-auto max-w-7xl px-6">
+        <div className="site-container relative">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-[7fr_3fr] lg:gap-10">
             <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.05] tracking-tight text-ink">
               <span className="underline decoration-gold decoration-4 underline-offset-4">

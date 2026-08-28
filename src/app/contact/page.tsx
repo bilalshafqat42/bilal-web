@@ -106,7 +106,7 @@ export default function ContactPage() {
         </section>
 
         <section className="relative mt-16 sm:mt-20">
-          <div className="mx-auto max-w-7xl px-6">
+          <div className="site-container">
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
               {channels.map((channel, i) => {
                 const Icon = channel.icon;
@@ -144,7 +144,7 @@ export default function ContactPage() {
         </section>
 
         <section id="enquiry" className="relative mt-16 scroll-mt-28 sm:mt-20">
-          <div className="mx-auto max-w-7xl px-6">
+          <div className="site-container">
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.35fr_0.65fr]">
               <Reveal>
                 <ContactForm />

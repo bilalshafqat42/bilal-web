@@ -106,7 +106,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
       <main className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="relative mx-auto max-w-7xl px-6">
+          <div className="site-container relative">
             <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-muted">
               <a href="/" className="hover:text-ink transition-colors">Home</a>
               <ChevronRight size={13} />
@@ -142,7 +142,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
 
         {p.landingPage ? (
           <section className="relative mt-20 sm:mt-28">
-            <div className="mx-auto max-w-7xl px-6">
+            <div className="site-container">
               <Reveal>
                 <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
                   {p.landingPage.heading}
@@ -171,7 +171,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
 
         {p.gallery ? (
           <section className="relative mt-20 sm:mt-28">
-            <div className="mx-auto max-w-7xl px-6">
+            <div className="site-container">
               <Reveal>
                 <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
                   {p.gallery.heading}
@@ -184,7 +184,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
         ) : null}
 
         <section className="relative mt-20 sm:mt-28">
-          <div className="mx-auto max-w-7xl px-6">
+          <div className="site-container">
             <div className="flex flex-wrap items-center justify-between gap-6 border-t border-border pt-10">
               <a
                 href={`/portfolio/${c.slug}`}

@@ -18,7 +18,7 @@ const bestAt = [
 export default function About() {
   return (
     <section id="about" className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="site-container">
         <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-14 items-start">
           <Reveal>
             <div>

@@ -19,7 +19,7 @@ export default function HeroAlt() {
   const heroRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<HTMLDivElement>(null);
 
-  // Yellow "About Me" box starts at the same width as the heading above (max-w-7xl)
+  // About panel starts at the same width as the 10-column content above
   // and 80vh tall, expands to 100% width / 100vh height on scroll, corners
   // squaring off as it reaches full bleed.
   useGSAP(
@@ -51,7 +51,7 @@ export default function HeroAlt() {
       <section id="home" className="relative overflow-hidden bg-bg text-ink pt-40 pb-16 sm:pt-48 sm:pb-20">
         <div className="pointer-events-none absolute inset-0 grid-fade" />
 
-        <div className="relative mx-auto max-w-7xl px-6">
+        <div className="site-container relative">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-[7fr_3fr] lg:gap-10">
             <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.05] tracking-tight text-ink">
               <span className="underline decoration-gold decoration-4 underline-offset-4">
@@ -91,7 +91,7 @@ export default function HeroAlt() {
       </section>
 
       {/* Separate "About Me" panel, own scroll-expand animation. Initial width
-          matches the heading's own max-w-7xl container above. Glassmorphism
+          matches the 10-column site container above. Glassmorphism
           panel (glass-strong, same style as Contact's card) instead of a solid
           fill, with blurred glow shapes behind it. Centered badge/headline/
           subtitle/photo layout — reference: a Behance profile page Bilal
@@ -100,7 +100,7 @@ export default function HeroAlt() {
         <div
           ref={frameRef}
           className="glass-strong relative mx-auto overflow-hidden"
-          style={{ width: "min(80rem, 100%)", height: "80vh", borderRadius: "1.75rem" }}
+          style={{ width: "min(83.3333%, calc(100% - 3rem))", height: "80vh", borderRadius: "1.75rem" }}
         >
           <div
             className="blob pointer-events-none absolute -top-24 left-1/4 h-72 w-72 rounded-full bg-gold/40"

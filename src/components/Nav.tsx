@@ -136,7 +136,7 @@ export default function Nav() {
       />
       <div
         className={`mx-auto transition-all duration-500 ease-out ${
-          scrolled ? "max-w-7xl px-6" : "max-w-full px-4 sm:px-8"
+          scrolled ? "site-container" : "max-w-full px-4 sm:px-8"
         }`}
       >
         <div
@@ -218,7 +218,7 @@ export default function Nav() {
                       aria-label="Services menu"
                       className="glass-nav border-t border-border shadow-2xl shadow-black/40"
                     >
-                        <div className="mx-auto max-w-7xl px-6 py-10">
+                        <div className="site-container py-10">
                           <div className="grid grid-cols-4 gap-x-8 gap-y-8">
                             {megaMenuGroups.map((group) => {
                               const accent = accentClasses[group.accent];

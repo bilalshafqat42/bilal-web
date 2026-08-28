@@ -60,7 +60,7 @@ const logos: Logo[] = [
 export default function LogoWall() {
   return (
     <section id="companies" className="relative py-24 sm:py-32 bg-bg-soft/40">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="site-container">
         <SectionHeading
           eyebrow="Companies I've Worked With"
           title="Trusted Across"

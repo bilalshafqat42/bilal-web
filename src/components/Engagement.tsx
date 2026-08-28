@@ -116,7 +116,7 @@ function EngagementCard({ model }: { model: Model }) {
 export default function Engagement() {
   return (
     <section id="engagement" className="relative py-24 sm:py-32 bg-bg-soft/40">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="site-container">
         <SectionHeading
           eyebrow="Pricing & Engagement"
           title="Flexible Engagement Models,"

@@ -71,6 +71,86 @@ export default function PortfolioCarousel() {
     setAtEnd(t.scrollLeft + t.clientWidth >= t.scrollWidth - 8);
   }, []);
 
+  // Click-and-drag with a mouse. Trackpad and touch already drag natively; a
+  // mouse does not, so pointer events move scrollLeft directly. Nothing else
+  // writes that property, so there is no animation library to fight with.
+  useEffect(() => {
+    const t = trackRef.current;
+    if (!t) return;
+    let down = false;
+    let startX = 0;
+    let startLeft = 0;
+    let moved = 0;
+
+    const onDown = (e: PointerEvent) => {
+      if (e.button !== 0 || (e.target as HTMLElement).closest("button")) return;
+      down = true;
+      moved = 0;
+      startX = e.clientX;
+      startLeft = t.scrollLeft;
+      t.style.cursor = "grabbing";
+      // Snap has to be off mid-drag or the container fights the pointer, and
+      // smooth scrolling has to be off too: with it on, every scrollLeft write
+      // starts a fresh animation that the next write cancels, so the track
+      // never actually follows the pointer.
+      t.style.scrollSnapType = "none";
+      t.style.scrollBehavior = "auto";
+      // Cards are links, and pressing on a link starts the browser's native
+      // link drag, which captures the pointer and stops pointermove reaching
+      // us. Suppressing the default here (and dragstart below) keeps the
+      // pointer events flowing.
+      e.preventDefault();
+    };
+    const onMovePointer = (e: PointerEvent) => {
+      if (!down) return;
+      const dx = e.clientX - startX;
+      moved = Math.max(moved, Math.abs(dx));
+      t.scrollLeft = startLeft - dx;
+    };
+    const onUp = () => {
+      if (!down) return;
+      down = false;
+      t.style.cursor = "";
+      // Settle on the nearest card boundary ourselves. Restoring scrollSnapType
+      // alone is not enough here: the track uses scroll-smooth, so the browser
+      // animates back to where the drag started instead of the nearest card.
+      const card = t.querySelector<HTMLElement>("[data-card]");
+      if (card) {
+        const gap = parseFloat(getComputedStyle(t).columnGap || "0");
+        const stride = card.offsetWidth + gap;
+        const nearest = Math.round(t.scrollLeft / stride) * stride;
+        t.style.scrollSnapType = "";
+        t.style.scrollBehavior = "";
+        t.scrollTo({ left: nearest, behavior: "smooth" });
+      } else {
+        t.style.scrollSnapType = "";
+        t.style.scrollBehavior = "";
+      }
+    };
+    // A drag that ends on a card would otherwise also follow its link.
+    const onClick = (e: MouseEvent) => {
+      if (moved > 6) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    };
+
+    const onDragStart = (e: DragEvent) => e.preventDefault();
+
+    t.addEventListener("pointerdown", onDown);
+    t.addEventListener("dragstart", onDragStart);
+    window.addEventListener("pointermove", onMovePointer);
+    window.addEventListener("pointerup", onUp);
+    t.addEventListener("click", onClick, true);
+    return () => {
+      t.removeEventListener("pointerdown", onDown);
+      t.removeEventListener("dragstart", onDragStart);
+      window.removeEventListener("pointermove", onMovePointer);
+      window.removeEventListener("pointerup", onUp);
+      t.removeEventListener("click", onClick, true);
+    };
+  }, []);
+
   useEffect(() => {
     const t = trackRef.current;
     if (!t) return;
@@ -97,7 +177,7 @@ export default function PortfolioCarousel() {
       onMouseEnter={() => setCursorOn(true)}
       onMouseLeave={() => setCursorOn(false)}
     >
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="site-container">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
             eyebrow="Selected Work"
@@ -135,16 +215,16 @@ export default function PortfolioCarousel() {
         // scroll-padding matters as much as padding here: without it, snap-start
         // aligns the first card to the container edge and scrolls the left inset
         // away, which pushed the third card's peek from 20% to 38%.
-        className="no-scrollbar mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-6 scroll-pl-6 lg:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] lg:scroll-pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))]"
+        className="no-scrollbar mt-10 flex cursor-grab snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-6 scroll-pl-6 lg:pl-[8.3333vw] lg:scroll-pl-[8.3333vw]"
       >
         {cards.map((card) => (
           <a
             key={card.title}
             data-card
             href={card.href}
-            // Widths solved so the third card peeks at 20% at any viewport width:
-            // padding + 2W + 2·gap + 0.2W = 100vw.
-            className="group h-[clamp(400px,64vh,580px)] w-[80vw] shrink-0 snap-start sm:w-[60vw] lg:w-[calc((100vw-72px)/2.2)] xl:w-[calc((50vw+568px)/2.2)]"
+            // Solved against the 10-column container so the third card shows at
+            // half width: one column of margin (8.3333vw) + 2W + 2·gap + 0.5W = 100vw.
+            className="group h-[clamp(400px,64vh,580px)] w-[80vw] shrink-0 snap-start sm:w-[60vw] lg:w-[calc(36.6667vw-19.2px)]"
           >
             <article className="card-hover flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border glass">
               {/* 70/30 split. basis + shrink-0 rather than percentage heights, so

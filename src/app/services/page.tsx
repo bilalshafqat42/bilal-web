@@ -38,7 +38,7 @@ export default function ServicesPage() {
         </section>
 
         <section className="relative mt-16 sm:mt-20">
-          <div className="mx-auto max-w-7xl px-6">
+          <div className="site-container">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               {megaMenuGroups.map((pillar) => {
                 const accent = accentClasses[pillar.accent];

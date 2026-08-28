@@ -20,7 +20,7 @@ export default function Hero() {
       <div className="blob pointer-events-none absolute -top-32 left-1/4 h-96 w-96 rounded-full bg-gold/30" style={{ animationDelay: "-6s" }} />
       <div className="blob pointer-events-none absolute top-10 right-0 h-80 w-80 rounded-full bg-violet/30" style={{ animationDelay: "-11s" }} />
 
-      <div className="relative mx-auto max-w-7xl px-6">
+      <div className="site-container relative">
         <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-16 items-center">
           <Reveal>
             <div>

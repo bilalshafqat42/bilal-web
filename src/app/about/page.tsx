@@ -56,7 +56,7 @@ export default function AboutPage() {
       <main className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="site-container relative grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
             <Reveal>
               <div>
                 <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
@@ -114,7 +114,7 @@ export default function AboutPage() {
         </section>
 
         <section className="relative mt-24 sm:mt-32">
-          <div className="mx-auto max-w-7xl px-6">
+          <div className="site-container">
             <Reveal>
               <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
                 What I actually do
@@ -157,7 +157,7 @@ export default function AboutPage() {
         </section>
 
         <section className="relative mt-24 sm:mt-32">
-          <div className="mx-auto max-w-7xl px-6">
+          <div className="site-container">
             <Reveal>
               <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
                 How working with me is different
@@ -178,7 +178,7 @@ export default function AboutPage() {
         </section>
 
         <section className="relative mt-24 sm:mt-32">
-          <div className="mx-auto max-w-7xl px-6">
+          <div className="site-container">
             <Reveal>
               <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
                 Platforms and tools I work in

@@ -18,7 +18,7 @@ export default function PortfolioPage() {
     <>
       <Nav />
       <main className="flex-1 pt-28">
-        <section className="mx-auto max-w-7xl px-6">
+        <section className="site-container">
           <a
             href="/portfolio/leos-developments"
             className="card-hover group flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border glass px-7 py-6"

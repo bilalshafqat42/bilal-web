@@ -60,7 +60,7 @@ const steps = [
 export default function Process() {
   return (
     <section id="process" className="relative py-24 sm:py-32 bg-bg-soft/40">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="site-container">
         <SectionHeading
           eyebrow="How I Work"
           title="A Structured Path From"
