@@ -729,6 +729,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - Verified: all 13 footer internal links resolve, no horizontal overflow at 390, 1024 or 1440px, no console errors.
     - **Open issue, needs Bilal's decision**: the WhatsApp chat auto-opens once per session on scroll past the services section, and its panel **completely covers the Industries column** on the homepage footer. The Quick Enquiry button also clips the last social icon in the bottom bar. Three floating elements now compete for the bottom of the screen. Flagged, not changed — this is his lead-capture tooling.
 
+82. **Cavendish Square case study published (2026-08-28)** — **done.** Bilal supplied the logo, a desktop capture and a mobile capture, and asked for a case study under LEOS in the same shape as Hadley Heights and Weybridge Gardens.
+    - **Data-only change, as designed.** One `Project` object appended to `caseStudies.ts` produced the route, the hub card, the breadcrumb, the sitemap entry and the structured data. This is the third time that architecture has paid off, and it is now proven rather than assumed.
+    - **Facts came from reading his own screenshots, not from invention.** The capture carries them: Jumeirah Village Triangle, **138 homes** across **114 studios and 24 one-bedroom apartments**, **428 to 1,209 sq ft**, estimated completion **Q4 2025**, British and European architects, rooftop garden and outdoor cinema. **No price is stated on the page, so none is claimed** — unlike Weybridge Gardens 2, which had a published "from AED 600K".
+    - Placed **first** in the LEOS projects array, since Bilal named Cavendish Square as the one he wanted to lead with.
+    - The mobile asset sits in a folder named `mobile-app`, but the capture is the **mobile web landing page** (367px wide, 5,317px tall), not a native app. Labelled accordingly. Worth renaming the folder to `mobile` so it does not later be read as app work.
+    - Verified: page returns 200, all 5 images load with **zero 404s** (the failure mode that bit this project before), no console errors, hub lists all four projects, sitemap contains the URL, structured data matches the other project pages exactly.
+    - **Portfolio inventory is now 4 projects across 1 client.** Faceted category pages still gated on 3+ items per category; Tomorrow World and Choppershoot remain the unlock.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

@@ -252,6 +252,57 @@ const weybridgeGardens2: Project = {
   ],
 };
 
+const cavendishSquare: Project = {
+  slug: "cavendish-square",
+  name: "Cavendish Square",
+  logo: "/portfolio/leos/cavendish/logo/cavendish-logo.svg",
+  cardImage: "/portfolio/leos/cavendish/landing-page/cavendish-web.avif",
+  cardImagePosition: "top",
+  cardBlurb:
+    "138 studios and one-bedroom homes in Jumeirah Village Triangle. Desktop and mobile landing pages built around registration capture.",
+  headline: "Cavendish Square — a compact-unit launch in Jumeirah Village Triangle",
+  summary:
+    "Cavendish Square is 138 homes in Jumeirah Village Triangle, and the unit mix shapes everything about how it has to be sold: 114 studios and 24 one-bedroom apartments, from 428 to 1,209 sq ft. That is an investor and first-purchase audience rather than a family one, so the page leads with the address and the amenity set — rooftop garden, outdoor cinema, pool, gym — because at this size the shared space is the product. Estimated completion Q4 2025.",
+  facts: [
+    { label: "Location", value: "Jumeirah Village Triangle, Dubai" },
+    { label: "Scale", value: "138 homes" },
+    { label: "Unit mix", value: "114 studios, 24 one-bedroom" },
+    { label: "Completion", value: "Estimated Q4 2025" },
+  ],
+  landingPage: {
+    heading: "Landing page, desktop and mobile",
+    body: "One primary conversion goal, Register Your Interest, sits in the hero with Check Construction Progress beneath it. Splitting the two matters here: buyers who have already committed have somewhere to go that does not compete with the registration form, which keeps the primary call to action clean for new traffic. The body copy answers the questions a compact-unit buyer actually asks — where it is, how many homes, what sizes, when it completes — in that order, rather than opening with lifestyle language. The mobile build is a genuine rebuild rather than a compressed desktop layout: the hero crops to hold the building and the development name at 367px, and both calls to action sit above the fold within thumb reach.",
+    capture: {
+      src: "/portfolio/leos/cavendish/landing-page/cavendish-web.avif",
+      width: 1041,
+      height: 5302,
+      alt: "Full-page view of the Cavendish Square desktop landing page, showing the Elevated Living in JVT hero, register-your-interest call to action, amenity sections and the property features breakdown",
+      label: "Cavendish Square — desktop",
+    },
+    mobileCapture: {
+      src: "/portfolio/leos/cavendish/mobile-app/cavendish-mobile-app.avif",
+      width: 367,
+      height: 5317,
+      alt: "Full-page view of the Cavendish Square mobile landing page, showing the cropped hero, development name and both calls to action above the fold",
+      label: "Cavendish Square — mobile",
+    },
+  },
+  place: {
+    units: 138,
+    locality: "Jumeirah Village Triangle",
+    region: "Dubai",
+    description:
+      "Residential development by LEOS Developments in Jumeirah Village Triangle, Dubai, comprising 138 homes across 114 studios and 24 one-bedroom apartments, ranging from 428 to 1,209 sq ft.",
+  },
+  keywords: [
+    "Cavendish Square",
+    "Jumeirah Village Triangle",
+    "JVT off-plan",
+    "studio apartments Dubai",
+    "real estate landing page Dubai",
+  ],
+};
+
 export const clients: Client[] = [
   {
     slug: "leos-developments",
@@ -341,7 +392,7 @@ export const clients: Client[] = [
         },
       ],
     },
-    projects: [hadleyHeights, weybridgeGardens, weybridgeGardens2],
+    projects: [cavendishSquare, hadleyHeights, weybridgeGardens, weybridgeGardens2],
     keywords: [
       "real estate marketing",
       "off-plan property marketing",
