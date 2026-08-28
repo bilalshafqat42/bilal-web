@@ -3,6 +3,7 @@ import LeadFormPopup from "@/components/LeadFormPopup";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import StructuredData from "@/components/StructuredData";
 import CookieConsent from "@/components/CookieConsent";
+import SpotlightSearch from "@/components/SpotlightSearch";
 import Analytics from "@/components/Analytics";
 import "./globals.css";
 
@@ -62,6 +63,7 @@ export default function RootLayout({
         <Analytics />
         <StructuredData />
         {children}
+        <SpotlightSearch />
         <WhatsAppButton />
         <LeadFormPopup />
         <CookieConsent />

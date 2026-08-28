@@ -1,8 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { CornerDownLeft, Search, X } from "lucide-react";
+import { CornerDownLeft, Search, Sparkles, X } from "lucide-react";
 import { buildIndex, search, type Chunk } from "@/lib/searchIndex";
+import { CONSENT_EVENT, getConsent } from "@/lib/consent";
 
 const INDEX = buildIndex();
 
@@ -22,6 +23,7 @@ const KIND_LABEL: Record<Chunk["kind"], string> = {
 
 export default function SpotlightSearch() {
   const [open, setOpen] = useState(false);
+  const [revealed, setRevealed] = useState(false);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -36,6 +38,36 @@ export default function SpotlightSearch() {
     setOpen(false);
     setQuery("");
     setActive(0);
+  }, []);
+
+  // The pill introduces itself rather than waiting to be found. It arrives on
+  // the visitor's first scroll, or after a short pause if they never scroll,
+  // so it reads as an offer of help rather than as chrome that was always
+  // there. Whichever happens first wins, and it only ever happens once.
+  useEffect(() => {
+    let timer = 0;
+    const reveal = () => {
+      setRevealed(true);
+      window.clearTimeout(timer);
+      window.removeEventListener("scroll", reveal);
+    };
+    // Two things share the bottom of the screen, so the pill queues behind the
+    // cookie banner rather than arriving underneath it. If consent has already
+    // been answered on a previous visit there is nothing to wait for.
+    const start = () => {
+      timer = window.setTimeout(reveal, 2200);
+      window.addEventListener("scroll", reveal, { passive: true, once: true });
+    };
+    if (getConsent() !== null) {
+      start();
+    } else {
+      window.addEventListener(CONSENT_EVENT, start, { once: true });
+    }
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("scroll", reveal);
+      window.removeEventListener(CONSENT_EVENT, start);
+    };
   }, []);
 
   // ⌘K / Ctrl+K from anywhere, and Escape to leave — the two shortcuts people
@@ -89,31 +121,47 @@ export default function SpotlightSearch() {
       ?.scrollIntoView({ block: "nearest" });
   }, [active]);
 
-  if (!open) {
-    return (
-      <button
-        onClick={() => setOpen(true)}
-        aria-label="Search the site"
-        className="hidden items-center gap-2 rounded-full border border-border bg-surface/60 px-3.5 py-2 text-xs text-muted transition-colors hover:border-gold/35 hover:text-ink lg:inline-flex"
-      >
-        <Search size={14} />
-        <span>Search</span>
-        <kbd className="rounded border border-border px-1.5 py-0.5 font-sans text-[10px] text-muted/80">
-          ⌘K
-        </kbd>
-      </button>
-    );
-  }
+  const trigger = (
+    <button
+      onClick={() => setOpen(true)}
+      aria-label="Open AI Search"
+      aria-hidden={open}
+      tabIndex={open ? -1 : 0}
+      // Bottom-left keeps it clear of the enquiry button and WhatsApp bubble on
+      // the right. It slides up into place instead of blinking on, and is inert
+      // until revealed so it can never be tabbed to while invisible.
+      className={`glass-strong group fixed bottom-6 left-6 z-40 inline-flex items-center gap-2.5 rounded-full border border-gold/25 py-2.5 pl-4 pr-3 text-sm text-ink shadow-lg shadow-black/30 transition-[opacity,transform,border-color,box-shadow] duration-500 ease-out hover:border-gold/50 hover:shadow-xl hover:shadow-black/40 motion-reduce:transition-none sm:pl-4.5 ${
+        revealed && !open
+          ? "translate-y-0 opacity-100"
+          : "pointer-events-none translate-y-3 opacity-0"
+      }`}
+    >
+      <span className="relative flex h-6 w-6 items-center justify-center rounded-full bg-gold/15 text-gold">
+        <Sparkles size={13} />
+        <span className="absolute inset-0 rounded-full bg-gold/25 opacity-0 transition-opacity group-hover:opacity-100" />
+      </span>
+      <span className="font-medium">
+        Ask <span className="text-gold">AI Search</span>
+      </span>
+      <kbd className="hidden rounded-md border border-border bg-surface/70 px-1.5 py-0.5 font-sans text-[10px] text-muted sm:inline-block">
+        ⌘K
+      </kbd>
+    </button>
+  );
+
+  if (!open) return trigger;
 
   return (
-    <div
+    <>
+      {trigger}
+      <div
       role="dialog"
       aria-modal="true"
-      aria-label="Search the site"
+      aria-label="AI Search"
       className="fixed inset-0 z-[70] flex items-start justify-center px-4 pt-[12vh]"
     >
       <button
-        aria-label="Close search"
+        aria-label="Close AI Search"
         onClick={close}
         className="mega-backdrop absolute inset-0 cursor-default"
       />
@@ -123,14 +171,16 @@ export default function SpotlightSearch() {
         className="glass-nav relative flex max-h-[70vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-border shadow-2xl shadow-black/50"
       >
         <div className="flex items-center gap-3 border-b border-border px-5 py-4">
-          <Search size={17} className="shrink-0 text-gold" />
+          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold">
+            <Sparkles size={14} />
+          </span>
           <input
             ref={inputRef}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={onKeyDown}
-            placeholder="What are you looking for?"
-            aria-label="What are you looking for?"
+            placeholder="Ask anything about my work or services..."
+            aria-label="Ask anything about my work or services"
             className="min-w-0 flex-1 bg-transparent text-base text-ink placeholder:text-muted/70 outline-none"
           />
           <button onClick={close} aria-label="Close" className="shrink-0 text-muted hover:text-ink">
@@ -142,15 +192,16 @@ export default function SpotlightSearch() {
           {!query.trim() ? (
             <div className="p-3">
               <p className="px-2 text-xs font-medium uppercase tracking-wide text-muted">
-                How can I help?
+                Try one of these
               </p>
               <div className="mt-3 space-y-1">
                 {STARTERS.map((s) => (
                   <button
                     key={s}
                     onClick={() => setQuery(s)}
-                    className="block w-full rounded-xl px-3 py-2.5 text-left text-sm text-ink transition-colors hover:bg-white/5"
+                    className="group flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-left text-sm text-ink transition-colors hover:bg-white/5"
                   >
+                    <Search size={13} className="shrink-0 text-muted transition-colors group-hover:text-gold" />
                     {s}
                   </button>
                 ))}
@@ -199,12 +250,19 @@ export default function SpotlightSearch() {
           )}
         </div>
 
-        <div className="flex items-center gap-4 border-t border-border px-5 py-2.5 text-[11px] text-muted">
-          <span>↑↓ to move</span>
-          <span>↵ to open</span>
-          <span>esc to close</span>
+        <div className="flex items-center justify-between gap-4 border-t border-border px-5 py-2.5 text-[11px] text-muted">
+          <span className="flex items-center gap-4">
+            <span>↑↓ to move</span>
+            <span>↵ to open</span>
+            <span>esc to close</span>
+          </span>
+          <span className="hidden items-center gap-1.5 text-muted/70 sm:flex">
+            <Sparkles size={11} className="text-gold/70" />
+            Searches this site only
+          </span>
+        </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

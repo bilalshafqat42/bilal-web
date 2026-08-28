@@ -31,9 +31,9 @@ export default function CookieConsent() {
       role="dialog"
       aria-modal="false"
       aria-labelledby="consent-title"
-      className="fixed inset-x-0 bottom-0 z-[60] p-3 sm:p-5"
+      className="pointer-events-none fixed inset-x-0 bottom-0 z-[60] p-3 sm:p-5"
     >
-      <div className="glass-nav mx-auto flex max-w-4xl flex-col gap-4 rounded-2xl border border-border p-5 shadow-2xl shadow-black/40 sm:flex-row sm:items-center sm:gap-6 sm:p-6">
+      <div className="glass-nav pointer-events-auto mx-auto flex max-w-4xl flex-col gap-4 rounded-2xl border border-border p-5 shadow-2xl shadow-black/40 sm:flex-row sm:items-center sm:gap-6 sm:p-6">
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold/15">
           <Cookie size={19} className="text-gold" />
         </span>

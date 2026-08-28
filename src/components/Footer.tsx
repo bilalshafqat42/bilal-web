@@ -75,7 +75,7 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} Bilal Shafqat. All rights reserved.</p>
           <p className="flex items-center gap-4">
             <a href="/privacy" className="hover:text-gold transition-colors">Privacy</a>
-            <span>Built with Next.js &amp; Tailwind CSS.</span>
+            <a href="/contact" className="hover:text-gold transition-colors">Contact</a>
           </p>
         </div>
         <FooterWordmark />
