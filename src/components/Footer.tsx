@@ -1,5 +1,6 @@
 import Image from "next/image";
 import SocialLinks from "./SocialLinks";
+import FooterWordmark from "./FooterWordmark";
 
 const quickLinks = [
   { label: "Services", href: "/services" },
@@ -13,7 +14,7 @@ const quickLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-border py-14">
+    <footer className="relative overflow-hidden border-t border-border pt-14 pb-6">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 md:grid-cols-[1.3fr_0.8fr_0.9fr] gap-10">
           <div>
@@ -77,6 +78,7 @@ export default function Footer() {
             <span>Built with Next.js &amp; Tailwind CSS.</span>
           </p>
         </div>
+        <FooterWordmark />
       </div>
     </footer>
   );

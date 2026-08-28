@@ -646,6 +646,15 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Honest gap recorded**: two of the four cards front services with no standalone published case study behind them — there is no native mobile app in the portfolio at all, and no UI/UX case study. The cards link to service pages, which is defensible, but Choppershoot (item 18) is what makes them genuinely evidenced.
     - Verified: `tsc` and `npm run build` clean at 28 pages, pinning confirmed active during scroll, track moving 900px on a 900px wheel, zero console errors.
 
+72. **Animated footer wordmark, granola.ai reference (2026-08-28)** — **done.** Bilal shared granola.ai and asked for a footer wordmark that animates in and back out.
+    - **Scrubbed, not played once.** The mark is tied to scroll position (`start: "top bottom"` → `end: "bottom bottom"` on the footer, `scrub: 0.6`), so scrolling back up genuinely reverses it rather than leaving it stranded — which is the "then go back" part of the request. Measured across four scroll positions: opacity `0.25 → 0.46 → 1.00 → 0.25` and translate `98px → 71px → 0 → 98px`, confirming it reverses cleanly.
+    - `overflow-hidden` on the wrapper is what makes it read as rising from **behind** the footer rather than simply fading in.
+    - **Relevant history**: a giant wordmark was built into the hero in item 22 and removed in item 23 because Bilal said it did not look good, and it genuinely fought the H1 for attention. A footer is a different job — nothing competes with it there — which is why this one works where that one did not. Worth recording so the earlier rejection is not read as a blanket "no wordmarks".
+    - Opacity started at 6% and was raised to **10%** after looking at it: 6% was effectively invisible against `#08080b`. 10% still sits behind the content rather than competing with it.
+    - Decorative and `aria-hidden`, so a screen reader does not read the name twice — the real footer logo above it remains the accessible one. Reduced motion skips straight to the settled state. Extracted as a separate client component so `Footer.tsx` stays a server component.
+    - Verified: `tsc` and `npm run build` clean at 28 pages, no horizontal overflow, zero console errors.
+    - **Eighth consecutive verification obstructed by the auto-opening chat widget.** On the homepage it now covers the new carousel; in the footer it covers the wordmark. Still not changed without sign-off, since auto-open was Bilal's explicit request in item 15, but the proposed change is narrow: suppress auto-open on `/` and `/portfolio/**`, keep the launcher button everywhere.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
