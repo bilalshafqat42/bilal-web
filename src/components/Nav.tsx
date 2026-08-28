@@ -24,6 +24,10 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const triggerRef = useRef<HTMLAnchorElement>(null);
+  // Escape closes the panel and returns focus to the trigger — but that focus
+  // would immediately re-open it. This suppresses exactly one focus-open.
+  const suppressFocusOpen = useRef(false);
 
   const headerRef = useRef<HTMLElement>(null);
   const backdropRef = useRef<HTMLDivElement>(null);
@@ -156,9 +160,37 @@ export default function Nav() {
           <nav className="hidden lg:flex items-center gap-1">
             {links.map((link) =>
               link.label === "Services" ? (
-                <div key={link.href} onMouseEnter={openServicesMenu} onMouseLeave={closeServicesMenu}>
+                <div
+                  key={link.href}
+                  onMouseEnter={openServicesMenu}
+                  onMouseLeave={closeServicesMenu}
+                  onFocus={() => {
+                    if (suppressFocusOpen.current) {
+                      suppressFocusOpen.current = false;
+                      return;
+                    }
+                    openServicesMenu();
+                  }}
+                  onBlur={(e) => {
+                    // Close only once focus has left the whole group, otherwise
+                    // tabbing between the links inside would shut the panel.
+                    if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+                      setServicesOpen(false);
+                    }
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Escape" && servicesOpen) {
+                      suppressFocusOpen.current = true;
+                      setServicesOpen(false);
+                      triggerRef.current?.focus();
+                    }
+                  }}
+                >
                   <a
+                    ref={triggerRef}
                     href={link.href}
+                    aria-expanded={servicesOpen}
+                    aria-haspopup="true"
                     className="flex items-center gap-1 px-3.5 py-2 text-sm text-muted hover:text-ink transition-colors rounded-lg hover:bg-white/5"
                   >
                     {link.label}
@@ -181,6 +213,8 @@ export default function Nav() {
                   >
                     <div
                       ref={panelRef}
+                      role="group"
+                      aria-label="Services menu"
                       className="glass-nav border-t border-border shadow-2xl shadow-black/40"
                     >
                         <div className="mx-auto max-w-7xl px-6 py-10">
@@ -259,16 +293,68 @@ export default function Nav() {
 
         {open ? (
           <div className="mt-2 lg:hidden glass-strong rounded-2xl p-4 flex flex-col gap-1">
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="px-3 py-2.5 text-sm text-muted hover:text-ink rounded-lg hover:bg-white/5"
-              >
-                {link.label}
-              </a>
-            ))}
+            {links.map((link) =>
+              link.label === "Services" ? (
+                // Services expands in place rather than linking straight out:
+                // previously none of the 28 service links were reachable at all
+                // on a phone. <details> is used deliberately — it is keyboard
+                // accessible and works without any JS state.
+                <details key={link.href} className="group rounded-lg">
+                  <summary className="flex cursor-pointer list-none items-center justify-between px-3 py-2.5 text-sm text-muted marker:hidden hover:text-ink">
+                    Services
+                    <ChevronDown size={15} className="transition-transform group-open:rotate-180" />
+                  </summary>
+                  <div className="mt-1 space-y-1 pb-2">
+                    <a
+                      href="/services"
+                      onClick={() => setOpen(false)}
+                      className="block rounded-lg px-6 py-2 text-xs font-semibold text-gold hover:bg-white/5"
+                    >
+                      All services
+                    </a>
+                    {megaMenuGroups.map((group) => (
+                      <details key={group.slug} className="group/sub">
+                        <summary className="flex cursor-pointer list-none items-center justify-between rounded-lg px-6 py-2 text-sm text-ink marker:hidden hover:bg-white/5">
+                          <span className="flex items-center gap-2">
+                            <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${accentClasses[group.accent].dot}`} />
+                            {group.title}
+                          </span>
+                          <ChevronDown size={14} className="transition-transform group-open/sub:rotate-180" />
+                        </summary>
+                        <div className="space-y-0.5 pb-1">
+                          <a
+                            href={`/services/${group.slug}`}
+                            onClick={() => setOpen(false)}
+                            className="block rounded-lg px-10 py-1.5 text-xs font-medium text-gold hover:bg-white/5"
+                          >
+                            Overview
+                          </a>
+                          {group.items.map((item) => (
+                            <a
+                              key={item.title}
+                              href={`/services/${group.slug}#${slugify(item.title)}`}
+                              onClick={() => setOpen(false)}
+                              className="block rounded-lg px-10 py-1.5 text-xs text-muted hover:text-ink hover:bg-white/5"
+                            >
+                              {item.title}
+                            </a>
+                          ))}
+                        </div>
+                      </details>
+                    ))}
+                  </div>
+                </details>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="px-3 py-2.5 text-sm text-muted hover:text-ink rounded-lg hover:bg-white/5"
+                >
+                  {link.label}
+                </a>
+              )
+            )}
             <a
               href="/contact"
               onClick={() => setOpen(false)}
