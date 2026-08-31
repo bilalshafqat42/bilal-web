@@ -737,6 +737,16 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - Verified: page returns 200, all 5 images load with **zero 404s** (the failure mode that bit this project before), no console errors, hub lists all four projects, sitemap contains the URL, structured data matches the other project pages exactly.
     - **Portfolio inventory is now 4 projects across 1 client.** Faceted category pages still gated on 3+ items per category; Tomorrow World and Choppershoot remain the unlock.
 
+83. **Typography scale lifted, then the portfolio section rebuilt as a grid (2026-08-31)** — **done.** Bilal said the site felt "old and compact" with low readability, and worried that bigger type would cost him keyword rankings.
+    - **Measured before changing anything.** 33 blocks of real selling copy were rendering at **14px**, several at **12px**, against headings at 44 and 56px. That gap is what read as compact. **Contrast was never the problem**: muted text measures **7.19:1**, which passes WCAG AA and AAA, so his theory that the gradients hurt readability was wrong.
+    - **The design-versus-SEO tension he felt does not exist.** Font size has never been a published Google ranking factor; the only typography check is a legibility audit with a floor near 12px, not a target of 18px. AI engines read the HTML and cannot see font size at all. **His real ranking problem is thin pages: service categories carry 255 to 358 words.**
+    - Scale now: **running prose 16px, supporting notes and in-card lists 14px, captions and legal 12px.** UI chrome (inputs, nav, chips, buttons, footer links) stays at 14px, which was never the issue. Also capped two centred paragraphs that ran **150 characters** per line and narrowed the hero subline from 112 to 85.
+    - **He then reported before and after "look the same".** Verified against production: live 14px vs local 16px, live 12px vs local 14px, live 16px vs local 18px. The change is real; **a 2px lift is simply felt more than seen.** Offer 17px prose if he wants it obvious.
+    - **Portfolio carousel replaced by a 2x2 grid** (ZeeFrames reference): centred heading, two columns on desktop, right column dropped 96px so the eye moves diagonally, label plus large headline under each image, and a CTA to `/portfolio`. `PortfolioCarousel.tsx` deleted; the carousel work from items 78 and 79 is retired.
+    - **One credibility fix caught by looking**: the Mobile Development card cropped a 367x5317 mobile capture to 4:3, showing only a top strip that read as a desktop page and quietly contradicted the "phone-first" headline. Now framed in portrait so it reads as a phone.
+    - Verified at 390, 1024 and 1440px: 4 cards, 2 columns on desktop and 1 on mobile, heading centred, no broken images, no overflow, no console errors.
+    - **Still open**: 57 gradients and 33 backdrop-blur surfaces on the homepage. That is the second half of the recommendation and has not been touched.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
