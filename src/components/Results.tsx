@@ -51,7 +51,7 @@ export default function Results() {
                   <div className="rounded-2xl border border-border glass p-6 h-full">
                     <s.icon size={20} className="text-gold" />
                     <p className="mt-4 font-semibold text-ink leading-snug">{s.title}</p>
-                    <p className="mt-1.5 text-sm text-muted leading-relaxed">{s.description}</p>
+                    <p className="mt-1.5 text-base text-muted leading-relaxed">{s.description}</p>
                   </div>
                 </RevealItem>
               ))}
@@ -67,7 +67,7 @@ export default function Results() {
                       <Star key={i} size={14} fill="currentColor" strokeWidth={0} />
                     ))}
                   </div>
-                  <p className="mt-4 text-sm sm:text-base text-ink/90 leading-relaxed italic">
+                  <p className="mt-4 text-base sm:text-lg text-ink/90 leading-relaxed italic">
                     &ldquo;{t.quote}&rdquo;
                   </p>
                   <div className="mt-5 flex items-center gap-3">

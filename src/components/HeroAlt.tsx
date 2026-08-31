@@ -118,7 +118,7 @@ export default function HeroAlt() {
             <h2 className="mt-4 max-w-3xl lg:max-w-4xl text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
               Strategy and execution, under one roof.
             </h2>
-            <p className="mt-4 max-w-3xl lg:max-w-4xl text-sm sm:text-base text-muted leading-relaxed">
+            <p className="mt-4 max-w-2xl lg:max-w-3xl text-base sm:text-lg text-muted leading-relaxed">
               Companies usually hire an agency for marketing, a developer for
               the website, and a freelancer for design, then manage the
               handoffs between them. I do all of it myself, paid marketing,

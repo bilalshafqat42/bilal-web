@@ -248,7 +248,7 @@ export default function PortfolioCarousel() {
                 <h3 className="text-xl sm:text-2xl font-semibold leading-tight text-ink">
                   {card.title}
                 </h3>
-                <p className="mt-2 line-clamp-2 text-sm text-muted leading-relaxed">{card.blurb}</p>
+                <p className="mt-2 line-clamp-2 text-base text-muted leading-relaxed">{card.blurb}</p>
                 <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
                   Explore
                   <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />

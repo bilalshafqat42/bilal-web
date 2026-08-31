@@ -57,7 +57,7 @@ export default function About() {
                   <p className="text-sm font-semibold text-ink">Today, I work at the intersection of:</p>
                   <ul className="mt-3 space-y-2.5">
                     {intersection.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm text-muted">
+                      <li key={item} className="flex items-start gap-2 text-base text-muted">
                         <CheckCircle2 size={15} className="mt-0.5 shrink-0 text-gold" />
                         {item}
                       </li>
@@ -68,7 +68,7 @@ export default function About() {
                   <p className="text-sm font-semibold text-ink">What I&apos;m best at:</p>
                   <ul className="mt-3 space-y-2.5">
                     {bestAt.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm text-muted">
+                      <li key={item} className="flex items-start gap-2 text-base text-muted">
                         <CheckCircle2 size={15} className="mt-0.5 shrink-0 text-gold" />
                         {item}
                       </li>

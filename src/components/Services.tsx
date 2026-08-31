@@ -44,7 +44,7 @@ export default function Services() {
                 <h3 className="relative mt-6 text-2xl sm:text-[2rem] font-semibold leading-tight text-ink">
                   {active.label}
                 </h3>
-                <p className="relative mt-3 text-sm text-muted leading-relaxed">{active.shortDescription}</p>
+                <p className="relative mt-3 text-base text-muted leading-relaxed">{active.shortDescription}</p>
 
                 <ul className="relative mt-5 flex flex-wrap gap-2">
                   {active.capabilities.map((c) => (

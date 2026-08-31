@@ -59,8 +59,8 @@ function EngagementCard({ model }: { model: Model }) {
         <model.icon size={22} />
       </div>
       <h3 className="mt-6 text-lg sm:text-xl font-semibold text-ink leading-snug">{model.title}</h3>
-      <p className="mt-3 text-sm text-muted leading-relaxed">{model.description}</p>
-      <p className="mt-4 text-xs italic text-muted/80">{model.bestFor}</p>
+      <p className="mt-3 text-base text-muted leading-relaxed">{model.description}</p>
+      <p className="mt-4 text-sm italic text-muted/80">{model.bestFor}</p>
 
       <button
         type="button"
@@ -87,7 +87,7 @@ function EngagementCard({ model }: { model: Model }) {
               </p>
               <ul className="mt-2 space-y-1.5">
                 {model.idealFor.map((b) => (
-                  <li key={b} className="text-xs text-muted flex gap-2">
+                  <li key={b} className="text-sm text-muted flex gap-2">
                     <span className="text-gold">—</span>
                     {b}
                   </li>
@@ -99,7 +99,7 @@ function EngagementCard({ model }: { model: Model }) {
               </p>
               <ul className="mt-2 space-y-1.5">
                 {model.contribute.map((b) => (
-                  <li key={b} className="text-xs text-muted flex gap-2">
+                  <li key={b} className="text-sm text-muted flex gap-2">
                     <span className="text-gold">—</span>
                     {b}
                   </li>
@@ -134,7 +134,7 @@ export default function Engagement() {
 
         <Reveal className="mt-14 text-center">
           <div>
-            <p className="text-muted">Let&apos;s discuss your goals and define the right approach.</p>
+            <p className="mx-auto max-w-xl text-muted">Let&apos;s discuss your goals and define the right approach.</p>
             <a
               href="#contact"
               className="mt-5 btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow"

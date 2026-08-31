@@ -79,7 +79,7 @@ export default function Process() {
                   <step.icon size={22} />
                 </div>
                 <h3 className="mt-6 text-lg sm:text-xl font-semibold text-ink leading-snug">{step.title}</h3>
-                <p className="mt-3 text-sm text-muted leading-relaxed">{step.description}</p>
+                <p className="mt-3 text-base text-muted leading-relaxed">{step.description}</p>
                 <ul className="mt-4 space-y-1.5">
                   {step.bullets.map((b) => (
                     <li key={b} className="text-xs text-muted flex gap-2">

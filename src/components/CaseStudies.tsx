@@ -144,13 +144,13 @@ export default function CaseStudies() {
                         <p className="text-xs font-semibold uppercase tracking-wide text-gold">
                           Business Goal
                         </p>
-                        <p className="mt-2 text-sm text-muted leading-relaxed">{c.goal}</p>
+                        <p className="mt-2 text-base text-muted leading-relaxed">{c.goal}</p>
                       </div>
                       <div>
                         <p className="text-xs font-semibold uppercase tracking-wide text-gold">
                           My Role
                         </p>
-                        <p className="mt-2 text-sm text-muted leading-relaxed">{c.role}</p>
+                        <p className="mt-2 text-base text-muted leading-relaxed">{c.role}</p>
                       </div>
                     </div>
 
@@ -160,7 +160,7 @@ export default function CaseStudies() {
                       </p>
                       <ul className="mt-3 grid sm:grid-cols-2 gap-x-6 gap-y-2">
                         {c.bullets.map((b) => (
-                          <li key={b} className="flex items-start gap-2 text-sm text-muted">
+                          <li key={b} className="flex items-start gap-2 text-base text-muted">
                             <CheckCircle2 size={15} className="mt-0.5 shrink-0 text-gold" />
                             {b}
                           </li>
@@ -172,7 +172,7 @@ export default function CaseStudies() {
                       <p className="text-xs font-semibold uppercase tracking-wide text-gold">
                         Outcome
                       </p>
-                      <p className="mt-1.5 text-sm text-ink/90 leading-relaxed">{c.outcome}</p>
+                      <p className="mt-1.5 text-base text-ink/90 leading-relaxed">{c.outcome}</p>
                     </div>
                   </div>
                 </div>

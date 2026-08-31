@@ -55,8 +55,8 @@ function AudienceCard({ audience }: { audience: Audience }) {
         <audience.icon size={22} />
       </div>
       <h3 className="mt-6 text-lg sm:text-xl font-semibold text-ink leading-snug">{audience.title}</h3>
-      <p className="mt-3 text-sm text-muted leading-relaxed">{audience.description}</p>
-      <p className="mt-4 text-xs italic text-muted/80 flex-1">{audience.note}</p>
+      <p className="mt-3 text-base text-muted leading-relaxed">{audience.description}</p>
+      <p className="mt-4 text-sm italic text-muted/80 flex-1">{audience.note}</p>
 
       <button
         type="button"
@@ -113,7 +113,7 @@ export default function WhoIWorkWith() {
 
         <Reveal className="mt-14 text-center">
           <div>
-            <p className="text-muted">Let&apos;s discuss your goals and find the right engagement model.</p>
+            <p className="mx-auto max-w-xl text-muted">Let&apos;s discuss your goals and find the right engagement model.</p>
             <a
               href="#contact"
               className="mt-5 btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow"
