@@ -121,7 +121,7 @@ export default function Process() {
                   className="flex gap-5 sm:gap-7"
                 >
                   <span
-                    className={`w-7 shrink-0 pt-1 text-right font-display text-sm tabular-nums transition-colors duration-500 ${
+                    className={`w-7 shrink-0 pt-2.5 text-right font-display text-sm tabular-nums transition-colors duration-500 ${
                       on ? "text-ink" : "text-muted/50"
                     }`}
                   >
@@ -133,14 +133,14 @@ export default function Process() {
                       step exactly however tall that step happens to be. */}
                   <div
                     className={`w-px shrink-0 transition-colors duration-500 ${
-                      on ? "bg-gold" : "bg-border"
+                      on ? "bg-gold" : "bg-white/20"
                     }`}
                   />
 
                   <div
-                    className={`pb-14 pl-1 transition-opacity duration-500 last:pb-0 ${
-                      on ? "opacity-100" : "opacity-45"
-                    }`}
+                    className={`pl-1 transition-opacity duration-500 ${
+                      i === steps.length - 1 ? "pb-0" : "pb-20 sm:pb-28"
+                    } ${on ? "opacity-100" : "opacity-45"}`}
                   >
                     <h3
                       className={`text-3xl font-semibold leading-tight transition-colors duration-500 sm:text-4xl ${
@@ -149,7 +149,7 @@ export default function Process() {
                     >
                       {s.title}
                     </h3>
-                    <p className="mt-2 text-lg text-muted">{s.subtitle}</p>
+                    <p className="mt-3 text-lg text-muted">{s.subtitle}</p>
 
                     {/* On mobile there is no room for a sticky column, so each
                         step carries its own image inline instead. */}
