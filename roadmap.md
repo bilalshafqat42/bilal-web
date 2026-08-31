@@ -750,6 +750,15 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - Verified at 390, 1024 and 1440px: 4 cards, 2 columns on desktop and 1 on mobile, heading centred, no broken images, no overflow, no console errors.
     - **Still open**: 57 gradients and 33 backdrop-blur surfaces on the homepage. That is the second half of the recommendation and has not been touched.
 
+84. **Process section rebuilt as a sticky scroll walkthrough (2026-08-31)** — **done.** Bilal supplied ZeeFrames screenshots and asked for the numbered steps, the changing image and the sticky scrolling.
+    - Four cards in a row replaced by a two-column layout: numbered steps down the left, one image pinned on the right that swaps as each step reaches the middle of the viewport. Active step is full white with a gold rail segment; the rest sit at 45% opacity.
+    - **`position: sticky`, not a GSAP pin.** No scroll listener, nothing to desynchronise, and it never takes page scroll hostage. Given how much trouble pinned ScrollTriggers caused in items 71, 77 and 79, this is the pattern to reach for first from now on.
+    - Active step tracked by **IntersectionObserver with `rootMargin: -48% 0 -48% 0`**, which collapses the root to a thin band across the viewport centre so exactly one step qualifies at a time and the image has a single source of truth.
+    - The rail is **one border per step** rather than one line behind the column, so the lit segment always matches the active step whatever its height.
+    - Mobile has no room for a sticky column, so each step carries its own image inline (`lg:hidden`) and the sticky column is hidden. Verified sequence **0 to 1 to 2 to 3** scrolling down and **3 to 2 to 1 to 0** scrolling back up.
+    - **A measurement trap worth remembering**: the pre-deploy check reported "4 broken images". They were the mobile inline set at `display: none` on desktop, never fetched, with **zero HTTP failures**. `naturalWidth === 0` means "not loaded", not "broken" — a hidden image looks identical to a failed one unless you also check visibility.
+    - **Images are the weak part and Bilal should replace them.** They are real project work but only loosely match the step (property renders standing in for "Understand the Brief"). The component is data-driven, so swapping `image` and `alt` on a step is the whole change.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
