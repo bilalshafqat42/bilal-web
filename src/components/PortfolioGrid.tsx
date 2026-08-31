@@ -2,43 +2,61 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 
-// Four disciplines rather than four clients. The label names the discipline and
-// the headline says what the work actually does, which is the pairing that
-// makes a grid like this readable at a glance.
-const cards = [
+type Card = {
+  label: string;
+  headline: string;
+  client: string;
+  deliverable: string;
+  href: string;
+  image: string;
+  alt: string;
+  /** Tall phone captures are framed rather than cropped, see below. */
+  portrait?: boolean;
+};
+
+// Each card links to the case study that proves it, not to the service page
+// that sells it. Someone clicking a piece of work wants to see the work.
+const cards: Card[] = [
   {
     label: "Social Media Marketing",
     headline: "Campaign and brand creative that runs paid and organic without drifting off-brand.",
-    href: "/services/social-media-marketing",
+    client: "LEOS Developments",
+    deliverable: "Brand and campaign creative",
+    href: "/portfolio/leos-developments",
     image: "/portfolio/leos/social-media/1.avif",
     alt: "Award-winner social creative for LEOS Developments over a residential high-rise",
   },
   {
     label: "App Development",
     headline: "High-converting Next.js builds, engineered around the campaigns that feed them.",
-    href: "/services/website-app-development",
+    client: "Hadley Heights",
+    deliverable: "Launch landing page",
+    href: "/portfolio/leos-developments/hadley-heights",
     image: "/portfolio/leos/hadley-heights/landing-page/hadley-heights-landing-page.avif",
     alt: "Hadley Heights lead capture landing page",
   },
   {
     label: "Mobile Development",
     headline: "Phone-first interfaces, not desktop layouts squeezed down to fit.",
-    href: "/services/website-app-development",
+    client: "Weybridge Gardens 2",
+    deliverable: "Mobile landing page",
+    href: "/portfolio/leos-developments/weybridge-gardens-2",
     image: "/portfolio/leos/weybridge-gardens-2/landing-page/weybridge-mobile.avif",
     alt: "Weybridge Gardens 2 mobile landing page",
-    // A 367x5317 capture cropped to 4:3 shows only the top strip, which reads
-    // as any desktop page and quietly contradicts the phone-first claim.
-    // Framed in portrait it reads as what it is.
+    // A 367x5317 capture cropped to a landscape box shows only a top strip that
+    // reads as a desktop page, contradicting the headline above it.
     portrait: true,
   },
   {
     label: "UI/UX Design",
     headline: "Interface work judged on how it is used, handed straight into development.",
-    href: "/services/ui-ux-design",
+    client: "LEOS Developments",
+    deliverable: "Corporate website",
+    href: "/portfolio/leos-developments",
     image: "/portfolio/leos/landing-page/leos-landing-page.avif",
     alt: "LEOS Developments corporate website interface",
   },
@@ -48,8 +66,6 @@ export default function PortfolioGrid() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const [cursorOn, setCursorOn] = useState(false);
 
-  // Cursor follows in a rAF-free direct write: it is a transform on a fixed
-  // element, so there is no layout cost and no need to throttle.
   const onMove = (e: React.MouseEvent) => {
     const c = cursorRef.current;
     if (c) c.style.transform = `translate(${e.clientX - 56}px, ${e.clientY - 56}px)`;
@@ -71,47 +87,72 @@ export default function PortfolioGrid() {
           description="Every piece here is work that shipped, not a concept."
         />
 
-        {/* Two per row on desktop, one on mobile. The right-hand column is
-            dropped down so the eye moves diagonally instead of scanning two
-            flat rows, which is what stops a four-item grid looking like a
-            spreadsheet. */}
-        <div className="mt-16 grid gap-x-8 gap-y-14 lg:grid-cols-2 lg:gap-x-12">
-          {cards.map((card, i) => (
-            <Reveal key={card.label} className={i % 2 === 1 ? "lg:mt-24" : ""}>
-              <a href={card.href} className="group block">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border bg-surface/40">
-                  {card.portrait ? (
-                    <div className="flex h-full items-center justify-center p-6">
-                      <div className="relative h-full w-[34%] overflow-hidden rounded-[1.25rem] border border-white/10 shadow-2xl shadow-black/50">
-                        <Image
-                          src={card.image}
-                          alt={card.alt}
-                          fill
-                          sizes="180px"
-                          className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
-                        />
+        {/* items-stretch plus h-full on the card is what makes the four equal
+            height: the grid row sizes to the tallest, and each card fills it
+            rather than sitting at its own content height. */}
+        <div className="mt-16 grid items-stretch gap-6 sm:grid-cols-2 lg:gap-8">
+          {cards.map((card) => (
+            <Reveal key={card.label + card.client} className="h-full">
+              <a href={card.href} className="group flex h-full flex-col">
+                <article className="card-hover flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface/30 transition-colors group-hover:border-gold/35">
+                  <div className="relative aspect-[16/10] shrink-0 overflow-hidden bg-bg">
+                    {card.portrait ? (
+                      <div className="flex h-full items-center justify-center p-5">
+                        <div className="relative h-full w-[30%] overflow-hidden rounded-xl border border-white/10 shadow-2xl shadow-black/60">
+                          <Image
+                            src={card.image}
+                            alt={card.alt}
+                            fill
+                            sizes="170px"
+                            className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.05]"
+                          />
+                        </div>
                       </div>
+                    ) : (
+                      <Image
+                        src={card.image}
+                        alt={card.alt}
+                        fill
+                        sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 41vw"
+                        className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.05]"
+                      />
+                    )}
+                    {/* These are full-page captures cropped to a landscape box,
+                        so the crop lands mid-section and often on a white band.
+                        A scrim in the card's own colour turns that hard cut into
+                        a fade, which reads as intentional rather than clipped. */}
+                    {!card.portrait ? (
+                      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-bg to-transparent" />
+                    ) : null}
+                    <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/55 px-3 py-1.5 text-xs font-medium uppercase tracking-wide text-white/90 backdrop-blur-sm">
+                      {card.label}
+                    </span>
+                  </div>
+
+                  {/* flex-1 on the body and mt-auto on the footer row keep the
+                      "View case study" line on the same baseline in every card,
+                      however many lines the headline runs to. */}
+                  <div className="flex flex-1 flex-col p-6 sm:p-7">
+                    <h3 className="text-xl font-semibold leading-snug text-ink sm:text-2xl">
+                      {card.headline}
+                    </h3>
+                    <div className="mt-auto flex items-end justify-between gap-4 pt-6">
+                      <div className="min-w-0">
+                        <p className="truncate text-base font-medium text-ink/90">{card.client}</p>
+                        <p className="mt-0.5 truncate text-sm text-muted">{card.deliverable}</p>
+                      </div>
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border text-muted transition-colors group-hover:border-gold/40 group-hover:bg-gold/10 group-hover:text-gold">
+                        <ArrowUpRight size={17} />
+                      </span>
                     </div>
-                  ) : (
-                    <Image
-                      src={card.image}
-                      alt={card.alt}
-                      fill
-                      sizes="(max-width: 1024px) 92vw, 42vw"
-                      className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
-                    />
-                  )}
-                </div>
-                <p className="mt-6 text-base text-muted">{card.label}</p>
-                <h3 className="mt-2 max-w-xl text-2xl font-semibold leading-snug text-ink transition-colors sm:text-[1.75rem] group-hover:text-gold">
-                  {card.headline}
-                </h3>
+                  </div>
+                </article>
               </a>
             </Reveal>
           ))}
         </div>
 
-        <Reveal className="mt-20 text-center">
+        <Reveal className="mt-16 text-center">
           <div>
             <a
               href="/portfolio"
@@ -134,9 +175,9 @@ export default function PortfolioGrid() {
           cursorOn ? "opacity-100" : "opacity-0"
         }`}
       >
-        Read
+        View
         <br />
-        more
+        work
       </div>
     </section>
   );
