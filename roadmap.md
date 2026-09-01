@@ -806,6 +806,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - Removing the tween left `HeroAlt.tsx` with **no hooks and no event handlers**, so `"use client"` came off and it is a server component again. That is the whole panel out of the client bundle.
     - The expand is recoverable from git (item 89) if he wants it back.
 
+91. **Panel composition fixed after a side-by-side review (2026-09-01)** — **done.** Bilal asked which of the two versions read as more modern and professional, and to apply the better one properly.
+    - **Verdict given: the asymmetric version, clearly.** The centred version put chip, heading, paragraph, chips and photo on one axis, which reads as template-built; it carried **no call to action at all**; its four chips broke 3 + 1 with an orphan; and "Strategy and execution, under one roof" is a slogan where "Paid marketing, development and design, based in Dubai" is a positioning statement that names the disciplines and the city, which is also the only one of the two an AI or search engine can use to answer a location query.
+    - **But the old version had better copy**, and that was a real loss worth reversing. "Companies usually hire an agency for marketing, a developer for the website, and a freelancer for design, then manage the handoffs" names the buyer's problem before offering the fix. Restored.
+    - **The measured flaw in the new version**: text columns were **334px each with 417px of dead space between them**, because the portrait at 56% of the card pushed them to the edges. That is what forced a 3.4rem headline onto four cramped lines.
+    - Fixed by narrowing the portrait to **42.7%** (`background-size: cover` means a narrower box crops the dark surround rather than shrinking him, so he stays the same scale) and rebalancing the grid so the headline gets the wider column: headline **433px**, intro **355px**, dead centre down to **298px**.
+    - Headline still breaks to four lines, with "Dubai" alone in gold on the last. Left as is: at 3.4rem, two lines would need a ~730px column, which is impossible alongside a centred portrait, and the isolated gold city reads as a deliberate accent rather than a wrap.
+    - Verified: fits at 1280x800, 1440x900 and 1920x1080 with 315 to 563px headroom, mobile stacks, no overflow, no console errors, 21 routes still 200.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

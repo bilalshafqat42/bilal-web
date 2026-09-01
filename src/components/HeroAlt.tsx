@@ -94,7 +94,7 @@ export default function HeroAlt() {
           <div
             role="img"
             aria-label="Portrait of Bilal Shafqat"
-            className="pointer-events-none absolute inset-x-0 bottom-0 z-10 mx-auto hidden h-[82%] w-[61%] max-w-2xl lg:block"
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-10 mx-auto hidden h-[82%] w-[44%] max-w-lg lg:block"
             style={{
               backgroundImage: "url(/images/bilal-shirt.avif)",
               backgroundSize: "cover",
@@ -116,8 +116,8 @@ export default function HeroAlt() {
 
             {/* Three columns with an empty middle: the portrait shows through
                 the gap rather than sitting behind the text. */}
-            <div className="mt-10 grid flex-1 grid-cols-1 gap-8 lg:mt-14 lg:grid-cols-[1fr_34%_1fr] lg:gap-6">
-              <div className="max-w-xl">
+            <div className="mt-10 grid flex-1 grid-cols-1 gap-8 lg:mt-14 lg:grid-cols-[1.4fr_minmax(0,23%)_1.15fr] lg:gap-6">
+              <div className="max-w-2xl">
                 <h2 className="text-4xl font-bold leading-[1.06] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
                   Paid marketing, development and design, based in{" "}
                   <span className="text-gradient">Dubai</span>
@@ -136,10 +136,10 @@ export default function HeroAlt() {
 
               <div className="lg:justify-self-end lg:text-right">
                 <p className="max-w-sm text-base leading-relaxed text-muted lg:ml-auto">
-                  Hi, I&apos;m Bilal Shafqat. I run the paid campaigns, build the
-                  websites and apps they point at, and design the creative around
-                  them, so you brief one senior partner instead of managing three
-                  suppliers.
+                  Companies usually hire an agency for marketing, a developer for
+                  the website, and a freelancer for design, then spend their own
+                  time managing the handoffs between them. I do all four myself,
+                  so you brief one senior partner instead of three suppliers.
                 </p>
                 <a
                   href="/portfolio"
