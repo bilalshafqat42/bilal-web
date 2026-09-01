@@ -821,6 +821,16 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - `gsap.matchMedia` keeps it to desktop with motion allowed. Mobile, tablet and reduced motion all measured at y 0 and opacity 1, so nothing is dimmed or displaced for them.
     - `HeroAlt` goes back to a client component for this, having been a server component since item 90.
 
+93. **Portfolio showcase: expanding carousel on the Oura pattern (2026-09-01)** — **done.** Bilal shared Oura's "Why Oura" carousel and asked for cards that expand on hover to reveal detail.
+    - Four disciplines, the ones he named: Web Design, Web App Development, Mobile App Development, Social Media. Collapsed they sit at equal width (**291px** each); the open one takes **527px** while the others give up space to **212px**.
+    - **Width driven by `flex-grow`, a plain number**, so CSS interpolates it cleanly. This is the lesson from item 88 applied deliberately: never leave a non-animatable keyword at either end of a transition.
+    - **Detail panel height animated with a `grid-template-rows: 0fr` to `1fr` row.** Animating `max-height` from 0 needs a known end value, which variable-length copy does not have; a grid row animates to the content's own height. Measured 0 to **186px**.
+    - **Hover is not the only way in.** Each card carries a real `+` / `×` button with `aria-expanded`, focus opens a card (verified by keyboard), and the arrows under the row move which card is open, which is what gives arrows a job on a row that already fits on screen.
+    - **Two flaws caught by looking at the render, not the numbers.** Five cards left collapsed width at **163px**, where headlines wrapped to five lines: cut to four and added a short collapsed headline separate from the full one. And "Mobile App Development" in the pill ran underneath the `+` button: pills now carry short labels with the full discipline name in the status line under the row, plus a `max-w` and `truncate` as a backstop. Verified none truncate or overlap.
+    - Below `lg` there is nothing to expand sideways into, so the cards become a snap-scrolling row with the detail always visible.
+    - **Replaces `PortfolioGrid` on the homepage** rather than sitting alongside it. Same four disciplines in two sections would compete; the grid is in git history if Bilal wants it back.
+    - Verified at 1440x900, 1024x800, 768x1024 and 390x844: correct variant at each, 4 cards, no overflow, no broken images, no console errors, 21 routes still 200.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

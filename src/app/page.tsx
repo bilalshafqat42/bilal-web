@@ -1,7 +1,7 @@
 import Nav from "@/components/Nav";
 import HeroAlt from "@/components/HeroAlt";
 import Services from "@/components/Services";
-import PortfolioGrid from "@/components/PortfolioGrid";
+import PortfolioShowcase from "@/components/PortfolioShowcase";
 import AskAssistant from "@/components/AskAssistant";
 import LogoWall from "@/components/LogoWall";
 import Process from "@/components/Process";
@@ -18,7 +18,7 @@ export default function Home() {
       <main className="flex-1">
         <HeroAlt />
         <Services />
-        <PortfolioGrid />
+        <PortfolioShowcase />
         <LogoWall />
         <Process />
         <WhoIWorkWith />
