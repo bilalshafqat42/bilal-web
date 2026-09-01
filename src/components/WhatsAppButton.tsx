@@ -203,20 +203,25 @@ export default function WhatsAppButton() {
         "noopener,noreferrer"
       );
 
-      fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...nextAnswers,
-          message: `Requested via WhatsApp assistant — service: ${nextAnswers.service}`,
-          source: "whatsapp-chat",
-          attribution: getAttribution(),
-        }),
-      })
-        .then((r) => {
-          if (r.ok) trackLead("whatsapp-chat", nextAnswers.service);
+      {
+        const eventId = generateEventId();
+        fetch("/api/lead", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ...nextAnswers,
+            message: `Requested via WhatsApp assistant — service: ${nextAnswers.service}`,
+            source: "whatsapp-chat",
+            attribution: getAttribution(),
+            eventId,
+            ...getFacebookCookies(),
+          }),
         })
-        .catch(() => {});
+          .then((r) => {
+            if (r.ok) trackLead("whatsapp-chat", nextAnswers.service, eventId);
+          })
+          .catch(() => {});
+      }
 
       setTyping(true);
       setTimeout(() => {
@@ -268,6 +273,7 @@ export default function WhatsAppButton() {
     );
 
     if (answers.name && answers.email) {
+      const eventId = generateEventId();
       fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -276,10 +282,12 @@ export default function WhatsAppButton() {
           message: "Requested via WhatsApp assistant — skipped ahead to chat directly",
           source: "whatsapp-chat-skip",
           attribution: getAttribution(),
+          eventId,
+          ...getFacebookCookies(),
         }),
       })
         .then((r) => {
-          if (r.ok) trackLead("whatsapp-chat", answers.service);
+          if (r.ok) trackLead("whatsapp-chat", answers.service, eventId);
         })
         .catch(() => {});
     }
