@@ -1,22 +1,26 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
 # AI crawlers — explicitly welcomed
 User-agent: GPTBot
 Allow: /
+Disallow: /api/
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /api/
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /api/
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /api/
 
 User-agent: CCBot
 Allow: /
-
 Disallow: /api/
 
 Sitemap: https://bilalshafqat.com/sitemap.xml

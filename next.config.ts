@@ -12,6 +12,15 @@ const nextConfig: NextConfig = {
       // so there is no single successor. The hub lists all four, which makes it a
       // genuine destination rather than a soft 404.
       { source: "/services/design-content-conversion", destination: "/services", permanent: true },
+      // WordPress service URLs with an exact successor. These carry commercial
+      // intent and a direct equivalent exists, so a 308 sends both the searcher
+      // and the ranking history somewhere genuinely relevant.
+      { source: "/contact-us", destination: "/contact", permanent: true },
+      { source: "/web-application-development", destination: "/services/website-app-development", permanent: true },
+      { source: "/ui-ux-design", destination: "/services/ui-ux-design", permanent: true },
+      // "Web design" intent is covered by the UI/UX page, which includes web and
+      // mobile interface work.
+      { source: "/web-design", destination: "/services/ui-ux-design", permanent: true },
       // Deliberately NOT redirecting /training or the course URLs. Bilal has
       // stopped offering training, and pointing a tutorial-intent URL at a
       // marketing page is a soft 404 — Google treats it as a poor match and it
