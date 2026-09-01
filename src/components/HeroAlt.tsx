@@ -25,29 +25,44 @@ export default function HeroAlt() {
   useGSAP(
     () => {
       if (!frameRef.current) return;
-      // Starts at 8 of the 12 columns and grows to full bleed as the panel
-      // climbs towards the navbar. Tied to the panel's own travel rather than a
-      // pixel distance, so it finishes exactly as it reaches the top whatever
-      // the viewport height.
-      const tween = gsap.fromTo(
-        frameRef.current,
-        { width: "66.6667%", borderRadius: "1.75rem" },
-        {
-          width: "100%",
-          borderRadius: "0px",
-          ease: "none",
-          scrollTrigger: {
-            trigger: frameRef.current,
-            start: "top bottom",
-            end: "top top",
-            scrub: 0.5,
-            invalidateOnRefresh: true,
-          },
-        }
-      );
-      return () => {
-        tween.scrollTrigger?.kill();
-      };
+      const mm = gsap.matchMedia();
+
+      // Desktop only. Below lg the panel stays full width, because starting a
+      // phone at 10 of 12 columns just wastes the screen.
+      mm.add("(min-width: 1024px)", () => {
+        // 10 of the 12 columns to start, reaching all 12 at 70% of the panel's
+        // climb towards the navbar. `end: "top 30%"` is that 70% point: the
+        // travel runs from the panel's top at the viewport bottom to its top at
+        // the viewport top, so stopping at 30% down finishes it seven tenths of
+        // the way through and holds full bleed for the rest.
+        const tween = gsap.fromTo(
+          frameRef.current,
+          { width: "83.3333%", borderRadius: "1.75rem" },
+          {
+            width: "100%",
+            borderRadius: "0px",
+            ease: "none",
+            scrollTrigger: {
+              // Starts at the very top of the page rather than when the panel
+              // enters the viewport. The hero above it is shorter than one
+              // screen, so the panel is already partway up on load; triggering
+              // on its entry meant it was never actually seen at 10 columns.
+              trigger: heroRef.current,
+              start: "top top",
+              endTrigger: frameRef.current,
+              end: "top 30%",
+              scrub: 0.5,
+              invalidateOnRefresh: true,
+            },
+          }
+        );
+        return () => {
+          tween.scrollTrigger?.kill();
+          tween.kill();
+        };
+      });
+
+      return () => mm.revert();
     },
     { scope: heroRef }
   );
@@ -107,7 +122,10 @@ export default function HeroAlt() {
           ref={frameRef}
           className="glass-strong relative mx-auto overflow-hidden"
           style={{
-            width: "66.6667%",
+            // Full width is the base, so phones use the whole screen. On
+            // desktop the scroll tween's `from` state pulls this back to 10 of
+            // 12 columns as soon as it renders.
+            width: "100%",
             // Tall enough to hold the whole composition, capped so it still
             // leaves room for the section below on a short laptop screen.
             height: "min(88vh, 900px)",

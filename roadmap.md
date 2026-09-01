@@ -795,6 +795,12 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - `gsap.matchMedia` keeps the width morph desktop-only (mobile stays full width) and gives reduced motion the end state without the scroll-linked scrub. The now-dead `scrolled` state was removed.
     - **Pattern worth keeping**: when a CSS transition "does not animate", check whether one end of the property is a non-interpolatable keyword (`auto`, `none`, `fit-content`) before assuming the transition is missing.
 
+89. **Panel expand retimed to 10 columns and a 70% completion point (2026-09-01)** — **done.** Bilal asked for 10 of 12 columns to start, reaching 12 when the panel is 70% open.
+    - `end: "top 30%"` is the 70% mark: the travel runs from the panel's top at the viewport bottom to its top at the viewport top, so stopping 30% down finishes it seven tenths through and holds full bleed for the rest.
+    - **Two corrections the measurements forced.** First, triggering on the panel's own entry meant it was **never seen at 10 columns**: the hero above it is shorter than one screen, so on load the panel was already 44% through its travel and rendering at 90.7%. The trigger now starts at the top of the page (`trigger: heroRef, start: "top top"`) with `endTrigger` on the panel, so load position is exactly 83.3%.
+    - Second, putting `width: 83.3333%` in the markup left **phones sitting at 83.3% with wasted margins**, since the tween is desktop-only. Full width is now the base and the desktop tween's `from` state supplies the 10-column start, which `fromTo` applies immediately at progress 0.
+    - Verified: 83.3% on load and 100% at the 70% point at 1024x768, 1280x800, 1440x900 and 1920x1080; tablet and mobile stay full width throughout; no overflow, no console errors.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
