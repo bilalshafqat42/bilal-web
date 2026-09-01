@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight, Plus, X } from "lucide-react";
 import SectionHeading from "./SectionHeading";
@@ -74,33 +74,100 @@ const slides: Slide[] = [
     image: "/portfolio/leos/social-media/1.avif",
     alt: "Award-winner social creative for LEOS Developments",
   },
+  {
+    label: "UI/UX Design",
+    full: "UI/UX Design",
+    short: "Judged on use",
+    headline: "Interfaces judged on how they are used",
+    detail:
+      "Compact-unit launch for 138 homes in Jumeirah Village Triangle, with the page answering what a first-purchase buyer asks in the order they ask it.",
+    client: "Cavendish Square",
+    href: "/portfolio/leos-developments/cavendish-square",
+    image: "/portfolio/leos/cavendish/landing-page/cavendish-web.avif",
+    alt: "Cavendish Square landing page",
+  },
+  {
+    label: "Brand & Graphic",
+    full: "Graphic Design & Branding",
+    short: "On-brand, every time",
+    headline: "Brand work that holds across every channel",
+    detail:
+      "Campaign creative built from the same brand rules as the website and the sales material, so a buyer sees one company rather than three suppliers.",
+    client: "Hadley Heights",
+    href: "/portfolio/leos-developments/hadley-heights",
+    image: "/portfolio/leos/hadley-heights/social-media/1.avif",
+    alt: "Hadley Heights campaign creative",
+  },
+  {
+    label: "Paid Marketing",
+    full: "Paid Marketing & Lead Generation",
+    short: "Spend that reports back",
+    headline: "Campaigns measured on pipeline, not impressions",
+    detail:
+      "Tracking goes in before spend starts, so performance comes back as cost per lead and cost per acquisition rather than clicks and reach.",
+    client: "Weybridge Gardens",
+    href: "/portfolio/leos-developments/weybridge-gardens",
+    image: "/portfolio/leos/weybridge-gardens/landing-page/weybridge-gardens-landing-page.avif",
+    alt: "Weybridge Gardens launch landing page",
+  },
 ];
 
+const COLLAPSED = 300;
+const EXPANDED = 640;
+
 export default function PortfolioShowcase() {
-  // -1 means nothing is expanded, so all cards sit at equal width.
+  // -1 means nothing is expanded, so every card sits at its collapsed width.
   const [active, setActive] = useState(-1);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
+
+  // Seven cards will not fit on any screen, so the row scrolls rather than
+  // dividing a fixed width between them. That is also what the reference does:
+  // cards run off both edges and the arrows move along the row.
+  const syncEdges = useCallback(() => {
+    const t = trackRef.current;
+    if (!t) return;
+    setAtStart(t.scrollLeft <= 4);
+    setAtEnd(t.scrollLeft >= t.scrollWidth - t.clientWidth - 4);
+  }, []);
+
+  useEffect(() => {
+    const t = trackRef.current;
+    if (!t) return;
+    syncEdges();
+    t.addEventListener("scroll", syncEdges, { passive: true });
+    window.addEventListener("resize", syncEdges);
+    return () => {
+      t.removeEventListener("scroll", syncEdges);
+      window.removeEventListener("resize", syncEdges);
+    };
+  }, [syncEdges]);
 
   const step = (dir: 1 | -1) => {
-    setActive((current) => {
-      if (current === -1) return dir === 1 ? 0 : slides.length - 1;
-      return (current + dir + slides.length) % slides.length;
-    });
+    const t = trackRef.current;
+    if (!t) return;
+    const gap = parseFloat(getComputedStyle(t).columnGap || "12");
+    t.scrollBy({ left: dir * (COLLAPSED + gap), behavior: "smooth" });
   };
 
   return (
-    <section id="showcase" className="relative py-20 sm:py-24">
+    <section id="showcase" className="relative overflow-hidden py-20 sm:py-24">
       <div className="site-container">
         <SectionHeading
           eyebrow="Explore By Discipline"
-          title="Four Ways I Can"
+          title="Seven Ways I Can"
           highlight="Help You"
           description="Open a card to see how each discipline actually gets used on a project. Every one links to the case study behind it."
         />
+      </div>
 
-        {/* Desktop: one flex row where the open card takes the space the others
-            give up. flex-grow is a plain number, so it interpolates cleanly in
-            CSS with no risk of a non-animatable keyword at either end. */}
-        <div className="mt-14 hidden gap-3 lg:flex lg:h-[clamp(420px,58vh,600px)]">
+      {/* Full bleed. Cards run off both edges, which is what signals there is
+          more of the row than the screen can show. */}
+      <div
+        ref={trackRef}
+        className="no-scrollbar mt-14 hidden snap-x gap-3 overflow-x-auto px-6 scroll-pl-6 lg:flex lg:h-[clamp(420px,58vh,600px)]"
+      >
           {slides.map((s, i) => {
             const open = i === active;
             return (
@@ -109,11 +176,10 @@ export default function PortfolioShowcase() {
                 onMouseEnter={() => setActive(i)}
                 onFocus={() => setActive(i)}
                 style={{
-                  flexGrow: open ? 2.5 : 1,
-                  flexBasis: 0,
-                  transition: "flex-grow 650ms cubic-bezier(0.22, 1, 0.36, 1)",
+                  width: open ? EXPANDED : COLLAPSED,
+                  transition: "width 650ms cubic-bezier(0.22, 1, 0.36, 1)",
                 }}
-                className="group relative min-w-0 overflow-hidden rounded-2xl border border-border bg-bg"
+                className="group relative shrink-0 snap-start overflow-hidden rounded-2xl border border-border bg-bg"
               >
                 {s.portrait ? (
                   <div className="absolute inset-0 flex items-center justify-center bg-surface/40 p-6">
@@ -190,37 +256,41 @@ export default function PortfolioShowcase() {
                 </div>
               </article>
             );
-          })}
-        </div>
+        })}
+      </div>
 
-        {/* Rule and controls, matching the reference. The arrows move which card
-            is open, which is what makes them useful on a row that already fits
-            on screen. */}
+      <div className="site-container">
+        {/* Rule and controls. The arrows move along the row, and disable at each
+            end so they never look active with nowhere to go. */}
         <div className="mt-8 hidden items-center gap-6 border-t border-border pt-6 lg:flex">
           <p className="flex-1 text-sm text-muted">
-            {active === -1 ? "Four disciplines, one supplier." : slides[active].full}
+            {active === -1 ? "Seven disciplines, one supplier." : slides[active].full}
           </p>
           <div className="flex items-center gap-2">
             <button
               onClick={() => step(-1)}
-              aria-label="Previous discipline"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-ink transition-colors hover:border-gold/40 hover:bg-white/5"
+              disabled={atStart}
+              aria-label="Scroll left"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-ink transition-colors hover:border-gold/40 hover:bg-white/5 disabled:opacity-30 disabled:hover:border-border disabled:hover:bg-transparent"
             >
               <ArrowLeft size={17} />
             </button>
             <button
               onClick={() => step(1)}
-              aria-label="Next discipline"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-ink transition-colors hover:border-gold/40 hover:bg-white/5"
+              disabled={atEnd}
+              aria-label="Scroll right"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-ink transition-colors hover:border-gold/40 hover:bg-white/5 disabled:opacity-30 disabled:hover:border-border disabled:hover:bg-transparent"
             >
               <ArrowRight size={17} />
             </button>
           </div>
         </div>
 
-        {/* Below lg there is no room to expand anything sideways, so the cards
-            become a swipeable row with the detail always shown. */}
-        <div className="no-scrollbar mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 lg:hidden">
+      </div>
+
+      {/* Below lg there is no room to expand anything sideways, so the cards
+          become a swipeable row with the detail always shown. */}
+      <div className="no-scrollbar mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 scroll-pl-6 pb-2 lg:hidden">
           {slides.map((s) => (
             <a
               key={s.label}
@@ -248,8 +318,7 @@ export default function PortfolioShowcase() {
                 </span>
               </div>
             </a>
-          ))}
-        </div>
+        ))}
       </div>
     </section>
   );

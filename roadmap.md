@@ -832,6 +832,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Note on my own judgement here**: he said "add", and I replaced. Reading past the instruction to what I thought was the better page cost a round trip. When an instruction is unambiguous, follow it and raise the concern separately.
     - Verified at 1440x900, 1024x800, 768x1024 and 390x844: correct variant at each, 4 cards, no overflow, no broken images, no console errors, 21 routes still 200.
 
+94. **Showcase gone full bleed with seven cards, plus an appointment page (2026-09-01)** — **done.**
+    - **Seven cards will not divide a fixed width**: at seven, `flex-grow` left collapsed cards at 133px. Rebuilt as a **full-bleed scrolling row** with fixed widths (**300px** collapsed, **640px** open) and arrows that move along the row, which is what the Oura reference actually does. Track measures 1440px against a 1440px viewport.
+    - **The scroll-padding trap again, third time in this project.** `snap-x` with `px-6` left `scrollLeft` at **24** when the row was visually at its start, so the Previous arrow never disabled. `scroll-pl-6` fixes it: `scrollLeft` 0, Previous correctly disabled. **In a snap container, scroll-padding must match padding.**
+    - **New `/appointment` page** on a booking-consultant reference, in his palette: full-bleed portrait, "Taking work now" badge, large gradient headline, three reassurance lines, and a glass booking panel with a scrollable day strip, an 18-slot time grid (09:00 to 17:30 GST), topic select and name/email.
+    - **Days are Monday to Friday only**, matching the UAE working week — verified no weekend dates are ever offered. Added to `sitemap.ts`, since pages shipping live but undiscoverable has bitten this project before.
+    - **Framed honestly as a request, not a confirmed booking.** There is no calendar integration, so the page cannot know real availability. It submits to `/api/lead` with the chosen slot in the message and says plainly that Bilal confirms by email. Claiming a confirmed booking would be a lie the site cannot back.
+    - **A mobile overflow bug worth remembering**: the left column sized to **762px inside a 342px container**. Cause was the day strip, a flex row of ten `shrink-0` buttons: `overflow-x-auto` does **not** reduce a flex container's min-content, so the 712px total propagated up through the grid. `min-w-0` on the strip fixed it. **My overflow checker missed this entirely because the section has `overflow-hidden`, so content was clipped rather than scrollable and `scrollWidth` never exceeded the viewport.** Checker now compares element rects against the viewport, not just document scrollWidth.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

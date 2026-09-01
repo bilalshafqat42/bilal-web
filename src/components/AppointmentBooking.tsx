@@ -1,0 +1,269 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import Image from "next/image";
+import { ArrowRight, Check, ChevronRight, Loader2 } from "lucide-react";
+import { getAttribution } from "@/lib/attribution";
+
+type Status = "idle" | "submitting" | "success" | "error";
+
+/** Monday to Friday only, matching the UAE working week. Starts from today if
+ *  today is a working day, otherwise from the next one. */
+function workingDays(count: number) {
+  const out: Date[] = [];
+  const cursor = new Date();
+  cursor.setHours(0, 0, 0, 0);
+  while (out.length < count) {
+    const dow = cursor.getDay();
+    if (dow >= 1 && dow <= 5) out.push(new Date(cursor));
+    cursor.setDate(cursor.getDate() + 1);
+  }
+  return out;
+}
+
+// 09:00 to 17:30 Gulf Standard Time, which is the window stated in the footer.
+const SLOTS = Array.from({ length: 18 }, (_, i) => {
+  const minutes = 9 * 60 + i * 30;
+  return `${String(Math.floor(minutes / 60)).padStart(2, "0")}:${minutes % 60 === 0 ? "00" : "30"}`;
+});
+
+const TOPICS = [
+  "Paid marketing & lead generation",
+  "Website or app build",
+  "Design & brand",
+  "CRM & automation",
+  "Not sure yet",
+];
+
+export default function AppointmentBooking() {
+  const days = useMemo(() => workingDays(10), []);
+  const [day, setDay] = useState(0);
+  const [slot, setSlot] = useState<string | null>(null);
+  const [topic, setTopic] = useState(TOPICS[0]);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<Status>("idle");
+  const [error, setError] = useState("");
+
+  const chosen = days[day];
+  const chosenLabel = chosen
+    ? chosen.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" })
+    : "";
+
+  async function submit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!slot) {
+      setError("Pick a time first.");
+      return;
+    }
+    setError("");
+    setStatus("submitting");
+    const botcheck = (new FormData(e.currentTarget).get("company") as string) || "";
+
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          botcheck,
+          service: "Appointment request",
+          message: `Requested a 30-minute call on ${chosenLabel} at ${slot} (GST, UTC+4). Topic: ${topic}.`,
+          attribution: getAttribution(),
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus("success");
+        return;
+      }
+      setError(data.error || "That did not go through. Try again, or email me directly.");
+      setStatus("error");
+    } catch {
+      setError("That did not go through. Try again, or email me directly.");
+      setStatus("error");
+    }
+  }
+
+  if (status === "success") {
+    return (
+      <div className="glass-strong rounded-2xl border border-border p-8 text-center sm:p-10">
+        <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gold/15 text-gold">
+          <Check size={22} />
+        </span>
+        <h2 className="mt-5 text-2xl font-semibold text-ink">Request sent</h2>
+        <p className="mx-auto mt-3 max-w-sm text-base leading-relaxed text-muted">
+          You asked for {chosenLabel} at {slot}. I confirm every call by email
+          personally, usually the same working day, so treat this as requested
+          rather than booked until you hear from me.
+        </p>
+        <a
+          href="/portfolio"
+          className="btn-primary mt-7 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold"
+        >
+          See my work while you wait <ArrowRight size={15} />
+        </a>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={submit} className="glass-strong rounded-2xl border border-border p-6 sm:p-8">
+      <div className="flex items-center gap-3">
+        <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border border-border">
+          <Image
+            src="/images/bilal-shirt.avif"
+            alt="Bilal Shafqat"
+            fill
+            sizes="44px"
+            className="object-cover"
+            style={{ objectPosition: "center 18%" }}
+          />
+        </span>
+        <div>
+          <p className="text-sm font-semibold text-ink">Bilal Shafqat</p>
+          <p className="text-xs text-muted">Dubai · GST, UTC+4</p>
+        </div>
+      </div>
+
+      <h2 className="mt-6 text-2xl font-semibold leading-tight text-ink sm:text-[1.75rem]">
+        Book your 30-minute clarity call
+      </h2>
+      <p className="mt-3 text-base leading-relaxed text-muted">
+        Thirty minutes on your goals, your current setup and what the honest path
+        forward looks like. No deck, no pitch, and no obligation afterwards.
+      </p>
+
+      {/* Day strip. Horizontal scroll rather than a wrapped grid, so the row
+          keeps its rhythm however many days are shown. */}
+      <div className="mt-7">
+        <div className="flex items-center justify-between">
+          <p className="text-sm font-medium text-ink">{chosenLabel}</p>
+          <ChevronRight size={16} className="text-muted" />
+        </div>
+        <div className="no-scrollbar mt-3 flex min-w-0 gap-2 overflow-x-auto pb-1">
+          {days.map((d, i) => {
+            const on = i === day;
+            const today = i === 0 && d.toDateString() === new Date().toDateString();
+            return (
+              <button
+                key={d.toISOString()}
+                type="button"
+                onClick={() => {
+                  setDay(i);
+                  setSlot(null);
+                }}
+                aria-pressed={on}
+                className={`flex min-w-[64px] shrink-0 flex-col items-center rounded-xl border px-3 py-2.5 text-xs transition-colors ${
+                  on
+                    ? "border-gold/50 bg-gold/15 text-ink"
+                    : "border-border bg-surface/50 text-muted hover:border-gold/30 hover:text-ink"
+                }`}
+              >
+                <span>{d.toLocaleDateString("en-GB", { weekday: "short" })}</span>
+                <span className="mt-0.5 font-semibold tabular-nums">
+                  {today ? "Today" : d.getDate()}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Times */}
+      <div className="mt-6">
+        <p className="text-sm font-medium text-ink">Pick a time</p>
+        <div className="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-4">
+          {SLOTS.map((t) => {
+            const on = t === slot;
+            return (
+              <button
+                key={t}
+                type="button"
+                onClick={() => setSlot(t)}
+                aria-pressed={on}
+                className={`rounded-lg border py-2 text-sm tabular-nums transition-colors ${
+                  on
+                    ? "border-gold/50 bg-gold/15 text-ink"
+                    : "border-border bg-surface/50 text-muted hover:border-gold/30 hover:text-ink"
+                }`}
+              >
+                {t}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="mt-6">
+        <label htmlFor="topic" className="text-sm font-medium text-ink">
+          What is it about?
+        </label>
+        <select
+          id="topic"
+          value={topic}
+          onChange={(e) => setTopic(e.target.value)}
+          className="mt-2 w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 [color-scheme:dark]"
+        >
+          {TOPICS.map((t) => (
+            <option key={t}>{t}</option>
+          ))}
+        </select>
+      </div>
+
+      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+        <input
+          required
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Your name"
+          aria-label="Your name"
+          className="w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-gold/50"
+        />
+        <input
+          required
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Your email address"
+          aria-label="Your email address"
+          className="w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-gold/50"
+        />
+      </div>
+
+      {/* Honeypot. Off-screen rather than display:none, which some bots skip. */}
+      <input
+        type="text"
+        name="company"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute left-[-9999px] h-0 w-0 opacity-0"
+      />
+
+      {error ? <p className="mt-4 text-sm text-red-400">{error}</p> : null}
+
+      <button
+        type="submit"
+        disabled={status === "submitting"}
+        className="btn-primary mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-semibold disabled:opacity-60"
+      >
+        {status === "submitting" ? (
+          <>
+            <Loader2 size={16} className="animate-spin" /> Sending
+          </>
+        ) : (
+          <>
+            Request this 30-minute call <ArrowRight size={15} />
+          </>
+        )}
+      </button>
+
+      <p className="mt-3 text-center text-xs leading-relaxed text-muted">
+        This sends a request, not a confirmed booking. I reply personally to
+        confirm, usually the same working day.
+      </p>
+    </form>
+  );
+}
