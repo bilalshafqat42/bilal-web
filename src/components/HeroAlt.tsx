@@ -1,4 +1,12 @@
+"use client";
+
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const intersection = [
   "Paid marketing & performance advertising",
@@ -8,11 +16,82 @@ const intersection = [
 ];
 
 export default function HeroAlt() {
+  const rootRef = useRef<HTMLDivElement>(null);
+  const topRef = useRef<HTMLElement>(null);
+  const panelRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+
+      // Desktop with motion allowed only. On a phone the two blocks are already
+      // a long way apart, and a translate on a full-width section there costs
+      // more in jank than it buys in effect.
+      mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
+        // The headline block drifts down as the page scrolls up, so it appears
+        // to fall behind the panel rather than simply leaving the screen, and
+        // dims as it goes. Scrubbed, so it tracks the scroll position exactly
+        // and reverses cleanly on the way back up.
+        const back = gsap.to(topRef.current, {
+          y: 140,
+          opacity: 0.12,
+          ease: "none",
+          scrollTrigger: {
+            trigger: topRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: 0.6,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        // The panel comes the other way: up and into full opacity, finishing
+        // before it reaches the middle of the viewport so it is settled by the
+        // time the visitor is reading it.
+        const front = gsap.fromTo(
+          panelRef.current,
+          { y: 90, opacity: 0.55 },
+          {
+            y: 0,
+            opacity: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              // Anchored to the top of the page, not to the panel entering the
+              // viewport. The headline block above is shorter than one screen,
+              // so the panel is already on screen at rest; triggering on its
+              // entry meant the slide was 88% finished before a visitor had
+              // scrolled at all.
+              trigger: rootRef.current,
+              start: "top top",
+              endTrigger: panelRef.current,
+              end: "top 40%",
+              scrub: 0.6,
+              invalidateOnRefresh: true,
+            },
+          }
+        );
+
+        return () => {
+          back.scrollTrigger?.kill();
+          back.kill();
+          front.scrollTrigger?.kill();
+          front.kill();
+        };
+      });
+
+      return () => mm.revert();
+    },
+    { scope: rootRef }
+  );
 
   return (
-    <div>
+    <div ref={rootRef}>
       {/* Top row: headline 70% / supporting text + CTA 30%, plain black background */}
-      <section id="home" className="relative overflow-hidden bg-bg text-ink pt-40 pb-16 sm:pt-48 sm:pb-20">
+      <section
+        ref={topRef}
+        id="home"
+        className="relative z-0 overflow-hidden bg-bg pb-16 pt-40 text-ink sm:pb-20 sm:pt-48"
+      >
         <div className="pointer-events-none absolute inset-0 grid-fade" />
 
         <div className="site-container relative">
@@ -59,7 +138,11 @@ export default function HeroAlt() {
           shared: badge top-left, headline left, short intro and CTA right, the
           photo centred, and an oversized wordmark behind it that the shoulders
           overlap. */}
-      <section id="about" className="relative overflow-hidden bg-bg pb-16 sm:pb-20">
+      <section
+        ref={panelRef}
+        id="about"
+        className="relative z-10 overflow-hidden bg-bg pb-16 sm:pb-20"
+      >
         <div
           className="glass-strong relative mx-auto w-full overflow-hidden lg:w-[83.3333%]"
           style={{

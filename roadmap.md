@@ -814,6 +814,13 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - Headline still breaks to four lines, with "Dubai" alone in gold on the last. Left as is: at 3.4rem, two lines would need a ~730px column, which is impossible alongside a centred portrait, and the isolated gold city reads as a deliberate accent rather than a wrap.
     - Verified: fits at 1280x800, 1440x900 and 1920x1080 with 315 to 563px headroom, mobile stacks, no overflow, no console errors, 21 routes still 200.
 
+92. **Parallax crossing between the headline block and the panel (2026-09-01)** — **done.** Bilal wanted the top text to drift down and fall behind while the panel slides forward.
+    - Headline block: `y` 0 to **140px** with opacity 1 to **0.12**, scrubbed against its own exit. Moving it down as the page scrolls up is what makes it read as falling behind rather than simply leaving.
+    - Panel: `y` **90 to 0** and opacity **0.55 to 1**, on `z-10` against the headline's `z-0` so it genuinely paints over the top.
+    - **The same anchoring trap as items 89 and 91, caught by measuring.** Triggering the panel's slide on its own entry left it **88% complete before the visitor scrolled at all**, because the headline block above is shorter than one viewport. Anchored to the top of the page with `endTrigger` on the panel, it now starts at y 90 / 0.55 at rest and arrives by roughly 300px of scroll. **Third time this pattern has bitten: on this page, any effect triggered by a section entering the viewport is already partly done on load.**
+    - `gsap.matchMedia` keeps it to desktop with motion allowed. Mobile, tablet and reduced motion all measured at y 0 and opacity 1, so nothing is dimmed or displaced for them.
+    - `HeroAlt` goes back to a client component for this, having been a server component since item 90.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
