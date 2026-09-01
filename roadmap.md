@@ -878,6 +878,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Third measurement artifact of the session, and the lesson is now explicit: Meta's library suppresses events for BOTH `navigator.webdriver` AND a `HeadlessChrome` user agent.** Miss either and every event silently vanishes, which looks exactly like broken code. Any future Meta test needs `--disable-blink-features=AutomationControlled`, a `webdriver` mask, **and** a real UA string. Verified with the UA as the only variable: without it 0 beacons, with it PageView, Lead and Contact all fire.
     - Verified firing with correct payloads: `ViewContent [Paid Marketing]`, `ViewContent [Hadley Heights]`, `Schedule [appointment-page]`, `Lead`, `Contact`.
 
+100. **GA4 wired directly, GTM demoted to optional (2026-09-01)** — **done.** Bilal asked how to install GA4. I had been calling the missing GTM container "the blocker", which was wrong: the gap was analytics, and GTM is only one delivery route.
+    - **GA4 now loads directly.** GTM is a convenience layer for adding tags without a deploy, which earns its ~100KB on a team and does not on a one-person site with one tag. `NEXT_PUBLIC_GA4_ID` loads gtag.js; `NEXT_PUBLIC_GTM_ID` still works and takes precedence if both are set.
+    - **`track()` now sends to GA4 as well.** GA4 does not interpret raw dataLayer pushes, so without a `gtag('event', ...)` call the conversions wired in item 99 would have reached Meta and a hypothetical GTM container but never GA4 itself. The dataLayer push is kept, so the GTM route stays open with no code change.
+    - **GA4 counts one `page_view` per document load**, so SPA navigation was invisible. Explicit `page_view` on route change, skipping the first since `gtag('config')` already counted it.
+    - **`useSearchParams` broke the build.** It forces a Suspense boundary, and this component sits in the root layout, so `/preview-hero-alt` failed to prerender. The query string is read from `window.location` inside the effect instead, which needs no hook.
+    - Verified: **inert with no ID** (zero analytics scripts on the page), **active with one** (gtag.js loads with the ID, consent default present), and consent respected — `analytics_storage` denied until accepted, no `_ga` cookies written in any state.
+    - **Not verifiable without a real Measurement ID**: the granted-state cookie behaviour. A fake ID is rejected by GA4, so `_ga` was never set even on grant. With Bilal's real ID it will be.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

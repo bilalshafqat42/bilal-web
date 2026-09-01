@@ -3,8 +3,8 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import { ArrowRight, Check, ChevronRight, Loader2 } from "lucide-react";
-import { getAttribution } from "@/lib/attribution";
-import { trackSchedule } from "@/lib/analytics";
+import { getAttribution, getFacebookCookies } from "@/lib/attribution";
+import { trackSchedule, generateEventId } from "@/lib/analytics";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -60,6 +60,7 @@ export default function AppointmentBooking() {
     setError("");
     setStatus("submitting");
     const botcheck = (new FormData(e.currentTarget).get("company") as string) || "";
+    const eventId = generateEventId();
 
     try {
       const res = await fetch("/api/lead", {
@@ -72,13 +73,15 @@ export default function AppointmentBooking() {
           service: "Appointment request",
           message: `Requested a 30-minute call on ${chosenLabel} at ${slot} (GST, UTC+4). Topic: ${topic}.`,
           attribution: getAttribution(),
+          eventId,
+          ...getFacebookCookies(),
         }),
       });
       const data = await res.json();
       if (data.success) {
         // Fired on confirmed delivery, so the count matches what reached the
         // CRM rather than counting button presses.
-        trackSchedule("appointment-page", topic);
+        trackSchedule("appointment-page", topic, eventId);
         setStatus("success");
         return;
       }

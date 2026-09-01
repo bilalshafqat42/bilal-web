@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, Check, FileText, Loader2, MessageCircle } from "lucide-react";
 import { pillars } from "@/data/pillars";
-import { getAttribution } from "@/lib/attribution";
-import { trackLead, trackWhatsApp } from "@/lib/analytics";
+import { getAttribution, getFacebookCookies } from "@/lib/attribution";
+import { trackLead, trackWhatsApp, generateEventId } from "@/lib/analytics";
 
 const WHATSAPP = "971529766006";
 const EMAIL = "bilalshafqat42@gmail.com";
@@ -82,6 +82,10 @@ export default function ContactForm() {
     setStatus("submitting");
 
     const botcheck = (new FormData(e.currentTarget).get("company") as string) || "";
+    // One id for this submission attempt, shared between the /api/lead POST
+    // and the trackLead pixel fire below, so Meta dedupes the browser pixel
+    // event against the server-side Conversions API event Performo sends.
+    const eventId = generateEventId();
 
     try {
       const res = await fetch("/api/lead", {
@@ -92,6 +96,8 @@ export default function ContactForm() {
           botcheck,
           source: "contact-page-form",
           attribution: getAttribution(),
+          eventId,
+          ...getFacebookCookies(),
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -99,7 +105,7 @@ export default function ContactForm() {
       if (res.ok && data.success) {
         // Fired only on confirmed delivery, so the conversion count matches
         // what actually reached the CRM rather than counting button presses.
-        trackLead("contact-page-form", values.service);
+        trackLead("contact-page-form", values.service, eventId);
         setStatus("success");
         return;
       }

@@ -40,6 +40,15 @@ type LeadPayload = {
   utmCampaign?: string;
   utmContent?: string;
   utmTerm?: string;
+  // Shared with the matching trackLead/trackSchedule pixel fire (see
+  // src/lib/analytics.ts's generateEventId) so Performo's server-side Meta
+  // Conversions API event dedupes against the browser pixel event instead
+  // of double-counting the conversion. fbp/fbc are Meta's own cookies (see
+  // src/lib/attribution.ts's getFacebookCookies) — passing them improves
+  // match quality on top of/instead of the eventId.
+  eventId?: string;
+  fbp?: string;
+  fbc?: string;
 };
 
 // Best-effort in-process rate limit. On serverless each instance keeps its own
@@ -98,6 +107,9 @@ export async function POST(request: Request) {
     utmCampaign,
     utmContent,
     utmTerm,
+    eventId,
+    fbp,
+    fbc,
   } = body;
   if (!name || !email) {
     return NextResponse.json(
@@ -152,6 +164,9 @@ export async function POST(request: Request) {
     utmCampaign: resolvedUtmCampaign || undefined,
     utmContent: resolvedUtmContent || undefined,
     utmTerm: resolvedUtmTerm || undefined,
+    eventId: eventId || undefined,
+    fbp: fbp || undefined,
+    fbc: fbc || undefined,
   };
 
   const crmUrl = process.env.CRM_LEAD_API_URL;

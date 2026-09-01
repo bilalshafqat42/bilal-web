@@ -5,6 +5,7 @@ type DataLayerEvent = Record<string, unknown> & { event: string };
 declare global {
   interface Window {
     dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
   }
 }
 
@@ -16,9 +17,32 @@ declare global {
  */
 export function track(event: string, params: Record<string, unknown> = {}) {
   if (typeof window === "undefined") return;
+
+  // dataLayer push: what GTM reads. Harmless with no container, since the queue
+  // is just an array, and it keeps the GTM route open without a code change.
   window.dataLayer = window.dataLayer || [];
   const payload: DataLayerEvent = { event, ...params };
   window.dataLayer.push(payload);
+
+  // gtag event: what a directly loaded GA4 reads. GA4 does not interpret raw
+  // dataLayer pushes, so without this the conversions would only ever reach
+  // Meta and a hypothetical GTM container, never GA4 itself.
+  window.gtag?.("event", event, params);
+}
+
+/**
+ * One ID per real submission attempt, shared between the browser pixel fire
+ * and the server-side Conversions API event sent from Performo. Call this
+ * once at the top of a submit handler, pass it into both the `/api/lead`
+ * body (as `eventId`) and the matching `trackLead`/`trackSchedule` call, so
+ * Meta dedupes the two signals instead of counting the conversion twice.
+ */
+export function generateEventId(): string {
+  try {
+    return crypto.randomUUID();
+  } catch {
+    return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  }
 }
 
 /**
@@ -30,22 +54,22 @@ export function track(event: string, params: Record<string, unknown> = {}) {
  * Standard Meta event names only (Lead, Schedule, Contact, ViewContent), because
  * Meta's optimisation and reporting do not understand custom ones.
  *
- * Each event carries an `eventID`. Nothing consumes it yet, but it is what lets
- * the same conversion sent later from the server via the Conversions API be
- * matched rather than counted twice. Adding it now is free; adding it after a
- * campaign is live means a stretch of double-counted conversions.
+ * Each event carries an `eventID`. Pass the same id used in the matching
+ * `/api/lead` submission (see `generateEventId`) so the conversion sent later
+ * from the server via the Conversions API is matched rather than counted
+ * twice. If no id is supplied, one is generated here — fine for events that
+ * don't also reach Performo's server-side event (e.g. ViewContent).
  */
-function meta(event: string, params: Record<string, string | undefined> = {}) {
+function meta(
+  event: string,
+  params: Record<string, string | undefined> = {},
+  eventId?: string,
+) {
   if (typeof window === "undefined") return;
 
   const clean: Record<string, string> = {};
   for (const [k, v] of Object.entries(params)) if (v) clean[k] = v;
-  let id: string;
-  try {
-    id = crypto.randomUUID();
-  } catch {
-    id = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
-  }
+  const id = eventId || generateEventId();
 
   const fire = () => window.fbq?.("track", event, clean, { eventID: id });
 
@@ -71,13 +95,17 @@ function meta(event: string, params: Record<string, string | undefined> = {}) {
   }, 200);
 }
 
-/** A lead actually reached the CRM. This is the conversion worth bidding on. */
-export function trackLead(source: string, service?: string) {
+/**
+ * A lead actually reached the CRM. This is the conversion worth bidding on.
+ * Pass the same `eventId` sent to `/api/lead` for this submission so Meta
+ * can dedupe against the server-side Conversions API event.
+ */
+export function trackLead(source: string, service?: string, eventId?: string) {
   track("generate_lead", {
     lead_source: source,
     lead_service: service || "unspecified",
   });
-  meta("Lead", { content_name: source, content_category: service });
+  meta("Lead", { content_name: source, content_category: service }, eventId);
 }
 
 /**
@@ -85,15 +113,15 @@ export function trackLead(source: string, service?: string) {
  * future campaign optimise for booked calls specifically, which are worth more
  * than a general enquiry.
  */
-export function trackSchedule(source: string, topic?: string) {
+export function trackSchedule(source: string, topic?: string, eventId?: string) {
   track("schedule_call", { lead_source: source, call_topic: topic || "unspecified" });
-  meta("Schedule", { content_name: source, content_category: topic });
+  meta("Schedule", { content_name: source, content_category: topic }, eventId);
 }
 
 /** Outbound WhatsApp click — a real intent signal that leaves the site. */
-export function trackWhatsApp(context: string) {
+export function trackWhatsApp(context: string, eventId?: string) {
   track("whatsapp_click", { whatsapp_context: context });
-  meta("Contact", { content_name: `whatsapp:${context}` });
+  meta("Contact", { content_name: `whatsapp:${context}` }, eventId);
 }
 
 /**

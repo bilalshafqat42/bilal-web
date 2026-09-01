@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { MessageCircle, X, Send } from "lucide-react";
-import { getAttribution } from "@/lib/attribution";
-import { trackLead, trackWhatsApp } from "@/lib/analytics";
+import { getAttribution, getFacebookCookies } from "@/lib/attribution";
+import { trackLead, trackWhatsApp, generateEventId } from "@/lib/analytics";
 
 const WHATSAPP_NUMBER = "971529766006";
 const AUTO_OPEN_SCROLL_PX = 700;

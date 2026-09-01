@@ -2,8 +2,8 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import { MessageSquarePlus, X, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
-import { getAttribution } from "@/lib/attribution";
-import { trackLead } from "@/lib/analytics";
+import { getAttribution, getFacebookCookies } from "@/lib/attribution";
+import { trackLead, generateEventId } from "@/lib/analytics";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -35,6 +35,7 @@ export default function LeadFormPopup() {
 
     const form = e.currentTarget;
     const data = new FormData(form);
+    const eventId = generateEventId();
 
     try {
       const res = await fetch("/api/lead", {
@@ -48,11 +49,13 @@ export default function LeadFormPopup() {
           botcheck: data.get("botcheck") === "on",
           source: "website-popup",
           attribution: getAttribution(),
+          eventId,
+          ...getFacebookCookies(),
         }),
       });
       const result = await res.json();
       if (result.success) {
-        trackLead("website-popup");
+        trackLead("website-popup", undefined, eventId);
         setStatus("success");
         form.reset();
       } else {

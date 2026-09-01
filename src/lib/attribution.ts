@@ -110,3 +110,20 @@ export function getAttribution(): Attribution {
     pageOfInterest,
   };
 }
+
+function readCookie(name: string): string | undefined {
+  const match = document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`));
+  return match ? decodeURIComponent(match[1]) : undefined;
+}
+
+/**
+ * Meta's own `_fbp`/`_fbc` cookies, set by the pixel once consent is granted
+ * and it loads. Sending these along with a lead submission significantly
+ * improves match quality on the server-side Conversions API event Performo
+ * sends — Meta uses them to link the event to the same browser/click that
+ * fired the pixel, on top of (or instead of) the shared eventId.
+ */
+export function getFacebookCookies(): { fbp?: string; fbc?: string } {
+  if (typeof document === "undefined" || !hasConsent()) return {};
+  return { fbp: readCookie("_fbp"), fbc: readCookie("_fbc") };
+}
