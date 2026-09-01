@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ArrowRight, Check, FileText, Loader2, MessageCircle } from "lucide-react";
 import { pillars } from "@/data/pillars";
 import { getAttribution, getFacebookCookies } from "@/lib/attribution";
+import { useRouter } from "next/navigation";
 import { trackLead, trackWhatsApp, generateEventId } from "@/lib/analytics";
 
 const WHATSAPP = "971529766006";
@@ -31,6 +32,7 @@ const fieldClass =
   "w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink placeholder:text-muted/70 outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20";
 
 export default function ContactForm() {
+  const router = useRouter();
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   // Which page the enquiry is about. On /contact the current page is useless,
@@ -107,6 +109,10 @@ export default function ContactForm() {
         // what actually reached the CRM rather than counting button presses.
         trackLead("contact-page-form", values.service, eventId);
         setStatus("success");
+        // Client-side push, so GA4 and the pixel record the /thank-you page view
+        // without a full reload. The inline success state still shows if the
+        // navigation is slow.
+        router.push("/thank-you?source=contact");
         return;
       }
       setError(data.error || "Something went wrong.");

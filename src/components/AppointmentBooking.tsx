@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import { ArrowRight, Check, ChevronRight, Loader2 } from "lucide-react";
 import { getAttribution, getFacebookCookies } from "@/lib/attribution";
+import { useRouter } from "next/navigation";
 import { trackSchedule, generateEventId } from "@/lib/analytics";
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -37,6 +38,7 @@ const TOPICS = [
 ];
 
 export default function AppointmentBooking() {
+  const router = useRouter();
   const days = useMemo(() => workingDays(10), []);
   const [day, setDay] = useState(0);
   const [slot, setSlot] = useState<string | null>(null);
@@ -83,6 +85,11 @@ export default function AppointmentBooking() {
         // CRM rather than counting button presses.
         trackSchedule("appointment-page", topic, eventId);
         setStatus("success");
+        // The chosen slot travels with the redirect so the confirmation page can
+        // still tell them what they asked for.
+        router.push(
+          `/thank-you?source=appointment&slot=${encodeURIComponent(`${chosenLabel} at ${slot}`)}`
+        );
         return;
       }
       setError(data.error || "That did not go through. Try again, or email me directly.");

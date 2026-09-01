@@ -53,18 +53,28 @@ export default function Analytics() {
     if (!enabled) return;
 
     const apply = (value: string | null) => {
+      const state = value === "granted" ? "granted" : "denied";
+      const payload = {
+        ad_storage: state,
+        ad_user_data: state,
+        ad_personalization: state,
+        analytics_storage: state,
+      };
+      // Must go through gtag(), not a raw dataLayer.push of an array.
+      // gtag pushes its own `arguments` object and Google's tag reads that
+      // shape; a plain Array is not recognised as a consent command, which is
+      // why granted visitors were still reporting gcs=G100 (denied) and no _ga
+      // cookie was ever written.
       window.dataLayer = window.dataLayer || [];
-      // gtag's own signature relies on `arguments`, so push the array form.
-      window.dataLayer.push([
-        "consent",
-        "update",
-        {
-          ad_storage: value === "granted" ? "granted" : "denied",
-          ad_user_data: value === "granted" ? "granted" : "denied",
-          ad_personalization: value === "granted" ? "granted" : "denied",
-          analytics_storage: value === "granted" ? "granted" : "denied",
-        },
-      ]);
+      if (typeof window.gtag === "function") {
+        window.gtag("consent", "update", payload);
+      } else {
+        // gtag is defined by the beforeInteractive script above, so this is only
+        // a guard. Replicate its shape rather than pushing an array.
+        (function (...args: unknown[]) {
+          window.dataLayer!.push(args);
+        })("consent", "update", payload);
+      }
     };
 
     apply(getConsent());

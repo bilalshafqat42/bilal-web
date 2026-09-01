@@ -886,6 +886,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - Verified: **inert with no ID** (zero analytics scripts on the page), **active with one** (gtag.js loads with the ID, consent default present), and consent respected — `analytics_storage` denied until accepted, no `_ga` cookies written in any state.
     - **Not verifiable without a real Measurement ID**: the granted-state cookie behaviour. A fake ID is rejected by GA4, so `_ga` was never set even on grant. With Bilal's real ID it will be.
 
+101. **`/thank-you` page plus a real Consent Mode bug (2026-09-01)** — **done.** Bilal added the GA4 Measurement ID (`G-NRHYJPM1S9`, confirmed live) and asked for a `/thank-you` page for page-path tracking.
+    - **Found and fixed a genuine Consent Mode v2 bug that predates today.** The consent update was a raw `dataLayer.push(["consent","update",{...}])`. Google's tag only recognises the `arguments`-object shape that `gtag()` produces, so **a plain Array was never read as a consent command**: granted visitors still reported `gcs=G100` (denied) and no `_ga` cookie was ever written. GA4 would have run in cookieless modelled mode forever. Now goes through `gtag()`. Verified `gcs=G111` when granted, `G100` when denied or unanswered. **This affected the GTM path too, so it was broken from the original implementation.**
+    - `/thank-you` is `noindex, nofollow` and deliberately **not in the sitemap** — a conversion page in search results would let people arrive without converting and pollute the measurement it exists to provide. Reads `?source=` for tailored copy and `?slot=` so an appointment confirmation still states what was requested.
+    - Contact form, Quick Enquiry and Appointment all `router.push` to it after a confirmed submit. Verified GA4 receives both `schedule_call` (page_path `/appointment`) **and** `page_view` (page_path `/thank-you?source=appointment&slot=...`).
+    - **A concurrent session had committed `b41ac5d`, threading `eventId`/`fbp`/`fbc` for Conversions API matching.** My first edit attempt asserted against stale content and correctly wrote nothing, which is the only reason their work was not clobbered. **Assert-before-write is what saved this; keep doing it.**
+    - **Fourth measurement error of the session: GA4 batches events into a POST body.** Reading only the URL query string showed `en=null` and no page_view, so the route-change tracking looked broken when it was working. Any GA4 check must parse `request.postData()`.
+    - Also confirmed in passing: **header links are plain `<a>`, so every nav is a full page reload.** GA4's built-in page_view covers those; the route-change effect only matters for `router.push`. Converting those 37 links to `next/link` is still outstanding.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

@@ -3,11 +3,13 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { MessageSquarePlus, X, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { getAttribution, getFacebookCookies } from "@/lib/attribution";
+import { useRouter } from "next/navigation";
 import { trackLead, generateEventId } from "@/lib/analytics";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
 export default function LeadFormPopup() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
 
@@ -58,6 +60,7 @@ export default function LeadFormPopup() {
         trackLead("website-popup", undefined, eventId);
         setStatus("success");
         form.reset();
+        router.push("/thank-you?source=enquiry");
       } else {
         setStatus("error");
       }
