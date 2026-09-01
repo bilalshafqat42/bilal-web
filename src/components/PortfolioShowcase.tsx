@@ -91,10 +91,10 @@ export default function PortfolioShowcase() {
     <section id="showcase" className="relative py-20 sm:py-24">
       <div className="site-container">
         <SectionHeading
-          eyebrow="Selected Work"
-          title="What I Actually"
-          highlight="Build"
-          description="Hover a card to open it, or use the arrows. Every piece links to the case study behind it."
+          eyebrow="Explore By Discipline"
+          title="Four Ways I Can"
+          highlight="Help You"
+          description="Open a card to see how each discipline actually gets used on a project. Every one links to the case study behind it."
         />
 
         {/* Desktop: one flex row where the open card takes the space the others
