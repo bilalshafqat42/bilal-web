@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import { ArrowRight, Check, ChevronRight, Loader2 } from "lucide-react";
 import { getAttribution } from "@/lib/attribution";
+import { trackSchedule } from "@/lib/analytics";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -75,6 +76,9 @@ export default function AppointmentBooking() {
       });
       const data = await res.json();
       if (data.success) {
+        // Fired on confirmed delivery, so the count matches what reached the
+        // CRM rather than counting button presses.
+        trackSchedule("appointment-page", topic);
         setStatus("success");
         return;
       }

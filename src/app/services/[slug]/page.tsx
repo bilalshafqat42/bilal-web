@@ -13,6 +13,7 @@ import {
   slugify,
 } from "@/data/pillars";
 import { serviceDepth } from "@/data/serviceDepth";
+import TrackView from "@/components/TrackView";
 
 const SITE_URL = "https://bilalshafqat.com";
 
@@ -103,6 +104,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       ) : null}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <TrackView name={category.title} category="Service" />
       <Nav />
       <main className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
