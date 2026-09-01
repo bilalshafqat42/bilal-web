@@ -25,12 +25,9 @@ export default function HeroAlt() {
   useGSAP(
     () => {
       if (!frameRef.current) return;
-      // Width and corners only. Animating height as well used to make sense for
-      // the old centred layout, but this composition is anchored top and bottom
-      // (badge and headline up top, portrait and wordmark down below), so
-      // growing the card pulls it apart and scrolls the headline out of view.
+      // The panel is full width from the start now, so there is no width left
+      // to animate. Only the corners square off as it meets the viewport edges.
       const tween = gsap.to(frameRef.current, {
-        width: "100%",
         borderRadius: "0px",
         ease: "none",
         scrollTrigger: {
@@ -103,10 +100,10 @@ export default function HeroAlt() {
           ref={frameRef}
           className="glass-strong relative mx-auto overflow-hidden"
           style={{
-            width: "min(83.3333%, calc(100% - 3rem))",
+            width: "100%",
             // Tall enough to hold the whole composition, capped so it still
             // leaves room for the section below on a short laptop screen.
-            height: "min(88vh, 860px)",
+            height: "min(88vh, 900px)",
             borderRadius: "1.75rem",
           }}
         >
@@ -123,7 +120,7 @@ export default function HeroAlt() {
               portrait's shoulders cut across it. */}
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-0 z-0 hidden select-none whitespace-nowrap text-center font-display font-bold leading-[0.78] tracking-tight text-white/[0.07] lg:block"
+            className="pointer-events-none absolute inset-x-0 bottom-5 z-30 hidden select-none whitespace-nowrap text-center font-display font-bold leading-[0.78] tracking-tight text-white/70 mix-blend-difference lg:block"
             style={{ fontSize: "clamp(4rem, 13vw, 12rem)" }}
           >
             Bilal Shafqat
@@ -135,7 +132,7 @@ export default function HeroAlt() {
           <div
             role="img"
             aria-label="Portrait of Bilal Shafqat"
-            className="pointer-events-none absolute inset-x-0 bottom-0 z-10 mx-auto hidden h-[62%] w-[46%] max-w-lg lg:block"
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-10 mx-auto hidden h-[68%] w-[51%] max-w-xl lg:block"
             style={{
               backgroundImage: "url(/images/bilal-shirt.avif)",
               backgroundSize: "cover",
@@ -158,15 +155,15 @@ export default function HeroAlt() {
             {/* Three columns with an empty middle: the portrait shows through
                 the gap rather than sitting behind the text. */}
             <div className="mt-10 grid flex-1 grid-cols-1 gap-8 lg:mt-14 lg:grid-cols-[1fr_34%_1fr] lg:gap-6">
-              <div className="max-w-md">
-                <h2 className="text-3xl font-bold leading-[1.08] tracking-tight text-ink sm:text-4xl lg:text-[2.6rem]">
+              <div className="max-w-xl">
+                <h2 className="text-4xl font-bold leading-[1.06] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
                   Paid marketing, development and design, based in{" "}
                   <span className="text-gradient">Dubai</span>
                 </h2>
-                <ul className="mt-7 space-y-2.5">
-                  {intersection.map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-sm text-muted">
-                      <CheckCircle2 size={14} className="shrink-0 text-gold" />
+                <ul className="mt-8 space-y-3">
+                  {intersection.slice(0, 2).map((item) => (
+                    <li key={item} className="flex items-center gap-2.5 text-sm text-muted">
+                      <CheckCircle2 size={15} className="shrink-0 text-gold" />
                       {item}
                     </li>
                   ))}
@@ -188,6 +185,17 @@ export default function HeroAlt() {
                 >
                   See my work <ArrowRight size={16} />
                 </a>
+                <ul className="mt-8 space-y-3 lg:ml-auto">
+                  {intersection.slice(2).map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-center gap-2.5 text-sm text-muted lg:justify-end"
+                    >
+                      <CheckCircle2 size={15} className="shrink-0 text-gold lg:order-2" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
 

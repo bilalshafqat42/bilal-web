@@ -778,6 +778,15 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - Verified at 1280x800, 1440x900, 1920x1080 and 390x844: content sits inside the card with 163 to 549px of headroom, no page overflow, no console errors, 21 routes still 200.
     - Wordmark is at `white/[0.07]`. The reference uses solid white; Bilal can go bolder if he wants it to read as a graphic element rather than a watermark.
 
+87. **Hero panel refinements, and the mega menu's real click bug (2026-09-01)** — **done.**
+    - Panel: wordmark moved **in front of** the portrait, headline up to 3.4rem, the four capability lines split **two left, two right**, portrait 10% larger, and the card is now **full width from the start** so only the corners square off on scroll.
+    - **The wordmark had to change colour when it moved in front.** At `white/[0.07]` behind the portrait it read as a watermark; in front of a white shirt it would have vanished. It now uses `mix-blend-difference`, which inverts against whatever is behind it, so it stays legible over the dark panel and the shirt alike.
+    - `leading-[0.78]` makes the line box tighter than the glyphs, so at `bottom-0` the descender on "Shafqat" spilled past the box and was cut by the card's `overflow-hidden`. Lifted to `bottom-5`.
+    - **"The menu is not animating" was real, but not an animation bug.** Measured first: the GSAP timeline runs correctly on hover, clip-path unrolling 100% to 0% over ~500ms. The actual defect was that **the whole trigger was `<a href="/services">`, so clicking navigated away before the menu could open.** Hover was the only way to ever see it.
+    - Fix took three passes, each exposing the next problem. (a) Split the chevron into its own button so the label still links to `/services`. (b) That button toggled, but **hover fires before click**, so a mouse click closed what the hover had just opened. (c) Switched hover-open to `onPointerEnter` with a `pointerType === "mouse"` guard so touch never hover-opens — but tap still failed, because **`focus` also fires before `click`** and opened it too. Final fix records the panel state on `pointerdown`, before focus or hover can change it, and the click sets the opposite of that.
+    - Verified: mouse hover animates and the chevron dismisses, touch tap opens with the full animation and does not navigate, focus opens for keyboard users, Escape closes, moving the pointer away closes.
+    - **Lesson for this project**: "X is not animating" deserves a measurement before a rewrite. The animation was fine; the trigger was wrong.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

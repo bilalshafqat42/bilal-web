@@ -34,6 +34,10 @@ export default function Nav() {
   const panelWrapRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
+  // The panel state as it was before the current press. Focus and hover both
+  // open the panel and both land before `click`, so a plain toggle in the click
+  // handler would undo them and the panel could never be opened by pressing.
+  const openBeforePress = useRef(false);
 
   // One paused timeline built on mount, played forward to open and reversed to
   // close. Building it once (rather than animating on each render) is what lets
@@ -162,8 +166,16 @@ export default function Nav() {
               link.label === "Services" ? (
                 <div
                   key={link.href}
-                  onMouseEnter={openServicesMenu}
-                  onMouseLeave={closeServicesMenu}
+                  // Pointer events rather than mouse events, so the pointerType
+                  // can be checked. A tap fires a synthetic mouseenter, which
+                  // used to open the panel a moment before the tap toggled it
+                  // shut again, so touch could never open it at all.
+                  onPointerEnter={(e) => {
+                    if (e.pointerType === "mouse") openServicesMenu();
+                  }}
+                  onPointerLeave={(e) => {
+                    if (e.pointerType === "mouse") closeServicesMenu();
+                  }}
                   onFocus={() => {
                     if (suppressFocusOpen.current) {
                       suppressFocusOpen.current = false;
@@ -186,19 +198,33 @@ export default function Nav() {
                     }
                   }}
                 >
-                  <a
-                    ref={triggerRef}
-                    href={link.href}
-                    aria-expanded={servicesOpen}
-                    aria-haspopup="true"
-                    className="flex items-center gap-1 px-3.5 py-2 text-sm text-muted hover:text-ink transition-colors rounded-lg hover:bg-white/5"
-                  >
-                    {link.label}
-                    <ChevronDown
-                      size={14}
-                      className={`transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""}`}
-                    />
-                  </a>
+                  <div className="flex items-center rounded-lg transition-colors hover:bg-white/5">
+                    <a
+                      ref={triggerRef}
+                      href={link.href}
+                      className="py-2 pl-3.5 pr-1 text-sm text-muted transition-colors hover:text-ink"
+                    >
+                      {link.label}
+                    </a>
+                    {/* Separate control, so clicking the chevron opens the panel
+                        and clicking the label still goes to /services. */}
+                    <button
+                      type="button"
+                      onPointerDown={() => {
+                        openBeforePress.current = servicesOpen;
+                      }}
+                      onClick={() => setServicesOpen(!openBeforePress.current)}
+                      aria-expanded={servicesOpen}
+                      aria-haspopup="true"
+                      aria-label={servicesOpen ? "Close services menu" : "Open services menu"}
+                      className="py-2 pl-0.5 pr-3 text-muted transition-colors hover:text-ink"
+                    >
+                      <ChevronDown
+                        size={14}
+                        className={`transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                  </div>
 
                   {/* Always mounted, hidden via inline styles at first paint so it
                       cannot flash before GSAP takes over, then driven by the
