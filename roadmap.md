@@ -847,6 +847,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **The 22 "Blocked by robots.txt" and 16 "Excluded by noindex" are historical.** The current robots allows everything, and grepping the source plus checking three live pages found **no `noindex` anywhere**. These are the old WordPress site's rules still on record; they clear when Google re-crawls. Nothing to fix.
     - **The 48 "Crawled, currently not indexed" is the real problem, and it is not technical.** That is Google saying the pages are not worth indexing. It matches item 83's finding: service category pages carry **255 to 358 words**. Thin content is the blocker, not configuration.
 
+96. **Service category pages tripled in depth to address "Crawled, currently not indexed" (2026-09-01)** — **done.** This was the one GSC reason that was a real content problem rather than historical noise: 48 URLs Google had looked at and declined to index.
+    - **Measured first.** The eight category pages averaged **250 words** (199 to 353). Now **753 average**, every page between **704 and 835**.
+    - New `src/data/serviceDepth.ts` holds three or four long-form blocks plus extra FAQs per category, rendered as a "How this works in practice" section. Kept out of `pillars.ts` so the mega-menu data stays readable.
+    - **Content is specific and honest.** No invented metrics, no client names beyond LEOS, and it says out loud where a promise cannot be made: no guaranteed rankings, no guaranteed AI-answer placement, CRO is not worth doing below a few hundred conversions a month, and legal questions go to a qualified professional. Thin pages are usually thin because the writer had nothing specific to say; the fix is specificity, not word count.
+    - **FAQ schema verified to match the visible page on all eight** (6/6, 5/5, 5/5, 6/6, 5/5, 6/6, 6/6, 5/5). Schema that claims FAQs a visitor cannot see is a structured-data violation, so the extra FAQs were merged into both the render and the JSON-LD from one array.
+    - **Added to `siteContent.ts` as well.** This is now the most substantial content on the site, and leaving it out would mean the on-site assistant and `llms-full.txt` knew less than a visitor. Corpus went from **25KB to 50KB**, roughly 12,500 tokens, cached per request via `cache_control`.
+    - **What this does not do**: indexing is Google's decision and takes weeks. Depth removes the stated blocker; it does not guarantee the 48 get indexed. Worth re-checking GSC in three to four weeks, and running `npm run indexnow` after deploy to prompt a re-crawl.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

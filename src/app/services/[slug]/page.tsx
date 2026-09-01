@@ -12,6 +12,7 @@ import {
   resolveItem,
   slugify,
 } from "@/data/pillars";
+import { serviceDepth } from "@/data/serviceDepth";
 
 const SITE_URL = "https://bilalshafqat.com";
 
@@ -47,6 +48,8 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
   const sections = category.items
     .map((item) => ({ item, resolved: resolveItem(item) }))
     .filter((x) => x.resolved);
+  const depth = serviceDepth[category.slug];
+  const faqs = [...category.faqs, ...(depth?.faqs ?? [])];
   const others = megaMenuGroups.filter((c) => c.slug !== category.slug);
   const url = `${SITE_URL}/services/${category.slug}`;
 
@@ -71,11 +74,11 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
     },
   };
 
-  const faqSchema = category.faqs.length
+  const faqSchema = faqs.length
     ? {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        mainEntity: category.faqs.map((f) => ({
+        mainEntity: faqs.map((f) => ({
           "@type": "Question",
           name: f.question,
           acceptedAnswer: { "@type": "Answer", text: f.answer },
@@ -162,7 +165,35 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
           </div>
         </section>
 
-        {category.faqs.length ? (
+        {depth ? (
+          <section className="relative mt-20 sm:mt-24">
+            <div className="mx-auto max-w-4xl px-6">
+              <Reveal>
+                <h2 className="text-3xl font-semibold leading-tight text-ink sm:text-4xl lg:text-[2.75rem]">
+                  How this works in practice
+                </h2>
+              </Reveal>
+              <div className="mt-10 space-y-12">
+                {depth.blocks.map((block) => (
+                  <Reveal key={block.heading}>
+                    <div className="border-t border-border pt-8">
+                      <h3 className="text-xl font-semibold text-ink sm:text-2xl">{block.heading}</h3>
+                      <div className="mt-4 space-y-4">
+                        {block.paragraphs.map((para) => (
+                          <p key={para.slice(0, 40)} className="text-base leading-relaxed text-muted">
+                            {para}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
+
+        {faqs.length ? (
           <section className="relative mt-20 sm:mt-24">
             <div className="mx-auto max-w-4xl px-6">
               <Reveal>
@@ -171,7 +202,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                 </h2>
               </Reveal>
               <div className="mt-10 space-y-5">
-                {category.faqs.map((f) => (
+                {faqs.map((f) => (
                   <Reveal key={f.question}>
                     <div className="rounded-2xl border border-border glass p-6">
                       <h3 className="font-semibold text-ink">{f.question}</h3>

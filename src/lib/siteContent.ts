@@ -7,6 +7,7 @@
 
 import { pillars, megaMenuGroups } from "@/data/pillars";
 import { faqGroups } from "@/data/faqs";
+import { serviceDepth } from "@/data/serviceDepth";
 import { clients } from "@/data/caseStudies";
 
 export function buildSiteContent(): string {
@@ -28,7 +29,16 @@ Contact page: /contact  ·  Pricing: /pricing  ·  FAQ: /faq`);
 ${group.intro}
 
 Includes: ${group.items.map((i) => i.title).join(", ")}.`);
-    for (const faq of group.faqs) {
+    // Long-form category copy and the extra FAQs that go with it. These are the
+    // most substantive pages on the site, so leaving them out of the corpus
+    // would mean the assistant and llms-full.txt knew less than a visitor does.
+    const depth = serviceDepth[group.slug];
+    if (depth) {
+      for (const block of depth.blocks) {
+        parts.push(`### ${block.heading}\n${block.paragraphs.join("\n\n")}`);
+      }
+    }
+    for (const faq of [...group.faqs, ...(depth?.faqs ?? [])]) {
       parts.push(`Q: ${faq.question}\nA: ${faq.answer}`);
     }
   }
