@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import ConsentReset from "@/components/ConsentReset";
 
 export const metadata: Metadata = {
   title: "Privacy & What's Stored — Bilal Shafqat",
@@ -86,11 +87,13 @@ export default function PrivacyPage() {
 
             <div className="mt-10 rounded-2xl border border-border glass p-6">
               <h2 className="text-base font-semibold text-ink">Changing your mind</h2>
-              <p className="mt-3 text-sm text-muted leading-relaxed">
-                Clearing this site&apos;s data in your browser removes the stored
-                choice and the banner will ask again. Session storage clears by
-                itself when you close the tab.
+              <p className="mt-3 text-sm leading-relaxed text-muted">
+                Use the button below and the banner will ask again, whichever way
+                you answered the first time. It also clears the campaign source
+                held for this tab. Clearing this site&apos;s data in your browser
+                does the same thing.
               </p>
+              <ConsentReset className="mt-4" />
               <h2 className="mt-6 text-base font-semibold text-ink">Getting your details removed</h2>
               <p className="mt-3 text-sm text-muted leading-relaxed">
                 If you&apos;ve sent an enquiry and want it deleted, email{" "}

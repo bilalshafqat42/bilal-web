@@ -863,6 +863,13 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - Verified in four consent states: **no answer → 0 requests, 0 cookies. Declined → 0 requests, 0 cookies. Granted → loads, correct pixel ID, `_fbp` set. Accepted mid-session → loads immediately.**
     - **What could NOT be verified locally**: no `/tr` beacon fires from localhost. Proven to be Meta's behaviour rather than an integration fault by running **Meta's own unmodified snippet as a control**, which also sent zero. Confirmation belongs in Events Manager or the Pixel Helper extension after deploy.
 
+98. **Consent is now withdrawable; pixel confirmed firing on production (2026-09-01)** — **done.** Bilal reported the pixel event "not working" and showed the Meta Ads Data Advisor panel saying "No available actions".
+    - **The pixel works.** Verified on production as a genuinely fresh visitor: banner appears, click Accept, `bs-consent` becomes `granted`, and a beacon fires with `id=1793281825039961 event=PageView`, plus one more on client-side navigation.
+    - **He was reading the wrong tool.** Meta Ads Data Advisor surfaces ad-account performance recommendations; "No available actions" says nothing about whether a pixel fired. Pixel Helper or Events Manager → Test Events is what shows events.
+    - **The likely cause on his machine**: his screenshot shows no banner but the AI Search pill visible, and that pill only reveals after the banner has been answered. So a choice was already stored. If it was Decline, the pixel correctly never loads.
+    - **Real gap found and fixed: a stored choice was permanent.** The banner never asked again and nothing in the UI could reset it, so someone who declined could never opt in and someone who accepted could never opt out. That is a consent-withdrawal failure under PDPL and GDPR, and it only became visible once a real tracker depended on the answer. New `clearConsent()` plus a `ConsentReset` control on `/privacy`, labelled "Withdraw my consent" or "Change my choice" depending on the current answer. It reloads, because a tracker already loaded cannot be unloaded.
+    - **Two false failures in my own testing, both self-inflicted.** `addInitScript` re-seeded `localStorage` on the reload, so the reset looked like it did nothing; moving the seed to a one-off `page.evaluate` showed it working. Earlier in the same session I also reported the banner as "not showing" because `offsetParent` is null for `position: fixed` elements. **Neither was a product bug.**
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

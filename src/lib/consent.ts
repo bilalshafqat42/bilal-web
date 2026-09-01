@@ -27,6 +27,23 @@ export function setConsent(value: Consent) {
   window.dispatchEvent(new CustomEvent(CONSENT_EVENT, { detail: value }));
 }
 
+/**
+ * Forgets the stored choice so the banner asks again.
+ *
+ * Reloads rather than just clearing: a tracker that has already loaded cannot be
+ * unloaded, and its cookies are already written. A reload is the only honest way
+ * to return the page to a pre-consent state.
+ */
+export function clearConsent() {
+  try {
+    window.localStorage.removeItem(KEY);
+    window.sessionStorage.clear();
+  } catch {
+    /* storage blocked; the reload below still resets the page */
+  }
+  window.location.reload();
+}
+
 export function hasConsent(): boolean {
   return getConsent() === "granted";
 }
