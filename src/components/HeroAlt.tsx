@@ -25,9 +25,12 @@ export default function HeroAlt() {
   useGSAP(
     () => {
       if (!frameRef.current) return;
+      // Width and corners only. Animating height as well used to make sense for
+      // the old centred layout, but this composition is anchored top and bottom
+      // (badge and headline up top, portrait and wordmark down below), so
+      // growing the card pulls it apart and scrolls the headline out of view.
       const tween = gsap.to(frameRef.current, {
         width: "100%",
-        height: "100vh",
         borderRadius: "0px",
         ease: "none",
         scrollTrigger: {
@@ -90,17 +93,22 @@ export default function HeroAlt() {
         </div>
       </section>
 
-      {/* Separate "About Me" panel, own scroll-expand animation. Initial width
-          matches the 10-column site container above. Glassmorphism
-          panel (glass-strong, same style as Contact's card) instead of a solid
-          fill, with blurred glow shapes behind it. Centered badge/headline/
-          subtitle/photo layout — reference: a Behance profile page Bilal
-          shared (centered "[Name] is [Role]" headline over a large photo). */}
+      {/* Personal panel, own scroll-expand animation. Initial width matches the
+          10-column site container above. Layout follows a reference Bilal
+          shared: badge top-left, headline left, short intro and CTA right, the
+          photo centred, and an oversized wordmark behind it that the shoulders
+          overlap. */}
       <section id="about" className="relative overflow-hidden bg-bg pb-16 sm:pb-20">
         <div
           ref={frameRef}
           className="glass-strong relative mx-auto overflow-hidden"
-          style={{ width: "min(83.3333%, calc(100% - 3rem))", height: "80vh", borderRadius: "1.75rem" }}
+          style={{
+            width: "min(83.3333%, calc(100% - 3rem))",
+            // Tall enough to hold the whole composition, capped so it still
+            // leaves room for the section below on a short laptop screen.
+            height: "min(88vh, 860px)",
+            borderRadius: "1.75rem",
+          }}
         >
           <div
             className="blob pointer-events-none absolute -top-24 left-1/4 h-72 w-72 rounded-full bg-gold/40"
@@ -111,47 +119,93 @@ export default function HeroAlt() {
             style={{ animationDelay: "-8s" }}
           />
 
-          <div className="no-scrollbar relative flex h-full flex-col items-center overflow-y-auto px-6 pt-14 text-center sm:px-12">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
-              About Me
-            </span>
-            <h2 className="mt-4 max-w-3xl lg:max-w-4xl text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
-              Strategy and execution, under one roof.
-            </h2>
-            <p className="mt-4 max-w-2xl lg:max-w-3xl text-base sm:text-lg text-muted leading-relaxed">
-              Companies usually hire an agency for marketing, a developer for
-              the website, and a freelancer for design, then manage the
-              handoffs between them. I do all of it myself, paid marketing,
-              web and app development, design, and the automation that
-              connects them, as one senior partner who understands how the
-              whole picture fits together.
-            </p>
+          {/* Wordmark sits at the very bottom and behind everything, so the
+              portrait's shoulders cut across it. */}
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-0 hidden select-none whitespace-nowrap text-center font-display font-bold leading-[0.78] tracking-tight text-white/[0.07] lg:block"
+            style={{ fontSize: "clamp(4rem, 13vw, 12rem)" }}
+          >
+            Bilal Shafqat
+          </span>
 
-            <div className="mt-5 flex max-w-3xl lg:max-w-4xl flex-wrap items-center justify-center gap-2">
-              {intersection.map((item) => (
-                <span
-                  key={item}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface/60 px-3.5 py-1.5 text-xs text-muted"
+          {/* Portrait, anchored to the bottom centre and layered above the
+              wordmark. Masked at the top so it emerges from the panel instead
+              of ending on a hard edge. */}
+          <div
+            role="img"
+            aria-label="Portrait of Bilal Shafqat"
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-10 mx-auto hidden h-[62%] w-[46%] max-w-lg lg:block"
+            style={{
+              backgroundImage: "url(/images/bilal-shirt.avif)",
+              backgroundSize: "cover",
+              backgroundPosition: "center 22%",
+              backgroundRepeat: "no-repeat",
+              maskImage: "linear-gradient(to bottom, transparent, black 16%)",
+              WebkitMaskImage: "linear-gradient(to bottom, transparent, black 16%)",
+            }}
+          />
+
+          <div className="relative z-20 flex h-full flex-col px-6 pt-10 sm:px-10 sm:pt-12 lg:px-14">
+            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
+              </span>
+              Available for work
+            </span>
+
+            {/* Three columns with an empty middle: the portrait shows through
+                the gap rather than sitting behind the text. */}
+            <div className="mt-10 grid flex-1 grid-cols-1 gap-8 lg:mt-14 lg:grid-cols-[1fr_34%_1fr] lg:gap-6">
+              <div className="max-w-md">
+                <h2 className="text-3xl font-bold leading-[1.08] tracking-tight text-ink sm:text-4xl lg:text-[2.6rem]">
+                  Paid marketing, development and design, based in{" "}
+                  <span className="text-gradient">Dubai</span>
+                </h2>
+                <ul className="mt-7 space-y-2.5">
+                  {intersection.map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-sm text-muted">
+                      <CheckCircle2 size={14} className="shrink-0 text-gold" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="hidden lg:block" />
+
+              <div className="lg:justify-self-end lg:text-right">
+                <p className="max-w-sm text-base leading-relaxed text-muted lg:ml-auto">
+                  Hi, I&apos;m Bilal Shafqat. I run the paid campaigns, build the
+                  websites and apps they point at, and design the creative around
+                  them, so you brief one senior partner instead of managing three
+                  suppliers.
+                </p>
+                <a
+                  href="/portfolio"
+                  className="btn-primary mt-6 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow"
                 >
-                  <CheckCircle2 size={13} className="text-gold" />
-                  {item}
-                </span>
-              ))}
+                  See my work <ArrowRight size={16} />
+                </a>
+              </div>
             </div>
 
+            {/* Below lg there is no room to layer a portrait behind text, so the
+                same content stacks and the photo simply follows it. */}
             <div
               role="img"
               aria-label="Portrait of Bilal Shafqat"
-              className="relative mt-6 w-full max-w-sm flex-1 sm:max-w-md lg:max-w-lg"
+              className="mt-8 h-56 w-full sm:h-72 lg:hidden"
               style={{
                 backgroundImage: "url(/images/bilal-shirt.avif)",
-                backgroundSize: "150%",
-                backgroundPosition: "center 25%",
-                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundPosition: "center 22%",
                 maskImage: "linear-gradient(to bottom, transparent, black 18%)",
                 WebkitMaskImage: "linear-gradient(to bottom, transparent, black 18%)",
               }}
             />
+
           </div>
         </div>
       </section>

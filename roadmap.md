@@ -770,6 +770,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **A real accessibility bug found by testing reduced motion.** The pin is never created under `prefers-reduced-motion`, but the pinned block still rendered, so those users saw step one with no way to advance. Fixed with an explicit `@media (prefers-reduced-motion: reduce) and (min-width: 1024px)` rule in `globals.css` rather than stacked Tailwind variants, since `motion-reduce:lg:hidden` and `lg:flex` have equal specificity and the winner would depend on stylesheet order.
     - Also corrected the pre-deploy checker, which counted hidden never-fetched images as broken. It now only counts images that are actually visible.
 
+86. **Homepage personal panel rebuilt on a portfolio-hero reference (2026-09-01)** — **done.** Bilal shared a Frameblox "Dominic" portfolio hero and his own panel, and asked for something like it.
+    - **He called it his "about us section"; it is actually the second half of `HeroAlt.tsx` on the homepage.** The `About.tsx` component is not rendered anywhere on `/`, and `/about` is a separate page. Worth checking which component a screenshot actually comes from before editing: the first two files that matched the heading text were both wrong.
+    - Layout now: "Available for work" badge with a pulsing dot, large headline left with the city in gold, capability list under it, short first-person intro and a "See my work" CTA right, portrait centred and bottom-anchored, and an oversized "Bilal Shafqat" wordmark behind the portrait so the shoulders cut across it.
+    - **The existing scroll-expand animation broke the new composition.** It grew the card from 80vh to 100vh, and because this layout is anchored top and bottom rather than centred, growing the height pulled it apart and scrolled the headline out of view. The tween now animates **width and corner radius only**, with the height fixed at `min(88vh, 860px)`. The full-bleed reveal is kept; the layout no longer moves.
+    - The capability chips were first placed in a bottom strip, where they sat directly on the wordmark and both became harder to read. Moved under the headline.
+    - Verified at 1280x800, 1440x900, 1920x1080 and 390x844: content sits inside the card with 163 to 549px of headroom, no page overflow, no console errors, 21 routes still 200.
+    - Wordmark is at `white/[0.07]`. The reference uses solid white; Bilal can go bolder if he wants it to read as a graphic element rather than a watermark.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
