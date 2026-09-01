@@ -3,11 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import { accentClasses, megaMenuGroups, slugify } from "@/data/pillars";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const links = [
   { label: "Home", href: "/#home" },
@@ -20,7 +21,6 @@ const links = [
 ];
 
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -38,6 +38,8 @@ export default function Nav() {
   // open the panel and both land before `click`, so a plain toggle in the click
   // handler would undo them and the panel could never be opened by pressing.
   const openBeforePress = useRef(false);
+  const barWrapRef = useRef<HTMLDivElement>(null);
+  const barRef = useRef<HTMLDivElement>(null);
 
   // One paused timeline built on mount, played forward to open and reversed to
   // close. Building it once (rather than animating on each render) is what lets
@@ -107,12 +109,80 @@ export default function Nav() {
     closeTimer.current = setTimeout(() => setServicesOpen(false), 250);
   };
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  // The bar used to swap between `site-container` (width 83.3333%) and
+  // `max-w-full` (width auto). CSS cannot interpolate to `auto`, so the width
+  // jumped while everything else faded, which is what read as "no animation".
+  // Driving it with a scrubbed timeline over explicit values fixes that and
+  // ties the morph to scroll position rather than a one-shot transition.
+  useGSAP(
+    () => {
+      const wrap = barWrapRef.current;
+      const bar = barRef.current;
+      const header = headerRef.current;
+      if (!wrap || !bar || !header) return;
+
+      const mm = gsap.matchMedia();
+
+      mm.add(
+        {
+          desktop: "(min-width: 1024px)",
+          mobile: "(max-width: 1023px)",
+          reduce: "(prefers-reduced-motion: reduce)",
+        },
+        (ctx) => {
+          const { desktop, reduce } = ctx.conditions as Record<string, boolean>;
+
+          const tl = gsap.timeline({
+            defaults: { ease: "none" },
+            scrollTrigger: {
+              start: 0,
+              end: 150,
+              // Reduced motion still gets the end state, just without the
+              // scroll-linked interpolation.
+              scrub: reduce ? false : 0.4,
+              toggleActions: reduce ? "play none none reverse" : undefined,
+            },
+          });
+
+          tl.fromTo(header, { paddingTop: 20, paddingBottom: 20 }, { paddingTop: 12, paddingBottom: 12 }, 0)
+            .fromTo(
+              wrap,
+              { width: "100%", paddingLeft: desktop ? 32 : 16, paddingRight: desktop ? 32 : 16 },
+              { width: desktop ? "83.3333%" : "100%", paddingLeft: desktop ? 0 : 12, paddingRight: desktop ? 0 : 12 },
+              0
+            )
+            .fromTo(
+              bar,
+              {
+                borderRadius: 0,
+                paddingLeft: 0,
+                paddingRight: 0,
+                backgroundColor: "rgba(18, 18, 24, 0)",
+                backdropFilter: "blur(0px)",
+                boxShadow: "0 0 0 rgba(0,0,0,0)",
+              },
+              {
+                borderRadius: 16,
+                paddingLeft: 16,
+                paddingRight: 16,
+                backgroundColor: "rgba(18, 18, 24, 0.72)",
+                backdropFilter: "blur(20px)",
+                boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+              },
+              0
+            );
+
+          return () => {
+            tl.scrollTrigger?.kill();
+            tl.kill();
+          };
+        }
+      );
+
+      return () => mm.revert();
+    },
+    { scope: headerRef }
+  );
 
   useEffect(() => {
     return () => {
@@ -123,9 +193,8 @@ export default function Nav() {
   return (
     <header
       ref={headerRef}
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled ? "py-3" : "py-5"
-      }`}
+      className="fixed inset-x-0 top-0 z-50"
+      style={{ paddingTop: 20, paddingBottom: 20 }}
     >
       {/* Blurred, dimmed scrim behind the mega menu. Negative z-index keeps it
           under the nav bar's own content (a fixed element would otherwise paint
@@ -137,17 +206,10 @@ export default function Nav() {
         className="mega-backdrop pointer-events-none fixed inset-0 -z-10"
         style={{ visibility: "hidden", opacity: 0 }}
       />
-      <div
-        className={`mx-auto transition-all duration-500 ease-out ${
-          scrolled ? "site-container" : "max-w-full px-4 sm:px-8"
-        }`}
-      >
+      <div ref={barWrapRef} className="mx-auto">
         <div
-          className={`flex items-center justify-between transition-all duration-500 ease-out ${
-            scrolled
-              ? "rounded-2xl px-4 py-2.5 glass-strong shadow-lg shadow-black/20"
-              : "rounded-none px-0 py-2.5 bg-transparent"
-          }`}
+          ref={barRef}
+          className="flex items-center justify-between py-2.5"
           style={{ borderWidth: 0 }}
         >
           <a href="/#home" className="flex items-center">

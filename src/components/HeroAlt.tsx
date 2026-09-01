@@ -25,19 +25,26 @@ export default function HeroAlt() {
   useGSAP(
     () => {
       if (!frameRef.current) return;
-      // The panel is full width from the start now, so there is no width left
-      // to animate. Only the corners square off as it meets the viewport edges.
-      const tween = gsap.to(frameRef.current, {
-        borderRadius: "0px",
-        ease: "none",
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top",
-          end: "+=600",
-          scrub: true,
-          invalidateOnRefresh: true,
-        },
-      });
+      // Starts at 8 of the 12 columns and grows to full bleed as the panel
+      // climbs towards the navbar. Tied to the panel's own travel rather than a
+      // pixel distance, so it finishes exactly as it reaches the top whatever
+      // the viewport height.
+      const tween = gsap.fromTo(
+        frameRef.current,
+        { width: "66.6667%", borderRadius: "1.75rem" },
+        {
+          width: "100%",
+          borderRadius: "0px",
+          ease: "none",
+          scrollTrigger: {
+            trigger: frameRef.current,
+            start: "top bottom",
+            end: "top top",
+            scrub: 0.5,
+            invalidateOnRefresh: true,
+          },
+        }
+      );
       return () => {
         tween.scrollTrigger?.kill();
       };
@@ -100,7 +107,7 @@ export default function HeroAlt() {
           ref={frameRef}
           className="glass-strong relative mx-auto overflow-hidden"
           style={{
-            width: "100%",
+            width: "66.6667%",
             // Tall enough to hold the whole composition, capped so it still
             // leaves room for the section below on a short laptop screen.
             height: "min(88vh, 900px)",
@@ -132,7 +139,7 @@ export default function HeroAlt() {
           <div
             role="img"
             aria-label="Portrait of Bilal Shafqat"
-            className="pointer-events-none absolute inset-x-0 bottom-0 z-10 mx-auto hidden h-[68%] w-[51%] max-w-xl lg:block"
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-10 mx-auto hidden h-[82%] w-[61%] max-w-2xl lg:block"
             style={{
               backgroundImage: "url(/images/bilal-shirt.avif)",
               backgroundSize: "cover",

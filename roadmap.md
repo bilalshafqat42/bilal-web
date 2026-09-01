@@ -787,6 +787,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - Verified: mouse hover animates and the chevron dismisses, touch tap opens with the full animation and does not navigate, focus opens for keyboard users, Escape closes, moving the pointer away closes.
     - **Lesson for this project**: "X is not animating" deserves a measurement before a rewrite. The animation was fine; the trigger was wrong.
 
+88. **Panel expand restored, portrait enlarged, navbar morph rebuilt on GSAP (2026-09-01)** — **done.**
+    - Portrait another 20% larger (51% to **61%** wide, 68% to **82%** tall). Measured: it still sits inside the card, and although the photo box is now wider than the middle grid column, Bilal is centred within a dark surround so the side columns stay visually clear.
+    - Panel expand re-added, but tied to the panel's **own travel** rather than a pixel distance: `start: "top bottom"`, `end: "top top"`, so it grows from **8 of 12 columns (66.6667%) to full bleed** and finishes exactly as it reaches the navbar at any viewport height. Measured 76.9%, 80%, 88.3%, 95%, 100% with the corner radius squaring off in step.
+    - **The navbar "not animating" was a genuine CSS limitation, not a missing transition.** It swapped between `site-container` (`width: 83.3333%`) and `max-w-full` (`width: auto`). **CSS cannot interpolate to `auto`**, so the width snapped while colour and padding faded, which is exactly what reads as "no animation".
+    - Rebuilt as a **scrubbed GSAP timeline over explicit values** across the first 150px of scroll: header padding 20 to 12, wrap width 100% to 83.3333%, bar radius 0 to 16, padding 0 to 16, background 0 to 0.72 alpha, blur 0 to 20px, plus a shadow. Measured continuous interpolation at every sampled scroll position rather than a jump.
+    - `gsap.matchMedia` keeps the width morph desktop-only (mobile stays full width) and gives reduced motion the end state without the scroll-linked scrub. The now-dead `scrolled` state was removed.
+    - **Pattern worth keeping**: when a CSS transition "does not animate", check whether one end of the property is a non-interpolatable keyword (`auto`, `none`, `fit-content`) before assuming the transition is missing.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
