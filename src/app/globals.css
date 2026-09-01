@@ -194,3 +194,16 @@ h1, h2, h3, h4, .font-display {
     animation: none;
   }
 }
+
+/* The pinned process stepper only works when it can animate. With reduced
+   motion the pin is never created, so the pinned block would sit there showing
+   step one with no way to advance. Desktop falls back to the stacked list that
+   mobile already uses. */
+@media (prefers-reduced-motion: reduce) and (min-width: 1024px) {
+  .process-pinned {
+    display: none;
+  }
+  .process-stacked {
+    display: block;
+  }
+}

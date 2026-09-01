@@ -761,6 +761,15 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - Same pass: the inactive rail was `rgba(255,255,255,0.08)`, invisible in practice, so the column read as a broken line rather than a continuous one. Now `white/20`. Gaps between steps are **112px**, heading to subtitle 12px.
     - **Images are the weak part and Bilal should replace them.** They are real project work but only loosely match the step (property renders standing in for "Understand the Brief"). The component is data-driven, so swapping `image` and `alt` on a step is the whole change.
 
+85. **Process section converted to a pinned one-step-at-a-time stepper (2026-09-01)** — **done.** The sticky version from item 84 showed all four steps in one tall column; Bilal circled the result and asked for one step at a time, GSAP transitions, and the yellow line behaving as pagination.
+    - **This is the case where pinning is genuinely required.** `position: sticky` cannot hold one step and swap it for the next; that needs the scroll position mapped to an index, which is what `pin` plus `snap` does. Items 71, 77 and 79 all failed at pinning, so the fit was measured first this time rather than last.
+    - Pinned block is `lg:h-screen`, `end: (n-1) * innerHeight`, `snapTo: 1/(n-1)`, index from `Math.round(progress * (n-1))`. Content measured to **fit inside the viewport at 1280x800, 1440x900, 1512x820 and 1920x1080** with 180 to 250px of headroom, which is the check that was missing in item 77.
+    - GSAP does the work Bilal asked for: copy lifts in on a 0.06s stagger, images crossfade with a slight scale so there is never a frame without an image. Keyed on the active index rather than scrubbed, so a snap and a jump animate identically.
+    - Rail is now **four discrete segments**, active one taller and gold, so position in the sequence is read at a glance rather than inferred.
+    - **A jump-scroll test made it look broken when it was not.** Stepping 300px at a time produced `01, 01, 02, 01, 02, 03, 02...` because each jump landed between snap points and snap resolved to the nearer one, sometimes backwards. Driven by a real wheel it is a clean `1 to 2 to 3 to 4` and back. **Snap behaviour has to be tested with a wheel, not with `scrollTo` jumps.**
+    - **A real accessibility bug found by testing reduced motion.** The pin is never created under `prefers-reduced-motion`, but the pinned block still rendered, so those users saw step one with no way to advance. Fixed with an explicit `@media (prefers-reduced-motion: reduce) and (min-width: 1024px)` rule in `globals.css` rather than stacked Tailwind variants, since `motion-reduce:lg:hidden` and `lg:flex` have equal specificity and the winner would depend on stylesheet order.
+    - Also corrected the pre-deploy checker, which counted hidden never-fetched images as broken. It now only counts images that are actually visible.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
