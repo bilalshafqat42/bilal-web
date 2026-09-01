@@ -801,6 +801,11 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - Second, putting `width: 83.3333%` in the markup left **phones sitting at 83.3% with wasted margins**, since the tween is desktop-only. Full width is now the base and the desktop tween's `from` state supplies the 10-column start, which `fromTo` applies immediately at progress 0.
     - Verified: 83.3% on load and 100% at the 70% point at 1024x768, 1280x800, 1440x900 and 1920x1080; tablet and mobile stay full width throughout; no overflow, no console errors.
 
+90. **Panel expand removed; fixed at 10 columns (2026-09-01)** — **done.** Bilal wanted to judge the design without the width animation moving underneath it.
+    - Width is now a plain responsive class: `w-full lg:w-[83.3333%]`. Corners stay rounded at 1.75rem at every scroll position. Measured 83.3% at 1024x768, 1280x800, 1440x900 and 1920x1080, full width on tablet and mobile.
+    - Removing the tween left `HeroAlt.tsx` with **no hooks and no event handlers**, so `"use client"` came off and it is a server component again. That is the whole panel out of the client bundle.
+    - The expand is recoverable from git (item 89) if he wants it back.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
