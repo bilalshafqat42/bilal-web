@@ -24,6 +24,12 @@ const rows = [
     optional: "Yes — decline on the banner and nothing is stored.",
   },
   {
+    what: "Meta (Facebook) Pixel — page views, and an `_fbp` cookie identifying your browser",
+    where: "Sent to Meta Platforms Ireland, which may transfer it outside the UAE",
+    why: "So I can measure and retarget advertising. It loads only after you accept.",
+    optional: "Yes — decline on the banner and the pixel never loads at all.",
+  },
+  {
     what: "Enquiry details you type (name, email, phone, service, message)",
     where: "Sent to my lead system when you press send",
     why: "So I can reply to you.",
@@ -46,9 +52,10 @@ export default function PrivacyPage() {
               What this site stores
             </h1>
             <p className="mt-6 text-lg text-muted leading-relaxed">
-              Short version: this site has no advertising cookies, no third-party
-              trackers, and no analytics scripts. The only things kept are listed
-              below, and the campaign tracking is optional.
+              Short version: nothing is stored or sent to anyone else until you
+              accept on the cookie banner. If you decline, no tracker loads and
+              no advertising cookie is written. Everything this site can store is
+              listed below.
             </p>
           </div>
         </section>

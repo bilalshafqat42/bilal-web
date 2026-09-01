@@ -855,6 +855,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Added to `siteContent.ts` as well.** This is now the most substantial content on the site, and leaving it out would mean the on-site assistant and `llms-full.txt` knew less than a visitor. Corpus went from **25KB to 50KB**, roughly 12,500 tokens, cached per request via `cache_control`.
     - **What this does not do**: indexing is Google's decision and takes weeks. Depth removes the stated blocker; it does not guarantee the 48 get indexed. Worth re-checking GSC in three to four weeks, and running `npm run indexnow` after deploy to prompt a re-crawl.
 
+97. **Meta Pixel installed, consent-gated (2026-09-01)** — **done.** Bilal supplied pixel ID `1793281825039961` and asked for it inserted. I had argued against it (no paid traffic to this site, so a retargeting pixel collects data he will not use); he reaffirmed, so it is in.
+    - **Meta's snippet fires on page load. That could not be used as given.** This site shows a banner promising nothing loads until the visitor accepts, and the pixel writes `_fbp` and sends an identifier. Firing first would make the banner a lie and puts consent after the tracker, which is backwards under UAE PDPL and GDPR. The loader is held until consent is `granted` and reacts to the banner mid-session.
+    - **Meta's `<noscript>` image deliberately omitted.** It cannot be consent-gated: with JavaScript off there is no way to read a stored choice, so it would fire for every visitor before they answered. It covers a fraction of a percent of traffic.
+    - **PageView is re-fired on client-side navigation.** This is an SPA, so without that Meta records one PageView for an entire session.
+    - **The privacy policy claimed "no advertising cookies, no third-party trackers, and no analytics scripts".** Installing the pixel made that false, so it was rewritten in the same commit and the pixel added to the disclosure table naming Meta Platforms Ireland and the possible transfer outside the UAE. **A privacy page that misdescribes the site is worse than not having one.**
+    - Verified in four consent states: **no answer → 0 requests, 0 cookies. Declined → 0 requests, 0 cookies. Granted → loads, correct pixel ID, `_fbp` set. Accepted mid-session → loads immediately.**
+    - **What could NOT be verified locally**: no `/tr` beacon fires from localhost. Proven to be Meta's behaviour rather than an integration fault by running **Meta's own unmodified snippet as a control**, which also sent zero. Confirmation belongs in Events Manager or the Pixel Helper extension after deploy.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

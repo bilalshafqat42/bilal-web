@@ -5,6 +5,7 @@ import StructuredData from "@/components/StructuredData";
 import CookieConsent from "@/components/CookieConsent";
 import SpotlightSearch from "@/components/SpotlightSearch";
 import Analytics from "@/components/Analytics";
+import MetaPixel from "@/components/MetaPixel";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -61,6 +62,7 @@ export default function RootLayout({
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col bg-bg text-ink">
         <Analytics />
+        <MetaPixel />
         <StructuredData />
         {children}
         <SpotlightSearch />
