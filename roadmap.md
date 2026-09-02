@@ -925,6 +925,13 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - `"ui ux designer"`, the exact keyword this site is chasing, now returns the **UI/UX Design** page as the top result. Index **77 to 170 chunks** across today's two passes.
     - Verified: FAQ schema matches the visible questions on all eight pages, 22 routes still 200, lint still clean.
 
+104. **Stack corrected: WordPress, Squarespace, Wix and PostgreSQL added (2026-09-02)** — **done.** Bilal listed what he actually works with and three of them appeared **nowhere on the site**.
+    - **The WordPress answer actively undersold him.** It read "I can maintain and improve an existing WordPress site" when he builds on it. Rewritten to say both, with an honest line on when WordPress is the right call versus Next.js.
+    - **Squarespace, Wix and PostgreSQL had zero mentions across the entire repo.** All three are searched by name, so this was lost traffic as well as an inaccurate description. Added to the stack in five places in `pillars.ts` and to the About page's build stack, plus four new questions: Squarespace/Wix, which platform to choose, the full stack, and MongoDB versus PostgreSQL.
+    - **Adding them exposed that the ranking clamp was throttling the fix.** The IDF ceiling of 2.5 was *below* the value of moderately common words: "build" scored 2.33 against "wordpress" at a capped 2.5, so "do you build wordpress sites" ranked on "build" and returned the e-commerce answer. Ceiling raised to 6, floors rescaled to match.
+    - Two further ranking faults found the same way: **a stemmed query term has no IDF entry**, so prefix matches fell back to a default weight and "postgres" never reached the PostgreSQL answer despite matching it cleanly — prefix hits are now weighted by the *matched index term*. And a 4-character prefix minimum let "postgres" stem to "postgr" and match "post", returning a social-posting answer; minimum raised to 5 on both sides.
+    - **Added `npm run search-check`.** The scoring now carries several tuned constants and they were fitted against fixtures; without a check the next change to any of them silently loses answers or lets nonsense back in. **29 assertions: 21 queries that must find a specific answer, 8 that must return nothing.** All passing at 174 chunks.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

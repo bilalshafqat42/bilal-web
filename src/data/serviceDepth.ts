@@ -253,6 +253,26 @@ export const serviceDepth: Record<string, Depth> = {
     ],
     faqs: [
       {
+        question: "Do you work with Squarespace or Wix?",
+        answer:
+          "Yes. They are a sensible choice for a small brochure site where the priority is being live quickly on a modest budget, and I would rather set you up properly on one than sell you a custom build you do not need. The limits appear when you want real speed, custom functionality or anything the builder does not allow, and I will tell you when you have reached them.",
+      },
+      {
+        question: "Which platform should I actually be on?",
+        answer:
+          "It depends on who updates the site and what it has to do. Squarespace or Wix for a small brochure site you maintain yourself. WordPress for a content-heavy site with several editors. Next.js when speed, search performance or custom functionality decide the outcome. I will recommend one and explain the trade-off rather than defaulting to whichever I prefer to build.",
+      },
+      {
+        question: "What is your full development stack?",
+        answer:
+          "Next.js and React for websites and marketing tools, React Native for mobile apps, and the MERN stack (MongoDB, Express, React, Node.js) for custom applications and dashboards. PostgreSQL where relational data and reporting matter more than document flexibility. On the CMS side: WordPress, Squarespace and Wix.",
+      },
+      {
+        question: "Do you use MongoDB or PostgreSQL?",
+        answer:
+          "Whichever suits the data. MongoDB when the shape of a record varies or changes often, PostgreSQL when the data is genuinely relational and you will be reporting across it. Picking the wrong one is expensive to undo later, so it is worth deciding deliberately rather than by habit.",
+      },
+      {
         question: "How much does a website cost?",
         answer:
           "It depends on scope, and any number quoted before understanding that is guesswork. A focused landing page and a multi-language site with a CMS and CRM integration are different projects. Send me what you have in mind and you will get a real number rather than a range.",
@@ -280,7 +300,7 @@ export const serviceDepth: Record<string, Depth> = {
       {
         question: "Do you work with WordPress, or only Next.js?",
         answer:
-          "I build new work in Next.js because it is faster and cleaner for the marketing sites and applications I am usually asked for. I can maintain and improve an existing WordPress site, and I will tell you plainly when a rebuild is not worth the money and a fix is.",
+          "Both. I build on WordPress as well as taking over and improving existing WordPress sites. It is the right call when you need a large content site that non-technical staff update every day, or when the plugin ecosystem already solves something that would otherwise be a custom build. Next.js is the right call when speed, search performance or custom functionality matter more than a familiar admin panel.",
       },
       {
         question: "Who owns the code?",

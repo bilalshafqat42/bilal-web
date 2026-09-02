@@ -165,9 +165,11 @@ function idfFor(index: Chunk[]): Map<string, number> {
   }
   const idf = new Map<string, number>();
   for (const [t, n] of df) {
-    // Clamped so a hapax cannot dominate and a very common word still counts
-    // for something rather than nothing.
-    idf.set(t, Math.max(0.25, Math.min(2.5, Math.log(index.length / n))));
+    // The ceiling has to be well above the common-word range or it flattens the
+    // very distinction it exists to make: at a cap of 2.5, "build" (2.33) scored
+    // almost as high as "wordpress" (3.55 uncapped), so "do you build wordpress
+    // sites" ranked on "build" and returned the e-commerce answer.
+    idf.set(t, Math.max(0.2, Math.min(6, Math.log(index.length / n))));
   }
   idfCache.set(index, idf);
   return idf;
@@ -181,10 +183,20 @@ export function search(index: Chunk[], query: string, limit = 3): Chunk[] {
   // Falls back to a prefix match when the stems do not line up exactly, which
   // is what connects "develop" to "development" or "market" to "marketing"
   // without hand-writing a rule per suffix. Worth less than an exact hit.
-  const prefixHit = (words: Set<string>, t: string) => {
-    if (t.length < 4) return false;
-    for (const w of words) if (w.startsWith(t) || t.startsWith(w)) return true;
-    return false;
+  // Both sides need real length, or a short stem swallows an unrelated word:
+  // "postgres" stems to "postgr", which starts with "post", which is how a
+  // database query reached a social-posting answer.
+  // Returns the matched index word, not just a boolean, so the score can be
+  // weighted by *its* idf. Weighting by the query term instead meant a stemmed
+  // query like "postgr" fell back to a default weight, and "postgres" never
+  // reached the PostgreSQL answer despite matching it cleanly.
+  const prefixHit = (words: Set<string>, t: string): string | null => {
+    if (t.length < 5) return null;
+    for (const w of words) {
+      if (w.length < 5) continue;
+      if (w.startsWith(t) || t.startsWith(w)) return w;
+    }
+    return null;
   };
 
   return index
@@ -198,15 +210,26 @@ export function search(index: Chunk[], query: string, limit = 3): Chunk[] {
         const w = idf.get(t) ?? 1.5; // unseen term: treat as distinctive
         let hit = false;
         if (titleWords.has(t)) { score += 10 * w; hit = true; exact += 1; }
-        else if (prefixHit(titleWords, t)) { score += 6 * w; hit = true; }
+        else {
+          const pw = prefixHit(titleWords, t);
+          if (pw) { score += 6 * (idf.get(pw) ?? w); hit = true; }
+        }
         if (bodyWords.has(t)) { score += 3 * w; hit = true; exact += 1; }
-        else if (prefixHit(bodyWords, t)) { score += 2 * w; hit = true; }
+        else {
+          const pw = prefixHit(bodyWords, t);
+          if (pw) { score += 2 * (idf.get(pw) ?? w); hit = true; }
+        }
         if (hit) matched += 1;
       }
-      // A short, precise title that the query covers most of is a better answer
-      // than a long one sharing a few common words.
-      const titleCoverage = q.filter((t) => titleWords.has(t)).length / titleWords.size;
-      score += titleCoverage * 8;
+      // Coverage of the title, counting only its distinctive words. Measured over
+      // every word instead, "do you build wordpress sites" scored higher against
+      // "Do you build e-commerce sites?" than against the WordPress answer,
+      // because four filler words matched and the one that mattered did not.
+      const keyTitle = [...titleWords].filter((t) => (idf.get(t) ?? 1.5) > 0.9);
+      if (keyTitle.length) {
+        const covered = keyTitle.filter((t) => q.includes(t)).length / keyTitle.length;
+        score += covered * 10;
+      }
 
       if (matched === q.length && q.length > 1) score += 4;
       if (chunk.kind === "faq") score *= 1.15; // an FAQ is usually the most direct answer
@@ -221,8 +244,13 @@ export function search(index: Chunk[], query: string, limit = 3): Chunk[] {
     // returned an unrelated chunk.
     .filter((r) =>
       q.length === 1
-        ? r.score >= 3 && r.exact >= 1
-        : r.score >= 6 && r.exact >= 1 && (r.matched >= 2 || r.score >= 10)
+        // A single word gets no help from a second term, so a strong prefix hit
+        // has to count: "postgres" must still reach "PostgreSQL".
+        ? r.exact >= 1 ? r.score >= 8 : r.score >= 22
+        // Thresholds scale with the IDF ceiling. They were tuned against a
+        // fixture of real questions plus deliberate nonsense; loosening them
+        // lets "pizza delivery" back in.
+        : r.score >= 18 && r.exact >= 1 && (r.matched >= 2 || r.score >= 28)
     )
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)

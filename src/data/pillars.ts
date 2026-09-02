@@ -127,7 +127,7 @@ export const pillars: Pillar[] = [
     sections: [
       {
         title: "Website Design & Development",
-        body: "Websites built on Next.js for speed and SEO out of the box, designed around conversion rather than just visual polish, with a CMS behind them when you need to update content yourself.",
+        body: "Websites built on Next.js for speed and SEO out of the box, or on WordPress, Squarespace or Wix where you want to update content yourself, designed around conversion rather than just visual polish.",
         bullets: ["High-converting landing pages", "SEO-ready page structure", "CMS integration"],
       },
       {
@@ -137,7 +137,7 @@ export const pillars: Pillar[] = [
       },
       {
         title: "Custom Marketing Tools & Calculators",
-        body: "Bespoke tools, calculators, and internal dashboards built on the MERN stack (MongoDB, Express, React, Node.js) when an off-the-shelf product doesn't fit how your team actually works.",
+        body: "Bespoke tools, calculators, and internal dashboards built on the MERN stack (MongoDB, Express, React, Node.js), with PostgreSQL where the data is relational, when an off-the-shelf product doesn't fit how your team actually works.",
         bullets: ["Custom marketing applications", "Internal dashboards & tools", "APIs & third-party integrations"],
       },
     ],
@@ -145,7 +145,7 @@ export const pillars: Pillar[] = [
       {
         question: "What technology do you build with?",
         answer:
-          "Next.js for websites and marketing tools, React Native for mobile apps, and the MERN stack (MongoDB, Express, React, Node.js) for custom applications and dashboards.",
+          "Next.js and React for websites and marketing tools, React Native for mobile apps, and the MERN stack (MongoDB, Express, React, Node.js) for custom applications, with PostgreSQL where the data is relational. WordPress, Squarespace and Wix where a CMS is the better fit.",
       },
       {
         question: "Can you work with our existing website instead of rebuilding it?",
@@ -449,12 +449,12 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       "A site that looks good but does not convert is a cost, not an asset. I build on Next.js for speed and search performance, React Native for mobile, and the MERN stack for custom tools, designed from the start around whatever campaigns will be sending traffic to them.",
     metaTitle: "Website & App Development, Dubai — Bilal Shafqat",
     metaDescription:
-      "Next.js websites, high-converting landing pages, cross-platform mobile apps and custom MERN tools, built by a Dubai-based freelance developer who also runs the campaigns.",
+      "Next.js, WordPress, Squarespace and Wix websites, high-converting landing pages, cross-platform mobile apps and custom MERN and PostgreSQL tools, built by a Dubai-based freelance developer who also runs the campaigns.",
     faqs: [
       {
         question: "What do you build with?",
         answer:
-          "Next.js for websites and landing pages, React Native for mobile apps, and the MERN stack for custom applications and dashboards.",
+          "Next.js and React for websites and landing pages, React Native for mobile apps, the MERN stack with MongoDB or PostgreSQL for custom applications, and WordPress, Squarespace or Wix where a CMS suits you better.",
       },
       {
         question: "Can you improve our existing site instead of rebuilding?",

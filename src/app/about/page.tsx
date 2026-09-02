@@ -23,7 +23,13 @@ const stack = [
   },
   {
     title: "Build stack",
-    items: ["Next.js", "React & React Native", "MERN (MongoDB, Express, React, Node)", "Tailwind CSS"],
+    items: [
+      "Next.js, React & React Native",
+      "MERN (MongoDB, Express, React, Node)",
+      "PostgreSQL",
+      "WordPress, Squarespace & Wix",
+      "Tailwind CSS",
+    ],
   },
   {
     title: "CRM & tracking",
