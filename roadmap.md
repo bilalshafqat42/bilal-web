@@ -1040,6 +1040,18 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Reverted the `lg:pb-[26rem]` from item 112.** That height existed to give a large receding grid room below the content; with the grid gone it was 400px of dead space. Hero is back to 626px from 930px. **Worth noting as a habit: when an approach is abandoned, the accommodations made for it need removing too.**
     - Verified: spotlight transform tracks the pointer (420,280 → 1100,400), zero opacity under reduced motion and on touch, no page errors, no horizontal overflow at 1600/1024/390, mobile text clear, all routes 200, lint clean, `.grid-fade` untouched for the twelve other pages that use it, and no leftover selectors from any of the four abandoned versions.
 
+118. **Four hero backdrop options built for side-by-side comparison (2026-09-02)** — **done.** Bilal liked the dot grid but asked to see better options. Building them in parallel rather than iterating one at a time, because the previous nine rounds on this hero were all serial and that is what made it slow.
+    - **Comparison page at `/preview-backdrop`**, `noindex, nofollow` and out of the sitemap — verified both. Four near-duplicate copies of the homepage headline in the index would compete with the homepage itself.
+    - **Each option sits behind the real headline at the real column widths.** Comparing against placeholder text would be useless: the entire question is whether the backdrop competes with *this* headline, which is what every earlier version got wrong.
+    - **A — dot grid with pointer spotlight** (currently live). Linear's tier. Safest, reads as a developer tool.
+    - **B — aurora.** Three blurred masses drifting on 19s, 23s and 29s periods. Near-coprime on purpose: equal or harmonically related periods make the set pulse in unison, which is what makes cheap gradient animation look cheap.
+    - **C — light beams.** Skewed shafts from top-left over a fine line grid. Directional light suits a left-weighted composition in a way a centred glow cannot, since it puts the source where the eye already starts. **My recommendation for his audience**, which is UAE business owners rather than developers — a dot grid signals dev tool, beams signal studio.
+    - **D — contours.** Concentric topographic rings from a single `repeating-radial-gradient`, so the whole set is one paint and no per-ring elements. Cheapest of the four and the most distinctive, but the busiest behind long headline text.
+    - **Lesson worth keeping: blur destroys apparent brightness.** The first pass of B and C was invisible on a near-black ground. Every glowing layer here carries 38–110px of blur, which spreads a fixed amount of light over a much larger area, so alpha values that look correct in the source read as nothing on screen. Roughly doubling them fixed it. Judge these on screen, never in the code.
+    - **None of the four loads an image, font or library**, and all animate `transform` or `opacity` only. Verified zero running animations under `prefers-reduced-motion`, with each degrading to its own complete static state — no fallback patching needed, unlike the ring versions.
+    - **To retire once he picks**: this page plus the three older `preview-hero-*` routes.
+    - Verified: all four render with no page errors, no horizontal overflow, `noindex` served, zero sitemap entries, all animations `none` under reduced motion, routes 200, lint clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

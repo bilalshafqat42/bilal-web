@@ -257,7 +257,110 @@ h1, h2, h3, h4, .font-display {
   }
 }
 
+/* Candidate hero backdrop motion.
+
+   Everything here animates `transform` or `opacity` only. Those are the two
+   properties the compositor can handle without repainting, which matters
+   because these layers are large and several carry a heavy blur — a blurred
+   layer that repaints every frame is the most expensive thing you can put in a
+   hero. An earlier version of this file animated `background-position` on a
+   tilted plane and stuttered visibly for exactly that reason.
+
+   The aurora periods are 19s, 23s and 29s: near-coprime on purpose, so the
+   three masses never return to the same arrangement in any span someone will
+   sit through. Equal or harmonically related periods make the set pulse in
+   unison, which is what makes cheap gradient animation look cheap. */
+@keyframes aurora-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(6%, -4%, 0) scale(1.12);
+  }
+}
+
+@keyframes aurora-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.06);
+  }
+  50% {
+    transform: translate3d(-7%, 5%, 0) scale(0.94);
+  }
+}
+
+@keyframes aurora-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(0.96);
+  }
+  50% {
+    transform: translate3d(5%, 6%, 0) scale(1.14);
+  }
+}
+
+.aurora-a {
+  will-change: transform;
+  animation: aurora-a 19s ease-in-out infinite;
+}
+
+.aurora-b {
+  will-change: transform;
+  animation: aurora-b 23s ease-in-out infinite;
+}
+
+.aurora-c {
+  will-change: transform;
+  animation: aurora-c 29s ease-in-out infinite;
+}
+
+/* Beams breathe in opacity and lean slightly. The skew is set inline per beam
+   and has to be repeated here, since a `transform` keyframe replaces the whole
+   property rather than composing with it. */
+@keyframes beam-drift {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.beam-drift {
+  will-change: opacity;
+  animation: beam-drift 11s ease-in-out infinite;
+}
+
+/* Contours shimmer by fading the lit copy in and out over the base set, so the
+   rings themselves never move. */
+@keyframes contour-pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.contour-pulse {
+  will-change: opacity;
+  animation: contour-pulse 8s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  /* Candidates: each degrades to its own static state. None of them depends on
+     motion to be complete — the base layer always carries the design, which is
+     the property the earlier ring versions lacked and had to be patched for. */
+  .aurora-a,
+  .aurora-b,
+  .aurora-c,
+  .beam-drift,
+  .contour-pulse {
+    animation: none;
+  }
   .marquee-track {
     animation: none;
   }
