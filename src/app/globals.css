@@ -61,37 +61,53 @@ h1, h2, h3, h4, .font-display {
 
 /* Ambient background grid + glow */
 /* Ambient grid behind the hero sections.
-   Previously flat gold lines at 20% across the full width, which read as
-   wallpaper: the same weight in the corners as behind the headline, so it
-   competed with the type instead of sitting under it.
-   Now the lines are neutral and the colour comes from a glow underneath, and a
-   radial mask confines them to roughly the middle 8 of 12 columns and fades
-   them at every edge. Only the standard `mask-image` is written here: adding a
-   hand-written -webkit- prefix after a standard property is what made Lightning
-   CSS collapse `backdrop-filter` to prefixed-only earlier in this project. */
+   Flat rectangular lines with a diffuse blob behind the text was a weak
+   imitation of the reference. The two things that actually make that effect are
+   PERSPECTIVE, so the lines converge to a horizon, and a bright light band at
+   that horizon acting as the source. Both are below.
+   Only standard properties are written: hand-writing a -webkit- prefix after a
+   standard one is what made Lightning CSS collapse backdrop-filter to
+   prefixed-only earlier in this project. */
 .grid-fade {
-  background-image:
-    linear-gradient(rgba(255,255,255,0.10) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.10) 1px, transparent 1px);
-  background-size: 48px 48px, 48px 48px;
-  mask-image: radial-gradient(
-    ellipse 36% 66% at 50% 34%,
-    #000 0%,
-    #000 52%,
-    transparent 100%
-  );
+  perspective: 200px;
+  perspective-origin: 50% 0%;
+  overflow: hidden;
 }
 
-/* The glow and the floor fade sit on a pseudo-element so the mask above does
-   not eat them. */
+/* The receding floor. Rotated about its top edge so the rows compress towards
+   the horizon rather than staying evenly spaced. */
+.grid-fade::before {
+  content: "";
+  position: absolute;
+  left: -12%;
+  right: -12%;
+  top: 78%;
+  bottom: -120%;
+  transform: rotateX(79deg);
+  transform-origin: 50% 0;
+  background-image:
+    linear-gradient(rgba(168, 152, 255, 0.55) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 152, 255, 0.40) 1px, transparent 1px);
+  background-size: 100% 88px, 52px 100%;
+  /* Fades as it recedes, so the far rows dissolve instead of ending abruptly. */
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, transparent 42%);
+}
+
+/* The light at the horizon. This is the part that reads as a source rather than
+   a smudge: narrow, bright, and sitting exactly on the vanishing line. */
 .grid-fade::after {
   content: "";
   position: absolute;
-  inset: 0;
+  left: 50%;
+  top: 78%;
+  width: 70%;
+  height: 220px;
+  transform: translate(-50%, -62%);
   background-image:
-    radial-gradient(ellipse 42% 32% at 50% 60%, rgba(124, 107, 245, 0.30), transparent 70%),
-    radial-gradient(ellipse 26% 20% at 50% 52%, rgba(242, 201, 76, 0.10), transparent 68%),
-    linear-gradient(to bottom, rgba(8, 8, 11, 0) 45%, var(--color-bg) 97%);
+    radial-gradient(ellipse 26% 12% at 50% 50%, rgba(226, 214, 255, 0.85), transparent 70%),
+    radial-gradient(ellipse 46% 24% at 50% 50%, rgba(167, 139, 250, 0.55), transparent 72%),
+    radial-gradient(ellipse 74% 46% at 50% 52%, rgba(124, 107, 245, 0.32), transparent 74%);
+  filter: blur(22px);
 }
 
 .glass {

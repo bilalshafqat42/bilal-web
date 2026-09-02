@@ -959,12 +959,13 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - Per page: **hadley-heights 226 to 641, cavendish-square 235 to 578, weybridge-gardens-2 168 to 620, weybridge-gardens 133 to 552.**
     - **Still thin and worth the same treatment next**: `/portfolio/leos-developments` (341 words), `/portfolio` (494) and `/services` (282). All three are hub pages the nav points at most.
 
-109. **Hero grid reworked with a glow and a radial falloff (2026-09-02)** — **done.** Bilal shared Wope's hero as a reference and asked for the grid boxed to roughly 8 of 12 columns, with the glow and opacity treatment rather than flat lines.
-    - **Before**: gold lines at 20% opacity, 48px, edge to edge with only a bottom fade. Same weight in the corners as behind the headline, so it read as wallpaper competing with the type.
-    - **After**: neutral white lines at 10%, with the colour carried by a violet glow beneath (`--color-violet`, already in the palette) plus a faint gold lift. A `radial-gradient` mask confines the grid to an ellipse about 72% wide and fades it at every edge, so it reads as a lit area under the headline rather than a repeating texture.
-    - **Soft-edged rather than hard-clipped to exactly 8 columns**, which is what the reference actually does: Wope's grid fades out, it is not boxed with a visible boundary.
-    - The glow and the floor fade live on `::after`, because the mask on the element would otherwise eat them.
-    - **Only the standard `mask-image` is written.** Hand-writing a `-webkit-` prefix after a standard property is exactly what made Lightning CSS collapse `backdrop-filter` to prefixed-only earlier in this project, so the build was checked: the mask is confirmed applied in the browser on all four pages that use `.grid-fade`, desktop and phone.
+109. **Hero grid rebuilt as a perspective floor with a horizon light (2026-09-02)** — **done.** Bilal shared Wope's hero, and the first attempt was rejected on sight, correctly.
+    - **The first attempt was a weak imitation** and worth recording as a mistake: I softened the existing flat grid, dropped a diffuse violet blob behind the headline, and adjusted opacities. Side by side it read as a smudge. **I was tuning values instead of building the effect.**
+    - **The two things that actually create it**: `perspective` plus `rotateX` so the lines converge to a vanishing point, and a narrow bright band sitting exactly on that horizon acting as the light source. Neither is an opacity change.
+    - Built as `perspective: 200px` on `.grid-fade`, a `::before` floor rotated `79deg` about its top edge with row and column spacing set separately (`100% 88px, 52px 100%` — a uniform size compresses rows into haze at that angle), masked so far rows dissolve. The horizon light is a `::after` of three stacked ellipses, hot core outward, blurred 22px.
+    - **Second correction from the same review**: the horizon initially sat at 46%, putting it through the headline. The reference keeps the floor entirely below the content. Moved to 78%.
+    - **Honest remaining differences from the reference**, since they are brand decisions rather than bugs: Wope tints the whole background purple where this stays black, Wope fans lines above the horizon as a ceiling too, and Wope's centred layout suits a symmetrical vanishing point where this hero is left-weighted, so the centred light sits slightly right of the headline.
+    - Verified: perspective, floor and glow all present on `/`, `/about` and `/pricing` at 1600, 1024 and 390px, no horizontal overflow anywhere, 22 routes still 200, lint clean. Only the standard `mask-image` is written, per the Lightning CSS lesson.
 
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
