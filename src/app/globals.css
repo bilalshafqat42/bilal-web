@@ -60,12 +60,38 @@ h1, h2, h3, h4, .font-display {
 }
 
 /* Ambient background grid + glow */
+/* Ambient grid behind the hero sections.
+   Previously flat gold lines at 20% across the full width, which read as
+   wallpaper: the same weight in the corners as behind the headline, so it
+   competed with the type instead of sitting under it.
+   Now the lines are neutral and the colour comes from a glow underneath, and a
+   radial mask confines them to roughly the middle 8 of 12 columns and fades
+   them at every edge. Only the standard `mask-image` is written here: adding a
+   hand-written -webkit- prefix after a standard property is what made Lightning
+   CSS collapse `backdrop-filter` to prefixed-only earlier in this project. */
 .grid-fade {
   background-image:
-    linear-gradient(to bottom, rgba(8,8,11,0) 0%, var(--color-bg) 92%),
-    linear-gradient(rgba(242,201,76,0.2) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(242,201,76,0.2) 1px, transparent 1px);
-  background-size: 100% 100%, 48px 48px, 48px 48px;
+    linear-gradient(rgba(255,255,255,0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.10) 1px, transparent 1px);
+  background-size: 48px 48px, 48px 48px;
+  mask-image: radial-gradient(
+    ellipse 36% 66% at 50% 34%,
+    #000 0%,
+    #000 52%,
+    transparent 100%
+  );
+}
+
+/* The glow and the floor fade sit on a pseudo-element so the mask above does
+   not eat them. */
+.grid-fade::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse 42% 32% at 50% 60%, rgba(124, 107, 245, 0.30), transparent 70%),
+    radial-gradient(ellipse 26% 20% at 50% 52%, rgba(242, 201, 76, 0.10), transparent 68%),
+    linear-gradient(to bottom, rgba(8, 8, 11, 0) 45%, var(--color-bg) 97%);
 }
 
 .glass {

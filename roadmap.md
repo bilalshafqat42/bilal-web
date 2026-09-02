@@ -959,6 +959,13 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - Per page: **hadley-heights 226 to 641, cavendish-square 235 to 578, weybridge-gardens-2 168 to 620, weybridge-gardens 133 to 552.**
     - **Still thin and worth the same treatment next**: `/portfolio/leos-developments` (341 words), `/portfolio` (494) and `/services` (282). All three are hub pages the nav points at most.
 
+109. **Hero grid reworked with a glow and a radial falloff (2026-09-02)** — **done.** Bilal shared Wope's hero as a reference and asked for the grid boxed to roughly 8 of 12 columns, with the glow and opacity treatment rather than flat lines.
+    - **Before**: gold lines at 20% opacity, 48px, edge to edge with only a bottom fade. Same weight in the corners as behind the headline, so it read as wallpaper competing with the type.
+    - **After**: neutral white lines at 10%, with the colour carried by a violet glow beneath (`--color-violet`, already in the palette) plus a faint gold lift. A `radial-gradient` mask confines the grid to an ellipse about 72% wide and fades it at every edge, so it reads as a lit area under the headline rather than a repeating texture.
+    - **Soft-edged rather than hard-clipped to exactly 8 columns**, which is what the reference actually does: Wope's grid fades out, it is not boxed with a visible boundary.
+    - The glow and the floor fade live on `::after`, because the mask on the element would otherwise eat them.
+    - **Only the standard `mask-image` is written.** Hand-writing a `-webkit-` prefix after a standard property is exactly what made Lightning CSS collapse `backdrop-filter` to prefixed-only earlier in this project, so the build was checked: the mask is confirmed applied in the browser on all four pages that use `.grid-fade`, desktop and phone.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
