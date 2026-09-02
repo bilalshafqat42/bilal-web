@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
 import Nav from "@/components/Nav";
 import TrackView from "@/components/TrackView";
+import { caseStudyDepth } from "@/data/caseStudyDepth";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/CaseStudyParts";
@@ -47,6 +48,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
   const { client: c, project: p } = found;
 
   const url = `${SITE}/portfolio/${c.slug}/${p.slug}`;
+  const depth = caseStudyDepth[p.slug];
   const siblings = c.projects.filter((x) => x.slug !== p.slug);
 
   const schema = {
@@ -142,6 +144,36 @@ export default async function ProjectCaseStudy({ params }: Props) {
             </Reveal>
           </div>
         </section>
+
+        {depth ? (
+          <section className="relative mt-20 sm:mt-28">
+            <div className="site-container">
+              <div className="mx-auto max-w-3xl">
+                <Reveal>
+                  <h2 className="text-3xl font-semibold leading-tight text-ink sm:text-4xl lg:text-[2.75rem]">
+                    How this was approached
+                  </h2>
+                </Reveal>
+                <div className="mt-10 space-y-12">
+                  {depth.map((block) => (
+                    <Reveal key={block.heading}>
+                      <div className="border-t border-border pt-8">
+                        <h3 className="text-xl font-semibold text-ink sm:text-2xl">{block.heading}</h3>
+                        <div className="mt-4 space-y-4">
+                          {block.paragraphs.map((para) => (
+                            <p key={para.slice(0, 40)} className="text-base leading-relaxed text-muted">
+                              {para}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                    </Reveal>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        ) : null}
 
         {p.landingPage ? (
           <section className="relative mt-20 sm:mt-28">
