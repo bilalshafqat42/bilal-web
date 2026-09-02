@@ -114,9 +114,9 @@ export default function HeroBackdrop() {
           transform: "translate(-50%, -58%)",
           filter: "blur(26px)",
           background:
-            "radial-gradient(ellipse 30% 13% at 50% 50%, rgba(255,248,224,0.88), transparent 70%)," +
-            "radial-gradient(ellipse 52% 26% at 50% 50%, rgba(242,201,76,0.58), transparent 72%)," +
-            "radial-gradient(ellipse 80% 48% at 50% 52%, rgba(198,148,44,0.32), transparent 74%)",
+            "radial-gradient(ellipse 30% 13% at 50% 50%, rgba(255,248,224,0.26), transparent 70%)," +
+            "radial-gradient(ellipse 52% 26% at 50% 50%, rgba(242,201,76,0.17), transparent 72%)," +
+            "radial-gradient(ellipse 80% 48% at 50% 52%, rgba(198,148,44,0.1), transparent 74%)",
         }}
       />
 
