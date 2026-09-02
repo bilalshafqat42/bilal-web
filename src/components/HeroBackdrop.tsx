@@ -35,6 +35,16 @@ const PARTICLES = [
   { x: 47, y: 66, s: 1, o: 0.35 },
 ];
 
+/** Row spacing of the floor grid, in the plane's own pre-transform pixels.
+ *  Measured rather than chosen: at 79 degrees with 86px rows only one or two
+ *  rows land on screen and the rest spread past the bottom edge, giving a lower
+ *  plane of bare converging spokes. Row contrast measured 49.5 at 86px, 114.2
+ *  at 60px and 117.7 at 44px, then flat.
+ *
+ *  The `grid-drift` keyframe in globals.css must travel exactly this distance
+ *  or the loop snaps once per cycle. */
+const ROW_PX = 44;
+
 const GRID_LINES =
   "linear-gradient(rgba(252,232,166,1) 1px, transparent 1px), " +
   "linear-gradient(90deg, rgba(252,232,166,0.9) 1px, transparent 1px)";
@@ -90,17 +100,34 @@ export default function HeroBackdrop() {
           37.5 at 42% to 2.5 at 16%, while the centre holds at 43.4. */}
       <div className="absolute inset-x-0 bottom-0" style={{ height: "var(--floor-h)", perspective: "300px", perspectiveOrigin: "50% 0%" }}>
         <div
-          className="grid-drift absolute inset-x-[-14%] top-0"
+          className="absolute inset-x-[-14%] top-0"
           style={{
             bottom: "-190%",
             transform: "rotateX(79deg)",
             transformOrigin: "50% 0",
-            backgroundImage: GRID_LINES,
-            backgroundSize: "100% 86px, 40px 100%",
             maskImage:
               "radial-gradient(ellipse 16% 50% at 50% 0%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.55) 42%, transparent 100%)",
           }}
-        />
+        >
+          {/* The tilted plane above holds the mask and stays still; this child
+              carries the lines and slides along it, so the mask does not travel
+              with the grid. Splitting the two is what lets the motion be a
+              `transform`: the drift previously animated `background-position`
+              on the plane, which repainted a ~2048x1186 element every frame.
+
+              `top` starts it one row high so travelling exactly one row returns
+              it to an identical position: no gap at the horizon, no snap. ROW_PX
+              is shared with the keyframe distance in globals.css, and the two
+              must stay equal. */}
+          <div
+            className="grid-drift absolute inset-x-0 bottom-0"
+            style={{
+              top: `-${ROW_PX}px`,
+              backgroundImage: GRID_LINES,
+              backgroundSize: `100% ${ROW_PX}px, 40px 100%`,
+            }}
+          />
+        </div>
       </div>
 
       {/* Horizon bloom. Three stacked ellipses, hot core outward: a single soft

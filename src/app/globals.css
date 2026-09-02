@@ -263,22 +263,36 @@ h1, h2, h3, h4, .font-display {
 
 /* Hero backdrop motion.
 
-   The grid drifts one row toward the viewer and loops. Animating
-   `background-position` rather than `transform` is deliberate here: the element
-   already carries the `rotateX` that creates the perspective, so a transform
-   animation would fight it, and shifting the background by exactly one row
-   height makes the loop seamless with no visible jump. Keep this value in
-   step with the floor's row size in HeroBackdrop or the loop will visibly
-   snap once per cycle.
+   The grid slides one row toward the viewer and loops.
+
+   This animates `transform`, not `background-position`. That distinction is the
+   whole reason the first version stuttered: `background-position` is a
+   paint-triggering property, so every frame Chrome re-rasterised a roughly
+   2048x1186 element that also carries a 3D transform. `transform` is handled by
+   the compositor, so the element is rasterised once and the GPU moves the
+   layer. Reaching for an animation library would not have helped — GSAP driving
+   `background-position` repaints exactly as hard. The property was the problem,
+   not the driver.
+
+   The grid element starts one row above its container and travels exactly one
+   row, so the loop point is identical to the start and there is no visible
+   snap. Keep this distance equal to the row height in HeroBackdrop.
 
    The glow breathes on a slower, unrelated period so the two never look
-   synchronised, which is what makes it read as light rather than as a loop. */
+   synchronised, which is what makes it read as light rather than as a loop.
+   `opacity` is also compositor-friendly, so it costs nothing extra.
+
+   Note that Lightning CSS rewrites `translate3d(0, 44px, 0)` here to
+   `translateY(44px)`, dropping the explicit 3D hint. That is harmless: the
+   `will-change: transform` below already forces layer promotion, which is what
+   the 3D form was being used for. Do not add it back expecting it to survive
+   the build. */
 @keyframes grid-drift {
   from {
-    background-position: 0 0, 0 0;
+    transform: translate3d(0, 0, 0);
   }
   to {
-    background-position: 0 44px, 0 0;
+    transform: translate3d(0, 44px, 0);
   }
 }
 
@@ -293,6 +307,9 @@ h1, h2, h3, h4, .font-display {
 }
 
 .grid-drift {
+  /* Promotes the grid to its own compositor layer up front, so the first loop
+     does not pay for the promotion mid-animation. */
+  will-change: transform;
   animation: grid-drift 7s linear infinite;
 }
 
