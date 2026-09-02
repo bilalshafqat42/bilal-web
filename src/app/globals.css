@@ -233,7 +233,78 @@ h1, h2, h3, h4, .font-display {
   50% { transform: translateY(-14px); }
 }
 
+/* Hero backdrop geometry.
+
+   The desktop hero has room below its content for the grid to read as an
+   expanse. A phone hero does not: the content fills 92% of its height, so
+   there is no horizon position that does not sit behind text. Rather than
+   scale the same values down, mobile gets its own geometry — the horizon
+   pushed almost to the bottom edge and the glow held well back — so the
+   backdrop stays a texture instead of competing with the paragraph it sits
+   under. The full effect starts at the width where the layout gains the room
+   for it. */
+.hero-backdrop {
+  --horizon: 90%;
+  --floor-h: 10%;
+  --bloom-w: 100%;
+  --bloom-h: 150px;
+  --bloom-op: 0.3;
+}
+
+@media (min-width: 1024px) {
+  .hero-backdrop {
+    --horizon: 56%;
+    --floor-h: 44%;
+    --bloom-w: 88%;
+    --bloom-h: 300px;
+    --bloom-op: 1;
+  }
+}
+
+/* Hero backdrop motion.
+
+   The grid drifts one row toward the viewer and loops. Animating
+   `background-position` rather than `transform` is deliberate here: the element
+   already carries the `rotateX` that creates the perspective, so a transform
+   animation would fight it, and shifting the background by exactly one row
+   height makes the loop seamless with no visible jump. Keep this value in
+   step with the floor's row size in HeroBackdrop or the loop will visibly
+   snap once per cycle.
+
+   The glow breathes on a slower, unrelated period so the two never look
+   synchronised, which is what makes it read as light rather than as a loop. */
+@keyframes grid-drift {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 0 44px, 0 0;
+  }
+}
+
+@keyframes bloom-breathe {
+  0%,
+  100% {
+    opacity: 0.82;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.grid-drift {
+  animation: grid-drift 7s linear infinite;
+}
+
+.bloom-breathe {
+  animation: bloom-breathe 6.5s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .grid-drift,
+  .bloom-breathe {
+    animation: none;
+  }
   .marquee-track {
     animation: none;
   }

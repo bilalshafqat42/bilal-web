@@ -36,19 +36,19 @@ const PARTICLES = [
 ];
 
 const GRID_LINES =
-  "linear-gradient(rgba(247,219,133,0.85) 1px, transparent 1px), " +
-  "linear-gradient(90deg, rgba(247,219,133,0.7) 1px, transparent 1px)";
+  "linear-gradient(rgba(252,232,166,1) 1px, transparent 1px), " +
+  "linear-gradient(90deg, rgba(252,232,166,0.9) 1px, transparent 1px)";
 
 export default function HeroBackdrop() {
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div aria-hidden="true" className="hero-backdrop pointer-events-none absolute inset-0 overflow-hidden">
       {/* Tint. Kept low and centred on the horizon so it lifts the black without
           turning the whole page purple. */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 90% 70% at 50% 74%, rgba(96,74,26,0.40), transparent 68%)," +
+            "radial-gradient(ellipse 90% 70% at 50% var(--horizon), rgba(96,74,26,0.40), transparent 68%)," +
             "radial-gradient(ellipse 120% 90% at 50% 0%, rgba(40,36,28,0.5), transparent 70%)",
         }}
       />
@@ -88,9 +88,9 @@ export default function HeroBackdrop() {
           wide, so the figure is much smaller than the on-screen fade suggests.
           Sweeping it, peak-minus-median brightness in the edge band falls from
           37.5 at 42% to 2.5 at 16%, while the centre holds at 43.4. */}
-      <div className="absolute inset-x-0 bottom-0" style={{ height: "26%", perspective: "220px", perspectiveOrigin: "50% 0%" }}>
+      <div className="absolute inset-x-0 bottom-0" style={{ height: "var(--floor-h)", perspective: "300px", perspectiveOrigin: "50% 0%" }}>
         <div
-          className="absolute inset-x-[-14%] top-0"
+          className="grid-drift absolute inset-x-[-14%] top-0"
           style={{
             bottom: "-190%",
             transform: "rotateX(79deg)",
@@ -105,20 +105,30 @@ export default function HeroBackdrop() {
 
       {/* Horizon bloom. Three stacked ellipses, hot core outward: a single soft
           one reads as a smudge rather than a source. */}
+      {/* The breathe animation writes `opacity` directly, so the per-breakpoint
+          dimming cannot live on the same element or it would be overwritten on
+          the first frame. It sits on a wrapper, where the two multiply. */}
       <div
         className="absolute left-1/2"
         style={{
-          top: "74%",
-          width: "78%",
-          height: "260px",
+          top: "var(--horizon)",
+          width: "var(--bloom-w)",
+          height: "var(--bloom-h)",
           transform: "translate(-50%, -58%)",
+          opacity: "var(--bloom-op)",
+        }}
+      >
+      <div
+        className="bloom-breathe absolute inset-0"
+        style={{
           filter: "blur(26px)",
           background:
-            "radial-gradient(ellipse 30% 13% at 50% 50%, rgba(255,248,224,0.26), transparent 70%)," +
-            "radial-gradient(ellipse 52% 26% at 50% 50%, rgba(242,201,76,0.17), transparent 72%)," +
-            "radial-gradient(ellipse 80% 48% at 50% 52%, rgba(198,148,44,0.1), transparent 74%)",
+            "radial-gradient(ellipse 34% 14% at 50% 50%, rgba(255,250,232,0.95), transparent 70%)," +
+            "radial-gradient(ellipse 58% 28% at 50% 50%, rgba(242,201,76,0.72), transparent 72%)," +
+            "radial-gradient(ellipse 86% 52% at 50% 52%, rgba(205,152,42,0.45), transparent 74%)",
         }}
       />
+      </div>
 
       {/* Particles. */}
       {PARTICLES.map((p) => (
@@ -138,7 +148,7 @@ export default function HeroBackdrop() {
       {/* Floor fade into the section below, so the grid does not end on a line. */}
       <div
         className="absolute inset-x-0 bottom-0"
-        style={{ height: "18%", background: "linear-gradient(to bottom, transparent, var(--color-bg))" }}
+        style={{ height: "34%", background: "linear-gradient(to bottom, transparent, var(--color-bg) 82%)" }}
       />
     </div>
   );
