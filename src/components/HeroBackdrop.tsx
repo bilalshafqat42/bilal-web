@@ -2,21 +2,28 @@
  * Layered backdrop for the homepage hero.
  *
  * Built as its own component rather than more CSS on `.grid-fade`, which only
- * has `::before` and `::after` to work with. This needs five layers: a tint, a
- * ceiling grid, a floor grid, the horizon bloom and the particles. `.grid-fade`
- * stays as it is for the ten other pages that use it, so this richer treatment
- * carries no risk to them.
+ * has `::before` and `::after` to work with. `.grid-fade` stays as it is for
+ * the ten other pages that use it, so this carries no risk to them.
  *
- * The floor is concentric rings rather than a square grid. A square grid gives
- * straight rows whose outer ends read flat; the reference curves them, and
- * rings are what produce that curve. They also remove the need for a separate
- * ceiling plane, since each ring is centred on the vanishing point and its
- * upper half draws the fan above the horizon.
+ * Geometry, which took three attempts to read correctly off the reference:
  *
- * Reference: Wope's hero. Faithful on the geometry and the light, deliberately
- * restrained on the tint. The reference is violet throughout; this is the same
- * geometry and light in the site gold, which is the accent everything else on
- * the page already uses.
+ * There is no perspective and no ground plane. It is concentric rounded
+ * rectangles sharing one centre, scaling outward. What looks like a set of
+ * radial spokes converging on a vanishing point is actually the vertical sides
+ * of successive rectangles lining up; what looks like a tilted floor is their
+ * lower halves; and the fan across the top of the hero is their upper corners
+ * sweeping outward as they grow past the viewport.
+ *
+ * The two earlier readings were wrong in the same way — both added machinery
+ * the reference does not have. First a `rotateX` plane with a gradient grid,
+ * which gives straight rows whose outer ends read flat. Then rings *inside*
+ * that plane, which curved the rows correctly but kept the perspective, so it
+ * read as a road receding rather than rectangles radiating from a light.
+ * Removing the perspective was the fix, not tuning it.
+ *
+ * Reference: Wope's hero. Faithful on the geometry and the light, in the site
+ * gold rather than the reference's violet, which is the accent everything else
+ * on the page already uses.
  *
  * Purely decorative, so the whole thing is aria-hidden.
  */
@@ -41,27 +48,35 @@ const PARTICLES = [
   { x: 47, y: 66, s: 1, o: 0.35 },
 ];
 
-/** Number of concentric rings on the floor. Eight is enough that one is always
- *  near the horizon and one always near the viewer, so the set never looks
- *  sparse at any point in the cycle. Eight left visible gaps in the mid-field
- *  once the mask stopped clipping the outer thirds. */
-const RING_COUNT = 14;
+/** How many rectangles are in flight at once. Enough that the gap between
+ *  neighbours never opens up visibly at any point in the cycle. */
+const RING_COUNT = 12;
 
-/** The animation period, and the stagger between rings, must divide evenly or
- *  the spacing pulses once per cycle. Keep in step with `ring-expand` in
- *  globals.css. */
-const RING_CYCLE_S = 9;
+/** Cycle length. The stagger below divides this evenly, or the spacing between
+ *  neighbours would pulse once per cycle. Keep in step with the `ring-expand`
+ *  keyframe in globals.css. */
+const RING_CYCLE_S = 14;
 
-/** Only the spokes come from a gradient now. The rows used to be the horizontal
- *  half of this and were straight, which is what made the outer ends of each
- *  row read as flat where the reference curves them. */
-const SPOKE_LINES = "linear-gradient(90deg, rgba(252,232,166,0.9) 1px, transparent 1px)";
+/** The rectangles are very flat, around 5.8:1 — measured off the reference
+ *  rather than picked. Its brightest arc spans roughly 1240px with only about
+ *  65px of sag, and fitting an ellipse to that gives semi-axes near 700 by 121.
+ *  Flatness is what makes each one read as a wide shallow dome instead of a
+ *  box; at 1.75:1 they showed as complete nested rectangles over the headline.
+ *
+ *  Smallest and largest scale. The keyframe eases rather than running linear,
+ *  so each rectangle covers ground slowly near the centre and quickly at the
+ *  edge. That is what spaces them tightly near the light and widely at the
+ *  outside, which is the entire depth cue: a linear scale gives evenly spaced
+ *  rectangles and reads flat. */
+const SCALE_MIN = 0.34;
+const SCALE_MAX = 2.3;
 
 export default function HeroBackdrop() {
   return (
     <div aria-hidden="true" className="hero-backdrop pointer-events-none absolute inset-0 overflow-hidden">
-      {/* Tint. Kept low and centred on the horizon so it lifts the black without
-          turning the whole page purple. */}
+      {/* Tint. Kept low so it lifts the black without tinting the page: the
+          further a layer sits from the light, the less chroma it can hold
+          before it goes brown. */}
       <div
         className="absolute inset-0"
         style={{
@@ -71,86 +86,67 @@ export default function HeroBackdrop() {
         }}
       />
 
-      {/* Floor.
-          The grid needs to fade in two directions at once: into the horizon,
-          and off the left and right edges. Without the second fade the rows
-          compressed at 79 degrees alias into a dotted moire band across the
-          outer thirds, exactly where the bloom does not wash them out.
+      {/* The rectangles.
 
-          Both fades come from one radial mask on the rotated element itself.
-          Two mask layers with `mask-composite: intersect` do not work here
-          (Chrome reports the composite as applied and paints to the edge
-          anyway), and neither does a horizontal mask on an ancestor, which it
-          declines to apply across the perspective boundary.
+          Only their TOP edges are meant to show. That is what makes each one
+          read as a wide shallow dome rising above the light, and it is why the
+          reference looks the way it does: its hero has a product screenshot
+          sitting over the lower half of the hero, which covers the bottom of
+          every rectangle for free. This hero has no such image, so the same
+          result has to be masked in — without it you get complete closed boxes
+          crossing the headline, which is what the first two attempts did.
 
-          The 30% horizontal radius is measured. It was 16% when the rows were
-          straight gradient lines, chosen to kill the moire those produced in
-          the outer thirds. Rings alias less, and 16% was clipping the very part
-          of each ring where the curve shows, so it needed re-sweeping.
-
-          The first re-sweep was wrong and worth recording: it measured contrast
-          across the whole outer third, which counts dotted moire as if it were
-          curvature, and so it recommended 60%. Splitting the two apart — the
-          high-frequency dotted band tight to the horizon versus real arcs well
-          below it — gives moire 0.54 / 1.54 / 2.62 / 3.33 / 3.80 against curve
-          47.9 / 55.3 / 56.9 / 57.7 / 58.2 at 16 / 30 / 40 / 50 / 60%. Curve
-          plateaus almost immediately while moire keeps climbing, so 30% takes
-          95% of the benefit for 40% of the cost. */}
-      <div className="absolute inset-x-0 bottom-0" style={{ height: "var(--floor-h)", perspective: "300px", perspectiveOrigin: "50% 0%" }}>
+          Two masks are needed and they are nested rather than composited. A
+          vertical one on the outer element cuts everything below the centre; a
+          radial one on the inner element releases the far left and right.
+          `mask-composite: intersect` is not reliable here — Chrome reports it
+          as applied and paints through it anyway. Nesting works now that there
+          is no perspective in the tree; when there was, an ancestor mask was
+          silently ignored across that boundary. */}
+      <div
+        className="absolute inset-0"
+        style={{
+          maskImage:
+            "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,1) 52%, rgba(0,0,0,1) calc(var(--ring-centre) - 10%), transparent var(--ring-centre))",
+        }}
+      >
         <div
-          className="absolute inset-x-[-14%] top-0"
+          className="absolute inset-0"
           style={{
-            bottom: "-190%",
-            transform: "rotateX(79deg)",
-            transformOrigin: "50% 0",
             maskImage:
-              "radial-gradient(ellipse 30% 50% at 50% 0%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.55) 42%, transparent 100%)",
+              "radial-gradient(ellipse 62% 90% at 50% var(--ring-centre), rgba(0,0,0,1) 0%, rgba(0,0,0,1) 34%, rgba(0,0,0,0.55) 68%, transparent 94%)",
           }}
         >
-          {/* Spokes. Fixed: in the reference only the rings travel, and moving
-              both at once reads as a scrolling texture rather than a space. */}
-          <div
-            className="absolute inset-0"
-            style={{ backgroundImage: SPOKE_LINES, backgroundSize: "40px 100%" }}
-          />
-
-          {/* Rings. Centred on the vanishing point, so the half below the
-              horizon draws the curved floor rows and the half above draws the
-              fan at the top of the hero.
-
-              Tall and square in this pre-transform space on purpose: `rotateX`
-              compresses the vertical axis by cos(79deg), about a fifth, so a
-              square here lands as the wide shallow arc the reference shows. */}
           {Array.from({ length: RING_COUNT }, (_, i) => (
             <div
               key={i}
-              className="ring-expand absolute rounded-[26%] border border-[rgba(252,232,166,0.9)]"
+              className="ring-expand absolute rounded-[22%] border border-[rgba(252,232,166,0.85)]"
               style={{
                 left: "50%",
-                top: 0,
-                width: "62%",
-                aspectRatio: "1",
-                // Negative delay starts each ring already part-way through, so
-                // the set is evenly spread on the first frame instead of every
-                // ring launching from the vanishing point together.
+                top: "var(--ring-centre)",
+                width: "var(--ring-w)",
+                aspectRatio: "var(--ring-aspect)",
+                // Negative delay starts each one already part-way through its
+                // travel, so the set is spread on the very first frame instead
+                // of all of them launching from the centre together.
                 animationDelay: `-${(i * RING_CYCLE_S) / RING_COUNT}s`,
                 // With reduced motion the animation is switched off, which
-                // would otherwise freeze every ring on its first keyframe at
-                // scale 0.04 and zero opacity — leaving those visitors bare
-                // spokes and no curve at all. This holds the same spread as a
-                // still image; the reduced-motion rule in globals.css reads it.
-                ["--ring-static" as string]: (0.04 + (1.51 * i) / RING_COUNT).toFixed(3),
+                // would otherwise freeze every rectangle on its first keyframe
+                // at scale 0.05 and zero opacity, leaving those visitors an
+                // empty hero. This holds the same spread as a still image, and
+                // the reduced-motion rule in globals.css reads it. Spaced on a
+                // curve rather than evenly, to match the eased motion.
+                ["--ring-static" as string]: (
+                  SCALE_MIN + (SCALE_MAX - SCALE_MIN) * (i / RING_COUNT) ** 1.7
+                ).toFixed(3),
               }}
             />
           ))}
         </div>
       </div>
 
-      {/* Horizon bloom. Three stacked ellipses, hot core outward: a single soft
-          one reads as a smudge rather than a source. */}
-      {/* The breathe animation writes `opacity` directly, so the per-breakpoint
-          dimming cannot live on the same element or it would be overwritten on
-          the first frame. It sits on a wrapper, where the two multiply. */}
+      {/* The light. Three stacked ellipses, hot core outward: a single soft one
+          reads as a smudge rather than a source. */}
       <div
         className="absolute left-1/2"
         style={{
@@ -161,37 +157,35 @@ export default function HeroBackdrop() {
           opacity: "var(--bloom-op)",
         }}
       >
-      <div
-        className="bloom-breathe absolute inset-0"
-        style={{
-          filter: "blur(26px)",
-          background:
-            "radial-gradient(ellipse 34% 14% at 50% 50%, rgba(255,250,232,0.95), transparent 70%)," +
-            "radial-gradient(ellipse 58% 28% at 50% 50%, rgba(242,201,76,0.72), transparent 72%)," +
-            "radial-gradient(ellipse 86% 52% at 50% 52%, rgba(205,152,42,0.45), transparent 74%)",
-        }}
-      />
+        {/* The breathe animation writes `opacity` directly, so the
+            per-breakpoint dimming cannot live on this element or it would be
+            overwritten on the first frame. It sits on the wrapper above, where
+            the two multiply. */}
+        <div
+          className="bloom-breathe absolute inset-0"
+          style={{
+            filter: "blur(26px)",
+            background:
+              "radial-gradient(ellipse 34% 14% at 50% 50%, rgba(255,250,232,0.95), transparent 70%)," +
+              "radial-gradient(ellipse 58% 28% at 50% 50%, rgba(242,201,76,0.72), transparent 72%)," +
+              "radial-gradient(ellipse 86% 52% at 50% 52%, rgba(205,152,42,0.45), transparent 74%)",
+          }}
+        />
       </div>
 
-      {/* Particles. */}
       {PARTICLES.map((p) => (
         <span
           key={`${p.x}-${p.y}`}
           className="absolute rounded-full bg-white"
-          style={{
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-            width: p.s,
-            height: p.s,
-            opacity: p.o,
-          }}
+          style={{ left: `${p.x}%`, top: `${p.y}%`, width: p.s, height: p.s, opacity: p.o }}
         />
       ))}
 
-      {/* Floor fade into the section below, so the grid does not end on a line. */}
+      {/* Dissolves the rectangles into the section below rather than letting
+          them meet its edge on a hard line. */}
       <div
         className="absolute inset-x-0 bottom-0"
-        style={{ height: "34%", background: "linear-gradient(to bottom, transparent, var(--color-bg) 82%)" }}
+        style={{ height: "30%", background: "linear-gradient(to bottom, transparent, var(--color-bg) 82%)" }}
       />
     </div>
   );

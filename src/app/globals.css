@@ -235,17 +235,18 @@ h1, h2, h3, h4, .font-display {
 
 /* Hero backdrop geometry.
 
-   The desktop hero has room below its content for the grid to read as an
-   expanse. A phone hero does not: the content fills 92% of its height, so
-   there is no horizon position that does not sit behind text. Rather than
-   scale the same values down, mobile gets its own geometry — the horizon
-   pushed almost to the bottom edge and the glow held well back — so the
-   backdrop stays a texture instead of competing with the paragraph it sits
-   under. The full effect starts at the width where the layout gains the room
-   for it. */
+   The desktop hero has room below its content for the effect to read as an
+   expanse. A phone hero does not: its content fills 92% of the height, so
+   there is no centre position that does not sit behind text. Rather than scale
+   the same values down, mobile gets its own geometry — the centre pushed almost
+   to the bottom edge and the light held well back — so the backdrop stays a
+   texture instead of competing with the paragraph over it. The full effect
+   starts at the width where the layout gains the room for it. */
 .hero-backdrop {
   --horizon: 90%;
-  --floor-h: 10%;
+  --ring-centre: 96%;
+  --ring-w: 150%;
+  --ring-aspect: 5.8;
   --bloom-w: 100%;
   --bloom-h: 150px;
   --bloom-op: 0.3;
@@ -254,7 +255,9 @@ h1, h2, h3, h4, .font-display {
 @media (min-width: 1024px) {
   .hero-backdrop {
     --horizon: 56%;
-    --floor-h: 44%;
+    --ring-centre: 68%;
+    --ring-w: 62%;
+    --ring-aspect: 5.8;
     --bloom-w: 88%;
     --bloom-h: 300px;
     --bloom-op: 1;
@@ -263,33 +266,36 @@ h1, h2, h3, h4, .font-display {
 
 /* Hero backdrop motion.
 
-   The floor's curved rows are concentric rounded rectangles radiating from the
-   vanishing point, not horizontal lines. That is what produces the curve at the
-   outer ends of each row in the reference, and because each ring is centred on
-   the vanishing point rather than sitting below it, the half above the horizon
-   is what draws the fan at the top of the hero. One mechanism, both features.
+   Concentric rounded rectangles scaling outward from the light. There is no
+   perspective anywhere in this effect: the depth comes from the nesting and
+   from the spacing, not from a transform.
 
-   Each ring scales outward and fades, staggered by a negative delay so the set
-   is already evenly distributed on the first frame rather than all starting
-   together. `transform` and `opacity` are the two properties the compositor can
-   animate without repainting, so this costs no raster work per frame — which
-   matters here because the alternative, animating `background-position` on the
-   tilted plane, meant re-rasterising a ~2048x1186 element every frame.
+   `ease-in` is doing real work, not smoothing. A linear scale puts the
+   rectangles at even distances apart and the whole thing reads flat; easing in
+   means each one moves slowly near the centre and quickly at the edge, which
+   packs them tightly around the light and spreads them at the outside. That
+   gradient of spacing is the depth cue.
 
-   The spokes do not move. In the reference they are fixed and only the rings
-   travel, and it reads better: moving both at once looks like a scrolling
-   texture rather than a space you are looking into. */
+   `transform` and `opacity` are the only two properties the compositor can
+   animate without repainting, so this costs no raster work per frame. That
+   matters here: an earlier version animated `background-position` on a tilted
+   plane, which re-rasterised a ~2048x1186 element every frame and visibly
+   stuttered. Reaching for an animation library would not have helped — driving
+   the same property from JavaScript repaints exactly as hard. */
 @keyframes ring-expand {
   from {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.04);
+    transform: translate(-50%, -50%) scale(0.34);
   }
-  12% {
+  10% {
     opacity: 1;
+  }
+  70% {
+    opacity: 0.85;
   }
   to {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(1.55);
+    transform: translate(-50%, -50%) scale(2.3);
   }
 }
 
@@ -307,7 +313,7 @@ h1, h2, h3, h4, .font-display {
   /* Promoted up front so the first cycle does not pay for the promotion
      mid-animation. */
   will-change: transform, opacity;
-  animation: ring-expand 9s linear infinite;
+  animation: ring-expand 14s ease-in infinite;
 }
 
 .bloom-breathe {
