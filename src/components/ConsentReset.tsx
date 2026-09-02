@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { RotateCcw } from "lucide-react";
-import { clearConsent, getConsent } from "@/lib/consent";
+import { clearConsent, useConsent } from "@/lib/consent";
 
 /**
  * Lets a visitor change a consent answer they have already given.
@@ -15,11 +14,11 @@ import { clearConsent, getConsent } from "@/lib/consent";
  * localStorage and the server cannot know it.
  */
 export default function ConsentReset({ className = "" }: { className?: string }) {
-  const [current, setCurrent] = useState<string | null | undefined>(undefined);
+  const current = useConsent();
 
-  useEffect(() => setCurrent(getConsent()), []);
-
-  if (current === undefined || current === null) return null;
+  // Null covers both "never answered" and the server render, and in both cases
+  // there is no prior choice to change.
+  if (current === null) return null;
 
   return (
     <button

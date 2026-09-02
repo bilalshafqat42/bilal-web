@@ -89,6 +89,10 @@ export default function Analytics() {
     <>
       {/* Must run before anything else so the defaults are in place on first
           load, otherwise a tag can fire once before consent is known. */}
+      {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document --
+          App Router has no _document; the root layout renders this component, which
+          is where Next documents beforeInteractive as valid. The rule predates the
+          App Router and does not recognise that placement. */}
       <Script id="consent-default" strategy="beforeInteractive">
         {`window.dataLayer=window.dataLayer||[];
 function gtag(){dataLayer.push(arguments);}

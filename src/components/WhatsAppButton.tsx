@@ -114,7 +114,6 @@ export default function WhatsAppButton() {
       window.removeEventListener("scroll", onScroll);
       clearTimeout(timer);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

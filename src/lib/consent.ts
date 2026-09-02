@@ -1,5 +1,7 @@
 "use client";
 
+import { useSyncExternalStore } from "react";
+
 /** Analytics/attribution consent. "necessary" behaviour never asks. */
 export type Consent = "granted" | "denied";
 
@@ -46,4 +48,30 @@ export function clearConsent() {
 
 export function hasConsent(): boolean {
   return getConsent() === "granted";
+}
+
+/**
+ * Subscribes a component to the stored consent choice.
+ *
+ * `useSyncExternalStore` is React's built-in answer for reading a value that
+ * lives outside React, which localStorage is. It replaces the older pattern of
+ * reading in a mount effect and calling setState, which trips
+ * `react-hooks/set-state-in-effect` and also renders one frame with the wrong
+ * value before correcting itself.
+ *
+ * The server snapshot is `null` because the server cannot know a browser's
+ * stored choice, and `null` is already the "not yet answered" state.
+ */
+function subscribe(onChange: () => void) {
+  window.addEventListener(CONSENT_EVENT, onChange);
+  // Another tab answering the banner should update this one too.
+  window.addEventListener("storage", onChange);
+  return () => {
+    window.removeEventListener(CONSENT_EVENT, onChange);
+    window.removeEventListener("storage", onChange);
+  };
+}
+
+export function useConsent(): Consent | null {
+  return useSyncExternalStore(subscribe, getConsent, () => null);
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { ArrowRight, Check, FileText, Loader2, MessageCircle } from "lucide-react";
 import { pillars } from "@/data/pillars";
 import { getAttribution, getFacebookCookies } from "@/lib/attribution";
@@ -31,6 +31,27 @@ function prettyPath(path: string): string {
 const fieldClass =
   "w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink placeholder:text-muted/70 outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20";
 
+/**
+ * The page the visitor was reading before they came to /contact, captured by the
+ * attribution lib. Read through useSyncExternalStore rather than a mount effect:
+ * it is browser-only state, and the snapshot is cached at module scope so React
+ * gets a referentially stable value instead of a fresh object every render.
+ */
+let cachedContext: { path: string; url: string } | null | undefined;
+function readPageContext() {
+  if (cachedContext === undefined) {
+    const a = getAttribution();
+    const path = a.pageOfInterest || "";
+    cachedContext =
+      path && path !== "/contact" ? { path, url: a.pageUrl || window.location.href } : null;
+  }
+  return cachedContext;
+}
+const noopSubscribe = () => () => {};
+function usePageContext() {
+  return useSyncExternalStore(noopSubscribe, readPageContext, () => null);
+}
+
 export default function ContactForm() {
   const router = useRouter();
   const [status, setStatus] = useState<Status>("idle");
@@ -38,15 +59,8 @@ export default function ContactForm() {
   // Which page the enquiry is about. On /contact the current page is useless,
   // so prefer the in-site page they clicked through from. Read after mount
   // because it depends on browser APIs.
-  const [pageContext, setPageContext] = useState<{ path: string; url: string } | null>(null);
 
-  useEffect(() => {
-    const a = getAttribution();
-    const path = a.pageOfInterest || "";
-    if (path && path !== "/contact") {
-      setPageContext({ path, url: a.pageUrl || window.location.href });
-    }
-  }, []);
+  const pageContext = usePageContext();
   const [values, setValues] = useState({
     name: "",
     email: "",

@@ -116,7 +116,14 @@ export default function SpotlightSearch() {
     };
   }, [open]);
 
-  useEffect(() => setActive(0), [query]);
+  // Reset the highlighted row when the query changes. Done during render rather
+  // than in an effect: it is derived state, so an effect would render one frame
+  // with a stale highlight before correcting it.
+  const [lastQuery, setLastQuery] = useState(query);
+  if (query !== lastQuery) {
+    setLastQuery(query);
+    setActive(0);
+  }
 
   function onKeyDown(e: React.KeyboardEvent) {
     if (!results.length) return;

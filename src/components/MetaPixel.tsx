@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { CONSENT_EVENT, getConsent } from "@/lib/consent";
+import { useConsent } from "@/lib/consent";
 
 /**
  * Meta (Facebook) Pixel.
@@ -36,18 +36,9 @@ declare global {
 }
 
 export default function MetaPixel() {
-  const [allowed, setAllowed] = useState(false);
+  const allowed = useConsent() === "granted";
   const loaded = useRef(false);
   const pathname = usePathname();
-
-  // Watch consent, both the stored answer and a change made this session.
-  useEffect(() => {
-    setAllowed(getConsent() === "granted");
-    const onChange = (e: Event) =>
-      setAllowed((e as CustomEvent<string>).detail === "granted");
-    window.addEventListener(CONSENT_EVENT, onChange);
-    return () => window.removeEventListener(CONSENT_EVENT, onChange);
-  }, []);
 
   // Inject the loader once, the first time consent allows it.
   useEffect(() => {
@@ -58,7 +49,8 @@ export default function MetaPixel() {
     (function (f: any, b: Document, e: string, v: string) {
       if (f.fbq) return;
       const n: any = (f.fbq = function (...args: unknown[]) {
-        n.callMethod ? n.callMethod.apply(n, args) : n.queue.push(args);
+        if (n.callMethod) n.callMethod(...args);
+        else n.queue.push(args);
       });
       if (!f._fbq) f._fbq = n;
       n.push = n;
