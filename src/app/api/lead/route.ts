@@ -144,12 +144,24 @@ export async function POST(request: Request) {
     attribution?.landingPage ||
     pageUrl;
 
+  // Ad click IDs, taken from the persisted first-touch attribution. Unlike the
+  // UTMs there is no flat fallback, because no caller sends one. These are what
+  // offline conversion import
+  // is keyed on: without gclid, Google Ads can learn which clicks produced a
+  // form fill but never which produced a customer.
+  //
+  // Probed against Performo directly on 2026-09-02: it stores gclid, fbclid,
+  // ttclid and msclkid. An earlier note in the roadmap claimed it had no fields
+  // for them, which is why they were being dropped here. `referrer` genuinely
+  // is not stored, so it is still not sent.
+  const resolvedGclid = attribution?.gclid;
+  const resolvedFbclid = attribution?.fbclid;
+  const resolvedTtclid = attribution?.ttclid;
+  const resolvedMsclkid = attribution?.msclkid;
+
   // Performo's public intake API (the CRM this currently points at) expects
   // its own field names and an x-api-key header, not Authorization: Bearer —
   // this is the "adjust the mapping" step called out in .env.local.example.
-  // Performo's Lead model has no fields for click IDs (gclid/fbclid/etc.) or
-  // referrer today, so those are intentionally not sent — not lost, just not
-  // yet modeled on the receiving end.
   const lead = {
     type: isChat ? "chat" : "form",
     name,
@@ -167,6 +179,10 @@ export async function POST(request: Request) {
     eventId: eventId || undefined,
     fbp: fbp || undefined,
     fbc: fbc || undefined,
+    gclid: resolvedGclid || undefined,
+    fbclid: resolvedFbclid || undefined,
+    ttclid: resolvedTtclid || undefined,
+    msclkid: resolvedMsclkid || undefined,
   };
 
   const crmUrl = process.env.CRM_LEAD_API_URL;
