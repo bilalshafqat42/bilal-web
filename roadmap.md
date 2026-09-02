@@ -932,6 +932,12 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - Two further ranking faults found the same way: **a stemmed query term has no IDF entry**, so prefix matches fell back to a default weight and "postgres" never reached the PostgreSQL answer despite matching it cleanly — prefix hits are now weighted by the *matched index term*. And a 4-character prefix minimum let "postgres" stem to "postgr" and match "post", returning a social-posting answer; minimum raised to 5 on both sides.
     - **Added `npm run search-check`.** The scoring now carries several tuned constants and they were fitted against fixtures; without a check the next change to any of them silently loses answers or lets nonsense back in. **29 assertions: 21 queries that must find a specific answer, 8 that must return nothing.** All passing at 174 chunks.
 
+105. **Enquiry form put on the service pages themselves (2026-09-02)** — **done.** Bilal asked whether searching "ui design" surfaces his UI/UX page and whether that page lets someone contact him by form. Walking it end to end showed the first was true and **the second was not**.
+    - **The page had no form at all**, only links out to `/contact` and `/appointment`. He had already asked for a form in the previous request and I delivered links instead. Every click between reading and enquiring loses people, and someone who has just read the UI/UX page has already stated their intent, so making them restate it elsewhere is friction for nothing.
+    - New `InlineLeadForm`: three fields, the service carried in from the page so the enquiry arrives already labelled, submitting through the same path as the other forms including `eventId` and Facebook cookies for Conversions API matching. Links to call, WhatsApp and email are kept below it as alternatives rather than as the only option.
+    - Verified as one journey: search "ui design" → top result **UI/UX Design → `/services/ui-ux-design`** → form present → submit → payload carries `service: "UI/UX Design"` and `source: "service-page-form"` → redirects to `/thank-you` showing "Enquiry received".
+    - Also deduplicated the index: a heading reachable from both a category and its underlying pillar section **spent two of only three result slots saying the same thing**. 174 to 170 chunks, and "ui design" now returns four distinct answers instead of two plus a repeat.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

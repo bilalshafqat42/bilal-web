@@ -15,6 +15,7 @@ import {
 } from "@/data/pillars";
 import { serviceDepth } from "@/data/serviceDepth";
 import TrackView from "@/components/TrackView";
+import InlineLeadForm from "@/components/InlineLeadForm";
 
 const SITE_URL = "https://bilalshafqat.com";
 
@@ -224,25 +225,33 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                     Still not sure if this is what you need?
                   </h3>
                   <p className="mt-2.5 text-base leading-relaxed text-muted">
-                    Ask me directly. You will get a straight answer about whether
-                    I am the right fit, including when the answer is no.
+                    Send it here and it comes straight to me. You will get a
+                    straight answer about whether I am the right fit, including
+                    when the answer is no.
                   </p>
-                  <div className="mt-6 flex flex-wrap gap-3">
+
+                  {/* The form sits on the page rather than behind a link. Someone
+                      who has just read this page has already told us what they
+                      want; making them restate it elsewhere loses them. */}
+                  <InlineLeadForm service={category.title} />
+
+                  <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-border pt-5">
+                    <span className="text-sm text-muted">Prefer another way?</span>
                     <Link
                       href="/appointment"
-                      className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
+                      className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-white/5"
                     >
-                      Book a 30-minute call <ArrowRight size={15} />
+                      Book a call <ArrowRight size={14} />
                     </Link>
                     <a
                       href="https://wa.me/971529766006"
-                      className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-white/5"
+                      className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-white/5"
                     >
                       WhatsApp
                     </a>
                     <a
                       href="mailto:bilalshafqat42@gmail.com"
-                      className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-white/5"
+                      className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-white/5"
                     >
                       Email
                     </a>

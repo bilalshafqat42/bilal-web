@@ -98,7 +98,25 @@ export function buildIndex(): Chunk[] {
     kind: "info",
   });
 
-  return chunks;
+  // The same heading can be reached from two builders (a category and the
+
+  // pillar section behind it), which spent two of only three result slots
+
+  // saying the same thing. Keep the first, which carries the fuller body.
+
+  const seen = new Set<string>();
+
+  return chunks.filter((c) => {
+
+    const key = `${c.title}|${c.url}`;
+
+    if (seen.has(key)) return false;
+
+    seen.add(key);
+
+    return true;
+
+  });
 }
 
 // Includes conversational filler, not just grammar words. People phrase these
