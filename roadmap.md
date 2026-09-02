@@ -977,6 +977,11 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **That mask radius was measured, not guessed.** It acts in the element's own pre-transform space, which is 128% of viewport width, so the number is far smaller than the on-screen fade implies: sweeping it, edge-band peak-minus-median brightness fell 37.5 (42%) → 21.4 (30%) → 7.2 (22%) → 2.5 (16%) while the centre held at 43.4. Settled at 16%. Two guesses before that changed nothing visible, which is the same failure mode as the item 109 first attempt.
     - Verified: no horizontal overflow at 1600, 1024 or 390px, no page errors, all routes 200, lint clean, build clean. Pushed as `01ea9b7`.
 
+111. **Hero backdrop recoloured from violet to the site gold (2026-09-02)** — **done.** The reference is violet throughout; Bilal wanted the same geometry and light in his own accent, which is the right call since gold is what the rest of the page already uses. Grid lines, tint and all three bloom ellipses moved over: warm white core, `#f2c94c` mid, amber outer.
+    - **The tint needed less chroma than the swap implied.** A saturated yellow wash over near-black goes brown, and the first pass made the whole upper hero look olive. The horizon layer keeps its amber; the top layer was pulled back to a near-neutral warm grey, so only the light source carries colour. Worth remembering for any future accent swap on a dark ground: the further a layer sits from the light, the less chroma it can hold.
+    - The bloom now matches the primary CTA exactly, which reads as intentional rather than coincidental since both are the same token value.
+    - Verified: no horizontal overflow at 1600, 1024 or 390px, no page errors, routes 200, lint clean, build clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

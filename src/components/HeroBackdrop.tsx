@@ -8,8 +8,9 @@
  * carries no risk to them.
  *
  * Reference: Wope's hero. Faithful on the geometry and the light, deliberately
- * restrained on the tint so the page still reads as gold-on-near-black rather
- * than becoming a purple site.
+ * restrained on the tint. The reference is violet throughout; this is the same
+ * geometry and light in the site gold, which is the accent everything else on
+ * the page already uses.
  *
  * Purely decorative, so the whole thing is aria-hidden.
  */
@@ -35,8 +36,8 @@ const PARTICLES = [
 ];
 
 const GRID_LINES =
-  "linear-gradient(rgba(198,180,255,0.85) 1px, transparent 1px), " +
-  "linear-gradient(90deg, rgba(198,180,255,0.7) 1px, transparent 1px)";
+  "linear-gradient(rgba(247,219,133,0.85) 1px, transparent 1px), " +
+  "linear-gradient(90deg, rgba(247,219,133,0.7) 1px, transparent 1px)";
 
 export default function HeroBackdrop() {
   return (
@@ -47,8 +48,8 @@ export default function HeroBackdrop() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 90% 70% at 50% 74%, rgba(58,42,120,0.42), transparent 68%)," +
-            "radial-gradient(ellipse 120% 90% at 50% 0%, rgba(30,24,60,0.5), transparent 70%)",
+            "radial-gradient(ellipse 90% 70% at 50% 74%, rgba(96,74,26,0.40), transparent 68%)," +
+            "radial-gradient(ellipse 120% 90% at 50% 0%, rgba(40,36,28,0.5), transparent 70%)",
         }}
       />
 
@@ -113,9 +114,9 @@ export default function HeroBackdrop() {
           transform: "translate(-50%, -58%)",
           filter: "blur(26px)",
           background:
-            "radial-gradient(ellipse 30% 13% at 50% 50%, rgba(233,224,255,0.85), transparent 70%)," +
-            "radial-gradient(ellipse 52% 26% at 50% 50%, rgba(178,144,255,0.6), transparent 72%)," +
-            "radial-gradient(ellipse 80% 48% at 50% 52%, rgba(124,107,245,0.34), transparent 74%)",
+            "radial-gradient(ellipse 30% 13% at 50% 50%, rgba(255,248,224,0.88), transparent 70%)," +
+            "radial-gradient(ellipse 52% 26% at 50% 50%, rgba(242,201,76,0.58), transparent 72%)," +
+            "radial-gradient(ellipse 80% 48% at 50% 52%, rgba(198,148,44,0.32), transparent 74%)",
         }}
       />
 
