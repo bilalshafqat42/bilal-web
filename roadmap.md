@@ -906,6 +906,16 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Fourth measurement error of the session: GA4 batches events into a POST body.** Reading only the URL query string showed `en=null` and no page_view, so the route-change tracking looked broken when it was working. Any GA4 check must parse `request.postData()`.
     - Also confirmed in passing: **header links are plain `<a>`, so every nav is a full page reload.** GA4's built-in page_view covers those; the route-change effect only matters for `router.push`. Converting those 37 links to `next/link` is still outstanding.
 
+102. **Homepage assistant returned nothing for real queries (2026-09-02)** — **done.** Bilal searched "ui ux designer" and got only "The assistant isn't configured yet."
+    - **The visible message was a symptom, not the fault.** `ANTHROPIC_API_KEY` is genuinely unset, but the design was for the free local index to answer regardless and the API to be an upgrade. The error only surfaces when local search returns **zero** results, so the real bug was that a core keyword matched nothing.
+    - **Three separate faults, all found by testing the index directly rather than through the UI:**
+      1. **Stemmer had no agent-noun rule.** "designer" never reduced to "design", so the exact job title Bilal wants to rank for scored zero. Added `-er` / `-ers`.
+      2. **Single-term queries could never clear the score floor.** A body-only hit scores 3 against a floor of 6, so **"seo" returned nothing despite appearing in the corpus four times**. Floor is now query-length aware.
+      3. **The index was missing the long-form content from item 96 entirely.** `siteContent.ts` was updated for it, `searchIndex.ts` was not, so "wordpress" — which appears only there — was unfindable. **Index grew 77 to 130 chunks.** Lesson: two builders read the same data, and updating one silently desynchronised the other.
+    - Added a prefix fallback so "develop" reaches "development" without a rule per suffix, plus a guard that a multi-term query needs two matched terms or one exact title hit. Verified nonsense still returns nothing: "pizza delivery", "quantum physics", "weather in tokyo", "cheap flights" all score zero, where "pizza delivery" previously leaked a result on a loose prefix brush against "deliver".
+    - **"free audit" correctly returns nothing.** That is not a search fault, it is the content gap identified from the Musemind ad: no free entry offer exists on the site.
+    - Still open: `ANTHROPIC_API_KEY` is unset, so answers are search results rather than prose. That is the intended free tier and needs Bilal's key to upgrade.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

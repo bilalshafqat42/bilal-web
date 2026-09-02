@@ -8,6 +8,7 @@
 import { pillars, megaMenuGroups } from "@/data/pillars";
 import { faqGroups } from "@/data/faqs";
 import { clients } from "@/data/caseStudies";
+import { serviceDepth } from "@/data/serviceDepth";
 
 export type Chunk = {
   title: string;
@@ -28,6 +29,23 @@ export function buildIndex(): Chunk[] {
     });
     for (const faq of group.faqs) {
       chunks.push({ title: faq.question, body: faq.answer, url: `/services/${group.slug}`, kind: "faq" });
+    }
+    // The long-form category copy and its extra FAQs. Without these the
+    // assistant knew less than the page a visitor was reading: "wordpress",
+    // for one, appears only here and returned nothing.
+    const depth = serviceDepth[group.slug];
+    if (depth) {
+      for (const block of depth.blocks) {
+        chunks.push({
+          title: block.heading,
+          body: block.paragraphs.join(" "),
+          url: `/services/${group.slug}`,
+          kind: "service",
+        });
+      }
+      for (const faq of depth.faqs) {
+        chunks.push({ title: faq.question, body: faq.answer, url: `/services/${group.slug}`, kind: "faq" });
+      }
     }
   }
 
@@ -101,6 +119,11 @@ function stem(t: string): string {
   if (t.length > 4 && (t.endsWith("es") || t.endsWith("ed"))) return t.slice(0, -2);
   if (t.length > 3 && t.endsWith("s") && !t.endsWith("ss")) return t.slice(0, -1);
   if (t.length > 5 && t.endsWith("ing")) return t.slice(0, -3);
+  // Agent nouns. Without this, "designer" and "developer" never reach "design"
+  // and "develop", so someone searching the exact job title Bilal wants to rank
+  // for got zero results.
+  if (t.length > 5 && t.endsWith("ers")) return t.slice(0, -3);
+  if (t.length > 4 && t.endsWith("er")) return t.slice(0, -2);
   return t;
 }
 
@@ -125,6 +148,15 @@ export function search(index: Chunk[], query: string, limit = 3): Chunk[] {
   const q = terms(query);
   if (!q.length) return [];
 
+  // Falls back to a prefix match when the stems do not line up exactly, which
+  // is what connects "develop" to "development" or "market" to "marketing"
+  // without hand-writing a rule per suffix. Worth less than an exact hit.
+  const prefixHit = (words: Set<string>, t: string) => {
+    if (t.length < 4) return false;
+    for (const w of words) if (w.startsWith(t) || t.startsWith(w)) return true;
+    return false;
+  };
+
   return index
     .map((chunk) => {
       // Both sides are stemmed, so comparison is a set membership test rather
@@ -132,23 +164,37 @@ export function search(index: Chunk[], query: string, limit = 3): Chunk[] {
       const titleWords = new Set(terms(chunk.title));
       const bodyWords = new Set(terms(chunk.body));
       let score = 0;
+      let matched = 0;
       for (const t of q) {
-        if (titleWords.has(t)) score += 10;
-        if (bodyWords.has(t)) score += 3;
+        let hit = false;
+        if (titleWords.has(t)) { score += 10; hit = true; }
+        else if (prefixHit(titleWords, t)) { score += 6; hit = true; }
+        if (bodyWords.has(t)) { score += 3; hit = true; }
+        else if (prefixHit(bodyWords, t)) { score += 2; hit = true; }
+        if (hit) matched += 1;
       }
       // Coverage bonus: a short query whose every term appears is a strong signal
       // even with no title hit. Without this, "are you available for a retainer"
       // scored 3 against the pricing chunk and fell below the floor.
-      const matched = q.filter((t) => titleWords.has(t) || bodyWords.has(t)).length;
       // 2+ terms only: on a single-term query this bonus just promotes noise.
       if (matched === q.length && q.length > 1) score += 4;
       if (chunk.kind === "faq") score *= 1.15; // an FAQ is usually the most direct answer
-      return { chunk, score };
+      return { chunk, score, matched };
     })
-    // Two body matches (3 + 3) is the weakest signal worth returning — that is
-    // exactly what "property developers" scores against the LEOS case study.
-    // Anything below is noise.
-    .filter((r) => r.score >= 6)
+    // Two body matches (3 + 3) is the weakest multi-term signal worth returning.
+    // A single-term query can only ever score 3 on a body hit, so it could never
+    // clear a floor of 6 — which is why "seo" returned nothing despite appearing
+    // in the corpus. Single-term queries get the lower floor they need.
+    // A single-term query can only ever score 3 on a body hit, so it could never
+    // clear a floor of 6 — which is why "seo" returned nothing despite being in
+    // the corpus. Multi-term queries additionally need either two matched terms
+    // or one solid exact title hit, so a single loose prefix match ("delivery"
+    // brushing "deliver") cannot drag in an unrelated chunk.
+    .filter((r) =>
+      q.length === 1
+        ? r.score >= 3
+        : r.score >= 6 && (r.matched >= 2 || r.score >= 10)
+    )
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
     .map((r) => r.chunk);
