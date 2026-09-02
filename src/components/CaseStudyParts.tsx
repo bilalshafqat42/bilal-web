@@ -14,7 +14,7 @@ export function CaptureFrame({
   const isPhone = variant === "phone";
   return (
     <div
-      className={`overflow-hidden border border-border glass ${
+      className={`overflow-hidden border border-border panel ${
         isPhone ? "rounded-[1.75rem]" : "rounded-2xl"
       }`}
     >

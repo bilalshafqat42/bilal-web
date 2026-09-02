@@ -65,7 +65,7 @@ export default function NotFound() {
                 <Link
                   key={pillar.slug}
                   href={`/services/${pillar.slug}`}
-                  className="card-hover rounded-2xl border border-border glass px-5 py-4 text-sm font-medium text-ink"
+                  className="card-hover rounded-2xl border border-border panel px-5 py-4 text-sm font-medium text-ink"
                 >
                   {pillar.label}
                 </Link>

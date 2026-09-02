@@ -128,7 +128,7 @@ export default async function ClientCaseStudy({ params }: Props) {
             <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
               {c.scope.map((s) => (
                 <Reveal key={s.heading}>
-                  <div className="h-full rounded-2xl border border-border glass p-7">
+                  <div className="h-full rounded-2xl border border-border panel p-7">
                     <h3 className="text-lg font-semibold text-ink">{s.heading}</h3>
                     <p className="mt-3 text-sm text-muted leading-relaxed">{s.body}</p>
                   </div>
@@ -188,7 +188,7 @@ export default async function ClientCaseStudy({ params }: Props) {
                   <Reveal key={p.slug} delay={i * 0.08}>
                     <Link
                       href={`/portfolio/${c.slug}/${p.slug}`}
-                      className="card-hover group flex h-full flex-col overflow-hidden rounded-2xl border border-border glass"
+                      className="card-hover group flex h-full flex-col overflow-hidden rounded-2xl border border-border panel"
                     >
                       <Image
                         src={p.cardImage}

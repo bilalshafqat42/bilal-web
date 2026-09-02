@@ -32,7 +32,7 @@ export default function Services() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="relative rounded-2xl border border-border glass p-8 overflow-hidden min-h-[340px]"
+                className="relative rounded-2xl border border-border panel p-8 overflow-hidden min-h-[340px]"
               >
                 <div className={`absolute -top-12 -right-12 h-48 w-48 rounded-full blur-3xl ${accent.glow}`} />
 

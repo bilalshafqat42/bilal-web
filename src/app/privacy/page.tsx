@@ -65,7 +65,7 @@ export default function PrivacyPage() {
           <div className="mx-auto max-w-3xl px-6">
             <div className="space-y-5">
               {rows.map((r) => (
-                <div key={r.what} className="rounded-2xl border border-border glass p-6">
+                <div key={r.what} className="rounded-2xl border border-border panel p-6">
                   <h2 className="text-base font-semibold text-ink">{r.what}</h2>
                   <dl className="mt-4 space-y-2.5 text-sm">
                     <div className="flex flex-col gap-0.5 sm:flex-row sm:gap-3">
@@ -85,7 +85,7 @@ export default function PrivacyPage() {
               ))}
             </div>
 
-            <div className="mt-10 rounded-2xl border border-border glass p-6">
+            <div className="mt-10 rounded-2xl border border-border panel p-6">
               <h2 className="text-base font-semibold text-ink">Changing your mind</h2>
               <p className="mt-3 text-sm leading-relaxed text-muted">
                 Use the button below and the banner will ask again, whichever way

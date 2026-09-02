@@ -22,7 +22,7 @@ export default function PortfolioPage() {
         <section className="site-container">
           <Link
             href="/portfolio/leos-developments"
-            className="card-hover group flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border glass px-7 py-6"
+            className="card-hover group flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border panel px-7 py-6"
           >
             <span>
               <span className="text-xs font-medium uppercase tracking-wide text-gold">

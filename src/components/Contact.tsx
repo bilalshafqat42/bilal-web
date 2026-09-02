@@ -12,8 +12,6 @@ export default function Contact() {
               className="blob pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet/50"
               style={{ animationDelay: "-4s" }}
             />
-            <div className="blob pointer-events-none absolute -top-20 left-10 h-64 w-64 rounded-full bg-gold/30" style={{ animationDelay: "-9s" }} />
-            <div className="blob pointer-events-none absolute -bottom-20 right-10 h-64 w-64 rounded-full bg-violet/30" style={{ animationDelay: "-2s" }} />
 
             <div className="relative">
               <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">

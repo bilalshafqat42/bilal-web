@@ -140,7 +140,7 @@ export default function AboutPage() {
                   <Reveal key={pillar.slug} delay={i * 0.08}>
                     <Link
                       href={`/services/${pillar.slug}`}
-                      className="card-hover group flex h-full flex-col rounded-2xl border border-border glass p-7"
+                      className="card-hover group flex h-full flex-col rounded-2xl border border-border panel p-7"
                     >
                       <span
                         className={`inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${accent.bg}`}
@@ -174,7 +174,7 @@ export default function AboutPage() {
             <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
               {principles.map((p, i) => (
                 <Reveal key={p.title} delay={i * 0.08}>
-                  <div className="h-full rounded-2xl border border-border glass p-7">
+                  <div className="h-full rounded-2xl border border-border panel p-7">
                     <h3 className="text-lg font-semibold text-ink leading-snug">{p.title}</h3>
                     <p className="mt-3 text-sm text-muted leading-relaxed">{p.body}</p>
                   </div>
@@ -199,7 +199,7 @@ export default function AboutPage() {
             <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {stack.map((group, i) => (
                 <Reveal key={group.title} delay={i * 0.06}>
-                  <div className="h-full rounded-2xl border border-border glass p-6">
+                  <div className="h-full rounded-2xl border border-border panel p-6">
                     <h3 className="text-sm font-semibold tracking-wide text-gold uppercase">
                       {group.title}
                     </h3>

@@ -74,7 +74,7 @@ export default function Hero() {
           <Reveal delay={0.15}>
             <div className="relative mx-auto max-w-sm">
               <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-gold/20 via-transparent to-violet/25 blur-2xl" />
-              <div className="relative rounded-[2rem] border border-border glass overflow-hidden">
+              <div className="relative rounded-[2rem] border border-border panel overflow-hidden">
                 <Image
                   src="/images/bilal-shirt.avif"
                   alt="Bilal Shafqat, marketing, design and development studio"

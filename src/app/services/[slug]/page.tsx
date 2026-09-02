@@ -208,7 +208,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
               <div className="mt-10 space-y-5">
                 {faqs.map((f) => (
                   <Reveal key={f.question}>
-                    <div className="rounded-2xl border border-border glass p-6">
+                    <div className="rounded-2xl border border-border panel p-6">
                       <h3 className="font-semibold text-ink">{f.question}</h3>
                       <p className="mt-2.5 text-sm text-muted leading-relaxed">{f.answer}</p>
                     </div>
@@ -220,7 +220,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                   step, offered three ways because people differ on how they
                   want to start a conversation. */}
               <Reveal>
-                <div className="mt-10 rounded-2xl border border-border glass p-6 sm:p-8">
+                <div className="mt-10 rounded-2xl border border-border panel p-6 sm:p-8">
                   <h3 className="text-lg font-semibold text-ink sm:text-xl">
                     Still not sure if this is what you need?
                   </h3>
@@ -272,7 +272,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                 <Link
                   key={o.slug}
                   href={`/services/${o.slug}`}
-                  className="card-hover flex items-center justify-between gap-3 rounded-2xl border border-border glass px-5 py-4 text-sm font-medium text-ink"
+                  className="card-hover flex items-center justify-between gap-3 rounded-2xl border border-border panel px-5 py-4 text-sm font-medium text-ink"
                 >
                   {o.title}
                   <ArrowRight size={15} className={accentClasses[o.accent].icon} />

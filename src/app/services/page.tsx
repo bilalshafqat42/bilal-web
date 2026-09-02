@@ -47,7 +47,7 @@ export default function ServicesPage() {
                   <Link
                     key={pillar.slug}
                     href={`/services/${pillar.slug}`}
-                    className="card-hover group relative flex flex-col rounded-2xl border border-border glass p-8 overflow-hidden"
+                    className="card-hover group relative flex flex-col rounded-2xl border border-border panel p-8 overflow-hidden"
                   >
                     <div className={`absolute -top-12 -right-12 h-48 w-48 rounded-full blur-3xl ${accent.glow}`} />
 

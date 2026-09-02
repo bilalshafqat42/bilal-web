@@ -125,7 +125,7 @@ export default function PortfolioGrid() {
                     {!card.portrait ? (
                       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-bg to-transparent" />
                     ) : null}
-                    <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/55 px-3 py-1.5 text-xs font-medium uppercase tracking-wide text-white/90 backdrop-blur-sm">
+                    <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/55 px-3 py-1.5 text-xs font-medium uppercase tracking-wide text-white/90">
                       {card.label}
                     </span>
                   </div>

@@ -54,7 +54,7 @@ function EngagementCard({ model }: { model: Model }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="card-hover h-full rounded-2xl border border-border glass p-7 flex flex-col">
+    <div className="card-hover h-full rounded-2xl border border-border panel p-7 flex flex-col">
       <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-gold/20 to-violet/20 border border-border text-gold">
         <model.icon size={22} />
       </div>

@@ -48,7 +48,7 @@ export default function Results() {
             <RevealStagger className="mt-10 grid sm:grid-cols-2 gap-5">
               {stats.map((s) => (
                 <RevealItem key={s.title}>
-                  <div className="rounded-2xl border border-border glass p-6 h-full">
+                  <div className="rounded-2xl border border-border panel p-6 h-full">
                     <s.icon size={20} className="text-gold" />
                     <p className="mt-4 font-semibold text-ink leading-snug">{s.title}</p>
                     <p className="mt-1.5 text-base text-muted leading-relaxed">{s.description}</p>

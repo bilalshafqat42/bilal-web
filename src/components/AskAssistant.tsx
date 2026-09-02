@@ -120,7 +120,7 @@ export default function AskAssistant() {
           }}
           className="mt-9"
         >
-          <div className="flex items-center gap-2 rounded-2xl border border-border glass p-2 focus-within:border-gold/40">
+          <div className="flex items-center gap-2 rounded-2xl border border-border panel p-2 focus-within:border-gold/40">
             <input
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
@@ -163,7 +163,7 @@ export default function AskAssistant() {
             ) : (
               <div key={i} className="max-w-[92%] space-y-3">
                 {t.content ? (
-                  <div className="rounded-2xl border border-border glass px-5 py-4 text-sm text-muted leading-relaxed whitespace-pre-wrap">
+                  <div className="rounded-2xl border border-border panel px-5 py-4 text-sm text-muted leading-relaxed whitespace-pre-wrap">
                     {withLinks(t.content)}
                   </div>
                 ) : null}

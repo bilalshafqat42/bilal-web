@@ -946,6 +946,12 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Lesson worth keeping: a recorded claim about someone else's system is not a constraint until it is re-tested.** That note blocked Google Ads offline conversion import for no reason.
     - **Left a probe lead in Performo** named "ZZ DELETE ME field probe" plus a couple of test submissions. Bilal to delete.
 
+107. **Decoration audit: blur cut 40 to 8, and a correction to my own earlier advice (2026-09-02)** — **done.**
+    - **`.glass` was on 31 card surfaces, and its `backdrop-filter: blur(14px)` was doing nothing on any of them.** Blur only earns its GPU layer where varied content passes behind the surface; a card on a flat dark background has nothing to blur. Added `.panel`, identical fill and border without the blur, and swapped every card usage. `.glass` / `.glass-strong` / `.glass-nav` stay on the nav, mega menu, modals and floating widgets, which genuinely do overlay scrolling content.
+    - Also removed `backdrop-blur-sm` from card label pills (already legible on `bg-black/55`) and cut Contact from **three** looping 90px blurs to one.
+    - **Homepage blur surfaces: 40 to 8.** Service pages and pricing down to 5 each. The remaining 8 are all legitimate: nav, mega-menu scrim, and the three floating widgets. Verified visually unchanged.
+    - **CORRECTION to item 83.** I advised cutting the gradients on the strength of "57 gradients, 33 blur surfaces on one page", and characterised it as decoration doing the work space and typography should do. Breaking the 62 down by what they actually are: **14 near-invisible card surfaces (white at 6% or less), 48 dark scrims over images for text legibility, and ZERO coloured decoration.** There was no decorative gradient problem. The number was counting functional scrims. **The advice was wrong and the figure did not mean what I said it meant.** The blur reduction was real and worth doing; the gradient half of that recommendation should be struck.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

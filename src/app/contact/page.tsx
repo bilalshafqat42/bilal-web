@@ -117,7 +117,7 @@ export default function ContactPage() {
                       href={channel.href}
                       target={channel.href.startsWith("http") ? "_blank" : undefined}
                       rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="card-hover group flex h-full flex-col rounded-2xl border border-border glass p-7"
+                      className="card-hover group flex h-full flex-col rounded-2xl border border-border panel p-7"
                     >
                       <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-gold/25 to-gold-2/10">
                         <Icon size={20} className="text-gold" />
@@ -152,7 +152,7 @@ export default function ContactPage() {
               </Reveal>
 
               <Reveal delay={0.1}>
-                <div className="h-full rounded-2xl border border-border glass p-7">
+                <div className="h-full rounded-2xl border border-border panel p-7">
                   <h2 className="text-xl font-semibold text-ink">Where I am and when</h2>
                   <ul className="mt-5 space-y-4 text-sm text-muted">
                     <li className="flex items-start gap-3">

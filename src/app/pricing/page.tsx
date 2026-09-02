@@ -147,7 +147,7 @@ export default function PricingPage() {
             <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
               {models.map((m) => (
                 <Reveal key={m.title}>
-                  <div className="flex h-full flex-col rounded-2xl border border-border glass p-7">
+                  <div className="flex h-full flex-col rounded-2xl border border-border panel p-7">
                     <h3 className="text-xl font-semibold text-ink">{m.title}</h3>
                     <p className="mt-3 flex-1 text-sm text-muted leading-relaxed">{m.body}</p>
                     <p className="mt-5 border-t border-border pt-4 text-xs text-gold">
@@ -173,7 +173,7 @@ export default function PricingPage() {
             </Reveal>
             <div className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-2">
               <Reveal>
-                <div className="h-full rounded-2xl border border-border glass p-7">
+                <div className="h-full rounded-2xl border border-border panel p-7">
                   <h3 className="flex items-center gap-2 text-lg font-semibold text-ink">
                     <Plus size={17} className="text-gold" /> Pushes cost up
                   </h3>
@@ -185,7 +185,7 @@ export default function PricingPage() {
                 </div>
               </Reveal>
               <Reveal delay={0.08}>
-                <div className="h-full rounded-2xl border border-border glass p-7">
+                <div className="h-full rounded-2xl border border-border panel p-7">
                   <h3 className="flex items-center gap-2 text-lg font-semibold text-ink">
                     <Minus size={17} className="text-cyan" /> Brings cost down
                   </h3>
@@ -210,7 +210,7 @@ export default function PricingPage() {
             <div className="mt-8 space-y-4">
               {faqs.map((f) => (
                 <Reveal key={f.question}>
-                  <details className="group rounded-2xl border border-border glass p-6 open:border-gold/25">
+                  <details className="group rounded-2xl border border-border panel p-6 open:border-gold/25">
                     <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-semibold text-ink marker:hidden">
                       {f.question}
                       <ChevronRight size={17} className="mt-0.5 shrink-0 text-gold transition-transform group-open:rotate-90" />

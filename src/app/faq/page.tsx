@@ -96,7 +96,7 @@ export default function FaqPage() {
                     {/* <details> rather than JS state: it works without hydration,
                         is keyboard accessible by default, and Ctrl+F finds the
                         answer text even while collapsed. */}
-                    <details className="group rounded-2xl border border-border glass p-6 open:border-gold/25">
+                    <details className="group rounded-2xl border border-border panel p-6 open:border-gold/25">
                       <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-semibold text-ink marker:hidden">
                         {f.question}
                         <ChevronRight

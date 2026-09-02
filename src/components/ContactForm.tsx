@@ -139,7 +139,7 @@ export default function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-2xl border border-border glass p-8 text-center" role="status">
+      <div className="rounded-2xl border border-border panel p-8 text-center" role="status">
         <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gold/15">
           <Check size={22} className="text-gold" />
         </span>
@@ -162,7 +162,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="rounded-2xl border border-border glass p-7 sm:p-8">
+    <form onSubmit={onSubmit} className="rounded-2xl border border-border panel p-7 sm:p-8">
       <h2 className="text-xl font-semibold text-ink">Send me the details</h2>
       <p className="mt-2 text-sm text-muted leading-relaxed">
         The more you can tell me, the more useful my first reply will be.

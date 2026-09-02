@@ -208,7 +208,7 @@ export default function PortfolioShowcase() {
                   }`}
                 />
 
-                <span className="absolute left-4 top-4 max-w-[calc(100%-4.25rem)] truncate rounded-full border border-white/15 bg-black/55 px-3.5 py-2 text-xs font-medium text-white/90 backdrop-blur-sm">
+                <span className="absolute left-4 top-4 max-w-[calc(100%-4.25rem)] truncate rounded-full border border-white/15 bg-black/55 px-3.5 py-2 text-xs font-medium text-white/90">
                   {s.label}
                 </span>
 
@@ -308,7 +308,7 @@ export default function PortfolioShowcase() {
                 <Image src={s.image} alt={s.alt} fill sizes="82vw" className="object-cover object-top" />
               )}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-              <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/55 px-3 py-1.5 text-xs text-white/90 backdrop-blur-sm">
+              <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/55 px-3 py-1.5 text-xs text-white/90">
                 {s.label}
               </span>
               <div className="absolute inset-x-0 bottom-0 p-5">
