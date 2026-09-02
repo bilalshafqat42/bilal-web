@@ -7,6 +7,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import HeroBackdrop from "./HeroBackdrop";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -94,7 +95,7 @@ export default function HeroAlt() {
         id="home"
         className="relative z-0 overflow-hidden bg-bg pb-16 pt-40 text-ink sm:pb-20 sm:pt-48"
       >
-        <div className="pointer-events-none absolute inset-0 grid-fade" />
+        <HeroBackdrop />
 
         <div className="site-container relative">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-[7fr_3fr] lg:gap-10">
