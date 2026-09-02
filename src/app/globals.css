@@ -263,36 +263,33 @@ h1, h2, h3, h4, .font-display {
 
 /* Hero backdrop motion.
 
-   The grid slides one row toward the viewer and loops.
+   The floor's curved rows are concentric rounded rectangles radiating from the
+   vanishing point, not horizontal lines. That is what produces the curve at the
+   outer ends of each row in the reference, and because each ring is centred on
+   the vanishing point rather than sitting below it, the half above the horizon
+   is what draws the fan at the top of the hero. One mechanism, both features.
 
-   This animates `transform`, not `background-position`. That distinction is the
-   whole reason the first version stuttered: `background-position` is a
-   paint-triggering property, so every frame Chrome re-rasterised a roughly
-   2048x1186 element that also carries a 3D transform. `transform` is handled by
-   the compositor, so the element is rasterised once and the GPU moves the
-   layer. Reaching for an animation library would not have helped — GSAP driving
-   `background-position` repaints exactly as hard. The property was the problem,
-   not the driver.
+   Each ring scales outward and fades, staggered by a negative delay so the set
+   is already evenly distributed on the first frame rather than all starting
+   together. `transform` and `opacity` are the two properties the compositor can
+   animate without repainting, so this costs no raster work per frame — which
+   matters here because the alternative, animating `background-position` on the
+   tilted plane, meant re-rasterising a ~2048x1186 element every frame.
 
-   The grid element starts one row above its container and travels exactly one
-   row, so the loop point is identical to the start and there is no visible
-   snap. Keep this distance equal to the row height in HeroBackdrop.
-
-   The glow breathes on a slower, unrelated period so the two never look
-   synchronised, which is what makes it read as light rather than as a loop.
-   `opacity` is also compositor-friendly, so it costs nothing extra.
-
-   Note that Lightning CSS rewrites `translate3d(0, 44px, 0)` here to
-   `translateY(44px)`, dropping the explicit 3D hint. That is harmless: the
-   `will-change: transform` below already forces layer promotion, which is what
-   the 3D form was being used for. Do not add it back expecting it to survive
-   the build. */
-@keyframes grid-drift {
+   The spokes do not move. In the reference they are fixed and only the rings
+   travel, and it reads better: moving both at once looks like a scrolling
+   texture rather than a space you are looking into. */
+@keyframes ring-expand {
   from {
-    transform: translate3d(0, 0, 0);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.04);
+  }
+  12% {
+    opacity: 1;
   }
   to {
-    transform: translate3d(0, 44px, 0);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.55);
   }
 }
 
@@ -306,11 +303,11 @@ h1, h2, h3, h4, .font-display {
   }
 }
 
-.grid-drift {
-  /* Promotes the grid to its own compositor layer up front, so the first loop
-     does not pay for the promotion mid-animation. */
-  will-change: transform;
-  animation: grid-drift 7s linear infinite;
+.ring-expand {
+  /* Promoted up front so the first cycle does not pay for the promotion
+     mid-animation. */
+  will-change: transform, opacity;
+  animation: ring-expand 9s linear infinite;
 }
 
 .bloom-breathe {
@@ -318,9 +315,18 @@ h1, h2, h3, h4, .font-display {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .grid-drift,
+  .ring-expand,
   .bloom-breathe {
     animation: none;
+  }
+  /* Switching the animation off alone would freeze every ring on its first
+     keyframe — scale 0.04, opacity 0 — so these visitors would get bare spokes
+     and none of the curve the rings exist to draw. Each ring carries its own
+     `--ring-static` position, which reproduces the animated spread as a still
+     image. */
+  .ring-expand {
+    opacity: 0.75;
+    transform: translate(-50%, -50%) scale(var(--ring-static, 0.6));
   }
   .marquee-track {
     animation: none;

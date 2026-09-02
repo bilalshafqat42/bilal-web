@@ -7,6 +7,12 @@
  * stays as it is for the ten other pages that use it, so this richer treatment
  * carries no risk to them.
  *
+ * The floor is concentric rings rather than a square grid. A square grid gives
+ * straight rows whose outer ends read flat; the reference curves them, and
+ * rings are what produce that curve. They also remove the need for a separate
+ * ceiling plane, since each ring is centred on the vanishing point and its
+ * upper half draws the fan above the horizon.
+ *
  * Reference: Wope's hero. Faithful on the geometry and the light, deliberately
  * restrained on the tint. The reference is violet throughout; this is the same
  * geometry and light in the site gold, which is the accent everything else on
@@ -35,19 +41,21 @@ const PARTICLES = [
   { x: 47, y: 66, s: 1, o: 0.35 },
 ];
 
-/** Row spacing of the floor grid, in the plane's own pre-transform pixels.
- *  Measured rather than chosen: at 79 degrees with 86px rows only one or two
- *  rows land on screen and the rest spread past the bottom edge, giving a lower
- *  plane of bare converging spokes. Row contrast measured 49.5 at 86px, 114.2
- *  at 60px and 117.7 at 44px, then flat.
- *
- *  The `grid-drift` keyframe in globals.css must travel exactly this distance
- *  or the loop snaps once per cycle. */
-const ROW_PX = 44;
+/** Number of concentric rings on the floor. Eight is enough that one is always
+ *  near the horizon and one always near the viewer, so the set never looks
+ *  sparse at any point in the cycle. Eight left visible gaps in the mid-field
+ *  once the mask stopped clipping the outer thirds. */
+const RING_COUNT = 14;
 
-const GRID_LINES =
-  "linear-gradient(rgba(252,232,166,1) 1px, transparent 1px), " +
-  "linear-gradient(90deg, rgba(252,232,166,0.9) 1px, transparent 1px)";
+/** The animation period, and the stagger between rings, must divide evenly or
+ *  the spacing pulses once per cycle. Keep in step with `ring-expand` in
+ *  globals.css. */
+const RING_CYCLE_S = 9;
+
+/** Only the spokes come from a gradient now. The rows used to be the horizontal
+ *  half of this and were straight, which is what made the outer ends of each
+ *  row read as flat where the reference curves them. */
+const SPOKE_LINES = "linear-gradient(90deg, rgba(252,232,166,0.9) 1px, transparent 1px)";
 
 export default function HeroBackdrop() {
   return (
@@ -63,24 +71,6 @@ export default function HeroBackdrop() {
         }}
       />
 
-      {/* Ceiling. The same grid mirrored above the vanishing point, which is
-          what makes the reference read as a space rather than a floor with a
-          light on it. Fades out fast so it stays behind the type. */}
-      <div className="absolute inset-x-0 top-0" style={{ height: "34%", perspective: "260px", perspectiveOrigin: "50% 100%" }}>
-        <div
-          className="absolute inset-x-[-14%] bottom-0"
-          style={{
-            top: "-110%",
-            transform: "rotateX(-79deg)",
-            transformOrigin: "50% 100%",
-            backgroundImage: GRID_LINES,
-            backgroundSize: "100% 92px, 40px 100%",
-            opacity: 0.16,
-            maskImage: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 62%)",
-          }}
-        />
-      </div>
-
       {/* Floor.
           The grid needs to fade in two directions at once: into the horizon,
           and off the left and right edges. Without the second fade the rows
@@ -93,11 +83,19 @@ export default function HeroBackdrop() {
           anyway), and neither does a horizontal mask on an ancestor, which it
           declines to apply across the perspective boundary.
 
-          The 16% horizontal radius is measured, not guessed: it is applied in
-          the element's own pre-transform space, which is 128% of the viewport
-          wide, so the figure is much smaller than the on-screen fade suggests.
-          Sweeping it, peak-minus-median brightness in the edge band falls from
-          37.5 at 42% to 2.5 at 16%, while the centre holds at 43.4. */}
+          The 30% horizontal radius is measured. It was 16% when the rows were
+          straight gradient lines, chosen to kill the moire those produced in
+          the outer thirds. Rings alias less, and 16% was clipping the very part
+          of each ring where the curve shows, so it needed re-sweeping.
+
+          The first re-sweep was wrong and worth recording: it measured contrast
+          across the whole outer third, which counts dotted moire as if it were
+          curvature, and so it recommended 60%. Splitting the two apart — the
+          high-frequency dotted band tight to the horizon versus real arcs well
+          below it — gives moire 0.54 / 1.54 / 2.62 / 3.33 / 3.80 against curve
+          47.9 / 55.3 / 56.9 / 57.7 / 58.2 at 16 / 30 / 40 / 50 / 60%. Curve
+          plateaus almost immediately while moire keeps climbing, so 30% takes
+          95% of the benefit for 40% of the cost. */}
       <div className="absolute inset-x-0 bottom-0" style={{ height: "var(--floor-h)", perspective: "300px", perspectiveOrigin: "50% 0%" }}>
         <div
           className="absolute inset-x-[-14%] top-0"
@@ -106,27 +104,45 @@ export default function HeroBackdrop() {
             transform: "rotateX(79deg)",
             transformOrigin: "50% 0",
             maskImage:
-              "radial-gradient(ellipse 16% 50% at 50% 0%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.55) 42%, transparent 100%)",
+              "radial-gradient(ellipse 30% 50% at 50% 0%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.55) 42%, transparent 100%)",
           }}
         >
-          {/* The tilted plane above holds the mask and stays still; this child
-              carries the lines and slides along it, so the mask does not travel
-              with the grid. Splitting the two is what lets the motion be a
-              `transform`: the drift previously animated `background-position`
-              on the plane, which repainted a ~2048x1186 element every frame.
-
-              `top` starts it one row high so travelling exactly one row returns
-              it to an identical position: no gap at the horizon, no snap. ROW_PX
-              is shared with the keyframe distance in globals.css, and the two
-              must stay equal. */}
+          {/* Spokes. Fixed: in the reference only the rings travel, and moving
+              both at once reads as a scrolling texture rather than a space. */}
           <div
-            className="grid-drift absolute inset-x-0 bottom-0"
-            style={{
-              top: `-${ROW_PX}px`,
-              backgroundImage: GRID_LINES,
-              backgroundSize: `100% ${ROW_PX}px, 40px 100%`,
-            }}
+            className="absolute inset-0"
+            style={{ backgroundImage: SPOKE_LINES, backgroundSize: "40px 100%" }}
           />
+
+          {/* Rings. Centred on the vanishing point, so the half below the
+              horizon draws the curved floor rows and the half above draws the
+              fan at the top of the hero.
+
+              Tall and square in this pre-transform space on purpose: `rotateX`
+              compresses the vertical axis by cos(79deg), about a fifth, so a
+              square here lands as the wide shallow arc the reference shows. */}
+          {Array.from({ length: RING_COUNT }, (_, i) => (
+            <div
+              key={i}
+              className="ring-expand absolute rounded-[26%] border border-[rgba(252,232,166,0.9)]"
+              style={{
+                left: "50%",
+                top: 0,
+                width: "62%",
+                aspectRatio: "1",
+                // Negative delay starts each ring already part-way through, so
+                // the set is evenly spread on the first frame instead of every
+                // ring launching from the vanishing point together.
+                animationDelay: `-${(i * RING_CYCLE_S) / RING_COUNT}s`,
+                // With reduced motion the animation is switched off, which
+                // would otherwise freeze every ring on its first keyframe at
+                // scale 0.04 and zero opacity — leaving those visitors bare
+                // spokes and no curve at all. This holds the same spread as a
+                // still image; the reduced-motion rule in globals.css reads it.
+                ["--ring-static" as string]: (0.04 + (1.51 * i) / RING_COUNT).toFixed(3),
+              }}
+            />
+          ))}
         </div>
       </div>
 
