@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import gsap from "gsap";
@@ -175,19 +176,27 @@ export default function HeroAlt() {
           {/* Portrait, anchored to the bottom centre and layered above the
               wordmark. Masked at the top so it emerges from the panel instead
               of ending on a hard edge. */}
+          {/* next/image rather than a CSS background. A background bypasses the
+              optimizer entirely, so every visitor downloaded the full 568KB
+              original at whatever size it happened to be. The mask stays on the
+              wrapper; `fill` plus object-position reproduces the same crop. */}
           <div
-            role="img"
-            aria-label="Portrait of Bilal Shafqat"
             className="pointer-events-none absolute inset-x-0 bottom-0 z-10 mx-auto hidden h-[82%] w-[44%] max-w-lg lg:block"
             style={{
-              backgroundImage: "url(/images/bilal-shirt.avif)",
-              backgroundSize: "cover",
-              backgroundPosition: "center 22%",
-              backgroundRepeat: "no-repeat",
               maskImage: "linear-gradient(to bottom, transparent, black 16%)",
               WebkitMaskImage: "linear-gradient(to bottom, transparent, black 16%)",
             }}
-          />
+          >
+            <Image
+              src="/images/bilal-shirt.avif"
+              alt="Portrait of Bilal Shafqat"
+              fill
+              priority
+              sizes="(max-width: 1024px) 0px, 44vw"
+              className="object-cover"
+              style={{ objectPosition: "center 22%" }}
+            />
+          </div>
 
           <div className="relative z-20 flex h-full flex-col px-6 pt-10 sm:px-10 sm:pt-12 lg:px-14">
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
@@ -248,17 +257,21 @@ export default function HeroAlt() {
             {/* Below lg there is no room to layer a portrait behind text, so the
                 same content stacks and the photo simply follows it. */}
             <div
-              role="img"
-              aria-label="Portrait of Bilal Shafqat"
-              className="mt-8 h-56 w-full sm:h-72 lg:hidden"
+              className="relative mt-8 h-56 w-full sm:h-72 lg:hidden"
               style={{
-                backgroundImage: "url(/images/bilal-shirt.avif)",
-                backgroundSize: "cover",
-                backgroundPosition: "center 22%",
                 maskImage: "linear-gradient(to bottom, transparent, black 18%)",
                 WebkitMaskImage: "linear-gradient(to bottom, transparent, black 18%)",
               }}
-            />
+            >
+              <Image
+                src="/images/bilal-shirt.avif"
+                alt="Portrait of Bilal Shafqat"
+                fill
+                sizes="(min-width: 1024px) 0px, 100vw"
+                className="object-cover"
+                style={{ objectPosition: "center 22%" }}
+              />
+            </div>
 
           </div>
         </div>

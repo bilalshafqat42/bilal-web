@@ -178,11 +178,12 @@ Bilal is working online only with no office, so he has parked this. **Worth reco
 
 ("Upkeep" = small maintenance jobs that keep the site fast, accurate and easy to work on. Individually minor; left alone they compound.)
 
-28. **Two oversized hero images**: `bilal-shafqat-coat.avif` (666KB) and `bilal-shirt.avif` (568KB), both loaded as CSS `background-image` and therefore bypassing `next/image` entirely — no responsive sizing, no lazy loading, full weight on every visit. This was a deliberate trade in item 30 to get literal `background-size` control, and it is now the main risk to this file's own LCP-under-2.0s target. Generate properly sized variants rather than reverting the crop control.
+28. ~~**Two oversized hero images bypassing the optimizer.**~~ **Fixed 2026-09-02.** Both portraits were CSS `background-image`, which skips `next/image` entirely, so every visitor downloaded the full **568KB** original at whatever size their viewport happened to be. Now `next/image` with `fill`, the mask kept on the wrapper and `object-position` reproducing the same crop. Measured bytes actually downloaded: **phone 568KB to 26KB, desktop 568KB to 16KB** (95 to 97% less). Verified visually identical at 1600 and 390px: same crop, same top fade, same wordmark overlap. **Offered five times across two days before being done, because each turn brought a newer request.**
+
 29. ~~**`llms.txt` is stale**~~ **fixed 2026-08-28, see item 76.** — zero mentions of `/about` or `/contact`, and it carries no URL index at all. It also drifts from `pillars.ts` by hand, the same failure mode as item 33. Refresh it and add a page list.
 30. ~~**No custom 404**~~ — **done 2026-08-27, see item 63.**
 31. **Harden `/api/lead`** once it is actually live: it has a honeypot and env-based auth with no hardcoded secrets (good), but no rate limiting and no email-format validation.
-32. **Delete `About.tsx`** — the only genuinely unreferenced component (the three `Hero*` files are still used by the preview routes).
+32. ~~**Delete `About.tsx`~~ **Done 2026-09-02**, confirmed 0 references. Original note: **Delete `About.tsx`** — the only genuinely unreferenced component (the three `Hero*` files are still used by the preview routes).
 
 ### Phase 7 — deferred, revisit when Phases 0-4 are clear
 
