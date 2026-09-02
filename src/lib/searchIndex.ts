@@ -144,9 +144,39 @@ function terms(s: string): string[] {
  * count for less, so "app" still finds "App Development" without letting one
  * loose prefix outrank a genuine hit.
  */
+/**
+ * Inverse document frequency, cached per index.
+ *
+ * Without it every matched term is worth the same, so "what is the difference
+ * between..." scored higher on the shared words than on the one word that
+ * actually distinguished the question. A term in most chunks is nearly
+ * worthless; a term in two chunks is the whole query.
+ */
+const idfCache = new WeakMap<Chunk[], Map<string, number>>();
+
+function idfFor(index: Chunk[]): Map<string, number> {
+  const cached = idfCache.get(index);
+  if (cached) return cached;
+  const df = new Map<string, number>();
+  for (const chunk of index) {
+    for (const t of new Set([...terms(chunk.title), ...terms(chunk.body)])) {
+      df.set(t, (df.get(t) ?? 0) + 1);
+    }
+  }
+  const idf = new Map<string, number>();
+  for (const [t, n] of df) {
+    // Clamped so a hapax cannot dominate and a very common word still counts
+    // for something rather than nothing.
+    idf.set(t, Math.max(0.25, Math.min(2.5, Math.log(index.length / n))));
+  }
+  idfCache.set(index, idf);
+  return idf;
+}
+
 export function search(index: Chunk[], query: string, limit = 3): Chunk[] {
   const q = terms(query);
   if (!q.length) return [];
+  const idf = idfFor(index);
 
   // Falls back to a prefix match when the stems do not line up exactly, which
   // is what connects "develop" to "development" or "market" to "marketing"
@@ -159,41 +189,40 @@ export function search(index: Chunk[], query: string, limit = 3): Chunk[] {
 
   return index
     .map((chunk) => {
-      // Both sides are stemmed, so comparison is a set membership test rather
-      // than substring matching — no more "plan" matching inside "planning".
       const titleWords = new Set(terms(chunk.title));
       const bodyWords = new Set(terms(chunk.body));
       let score = 0;
       let matched = 0;
+      let exact = 0;
       for (const t of q) {
+        const w = idf.get(t) ?? 1.5; // unseen term: treat as distinctive
         let hit = false;
-        if (titleWords.has(t)) { score += 10; hit = true; }
-        else if (prefixHit(titleWords, t)) { score += 6; hit = true; }
-        if (bodyWords.has(t)) { score += 3; hit = true; }
-        else if (prefixHit(bodyWords, t)) { score += 2; hit = true; }
+        if (titleWords.has(t)) { score += 10 * w; hit = true; exact += 1; }
+        else if (prefixHit(titleWords, t)) { score += 6 * w; hit = true; }
+        if (bodyWords.has(t)) { score += 3 * w; hit = true; exact += 1; }
+        else if (prefixHit(bodyWords, t)) { score += 2 * w; hit = true; }
         if (hit) matched += 1;
       }
-      // Coverage bonus: a short query whose every term appears is a strong signal
-      // even with no title hit. Without this, "are you available for a retainer"
-      // scored 3 against the pricing chunk and fell below the floor.
-      // 2+ terms only: on a single-term query this bonus just promotes noise.
+      // A short, precise title that the query covers most of is a better answer
+      // than a long one sharing a few common words.
+      const titleCoverage = q.filter((t) => titleWords.has(t)).length / titleWords.size;
+      score += titleCoverage * 8;
+
       if (matched === q.length && q.length > 1) score += 4;
       if (chunk.kind === "faq") score *= 1.15; // an FAQ is usually the most direct answer
-      return { chunk, score, matched };
+      return { chunk, score, matched, exact };
     })
-    // Two body matches (3 + 3) is the weakest multi-term signal worth returning.
-    // A single-term query can only ever score 3 on a body hit, so it could never
-    // clear a floor of 6 — which is why "seo" returned nothing despite appearing
-    // in the corpus. Single-term queries get the lower floor they need.
-    // A single-term query can only ever score 3 on a body hit, so it could never
-    // clear a floor of 6 — which is why "seo" returned nothing despite being in
-    // the corpus. Multi-term queries additionally need either two matched terms
-    // or one solid exact title hit, so a single loose prefix match ("delivery"
-    // brushing "deliver") cannot drag in an unrelated chunk.
+    // A single-term query can only ever score on one term, so it needs a lower
+    // floor than a multi-term one. Multi-term queries additionally need either
+    // two matched terms or one solid title hit, so a single loose prefix match
+    // cannot drag in an unrelated chunk.
+    // A multi-term query must land at least one *exact* term somewhere. Without
+    // that, "pizza delivery" scored on "delivery" merely brushing "deliver" and
+    // returned an unrelated chunk.
     .filter((r) =>
       q.length === 1
-        ? r.score >= 3
-        : r.score >= 6 && (r.matched >= 2 || r.score >= 10)
+        ? r.score >= 3 && r.exact >= 1
+        : r.score >= 6 && r.exact >= 1 && (r.matched >= 2 || r.score >= 10)
     )
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)

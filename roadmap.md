@@ -916,6 +916,15 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **"free audit" correctly returns nothing.** That is not a search fault, it is the content gap identified from the Musemind ad: no free entry offer exists on the site.
     - Still open: `ANTHROPIC_API_KEY` is unset, so answers are search results rather than prose. That is the intended free tier and needs Bilal's key to upgrade.
 
+103. **40 buyer questions answered across all eight services, with a route to contact (2026-09-02)** — **done.** Bilal asked for static answers to the questions people actually ask, spanning the design disciplines he sells, each leading to the form, WhatsApp or email.
+    - **Written into `serviceDepth.ts`, which feeds four surfaces from one place:** the category page, the `FAQPage` schema, the on-site search index and `llms-full.txt`. Total category FAQs **44 to 84**; pages now average **1,016 words** (250 before item 96).
+    - Covers the disambiguation questions buyers genuinely confuse and search for verbatim: **UI vs UX**, **is web design the same as UI/UX**, logo vs brand identity, SEO vs paid ads, what a CRM is for, shoot vs edit. Plus the commercial ones: cost, timeline, who owns the files, can you take over an existing account.
+    - **No invented prices.** Where a number would be guesswork the answer says so and offers to scope it, which is also what stops the page reading like every agency page.
+    - New call-to-action after the FAQ block on every category page: **book a call, WhatsApp, or email**, offered three ways because people differ on how they want to open a conversation.
+    - **Search ranking rebuilt to make the answers findable, not just present.** Adding content exposed that scoring weighted every matched term equally, so "what is the difference between..." ranked on the shared filler rather than on the one distinguishing word. Added **IDF weighting** (a term in most chunks is nearly worthless, a rare one carries the query), a **title-coverage bonus** so a short precise question beats a long vague one, and a rule that a multi-term query must land at least **one exact term** somewhere. Measured on a 17-query set: **0 misses and 0 false positives**, where before "difference between ui and ux" returned a demand-generation answer and "pizza delivery" returned a result at all.
+    - `"ui ux designer"`, the exact keyword this site is chasing, now returns the **UI/UX Design** page as the top result. Index **77 to 170 chunks** across today's two passes.
+    - Verified: FAQ schema matches the visible questions on all eight pages, 22 routes still 200, lint still clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

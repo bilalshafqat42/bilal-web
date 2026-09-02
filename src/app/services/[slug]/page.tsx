@@ -214,6 +214,41 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                   </Reveal>
                 ))}
               </div>
+
+              {/* Every answer above ends a visitor's question. This is the next
+                  step, offered three ways because people differ on how they
+                  want to start a conversation. */}
+              <Reveal>
+                <div className="mt-10 rounded-2xl border border-border glass p-6 sm:p-8">
+                  <h3 className="text-lg font-semibold text-ink sm:text-xl">
+                    Still not sure if this is what you need?
+                  </h3>
+                  <p className="mt-2.5 text-base leading-relaxed text-muted">
+                    Ask me directly. You will get a straight answer about whether
+                    I am the right fit, including when the answer is no.
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <Link
+                      href="/appointment"
+                      className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
+                    >
+                      Book a 30-minute call <ArrowRight size={15} />
+                    </Link>
+                    <a
+                      href="https://wa.me/971529766006"
+                      className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-white/5"
+                    >
+                      WhatsApp
+                    </a>
+                    <a
+                      href="mailto:bilalshafqat42@gmail.com"
+                      className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-white/5"
+                    >
+                      Email
+                    </a>
+                  </div>
+                </div>
+              </Reveal>
             </div>
           </section>
         ) : null}

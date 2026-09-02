@@ -42,6 +42,31 @@ export const serviceDepth: Record<string, Depth> = {
     ],
     faqs: [
       {
+        question: "Do you run Google Ads and Meta ads, or only one?",
+        answer:
+          "Both, plus TikTok, Snapchat and LinkedIn where they fit. Which you should be on depends on where your buyers actually are and what a customer is worth to you. Part of my job is telling you when a platform is not worth your budget rather than spreading it thin across all five.",
+      },
+      {
+        question: "Can you take over an existing ad account?",
+        answer:
+          "Yes, and it is usually faster than starting fresh because the conversion history is worth keeping. I work inside your account with you as owner, so if we ever stop working together the data stays with you rather than leaving with me.",
+      },
+      {
+        question: "Do you charge a percentage of ad spend?",
+        answer:
+          "No. Percentage-of-spend pricing rewards a supplier for spending more of your money, which is the wrong incentive. Fees are fixed for the scope, so my income does not go up when your budget does.",
+      },
+      {
+        question: "Can you run campaigns for off-plan property in Dubai?",
+        answer:
+          "Yes, this is where most of my recent campaign work sits. Off-plan has its own pattern: the price qualifier belongs high in the ad and again on the landing page so unqualified traffic filters itself out before it costs you a click.",
+      },
+      {
+        question: "What do I need to give you to start?",
+        answer:
+          "Access to your ad accounts, your website or landing page, and an honest number for what a closed customer is worth. That last one matters most, because without it there is no way to say whether a cost per lead is good or bad.",
+      },
+      {
         question: "What is the minimum ad budget worth starting with?",
         answer:
           "It depends on your cost per click and how many conversions a platform needs before it can optimise. Rather than quote a number that fits nobody, I work backwards from your average deal value and close rate, and tell you honestly if the budget you have is too thin to learn anything from. Sometimes the right advice is to fix the landing page first and start spending later.",
@@ -92,6 +117,31 @@ export const serviceDepth: Record<string, Depth> = {
     ],
     faqs: [
       {
+        question: "Do you post for us, or only produce the content?",
+        answer:
+          "Either. Some clients want the creative delivered and post it themselves; others want the whole channel run, including scheduling and replying to comments and direct messages. Tell me which you want and the scope is priced accordingly.",
+      },
+      {
+        question: "How many posts do you produce in a month?",
+        answer:
+          "It depends on the plan rather than a fixed number, because a launch month and a quiet month should not look the same. What matters more is that the plan is built around what you are selling that month rather than filling a calendar.",
+      },
+      {
+        question: "Do you handle comments and direct messages?",
+        answer:
+          "Yes, where community management is part of the scope. It matters more than it sounds: an enquiry in a comment thread goes cold quickly, and most of the value of social for a service business arrives in the inbox rather than in the likes.",
+      },
+      {
+        question: "Can you guarantee follower growth?",
+        answer:
+          "No, and I would be careful with anyone who does. Followers can be bought and mean nothing commercially. What I report instead is saves, shares, profile visits and enquiries, because those are the numbers that connect to revenue.",
+      },
+      {
+        question: "Which platforms do you cover?",
+        answer:
+          "Instagram, Facebook, TikTok and LinkedIn, with the creative made for each rather than one asset resized four ways. Which ones are worth your effort depends on whether your buyers are consumers or businesses.",
+      },
+      {
         question: "Do you write the captions and copy as well as the design?",
         answer:
           "Yes. Splitting copy from design is what produces posts where the words and the image are arguing with each other. Both come from the same brief, and both are written for the platform rather than reformatted from a press release.",
@@ -135,6 +185,31 @@ export const serviceDepth: Record<string, Depth> = {
     ],
     faqs: [
       {
+        question: "What is the difference between SEO and paid ads?",
+        answer:
+          "Paid ads buy visibility and stop the day you stop paying. SEO earns it slowly and keeps working, but takes months and cannot be guaranteed. Most businesses need both: ads for now, search for later.",
+      },
+      {
+        question: "Do you do email marketing?",
+        answer:
+          "Yes, as part of the automation work rather than as a standalone newsletter service. The useful version is triggered email tied to what someone actually did on your site, not a monthly blast to a list that has gone cold.",
+      },
+      {
+        question: "Can you help us rank outside the UAE?",
+        answer:
+          "Yes. I work with clients in the UK, Europe and North America. Ranking in a new market is mostly a content and structure problem rather than a technical one, and it takes longer in a competitive market than a local one.",
+      },
+      {
+        question: "Do you write the content yourself?",
+        answer:
+          "Yes. Content written by someone who does not understand the service reads like it, and search engines and buyers both notice. If you have a subject expert internally, the best results come from me interviewing them rather than guessing.",
+      },
+      {
+        question: "How is this different from hiring an agency?",
+        answer:
+          "You talk to the person doing the work. No account manager translating your brief, no junior staff learning on your budget, and no handoffs between a strategy team and a delivery team. The trade-off is that I have limited capacity, so I take fewer clients.",
+      },
+      {
         question: "How long does SEO take to show results?",
         answer:
           "Technical fixes can show in weeks. Content and authority take months, and in a competitive market like Dubai real estate or UK agency search, six to twelve months is realistic for pages that were not ranking at all. Anyone giving you a shorter number is either working on very low competition terms or is guessing.",
@@ -177,6 +252,31 @@ export const serviceDepth: Record<string, Depth> = {
       },
     ],
     faqs: [
+      {
+        question: "How much does a website cost?",
+        answer:
+          "It depends on scope, and any number quoted before understanding that is guesswork. A focused landing page and a multi-language site with a CMS and CRM integration are different projects. Send me what you have in mind and you will get a real number rather than a range.",
+      },
+      {
+        question: "How long does a website take?",
+        answer:
+          "A landing page is usually a couple of weeks, a full marketing site four to eight, and an application longer. The variable is rarely build time, it is how quickly feedback comes back and how many people need to approve it.",
+      },
+      {
+        question: "Do you build e-commerce sites?",
+        answer:
+          "Yes, though I will tell you honestly when an off-the-shelf platform like Shopify is the better commercial decision than a custom build. Paying for custom development to replicate what a hosted platform already does well is a poor use of budget.",
+      },
+      {
+        question: "Can you build a mobile app as well?",
+        answer:
+          "Yes, with React Native so one codebase serves iOS and Android. I will also tell you when you do not need an app: for a lot of businesses a fast mobile website does the same job without app store approval and two platforms to maintain.",
+      },
+      {
+        question: "Do you provide hosting and ongoing maintenance?",
+        answer:
+          "Yes, as a care plan rather than as hosting resale: updates, monitoring, backups and a set amount of change work each month. You keep ownership of the hosting account either way.",
+      },
       {
         question: "Do you work with WordPress, or only Next.js?",
         answer:
@@ -228,6 +328,31 @@ export const serviceDepth: Record<string, Depth> = {
     ],
     faqs: [
       {
+        question: "What is the difference between UI design and UX design?",
+        answer:
+          "UX is how it works, UI is how it looks. UX decides what the screens are, what order they come in and what a person is trying to get done. UI is the type, colour, spacing and components that make it feel like something. Most projects need both, and separating them across two suppliers is where designs usually fall apart.",
+      },
+      {
+        question: "Is web design the same as UI/UX design?",
+        answer:
+          "They overlap but are not identical. Web design usually means the visual design of a marketing site. UI/UX covers that plus product interfaces, app screens, flows and states. If you need a site that looks good, that is web design. If you need something people have to use repeatedly, that is UI/UX.",
+      },
+      {
+        question: "Do you design mobile apps as well as websites?",
+        answer:
+          "Yes, and I design them phone first rather than shrinking a desktop layout. That matters: most designs that break on a phone were drawn at desktop width and squeezed afterwards, which is how you end up with the main action below the fold.",
+      },
+      {
+        question: "Can you redesign an existing site without rebuilding it?",
+        answer:
+          "Often yes, and it is usually the cheaper call. If the structure is sound, reworking the type, spacing, hierarchy and key pages gets most of the benefit for a fraction of a rebuild. I will look at what you have and tell you which one you actually need.",
+      },
+      {
+        question: "Do I get the Figma files?",
+        answer:
+          "Yes, shared with you and yours to keep, with components and styles named so another designer or developer can pick them up without a handover call. Withholding source files to keep a client dependent is common and not something I do.",
+      },
+      {
         question: "Do you design in Figma?",
         answer:
           "Yes. Files are shared with you and stay accessible, with components and styles named so another designer or developer can pick them up without a handover call.",
@@ -278,6 +403,31 @@ export const serviceDepth: Record<string, Depth> = {
     ],
     faqs: [
       {
+        question: "Do you design logos?",
+        answer:
+          "Yes, though a logo on its own is rarely what a business actually needs. A mark without a defined palette, type scale and usage rules drifts within months as different people apply it differently. The logo is one deliverable inside a brand system.",
+      },
+      {
+        question: "What is the difference between a logo and a brand identity?",
+        answer:
+          "A logo is one asset. A brand identity is the set of decisions that make everything else consistent: colours and where each is allowed to be used, type scale, spacing, how the logo behaves at small sizes and over photography, and the rules for campaign creative.",
+      },
+      {
+        question: "Do you do print as well as digital?",
+        answer:
+          "Yes, including brochures, hoardings and sales material, supplied print-ready with bleed and colour handled properly rather than a screen file sent to a printer and hoped for.",
+      },
+      {
+        question: "Can you design a company profile or pitch deck?",
+        answer:
+          "Yes. These are usually the highest-value design a service business owns, because they are what a buyer reads when deciding whether you are serious, and most are built in a hurry from a template.",
+      },
+      {
+        question: "How much does branding cost?",
+        answer:
+          "It depends whether you need a focused identity or a full system across print and campaign templates. The honest answer is that I will scope it after understanding who is buying from you and what the brand has to signal, not before.",
+      },
+      {
         question: "Do I get the editable source files?",
         answer:
           "Yes. Layered source files and vector logo artwork are handed over as standard. Withholding them to keep a client dependent is common practice and not something I do.",
@@ -325,6 +475,31 @@ export const serviceDepth: Record<string, Depth> = {
       },
     ],
     faqs: [
+      {
+        question: "What is a CRM and do I actually need one?",
+        answer:
+          "It is the system that holds every enquiry and what happened to it afterwards. You need one the moment enquiries are being tracked in someone's inbox or a spreadsheet, because that is the point at which leads start going missing without anyone noticing.",
+      },
+      {
+        question: "Can you connect my website forms to my CRM?",
+        answer:
+          "Yes, and it is usually where the real value is. A form that emails you is not a system: it cannot tell you which campaign produced the lead, whether anyone followed up, or what happened next.",
+      },
+      {
+        question: "Do you set up WhatsApp automation?",
+        answer:
+          "Yes, including routing enquiries into WhatsApp and pushing them into the CRM at the same time so a conversation on a phone does not become the only record of a lead.",
+      },
+      {
+        question: "What is server-side tracking and do I need it?",
+        answer:
+          "Browser tracking has been degrading for years through ad blockers and privacy defaults, so platforms undercount conversions and then optimise against an incomplete picture. Server-side tracking sends the conversion from your server instead, which is more accurate and more durable. You need it if you are spending meaningfully on ads.",
+      },
+      {
+        question: "Can you fix our existing tracking rather than rebuild it?",
+        answer:
+          "Usually yes, and I will audit it first. Most tracking problems are a handful of wrong definitions rather than a broken setup, and finding that out costs less than a rebuild.",
+      },
       {
         question: "Which CRM should we use?",
         answer:
@@ -375,6 +550,31 @@ export const serviceDepth: Record<string, Depth> = {
       },
     ],
     faqs: [
+      {
+        question: "Do you shoot video or only edit?",
+        answer:
+          "My side is editing, motion and post-production. For shooting I work alongside production teams, which is the arrangement I have with Choppershoot, where I handle the digital side rather than the camera.",
+      },
+      {
+        question: "Do you make reels and short-form video?",
+        answer:
+          "Yes, cut for the platform rather than exported once and reused. Most social video is watched muted on a phone, so the first frame, the crop and the subtitles are part of the edit rather than an afterthought.",
+      },
+      {
+        question: "What is conversion rate optimisation?",
+        answer:
+          "Making more of the visitors you already have take action, rather than buying more visitors. It starts with looking at where people actually leave your funnel, forming a view about why, and testing that, rather than applying a list of best practices from someone else's audience.",
+      },
+      {
+        question: "Can you edit property walkthrough and launch videos?",
+        answer:
+          "Yes, this is most of my recent editing work: development walkthroughs, launch films and campaign cutdowns, delivered in the aspect ratios and durations each placement actually needs.",
+      },
+      {
+        question: "How long does a video take?",
+        answer:
+          "An edit from supplied footage is usually days rather than weeks. The delay is almost always feedback rounds and music or licensing decisions, so agreeing who approves it before we start saves the most time.",
+      },
       {
         question: "Do you shoot video or only edit?",
         answer:
