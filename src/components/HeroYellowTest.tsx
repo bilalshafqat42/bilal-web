@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
@@ -76,12 +77,12 @@ export default function HeroYellowTest() {
                 >
                   Book a free consultation <ArrowRight size={16} />
                 </a>
-                <a
+                <Link
                   href="/portfolio"
                   className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
                 >
                   View my work
-                </a>
+                </Link>
               </div>
             </div>
           </div>

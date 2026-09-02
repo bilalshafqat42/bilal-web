@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -121,12 +122,12 @@ export default function HeroAlt() {
                 >
                   Book a free consultation <ArrowRight size={16} />
                 </a>
-                <a
+                <Link
                   href="/portfolio"
                   className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
                 >
                   View my work
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -224,12 +225,12 @@ export default function HeroAlt() {
                   time managing the handoffs between them. I do all four myself,
                   so you brief one senior partner instead of three suppliers.
                 </p>
-                <a
+                <Link
                   href="/portfolio"
                   className="btn-primary mt-6 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow"
                 >
                   See my work <ArrowRight size={16} />
-                </a>
+                </Link>
                 <ul className="mt-8 space-y-3 lg:ml-auto">
                   {intersection.slice(2).map((item) => (
                     <li

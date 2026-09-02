@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import { Building2, MapPin } from "lucide-react";
 import SocialLinks from "./SocialLinks";
@@ -153,8 +154,8 @@ export default function Footer() {
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 text-xs text-muted sm:flex-row">
           <p>© {new Date().getFullYear()} Bilal Shafqat. All rights reserved.</p>
           <p className="flex items-center gap-5">
-            <a href="/privacy" className="transition-colors hover:text-gold">Privacy Policy</a>
-            <a href="/contact" className="transition-colors hover:text-gold">Contact</a>
+            <Link href="/privacy" className="transition-colors hover:text-gold">Privacy Policy</Link>
+            <Link href="/contact" className="transition-colors hover:text-gold">Contact</Link>
           </p>
           <SocialLinks />
         </div>

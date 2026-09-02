@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
@@ -212,7 +213,7 @@ export default function Nav() {
           className="flex items-center justify-between py-2.5"
           style={{ borderWidth: 0 }}
         >
-          <a href="/#home" className="flex items-center">
+          <Link href="/#home" className="flex items-center">
             <Image
               src="/logo/bs-logo.svg"
               alt="Bilal Shafqat"
@@ -221,7 +222,7 @@ export default function Nav() {
               priority
               className="h-9 w-auto"
             />
-          </a>
+          </Link>
 
           <nav className="hidden lg:flex items-center gap-1">
             {links.map((link) =>
@@ -261,13 +262,13 @@ export default function Nav() {
                   }}
                 >
                   <div className="flex items-center rounded-lg transition-colors hover:bg-white/5">
-                    <a
+                    <Link
                       ref={triggerRef}
                       href={link.href}
                       className="py-2 pl-3.5 pr-1 text-sm text-muted transition-colors hover:text-ink"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                     {/* Separate control, so clicking the chevron opens the panel
                         and clicking the label still goes to /services. */}
                     <button
@@ -311,7 +312,7 @@ export default function Nav() {
                               const accent = accentClasses[group.accent];
                               return (
                                 <div key={group.title} data-mega-group>
-                                  <a
+                                  <Link
                                     href={`/services/${group.slug}`}
                                     className="group/head flex items-center gap-2"
                                   >
@@ -319,17 +320,17 @@ export default function Nav() {
                                     <span className="text-sm font-semibold text-ink group-hover/head:text-gold transition-colors">
                                       {group.title}
                                     </span>
-                                  </a>
+                                  </Link>
 
                                   <ul className="mt-3 space-y-2.5">
                                     {group.items.map((item) => (
                                       <li key={item.title}>
-                                        <a
+                                        <Link
                                           href={`/services/${group.slug}#${slugify(item.title)}`}
                                           className="text-sm text-muted hover:text-ink transition-colors"
                                         >
                                           {item.title}
-                                        </a>
+                                        </Link>
                                       </li>
                                     ))}
                                   </ul>
@@ -339,36 +340,36 @@ export default function Nav() {
                           </div>
 
                           <div data-mega-footer className="mt-8 border-t border-border pt-6">
-                            <a
+                            <Link
                               href="/services"
                               className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold hover:opacity-80 transition-opacity"
                             >
                               View all services <ArrowRight size={15} />
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
                     </div>
                 </div>
               ) : (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   className="px-3.5 py-2 text-sm text-muted hover:text-ink transition-colors rounded-lg hover:bg-white/5"
                 >
                   {link.label}
-                </a>
+                </Link>
               )
             )}
           </nav>
 
           <div className="flex items-center gap-3">
-            <a
+            <Link
               href="/contact"
               className="hidden sm:inline-flex btn-primary items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-shadow"
             >
               Book a free consultation
-            </a>
+            </Link>
             <button
               onClick={() => setOpen((v) => !v)}
               className="lg:hidden flex h-10 w-10 items-center justify-center rounded-lg border border-border text-ink"
@@ -393,13 +394,13 @@ export default function Nav() {
                     <ChevronDown size={15} className="transition-transform group-open:rotate-180" />
                   </summary>
                   <div className="mt-1 space-y-1 pb-2">
-                    <a
+                    <Link
                       href="/services"
                       onClick={() => setOpen(false)}
                       className="block rounded-lg px-6 py-2 text-xs font-semibold text-gold hover:bg-white/5"
                     >
                       All services
-                    </a>
+                    </Link>
                     {megaMenuGroups.map((group) => (
                       <details key={group.slug} className="group/sub">
                         <summary className="flex cursor-pointer list-none items-center justify-between rounded-lg px-6 py-2 text-sm text-ink marker:hidden hover:bg-white/5">
@@ -410,22 +411,22 @@ export default function Nav() {
                           <ChevronDown size={14} className="transition-transform group-open/sub:rotate-180" />
                         </summary>
                         <div className="space-y-0.5 pb-1">
-                          <a
+                          <Link
                             href={`/services/${group.slug}`}
                             onClick={() => setOpen(false)}
                             className="block rounded-lg px-10 py-1.5 text-xs font-medium text-gold hover:bg-white/5"
                           >
                             Overview
-                          </a>
+                          </Link>
                           {group.items.map((item) => (
-                            <a
+                            <Link
                               key={item.title}
                               href={`/services/${group.slug}#${slugify(item.title)}`}
                               onClick={() => setOpen(false)}
                               className="block rounded-lg px-10 py-1.5 text-xs text-muted hover:text-ink hover:bg-white/5"
                             >
                               {item.title}
-                            </a>
+                            </Link>
                           ))}
                         </div>
                       </details>
@@ -433,23 +434,23 @@ export default function Nav() {
                   </div>
                 </details>
               ) : (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
                   className="px-3 py-2.5 text-sm text-muted hover:text-ink rounded-lg hover:bg-white/5"
                 >
                   {link.label}
-                </a>
+                </Link>
               )
             )}
-            <a
+            <Link
               href="/contact"
               onClick={() => setOpen(false)}
               className="mt-2 btn-primary text-center rounded-full px-5 py-2.5 text-sm font-semibold"
             >
               Book a free consultation
-            </a>
+            </Link>
           </div>
         ) : null}
       </div>

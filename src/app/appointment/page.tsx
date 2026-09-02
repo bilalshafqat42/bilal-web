@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
@@ -73,9 +74,9 @@ export default function AppointmentPage() {
 
               <p className="mt-9 text-sm text-muted">
                 Prefer to write first?{" "}
-                <a href="/contact" className="text-gold underline underline-offset-4 hover:opacity-80">
+                <Link href="/contact" className="text-gold underline underline-offset-4 hover:opacity-80">
                   Send me a message instead
-                </a>
+                </Link>
                 .
               </p>
             </div>

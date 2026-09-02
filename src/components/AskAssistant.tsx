@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Loader2, Search, Sparkles } from "lucide-react";
 import { buildIndex, search, type Chunk } from "@/lib/searchIndex";
@@ -208,12 +209,12 @@ export default function AskAssistant() {
             <p className="mt-1.5 text-sm text-muted">
               Send the details and he&apos;ll come back personally, usually within a business day.
             </p>
-            <a
+            <Link
               href="/contact"
               className="btn-primary mt-5 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
             >
               Send your project details <ArrowRight size={15} />
-            </a>
+            </Link>
           </div>
         ) : null}
       </div>

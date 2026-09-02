@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useState } from "react";
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
@@ -93,7 +94,7 @@ export default function PortfolioGrid() {
         <div className="mt-16 grid items-stretch gap-6 sm:grid-cols-2 lg:gap-8">
           {cards.map((card) => (
             <Reveal key={card.label + card.client} className="h-full">
-              <a href={card.href} className="group flex h-full flex-col">
+              <Link href={card.href} className="group flex h-full flex-col">
                 <article className="card-hover flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface/30 transition-colors group-hover:border-gold/35">
                   <div className="relative aspect-[16/10] shrink-0 overflow-hidden bg-bg">
                     {card.portrait ? (
@@ -147,20 +148,20 @@ export default function PortfolioGrid() {
                     </div>
                   </div>
                 </article>
-              </a>
+              </Link>
             </Reveal>
           ))}
         </div>
 
         <Reveal className="mt-16 text-center">
           <div>
-            <a
+            <Link
               href="/portfolio"
               className="btn-primary inline-flex items-center gap-2 rounded-full px-7 py-4 text-base font-semibold transition-shadow"
             >
               View the full portfolio
               <ArrowRight size={17} />
-            </a>
+            </Link>
             <p className="mt-4 text-base text-muted">
               Design, development and marketing work, by client and by project.
             </p>

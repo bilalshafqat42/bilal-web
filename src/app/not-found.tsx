@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import Nav from "@/components/Nav";
@@ -38,18 +39,18 @@ export default function NotFound() {
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <a
+              <Link
                 href="/contact"
                 className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold"
               >
                 Start a conversation <ArrowRight size={16} />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/portfolio"
                 className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
               >
                 See recent work
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -61,13 +62,13 @@ export default function NotFound() {
             </p>
             <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {pillars.map((pillar) => (
-                <a
+                <Link
                   key={pillar.slug}
                   href={`/services/${pillar.slug}`}
                   className="card-hover rounded-2xl border border-border glass px-5 py-4 text-sm font-medium text-ink"
                 >
                   {pillar.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

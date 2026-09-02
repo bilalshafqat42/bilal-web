@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import { ArrowRight, Check, ChevronRight, Loader2 } from "lucide-react";
@@ -112,12 +113,12 @@ export default function AppointmentBooking() {
           personally, usually the same working day, so treat this as requested
           rather than booked until you hear from me.
         </p>
-        <a
+        <Link
           href="/portfolio"
           className="btn-primary mt-7 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold"
         >
           See my work while you wait <ArrowRight size={15} />
-        </a>
+        </Link>
       </div>
     );
   }

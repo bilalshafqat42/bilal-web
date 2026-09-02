@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight, ChevronRight, Minus, Plus } from "lucide-react";
 import Nav from "@/components/Nav";
@@ -120,7 +121,7 @@ export default function PricingPage() {
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="relative mx-auto max-w-3xl px-6">
             <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted">
-              <a href="/" className="hover:text-ink transition-colors">Home</a>
+              <Link href="/" className="hover:text-ink transition-colors">Home</Link>
               <ChevronRight size={13} />
               <span className="text-ink">Pricing</span>
             </nav>
@@ -238,9 +239,9 @@ export default function PricingPage() {
                     Usually within a business day. No pitch deck, no discovery
                     process you have to sit through first.
                   </p>
-                  <a href="/contact" className="btn-primary mt-9 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold">
+                  <Link href="/contact" className="btn-primary mt-9 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold">
                     Get a quote <ArrowRight size={16} />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </Reveal>

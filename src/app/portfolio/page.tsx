@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import CaseStudies from "@/components/CaseStudies";
@@ -19,7 +20,7 @@ export default function PortfolioPage() {
       <Nav />
       <main className="flex-1 pt-28">
         <section className="site-container">
-          <a
+          <Link
             href="/portfolio/leos-developments"
             className="card-hover group flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border glass px-7 py-6"
           >
@@ -34,7 +35,7 @@ export default function PortfolioPage() {
             <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
               View case study →
             </span>
-          </a>
+          </Link>
         </section>
         <CaseStudies />
         <Contact />

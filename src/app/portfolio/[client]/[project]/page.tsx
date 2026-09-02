@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -110,11 +111,11 @@ export default async function ProjectCaseStudy({ params }: Props) {
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="site-container relative">
             <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-muted">
-              <a href="/" className="hover:text-ink transition-colors">Home</a>
+              <Link href="/" className="hover:text-ink transition-colors">Home</Link>
               <ChevronRight size={13} />
-              <a href="/portfolio" className="hover:text-ink transition-colors">Work</a>
+              <Link href="/portfolio" className="hover:text-ink transition-colors">Work</Link>
               <ChevronRight size={13} />
-              <a href={`/portfolio/${c.slug}`} className="hover:text-ink transition-colors">{c.name}</a>
+              <Link href={`/portfolio/${c.slug}`} className="hover:text-ink transition-colors">{c.name}</Link>
               <ChevronRight size={13} />
               <span className="text-ink">{p.name}</span>
             </nav>
@@ -188,22 +189,22 @@ export default async function ProjectCaseStudy({ params }: Props) {
         <section className="relative mt-20 sm:mt-28">
           <div className="site-container">
             <div className="flex flex-wrap items-center justify-between gap-6 border-t border-border pt-10">
-              <a
+              <Link
                 href={`/portfolio/${c.slug}`}
                 className="inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-gold transition-colors"
               >
                 <ArrowLeft size={15} /> All {c.name} work
-              </a>
+              </Link>
               {siblings.length > 0 ? (
                 <div className="flex flex-wrap items-center gap-4">
                   {siblings.map((s) => (
-                    <a
+                    <Link
                       key={s.slug}
                       href={`/portfolio/${c.slug}/${s.slug}`}
                       className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold hover:opacity-80 transition-opacity"
                     >
                       {s.name} <ArrowRight size={15} />
-                    </a>
+                    </Link>
                   ))}
                 </div>
               ) : null}
@@ -223,9 +224,9 @@ export default async function ProjectCaseStudy({ params }: Props) {
                   <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-ink">
                     Need this for your launch? <span className="text-gradient">Let&apos;s talk.</span>
                   </h2>
-                  <a href="/contact" className="btn-primary mt-9 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold">
+                  <Link href="/contact" className="btn-primary mt-9 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold">
                     Book a free consultation <ArrowRight size={16} />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </Reveal>

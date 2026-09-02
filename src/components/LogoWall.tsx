@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import SectionHeading from "./SectionHeading";
@@ -105,7 +106,7 @@ export default function LogoWall() {
             return (
               <RevealItem key={logo.id}>
                 {logo.href ? (
-                  <a
+                  <Link
                     href={logo.href}
                     aria-label={`${logo.name} case study`}
                     className={`${tile} group hover:border-gold/35 ${
@@ -115,7 +116,7 @@ export default function LogoWall() {
                     }`}
                   >
                     {mark}
-                  </a>
+                  </Link>
                 ) : (
                   <div className={`${tile} group opacity-60 grayscale hover:opacity-90 hover:grayscale-0`}>
                     {mark}
@@ -127,12 +128,12 @@ export default function LogoWall() {
         </RevealStagger>
 
         <div className="mt-10 text-center">
-          <a
+          <Link
             href="/portfolio"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink/90 hover:text-gold transition-colors"
           >
             View full case studies <ArrowUpRight size={15} />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

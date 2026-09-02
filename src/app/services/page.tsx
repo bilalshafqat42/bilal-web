@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import Nav from "@/components/Nav";
@@ -43,7 +44,7 @@ export default function ServicesPage() {
               {megaMenuGroups.map((pillar) => {
                 const accent = accentClasses[pillar.accent];
                 return (
-                  <a
+                  <Link
                     key={pillar.slug}
                     href={`/services/${pillar.slug}`}
                     className="card-hover group relative flex flex-col rounded-2xl border border-border glass p-8 overflow-hidden"
@@ -75,9 +76,9 @@ export default function ServicesPage() {
                     <span
                       className={`relative mt-6 inline-flex items-center gap-1.5 text-sm font-semibold transition-colors ${accent.icon} group-hover:opacity-80`}
                     >
-                      See what's included <ArrowRight size={15} />
+                      See what&apos;s included <ArrowRight size={15} />
                     </span>
-                  </a>
+                  </Link>
                 );
               })}
             </div>

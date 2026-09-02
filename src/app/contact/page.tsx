@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowUpRight, Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import Nav from "@/components/Nav";
@@ -206,12 +207,12 @@ export default function ContactPage() {
                     >
                       Book a free consultation <ArrowUpRight size={16} />
                     </a>
-                    <a
+                    <Link
                       href="/services"
                       className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
                     >
                       Browse services
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

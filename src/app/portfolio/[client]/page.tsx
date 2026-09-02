@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -91,9 +92,9 @@ export default async function ClientCaseStudy({ params }: Props) {
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="site-container relative">
             <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted">
-              <a href="/" className="hover:text-ink transition-colors">Home</a>
+              <Link href="/" className="hover:text-ink transition-colors">Home</Link>
               <ChevronRight size={13} />
-              <a href="/portfolio" className="hover:text-ink transition-colors">Work</a>
+              <Link href="/portfolio" className="hover:text-ink transition-colors">Work</Link>
               <ChevronRight size={13} />
               <span className="text-ink">{c.name}</span>
             </nav>
@@ -185,7 +186,7 @@ export default async function ClientCaseStudy({ params }: Props) {
               <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {c.projects.map((p, i) => (
                   <Reveal key={p.slug} delay={i * 0.08}>
-                    <a
+                    <Link
                       href={`/portfolio/${c.slug}/${p.slug}`}
                       className="card-hover group flex h-full flex-col overflow-hidden rounded-2xl border border-border glass"
                     >
@@ -207,7 +208,7 @@ export default async function ClientCaseStudy({ params }: Props) {
                           <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
                         </span>
                       </div>
-                    </a>
+                    </Link>
                   </Reveal>
                 ))}
               </div>
@@ -228,12 +229,12 @@ export default async function ClientCaseStudy({ params }: Props) {
                     Launching a development? <span className="text-gradient">Let&apos;s talk.</span>
                   </h2>
                   <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-                    <a href="/contact" className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold">
+                    <Link href="/contact" className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold">
                       Book a free consultation <ArrowRight size={16} />
-                    </a>
-                    <a href="/portfolio" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors">
+                    </Link>
+                    <Link href="/portfolio" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors">
                       See all work
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowRight, ChevronRight } from "lucide-react";
@@ -111,9 +112,9 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="relative mx-auto max-w-4xl px-6">
             <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted">
-              <a href="/" className="hover:text-ink transition-colors">Home</a>
+              <Link href="/" className="hover:text-ink transition-colors">Home</Link>
               <ChevronRight size={13} />
-              <a href="/services" className="hover:text-ink transition-colors">Services</a>
+              <Link href="/services" className="hover:text-ink transition-colors">Services</Link>
               <ChevronRight size={13} />
               <span className="text-ink">{category.title}</span>
             </nav>
@@ -128,12 +129,12 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                 </h1>
                 <p className="mt-6 text-lg text-muted leading-relaxed">{category.intro}</p>
                 <div className="mt-8 flex flex-wrap gap-4">
-                  <a href="/contact" className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold">
+                  <Link href="/contact" className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold">
                     Book a free consultation <ArrowRight size={16} />
-                  </a>
-                  <a href="/portfolio" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors">
+                  </Link>
+                  <Link href="/portfolio" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors">
                     See related work
-                  </a>
+                  </Link>
                 </div>
               </div>
             </Reveal>
@@ -224,14 +225,14 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
             </Reveal>
             <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {others.map((o) => (
-                <a
+                <Link
                   key={o.slug}
                   href={`/services/${o.slug}`}
                   className="card-hover flex items-center justify-between gap-3 rounded-2xl border border-border glass px-5 py-4 text-sm font-medium text-ink"
                 >
                   {o.title}
                   <ArrowRight size={15} className={accentClasses[o.accent].icon} />
-                </a>
+                </Link>
               ))}
             </div>
           </div>

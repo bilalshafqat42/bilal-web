@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { CornerDownLeft, Search, Sparkles, X } from "lucide-react";
 import { buildIndex, search, type Chunk } from "@/lib/searchIndex";
@@ -227,7 +228,7 @@ export default function SpotlightSearch() {
           ) : results.length ? (
             <div className="space-y-1">
               {results.map((r, i) => (
-                <a
+                <Link
                   key={r.url + r.title}
                   href={r.url}
                   data-index={i}
@@ -248,7 +249,7 @@ export default function SpotlightSearch() {
                   {i === active ? (
                     <CornerDownLeft size={14} className="ml-auto mt-1 shrink-0 text-gold" />
                   ) : null}
-                </a>
+                </Link>
               ))}
             </div>
           ) : (
@@ -257,12 +258,12 @@ export default function SpotlightSearch() {
               <p className="mt-2 text-sm text-muted">
                 Ask Bilal directly and he&apos;ll answer personally.
               </p>
-              <a
+              <Link
                 href="/contact"
                 className="btn-primary mt-5 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold"
               >
                 Ask a question
-              </a>
+              </Link>
             </div>
           )}
         </div>

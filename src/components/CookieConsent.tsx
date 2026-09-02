@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Cookie, X } from "lucide-react";
 import { getConsent, setConsent } from "@/lib/consent";
@@ -46,9 +47,9 @@ export default function CookieConsent() {
             I&apos;d like to remember which campaign or search brought you here, so
             I know what&apos;s working. It stays on this site for this session only,
             and is never sold or shared.{" "}
-            <a href="/privacy" className="text-gold underline underline-offset-2 hover:opacity-80">
+            <Link href="/privacy" className="text-gold underline underline-offset-2 hover:opacity-80">
               What&apos;s stored
-            </a>
+            </Link>
           </p>
         </div>
 

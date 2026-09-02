@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight, Plus, X } from "lucide-react";
@@ -292,7 +293,7 @@ export default function PortfolioShowcase() {
           become a swipeable row with the detail always shown. */}
       <div className="no-scrollbar mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 scroll-pl-6 pb-2 lg:hidden">
           {slides.map((s) => (
-            <a
+            <Link
               key={s.label}
               href={s.href}
               className="relative h-[420px] w-[82vw] shrink-0 snap-start overflow-hidden rounded-2xl border border-border bg-bg sm:w-[60vw]"
@@ -317,7 +318,7 @@ export default function PortfolioShowcase() {
                   Learn more <ArrowRight size={14} />
                 </span>
               </div>
-            </a>
+            </Link>
         ))}
       </div>
     </section>

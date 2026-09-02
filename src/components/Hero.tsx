@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, MapPin, Sparkles } from "lucide-react";
 import Reveal from "./Reveal";
@@ -50,12 +51,12 @@ export default function Hero() {
                 >
                   Book a free consultation <ArrowRight size={16} />
                 </a>
-                <a
+                <Link
                   href="/portfolio"
                   className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
                 >
                   View my work
-                </a>
+                </Link>
               </div>
 
               <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted">

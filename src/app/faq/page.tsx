@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import Nav from "@/components/Nav";
@@ -54,7 +55,7 @@ export default function FaqPage() {
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="relative mx-auto max-w-3xl px-6">
             <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted">
-              <a href="/" className="hover:text-ink transition-colors">Home</a>
+              <Link href="/" className="hover:text-ink transition-colors">Home</Link>
               <ChevronRight size={13} />
               <span className="text-ink">FAQ</span>
             </nav>
@@ -128,12 +129,12 @@ export default function FaqPage() {
                     A first conversation costs nothing and often ends with me
                     telling you a smaller piece of work would do the job.
                   </p>
-                  <a
+                  <Link
                     href="/contact"
                     className="btn-primary mt-9 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold"
                   >
                     Book a free consultation <ArrowRight size={16} />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </Reveal>

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -57,12 +58,12 @@ export default function Services() {
                   ))}
                 </ul>
 
-                <a
+                <Link
                   href={`/services/${active.slug}`}
                   className={`relative mt-6 inline-flex items-center gap-1.5 text-sm font-semibold transition-colors ${accent.icon} hover:opacity-80`}
                 >
                   Learn more about this pillar <ArrowRight size={15} />
-                </a>
+                </Link>
               </motion.div>
             </AnimatePresence>
           </div>
@@ -97,18 +98,18 @@ export default function Services() {
             })}
 
             <Reveal className="mt-8 flex flex-wrap items-center gap-5">
-              <a
+              <Link
                 href="/services"
                 className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink/90 hover:text-gold transition-colors"
               >
                 Explore all services in detail →
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/portfolio"
                 className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink/90 hover:text-gold transition-colors"
               >
                 See work across these services →
-              </a>
+              </Link>
             </Reveal>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import Nav from "@/components/Nav";
@@ -77,18 +78,18 @@ export default function AboutPage() {
                   contact, and one person accountable for the result.
                 </p>
                 <div className="mt-8 flex flex-wrap items-center gap-4">
-                  <a
+                  <Link
                     href="/contact"
                     className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow"
                   >
                     Book a free consultation <ArrowRight size={16} />
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/portfolio"
                     className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
                   >
                     View my work
-                  </a>
+                  </Link>
                 </div>
                 <SocialLinks className="mt-8" />
               </div>
@@ -131,7 +132,7 @@ export default function AboutPage() {
                 const Icon = pillar.icon;
                 return (
                   <Reveal key={pillar.slug} delay={i * 0.08}>
-                    <a
+                    <Link
                       href={`/services/${pillar.slug}`}
                       className="card-hover group flex h-full flex-col rounded-2xl border border-border glass p-7"
                     >
@@ -148,7 +149,7 @@ export default function AboutPage() {
                         Explore this pillar{" "}
                         <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
                       </span>
-                    </a>
+                    </Link>
                   </Reveal>
                 );
               })}
@@ -227,12 +228,12 @@ export default function AboutPage() {
                     Tell me what you&apos;re trying to achieve and I&apos;ll come back
                     with next steps, not a generic proposal deck.
                   </p>
-                  <a
+                  <Link
                     href="/contact"
                     className="btn-primary mt-9 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow"
                   >
                     Book a free consultation <ArrowRight size={16} />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </Reveal>
