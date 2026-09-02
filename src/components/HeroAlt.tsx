@@ -93,7 +93,7 @@ export default function HeroAlt() {
       <section
         ref={topRef}
         id="home"
-        className="relative z-0 overflow-hidden bg-bg pb-16 pt-40 text-ink sm:pb-20 sm:pt-48 lg:pb-[26rem]"
+        className="relative z-0 overflow-hidden bg-bg pb-16 pt-40 text-ink sm:pb-20 sm:pt-48 lg:pb-28"
       >
         <HeroBackdrop />
 
