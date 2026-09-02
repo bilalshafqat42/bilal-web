@@ -266,36 +266,37 @@ h1, h2, h3, h4, .font-display {
 
 /* Hero backdrop motion.
 
-   Concentric rounded rectangles scaling outward from the light. There is no
-   perspective anywhere in this effect: the depth comes from the nesting and
-   from the spacing, not from a transform.
+   Inspecting the reference live settled what its motion actually is, after
+   three wrong guesses off a screenshot. Its hero is pre-rendered PNG artwork
+   with plain CSS keyframes over it — no GSAP, no three.js, no canvas — and
+   every one of those keyframes translates a *gradient strip* in Y at a linear
+   rate. The lines themselves never move. A band of light travels along them.
 
-   `ease-in` is doing real work, not smoothing. A linear scale puts the
-   rectangles at even distances apart and the whole thing reads flat; easing in
-   means each one moves slowly near the centre and quickly at the edge, which
-   packs them tightly around the light and spreads them at the outside. That
-   gradient of spacing is the depth cue.
+   So the rectangles here are static and a highlight band sweeps outward across
+   them. Nothing about the geometry animates, which is also why this is cheap:
+   `transform` on one wrapper, and the base layer never repaints at all.
 
-   `transform` and `opacity` are the only two properties the compositor can
-   animate without repainting, so this costs no raster work per frame. That
-   matters here: an earlier version animated `background-position` on a tilted
-   plane, which re-rasterised a ~2048x1186 element every frame and visibly
-   stuttered. Reaching for an animation library would not have helped — driving
-   the same property from JavaScript repaints exactly as hard. */
-@keyframes ring-expand {
-  from {
+   The sweep runs from the light outward, matching the direction of the
+   reference's line animation, and pauses briefly between passes rather than
+   running continuously — a constant sweep reads as a loading bar. */
+@keyframes ring-sweep {
+  0% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.34);
+    transform: translateY(-46%);
   }
-  10% {
+  8% {
+    opacity: 1;
+  }
+  58% {
     opacity: 1;
   }
   70% {
-    opacity: 0.85;
-  }
-  to {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(2.3);
+    transform: translateY(52%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(52%);
   }
 }
 
@@ -309,11 +310,20 @@ h1, h2, h3, h4, .font-display {
   }
 }
 
-.ring-expand {
-  /* Promoted up front so the first cycle does not pay for the promotion
-     mid-animation. */
+.ring-sweep {
+  /* The band that reveals the bright copy of the rectangles. The mask is
+     static and the layer moves under it, so this stays a transform rather than
+     an animated `mask-position`, which would repaint every frame. */
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.65) 34%,
+    rgba(0, 0, 0, 1) 46%,
+    rgba(0, 0, 0, 0.65) 58%,
+    transparent 92%
+  );
   will-change: transform, opacity;
-  animation: ring-expand 14s ease-in infinite;
+  animation: ring-sweep 7s linear infinite;
 }
 
 .bloom-breathe {
@@ -321,18 +331,18 @@ h1, h2, h3, h4, .font-display {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ring-expand,
+  .ring-sweep,
   .bloom-breathe {
     animation: none;
   }
-  /* Switching the animation off alone would freeze every ring on its first
-     keyframe — scale 0.04, opacity 0 — so these visitors would get bare spokes
-     and none of the curve the rings exist to draw. Each ring carries its own
-     `--ring-static` position, which reproduces the animated spread as a still
-     image. */
-  .ring-expand {
-    opacity: 0.75;
-    transform: translate(-50%, -50%) scale(var(--ring-static, 0.6));
+  /* No static fallback needed here, unlike the previous two versions. The base
+     layer of rectangles is permanent and carries the whole design; the sweep is
+     only a highlight over it. Switching it off leaves the hero complete, which
+     is the point of building it this way round. Held at a low opacity so the
+     lit copy reads as a gentle brightening rather than a hard second set. */
+  .ring-sweep {
+    opacity: 0.35;
+    transform: none;
   }
   .marquee-track {
     animation: none;

@@ -21,9 +21,24 @@
  * read as a road receding rather than rectangles radiating from a light.
  * Removing the perspective was the fix, not tuning it.
  *
- * Reference: Wope's hero. Faithful on the geometry and the light, in the site
- * gold rather than the reference's violet, which is the accent everything else
- * on the page already uses.
+ * Reference: Wope's hero — inspected live rather than read off a screenshot,
+ * which finally settled how it works. It is NOT procedural geometry. It is a
+ * stack of pre-rendered PNG artwork (a bottom plate at 2498x1061, a top plate
+ * and mask, a lights plate, a ray, and four separate line plates) with plain
+ * CSS keyframes over it. No GSAP, no three.js, no canvas.
+ *
+ * The important part is what those keyframes animate: `topAnimation`,
+ * `lineAnimation` (on four elements) and `bottomRayAnimation` all translate a
+ * *gradient strip* in Y, at 6s, 4s and 10.2s, linear. The lines themselves
+ * never move. A band of light travels along them.
+ *
+ * That is why no amount of expanding, rotating or drifting the geometry got
+ * close: the motion in the reference is a highlight sweeping over static
+ * artwork. So the rectangles here are static too, and a highlight sweeps
+ * outward across them.
+ *
+ * The geometry stays procedural rather than copying the reference's artwork,
+ * which is theirs. It is the same technique in the site gold.
  *
  * Purely decorative, so the whole thing is aria-hidden.
  */
@@ -48,28 +63,34 @@ const PARTICLES = [
   { x: 47, y: 66, s: 1, o: 0.35 },
 ];
 
-/** How many rectangles are in flight at once. Enough that the gap between
- *  neighbours never opens up visibly at any point in the cycle. */
-const RING_COUNT = 12;
+/** How many rectangles. Enough that the gap between neighbours never opens up
+ *  visibly anywhere in the field. */
+const RECT_COUNT = 12;
 
-/** Cycle length. The stagger below divides this evenly, or the spacing between
- *  neighbours would pulse once per cycle. Keep in step with the `ring-expand`
- *  keyframe in globals.css. */
-const RING_CYCLE_S = 14;
-
-/** The rectangles are very flat, around 5.8:1 — measured off the reference
- *  rather than picked. Its brightest arc spans roughly 1240px with only about
- *  65px of sag, and fitting an ellipse to that gives semi-axes near 700 by 121.
- *  Flatness is what makes each one read as a wide shallow dome instead of a
- *  box; at 1.75:1 they showed as complete nested rectangles over the headline.
- *
- *  Smallest and largest scale. The keyframe eases rather than running linear,
- *  so each rectangle covers ground slowly near the centre and quickly at the
- *  edge. That is what spaces them tightly near the light and widely at the
- *  outside, which is the entire depth cue: a linear scale gives evenly spaced
- *  rectangles and reads flat. */
+/** Smallest and largest scale. Spaced on a curve rather than evenly: a linear
+ *  ladder puts them at equal distances apart and the whole thing reads flat,
+ *  where packing them tightly around the light and spreading them at the
+ *  outside is the entire depth cue. */
 const SCALE_MIN = 0.34;
 const SCALE_MAX = 2.3;
+
+/** The static ladder of scales. Computed once at module scope — the set never
+ *  changes now that the motion is a highlight sweeping over it rather than the
+ *  shapes themselves moving. */
+const RECTS = Array.from(
+  { length: RECT_COUNT },
+  (_, i) => +(SCALE_MIN + (SCALE_MAX - SCALE_MIN) * (i / RECT_COUNT) ** 1.7).toFixed(3),
+);
+
+/** Shared box for every rectangle. Flatness is measured off the reference, not
+ *  picked: its brightest arc spans about 1240px with roughly 65px of sag, which
+ *  fits an ellipse with semi-axes near 700 by 121, so about 5.8:1. */
+const rectBox = {
+  left: "50%",
+  top: "var(--ring-centre)",
+  width: "var(--ring-w)",
+  aspectRatio: "var(--ring-aspect)",
+} as const;
 
 export default function HeroBackdrop() {
   return (
@@ -88,21 +109,25 @@ export default function HeroBackdrop() {
 
       {/* The rectangles.
 
-          Only their TOP edges are meant to show. That is what makes each one
-          read as a wide shallow dome rising above the light, and it is why the
-          reference looks the way it does: its hero has a product screenshot
-          sitting over the lower half of the hero, which covers the bottom of
-          every rectangle for free. This hero has no such image, so the same
-          result has to be masked in — without it you get complete closed boxes
-          crossing the headline, which is what the first two attempts did.
+          Only their TOP edges are meant to show, which is what makes each one
+          read as a wide shallow dome rising above the light. The reference gets
+          that for free: its hero has a product screenshot covering the lower
+          half, hiding the bottom of every shape. This hero has no such image,
+          so it is masked in — without it you get closed boxes crossing the
+          headline.
 
-          Two masks are needed and they are nested rather than composited. A
-          vertical one on the outer element cuts everything below the centre; a
-          radial one on the inner element releases the far left and right.
-          `mask-composite: intersect` is not reliable here — Chrome reports it
-          as applied and paints through it anyway. Nesting works now that there
-          is no perspective in the tree; when there was, an ancestor mask was
-          silently ignored across that boundary. */}
+          Two masks, nested rather than composited: a vertical one cutting below
+          the centre, a radial one releasing the sides. `mask-composite:
+          intersect` does not work (Chrome reports it as applied and paints
+          through it anyway), and nesting only behaves because there is no
+          perspective in this tree — across a perspective boundary an ancestor
+          mask is silently ignored.
+
+          Rendered twice. The base set is dim and permanent; the highlight set
+          is bright and revealed by a band that sweeps outward, which is what
+          the reference does. Drawing the same set twice is cheaper than it
+          sounds: these are bordered divs, so there is no image decode, and the
+          highlight layer is the only thing that ever changes. */}
       <div
         className="absolute inset-0"
         style={{
@@ -117,31 +142,26 @@ export default function HeroBackdrop() {
               "radial-gradient(ellipse 62% 90% at 50% var(--ring-centre), rgba(0,0,0,1) 0%, rgba(0,0,0,1) 34%, rgba(0,0,0,0.55) 68%, transparent 94%)",
           }}
         >
-          {Array.from({ length: RING_COUNT }, (_, i) => (
-            <div
-              key={i}
-              className="ring-expand absolute rounded-[22%] border border-[rgba(252,232,166,0.85)]"
-              style={{
-                left: "50%",
-                top: "var(--ring-centre)",
-                width: "var(--ring-w)",
-                aspectRatio: "var(--ring-aspect)",
-                // Negative delay starts each one already part-way through its
-                // travel, so the set is spread on the very first frame instead
-                // of all of them launching from the centre together.
-                animationDelay: `-${(i * RING_CYCLE_S) / RING_COUNT}s`,
-                // With reduced motion the animation is switched off, which
-                // would otherwise freeze every rectangle on its first keyframe
-                // at scale 0.05 and zero opacity, leaving those visitors an
-                // empty hero. This holds the same spread as a still image, and
-                // the reduced-motion rule in globals.css reads it. Spaced on a
-                // curve rather than evenly, to match the eased motion.
-                ["--ring-static" as string]: (
-                  SCALE_MIN + (SCALE_MAX - SCALE_MIN) * (i / RING_COUNT) ** 1.7
-                ).toFixed(3),
-              }}
+          {/* Base. Static: in the reference the lines never move. */}
+          {RECTS.map((scale, i) => (
+            <span
+              key={`base-${i}`}
+              className="absolute rounded-[22%] border border-[rgba(252,232,166,0.3)]"
+              style={{ ...rectBox, transform: `translate(-50%, -50%) scale(${scale})` }}
             />
           ))}
+
+          {/* Highlight. The same shapes at full brightness, revealed only where
+              the sweeping band is, so a pulse of light runs outward along them. */}
+          <div className="ring-sweep absolute inset-0">
+            {RECTS.map((scale, i) => (
+              <span
+                key={`lit-${i}`}
+                className="absolute rounded-[22%] border border-[rgba(255,240,190,0.95)]"
+                style={{ ...rectBox, transform: `translate(-50%, -50%) scale(${scale})` }}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
