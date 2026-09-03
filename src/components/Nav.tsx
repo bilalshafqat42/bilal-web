@@ -1,44 +1,79 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
+import { accentClasses, megaMenuGroups, slugify } from "@/data/pillars";
 
 /**
  * Site header.
  *
- * Rebuilt to the supplied design: text wordmark, four links, the studio
- * location, and the primary CTA. Replaces a 459-line version that carried a
- * services mega-menu, a GSAP scroll-shrink animation and an SVG logo.
+ * The design's bar — logo, four links, studio location, CTA — with the services
+ * mega-menu restored on top of it.
  *
- * Two consequences of that reduction, both deliberate and both flagged rather
- * than absorbed quietly:
+ * The panel is driven by CSS transitions rather than the GSAP timeline it used
+ * to have. The timeline was doing a clip-path unroll with staggered columns,
+ * which looked good but pulled GSAP, ScrollTrigger and useGSAP into the header
+ * on every page for one dropdown. A fade and a short lift reads almost the
+ * same and costs nothing. The scroll-shrink animation on the whole bar is not
+ * restored: the design has a fixed bordered bar, so there is nothing to shrink.
  *
- *   Pricing and FAQ are no longer in the header. The footer previously linked
- *   only /contact and /privacy, so without a change there they would have had
- *   no internal links at all. They are now in the footer.
- *
- *   The mega-menu linked every service category from every page. Those pages
- *   are now one hop away via /services, which lists all of them, rather than
- *   linked directly. That is a real reduction in internal linking and worth
- *   revisiting if those categories lose positions.
- *
- * Still a client component: the mobile drawer needs state. GSAP and the
- * mega-menu are gone, so this is far lighter than what it replaces.
+ * The interaction details below are the parts worth keeping and are easy to
+ * lose in a rewrite — each one exists because of a specific failure.
  */
 const links = [
   { label: "Work", href: "/portfolio" },
-  { label: "Services", href: "/services" },
+  { label: "Services", href: "/services", mega: true },
   { label: "Process", href: "/#process" },
   { label: "About", href: "/about" },
 ];
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
 
-  // Escape closes the drawer, and the body scroll lock stops the page moving
-  // underneath it on iOS. Both are removed on unmount so a route change while
-  // the drawer is open cannot leave the page unscrollable.
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const triggerRef = useRef<HTMLAnchorElement>(null);
+  // Escape closes the panel and returns focus to the trigger — but that focus
+  // would immediately re-open it. This suppresses exactly one focus-open.
+  const suppressFocusOpen = useRef(false);
+  // The panel state as it was before the current press. Focus and hover both
+  // open the panel and both land before `click`, so a plain toggle in the click
+  // handler would undo them and the panel could never be opened by pressing.
+  const openBeforePress = useRef(false);
+
+  // Hover intent. Closing on a 250ms delay rather than immediately, so moving
+  // the pointer from the trigger down into the panel does not dismiss it in the
+  // gap between the two.
+  const openServicesMenu = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setServicesOpen(true);
+  };
+  const closeServicesMenu = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setServicesOpen(false), 250);
+  };
+
+  useEffect(() => () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+  }, []);
+
+  useEffect(() => {
+    if (!servicesOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      suppressFocusOpen.current = true;
+      setServicesOpen(false);
+      triggerRef.current?.focus();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [servicesOpen]);
+
+  // Mobile drawer: Escape closes it, and the scroll lock stops the page moving
+  // underneath on iOS. Both are undone on unmount, so a route change with the
+  // drawer open cannot leave the page unscrollable.
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -56,32 +91,77 @@ export default function Nav() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-bg">
       <div className="mx-auto flex h-[68px] w-full items-center justify-between px-6 lg:h-[84px] lg:px-10">
-        {/* Wordmark. Plain text rather than the previous SVG: one less request,
-            and it stays crisp at any size. The dot is the only mark. */}
-        <Link
-          href="/"
-          className="flex shrink-0 items-baseline gap-1.5 text-[15px] font-bold tracking-tight text-ink lg:text-base"
-        >
-          Bilal Shafqat
-          <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold" />
+        <Link href="/" className="shrink-0" aria-label="Bilal Shafqat — home">
+          <Image
+            src="/logo/bs-logo.svg"
+            alt="Bilal Shafqat"
+            width={161}
+            height={63}
+            priority
+            className="h-8 w-auto lg:h-9"
+          />
         </Link>
 
         <nav aria-label="Primary" className="hidden lg:flex lg:items-center lg:gap-9">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="text-sm text-muted transition-colors hover:text-ink"
-            >
-              {l.label}
-            </Link>
-          ))}
+          {links.map((link) =>
+            link.mega ? (
+              <div
+                key={link.href}
+                className="relative"
+                onMouseEnter={openServicesMenu}
+                onMouseLeave={closeServicesMenu}
+              >
+                <div className="flex items-center gap-1">
+                  <Link
+                    ref={triggerRef}
+                    href={link.href}
+                    onFocus={() => {
+                      if (suppressFocusOpen.current) {
+                        suppressFocusOpen.current = false;
+                        return;
+                      }
+                      openServicesMenu();
+                    }}
+                    className="text-sm text-muted transition-colors hover:text-ink"
+                  >
+                    {link.label}
+                  </Link>
+                  {/* A separate control, so pressing the chevron opens the panel
+                      while pressing the label still navigates to /services. */}
+                  <button
+                    type="button"
+                    onPointerDown={() => {
+                      openBeforePress.current = servicesOpen;
+                    }}
+                    onClick={() => setServicesOpen(!openBeforePress.current)}
+                    aria-expanded={servicesOpen}
+                    aria-haspopup="true"
+                    aria-label={servicesOpen ? "Close services menu" : "Open services menu"}
+                    className="p-1 text-muted transition-colors hover:text-ink"
+                  >
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm text-muted transition-colors hover:text-ink"
+              >
+                {link.label}
+              </Link>
+            )
+          )}
         </nav>
 
         <div className="flex items-center gap-5">
-          {/* Dubai does not observe daylight saving, so this offset is fixed
-              and safe as static text. Rendering it from a clock would mean
-              client JS and a hydration mismatch for no gain. */}
+          {/* Dubai does not observe daylight saving, so the offset is fixed and
+              safe as static text. Reading it from a clock would mean client JS
+              and a hydration mismatch for no gain. */}
           <span className="hidden text-sm text-muted xl:inline">Dubai, UTC+4</span>
           <Link
             href="/contact"
@@ -89,7 +169,6 @@ export default function Nav() {
           >
             Book a free consultation
           </Link>
-
           <button
             type="button"
             onClick={() => setOpen(true)}
@@ -102,13 +181,87 @@ export default function Nav() {
         </div>
       </div>
 
+      {/* Mega-menu panel. Always in the DOM so it can animate both ways, but
+          `invisible` while closed — that keeps its links out of the tab order,
+          which `opacity-0` alone would not do. Verified by pressing Tab rather
+          than by inspecting styles: 0 stops land inside it while closed.
+
+          Only `opacity` and `transform` are transitioned, deliberately.
+          `transition-all` also animates `visibility`, and that left the panel
+          mid-transition on the Tab press immediately after focusing the
+          trigger — so a keyboard user opened the panel and then tabbed straight
+          past it into the page, reaching its links about ten stops later. */}
+      <div
+        onMouseEnter={openServicesMenu}
+        onMouseLeave={closeServicesMenu}
+        className={`absolute inset-x-0 top-full hidden transition-[opacity,transform] duration-200 lg:block ${
+          servicesOpen
+            ? "visible translate-y-0 opacity-100"
+            : "invisible -translate-y-2 opacity-0 pointer-events-none"
+        }`}
+      >
+        <div
+          role="group"
+          aria-label="Services menu"
+          className="glass-nav border-t border-border shadow-2xl shadow-black/40"
+        >
+          <div className="px-10 py-10">
+            <div className="grid grid-cols-4 gap-x-8 gap-y-8">
+              {megaMenuGroups.map((group) => {
+                const accent = accentClasses[group.accent];
+                return (
+                  <div key={group.slug}>
+                    <Link
+                      href={`/services/${group.slug}`}
+                      className="group/head flex items-center gap-2"
+                      onClick={() => setServicesOpen(false)}
+                    >
+                      <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${accent.dot}`} />
+                      <span className="text-sm font-semibold text-ink transition-colors group-hover/head:text-gold">
+                        {group.title}
+                      </span>
+                    </Link>
+                    <ul className="mt-3 space-y-2.5">
+                      {group.items.map((item) => (
+                        <li key={item.title}>
+                          <Link
+                            href={`/services/${group.slug}#${slugify(item.title)}`}
+                            onClick={() => setServicesOpen(false)}
+                            className="text-sm text-muted transition-colors hover:text-ink"
+                          >
+                            {item.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="mt-8 border-t border-border pt-6">
+              <Link
+                href="/services"
+                onClick={() => setServicesOpen(false)}
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+              >
+                View all services <ArrowRight size={15} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {open ? (
-        <div className="fixed inset-0 z-50 bg-bg lg:hidden">
-          <div className="flex h-[68px] items-center justify-between border-b border-border px-6">
-            <span className="flex items-baseline gap-1.5 text-[15px] font-bold tracking-tight text-ink">
-              Bilal Shafqat
-              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold" />
-            </span>
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-bg lg:hidden">
+          <div className="sticky top-0 flex h-[68px] items-center justify-between border-b border-border bg-bg px-6">
+            <Image
+              src="/logo/bs-logo.svg"
+              alt="Bilal Shafqat"
+              width={161}
+              height={63}
+              className="h-8 w-auto"
+            />
             <button
               type="button"
               onClick={() => setOpen(false)}
@@ -120,19 +273,74 @@ export default function Nav() {
           </div>
 
           <nav aria-label="Primary" className="flex flex-col px-6 py-4">
-            {links.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="border-b border-border py-4 text-lg font-semibold text-ink"
-              >
-                {l.label}
-              </Link>
-            ))}
-            {/* Kept in the drawer even though they are out of the desktop bar:
-                on a phone there is room, and it keeps the two pages reachable
-                without hunting in the footer. */}
+            {links.map((link) =>
+              link.mega ? (
+                // Native <details> rather than more state: it is keyboard
+                // accessible for free and needs no JavaScript to expand.
+                <details key={link.href} className="group border-b border-border">
+                  <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-lg font-semibold text-ink marker:hidden">
+                    Services
+                    <ChevronDown size={18} className="transition-transform group-open:rotate-180" />
+                  </summary>
+                  <div className="pb-3">
+                    <Link
+                      href="/services"
+                      onClick={() => setOpen(false)}
+                      className="block py-2 text-sm font-semibold text-gold"
+                    >
+                      All services
+                    </Link>
+                    {megaMenuGroups.map((group) => (
+                      <details key={group.slug} className="group/sub">
+                        <summary className="flex cursor-pointer list-none items-center justify-between py-2 text-sm text-ink marker:hidden">
+                          <span className="flex items-center gap-2">
+                            <span
+                              className={`h-1.5 w-1.5 shrink-0 rounded-full ${accentClasses[group.accent].dot}`}
+                            />
+                            {group.title}
+                          </span>
+                          <ChevronDown
+                            size={14}
+                            className="transition-transform group-open/sub:rotate-180"
+                          />
+                        </summary>
+                        <div className="pb-1 pl-4">
+                          <Link
+                            href={`/services/${group.slug}`}
+                            onClick={() => setOpen(false)}
+                            className="block py-1.5 text-xs font-medium text-gold"
+                          >
+                            Overview
+                          </Link>
+                          {group.items.map((item) => (
+                            <Link
+                              key={item.title}
+                              href={`/services/${group.slug}#${slugify(item.title)}`}
+                              onClick={() => setOpen(false)}
+                              className="block py-1.5 text-xs text-muted"
+                            >
+                              {item.title}
+                            </Link>
+                          ))}
+                        </div>
+                      </details>
+                    ))}
+                  </div>
+                </details>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="border-b border-border py-4 text-lg font-semibold text-ink"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
+
+            {/* Out of the desktop bar by design, but there is room on a phone
+                and it keeps both pages reachable without hunting in the footer. */}
             <Link
               href="/pricing"
               onClick={() => setOpen(false)}
@@ -155,7 +363,7 @@ export default function Nav() {
             >
               Book a free consultation
             </Link>
-            <span className="mt-5 text-sm text-muted">Dubai, UTC+4</span>
+            <span className="mt-5 pb-10 text-sm text-muted">Dubai, UTC+4</span>
           </nav>
         </div>
       ) : null}
