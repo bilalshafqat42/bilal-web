@@ -154,6 +154,8 @@ export default function Footer() {
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 text-xs text-muted sm:flex-row">
           <p>© {new Date().getFullYear()} Bilal Shafqat. All rights reserved.</p>
           <p className="flex items-center gap-5">
+            <Link href="/pricing" className="transition-colors hover:text-gold">Pricing</Link>
+            <Link href="/faq" className="transition-colors hover:text-gold">FAQ</Link>
             <Link href="/privacy" className="transition-colors hover:text-gold">Privacy Policy</Link>
             <Link href="/contact" className="transition-colors hover:text-gold">Contact</Link>
           </p>

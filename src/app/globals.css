@@ -233,6 +233,32 @@ h1, h2, h3, h4, .font-display {
   50% { transform: translateY(-14px); }
 }
 
+/* Homepage portrait edges.
+
+   The bottom fade applies everywhere: it dissolves the shirt into the proof bar
+   instead of cutting the photograph off on a hard line.
+
+   The left fade is desktop-only, and that is the point of putting this in CSS
+   rather than an inline style. At desktop the portrait sits in a right-hand
+   column and its left edge would otherwise be a visible vertical seam against
+   the copy. On a phone the same image runs full width, where a fade over the
+   left quarter reads as a rendering fault rather than a blend.
+
+   Masking rather than overlaying a gradient in the background colour: an
+   overlay only disappears while that colour never changes, whereas a mask
+   makes the edge genuinely transparent. */
+.hero-portrait {
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 62%, transparent 96%);
+}
+
+@media (min-width: 1024px) {
+  .hero-portrait {
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 26%),
+      linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 62%, transparent 96%);
+    mask-composite: intersect;
+  }
+}
+
 /* Hero backdrop.
 
    Sizing lives here rather than in the component so the two breakpoints stay

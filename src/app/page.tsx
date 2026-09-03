@@ -1,5 +1,5 @@
 import Nav from "@/components/Nav";
-import HeroAlt from "@/components/HeroAlt";
+import HeroBanner from "@/components/HeroBanner";
 import CapabilityLedger from "@/components/CapabilityLedger";
 import PortfolioGrid from "@/components/PortfolioGrid";
 import PortfolioShowcase from "@/components/PortfolioShowcase";
@@ -17,7 +17,7 @@ export default function Home() {
     <>
       <Nav />
       <main className="flex-1">
-        <HeroAlt />
+        <HeroBanner />
         <CapabilityLedger />
         <PortfolioGrid />
         <LogoWall />
