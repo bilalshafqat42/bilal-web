@@ -20,6 +20,20 @@ export type Pillar = {
   label: string;
   shortDescription: string;
   capabilities: string[];
+  /** One-line summary for the homepage capability ledger. Separate from
+   *  `shortDescription`, which is written for the services pages where there is
+   *  room to breathe — at ledger width it wraps to four lines and breaks the
+   *  row rhythm. */
+  ledgerSummary: string;
+  /** Three short tags for the ledger row. Distinct from `capabilities` for the
+   *  same reason: those run to five words each and would wrap. */
+  ledgerTags: [string, string, string];
+  /** Where the ledger row links. Defaults to `/services/{slug}`, but that is
+   *  not always live: `design-content-conversion` was retired on 2026-08-28
+   *  when its content split across four narrower category pages, and now 308s
+   *  to the hub. Linking the slug anyway would send every visitor through a
+   *  redirect, so that row names its real destination here. */
+  ledgerHref?: string;
   heroDescription: string;
   sections: PillarSection[];
   faqs: Faq[];
@@ -37,6 +51,13 @@ export const pillars: Pillar[] = [
       "Google, Meta, TikTok & Snapchat Ads",
       "Email & WhatsApp Marketing",
       "Lead Generation & Demand Generation",
+    ],
+    ledgerSummary:
+      "Ads and search that bring qualified enquiries, measured on cost per booked call rather than clicks.",
+    ledgerTags: [
+      "Meta, Google & TikTok",
+      "SEO",
+      "Landing page testing",
     ],
     heroDescription:
       "Paid media only works if it's built around your actual sales pipeline, not vanity metrics. I plan, launch, and manage campaigns across every major platform, then track every lead back to cost per acquisition and revenue, not just clicks and impressions.",
@@ -122,6 +143,13 @@ export const pillars: Pillar[] = [
       "Web & Custom Mobile App Development",
       "Custom Marketing Tools & Calculators",
     ],
+    ledgerSummary:
+      "Custom code, WordPress or mobile, chosen to fit your goal and budget instead of my preference.",
+    ledgerTags: [
+      "React & MERN",
+      "WordPress",
+      "iOS & Android",
+    ],
     heroDescription:
       "A website that looks good but doesn't convert is a cost, not an asset. I design and build websites, mobile apps, and internal tools on modern, fast frameworks, built from the start to support whatever marketing is driving traffic to them.",
     sections: [
@@ -171,6 +199,14 @@ export const pillars: Pillar[] = [
       "Branding & Brand Guidelines",
       "Social Media Strategy & Video",
     ],
+    ledgerSummary:
+      "Interfaces, creative and copy built to earn trust fast and turn existing traffic into enquiries.",
+    ledgerTags: [
+      "Web & app UI/UX",
+      "Brand identity",
+      "Social creative",
+    ],
+    ledgerHref: "/services",
     heroDescription:
       "Good design and content should do more than look right, they should move someone from scrolling to clicking to booking a call. I handle the branding, visuals, video, and page-level testing that support that whole path, not just one piece of it.",
     sections: [
@@ -259,6 +295,13 @@ export const pillars: Pillar[] = [
       "HubSpot, Zoho & Salesforce CRM Setup",
       "Server-Side Pixel & Conversions API Tracking",
       "Marketing Automation Workflows",
+    ],
+    ledgerSummary:
+      "Your marketing, site and sales data connected, so leads are tracked and followed up without anyone remembering to.",
+    ledgerTags: [
+      "HubSpot, Zoho & Salesforce",
+      "Server-side tracking",
+      "Workflows",
     ],
     heroDescription:
       "Most of the leads a business loses aren't lost to bad marketing, they're lost to a follow-up that never happened because nothing was tracking them properly. This pillar connects everything else, campaigns, website, and CRM, into one system that doesn't rely on someone remembering to check a spreadsheet.",
