@@ -1082,6 +1082,22 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **My first attempt to verify tab-order exclusion was an artifact**, and the same one as earlier in this session: I counted links with `offsetParent !== null`, which is null for `position: fixed` and non-null for `visibility: hidden` children, so it reported 37 focusable links in both states. Pressing Tab and asking where focus actually landed gave the real answer: 0 stops inside a closed panel. **Style inspection is not a substitute for driving the interaction.**
     - Verified: logo renders at 36px from `/logo/bs-logo.svg` with alt text, all eight mega groups and the "View all services" footer present, hover opens and Escape closes with focus returning to the trigger without re-opening, 0 tab stops inside the closed panel, mobile drawer locks and restores body scroll with the nested `<details>` groups expanding, 43 drawer links including Pricing and FAQ, no horizontal overflow at 1600/1440/1024/390, exactly one `h1`, zero unnamed links, routes 200, lint and build clean.
 
+122. **Hero spacing rebalanced against the reference (2026-09-04)** — **done today rather than deferred**, since Bilal asked me to try straight after suggesting it wait.
+    - **The complaint was "huge empty space", and the total height was not the problem.** Measuring both against the reference at 1440 showed the distribution was inverted: the reference pads its edges tightly and spreads the content, this padded the edges heavily and compressed the content into the middle.
+
+      | Gap | Reference | Before | After |
+      |---|---|---|---|
+      | Above eyebrow | 77 | 103 | 83 |
+      | Eyebrow to headline | 53 | 29 | 45 |
+      | Headline to paragraph | 47 | 28 | 44 |
+      | Paragraph to buttons | 57 | 36 | 56 |
+      | Buttons to proof bar | 60 | 96 | 60 |
+      | Headline height | 155 | 141 | 155 |
+
+    - **The portrait sat 23px below the top of the row** because the grid was bottom-aligned against a fixed 560px height. Stretching the column closes that gap and lets the tighter crop enlarge the subject, so the photograph now spans the row exactly — zero gap at both ends.
+    - **The lesson is about what to measure.** "Too much empty space" reads as a padding problem, and the instinct is to reduce the section's height. The section height was almost exactly right; what was wrong was where the space sat inside it. **Measuring each gap separately rather than the container told the opposite story to the one the complaint implied.**
+    - Verified: no horizontal overflow at 1600/1440/1024/390, exactly one `h1`, zero unnamed links, mobile unaffected, routes 200, lint and build clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

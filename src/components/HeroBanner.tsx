@@ -30,25 +30,25 @@ const RECENT = [
 export default function HeroBanner() {
   return (
     <section id="home" className="relative bg-bg">
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_minmax(0,34%)] lg:items-end">
-        <div className="px-6 pb-12 pt-12 sm:pt-16 lg:px-10 lg:pb-24 lg:pt-24">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_minmax(0,34%)] lg:items-stretch">
+        <div className="px-6 pb-12 pt-12 sm:pt-16 lg:px-10 lg:pb-[3.75rem] lg:pt-[4.75rem]">
           <span className="inline-flex items-center gap-2.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted">
             <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold" />
             Available for new work
           </span>
 
-          <h1 className="mt-7 text-[2.1rem] font-bold leading-[1.05] tracking-[-0.02em] text-ink sm:text-5xl lg:text-[4.2rem]">
+          <h1 className="mt-8 text-[2.1rem] font-bold leading-[1.05] tracking-[-0.02em] text-ink sm:text-5xl lg:mt-11 lg:text-[4.6rem]">
             One senior partner.
             <br />
             Campaign to code.
           </h1>
 
-          <p className="mt-7 max-w-[30ch] text-base leading-relaxed text-muted sm:max-w-[46ch] lg:text-[1.05rem]">
+          <p className="mt-7 max-w-[30ch] lg:mt-11 text-base leading-relaxed text-muted sm:max-w-[46ch] lg:text-[1.05rem]">
             Fifteen years of paid marketing, web and app development, design and CRM automation. No
             account managers, no handoffs.
           </p>
 
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-8">
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-8 lg:mt-14">
             <Link
               href="/contact"
               className="btn-primary inline-flex justify-center rounded-full px-8 py-4 text-sm font-semibold"
@@ -69,7 +69,7 @@ export default function HeroBanner() {
 
         {/* Portrait. Bleeds to the right edge at desktop and sits full-width
             under the copy on mobile, which is the order in the design. */}
-        <div className="relative h-[360px] w-full sm:h-[440px] lg:h-[560px]">
+        <div className="relative h-[360px] w-full sm:h-[440px] lg:h-auto">
           {/* Monochrome, as in the design. `grayscale` plus a little added
               contrast rather than a separate black-and-white asset: one image
               serves this and the about panel, and a filter costs nothing at
