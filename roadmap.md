@@ -1098,6 +1098,15 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **The lesson is about what to measure.** "Too much empty space" reads as a padding problem, and the instinct is to reduce the section's height. The section height was almost exactly right; what was wrong was where the space sat inside it. **Measuring each gap separately rather than the container told the opposite story to the one the complaint implied.**
     - Verified: no horizontal overflow at 1600/1440/1024/390, exactly one `h1`, zero unnamed links, mobile unaffected, routes 200, lint and build clean.
 
+123. **Hero portrait moved behind the content and zoomed 30% (2026-09-04)** — **done.**
+    - **Desktop only.** On a phone the portrait stays a block in the flow beneath the copy, as designed. A photograph behind body text at 390px would wreck legibility for no gain, and the design does not ask for it there.
+    - **Nothing else moved, which was the explicit requirement.** Hero height 833 and proof bar at 592 before and after, at every width tested. That holds because the text column and the portrait column measured identically beforehand, so taking the portrait out of flow changed no height.
+    - **Bug caught by measurement, not by eye.** The absolutely-positioned portrait anchored to the section rather than the hero row, because the grid wrapper had no `position`. `inset-y-0` therefore spanned the whole section and ran the photograph behind the proof bar and the recent-work row. Adding `relative` to the grid scoped it. The assertion that caught it was `imgScopedToRow`, comparing the portrait's edges against the row's — a screenshot of the visible area would not have shown it.
+    - **Scale origin matters more than the scale.** At `origin-bottom` the 30% pushed the top of the head out of frame, cut off exactly at the header line, which reads as an accident rather than a crop. `origin-top` grows the image downward into the shirt, which already fades out above the proof bar, so nothing important is lost.
+    - **The headline overlaps the portrait's box by 133px and that is fine**, because the portrait's own left mask is fully transparent across its first 26%. Verified as clearance rather than assumed: at 1920, 1600, 1440, 1280 and 1024 the headline always ends before the opaque region begins, with about 39px to spare at each.
+    - **Flagged rather than silently adjusted**: at 1024–1280 the face reads large, since 46% of a narrower viewport at 1.3 is proportionally more of the screen. Kept uniform at 30% because that is what was asked; a breakpoint-varying zoom would be me overriding the instruction.
+    - Verified: no horizontal overflow at 1920/1600/1440/1280/1024/390, portrait scoped to the hero row at every width, exactly one `h1`, zero unnamed links, mobile unchanged, routes 200, lint and build clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

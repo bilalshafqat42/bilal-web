@@ -29,9 +29,9 @@ const RECENT = [
 
 export default function HeroBanner() {
   return (
-    <section id="home" className="relative bg-bg">
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_minmax(0,34%)] lg:items-stretch">
-        <div className="px-6 pb-12 pt-12 sm:pt-16 lg:px-10 lg:pb-[3.75rem] lg:pt-[4.75rem]">
+    <section id="home" className="relative overflow-hidden bg-bg">
+      <div className="relative grid grid-cols-1 lg:grid-cols-[1fr_minmax(0,34%)] lg:items-stretch">
+        <div className="relative z-10 px-6 pb-12 pt-12 sm:pt-16 lg:px-10 lg:pb-[3.75rem] lg:pt-[4.75rem]">
           <span className="inline-flex items-center gap-2.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted">
             <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold" />
             Available for new work
@@ -67,9 +67,19 @@ export default function HeroBanner() {
           </div>
         </div>
 
-        {/* Portrait. Bleeds to the right edge at desktop and sits full-width
-            under the copy on mobile, which is the order in the design. */}
-        <div className="relative h-[360px] w-full sm:h-[440px] lg:h-auto">
+        {/* Portrait.
+            On mobile it stays a block in the flow, under the copy, as designed
+            — a photograph behind body text at phone width would wreck
+            legibility for no gain.
+
+            At desktop it moves out of flow to sit behind the content. Two
+            things follow from that and both are deliberate. The grid keeps its
+            two columns even though only one is now filled, which is what stops
+            the headline running underneath the photograph. And because the
+            portrait no longer contributes height, the section is sized purely
+            by the text column — which measured identically before, so this
+            changes no other content's position. */}
+        <div className="relative h-[360px] w-full sm:h-[440px] lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[46%] lg:overflow-hidden">
           {/* Monochrome, as in the design. `grayscale` plus a little added
               contrast rather than a separate black-and-white asset: one image
               serves this and the about panel, and a filter costs nothing at
@@ -84,7 +94,7 @@ export default function HeroBanner() {
             alt="Bilal Shafqat"
             fill
             sizes="(min-width: 1024px) 34vw, 100vw"
-            className="hero-portrait object-cover object-top brightness-[1.04] contrast-[1.12] grayscale"
+            className="hero-portrait object-cover object-top brightness-[1.04] contrast-[1.12] grayscale lg:origin-top lg:scale-[1.3]"
             priority
           />
         </div>
