@@ -1124,6 +1124,18 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Flagged for him**: `bilal-shirt-old.avif` is now referenced by nothing and ships 568KB for no reason. Left in place rather than deleted, since renaming rather than removing it looks deliberate — his call.
     - Verified: no horizontal overflow at 1440/390, exactly one `h1`, portrait keeps its alt text, `/appointment` unaffected, routes 200, lint and build clean.
 
+126. **Hero portrait reduced 10%; the reported white edge could not be reproduced (2026-09-04)** — **half done.**
+    - **Size**: desktop zoom 1.15 to 1.035. Mobile is unaffected, since the scale has always been `lg:` only.
+    - **The white edge is unresolved and I am not going to guess at a fix.** Four checks, each ruling something out:
+      1. Sampled the photo's top-right corner against the page background — both 8.0, so there is no lighter rectangle where the studio background would be.
+      2. Magnified the head outline at 2x — clean, no halo.
+      3. Magnified the right shoulder outline at 2x — clean, no fringe.
+      4. Rendered the raw `.avif` on magenta in a blank page: the magenta shows straight through and `sips` confirms `hasAlpha: yes`. It is a proper transparent cutout with no white matte baked in.
+    - **A hypothesis I checked and discarded rather than reporting**: an early draft of this component did carry a literal white overlay fading the old blown-out shirt into the proof bar, so a stale deploy would explain it. `git log -S` shows that gradient never reached a commit — it existed only between edits in one turn — so his deployed copy could not have shown it.
+    - **Two candidates I could not distinguish without him pointing**: the white shirt and collar, which are legitimately the brightest thing in the photograph and sit centre-bottom; or something visible on his machine that headless Chrome does not reproduce.
+    - **Deliberately did not add a vignette or crush the blacks to "fix" it.** Both would have hidden a symptom I cannot locate, and adding machinery against an unreproduced problem is the exact failure pattern from items 112 to 116.
+    - Verified: no horizontal overflow at 1440/390, exactly one `h1`, alt text intact, routes 200, lint and build clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
