@@ -1136,6 +1136,12 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Deliberately did not add a vignette or crush the blacks to "fix" it.** Both would have hidden a symptom I cannot locate, and adding machinery against an unreproduced problem is the exact failure pattern from items 112 to 116.
     - Verified: no horizontal overflow at 1440/390, exactly one `h1`, alt text intact, routes 200, lint and build clean.
 
+127. **Hero portrait reduced a further 20% (2026-09-04)** — **done.** Desktop scale 1.035 to 0.828. Mobile untouched, as the scale has always been `lg:` only.
+    - **Dropping below 1.0 changes the composition, not just the size.** `object-fit: cover` fills the box exactly at scale 1, so at 0.828 there is 86px the image no longer covers. Anchored to the top that gap lands between the shoulders and the proof bar and the portrait reads as floating; anchored to the bottom it lands above the head, where a head-and-shoulders shot has headroom anyway. Flipped to `origin-bottom` for that reason — a consequence of the number, not a style preference. Compared both by capture before choosing.
+    - **A probe of mine was wrong again, and in a way already recorded in item 112.** I read `getComputedStyle(img).transform` to confirm the scale and got `none`, which looked like the change had silently failed. **Tailwind v4 emits `scale-*` as the standalone `scale` property, not inside `transform`** — exactly the trap that put the hero bloom a full width off-centre earlier. The reliable check is neither property: comparing the painted bounding rect against its container gives 0.828 at desktop and 1.000 at mobile regardless of which property carries it. **Measure the outcome, not the mechanism.**
+    - **One check in the sweep does not apply at mobile and is not a failure**: `clearOfHeadline` assumes the desktop layout where the portrait sits behind the text. At 390 it is a stacked block below the copy, so the comparison is meaningless there.
+    - Verified: painted scale 0.828 desktop and 1.000 mobile, shoulders still meeting the proof bar at 1600/1440/1024, headline clear of the portrait at every desktop width, no horizontal overflow at 1600/1440/1024/390, one `h1`, routes 200, lint and build clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
