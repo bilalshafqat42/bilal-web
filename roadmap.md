@@ -1142,6 +1142,12 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **One check in the sweep does not apply at mobile and is not a failure**: `clearOfHeadline` assumes the desktop layout where the portrait sits behind the text. At 390 it is a stacked block below the copy, so the comparison is meaningless there.
     - Verified: painted scale 0.828 desktop and 1.000 mobile, shoulders still meeting the proof bar at 1600/1440/1024, headline clear of the portrait at every desktop width, no horizontal overflow at 1600/1440/1024/390, one `h1`, routes 200, lint and build clean.
 
+128. **Hero portrait reverted to 1.035 (2026-09-04)** — **done.** The 20% reduction in item 127 read too small, so it is back to the size before it.
+    - The anchor reverted with it. `origin-bottom` only existed to move the uncovered gap that appears below scale 1; at 1.035 there is no gap, since the image slightly overfills and the surplus is clipped from the fading shirt at the bottom.
+    - **Left a note in the component to keep this at or above 1.0**, with the reason. The composition changes below that threshold rather than just the size, and the next person to nudge the number down would rediscover the floating-portrait problem from scratch.
+    - **One sweep assertion inverts above scale 1 and is not a regression**: `groundedOnProofBar` compares the image's bottom edge to the proof bar and expects zero. Above 1.0 the edge sits *past* the bar and is clipped, so the difference goes negative. The portrait still visibly reaches the bar.
+    - Verified: painted scale back to 1.035 desktop and 1.000 mobile, headline clear of the portrait at 1600/1440/1024, no horizontal overflow at any width, routes 200, lint and build clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
