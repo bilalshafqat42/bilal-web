@@ -190,6 +190,33 @@ Bilal is working online only with no office, so he has parked this. **Worth reco
 33. Remaining suggestions-queue items not folded in above: plain-language subtitles on technical services (5), privacy policy page (6), regions-served line (7), trust/partner badges (8), Arabic version with RTL (10). Item 3 (time zone) closed on 2026-08-18 via `/contact`; item 2 (WhatsApp) closed in item 13.
 34. Retire or repurpose the 3 `preview-hero-*` routes. They are `noindex` as of item 41 so they are no longer an SEO risk, only clutter.
 
+### Phase 8 — requested by Bilal 2026-09-04 (not started)
+
+Five items he asked to be queued. Numbered 129-133 because the phase list and the changelog below share a single series, which already runs to 128 — 35-39 are long since used. Each is grounded against the current code below rather than left as a heading, so none of them needs re-investigating before it can be picked up.
+
+129. **Kill the `mailto:` links.** Currently **8 occurrences across 7 files**: `components/Contact.tsx` (the section's *primary* CTA), `components/Footer.tsx`, `components/ContactForm.tsx` (fallback), `components/LeadFormPopup.tsx`, `app/contact/page.tsx`, `app/privacy/page.tsx`, `app/services/[slug]/page.tsx`.
+    - **Why this matters beyond tidiness**: a `mailto:` CTA produces no `generate_lead` event, so those enquiries are invisible to GA4 and Meta — on a site whose owner sells conversion tracking. It also fails silently for anyone without a configured mail client, which is most people on a work laptop using webmail.
+    - **Do not remove the address entirely.** Keep it as visible plain text where it builds trust (privacy page, contact page) but route every *action* through the form. The `Contact.tsx` primary CTA is the one that actually costs money — fix that first.
+
+130. **Fill the schema gaps.** Already emitted and working: Person (6), BreadcrumbList (5), Service (3), FAQPage (3), Organization (2), Offer (2), OfferCatalog, CreativeWork, ContactPage, ApartmentComplex, across `StructuredData.tsx` plus 6 page-level blocks. **Two real gaps:**
+    - **`ProfessionalService` / `LocalBusiness` is entirely absent.** This is the type that carries service area, opening hours and price range, and it is the one that feeds local and "near me" style results.
+    - **`/services` emits no structured data at all** — verified, zero `ld+json` on that route — despite being the hub every service category links from. It should carry an `OfferCatalog` or `ItemList` of the categories.
+    - Person, FAQPage and BreadcrumbList are done; **do not rebuild them**, extend instead.
+
+131. **Sitemap dates, and the console title issues.**
+    - **`sitemap.ts` sets `lastModified: new Date()` on every entry**, so every deploy tells Google and Bing that all 22 URLs changed simultaneously. That makes the signal worthless and can suppress recrawl priority for pages that genuinely did change. Replace with real per-page content dates — the case studies and service pages have natural candidates in their own data files.
+    - Pair with a pass over Search Console and Bing Webmaster titles. Bing's site scan has previously reported title/heading issues here (see item 64), and title rewrites by Google are worth checking now that the homepage `h1` has changed twice this week.
+
+132. **Trim the homepage to 8 sections, add a sticky CTA and an FAQ block.** Current order is **11** sections: `HeroBanner`, `CapabilityLedger`, `PortfolioGrid`, `LogoWall`, `Process`, `PortfolioShowcase`, `WhoIWorkWith`, `Engagement`, `Results`, `AskAssistant`, `Contact`.
+    - **Three need to go, and there are two obvious duplications to look at first**: `PortfolioGrid` and `PortfolioShowcase` both show work, and `LogoWall` is still text placeholders rather than real logos (see the Sitemap note). `Results` currently carries two `[Client Name]` placeholder quotes, so it is showing an empty promise.
+    - **An FAQ block on the homepage needs care, not a copy-paste.** `/faq` already emits `FAQPage` schema, and duplicating the same Q&A on the homepage with a second `FAQPage` block risks the two competing. Either link out, or use a distinct question set.
+    - **Sticky CTA**: check it against the cookie banner and the WhatsApp widget, both of which already occupy the bottom of the viewport. Item 30's lesson applies — a full-width fixed wrapper swallowed clicks across the whole bottom strip of every page once already.
+
+133. **Real numbers, then a speed and accessibility pass.**
+    - **Placeholders currently live on the site**: `Results.tsx` (2 quotes plus 2 `[Client Name]`), `CaseStudies.tsx` (6 brackets including `[Client Industry]` and `[Add real results]`), and `HeroBanner.tsx`'s `[ 0.0x ]` proof-bar cell. **Blocked on Bilal for every one of them** — no campaign result has ever been shared for publication, and inventing figures is not an option.
+    - **Sequence matters: do the numbers before the speed pass, not after.** Real figures may change layout, and a Lighthouse run against placeholder content measures a page that will not ship.
+    - Accessibility check should be a real audit rather than a score: Phase 2 covers reachability, and the header was rebuilt twice this week (items 120 and 121) — the mega-menu was removed and then restored, now on CSS transitions rather than GSAP, and Pricing and FAQ moved out of the desktop bar into the footer and the mobile drawer. Keyboard and screen-reader paths through it have changed and need re-walking. Item 121 already found one real keyboard bug there by pressing Tab rather than reading styles, so walk it, do not audit it from the source.
+
 ### Cross-cutting: targeting UK, US and Canada (added 2026-08-26)
 
 Bilal stated on 2026-08-26 that he wants clients in the UK, US and Canada. This is a real strategic shift, not an add-on, and it partly invalidates work already in this file. Recording it honestly rather than layering it on top.
