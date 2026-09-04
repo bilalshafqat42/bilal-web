@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/CaseStudyParts";
 import { clients, getClient } from "@/data/caseStudies";
+import CtaButton from "@/components/CtaButton";
 
 const SITE = "https://bilalshafqat.com";
 
@@ -229,9 +230,7 @@ export default async function ClientCaseStudy({ params }: Props) {
                     Launching a development? <span className="text-gradient">Let&apos;s talk.</span>
                   </h2>
                   <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-                    <Link href="/contact" className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold">
-                      Book a free consultation <ArrowRight size={16} />
-                    </Link>
+                    <CtaButton href="/contact">Book a free consultation</CtaButton>
                     <Link href="/portfolio" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors">
                       See all work
                     </Link>

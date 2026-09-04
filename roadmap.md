@@ -1107,6 +1107,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Flagged rather than silently adjusted**: at 1024–1280 the face reads large, since 46% of a narrower viewport at 1.3 is proportionally more of the screen. Kept uniform at 30% because that is what was asked; a breakpoint-varying zoom would be me overriding the instruction.
     - Verified: no horizontal overflow at 1920/1600/1440/1280/1024/390, portrait scoped to the hero row at every width, exactly one `h1`, zero unnamed links, mobile unchanged, routes 200, lint and build clean.
 
+124. **Primary CTA restyled with a leading circular arrow badge (2026-09-04)** — **done.** Bilal supplied a reference button and asked for the style only, with the colours and text unchanged.
+    - **No new colour was introduced, which was the constraint.** The reference is an orange pill with a white disc and an orange arrow — a straight inversion of its own two colours. The same inversion here means the disc takes the button's existing ink (`#14140f`) and the arrow takes the gradient's start (`#f2c94c`). Verified from computed styles: gradient, text colour and both disc colours are all values the button already used.
+    - **Built as `CtaButton` rather than 35 hand-edits.** It renders `next/link` for internal routes and a plain `<a>` for `mailto:`, `tel:`, external URLs and bare fragments — four of the call sites were anchors, and routing a `mailto:` through the client router either breaks it or involves it for nothing.
+    - **Applied to 14 marketing CTAs across 14 files. Deliberately not applied** to form submits (contact, inline lead, appointment, lead popup), the cookie banner, the search panel, the WhatsApp widget, the assistant's 40px send control, or the compact header button. Those share the gold but are utility controls: a decorative arrow badge on "Accept" or "Send" means nothing, and at 40px it does not fit.
+    - **The badge is `aria-hidden`.** It carries no information the label does not, and announcing "arrow" after "Book a free consultation" is noise. Verified all 14 keep their accessible names and none ended up empty.
+    - **A scripted conversion leaves litter, and lint is what finds it.** Removing the trailing icons orphaned 8 `ArrowRight`/`ArrowUpRight` imports across 8 files, which build did not complain about. Cleaned all 8; lint is clean again. **Worth running lint after any codemod, not just after hand edits.**
+    - Verified: colours identical to the previous button, 14 CTAs restyled across 7 pages checked in a browser, zero unnamed CTAs, no horizontal overflow, routes 200 with the 404 still a 404, lint and build clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

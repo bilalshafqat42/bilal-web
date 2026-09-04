@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { pillars } from "@/data/pillars";
+import CtaButton from "@/components/CtaButton";
 
 /**
  * The four disciplines, as a ledger of rows rather than a card deck.
@@ -108,12 +109,7 @@ export default function CapabilityLedger() {
         </ul>
 
         <div className="mt-12 flex flex-wrap items-center justify-between gap-6">
-          <Link
-            href="/contact"
-            className="btn-primary inline-flex items-center gap-2 rounded-full px-7 py-4 text-sm font-semibold"
-          >
-            Book a free consultation <ArrowRight size={16} />
-          </Link>
+          <CtaButton href="/contact">Book a free consultation</CtaButton>
           <Link
             href="/portfolio"
             className="inline-flex items-center gap-2 text-sm font-semibold text-gold transition-opacity hover:opacity-80"

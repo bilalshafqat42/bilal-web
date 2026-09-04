@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Building2, Home, Network, Users, ArrowRight, ChevronDown, type LucideIcon } from "lucide-react";
+import { Building2, Home, Network, Users, ChevronDown, type LucideIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import Reveal, { RevealStagger, RevealItem } from "./Reveal";
+import CtaButton from "@/components/CtaButton";
 
 type Audience = {
   icon: LucideIcon;
@@ -114,12 +115,7 @@ export default function WhoIWorkWith() {
         <Reveal className="mt-14 text-center">
           <div>
             <p className="mx-auto max-w-xl text-muted">Let&apos;s discuss your goals and find the right engagement model.</p>
-            <a
-              href="#contact"
-              className="mt-5 btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow"
-            >
-              Book a free consultation <ArrowRight size={16} />
-            </a>
+            <CtaButton href="#contact" className="mt-5">Book a free consultation</CtaButton>
           </div>
         </Reveal>
       </div>

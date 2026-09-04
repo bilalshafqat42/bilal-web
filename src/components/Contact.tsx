@@ -1,6 +1,7 @@
-import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import Reveal from "./Reveal";
 import SocialLinks from "./SocialLinks";
+import CtaButton from "@/components/CtaButton";
 
 export default function Contact() {
   return (
@@ -27,12 +28,7 @@ export default function Contact() {
               </p>
 
               <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-                <a
-                  href="mailto:bilalshafqat42@gmail.com"
-                  className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow"
-                >
-                  Book a free consultation <ArrowUpRight size={16} />
-                </a>
+                <CtaButton href="mailto:bilalshafqat42@gmail.com">Book a free consultation</CtaButton>
                 <a
                   href="tel:+971529766006"
                   className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"

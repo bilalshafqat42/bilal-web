@@ -1,8 +1,9 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Check, Clock, Mail } from "lucide-react";
+import { Check, Clock, Mail } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import CtaButton from "@/components/CtaButton";
 
 export const metadata: Metadata = {
   title: "Thank you — Bilal Shafqat",
@@ -79,12 +80,7 @@ export default async function ThankYouPage({ searchParams }: PageProps) {
             </ul>
 
             <div className="mt-11 flex flex-wrap items-center justify-center gap-4">
-              <Link
-                href="/portfolio"
-                className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold"
-              >
-                See my work while you wait <ArrowRight size={15} />
-              </Link>
+              <CtaButton href="/portfolio">See my work while you wait</CtaButton>
               <Link
                 href="/faq"
                 className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink transition-colors hover:bg-white/5"

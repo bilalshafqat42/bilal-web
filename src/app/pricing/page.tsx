@@ -1,9 +1,10 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, ChevronRight, Minus, Plus } from "lucide-react";
+import { ChevronRight, Minus, Plus } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
+import CtaButton from "@/components/CtaButton";
 
 const SITE_URL = "https://bilalshafqat.com";
 
@@ -239,9 +240,7 @@ export default function PricingPage() {
                     Usually within a business day. No pitch deck, no discovery
                     process you have to sit through first.
                   </p>
-                  <Link href="/contact" className="btn-primary mt-9 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold">
-                    Get a quote <ArrowRight size={16} />
-                  </Link>
+                  <CtaButton href="/contact" className="mt-9">Get a quote</CtaButton>
                 </div>
               </div>
             </Reveal>

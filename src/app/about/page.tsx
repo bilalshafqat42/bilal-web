@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import SocialLinks from "@/components/SocialLinks";
 import { pillars, accentClasses } from "@/data/pillars";
+import CtaButton from "@/components/CtaButton";
 
 export const metadata: Metadata = {
   title: "About Bilal Shafqat — Digital Marketer & Developer, Dubai",
@@ -84,12 +85,7 @@ export default function AboutPage() {
                   contact, and one person accountable for the result.
                 </p>
                 <div className="mt-8 flex flex-wrap items-center gap-4">
-                  <Link
-                    href="/contact"
-                    className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow"
-                  >
-                    Book a free consultation <ArrowRight size={16} />
-                  </Link>
+                  <CtaButton href="/contact">Book a free consultation</CtaButton>
                   <Link
                     href="/portfolio"
                     className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
@@ -234,12 +230,7 @@ export default function AboutPage() {
                     Tell me what you&apos;re trying to achieve and I&apos;ll come back
                     with next steps, not a generic proposal deck.
                   </p>
-                  <Link
-                    href="/contact"
-                    className="btn-primary mt-9 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow"
-                  >
-                    Book a free consultation <ArrowRight size={16} />
-                  </Link>
+                  <CtaButton href="/contact" className="mt-9">Book a free consultation</CtaButton>
                 </div>
               </div>
             </Reveal>

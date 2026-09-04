@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { useRef, useState } from "react";
 import Image from "next/image";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
+import CtaButton from "@/components/CtaButton";
 
 type Card = {
   label: string;
@@ -155,13 +156,7 @@ export default function PortfolioGrid() {
 
         <Reveal className="mt-16 text-center">
           <div>
-            <Link
-              href="/portfolio"
-              className="btn-primary inline-flex items-center gap-2 rounded-full px-7 py-4 text-base font-semibold transition-shadow"
-            >
-              View the full portfolio
-              <ArrowRight size={17} />
-            </Link>
+            <CtaButton href="/portfolio">View the full portfolio</CtaButton>
             <p className="mt-4 text-base text-muted">
               Design, development and marketing work, by client and by project.
             </p>

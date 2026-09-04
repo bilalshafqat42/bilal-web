@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import CtaButton from "@/components/CtaButton";
 
 /**
  * Homepage banner: headline, portrait, proof bar, recent work.
@@ -49,12 +50,7 @@ export default function HeroBanner() {
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-8 lg:mt-14">
-            <Link
-              href="/contact"
-              className="btn-primary inline-flex justify-center rounded-full px-8 py-4 text-sm font-semibold"
-            >
-              Book a free consultation
-            </Link>
+            <CtaButton href="/contact">Book a free consultation</CtaButton>
             {/* Bordered pill on mobile, plain underlined link at desktop, as
                 designed: at phone width two stacked pills read as a pair of
                 equal choices, which is the right hierarchy on a small screen. */}

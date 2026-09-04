@@ -1,10 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import { faqGroups, allFaqs } from "@/data/faqs";
+import CtaButton from "@/components/CtaButton";
 
 const SITE_URL = "https://bilalshafqat.com";
 
@@ -129,12 +130,7 @@ export default function FaqPage() {
                     A first conversation costs nothing and often ends with me
                     telling you a smaller piece of work would do the job.
                   </p>
-                  <Link
-                    href="/contact"
-                    className="btn-primary mt-9 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold"
-                  >
-                    Book a free consultation <ArrowRight size={16} />
-                  </Link>
+                  <CtaButton href="/contact" className="mt-9">Book a free consultation</CtaButton>
                 </div>
               </div>
             </Reveal>

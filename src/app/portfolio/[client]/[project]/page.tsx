@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/CaseStudyParts";
 import { clients, getProject } from "@/data/caseStudies";
+import CtaButton from "@/components/CtaButton";
 
 const SITE = "https://bilalshafqat.com";
 
@@ -256,9 +257,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
                   <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-ink">
                     Need this for your launch? <span className="text-gradient">Let&apos;s talk.</span>
                   </h2>
-                  <Link href="/contact" className="btn-primary mt-9 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold">
-                    Book a free consultation <ArrowRight size={16} />
-                  </Link>
+                  <CtaButton href="/contact" className="mt-9">Book a free consultation</CtaButton>
                 </div>
               </div>
             </Reveal>

@@ -16,6 +16,7 @@ import {
 import { serviceDepth } from "@/data/serviceDepth";
 import TrackView from "@/components/TrackView";
 import InlineLeadForm from "@/components/InlineLeadForm";
+import CtaButton from "@/components/CtaButton";
 
 const SITE_URL = "https://bilalshafqat.com";
 
@@ -130,9 +131,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                 </h1>
                 <p className="mt-6 text-lg text-muted leading-relaxed">{category.intro}</p>
                 <div className="mt-8 flex flex-wrap gap-4">
-                  <Link href="/contact" className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold">
-                    Book a free consultation <ArrowRight size={16} />
-                  </Link>
+                  <CtaButton href="/contact">Book a free consultation</CtaButton>
                   <Link href="/portfolio" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors">
                     See related work
                   </Link>
