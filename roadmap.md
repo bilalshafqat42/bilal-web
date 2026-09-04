@@ -1116,6 +1116,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **A scripted conversion leaves litter, and lint is what finds it.** Removing the trailing icons orphaned 8 `ArrowRight`/`ArrowUpRight` imports across 8 files, which build did not complain about. Cleaned all 8; lint is clean again. **Worth running lint after any codemod, not just after hand edits.**
     - Verified: colours identical to the previous button, 14 CTAs restyled across 7 pages checked in a browser, zero unnamed CTAs, no horizontal overflow, routes 200 with the 404 still a 404, lint and build clean.
 
+125. **Hero portrait replaced and the crop retuned for it (2026-09-04)** — **done.** Bilal swapped `bilal-shirt.avif` in place and renamed the previous file, so the path needed no change — but every crop value in the hero did.
+    - **The framing changed completely.** The old file was a wide half-body shot; the replacement is a tight head-and-shoulders portrait at 3368x5056 in a dark suit. At the 1.3 zoom tuned for the old one, the top of his head was cropped off at the header line.
+    - **Retuned by capture, not by eye**: at 1.0 the subject sat low with dead space above it, 1.15 anchored at `50% 15%` holds the whole head with the column filled, and 1.3 cut the hair. Both numbers are commented as photograph-specific, since **an in-place image swap silently invalidates every crop value tuned to the previous one** — the build passes, the path resolves, and nothing warns.
+    - **The bottom fade now behaves differently for free.** It was designed to dissolve a blown-out white shirt into the proof bar; against a dark suit the same fade runs dark into dark, so it reads as a clean crop rather than a wash. No change needed, but worth knowing it is doing something different from what it was built for.
+    - **Checked every other consumer of the file rather than assuming the hero was the only one.** `/appointment` uses it as a 42px avatar at `50% 18%`, where a head-and-shoulders crop is actually better suited than the old wide shot, so it is left alone. The three other references are all in retired preview/test heroes.
+    - **Flagged for him**: `bilal-shirt-old.avif` is now referenced by nothing and ships 568KB for no reason. Left in place rather than deleted, since renaming rather than removing it looks deliberate — his call.
+    - Verified: no horizontal overflow at 1440/390, exactly one `h1`, portrait keeps its alt text, `/appointment` unaffected, routes 200, lint and build clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
