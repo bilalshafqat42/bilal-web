@@ -4,8 +4,8 @@ import { ArrowRight } from "lucide-react";
 /**
  * Primary marketing call to action.
  *
- * A pill with the arrow in a circular badge on its leading edge, rather than a
- * bare icon trailing the label.
+ * A pill with the label first and the arrow in a circular badge on its trailing
+ * edge, rather than a bare icon.
  *
  * Colours are unchanged from `.btn-primary`, deliberately: the gradient and the
  * dark ink are reused as-is, and the badge inverts them — the disc takes the
@@ -46,19 +46,19 @@ export default function CtaButton({
   target,
   rel,
 }: Props) {
-  const pad = size === "lg" ? "py-2 pl-2 pr-7 text-sm" : "py-1.5 pl-1.5 pr-6 text-sm";
+  const pad = size === "lg" ? "py-2 pl-7 pr-2 text-sm" : "py-1.5 pl-6 pr-1.5 text-sm";
   const disc = size === "lg" ? "h-11 w-11" : "h-9 w-9";
 
   const cls = `btn-primary group inline-flex items-center gap-3.5 rounded-full font-semibold ${pad} ${className}`;
   const inner = (
     <>
+      {children}
       <span
         aria-hidden="true"
         className={`flex shrink-0 items-center justify-center rounded-full bg-[#14140f] text-gold transition-transform duration-200 group-hover:translate-x-0.5 ${disc}`}
       >
         <ArrowRight size={size === "lg" ? 17 : 15} />
       </span>
-      {children}
     </>
   );
 
