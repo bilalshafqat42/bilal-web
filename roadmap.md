@@ -37,19 +37,20 @@ Positioning line: one person doing what usually takes an agency, no handoffs bet
 
 ## Homepage section order (current build)
 
-This reflects what's actually in the code right now, after the CTA-wording and portfolio/logo-wall fixes.
+Eight sections as of 2026-09-04 (item 134). Was eleven; the page made the same
+offer three times over. Nothing was deleted — every removed section was re-homed.
 
-1. Sticky navbar — CTA: "Book a free consultation." Secondary nav: Home / Services / Work / About / Process / Pricing. "Work" links to `/portfolio`, not an in-page anchor.
-2. Hero — **replaced 2026-08-08**, see item 24 below for the current live version: a plain black headline section (`id="home"`, 70/30 split heading+CTA) immediately followed by a separate yellow "About Me" panel (`id="about"`, bio + photo) that scroll-expands from 80% to full bleed. Supersedes the single-photo-panel version from items 20-23.
-3. Services — "Seven Services, One Point Of Contact," grouped into 3 categories: Marketing & Growth, Website & App Dev, Brand & Content. Intentional, keep the categorized structure.
-4. Logo wall — grid of client company tiles, currently text placeholders (e.g. "[Client Logo — Off-Plan Developer]"), links through to `/portfolio` for the full case studies. This is the sole portfolio/trust section on the homepage (no separate industries tag row, see decision above).
-5. About Me — now merged into the Hero's yellow panel (item 24), not a separate homepage section. The standalone `About.tsx` component still exists in the codebase but is no longer rendered on `/`.
-6. How I Work — 4-step process: Understand the Brief, Plan & Design, Build & Launch, Optimize & Scale.
-7. Growth Partnerships — segments by client type: Startups & Founders, Real Estate Developers & Agencies (UAE), In-House Teams & Growing Companies, Agencies & Consulting Partners.
-8. Engagement Models — 4 packages: Project-Based, Monthly Retainer, Ongoing Partner / Dedicated Support, **Consulting & Advisory** (renamed from "Consulting & Audit" — see resolved decisions below).
-9. Measurable Outcomes — 4 stat tiles plus 2 testimonial cards in one section. Testimonials are still placeholder content (see gaps).
-10. Final CTA — "Book a free consultation," repeated.
-11. Footer — contact details, secondary nav (Work now points to `/portfolio`).
+1. `HeroBanner` — hero, proof bar, recent work row
+2. `CapabilityLedger` — four disciplines, one point of contact
+3. `PortfolioGrid` — what I actually build
+4. `Results` — the single proof section: client logos, testimonials when real ones exist, three outcome cards
+5. `ProcessCompact` — four stages in one row, links to `/process`
+6. `Engagement` — how to buy, with the audience line
+7. `AskAssistant` — the "not sure what you need?" tool
+8. `Contact` — final CTA
+
+Re-homed: `PortfolioShowcase` → `/services`, `WhoIWorkWith` → `/about`,
+`LogoWall` → `/portfolio`, full `Process` → `/process`.
 
 ### /portfolio (new page)
 
@@ -1174,6 +1175,17 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Left a note in the component to keep this at or above 1.0**, with the reason. The composition changes below that threshold rather than just the size, and the next person to nudge the number down would rediscover the floating-portrait problem from scratch.
     - **One sweep assertion inverts above scale 1 and is not a regression**: `groundedOnProofBar` compares the image's bottom edge to the proof bar and expects zero. Above 1.0 the edge sits *past* the bar and is clipped, so the difference goes negative. The portrait still visibly reaches the bar.
     - Verified: painted scale back to 1.035 desktop and 1.000 mobile, headline clear of the portrait at 1600/1440/1024, no horizontal overflow at any width, routes 200, lint and build clean.
+
+134. **Homepage cut from 11 sections to 8, with every removed section re-homed (2026-09-04)** — **done.** Bilal's brief, approved after a plan round that surfaced one wrong instruction and three missing prerequisites.
+    - **Nothing was deleted and no component became unused.** Audited every file in `src/components` for references after the move: zero orphans, because each removed section landed somewhere. `PortfolioShowcase` → `/services`, `WhoIWorkWith` → `/about`, `LogoWall` → `/portfolio`, full `Process` → new `/process`.
+    - **The plan round paid for itself.** His instruction to expand `PortfolioShowcase` from 7 to 8 items "matching the 8 service pages" was based on a wrong premise, and he agreed once shown it: those cards are LEOS portfolio captures labelled by discipline, three of them were the same service category, and three categories (`digital-marketing`, `crm-marketing-automation`, `video-conversion`) had no item and no asset at all. Labelling by discipline made real gaps read as omissions. Now five cards labelled by project under a "Recent work" heading, and the eight-service offer stays on `/services` as eight text sections where it needs no imagery to be complete.
+    - **Shared, not duplicated**, per his rule: `ClientLogoRow` extracted from `LogoWall` with `wall` and `row` variants — the `wall` variant reproduces the previous markup exactly, since an extraction is not allowed to change how that section looks. `processSteps` extracted to `src/data/process.ts` so the compact and full renderings cannot drift. `Engagement` took a `variant` prop rather than becoming two components.
+    - **An API smell caught before it shipped**: the row variant first hard-coded `justify-center`, so the service-page call site needed `!justify-start` to override — which is Tailwind v3 syntax and would have silently done nothing in v4. Alignment is now the call site's decision and the variant sets none.
+    - **Real bug caught by assertion, not by eye: `/process` shipped with zero `<h1>`.** `SectionHeading` defaults to `h2`, and its own comment warns about exactly this — "a page whose only heading comes from this component must pass `as='h1'`, or it ships with none". Fixed by promoting it, which is safe because `Process` is now used on that one page only. **The overflow sweep also counting `h1`s is what found it**; nothing visual would have.
+    - **Placeholders removed rather than carried over.** `Results` shipped two `[Client Name]` quotes, tolerable while proof was spread over three sections and not once it is the only one. The testimonial block is now behind a `testimonials.length > 0` guard with the expected prop shape documented, so turning it on is a data change. Also dropped the "6 Services, One Partner" card, which contradicted the site's own four disciplines and eight categories — deleting a stale claim, not inventing a new one, which took the outcome cards to the three he asked for.
+    - **Client boundaries stayed at the leaf**, as he required: verified no `page.tsx` carries the directive. A first check reported `/process` as a leak and was wrong — it matched the words inside a comment. Checking the first non-comment statement instead gave the real answer.
+    - `/process` added to the nav (`/#process` → `/process`, no dead anchor left), `sitemap.ts` at priority 0.8, and `llms.txt` with a real description rather than a label.
+    - Verified: 8 homepage sections in the specified order, 12 routes correct including the 404, no horizontal overflow and exactly one `h1` on all 6 changed pages at 1600/1440/1024/390, no page errors, `npm run lint` and `tsc --noEmit` both exit 0.
 
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)

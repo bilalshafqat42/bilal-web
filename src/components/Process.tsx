@@ -6,73 +6,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import SectionHeading from "./SectionHeading";
+import { processSteps as steps } from "@/data/process";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-// Images are real project work but only loosely match each step. They are the
-// weakest part of this section: swap `image` and `alt` and nothing else changes.
-const steps = [
-  {
-    step: "01",
-    title: "Understand the Brief",
-    subtitle: "Research & Discovery",
-    description:
-      "I start by understanding the business, audience, and goals before proposing a marketing, design, or development approach.",
-    bullets: [
-      "Business goals & success metrics",
-      "Target audience & user needs",
-      "Market positioning & competitors",
-      "Existing tools, data, and constraints",
-    ],
-    image: "/portfolio/leos/social-media/3.avif",
-    alt: "Campaign creative developed for LEOS Developments after the discovery stage",
-  },
-  {
-    step: "02",
-    title: "Plan & Design",
-    subtitle: "Structure & Interface",
-    description:
-      "Based on the brief, I plan the campaign, application, or design system and map out how each piece fits together.",
-    bullets: [
-      "Campaign or funnel strategy",
-      "UX wireframes & UI design",
-      "Technical architecture (for apps)",
-      "Content & creative direction",
-    ],
-    image: "/portfolio/leos/landing-page/leos-landing-page.avif",
-    alt: "LEOS Developments corporate website interface design",
-  },
-  {
-    step: "03",
-    title: "Build & Launch",
-    subtitle: "Development & Delivery",
-    description:
-      "Execution is hands-on, building, testing, and shipping the campaign, website, or application.",
-    bullets: [
-      "Paid campaign setup & launch",
-      "Development, QA & deployment",
-      "Design production & asset delivery",
-      "Tracking & analytics setup",
-    ],
-    image: "/portfolio/leos/hadley-heights/landing-page/hadley-heights-landing-page.avif",
-    alt: "Hadley Heights landing page built and shipped for launch",
-  },
-  {
-    step: "04",
-    title: "Optimize & Scale",
-    subtitle: "Measurement & Iteration",
-    description:
-      "Once live, I focus on measuring performance and improving it, whether that's ad spend, conversion rate, or app usage.",
-    bullets: [
-      "Performance monitoring & reporting",
-      "Ongoing testing and iteration",
-      "Automation & workflow improvements",
-      "Handover or ongoing support",
-    ],
-    image: "/portfolio/leos/hadley-heights/social-media/2.avif",
-    alt: "Ongoing campaign creative produced for Hadley Heights",
-  },
-];
 
 export default function Process() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -159,6 +96,11 @@ export default function Process() {
     <section ref={sectionRef} id="process" className="relative bg-bg-soft/40 py-24 sm:py-32">
       <div className="site-container">
         <SectionHeading
+          // This is now the only heading on /process, so it has to be the h1.
+          // SectionHeading defaults to h2, and without this the page shipped
+          // with no h1 at all — the exact defect its own comment warns about
+          // and the one Bing's site scan previously reported.
+          as="h1"
           eyebrow="How I Work"
           title="A Structured Path From"
           highlight="Brief To Shipped Work"

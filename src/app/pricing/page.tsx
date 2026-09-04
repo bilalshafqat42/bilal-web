@@ -5,6 +5,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import CtaButton from "@/components/CtaButton";
+import Engagement from "@/components/Engagement";
 
 const SITE_URL = "https://bilalshafqat.com";
 
@@ -223,6 +224,12 @@ export default function PricingPage() {
             </div>
           </div>
         </section>
+
+        {/* The expanded engagement models, linked from every service page as
+            "How engagements work". Cards start open here: a visitor who
+            followed that link has already asked the question the collapsed
+            state hides. */}
+        <Engagement variant="detailed" />
 
         <section className="relative mt-20 sm:mt-24">
           <div className="mx-auto max-w-5xl px-6">

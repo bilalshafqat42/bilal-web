@@ -7,6 +7,17 @@ import SectionHeading from "./SectionHeading";
 import Reveal, { RevealStagger, RevealItem } from "./Reveal";
 import CtaButton from "@/components/CtaButton";
 
+/**
+ * Who I work with.
+ *
+ * Moved off the homepage in the section refactor: it was one of three sections
+ * there restating the same offer. The homepage now carries a single line inside
+ * the engagement models instead, and this full version lives on `/about`.
+ *
+ * The heading was "Growth Partnerships Tailored To Teams & Brands" with "Who I
+ * Work With" as the eyebrow. On a page about who I am, the plain question is
+ * the better heading, so the two swapped round.
+ */
 type Audience = {
   icon: LucideIcon;
   title: string;
@@ -98,9 +109,9 @@ export default function WhoIWorkWith() {
     <section className="relative py-24 sm:py-32">
       <div className="site-container">
         <SectionHeading
-          eyebrow="Who I Work With"
-          title="Growth Partnerships Tailored To"
-          highlight="Teams & Brands"
+          eyebrow="Clients & Teams"
+          title="Who I"
+          highlight="work with"
           description="I work with companies at different stages of growth, adapting my role based on business needs, internal structure, and growth goals."
         />
 

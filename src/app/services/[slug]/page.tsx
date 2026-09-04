@@ -17,6 +17,7 @@ import { serviceDepth } from "@/data/serviceDepth";
 import TrackView from "@/components/TrackView";
 import InlineLeadForm from "@/components/InlineLeadForm";
 import CtaButton from "@/components/CtaButton";
+import ClientLogoRow from "@/components/ClientLogoRow";
 
 const SITE_URL = "https://bilalshafqat.com";
 
@@ -136,6 +137,16 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                     See related work
                   </Link>
                 </div>
+
+                {/* Evidence directly under the CTA, and a route to the buying
+                    question that follows it. */}
+                <ClientLogoRow variant="row" className="mt-10 justify-start" />
+                <Link
+                  href="/pricing#engagement"
+                  className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+                >
+                  How engagements work <ArrowRight size={15} />
+                </Link>
               </div>
             </Reveal>
           </div>

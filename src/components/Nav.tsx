@@ -25,7 +25,7 @@ import { accentClasses, megaMenuGroups, slugify } from "@/data/pillars";
 const links = [
   { label: "Work", href: "/portfolio" },
   { label: "Services", href: "/services", mega: true },
-  { label: "Process", href: "/#process" },
+  { label: "Process", href: "/process" },
   { label: "About", href: "/about" },
 ];
 

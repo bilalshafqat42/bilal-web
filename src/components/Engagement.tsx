@@ -51,8 +51,8 @@ const models: Model[] = [
   },
 ];
 
-function EngagementCard({ model }: { model: Model }) {
-  const [expanded, setExpanded] = useState(false);
+function EngagementCard({ model, defaultExpanded = false }: { model: Model; defaultExpanded?: boolean }) {
+  const [expanded, setExpanded] = useState(defaultExpanded);
 
   return (
     <div className="card-hover h-full rounded-2xl border border-border panel p-7 flex flex-col">
@@ -114,31 +114,59 @@ function EngagementCard({ model }: { model: Model }) {
   );
 }
 
-export default function Engagement() {
+/**
+ * Engagement models — how to buy.
+ *
+ * Two variants of one component rather than two components, since the models
+ * themselves are identical and only the framing differs:
+ *
+ *   "homepage"  the offer, with the audience line and a CTA. This replaced the
+ *               separate "Growth Partnerships" section, whose full version now
+ *               lives on `/about`; the audience is a single line here instead
+ *               of its own homepage section.
+ *   "detailed"  for `/pricing` and linked from each service page as "How
+ *               engagements work". Cards start expanded, since a visitor who
+ *               followed a link named that has already asked the question the
+ *               collapsed state hides. No CTA: those pages carry their own, and
+ *               a second one competes with it.
+ */
+export default function Engagement({ variant = "homepage" }: { variant?: "homepage" | "detailed" }) {
+  const detailed = variant === "detailed";
+
   return (
     <section id="engagement" className="relative py-24 sm:py-32 bg-bg-soft/40">
       <div className="site-container">
         <SectionHeading
-          eyebrow="Pricing & Engagement"
+          eyebrow={detailed ? "How Engagements Work" : "Pricing & Engagement"}
           title="Flexible Engagement Models,"
           highlight="Built To Match Your Project"
           description="Work with me however fits best — a single project, a monthly retainer, embedded support, or independent advisory."
         />
 
+        {/* Replaces the former "Growth Partnerships" homepage section with one
+            line. The full version is on /about under "Who I work with". */}
+        {detailed ? null : (
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted">
+            Working with founders, UAE real estate developers, in-house teams and agencies.
+          </p>
+        )}
+
         <RevealStagger className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {models.map((m) => (
             <RevealItem key={m.title}>
-              <EngagementCard model={m} />
+              <EngagementCard model={m} defaultExpanded={detailed} />
             </RevealItem>
           ))}
         </RevealStagger>
 
-        <Reveal className="mt-14 text-center">
-          <div>
-            <p className="mx-auto max-w-xl text-muted">Let&apos;s discuss your goals and define the right approach.</p>
-            <CtaButton href="#contact" className="mt-5">Book a free consultation</CtaButton>
-          </div>
-        </Reveal>
+        {detailed ? null : (
+          <Reveal className="mt-14 text-center">
+            <div>
+              <p className="mx-auto max-w-xl text-muted">Let&apos;s discuss your goals and define the right approach.</p>
+              <CtaButton href="#contact" className="mt-5">Book a free consultation</CtaButton>
+            </div>
+          </Reveal>
+        )}
       </div>
     </section>
   );

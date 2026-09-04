@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import CaseStudies from "@/components/CaseStudies";
+import LogoWall from "@/components/LogoWall";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -37,6 +38,11 @@ export default function PortfolioPage() {
             </span>
           </Link>
         </section>
+        {/* Moved here from the homepage: this is the page the trust claim
+            belongs on, and it now introduces the case studies rather than
+            repeating the homepage. */}
+        <LogoWall />
+
         <CaseStudies />
         <Contact />
       </main>

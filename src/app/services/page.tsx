@@ -4,6 +4,8 @@ import { ArrowRight } from "lucide-react";
 import Nav from "@/components/Nav";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import PortfolioShowcase from "@/components/PortfolioShowcase";
+import ClientLogoRow from "@/components/ClientLogoRow";
 import { megaMenuGroups, accentClasses } from "@/data/pillars";
 
 export const metadata: Metadata = {
@@ -84,6 +86,20 @@ export default function ServicesPage() {
             </div>
           </div>
         </section>
+
+        {/* Work, clearly separated from the offer above. The eight sections are
+            the services; this band is five real projects and says so. It moved
+            here from the homepage, where it was a third restatement of the
+            same offer. */}
+        <PortfolioShowcase />
+
+        {/* Evidence immediately above the CTA in <Contact />. */}
+        <div className="site-container mt-20 sm:mt-24">
+          <p className="text-center font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted">
+            Trusted by
+          </p>
+          <ClientLogoRow variant="row" className="mt-6 justify-center" />
+        </div>
       </main>
       <Contact />
       <Footer />

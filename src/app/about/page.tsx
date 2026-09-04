@@ -7,6 +7,7 @@ import Reveal from "@/components/Reveal";
 import SocialLinks from "@/components/SocialLinks";
 import { pillars, accentClasses } from "@/data/pillars";
 import CtaButton from "@/components/CtaButton";
+import WhoIWorkWith from "@/components/WhoIWorkWith";
 
 export const metadata: Metadata = {
   title: "About Bilal Shafqat — Digital Marketer & Developer, Dubai",
@@ -213,6 +214,10 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+
+        {/* Moved here from the homepage. This is the page where "who I work
+            with" is the reader's actual question. */}
+        <WhoIWorkWith />
 
         <section className="relative mt-24 sm:mt-32">
           <div className="mx-auto max-w-5xl px-6">

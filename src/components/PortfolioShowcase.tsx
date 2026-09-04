@@ -25,10 +25,29 @@ type Slide = {
   portrait?: boolean;
 };
 
+/** Five items, and five is the honest number.
+ *
+ *  This band was seven cards labelled by discipline, which implied coverage the
+ *  portfolio does not have: three of them ("Web Design", "Web Apps", "Mobile
+ *  Apps") were all the same service category, while `digital-marketing`,
+ *  `crm-marketing-automation` and `video-conversion` had no item and no asset
+ *  at all. Labelling by discipline made those gaps read as omissions.
+ *
+ *  So the cards are now labelled by the work — a project and what it had to do
+ *  — and the band is headed "Recent work" with a link to the portfolio. The
+ *  eight-service offer lives on `/services`, as eight text sections, where it
+ *  needs no imagery to be complete.
+ *
+ *  Every item below is backed by its own capture. Nothing is reused to fill a
+ *  slot, and no text-only card pads the row: both read as a gap.
+ *
+ *  Dropped from the previous seven: a second Hadley Heights creative (duplicated
+ *  the campaign creative card) and the original Weybridge Gardens landing page
+ *  (a fourth near-identical launch page). */
 const slides: Slide[] = [
   {
-    label: "Web Design",
-    full: "Web Design",
+    label: "LEOS",
+    full: "Corporate website",
     short: "Design that holds up",
     headline: "Design that survives contact with a campaign",
     detail:
@@ -39,8 +58,8 @@ const slides: Slide[] = [
     alt: "LEOS Developments corporate website design",
   },
   {
-    label: "Web Apps",
-    full: "Web App Development",
+    label: "Hadley Heights",
+    full: "Launch landing page",
     short: "Built to convert",
     headline: "High-converting builds on Next.js",
     detail:
@@ -51,8 +70,8 @@ const slides: Slide[] = [
     alt: "Hadley Heights lead capture landing page",
   },
   {
-    label: "Mobile Apps",
-    full: "Mobile App Development",
+    label: "Weybridge 2",
+    full: "Mobile launch page",
     short: "Phone first",
     headline: "Phone-first, not a desktop layout squeezed down",
     detail:
@@ -64,20 +83,8 @@ const slides: Slide[] = [
     portrait: true,
   },
   {
-    label: "Social Media",
-    full: "Social Media Marketing",
-    short: "Paid and organic",
-    headline: "Creative that runs paid and organic",
-    detail:
-      "Award-winning campaign and brand creative, produced to stay consistent with the website and the ads rather than drifting into its own visual language.",
-    client: "LEOS Developments",
-    href: "/portfolio/leos-developments",
-    image: "/portfolio/leos/social-media/1.avif",
-    alt: "Award-winner social creative for LEOS Developments",
-  },
-  {
-    label: "UI/UX Design",
-    full: "UI/UX Design",
+    label: "Cavendish Square",
+    full: "Launch landing page",
     short: "Judged on use",
     headline: "Interfaces judged on how they are used",
     detail:
@@ -88,30 +95,19 @@ const slides: Slide[] = [
     alt: "Cavendish Square landing page",
   },
   {
-    label: "Brand & Graphic",
-    full: "Graphic Design & Branding",
-    short: "On-brand, every time",
-    headline: "Brand work that holds across every channel",
+    label: "Campaign creative",
+    full: "Social & campaign creative",
+    short: "Paid and organic",
+    headline: "Creative that runs paid and organic",
     detail:
-      "Campaign creative built from the same brand rules as the website and the sales material, so a buyer sees one company rather than three suppliers.",
-    client: "Hadley Heights",
-    href: "/portfolio/leos-developments/hadley-heights",
-    image: "/portfolio/leos/hadley-heights/social-media/1.avif",
-    alt: "Hadley Heights campaign creative",
-  },
-  {
-    label: "Paid Marketing",
-    full: "Paid Marketing & Lead Generation",
-    short: "Spend that reports back",
-    headline: "Campaigns measured on pipeline, not impressions",
-    detail:
-      "Tracking goes in before spend starts, so performance comes back as cost per lead and cost per acquisition rather than clicks and reach.",
-    client: "Weybridge Gardens",
-    href: "/portfolio/leos-developments/weybridge-gardens",
-    image: "/portfolio/leos/weybridge-gardens/landing-page/weybridge-gardens-landing-page.avif",
-    alt: "Weybridge Gardens launch landing page",
+      "Award-winning campaign and brand creative, produced to stay consistent with the website and the ads rather than drifting into its own visual language.",
+    client: "LEOS Developments",
+    href: "/portfolio/leos-developments",
+    image: "/portfolio/leos/social-media/1.avif",
+    alt: "Award-winner social creative for LEOS Developments",
   },
 ];
+
 
 const COLLAPSED = 300;
 const EXPANDED = 640;
@@ -156,10 +152,10 @@ export default function PortfolioShowcase() {
     <section id="showcase" className="relative overflow-hidden py-20 sm:py-24">
       <div className="site-container">
         <SectionHeading
-          eyebrow="Explore By Discipline"
-          title="Seven Ways I Can"
-          highlight="Help You"
-          description="Open a card to see how each discipline actually gets used on a project. Every one links to the case study behind it."
+          eyebrow="Recent Work"
+          title="Selected projects, and what"
+          highlight="each one had to do"
+          description="Open a card to see the thinking behind a build. Every one links to the case study, and the full set is on the portfolio."
         />
       </div>
 
@@ -320,6 +316,17 @@ export default function PortfolioShowcase() {
               </div>
             </Link>
         ))}
+      </div>
+
+      {/* The band shows five projects, not the whole portfolio, so it says so
+          and points at the rest rather than implying this is everything. */}
+      <div className="site-container mt-10">
+        <Link
+          href="/portfolio"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+        >
+          View the full portfolio <ArrowRight size={15} />
+        </Link>
       </div>
     </section>
   );
