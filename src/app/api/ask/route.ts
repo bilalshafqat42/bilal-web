@@ -67,7 +67,7 @@ export async function POST(request: Request) {
     "unknown";
   if (rateLimited(ip)) {
     return Response.json(
-      { error: "That's a lot of questions. Email bilalshafqat42@gmail.com and Bilal will reply personally." },
+      { error: "That's a lot of questions. Email bilal@bilalshafqat.com and Bilal will reply personally." },
       { status: 429 }
     );
   }
@@ -77,7 +77,7 @@ export async function POST(request: Request) {
   const key = process.env.ANTHROPIC_API_KEY;
   if (!key) {
     return Response.json(
-      { error: "The assistant isn't configured yet. Email bilalshafqat42@gmail.com." },
+      { error: "The assistant isn't configured yet. Email bilal@bilalshafqat.com." },
       { status: 503 }
     );
   }
@@ -125,7 +125,7 @@ export async function POST(request: Request) {
           }
         } catch {
           controller.enqueue(
-            encoder.encode("\n\nSomething went wrong. Email bilalshafqat42@gmail.com.")
+            encoder.encode("\n\nSomething went wrong. Email bilal@bilalshafqat.com.")
           );
         } finally {
           controller.close();

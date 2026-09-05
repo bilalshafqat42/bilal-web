@@ -16,6 +16,17 @@ import CtaButton from "@/components/CtaButton";
  * not a new max-width.
  */
 
+/** Three, not four.
+ *
+ *  A fourth cell read "[ 0.0x ] — Your strongest client result goes here",
+ *  rendered as a visible placeholder with a dashed rule. That was defensible
+ *  while it was a design marker; it is not something to ship above the fold on
+ *  a live site, where it reads as an unfinished page rather than as a slot
+ *  awaiting a number.
+ *
+ *  Removed rather than filled: no campaign result has been shared for
+ *  publication, and inventing one is not an option. To restore it, add a fourth
+ *  entry here and change the grid below back to `lg:grid-cols-4`. */
 const STATS = [
   { value: "15", label: "Years across marketing, design and development" },
   { value: "4", label: "Disciplines, one person, not four suppliers" },
@@ -98,31 +109,23 @@ export default function HeroBanner() {
 
       {/* Proof bar. Dividers are borders on the cells rather than a separate
           element, so they cannot drift out of alignment with the grid. */}
-      <dl className="grid grid-cols-2 border-y border-border lg:grid-cols-4">
+      <dl className="grid grid-cols-2 border-y border-border lg:grid-cols-3">
         {STATS.map((s, i) => (
           <div
             key={s.value}
+            // Dividers are borders on the cells, so they cannot drift out of
+            // alignment with the grid. Two columns on mobile, three at desktop:
+            // the odd cell sits alone on the second mobile row and takes no
+            // right border there.
             className={`border-border px-6 py-7 lg:px-10 lg:py-9 ${
-              i % 2 === 0 ? "border-r" : ""
-            } ${i < 2 ? "border-b lg:border-b-0" : ""} lg:border-r lg:last:border-r-0`}
+              i % 2 === 0 ? "border-r lg:border-r" : "lg:border-r"
+            } ${i < STATS.length - 1 ? "border-b lg:border-b-0" : ""} lg:last:border-r-0`}
           >
             <dt className="text-3xl font-bold tracking-tight text-ink lg:text-4xl">{s.value}</dt>
             <dd className="mt-2 max-w-[24ch] text-sm leading-relaxed text-muted">{s.label}</dd>
           </div>
         ))}
 
-        {/* Placeholder, and shown as one on purpose. The design marks this slot
-            with [ 0.0x ] and a dashed rule; no campaign result has been shared
-            for publication, so inventing a figure here is not an option. Swap
-            the value and the label together once there is a real one. */}
-        <div className="border-border px-6 py-7 lg:px-10 lg:py-9">
-          <dt className="text-3xl font-bold tracking-tight text-gold lg:text-4xl">
-            <span className="border-b border-dashed border-gold/50 pb-1">[ 0.0x ]</span>
-          </dt>
-          <dd className="mt-2 max-w-[24ch] text-sm leading-relaxed text-muted">
-            Your strongest client result goes here
-          </dd>
-        </div>
       </dl>
 
       <div className="border-b border-border px-6 py-6 lg:px-10">

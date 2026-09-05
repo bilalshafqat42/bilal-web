@@ -16,7 +16,7 @@ export async function GET() {
 > and the CRM automation that connects them — no agency handoffs, no account
 > managers. Works with clients across the UAE and internationally.
 
-Contact: bilalshafqat42@gmail.com · +971 52 976 6006 (WhatsApp)
+Contact: bilal@bilalshafqat.com · +971 52 976 6006 (WhatsApp)
 Location: Dubai, UAE (Gulf Standard Time, UTC+4), Monday to Friday
 Full content for machine reading: ${SITE}/llms-full.txt
 

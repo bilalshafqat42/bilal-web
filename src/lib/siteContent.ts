@@ -20,7 +20,7 @@ experience. Works directly with clients — no account managers, no junior staff
 handoffs between departments. Based in Dubai (Gulf Standard Time, UTC+4), Monday to
 Friday, working with clients across the UAE and internationally.
 
-Contact: bilalshafqat42@gmail.com, +971 52 976 6006 (also WhatsApp).
+Contact: bilal@bilalshafqat.com, +971 52 976 6006 (also WhatsApp).
 Contact page: /contact  ·  Pricing: /pricing  ·  FAQ: /faq`);
 
   parts.push(`# Services\n`);

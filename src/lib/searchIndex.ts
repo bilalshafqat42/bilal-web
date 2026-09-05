@@ -93,7 +93,7 @@ export function buildIndex(): Chunk[] {
   });
   chunks.push({
     title: "Getting in touch",
-    body: "Email bilalshafqat42@gmail.com or WhatsApp +971 52 976 6006. Based in Dubai, Gulf Standard Time UTC+4, Monday to Friday. Replies usually within one business day, same day on WhatsApp. Works with clients across the UAE and internationally.",
+    body: "Email bilal@bilalshafqat.com or WhatsApp +971 52 976 6006. Based in Dubai, Gulf Standard Time UTC+4, Monday to Friday. Replies usually within one business day, same day on WhatsApp. Works with clients across the UAE and internationally.",
     url: "/contact",
     kind: "info",
   });

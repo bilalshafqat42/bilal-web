@@ -97,9 +97,9 @@ export default function PrivacyPage() {
               <h2 className="mt-6 text-base font-semibold text-ink">Getting your details removed</h2>
               <p className="mt-3 text-sm text-muted leading-relaxed">
                 If you&apos;ve sent an enquiry and want it deleted, email{" "}
-                <a href="mailto:bilalshafqat42@gmail.com" className="text-gold underline underline-offset-2 hover:opacity-80">
-                  bilalshafqat42@gmail.com
-                </a>{" "}
+                <span className="text-gold">
+                  bilal@bilalshafqat.com
+                </span>{" "}
                 and it will be removed.
               </p>
             </div>

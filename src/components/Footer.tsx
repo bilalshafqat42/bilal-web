@@ -4,7 +4,7 @@ import { Building2, MapPin } from "lucide-react";
 import SocialLinks from "./SocialLinks";
 import FooterWordmark from "./FooterWordmark";
 
-const EMAIL = "bilalshafqat42@gmail.com";
+const EMAIL = "bilal@bilalshafqat.com";
 
 /**
  * Real locations only. An earlier version listed UK and North America as
@@ -27,7 +27,7 @@ const regions = [
     name: "Pakistan",
     meta: "UTC+5",
     line: "Second base, on the same working week.",
-    actions: [{ label: EMAIL, href: `mailto:${EMAIL}` }],
+    actions: [{ label: EMAIL, href: "/appointment" }],
   },
 ];
 

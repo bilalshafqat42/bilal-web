@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { trackLead, trackWhatsApp, generateEventId } from "@/lib/analytics";
 
 const WHATSAPP = "971529766006";
-const EMAIL = "bilalshafqat42@gmail.com";
+const EMAIL = "bilal@bilalshafqat.com";
 
 type Status = "idle" | "submitting" | "success" | "fallback" | "error";
 
@@ -88,9 +88,6 @@ export default function ContactForm() {
   const whatsappHref = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
     `Hi Bilal, I tried the contact form on your site.\n\n${summary()}`
   )}`;
-  const mailtoHref = `mailto:${EMAIL}?subject=${encodeURIComponent(
-    "Enquiry from bilalshafqat.com"
-  )}&body=${encodeURIComponent(summary())}`;
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -240,12 +237,13 @@ export default function ContactForm() {
               Rather than lose your message, send it to me directly — everything you
               typed is already filled in.
             </p>
+            <p className="mt-2 text-sm text-muted">
+              Or email <span className="text-ink">{EMAIL}</span> — your message is still in the
+              form above.
+            </p>
             <div className="mt-4 flex flex-wrap gap-3">
               <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold">
                 <MessageCircle size={15} /> Send on WhatsApp
-              </a>
-              <a href={mailtoHref} className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors">
-                Send by email
               </a>
             </div>
           </div>

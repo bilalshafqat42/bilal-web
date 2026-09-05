@@ -33,9 +33,9 @@ type Props = {
   rel?: string;
 };
 
-/** `next/link` is for internal routes. A `mailto:`, a `tel:`, an external URL
- *  or a bare fragment is not one, and routing them through the client router
- *  either breaks them or pointlessly involves it. */
+/** `next/link` is for internal routes. A `tel:` link, an external URL, a bare
+ *  fragment or any other scheme is not one, and routing those through the
+ *  client router either breaks them or pointlessly involves it. */
 const isRoute = (href: string) => href.startsWith("/");
 
 export default function CtaButton({

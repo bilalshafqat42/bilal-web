@@ -28,7 +28,7 @@ export default function Contact() {
               </p>
 
               <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-                <CtaButton href="mailto:bilalshafqat42@gmail.com">Book a free consultation</CtaButton>
+                <CtaButton href="/appointment">Book a free consultation</CtaButton>
                 <a
                   href="tel:+971529766006"
                   className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
@@ -39,7 +39,7 @@ export default function Contact() {
 
               <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted">
                 <span className="flex items-center gap-2">
-                  <Mail size={15} className="text-gold" /> bilalshafqat42@gmail.com
+                  <Mail size={15} className="text-gold" /> bilal@bilalshafqat.com
                 </span>
                 <span className="flex items-center gap-2">
                   <Phone size={15} className="text-gold" /> +971 52 976 6006

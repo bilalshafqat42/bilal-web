@@ -197,9 +197,9 @@ export default function LeadFormPopup() {
                       <AlertCircle size={14} className="mt-0.5 shrink-0" />
                       <span>
                         Something went wrong. Please email{" "}
-                        <a href="mailto:bilalshafqat42@gmail.com" className="underline">
-                          bilalshafqat42@gmail.com
-                        </a>{" "}
+                        <span className="underline">
+                          bilal@bilalshafqat.com
+                        </span>{" "}
                         directly instead.
                       </span>
                     </div>

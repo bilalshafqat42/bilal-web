@@ -1,0 +1,56 @@
+# Repository checks.
+#
+# Created alongside the h1 check, because there was no CI at all — the missing
+# h1 on /process reached a review only because someone happened to run a sweep
+# by hand. A check nobody runs is not a check.
+#
+# The h1 and search checks need a running server, so the job builds, starts the
+# production server, waits for it, then runs them against it.
+name: Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Types
+        run: npx tsc --noEmit
+
+      - name: Build
+        run: npm run build
+
+      - name: Start server
+        run: |
+          npx next start -p 3000 &
+          # Poll rather than sleep a fixed time: a cold start on a CI runner is
+          # slower and less predictable than on a laptop.
+          for i in $(seq 1 60); do
+            curl -sf -o /dev/null http://localhost:3000/ && exit 0
+            sleep 1
+          done
+          echo "Server did not start within 60s"
+          exit 1
+
+      - name: Every route has exactly one non-empty h1
+        run: npm run h1-check
+        env:
+          BASE_URL: http://localhost:3000
+
+      - name: Search ranking regression check
+        run: npm run search-check

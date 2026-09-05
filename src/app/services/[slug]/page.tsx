@@ -260,10 +260,10 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                       WhatsApp
                     </a>
                     <a
-                      href="mailto:bilalshafqat42@gmail.com"
+                      href="/appointment"
                       className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-white/5"
                     >
-                      Email
+                      Book a call
                     </a>
                   </div>
                 </div>

@@ -89,7 +89,7 @@ export default function AskAssistant() {
         });
       }
     } catch {
-      if (!results.length) setError("Couldn't reach the assistant. Email bilalshafqat42@gmail.com.");
+      if (!results.length) setError("Couldn't reach the assistant. Email bilal@bilalshafqat.com.");
     } finally {
       setStreaming(false);
     }

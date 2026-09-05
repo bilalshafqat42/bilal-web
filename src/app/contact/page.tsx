@@ -22,8 +22,8 @@ const channels = [
   {
     icon: Mail,
     label: "Email",
-    value: "bilalshafqat42@gmail.com",
-    href: "mailto:bilalshafqat42@gmail.com",
+    value: "bilal@bilalshafqat.com",
+    href: "/appointment",
     note: "Best for detailed briefs and attachments.",
   },
   {
@@ -51,7 +51,7 @@ const contactSchema = {
     name: "Bilal Shafqat",
     url: SITE_URL,
     jobTitle: "Digital Marketing, Design & Development Specialist",
-    email: "bilalshafqat42@gmail.com",
+    email: "bilal@bilalshafqat.com",
     telephone: "+971529766006",
     address: {
       "@type": "PostalAddress",
@@ -63,7 +63,7 @@ const contactSchema = {
       {
         "@type": "ContactPoint",
         contactType: "sales",
-        email: "bilalshafqat42@gmail.com",
+        email: "bilal@bilalshafqat.com",
         telephone: "+971529766006",
         availableLanguage: ["English"],
         areaServed: ["AE", "Worldwide"],
