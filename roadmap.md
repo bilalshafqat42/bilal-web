@@ -1222,6 +1222,16 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - Above the fold: 1512x982 shows everything through the project strip; 1440x900 clips the strip partially; 1280x800 clips the stat bar; 390x844 ends after the CTAs. No horizontal overflow at any size.
     - Verified: lint, tsc, h1-check, schema-check and search-check all exit 0; routes correct including the 404.
 
+138. **Qualification moved to /appointment rather than restored to a floating widget (2026-09-05)** — **done.** Bilal's call, and the right one: the questions now sit on the page every primary CTA points at, instead of in a bubble a visitor might never open, and WhatsApp goes back to being a plain channel rather than a form in disguise.
+    - **Three fields**: the existing "What is it about?" already covered service at the four-pillar level, so it stayed; **Rough budget** and **Timeline** were added beside it.
+    - **The budget bands follow the pricing model rather than being invented**: an advisory session starts at 3,500, a retainer at 16,000 a month, a project at 31,500, a website build at 47,500. "Not sure yet" is listed first deliberately — forcing a guess from someone who genuinely does not know produces a wrong number that then anchors the whole conversation.
+    - **All three travel with the lead** into `/api/lead`, so qualification reaches the inbox and Performo instead of being asked again on the call. Verified by intercepting and aborting the request rather than submitting: a real POST would have put another junk lead in Performo, and there are already five to delete.
+    - Verified: three selects render at 1440 and 390 with no overflow, one `h1`, no page errors; lint, tsc, h1-check, schema-check and search-check all exit 0.
+
+**Blocked on Bilal, both raised 2026-09-05:**
+    - **The pricing model is now real and unpublished.** He supplied a four-sheet model with live formulas: floor rate AED 525/hour, day 4,200, half-day 2,100, capacity about 107 billable hours a month, and per-service "from" figures with the exact strings to publish. This closes the long-standing "prices pending" blocker on `/pricing` and the eight service pages — **but publishing a price list is outward-facing and hard to reverse, and his own Notes sheet says the delivery hours behind those figures are estimates rather than measured.** Asked before publishing.
+    - **`/appointment` still is not a real calendar.** Thirteen CTAs now promise a booking on a page that says it is only a request. Cal.com's free tier would close that, but it needs his account and an embed key — cannot be done from here.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

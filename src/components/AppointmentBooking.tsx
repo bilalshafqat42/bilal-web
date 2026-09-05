@@ -30,6 +30,32 @@ const SLOTS = Array.from({ length: 18 }, (_, i) => {
   return `${String(Math.floor(minutes / 60)).padStart(2, "0")}:${minutes % 60 === 0 ? "00" : "30"}`;
 });
 
+/** Budget bands, not prices. They exist so a first call starts from a shared
+ *  ballpark instead of discovering in minute twenty that the scope and the
+ *  budget were never in the same range.
+ *
+ *  The boundaries follow the pricing model rather than being picked at random:
+ *  an advisory session starts at 3,500, a retainer at 16,000 a month, a
+ *  project at 31,500, and a website build at 47,500. "Not sure yet" is first
+ *  on purpose — forcing a guess from someone who genuinely does not know only
+ *  produces a wrong answer that then anchors the conversation. */
+const BUDGETS = [
+  "Not sure yet",
+  "Under AED 15,000",
+  "AED 15,000 - 50,000",
+  "AED 50,000 - 150,000",
+  "Over AED 150,000",
+];
+
+/** Timeline. "Just exploring" is a real and useful answer, not a dead end:
+ *  knowing it up front changes how the call is run rather than wasting it. */
+const TIMELINES = [
+  "As soon as possible",
+  "Within the next month",
+  "One to three months",
+  "Just exploring for now",
+];
+
 const TOPICS = [
   "Paid marketing & lead generation",
   "Website or app build",
@@ -44,6 +70,8 @@ export default function AppointmentBooking() {
   const [day, setDay] = useState(0);
   const [slot, setSlot] = useState<string | null>(null);
   const [topic, setTopic] = useState(TOPICS[0]);
+  const [budget, setBudget] = useState(BUDGETS[0]);
+  const [timeline, setTimeline] = useState(TIMELINES[0]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
@@ -74,7 +102,7 @@ export default function AppointmentBooking() {
           email,
           botcheck,
           service: "Appointment request",
-          message: `Requested a 30-minute call on ${chosenLabel} at ${slot} (GST, UTC+4). Topic: ${topic}.`,
+          message: `Requested a 30-minute call on ${chosenLabel} at ${slot} (GST, UTC+4).\nService: ${topic}\nBudget: ${budget}\nTimeline: ${timeline}`,
           attribution: getAttribution(),
           eventId,
           ...getFacebookCookies(),
@@ -211,20 +239,58 @@ export default function AppointmentBooking() {
         </div>
       </div>
 
-      <div className="mt-6">
-        <label htmlFor="topic" className="text-sm font-medium text-ink">
-          What is it about?
-        </label>
-        <select
-          id="topic"
-          value={topic}
-          onChange={(e) => setTopic(e.target.value)}
-          className="mt-2 w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 [color-scheme:dark]"
-        >
-          {TOPICS.map((t) => (
-            <option key={t}>{t}</option>
-          ))}
-        </select>
+      {/* Qualification moved here from the retired floating widget. This is the
+          page every primary CTA points at, so the questions belong on it rather
+          than in a chat bubble a visitor may never open — and WhatsApp goes
+          back to being a plain channel rather than a form in disguise. */}
+      <div className="mt-6 grid gap-4 sm:grid-cols-3">
+        <div>
+          <label htmlFor="topic" className="text-sm font-medium text-ink">
+            What is it about?
+          </label>
+          <select
+            id="topic"
+            value={topic}
+            onChange={(e) => setTopic(e.target.value)}
+            className="mt-2 w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 [color-scheme:dark]"
+          >
+            {TOPICS.map((t) => (
+              <option key={t}>{t}</option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor="budget" className="text-sm font-medium text-ink">
+            Rough budget
+          </label>
+          <select
+            id="budget"
+            value={budget}
+            onChange={(e) => setBudget(e.target.value)}
+            className="mt-2 w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 [color-scheme:dark]"
+          >
+            {BUDGETS.map((t) => (
+              <option key={t}>{t}</option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor="timeline" className="text-sm font-medium text-ink">
+            Timeline
+          </label>
+          <select
+            id="timeline"
+            value={timeline}
+            onChange={(e) => setTimeline(e.target.value)}
+            className="mt-2 w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 [color-scheme:dark]"
+          >
+            {TIMELINES.map((t) => (
+              <option key={t}>{t}</option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
