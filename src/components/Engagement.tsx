@@ -163,7 +163,7 @@ export default function Engagement({ variant = "homepage" }: { variant?: "homepa
           <Reveal className="mt-14 text-center">
             <div>
               <p className="mx-auto max-w-xl text-muted">Let&apos;s discuss your goals and define the right approach.</p>
-              <CtaButton href="#contact" className="mt-5">Book a free consultation</CtaButton>
+              <CtaButton href="/appointment" className="mt-5">Book a free consultation</CtaButton>
             </div>
           </Reveal>
         )}

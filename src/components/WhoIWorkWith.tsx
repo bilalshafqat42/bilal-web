@@ -126,7 +126,7 @@ export default function WhoIWorkWith() {
         <Reveal className="mt-14 text-center">
           <div>
             <p className="mx-auto max-w-xl text-muted">Let&apos;s discuss your goals and find the right engagement model.</p>
-            <CtaButton href="#contact" className="mt-5">Book a free consultation</CtaButton>
+            <CtaButton href="/appointment" className="mt-5">Book a free consultation</CtaButton>
           </div>
         </Reveal>
       </div>

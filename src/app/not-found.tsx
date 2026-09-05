@@ -39,7 +39,7 @@ export default function NotFound() {
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <CtaButton href="/contact">Start a conversation</CtaButton>
+              <CtaButton href="/appointment">Start a conversation</CtaButton>
               <Link
                 href="/portfolio"
                 className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"

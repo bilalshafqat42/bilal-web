@@ -4,7 +4,7 @@
 # h1 on /process reached a review only because someone happened to run a sweep
 # by hand. A check nobody runs is not a check.
 #
-# The h1 and search checks need a running server, so the job builds, starts the
+# The h1, schema and search checks need a running server, so the job builds, starts the
 # production server, waits for it, then runs them against it.
 name: Checks
 
@@ -49,6 +49,11 @@ jobs:
 
       - name: Every route has exactly one non-empty h1
         run: npm run h1-check
+        env:
+          BASE_URL: http://localhost:3000
+
+      - name: JSON-LD types, validity and banned markup
+        run: npm run schema-check
         env:
           BASE_URL: http://localhost:3000
 

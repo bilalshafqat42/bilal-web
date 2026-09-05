@@ -86,7 +86,7 @@ export default function AboutPage() {
                   contact, and one person accountable for the result.
                 </p>
                 <div className="mt-8 flex flex-wrap items-center gap-4">
-                  <CtaButton href="/contact">Book a free consultation</CtaButton>
+                  <CtaButton href="/appointment">Book a free consultation</CtaButton>
                   <Link
                     href="/portfolio"
                     className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
@@ -235,7 +235,7 @@ export default function AboutPage() {
                     Tell me what you&apos;re trying to achieve and I&apos;ll come back
                     with next steps, not a generic proposal deck.
                   </p>
-                  <CtaButton href="/contact" className="mt-9">Book a free consultation</CtaButton>
+                  <CtaButton href="/appointment" className="mt-9">Book a free consultation</CtaButton>
                 </div>
               </div>
             </Reveal>

@@ -164,7 +164,7 @@ export default function Nav() {
               and a hydration mismatch for no gain. */}
           <span className="hidden text-sm text-muted xl:inline">Dubai, UTC+4</span>
           <Link
-            href="/contact"
+            href="/appointment"
             className="btn-primary hidden rounded-full px-6 py-3 text-sm font-semibold lg:inline-flex"
           >
             Book a free consultation
@@ -357,7 +357,7 @@ export default function Nav() {
             </Link>
 
             <Link
-              href="/contact"
+              href="/appointment"
               onClick={() => setOpen(false)}
               className="btn-primary mt-6 inline-flex justify-center rounded-full px-6 py-4 text-sm font-semibold"
             >

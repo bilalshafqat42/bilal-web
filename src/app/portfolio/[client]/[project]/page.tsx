@@ -63,12 +63,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
     dateModified: new Date().toISOString().split("T")[0],
     genre: "Real estate marketing case study",
     image: `${SITE}${p.cardImage}`,
-    creator: {
-      "@type": "Person",
-      name: "Bilal Shafqat",
-      url: SITE,
-      jobTitle: "Digital Marketing, Design & Development Specialist",
-    },
+    creator: { "@id": `${SITE}/#person`, "@type": "Person" },
     about: { "@type": "Organization", name: c.name },
     isPartOf: { "@type": "CreativeWork", name: c.name, url: `${SITE}/portfolio/${c.slug}` },
     ...(p.place
@@ -257,7 +252,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
                   <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-ink">
                     Need this for your launch? <span className="text-gradient">Let&apos;s talk.</span>
                   </h2>
-                  <CtaButton href="/contact" className="mt-9">Book a free consultation</CtaButton>
+                  <CtaButton href="/appointment" className="mt-9">Book a free consultation</CtaButton>
                 </div>
               </div>
             </Reveal>

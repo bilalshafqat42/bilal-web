@@ -56,12 +56,7 @@ export default async function ClientCaseStudy({ params }: Props) {
     dateModified: new Date().toISOString().split("T")[0],
     genre: "Real estate marketing case study",
     image: `${SITE}${c.ogImage}`,
-    creator: {
-      "@type": "Person",
-      name: "Bilal Shafqat",
-      url: SITE,
-      jobTitle: "Digital Marketing, Design & Development Specialist",
-    },
+    creator: { "@id": `${SITE}/#person`, "@type": "Person" },
     about: { "@type": "Organization", name: c.name, description: c.intro },
     hasPart: c.projects.map((p) => ({
       "@type": "CreativeWork",
@@ -230,7 +225,7 @@ export default async function ClientCaseStudy({ params }: Props) {
                     Launching a development? <span className="text-gradient">Let&apos;s talk.</span>
                   </h2>
                   <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-                    <CtaButton href="/contact">Book a free consultation</CtaButton>
+                    <CtaButton href="/appointment">Book a free consultation</CtaButton>
                     <Link href="/portfolio" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors">
                       See all work
                     </Link>

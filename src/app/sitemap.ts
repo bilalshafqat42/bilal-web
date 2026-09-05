@@ -16,7 +16,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/contact`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.9,
+      // Secondary to /appointment, which is where every primary CTA now goes.
+      // Kept indexed rather than redirected: it answers "contact" queries and
+      // is the only page carrying the WhatsApp and phone routes.
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/appointment`,

@@ -6,8 +6,9 @@ import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import CtaButton from "@/components/CtaButton";
 import Engagement from "@/components/Engagement";
+import JsonLd from "@/components/JsonLd";
+import { SITE_URL, faqNode, breadcrumbNode } from "@/lib/schema";
 
-const SITE_URL = "https://bilalshafqat.com";
 
 export const metadata: Metadata = {
   title: "Pricing & How Projects Are Costed — Bilal Shafqat",
@@ -66,14 +67,6 @@ const drivers = {
 };
 
 export default function PricingPage() {
-  const breadcrumb = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Pricing", item: `${SITE_URL}/pricing` },
-    ],
-  };
 
   const faqs = [
     {
@@ -103,20 +96,18 @@ export default function PricingPage() {
     },
   ];
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((f) => ({
-      "@type": "Question",
-      name: f.question,
-      acceptedAnswer: { "@type": "Answer", text: f.answer },
-    })),
-  };
+
+  // One graph, nodes keyed by @id. Both FAQ sets below are rendered visibly on
+  // this page — verified, not assumed.
+  const pageUrl = `${SITE_URL}/pricing`;
+  const nodes = [
+    breadcrumbNode(pageUrl, [{ name: "Home", item: SITE_URL }, { name: "Pricing", item: `${SITE_URL}/pricing` }]),
+    faqNode(pageUrl, faqs.map((f) => ({ question: f.question, answer: f.answer }))),
+  ];
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <JsonLd nodes={nodes} />
       <Nav />
       <main className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
@@ -247,7 +238,7 @@ export default function PricingPage() {
                     Usually within a business day. No pitch deck, no discovery
                     process you have to sit through first.
                   </p>
-                  <CtaButton href="/contact" className="mt-9">Get a quote</CtaButton>
+                  <CtaButton href="/appointment" className="mt-9">Get a quote</CtaButton>
                 </div>
               </div>
             </Reveal>

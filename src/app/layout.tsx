@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import LeadFormPopup from "@/components/LeadFormPopup";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import StructuredData from "@/components/StructuredData";
 import CookieConsent from "@/components/CookieConsent";
 import SpotlightSearch from "@/components/SpotlightSearch";
 import Analytics from "@/components/Analytics";
@@ -63,7 +62,6 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-bg text-ink">
         <Analytics />
         <MetaPixel />
-        <StructuredData />
         {children}
         <SpotlightSearch />
         <WhatsAppButton />

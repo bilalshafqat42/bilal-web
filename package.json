@@ -10,7 +10,8 @@
     "warm": "node scripts/warm-images.mjs",
     "indexnow": "node scripts/indexnow.mjs",
     "search-check": "npx --yes tsx scripts/search-check.mjs",
-    "h1-check": "node scripts/h1-check.mjs"
+    "h1-check": "node scripts/h1-check.mjs",
+    "schema-check": "node scripts/schema-check.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.122.0",

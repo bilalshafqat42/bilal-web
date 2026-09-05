@@ -1,60 +1,14 @@
-const SITE_URL = "https://bilalshafqat.com";
+import JsonLd from "./JsonLd";
+import { personNode, businessNode, websiteNode } from "@/lib/schema";
 
-const services = [
-  "Paid Marketing & Lead Generation",
-  "Website & App Development",
-  "Design, Content & Conversion Optimization",
-  "CRM & Marketing Automation",
-  "Google Ads & Performance Max",
-  "Meta, LinkedIn & TikTok Advertising",
-  "HubSpot, Zoho & Salesforce CRM Setup",
-  "Conversion Rate Optimization (CRO)",
-];
-
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Bilal Shafqat",
-  jobTitle: "Digital Marketing, Design & Development Specialist",
-  url: SITE_URL,
-  image: `${SITE_URL}/images/bilal-shafqat-coat.avif`,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Dubai",
-    addressCountry: "AE",
-  },
-  // Build timestamp. Honest (the content really was current at build) and it
-  // gives AI systems and search engines the freshness signal the site had none of.
-  dateModified: new Date().toISOString().split("T")[0],
-  sameAs: [
-    "https://www.linkedin.com/in/bilalshafqat42",
-    "https://www.behance.net/bilalshafqat",
-    "https://dribbble.com/bilalshafqat",
-    "https://www.instagram.com/imbilalshafqat/",
-    "https://www.facebook.com/imBilalshafqat",
-    "https://x.com/bilalshafqat42",
-    "https://www.youtube.com/@bilalshafqat42",
-    "https://www.tiktok.com/@imbilalshafqat",
-    "https://www.pinterest.com/bilalshafqat42/",
-  ],
-  knowsAbout: services,
-  areaServed: ["United Arab Emirates", "Worldwide"],
-  makesOffer: services.map((name) => ({
-    "@type": "Offer",
-    itemOffered: {
-      "@type": "Service",
-      name,
-      provider: { "@type": "Person", name: "Bilal Shafqat" },
-      areaServed: ["United Arab Emirates", "Worldwide"],
-    },
-  })),
-};
-
+/**
+ * The site's identity graph: who I am, the business, and the site itself.
+ *
+ * Homepage only. This previously rendered from the root layout, which put a
+ * `Person` node on all 23 routes — twenty-three copies of one entity, none of
+ * them carrying an `@id` to say they were the same person. Other templates now
+ * reference `#person` and `#business` by id instead of restating them.
+ */
 export default function StructuredData() {
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-    />
-  );
+  return <JsonLd nodes={[personNode(), businessNode(), websiteNode()]} />;
 }

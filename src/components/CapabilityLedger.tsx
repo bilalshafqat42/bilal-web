@@ -109,7 +109,7 @@ export default function CapabilityLedger() {
         </ul>
 
         <div className="mt-12 flex flex-wrap items-center justify-between gap-6">
-          <CtaButton href="/contact">Book a free consultation</CtaButton>
+          <CtaButton href="/appointment">Book a free consultation</CtaButton>
           <Link
             href="/portfolio"
             className="inline-flex items-center gap-2 text-sm font-semibold text-gold transition-opacity hover:opacity-80"

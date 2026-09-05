@@ -1,4 +1,5 @@
 import Nav from "@/components/Nav";
+import StructuredData from "@/components/StructuredData";
 import HeroBanner from "@/components/HeroBanner";
 import CapabilityLedger from "@/components/CapabilityLedger";
 import PortfolioGrid from "@/components/PortfolioGrid";
@@ -32,6 +33,7 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
+      <StructuredData />
       <Nav />
       <main className="flex-1">
         <HeroBanner />

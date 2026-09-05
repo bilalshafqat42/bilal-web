@@ -18,8 +18,9 @@ import TrackView from "@/components/TrackView";
 import InlineLeadForm from "@/components/InlineLeadForm";
 import CtaButton from "@/components/CtaButton";
 import ClientLogoRow from "@/components/ClientLogoRow";
+import JsonLd from "@/components/JsonLd";
+import { SITE_URL, serviceNode, faqNode, breadcrumbNode } from "@/lib/schema";
 
-const SITE_URL = "https://bilalshafqat.com";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -58,56 +59,45 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
   const others = megaMenuGroups.filter((c) => c.slug !== category.slug);
   const url = `${SITE_URL}/services/${category.slug}`;
 
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: category.title,
-    description: category.metaDescription,
-    url,
-    provider: { "@type": "Person", name: "Bilal Shafqat", url: SITE_URL },
-    areaServed: ["United Arab Emirates", "Worldwide"],
-    dateModified: new Date().toISOString().split("T")[0],
-    // Each sub-service is listed so search engines can see the page's real
-    // scope rather than inferring it from prose alone.
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: category.title,
-      itemListElement: sections.map(({ item }) => ({
-        "@type": "Offer",
-        itemOffered: { "@type": "Service", name: item.title },
-      })),
-    },
-  };
-
-  const faqSchema = faqs.length
-    ? {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: faqs.map((f) => ({
-          "@type": "Question",
-          name: f.question,
-          acceptedAnswer: { "@type": "Answer", text: f.answer },
+  // One graph per page, keyed by @id, rather than three unlinked blocks each
+  // restating who the provider is. `provider` now points at #business instead
+  // of inlining a second Person node.
+  const nodes: object[] = [
+    {
+      ...serviceNode({
+        name: category.title,
+        description: category.metaDescription,
+        serviceType: category.title,
+        url,
+      }),
+      // Each sub-service is listed so search engines see the page's real scope
+      // rather than inferring it from prose alone. Names come from the page's
+      // own section headings.
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: category.title,
+        itemListElement: sections.map(({ item }) => ({
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: item.title },
         })),
-      }
-    : null;
+      },
+    },
+    breadcrumbNode(url, [
+      { name: "Home", item: SITE_URL },
+      { name: "Services", item: `${SITE_URL}/services` },
+      { name: category.title, item: url },
+    ]),
+  ];
 
-  const breadcrumb = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Services", item: `${SITE_URL}/services` },
-      { "@type": "ListItem", position: 3, name: category.title, item: url },
-    ],
-  };
+  // Only when the page actually renders them. Every question below is on the
+  // page in visible text; audited across all eight service pages.
+  if (faqs.length) {
+    nodes.push(faqNode(url, faqs.map((f) => ({ question: f.question, answer: f.answer }))));
+  }
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      {faqSchema ? (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      ) : null}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <JsonLd nodes={nodes} />
       <TrackView name={category.title} category="Service" />
       <Nav />
       <main className="flex-1 pb-16 sm:pb-20">
@@ -132,7 +122,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                 </h1>
                 <p className="mt-6 text-lg text-muted leading-relaxed">{category.intro}</p>
                 <div className="mt-8 flex flex-wrap gap-4">
-                  <CtaButton href="/contact">Book a free consultation</CtaButton>
+                  <CtaButton href="/appointment">Book a free consultation</CtaButton>
                   <Link href="/portfolio" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors">
                     See related work
                   </Link>

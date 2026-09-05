@@ -8,6 +8,8 @@ import ContactForm from "@/components/ContactForm";
 import SocialLinks from "@/components/SocialLinks";
 
 const SITE_URL = "https://bilalshafqat.com";
+const PERSON_ID = `${SITE_URL}/#person`;
+const BUSINESS_ID = `${SITE_URL}/#business`;
 
 export const metadata: Metadata = {
   title: "Contact Bilal Shafqat — Digital Marketer & Developer, Dubai",
@@ -45,38 +47,32 @@ const channels = [
 const contactSchema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
+  "@id": `${SITE_URL}/contact#page`,
   url: `${SITE_URL}/contact`,
-  mainEntity: {
-    "@type": "Person",
-    name: "Bilal Shafqat",
-    url: SITE_URL,
-    jobTitle: "Digital Marketing, Design & Development Specialist",
-    email: "bilal@bilalshafqat.com",
-    telephone: "+971529766006",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Dubai",
-      addressCountry: "AE",
+  // A pointer, not a second copy. The Person is defined once on the homepage
+  // at #person; restating name, job title and address here is what produced
+  // twenty-odd unlinked duplicates of the same entity.
+  mainEntity: { "@id": PERSON_ID, "@type": "Person" },
+  about: { "@id": BUSINESS_ID, "@type": "ProfessionalService" },
+  // Contact routes belong to this page rather than to the Person node: they
+  // are the page's subject, and they are all visible on it.
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      email: "bilal@bilalshafqat.com",
+      telephone: "+971529766006",
+      availableLanguage: ["English"],
+      areaServed: ["AE", "GB"],
     },
-    areaServed: ["United Arab Emirates", "Worldwide"],
-    contactPoint: [
-      {
-        "@type": "ContactPoint",
-        contactType: "sales",
-        email: "bilal@bilalshafqat.com",
-        telephone: "+971529766006",
-        availableLanguage: ["English"],
-        areaServed: ["AE", "Worldwide"],
-      },
-      {
-        "@type": "ContactPoint",
-        contactType: "sales",
-        telephone: "+971566047396",
-        availableLanguage: ["English"],
-        areaServed: ["AE", "Worldwide"],
-      },
-    ],
-  },
+    {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      telephone: "+971566047396",
+      availableLanguage: ["English"],
+      areaServed: ["AE", "GB"],
+    },
+  ],
 };
 
 export default function ContactPage() {

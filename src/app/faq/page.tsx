@@ -6,8 +6,9 @@ import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import { faqGroups, allFaqs } from "@/data/faqs";
 import CtaButton from "@/components/CtaButton";
+import JsonLd from "@/components/JsonLd";
+import { SITE_URL, faqNode, breadcrumbNode } from "@/lib/schema";
 
-const SITE_URL = "https://bilalshafqat.com";
 
 export const metadata: Metadata = {
   title: "FAQ — Working With a Freelance Marketer & Developer",
@@ -26,30 +27,19 @@ export const metadata: Metadata = {
 export default function FaqPage() {
   // One FAQPage covering every question, so search engines and AI assistants can
   // read the whole set rather than whichever group happens to be first.
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    url: `${SITE_URL}/faq`,
-    mainEntity: allFaqs.map((f) => ({
-      "@type": "Question",
-      name: f.question,
-      acceptedAnswer: { "@type": "Answer", text: f.answer },
-    })),
-  };
 
-  const breadcrumb = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "FAQ", item: `${SITE_URL}/faq` },
-    ],
-  };
+
+  // One graph, nodes keyed by @id. Both FAQ sets below are rendered visibly on
+  // this page — verified, not assumed.
+  const pageUrl = `${SITE_URL}/faq`;
+  const nodes = [
+    breadcrumbNode(pageUrl, [{ name: "Home", item: SITE_URL }, { name: "FAQ", item: `${SITE_URL}/faq` }]),
+    faqNode(pageUrl, allFaqs.map((f) => ({ question: f.question, answer: f.answer }))),
+  ];
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <JsonLd nodes={nodes} />
       <Nav />
       <main className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
@@ -130,7 +120,7 @@ export default function FaqPage() {
                     A first conversation costs nothing and often ends with me
                     telling you a smaller piece of work would do the job.
                   </p>
-                  <CtaButton href="/contact" className="mt-9">Book a free consultation</CtaButton>
+                  <CtaButton href="/appointment" className="mt-9">Book a free consultation</CtaButton>
                 </div>
               </div>
             </Reveal>
