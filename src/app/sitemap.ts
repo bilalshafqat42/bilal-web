@@ -1,5 +1,14 @@
 import type { MetadataRoute } from "next";
 import { megaMenuGroups } from "@/data/pillars";
+import {
+  contentDates,
+  SERVICES_CONTENT_DATE,
+  PORTFOLIO_CONTENT_DATE,
+} from "@/data/contentDates";
+
+/** Falls back to the build date only for a route with no recorded entry, so a
+ *  new page is never worse off than it was before this change. */
+const dateFor = (path: string) => new Date(contentDates[path] ?? Date.now());
 import { caseStudyUrls } from "@/data/caseStudies";
 
 const baseUrl = "https://bilalshafqat.com";
@@ -8,13 +17,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: dateFor("/"),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: new Date(),
+      lastModified: dateFor("/contact"),
       changeFrequency: "monthly",
       // Secondary to /appointment, which is where every primary CTA now goes.
       // Kept indexed rather than redirected: it answers "contact" queries and
@@ -23,55 +32,57 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/appointment`,
-      lastModified: new Date(),
+      lastModified: dateFor("/appointment"),
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/pricing`,
-      lastModified: new Date(),
+      lastModified: dateFor("/pricing"),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/faq`,
-      lastModified: new Date(),
+      lastModified: dateFor("/faq"),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/privacy`,
-      lastModified: new Date(),
+      lastModified: dateFor("/privacy"),
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: `${baseUrl}/process`,
-      lastModified: new Date(),
+      lastModified: dateFor("/process"),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified: new Date(),
+      lastModified: dateFor("/about"),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/portfolio`,
-      lastModified: new Date(),
+      lastModified: dateFor("/portfolio"),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/services`,
-      lastModified: new Date(),
+      lastModified: dateFor("/services"),
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    // All four case studies read from src/data/caseStudies.ts, so they share
+    // that file's date rather than each claiming to have changed today.
     ...caseStudyUrls().map((path) => ({
       url: `${baseUrl}${path}`,
-      lastModified: new Date(),
+      lastModified: new Date(PORTFOLIO_CONTENT_DATE),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
@@ -80,7 +91,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // the four new category pages out of the sitemap entirely.
     ...megaMenuGroups.map((category) => ({
       url: `${baseUrl}/services/${category.slug}`,
-      lastModified: new Date(),
+      lastModified: new Date(SERVICES_CONTENT_DATE),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),

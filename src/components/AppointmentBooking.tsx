@@ -7,6 +7,8 @@ import { ArrowRight, Check, ChevronRight, Loader2 } from "lucide-react";
 import { getAttribution, getFacebookCookies } from "@/lib/attribution";
 import { useRouter } from "next/navigation";
 import { trackSchedule, generateEventId } from "@/lib/analytics";
+import { megaMenuGroups } from "@/data/pillars";
+import CalBooking from "@/components/CalBooking";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -39,13 +41,12 @@ const SLOTS = Array.from({ length: 18 }, (_, i) => {
  *  project at 31,500, and a website build at 47,500. "Not sure yet" is first
  *  on purpose — forcing a guess from someone who genuinely does not know only
  *  produces a wrong answer that then anchors the conversation. */
-const BUDGETS = [
-  "Not sure yet",
-  "Under AED 15,000",
-  "AED 15,000 - 50,000",
-  "AED 50,000 - 150,000",
-  "Over AED 150,000",
-];
+/** TODO(bilal): populate once the target income is settled and the "from"
+ *  figures are final. Every band boundary derives from those figures — an
+ *  advisory session, a monthly retainer, a project, a full build — so bands
+ *  written before the target is fixed would be guesses presented as ranges.
+ *  Rendered disabled until then rather than shown with invented options. */
+const BUDGETS: string[] = [];
 
 /** Timeline. "Just exploring" is a real and useful answer, not a dead end:
  *  knowing it up front changes how the call is run rather than wasting it. */
@@ -56,21 +57,23 @@ const TIMELINES = [
   "Just exploring for now",
 ];
 
-const TOPICS = [
-  "Paid marketing & lead generation",
-  "Website or app build",
-  "Design & brand",
-  "CRM & automation",
-  "Not sure yet",
-];
+/** The eight service categories, read from the same data the nav, /services
+ *  and llms.txt use. Hard-coding a parallel list here is how it would quietly
+ *  drift out of step the next time a category is renamed. */
+const SERVICES = megaMenuGroups.map((g) => g.title);
+
+/** Set this to a Cal.com event-type path, e.g. "bilalshafqat/30min", and the
+ *  page switches from collecting a time preference to taking a real booking.
+ *  Left unset, nothing about the current flow changes. */
+const CAL_LINK = process.env.NEXT_PUBLIC_CALCOM_LINK;
 
 export default function AppointmentBooking() {
   const router = useRouter();
   const days = useMemo(() => workingDays(10), []);
   const [day, setDay] = useState(0);
   const [slot, setSlot] = useState<string | null>(null);
-  const [topic, setTopic] = useState(TOPICS[0]);
-  const [budget, setBudget] = useState(BUDGETS[0]);
+  const [topic, setTopic] = useState(SERVICES[0]);
+  const [budget, setBudget] = useState("");
   const [timeline, setTimeline] = useState(TIMELINES[0]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -102,7 +105,7 @@ export default function AppointmentBooking() {
           email,
           botcheck,
           service: "Appointment request",
-          message: `Requested a 30-minute call on ${chosenLabel} at ${slot} (GST, UTC+4).\nService: ${topic}\nBudget: ${budget}\nTimeline: ${timeline}`,
+          message: `Requested a 30-minute call on ${chosenLabel} at ${slot} (GST, UTC+4).\nService: ${topic}${budget ? `\nBudget: ${budget}` : ""}\nTimeline: ${timeline}`,
           attribution: getAttribution(),
           eventId,
           ...getFacebookCookies(),
@@ -147,6 +150,109 @@ export default function AppointmentBooking() {
         >
           See my work while you wait <ArrowRight size={15} />
         </Link>
+      </div>
+    );
+  }
+
+  // The three qualification answers, shared by both modes: they sit beside the
+  // time picker in the request flow, and ahead of the calendar when Cal is
+  // configured so they can be carried into the booking notes.
+  const qualification = (
+    <div className="mt-6 grid gap-4 sm:grid-cols-3">
+      <div>
+        <label htmlFor="topic" className="text-sm font-medium text-ink">
+          What is it about?
+        </label>
+        <select
+          id="topic"
+          value={topic}
+          onChange={(e) => setTopic(e.target.value)}
+          className="mt-2 w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 [color-scheme:dark]"
+        >
+          {SERVICES.map((t) => (
+            <option key={t}>{t}</option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label htmlFor="budget" className="text-sm font-medium text-ink">
+          Rough budget
+        </label>
+        <select
+          id="budget"
+          value={budget}
+          onChange={(e) => setBudget(e.target.value)}
+          disabled={BUDGETS.length === 0}
+          aria-describedby={BUDGETS.length === 0 ? "budget-note" : undefined}
+          className="mt-2 w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 disabled:cursor-not-allowed disabled:opacity-50 [color-scheme:dark]"
+        >
+          {BUDGETS.length === 0 ? (
+            <option value="">Not collected yet</option>
+          ) : (
+            BUDGETS.map((t) => <option key={t}>{t}</option>)
+          )}
+        </select>
+        {BUDGETS.length === 0 ? (
+          <p id="budget-note" className="mt-1.5 text-xs text-muted/70">
+            We&apos;ll cover this on the call.
+          </p>
+        ) : null}
+      </div>
+
+      <div>
+        <label htmlFor="timeline" className="text-sm font-medium text-ink">
+          Timeline
+        </label>
+        <select
+          id="timeline"
+          value={timeline}
+          onChange={(e) => setTimeline(e.target.value)}
+          className="mt-2 w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 [color-scheme:dark]"
+        >
+          {TIMELINES.map((t) => (
+            <option key={t}>{t}</option>
+          ))}
+        </select>
+      </div>
+    </div>
+  );
+
+  // Cal.com replaces the request flow the moment a link is configured. Until
+  // then the existing flow stays: removing it first would leave thirteen
+  // primary CTAs pointing at a page with no way to book anything.
+  //
+  // The disclaimer about "requested rather than booked" lives in the request
+  // flow's success state, so it disappears with it rather than needing to be
+  // deleted separately — it stops being true and stops being rendered at the
+  // same moment.
+  if (CAL_LINK) {
+    const notes = [
+      `Service: ${topic}`,
+      budget ? `Budget: ${budget}` : null,
+      `Timeline: ${timeline}`,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    return (
+      <div className="glass-strong rounded-2xl border border-border p-6 sm:p-8">
+        <h2 className="text-2xl font-semibold leading-tight text-ink sm:text-[1.75rem]">
+          Book your 30-minute clarity call
+        </h2>
+        <p className="mt-3 text-base leading-relaxed text-muted">
+          Thirty minutes on your goals, your current setup and what the honest path forward looks
+          like. No deck, no pitch, and no obligation afterwards.
+        </p>
+
+        {qualification}
+
+        {/* Keyed on the answers so the embed picks them up when they change.
+            They are selects, not text inputs, so this remounts a handful of
+            times at most rather than on every keystroke. */}
+        <div className="mt-7">
+          <CalBooking key={notes} link={CAL_LINK} prefill={{ notes }} />
+        </div>
       </div>
     );
   }
@@ -243,55 +349,7 @@ export default function AppointmentBooking() {
           page every primary CTA points at, so the questions belong on it rather
           than in a chat bubble a visitor may never open — and WhatsApp goes
           back to being a plain channel rather than a form in disguise. */}
-      <div className="mt-6 grid gap-4 sm:grid-cols-3">
-        <div>
-          <label htmlFor="topic" className="text-sm font-medium text-ink">
-            What is it about?
-          </label>
-          <select
-            id="topic"
-            value={topic}
-            onChange={(e) => setTopic(e.target.value)}
-            className="mt-2 w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 [color-scheme:dark]"
-          >
-            {TOPICS.map((t) => (
-              <option key={t}>{t}</option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label htmlFor="budget" className="text-sm font-medium text-ink">
-            Rough budget
-          </label>
-          <select
-            id="budget"
-            value={budget}
-            onChange={(e) => setBudget(e.target.value)}
-            className="mt-2 w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 [color-scheme:dark]"
-          >
-            {BUDGETS.map((t) => (
-              <option key={t}>{t}</option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label htmlFor="timeline" className="text-sm font-medium text-ink">
-            Timeline
-          </label>
-          <select
-            id="timeline"
-            value={timeline}
-            onChange={(e) => setTimeline(e.target.value)}
-            className="mt-2 w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 [color-scheme:dark]"
-          >
-            {TIMELINES.map((t) => (
-              <option key={t}>{t}</option>
-            ))}
-          </select>
-        </div>
-      </div>
+      {qualification}
 
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <input
