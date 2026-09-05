@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { CornerDownLeft, Search, Sparkles, X } from "lucide-react";
 import { buildIndex, search, type Chunk } from "@/lib/searchIndex";
-import { CONSENT_EVENT, getConsent } from "@/lib/consent";
+import { SEARCH_OPEN_EVENT } from "@/lib/searchPanel";
 
 const INDEX = buildIndex();
 
@@ -24,8 +24,6 @@ const KIND_LABEL: Record<Chunk["kind"], string> = {
 
 export default function SpotlightSearch() {
   const [open, setOpen] = useState(false);
-  const [revealed, setRevealed] = useState(false);
-  const [atFooter, setAtFooter] = useState(false);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -42,54 +40,14 @@ export default function SpotlightSearch() {
     setActive(0);
   }, []);
 
-  // The pill introduces itself rather than waiting to be found. It arrives on
-  // the visitor's first scroll, or after a short pause if they never scroll,
-  // so it reads as an offer of help rather than as chrome that was always
-  // there. Whichever happens first wins, and it only ever happens once.
-  useEffect(() => {
-    let timer = 0;
-    const reveal = () => {
-      setRevealed(true);
-      window.clearTimeout(timer);
-      window.removeEventListener("scroll", reveal);
-    };
-    // Two things share the bottom of the screen, so the pill queues behind the
-    // cookie banner rather than arriving underneath it. If consent has already
-    // been answered on a previous visit there is nothing to wait for.
-    const start = () => {
-      timer = window.setTimeout(reveal, 2200);
-      window.addEventListener("scroll", reveal, { passive: true, once: true });
-    };
-    if (getConsent() !== null) {
-      start();
-    } else {
-      window.addEventListener(CONSENT_EVENT, start, { once: true });
-    }
-    return () => {
-      window.clearTimeout(timer);
-      window.removeEventListener("scroll", reveal);
-      window.removeEventListener(CONSENT_EVENT, start);
-    };
-  }, []);
-
-  // Step aside for the footer. The pill is pinned to the bottom-left, which is
-  // exactly where the footer's copyright line ends up once the visitor reaches
-  // the end of the page. ⌘K still works while it is out of sight.
-  useEffect(() => {
-    const footer = document.querySelector("footer");
-    if (!footer || typeof IntersectionObserver === "undefined") return;
-    const io = new IntersectionObserver(
-      ([entry]) => setAtFooter(entry.isIntersecting),
-      // Only once a real slice of the footer is showing, so it does not flicker
-      // off the moment the top border appears.
-      { rootMargin: "0px 0px -35% 0px" }
-    );
-    io.observe(footer);
-    return () => io.disconnect();
-  }, []);
-
   // ⌘K / Ctrl+K from anywhere, and Escape to leave — the two shortcuts people
   // already expect from Spotlight and every command palette.
+  useEffect(() => {
+    const open = () => setOpen(true);
+    window.addEventListener(SEARCH_OPEN_EVENT, open);
+    return () => window.removeEventListener(SEARCH_OPEN_EVENT, open);
+  }, []);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
@@ -146,40 +104,14 @@ export default function SpotlightSearch() {
       ?.scrollIntoView({ block: "nearest" });
   }, [active]);
 
-  const trigger = (
-    <button
-      onClick={() => setOpen(true)}
-      aria-label="Open AI Search"
-      aria-hidden={!revealed || open || atFooter}
-      tabIndex={revealed && !open && !atFooter ? 0 : -1}
-      // Bottom-left keeps it clear of the enquiry button and WhatsApp bubble on
-      // the right. It slides up into place instead of blinking on, and is inert
-      // until revealed so it can never be tabbed to while invisible.
-      className={`glass-strong group fixed bottom-6 left-6 z-40 inline-flex items-center gap-2.5 rounded-full border border-gold/25 py-2.5 pl-4 pr-3 text-sm text-ink shadow-lg shadow-black/30 transition-[opacity,transform,border-color,box-shadow] duration-500 ease-out hover:border-gold/50 hover:shadow-xl hover:shadow-black/40 motion-reduce:transition-none sm:pl-4.5 ${
-        revealed && !open && !atFooter
-          ? "translate-y-0 opacity-100"
-          : "pointer-events-none translate-y-3 opacity-0"
-      }`}
-    >
-      <span className="relative flex h-6 w-6 items-center justify-center rounded-full bg-gold/15 text-gold">
-        <Sparkles size={13} />
-        <span className="absolute inset-0 rounded-full bg-gold/25 opacity-0 transition-opacity group-hover:opacity-100" />
-      </span>
-      <span className="font-medium">
-        Ask <span className="text-gold">AI Search</span>
-      </span>
-      <kbd className="hidden rounded-md border border-border bg-surface/70 px-1.5 py-0.5 font-sans text-[10px] text-muted sm:inline-block">
-        ⌘K
-      </kbd>
-    </button>
-  );
-
-  if (!open) return trigger;
+  // The floating trigger is gone. It was one of three widgets stacked in the
+  // bottom corners, and on a 14-inch screen it sat over the project strip —
+  // "Hadley Heights" rendered as "eights". The panel is now opened from the
+  // header's search button, or with Cmd+K from anywhere.
+  if (!open) return null;
 
   return (
-    <>
-      {trigger}
-      <div
+    <div
       role="dialog"
       aria-modal="true"
       aria-label="AI Search"
@@ -288,6 +220,5 @@ export default function SpotlightSearch() {
         </div>
         </div>
       </div>
-    </>
   );
 }

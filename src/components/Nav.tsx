@@ -3,7 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight, Search } from "lucide-react";
+import { openSearchPanel } from "@/lib/searchPanel";
 import { accentClasses, megaMenuGroups, slugify } from "@/data/pillars";
 
 /**
@@ -26,7 +27,9 @@ const links = [
   { label: "Work", href: "/portfolio" },
   { label: "Services", href: "/services", mega: true },
   { label: "Process", href: "/process" },
+  { label: "Pricing", href: "/pricing" },
   { label: "About", href: "/about" },
+  { label: "FAQ", href: "/faq" },
 ];
 
 export default function Nav() {
@@ -162,6 +165,19 @@ export default function Nav() {
           {/* Dubai does not observe daylight saving, so the offset is fixed and
               safe as static text. Reading it from a clock would mean client JS
               and a hydration mismatch for no gain. */}
+          {/* Was a floating pill in the bottom-left corner, where it sat over the
+              project strip on a 14-inch screen. Cmd+K still works from
+              anywhere; this is the discoverable route to the same panel. */}
+          <button
+            type="button"
+            onClick={openSearchPanel}
+            aria-label="Search this site"
+            className="hidden items-center gap-2 rounded-full border border-border px-3 py-2 text-muted transition-colors hover:border-gold/40 hover:text-ink lg:inline-flex"
+          >
+            <Search size={15} />
+            <kbd className="hidden font-sans text-[10px] text-muted/70 xl:inline">⌘K</kbd>
+          </button>
+
           <span className="hidden text-sm text-muted xl:inline">Dubai, UTC+4</span>
           <Link
             href="/appointment"
@@ -169,6 +185,15 @@ export default function Nav() {
           >
             Book a free consultation
           </Link>
+          <button
+            type="button"
+            onClick={openSearchPanel}
+            aria-label="Search this site"
+            className="p-1 text-ink lg:hidden"
+          >
+            <Search size={20} />
+          </button>
+
           <button
             type="button"
             onClick={() => setOpen(true)}
@@ -338,23 +363,6 @@ export default function Nav() {
                 </Link>
               )
             )}
-
-            {/* Out of the desktop bar by design, but there is room on a phone
-                and it keeps both pages reachable without hunting in the footer. */}
-            <Link
-              href="/pricing"
-              onClick={() => setOpen(false)}
-              className="border-b border-border py-4 text-lg font-semibold text-ink"
-            >
-              Pricing
-            </Link>
-            <Link
-              href="/faq"
-              onClick={() => setOpen(false)}
-              className="border-b border-border py-4 text-lg font-semibold text-ink"
-            >
-              FAQ
-            </Link>
 
             <Link
               href="/appointment"

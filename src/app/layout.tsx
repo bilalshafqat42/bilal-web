@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import LeadFormPopup from "@/components/LeadFormPopup";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import CookieConsent from "@/components/CookieConsent";
 import SpotlightSearch from "@/components/SpotlightSearch";
 import Analytics from "@/components/Analytics";
@@ -64,7 +63,6 @@ export default function RootLayout({
         <MetaPixel />
         {children}
         <SpotlightSearch />
-        <WhatsAppButton />
         <LeadFormPopup />
         <CookieConsent />
       </body>

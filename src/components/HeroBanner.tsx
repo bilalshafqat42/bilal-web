@@ -117,7 +117,10 @@ export default function HeroBanner() {
             // alignment with the grid. Two columns on mobile, three at desktop:
             // the odd cell sits alone on the second mobile row and takes no
             // right border there.
-            className={`border-border px-6 py-7 lg:px-10 lg:py-9 ${
+            // The last cell reserves the same gutter as the project strip: the
+            // enquiry button is fixed to the bottom-right, and at 1280x800 the
+            // shorter viewport put it directly over this cell's label.
+            className={`border-border px-6 py-7 lg:px-10 lg:py-9 lg:last:pr-[13rem] ${
               i % 2 === 0 ? "border-r lg:border-r" : "lg:border-r"
             } ${i < STATS.length - 1 ? "border-b lg:border-b-0" : ""} lg:last:border-r-0`}
           >
@@ -128,7 +131,7 @@ export default function HeroBanner() {
 
       </dl>
 
-      <div className="border-b border-border px-6 py-6 lg:px-10">
+      <div className="border-b border-border px-6 py-6 lg:px-10 lg:pr-[13rem]">
         <div className="lg:flex lg:items-center lg:justify-between lg:gap-8">
           <div className="lg:flex lg:items-center lg:gap-6">
             <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted">

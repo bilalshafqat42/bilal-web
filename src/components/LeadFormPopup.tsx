@@ -1,10 +1,14 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
-import { MessageSquarePlus, X, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { MessageSquarePlus, X, Loader2, CheckCircle2, AlertCircle, MessageCircle } from "lucide-react";
 import { getAttribution, getFacebookCookies } from "@/lib/attribution";
 import { useRouter } from "next/navigation";
 import { trackLead, generateEventId } from "@/lib/analytics";
+
+const WHATSAPP_HREF = `https://wa.me/971529766006?text=${encodeURIComponent(
+  "Hi Bilal, I found you through bilalshafqat.com and wanted to ask about a project."
+)}`;
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -219,6 +223,24 @@ export default function LeadFormPopup() {
                     )}
                   </button>
                 </form>
+
+                {/* WhatsApp folded in here, replacing the separate floating
+                    bubble. That bubble was a third widget in the same corner
+                    and the only off-brand colour on the page — #25D366 against
+                    a gold-on-near-black palette. Same destination, brand
+                    tokens, one widget instead of three. */}
+                <div className="mt-5 border-t border-border pt-5">
+                  <p className="text-xs text-muted">Prefer to message?</p>
+                  <a
+                    href={WHATSAPP_HREF}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2.5 inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-gold/40 hover:text-gold"
+                  >
+                    <MessageCircle size={15} className="text-gold" />
+                    Continue on WhatsApp
+                  </a>
+                </div>
               </>
             )}
           </div>
