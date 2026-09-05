@@ -8,6 +8,7 @@ import { getAttribution, getFacebookCookies } from "@/lib/attribution";
 import { useRouter } from "next/navigation";
 import { trackSchedule, generateEventId } from "@/lib/analytics";
 import { megaMenuGroups } from "@/data/pillars";
+import { BUDGET_OPTIONS, TIMELINE_OPTIONS } from "@/data/leadOptions";
 import CalBooking from "@/components/CalBooking";
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -41,32 +42,7 @@ const SLOTS = Array.from({ length: 18 }, (_, i) => {
  *  project at 31,500, and a website build at 47,500. "Not sure yet" is first
  *  on purpose — forcing a guess from someone who genuinely does not know only
  *  produces a wrong answer that then anchors the conversation. */
-/** Bands anchored on the three published "from" figures — advisory at 3,500,
- *  a retainer at 16,000 a month, project work at 31,500 — so the boundaries
- *  sit where the offer actually changes shape rather than on round numbers.
- *
- *  Deliberately not derived from the eight per-service prices: those are still
- *  held back until two projects have been timed, and a band implying a build
- *  price would leak a figure the site has not committed to.
- *
- *  "Not sure yet" stays first. Forcing a guess from someone who genuinely does
- *  not know produces a wrong number that then anchors the whole conversation. */
-const BUDGETS: string[] = [
-  "Not sure yet",
-  "Under AED 15,000",
-  "AED 15,000 - 35,000",
-  "AED 35,000 - 100,000",
-  "Over AED 100,000",
-];
 
-/** Timeline. "Just exploring" is a real and useful answer, not a dead end:
- *  knowing it up front changes how the call is run rather than wasting it. */
-const TIMELINES = [
-  "As soon as possible",
-  "Within the next month",
-  "One to three months",
-  "Just exploring for now",
-];
 
 /** The eight service categories, read from the same data the nav, /services
  *  and llms.txt use. Hard-coding a parallel list here is how it would quietly
@@ -84,8 +60,8 @@ export default function AppointmentBooking() {
   const [day, setDay] = useState(0);
   const [slot, setSlot] = useState<string | null>(null);
   const [topic, setTopic] = useState(SERVICES[0]);
-  const [budget, setBudget] = useState(BUDGETS[0]);
-  const [timeline, setTimeline] = useState(TIMELINES[0]);
+  const [budget, setBudget] = useState(BUDGET_OPTIONS[0]);
+  const [timeline, setTimeline] = useState(TIMELINE_OPTIONS[0]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
@@ -116,6 +92,11 @@ export default function AppointmentBooking() {
           email,
           botcheck,
           service: "Appointment request",
+          // Discrete, so the route can check each against the list it came
+          // from. The message below keeps them human-readable for the inbox.
+          serviceInterest: topic,
+          budget,
+          timeline,
           message: `Requested a 30-minute call on ${chosenLabel} at ${slot} (GST, UTC+4).\nService: ${topic}${budget ? `\nBudget: ${budget}` : ""}\nTimeline: ${timeline}`,
           attribution: getAttribution(),
           eventId,
@@ -194,17 +175,17 @@ export default function AppointmentBooking() {
           id="budget"
           value={budget}
           onChange={(e) => setBudget(e.target.value)}
-          disabled={BUDGETS.length === 0}
-          aria-describedby={BUDGETS.length === 0 ? "budget-note" : undefined}
+          disabled={BUDGET_OPTIONS.length === 0}
+          aria-describedby={BUDGET_OPTIONS.length === 0 ? "budget-note" : undefined}
           className="mt-2 w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 disabled:cursor-not-allowed disabled:opacity-50 [color-scheme:dark]"
         >
-          {BUDGETS.length === 0 ? (
+          {BUDGET_OPTIONS.length === 0 ? (
             <option value="">Not collected yet</option>
           ) : (
-            BUDGETS.map((t) => <option key={t}>{t}</option>)
+            BUDGET_OPTIONS.map((t) => <option key={t}>{t}</option>)
           )}
         </select>
-        {BUDGETS.length === 0 ? (
+        {BUDGET_OPTIONS.length === 0 ? (
           <p id="budget-note" className="mt-1.5 text-xs text-muted/70">
             We&apos;ll cover this on the call.
           </p>
@@ -221,7 +202,7 @@ export default function AppointmentBooking() {
           onChange={(e) => setTimeline(e.target.value)}
           className="mt-2 w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 [color-scheme:dark]"
         >
-          {TIMELINES.map((t) => (
+          {TIMELINE_OPTIONS.map((t) => (
             <option key={t}>{t}</option>
           ))}
         </select>

@@ -1,4 +1,10 @@
 import { NextResponse } from "next/server";
+import { megaMenuGroups } from "@/data/pillars";
+import {
+  BUDGET_OPTIONS,
+  TIMELINE_OPTIONS,
+  SERVICE_EXTRA_OPTIONS,
+} from "@/data/leadOptions";
 
 // Mirrors the Attribution type in src/lib/attribution.ts — kept as an
 // inline shape here rather than imported, since this is a server route and
@@ -49,6 +55,13 @@ type LeadPayload = {
   eventId?: string;
   fbp?: string;
   fbc?: string;
+  /** Discrete qualification answers from /appointment. Checked against the same
+   *  lists the form renders from, rather than trusted. */
+  serviceInterest?: string;
+  budget?: string;
+  timeline?: string;
+  /** Cloudflare Turnstile response, verified server-side when a secret is set. */
+  turnstileToken?: string;
 };
 
 // Best-effort in-process rate limit. On serverless each instance keeps its own
@@ -68,36 +81,144 @@ function rateLimited(ip: string): boolean {
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-export async function POST(request: Request) {
-  let body: LeadPayload;
-  try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ success: false, error: "Invalid request body." }, { status: 400 });
-  }
+/** 16KB. A genuine enquiry is a few hundred bytes; the largest legitimate
+ *  payload here is a long message plus attribution, well under 4KB. Anything
+ *  above this is either a mistake or an attempt to make the server do work. */
+const MAX_BODY_BYTES = 16 * 1024;
 
-  // Honeypot: real visitors never fill this in. Pretend success so bots don't retry.
-  if (body.botcheck) {
-    return NextResponse.json({ success: true });
-  }
+/** Per-field caps. Applied after trimming, before anything is forwarded. */
+const LIMITS = { name: 120, email: 254, phone: 40, message: 4000, generic: 200 } as const;
 
-  const ip =
+/** Strips what does not belong in a value that will end up in an email body or
+ *  a CRM record.
+ *
+ *  CR and LF are the important ones: a newline in a field that becomes an email
+ *  header is how header injection works, and this route cannot know which of
+ *  its fields the CRM puts where. Other C0 controls and the Unicode line and
+ *  paragraph separators go too, since none of them are typed by a real person
+ *  and several render invisibly.
+ *
+ *  `keepNewlines` is for the message body alone, where line breaks are real
+ *  content — there they are normalised to \n rather than removed. */
+function clean(value: unknown, max: number, keepNewlines = false): string | undefined {
+  if (typeof value !== "string") return undefined;
+  let out = value.normalize("NFC");
+  out = keepNewlines
+    ? out.replace(/\r\n?/g, "\n").replace(/[\u0000-\u0009\u000B\u000C\u000E-\u001F\u007F\u2028\u2029]/g, "")
+    : out.replace(/[\u0000-\u001F\u007F\u2028\u2029]/g, " ");
+  out = out.replace(/[ \t]{2,}/g, " ").trim();
+  if (!out) return undefined;
+  return out.length > max ? out.slice(0, max) : out;
+}
+
+/** Rejections are logged in one shape so spam and genuine failures can be told
+ *  apart in the host's log viewer without reading every line. `reason` is a
+ *  stable token; the detail is whatever helps diagnose that reason. */
+function logRejection(reason: string, ip: string, detail: Record<string, unknown> = {}) {
+  console.warn(
+    `[LEAD REJECTED] ${JSON.stringify({ reason, ip, at: new Date().toISOString(), ...detail })}`
+  );
+}
+
+function clientIp(request: Request): string {
+  return (
     request.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
     request.headers.get("x-real-ip") ||
-    "unknown";
+    "unknown"
+  );
+}
+
+/** Cloudflare Turnstile, only when configured. Invisible to real visitors and
+ *  skipped entirely when no secret is set, so the endpoint keeps working before
+ *  the key exists rather than rejecting every submission. */
+async function turnstileOk(token: string | undefined, ip: string): Promise<boolean> {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) return true;
+  if (!token) return false;
+  try {
+    const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ secret, response: token, remoteip: ip }),
+      signal: AbortSignal.timeout(5_000),
+    });
+    const data = (await res.json()) as { success?: boolean };
+    return data.success === true;
+  } catch {
+    // A Turnstile outage should not swallow real leads.
+    return true;
+  }
+}
+
+export async function POST(request: Request) {
+  const ip = clientIp(request);
+
+  // Order matters here, and it was wrong before: the body was parsed first and
+  // the rate limit checked afterwards, so a flood of oversized payloads was
+  // fully deserialised before anything said no. The cheapest checks now run
+  // first — count, then declared size, then read, then parse.
   if (rateLimited(ip)) {
+    logRejection("rate_limited", ip);
     return NextResponse.json(
-      { success: false, error: "Too many submissions. Please try again shortly." },
+      { success: false, error: "Too many submissions. Please try again in a few minutes." },
       { status: 429 }
     );
   }
 
+  const declared = Number(request.headers.get("content-length") ?? "0");
+  if (declared > MAX_BODY_BYTES) {
+    logRejection("payload_too_large_declared", ip, { declared });
+    return NextResponse.json(
+      { success: false, error: "That submission is too large." },
+      { status: 413 }
+    );
+  }
+
+  // Content-Length is a claim, not a fact, so the actual bytes are measured
+  // too. A chunked request can omit the header entirely.
+  let raw: string;
+  try {
+    raw = await request.text();
+  } catch {
+    logRejection("body_unreadable", ip);
+    return NextResponse.json({ success: false, error: "Invalid request body." }, { status: 400 });
+  }
+  if (new TextEncoder().encode(raw).length > MAX_BODY_BYTES) {
+    logRejection("payload_too_large_actual", ip, { bytes: raw.length });
+    return NextResponse.json(
+      { success: false, error: "That submission is too large." },
+      { status: 413 }
+    );
+  }
+
+  let body: LeadPayload;
+  try {
+    body = JSON.parse(raw) as LeadPayload;
+  } catch {
+    logRejection("invalid_json", ip, { bytes: raw.length });
+    return NextResponse.json({ success: false, error: "Invalid request body." }, { status: 400 });
+  }
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    logRejection("not_an_object", ip);
+    return NextResponse.json({ success: false, error: "Invalid request body." }, { status: 400 });
+  }
+
+  // Honeypot: real visitors never fill this in. Answer success so bots do not
+  // learn they were caught and retry with the field removed.
+  if (body.botcheck) {
+    logRejection("honeypot", ip, { source: clean(body.source, LIMITS.generic) });
+    return NextResponse.json({ success: true });
+  }
+
+  if (!(await turnstileOk(body.turnstileToken, ip))) {
+    logRejection("turnstile_failed", ip);
+    return NextResponse.json(
+      { success: false, error: "Could not verify that submission. Please try again." },
+      { status: 403 }
+    );
+  }
+
   const {
-    name,
-    email,
-    phone,
-    message,
-    service,
     meetingTime,
     source,
     pageUrl,
@@ -111,17 +232,63 @@ export async function POST(request: Request) {
     fbp,
     fbc,
   } = body;
+  // Every free-text field is trimmed, length-capped and stripped of control
+  // characters before it goes anywhere. Nothing below is used as received.
+  const name = clean(body.name, LIMITS.name);
+  const email = clean(body.email, LIMITS.email);
+  const phone = clean(body.phone, LIMITS.phone);
+  const message = clean(body.message, LIMITS.message, true);
+
   if (!name || !email) {
+    logRejection("missing_required", ip, { hasName: !!name, hasEmail: !!email });
     return NextResponse.json(
       { success: false, error: "Name and email are required." },
       { status: 400 }
     );
   }
   if (!EMAIL.test(email)) {
+    logRejection("invalid_email", ip);
     return NextResponse.json(
       { success: false, error: "That email address doesn't look right." },
       { status: 400 }
     );
+  }
+
+  // Whitelisted against the same lists the form renders from. A select
+  // constrains an honest visitor and nobody else, so an unrecognised value is
+  // rejected rather than passed through to the CRM.
+  const allowedServices = new Set<string>([
+    ...megaMenuGroups.map((g) => g.title),
+    ...SERVICE_EXTRA_OPTIONS,
+  ]);
+  const service = clean(body.service, LIMITS.generic);
+  if (service && !allowedServices.has(service)) {
+    logRejection("unknown_service", ip, { service });
+    return NextResponse.json(
+      { success: false, error: "Unrecognised service." },
+      { status: 400 }
+    );
+  }
+
+  const serviceInterest = clean(body.serviceInterest, LIMITS.generic);
+  if (serviceInterest && !allowedServices.has(serviceInterest)) {
+    logRejection("unknown_service_interest", ip, { serviceInterest });
+    return NextResponse.json(
+      { success: false, error: "Unrecognised service." },
+      { status: 400 }
+    );
+  }
+
+  const budget = clean(body.budget, LIMITS.generic);
+  if (budget && !BUDGET_OPTIONS.includes(budget)) {
+    logRejection("unknown_budget", ip, { budget });
+    return NextResponse.json({ success: false, error: "Unrecognised budget." }, { status: 400 });
+  }
+
+  const timeline = clean(body.timeline, LIMITS.generic);
+  if (timeline && !TIMELINE_OPTIONS.includes(timeline)) {
+    logRejection("unknown_timeline", ip, { timeline });
+    return NextResponse.json({ success: false, error: "Unrecognised timeline." }, { status: 400 });
   }
 
   const isChat = (source || "").includes("whatsapp");
@@ -168,21 +335,26 @@ export async function POST(request: Request) {
     email,
     phone: phone || undefined,
     message: message || (service ? `Interested in: ${service}` : undefined),
-    service: service || undefined,
-    campaign: meetingTime || undefined,
-    pageUrl: resolvedPageUrl || undefined,
-    utmSource: resolvedUtmSource || undefined,
-    utmMedium: resolvedUtmMedium || undefined,
-    utmCampaign: resolvedUtmCampaign || undefined,
-    utmContent: resolvedUtmContent || undefined,
-    utmTerm: resolvedUtmTerm || undefined,
-    eventId: eventId || undefined,
-    fbp: fbp || undefined,
-    fbc: fbc || undefined,
-    gclid: resolvedGclid || undefined,
-    fbclid: resolvedFbclid || undefined,
-    ttclid: resolvedTtclid || undefined,
-    msclkid: resolvedMsclkid || undefined,
+    // `serviceInterest` is the visitor's own answer on /appointment; `service`
+    // is the form's label for itself. The answer is the more useful of the two
+    // when both are present.
+    service: serviceInterest || service || undefined,
+    budget: budget || undefined,
+    timeline: timeline || undefined,
+    campaign: clean(meetingTime, LIMITS.generic) || undefined,
+    pageUrl: clean(resolvedPageUrl, LIMITS.generic) || undefined,
+    utmSource: clean(resolvedUtmSource, LIMITS.generic) || undefined,
+    utmMedium: clean(resolvedUtmMedium, LIMITS.generic) || undefined,
+    utmCampaign: clean(resolvedUtmCampaign, LIMITS.generic) || undefined,
+    utmContent: clean(resolvedUtmContent, LIMITS.generic) || undefined,
+    utmTerm: clean(resolvedUtmTerm, LIMITS.generic) || undefined,
+    eventId: clean(eventId, LIMITS.generic) || undefined,
+    fbp: clean(fbp, LIMITS.generic) || undefined,
+    fbc: clean(fbc, LIMITS.generic) || undefined,
+    gclid: clean(resolvedGclid, LIMITS.generic) || undefined,
+    fbclid: clean(resolvedFbclid, LIMITS.generic) || undefined,
+    ttclid: clean(resolvedTtclid, LIMITS.generic) || undefined,
+    msclkid: clean(resolvedMsclkid, LIMITS.generic) || undefined,
   };
 
   const crmUrl = process.env.CRM_LEAD_API_URL;

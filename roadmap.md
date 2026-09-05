@@ -183,7 +183,7 @@ Bilal is working online only with no office, so he has parked this. **Worth reco
 
 29. ~~**`llms.txt` is stale**~~ **fixed 2026-08-28, see item 76.** — zero mentions of `/about` or `/contact`, and it carries no URL index at all. It also drifts from `pillars.ts` by hand, the same failure mode as item 33. Refresh it and add a page list.
 30. ~~**No custom 404**~~ — **done 2026-08-27, see item 63.**
-31. **Harden `/api/lead`** once it is actually live: it has a honeypot and env-based auth with no hardcoded secrets (good), but no rate limiting and no email-format validation.
+31. ~~**Harden `/api/lead`**~~ **Done 2026-09-05, see item 141.** Original note: **Harden `/api/lead`** once it is actually live: it has a honeypot and env-based auth with no hardcoded secrets (good), but no rate limiting and no email-format validation.
 32. ~~**Delete `About.tsx`~~ **Done 2026-09-02**, confirmed 0 references. Original note: **Delete `About.tsx`** — the only genuinely unreferenced component (the three `Hero*` files are still used by the preview routes).
 
 ### Phase 7 — deferred, revisit when Phases 0-4 are clear
@@ -1259,6 +1259,16 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Cal.com account** — the wiring is built and behind `NEXT_PUBLIC_CALCOM_LINK`; only the link is missing.
     - **The real agency hourly rate**, to replace the AED 500 placeholder in the positioning lever.
     - **The five Performo records.** The record here confirms **at least two** are mine — a probe named "ZZ DELETE ME field probe" and test submissions from verifying the intake API (items 51 and 55). It does **not** account for all five, and Performo is his app, so **this cannot be verified from here.** Anything not matching those descriptions should be treated as a real enquiry until proven otherwise.
+
+141. **`/api/lead` hardened (2026-09-05)** — **done.** Seven requirements; two were already met, five were not, and one of the two that existed had an ordering flaw that made it much weaker than it looked.
+    - **Rate limiting already existed** at 5 per 10 minutes with a 429 and a real message — **but it ran *after* `await request.json()`.** Every oversized payload was fully deserialised before anything said no, which is the opposite of what a rate limit is for. The order is now: count, then declared size, then read, then parse. Verified: requests 1-5 pass, 6 and 7 return 429.
+    - **Payload cap at 16KB**, checked twice — `Content-Length` first, then the actual encoded byte length, because the header is a claim and a chunked request can omit it entirely. Returns 413. A 40KB body is rejected before parsing.
+    - **Field whitelisting.** `service`, `serviceInterest`, `budget` and `timeline` are now checked against the same lists the form renders from. Those lists moved to `src/data/leadOptions.ts` because they lived inside a `"use client"` component, so the server had no way to see them — the values were taken on trust. `/appointment` now sends them as discrete fields rather than only as prose inside `message`. Unknown values return 400.
+    - **Honeypot already existed** and correctly answers 200 so bots do not learn they were caught. **Cloudflare Turnstile added behind `TURNSTILE_SECRET_KEY`** — skipped entirely when unset, so the endpoint keeps working before the key exists, and a Turnstile outage fails open rather than swallowing real leads.
+    - **Every string sanitised** before it is forwarded: NFC-normalised, control characters stripped, length-capped. CR and LF are the ones that matter, since a newline in a field the CRM puts in an email header is how header injection works. Verified: `Real⏎Bcc: attacker@evil.test` arrives as `Real Bcc: attacker@evil.test` — inert text on one line. The message field keeps real line breaks but loses NULs.
+    - **Rejections now logged** in one shape with a stable `reason` token. Six distinct reasons observed in testing, so spam and genuine failures are separable in a log viewer without reading every line.
+    - **No secrets client-side, confirmed rather than asserted**: the CRM key appears in 0 client bundle files, and neither variable carries a `NEXT_PUBLIC_` prefix, which is the only way Next exposes one. **No enumeration surface**: the route performs no lookups, and three different email addresses return byte-identical responses.
+    - **Mistake I made while testing, recorded because it cost Bilal something.** I used `env -u CRM_LEAD_API_URL` to make delivery impossible, but Next loads `.env.local` at runtime and a shell unset does not override it. One valid probe was therefore forwarded and accepted, creating a real record: name `A`, email `a@b.co`, service `UI/UX Design`. **I asked him to audit five test records and then added a sixth.** The fix was to point the variable at a closed port instead — and, more importantly, to *prove* delivery was impossible with a throwaway probe before sending anything acceptable, rather than assuming the environment was as I intended.
 
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
