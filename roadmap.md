@@ -161,8 +161,8 @@ Full-app audit run on 2026-08-18: build, lint, types, rendered HTML per route, s
 
 ### Phase 4 — trust content (blocked on Bilal, cannot be built without him)
 
-20. **Real testimonials** — 2 placeholders in `Results.tsx`. Also the gate on `Review` JSON-LD, which stays deliberately unbuilt because fabricated review markup is actively penalised.
-21. **Real client logos** — 5 placeholders in `LogoWall.tsx`. Now has named targets: Mövenpick, Oceara / Refine, and Leos Development (Hadley Heights), as monochrome vectors. Needed for the logo-wall entry point in Phase 3 item 14.
+20. **Real testimonials** — ~~2 placeholders in `Results.tsx`~~ **the placeholders were removed 2026-09-04 (item 134); the block is now hidden behind a length guard, so the site shows nothing rather than `[Client Name]`. Still blocked on real quotes.** Also the gate on `Review` JSON-LD, which stays deliberately unbuilt because fabricated review markup is actively penalised.
+21. **Real client logos** — ~~5 placeholders in `LogoWall.tsx`~~ **now 3 marks in `ClientLogoRow.tsx`, of which 1 has no case-study link. Still blocked on permission and files.** Now has named targets: Mövenpick, Oceara / Refine, and Leos Development (Hadley Heights), as monochrome vectors. Needed for the logo-wall entry point in Phase 3 item 14.
 22. **Case study assets** — Bilal is actively collecting these as of 2026-08-26. Per brand (Mövenpick, Oceara, Hadley Heights): landing page screenshots at full width, social/paid ad creatives, email template screenshots, and any shareable result figures. Supersedes the older "2 unfinished case studies" note, since Phase 3 item 14 replaces all 5 existing write-ups rather than finishing 2 of them. Also needs written permission per brand before publishing (Oceara is a Refine project, Hadley Heights is Leos Development).
 23. ~~**CRM credentials**~~ **— supplied and live.** `LEAD_API_URL` and `LEAD_API_KEY` are set on Hostinger and `/api/lead` responds correctly on production. Original ask: endpoint URL, auth token, and expected field names. Unblocks Phase 0 item 1(b) and an inline form on `/contact`.
 24. **CallMeBot API key** — the last open piece of item 12, for a silent WhatsApp push to Bilal on each new lead.
@@ -173,7 +173,7 @@ Full-app audit run on 2026-08-18: build, lint, types, rendered HTML per route, s
 Bilal is working online only with no office, so he has parked this. **Worth recording that "no office" is not actually a blocker**: Google Business Profile supports *service-area businesses*, which hide the address entirely and list the areas served instead — that is the standard setup for freelancers and home-based businesses, and it is why this phase already said "set up as a service-area business". What it does require is verification, which takes effort and documentation, so deferring is a reasonable call — just not for the reason given. Revisit when local search becomes worth the setup time, or if he ever takes an office.
 
 26. **Google Business Profile**, set up as a service-area business. Maps ranking comes almost entirely from a verified listing, not from the site, so no amount of on-page work substitutes for this. `/contact` now carries `ContactPage` + `Person` schema with both phone numbers and a `PostalAddress` for the listing to reconcile against.
-27. Add `telephone` to the global `Person` schema in `StructuredData.tsx`, and evaluate whether a `ProfessionalService` type alongside `Person` is warranted once the listing exists.
+27. **Half done 2026-09-05 (item 136): `ProfessionalService` now exists at `#business`.** Still open: add `telephone` to the `Person` node. Original note: Add `telephone` to the global `Person` schema in `StructuredData.tsx`, and evaluate whether a `ProfessionalService` type alongside `Person` is warranted once the listing exists.
 
 ### Phase 6 — speed and upkeep
 
@@ -189,7 +189,7 @@ Bilal is working online only with no office, so he has parked this. **Worth reco
 ### Phase 7 — deferred, revisit when Phases 0-4 are clear
 
 33. Remaining suggestions-queue items not folded in above: plain-language subtitles on technical services (5), privacy policy page (6), regions-served line (7), trust/partner badges (8), Arabic version with RTL (10). Item 3 (time zone) closed on 2026-08-18 via `/contact`; item 2 (WhatsApp) closed in item 13.
-34. Retire or repurpose the 3 `preview-hero-*` routes. They are `noindex` as of item 41 so they are no longer an SEO risk, only clutter.
+34. Retire or repurpose the **4** preview routes (3 × `preview-hero-*` plus `/preview-backdrop`, added 2026-09-02). They are `noindex` as of item 41 so they are no longer an SEO risk, only clutter.
 
 ### Phase 8 — requested by Bilal 2026-09-04 (not started)
 
@@ -208,7 +208,7 @@ Five items he asked to be queued. Numbered 129-133 because the phase list and th
     - **`sitemap.ts` sets `lastModified: new Date()` on every entry**, so every deploy tells Google and Bing that all 22 URLs changed simultaneously. That makes the signal worthless and can suppress recrawl priority for pages that genuinely did change. Replace with real per-page content dates — the case studies and service pages have natural candidates in their own data files.
     - Pair with a pass over Search Console and Bing Webmaster titles. Bing's site scan has previously reported title/heading issues here (see item 64), and title rewrites by Google are worth checking now that the homepage `h1` has changed twice this week.
 
-132. **Trim the homepage to 8 sections, add a sticky CTA and an FAQ block.** Current order is **11** sections: `HeroBanner`, `CapabilityLedger`, `PortfolioGrid`, `LogoWall`, `Process`, `PortfolioShowcase`, `WhoIWorkWith`, `Engagement`, `Results`, `AskAssistant`, `Contact`.
+132. **Trim the homepage to 8 sections ~~and~~ done 2026-09-04 (see item 134); the sticky CTA and the FAQ block remain.** The homepage is now 8 sections and every removed one was re-homed. Original note, kept for the two outstanding parts: Current order is **11** sections: `HeroBanner`, `CapabilityLedger`, `PortfolioGrid`, `LogoWall`, `Process`, `PortfolioShowcase`, `WhoIWorkWith`, `Engagement`, `Results`, `AskAssistant`, `Contact`.
     - **Three need to go, and there are two obvious duplications to look at first**: `PortfolioGrid` and `PortfolioShowcase` both show work, and `LogoWall` is still text placeholders rather than real logos (see the Sitemap note). `Results` currently carries two `[Client Name]` placeholder quotes, so it is showing an empty promise.
     - **An FAQ block on the homepage needs care, not a copy-paste.** `/faq` already emits `FAQPage` schema, and duplicating the same Q&A on the homepage with a second `FAQPage` block risks the two competing. Either link out, or use a distinct question set.
     - **Sticky CTA**: check it against the cookie banner and the WhatsApp widget, both of which already occupy the bottom of the viewport. Item 30's lesson applies — a full-width fixed wrapper swallowed clicks across the whole bottom strip of every page once already.
