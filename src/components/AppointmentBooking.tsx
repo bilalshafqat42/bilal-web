@@ -41,12 +41,23 @@ const SLOTS = Array.from({ length: 18 }, (_, i) => {
  *  project at 31,500, and a website build at 47,500. "Not sure yet" is first
  *  on purpose — forcing a guess from someone who genuinely does not know only
  *  produces a wrong answer that then anchors the conversation. */
-/** TODO(bilal): populate once the target income is settled and the "from"
- *  figures are final. Every band boundary derives from those figures — an
- *  advisory session, a monthly retainer, a project, a full build — so bands
- *  written before the target is fixed would be guesses presented as ranges.
- *  Rendered disabled until then rather than shown with invented options. */
-const BUDGETS: string[] = [];
+/** Bands anchored on the three published "from" figures — advisory at 3,500,
+ *  a retainer at 16,000 a month, project work at 31,500 — so the boundaries
+ *  sit where the offer actually changes shape rather than on round numbers.
+ *
+ *  Deliberately not derived from the eight per-service prices: those are still
+ *  held back until two projects have been timed, and a band implying a build
+ *  price would leak a figure the site has not committed to.
+ *
+ *  "Not sure yet" stays first. Forcing a guess from someone who genuinely does
+ *  not know produces a wrong number that then anchors the whole conversation. */
+const BUDGETS: string[] = [
+  "Not sure yet",
+  "Under AED 15,000",
+  "AED 15,000 - 35,000",
+  "AED 35,000 - 100,000",
+  "Over AED 100,000",
+];
 
 /** Timeline. "Just exploring" is a real and useful answer, not a dead end:
  *  knowing it up front changes how the call is run rather than wasting it. */
@@ -73,7 +84,7 @@ export default function AppointmentBooking() {
   const [day, setDay] = useState(0);
   const [slot, setSlot] = useState<string | null>(null);
   const [topic, setTopic] = useState(SERVICES[0]);
-  const [budget, setBudget] = useState("");
+  const [budget, setBudget] = useState(BUDGETS[0]);
   const [timeline, setTimeline] = useState(TIMELINES[0]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

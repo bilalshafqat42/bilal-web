@@ -10,6 +10,18 @@ import CtaButton from "@/components/CtaButton";
 type Model = {
   icon: LucideIcon;
   title: string;
+  /** A published "from" figure, or omitted where there isn't one yet.
+   *
+   *  Only the three models priced by *hours included* carry a number, because
+   *  that scope is a decision rather than an estimate: a retainer is 30 hours
+   *  because that is what it is sold as, and an advisory session is four. Those
+   *  cannot turn out to be wrong mid-project.
+   *
+   *  "Ongoing Partner" has no figure because none was supplied, and the per-
+   *  service build prices are held back for the opposite reason to the three
+   *  below: they are priced by hours *required*, which is a guess about how long
+   *  a job takes until two projects have been timed. */
+  price?: string;
   description: string;
   idealFor: string[];
   contribute: string[];
@@ -20,6 +32,7 @@ const models: Model[] = [
   {
     icon: Package,
     title: "Project-Based",
+    price: "from AED 31,500",
     description: "A defined deliverable with a clear scope, timeline, and price.",
     idealFor: ["A website, app, or ad campaign with a clear brief", "Graphic design or social content for a launch", "A one-off build with no ongoing commitment"],
     contribute: ["Fixed-scope proposal and timeline", "Design, development, or campaign delivery", "Handover with documentation or training"],
@@ -28,6 +41,7 @@ const models: Model[] = [
   {
     icon: RefreshCw,
     title: "Monthly Retainer",
+    price: "from AED 16,000 / month, minimum 3 months",
     description: "Ongoing marketing, design, or development support on a recurring basis.",
     idealFor: ["Continuous paid ad management", "Regular social content & posting", "Ongoing feature development or site updates"],
     contribute: ["Monthly deliverables & reporting", "Priority turnaround on requests", "A single point of contact across disciplines"],
@@ -44,6 +58,7 @@ const models: Model[] = [
   {
     icon: Send,
     title: "Consulting & Advisory",
+    price: "from AED 3,500 per session",
     description: "High-level review and guidance focused on clarity and measurable outcomes.",
     idealFor: ["A marketing, UX, or technical review", "Expert input before a bigger investment", "Independent insight without execution dependency"],
     contribute: ["Marketing, UX & technical performance review", "A prioritized action plan", "Optional support to implement recommendations"],
@@ -60,6 +75,9 @@ function EngagementCard({ model, defaultExpanded = false }: { model: Model; defa
         <model.icon size={22} />
       </div>
       <h3 className="mt-6 text-lg sm:text-xl font-semibold text-ink leading-snug">{model.title}</h3>
+      {model.price ? (
+        <p className="mt-2 text-sm font-semibold text-gold">{model.price}</p>
+      ) : null}
       <p className="mt-3 text-base text-muted leading-relaxed">{model.description}</p>
       <p className="mt-4 text-sm italic text-muted/80">{model.bestFor}</p>
 

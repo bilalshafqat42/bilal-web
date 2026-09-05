@@ -1243,6 +1243,23 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Sitemap dates are real now** (closes the code half of item 131). Every entry sent `new Date()`, so each deploy claimed all 23 URLs changed at once. Now 5 distinct dates across 23 entries, seeded from `git log -1 --format=%cs` per source file. **One inaccuracy caught while checking**: keys are routes but the seed read `page.tsx`, and `/appointment`'s content lives in its component, so it under-reported. Corrected, and the caveat is written into the file.
     - Verified: lint, tsc, h1-check, schema-check and search-check all exit 0; routes correct including the 404.
 
+140. **Three "from" figures published; the other eight held with a dated gate (2026-09-05)** — **done.**
+    - **The line drawn was between hours *included* and hours *required***, and it is the right one: a retainer is 30 hours because that is what it is sold as, and an advisory session is four. Those are decisions and cannot turn out wrong. A build price is a guess about how long a job takes, and publishing "from AED 47,500" invites being held to it on a job that needs 140 hours.
+    - **Published**: Consulting & Advisory from AED 3,500 per session · Monthly Retainer from AED 16,000 a month, minimum three months · Project-Based from AED 31,500. All render on the homepage and `/pricing`.
+    - **"Ongoing Partner" carries no figure**, because none was given. The spreadsheet showed 31,500 a month for it, but Bilal listed three numbers and that was not one of them — so it stays blank rather than being inferred from a sheet.
+    - **Verified nothing else leaked**: swept `/`, `/pricing`, `/services`, `/appointment` and `/process` for each of the eight unpublished per-service figures. Only 16,000 appears, and that is one of the three.
+    - **Budget bands enabled**, anchored on those three figures so the boundaries sit where the offer changes shape. Deliberately not derived from the eight build prices — a band implying a build cost would leak a number the site has not committed to.
+    - **`priceRange` added to the ProfessionalService node.** The condition set in item 136 was always "only if /pricing shows figures", and it now does. The range spans only the three published numbers.
+    - **The positioning lever left alone, on instruction and on merit.** "NO – too cheap" is the model working, not a bug. Softening 25% to 15% before the AED 500 agency rate is replaced with a real one would be tuning an output to hide an input nobody has verified.
+
+**Dated gate, not a vague intention:**
+    - **The eight per-service prices publish only after two projects have been delivered with real timesheets.** The figures already exist in Bilal's model (`Service Pricing` sheet) but rest on estimated delivery hours, which his own Notes sheet flags. **Gate: two completed projects with recorded hours. Review date: 2026-12-05** — if two projects have not been timed by then, the question to answer is why hours are not being tracked, not whether to publish anyway.
+
+**Blocked on Bilal, unchanged:**
+    - **Cal.com account** — the wiring is built and behind `NEXT_PUBLIC_CALCOM_LINK`; only the link is missing.
+    - **The real agency hourly rate**, to replace the AED 500 placeholder in the positioning lever.
+    - **The five Performo records.** The record here confirms **at least two** are mine — a probe named "ZZ DELETE ME field probe" and test submissions from verifying the intake API (items 51 and 55). It does **not** account for all five, and Performo is his app, so **this cannot be verified from here.** Anything not matching those descriptions should be treated as a real enquiry until proven otherwise.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
