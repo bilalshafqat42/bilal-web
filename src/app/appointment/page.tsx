@@ -27,14 +27,25 @@ export default function AppointmentPage() {
         {/* Full bleed. The portrait is pushed left so the booking panel on the
             right never lands on top of it. */}
         <section className="relative min-h-[100svh] overflow-hidden pb-16 pt-32 sm:pt-40">
+          {/* The blue suit, on request. Note the filenames are misleading and
+              have been since they were added: `bilal-shirt.avif` is the blue
+              three-piece, and `bilal-shafqat-coat.avif` — which this page used
+              to show — is the grey coat. Renaming them would touch a dozen
+              references, so the correction lives here instead. */}
           <Image
-            src="/images/bilal-shafqat-coat.avif"
+            src="/images/bilal-shirt.avif"
             alt="Bilal Shafqat"
             fill
             priority
             sizes="100vw"
             className="object-cover"
-            style={{ objectPosition: "28% 12%" }}
+            // Retuned for this image, not carried over. The blue suit is a
+            // full-torso frame at 3368x5056, so `object-cover` on a full-height
+            // section shows only about 47% of it — at the old 12% that landed
+            // on the face alone and the suit never appeared, which defeats the
+            // point of choosing it. Swept by capture: 45% still hid the lapels,
+            // 75% cut the face off at the eyes, 60% holds both.
+            style={{ objectPosition: "26% 38%" }}
           />
           {/* Two scrims rather than one: a horizontal wash keeps the right-hand
               panel readable, a vertical one lifts the copy off the floor of the

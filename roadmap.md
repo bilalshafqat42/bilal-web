@@ -1277,6 +1277,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **`npm run lead-probe` sets the blackhole URL for the server and the checker from a single value**, because the original mistake was exactly that the two could disagree — `env -u` looked like it unset the variable, while Next went on reading `.env.local`.
     - Covers all 11 guards from item 141 (size, whitelist, validation, honeypot, sanitisation, rate limit) so the hardening has a regression test rather than a one-off transcript.
 
+143. **Own booking page kept; /appointment background switched to the blue suit (2026-09-07)** — **done.**
+    - **Bilal decided against the Cal.com embed and to keep his own page.** The `NEXT_PUBLIC_CALCOM_LINK` branch is left in place but dormant — it costs nothing unset and preserves the option. **The honest consequence, recorded rather than glossed:** without a real calendar the page still captures a preference, not a booking, so the "requested rather than booked" wording stays accurate and must not be removed. Thirteen CTAs saying "Book a free consultation" still land on a request form.
+    - **A middle path exists if he wants it later**: Cal.com has an availability API, so his own UI could show real free/busy slots without the embed. Bigger build, offered rather than assumed.
+    - **The filenames are misleading and have been since August.** `bilal-shirt.avif` is the **blue three-piece suit**; `bilal-shafqat-coat.avif` is the **grey** coat. Rendered both side by side to be sure before touching anything, because "my own blue coat image" pointed at the file with "coat" in the name and that is the wrong one. Renaming would touch a dozen references, so the correction is a comment at the call site.
+    - **The crop had to be retuned, not carried over.** The blue suit is a full-torso frame at 3368x5056, so `object-cover` on a `min-h-[100svh]` section shows only about 47% of it. At the inherited `12%` vertical the window landed on the face alone and the suit never appeared — which defeats the point of choosing that photograph.
+    - **The value is height-sensitive, which is the part worth remembering.** Because the section height follows the viewport, the same `object-position` crops differently: `60%` read well at 1280x800 and cut the face off at the eyes on a 14-inch 1512x982. Swept by capture at 982 specifically, since that is the screen it was reviewed on, and settled at `26% 38%` — full face plus lapels and tie at 982, still acceptable at 800.
+    - Verified: correct image served at all three widths, no horizontal overflow, one `h1`, 18 slots intact, no Cal embed, lint and tsc clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
