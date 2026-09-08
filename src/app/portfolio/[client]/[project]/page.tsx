@@ -11,6 +11,7 @@ import Reveal from "@/components/Reveal";
 import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/CaseStudyParts";
 import { clients, getProject } from "@/data/caseStudies";
 import CtaButton from "@/components/CtaButton";
+import DeviceFrame from "@/components/DeviceFrame";
 
 const SITE = "https://bilalshafqat.com";
 
@@ -190,8 +191,11 @@ export default async function ProjectCaseStudy({ params }: Props) {
                 >
                   <CaptureFrame capture={p.landingPage.capture} />
                   {p.landingPage.mobileCapture ? (
-                    <div className="mx-auto w-full max-w-[280px] lg:max-w-none">
-                      <CaptureFrame capture={p.landingPage.mobileCapture} variant="phone" />
+                    <div className="mx-auto w-full max-w-[300px] lg:max-w-none">
+                      <DeviceFrame
+                        capture={p.landingPage.mobileCapture}
+                        caption={p.landingPage.mobileCapture.label}
+                      />
                     </div>
                   ) : null}
                 </div>

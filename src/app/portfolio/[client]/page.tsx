@@ -8,7 +8,6 @@ import TrackView from "@/components/TrackView";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/CaseStudyParts";
-import AppShowcase from "@/components/AppShowcase";
 import { clients, getClient } from "@/data/caseStudies";
 import CtaButton from "@/components/CtaButton";
 
@@ -156,31 +155,34 @@ export default async function ClientCaseStudy({ params }: Props) {
         {c.mobileApp ? (
           <section className="relative mt-20 sm:mt-28">
             <div className="site-container">
-              <Reveal>
-                <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
-                  {c.mobileApp.heading}
-                </h2>
-                <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">{c.mobileApp.body}</p>
-              </Reveal>
-              {/* The composite leads: five screens at once, on a transparent
-                  background so it sits on the page rather than in a box. Unoptimised
-                  it would be a 2403px asset on every viewport, so it goes through
-                  next/image with a `sizes` that matches the column it actually
-                  occupies. */}
-              {c.mobileApp.lead ? (
-                <Reveal>
-                  <Image
-                    src={c.mobileApp.lead.src}
-                    alt={c.mobileApp.lead.alt}
-                    width={c.mobileApp.lead.width}
-                    height={c.mobileApp.lead.height}
-                    sizes="(min-width: 1024px) 1100px, 100vw"
-                    className="mt-12 h-auto w-full"
-                  />
-                </Reveal>
-              ) : null}
+              {/* 70/30. The composite carries this section, so it takes the width
+                  and the copy sits beside it rather than stacked above — which also
+                  puts the heading level with the phones instead of a screen away.
+                  Collapses to one column below lg, where a 30% text column would be
+                  about 110px wide. */}
+              <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[70fr_30fr] lg:gap-12">
+                {c.mobileApp.lead ? (
+                  <Reveal>
+                    <Image
+                      src={c.mobileApp.lead.src}
+                      alt={c.mobileApp.lead.alt}
+                      width={c.mobileApp.lead.width}
+                      height={c.mobileApp.lead.height}
+                      sizes="(min-width: 1024px) 760px, 100vw"
+                      className="h-auto w-full"
+                    />
+                  </Reveal>
+                ) : null}
 
-              <AppShowcase screens={c.mobileApp.screens} />
+                <Reveal delay={0.1}>
+                  <div>
+                    <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+                      {c.mobileApp.heading}
+                    </h2>
+                    <p className="mt-4 text-lg text-muted leading-relaxed">{c.mobileApp.body}</p>
+                  </div>
+                </Reveal>
+              </div>
             </div>
           </section>
         ) : null}
