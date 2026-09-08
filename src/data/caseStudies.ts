@@ -86,6 +86,17 @@ export type Client = {
   mobileApp?: {
     heading: string;
     body: string;
+    /** Pre-rendered composite that leads the section: all screens at once, in
+     *  device frames, on a transparent background.
+     *
+     *  It does a different job from the interactive frames below it. This is the
+     *  impression — breadth, polish, one glance. Those are the explanation, one
+     *  screen at a time with the reasoning attached. It is also the only place
+     *  the Enquire screen appears, since no standalone capture of it exists.
+     *
+     *  Note it is iOS-only, so it cannot carry the cross-platform claim; the
+     *  frames below are what show Android. */
+    lead?: { src: string; width: number; height: number; alt: string };
     /** Ordered as the journey actually runs, because the screen selector reads
      *  in this order and a user journey told out of sequence is just a list. */
     screens: { key: string; label: string; journey: string; capture: Capture }[];
@@ -369,6 +380,12 @@ export const clients: Client[] = [
     },
     mobileApp: {
       heading: "The mobile app",
+      lead: {
+        src: "/portfolio/leos/mobile-app/leos-app-5-screens.avif",
+        width: 2403,
+        height: 1231,
+        alt: "Five screens of the LEOS app shown in iPhone frames: the menu, sign-in, the Hadley Heights home screen, the developments list, and the enquiry form",
+      },
       body:
         "A cross-platform app for iOS and Android, built in React Native from a single codebase. It carries the same developments as the website — Hadley Heights, Weybridge Gardens and Cavendish Square — so a buyer who first saw a launch page finds the same units, the same photography and the same enquiry routes on their phone rather than a thinner version of the site.",
       screens: [

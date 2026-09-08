@@ -1349,6 +1349,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **The lesson is about zoom level, not about status bars.** A 1x screenshot showed nothing wrong. Capturing the frame tops at `deviceScaleFactor: 2` made it obvious immediately — worth doing whenever the thing being checked is a few pixels tall.
     - Verified: both frames show time and three indicators, correct cutout per platform, no capture chrome visible below either bar, frames still 1:2.17, routes 200, lint and tsc clean.
 
+152. **Rendered composite added as the app section's lead (2026-09-08)** — **done, with one open decision.** Bilal supplied two pre-rendered device-mockup composites and asked them to be used.
+    - **`leos-app-5-screens.avif` now leads the section**: 2403x1231, transparent background so it sits on the page rather than in a box, served through `next/image` with a `sizes` matching the column it occupies — unoptimised it would ship a 2403px asset to a 390px phone.
+    - **It is also the only place the Enquire screen appears.** That screen was flagged in item 149 as a missing asset; the composite closes that gap without a standalone capture existing.
+    - **The composites are iOS-only**, so they cannot carry the cross-platform claim on their own. The interactive frames below are the only thing on the page showing Android.
+    - **Open decision, raised rather than taken: the section now shows the same screens twice.** The composite is better than the CSS frames in every respect except interactivity, and the frames below repeat its content — which is the same "restating one thing" problem the homepage refactor existed to fix. **My recommendation is to drop the frames and keep the composite plus the per-screen journey copy as a stepped list.** Not done unilaterally, because the two-frame iOS/Android layout was an explicit instruction two turns earlier and removing it is his call, not a tidy-up.
+    - **`leos-app-3-screens.avif` is deliberately unused** — a third rendering of the same screens would compound the repetition rather than relieve it. Left in `public/` at 179KB; worth deleting if the decision above goes the other way.
+    - Verified: composite renders unbroken at 1440 and 390, served via the optimiser at both, no horizontal overflow, routes 200, lint and tsc clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

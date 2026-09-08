@@ -162,6 +162,24 @@ export default async function ClientCaseStudy({ params }: Props) {
                 </h2>
                 <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">{c.mobileApp.body}</p>
               </Reveal>
+              {/* The composite leads: five screens at once, on a transparent
+                  background so it sits on the page rather than in a box. Unoptimised
+                  it would be a 2403px asset on every viewport, so it goes through
+                  next/image with a `sizes` that matches the column it actually
+                  occupies. */}
+              {c.mobileApp.lead ? (
+                <Reveal>
+                  <Image
+                    src={c.mobileApp.lead.src}
+                    alt={c.mobileApp.lead.alt}
+                    width={c.mobileApp.lead.width}
+                    height={c.mobileApp.lead.height}
+                    sizes="(min-width: 1024px) 1100px, 100vw"
+                    className="mt-12 h-auto w-full"
+                  />
+                </Reveal>
+              ) : null}
+
               <AppShowcase screens={c.mobileApp.screens} />
             </div>
           </section>
