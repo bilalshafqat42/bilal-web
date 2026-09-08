@@ -35,6 +35,11 @@ import { SITE_URL as SITE } from "@/lib/schema";
  *   item is evidenced by a capture or was stated directly. Padding them with
  *   plausible work nobody can point at is how a case study stops being
  *   credible.
+ *
+ * All five screens have captures. The enquiry screen was described in prose for
+ * one revision because only the composite showed it; `contact.avif` arrived
+ * afterwards, so it is now a card like the rest and the dashed placeholder is
+ * gone.
  */
 type Props = { params: Promise<{ client: string }> };
 
@@ -60,7 +65,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
 
   const app = c.mobileApp;
   const url = `${SITE}/portfolio/${c.slug}/mobile-app`;
-  const total = app.screens.length + 1; // the enquiry screen is described, not captured
+  const total = app.screens.length;
   const outcomes = app.outcomes?.filter((o) => o.value) ?? [];
   const pending = app.outcomes?.filter((o) => !o.value) ?? [];
   const siblings = c.projects.slice(0, 2);
@@ -229,40 +234,6 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                   </Reveal>
                 </li>
               ))}
-
-              {/* The enquiry screen. In the app and visible inside the composite
-                  above, but there is no standalone capture — so the reasoning is
-                  published and the image is not invented. The dashed border says
-                  so without a sentence of apology. */}
-              <li>
-                <Reveal>
-                  <div className="rounded-3xl border border-dashed border-border bg-surface/20 p-7 sm:p-10">
-                    <span className="font-mono text-xs text-muted/70">
-                      {String(total).padStart(2, "0")} / {String(total).padStart(2, "0")}
-                      <span className="mx-2 text-muted/40">·</span>
-                      <span className="text-gold">Enquire</span>
-                    </span>
-                    <h3 className="mt-4 text-2xl font-semibold leading-snug tracking-tight text-ink">
-                      Four fields, and nothing else.
-                    </h3>
-                    <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
-                      Name, email, phone and a message. Every extra field on a property enquiry
-                      costs completions, and the ones that matter for a first conversation are how
-                      to reach someone and roughly what they want. Qualification happens on the
-                      call, not in the form. It is reachable from every development card, so nobody
-                      has to navigate back to a contact page to act on what they are looking at.
-                    </p>
-                    <div className="mt-6 flex flex-wrap items-center gap-3">
-                      <span className="inline-flex rounded-full border border-border bg-bg px-4 py-1.5 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted">
-                        Reachable from every card
-                      </span>
-                      <span className="text-xs text-muted/70">
-                        Visible in the composite above — standalone capture still to come.
-                      </span>
-                    </div>
-                  </div>
-                </Reveal>
-              </li>
             </ol>
           </div>
         </section>

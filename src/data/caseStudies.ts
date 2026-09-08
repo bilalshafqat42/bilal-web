@@ -523,6 +523,21 @@ export const clients: Client[] = [
             label: "Menu",
           },
         },
+        {
+          key: "enquire",
+          label: "Enquire",
+          headline: "Four fields, and nothing else.",
+          tag: "Reachable from every card",
+          journey:
+            "Name, email, phone and a message. Every extra field on a property enquiry costs completions, and the ones that matter for a first conversation are how to reach someone and roughly what they want. Qualification happens on the call, not in the form. It is reachable from every development card, so nobody has to navigate back to a contact page to act on what they are looking at.",
+          capture: {
+            src: "/portfolio/leos/mobile-app/contact.avif",
+            width: 1206,
+            height: 2622,
+            alt: "LEOS app enquiry screen headed How can we help, with full name, email, phone and message fields above a send enquiry button",
+            label: "Enquire",
+          },
+        },
       ],
     },
     brandSocial: {
