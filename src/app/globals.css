@@ -60,54 +60,66 @@ h1, h2, h3, h4, .font-display {
 }
 
 /* Ambient background grid + glow */
-/* Ambient grid behind the hero sections.
-   Flat rectangular lines with a diffuse blob behind the text was a weak
-   imitation of the reference. The two things that actually make that effect are
-   PERSPECTIVE, so the lines converge to a horizon, and a bright light band at
-   that horizon acting as the source. Both are below.
-   Only standard properties are written: hand-writing a -webkit- prefix after a
+/* Ambient backdrop behind page-top sections. Used by eleven pages.
+
+   This was a violet perspective floor — converging lines and a bright light
+   band on the horizon — left over from an abandoned attempt to copy a
+   reference. The homepage moved on to a restrained gold dot grid, but this
+   class was deliberately left alone at the time "for the other pages", so
+   those pages kept the artefact: a purple effect on a gold-on-near-black site,
+   in a design language nothing else uses any more.
+
+   Now the same language as the homepage backdrop, and the same reasoning
+   behind it. These sections sit behind an H1, so the backdrop's job is to be a
+   texture that supports the heading, not an object competing with it. Nothing
+   in here rises above low contrast, there is no perspective, and there is no
+   light source pretending to be one.
+
+   Matching `DOT_GAP` in HeroBackdrop.tsx at 26px is deliberate: the two
+   treatments then read as one system rather than two similar ideas.
+
+   Only standard properties are written. Hand-writing a -webkit- prefix after a
    standard one is what made Lightning CSS collapse backdrop-filter to
    prefixed-only earlier in this project. */
 .grid-fade {
-  perspective: 200px;
-  perspective-origin: 50% 0%;
   overflow: hidden;
 }
 
-/* The receding floor. Rotated about its top edge so the rows compress towards
-   the horizon rather than staying evenly spaced. */
+/* The dot field. One pseudo-element and one background image — no per-dot DOM,
+   which at this spacing would be hundreds of nodes for no visual gain. */
 .grid-fade::before {
   content: "";
   position: absolute;
-  left: -12%;
-  right: -12%;
-  top: 78%;
-  bottom: -120%;
-  transform: rotateX(79deg);
-  transform-origin: 50% 0;
-  background-image:
-    linear-gradient(rgba(168, 152, 255, 0.55) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(168, 152, 255, 0.40) 1px, transparent 1px);
-  background-size: 100% 88px, 52px 100%;
-  /* Fades as it recedes, so the far rows dissolve instead of ending abruptly. */
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, transparent 42%);
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(242, 201, 76, 0.13) 1px, transparent 0);
+  background-size: 26px 26px;
+  /* Dissolves outward so the field never ends on a straight edge or a row of
+     half-cut dots. Anchored high and left of centre: these pages open with a
+     heading in that corner, and the texture should be densest where the eye
+     lands first. */
+  mask-image: radial-gradient(
+    ellipse 82% 72% at 34% 28%,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.5) 54%,
+    transparent 88%
+  );
 }
 
-/* The light at the horizon. This is the part that reads as a source rather than
-   a smudge: narrow, bright, and sitting exactly on the vanishing line. */
+/* A single soft warmth behind the heading. Two stacked radials rather than one,
+   because a lone gradient at this size reads as a grey smudge; the pair keeps a
+   centre without ever becoming a visible light source. */
 .grid-fade::after {
   content: "";
   position: absolute;
-  left: 50%;
-  top: 78%;
-  width: 70%;
-  height: 220px;
-  transform: translate(-50%, -62%);
+  left: 32%;
+  top: 24%;
+  width: 78%;
+  height: 68%;
+  transform: translate(-50%, -50%);
+  filter: blur(70px);
   background-image:
-    radial-gradient(ellipse 26% 12% at 50% 50%, rgba(226, 214, 255, 0.85), transparent 70%),
-    radial-gradient(ellipse 46% 24% at 50% 50%, rgba(167, 139, 250, 0.55), transparent 72%),
-    radial-gradient(ellipse 74% 46% at 50% 52%, rgba(124, 107, 245, 0.32), transparent 74%);
-  filter: blur(22px);
+    radial-gradient(ellipse 50% 50% at 50% 50%, rgba(242, 201, 76, 0.13), transparent 72%),
+    radial-gradient(ellipse 80% 70% at 45% 55%, rgba(205, 152, 42, 0.08), transparent 76%);
 }
 
 .glass {

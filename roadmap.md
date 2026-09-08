@@ -1303,6 +1303,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Indentation guessed from `sed`-prefixed output failed twice more here.** `sed 's/^/  /'` adds two spaces, so patterns built from that output are wrong by two levels. Both failures were caught by asserts placed before the write, so nothing was half-applied. Read indentation with Python, never off piped output.
     - Verified: section order website → app → social, all four captures 200, four frames rendered with zero broken images at 1440 and 390, no horizontal overflow, one `h1`, lint and tsc clean.
 
+146. **`.grid-fade` rewritten in the homepage's design language, removing a violet artefact from eleven pages (2026-09-08)** — **done.** Bilal flagged the purple backdrop on the LEOS case study as looking bad. It was worse than a taste problem: it was dead code from an abandoned experiment, still shipping.
+    - **Provenance, because it explains the whole thing.** Item 109 built `.grid-fade` as a violet perspective floor while chasing a reference. Item 111 recoloured to gold — but only `HeroBackdrop`. Item 117 replaced `HeroBackdrop` entirely with the restrained dot grid and **explicitly left `.grid-fade` alone "for the ten other pages that use it"**. That decision looked conservative and was actually the bug: those pages kept converging violet lines and a bright horizon light, in a design language nothing else on the site used any more.
+    - **The lesson: leaving a shared class untouched is not the safe option when the design it belongs to has been abandoned.** "No risk to the other pages" was true of the code and false of the design.
+    - **Now the same language as the homepage**: gold dots at 0.13 alpha, `26px` spacing to match `DOT_GAP` in HeroBackdrop exactly so the two read as one system rather than two similar ideas, a radial mask so the field dissolves instead of ending on a row of half-cut dots, and one soft warmth behind the heading. No perspective. No light source pretending to be one.
+    - **Anchored high and left of centre**, where these pages open their heading — but low-contrast enough to also suit the centred consumers (`/thank-you`, `/contact`), which a directional light would not have been. Verified on both kinds.
+    - **The item 117 reasoning applies unchanged**: these sections sit behind an H1, so the backdrop supports the heading rather than competing with it. That is why it is subtle, not an oversight.
+    - Verified: gold dots present and violet absent in the computed `::before` on four pages, `perspective: none`, no violet left anywhere in the built CSS, ten routes 200, no horizontal overflow, one `h1` each, lint and tsc clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
