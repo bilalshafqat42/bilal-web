@@ -38,13 +38,17 @@ export default function AppointmentPage() {
             fill
             priority
             sizes="100vw"
-            className="object-cover"
+            className="object-cover brightness-[1.04] contrast-[1.12] grayscale"
             // Retuned for this image, not carried over. The blue suit is a
             // full-torso frame at 3368x5056, so `object-cover` on a full-height
-            // section shows only about 47% of it — at the old 12% that landed
-            // on the face alone and the suit never appeared, which defeats the
-            // point of choosing it. Swept by capture: 45% still hid the lapels,
-            // 75% cut the face off at the eyes, 60% holds both.
+            // section shows only about 47% of it, and the inherited 12% landed
+            // on the face alone with no suit visible.
+            //
+            // The value is height-sensitive, because the section is
+            // `min-h-[100svh]`: a taller viewport crops more and the window
+            // moves. 60% read well at 1280x800 and cut the face off at the eyes
+            // on a 14-inch 1512x982. 38% holds the whole face plus the suit at
+            // 982 and stays acceptable at 800.
             style={{ objectPosition: "26% 38%" }}
           />
           {/* Two scrims rather than one: a horizontal wash keeps the right-hand

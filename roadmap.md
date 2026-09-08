@@ -1318,6 +1318,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Process note: a fourth hand-written multi-line pattern failed on indentation here.** Every one of those failures has been caught by an assert placed before the write, so nothing was ever half-applied — but the fix is to stop guessing. This edit splices by line number, locating the block from a single-line anchor and reading the indentation and the `className` off the file. That is the approach to use for any multi-line JSX edit in this project.
     - Verified: image served through `/_next/image` with responsive variants, zero raw CSS `background-image` left on the page, stale `aria-label` gone, `alt` present, routes 200, lint and tsc clean.
 
+148. **/appointment portrait made monochrome to match the homepage (2026-09-08)** — **done.**
+    - **Same three filters, same order** as `HeroBanner`: `brightness-[1.04] contrast-[1.12] grayscale`. Verified the computed filter string is identical on both pages rather than assuming the classes produce the same result.
+    - **`object-cover` was already set** — verified `objectFit: "cover"` in the computed style at 1512 and 390. Nothing to change there, said plainly rather than claimed as work.
+    - **`.hero-portrait`'s mask was deliberately not reused.** It carries a left-edge fade tuned for a right-hand column portrait; this image is a full-bleed background where fading the left would eat the side the copy sits on. The page's two scrims already do that job.
+    - **Found and fixed a stale comment that contradicted its own code.** The block above `objectPosition` still described a 60% value and the sweep that produced it, while the value has been 38% since the height-sensitivity fix in item 143 — an earlier replacement of mine silently failed to match and I did not re-read the file to confirm. **A comment that disagrees with the line beneath it is worse than no comment**, because the next reader trusts it.
+    - **Flagged, not changed**: the 42px avatar inside the booking panel is still in colour, so a monochrome page now carries one colour element. Not what was asked for, and small enough to be deliberate, so it is left for Bilal to call.
+    - Verified: identical computed filter on both pages, `object-cover` confirmed, no horizontal overflow at 1512 or 390, one `h1`, routes 200, lint and tsc clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
