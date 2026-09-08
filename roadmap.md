@@ -1388,6 +1388,15 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Flagged, not decided: the app now appears twice on this page** — here in the pairing, and again in the composite section below. Each does a different job (the pairing proves consistency, the composite shows breadth), but it is the same repetition pattern the homepage refactor existed to remove. Bilal's call whether the composite section stays.
     - Verified: 70/30 measured at desktop and stacked at mobile, phone renders with its caption, no horizontal overflow, routes 200, h1-check and schema-check pass, lint and tsc clean.
 
+156. **Mobile app given its own case study page (2026-09-08)** — **done.** Bilal asked for a read-more CTA under the paired phone, leading to a full app case study.
+    - **New route `/portfolio/[client]/mobile-app`** — a static segment inside the dynamic `[client]` folder. Next resolves static siblings before dynamic ones, so it takes precedence over `[project]` without shadowing anything; verified no project uses the slug `mobile-app`. Guarded on `c.mobileApp`, so a client without an app 404s rather than rendering an empty page — checked, `/portfolio/nope/mobile-app` returns 404.
+    - **This reverses the call in item 145, and the reasoning there does not apply.** That item avoided a deliverable-axis route because publishing both axes risks the same content under two URLs. The app screens appear on no landing-page route, so this page is new content rather than a second view of existing content.
+    - **Screen by screen, alternating sides**, each with the decision behind it rather than a caption. The layout flips on odd rows so the eye is not tracking one column down the page.
+    - **He listed five screens; four have standalone captures.** The enquiry screen exists only inside the composite. Rather than crop it out or skip it, it is published as step 05 in a dashed-border block: the reasoning is written from what the composite shows (four fields, reachable from every development card), with a line saying the standalone capture is still to come. **The gap is visible and labelled instead of quietly closed or quietly omitted.**
+    - **Discovery added in one place, not two**: the URL comes from `caseStudyUrls()`, which the sitemap already maps over, and is conditional on `mobileApp` so it can never emit a 404. Also listed in `llms.txt`.
+    - **`BreadcrumbList` only, and deliberately no `SoftwareApplication`.** That type wants an operating system, an application category and ideally a store URL or price; none were supplied, and the standing rule is that nothing enters markup that is not visible on the page.
+    - Verified: route 200 and guard 404, one `h1`, 4 journey steps with 4 frames, 7 images and zero broken at 1440 and 390, enquiry note present, `BreadcrumbList` the only node, in the sitemap and llms.txt, CTA present on the client page, no horizontal overflow, h1-check and schema-check pass, lint and tsc clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

@@ -167,7 +167,18 @@ export default async function ClientCaseStudy({ params }: Props) {
                 >
                   <CaptureFrame capture={c.website.capture} />
                   {appHomeScreen ? (
-                    <DeviceFrame capture={appHomeScreen.capture} caption="The app, same developments" />
+                    <div>
+                      <DeviceFrame capture={appHomeScreen.capture} caption="The app, same developments" />
+                      {/* The pairing makes the consistency point; the full app case study
+                          is a page of its own, so this is the route to it rather than
+                          more of it inline. */}
+                      <Link
+                        href={`/portfolio/${c.slug}/mobile-app`}
+                        className="mt-5 inline-flex w-full items-center justify-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+                      >
+                        Read the app case study <ArrowRight size={15} />
+                      </Link>
+                    </div>
                   ) : null}
                 </div>
               </Reveal>

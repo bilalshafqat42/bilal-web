@@ -513,6 +513,7 @@ export function getProject(clientSlug: string, projectSlug: string) {
 export function caseStudyUrls(): string[] {
   return clients.flatMap((c) => [
     `/portfolio/${c.slug}`,
+    ...(c.mobileApp ? [`/portfolio/${c.slug}/mobile-app`] : []),
     ...c.projects.map((p) => `/portfolio/${c.slug}/${p.slug}`),
   ]);
 }

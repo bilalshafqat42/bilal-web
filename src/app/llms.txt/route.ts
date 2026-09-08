@@ -26,6 +26,7 @@ Full content for machine reading: ${SITE}/llms-full.txt
 - [About](${SITE}/about): background, working principles, tools and platforms
 - [Services](${SITE}/services): all eight service categories
 - [Work](${SITE}/portfolio): case studies
+- [LEOS mobile app](${SITE}/portfolio/leos-developments/mobile-app): React Native case study — cross-platform iOS and Android from one codebase, screen by screen
 - [Process](${SITE}/process): the four delivery stages — brief and discovery, planning and design, build and launch, then measurement and iteration, with worked examples
 - [Pricing](${SITE}/pricing): engagement models and what drives cost — no published price list
 - [FAQ](${SITE}/faq): freelancer vs agency, timezones, process, measurement
