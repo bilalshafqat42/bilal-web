@@ -26,13 +26,14 @@ const regions = [
     icon: Building2,
     name: "Pakistan",
     meta: "UTC+5",
-    line: "Second base, on the same working week.",
-    actions: [{ label: EMAIL, href: "/appointment" }],
+    line: `Second base, on the same working week. ${EMAIL}`,
+    actions: [{ label: "Book a call", href: "/appointment" }],
   },
 ];
 
 const companyLinks = [
   { label: "Home", href: "/" },
+  { label: "Book a call", href: "/appointment" },
   { label: "About", href: "/about" },
   { label: "Work", href: "/portfolio" },
   { label: "Pricing", href: "/pricing" },

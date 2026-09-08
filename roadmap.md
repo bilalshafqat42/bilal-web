@@ -1285,6 +1285,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **The value is height-sensitive, which is the part worth remembering.** Because the section height follows the viewport, the same `object-position` crops differently: `60%` read well at 1280x800 and cut the face off at the eyes on a 14-inch 1512x982. Swept by capture at 982 specifically, since that is the screen it was reviewed on, and settled at `26% 38%` — full face plus lapels and tie at 982, still acceptable at 800.
     - Verified: correct image served at all three widths, no horizontal overflow, one `h1`, 18 slots intact, no Cal embed, lint and tsc clean.
 
+144. **Booking link added to the nav and footer; two footer defects fixed on the way (2026-09-08)** — **done.**
+    - **"Book a call" added to the nav** (7 links now) and to the footer's company links. `/appointment` was the destination of every primary CTA and sits at sitemap priority 0.9, yet it was reachable only via the CTA button — absent from both link lists.
+    - **Footer defect found, not reported by anything.** The Pakistan block rendered `{ label: EMAIL, href: "/appointment" }` — visible text was the email address, behaviour was a page navigation. A leftover from swapping `mailto:` destinations out in item 135: the href was updated and the label was not. Nothing catches that, since both halves are individually valid.
+    - **Then my own fix caused a second, quieter regression.** Changing the label to "Book a call" removed the email address from the footer altogether, which was never asked for and which no check would flag either. Restored as plain text in the region line — visible for trust, not a link, because a mailto is exactly what was deliberately removed. That also un-orphaned the `EMAIL` const, which lint had not flagged.
+    - **Two measurement notes.** `grep -c` counts *lines*, and minified HTML puts the whole page on a few — it reported 1 `/appointment` link where `grep -o | wc -l` reports 8. And `cat -A` does not exist on macOS, so indentation had to be read with Python; an earlier `sed 's/^/  /'` had added its own prefix and made me guess 6 spaces where the file has 4, which the assertion caught.
+    - **Nav crowding, flagged not fixed**: gap between the links and the CTA is 381px at 1512, 265px at 1280, and **70px at 1024**. Tight at the smallest desktop width but not overlapping and no overflow. Worth watching if an eighth link is ever added.
+    - Verified: 8 `/appointment` links on the homepage, email visible again, still zero `mailto:` anywhere, lint and tsc clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

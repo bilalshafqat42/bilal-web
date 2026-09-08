@@ -30,6 +30,7 @@ const links = [
   { label: "Pricing", href: "/pricing" },
   { label: "About", href: "/about" },
   { label: "FAQ", href: "/faq" },
+  { label: "Book a call", href: "/appointment" },
 ];
 
 export default function Nav() {
