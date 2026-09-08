@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import CaseStudies from "@/components/CaseStudies";
+import WorkByType from "@/components/WorkByType";
 import LogoWall from "@/components/LogoWall";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -9,7 +10,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Portfolio & Case Studies — Bilal Shafqat",
   description:
-    "Detailed case studies across paid marketing, real estate lead generation, MERN stack development, and mobile app launches, with real goals, execution, and outcomes.",
+    "Every project browsable by deliverable: corporate and launch websites, social and campaign creative, and a React Native app for iOS and Android, plus detailed case studies across paid marketing and development.",
   alternates: {
     canonical: "/portfolio",
   },
@@ -42,6 +43,8 @@ export default function PortfolioPage() {
             belongs on, and it now introduces the case studies rather than
             repeating the homepage. */}
         <LogoWall />
+
+        <WorkByType />
 
         <CaseStudies />
         <Contact />
