@@ -75,6 +75,15 @@ export type Client = {
   scope: { heading: string; body: string }[];
   scopeIntro: string;
   website?: { heading: string; body: string; capture: Capture };
+  /** Phone screens, rendered in phone frames rather than a square gallery grid.
+   *  Deliberately not a `Gallery`: GalleryGrid forces `aspect-square
+   *  object-cover`, which would crop a 1206x5807 screen capture into a square
+   *  and destroy it. CaptureFrame's phone variant caps height at 70vh and
+   *  scrolls inside the frame instead.
+   *
+   *  Sits between the website and the social work so the client page reads in
+   *  the order the deliverables were asked for: website, mobile app, social. */
+  mobileApp?: { heading: string; body: string; captures: Capture[] };
   brandSocial?: Gallery;
   projects: Project[];
   keywords: string[];
@@ -309,9 +318,9 @@ export const clients: Client[] = [
     name: "LEOS Developments",
     logo: "/portfolio/leos/logo/leos-white.svg",
     ogImage: "/portfolio/leos/og-leos.jpg",
-    title: "LEOS Developments Case Study — Website & Launch Campaigns",
+    title: "LEOS Developments Case Study — Website, Mobile App & Launch Campaigns",
     description:
-      "Two-year engagement with LEOS Developments: corporate website build, brand social creative, and off-plan launch campaigns including Hadley Heights in Jumeirah Village Circle, Dubai.",
+      "Two-year engagement with LEOS Developments: corporate website build, a React Native app for iOS and Android, brand social creative, and off-plan launch campaigns including Hadley Heights in Jumeirah Village Circle, Dubai.",
     headline: "Corporate website and launch campaigns for a UK and Dubai developer",
     intro:
       "LEOS Developments is a residential developer headquartered in Weybridge, Surrey, with offices in London and an experience centre in Dubai. Over two years I handled the corporate website and the campaign work behind their developments.",
@@ -319,7 +328,7 @@ export const clients: Client[] = [
       { label: "Client", value: "LEOS Developments" },
       { label: "Sector", value: "Residential real estate" },
       { label: "Markets", value: "United Kingdom & Dubai" },
-      { label: "Scope", value: "Website, social, campaigns" },
+      { label: "Scope", value: "Website, app, social, campaigns" },
     ],
     scopeIntro:
       "A two-year engagement covering both the development side and the campaign side, which is unusual for a single supplier: the same person built the website that campaigns pointed at, and made the creative that drove traffic to it.",
@@ -327,6 +336,10 @@ export const clients: Client[] = [
       {
         heading: "Corporate website",
         body: "Full build of the LEOS Developments site, including the developments showcase and the Dubai experience centre section, structured so new developments could be added without a redesign.",
+      },
+      {
+        heading: "Cross-platform mobile app",
+        body: "A React Native app shipped to both iOS and Android from one codebase, covering sign-in with a guest route, the developments list, and the same enquiry and call actions the launch pages use.",
       },
       {
         heading: "Brand social creative",
@@ -347,6 +360,41 @@ export const clients: Client[] = [
         alt: "Full-page view of the LEOS Developments corporate website",
         label: "LEOS Developments — corporate website",
       },
+    },
+    mobileApp: {
+      heading: "The mobile app",
+      body:
+        "A cross-platform app for iOS and Android, built in React Native from a single codebase. It carries the same developments as the website — Hadley Heights, Weybridge Gardens and Cavendish Square — so a buyer who first saw a launch page finds the same units, the same photography and the same enquiry routes on their phone rather than a thinner version of the site.",
+      captures: [
+        {
+          src: "/portfolio/leos/mobile-app/leos-login.avif",
+          width: 1206,
+          height: 2622,
+          alt: "LEOS app sign-in screen with email and password fields and a continue-as-guest option",
+          label: "Sign in, with a guest route",
+        },
+        {
+          src: "/portfolio/leos/mobile-app/home-screen.avif",
+          width: 1206,
+          height: 3547,
+          alt: "LEOS app home screen featuring Hadley Heights in Jumeirah Village Circle with enquire and call actions",
+          label: "Home — featured development",
+        },
+        {
+          src: "/portfolio/leos/mobile-app/projects.avif",
+          width: 1206,
+          height: 5807,
+          alt: "LEOS app developments list showing Hadley Heights, Weybridge Gardens and Cavendish Square",
+          label: "Developments",
+        },
+        {
+          src: "/portfolio/leos/mobile-app/leos-menu.avif",
+          width: 1206,
+          height: 2622,
+          alt: "LEOS app slide-over menu with developments, investments, LEOS Hub, news and about",
+          label: "Menu",
+        },
+      ],
     },
     brandSocial: {
       heading: "Brand social creative",

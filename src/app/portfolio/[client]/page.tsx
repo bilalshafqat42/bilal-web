@@ -152,6 +152,31 @@ export default async function ClientCaseStudy({ params }: Props) {
           </section>
         ) : null}
 
+        {c.mobileApp ? (
+          <section className="relative mt-20 sm:mt-28">
+            <div className="site-container">
+              <Reveal>
+                <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+                  {c.mobileApp.heading}
+                </h2>
+                <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">{c.mobileApp.body}</p>
+              </Reveal>
+              {/* Two across on phones rather than four: four phone frames in a
+                  390px row leaves each about 85px wide, where nothing on the
+                  screen is legible. `items-start` because the captures are
+                  different lengths — 2622px to 5807px — so a stretched row
+                  would pad the short ones. */}
+              <div className="mt-10 grid grid-cols-2 items-start gap-4 lg:grid-cols-4 lg:gap-5">
+                {c.mobileApp.captures.map((capture, i) => (
+                  <Reveal key={capture.src} delay={(i % 4) * 0.08}>
+                    <CaptureFrame capture={capture} variant="phone" />
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
+
         {c.brandSocial ? (
           <section className="relative mt-20 sm:mt-28">
             <div className="site-container">
