@@ -10,6 +10,7 @@ import Reveal from "@/components/Reveal";
 import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/CaseStudyParts";
 import { clients, getClient } from "@/data/caseStudies";
 import CtaButton from "@/components/CtaButton";
+import DeviceFrame from "@/components/DeviceFrame";
 
 const SITE = "https://bilalshafqat.com";
 
@@ -42,6 +43,9 @@ export default async function ClientCaseStudy({ params }: Props) {
   const { client } = await params;
   const c = getClient(client);
   if (!c) notFound();
+  // Picked by key rather than position, so reordering `screens` in the data
+  // cannot silently swap which screen sits beside the website capture.
+  const appHomeScreen = c.mobileApp?.screens.find((s) => s.key === "home");
 
   const url = `${SITE}/portfolio/${c.slug}`;
 
@@ -143,9 +147,28 @@ export default async function ClientCaseStudy({ params }: Props) {
                 </h2>
                 <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">{c.website.body}</p>
               </Reveal>
+
+              {/* Web and mobile side by side, 70/30. The pairing is the point: the
+                  copy claims the app carries the same developments as the site, and
+                  showing both at once is the evidence rather than the assertion.
+              
+                  A phone rather than the fanned composite in the right column — the
+                  composite is a wide landscape image and would render about 340px
+                  across, where none of its five screens would be legible. A single
+                  portrait frame is the right shape for a 30% column.
+              
+                  Falls back to full width when a client has no app, and stacks below
+                  lg where a 30% column would be roughly 110px. */}
               <Reveal delay={0.1}>
-                <div className="mt-10">
+                <div
+                  className={`mt-10 grid grid-cols-1 items-start gap-8 ${
+                    appHomeScreen ? "lg:grid-cols-[70fr_30fr] lg:gap-10" : ""
+                  }`}
+                >
                   <CaptureFrame capture={c.website.capture} />
+                  {appHomeScreen ? (
+                    <DeviceFrame capture={appHomeScreen.capture} caption="The app, same developments" />
+                  ) : null}
                 </div>
               </Reveal>
             </div>

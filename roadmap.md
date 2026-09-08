@@ -1379,6 +1379,15 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Known cosmetic point, not fixed**: the two mobile landing-page captures sit in the same 16:10 landscape cards as the desktop ones, cropped to their hero. The label reads "Mobile landing page" so nothing is misleading, but a portrait capture in a landscape card is a compromise. Left as-is because mixed aspects make CSS grid rows ragged; worth revisiting if more mobile captures arrive.
     - Verified: 3 groups with computed counts 7/12/1, 20 images and zero broken at 1440 and 390, 21 links, one `h1`, no horizontal overflow, routes 200, h1-check and schema-check pass, lint and tsc clean.
 
+155. **Website section paired with the app at 70/30 (2026-09-08)** — **done.** Bilal asked for two columns on "The corporate website": web design left at 70%, mobile app right at 30%.
+    - **The pairing is the argument, not decoration.** The copy already claims the app carries the same developments as the site; showing the LEOS homepage beside the app's Hadley Heights screen is the evidence rather than the assertion. Measured 812/348 at 1440 — exactly 70/30, stacking below `lg` where a 30% column would be about 110px.
+    - **A single phone, not the fanned composite, in the right column.** The composite is a wide landscape image; at ~348px it would render five screens at roughly 60px each, where nothing is legible. `DeviceFrame` is portrait at 1:2.17, which is the right shape for a 30% column — the frame extracted in item 153 earning its keep a second time.
+    - **The screen is resolved by key, not index.** `screens.find(s => s.key === "home")` rather than `screens[1]`, so reordering the data cannot silently swap which screen appears beside the website.
+    - **Falls back to full width when a client has no app**, so the layout is conditional on the data rather than assuming every client will have one.
+    - **Two mistakes, both caught by the type checker rather than by looking.** The derivation was first inserted after the *first* `const c =` in the file, which is inside `generateMetadata` where `c` is not narrowed — `'c' is possibly undefined`. There are two such sites and matching the first is the wrong one; it belongs after `if (!c) notFound();` in the component. **When a symbol appears twice in a file, an anchor on the string is a coin flip** — anchor on something unique to the target scope.
+    - **Flagged, not decided: the app now appears twice on this page** — here in the pairing, and again in the composite section below. Each does a different job (the pairing proves consistency, the composite shows breadth), but it is the same repetition pattern the homepage refactor existed to remove. Bilal's call whether the composite section stays.
+    - Verified: 70/30 measured at desktop and stacked at mobile, phone renders with its caption, no horizontal overflow, routes 200, h1-check and schema-check pass, lint and tsc clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
