@@ -22,6 +22,15 @@ import type { Capture } from "@/data/caseStudies";
  * status bar. Without that overlay an iPhone status bar would show through
  * inside the Android frame, which would be a visible lie about where the
  * screenshot came from.
+ *
+ * On proportions: the first version used a fixed 440px screen height against a
+ * 300px width, which is 1:1.67 — tablet proportions, and it read as an iPad.
+ * A phone of this class is 1:2.17. Both an iOS Pro Max and a Galaxy Ultra work
+ * out to that same ratio, so it is shared, and the iOS figure is the aspect of
+ * the captures themselves rather than a number from memory. Exact dimensions
+ * for specific unreleased-to-me models are deliberately not asserted; what
+ * separates the two frames is corner radius, bezel weight and cutout shape,
+ * which are observable, not spec sheets that would be invented.
  */
 export type AppScreen = {
   key: string;
@@ -49,25 +58,35 @@ function DeviceFrame({
   return (
     <figure className="mx-auto w-full max-w-[300px]">
       <div
-        className={`relative border-[3px] border-white/12 bg-[#0b0b0d] p-2 shadow-2xl shadow-black/50 ${
-          isIos ? "rounded-[2.75rem]" : "rounded-[1.75rem]"
+        className={`relative border-white/12 bg-[#0b0b0d] shadow-2xl shadow-black/50 ${
+          isIos
+            ? "rounded-[2.9rem] border-[4px] p-[7px]"
+            : "rounded-[2.1rem] border-[3px] p-[5px]"
         }`}
       >
         <div
           className={`relative overflow-hidden bg-black ${
-            isIos ? "rounded-[2.25rem]" : "rounded-[1.25rem]"
+            isIos ? "rounded-[2.45rem]" : "rounded-[1.75rem]"
           }`}
         >
           {/* Sits over the capture's own status bar — see the note above. */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex h-9 items-center justify-center bg-black">
+          <div
+            className={`pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-center bg-black ${
+              isIos ? "h-[34px] items-center" : "h-[26px] items-start pt-[6px]"
+            }`}
+          >
             {isIos ? (
-              <span className="h-[18px] w-[74px] rounded-full bg-[#0b0b0d]" />
+              <span className="h-[19px] w-[68px] rounded-full bg-[#08080b]" />
             ) : (
-              <span className="h-[11px] w-[11px] rounded-full bg-[#0b0b0d]" />
+              <span className="h-[10px] w-[10px] rounded-full bg-[#08080b]" />
             )}
           </div>
 
-          <div className="no-scrollbar h-[440px] overflow-y-auto sm:h-[500px]">
+          <div
+            className={`no-scrollbar overflow-y-auto ${
+              isIos ? "aspect-[1206/2622]" : "aspect-[1440/3120]"
+            }`}
+          >
             <Image
               src={screen.capture.src}
               alt={screen.capture.alt}

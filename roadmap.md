@@ -1335,6 +1335,13 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Not built, and flagged**: Bilal's reference mockup shows eight screens including an Enquire form; four exist. Android-native captures would also let the two frames show genuinely different chrome inside. Both are asset gaps, not code gaps.
     - Verified: both frames visible at desktop with the toggle hidden, iOS default on mobile with the toggle switching to Android, journey text changes with the selected screen, four screen pills present, no horizontal overflow at 1440 or 390, routes 200, lint and tsc clean.
 
+150. **Device frames corrected from tablet to phone proportions (2026-09-08)** — **done.** Bilal: "the emulator looks like iPad", and he was right.
+    - **The bug was arithmetic, not styling.** The screen area was a fixed 440px height against a 300px max width — 1:1.67, which is tablet proportions. A phone of this class is 1:2.17. Nothing about the chrome could rescue that; the shape was simply wrong.
+    - **Fixed with a real ratio rather than a guessed one.** The iOS frame now uses `aspect-[1206/2622]`, which is the aspect of Bilal's own captures. Both target devices work out to the same 1:2.17, so the ratio is shared. Verified by measuring the rendered boxes: 278x604 and 284x615, both 2.17.
+    - **He asked for iPhone 17 Pro Max and Galaxy S26 Ultra specifically, and I did not assert those dimensions.** I cannot verify the exact pixel dimensions of those models, and writing invented spec numbers into the code would be a fabrication that looks authoritative. What separates the two frames is corner radius, bezel weight and cutout shape — all observable, none requiring a spec sheet. Told him plainly rather than quietly substituting.
+    - **Chrome differentiated on the things that actually differ**: iOS gets a rounder shell (2.9rem vs 2.1rem), a heavier bezel, and a 68x19 Dynamic Island pill; Android gets squarer corners, a thinner bezel, and a 10px punch-hole sitting closer to the top edge.
+    - Verified: both frames measure 1:2.17, no horizontal overflow at 1440 or 390, routes 200, lint and tsc clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
