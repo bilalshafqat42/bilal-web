@@ -2,33 +2,39 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Reveal from "@/components/Reveal";
 import DeviceFrame from "@/components/DeviceFrame";
 import CtaButton from "@/components/CtaButton";
-import { FactStrip } from "@/components/CaseStudyParts";
 import { clients, getClient } from "@/data/caseStudies";
 import { SITE_URL as SITE } from "@/lib/schema";
 
 /**
- * The mobile app, as its own case study.
+ * The mobile app case study.
+ *
+ * Built to Bilal's own full-page mockup: hero with the composite beside it, a
+ * fact strip, the constraints the design had to satisfy, the screens one at a
+ * time with the decision stated as a claim, what was delivered, outcomes, and
+ * sibling navigation.
  *
  * A static `mobile-app` segment inside the dynamic `[client]` folder. Next
- * resolves static siblings before dynamic ones, so this takes precedence over
- * `[project]` without shadowing any real project — verified no project uses the
- * slug `mobile-app`.
+ * resolves static siblings before dynamic ones, so it takes precedence over
+ * `[project]` without shadowing anything — no project uses that slug.
  *
- * Item 145 deliberately avoided creating this route, on the grounds that the
- * project pages are organised by *project* while an app is a *deliverable*, and
- * publishing both axes risks the same content under two URLs. That reasoning
- * does not apply here: the app screens appear on no landing-page route, so this
- * page is genuinely new content rather than a second view of existing content.
+ * Two content rules, both load-bearing:
  *
- * Guarded on `c.mobileApp` rather than assuming every client has one, since the
- * route is generated for each client in the data.
+ *   Outcomes render only when they carry a value. The mockup had two figures as
+ *   `[ — ]` placeholders; shipping those would repeat the `[Client Name]`
+ *   problem removed from the homepage. They sit in the data without values and
+ *   appear the day real numbers exist.
+ *
+ *   The scope lists are shorter than an agency's would be, on purpose. Every
+ *   item is evidenced by a capture or was stated directly. Padding them with
+ *   plausible work nobody can point at is how a case study stops being
+ *   credible.
  */
 type Props = { params: Promise<{ client: string }> };
 
@@ -54,6 +60,10 @@ export default async function MobileAppCaseStudy({ params }: Props) {
 
   const app = c.mobileApp;
   const url = `${SITE}/portfolio/${c.slug}/mobile-app`;
+  const total = app.screens.length + 1; // the enquiry screen is described, not captured
+  const outcomes = app.outcomes?.filter((o) => o.value) ?? [];
+  const pending = app.outcomes?.filter((o) => !o.value) ?? [];
+  const siblings = c.projects.slice(0, 2);
 
   const breadcrumb = {
     "@context": "https://schema.org",
@@ -66,16 +76,11 @@ export default async function MobileAppCaseStudy({ params }: Props) {
     ],
   };
 
-  /* No SoftwareApplication node. That type wants an operating system, a
-     category and ideally a store URL or price; none of those were supplied, and
-     the standing rule on this project is that nothing goes into markup that is
-     not visible on the page. */
-
   const facts = [
-    { label: "Platforms", value: "iOS & Android" },
-    { label: "Framework", value: "React Native" },
-    { label: "Codebase", value: "Single, shared" },
-    { label: "Screens shown", value: `${app.screens.length}` },
+    { label: "Platforms", value: "iOS & Android", note: "From one build" },
+    { label: "Framework", value: "React Native", note: "One shared codebase" },
+    { label: "My role", value: "Design & build", note: "Interface through to delivery" },
+    { label: "Screens shown", value: `${total}`, note: "Walked through below" },
   ];
 
   return (
@@ -85,125 +90,283 @@ export default async function MobileAppCaseStudy({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
       />
       <Nav />
-      <main className="flex-1 pb-16 sm:pb-20">
+      <main className="flex-1">
+        {/* Hero: copy left, composite right. */}
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="site-container relative">
-            <Reveal>
-              <div>
-                <Link
-                  href={`/portfolio/${c.slug}`}
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition-colors hover:text-gold"
-                >
-                  <ArrowLeft size={15} /> {c.name}
-                </Link>
-                <h1 className="mt-6 max-w-3xl text-4xl font-bold leading-[1.06] tracking-tight text-ink sm:text-5xl lg:text-[3.25rem]">
-                  A cross-platform app, from one codebase
-                </h1>
-                <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{app.body}</p>
-              </div>
-            </Reveal>
+            <Link
+              href={`/portfolio/${c.slug}`}
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition-colors hover:text-gold"
+            >
+              <ArrowLeft size={15} /> {c.name}
+            </Link>
 
-            <Reveal delay={0.1}>
-              <div className="mt-12">
-                <FactStrip facts={facts} />
-              </div>
-            </Reveal>
-
-            {app.lead ? (
-              <Reveal delay={0.15}>
-                <Image
-                  src={app.lead.src}
-                  alt={app.lead.alt}
-                  width={app.lead.width}
-                  height={app.lead.height}
-                  sizes="(min-width: 1024px) 1100px, 100vw"
-                  className="mt-14 h-auto w-full"
-                  priority
-                />
+            <div className="mt-8 grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-14">
+              <Reveal>
+                <div>
+                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                    Case study · Property &amp; real estate
+                  </span>
+                  <h1 className="mt-5 text-4xl font-bold leading-[1.04] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
+                    A cross-platform app, from one codebase.
+                  </h1>
+                  <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted">{app.body}</p>
+                  <div className="mt-9 flex flex-wrap items-center gap-6">
+                    <CtaButton href="/appointment">Book a free consultation</CtaButton>
+                    <Link
+                      href="#screens"
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink underline decoration-1 underline-offset-[6px] transition-opacity hover:opacity-80"
+                    >
+                      See {total} screens, one by one
+                    </Link>
+                  </div>
+                </div>
               </Reveal>
-            ) : null}
+
+              {app.lead ? (
+                <Reveal delay={0.1}>
+                  <Image
+                    src={app.lead.src}
+                    alt={app.lead.alt}
+                    width={app.lead.width}
+                    height={app.lead.height}
+                    sizes="(min-width: 1024px) 620px, 100vw"
+                    className="h-auto w-full"
+                    priority
+                  />
+                </Reveal>
+              ) : null}
+            </div>
+
+            {/* Fact strip. Dividers are cell borders rather than a separate
+                element, so they cannot drift out of line with the grid. */}
+            <Reveal delay={0.15}>
+              <dl className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border lg:grid-cols-4">
+                {facts.map((f) => (
+                  <div key={f.label} className="bg-bg p-6">
+                    <dt className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-muted/70">
+                      {f.label}
+                    </dt>
+                    <dd className="mt-3 text-lg font-semibold text-ink">{f.value}</dd>
+                    <dd className="mt-1 text-xs text-muted">{f.note}</dd>
+                  </div>
+                ))}
+              </dl>
+            </Reveal>
           </div>
         </section>
 
-        {/* The journey, one screen per row: frame on one side, reasoning on the
-            other, alternating so the eye is not tracking a single column. */}
-        <section className="relative mt-20 sm:mt-28">
+        {/* Constraints: the pull quote states the problem, the numbered points
+            are what it forced. */}
+        {app.constraints ? (
+          <section className="relative mt-24 sm:mt-32">
+            <div className="site-container">
+              <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.25fr] lg:gap-16">
+                <Reveal>
+                  <p className="border-l-2 border-gold/70 pl-6 text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-[1.75rem]">
+                    {app.constraints.pull}
+                  </p>
+                </Reveal>
+                <Reveal delay={0.1}>
+                  <ol className="space-y-8">
+                    {app.constraints.points.map((pt, i) => (
+                      <li key={pt.title} className="grid grid-cols-[auto_1fr] gap-5">
+                        <span className="font-mono text-xs text-gold">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <div>
+                          <p className="font-semibold text-ink">{pt.title}</p>
+                          <p className="mt-2 text-base leading-relaxed text-muted">{pt.body}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                </Reveal>
+              </div>
+            </div>
+          </section>
+        ) : null}
+
+        {/* Screen by screen. Alternating sides so the eye is not tracking one
+            column all the way down a long page. */}
+        <section id="screens" className="relative mt-24 scroll-mt-28 sm:mt-32">
           <div className="site-container">
             <Reveal>
-              <h2 className="text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl lg:text-[2.75rem]">
-                Screen by screen
-              </h2>
+              <div>
+                <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                  The work
+                </span>
+                <h2 className="mt-4 max-w-2xl text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl lg:text-[2.75rem]">
+                  Screen by screen, and why each one is built that way.
+                </h2>
+              </div>
             </Reveal>
 
-            <ol className="mt-14 space-y-16 sm:space-y-20">
+            <ol className="mt-14 space-y-6">
               {app.screens.map((s, i) => (
                 <li key={s.key}>
                   <Reveal>
-                    <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,300px)_minmax(0,1fr)] lg:gap-14">
+                    <div className="grid grid-cols-1 items-center gap-8 rounded-3xl border border-border bg-surface/30 p-7 sm:p-10 lg:grid-cols-[minmax(0,280px)_minmax(0,1fr)] lg:gap-14">
                       <div className={i % 2 === 1 ? "lg:order-2" : ""}>
                         <DeviceFrame capture={s.capture} eager={i === 0} />
                       </div>
                       <div className={i % 2 === 1 ? "lg:order-1" : ""}>
-                        <span className="font-mono text-xs text-gold">
-                          {String(i + 1).padStart(2, "0")}
+                        <span className="font-mono text-xs text-muted/70">
+                          {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+                          <span className="mx-2 text-muted/40">·</span>
+                          <span className="text-gold">{s.label}</span>
                         </span>
-                        <h3 className="mt-3 text-2xl font-semibold tracking-tight text-ink">
-                          {s.label}
+                        <h3 className="mt-4 text-2xl font-semibold leading-snug tracking-tight text-ink">
+                          {s.headline}
                         </h3>
-                        <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
-                          {s.journey}
-                        </p>
+                        <p className="mt-4 text-base leading-relaxed text-muted">{s.journey}</p>
+                        <span className="mt-6 inline-flex rounded-full border border-border bg-bg px-4 py-1.5 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted">
+                          {s.tag}
+                        </span>
                       </div>
                     </div>
                   </Reveal>
                 </li>
               ))}
+
+              {/* The enquiry screen. In the app and visible inside the composite
+                  above, but there is no standalone capture — so the reasoning is
+                  published and the image is not invented. The dashed border says
+                  so without a sentence of apology. */}
+              <li>
+                <Reveal>
+                  <div className="rounded-3xl border border-dashed border-border bg-surface/20 p-7 sm:p-10">
+                    <span className="font-mono text-xs text-muted/70">
+                      {String(total).padStart(2, "0")} / {String(total).padStart(2, "0")}
+                      <span className="mx-2 text-muted/40">·</span>
+                      <span className="text-gold">Enquire</span>
+                    </span>
+                    <h3 className="mt-4 text-2xl font-semibold leading-snug tracking-tight text-ink">
+                      Four fields, and nothing else.
+                    </h3>
+                    <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
+                      Name, email, phone and a message. Every extra field on a property enquiry
+                      costs completions, and the ones that matter for a first conversation are how
+                      to reach someone and roughly what they want. Qualification happens on the
+                      call, not in the form. It is reachable from every development card, so nobody
+                      has to navigate back to a contact page to act on what they are looking at.
+                    </p>
+                    <div className="mt-6 flex flex-wrap items-center gap-3">
+                      <span className="inline-flex rounded-full border border-border bg-bg px-4 py-1.5 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted">
+                        Reachable from every card
+                      </span>
+                      <span className="text-xs text-muted/70">
+                        Visible in the composite above — standalone capture still to come.
+                      </span>
+                    </div>
+                  </div>
+                </Reveal>
+              </li>
             </ol>
-
-            {/* The enquiry screen, described rather than shown. It exists in the
-                app and is visible inside the composite above, but there is no
-                standalone capture of it — so the reasoning is published and the
-                image is not invented. Swap this for a real screen entry the day
-                a capture arrives. */}
-            <Reveal>
-              <div className="mt-16 rounded-2xl border border-dashed border-border bg-surface/30 p-7 sm:p-9">
-                <span className="font-mono text-xs text-gold">
-                  {String(app.screens.length + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-3 text-2xl font-semibold tracking-tight text-ink">Enquire</h3>
-                <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-                  The form asks for four things — name, email, phone and a message — and nothing
-                  else. Every extra field on a property enquiry costs completions, and the ones that
-                  matter for a first conversation are how to reach someone and roughly what they
-                  want. Qualification happens on the call, not in the form. It is reachable from
-                  every development card, so a buyer never has to navigate back to a contact page
-                  to act on what they are looking at.
-                </p>
-                <p className="mt-5 text-sm text-muted/70">
-                  Visible in the composite above. A standalone capture of this screen is still to
-                  come.
-                </p>
-              </div>
-            </Reveal>
           </div>
         </section>
 
-        <section className="relative mt-20 sm:mt-28">
-          <div className="site-container">
-            <Reveal>
-              <div className="flex flex-wrap items-center gap-5">
-                <CtaButton href="/appointment">Book a free consultation</CtaButton>
-                <Link
-                  href={`/portfolio/${c.slug}`}
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
-                >
-                  See the rest of the {c.name} work <ArrowRight size={15} />
-                </Link>
+        {app.scope ? (
+          <section className="relative mt-24 sm:mt-32">
+            <div className="site-container">
+              <Reveal>
+                <div>
+                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                    Scope
+                  </span>
+                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl lg:text-[2.75rem]">
+                    What I handled on this project.
+                  </h2>
+                </div>
+              </Reveal>
+              <div className="mt-12 grid grid-cols-1 gap-10 border-t border-border pt-10 sm:grid-cols-3 sm:gap-8">
+                {app.scope.map((group) => (
+                  <Reveal key={group.heading}>
+                    <div>
+                      <h3 className="font-semibold text-ink">{group.heading}</h3>
+                      <ul className="mt-5 space-y-3">
+                        {group.items.map((item) => (
+                          <li key={item} className="flex items-start gap-2.5 text-sm leading-relaxed text-muted">
+                            <Check size={15} className="mt-0.5 shrink-0 text-gold" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </Reveal>
+                ))}
               </div>
-            </Reveal>
-          </div>
-        </section>
+            </div>
+          </section>
+        ) : null}
+
+        {outcomes.length > 0 ? (
+          <section className="relative mt-24 sm:mt-32">
+            <div className="site-container">
+              <Reveal>
+                <div>
+                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                    Outcome
+                  </span>
+                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl lg:text-[2.75rem]">
+                    What it changed.
+                  </h2>
+                </div>
+              </Reveal>
+              <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {outcomes.map((o) => (
+                  <Reveal key={o.label}>
+                    <div className="h-full rounded-2xl border border-border panel p-7">
+                      <p className="text-4xl font-bold tracking-tight text-gold">{o.value}</p>
+                      <p className="mt-3 font-semibold text-ink">{o.label}</p>
+                      {o.note ? (
+                        <p className="mt-2 text-sm leading-relaxed text-muted">{o.note}</p>
+                      ) : null}
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+              {pending.length > 0 ? (
+                <Reveal>
+                  <p className="mt-8 max-w-2xl text-sm leading-relaxed text-muted/70">
+                    {pending.map((o) => o.label).join(" and ")}{" "}
+                    {pending.length > 1 ? "are" : "is"} deliberately absent. One figure a client can
+                    verify is worth more than three they cannot, so nothing goes here until the
+                    number is real.
+                  </p>
+                </Reveal>
+              ) : null}
+            </div>
+          </section>
+        ) : null}
+
+        {siblings.length > 0 ? (
+          <section className="relative mt-24 sm:mt-32">
+            <div className="site-container">
+              <div className="grid grid-cols-1 gap-4 border-t border-border pt-10 sm:grid-cols-2">
+                {siblings.map((p, i) => (
+                  <Link
+                    key={p.slug}
+                    href={`/portfolio/${c.slug}/${p.slug}`}
+                    className={`card-hover group rounded-2xl border border-border panel p-7 ${
+                      i === 1 ? "sm:text-right" : ""
+                    }`}
+                  >
+                    <span className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-muted/70">
+                      {i === 1 ? "Next" : "Previous"}
+                    </span>
+                    <span className="mt-3 flex items-center gap-2 text-lg font-semibold text-ink transition-colors group-hover:text-gold sm:justify-start">
+                      {i === 1 ? null : <ArrowLeft size={16} className="shrink-0" />}
+                      <span className={i === 1 ? "sm:ml-auto" : ""}>{p.name}</span>
+                      {i === 1 ? <ArrowRight size={16} className="shrink-0" /> : null}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
 
         <Contact />
       </main>

@@ -98,8 +98,30 @@ export type Client = {
      *  frames below are what show Android. */
     lead?: { src: string; width: number; height: number; alt: string };
     /** Ordered as the journey actually runs, because the screen selector reads
-     *  in this order and a user journey told out of sequence is just a list. */
-    screens: { key: string; label: string; journey: string; capture: Capture }[];
+     *  in this order and a user journey told out of sequence is just a list.
+     *
+     *  `headline` is the decision stated as a claim; `journey` is the reasoning
+     *  behind it; `tag` is the one-line takeaway. Splitting them lets the page
+     *  lead with the claim rather than burying it in a paragraph. */
+    screens: {
+      key: string;
+      label: string;
+      headline: string;
+      journey: string;
+      tag: string;
+      capture: Capture;
+    }[];
+    /** The constraints the design had to satisfy. Reasoning, not measurements —
+     *  nothing here is a figure, because none was supplied. */
+    constraints?: { pull: string; points: { title: string; body: string }[] };
+    /** What was delivered, grouped by phase. Only items evidenced by the
+     *  captures or stated directly by Bilal. Deliberately shorter than a
+     *  typical agency scope list: padding it with plausible-sounding work
+     *  nobody can point at is how a case study stops being credible. */
+    scope?: { heading: string; items: string[] }[];
+    /** Outcomes. Only entries with a `value` render — see the note in the
+     *  component. */
+    outcomes?: { value?: string; label: string; note?: string }[];
   };
   brandSocial?: Gallery;
   projects: Project[];
@@ -388,9 +410,63 @@ export const clients: Client[] = [
       },
       body:
         "A cross-platform app for iOS and Android, built in React Native from a single codebase. It carries the same developments as the website — Hadley Heights, Weybridge Gardens and Cavendish Square — so a buyer who first saw a launch page finds the same units, the same photography and the same enquiry routes on their phone rather than a thinner version of the site.",
+      constraints: {
+        pull:
+          "The website already sold well. The app had to carry that restraint into something people operate rather than read.",
+        points: [
+          {
+            title: "The buyer is often not in the country",
+            body: "Off-plan is frequently bought at a distance, so the app has to stand in for a site visit: the renders, the unit mix and the size range have to be legible on a phone, and the route to a human has to be one tap from whatever the buyer is looking at.",
+          },
+          {
+            title: "Two platforms, one small team",
+            body: "Separate native builds would have meant two codebases, two release cycles and two sets of bugs for the same screens. React Native keeps one component tree and one place to fix anything, which is what makes a two-platform app viable without a two-platform team.",
+          },
+          {
+            title: "Nothing may contradict the website",
+            body: "The same three developments, the same photography and the same enquiry destination. A buyer moving between the site and the app should never see two different answers to the same question, because the moment they do, both stop being trustworthy.",
+          },
+        ],
+      },
+      scope: [
+        {
+          heading: "Design",
+          items: [
+            "Interface design for the screens shown here",
+            "Platform-appropriate navigation: slide-over rather than a tab bar",
+            "Sign-in that offers an account without requiring one",
+          ],
+        },
+        {
+          heading: "Build",
+          items: [
+            "React Native, one codebase for iOS and Android",
+            "Shared components across every screen",
+            "Development data matched to the website, so the two cannot drift",
+          ],
+        },
+        {
+          heading: "Enquiry path",
+          items: [
+            "Four-field enquiry form, reachable from every development card",
+            "Enquire and call actions on the content rather than behind a menu",
+          ],
+        },
+      ],
+      outcomes: [
+        {
+          value: "1",
+          label: "Codebase for both platforms",
+          note: "One component tree to build, fix and maintain, rather than two.",
+        },
+        { label: "Enquiries per month from the app" },
+        { label: "Time to first response" },
+      ],
       screens: [
         {
           key: "sign-in",
+          headline: "An account is offered, not demanded.",
+          tag: "Guest browsing by default",
           label: "Sign in",
           journey:
             "The first decision is whether to make anyone sign in at all. Most first visits to a property app are browsing, not buying, so a wall in front of the developments loses the people it is meant to qualify. Continue as guest sits directly under the login button, at the same weight — an account is offered, not demanded.",
@@ -404,6 +480,8 @@ export const clients: Client[] = [
         },
         {
           key: "home",
+          headline: "One development leads, not a grid.",
+          tag: "Actions sit with the content",
           label: "Home",
           journey:
             "A single featured development leads, not a grid. One building with its location, unit mix and size range answers more than six thumbnails do, and Enquire Now and Call Us Now sit on the card itself rather than behind a menu — the two actions a serious buyer wants are never more than one tap from what they are looking at.",
@@ -417,6 +495,8 @@ export const clients: Client[] = [
         },
         {
           key: "developments",
+          headline: "The full portfolio, one card per building.",
+          tag: "Price on the card, not behind a tap",
           label: "Developments",
           journey:
             "The full portfolio, one card per development, each carrying its own entry price. Price on the card rather than behind a tap is deliberate: it filters early, which costs some browsing and produces better enquiries. The same three developments the launch pages cover, so nothing contradicts the website.",
@@ -430,6 +510,8 @@ export const clients: Client[] = [
         },
         {
           key: "menu",
+          headline: "A slide-over, not a tab bar.",
+          tag: "Weighted, not evenly split",
           label: "Menu",
           journey:
             "Developments, investments, the LEOS Hub and news, as a slide-over rather than a tab bar — five destinations of uneven importance do not divide well into equal tabs. Log out sits at the bottom in the accent colour, visible rather than buried in a settings screen two levels down.",
