@@ -8,6 +8,7 @@ import TrackView from "@/components/TrackView";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/CaseStudyParts";
+import AppShowcase from "@/components/AppShowcase";
 import { clients, getClient } from "@/data/caseStudies";
 import CtaButton from "@/components/CtaButton";
 
@@ -161,18 +162,7 @@ export default async function ClientCaseStudy({ params }: Props) {
                 </h2>
                 <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">{c.mobileApp.body}</p>
               </Reveal>
-              {/* Two across on phones rather than four: four phone frames in a
-                  390px row leaves each about 85px wide, where nothing on the
-                  screen is legible. `items-start` because the captures are
-                  different lengths — 2622px to 5807px — so a stretched row
-                  would pad the short ones. */}
-              <div className="mt-10 grid grid-cols-2 items-start gap-4 lg:grid-cols-4 lg:gap-5">
-                {c.mobileApp.captures.map((capture, i) => (
-                  <Reveal key={capture.src} delay={(i % 4) * 0.08}>
-                    <CaptureFrame capture={capture} variant="phone" />
-                  </Reveal>
-                ))}
-              </div>
+              <AppShowcase screens={c.mobileApp.screens} />
             </div>
           </section>
         ) : null}

@@ -83,7 +83,13 @@ export type Client = {
    *
    *  Sits between the website and the social work so the client page reads in
    *  the order the deliverables were asked for: website, mobile app, social. */
-  mobileApp?: { heading: string; body: string; captures: Capture[] };
+  mobileApp?: {
+    heading: string;
+    body: string;
+    /** Ordered as the journey actually runs, because the screen selector reads
+     *  in this order and a user journey told out of sequence is just a list. */
+    screens: { key: string; label: string; journey: string; capture: Capture }[];
+  };
   brandSocial?: Gallery;
   projects: Project[];
   keywords: string[];
@@ -365,34 +371,58 @@ export const clients: Client[] = [
       heading: "The mobile app",
       body:
         "A cross-platform app for iOS and Android, built in React Native from a single codebase. It carries the same developments as the website — Hadley Heights, Weybridge Gardens and Cavendish Square — so a buyer who first saw a launch page finds the same units, the same photography and the same enquiry routes on their phone rather than a thinner version of the site.",
-      captures: [
+      screens: [
         {
-          src: "/portfolio/leos/mobile-app/leos-login.avif",
-          width: 1206,
-          height: 2622,
-          alt: "LEOS app sign-in screen with email and password fields and a continue-as-guest option",
-          label: "Sign in, with a guest route",
+          key: "sign-in",
+          label: "Sign in",
+          journey:
+            "The first decision is whether to make anyone sign in at all. Most first visits to a property app are browsing, not buying, so a wall in front of the developments loses the people it is meant to qualify. Continue as guest sits directly under the login button, at the same weight — an account is offered, not demanded.",
+          capture: {
+            src: "/portfolio/leos/mobile-app/leos-login.avif",
+            width: 1206,
+            height: 2622,
+            alt: "LEOS app sign-in screen with email and password fields and a continue-as-guest option",
+            label: "Sign in",
+          },
         },
         {
-          src: "/portfolio/leos/mobile-app/home-screen.avif",
-          width: 1206,
-          height: 3547,
-          alt: "LEOS app home screen featuring Hadley Heights in Jumeirah Village Circle with enquire and call actions",
-          label: "Home — featured development",
+          key: "home",
+          label: "Home",
+          journey:
+            "A single featured development leads, not a grid. One building with its location, unit mix and size range answers more than six thumbnails do, and Enquire Now and Call Us Now sit on the card itself rather than behind a menu — the two actions a serious buyer wants are never more than one tap from what they are looking at.",
+          capture: {
+            src: "/portfolio/leos/mobile-app/home-screen.avif",
+            width: 1206,
+            height: 3547,
+            alt: "LEOS app home screen featuring Hadley Heights in Jumeirah Village Circle with enquire and call actions",
+            label: "Home",
+          },
         },
         {
-          src: "/portfolio/leos/mobile-app/projects.avif",
-          width: 1206,
-          height: 5807,
-          alt: "LEOS app developments list showing Hadley Heights, Weybridge Gardens and Cavendish Square",
+          key: "developments",
           label: "Developments",
+          journey:
+            "The full portfolio, one card per development, each carrying its own entry price. Price on the card rather than behind a tap is deliberate: it filters early, which costs some browsing and produces better enquiries. The same three developments the launch pages cover, so nothing contradicts the website.",
+          capture: {
+            src: "/portfolio/leos/mobile-app/projects.avif",
+            width: 1206,
+            height: 5807,
+            alt: "LEOS app developments list showing Hadley Heights, Weybridge Gardens and Cavendish Square",
+            label: "Developments",
+          },
         },
         {
-          src: "/portfolio/leos/mobile-app/leos-menu.avif",
-          width: 1206,
-          height: 2622,
-          alt: "LEOS app slide-over menu with developments, investments, LEOS Hub, news and about",
+          key: "menu",
           label: "Menu",
+          journey:
+            "Developments, investments, the LEOS Hub and news, as a slide-over rather than a tab bar — five destinations of uneven importance do not divide well into equal tabs. Log out sits at the bottom in the accent colour, visible rather than buried in a settings screen two levels down.",
+          capture: {
+            src: "/portfolio/leos/mobile-app/leos-menu.avif",
+            width: 1206,
+            height: 2622,
+            alt: "LEOS app slide-over menu with developments, investments, LEOS Hub, news and about",
+            label: "Menu",
+          },
         },
       ],
     },
