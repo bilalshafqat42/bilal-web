@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import Nav from "@/components/Nav";
@@ -101,17 +102,28 @@ export default function AboutPage() {
             <Reveal delay={0.15}>
               <div className="relative">
                 <div className="blob pointer-events-none absolute -top-10 left-1/4 h-64 w-64 rounded-full bg-gold/35" />
-                <div
-                  role="img"
-                  aria-label="Portrait of Bilal Shafqat"
-                  className="relative aspect-[4/5] w-full rounded-[2rem] border border-border glass-strong"
-                  style={{
-                    backgroundImage: "url(/images/bilal-shafqat-coat.avif)",
-                    backgroundSize: "130%",
-                    backgroundPosition: "center 20%",
-                    backgroundRepeat: "no-repeat",
-                  }}
-                />
+                {/* Was a div with `role="img"` and a CSS `background-image`, which
+                    bypasses Next's image optimiser entirely — the full 601KB AVIF
+                    shipped to every visitor, no responsive variants, no format
+                    negotiation. `next/image` with `fill` gets both, and a real <img>
+                    with alt text needs no role/aria-label pair.
+                
+                    Same photograph as the homepage hero, on request. The filenames
+                    mislead: `bilal-shirt.avif` is the blue suit, and
+                    `bilal-shafqat-coat.avif` — which this showed — is the grey coat.
+                
+                    The old `backgroundSize: 130%` / `center 20%` are not carried over:
+                    they were tuned to a different photograph, so they had to be
+                    re-derived for this one regardless of the technique change. */}
+                <div className="relative aspect-[4/5] w-full rounded-[2rem] border border-border glass-strong">
+                  <Image
+                    src="/images/bilal-shirt.avif"
+                    alt="Bilal Shafqat"
+                    fill
+                    sizes="(min-width: 1024px) 440px, 90vw"
+                    className="object-cover object-[50%_18%]"
+                  />
+                </div>
               </div>
             </Reveal>
           </div>

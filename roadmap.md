@@ -1311,6 +1311,13 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **The item 117 reasoning applies unchanged**: these sections sit behind an H1, so the backdrop supports the heading rather than competing with it. That is why it is subtle, not an oversight.
     - Verified: gold dots present and violet absent in the computed `::before` on four pages, `perspective: none`, no violet left anywhere in the built CSS, ten routes 200, no horizontal overflow, one `h1` each, lint and tsc clean.
 
+147. **/about portrait switched to the homepage photograph, and off a CSS background (2026-09-08)** — **done.** Bilal asked for the same image as the homepage. The swap was one line; the technique around it was the real find.
+    - **It was a `div` with `role="img"` and a CSS `background-image`, which bypasses Next's image optimiser completely.** Every visitor downloaded the full-size AVIF with no responsive variants and no format negotiation. Converted to `next/image` with `fill`, which now serves a proper `srcSet`. A real `<img>` with `alt` also makes the `role`/`aria-label` pair unnecessary — verified the stale `aria-label` is gone and the `alt` is present.
+    - **The old `backgroundSize: 130%` / `center 20%` were deliberately not carried over.** They were tuned to a different photograph, so they needed re-deriving whichever technique was used. Swept by capture: `30%` crops the top of the head against the container edge, `18%` keeps headroom with the full torso and tie in frame.
+    - **Filename trap again**, worth repeating because it has now caused confusion twice: `bilal-shirt.avif` is the **blue suit** and `bilal-shafqat-coat.avif` is the **grey coat**. /about was showing the coat.
+    - **Process note: a fourth hand-written multi-line pattern failed on indentation here.** Every one of those failures has been caught by an assert placed before the write, so nothing was ever half-applied — but the fix is to stop guessing. This edit splices by line number, locating the block from a single-line anchor and reading the indentation and the `className` off the file. That is the approach to use for any multi-line JSX edit in this project.
+    - Verified: image served through `/_next/image` with responsive variants, zero raw CSS `background-image` left on the page, stale `aria-label` gone, `alt` present, routes 200, lint and tsc clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
