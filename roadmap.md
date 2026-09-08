@@ -1342,6 +1342,13 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Chrome differentiated on the things that actually differ**: iOS gets a rounder shell (2.9rem vs 2.1rem), a heavier bezel, and a 68x19 Dynamic Island pill; Android gets squarer corners, a thinner bezel, and a 10px punch-hole sitting closer to the top edge.
     - Verified: both frames measure 1:2.17, no horizontal overflow at 1440 or 390, routes 200, lint and tsc clean.
 
+151. **Synthetic status bars added to the device frames (2026-09-08)** — **done.** Bilal wanted the camera, time and radio indicators visible.
+    - **Drawn, not revealed, and that distinction is the whole design.** The captures carry an iOS status bar, so simply uncovering it would put iPhone chrome inside the Android frame. The overlay now paints over that strip and supplies each platform's own furniture instead: time and cutout left and centre, radio, wifi and battery right, using icons already in the project's `lucide-react`.
+    - **The time is static (9:41).** A live clock renders one value on the server and another in the browser — a hydration mismatch — and a device mockup gains nothing from a real time. Same reasoning as the static "Dubai, UTC+4" in the header.
+    - **A leak caught at 2x that would have been invisible at 1x.** The first pass sized each cover to its platform's own bar height, 34px for iOS and 28px for Android. But the cover has to hide the *capture's* status bar, which is identical in both frames because it is the same file — so the shorter Android cover left the Dynamic Island peeking out below it. Fixed by making the opaque cover a fixed 36px in both, derived from the source (the status bar is roughly the top 150px of a 1206px-wide capture, about 35px at the rendered width), with each platform's visible bar laid out inside that.
+    - **The lesson is about zoom level, not about status bars.** A 1x screenshot showed nothing wrong. Capturing the frame tops at `deviceScaleFactor: 2` made it obvious immediately — worth doing whenever the thing being checked is a few pixels tall.
+    - Verified: both frames show time and three indicators, correct cutout per platform, no capture chrome visible below either bar, frames still 1:2.17, routes 200, lint and tsc clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

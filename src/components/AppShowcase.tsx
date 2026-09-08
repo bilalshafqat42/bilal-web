@@ -2,6 +2,7 @@
 
 import { useId, useState } from "react";
 import Image from "next/image";
+import { BatteryFull, SignalHigh, Wifi } from "lucide-react";
 import type { Capture } from "@/data/caseStudies";
 
 /**
@@ -18,8 +19,8 @@ import type { Capture } from "@/data/caseStudies";
  * set and it was taken on iOS. That is not a gap being hidden — a React Native
  * app renders the same component tree on both platforms, so the screens really
  * are the same. What differs is the OS chrome, so each frame draws its own
- * (Dynamic Island for iOS, punch-hole for Android) *over* the capture's own
- * status bar. Without that overlay an iPhone status bar would show through
+ * (Dynamic Island for iOS, punch-hole for Android) plus a synthetic status bar
+ * — time, radio, wifi, battery — *over* the capture's own status bar. Without that overlay an iPhone status bar would show through
  * inside the Android frame, which would be a visible lie about where the
  * screenshot came from.
  *
@@ -69,17 +70,39 @@ function DeviceFrame({
             isIos ? "rounded-[2.45rem]" : "rounded-[1.75rem]"
           }`}
         >
-          {/* Sits over the capture's own status bar — see the note above. */}
+          {/* Status bar. Drawn rather than revealed, which is the whole reason
+              it exists: the captures carry an iOS status bar, so uncovering it
+              would put iPhone chrome inside the Android frame. This paints over
+              that strip and supplies each platform's own furniture — time and
+              cutout on the left and centre, radio and battery on the right.
+
+              The time is static. A live clock renders one value on the server
+              and another in the browser, which is a hydration mismatch, and a
+              device mockup gains nothing from a real time anyway. */}
           <div
-            className={`pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-center bg-black ${
-              isIos ? "h-[34px] items-center" : "h-[26px] items-start pt-[6px]"
-            }`}
+            className="pointer-events-none absolute inset-x-0 top-0 z-10 h-[36px] bg-black"
           >
-            {isIos ? (
-              <span className="h-[19px] w-[68px] rounded-full bg-[#08080b]" />
-            ) : (
-              <span className="h-[10px] w-[10px] rounded-full bg-[#08080b]" />
-            )}
+            {/* Absolutely centred so the cutout stays true-centre whatever the
+                two side groups measure. */}
+            <span
+              className={`absolute left-1/2 -translate-x-1/2 rounded-full bg-[#08080b] ${
+                isIos ? "top-[7px] h-[19px] w-[68px]" : "top-[7px] h-[10px] w-[10px]"
+              }`}
+            />
+            <div
+              className={`absolute inset-x-0 top-0 flex items-center justify-between text-white/90 ${
+                isIos
+                  ? "h-[34px] px-[18px] text-[10px] font-semibold"
+                  : "h-[28px] px-[11px] text-[9px] font-medium"
+              }`}
+            >
+              <span className="tabular-nums">9:41</span>
+              <span className={isIos ? "flex items-center gap-[3px]" : "flex items-center gap-[3px]"}>
+                <SignalHigh size={isIos ? 11 : 10} strokeWidth={2.5} />
+                <Wifi size={isIos ? 10 : 9} strokeWidth={2.5} />
+                <BatteryFull size={isIos ? 14 : 12} strokeWidth={2} />
+              </span>
+            </div>
           </div>
 
           <div
