@@ -1,6 +1,7 @@
 import { megaMenuGroups } from "@/data/pillars";
 import { clients } from "@/data/caseStudies";
 import { faqGroups } from "@/data/faqs";
+import { disciplinesWithPages, disciplineItems } from "@/data/disciplines";
 
 const SITE = "https://bilalshafqat.com";
 
@@ -25,7 +26,7 @@ Full content for machine reading: ${SITE}/llms-full.txt
 - [Home](${SITE}/): overview of services and recent work
 - [About](${SITE}/about): background, working principles, tools and platforms
 - [Services](${SITE}/services): all eight service categories
-- [Work](${SITE}/portfolio): case studies
+- [Portfolio](${SITE}/portfolio): all work, browsable by discipline and by client
 - [LEOS mobile app](${SITE}/portfolio/leos-developments/mobile-app): React Native case study — cross-platform iOS and Android from one codebase, screen by screen
 - [Process](${SITE}/process): the four delivery stages — brief and discovery, planning and design, build and launch, then measurement and iteration, with worked examples
 - [Pricing](${SITE}/pricing): engagement models and what drives cost — no published price list
@@ -36,6 +37,17 @@ Full content for machine reading: ${SITE}/llms-full.txt
   lines.push(`## Services\n`);
   for (const g of megaMenuGroups) {
     lines.push(`- [${g.title}](${SITE}/services/${g.slug}): ${g.intro} Includes ${g.items.map((i) => i.title).join(", ")}.`);
+  }
+
+  // Portfolio by discipline. Listed before the client case studies because it
+  // is the axis a machine answering "does he do X" needs, and each entry states
+  // its real item count so an assistant quoting this cannot inflate it.
+  lines.push(`\n## Portfolio by discipline\n`);
+  for (const d of disciplinesWithPages()) {
+    if (!d.page) continue;
+    lines.push(
+      `- [${d.title}](${SITE}/portfolio/${d.slug}): ${d.page.intro} ${disciplineItems(d).length} pieces shown.`
+    );
   }
 
   lines.push(`\n## Case studies\n`);

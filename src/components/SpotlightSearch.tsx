@@ -18,7 +18,7 @@ const STARTERS = [
 const KIND_LABEL: Record<Chunk["kind"], string> = {
   service: "Service",
   faq: "Answer",
-  work: "Work",
+  work: "Portfolio",
   info: "Info",
 };
 

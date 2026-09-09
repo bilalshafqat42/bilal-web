@@ -9,6 +9,7 @@ import { pillars, megaMenuGroups } from "@/data/pillars";
 import { faqGroups } from "@/data/faqs";
 import { clients } from "@/data/caseStudies";
 import { serviceDepth } from "@/data/serviceDepth";
+import { disciplinesWithPages, disciplineItems } from "@/data/disciplines";
 
 export type Chunk = {
   title: string;
@@ -46,6 +47,41 @@ export function buildIndex(): Chunk[] {
       for (const faq of depth.faqs) {
         chunks.push({ title: faq.question, body: faq.answer, url: `/services/${group.slug}`, kind: "faq" });
       }
+    }
+  }
+
+  // The portfolio hub, and the reason the discipline chunks below are titled
+  // "<discipline> work" rather than "<discipline> portfolio".
+  //
+  // The tokeniser drops words under three characters, so "ui ux portfolio"
+  // collapses to the single term "portfolio". With that word in all four
+  // discipline titles they tied on it and an arbitrary one won — a visitor
+  // asking for the UI/UX portfolio landed on social media creative. Keeping
+  // "portfolio" unique to this chunk makes a query that names no discipline the
+  // index can see resolve to the hub, which is the correct answer to it.
+  chunks.push({
+    title: "Portfolio",
+    body:
+      "All the work, browsable by discipline or by client: web design and development, UI/UX and interface design, React Native mobile apps, and social media creative. " +
+      disciplinesWithPages()
+        .map((d) => `${d.title}: ${disciplineItems(d).length} pieces.`)
+        .join(" "),
+    url: "/portfolio",
+    kind: "work",
+  });
+
+  // Discipline pages. Someone asking the assistant "do you build mobile apps"
+  // should reach the portfolio cut, not only the service page.
+  for (const d of disciplinesWithPages()) {
+    if (!d.page) continue;
+    chunks.push({
+      title: `${d.title} work`,
+      body: `${d.page.intro} ${d.page.lens} ${disciplineItems(d).length} pieces.`,
+      url: `/portfolio/${d.slug}`,
+      kind: "work",
+    });
+    for (const faq of d.page.faqs) {
+      chunks.push({ title: faq.question, body: faq.answer, url: `/portfolio/${d.slug}`, kind: "faq" });
     }
   }
 

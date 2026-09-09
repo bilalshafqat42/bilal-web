@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { disciplinesWithPages, disciplineItems } from "@/data/disciplines";
 import Image from "next/image";
 import { Building2, MapPin } from "lucide-react";
 import SocialLinks from "./SocialLinks";
@@ -35,7 +36,7 @@ const companyLinks = [
   { label: "Home", href: "/" },
   { label: "Book a call", href: "/appointment" },
   { label: "About", href: "/about" },
-  { label: "Work", href: "/portfolio" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "Pricing", href: "/pricing" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
@@ -97,7 +98,7 @@ export default function Footer() {
         {/* The oversized mark now opens the footer instead of closing it. */}
         <FooterWordmark />
 
-        <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1.3fr_1fr]">
+        <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.9fr_1.2fr_1.1fr_0.9fr]">
           <div>
             <Image
               src="/logo/bilal-square-light.svg"
@@ -137,6 +138,35 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          {/* Portfolio, added when the discipline pages shipped. These are new
+              URLs and the footer is the one place every page links from, which
+              is what gets them crawled. Derived, so a discipline that gains a
+              page appears here without this file being touched — and one that
+              has no page never does. */}
+          <div>
+            <p className="text-sm font-semibold text-ink">Portfolio</p>
+            <ul className="mt-4 space-y-2.5">
+              {disciplinesWithPages().map((d) => (
+                <li key={d.slug}>
+                  <Link
+                    href={`/portfolio/${d.slug}`}
+                    className="flex items-baseline gap-2 text-sm text-muted transition-colors hover:text-gold"
+                  >
+                    {d.title}
+                    <span className="font-mono text-[0.65rem] text-muted/50">
+                      {disciplineItems(d).length}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href="/portfolio" className="text-sm text-muted transition-colors hover:text-gold">
+                  All work
+                </Link>
+              </li>
             </ul>
           </div>
 

@@ -35,3 +35,8 @@ export const SERVICES_CONTENT_DATE = "2026-09-03";
 
 /** Portfolio pages all read from `src/data/caseStudies.ts`. */
 export const PORTFOLIO_CONTENT_DATE = "2026-08-28";
+
+/** Discipline pages carry their own copy in `src/data/disciplines.ts` as well
+ *  as the shared captures, so they date from when that copy was written rather
+ *  than from the case study data. */
+export const DISCIPLINE_CONTENT_DATE = "2026-09-09";

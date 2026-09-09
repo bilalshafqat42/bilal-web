@@ -31,7 +31,20 @@ const MUST_FIND = [
   ["do you shoot video", "shoot video"],
   ["do you provide hosting", "hosting"],
   ["seo", "SEO"],
-  ["react native", "build with"],
+  // Changed on 2026-09-09 when the discipline pages shipped, after checking
+  // that the new winner is a better answer rather than a regression. The top
+  // hit for "react native" is now "Do you build native or cross-platform?" on
+  // /portfolio/mobile-app-development, whose answer names React Native and
+  // lands the visitor on the actual React Native work; it used to be the
+  // services stack FAQ. "native" is a tighter assertion than "build with",
+  // since the old winner's title does not contain it — so a revert still fails.
+  ["react native", "native"],
+  ["cross platform", "native"],
+  // A bare "portfolio" must reach the hub, not one arbitrary discipline. The
+  // tokeniser drops words under three characters, so "ui ux portfolio" reduces
+  // to this same single term and this fixture protects that case too.
+  ["portfolio", "Portfolio"],
+  ["social media portfolio", "Social Media Marketing"],
   ["can you take over an existing ad account", "ad account"],
 ];
 

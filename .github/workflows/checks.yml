@@ -32,6 +32,12 @@ jobs:
       - name: Types
         run: npx tsc --noEmit
 
+      # Runs before the build: a discipline that gained work without gaining a
+      # route is a missing page, and there is no reason to spend a build finding
+      # that out.
+      - name: Discipline routes match the data
+        run: npm run discipline-check
+
       - name: Build
         run: npm run build
 

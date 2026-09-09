@@ -9,6 +9,7 @@ import { pillars, megaMenuGroups } from "@/data/pillars";
 import { faqGroups } from "@/data/faqs";
 import { serviceDepth } from "@/data/serviceDepth";
 import { clients } from "@/data/caseStudies";
+import { disciplinesWithPages, disciplineItems } from "@/data/disciplines";
 
 export function buildSiteContent(): string {
   const parts: string[] = [];
@@ -48,6 +49,17 @@ Includes: ${group.items.map((i) => i.title).join(", ")}.`);
     for (const section of pillar.sections) {
       parts.push(`## ${section.title}\n${section.body}\nCovers: ${section.bullets.join(", ")}.`);
     }
+  }
+
+  // The discipline axis. The assistant is asked "do you do mobile apps" far more
+  // often than it is asked about a named client, and the honest answer includes
+  // the count of what actually exists.
+  parts.push(`# Portfolio by discipline\n`);
+  for (const d of disciplinesWithPages()) {
+    if (!d.page) continue;
+    parts.push(
+      `## ${d.title} — /portfolio/${d.slug}\n${d.page.intro}\n${d.page.lens}\nPieces shown: ${disciplineItems(d).length}.`
+    );
   }
 
   parts.push(`# Case studies\n`);

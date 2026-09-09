@@ -75,7 +75,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE },
-      { "@type": "ListItem", position: 2, name: "Work", item: `${SITE}/portfolio` },
+      { "@type": "ListItem", position: 2, name: "Portfolio", item: `${SITE}/portfolio` },
       { "@type": "ListItem", position: 3, name: c.name, item: `${SITE}/portfolio/${c.slug}` },
       { "@type": "ListItem", position: 4, name: "Mobile app", item: url },
     ],

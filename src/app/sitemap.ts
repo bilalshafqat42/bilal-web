@@ -4,12 +4,14 @@ import {
   contentDates,
   SERVICES_CONTENT_DATE,
   PORTFOLIO_CONTENT_DATE,
+  DISCIPLINE_CONTENT_DATE,
 } from "@/data/contentDates";
 
 /** Falls back to the build date only for a route with no recorded entry, so a
  *  new page is never worse off than it was before this change. */
 const dateFor = (path: string) => new Date(contentDates[path] ?? Date.now());
 import { caseStudyUrls } from "@/data/caseStudies";
+import { disciplinesWithPages } from "@/data/disciplines";
 
 const baseUrl = "https://bilalshafqat.com";
 
@@ -94,6 +96,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(SERVICES_CONTENT_DATE),
       changeFrequency: "monthly" as const,
       priority: 0.7,
+    })),
+    // Discipline pages, derived from the same helper the routes and the mega
+    // menu use. A discipline with no work has no page and so never reaches the
+    // sitemap: submitting an empty URL is worse than not having it.
+    ...disciplinesWithPages().map((d) => ({
+      url: `${baseUrl}/portfolio/${d.slug}`,
+      lastModified: new Date(DISCIPLINE_CONTENT_DATE),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     })),
   ];
 }

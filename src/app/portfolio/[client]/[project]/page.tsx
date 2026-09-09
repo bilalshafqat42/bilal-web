@@ -93,7 +93,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE },
-      { "@type": "ListItem", position: 2, name: "Work", item: `${SITE}/portfolio` },
+      { "@type": "ListItem", position: 2, name: "Portfolio", item: `${SITE}/portfolio` },
       { "@type": "ListItem", position: 3, name: c.name, item: `${SITE}/portfolio/${c.slug}` },
       { "@type": "ListItem", position: 4, name: p.name, item: url },
     ],
@@ -112,7 +112,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
             <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-muted">
               <Link href="/" className="hover:text-ink transition-colors">Home</Link>
               <ChevronRight size={13} />
-              <Link href="/portfolio" className="hover:text-ink transition-colors">Work</Link>
+              <Link href="/portfolio" className="hover:text-ink transition-colors">Portfolio</Link>
               <ChevronRight size={13} />
               <Link href={`/portfolio/${c.slug}`} className="hover:text-ink transition-colors">{c.name}</Link>
               <ChevronRight size={13} />
