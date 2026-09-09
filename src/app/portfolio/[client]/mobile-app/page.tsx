@@ -200,7 +200,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
             {/* Header, with the count and capture note set right and small — it is
                 reference information, not a second heading. */}
             <Reveal>
-              <div className="flex flex-wrap items-end justify-between gap-6 border-b border-border pb-8">
+              <div className="mx-auto flex max-w-[1160px] flex-wrap items-end justify-between gap-6 border-b border-border pb-8">
                 <div>
                   <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                     The work
@@ -216,7 +216,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
               </div>
             </Reveal>
 
-            <ol className="mt-10 space-y-5">
+            <ol className="mx-auto mt-10 max-w-[1160px] space-y-5">
               {app.screens.map((s, i) => {
                 // Phone and spec panel swap sides on alternate rows; the copy stays in
                 // the middle. Reading five identical rows down a long page is what makes
@@ -225,14 +225,14 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                 return (
                   <li key={s.key}>
                     <Reveal>
-                      <div className="grid grid-cols-1 overflow-hidden rounded-3xl border border-border bg-surface/25 lg:grid-cols-[minmax(0,300px)_minmax(0,1fr)_minmax(0,210px)]">
+                      <div className="grid grid-cols-1 overflow-hidden rounded-3xl border border-border bg-surface/25 md:grid-cols-[minmax(0,260px)_minmax(0,1fr)] xl:grid-cols-[minmax(0,272px)_minmax(0,1fr)_minmax(0,272px)]">
                         {/* Phone panel. Tilted and allowed to run past the panel edge,
                             so it reads as a device photographed on a surface rather
                             than an image pasted into a box. `overflow-hidden` on the
                             card does the cropping. */}
                         <div
-                          className={`relative flex min-h-[340px] items-center justify-center px-8 py-10 ${
-                            phoneRight ? "lg:order-3" : "lg:order-1"
+                          className={`relative flex items-center justify-center px-8 py-10 xl:items-start xl:pb-0 xl:pt-12 ${
+                            phoneRight ? "xl:order-3" : "xl:order-1"
                           }`}
                         >
                           <div
@@ -243,23 +243,27 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                                 "radial-gradient(ellipse 70% 60% at 50% 40%, rgba(242,201,76,0.07), transparent 72%)",
                             }}
                           />
-                          <div className="relative w-[210px] rotate-[-7deg] lg:mb-[-56px] lg:w-[240px]">
+                          <div
+                            className={`relative w-[196px] xl:mb-[-36px] xl:w-[204px] ${
+                              phoneRight ? "rotate-[7deg]" : "rotate-[-7deg]"
+                            }`}
+                          >
                             <DeviceFrame capture={s.capture} eager={i === 0} />
                           </div>
                         </div>
 
-                        <div className="px-8 pb-10 pt-2 lg:order-2 lg:py-12">
+                        <div className="flex flex-col justify-center px-8 pb-10 pt-2 xl:order-2 xl:py-12">
                           <span className="font-mono text-xs text-muted/70">
                             <span className="mr-2 inline-block h-px w-6 align-middle bg-gold/50" />
                             {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
                             <span className="mx-2 text-muted/40">·</span>
                             <span className="text-gold">{s.label}</span>
                           </span>
-                          <h3 className="mt-4 max-w-sm text-2xl font-semibold leading-snug tracking-tight text-ink">
+                          <h3 className="mt-4 max-w-[30rem] text-2xl font-semibold leading-snug tracking-tight text-ink">
                             {s.headline}
                           </h3>
-                          <p className="mt-4 max-w-md text-base leading-relaxed text-muted">{s.journey}</p>
-                          <span className="mt-7 inline-flex rounded-full border border-gold/25 bg-gold/[0.06] px-4 py-1.5 text-xs text-gold/90">
+                          <p className="mt-4 max-w-[32rem] text-base leading-relaxed text-muted">{s.journey}</p>
+                          <span className="mt-7 inline-flex self-start rounded-full border border-gold/25 bg-gold/[0.06] px-4 py-1.5 text-xs text-gold/90">
                             {s.tag}
                           </span>
                         </div>
@@ -268,16 +272,16 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                             beside it, which is the only thing that makes a spec panel
                             worth printing. */}
                         <div
-                          className={`border-t border-border px-8 py-10 lg:border-l lg:border-t-0 lg:py-12 ${
-                            phoneRight ? "lg:order-1 lg:border-l-0 lg:border-r" : "lg:order-3"
+                          className={`flex flex-col justify-center border-t border-border px-8 py-10 md:col-span-2 xl:col-span-1 xl:border-l xl:border-t-0 xl:py-12 ${
+                            phoneRight ? "xl:order-1 xl:border-l-0 xl:border-r" : "xl:order-3"
                           }`}
                         >
                           <p className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-muted/60">
                             At a glance
                           </p>
-                          <dl className="mt-6 space-y-5">
+                          <dl className="mt-6 space-y-5 md:grid md:grid-cols-3 md:gap-8 md:space-y-0 xl:block xl:space-y-5">
                             {s.glance.map((g) => (
-                              <div key={g.label} className="border-b border-border/70 pb-4 last:border-b-0 last:pb-0">
+                              <div key={g.label} className="border-b border-border/70 pb-4 last:border-b-0 last:pb-0 md:border-b-0 md:pb-0 xl:border-b xl:pb-4 xl:last:border-b-0 xl:last:pb-0">
                                 <dt className="font-mono text-[0.6rem] uppercase tracking-[0.16em] text-muted/60">
                                   {g.label}
                                 </dt>
