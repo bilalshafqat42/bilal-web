@@ -109,6 +109,10 @@ export type Client = {
       headline: string;
       journey: string;
       tag: string;
+      /** Three spec rows shown beside the copy. Every value is readable off the
+       *  capture itself — a spec panel is only worth having if a reader could
+       *  check it against the screen next to it. */
+      glance: { label: string; value: string }[];
       capture: Capture;
     }[];
     /** The constraints the design had to satisfy. Reasoning, not measurements —
@@ -465,6 +469,11 @@ export const clients: Client[] = [
       screens: [
         {
           key: "sign-in",
+          glance: [
+            { label: "Pattern", value: "Guest-first" },
+            { label: "Required fields", value: "Two" },
+            { label: "Guest route", value: "Same weight as login" },
+          ],
           headline: "An account is offered, not demanded.",
           tag: "Guest browsing by default",
           label: "Sign in",
@@ -480,6 +489,11 @@ export const clients: Client[] = [
         },
         {
           key: "home",
+          glance: [
+            { label: "Above the fold", value: "One development" },
+            { label: "In-card actions", value: "Enquire, Call" },
+            { label: "Media", value: "Full-bleed render" },
+          ],
           headline: "One development leads, not a grid.",
           tag: "Actions sit with the content",
           label: "Home",
@@ -495,6 +509,11 @@ export const clients: Client[] = [
         },
         {
           key: "developments",
+          glance: [
+            { label: "Cards", value: "Three developments" },
+            { label: "On each card", value: "Name, strapline, link" },
+            { label: "Order", value: "Matches the launch pages" },
+          ],
           headline: "The full portfolio, one card per building.",
           tag: "Price on the card, not behind a tap",
           label: "Developments",
@@ -510,6 +529,11 @@ export const clients: Client[] = [
         },
         {
           key: "menu",
+          glance: [
+            { label: "Destinations", value: "Five" },
+            { label: "Pattern", value: "Slide-over drawer" },
+            { label: "Log out", value: "Top level, in accent" },
+          ],
           headline: "A slide-over, not a tab bar.",
           tag: "Weighted, not evenly split",
           label: "Menu",
@@ -525,6 +549,11 @@ export const clients: Client[] = [
         },
         {
           key: "enquire",
+          glance: [
+            { label: "Fields", value: "Four" },
+            { label: "Consent", value: "UAE PDPL wording" },
+            { label: "Submit", value: "Send enquiry" },
+          ],
           label: "Enquire",
           headline: "Four fields, and nothing else.",
           tag: "Reachable from every card",
