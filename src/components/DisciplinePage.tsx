@@ -15,7 +15,7 @@ import {
   disciplineHref,
   disciplineCount,
 } from "@/data/disciplines";
-import type { Item } from "@/lib/portfolioItems";
+import { groupByDeliverable, deliverableAnchor, type Item } from "@/lib/portfolioItems";
 import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID } from "@/lib/schema";
 
 /**
@@ -241,16 +241,32 @@ export default function DisciplinePage({ slug }: { slug: string }) {
           </Reveal>
         </section>
 
+        {/* Grouped by deliverable, with an anchor per group, because that is
+            what the mega menu's sub-links point at. `#design` is kept on the
+            wrapper so the "Web Designing" label in the menu still lands here.
+
+            Deliverable is the generic axis on purpose. Grouping by client would
+            put one client's name over every group while there is one client in
+            the data, which is what made the menu look like a real-estate-only
+            portfolio in the first place. */}
         <section id="design" className="site-container scroll-mt-28 pt-16 sm:pt-20">
-          <Reveal>
-            <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-border pb-4">
-              <h2 className="text-2xl font-semibold tracking-tight text-ink">The work</h2>
-              <span className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
-                {items.length} {items.length === 1 ? "capture" : "captures"}
-              </span>
+          {groupByDeliverable(items).map((g, gi) => (
+            <div
+              key={g.deliverable}
+              id={deliverableAnchor(g.deliverable)}
+              className={`scroll-mt-28 ${gi > 0 ? "pt-16" : ""}`}
+            >
+              <Reveal>
+                <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-border pb-4">
+                  <h2 className="text-2xl font-semibold tracking-tight text-ink">{g.deliverable}</h2>
+                  <span className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
+                    {g.items.length} {g.items.length === 1 ? "capture" : "captures"}
+                  </span>
+                </div>
+              </Reveal>
+              <ItemGrid items={g.items} />
             </div>
-          </Reveal>
-          <ItemGrid items={items} />
+          ))}
         </section>
 
         <section className="site-container pt-20 sm:pt-24">

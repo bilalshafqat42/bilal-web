@@ -62,9 +62,22 @@ export type Project = {
   keywords: string[];
 };
 
+/** Sectors, as a closed list rather than free text: the menu and the industry
+ *  rail group on exact equality, and "Real Estate" vs "Real estate" would show
+ *  as two sectors. Add a value here when a client in a new sector lands. */
+export type Industry =
+  | "Real Estate & Property"
+  | "Automotive"
+  | "E-commerce & Retail"
+  | "Hospitality"
+  | "Technology & SaaS"
+  | "Professional Services"
+  | "Media & Production";
+
 export type Client = {
   slug: string;
   name: string;
+  industry: Industry;
   logo: string;
   ogImage: string;
   title: string;
@@ -359,6 +372,7 @@ export const clients: Client[] = [
   {
     slug: "leos-developments",
     name: "LEOS Developments",
+    industry: "Real Estate & Property",
     logo: "/portfolio/leos/logo/leos-white.svg",
     ogImage: "/portfolio/leos/og-leos.jpg",
     title: "LEOS Developments Case Study — Website, Mobile App & Launch Campaigns",
@@ -642,4 +656,17 @@ export function caseStudyUrls(): string[] {
     ...(c.mobileApp ? [`/portfolio/${c.slug}/mobile-app`] : []),
     ...c.projects.map((p) => `/portfolio/${c.slug}/${p.slug}`),
   ]);
+}
+
+/** Sectors that actually have work behind them, in the order they appear in the
+ *  data. Derived rather than listed, so a sector cannot show in the menu before
+ *  a client in it exists — and appears the moment one does. */
+export function industriesWithWork(): { industry: Industry; clients: Client[] }[] {
+  const byIndustry = new Map<Industry, Client[]>();
+  for (const c of clients) {
+    const list = byIndustry.get(c.industry) ?? [];
+    list.push(c);
+    byIndustry.set(c.industry, list);
+  }
+  return [...byIndustry].map(([industry, cs]) => ({ industry, clients: cs }));
 }

@@ -19,9 +19,27 @@ export type ItemKind =
   | "app-screen"
   | "social";
 
+/**
+ * The generic name for what a piece IS, independent of who it was for.
+ *
+ * Added when the mega menu's sub-links were client names. With one client in
+ * the data, "LEOS Developments" and "Cavendish Square" appeared under every
+ * discipline and the menu read as a real-estate-only portfolio — which is the
+ * opposite of what a menu is for. These are the labels a buyer scans for, and
+ * they stay the same however many clients or sectors are behind them.
+ */
+export type Deliverable =
+  | "Corporate websites"
+  | "Landing pages"
+  | "Mobile layouts"
+  | "App screens"
+  | "Brand creative"
+  | "Campaign creative";
+
 export type Item = {
   key: string;
   kind: ItemKind;
+  deliverable: Deliverable;
   src: string;
   width: number;
   height: number;
@@ -41,6 +59,7 @@ export function allItems(): Item[] {
       out.push({
         key: `${c.slug}-site`,
         kind: "site-desktop",
+        deliverable: "Corporate websites",
         src: c.website.capture.src,
         width: c.website.capture.width,
         height: c.website.capture.height,
@@ -56,6 +75,7 @@ export function allItems(): Item[] {
         out.push({
           key: `${c.slug}-app-${s.key}`,
           kind: "app-screen",
+          deliverable: "App screens",
           src: s.capture.src,
           width: s.capture.width,
           height: s.capture.height,
@@ -77,6 +97,7 @@ export function allItems(): Item[] {
         out.push({
           key: `${c.brandSocial.basePath}/${item.file}`,
           kind: "social",
+          deliverable: "Brand creative",
           src: `${c.brandSocial.basePath}/${item.file}.avif`,
           width: c.brandSocial.width,
           height: c.brandSocial.height,
@@ -93,6 +114,7 @@ export function allItems(): Item[] {
         out.push({
           key: `${p.slug}-desktop`,
           kind: "site-desktop",
+          deliverable: "Landing pages",
           src: p.landingPage.capture.src,
           width: p.landingPage.capture.width,
           height: p.landingPage.capture.height,
@@ -105,6 +127,7 @@ export function allItems(): Item[] {
           out.push({
             key: `${p.slug}-mobile`,
             kind: "site-mobile",
+            deliverable: "Mobile layouts",
             src: p.landingPage.mobileCapture.src,
             width: p.landingPage.mobileCapture.width,
             height: p.landingPage.mobileCapture.height,
@@ -120,6 +143,7 @@ export function allItems(): Item[] {
           out.push({
             key: `${p.gallery.basePath}/${item.file}`,
             kind: "social",
+            deliverable: "Campaign creative",
             src: `${p.gallery.basePath}/${item.file}.avif`,
             width: p.gallery.width,
             height: p.gallery.height,
@@ -138,4 +162,27 @@ export function allItems(): Item[] {
 
 export function itemsOfKind(...kinds: ItemKind[]): Item[] {
   return allItems().filter((i) => kinds.includes(i.kind));
+}
+
+/** Anchor id for a deliverable section, shared by the menu's sub-links and the
+ *  headings they point at. One function so they cannot disagree. */
+export function deliverableAnchor(d: Deliverable): string {
+  return d.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+}
+
+/** Deliverable groups within a set of items, in the order the deliverable type
+ *  is declared, so section order is stable rather than data-order dependent. */
+const ORDER: Deliverable[] = [
+  "Corporate websites",
+  "Landing pages",
+  "Mobile layouts",
+  "App screens",
+  "Brand creative",
+  "Campaign creative",
+];
+
+export function groupByDeliverable(items: Item[]): { deliverable: Deliverable; items: Item[] }[] {
+  return ORDER.map((d) => ({ deliverable: d, items: items.filter((i) => i.deliverable === d) })).filter(
+    (g) => g.items.length > 0
+  );
 }

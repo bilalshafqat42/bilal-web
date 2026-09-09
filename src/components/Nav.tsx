@@ -13,6 +13,7 @@ import {
   disciplinePieces,
   hasPortfolioPage,
 } from "@/data/disciplines";
+import { industriesWithWork } from "@/data/caseStudies";
 
 /**
  * Site header.
@@ -129,10 +130,12 @@ function PortfolioMenu({ onNavigate }: { onNavigate: () => void }) {
                         {d.blurb}
                       </span>
                     </Link>
-                    {/* Sub-links to the actual pieces, so "web development"
-                        reaches Hadley Heights without a second page load.
-                        Only for disciplines with their own page: pointing
-                        these at a service page would be a bait. */}
+                    {/* Sub-links are the generic deliverable types inside the
+                        discipline, with a count each. They were client names
+                        until 2026-09-09, which put "LEOS Developments" and
+                        "Cavendish Square" under every column and made the menu
+                        read as a real-estate portfolio rather than as a list of
+                        what can be built. */}
                     {pieces.length > 0 ? (
                       <ul className="mt-2 space-y-1.5 border-l border-border pl-3">
                         {pieces.map((piece) => (
@@ -140,9 +143,12 @@ function PortfolioMenu({ onNavigate }: { onNavigate: () => void }) {
                             <Link
                               href={piece.href}
                               onClick={() => onNavigate()}
-                              className="block text-xs text-muted transition-colors hover:text-ink"
+                              className="flex items-baseline gap-2 text-xs text-muted transition-colors hover:text-ink"
                             >
                               {piece.label}
+                              <span className="font-mono text-[0.6rem] text-muted/45">
+                                {piece.count}
+                              </span>
                             </Link>
                           </li>
                         ))}
@@ -156,20 +162,37 @@ function PortfolioMenu({ onNavigate }: { onNavigate: () => void }) {
         ))}
       </div>
 
-      <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-border pt-6">
+      {/* Sector rail. Derived from the client data, so a sector cannot appear
+          here before a client in it exists. It is the second axis a buyer
+          browses on — "have you worked in my industry" — and keeping it derived
+          is what stops it becoming a list of aspirations.
+
+          It replaces a hard-coded "Featured case study: LEOS Developments"
+          link, which was the last client name left in this panel. */}
+      <div className="mt-8 border-t border-border pt-6">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+          <span className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-muted/60">
+            By sector
+          </span>
+          {industriesWithWork().map(({ industry, clients }) => (
+            <Link
+              key={industry}
+              href={clients.length === 1 ? `/portfolio/${clients[0].slug}` : "/portfolio"}
+              onClick={() => onNavigate()}
+              className="rounded-full border border-border px-3 py-1 text-xs text-muted transition-colors hover:border-gold/40 hover:text-ink"
+            >
+              {industry}
+              <span className="ml-1.5 font-mono text-[0.6rem] text-muted/45">{clients.length}</span>
+            </Link>
+          ))}
+        </div>
+
         <Link
           href="/portfolio"
           onClick={() => onNavigate()}
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+          className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
         >
           View the full portfolio <ArrowRight size={15} />
-        </Link>
-        <Link
-          href="/portfolio/leos-developments"
-          onClick={() => onNavigate()}
-          className="text-sm text-muted transition-colors hover:text-ink"
-        >
-          Featured case study: LEOS Developments
         </Link>
       </div>
     </>
@@ -499,6 +522,23 @@ export default function Nav() {
                         })}
                       </div>
                     ))}
+
+                    {/* Same sector rail as the desktop panel, same derivation. */}
+                    <div className="flex flex-wrap items-center gap-2 pt-5">
+                      <span className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted/60">
+                        By sector
+                      </span>
+                      {industriesWithWork().map(({ industry, clients }) => (
+                        <Link
+                          key={industry}
+                          href={clients.length === 1 ? `/portfolio/${clients[0].slug}` : "/portfolio"}
+                          onClick={() => setOpen(false)}
+                          className="rounded-full border border-border px-3 py-1 text-xs text-muted"
+                        >
+                          {industry}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </details>
               ) : link.mega === "services" ? (
