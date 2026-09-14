@@ -144,20 +144,54 @@ export default async function ProjectCaseStudy({ params }: Props) {
               <span className="text-ink">{p.name}</span>
             </nav>
 
-            <Reveal>
-              <div className="mt-8 max-w-3xl">
-                <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
-                  Development campaign
-                </span>
-                {p.logo ? (
-                  <Image src={p.logo} alt={p.name} width={900} height={1983} priority className="mt-6 h-16 w-auto" />
-                ) : null}
-                <h1 className="mt-6 text-4xl sm:text-5xl lg:text-[3.25rem] font-bold leading-[1.06] tracking-tight text-ink">
-                  {p.headline}
-                </h1>
-                <p className="mt-6 text-lg text-muted leading-relaxed">{p.summary}</p>
-              </div>
-            </Reveal>
+            {/* Two columns, mirroring the homepage banner: copy left, the work
+                itself right. The hero previously ran to `max-w-3xl` and left
+                roughly half the width empty on any desktop screen. */}
+            <div className="mt-8 grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_minmax(0,42%)] lg:gap-14">
+              <Reveal>
+                <div>
+                  <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
+                    Development campaign
+                  </span>
+                  {p.logo ? (
+                    <Image src={p.logo} alt={p.name} width={900} height={1983} priority className="mt-6 h-16 w-auto" />
+                  ) : null}
+                  <h1 className="mt-6 text-4xl sm:text-5xl lg:text-[3.25rem] font-bold leading-[1.06] tracking-tight text-ink">
+                    {p.headline}
+                  </h1>
+                  <p className="mt-6 max-w-2xl text-lg text-muted leading-relaxed">{p.summary}</p>
+                </div>
+              </Reveal>
+
+              {/* The landing page, cropped to its hero rather than shown whole.
+                  The capture is 1600x5568, so anything but a top crop is a
+                  meaningless middle slice; the full scroll is further down the
+                  page in its own frame. Browser chrome rather than a bare
+                  image, so it reads as a live page and matches the frame used
+                  in the section below. */}
+              {p.landingPage ? (
+                <Reveal delay={0.12}>
+                  <div className="overflow-hidden rounded-2xl border border-border panel">
+                    <div className="flex items-center gap-2 border-b border-border px-4 py-3">
+                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                      <span className="ml-3 truncate text-xs text-muted">{p.landingPage.capture.label}</span>
+                    </div>
+                    <div className="relative aspect-[16/11] w-full">
+                      <Image
+                        src={p.landingPage.capture.src}
+                        alt={p.landingPage.capture.alt}
+                        fill
+                        sizes="(min-width: 1024px) 40vw, 92vw"
+                        priority
+                        className="object-cover object-top"
+                      />
+                    </div>
+                  </div>
+                </Reveal>
+              ) : null}
+            </div>
 
             <Reveal delay={0.1}>
               <div className="mt-10 max-w-4xl">
