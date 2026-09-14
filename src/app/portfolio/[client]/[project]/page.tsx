@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { client: c, project: p } = found;
   const title = `${p.name} — ${c.name} Campaign Case Study`;
   const url = `/portfolio/${c.slug}/${p.slug}`;
+  const og = p.ogImage ?? c.ogImage;
   return {
     title,
     description: p.cardBlurb,
@@ -38,9 +39,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: p.cardBlurb,
       type: "article",
       url,
-      images: [{ url: c.ogImage, width: 1200, height: 630, alt: `${p.name} campaign creative` }],
+      // Per-project card where one exists, the client's generic card otherwise.
+      // Every project used to share one LEOS image, so a link posted anywhere
+      // showed the same unbranded card whichever development it pointed at.
+      images: [{ url: og, width: 1200, height: 630, alt: `${p.name} — campaign landing page` }],
     },
-    twitter: { card: "summary_large_image", title, description: p.cardBlurb, images: [c.ogImage] },
+    twitter: { card: "summary_large_image", title, description: p.cardBlurb, images: [og] },
   };
 }
 
@@ -53,6 +57,22 @@ export default async function ProjectCaseStudy({ params }: Props) {
   const url = `${SITE}/portfolio/${c.slug}/${p.slug}`;
   const depth = caseStudyDepth[p.slug];
   const siblings = c.projects.filter((x) => x.slug !== p.slug);
+
+  // Emitted only when the project carries questions, and built from the exact
+  // array the page renders below, so the markup can never describe text a
+  // visitor cannot see.
+  const faqSchema = p.faqs?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "@id": `${url}#faq`,
+        mainEntity: p.faqs.map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      }
+    : null;
 
   const schema = {
     "@context": "https://schema.org",
@@ -104,6 +124,9 @@ export default async function ProjectCaseStudy({ params }: Props) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      {faqSchema ? (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      ) : null}
       <TrackView name={p.name} category="Case study" />
       <Nav />
       <main className="flex-1 pb-16 sm:pb-20">
@@ -263,6 +286,36 @@ export default async function ProjectCaseStudy({ params }: Props) {
             </Reveal>
           </div>
         </section>
+        {/* Questions, rendered from the same array the FAQPage schema is built
+            from. Renders nothing for a project with none, so the other case
+            studies are unchanged. */}
+        {p.faqs?.length ? (
+          <section className="site-container py-16 sm:py-20">
+            <Reveal>
+              <div className="border-b border-border pb-5">
+                <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                  Common questions
+                </span>
+                <h2 className="mt-3 max-w-2xl text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+                  About this launch
+                </h2>
+              </div>
+              <dl className="mt-8 max-w-3xl divide-y divide-border border-b border-border">
+                {p.faqs.map((f) => (
+                  <div key={f.question} className="py-6">
+                    <dt className="text-base font-semibold text-ink">{f.question}</dt>
+                    {/* Capped in `ch`, not by a container width: at 14px inside a
+                        768px column these answers ran to ~116 characters a
+                        line, which is well past a comfortable measure however
+                        wide the page is. */}
+                    <dd className="mt-2.5 max-w-[68ch] text-sm leading-relaxed text-muted">{f.answer}</dd>
+                  </div>
+                ))}
+              </dl>
+            </Reveal>
+          </section>
+        ) : null}
+
         <WorkProof clientSlug={c.slug} projectSlug={p.slug} />
       </main>
       <Footer />

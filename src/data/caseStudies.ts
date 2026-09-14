@@ -10,6 +10,8 @@
 
 export type Fact = { label: string; value: string };
 
+export type Faq = { question: string; answer: string };
+
 export type Capture = {
   src: string;
   width: number;
@@ -39,6 +41,12 @@ export type PlaceSchema = {
 export type Project = {
   slug: string;
   name: string;
+  /** Per-project share card. Falls back to the client's `ogImage` when absent,
+   *  which is what every project used to do — one generic LEOS card for every
+   *  development, so a shared link never showed the development itself.
+   *  Must be a real 1200x630 asset, not a `/_next/image?...` URL: that endpoint
+   *  takes query parameters some crawlers drop, and it is not a stable file. */
+  ogImage?: string;
   logo?: string;
   cardImage: string;
   /** Page captures are tall strips, so a centre crop shows a meaningless middle
@@ -59,6 +67,10 @@ export type Project = {
   };
   gallery?: Gallery;
   place?: PlaceSchema;
+  /** Questions this specific launch gets asked. Rendered on the page and
+   *  emitted as FAQPage, so the two can never disagree. Optional: a project
+   *  with nothing worth asking shows no block and emits no schema. */
+  faqs?: Faq[];
   keywords: string[];
 };
 
@@ -148,6 +160,11 @@ export type Client = {
 const hadleyHeights: Project = {
   slug: "hadley-heights",
   name: "Hadley Heights",
+  // 1200x630 crop of the landing page hero, generated from the full-page
+  // capture. The capture itself is 1600x5568, and social platforms crop a share
+  // card to roughly 1.91:1 — pointing them at that file would have shown a thin
+  // horizontal slice of a very tall image.
+  ogImage: "/portfolio/leos/hadley-heights/og-hadley-heights.jpg",
   logo: "/portfolio/leos/hadley-heights/logo/hadley-heights.svg",
   cardImage: "/portfolio/leos/hadley-heights/social-media/1.avif",
   cardBlurb:
@@ -213,6 +230,32 @@ const hadleyHeights: Project = {
     description:
       "Residential development by LEOS Developments in Jumeirah Village Circle, Dubai, comprising 216 apartments and retail outlets.",
   },
+  // Every answer here is either visible elsewhere on this page or is a plain
+  // statement about how the work is done. Nothing invents a figure, a timeline
+  // or a result — including the third one, which says so directly rather than
+  // leaving a reader to wonder why there are no numbers.
+  faqs: [
+    {
+      question: "What was delivered for the Hadley Heights launch?",
+      answer:
+        "A lead capture landing page and a five-slide campaign carousel, both shown on this page. The two were built as one system rather than separately, so the carousel sets up the same qualifying information the page opens with.",
+    },
+    {
+      question: "Why is the price shown in the hero rather than further down the page?",
+      answer:
+        "Because an off-plan enquiry form is only worth filling in if the buyer is in the right bracket. Putting the entry price in the hero lets unqualified traffic self-select out before a form, which produces fewer leads and better ones.",
+    },
+    {
+      question: "Are the campaign results published for this launch?",
+      answer:
+        "No. Lead volume, cost per lead and conversion data belong to the client, and nothing has been released for publication, so no figures appear on this page. One number a client can verify is worth more than three that cannot be checked.",
+    },
+    {
+      question: "Can the same approach work outside Dubai?",
+      answer:
+        "Yes. The structure is built around the unit information and a single enquiry route, not around a particular market. The qualifier, the callback form and the lower-commitment brochure step apply to any development where the buyer needs to self-select before speaking to a sales team.",
+    },
+  ],
   keywords: [
     "Hadley Heights",
     "Jumeirah Village Circle",

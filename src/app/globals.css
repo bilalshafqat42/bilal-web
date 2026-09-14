@@ -53,9 +53,19 @@ h1, h2, h3, h4, .font-display {
 }
 
 @media (min-width: 1024px) {
+  /* Matches the homepage banner's gutters rather than being a centred 83.33%
+     column. Before this, content on the homepage started 40px from the viewport
+     edge and content on every `.site-container` page started at 8.33% of the
+     viewport — 160px at 1920 — so moving between them read as two different
+     sites. Measured, not guessed: at 1920 the home hero began at 40px and the
+     case studies at 160px.
+
+     Long-form prose does NOT inherit this. Pages that are mostly paragraphs keep
+     their own narrower reading column, because a 1840px line is unreadable
+     however consistent it is. */
   .site-container {
-    width: 83.3333%;
-    padding-inline: 0;
+    width: 100%;
+    padding-inline: 2.5rem;
   }
 }
 
