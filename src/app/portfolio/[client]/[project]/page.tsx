@@ -346,16 +346,19 @@ export default async function ProjectCaseStudy({ params }: Props) {
             dashes — the placeholder problem from item 134, in a new place. */}
         {p.results?.some((r) => r.value) ? (
           <section className="site-container pt-16 sm:pt-20">
-            <Reveal>
-              <div className="border-b border-border pb-5">
-                <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
-                  Results
-                </span>
-                <h2 className="mt-3 max-w-2xl text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-                  What the campaign produced
-                </h2>
-              </div>
-              <dl className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] lg:gap-16">
+              <Reveal>
+                <div className="lg:sticky lg:top-32">
+                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                    Results
+                  </span>
+                  <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                    What the campaign produced
+                  </h2>
+                </div>
+              </Reveal>
+              <Reveal>
+              <dl className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-3">
                 {p.results
                   .filter((r) => r.value)
                   .map((r) => (
@@ -368,7 +371,8 @@ export default async function ProjectCaseStudy({ params }: Props) {
                     </div>
                   ))}
               </dl>
-            </Reveal>
+              </Reveal>
+            </div>
           </section>
         ) : null}
 
@@ -377,28 +381,36 @@ export default async function ProjectCaseStudy({ params }: Props) {
             studies are unchanged. */}
         {p.faqs?.length ? (
           <section className="site-container py-16 sm:py-20">
-            <Reveal>
-              <div className="border-b border-border pb-5">
-                <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
-                  Common questions
-                </span>
-                <h2 className="mt-3 max-w-2xl text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-                  About this launch
-                </h2>
-              </div>
-              <dl className="mt-8 max-w-3xl divide-y divide-border border-b border-border">
-                {p.faqs.map((f) => (
-                  <div key={f.question} className="py-6">
-                    <dt className="text-base font-semibold text-ink">{f.question}</dt>
-                    {/* Capped in `ch`, not by a container width: at 14px inside a
-                        768px column these answers ran to ~116 characters a
-                        line, which is well past a comfortable measure however
-                        wide the page is. */}
-                    <dd className="mt-2.5 max-w-[68ch] text-sm leading-relaxed text-muted">{f.answer}</dd>
-                  </div>
-                ))}
-              </dl>
-            </Reveal>
+            {/* Same two-column shape as the approach section above: sticky label
+                on the left, content on the right at the container's full width.
+                One layout for both means the page reads as one page. */}
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] lg:gap-16">
+              <Reveal>
+                <div className="lg:sticky lg:top-32">
+                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                    Common questions
+                  </span>
+                  <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                    About this launch
+                  </h2>
+                </div>
+              </Reveal>
+
+              <Reveal>
+                <dl className="divide-y divide-border border-t border-border">
+                  {p.faqs.map((f) => (
+                    <div key={f.question} className="py-7 first:pt-8">
+                      <dt className="text-lg font-semibold text-ink sm:text-xl">{f.question}</dt>
+                      {/* Capped in `ch`, not by a container width: the problem is
+                          the ratio of font size to column, not the page. */}
+                      <dd className="mt-3 max-w-[68ch] text-base leading-relaxed text-muted">
+                        {f.answer}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </Reveal>
+            </div>
           </section>
         ) : null}
 

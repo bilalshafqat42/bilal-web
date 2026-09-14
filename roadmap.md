@@ -1511,6 +1511,13 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Still not one type scale.** The h2 sizes on this page are now 36, 44, 44, 36, 30, 30. Fixing that is the standardisation proposed in item 167 and still not agreed, since it touches every page.
     - Verified: approach heading at the container edge, no overflow at 390 or 1440, 6 questions on the page matching 6 in the schema exactly, the other three developments still carry no FAQ, h1-check and schema-check pass on all 28 routes, 32 search checks and discipline-check pass, build, lint and tsc clean.
 
+170. **FAQ and results blocks matched to the approach layout (2026-09-14)** — **done.** Bilal liked the two-column approach section from item 169 and asked for the FAQ to match.
+    - **Same shape, same tokens**: sticky eyebrow and h2 in a 320px left column, content filling the rest at the container's full width, `lg:gap-16`. Questions grew from `text-base` to `text-lg/xl` and answers from `text-sm` to `text-base`, since they now have the width to carry it.
+    - **The results block got the same treatment even though it renders nothing today.** It is the same pattern in the same file, and leaving it on the old centred layout would have produced a mismatch the moment Bilal supplies figures — a bug that would only appear months later, in front of a client.
+    - **Measured effect on the page's heading alignment**: h2 left edges are now 40, 40, 40, 297, 40, 40. Only the CTA block sits at 297, and that one is a deliberately centred full-width moment. Sizes moved from 36/44/44/36/30/30 to 36/44/44/36/36/30 — closer, but still not one scale.
+    - **`WorkProof` was deliberately left alone.** It sits immediately below the FAQ and is now the one block on the page still using a full-width heading, so it looks like the odd one out. It is shared by the client page and the app case study, and Bilal has been taking these one at a time; changing three pages to fix one visual seam is his call, not mine.
+    - Verified: 6 questions rendered at 390, 1024 and 1440; heading stacks above the questions on mobile and sits beside them on desktop; no overflow at any width; zero page errors; h1-check and schema-check pass on all 28 routes; 32 search checks and discipline-check pass; build, lint and tsc clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
