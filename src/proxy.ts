@@ -1,3 +1,8 @@
+// Renamed from `middleware.ts` on 2026-09-14. Next 16 deprecated the
+// middleware file convention in favour of `proxy`, and warned on every dev
+// start and every build. The file name, the exported function name and the
+// runtime behaviour are the only things that change; the matcher and the bot
+// reporting below are untouched.
 import { NextResponse } from "next/server";
 import type { NextFetchEvent, NextRequest } from "next/server";
 
@@ -77,7 +82,7 @@ function reportBotHit(botName: string, userAgent: string, path: string, event: N
   );
 }
 
-export function middleware(request: NextRequest, event: NextFetchEvent) {
+export function proxy(request: NextRequest, event: NextFetchEvent) {
   const userAgent = request.headers.get("user-agent") || "";
   const botName = detectBot(userAgent);
 

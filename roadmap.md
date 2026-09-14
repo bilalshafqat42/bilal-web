@@ -1496,6 +1496,12 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - Verified: hero preview present, loaded and overflow-free on all four developments at 1440 and 390; h1-check and schema-check pass on all 28 routes; 32 search checks and discipline-check pass; build, lint and tsc clean.
     - **Next, and not yet agreed:** one type scale (h1 56 / h2 40 / h3 24), an eyebrow above every major section, one section rhythm, and one alignment rule. That touches every page, so it is proposed rather than done.
 
+168. **`middleware.ts` migrated to `proxy.ts` (2026-09-14)** — **done.** Next 16 deprecated the middleware file convention and warned on every dev start and every build.
+    - **Renamed the file and the exported function**, `middleware` to `proxy`. The matcher, the AI-bot list and the Performo reporting are untouched — only the convention changed.
+    - **The export name was verified, not assumed.** Next's own constants confirm the file name (`PROXY_FILENAME = 'proxy'`, allowed at `src/`), but nothing in the installed package spelled out whether the handler must be a default or a named export, and **guessing wrong would have silently stopped AI-bot tracking with no error anywhere.** So the migration shipped with a temporary `x-proxy-probe` response header, which confirmed the named `proxy` export is invoked on a page request and correctly skipped on a static asset. Probe removed afterwards: proving the function is called does not depend on what it sets inside.
+    - **A cache trap worth remembering.** The first rebuild still printed the warning. `rm -rf .next` had failed with "Directory not empty" because a dev server was still holding it, so the build reused a stale cache. **A build that reports an already-fixed problem is a stale artefact, not a failed fix** — kill the servers, then clean.
+    - Verified: no deprecation warning in `npm run build` or `npm run dev`; proxy runs on page requests and skips static assets; h1-check and schema-check pass on all 28 routes; 32 search checks and discipline-check pass; lint and tsc clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
