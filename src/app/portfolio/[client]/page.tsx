@@ -7,6 +7,7 @@ import Nav from "@/components/Nav";
 import TrackView from "@/components/TrackView";
 import Footer from "@/components/Footer";
 import { WorkProof } from "@/components/ProofLoop";
+import GalleryLightbox from "@/components/GalleryLightbox";
 import Reveal from "@/components/Reveal";
 import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/CaseStudyParts";
 import { clients, getClient } from "@/data/caseStudies";
@@ -231,7 +232,12 @@ export default async function ClientCaseStudy({ params }: Props) {
                 </h2>
                 <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">{c.brandSocial.body}</p>
               </Reveal>
-              <GalleryGrid gallery={c.brandSocial} />
+              {/* Same treatment as the campaign carousel: these tiles render
+                  at ~283px and the creative carries copy that cannot be read at
+                  that size. */}
+              <GalleryLightbox gallery={c.brandSocial}>
+                <GalleryGrid gallery={c.brandSocial} />
+              </GalleryLightbox>
             </div>
           </section>
         ) : null}

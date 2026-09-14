@@ -8,6 +8,7 @@ import TrackView from "@/components/TrackView";
 import { caseStudyDepth } from "@/data/caseStudyDepth";
 import Footer from "@/components/Footer";
 import { WorkProof } from "@/components/ProofLoop";
+import GalleryLightbox from "@/components/GalleryLightbox";
 import Reveal from "@/components/Reveal";
 import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/CaseStudyParts";
 import { clients, getProject } from "@/data/caseStudies";
@@ -237,7 +238,12 @@ export default async function ProjectCaseStudy({ params }: Props) {
                 </h2>
                 <p className="mt-4 max-w-3xl text-lg text-muted leading-relaxed">{p.gallery.body}</p>
               </Reveal>
-              <GalleryGrid gallery={p.gallery} />
+              {/* Tiles stay server-rendered inside the island, so their
+                  captions and alt text are in the initial HTML. Only the
+                  overlay needs client state. */}
+              <GalleryLightbox gallery={p.gallery}>
+                <GalleryGrid gallery={p.gallery} />
+              </GalleryLightbox>
             </div>
           </section>
         ) : null}
@@ -286,6 +292,37 @@ export default async function ProjectCaseStudy({ params }: Props) {
             </Reveal>
           </div>
         </section>
+        {/* Campaign results. Only entries with a value render, so a launch whose
+            numbers have not been released shows nothing rather than a row of
+            dashes — the placeholder problem from item 134, in a new place. */}
+        {p.results?.some((r) => r.value) ? (
+          <section className="site-container pt-16 sm:pt-20">
+            <Reveal>
+              <div className="border-b border-border pb-5">
+                <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                  Results
+                </span>
+                <h2 className="mt-3 max-w-2xl text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+                  What the campaign produced
+                </h2>
+              </div>
+              <dl className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-3">
+                {p.results
+                  .filter((r) => r.value)
+                  .map((r) => (
+                    <div key={r.label} className="bg-bg px-7 py-8">
+                      <dt className="text-3xl font-bold tracking-tight text-ink">{r.value}</dt>
+                      <dd className="mt-2 text-sm leading-relaxed text-muted">{r.label}</dd>
+                      {r.note ? (
+                        <dd className="mt-1.5 text-xs leading-relaxed text-muted/65">{r.note}</dd>
+                      ) : null}
+                    </div>
+                  ))}
+              </dl>
+            </Reveal>
+          </section>
+        ) : null}
+
         {/* Questions, rendered from the same array the FAQPage schema is built
             from. Renders nothing for a project with none, so the other case
             studies are unchanged. */}

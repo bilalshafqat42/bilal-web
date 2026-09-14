@@ -67,6 +67,17 @@ export type Project = {
   };
   gallery?: Gallery;
   place?: PlaceSchema;
+  /** Campaign outcomes.
+   *
+   *  Only entries carrying a `value` render, so the array can hold labels
+   *  waiting on a figure without any of them reaching the page. Nothing here is
+   *  ever estimated or inferred: a result on a case study is a claim a client
+   *  can be asked to verify, and one that cannot be checked is worth less than
+   *  no number at all.
+   *
+   *  Hadley Heights has none yet. LEOS has released no performance data, and
+   *  the FAQ on that page says so directly rather than leaving the gap silent. */
+  results?: { value?: string; label: string; note?: string }[];
   /** Questions this specific launch gets asked. Rendered on the page and
    *  emitted as FAQPage, so the two can never disagree. Optional: a project
    *  with nothing worth asking shows no block and emits no schema. */
