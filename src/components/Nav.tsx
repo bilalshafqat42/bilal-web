@@ -323,7 +323,11 @@ export default function Nav() {
           />
         </Link>
 
-        <nav aria-label="Primary" className="hidden lg:flex lg:items-center lg:gap-9">
+        {/* Tighter gaps between 1024 and 1280, full spacing above it. Adding
+            Portfolio as a seventh item overfilled the bar at exactly `lg`: the
+            logo and the nav met with zero gap and the CTA wrapped to two lines.
+            Measured, not eyeballed — the button was 64px tall instead of 44. */}
+        <nav aria-label="Primary" className="hidden lg:flex lg:items-center lg:gap-5 xl:gap-9">
           {links.map((link) =>
             link.mega ? (
               <div
@@ -417,7 +421,7 @@ export default function Nav() {
             type="button"
             onClick={openSearchPanel}
             aria-label="Search this site"
-            className="hidden items-center gap-2 rounded-full border border-border px-3 py-2 text-muted transition-colors hover:border-gold/40 hover:text-ink lg:inline-flex"
+            className="hidden items-center gap-2 rounded-full border border-border px-3 py-2 text-muted transition-colors hover:border-gold/40 hover:text-ink xl:inline-flex"
           >
             <Search size={15} />
             <kbd className="hidden font-sans text-[10px] text-muted/70 xl:inline">⌘K</kbd>
@@ -426,7 +430,9 @@ export default function Nav() {
           <span className="hidden text-sm text-muted xl:inline">Dubai, UTC+4</span>
           <Link
             href="/appointment"
-            className="btn-primary hidden rounded-full px-6 py-3 text-sm font-semibold lg:inline-flex"
+            // `whitespace-nowrap` so the label can never wrap: a two-line
+            // primary button is how an overfull bar shows itself first.
+            className="btn-primary hidden whitespace-nowrap rounded-full px-5 py-3 text-sm font-semibold lg:inline-flex xl:px-6"
           >
             Book a free consultation
           </Link>
@@ -434,7 +440,7 @@ export default function Nav() {
             type="button"
             onClick={openSearchPanel}
             aria-label="Search this site"
-            className="p-1 text-ink lg:hidden"
+            className="p-1 text-ink xl:hidden"
           >
             <Search size={20} />
           </button>

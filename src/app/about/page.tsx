@@ -99,33 +99,33 @@ export default function AboutPage() {
               </div>
             </Reveal>
 
-            <Reveal delay={0.15}>
-              <div className="relative">
-                <div className="blob pointer-events-none absolute -top-10 left-1/4 h-64 w-64 rounded-full bg-gold/35" />
-                {/* Was a div with `role="img"` and a CSS `background-image`, which
-                    bypasses Next's image optimiser entirely — the full 601KB AVIF
-                    shipped to every visitor, no responsive variants, no format
-                    negotiation. `next/image` with `fill` gets both, and a real <img>
-                    with alt text needs no role/aria-label pair.
-                
-                    Same photograph as the homepage hero, on request. The filenames
-                    mislead: `bilal-shirt.avif` is the blue suit, and
-                    `bilal-shafqat-coat.avif` — which this showed — is the grey coat.
-                
-                    The old `backgroundSize: 130%` / `center 20%` are not carried over:
-                    they were tuned to a different photograph, so they had to be
-                    re-derived for this one regardless of the technique change. */}
-                <div className="relative aspect-[4/5] w-full rounded-[2rem] border border-border glass-strong">
-                  <Image
-                    src="/images/bilal-shirt.avif"
-                    alt="Bilal Shafqat"
-                    fill
-                    sizes="(min-width: 1024px) 440px, 90vw"
-                    className="object-cover object-[50%_18%]"
-                  />
-                </div>
-              </div>
-            </Reveal>
+          </div>
+
+          {/* Portrait, matching the homepage banner exactly: same photograph,
+              same crop, same monochrome treatment, bleeding off the right edge
+              rather than sitting in a bordered card.
+
+              It is a sibling of `.site-container` rather than a cell inside it,
+              because `site-container` is a centred 83.33% column — `right-0`
+              against that stops at the gutter, not at the viewport edge, and
+              the bleed is the whole point.
+
+              Mobile keeps it as a block in the flow under the copy, as the
+              homepage does. A photograph behind body text at phone width wrecks
+              legibility for no gain.
+
+              `.hero-portrait` carries the edge masks. The left fade in it is
+              desktop-only, which is why it lives in globals.css and not in an
+              inline style. */}
+          <div className="relative h-[360px] w-full sm:h-[440px] lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[46%] lg:overflow-hidden">
+            <Image
+              src="/images/bilal-shirt.avif"
+              alt="Bilal Shafqat"
+              fill
+              sizes="(min-width: 1024px) 34vw, 100vw"
+              className="hero-portrait object-cover object-[50%_15%] brightness-[1.04] contrast-[1.12] grayscale lg:origin-top lg:scale-[1.035]"
+              priority
+            />
           </div>
         </section>
 
