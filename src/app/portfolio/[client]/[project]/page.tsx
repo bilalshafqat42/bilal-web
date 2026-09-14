@@ -178,13 +178,21 @@ export default async function ProjectCaseStudy({ params }: Props) {
                       <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
                       <span className="ml-3 truncate text-xs text-muted">{p.landingPage.capture.label}</span>
                     </div>
+                    {/* The dedicated top-of-page crop where one exists. This is
+                        the page's LCP image, and the full captures run 4,500 to
+                        6,600px tall — downloading an entire page scroll to paint
+                        a 16:11 window is the most expensive thing on the page.
+                        `loading="eager"` alongside `priority` because Next's own
+                        LCP warning checks the `loading` attribute, and `priority`
+                        alone only omits `loading="lazy"` rather than setting it. */}
                     <div className="relative aspect-[16/11] w-full">
                       <Image
-                        src={p.landingPage.capture.src}
+                        src={p.landingPage.heroCrop?.src ?? p.landingPage.capture.src}
                         alt={p.landingPage.capture.alt}
                         fill
                         sizes="(min-width: 1024px) 40vw, 92vw"
                         priority
+                        loading="eager"
                         className="object-cover object-top"
                       />
                     </div>

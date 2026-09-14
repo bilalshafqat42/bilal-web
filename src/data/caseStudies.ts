@@ -60,6 +60,17 @@ export type Project = {
     heading: string;
     body: string;
     capture: Capture;
+    /** Top-of-page crop used by the hero preview.
+     *
+     *  The hero shows a 16:11 window onto the top of the page, but the full
+     *  captures run 4,500 to 6,600px tall at 290-510KB. Serving one of those as
+     *  the hero image means downloading an entire page scroll to paint a small
+     *  crop, and that image is the page's LCP. These crops are 62-95KB, a 64-83%
+     *  saving on the single image that decides the score.
+     *
+     *  Optional: without it the hero falls back to the full capture, which
+     *  looks identical and only costs bytes. */
+    heroCrop?: { src: string; width: number; height: number };
     /** Optional phone capture shown beside the desktop one. Worth showing where
      *  it exists: a client can see the same page works on both, which is the
      *  part of the job that usually goes unseen. */
@@ -199,6 +210,7 @@ const hadleyHeights: Project = {
       alt: "Full-page view of the Hadley Heights lead capture landing page, showing the hero with a request-a-callback form and a free brochure registration section",
       label: "Hadley Heights — campaign landing page",
     },
+    heroCrop: { src: "/portfolio/leos/hadley-heights/landing-page/hadley-heights-landing-page-hero.avif", width: 1400, height: 963 },
   },
   gallery: {
     heading: "Campaign carousel",
@@ -317,6 +329,7 @@ const weybridgeGardens: Project = {
       alt: "Full-page view of the Weybridge Gardens landing page, showing the balcony hero with the register-your-interest call to action and the bespoke contemporary design section",
       label: "Weybridge Gardens — desktop",
     },
+    heroCrop: { src: "/portfolio/leos/weybridge-gardens/landing-page/weybridge-gardens-landing-page-hero.avif", width: 1400, height: 963 },
   },
   place: {
     locality: "Dubailand",
@@ -360,6 +373,7 @@ const weybridgeGardens2: Project = {
       alt: "Full-page view of the Weybridge Gardens 2 desktop landing page, showing the Provence Edition hero, the register-your-interest call to action and the pricing section",
       label: "Weybridge Gardens 2 — desktop",
     },
+    heroCrop: { src: "/portfolio/leos/weybridge-gardens-2/landing-page/weybridge-landing-page-hero.avif", width: 1041, height: 716 },
     mobileCapture: {
       src: "/portfolio/leos/weybridge-gardens-2/landing-page/weybridge-mobile.avif",
       width: 366,
@@ -411,6 +425,7 @@ const cavendishSquare: Project = {
       alt: "Full-page view of the Cavendish Square desktop landing page, showing the Elevated Living in JVT hero, register-your-interest call to action, amenity sections and the property features breakdown",
       label: "Cavendish Square — desktop",
     },
+    heroCrop: { src: "/portfolio/leos/cavendish/landing-page/cavendish-web-hero.avif", width: 1041, height: 716 },
     mobileCapture: {
       src: "/portfolio/leos/cavendish/mobile-app/cavendish-mobile-app.avif",
       width: 367,
