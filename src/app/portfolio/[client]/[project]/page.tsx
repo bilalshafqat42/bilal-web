@@ -204,20 +204,35 @@ export default async function ProjectCaseStudy({ params }: Props) {
         {depth ? (
           <section className="relative mt-20 sm:mt-28">
             <div className="site-container">
-              <div className="mx-auto max-w-3xl">
+              {/* Two columns at the full container width. This block used to be
+                  `mx-auto max-w-3xl`, which centred it in a narrow column while
+                  every section above and below sat at the container edge — the
+                  h2 left edges on this page measured 40, 40, 40, 297, 336 with
+                  no rule behind the difference.
+
+                  The heading sticks on desktop so it stays with the prose it
+                  labels through a long read, and the prose keeps its own
+                  measure rather than stretching to the full width. */}
+              <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] lg:gap-16">
                 <Reveal>
-                  <h2 className="text-3xl font-semibold leading-tight text-ink sm:text-4xl lg:text-[2.75rem]">
-                    How this was approached
-                  </h2>
+                  <div className="lg:sticky lg:top-32">
+                    <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                      The approach
+                    </span>
+                    <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                      How this was approached
+                    </h2>
+                  </div>
                 </Reveal>
-                <div className="mt-10 space-y-12">
+
+                <div className="space-y-12">
                   {depth.map((block) => (
                     <Reveal key={block.heading}>
                       <div className="border-t border-border pt-8">
                         <h3 className="text-xl font-semibold text-ink sm:text-2xl">{block.heading}</h3>
                         <div className="mt-4 space-y-4">
                           {block.paragraphs.map((para) => (
-                            <p key={para.slice(0, 40)} className="text-base leading-relaxed text-muted">
+                            <p key={para.slice(0, 40)} className="max-w-[68ch] text-base leading-relaxed text-muted">
                               {para}
                             </p>
                           ))}

@@ -241,20 +241,33 @@ const hadleyHeights: Project = {
     description:
       "Residential development by LEOS Developments in Jumeirah Village Circle, Dubai, comprising 216 apartments and retail outlets.",
   },
-  // Every answer here is either visible elsewhere on this page or is a plain
-  // statement about how the work is done. Nothing invents a figure, a timeline
-  // or a result — including the third one, which says so directly rather than
-  // leaving a reader to wonder why there are no numbers.
+  // Rewritten 2026-09-14. The first set answered questions nobody searches for
+  // ("what was delivered", "why is the price in the hero"). These are queries a
+  // developer or marketing lead actually types before hiring, which is the only
+  // reason an FAQ block earns its place on a case study.
+  //
+  // Every figure here is one already published on /pricing. Nothing invents a
+  // timeline, a result or a contract term.
   faqs: [
     {
-      question: "What was delivered for the Hadley Heights launch?",
+      question: "How much does an off-plan launch landing page cost in Dubai?",
       answer:
-        "A lead capture landing page and a five-slide campaign carousel, both shown on this page. The two were built as one system rather than separately, so the carousel sets up the same qualifying information the page opens with.",
+        "Project work starts from AED 31,500 for a defined deliverable with an agreed scope, timeline and price. What moves it is how much is already decided: unit information, renders and brand assets ready to use keep it at the lower end, while writing the positioning, sourcing the creative and building a campaign around it takes it up. The full engagement models are on the pricing page.",
     },
     {
-      question: "Why is the price shown in the hero rather than further down the page?",
+      question: "Do you run the ad campaigns as well as building the landing page?",
       answer:
-        "Because an off-plan enquiry form is only worth filling in if the buyer is in the right bracket. Putting the entry price in the hero lets unqualified traffic self-select out before a form, which produces fewer leads and better ones.",
+        "Yes, and on this launch that mattered. Putting the entry price above the fold deliberately loses clicks, which looks worse on a traffic report and produces a better cost per qualified lead. That is only a trade worth making when the same person owns the page and the spend pointed at it, because otherwise the two sides optimise against each other.",
+    },
+    {
+      question: "What makes an off-plan launch page convert?",
+      answer:
+        "Four things on this one. The entry price sits in the hero so unqualified traffic self-selects out before a form. One primary action, Request a Callback, short enough to finish on a phone. Qualification happens on the call rather than in the form, because every extra field costs completions. And existing buyers get their own route, Check Construction Progress, so they stop polluting the new-enquiry list.",
+    },
+    {
+      question: "Can you work with our existing brand guidelines?",
+      answer:
+        "Yes. The campaign creative here runs on a light, editorial template deliberately distinct from the darker parent brand system, so launches read as their own product without leaving the identity. If you have a brand book I will build to it; if you do not, that is a separate piece of work rather than something assumed into the price.",
     },
     {
       question: "Are the campaign results published for this launch?",
@@ -262,9 +275,9 @@ const hadleyHeights: Project = {
         "No. Lead volume, cost per lead and conversion data belong to the client, and nothing has been released for publication, so no figures appear on this page. One number a client can verify is worth more than three that cannot be checked.",
     },
     {
-      question: "Can the same approach work outside Dubai?",
+      question: "Do you work with developers outside Dubai?",
       answer:
-        "Yes. The structure is built around the unit information and a single enquiry route, not around a particular market. The qualifier, the callback form and the lower-commitment brochure step apply to any development where the buyer needs to self-select before speaking to a sales team.",
+        "Yes. The structure is built around unit information and a single enquiry route, not around one market, and I work with clients in the UAE and the UK. The qualifier, the callback form and the lower-commitment brochure step apply wherever a buyer needs to self-select before speaking to a sales team.",
     },
   ],
   keywords: [
