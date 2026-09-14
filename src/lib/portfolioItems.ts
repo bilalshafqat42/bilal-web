@@ -40,6 +40,11 @@ export type Item = {
   key: string;
   kind: ItemKind;
   deliverable: Deliverable;
+  /** Who and what the piece belongs to. Carried so a case study page can ask
+   *  "which disciplines went into this engagement" and get an answer derived
+   *  from its own captures rather than from a hand-kept list. */
+  clientSlug: string;
+  projectSlug?: string;
   src: string;
   width: number;
   height: number;
@@ -60,6 +65,7 @@ export function allItems(): Item[] {
         key: `${c.slug}-site`,
         kind: "site-desktop",
         deliverable: "Corporate websites",
+        clientSlug: c.slug,
         src: c.website.capture.src,
         width: c.website.capture.width,
         height: c.website.capture.height,
@@ -76,6 +82,7 @@ export function allItems(): Item[] {
           key: `${c.slug}-app-${s.key}`,
           kind: "app-screen",
           deliverable: "App screens",
+          clientSlug: c.slug,
           src: s.capture.src,
           width: s.capture.width,
           height: s.capture.height,
@@ -98,6 +105,7 @@ export function allItems(): Item[] {
           key: `${c.brandSocial.basePath}/${item.file}`,
           kind: "social",
           deliverable: "Brand creative",
+          clientSlug: c.slug,
           src: `${c.brandSocial.basePath}/${item.file}.avif`,
           width: c.brandSocial.width,
           height: c.brandSocial.height,
@@ -115,6 +123,8 @@ export function allItems(): Item[] {
           key: `${p.slug}-desktop`,
           kind: "site-desktop",
           deliverable: "Landing pages",
+          clientSlug: c.slug,
+          projectSlug: p.slug,
           src: p.landingPage.capture.src,
           width: p.landingPage.capture.width,
           height: p.landingPage.capture.height,
@@ -128,6 +138,8 @@ export function allItems(): Item[] {
             key: `${p.slug}-mobile`,
             kind: "site-mobile",
             deliverable: "Mobile layouts",
+            clientSlug: c.slug,
+            projectSlug: p.slug,
             src: p.landingPage.mobileCapture.src,
             width: p.landingPage.mobileCapture.width,
             height: p.landingPage.mobileCapture.height,
@@ -144,6 +156,8 @@ export function allItems(): Item[] {
             key: `${p.gallery.basePath}/${item.file}`,
             kind: "social",
             deliverable: "Campaign creative",
+            clientSlug: c.slug,
+            projectSlug: p.slug,
             src: `${p.gallery.basePath}/${item.file}.avif`,
             width: p.gallery.width,
             height: p.gallery.height,

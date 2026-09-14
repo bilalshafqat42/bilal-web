@@ -5,6 +5,7 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 import Nav from "@/components/Nav";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { ServiceProof } from "@/components/ProofLoop";
 import Reveal from "@/components/Reveal";
 import {
   megaMenuGroups,
@@ -281,6 +282,10 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
             </div>
           </div>
         </section>
+
+        {/* Proof loop: the work behind this service. Renders nothing for a
+            service with no published work. */}
+        <ServiceProof serviceSlug={category.slug} />
 
         <Contact />
       </main>

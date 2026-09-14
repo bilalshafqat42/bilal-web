@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { WorkProof } from "@/components/ProofLoop";
 import Contact from "@/components/Contact";
 import Reveal from "@/components/Reveal";
 import DeviceFrame from "@/components/DeviceFrame";
@@ -399,6 +400,8 @@ export default async function MobileAppCaseStudy({ params }: Props) {
             </div>
           </section>
         ) : null}
+
+        <WorkProof clientSlug={c.slug} />
 
         <Contact />
       </main>

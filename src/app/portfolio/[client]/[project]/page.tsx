@@ -7,6 +7,7 @@ import Nav from "@/components/Nav";
 import TrackView from "@/components/TrackView";
 import { caseStudyDepth } from "@/data/caseStudyDepth";
 import Footer from "@/components/Footer";
+import { WorkProof } from "@/components/ProofLoop";
 import Reveal from "@/components/Reveal";
 import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/CaseStudyParts";
 import { clients, getProject } from "@/data/caseStudies";
@@ -262,6 +263,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
             </Reveal>
           </div>
         </section>
+        <WorkProof clientSlug={c.slug} projectSlug={p.slug} />
       </main>
       <Footer />
     </>

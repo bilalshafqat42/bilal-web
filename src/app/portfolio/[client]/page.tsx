@@ -6,6 +6,7 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 import Nav from "@/components/Nav";
 import TrackView from "@/components/TrackView";
 import Footer from "@/components/Footer";
+import { WorkProof } from "@/components/ProofLoop";
 import Reveal from "@/components/Reveal";
 import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/CaseStudyParts";
 import { clients, getClient } from "@/data/caseStudies";
@@ -304,6 +305,7 @@ export default async function ClientCaseStudy({ params }: Props) {
             </Reveal>
           </div>
         </section>
+        <WorkProof clientSlug={c.slug} />
       </main>
       <Footer />
     </>

@@ -148,7 +148,11 @@ export default function AboutPage() {
                 return (
                   <Reveal key={pillar.slug} delay={i * 0.08}>
                     <Link
-                      href={`/services/${pillar.slug}`}
+                      // `ledgerHref` where the pillar has one, same as the
+                      // homepage ledger. `design-content-conversion` was retired
+                      // and 308s to the services hub, so linking the raw slug
+                      // sent every visitor from this page through a redirect.
+                      href={pillar.ledgerHref ?? `/services/${pillar.slug}`}
                       className="card-hover group flex h-full flex-col rounded-2xl border border-border panel p-7"
                     >
                       <span

@@ -1,5 +1,6 @@
 import type { Faq } from "./pillars";
 import {
+  allItems,
   itemsOfKind,
   groupByDeliverable,
   deliverableAnchor,
@@ -302,4 +303,42 @@ export function disciplinePieces(
     href: `${base}#${deliverableAnchor(g.deliverable)}`,
     count: g.items.length,
   }));
+}
+
+/**
+ * The proof loop.
+ *
+ * Two functions, both inverted out of `serviceHref` and the item data rather
+ * than from a hand-kept mapping table, because a mapping table is a second
+ * source of truth and it goes stale the first time a discipline moves.
+ *
+ * The problem they solve, measured on 2026-09-14: all eight service pages
+ * linked to `/portfolio` and `/portfolio/leos-developments` and nothing else —
+ * the same two links on every one — while all six case study pages linked to no
+ * service at all. So a visitor reading about UI/UX design was sent to a generic
+ * hub instead of to the UI/UX work, and a visitor who arrived on a case study
+ * from search had no route to what the service is or what it costs.
+ */
+
+/** Discipline pages that prove a given service category. */
+export function proofForService(serviceSlug: string): Discipline[] {
+  return disciplines.filter(
+    (d) =>
+      hasPortfolioPage(d) &&
+      (d.serviceHref === `/services/${serviceSlug}` ||
+        d.serviceHref.startsWith(`/services/${serviceSlug}#`))
+  );
+}
+
+/** Disciplines a given engagement actually contributed to, derived from that
+ *  client's or project's own captures. Passing `projectSlug` narrows it to one
+ *  development; omitting it covers the whole client. */
+export function disciplinesInWork(clientSlug: string, projectSlug?: string): Discipline[] {
+  const mine = allItems().filter(
+    (i) => i.clientSlug === clientSlug && (!projectSlug || i.projectSlug === projectSlug)
+  );
+  const kinds = new Set(mine.map((i) => i.kind));
+  return disciplines.filter(
+    (d) => hasPortfolioPage(d) && d.kinds!.some((k) => kinds.has(k))
+  );
 }
