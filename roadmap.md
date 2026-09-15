@@ -1591,6 +1591,38 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Schema reviewed node by node and is sound.** `WebPage`, `Service`, `BreadcrumbList`, `FAQPage`. `@id`s are unique, refs carry `@type` so no node is untyped, `offers` states a genuine price of 0, `areaServed` matches the UAE and UK claim made elsewhere on the site, and every FAQ answer in the markup appears verbatim in the rendered page.
     - **Clean on everything else, verified at 1440, 1024, 768 and 390**: exactly one `h1`, zero page errors, zero console errors or warnings, zero failed requests, no horizontal overflow at any width, every image carrying alt text, all three selects properly labelled, no empty links. LCP is the portrait at **152ms**.
 
+180. **OPEN WORK QUEUE — full site audit, 28 routes (2026-09-15)** — **not started. This is the list to work through.** Measured against a production build of `5f1bc31`, Chromium at 1440x1000, consent granted, pages fully scrolled. Full document: https://claude.ai/artifact/FmUFw2CyxrpgvVhqtpfbgC
+    - Every item below carries the number that produced it, so "done" is verifiable by re-measuring rather than by opinion. Nothing here is a matter of taste.
+
+    **CRITICAL**
+
+    - [ ] **180.1 — The whole site's text is compiled into the client bundle on every page.** `SpotlightSearch.tsx` is a client component rendered in the root layout, so it loads on all 28 routes, and at module scope it calls `buildIndex()` — which imports `pillars.ts`, `serviceDepth.ts`, `caseStudies.ts`, `faqs.ts` and `disciplines.ts` and builds a **183-chunk, 75KB** index **in the browser**. `AskAssistant.tsx` does the same a second time. Evidence: the **privacy page**, which is plain text, ships **1,225KB of first-party JavaScript across 21 files** (largest chunk 221KB) and 0KB of third-party. **Fix:** build the index server-side and fetch it on first use — the panel only opens on ⌘K or a click, so none of it belongs in the initial payload. **Target: privacy page under 300KB.**
+    - [ ] **180.2 — Five pages carry no structured data at all.** `/about` (519 words, the E-E-A-T page), `/portfolio` (814, hub), `/services` (641, hub), `/process` (330), `/privacy` (245). The graph builders already exist in `src/lib/schema.ts` and are used correctly elsewhere, so this is wiring. **Fix:** `ProfilePage` + `Person` on About, `CollectionPage` + `ItemList` on both hubs, `HowTo` on Process. **Target: 0 routes reporting NONE.**
+
+    **HIGH**
+
+    - [ ] **180.3 — Three field labels on `/contact` are marked up as `h2`.** "EMAIL", "WHATSAPP" and "CALL" render at 14px as section headings, so Google reads the page outline as having those three sections. **The only genuine markup error left on the site.** **Fix:** change them to `p` or `span`. Ten minutes.
+    - [ ] **180.4 — There is no type scale.** Eight `h1` sizes in use (74/72/56/54/52/48/44) and nine `h2` sizes (54/44/36/30/28/24/20/16/14). Eyebrow coverage ranges from 6 of 7 on the homepage to **0 of 6** on `/contact` and `/privacy` and 0 of 4 on the discipline pages. **Biggest single reason the site reads as unfinished between pages.** **Fix:** one scale — h1 56 with the homepage keeping 74 as a deliberate exception, h2 40, h3 24, an eyebrow above every major section, one rhythm using padding not margin. **Target: 2 h1 sizes, 3 h2 sizes, eyebrow on every major section.**
+    - [ ] **180.5 — Google is truncating 14 descriptions and 7 titles.** Worst: `/` at 233 characters, `/portfolio/leos-developments` 221, `/services` 215, `/services/website-app-development` 217. Titles over 60: four discipline/portfolio pages at 77, 77, 76 and 70. **Fix:** mechanical rewrite. Do it in the same pass as 180.2 — same files. **Target: all descriptions ≤160, all titles ≤60.**
+
+    **MEDIUM**
+
+    - [ ] **180.6 — 1,286 lines of unreachable component code.** `WhatsAppButton.tsx` 456 (superseded by `LeadFormPopup.tsx`, which renders the Quick Enquiry button people actually see), `backdrops/index.tsx` 321, `AppShowcase.tsx` 217 (superseded by `DeviceFrame`), `HeroBackdrop.tsx` 162, `FooterWordmark.tsx` 75, `DashboardGraphic.tsx` 55. Plus **four preview routes still built and publicly reachable** — `/preview-backdrop`, `/preview-hero-alt`, `/preview-hero-wordmark`, `/preview-hero-yellow` — which are absent from the sitemap but **not blocked in `robots.txt`**, and absence from a sitemap does not stop a crawler that finds the URL another way.
+    - [ ] **180.7 — `/appointment` transfers 8,333KB.** `app.cal.com` **4,859KB**, first-party 2,727KB, `connect.facebook.net` 747KB. The embed loads in full whether or not anyone opens the calendar. **Fix:** defer behind a "Show available times" button or an intersection. **Trade-off Bilal must accept:** the calendar is no longer visible the instant the page loads.
+    - [ ] **180.8 — 747KB of tracking script on all 28 routes.** GTM plus the Meta pixel, loaded once consent is given. More JavaScript than most of these pages need in total. **Worth auditing what is actually inside the GTM container**; if the Meta pixel is not driving a live campaign, removing it returns 411KB to every page.
+    - [ ] **180.9 — Eight pages too thin to rank.** `/contact` 203, `/privacy` 245 (fine, legal), `/portfolio/web-development` 301, `/portfolio/mobile-app-development` 309, `/portfolio/social-media-marketing` 310, `/portfolio/ui-ux-design` 322, `/process` 330, `/appointment` 355. **The four discipline pages are the newest URLs on the site and the weakest.** `/process` is 330 words across 8 images — the pictures carry a page with almost nothing indexable in it. **Target: 600-800 words on each discipline page.**
+
+    **BLOCKED ON BILAL — and worth more than everything above**
+
+    - [ ] **180.10 — Hadley Heights has no results.** The `results` field and its rendering already exist and stay invisible until a value is supplied, so this is a data edit, not a build. Needed with LEOS's permission: qualified lead count, cost per lead, campaign period, and how many leads reached viewing or reservation.
+    - [ ] **180.11 — Bilal's role is never stated on any case study.** One sentence per client. Inventing it is not an option.
+    - [ ] **180.12 — Four unanswered questions keep `/appointment` at 355 words.** What the thirty minutes covers in order, what to have ready, what the client receives afterwards, and whether he signs NDAs on request. The last is a contract term and will not be guessed.
+    - [ ] **180.13 — The cookie bar covers content on a first visit.** A fixed 1440x184 strip on the bottom of the viewport, 18% of a 1000px screen. It is what hid the Hadley Heights carousel. A corner card would fix it, but consent UI is a decision rather than a bug.
+
+    **ALREADY CLEAN — do not spend time here.** Across all 28 routes at 1440, 1024, 768 and 390: zero page errors, zero console warnings, zero failed requests, zero broken images, no horizontal overflow at any width, alt text on every image, every form control labelled, one `h1` and a canonical on every page, no duplicate titles or descriptions. All four CI checks pass. LCP on `/appointment` is 152ms.
+
+    **A correction to carry forward:** `FAQPage` **no longer produces rich results in Google** — restricted to government and health sites, then deprecated entirely in **May 2026**. The markup on this site is still worth keeping because it is valid and AI search reads it, but any advice in earlier items that assumed a rich result — including item 179's framing — is out of date.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
