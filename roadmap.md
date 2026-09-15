@@ -1568,6 +1568,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **The only way to get the exact grid he asked for** is a custom booking UI built against Cal's API — our own markup, our own grid, our own styling, booking created through the API. That is a real build of several hours and needs a Cal API key, and it trades away Cal's maintained booking flow. Not started; his call whether it is worth it.
     - Verified after reverting to `month_view`: page still 2,153px, panel 620px, zero page errors, h1-check passes on all 28 routes, lint and tsc clean.
 
+177. **Sticky booking panel: wired, correct, and inert until the page has content (2026-09-15)** — **done, with an honest caveat.** Bilal proposed making the booking panel sticky so the rest of the page scrolls past it. Right instinct, right pattern, and it cannot do anything yet.
+    - **A real bug fixed on the way.** The section used `overflow-hidden` to clip the full-bleed portrait, and **`overflow: hidden` on any ancestor silently kills `position: sticky` on every descendant**. Swapped to `overflow-clip`, which does the same clipping without becoming a scroll container. Verified the computed style is now `clip`.
+    - **`items-center` changed to `items-start`.** A centred grid item has nowhere to travel, so it can never stick. As a side effect the left copy and the panel now share a top edge, which reads better than the centred version did.
+    - **It still does not stick, and the reason is arithmetic rather than CSS.** Measured: the left column is **501px**, the booking card is **940px**. The sticky item is the taller of the two, so it defines the grid row height and has **-439px of travel**. Sticky needs the column beside it to be taller than itself. **The panel cannot stick until the left column is roughly twice its current height** — which is the page body that is still waiting on Bilal's four answers.
+    - **So the sequencing is the other way round from how it looked.** This is not "add sticky, then write content". It is "write content, and sticky starts working on its own". The classes are in place and correct; nothing more is needed in code.
+    - **Also confirmed the panel must stay capped.** At its natural 1,251px it is taller than most viewports, and a sticky element taller than the screen sticks with its bottom cut off and the later slots unreachable. The 620px cap is what makes the pattern viable at all.
+    - Verified: section overflow computes to `clip`, sticky position applies, page 2,153px desktop, no horizontal overflow at 390 or 1440, zero page errors, h1-check and schema-check pass on all 28 routes, 32 search checks and discipline-check pass, build, lint and tsc clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

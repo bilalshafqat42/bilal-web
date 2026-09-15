@@ -92,7 +92,12 @@ export default function AppointmentPage() {
       <main className="flex-1">
         {/* Full bleed. The portrait is pushed left so the booking panel on the
             right never lands on top of it. */}
-        <section className="relative min-h-[100svh] overflow-hidden pb-16 pt-32 sm:pt-40">
+        {/* `overflow-clip`, not `overflow-hidden`. Both clip the full-bleed
+            portrait to the section, but `hidden` creates a scroll container and
+            that silently kills `position: sticky` on every descendant — the
+            booking panel scrolled away with the page until this changed.
+            `clip` does the same clipping without becoming a scroll container. */}
+        <section className="relative min-h-[100svh] overflow-clip pb-16 pt-32 sm:pt-40">
           {/* The blue suit, on request. Note the filenames are misleading and
               have been since they were added: `bilal-shirt.avif` is the blue
               three-piece, and `bilal-shafqat-coat.avif` — which this page used
@@ -123,7 +128,10 @@ export default function AppointmentPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-bg via-bg/60 to-bg/25" />
           <div className="absolute inset-0 bg-gradient-to-t from-bg/90 via-transparent to-bg/40" />
 
-          <div className="site-container relative grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,520px)] lg:gap-14">
+          {/* `items-start`, not `items-center`. A centred grid item cannot stick:
+              sticky needs the item anchored to the top of a track taller than
+              itself, and centring gives it nowhere to travel. */}
+          <div className="site-container relative grid grid-cols-1 items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,520px)] lg:gap-14">
             <div className="min-w-0">
               <span className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-xs font-medium uppercase tracking-wide text-gold">
                 <span className="relative flex h-2 w-2">
@@ -162,7 +170,17 @@ export default function AppointmentPage() {
               </p>
             </div>
 
-            <AppointmentBooking />
+            {/* Sticky on desktop so the booking panel stays in view while the
+                rest of the page scrolls past it. This only works because the
+                panel is capped at 620px: at its natural 1,251px it is taller
+                than most viewports, and a sticky element taller than the screen
+                sticks with its bottom cut off and the later slots unreachable.
+
+                Not sticky below `lg`, where the panel is full width and there
+                is nothing beside it to scroll. */}
+            <div className="lg:sticky lg:top-28">
+              <AppointmentBooking />
+            </div>
           </div>
         </section>
       </main>
