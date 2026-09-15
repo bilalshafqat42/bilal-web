@@ -34,6 +34,20 @@ declare global {
   }
 }
 
+/** Cal offers exactly three: month_view, week_view, column_view. None of them
+ *  is a multi-column grid of times — the slot list is a single column in all
+ *  three, and it renders inside a cross-origin iframe on app.cal.com, so it
+ *  cannot be restyled from this page at all.
+ *
+ *  This value is also close to decorative. Tested on 2026-09-15 with the
+ *  property correctly placed in the `inline` config (it was in the `ui` call
+ *  before, where it did nothing): all three layouts produced an identical
+ *  1,251px frame rendering the month view. The event type's own **Appearance**
+ *  setting in the Cal dashboard wins over anything sent from the embed, so the
+ *  layout is changed there, not here. Kept so the next person does not repeat
+ *  the experiment. */
+const LAYOUT = "month_view" as const;
+
 export default function CalBooking({ link, prefill }: Props) {
   const mounted = useRef(false);
 
@@ -90,6 +104,11 @@ export default function CalBooking({ link, prefill }: Props) {
         // The site is dark, so an embed in the default light theme would look
         // like a third-party panel dropped onto the page.
         theme: "dark",
+        // `layout` belongs here, in the inline config. Setting it only on the
+        // `ui` call below did nothing at all: month_view, week_view and
+        // column_view all produced an identical 1,251px frame, which is what
+        // gave the false impression that column_view was broken.
+        layout: LAYOUT,
         ...prefill,
       },
     });
@@ -100,7 +119,7 @@ export default function CalBooking({ link, prefill }: Props) {
       // frame, so a visitor read the same paragraph twice in a row and the
       // frame carried ~300px of duplicate header.
       hideEventTypeDetails: true,
-      layout: "month_view",
+      layout: LAYOUT,
     });
   }, [link, prefill]);
 
