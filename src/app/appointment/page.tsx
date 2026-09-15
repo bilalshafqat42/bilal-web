@@ -230,6 +230,15 @@ export default function AppointmentPage() {
                 <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                   Before you book
                 </span>
+                {/* A real heading, not just the styled eyebrow above it. This
+                    block is a distinct section of the page and it had no
+                    heading at all, so the document outline went straight from
+                    the h1 to a definition list — invisible as a section to a
+                    screen reader moving by heading, and to anything building an
+                    outline of the page. */}
+                <h2 className="mt-3 text-2xl font-semibold leading-tight tracking-tight text-ink">
+                  Common questions
+                </h2>
                 <dl className="mt-6 divide-y divide-border border-b border-border">
                   {faqs.map((f) => (
                     <div key={f.question} className="py-5">
