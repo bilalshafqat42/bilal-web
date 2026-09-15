@@ -6,15 +6,15 @@ import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
 import SocialLinks from "@/components/SocialLinks";
-
-const SITE_URL = "https://bilalshafqat.com";
-const PERSON_ID = `${SITE_URL}/#person`;
-const BUSINESS_ID = `${SITE_URL}/#business`;
+import CtaButton from "@/components/CtaButton";
+import { SITE_URL, breadcrumbNode, graph, ref, ID } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Contact Bilal Shafqat — Digital Marketer & Developer, Dubai",
   description:
-    "Get in touch with Bilal Shafqat, a Dubai-based freelance digital marketer, web and app developer, and designer. Email, phone, or WhatsApp, with a reply typically within one business day.",
+    // 186 characters before this. Google cuts around 160, so the last clause
+    // was being truncated in the result.
+    "Get in touch with Bilal Shafqat, a Dubai freelance digital marketer, developer and designer. Email, phone or WhatsApp, reply within one business day.",
   alternates: {
     canonical: "/contact",
   },
@@ -25,8 +25,14 @@ const channels = [
     icon: Mail,
     label: "Email",
     value: "bilalshafqat42@gmail.com",
-    href: "/appointment",
-    note: "Best for detailed briefs and attachments.",
+    // Deliberately no href. The card displayed an address and linked to
+    // /appointment, so anyone clicking what looked like an email landed on the
+    // booking page instead — the same label-versus-destination mismatch already
+    // fixed in the footer, and the fix is the same: show the address as text
+    // people can copy. A `mailto:` is not the alternative; there are zero on
+    // this site by decision.
+    href: undefined as string | undefined,
+    note: "Best for detailed briefs and attachments. Copy the address above.",
   },
   {
     icon: MessageCircle,
@@ -44,36 +50,52 @@ const channels = [
   },
 ];
 
-const contactSchema = {
-  "@context": "https://schema.org",
-  "@type": "ContactPage",
-  "@id": `${SITE_URL}/contact#page`,
-  url: `${SITE_URL}/contact`,
-  // A pointer, not a second copy. The Person is defined once on the homepage
-  // at #person; restating name, job title and address here is what produced
-  // twenty-odd unlinked duplicates of the same entity.
-  mainEntity: { "@id": PERSON_ID, "@type": "Person" },
-  about: { "@id": BUSINESS_ID, "@type": "ProfessionalService" },
-  // Contact routes belong to this page rather than to the Person node: they
-  // are the page's subject, and they are all visible on it.
-  contactPoint: [
-    {
-      "@type": "ContactPoint",
-      contactType: "sales",
-      email: "bilalshafqat42@gmail.com",
-      telephone: "+971529766006",
-      availableLanguage: ["English"],
-      areaServed: ["AE", "GB"],
-    },
-    {
-      "@type": "ContactPoint",
-      contactType: "sales",
-      telephone: "+971566047396",
-      availableLanguage: ["English"],
-      areaServed: ["AE", "GB"],
-    },
-  ],
-};
+/**
+ * Built with the shared helpers rather than by hand, like every other page.
+ *
+ * Doing it by hand is why this was the only commercial page on the site with no
+ * `BreadcrumbList` — `/faq` and `/pricing` both have one.
+ */
+const pageUrl = `${SITE_URL}/contact`;
+
+const contactSchema = graph([
+  {
+    "@type": "ContactPage",
+    "@id": `${pageUrl}#page`,
+    url: pageUrl,
+    name: "Contact Bilal Shafqat",
+    inLanguage: "en",
+    // A pointer, not a second copy. The Person is defined once on the homepage
+    // at #person; restating name, job title and address here is what produced
+    // twenty-odd unlinked duplicates of the same entity.
+    mainEntity: ref(ID.person, "Person"),
+    about: ref(ID.business, "ProfessionalService"),
+    isPartOf: ref(ID.website, "WebSite"),
+    // Contact routes belong to this page rather than to the Person node: they
+    // are the page's subject, and they are all visible on it.
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        email: "bilalshafqat42@gmail.com",
+        telephone: "+971529766006",
+        availableLanguage: ["English"],
+        areaServed: ["AE", "GB"],
+      },
+      {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        telephone: "+971566047396",
+        availableLanguage: ["English"],
+        areaServed: ["AE", "GB"],
+      },
+    ],
+  },
+  breadcrumbNode(pageUrl, [
+    { name: "Home", item: SITE_URL },
+    { name: "Contact", item: pageUrl },
+  ]),
+]);
 
 export default function ContactPage() {
   return (
@@ -107,32 +129,50 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
               {channels.map((channel, i) => {
                 const Icon = channel.icon;
+                const external = channel.href?.startsWith("http") ?? false;
+                const body = (
+                  <>
+                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-gold/25 to-gold-2/10">
+                      <Icon size={20} className="text-gold" />
+                    </span>
+                    {/* A label, not a section heading. These were `h2`, so the
+                        page outline read as three sections called "Email",
+                        "WhatsApp" and "Call". */}
+                    <p className="mt-5 text-sm font-semibold uppercase tracking-wide text-gold">
+                      {channel.label}
+                    </p>
+                    <p className="mt-2 break-words text-lg font-semibold text-ink">
+                      {channel.value}
+                    </p>
+                    <p className="mt-3 text-sm leading-relaxed text-muted">{channel.note}</p>
+                  </>
+                );
+
                 return (
                   <Reveal key={channel.label} delay={i * 0.08}>
-                    <a
-                      href={channel.href}
-                      target={channel.href.startsWith("http") ? "_blank" : undefined}
-                      rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="card-hover group flex h-full flex-col rounded-2xl border border-border panel p-7"
-                    >
-                      <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-gold/25 to-gold-2/10">
-                        <Icon size={20} className="text-gold" />
-                      </span>
-                      <h2 className="mt-5 text-sm font-semibold tracking-wide text-gold uppercase">
-                        {channel.label}
-                      </h2>
-                      <p className="mt-2 text-lg font-semibold text-ink break-words">
-                        {channel.value}
-                      </p>
-                      <p className="mt-3 text-sm text-muted leading-relaxed">{channel.note}</p>
-                      <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
-                        Open{" "}
-                        <ArrowUpRight
-                          size={15}
-                          className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                        />
-                      </span>
-                    </a>
+                    {channel.href ? (
+                      <a
+                        href={channel.href}
+                        target={external ? "_blank" : undefined}
+                        rel={external ? "noopener noreferrer" : undefined}
+                        className="card-hover group flex h-full flex-col rounded-2xl border border-border panel p-7"
+                      >
+                        {body}
+                        <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
+                          Open{" "}
+                          <ArrowUpRight
+                            size={15}
+                            className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                          />
+                        </span>
+                      </a>
+                    ) : (
+                      // No "Open" affordance either: a card that cannot be
+                      // opened should not offer to open.
+                      <div className="flex h-full flex-col rounded-2xl border border-border panel p-7">
+                        {body}
+                      </div>
+                    )}
                   </Reveal>
                 );
               })}
@@ -194,15 +234,14 @@ export default function ContactPage() {
                     telling you a smaller piece of work would do the job. That&apos;s
                     a better outcome than selling you a bigger one.
                   </p>
+                  {/* `/appointment`, not WhatsApp. This was the only "Book a
+                      free consultation" on the site pointing somewhere else:
+                      the label promised a booking and opened a chat window,
+                      bypassing the calendar entirely. `CtaButton` rather than a
+                      hand-rolled `btn-primary`, so it cannot drift from the
+                      other nine pages that use it. */}
                   <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-                    <a
-                      href="https://wa.me/971529766006"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow"
-                    >
-                      Book a free consultation <ArrowUpRight size={16} />
-                    </a>
+                    <CtaButton href="/appointment">Book a free consultation</CtaButton>
                     <Link
                       href="/services"
                       className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
