@@ -1533,6 +1533,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Heading sizes on this page are 36 / 44 / 44 / 36 / 36 / 30.** Four sizes, no rule. This is the site-wide type scale proposed in item 167 and still not agreed; the full site range is 14px to 54px.
     - **Not live.** None of items 164 to 171 have been deployed. bilalshafqat.com still serves the pre-14-September site.
 
+173. **`/appointment` given structured data (2026-09-15)** — **partly done; content still blocked on Bilal.** This page had **zero** structured data while being the destination of every primary CTA on all 28 pages, which made it the largest single gap on the site.
+    - **Three nodes: `WebPage`, `Service`, `BreadcrumbList`.** `Service` rather than `Event` or `Reservation` — an `Event` is an occurrence with a date and there is none here, a `Reservation` describes a booking that already exists. A free consultation available on request is a Service carrying an Offer of zero, and the zero is a fact the page states rather than a claim it does not.
+    - **Nothing invented.** The 30 minutes, the working hours and the phone number are all already on the page or in the footer. No rating, no review count, no duration the page does not state.
+    - **Meta description trimmed from 166 to 157 characters**, so Google stops cutting it mid-sentence.
+    - **Still open, and the bigger half.** The page is 168 words, the thinnest on the site. Writing it honestly needs four answers from Bilal: what the 30 minutes actually covers, what he wants ready beforehand, what the client gets afterwards, and whether he signs NDAs on request. A contract term is not something to guess.
+    - **Also still open: the page cannot take a booking.** Its time slots are generated from a fixed 09:00-17:30 window with no knowledge of a real calendar, so a chosen slot is a request he confirms by hand. `NEXT_PUBLIC_CALCOM_LINK` is wired and waiting on one value. Compared Cal.com against Google Calendar on 2026-09-15 against both providers' current pages: Google's free personal tier gives **one** booking page with no booker reminders, no email verification and no payments, while Cal.com's free tier covers unlimited event types with email and SMS reminders. Cal.com also reads Outlook and Microsoft 365, which is the calendar stack actually in use, and the integration already exists in this codebase. **Bilal is signing up.**
+    - Verified: three schema nodes emitted, description at 157 characters, one h1, no overflow at 390 or 1440, zero page errors, h1-check and schema-check pass on all 28 routes, 32 search checks and discipline-check pass, build, lint and tsc clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

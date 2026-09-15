@@ -5,13 +5,78 @@ import { CheckCircle2 } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import AppointmentBooking from "@/components/AppointmentBooking";
+import { SITE_URL, breadcrumbNode, graph, ref, ID } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Book a Call — Bilal Shafqat, Dubai",
+  // Trimmed to 155 characters. The previous version ran to 166 and Google was
+  // cutting it mid-sentence, which wastes the one line it gives you.
   description:
-    "Book a 30-minute call with Bilal Shafqat, a Dubai-based freelance digital marketer, developer and designer. Monday to Friday, 9am to 6pm GST. No pitch, no obligation.",
+    "Book a free 30-minute call with Bilal Shafqat, a Dubai freelance marketer, developer and designer. Monday to Friday, 9am to 6pm GST. No pitch, no obligation.",
   alternates: { canonical: "/appointment" },
 };
+
+/**
+ * Structured data. This page had none, which was the largest single gap on the
+ * site: every primary CTA on all 28 pages resolves here, and Google had no
+ * description of what it is.
+ *
+ * `Service` rather than `Event` or `Reservation`. An `Event` is a specific
+ * occurrence with a date, and there is no fixed date here; a `Reservation`
+ * describes a booking that already exists. What this page offers is a free
+ * consultation available on request, which is a Service with an Offer of zero.
+ *
+ * Nothing here claims a rating, a review count or a duration the page does not
+ * state. The 30 minutes and the working hours are both visible on the page.
+ */
+const url = `${SITE_URL}/appointment`;
+
+const schema = graph([
+  {
+    "@type": "WebPage",
+    "@id": `${url}#page`,
+    url,
+    name: "Book a call with Bilal Shafqat",
+    description:
+      "Book a free 30-minute consultation with Bilal Shafqat, a Dubai-based freelance digital marketer, developer and designer.",
+    inLanguage: "en",
+    isPartOf: ref(ID.website, "WebSite"),
+    about: ref(ID.business, "ProfessionalService"),
+    primaryImageOfPage: { "@type": "ImageObject", url: `${SITE_URL}/images/bilal-shirt.avif` },
+  },
+  {
+    "@type": "Service",
+    "@id": `${url}#consultation`,
+    name: "Free 30-minute consultation",
+    description:
+      "A 30-minute call on your goals, your current setup and an honest read on scope and budget. You speak to the person who does the work, and there is no obligation afterwards.",
+    serviceType: "Marketing, design and development consultation",
+    provider: ref(ID.business, "ProfessionalService"),
+    areaServed: [
+      { "@type": "Country", name: "AE" },
+      { "@type": "Country", name: "GB" },
+    ],
+    // Zero, because the call genuinely is free. A price of 0 is a fact the page
+    // states; anything else here would be a claim it does not.
+    offers: {
+      "@type": "Offer",
+      price: 0,
+      priceCurrency: "AED",
+      availability: "https://schema.org/InStock",
+    },
+    availableChannel: {
+      "@type": "ServiceChannel",
+      serviceUrl: url,
+      availableLanguage: { "@type": "Language", name: "English" },
+      // Matches the hours stated in the footer and in this page's description.
+      servicePhone: { "@type": "ContactPoint", contactType: "sales", telephone: "+971529766006" },
+    },
+  },
+  breadcrumbNode(url, [
+    { name: "Home", item: SITE_URL },
+    { name: "Book a call", item: url },
+  ]),
+]);
 
 const reassurance = [
   "Thirty minutes, and you keep whatever comes out of it",
@@ -23,6 +88,7 @@ export default function AppointmentPage() {
   return (
     <>
       <Nav />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <main className="flex-1">
         {/* Full bleed. The portrait is pushed left so the booking panel on the
             right never lands on top of it. */}
