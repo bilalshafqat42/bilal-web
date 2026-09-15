@@ -150,8 +150,15 @@ export default function AppointmentBooking() {
   // time picker in the request flow, and ahead of the calendar when Cal is
   // configured so they can be carried into the booking notes.
   const qualification = (
-    <div className="mt-6 grid gap-4 sm:grid-cols-3">
-      <div>
+    // Two columns, with the service select spanning both.
+    //
+    // Three equal columns inside a 520px panel gave each select 141px, and the
+    // option text does not fit: the longest service is "Digital Marketing &
+    // Outreach" at 28 characters and the longest timeline "Just exploring for
+    // now" at 22, so every dropdown rendered truncated. A native select cannot
+    // wrap or ellipsis its way out of that — the only fix is width.
+    <div className="mt-6 grid gap-4 sm:grid-cols-2">
+      <div className="sm:col-span-2">
         <label htmlFor="topic" className="text-sm font-medium text-ink">
           What is it about?
         </label>

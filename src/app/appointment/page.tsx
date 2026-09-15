@@ -5,7 +5,7 @@ import { CheckCircle2 } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import AppointmentBooking from "@/components/AppointmentBooking";
-import { SITE_URL, breadcrumbNode, graph, ref, ID } from "@/lib/schema";
+import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Book a Call — Bilal Shafqat, Dubai",
@@ -15,6 +15,53 @@ export const metadata: Metadata = {
     "Book a free 30-minute call with Bilal Shafqat, a Dubai freelance marketer, developer and designer. Monday to Friday, 9am to 6pm GST. No pitch, no obligation.",
   alternates: { canonical: "/appointment" },
 };
+
+/**
+ * Questions someone asks before giving up half an hour.
+ *
+ * Every answer here is supported by something the site already states: the
+ * hours are the ones in the footer, the "no obligation" is the page's own
+ * promise, the reschedule links are a fact of how Cal.com confirmations work,
+ * and "just exploring" is literally one of the timeline options in the form
+ * beside this list.
+ *
+ * Deliberately NOT here, because they need Bilal and guessing them would be
+ * inventing a service promise or a contract term: what the thirty minutes
+ * covers in order, what to have ready beforehand, what the client receives
+ * afterwards, and whether he signs NDAs on request.
+ */
+const faqs = [
+  {
+    question: "Is the call actually free?",
+    answer:
+      "Yes. Thirty minutes, no charge, and no obligation afterwards. If it turns out I am not the right fit for what you need, I will say so on the call rather than send you a proposal.",
+  },
+  {
+    question: "Who will I be speaking to?",
+    answer:
+      "Me. There is no account manager and no junior taking a brief to pass on. The person on the call is the person who would do the work.",
+  },
+  {
+    question: "When are you available?",
+    answer:
+      "Monday to Friday, 9am to 6pm Dubai time (GST, UTC+4). The calendar here shows real availability read from my own diary, so anything you can select is genuinely free.",
+  },
+  {
+    question: "Can I reschedule or cancel?",
+    answer:
+      "Yes, and without emailing me. The confirmation you receive carries its own reschedule and cancel links, so you can move it yourself at any point.",
+  },
+  {
+    question: "What if I am not ready to start yet?",
+    answer:
+      "That is fine, and it is one of the options in the timeline dropdown. Plenty of these calls are with people six months out who want a straight read on scope and budget before they commit to anything.",
+  },
+  {
+    question: "Do you work with clients outside the UAE?",
+    answer:
+      "Yes. I work with clients across the UAE and the UK. The call is on video, so the only thing that matters is finding an hour that works across both timezones.",
+  },
+];
 
 /**
  * Structured data. This page had none, which was the largest single gap on the
@@ -76,6 +123,9 @@ const schema = graph([
     { name: "Home", item: SITE_URL },
     { name: "Book a call", item: url },
   ]),
+  // Built from the same array the page renders, so the markup cannot describe
+  // an answer a visitor cannot read.
+  faqNode(url, faqs),
 ]);
 
 const reassurance = [
@@ -168,6 +218,29 @@ export default function AppointmentPage() {
                 </Link>
                 .
               </p>
+
+              {/* In the left column rather than a section of its own, for two
+                  reasons. It is what someone is actually wondering while they
+                  look at the calendar, so it belongs beside it. And the booking
+                  panel is `sticky`: sticky only engages when the column next to
+                  it is taller than it is, and before this the left column was
+                  501px against the panel's 940px, so it had negative travel and
+                  could never stick at all. */}
+              <div className="mt-12 max-w-xl border-t border-border pt-8">
+                <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                  Before you book
+                </span>
+                <dl className="mt-6 divide-y divide-border border-b border-border">
+                  {faqs.map((f) => (
+                    <div key={f.question} className="py-5">
+                      <dt className="text-base font-semibold text-ink">{f.question}</dt>
+                      <dd className="mt-2 max-w-[62ch] text-sm leading-relaxed text-muted">
+                        {f.answer}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
             </div>
 
             {/* Sticky on desktop so the booking panel stays in view while the
