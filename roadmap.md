@@ -1525,6 +1525,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Measured result**: the hero image request is now **21KB**, against a full-capture variant that was an order of magnitude larger, and the LCP console warning no longer appears.
     - Verified: all four developments use the crop and load it, zero page errors, h1-check and schema-check pass on all 28 routes, 32 search checks and discipline-check pass, build, lint and tsc clean.
 
+172. **Hadley Heights: what is still open (2026-09-15)** — **tracking entry, not done.** Logged at Bilal's request so these stop living only in chat. The page itself is technically clean: 1105 words, one h1, 8 images all loading with alt text, `CreativeWork` + `ApartmentComplex` + `BreadcrumbList` + `FAQPage`, a real 1200x630 share card, a 21KB hero crop, no overflow and no console errors.
+    - **No results, and this is the one that matters.** The page explains what was built and why, and then stops. A launch case study with no outcome is an argument without a conclusion. Needed from Bilal, with LEOS's permission to publish: **qualified lead count, cost per lead, the campaign period, and how many leads reached viewing or reservation.** The `results` field and its rendering already exist and stay invisible until a value is supplied, so this is a data edit, not a build. Any one of the four is worth more than everything else on this list.
+    - **Bilal's role is never stated.** A reader cannot tell whether he designed the page, built it, ran the media, or all three. One sentence from him fixes it; inventing it is not an option.
+    - **The cookie consent bar covers content.** A fixed 1440x184 strip pinned to the bottom of the viewport — 18% of a 1000px screen, more on a laptop. On a first visit it sits over the campaign carousel, which is why Bilal could not find that section at all. Site-wide, surfaced here. Fix is to make it a corner card rather than a full-width bar. **Not changed without his say-so: consent UI is its own decision.**
+    - **`WorkProof` is the last block on the page still using a full-width heading**, directly under a FAQ that now uses the two-column layout, so it reads as the odd one out. Left alone because that component is shared by the client page and the app case study, and changing three pages to fix one seam is his call.
+    - **Heading sizes on this page are 36 / 44 / 44 / 36 / 36 / 30.** Four sizes, no rule. This is the site-wide type scale proposed in item 167 and still not agreed; the full site range is 14px to 54px.
+    - **Not live.** None of items 164 to 171 have been deployed. bilalshafqat.com still serves the pre-14-September site.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
