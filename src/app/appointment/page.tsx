@@ -123,7 +123,7 @@ export default function AppointmentPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-bg via-bg/60 to-bg/25" />
           <div className="absolute inset-0 bg-gradient-to-t from-bg/90 via-transparent to-bg/40" />
 
-          <div className="site-container relative grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_minmax(0,440px)] lg:gap-16">
+          <div className="site-container relative grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,520px)] lg:gap-14">
             <div className="min-w-0">
               <span className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-xs font-medium uppercase tracking-wide text-gold">
                 <span className="relative flex h-2 w-2">

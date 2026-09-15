@@ -95,7 +95,11 @@ export default function CalBooking({ link, prefill }: Props) {
     });
     window.Cal?.("ui", {
       theme: "dark",
-      hideEventTypeDetails: false,
+      // The panel above the embed already carries the title, the description,
+      // the duration and the timezone. Left on, Cal repeats all four inside the
+      // frame, so a visitor read the same paragraph twice in a row and the
+      // frame carried ~300px of duplicate header.
+      hideEventTypeDetails: true,
       layout: "month_view",
     });
   }, [link, prefill]);
@@ -103,9 +107,19 @@ export default function CalBooking({ link, prefill }: Props) {
   return (
     <div
       id="cal-booking"
-      // Reserves height before the embed loads, so the page does not jump when
-      // the calendar arrives.
-      className="min-h-[560px] w-full overflow-hidden rounded-2xl border border-border bg-surface/40"
+      // Fixed height with an internal scroll, not `min-h` with auto growth.
+      //
+      // Cal's month view stacks the whole day's slot list under the calendar —
+      // sixteen rows for a 09:00-17:30 day — and sizes its iframe to that
+      // content. Measured, the iframe came out at 1,532px in a 440px panel and
+      // 1,767px at 692px wide, because widening the panel does not move the
+      // slots beside the calendar at any width this layout can give it. That
+      // dragged the page past 3,000px for what is a single booking form.
+      //
+      // Capping the frame and scrolling inside it is what Cal's own booking
+      // page does with its slot column, so the interaction is the one people
+      // already know.
+      className="h-[620px] w-full overflow-y-auto overflow-x-hidden rounded-2xl border border-border bg-surface/40"
     />
   );
 }
