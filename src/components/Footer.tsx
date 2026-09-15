@@ -5,7 +5,7 @@ import { Building2, MapPin } from "lucide-react";
 import SocialLinks from "./SocialLinks";
 import FooterWordmark from "./FooterWordmark";
 
-const EMAIL = "bilal@bilalshafqat.com";
+const EMAIL = "bilalshafqat42@gmail.com";
 
 /**
  * Real locations only. An earlier version listed UK and North America as

@@ -39,7 +39,7 @@ export default function Contact() {
 
               <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted">
                 <span className="flex items-center gap-2">
-                  <Mail size={15} className="text-gold" /> bilal@bilalshafqat.com
+                  <Mail size={15} className="text-gold" /> bilalshafqat42@gmail.com
                 </span>
                 <span className="flex items-center gap-2">
                   <Phone size={15} className="text-gold" /> +971 52 976 6006

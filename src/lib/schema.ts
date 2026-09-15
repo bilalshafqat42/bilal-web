@@ -83,7 +83,7 @@ export function personNode() {
       "Freelance digital marketing, design and development specialist in Dubai, working across paid marketing, web and app development, design and CRM automation as a single point of contact.",
     url: SITE_URL,
     image: `${SITE_URL}/images/bilal-shafqat-coat.avif`,
-    email: "bilal@bilalshafqat.com",
+    email: "bilalshafqat42@gmail.com",
     address: ADDRESS,
     sameAs: SAME_AS,
     knowsAbout: KNOWS_ABOUT,
@@ -98,7 +98,7 @@ export function businessNode() {
     name: "Bilal Shafqat",
     url: SITE_URL,
     image: `${SITE_URL}/images/bilal-shafqat-coat.avif`,
-    email: "bilal@bilalshafqat.com",
+    email: "bilalshafqat42@gmail.com",
     address: ADDRESS,
     // AE and GB only. These are the two markets with delivered work behind
     // them; the roadmap's US and Canada ambition has no shipped project yet,

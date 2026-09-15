@@ -1623,6 +1623,12 @@ Bilal asked for a running list of ideas to make the site read more professional 
 
     **A correction to carry forward:** `FAQPage` **no longer produces rich results in Google** — restricted to government and health sites, then deprecated entirely in **May 2026**. The markup on this site is still worth keeping because it is valid and AI search reads it, but any advice in earlier items that assumed a rich result — including item 179's framing — is out of date.
 
+181. **Site-wide email changed to `bilalshafqat42@gmail.com` (2026-09-15)** — **done. This reverses item 136 at Bilal's instruction.**
+    - **16 occurrences across 12 files.** Structured data (`Person` and `ProfessionalService` in `src/lib/schema.ts`), the contact page card and its `ContactPoint`, the privacy page, the footer, the contact form, the lead popup, the assistant's three error messages, the search index, `llms.txt` and the assistant knowledge base. Verified **0** occurrences of the old address remain and **0** `mailto:` links were introduced — the no-mailto rule from item 136 still holds.
+    - **This undoes a decision Bilal made himself.** In August he instructed: "Replace every instance of that gmail address with bilal@bilalshafqat.com. Grep the whole repo for 'mailto:' and 'gmail.com' and report zero hits when done." **He has now reversed it.** The concern was raised once — a domain address reads as more established to a corporate client, and this address now appears in the structured data Google reads, in `llms.txt` that AI crawlers read, and in the confirmation a client receives after booking — and he confirmed. **Recorded as his decision, not a defect**, so the reasoning survives if it is ever revisited.
+    - **Consistent with the Cal.com organiser decision in item 174**, where the same address was chosen for booking confirmations. The site and the booking flow now agree, which is better than the split that existed before.
+    - Verified: 0 old-address occurrences, 16 new, 0 `mailto:`, schema emits the new address on both `Person` and `ProfessionalService`, `llms.txt` updated, h1-check and schema-check pass on all 28 routes, 32 search checks pass, build, lint and tsc clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

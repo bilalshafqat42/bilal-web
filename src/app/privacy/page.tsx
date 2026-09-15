@@ -98,7 +98,7 @@ export default function PrivacyPage() {
               <p className="mt-3 text-sm text-muted leading-relaxed">
                 If you&apos;ve sent an enquiry and want it deleted, email{" "}
                 <span className="text-gold">
-                  bilal@bilalshafqat.com
+                  bilalshafqat42@gmail.com
                 </span>{" "}
                 and it will be removed.
               </p>

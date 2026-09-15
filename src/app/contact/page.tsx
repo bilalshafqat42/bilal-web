@@ -24,7 +24,7 @@ const channels = [
   {
     icon: Mail,
     label: "Email",
-    value: "bilal@bilalshafqat.com",
+    value: "bilalshafqat42@gmail.com",
     href: "/appointment",
     note: "Best for detailed briefs and attachments.",
   },
@@ -60,7 +60,7 @@ const contactSchema = {
     {
       "@type": "ContactPoint",
       contactType: "sales",
-      email: "bilal@bilalshafqat.com",
+      email: "bilalshafqat42@gmail.com",
       telephone: "+971529766006",
       availableLanguage: ["English"],
       areaServed: ["AE", "GB"],

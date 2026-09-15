@@ -202,7 +202,7 @@ export default function LeadFormPopup() {
                       <span>
                         Something went wrong. Please email{" "}
                         <span className="underline">
-                          bilal@bilalshafqat.com
+                          bilalshafqat42@gmail.com
                         </span>{" "}
                         directly instead.
                       </span>

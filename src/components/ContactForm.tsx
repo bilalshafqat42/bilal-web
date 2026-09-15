@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { trackLead, trackWhatsApp, generateEventId } from "@/lib/analytics";
 
 const WHATSAPP = "971529766006";
-const EMAIL = "bilal@bilalshafqat.com";
+const EMAIL = "bilalshafqat42@gmail.com";
 
 type Status = "idle" | "submitting" | "success" | "fallback" | "error";
 
