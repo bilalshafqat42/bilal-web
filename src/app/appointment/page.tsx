@@ -160,7 +160,7 @@ export default function AppointmentPage() {
             fill
             priority
             sizes="100vw"
-            className="portrait-edge object-cover brightness-[1.04] contrast-[1.12] grayscale"
+            className="object-cover brightness-[1.04] contrast-[1.12] grayscale"
             // Retuned for this image, not carried over. The blue suit is a
             // full-torso frame at 3368x5056, so `object-cover` on a full-height
             // section shows only about 47% of it, and the inherited 12% landed
