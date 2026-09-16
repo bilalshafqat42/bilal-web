@@ -2134,3 +2134,58 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
     Matrix v3.8: **24 of 28 routes fully clean.** Verified: `h1-check` 28/28,
     `schema-check` 28/28, `search-check` 32 checks, `discipline-check`, `tsc`,
     `lint`, production build, and zero routes failing any hard check.
+
+198. **`/portfolio` rebuilt as one grid of real case studies (2026-09-16)** — **done.**
+
+    Bilal sent Musemind's case study page: one card per project, a single calm
+    image each, name, one line, tags. "Nice and clear not a mess of objects."
+
+    **The mess was real, and worse than a layout problem.** `/portfolio` showed
+    the work three different ways on one page, and the section calling itself
+    Case Studies was the worst of the three:
+
+    - **`CaseStudies`** — five entries **hard-coded in the component**, with no
+      images, **no links**, and no relationship to the six real case studies in
+      `caseStudies.ts`. Illustrated with abstract `DashboardGraphic` placeholders
+      instead of the work. A visitor could not click into a single case study
+      from the section headed "Case Studies".
+    - **`WorkByType`** — 26 loose captures in three grids, sliced by artefact
+      type, showing the same images the discipline pages show.
+    - A discipline browser above both.
+
+    Replaced with `CaseStudyGrid`: one card per real case study, each linking to
+    its page. **All six case studies are now reachable from `/portfolio`;
+    previously zero were.** The image sits in a padded well rather than bleeding
+    to the card edge, so a 2403x1231 desktop capture and a 1206x5807 phone screen
+    still read as a set instead of a collage. Tags come from `disciplinesInWork`,
+    derived from the captures each piece actually contains, so a card cannot
+    claim a discipline the work does not show.
+
+    **Three components deleted:** `CaseStudies.tsx`, `WorkByType.tsx`,
+    `DashboardGraphic.tsx`. Imports were checked first, including relative
+    sibling imports — the exact mistake that broke the build at item 174.
+
+    **Deleting `CaseStudies` removed the page's only `h1`.** It had been sitting
+    halfway down the page inside that section, and `/portfolio` had no hero at
+    all — it opened on a featured-work link card. Caught by `h1-check`, not by
+    eye. The page now has a proper hero carrying the `h1`, which is where it
+    should have been. This is precisely the failure `SectionHeading`'s own
+    comment warns about.
+
+    **What was deliberately NOT copied from the references.** InvoZone's index
+    carries "1000+ Developers, 1200+ Projects, 97% Success Rate". Bilal has no
+    such figures, and a success-rate percentage is unverifiable by anyone reading
+    it. Nothing of that kind was added.
+
+    **Standing advice recorded here so it is not lost:** the industry-filtered
+    card grid both references use works because they have 12 and ~20 clients.
+    Bilal has one. Measured this session: **24 of the 24 images on the discipline
+    pages already appear on a case study — zero unique content.** The portfolio
+    is one client, one sector, published twice. Breadth is now the binding
+    constraint, not layout. One non-property case study is worth more than every
+    remaining amber cell in the matrix.
+
+    `/portfolio`: 604 words, 12 images (was 26), 1 h1, eyebrow on all 4 sections,
+    2 heading declarations, 740KB. Matrix v3.9: **24 of 28 fully clean, and zero
+    routes failing any hard check.** Verified: `h1-check` 28/28, `schema-check`
+    28/28, `search-check` 32 checks, `discipline-check`, `tsc`, `lint`, build.

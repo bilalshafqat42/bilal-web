@@ -9,8 +9,7 @@ import {
   hasPortfolioPage,
 } from "@/data/disciplines";
 import Nav from "@/components/Nav";
-import CaseStudies from "@/components/CaseStudies";
-import WorkByType from "@/components/WorkByType";
+import CaseStudyGrid from "@/components/CaseStudyGrid";
 import LogoWall from "@/components/LogoWall";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -71,6 +70,27 @@ export default function PortfolioPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <Nav />
       <main className="flex-1 pt-28">
+        {/* A real hero with the page's h1 in it. Until 2026-09-16 this page had
+            no hero at all: it opened on a featured-work link card, and its only
+            h1 sat halfway down inside the old `CaseStudies` section. Removing
+            that section took the h1 with it, which is exactly the failure
+            `SectionHeading`'s own comment warns about. */}
+        <section className="site-container pb-12">
+          <Reveal>
+            <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+              Portfolio
+            </span>
+            <h1 className="mt-4 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
+              Case studies across{" "}
+              <span className="text-gradient">marketing, design &amp; development</span>
+            </h1>
+            <p className="mt-6 max-w-[62ch] text-lg leading-relaxed text-muted">
+              Real projects, each one opening into the brief behind it, the decisions
+              that shaped it and what actually shipped.
+            </p>
+          </Reveal>
+        </section>
+
         <section className="site-container">
           <Link
             href="/portfolio/leos-developments"
@@ -167,9 +187,11 @@ export default function PortfolioPage() {
             repeating the homepage. */}
         <LogoWall />
 
-        <WorkByType />
-
-        <CaseStudies />
+        {/* One grid of real case studies, replacing two sections that both
+            claimed to be the portfolio: `WorkByType`, 26 loose captures sliced
+            by artefact type, and `CaseStudies`, five hard-coded entries with no
+            images and no links to any of the six case studies that exist. */}
+        <CaseStudyGrid />
         <Contact />
       </main>
       <Footer />
