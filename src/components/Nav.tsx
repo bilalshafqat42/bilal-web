@@ -327,7 +327,7 @@ export default function Nav() {
             Portfolio as a seventh item overfilled the bar at exactly `lg`: the
             logo and the nav met with zero gap and the CTA wrapped to two lines.
             Measured, not eyeballed — the button was 64px tall instead of 44. */}
-        <nav aria-label="Primary" className="hidden lg:flex lg:items-center lg:gap-5 xl:gap-9">
+        <nav aria-label="Primary" className="hidden lg:flex lg:items-center lg:gap-4 xl:gap-8">
           {links.map((link) =>
             link.mega ? (
               <div
@@ -348,7 +348,7 @@ export default function Nav() {
                       }
                       openMega(link.mega!);
                     }}
-                    className="text-sm text-muted transition-colors hover:text-ink"
+                    className="text-[0.75rem] uppercase tracking-[0.06em] text-muted transition-colors hover:text-ink"
                   >
                     {link.label}
                   </Link>
@@ -402,7 +402,7 @@ export default function Nav() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-muted transition-colors hover:text-ink"
+                className="text-[0.75rem] uppercase tracking-[0.06em] text-muted transition-colors hover:text-ink"
               >
                 {link.label}
               </Link>
