@@ -8,7 +8,11 @@
  *
  * Usage:  npm run search-check
  */
-import { buildIndex, search } from "../src/lib/searchIndex.ts";
+// `search` moved to `searchRank.ts` when the index came off the client bundle.
+// This still builds the real index from `searchIndex.ts`, so the fixtures below
+// run against the same data the site serves.
+import { buildIndex } from "../src/lib/searchIndex.ts";
+import { search } from "../src/lib/searchRank.ts";
 
 // query -> a substring the top result's title must contain
 const MUST_FIND = [

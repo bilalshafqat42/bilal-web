@@ -432,3 +432,38 @@ h1, h2, h3, h4, .font-display {
     display: block;
   }
 }
+
+/* Staggered reveal items.
+ *
+ * Replaces framer-motion's `staggerChildren`. The parent carries
+ * `data-reveal="in"` once it enters the viewport; each child delays by its
+ * position in the row via `nth-child`, which is what the variants used to do.
+ *
+ * Capped at eight: past that the last item would wait nearly a second, and
+ * every grid on this site wraps well before eight visible-at-once items. */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-reveal="in"] .reveal-item {
+  opacity: 1;
+  transform: none;
+}
+[data-reveal="in"] .reveal-item:nth-child(2) { transition-delay: 0.1s; }
+[data-reveal="in"] .reveal-item:nth-child(3) { transition-delay: 0.2s; }
+[data-reveal="in"] .reveal-item:nth-child(4) { transition-delay: 0.3s; }
+[data-reveal="in"] .reveal-item:nth-child(5) { transition-delay: 0.4s; }
+[data-reveal="in"] .reveal-item:nth-child(6) { transition-delay: 0.5s; }
+[data-reveal="in"] .reveal-item:nth-child(7) { transition-delay: 0.6s; }
+[data-reveal="in"] .reveal-item:nth-child(n + 8) { transition-delay: 0.7s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

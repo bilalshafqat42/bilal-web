@@ -3,11 +3,15 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Loader2, Search, Sparkles } from "lucide-react";
-import { buildIndex, search, type Chunk } from "@/lib/searchIndex";
+import { search, type Chunk } from "@/lib/searchRank";
+import { loadSearchIndex } from "@/lib/searchData";
 
-// Built once. ~25KB of text shipped to the browser, which buys instant,
-// zero-cost answers with no API key and no server round-trip.
-const INDEX = buildIndex();
+// The index is fetched when someone asks, not compiled into the bundle. The
+// note that used to sit here said "~25KB of text shipped to the browser"; the
+// real figure was ~75KB, and it was shipped on all 28 routes rather than just
+// this one, because the ⌘K panel imported the same builder from the root
+// layout. Awaiting it here costs a few hundred milliseconds on the first
+// question only, against a network round-trip to the model that follows it.
 
 type Turn = { role: "user" | "assistant"; content: string; results?: Chunk[] };
 
@@ -49,7 +53,8 @@ export default function AskAssistant() {
     const history = turns;
     // Local search first: it is instant and free, so the visitor always gets
     // something useful even if the model is unconfigured or unreachable.
-    const results = search(INDEX, q);
+    const index = await loadSearchIndex();
+    const results = search(index, q);
     setTurns([...history, { role: "user", content: q }, { role: "assistant", content: "", results }]);
     setStreaming(true);
 

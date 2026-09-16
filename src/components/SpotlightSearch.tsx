@@ -3,10 +3,9 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { CornerDownLeft, Search, Sparkles, X } from "lucide-react";
-import { buildIndex, search, type Chunk } from "@/lib/searchIndex";
+import { search, type Chunk } from "@/lib/searchRank";
+import { loadSearchIndex } from "@/lib/searchData";
 import { SEARCH_OPEN_EVENT } from "@/lib/searchPanel";
-
-const INDEX = buildIndex();
 
 const STARTERS = [
   "I need a website",
@@ -26,13 +25,35 @@ export default function SpotlightSearch() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
+  // Fetched the first time the panel opens, not at module scope. Built into the
+  // bundle it was ~75KB of site text downloaded on every route by everyone,
+  // the overwhelming majority of whom never press ⌘K.
+  const [index, setIndex] = useState<Chunk[] | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
+  // Starts on open rather than on the first keystroke, so the request overlaps
+  // the panel's own transition and the index is usually there before anyone has
+  // finished typing a word.
+  useEffect(() => {
+    if (!open || index) return;
+    let alive = true;
+    loadSearchIndex().then((i) => {
+      if (alive) setIndex(i);
+    });
+    return () => {
+      alive = false;
+    };
+  }, [open, index]);
+
   const results = useMemo(
-    () => (query.trim() ? search(INDEX, query, 6) : []),
-    [query]
+    () => (query.trim() && index ? search(index, query, 6) : []),
+    [query, index]
   );
+
+  // Only while a query is waiting on the fetch. An empty box shows the
+  // starters, which is the right thing whether or not the index has arrived.
+  const loading = Boolean(query.trim()) && index === null;
 
   const close = useCallback(() => {
     setOpen(false);
@@ -163,6 +184,13 @@ export default function SpotlightSearch() {
                   </button>
                 ))}
               </div>
+            </div>
+          ) : loading ? (
+            // Distinct from "nothing matches": the index is still arriving, and
+            // telling someone their query found nothing when it has not been
+            // run yet is worse than a moment of honesty.
+            <div className="px-5 py-8 text-center">
+              <p className="text-sm text-muted">Searching…</p>
             </div>
           ) : results.length ? (
             <div className="space-y-1">
