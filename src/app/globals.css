@@ -590,3 +590,34 @@ h1, h2, h3, h4, .font-display {
     display: none;
   }
 }
+
+/* Cutout edge fringe on the portrait.
+ *
+ * `bilal-shirt.avif` is a cutout with a real alpha channel (`hasAlpha: yes`,
+ * 3368x5056). It was matted off a lighter background, so the semi-transparent
+ * pixels along the hair and shoulder still carry that background's colour. Over
+ * this site's near-black they composite as a pale outline — the white line
+ * around the head.
+ *
+ * Two tight dark drop-shadows fix it, and the mechanism is worth stating because
+ * it is not obvious: a drop-shadow is painted *behind* the element, so those
+ * partly-transparent fringe pixels end up compositing over black instead of over
+ * the page background. The fringe is darkened through, not covered over.
+ *
+ * Deliberately small radii. Anything larger stops reading as a clean edge and
+ * starts looking like a glow behind the subject.
+ *
+ * This sets `--tw-drop-shadow` rather than `filter` directly. Tailwind v4 builds
+ * `filter` from one variable per function, so assigning `filter` here would wipe
+ * out the `brightness-[1.04] contrast-[1.12] grayscale` utilities already on the
+ * element. Setting the variable composes with them instead. It therefore only
+ * takes effect on an element that carries at least one Tailwind filter utility —
+ * all three large portraits do.
+ *
+ * The real fix is a better cutout: re-matting the source with proper edge
+ * decontamination removes the fringe rather than hiding it. This is a mitigation.
+ */
+.portrait-edge {
+  --tw-drop-shadow: drop-shadow(0 0 1px rgb(0 0 0 / 0.92))
+    drop-shadow(0 0 2px rgb(0 0 0 / 0.6));
+}

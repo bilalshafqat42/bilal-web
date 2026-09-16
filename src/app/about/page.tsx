@@ -154,7 +154,7 @@ export default function AboutPage() {
               alt="Bilal Shafqat"
               fill
               sizes="(min-width: 1024px) 34vw, 100vw"
-              className="hero-portrait object-cover object-[50%_15%] brightness-[1.04] contrast-[1.12] grayscale lg:origin-top lg:scale-[1.035]"
+              className="portrait-edge hero-portrait object-cover object-[50%_15%] brightness-[1.04] contrast-[1.12] grayscale lg:origin-top lg:scale-[1.035]"
               priority
             />
           </div>
