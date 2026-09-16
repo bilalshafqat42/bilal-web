@@ -458,14 +458,19 @@ h1, h2, h3, h4, .font-display {
 
 /* Header entrance.
  *
- * The bar drops in from above on first paint and its contents follow, slightly
- * staggered, so the nav assembles rather than appearing all at once.
+ * The whole bar drops in from above on first paint, as one object. An earlier
+ * version staggered the three children — logo, nav, right-hand cluster — so
+ * they settled in one after another; it read as three things arriving rather
+ * than one header, which was not what was wanted.
+ *
+ * Nothing inside is animated separately now. The border sits on the <header>
+ * itself, so the divider line travels with the bar rather than lagging it.
  *
  * Done in CSS rather than GSAP on purpose. This is a one-shot entrance with no
  * scroll coupling and no timeline to coordinate, which is the case CSS handles
  * outright — and `gsap` + `@gsap/react` is ~100KB that would land on all 28
- * routes for it. Items 189 and 194 removed GSAP from this project for exactly
- * that reason; re-adding it here would undo both.
+ * routes for it, against 557 bytes for this. Items 189 and 194 removed GSAP
+ * from this project for exactly that reason.
  *
  * `animation-fill-mode: both` holds the from-state before the delay elapses, so
  * nothing flashes at its final position first. The header keeps its height
@@ -483,34 +488,12 @@ h1, h2, h3, h4, .font-display {
   }
 }
 
-@keyframes header-item-in {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .header-enter {
   animation: header-drop 0.62s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* The direct children of the header row: logo, nav, and the right-hand cluster.
- * They start after the bar has most of the way down, which is what makes it
- * read as the bar arriving and its contents settling into it. */
-.header-enter > div > * {
-  animation: header-item-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: 0.22s;
-}
-.header-enter > div > *:nth-child(2) { animation-delay: 0.3s; }
-.header-enter > div > *:nth-child(3) { animation-delay: 0.38s; }
-
 @media (prefers-reduced-motion: reduce) {
-  .header-enter,
-  .header-enter > div > * {
+  .header-enter {
     animation: none;
   }
 }
