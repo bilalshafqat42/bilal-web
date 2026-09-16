@@ -81,7 +81,7 @@ export const disciplines: Discipline[] = [
         "Every screen here is shipped work, not a concept. What is worth looking at is not the surface but the decision underneath it: whether to force a sign-in, whether actions belong on the card or behind a menu, how many fields an enquiry form can carry before it starts costing completions. Each piece links through to the reasoning.",
       metaTitle: "UI/UX Design Portfolio — App & Mobile | Bilal Shafqat",
       metaDescription:
-        "Shipped React Native app screens and mobile web layouts, each with the design decision behind it explained.",
+        "Shipped React Native app screens and mobile web layouts. Every screen is live work, not a concept, and each links through to the decision behind it.",
       lens: "This page is the interface cut. It gathers the app screens and the mobile web layouts in one place because they answer the same question — what does a buyer do on a small screen — and it is the only page where they sit together with the design reasoning attached.",
       faqs: [
         {
@@ -125,7 +125,7 @@ export const disciplines: Discipline[] = [
         "Corporate websites and campaign landing pages, grouped below by what each one is rather than by who it was for. The published set is property — a corporate site and four off-plan launches, all built to carry high-resolution renders without the load time that usually comes with them — and the same build applies to any sector where a page has to load fast and produce an enquiry. Follow any capture through to the case study for the stack and the structure.",
       metaTitle: "Web Design & Development Portfolio | Bilal Shafqat",
       metaDescription:
-        "Corporate websites and campaign landing pages, built for speed, mobile, and a single enquiry action.",
+        "Corporate websites and campaign landing pages built for speed, mobile and one clear enquiry action. The published set is property: a site and four launches.",
       lens: "This page carries both the design and the build, because they are the same seven captures looked at two ways: how each page is composed, and how it was implemented. Splitting that into two pages would mean two pages showing identical images, which is worth avoiding.",
       faqs: [
         {
@@ -192,7 +192,7 @@ export const disciplines: Discipline[] = [
         "Brand creative and campaign creative, split below because they are different jobs: one holds a feed together between campaigns, the other sells a specific launch. Both are designed as a run rather than as individual posts, so a feed reads as one brand instead of as a series of unrelated announcements. The published set is property; the approach is the same for any business running campaigns off a single brand.",
       metaTitle: "Social Media Portfolio — Brand & Campaign | Bilal Shafqat",
       metaDescription:
-        "Brand and campaign creative designed as consistent sets rather than one-off posts, so a feed reads as one brand.",
+        "Brand and campaign creative designed as runs rather than one-off posts, so a feed reads as one brand instead of unrelated announcements.",
       lens: "This is the only page for the social work, and it is the full set rather than a selection. A portfolio of creative is more useful complete, because consistency across a run is the thing a client is actually buying.",
       faqs: [
         {

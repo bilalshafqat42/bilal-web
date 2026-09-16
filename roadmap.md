@@ -1905,3 +1905,34 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
 
     Matrix v3.3 regenerated. Verified: `h1-check` 28/28, `schema-check` 28/28,
     `tsc`, `lint`, production build.
+
+193. **Every title and description on all 28 routes now inside range (2026-09-16)** — **done. Closes the two meta columns.**
+
+    Bilal asked why `/privacy` still showed amber at 39 characters. Fixed, along
+    with every other title and description outside the target band in the same
+    pass, since they are one column.
+
+    **Titles under 45 characters (2):**
+
+    | Route | Before | After |
+    |---|---|---|
+    | `/privacy` | 39 | **54** — "Privacy & What This Site Stores — Bilal Shafqat, Dubai" |
+    | `/services/ui-ux-design` | 38 | **54** — "UI/UX & Product Design Services, Dubai — Bilal Shafqat" |
+
+    **Descriptions under 120 characters (4)**, each extended from the page's own
+    intro copy rather than invented: `/portfolio/web-development` 100 → 156,
+    `/portfolio/ui-ux-design` 107 → 148, `/portfolio/social-media-marketing`
+    112 → 136, `/portfolio/leos-developments/mobile-app` 118 → 141.
+
+    **Three of the four overshot past 158 on the first attempt** (176, 171, 171)
+    and were trimmed. Worth recording because the failure mode is predictable:
+    writing to fix a *lower* bound and not re-measuring against the upper one.
+    Measured after trimming, not assumed. `/services/video-conversion` was also
+    caught at 159 while re-measuring — pre-existing, now 153.
+
+    **All 28 routes now sit inside 45-60 for titles and 120-158 for
+    descriptions.** Verified by measuring the built pages, not the source.
+
+    Matrix v3.4: **22 of 28 routes fully clean**, up from 20. Verified:
+    `h1-check` 28/28, `schema-check` 28/28, `search-check` 32 checks,
+    `discipline-check`, `tsc`, `lint`, production build.

@@ -523,7 +523,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "Interface design judged on how it is used, not how it presents",
     intro:
       "A mockup that wins approval and then confuses users has failed. UI and UX work here covers wireframing, prototyping and interface design for both web and mobile, with each platform's own conventions respected rather than one generic layout stretched across both. Designs hand off cleanly into development because the same person builds them.",
-    metaTitle: "UI/UX & Product Design — Bilal Shafqat",
+    metaTitle: "UI/UX & Product Design Services, Dubai — Bilal Shafqat",
     metaDescription:
       "Wireframing, prototyping, web and mobile interface design and design systems, from a Dubai-based freelance designer who also develops the build.",
     faqs: [
@@ -616,7 +616,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       "Video and conversion work belong together: one drives attention, the other decides whether that attention turns into an enquiry. This covers video editing for how high-consideration audiences actually watch, alongside conversion rate work on the pages that traffic lands on, tested against real behaviour rather than opinion.",
     metaTitle: "Video Editing & Conversion Rate Optimisation — Bilal Shafqat",
     metaDescription:
-      "Video editing for high-consideration marketing plus conversion rate optimisation, landing page audits and A/B testing, from a Dubai-based freelance specialist.",
+      "Video editing for high-consideration marketing plus conversion rate optimisation, landing page audits and A/B testing, from a Dubai freelance specialist.",
     faqs: [
       {
         question: "What kind of video do you edit?",

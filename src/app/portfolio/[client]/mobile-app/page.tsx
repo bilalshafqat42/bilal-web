@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // Client name is interpolated, so the limit has to hold for the longest
     // one. "LEOS Developments" took the old title to 70 characters.
     title: `${c.name} App — React Native Case Study`,
-    description: `A cross-platform iOS and Android app for ${c.name}, built in React Native from one codebase, screen by screen.`,
+    description: `A cross-platform iOS and Android app for ${c.name}, built in React Native from a single codebase and walked through screen by screen.`,
     alternates: { canonical: `/portfolio/${c.slug}/mobile-app` },
   };
 }

@@ -5,7 +5,7 @@ import ConsentReset from "@/components/ConsentReset";
 import { SITE_URL, breadcrumbNode, graph, ref, ID } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Privacy & What's Stored — Bilal Shafqat",
+  title: "Privacy & What This Site Stores — Bilal Shafqat, Dubai",
   // Was 104 characters and left a third of the space Google gives you unused.
   description:
     "What this site stores: Google Analytics, the Meta Pixel, campaign tracking and enquiry details. What each is for, and how to decline or delete yours.",
