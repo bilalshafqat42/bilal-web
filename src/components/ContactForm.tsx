@@ -160,7 +160,10 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="rounded-2xl border border-border panel p-7 sm:p-8">
-      <h2 className="text-xl font-semibold text-ink">Send me the details</h2>
+      <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+        The form
+      </span>
+      <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">Send me the details</h2>
       <p className="mt-2 text-sm text-muted leading-relaxed">
         The more you can tell me, the more useful my first reply will be.
       </p>

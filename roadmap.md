@@ -1684,6 +1684,13 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **One self-inflicted regression caught by re-measuring.** My first pass gave `/services` a *longer* title — 58 to 63 — while fixing its description. **A rewrite is not automatically an improvement, and the only reason I know is that I measured again rather than assuming the pass had worked.** Corrected to 55.
     - Verified by crawling all 28 routes: every title ≤60, every description ≤160, every route carrying structured data; schema-check and h1-check pass, 32 search checks and discipline-check pass, build, lint and tsc clean.
 
+188. **`/contact` as the pilot for the type scale (2026-09-16)** — **done on one page. The other 27 are still open as item 180.4.**
+    - **The hero was centred in a `max-w-4xl` column while the rest of the site is left-aligned at the container edge.** Measured: the `h1` started **296px** from the left here and **40px** on every other page, so moving between them shifted the entire layout. Now 40 at desktop and laptop, 24 at mobile, matching everything else. Centring is kept for the closing CTA, where it is a deliberate full-width moment rather than the page's default.
+    - **Eyebrows on all three headings, 0/3 to 3/3.** "The form", "Where to find me", "Start anywhere". The two card headings also moved from 20px to 24px, so the page now uses three heading sizes rather than three arbitrary ones.
+    - **`/portfolio` turned out not to be a usable reference**, which is worth recording before the rollout. Measured while comparing: its `h2`s run **36 / 44 / 44 / 44 at four different left edges with three different text alignments**. **There is no page on this site that is already correct** — the scale has to be defined rather than copied from somewhere, which is why this was done as a pilot for Bilal to look at before it touches 27 more pages.
+    - **The scale this establishes**, for the rollout: `h1` 56 with the homepage keeping 74 as a deliberate hero exception, section `h2` 36–40, card `h2` 24, a gold mono eyebrow above every section heading, content left-aligned at the container edge with centring reserved for a closing CTA.
+    - Verified at 390, 1024 and 1440: `h1` at the container edge, 3/3 eyebrows, no horizontal overflow, zero page errors; h1-check and schema-check pass on all 28 routes, 32 search checks pass, build, lint and tsc clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

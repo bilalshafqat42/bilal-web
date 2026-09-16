@@ -108,14 +108,19 @@ export default function ContactPage() {
       <main className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="relative mx-auto max-w-4xl px-6 text-center">
+          {/* Left-aligned at the container edge, not a centred 4xl column.
+              Measured before this: the h1 started 296px from the left here and
+              40px on every other page, so moving between them shifted the whole
+              layout. Centring is kept for the closing CTA below, where it is a
+              deliberate full-width moment rather than the page's default. */}
+          <div className="site-container relative">
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
               Contact
             </span>
             <h1 className="mt-5 text-4xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.05] tracking-tight text-ink">
               Talk to the person who&apos;ll actually do the work
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-muted leading-relaxed">
+            <p className="mt-6 max-w-2xl text-lg text-muted leading-relaxed">
               No sales team, no account manager, no discovery call with someone
               who then briefs somebody else. Whatever you send here reaches me
               directly, and I&apos;ll come back with honest next steps rather than
@@ -133,7 +138,7 @@ export default function ContactPage() {
                 directly, he said he takes everything, so there is nothing true
                 to write. Inventing a filter to look selective is the kind of
                 thing a reader can test on the first call. */}
-            <dl className="mx-auto mt-10 grid max-w-2xl gap-6 text-left sm:grid-cols-2">
+            <dl className="mt-10 grid max-w-2xl gap-6 text-left sm:grid-cols-2">
               <div className="rounded-2xl border border-border panel p-6">
                 <dt className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                   What to send
@@ -223,7 +228,8 @@ export default function ContactPage() {
 
               <Reveal delay={0.1}>
                 <div className="h-full rounded-2xl border border-border panel p-7">
-                  <h2 className="text-xl font-semibold text-ink">Where I am and when</h2>
+                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Where to find me</span>
+                  <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">Where I am and when</h2>
                   <ul className="mt-5 space-y-4 text-sm text-muted">
                     <li className="flex items-start gap-3">
                       <MapPin size={16} className="mt-0.5 shrink-0 text-gold" />
@@ -259,7 +265,8 @@ export default function ContactPage() {
                   style={{ animationDelay: "-4s" }}
                 />
                 <div className="relative">
-                  <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-ink">
+                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Start anywhere</span>
+                  <h2 className="mt-3 text-3xl sm:text-4xl font-semibold leading-tight tracking-tight text-ink">
                     Not sure what you need yet?{" "}
                     <span className="text-gradient">Start there.</span>
                   </h2>
