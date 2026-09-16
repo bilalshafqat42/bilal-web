@@ -1862,3 +1862,46 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
     Verified: `h1-check` 28/28, `schema-check` 28/28, `search-check` 32 checks,
     `discipline-check`, `tsc`, `lint`, production build. Matrix v3.2 regenerated
     from a live measurement: **20 of 28 routes now fully clean**, up from 19.
+
+192. **`/privacy` rewritten — it was missing the tracker that is actually live (2026-09-16)** — **done, one item blocked on Bilal.**
+
+    Bilal asked what a privacy policy is and whether he needs one. He does: the
+    site runs Google Analytics and a Meta Pixel, takes enquiries and bookings,
+    and shows a cookie banner. Meta's and Google's advertising terms both require
+    a published policy, and he runs paid campaigns.
+
+    **The page was describing the wrong site.** It documented the Meta Pixel,
+    campaign parameters and enquiry details, but **never mentioned Google
+    Analytics**, which is live on every page in production (`G-NRHYJPM1S9`,
+    confirmed by fetching bilalshafqat.com). The one thing a privacy page has to
+    be is accurate, and this one had a hole in it.
+
+    **A second accuracy problem, subtler.** The opening line read "nothing is
+    stored or sent to anyone else until you accept". Under Google Consent Mode
+    the analytics script **does** load and contact Google before consent; what it
+    does not do is *store* anything. The line now says exactly that instead.
+
+    Added: a Google Analytics row, a Cal.com row (the booking embed sends name,
+    email and the selected answers), a "what you can ask me for" block covering
+    access and correction rather than deletion alone, a named responsible person,
+    and a "last updated" date. Description went from 104 to 149 characters, and
+    the page from 277 to 470 words — which is a by-product of saying more true
+    things, not padding.
+
+    **Two claims were written and then removed before commit**, both for the same
+    reason: "I am the only person with access to enquiries" and "there is no list
+    your details get added to". Enquiries leave the site for Bilal's lead system,
+    and who can see them there is not knowable from this codebase. A privacy page
+    is the worst possible place to guess.
+
+    **Blocked on Bilal:** how long enquiry details are kept if nobody asks for
+    deletion. That is the one standard item still missing, and a retention period
+    will not be invented. Also his call whether to name the lead system, since the
+    page already names Google, Meta and Cal.com.
+
+    **Not legal advice, and the file should keep saying so.** This records what
+    the code does and that the page now matches it. Whether the wording satisfies
+    UAE PDPL or UK GDPR is a question for a qualified professional.
+
+    Matrix v3.3 regenerated. Verified: `h1-check` 28/28, `schema-check` 28/28,
+    `tsc`, `lint`, production build.

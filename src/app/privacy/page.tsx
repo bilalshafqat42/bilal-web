@@ -6,11 +6,16 @@ import { SITE_URL, breadcrumbNode, graph, ref, ID } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Privacy & What's Stored — Bilal Shafqat",
+  // Was 104 characters and left a third of the space Google gives you unused.
   description:
-    "Exactly what this website stores, what happens to enquiry details, and how to decline campaign tracking.",
+    "What this site stores: Google Analytics, the Meta Pixel, campaign tracking and enquiry details. What each is for, and how to decline or delete yours.",
   alternates: { canonical: "/privacy" },
   robots: { index: true, follow: true },
 };
+
+/** Shown on the page so a visitor can tell whether what they are reading is
+ *  current. Update it whenever the rows below change. */
+const LAST_UPDATED = "16 September 2026";
 
 const rows = [
   {
@@ -24,6 +29,19 @@ const rows = [
     where: "Browser session storage, cleared when you close the tab",
     why: "So that if you send an enquiry, I can tell which campaign or search brought you here.",
     optional: "Yes — decline on the banner and nothing is stored.",
+  },
+  {
+    what: "Google Analytics (GA4) — pages you visit, roughly where you are, and what kind of device you use",
+    where: "Sent to Google, which may transfer it outside the UAE",
+    why: "So I can see which pages people actually read and which ones are not working.",
+    optional:
+      "Partly. The script loads on every page, but it is set to store nothing until you accept. Decline and it keeps storing nothing.",
+  },
+  {
+    what: "Booking details when you open the calendar (name, email, and the answers you picked)",
+    where: "Sent to Cal.com, which handles the scheduling",
+    why: "So the call lands in both our calendars and you get a confirmation you can reschedule from.",
+    optional: "Yes — the calendar only loads if you press \u201cShow available times\u201d, and nothing is sent unless you book.",
   },
   {
     what: "Meta (Facebook) Pixel — page views, and an `_fbp` cookie identifying your browser",
@@ -79,10 +97,11 @@ export default function PrivacyPage() {
               What this site stores
             </h1>
             <p className="mt-6 text-lg text-muted leading-relaxed">
-              Short version: nothing is stored or sent to anyone else until you
-              accept on the cookie banner. If you decline, no tracker loads and
-              no advertising cookie is written. Everything this site can store is
-              listed below.
+              Short version: no advertising cookie is written and the Meta Pixel
+              never loads until you accept on the cookie banner. Google Analytics
+              does load on every page, but it is set to store nothing about you
+              unless you accept, and declining keeps it that way. Everything this
+              site can store is listed below, in plain language.
             </p>
           </div>
         </section>
@@ -120,15 +139,28 @@ export default function PrivacyPage() {
                 does the same thing.
               </p>
               <ConsentReset className="mt-4" />
-              <h2 className="mt-6 text-2xl font-semibold tracking-tight text-ink">Getting your details removed</h2>
+              <h2 className="mt-6 text-2xl font-semibold tracking-tight text-ink">What you can ask me for</h2>
               <p className="mt-3 text-sm text-muted leading-relaxed">
-                If you&apos;ve sent an enquiry and want it deleted, email{" "}
-                <span className="text-gold">
-                  bilalshafqat42@gmail.com
-                </span>{" "}
-                and it will be removed.
+                You can ask what I hold about you, ask me to correct it, or ask me
+                to delete it. Email{" "}
+                {/* Plain text rather than a mailto link on purpose: a legal
+                    contact route should not depend on the visitor having a mail
+                    client configured. Unchanged since item 179. */}
+                <span className="text-gold">bilalshafqat42@gmail.com</span> and say
+                which.
+              </p>
+
+              <h2 className="mt-6 text-2xl font-semibold tracking-tight text-ink">Who is responsible for this</h2>
+              <p className="mt-3 text-sm text-muted leading-relaxed">
+                Bilal Shafqat, working as an independent freelancer in Dubai,
+                United Arab Emirates. Questions about anything on this page go to
+                the same address above.
               </p>
             </div>
+
+            <p className="mt-8 text-center text-xs text-muted">
+              Last updated {LAST_UPDATED}.
+            </p>
           </div>
         </section>
       </main>
