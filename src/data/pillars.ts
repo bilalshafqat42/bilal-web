@@ -461,7 +461,11 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "Turning interest into a list of qualified, contactable buyers",
     intro:
       "Demand generation builds awareness before someone is ready to buy. Lead generation captures it. Email and WhatsApp follow up on it. Treated separately these leak; run as one sequence they compound. This covers the full path from first awareness to a contact sitting in your CRM with a next action against it.",
-    metaTitle: "Lead Generation & Demand Generation — Bilal Shafqat",
+    // The URL is /services/digital-marketing and the category is called
+    // "Digital Marketing & Outreach", but the title said neither — it opened on
+    // "Lead Generation", so the page Bilal wants found for "digital marketing"
+    // never used the phrase in the one field that matters most.
+    metaTitle: "Digital Marketing & Lead Generation, Dubai — Bilal Shafqat",
     metaDescription:
       "Demand generation, lead capture, email and WhatsApp marketing from a Dubai-based freelance specialist. Built as one sequence rather than disconnected tactics.",
     faqs: [
