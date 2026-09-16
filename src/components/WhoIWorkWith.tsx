@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useId } from "react";
 import { Building2, Home, Network, Users, ChevronDown, type LucideIcon } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import Reveal, { RevealStagger, RevealItem } from "./Reveal";
 import CtaButton from "@/components/CtaButton";
@@ -60,6 +59,7 @@ const audiences: Audience[] = [
 
 function AudienceCard({ audience }: { audience: Audience }) {
   const [expanded, setExpanded] = useState(false);
+  const detailsId = useId();
 
   return (
     <div className="card-hover h-full rounded-2xl border border-border panel p-7 flex flex-col">
@@ -74,32 +74,34 @@ function AudienceCard({ audience }: { audience: Audience }) {
         type="button"
         onClick={() => setExpanded((v) => !v)}
         aria-expanded={expanded}
+        aria-controls={detailsId}
         className="mt-5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-gold hover:text-gold-2 transition-colors"
       >
         {expanded ? "Hide details" : "See details"}
         <ChevronDown size={14} className={`transition-transform ${expanded ? "rotate-180" : ""}`} />
       </button>
 
-      <AnimatePresence initial={false}>
-        {expanded ? (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden"
-          >
-            <ul className="pt-4 space-y-1.5">
-              {audience.bullets.map((b) => (
-                <li key={b} className="text-xs text-muted flex gap-2">
-                  <span className="text-gold">—</span>
-                  {b}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+      {/* Same CSS grid expand as Engagement — see the note there. A `0fr` to
+       * `1fr` grid row animates to automatic height without a library, which is
+       * the only reason framer-motion was still reaching this page. */}
+      <div
+        id={detailsId}
+        inert={!expanded}
+        className={`grid overflow-hidden transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(.22,1,.36,1)] motion-reduce:transition-none ${
+          expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="min-h-0">
+          <ul className="pt-4 space-y-1.5">
+            {audience.bullets.map((b) => (
+              <li key={b} className="text-xs text-muted flex gap-2">
+                <span className="text-gold">—</span>
+                {b}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useId } from "react";
 import { Package, RefreshCw, Users2, Send, ChevronDown, type LucideIcon } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import Reveal, { RevealStagger, RevealItem } from "./Reveal";
 import CtaButton from "@/components/CtaButton";
@@ -68,6 +67,9 @@ const models: Model[] = [
 
 function EngagementCard({ model, defaultExpanded = false }: { model: Model; defaultExpanded?: boolean }) {
   const [expanded, setExpanded] = useState(defaultExpanded);
+  // Stable across server and client render, and unique per card — several of
+  // these sit on the page at once, so a hard-coded id would collide.
+  const detailsId = useId();
 
   return (
     <div className="card-hover h-full rounded-2xl border border-border panel p-7 flex flex-col">
@@ -85,49 +87,63 @@ function EngagementCard({ model, defaultExpanded = false }: { model: Model; defa
         type="button"
         onClick={() => setExpanded((v) => !v)}
         aria-expanded={expanded}
+        aria-controls={detailsId}
         className="mt-5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-gold hover:text-gold-2 transition-colors"
       >
         {expanded ? "Hide details" : "See details"}
         <ChevronDown size={14} className={`transition-transform ${expanded ? "rotate-180" : ""}`} />
       </button>
 
-      <AnimatePresence initial={false}>
-        {expanded ? (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden"
-          >
-            <div className="pt-4">
-              <p className="text-xs font-semibold uppercase tracking-wide text-gold">
-                Ideal when you need
-              </p>
-              <ul className="mt-2 space-y-1.5">
-                {model.idealFor.map((b) => (
-                  <li key={b} className="text-sm text-muted flex gap-2">
-                    <span className="text-gold">—</span>
-                    {b}
-                  </li>
-                ))}
-              </ul>
+      {/* Expand/collapse without framer-motion.
+       *
+       * This was `AnimatePresence` animating height 0 to auto, and it was the
+       * only thing still pulling a 141KB animation library onto the homepage
+       * and /about. A grid row going `0fr` to `1fr` animates to automatic
+       * height in CSS, which is the one thing height transitions could not do
+       * until recently and the reason a library was reached for.
+       *
+       * `min-h-0` on the inner wrapper is what lets the row actually collapse;
+       * without it the grid keeps the content's height and nothing moves.
+       *
+       * `inert` while collapsed because the content stays in the DOM now rather
+       * than being unmounted. Without it the hidden bullets stay focusable and
+       * are read out by a screen reader, which the old version never did.
+       */}
+      <div
+        id={detailsId}
+        inert={!expanded}
+        className={`grid overflow-hidden transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(.22,1,.36,1)] motion-reduce:transition-none ${
+          expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="min-h-0">
+          <div className="pt-4">
+            <p className="text-xs font-semibold uppercase tracking-wide text-gold">
+              Ideal when you need
+            </p>
+            <ul className="mt-2 space-y-1.5">
+              {model.idealFor.map((b) => (
+                <li key={b} className="text-sm text-muted flex gap-2">
+                  <span className="text-gold">—</span>
+                  {b}
+                </li>
+              ))}
+            </ul>
 
-              <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gold">
-                How I contribute
-              </p>
-              <ul className="mt-2 space-y-1.5">
-                {model.contribute.map((b) => (
-                  <li key={b} className="text-sm text-muted flex gap-2">
-                    <span className="text-gold">—</span>
-                    {b}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+            <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gold">
+              How I contribute
+            </p>
+            <ul className="mt-2 space-y-1.5">
+              {model.contribute.map((b) => (
+                <li key={b} className="text-sm text-muted flex gap-2">
+                  <span className="text-gold">—</span>
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

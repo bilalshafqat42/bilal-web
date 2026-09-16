@@ -1666,6 +1666,15 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **Deleted**: 4 preview routes and their 3 components, plus `AppShowcase`, `HeroBackdrop`, `WhatsAppButton` and `backdrops/` — all genuinely unreferenced, verified after the relative-import fix. Recoverable from git if wanted.
     - Verified: build clean, h1-check and schema-check pass on all 28 routes, 32 search checks pass, discipline-check passes, ⌘K panel fetches on demand and returns results, zero page errors, lint and tsc clean.
 
+186. **framer-motion removed entirely: homepage 880KB to 759KB (2026-09-16)** — **done.**
+    - **Two components were keeping a 141KB library on the site**: `Engagement` on the homepage and `WhoIWorkWith` on `/about`, both using `AnimatePresence` to animate height 0 to auto on a details expand. Replaced with a CSS grid row moving `0fr` to `1fr`, which animates to automatic height — **the one thing height transitions could not do until recently, and the reason a library was reached for in the first place.** `min-h-0` on the inner wrapper is what actually lets the row collapse.
+    - **The conversion improved accessibility rather than costing it.** `AnimatePresence` unmounted the content when collapsed; a CSS collapse leaves it in the DOM, where it would stay focusable and be read out. Added `inert` while collapsed, plus `aria-controls` pointing at a `useId` region the button now names. Verified on the same element: collapsed reads `aria-expanded="false"`, `inert`, height 0; expanded reads `true`, no `inert`, height 324.
+    - **`framer-motion` uninstalled.** Also uninstalled `gsap` and `@gsap/react`, then **reinstalled them** — `Process.tsx` genuinely uses GSAP for a pinned scroll sequence on `/process`, which is why that page is still 859KB while everything else is ~745KB. Converting it is a separate job and only affects one route.
+    - **Final measurements, disk-based and repeatable**: `/` **759** (from 1,038), `/about` **747**, `/contact` **748**, `/appointment` **745**, `/services/paid-marketing` **743**, `/portfolio` **740**, `/privacy` **740**, `/process` **859**.
+    - **Homepage is down 27% and the site is now flat** — every page except `/process` sits within 20KB of the others, where before they ranged 897 to 1,038.
+    - **What is left is mostly React**: 221KB react-dom + 147KB runtime + 110KB Next internals = 478KB that cannot be removed. The remaining ~280KB is app code, and the next real lever would be converting client components to server ones — `PortfolioGrid` is a client component solely to hold one `cursorOn` hover state.
+    - Verified: build clean, expand/collapse works on both pages with correct ARIA, zero page errors, h1-check and schema-check pass on all 28 routes, 32 search checks and discipline-check pass, lint and tsc clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)
