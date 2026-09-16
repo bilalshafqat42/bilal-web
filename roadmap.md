@@ -1936,3 +1936,60 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
     Matrix v3.4: **22 of 28 routes fully clean**, up from 20. Verified:
     `h1-check` 28/28, `schema-check` 28/28, `search-check` 32 checks,
     `discipline-check`, `tsc`, `lint`, production build.
+
+194. **`/process` rebuilt — scroll-jacking removed, GSAP gone from the project entirely (2026-09-16)** — **done. One content item blocked on Bilal.**
+
+    Bilal: "i don't like its design at all". He was reacting to the right thing.
+
+    **The page was scroll-jacking.** On desktop the section pinned and held for
+    `(steps.length - 1) * window.innerHeight` — three full screens of scrolling
+    during which the page did not move. The scrollbar stops meaning anything,
+    find-on-page lands on content that is not visible, and scrolling past your
+    step means scrolling back up through a pin to reach it again. It is the most
+    reliably disliked pattern on a marketing site.
+
+    **It also carried the last GSAP on the site.** `gsap` + `ScrollTrigger` +
+    `@gsap/react` for moving four blocks of text. `/process` was the heaviest
+    route at 858KB against a 740KB baseline.
+
+    **What replaced it:** one vertical stepper, the same markup at every width.
+    A `position: sticky` rail on the left keeps your place without taking the
+    scroll away, and its active state comes from an `IntersectionObserver`, not
+    a scroll handler. The previous version shipped **two complete copies of the
+    markup** — a pinned desktop one and a stacked mobile one — and 204 lines
+    became a single tree.
+
+    **The images are gone, and `data/process.ts` said why before I did.** Its own
+    comment read: images that are real project work but "only loosely match each
+    step … the weakest part of this section". That is decoration standing in for
+    evidence on a page whose only job is to be credible. Each stage now links to
+    work that genuinely demonstrates it — **except stage four, which has no
+    published measurement work, so it carries no link rather than a false one.**
+
+    | | Before | After |
+    |---|---|---|
+    | JavaScript | 858KB | **745KB** |
+    | Images | 10 | **2** |
+    | Heaviest route on the site | `/process` | now `/` at 758KB |
+    | Site-wide JS spread | 739-858KB | **740-758KB** |
+
+    **`gsap` and `@gsap/react` were removed from `package.json`.** Nothing
+    imported them after this change. Item 189 took GSAP out of `FooterWordmark`;
+    this was the last holdout.
+
+    **A word-count correction worth recording.** The page measured 403 words
+    before and 360 after, which looks like content was lost. Nothing was: the old
+    page rendered the four stages **twice**, once in the pinned desktop block and
+    once in the hidden mobile one, and the crawler counted both. The unique
+    content was always ~360 words. **The page was thinner than the matrix said.**
+
+    **Blocked on Bilal, and it is the whole remaining gap:** what each stage
+    produces. The page says what happens in each stage but not what the client
+    receives at the end of one, how long it runs, or what is needed from them to
+    start it. Three short lines per stage would take it from 360 to roughly 700
+    words and, more to the point, make it convincing. Deliverables and durations
+    will not be invented.
+
+    Verified: `h1-check` 28/28, `schema-check` 28/28 (HowTo still carries 4
+    steps from the same data the page renders), `search-check` 32 checks,
+    `discipline-check`, `tsc`, `lint`, production build. Matrix v3.5.

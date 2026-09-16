@@ -7,8 +7,13 @@
  * meant the homepage and a dedicated page could not show the same process
  * without the copy being duplicated.
  *
- * `image`/`alt` are consumed only by the full version. The compact one drops
- * them, along with `bullets`.
+ * `bullets` is consumed only by the full version on /process; the compact one
+ * on the homepage drops it.
+ *
+ * `proofHref`/`proofLabel` are optional on purpose. A stage links to work that
+ * demonstrates it only where such work is actually published — stage four has
+ * no measurement work on the site yet, so it carries no link rather than a
+ * misleading one.
  */
 export type ProcessStep = {
   step: string;
@@ -16,12 +21,14 @@ export type ProcessStep = {
   subtitle: string;
   description: string;
   bullets: string[];
-  image: string;
-  alt: string;
+  proofHref?: string;
+  proofLabel?: string;
 };
 
-// Images are real project work but only loosely match each step. They are the
-// weakest part of this section: swap `image` and `alt` and nothing else changes.
+// The `image`/`alt` pair was removed on 2026-09-16. This comment used to admit
+// that the images were real project work which "only loosely match each step",
+// which is decoration standing in for evidence on a page whose whole job is to
+// be credible. Stages now link to work that genuinely shows the stage.
 export const processSteps: ProcessStep[] = [
   {
     step: "01",
@@ -35,8 +42,8 @@ export const processSteps: ProcessStep[] = [
       "Market positioning & competitors",
       "Existing tools, data, and constraints",
     ],
-    image: "/portfolio/leos/social-media/3.avif",
-    alt: "Campaign creative developed for LEOS Developments after the discovery stage",
+    proofHref: "/portfolio/leos-developments",
+    proofLabel: "See a full client engagement",
   },
   {
     step: "02",
@@ -50,8 +57,8 @@ export const processSteps: ProcessStep[] = [
       "Technical architecture (for apps)",
       "Content & creative direction",
     ],
-    image: "/portfolio/leos/landing-page/leos-landing-page.avif",
-    alt: "LEOS Developments corporate website interface design",
+    proofHref: "/portfolio/ui-ux-design",
+    proofLabel: "See the design work",
   },
   {
     step: "03",
@@ -65,8 +72,8 @@ export const processSteps: ProcessStep[] = [
       "Design production & asset delivery",
       "Tracking & analytics setup",
     ],
-    image: "/portfolio/leos/hadley-heights/landing-page/hadley-heights-landing-page.avif",
-    alt: "Hadley Heights landing page built and shipped for launch",
+    proofHref: "/portfolio/leos-developments/hadley-heights",
+    proofLabel: "See a launch that shipped",
   },
   {
     step: "04",
@@ -80,8 +87,6 @@ export const processSteps: ProcessStep[] = [
       "Automation & workflow improvements",
       "Handover or ongoing support",
     ],
-    image: "/portfolio/leos/hadley-heights/social-media/2.avif",
-    alt: "Ongoing campaign creative produced for Hadley Heights",
   },
 ];
 
