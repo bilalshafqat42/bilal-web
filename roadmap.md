@@ -2089,3 +2089,48 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
     Verified: 7 pages render `FaqSection`, **zero `<details>` remain**, `h1-check`
     28/28, `schema-check` 28/28, `search-check` 32 checks, `discipline-check`,
     `tsc`, `lint`, production build. Matrix v3.7.
+
+197. **The mobile app case study finished, and the discipline grid made to fit (2026-09-16)** — **done. `/portfolio/leos-developments/mobile-app` is fully clean.**
+
+    Three things Bilal asked for on one page.
+
+    **1. The missing schema, open since item 192's audit.** This page carried
+    `BreadcrumbList` and nothing else while all five other case studies carried
+    `CreativeWork` — so the only piece of *app* work on the site was the one
+    Google had no typed description of. Now `CreativeWork` + `FAQPage` +
+    `BreadcrumbList`. `image` is spread conditionally rather than asserted,
+    because `app.lead` is optional on the type and an `image` key pointing at
+    `undefined` is worse than no key at all.
+
+    **2. Five FAQs, none duplicating the discipline page.**
+    `/portfolio/mobile-app-development` already answers "Do you build native or
+    cross-platform" and "Do you handle App Store and Play Store submission", so
+    these are about *this app*: why one codebase, who designed versus built,
+    whether the screens are real or concepts, why the app repeats the website,
+    and store review. Each answer restates the fact strip, the body copy, or an
+    existing answer in `disciplines.ts`; the sources are listed in a comment
+    above the array.
+
+    **Deliberately absent: whether the app is published and downloadable, and
+    any usage figure.** The page's `outcomes` already sit in the data without
+    values for that reason, and `disciplines.ts` states that a published listing
+    is "the client's to announce". Nothing here contradicts that.
+
+    **3. `DisciplineCards` was hard-coded to three columns**, so four
+    disciplines rendered as a row of three with one stranded underneath — which
+    is what Bilal's screenshot showed. The column count now follows the number
+    of cards, floored at two and capped at four, using literal class strings in
+    a lookup because Tailwind scans source text and never sees an interpolated
+    `lg:grid-cols-${n}`.
+
+    The floor matters: without it a service page with one discipline got
+    `lg:grid-cols-1` and a single card stretched the full container width,
+    reading as a banner rather than as one of a set. Verified across four pages —
+    mobile app 4 columns, Hadley Heights 2, `/services/ui-ux-design` 2.
+
+    **Page final state:** title 47, description 141, 1,309 words, 1 h1, 6 h2,
+    eyebrow on all 5 sections, 3 heading declarations, 740KB, three schema types.
+
+    Matrix v3.8: **24 of 28 routes fully clean.** Verified: `h1-check` 28/28,
+    `schema-check` 28/28, `search-check` 32 checks, `discipline-check`, `tsc`,
+    `lint`, production build, and zero routes failing any hard check.

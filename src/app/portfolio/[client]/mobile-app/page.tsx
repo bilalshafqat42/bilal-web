@@ -9,6 +9,7 @@ import { WorkProof } from "@/components/ProofLoop";
 import Contact from "@/components/Contact";
 import Reveal from "@/components/Reveal";
 import DeviceFrame from "@/components/DeviceFrame";
+import FaqSection from "@/components/FaqSection";
 import CtaButton from "@/components/CtaButton";
 import { clients, getClient } from "@/data/caseStudies";
 import { SITE_URL as SITE } from "@/lib/schema";
@@ -42,6 +43,54 @@ import { SITE_URL as SITE } from "@/lib/schema";
  * afterwards, so it is now a card like the rest and the dashed placeholder is
  * gone.
  */
+/**
+ * Questions about this app specifically.
+ *
+ * Deliberately NOT the two mobile questions already on
+ * `/portfolio/mobile-app-development` — "Do you build native or cross-platform"
+ * and "Do you handle App Store and Play Store submission" live there, and
+ * repeating them would put the same answer on two indexable pages competing
+ * with each other.
+ *
+ * Every answer restates something already on this page or already published in
+ * `disciplines.ts`: the fact strip's "React Native / one shared codebase" and
+ * "Design & build", the body copy's point about the app carrying the same
+ * developments as the website, and the discipline page's own answers on
+ * cross-platform economics and store submission.
+ *
+ * Deliberately NOT here: whether the app is published and downloadable, and any
+ * usage or download figure. The page's `outcomes` already sit in the data
+ * without values for exactly that reason, and `disciplines.ts` states plainly
+ * that a published listing is "the client's to announce".
+ */
+const faqs = [
+  {
+    question: "Why one codebase instead of separate iOS and Android apps?",
+    answer:
+      "Economics. Two native codebases means writing, testing and maintaining every screen twice, which for a business app of this kind buys very little a buyer would notice. React Native gives both stores from one build. Where an app genuinely needs platform-specific native work I say so rather than take the project.",
+  },
+  {
+    question: "Who designed the screens, and who built them?",
+    answer:
+      "The same person, which is the point. The interface was designed and then built by me, so the reasoning behind a screen and its implementation match instead of one having been handed across to the other and interpreted.",
+  },
+  {
+    question: "Are these real screens or concepts?",
+    answer:
+      "Real. Every capture on this page is from the built app rather than a mockup, which is why the walkthrough talks about decisions that had to survive contact with real content — long development names, missing photography, and units that change availability.",
+  },
+  {
+    question: "Why does the app repeat what the website already does?",
+    answer:
+      "It does not repeat it, it continues it. The app carries the same developments, the same photography and the same enquiry routes as the launch pages, so a buyer who first saw a campaign on their laptop finds the same thing on their phone rather than a second, thinner version of it.",
+  },
+  {
+    question: "Can you take an app like this through App Store review?",
+    answer:
+      "Submission is a step I can run with you, and it is worth planning early because store review is the part of a launch date nobody controls. No published listing is claimed for this app here, because that announcement belongs to the client.",
+  },
+];
+
 type Props = { params: Promise<{ client: string }> };
 
 export function generateStaticParams() {
@@ -73,6 +122,41 @@ export default async function MobileAppCaseStudy({ params }: Props) {
   const pending = app.outcomes?.filter((o) => !o.value) ?? [];
   const siblings = c.projects.slice(0, 2);
 
+  // This page carried BreadcrumbList and nothing else, while all five other
+  // case studies carry CreativeWork — so the one piece of app work on the site
+  // was the one Google had no typed description of.
+  const work = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "@id": `${url}#work`,
+    name: `${c.name} mobile app — React Native case study`,
+    headline: app.heading,
+    description: app.body,
+    url,
+    inLanguage: "en",
+    dateModified: new Date().toISOString().split("T")[0],
+    genre: "Mobile application case study",
+    // `lead` is optional on the type, so the property is omitted rather than
+    // asserted — an `image` key pointing at undefined is worse than no key.
+    ...(app.lead ? { image: `${SITE}${app.lead.src}` } : {}),
+    creator: { "@id": `${SITE}/#person`, "@type": "Person" },
+    about: { "@type": "Organization", name: c.name },
+    isPartOf: { "@type": "CreativeWork", name: c.name, url: `${SITE}/portfolio/${c.slug}` },
+  };
+
+  // Built from the exact array the page renders, so the markup cannot describe
+  // an answer a visitor cannot read.
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${url}#faq`,
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.answer },
+    })),
+  };
+
   const breadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -93,6 +177,14 @@ export default async function MobileAppCaseStudy({ params }: Props) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(work) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
@@ -402,6 +494,13 @@ export default async function MobileAppCaseStudy({ params }: Props) {
             </div>
           </section>
         ) : null}
+
+        <FaqSection
+          eyebrow="Common questions"
+          title="About this app"
+          faqs={faqs}
+          className="py-16 sm:py-20"
+        />
 
         <WorkProof clientSlug={c.slug} />
 

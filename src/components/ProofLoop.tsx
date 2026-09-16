@@ -22,9 +22,24 @@ import {
  * which is the same rule the mega menu follows.
  */
 
+/** Literal class strings, not an interpolated `lg:grid-cols-${n}` — Tailwind
+ *  scans source text, so a computed class name is never generated. */
+const DESKTOP_COLS: Record<number, string> = {
+  2: "lg:grid-cols-2",
+  3: "lg:grid-cols-3",
+  4: "lg:grid-cols-4",
+};
+
 function DisciplineCards({ items }: { items: Discipline[] }) {
+  // Column count follows the number of cards rather than being fixed at three,
+  // which left four disciplines as a row of three and one stranded underneath.
+  // A service page with two disciplines gets two columns, not two cards and a
+  // hole.
+  // Floored at two: a lone card in a one-column grid stretches the full width
+  // of the container, which reads as a banner rather than as one of a set.
+  const cols = DESKTOP_COLS[Math.min(Math.max(items.length, 2), 4)] ?? "lg:grid-cols-4";
   return (
-    <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div className={`mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 ${cols}`}>
       {items.map((d) => (
         <Link
           key={d.slug}
