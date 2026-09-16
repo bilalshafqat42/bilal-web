@@ -31,8 +31,11 @@ export default function CapabilityLedger() {
   return (
     <section id="services" className="relative py-24 sm:py-32">
       <div className="site-container">
-        <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted">
-          <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+        {/* Was the last pill-shaped label on the site: item 189 gave it the mono
+            type but left the pill border and the muted colour, so it read as a
+            different thing from the identical labels above every other section.
+            Now the same flat gold eyebrow as everywhere else. */}
+        <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
           Capabilities
         </span>
 

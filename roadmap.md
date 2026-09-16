@@ -1820,3 +1820,45 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
 
     Fix matrix v3 regenerated from a live measurement of all 28 routes:
     https://claude.ai/artifact/RB1rpvoEzKNM7V4xbb1sgG
+
+191. **`/appointment` — the three open decisions, made and shipped (2026-09-16)** — **continues item 190. One item left, and it needs Bilal.**
+
+    Bilal delegated the three decisions ("let me know the best option and go
+    with"). Each one and the reasoning:
+
+    - **The Cal.com calendar now loads on request, not on page load.** It was
+      pulling roughly 4.9MB of third-party JavaScript for every visitor —
+      about six times the weight of the page's own 744KB — including for the
+      majority who read the questions beside it and never open the calendar.
+      There is now a "Show available times" button. **Verified: `cal.com` no
+      longer appears anywhere in the page's initial HTML.** A side benefit is
+      that the three qualifying selects are answered *before* the embed mounts,
+      so it mounts once already carrying the answers instead of remounting as
+      they change.
+    - **The "Taking work now" badge keeps its pulsing dot but loses the pill.**
+      The pill shape was the inconsistency; the dot carries the meaning, because
+      this says something live rather than labelling a section.
+    - **A second pill was found while doing it.** `CapabilityLedger` on the
+      homepage had been given the mono type by item 189 but kept its pill border
+      and `text-muted` colour, so it read as a different kind of thing from the
+      identical labels above every other section. Now the same flat gold
+      eyebrow. **Zero pill-shaped labels remain anywhere on the site.**
+
+    **`/appointment` is now exempt from the 600-word threshold**, on exactly the
+    reasoning applied to `/contact` in item 183: a booking page is a conversion
+    surface, not a ranking surface. Not applying it here was an inconsistency in
+    the matrix — `/contact` showed green at 327 words while `/appointment` showed
+    amber at 398. Worth stating plainly: the four missing FAQ answers would only
+    bring the page to roughly 546 words at the current average, so the threshold
+    was never reachable honestly. The exemption is the right call; padding to
+    hit 600 would not have been.
+
+    **Still open, and only Bilal can close it:** the four FAQ answers — what the
+    thirty minutes covers, whether to bring anything, what the client gets
+    afterwards, and whether he signs NDAs. **This is a content gap, not a word
+    count.** The page answers six questions today; these are the four people
+    actually ask before giving up half an hour.
+
+    Verified: `h1-check` 28/28, `schema-check` 28/28, `search-check` 32 checks,
+    `discipline-check`, `tsc`, `lint`, production build. Matrix v3.2 regenerated
+    from a live measurement: **20 of 28 routes now fully clean**, up from 19.

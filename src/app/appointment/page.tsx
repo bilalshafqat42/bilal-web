@@ -183,7 +183,12 @@ export default function AppointmentPage() {
               itself, and centring gives it nowhere to travel. */}
           <div className="site-container relative grid grid-cols-1 items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,520px)] lg:gap-14">
             <div className="min-w-0">
-              <span className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-xs font-medium uppercase tracking-wide text-gold">
+              {/* The last rounded pill on the site became the flat gold label
+                  every other section uses (item 189), but keeps its pulsing
+                  dot. The pill shape was the inconsistency; the dot is the part
+                  that carries meaning, because this says something live rather
+                  than labelling a section. */}
+              <span className="inline-flex items-center gap-2.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-60" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />

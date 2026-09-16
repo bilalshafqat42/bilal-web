@@ -66,6 +66,11 @@ export default function AppointmentBooking() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
+  // The Cal.com embed pulls roughly 4.9MB of third-party JavaScript. That is
+  // about six times the weight of the page's own code, and it used to arrive
+  // for everyone who opened the page, including the majority who came to read
+  // the FAQs beside it and never book. It now loads when someone asks for it.
+  const [showCal, setShowCal] = useState(false);
 
   const chosen = days[day];
   const chosenLabel = chosen
@@ -248,9 +253,31 @@ export default function AppointmentBooking() {
 
         {/* Keyed on the answers so the embed picks them up when they change.
             They are selects, not text inputs, so this remounts a handful of
-            times at most rather than on every keystroke. */}
+            times at most rather than on every keystroke.
+
+            Mounted on request rather than on page load. Cal.com is ~4.9MB of
+            third-party JavaScript and most visitors to this page read the
+            questions beside it without ever opening the calendar. Answering
+            the three selects first also means the embed mounts once, already
+            carrying the answers, instead of remounting as they change. */}
         <div className="mt-7">
-          <CalBooking key={notes} link={CAL_LINK} prefill={{ notes }} />
+          {showCal ? (
+            <CalBooking key={notes} link={CAL_LINK} prefill={{ notes }} />
+          ) : (
+            <>
+              <button
+                type="button"
+                onClick={() => setShowCal(true)}
+                className="btn-primary inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold"
+              >
+                Show available times
+                <ArrowRight size={16} />
+              </button>
+              <p className="mt-3 text-center text-xs text-muted">
+                Opens my live calendar. Monday to Friday, 9am to 6pm Dubai time.
+              </p>
+            </>
+          )}
         </div>
       </div>
     );
