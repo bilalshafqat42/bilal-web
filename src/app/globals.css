@@ -497,3 +497,96 @@ h1, h2, h3, h4, .font-display {
     animation: none;
   }
 }
+
+/* Hero headline typing effect.
+ *
+ * `clip-path`, not the classic `width: 0 -> 100%` typewriter. The width trick
+ * needs `white-space: nowrap`, and "One senior partner." at the mobile size is
+ * about 320px against roughly 342px of available width on a 390px phone — it
+ * fits, but a 360px phone would overflow and push a horizontal scrollbar onto
+ * the homepage. `clip-path` reveals the same way without touching layout, so
+ * the line still wraps normally if it ever needs to.
+ *
+ * It is also cheaper: `width` is a layout property and animating it reflows on
+ * every frame; `clip-path` is composited.
+ *
+ * `steps()` is what makes it read as typing rather than a wipe — the reveal
+ * lands on character boundaries instead of sliding continuously. The counts are
+ * the literal character counts of each line, so they must be updated if the
+ * headline is ever reworded.
+ *
+ * The text is ordinary markup inside the <h1>. Nothing is injected by script,
+ * so it is in the initial HTML for crawlers and read normally by a screen
+ * reader regardless of the animation. HeroBanner stays a server component with
+ * no client JavaScript.
+ */
+@keyframes type-reveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes caret-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.type-line {
+  display: inline-block;
+  /* Held clipped before its delay elapses, so line two is not visible while
+     line one is still typing. */
+  animation-fill-mode: both;
+  animation-name: type-reveal;
+}
+
+/* Step counts are literal rather than `steps(var(--chars))`: a variable inside a
+   timing function is valid CSS but relies on substitution producing something
+   parseable, and a silent failure here leaves the page's h1 clipped. Durations
+   differ per line so both type at the same rate — ~50ms a character — instead
+   of the longer line racing to finish in the same time.
+
+   These counts are the literal character counts of each line and must be
+   updated if the headline is reworded. */
+.type-line-1 {
+  animation-duration: 0.95s;
+  animation-delay: 0.35s;
+  animation-timing-function: steps(19);
+}
+.type-line-2 {
+  animation-duration: 0.85s;
+  animation-delay: 1.3s;
+  animation-timing-function: steps(17);
+}
+
+/* The caret arrives when line two *finishes* (1.3s delay + 0.85s duration), not
+   when it starts. It sits after the clipped span at the line's full width, so
+   showing it earlier would park it ahead of the text and have the typing run
+   toward a caret that was already waiting there. */
+.type-caret {
+  display: inline-block;
+  width: 0.06em;
+  height: 0.78em;
+  margin-left: 0.06em;
+  vertical-align: baseline;
+  background: currentColor;
+  opacity: 0;
+  animation: caret-blink 1s step-end 2.15s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .type-line {
+    animation: none;
+    clip-path: none;
+  }
+  .type-caret {
+    display: none;
+  }
+}

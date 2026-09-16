@@ -50,9 +50,13 @@ export default function HeroBanner() {
           </span>
 
           <h1 className="mt-8 text-[2.1rem] font-bold leading-[1.05] tracking-[-0.02em] text-ink sm:text-5xl lg:mt-11 lg:text-[4.6rem]">
-            One senior partner.
+            {/* Character counts live in `globals.css` as `--chars` on each
+                line; rewording the headline means updating them, or the reveal
+                will step at the wrong rate. */}
+            <span className="type-line type-line-1">One senior partner.</span>
             <br />
-            Campaign to code.
+            <span className="type-line type-line-2">Campaign to code.</span>
+            <span aria-hidden="true" className="type-caret" />
           </h1>
 
           <p className="mt-7 max-w-[30ch] lg:mt-11 text-base leading-relaxed text-muted sm:max-w-[46ch] lg:text-[1.05rem]">
