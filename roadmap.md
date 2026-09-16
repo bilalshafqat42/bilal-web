@@ -1779,3 +1779,44 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
 
     Still open from item 180: **180.9** — the four discipline pages (301–322
     words) and `/process` (330) need thickening to 600–800.
+
+190. **`/appointment` — two of six fixed (2026-09-16)** — **partial. Four items still open, three of them blocked on Bilal.**
+
+    **Fixed:**
+
+    - **Title was 34 characters** of the ~60 Google renders, and named the page
+      without naming the offer. Now `Book a Free 30-Minute Call — Bilal Shafqat,
+      Dubai`, 49 characters. "Free" is the reason someone clicks.
+    - **The page had no sections.** Its outline ran `h1` then two 24px headings,
+      both carrying card styling, so nothing between the page title and the
+      content read as a section to Google or to a screen reader moving by
+      heading. "Common questions" now takes the section size. The page is at 3
+      heading declarations, still inside the scale from item 189.
+
+    **Open, and none of it is an error that breaks the page:**
+
+    - **The Cal.com embed loads for everyone.** Roughly 4.9MB of third-party
+      JavaScript from cal.com arrives on page load, including for visitors who
+      came only to read the FAQs — about six times the weight of the page's own
+      744KB. **Recommendation: put it behind a "Show available times" button.**
+      Decision is Bilal's.
+    - **398 words**, and it stays thin until the four blocked FAQ answers land:
+      what the thirty minutes covers, whether to bring anything, what the client
+      gets afterwards, and whether he signs NDAs. These are service promises and
+      will not be invented — the same rule that has governed this file since
+      item 42.
+    - **The "Taking work now" badge is the last rounded pill on the site.** Item
+      189 converted the other 12. This one is a live status with a pulsing dot
+      rather than a section label, so there is a real case for leaving it
+      different. Bilal's call.
+
+    **A measurement correction from the same pass.** Item 189 claimed eyebrow
+    coverage of "28 of 28". That was measured by comparing each page's *total*
+    eyebrow count against its `h2` count, which is not the same thing as every
+    section heading having one. Re-measured per heading, separating section
+    headings (36px) from card headings (24px, which correctly take no eyebrow):
+    **the answer is still zero unlabelled sections**, but the earlier number was
+    right by luck rather than by measurement.
+
+    Fix matrix v3 regenerated from a live measurement of all 28 routes:
+    https://claude.ai/artifact/RB1rpvoEzKNM7V4xbb1sgG
