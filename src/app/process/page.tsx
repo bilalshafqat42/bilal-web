@@ -6,7 +6,7 @@ import Nav from "@/components/Nav";
 import Process from "@/components/Process";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import Reveal from "@/components/Reveal";
+import FaqSection from "@/components/FaqSection";
 import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID } from "@/lib/schema";
 import { processSteps } from "@/data/process";
 
@@ -163,28 +163,12 @@ export default function ProcessPage() {
           </div>
         </section>
 
-        <section className="relative py-24 sm:py-32">
-          <div className="site-container">
-            <Reveal>
-              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
-                Questions
-              </span>
-              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
-                About how the work runs
-              </h2>
-            </Reveal>
-            <div className="mt-10 grid max-w-5xl grid-cols-1 gap-5 md:grid-cols-2">
-              {faqs.map((f) => (
-                <Reveal key={f.question}>
-                  <div className="h-full rounded-2xl border border-border panel p-6">
-                    <h3 className="font-semibold leading-snug text-ink">{f.question}</h3>
-                    <p className="mt-2.5 text-sm leading-relaxed text-muted">{f.answer}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
+        <FaqSection
+          eyebrow="Questions"
+          title="About how the work runs"
+          faqs={faqs}
+          className="py-24 sm:py-32"
+        />
 
         <Contact />
       </main>

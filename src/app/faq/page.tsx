@@ -4,6 +4,7 @@ import { ChevronRight } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
+import FaqSection from "@/components/FaqSection";
 import { faqGroups, allFaqs } from "@/data/faqs";
 import CtaButton from "@/components/CtaButton";
 import JsonLd from "@/components/JsonLd";
@@ -73,35 +74,24 @@ export default function FaqPage() {
           </div>
         </section>
 
-        {faqGroups.map((group) => (
-          <section key={group.id} id={group.id} className="relative mt-16 scroll-mt-28 sm:mt-20">
-            <div className="mx-auto max-w-3xl px-6">
-              <Reveal>
-                <h2 className="text-2xl font-semibold tracking-tight text-ink">
-                  {group.title}
-                </h2>
-              </Reveal>
-              <div className="mt-7 space-y-4">
-                {group.items.map((f) => (
-                  <Reveal key={f.question}>
-                    {/* <details> rather than JS state: it works without hydration,
-                        is keyboard accessible by default, and Ctrl+F finds the
-                        answer text even while collapsed. */}
-                    <details className="group rounded-2xl border border-border panel p-6 open:border-gold/25">
-                      <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-semibold text-ink marker:hidden">
-                        {f.question}
-                        <ChevronRight
-                          size={17}
-                          className="mt-0.5 shrink-0 text-gold transition-transform group-open:rotate-90"
-                        />
-                      </summary>
-                      <p className="mt-3 text-sm text-muted leading-relaxed">{f.answer}</p>
-                    </details>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          </section>
+        {/* One FaqSection per group, so the group name stays beside its own
+            questions as you read them.
+
+            This replaces collapsed `<details>` accordions. They were chosen
+            because they work without hydration and Ctrl+F finds their text, but
+            they also hid 16 answers behind 16 clicks on the one page whose whole
+            purpose is answering questions, and they were the last FAQ layout on
+            the site that did not match the others. The answers are now simply
+            there to read. */}
+        {faqGroups.map((group, i) => (
+          <FaqSection
+            key={group.id}
+            id={group.id}
+            eyebrow={`${String(i + 1).padStart(2, "0")} / ${String(faqGroups.length).padStart(2, "0")}`}
+            title={group.title}
+            faqs={group.items}
+            className="scroll-mt-28 pt-16 sm:pt-20"
+          />
         ))}
 
         <section className="relative mt-20 sm:mt-24">

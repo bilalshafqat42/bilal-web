@@ -2037,3 +2037,55 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
     Matrix v3.6: **23 of 28 routes fully clean.** Verified: `h1-check` 28/28,
     `schema-check` 28/28, `search-check` 32 checks, `discipline-check`, `tsc`,
     `lint`, production build.
+
+196. **One FAQ layout across the whole site (2026-09-16)** — **done.**
+
+    Bilal sent a screenshot of the case study FAQ ("About this launch") and asked
+    for that design everywhere, as its own full section.
+
+    **There were six different FAQ designs.** Same content type, six
+    presentations — the clearest way a site tells a visitor it was assembled in
+    pieces:
+
+    | Page | Was |
+    |---|---|
+    | Case studies | two-column sticky label + hairline list |
+    | `/services/[slug]` | bordered cards in a stack |
+    | `/pricing` | `<details>` accordions |
+    | `/faq` | `<details>` accordions, grouped |
+    | Discipline pages | bare `<dl>` under a 24px heading |
+    | `/process` | two-column grid of cards |
+    | `/appointment` | narrow list wedged into the hero's left column |
+
+    Extracted the case study version as `components/FaqSection.tsx` and applied
+    it to all seven. It won on merit as well as by Bilal's choice: the label
+    stays put beside a long run of answers, and the answers get the container's
+    full width instead of being boxed. Hairlines rather than cards, because six
+    bordered boxes in a column read as six separate things and this is one thing.
+
+    **Two structural changes fell out of it:**
+
+    - **`/appointment`'s FAQ moved out of the hero column into its own section.**
+      It was in the left column originally to give the sticky booking panel
+      something taller to travel against. Item 191 removed that constraint — the
+      Cal.com embed loads on request now, so the panel is short. The stale
+      comment explaining the old 620px cap was replaced rather than left to
+      mislead.
+    - **Discipline pages had zero section headings.** Their FAQ sat under a
+      card-sized `h2` with no eyebrow. They now have one properly-sized,
+      properly-labelled section each.
+
+    **`<details>` accordions are gone from the site.** They were a reasonable
+    choice — no hydration needed, Ctrl+F finds collapsed text — but they hid 15
+    answers behind 15 clicks on `/faq`, the one page whose entire purpose is
+    answering questions. The answers are simply readable now.
+
+    **Two pre-existing bugs found while editing:** `/services/[slug]` rendered
+    **"Book a call" twice** in the same button row, once as a `Link` and once as
+    a raw `<a>` to the same route. Removing the duplicate also removed one of the
+    raw internal `<a>` tags that the `no-html-link-for-pages` lint rule counts
+    (recorded at item 48).
+
+    Verified: 7 pages render `FaqSection`, **zero `<details>` remain**, `h1-check`
+    28/28, `schema-check` 28/28, `search-check` 32 checks, `discipline-check`,
+    `tsc`, `lint`, production build. Matrix v3.7.

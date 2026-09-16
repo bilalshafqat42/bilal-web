@@ -7,6 +7,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { ServiceProof } from "@/components/ProofLoop";
 import Reveal from "@/components/Reveal";
+import FaqSection from "@/components/FaqSection";
 import {
   megaMenuGroups,
   accentClasses,
@@ -200,68 +201,47 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
           </section>
         ) : null}
 
+        <FaqSection eyebrow="Questions" title="Frequently asked" faqs={faqs} className="mt-20 sm:mt-24" />
+
         {faqs.length ? (
-          <section className="relative mt-20 sm:mt-24">
-            <div className="mx-auto max-w-4xl px-6">
-              <Reveal>
-                <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Questions</span>
-                <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
-                  Frequently asked
-                </h2>
-              </Reveal>
-              <div className="mt-10 space-y-5">
-                {faqs.map((f) => (
-                  <Reveal key={f.question}>
-                    <div className="rounded-2xl border border-border panel p-6">
-                      <h3 className="font-semibold text-ink">{f.question}</h3>
-                      <p className="mt-2.5 text-sm text-muted leading-relaxed">{f.answer}</p>
-                    </div>
-                  </Reveal>
-                ))}
+          <section className="relative mt-12">
+            <div className="site-container">
+          {/* Every answer above ends a visitor's question. This is the next
+              step, offered three ways because people differ on how they
+              want to start a conversation. */}
+          <Reveal>
+            <div className="mt-10 rounded-2xl border border-border panel p-6 sm:p-8">
+              <h3 className="text-lg font-semibold text-ink sm:text-xl">
+                Still not sure if this is what you need?
+              </h3>
+              <p className="mt-2.5 text-base leading-relaxed text-muted">
+                Send it here and it comes straight to me. You will get a
+                straight answer about whether I am the right fit, including
+                when the answer is no.
+              </p>
+
+              {/* The form sits on the page rather than behind a link. Someone
+                  who has just read this page has already told us what they
+                  want; making them restate it elsewhere loses them. */}
+              <InlineLeadForm service={category.title} />
+
+              <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-border pt-5">
+                <span className="text-sm text-muted">Prefer another way?</span>
+                <Link
+                  href="/appointment"
+                  className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-white/5"
+                >
+                  Book a call <ArrowRight size={14} />
+                </Link>
+                <a
+                  href="https://wa.me/971529766006"
+                  className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-white/5"
+                >
+                  WhatsApp
+                </a>
               </div>
-
-              {/* Every answer above ends a visitor's question. This is the next
-                  step, offered three ways because people differ on how they
-                  want to start a conversation. */}
-              <Reveal>
-                <div className="mt-10 rounded-2xl border border-border panel p-6 sm:p-8">
-                  <h3 className="text-lg font-semibold text-ink sm:text-xl">
-                    Still not sure if this is what you need?
-                  </h3>
-                  <p className="mt-2.5 text-base leading-relaxed text-muted">
-                    Send it here and it comes straight to me. You will get a
-                    straight answer about whether I am the right fit, including
-                    when the answer is no.
-                  </p>
-
-                  {/* The form sits on the page rather than behind a link. Someone
-                      who has just read this page has already told us what they
-                      want; making them restate it elsewhere loses them. */}
-                  <InlineLeadForm service={category.title} />
-
-                  <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-border pt-5">
-                    <span className="text-sm text-muted">Prefer another way?</span>
-                    <Link
-                      href="/appointment"
-                      className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-white/5"
-                    >
-                      Book a call <ArrowRight size={14} />
-                    </Link>
-                    <a
-                      href="https://wa.me/971529766006"
-                      className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-white/5"
-                    >
-                      WhatsApp
-                    </a>
-                    <a
-                      href="/appointment"
-                      className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-white/5"
-                    >
-                      Book a call
-                    </a>
-                  </div>
-                </div>
-              </Reveal>
+            </div>
+          </Reveal>
             </div>
           </section>
         ) : null}

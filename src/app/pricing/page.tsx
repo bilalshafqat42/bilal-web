@@ -4,6 +4,7 @@ import { ChevronRight, Minus, Plus } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
+import FaqSection from "@/components/FaqSection";
 import CtaButton from "@/components/CtaButton";
 import Engagement from "@/components/Engagement";
 import JsonLd from "@/components/JsonLd";
@@ -195,29 +196,7 @@ export default function PricingPage() {
           </div>
         </section>
 
-        <section className="relative mt-20 sm:mt-24">
-          <div className="mx-auto max-w-3xl px-6">
-            <Reveal>
-              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Questions</span>
-              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
-                Pricing questions
-              </h2>
-            </Reveal>
-            <div className="mt-8 space-y-4">
-              {faqs.map((f) => (
-                <Reveal key={f.question}>
-                  <details className="group rounded-2xl border border-border panel p-6 open:border-gold/25">
-                    <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-semibold text-ink marker:hidden">
-                      {f.question}
-                      <ChevronRight size={17} className="mt-0.5 shrink-0 text-gold transition-transform group-open:rotate-90" />
-                    </summary>
-                    <p className="mt-3 text-sm text-muted leading-relaxed">{f.answer}</p>
-                  </details>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
+        <FaqSection eyebrow="Questions" title="Pricing questions" faqs={faqs} className="mt-20 sm:mt-24" />
 
         {/* The expanded engagement models, linked from every service page as
             "How engagements work". Cards start open here: a visitor who

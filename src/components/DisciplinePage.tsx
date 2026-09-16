@@ -6,6 +6,7 @@ import { ArrowRight, ArrowUpRight, ChevronRight } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Reveal, { RevealStagger, RevealItem } from "@/components/Reveal";
+import FaqSection from "@/components/FaqSection";
 import CtaButton from "@/components/CtaButton";
 import {
   disciplines,
@@ -269,19 +270,14 @@ export default function DisciplinePage({ slug }: { slug: string }) {
           ))}
         </section>
 
-        <section className="site-container pt-20 sm:pt-24">
-          <Reveal>
-            <h2 className="text-2xl font-semibold tracking-tight text-ink">Common questions</h2>
-            <dl className="mt-8 max-w-3xl divide-y divide-border border-y border-border">
-              {d.page.faqs.map((f) => (
-                <div key={f.question} className="py-6">
-                  <dt className="text-base font-semibold text-ink">{f.question}</dt>
-                  <dd className="mt-2.5 text-sm leading-relaxed text-muted">{f.answer}</dd>
-                </div>
-              ))}
-            </dl>
-          </Reveal>
-        </section>
+        {/* Was a bare definition list under a card-sized h2, which meant these
+            pages had no section headings at all. Now the site-wide layout. */}
+        <FaqSection
+          eyebrow="Common questions"
+          title={`${d.title} questions`}
+          faqs={d.page.faqs}
+          className="pt-20 sm:pt-24"
+        />
 
         <section className="site-container py-20 sm:py-24">
           <Reveal>

@@ -5,6 +5,7 @@ import { CheckCircle2 } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import AppointmentBooking from "@/components/AppointmentBooking";
+import FaqSection from "@/components/FaqSection";
 import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID } from "@/lib/schema";
 
 export const metadata: Metadata = {
@@ -223,45 +224,16 @@ export default function AppointmentPage() {
                 </Link>
                 .
               </p>
-
-              {/* In the left column rather than a section of its own, for two
-                  reasons. It is what someone is actually wondering while they
-                  look at the calendar, so it belongs beside it. And the booking
-                  panel is `sticky`: sticky only engages when the column next to
-                  it is taller than it is, and before this the left column was
-                  501px against the panel's 940px, so it had negative travel and
-                  could never stick at all. */}
-              <div className="mt-12 max-w-xl border-t border-border pt-8">
-                <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
-                  Before you book
-                </span>
-                {/* A real heading, not just the styled eyebrow above it. This
-                    block is a distinct section of the page and it had no
-                    heading at all, so the document outline went straight from
-                    the h1 to a definition list — invisible as a section to a
-                    screen reader moving by heading, and to anything building an
-                    outline of the page. */}
-                <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
-                  Common questions
-                </h2>
-                <dl className="mt-6 divide-y divide-border border-b border-border">
-                  {faqs.map((f) => (
-                    <div key={f.question} className="py-5">
-                      <dt className="text-base font-semibold text-ink">{f.question}</dt>
-                      <dd className="mt-2 max-w-[62ch] text-sm leading-relaxed text-muted">
-                        {f.answer}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
             </div>
 
             {/* Sticky on desktop so the booking panel stays in view while the
-                rest of the page scrolls past it. This only works because the
-                panel is capped at 620px: at its natural 1,251px it is taller
-                than most viewports, and a sticky element taller than the screen
-                sticks with its bottom cut off and the later slots unreachable.
+                rest of the page scrolls past it.
+
+                The old note here explained a 620px cap needed because the
+                Cal.com embed rendered at 1,251px, taller than most viewports,
+                which made a sticky panel stick with its bottom cut off. That
+                does not apply any more: the embed loads on request, so the
+                panel is short until someone asks for the calendar.
 
                 Not sticky below `lg`, where the panel is full width and there
                 is nothing beside it to scroll. */}
@@ -270,6 +242,20 @@ export default function AppointmentPage() {
             </div>
           </div>
         </section>
+
+        {/* Was wedged into the hero's left column, where it had to be a narrow
+            list and could not use the site's FAQ layout. Now its own section,
+            below the fold, the same shape as every other FAQ on the site.
+
+            The left column previously existed partly to give the sticky booking
+            panel something taller to travel against. That is no longer needed:
+            the Cal.com embed loads on request, so the panel is short. */}
+        <FaqSection
+          eyebrow="Before you book"
+          title="Common questions"
+          faqs={faqs}
+          className="pb-20 sm:pb-24"
+        />
       </main>
       <Footer />
     </>

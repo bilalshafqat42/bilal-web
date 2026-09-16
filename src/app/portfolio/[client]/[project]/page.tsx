@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import { WorkProof } from "@/components/ProofLoop";
 import GalleryLightbox from "@/components/GalleryLightbox";
 import Reveal from "@/components/Reveal";
+import FaqSection from "@/components/FaqSection";
 import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/CaseStudyParts";
 import { clients, getProject } from "@/data/caseStudies";
 import CtaButton from "@/components/CtaButton";
@@ -387,43 +388,14 @@ export default async function ProjectCaseStudy({ params }: Props) {
           </section>
         ) : null}
 
-        {/* Questions, rendered from the same array the FAQPage schema is built
-            from. Renders nothing for a project with none, so the other case
-            studies are unchanged. */}
-        {p.faqs?.length ? (
-          <section className="site-container py-16 sm:py-20">
-            {/* Same two-column shape as the approach section above: sticky label
-                on the left, content on the right at the container's full width.
-                One layout for both means the page reads as one page. */}
-            <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] lg:gap-16">
-              <Reveal>
-                <div className="lg:sticky lg:top-32">
-                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
-                    Common questions
-                  </span>
-                  <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
-                    About this launch
-                  </h2>
-                </div>
-              </Reveal>
-
-              <Reveal>
-                <dl className="divide-y divide-border border-t border-border">
-                  {p.faqs.map((f) => (
-                    <div key={f.question} className="py-7 first:pt-8">
-                      <dt className="text-lg font-semibold text-ink sm:text-xl">{f.question}</dt>
-                      {/* Capped in `ch`, not by a container width: the problem is
-                          the ratio of font size to column, not the page. */}
-                      <dd className="mt-3 max-w-[68ch] text-base leading-relaxed text-muted">
-                        {f.answer}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </Reveal>
-            </div>
-          </section>
-        ) : null}
+        {/* This layout is now shared by every FAQ on the site. It started
+            here, and `FaqSection` is a straight extraction of it. */}
+        <FaqSection
+          eyebrow="Common questions"
+          title="About this launch"
+          faqs={p.faqs ?? []}
+          className="py-16 sm:py-20"
+        />
 
         <WorkProof clientSlug={c.slug} projectSlug={p.slug} />
       </main>
