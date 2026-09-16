@@ -8,7 +8,7 @@ import AppointmentBooking from "@/components/AppointmentBooking";
 import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Book a Call — Bilal Shafqat, Dubai",
+  title: "Book a Free 30-Minute Call — Bilal Shafqat, Dubai",
   // Trimmed to 155 characters. The previous version ran to 166 and Google was
   // cutting it mid-sentence, which wastes the one line it gives you.
   description:
@@ -236,7 +236,7 @@ export default function AppointmentPage() {
                     the h1 to a definition list — invisible as a section to a
                     screen reader moving by heading, and to anything building an
                     outline of the page. */}
-                <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">
+                <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                   Common questions
                 </h2>
                 <dl className="mt-6 divide-y divide-border border-b border-border">
