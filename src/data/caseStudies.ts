@@ -457,9 +457,9 @@ export const clients: Client[] = [
     industry: "Real Estate & Property",
     logo: "/portfolio/leos/logo/leos-white.svg",
     ogImage: "/portfolio/leos/og-leos.jpg",
-    title: "LEOS Developments Case Study — Website, Mobile App & Launch Campaigns",
+    title: "LEOS Developments — Website, App & Launch Campaigns",
     description:
-      "Two-year engagement with LEOS Developments: corporate website build, a React Native app for iOS and Android, brand social creative, and off-plan launch campaigns including Hadley Heights in Jumeirah Village Circle, Dubai.",
+      "Two years with LEOS Developments: corporate website, a React Native app for iOS and Android, brand social, and off-plan launch campaigns.",
     headline: "Corporate website and launch campaigns for a UK and Dubai developer",
     intro:
       "LEOS Developments is a residential developer headquartered in Weybridge, Surrey, with offices in London and an experience centre in Dubai. Over two years I handled the corporate website and the campaign work behind their developments.",

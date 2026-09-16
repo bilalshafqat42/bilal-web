@@ -9,11 +9,12 @@ import SocialLinks from "@/components/SocialLinks";
 import { pillars, accentClasses } from "@/data/pillars";
 import CtaButton from "@/components/CtaButton";
 import WhoIWorkWith from "@/components/WhoIWorkWith";
+import { SITE_URL, breadcrumbNode, graph, ref, ID } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "About Bilal Shafqat — Digital Marketer & Developer, Dubai",
+  title: "About Bilal Shafqat — Freelance Marketer & Developer, Dubai",
   description:
-    "15 years across paid marketing, web and app development, design, and CRM automation. Based in Dubai, working directly with founders, real estate developers, and in-house teams as one senior partner.",
+    "Fifteen years across paid marketing, web and app development, design and CRM automation. One senior partner in Dubai, not an agency.",
   alternates: {
     canonical: "/about",
   },
@@ -59,9 +60,39 @@ const principles = [
   },
 ];
 
+
+/**
+ * Structured data. This page had none until 2026-09-16, which meant Google had
+ * no typed description of it at all.
+ */
+const pageUrl = `${SITE_URL}/about`;
+
+const schema = graph([
+  {
+    "@type": "ProfilePage",
+    "@id": `${pageUrl}#page`,
+    url: pageUrl,
+    name: "About Bilal Shafqat",
+    description:
+      "Fifteen years across paid marketing, web and app development, design and CRM automation, working as one senior partner rather than an agency.",
+    inLanguage: "en",
+    isPartOf: ref(ID.website, "WebSite"),
+    // `mainEntity`, not a second Person node. The Person is defined once on the
+    // homepage at #person; restating name, job title and address here is what
+    // produced twenty-odd unlinked duplicates of the same entity before.
+    mainEntity: ref(ID.person, "Person"),
+    about: ref(ID.business, "ProfessionalService"),
+  },
+  breadcrumbNode(pageUrl, [
+    { name: "Home", item: SITE_URL },
+    { name: "About", item: pageUrl },
+  ]),
+]);
+
 export default function AboutPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <Nav />
       <main className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">

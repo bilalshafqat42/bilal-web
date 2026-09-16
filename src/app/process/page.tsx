@@ -6,11 +6,13 @@ import Nav from "@/components/Nav";
 import Process from "@/components/Process";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { SITE_URL, breadcrumbNode, graph, ref, ID } from "@/lib/schema";
+import { processSteps } from "@/data/process";
 
 export const metadata: Metadata = {
   title: "My Process — From Brief To Shipped Work | Bilal Shafqat",
   description:
-    "How a project actually runs, stage by stage: understanding the brief, planning and design, build and launch, then measurement and iteration. Worked examples from UAE and UK real estate projects.",
+    "Four stages from brief to shipped work: discovery, planning and design, build and launch, then measurement and iteration.",
   alternates: { canonical: "/process" },
 };
 
@@ -29,9 +31,51 @@ export const metadata: Metadata = {
  * that question is answered here — but by a short pointer to `/pricing`, not by
  * a third copy of the engagement models.
  */
+
+/**
+ * Structured data. This page had none until 2026-09-16, which meant Google had
+ * no typed description of it at all.
+ */
+const pageUrl = `${SITE_URL}/process`;
+
+const schema = graph([
+  {
+    "@type": "WebPage",
+    "@id": `${pageUrl}#page`,
+    url: pageUrl,
+    name: "How a project runs",
+    description:
+      "The four stages of a project: brief and discovery, planning and design, build and launch, then measurement and iteration.",
+    inLanguage: "en",
+    isPartOf: ref(ID.website, "WebSite"),
+    about: ref(ID.business, "ProfessionalService"),
+  },
+  // `HowTo` rather than `WebPage` alone: this page describes an ordered
+  // procedure, and the steps come from the same data the page renders so the
+  // markup cannot describe a stage a visitor cannot read.
+  {
+    "@type": "HowTo",
+    "@id": `${pageUrl}#howto`,
+    name: "How a project runs, brief to shipped work",
+    description:
+      "Four stages, from the first conversation through to measurement after launch.",
+    step: processSteps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.title,
+      text: s.description,
+    })),
+  },
+  breadcrumbNode(pageUrl, [
+    { name: "Home", item: SITE_URL },
+    { name: "Process", item: pageUrl },
+  ]),
+]);
+
 export default function ProcessPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <Nav />
       <main className="flex-1">
         <Process />

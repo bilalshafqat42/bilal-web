@@ -400,7 +400,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       "Paid media only works when it is built around the sales pipeline it feeds. I plan, launch and manage campaigns across Google and every major social platform, with conversion tracking configured before a dirham is spent, so performance is measured against real enquiries rather than clicks and reach.",
     metaTitle: "Paid Marketing & Ads Management — Bilal Shafqat",
     metaDescription:
-      "Google, Meta, TikTok, Snapchat and LinkedIn campaign management by a Dubai-based freelance specialist. Conversion tracking from day one, reported as cost per lead.",
+      "Google, Meta, TikTok and LinkedIn campaigns run by a Dubai freelance specialist. Conversion tracking from day one, reported as cost per lead.",
     faqs: [
       {
         question: "Which platforms do you manage?",
@@ -435,7 +435,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       "Most social work stops at delivering assets. This covers the whole thing: the strategy, the content calendar, the creative itself, and the actual posting and engagement. Because the same person also runs the paid campaigns, organic and paid reinforce each other instead of running as separate projects.",
     metaTitle: "Social Media Marketing & Management — Bilal Shafqat",
     metaDescription:
-      "Social media strategy, content design, planning and channel management from a Dubai-based freelance specialist, aligned with the paid campaigns running alongside it.",
+      "Social media strategy, content design, planning and channel management from Dubai, aligned with the paid campaigns running alongside it.",
     faqs: [
       {
         question: "Do you post as well as design?",
@@ -492,7 +492,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       "A site that looks good but does not convert is a cost, not an asset. I build on Next.js for speed and search performance, React Native for mobile, and the MERN stack for custom tools, designed from the start around whatever campaigns will be sending traffic to them.",
     metaTitle: "Website & App Development, Dubai — Bilal Shafqat",
     metaDescription:
-      "Next.js, WordPress, Squarespace and Wix websites, high-converting landing pages, cross-platform mobile apps and custom MERN and PostgreSQL tools, built by a Dubai-based freelance developer who also runs the campaigns.",
+      "Next.js and WordPress websites, landing pages, cross-platform mobile apps and custom tools, built by a Dubai developer who also runs the campaigns.",
     faqs: [
       {
         question: "What do you build with?",

@@ -7,19 +7,58 @@ import Footer from "@/components/Footer";
 import PortfolioShowcase from "@/components/PortfolioShowcase";
 import ClientLogoRow from "@/components/ClientLogoRow";
 import { megaMenuGroups, accentClasses } from "@/data/pillars";
+import { SITE_URL, breadcrumbNode, graph, ref, ID } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Services — Marketing, Development, Design & CRM Automation",
+  title: "Services — Marketing, Development & Design | Bilal Shafqat",
   description:
-    "Four services, one senior partner: paid marketing & lead generation, website & app development, design & conversion, and CRM & marketing automation. Based in Dubai, UAE, serving clients across the UAE and worldwide.",
+    "Paid marketing, website and app development, UI/UX and brand design, and CRM automation. Eight categories, one senior partner.",
   alternates: {
     canonical: "/services",
   },
 };
 
+
+/**
+ * Structured data. This page had none until 2026-09-16, which meant Google had
+ * no typed description of it at all.
+ */
+const pageUrl = `${SITE_URL}/services`;
+
+const schema = graph([
+  {
+    "@type": "CollectionPage",
+    "@id": `${pageUrl}#page`,
+    url: pageUrl,
+    name: "Services",
+    description:
+      "Eight service categories across paid marketing, development, design and CRM automation, delivered by one person rather than an agency team.",
+    inLanguage: "en",
+    isPartOf: ref(ID.website, "WebSite"),
+    about: ref(ID.business, "ProfessionalService"),
+    // Built from the same list the mega menu and the sitemap read, so a new
+    // category cannot appear in one place and be missing from another.
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: megaMenuGroups.length,
+      itemListElement: megaMenuGroups.map((g, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: g.title,
+        url: `${SITE_URL}/services/${g.slug}`,
+      })),
+    },
+  },
+  breadcrumbNode(pageUrl, [
+    { name: "Home", item: SITE_URL },
+    { name: "Services", item: pageUrl },
+  ]),
+]);
+
 export default function ServicesPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <Nav />
       <main className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">

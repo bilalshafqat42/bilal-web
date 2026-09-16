@@ -13,7 +13,7 @@ import { SITE_URL, faqNode, breadcrumbNode } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Pricing & How Projects Are Costed — Bilal Shafqat",
   description:
-    "How freelance marketing, development and design work is priced in Dubai: the four engagement models, what pushes cost up or down, and how to get a figure without a sales call.",
+    "How freelance marketing, development and design is priced in Dubai: the engagement models, what moves cost, and a figure without a sales call.",
   alternates: { canonical: "/pricing" },
   openGraph: {
     title: "Pricing & How Projects Are Costed — Bilal Shafqat",

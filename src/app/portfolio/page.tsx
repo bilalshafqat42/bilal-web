@@ -14,19 +14,61 @@ import WorkByType from "@/components/WorkByType";
 import LogoWall from "@/components/LogoWall";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { SITE_URL, breadcrumbNode, graph, ref, ID } from "@/lib/schema";
+import { disciplinesWithPages } from "@/data/disciplines";
 
 export const metadata: Metadata = {
-  title: "Portfolio — Web, App, UI/UX & Social Media Work | Bilal Shafqat",
+  title: "Portfolio — Web, App, UI/UX & Social Work | Bilal Shafqat",
   description:
-    "Browse the portfolio by discipline: web design and development, UI/UX, React Native mobile apps, and social media creative for Dubai property developers, with full case studies.",
+    "Browse by discipline: web design and development, UI/UX, React Native apps and social media creative, with full case studies.",
   alternates: {
     canonical: "/portfolio",
   },
 };
 
+
+/**
+ * Structured data. This page had none until 2026-09-16, which meant Google had
+ * no typed description of it at all.
+ */
+const pageUrl = `${SITE_URL}/portfolio`;
+
+const schema = graph([
+  {
+    "@type": "CollectionPage",
+    "@id": `${pageUrl}#page`,
+    url: pageUrl,
+    name: "Portfolio",
+    description:
+      "Work browsable by discipline and by client: websites, launch pages, React Native apps and social campaign creative.",
+    inLanguage: "en",
+    isPartOf: ref(ID.website, "WebSite"),
+    about: ref(ID.business, "ProfessionalService"),
+    author: ref(ID.person, "Person"),
+    // Only the disciplines that actually have a page. A discipline routed to a
+    // service page has no portfolio URL to list, and listing one that 404s is
+    // worse than listing nothing.
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: disciplinesWithPages().length,
+      itemListElement: disciplinesWithPages().map((d, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: d.title,
+        url: `${SITE_URL}/portfolio/${d.slug}`,
+      })),
+    },
+  },
+  breadcrumbNode(pageUrl, [
+    { name: "Home", item: SITE_URL },
+    { name: "Portfolio", item: pageUrl },
+  ]),
+]);
+
 export default function PortfolioPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <Nav />
       <main className="flex-1 pt-28">
         <section className="site-container">

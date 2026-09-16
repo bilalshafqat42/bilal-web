@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ConsentReset from "@/components/ConsentReset";
+import { SITE_URL, breadcrumbNode, graph, ref, ID } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Privacy & What's Stored — Bilal Shafqat",
@@ -38,9 +39,34 @@ const rows = [
   },
 ];
 
+
+/**
+ * Structured data. This page had none until 2026-09-16, which meant Google had
+ * no typed description of it at all.
+ */
+const pageUrl = `${SITE_URL}/privacy`;
+
+const schema = graph([
+  {
+    "@type": "WebPage",
+    "@id": `${pageUrl}#page`,
+    url: pageUrl,
+    name: "Privacy and what is stored",
+    description: "What this site stores, why, and how to have it removed.",
+    inLanguage: "en",
+    isPartOf: ref(ID.website, "WebSite"),
+    about: ref(ID.business, "ProfessionalService"),
+  },
+  breadcrumbNode(pageUrl, [
+    { name: "Home", item: SITE_URL },
+    { name: "Privacy", item: pageUrl },
+  ]),
+]);
+
 export default function PrivacyPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <Nav />
       <main className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
