@@ -2189,3 +2189,41 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
     2 heading declarations, 740KB. Matrix v3.9: **24 of 28 fully clean, and zero
     routes failing any hard check.** Verified: `h1-check` 28/28, `schema-check`
     28/28, `search-check` 32 checks, `discipline-check`, `tsc`, `lint`, build.
+
+199. **Header entrance animation, and uppercase nav (2026-09-16)** — **done.**
+
+    **Uppercase header links.** The seven top-level links are now uppercase at
+    12px with 0.06em tracking. Two consequential adjustments: uppercase glyphs
+    run roughly 20% wider than mixed case at the same size, and this bar already
+    had to be rescued once from wrapping its CTA at 1024 (item 23) — so the size
+    came down from 14px and the `lg` gap from 5 to 4. Without that the row would
+    have been about 95px wider and the old overflow would have returned.
+
+    Left in sentence case on purpose: the **28 mega menu sub-links**, which are
+    content rather than navigation chrome and lose scannability in caps, and the
+    **mobile menu**, which is a large stacked list at `text-lg` and a different
+    treatment entirely.
+
+    **Header entrance.** The bar drops in from above on first paint and its three
+    children — logo, nav, right-hand cluster — follow slightly staggered, so the
+    header assembles rather than appearing at once.
+
+    **Bilal asked for GSAP. It was done in CSS instead, and he was told why.**
+    This is a one-shot entrance with no scroll coupling and no timeline to
+    coordinate, which is the case CSS handles outright. `gsap` + `@gsap/react` is
+    ~100KB that would land on all 28 routes for it, and **items 189 and 194
+    removed GSAP from this project for exactly that reason** — re-adding it here
+    would have undone both, on the same day, for an animation a keyframe does
+    identically. The offer to swap stands if he still wants the library after
+    seeing it.
+
+    Implementation notes worth keeping: `animation-fill-mode: both` holds the
+    from-state through the delay so nothing flashes at its final position first;
+    only `transform` and `opacity` animate and the header keeps its height
+    throughout, so there is **no layout shift and no CLS cost**; and the whole
+    thing is disabled under `prefers-reduced-motion`.
+
+    Verified in the built CSS, not just the source: `header-drop`,
+    `header-item-in`, the `.header-enter` rules, both nth-child delays and the
+    reduced-motion block are all present in the production chunk. **Site JS
+    unchanged at 740-758KB** — the animation adds no JavaScript at all.

@@ -310,7 +310,7 @@ export default function Nav() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-bg">
+    <header className="header-enter sticky top-0 z-50 border-b border-border bg-bg">
       <div className="mx-auto flex h-[68px] w-full items-center justify-between px-6 lg:h-[84px] lg:px-10">
         <Link href="/" className="shrink-0" aria-label="Bilal Shafqat — home">
           <Image
