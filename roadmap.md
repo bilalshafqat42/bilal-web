@@ -1646,6 +1646,14 @@ Bilal asked for a running list of ideas to make the site read more professional 
     - **The word count was left at 279 on purpose.** Item 180.9 lists `/contact` at 203 words as too thin, and that finding **holds for the four discipline pages but not for this one**: a contact page is a conversion surface, not a ranking surface, and there is no honest way to reach 800 words on it. 180.9 should be read as being about `/portfolio/*` and `/process`, not here.
     - Verified: 279 words, 3 real `h2`s, no overflow at 390 or 1440, zero page errors, h1-check and schema-check pass on all 28 routes, build, lint and tsc clean.
 
+184. **Homepage meta rewritten, and two of my own audit figures corrected (2026-09-16)** — **done.** Starting the item 180 queue at the homepage, at Bilal's request.
+    - **The description was 233 characters, the longest on the site.** Google cuts around 160, so roughly the last third was dropped mid-sentence in every search result. Now **150**, with headroom rather than sitting exactly on the limit — a first pass landed on 160 and was trimmed again, because a threshold you are exactly on is a threshold you will cross the next time the copy is touched.
+    - **The OpenGraph description was a different, weaker sentence** — a list of four services ending "one senior partner, four pillars" — so the search result and the share card said different things, and the card said the worse one. Both now carry the same sentence, which is also what `twitter:description` inherits. Verified all three at 150.
+    - **Correction 1: the homepage eyebrow count was wrong.** My audit reported 6 of 7 `h2`s having a label above them. "Four disciplines" **does** have a "Capabilities" label; there is a wrapper `div` between them, so my previous-sibling check missed it. **The homepage is 7/7 and was never a problem.** The fix matrix and item 180.4 overstate it.
+    - **Correction 2: the title is 60 characters, not 64.** A `curl`-based count read `&amp;` as five characters. The browser figure was right all along. **Both corrections came from measuring the same thing two ways and noticing they disagreed** — worth doing whenever a number is about to become a task.
+    - **What the homepage actually measures now**: 686 words, 8 sections, 9,182px tall, 421KB across 11 images (the three largest are landing-page captures at 116/99/87KB), 3 distinct heading sizes, 7/7 eyebrows, 3 schema nodes, zero errors. **Apart from the description it was already one of the healthiest pages on the site.**
+    - Verified: title 60, description 150, og 150, twitter 150, h1-check and schema-check pass on all 28 routes, 32 search checks pass, build, lint and tsc clean.
+
 Reference sites (adapt style, do not copy content):
 - https://www.brionycullin.com/ (low-friction consultation CTA)
 - https://www.punith.com/ (process steps)

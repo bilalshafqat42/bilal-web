@@ -9,8 +9,10 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://bilalshafqat.com"),
   title: "Bilal Shafqat — Freelance Digital Marketer & Developer Dubai",
+  // 233 characters before this, the longest on the site — Google cuts around
+  // 160, so roughly the last third was being dropped mid-sentence.
   description:
-    "One senior partner for paid marketing and lead generation, website and app development, design and content, and CRM and marketing automation. Based in Dubai, UAE, working with founders, real estate developers, and agencies worldwide.",
+    "One senior partner for paid marketing, web and app development, design and CRM automation. Dubai-based, working with founders and property developers.",
   alternates: {
     canonical: "/",
   },
@@ -29,7 +31,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Bilal Shafqat — Freelance Digital Marketer & Developer Dubai",
     description:
-      "Paid marketing and lead generation, website and app development, design and content, and CRM and marketing automation — one senior partner, four pillars.",
+      // Was a different sentence from the meta description: a list of four
+      // services ending "one senior partner, four pillars". A share card is
+      // read in a chat window in under a second, so it gets the same clear
+      // sentence the search result does.
+      "One senior partner for paid marketing, web and app development, design and CRM automation. Dubai-based, working with founders and property developers.",
     type: "website",
   },
   icons: {
