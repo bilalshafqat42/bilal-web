@@ -150,13 +150,13 @@ export default async function ProjectCaseStudy({ params }: Props) {
             <div className="mt-8 grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_minmax(0,42%)] lg:gap-14">
               <Reveal>
                 <div>
-                  <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
+                  <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                     Development campaign
                   </span>
                   {p.logo ? (
                     <Image src={p.logo} alt={p.name} width={900} height={1983} priority className="mt-6 h-16 w-auto" />
                   ) : null}
-                  <h1 className="mt-6 text-4xl sm:text-5xl lg:text-[3.25rem] font-bold leading-[1.06] tracking-tight text-ink">
+                  <h1 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
                     {p.headline}
                   </h1>
                   <p className="mt-6 max-w-2xl text-lg text-muted leading-relaxed">{p.summary}</p>
@@ -258,7 +258,8 @@ export default async function ProjectCaseStudy({ params }: Props) {
           <section className="relative mt-20 sm:mt-28">
             <div className="site-container">
               <Reveal>
-                <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+                <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Landing page</span>
+                <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                   {p.landingPage.heading}
                 </h2>
                 <p className="mt-4 max-w-3xl text-lg text-muted leading-relaxed">{p.landingPage.body}</p>
@@ -290,7 +291,8 @@ export default async function ProjectCaseStudy({ params }: Props) {
           <section className="relative mt-20 sm:mt-28">
             <div className="site-container">
               <Reveal>
-                <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+                <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Creative</span>
+                <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                   {p.gallery.heading}
                 </h2>
                 <p className="mt-4 max-w-3xl text-lg text-muted leading-relaxed">{p.gallery.body}</p>
@@ -340,7 +342,8 @@ export default async function ProjectCaseStudy({ params }: Props) {
                   style={{ animationDelay: "-4s" }}
                 />
                 <div className="relative">
-                  <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-ink">
+                  <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Next step</span>
+                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                     Need this for your launch? <span className="text-gradient">Let&apos;s talk.</span>
                   </h2>
                   <CtaButton href="/appointment" className="mt-9">Book a free consultation</CtaButton>

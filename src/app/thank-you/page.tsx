@@ -58,7 +58,7 @@ export default async function ThankYouPage({ searchParams }: PageProps) {
               <Check size={26} />
             </span>
 
-            <h1 className="mt-7 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl">
+            <h1 className="mt-7 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
               {copy.heading}
             </h1>
             <p className="mx-auto mt-5 max-w-lg text-lg leading-relaxed text-muted">{copy.body}</p>

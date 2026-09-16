@@ -106,10 +106,10 @@ export default function AskAssistant() {
     <section id="ask" className="relative py-24 scroll-mt-28 sm:py-28">
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
+          <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
             <Sparkles size={13} /> Ask anything
           </span>
-          <h2 className="mt-5 text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+          <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
             Not sure what you need?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-muted leading-relaxed">

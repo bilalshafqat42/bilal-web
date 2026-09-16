@@ -72,10 +72,10 @@ export default function PrivacyPage() {
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="relative mx-auto max-w-3xl px-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
+            <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
               Privacy
             </span>
-            <h1 className="mt-5 text-4xl sm:text-5xl font-bold leading-[1.05] tracking-tight text-ink">
+            <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
               What this site stores
             </h1>
             <p className="mt-6 text-lg text-muted leading-relaxed">
@@ -92,7 +92,7 @@ export default function PrivacyPage() {
             <div className="space-y-5">
               {rows.map((r) => (
                 <div key={r.what} className="rounded-2xl border border-border panel p-6">
-                  <h2 className="text-base font-semibold text-ink">{r.what}</h2>
+                  <h2 className="text-2xl font-semibold tracking-tight text-ink">{r.what}</h2>
                   <dl className="mt-4 space-y-2.5 text-sm">
                     <div className="flex flex-col gap-0.5 sm:flex-row sm:gap-3">
                       <dt className="w-28 shrink-0 text-xs uppercase tracking-wide text-gold">Stored</dt>
@@ -112,7 +112,7 @@ export default function PrivacyPage() {
             </div>
 
             <div className="mt-10 rounded-2xl border border-border panel p-6">
-              <h2 className="text-base font-semibold text-ink">Changing your mind</h2>
+              <h2 className="text-2xl font-semibold tracking-tight text-ink">Changing your mind</h2>
               <p className="mt-3 text-sm leading-relaxed text-muted">
                 Use the button below and the banner will ask again, whichever way
                 you answered the first time. It also clears the campaign source
@@ -120,7 +120,7 @@ export default function PrivacyPage() {
                 does the same thing.
               </p>
               <ConsentReset className="mt-4" />
-              <h2 className="mt-6 text-base font-semibold text-ink">Getting your details removed</h2>
+              <h2 className="mt-6 text-2xl font-semibold tracking-tight text-ink">Getting your details removed</h2>
               <p className="mt-3 text-sm text-muted leading-relaxed">
                 If you&apos;ve sent an enquiry and want it deleted, email{" "}
                 <span className="text-gold">

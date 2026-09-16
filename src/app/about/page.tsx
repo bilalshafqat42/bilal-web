@@ -100,10 +100,10 @@ export default function AboutPage() {
           <div className="site-container relative grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
             <Reveal>
               <div>
-                <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
+                <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                   About
                 </span>
-                <h1 className="mt-5 text-4xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.05] tracking-tight text-ink">
+                <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
                   15 years of marketing, design, and development experience, in{" "}
                   <span className="underline decoration-gold decoration-4 underline-offset-4">
                     one senior partner
@@ -163,7 +163,8 @@ export default function AboutPage() {
         <section className="relative mt-24 sm:mt-32">
           <div className="site-container">
             <Reveal>
-              <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">The work</span>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                 What I actually do
               </h2>
               <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">
@@ -210,7 +211,8 @@ export default function AboutPage() {
         <section className="relative mt-24 sm:mt-32">
           <div className="site-container">
             <Reveal>
-              <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">How I work</span>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                 How working with me is different
               </h2>
             </Reveal>
@@ -231,7 +233,8 @@ export default function AboutPage() {
         <section className="relative mt-24 sm:mt-32">
           <div className="site-container">
             <Reveal>
-              <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Stack</span>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                 Platforms and tools I work in
               </h2>
               <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">
@@ -275,7 +278,8 @@ export default function AboutPage() {
                   style={{ animationDelay: "-4s" }}
                 />
                 <div className="relative">
-                  <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-ink">
+                  <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Next step</span>
+                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                     Based in Dubai, <span className="text-gradient">working with you directly.</span>
                   </h2>
                   <p className="mx-auto mt-4 max-w-xl text-muted leading-relaxed">

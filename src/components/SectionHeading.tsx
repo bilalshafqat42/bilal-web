@@ -25,11 +25,21 @@ export default function SectionHeading({
     <Reveal className={`max-w-3xl ${isCenter ? "mx-auto text-center" : "text-left"}`}>
       <div>
         {eyebrow ? (
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
+          <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
             {eyebrow}
           </span>
         ) : null}
-        <Heading className="mt-5 text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+        <Heading
+          className={
+            // An h1 is the page title and takes the site-wide h1 size; the same
+            // component used as a section h2 takes the section size. Without
+            // this split, /portfolio and /process shipped a 36px h1 while every
+            // other page had 56px.
+            Heading === "h1"
+              ? "mt-4 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]"
+              : "mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl"
+          }
+        >
           {title} {highlight ? <span className="text-gradient">{highlight}</span> : null}
         </Heading>
         {description ? (

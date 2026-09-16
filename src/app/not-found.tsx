@@ -20,10 +20,10 @@ export default function NotFound() {
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="relative mx-auto max-w-3xl px-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
+            <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
               404
             </span>
-            <h1 className="mt-5 text-4xl sm:text-5xl font-bold leading-[1.05] tracking-tight text-ink">
+            <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
               That page isn&apos;t here any more
             </h1>
             {/* Most traffic here arrives from search results for the old

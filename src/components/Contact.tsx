@@ -15,10 +15,10 @@ export default function Contact() {
             />
 
             <div className="relative">
-              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
+              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                 Book A Consultation
               </span>
-              <h2 className="mt-5 text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                 Have a project in mind? <span className="text-gradient">Let&apos;s start it.</span>
               </h2>
               <p className="mt-4 max-w-xl mx-auto text-muted leading-relaxed">

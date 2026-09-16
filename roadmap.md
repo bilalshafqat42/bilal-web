@@ -1602,7 +1602,7 @@ Bilal asked for a running list of ideas to make the site read more professional 
     **HIGH**
 
     - [x] **180.3 (done 2026-09-15) — Three field labels on `/contact` are marked up as `h2`.** "EMAIL", "WHATSAPP" and "CALL" render at 14px as section headings, so Google reads the page outline as having those three sections. **The only genuine markup error left on the site.** **Fix:** change them to `p` or `span`. Ten minutes.
-    - [ ] **180.4 — There is no type scale.** Eight `h1` sizes in use (74/72/56/54/52/48/44) and nine `h2` sizes (54/44/36/30/28/24/20/16/14). Eyebrow coverage ranges from 6 of 7 on the homepage to **0 of 6** on `/contact` and `/privacy` and 0 of 4 on the discipline pages. **Biggest single reason the site reads as unfinished between pages.** **Fix:** one scale — h1 56 with the homepage keeping 74 as a deliberate exception, h2 40, h3 24, an eyebrow above every major section, one rhythm using padding not margin. **Target: 2 h1 sizes, 3 h2 sizes, eyebrow on every major section.**
+    - [x] **180.4 — There is no type scale.** **DONE, see item 189.** Eight `h1` sizes in use (74/72/56/54/52/48/44) and nine `h2` sizes (54/44/36/30/28/24/20/16/14). Eyebrow coverage ranges from 6 of 7 on the homepage to **0 of 6** on `/contact` and `/privacy` and 0 of 4 on the discipline pages. **Biggest single reason the site reads as unfinished between pages.** **Fix:** one scale — h1 56 with the homepage keeping 74 as a deliberate exception, h2 40, h3 24, an eyebrow above every major section, one rhythm using padding not margin. **Target: 2 h1 sizes, 3 h2 sizes, eyebrow on every major section.**
     - [x] **180.5 (done 2026-09-16) — Google is truncating 14 descriptions and 7 titles.** Worst: `/` at 233 characters, `/portfolio/leos-developments` 221, `/services` 215, `/services/website-app-development` 217. Titles over 60: four discipline/portfolio pages at 77, 77, 76 and 70. **Fix:** mechanical rewrite. Do it in the same pass as 180.2 — same files. **Target: all descriptions ≤160, all titles ≤60.**
 
     **MEDIUM**
@@ -1731,3 +1731,51 @@ This is an evolving space with no official published ranking algorithm from thes
 ## Important caveat to keep repeating to Bilal
 
 No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in AI search results. Backlinks, domain age, and competition all matter and take months to build. This file describes what's fully controllable through design and technical build quality, not a ranking guarantee.
+189. **One type scale across all 28 pages (2026-09-16)** — **closes item 180.4.**
+
+    Applied the scale piloted on `/contact` to every remaining page. Measured on
+    the production build over all 28 sitemap routes.
+
+    | | Before | After | Source of the "before" |
+    |---|---|---|---|
+    | Distinct heading sizes site-wide | 17 (8 `h1` + 9 `h2`) | **4 declarations** | item 180.4 audit |
+    | Pages with zero eyebrows | 7 | **0** | item 180.4 audit |
+    | Pages with an eyebrow above every `h2` | not measured | **28 of 28** | — |
+    | Competing eyebrow styles | 2 (pill badge, mono) | **1** | measured this pass: 12 pill, 34 mono |
+
+    The before and after columns are not measured the same way: the audit counted
+    rendered *sizes*, this pass counts full class *declarations*. They are not
+    directly comparable, only directionally. The after column is measured.
+
+    The four declarations that remain are the scale itself:
+
+    - `h1` — `text-4xl sm:text-5xl lg:text-[3.5rem]` (56px), on 27 pages
+    - `h1` — `lg:text-[4.6rem]` (74px), **homepage hero only**, the agreed exception
+    - `h2` section — `text-3xl sm:text-4xl` (36px)
+    - `h2` card — `text-2xl` (24px)
+
+    Notes on what changed and why:
+
+    - **Sections went to 36px, not the 44px that was already most common.** 19
+      places used `lg:text-[2.75rem]`. Against a 56px `h1` that is a 1.27 step,
+      too tight to read as a level change. 36px gives 1.56 and matches the card
+      size at 1.5.
+    - **Two eyebrow styles existed, not one missing style.** A rounded pill badge
+      (12 uses) and a flat gold mono label (34 uses). The audit's "0 eyebrows"
+      counts for `/about` and `/pricing` were partly this — the detector only
+      looked for the mono one. All 12 pills are now mono. The pill on
+      `/services/[slug]` keeps its `${accent.icon}` colour, so the pending
+      violet-or-gold decision still applies to it.
+    - **`SectionHeading.tsx` rendered its `h1` at the `h2` size**, so `/portfolio`
+      and `/process` shipped a 36px page title while every other page had 56px.
+      It now sizes by tag.
+    - 21 section headings had no eyebrow at all and got one written to label the
+      section: "The brief", "Website", "Mobile app", "Campaigns", "Cost drivers",
+      "Next step" above each closing CTA, and so on.
+
+    Verified: `h1-check` (28/28 exactly one non-empty h1), `schema-check` (28/28),
+    `search-check` (32 checks, 183 chunks), `discipline-check`, `tsc`, `lint`,
+    production build.
+
+    Still open from item 180: **180.9** — the four discipline pages (301–322
+    words) and `/process` (330) need thickening to 600–800.

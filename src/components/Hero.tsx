@@ -25,7 +25,7 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-16 items-center">
           <Reveal>
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
+              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                 <Sparkles size={14} /> Marketing · Design · Development Studio
               </span>
 

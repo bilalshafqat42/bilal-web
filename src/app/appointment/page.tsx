@@ -196,7 +196,7 @@ export default function AppointmentPage() {
                 I am the right fit for what you are trying to do.
               </p>
 
-              <h1 className="mt-5 text-5xl font-bold leading-[1.02] tracking-tight text-ink sm:text-6xl lg:text-[4.5rem]">
+              <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
                 Let&apos;s talk about
                 <br />
                 <span className="text-gradient">what you need</span>
@@ -236,7 +236,7 @@ export default function AppointmentPage() {
                     the h1 to a definition list — invisible as a section to a
                     screen reader moving by heading, and to anything building an
                     outline of the page. */}
-                <h2 className="mt-3 text-2xl font-semibold leading-tight tracking-tight text-ink">
+                <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">
                   Common questions
                 </h2>
                 <dl className="mt-6 divide-y divide-border border-b border-border">

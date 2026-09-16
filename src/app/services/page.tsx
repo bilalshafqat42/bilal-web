@@ -64,10 +64,10 @@ export default function ServicesPage() {
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="relative mx-auto max-w-4xl px-6 text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
+            <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
               Services
             </span>
-            <h1 className="mt-5 text-4xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.05] tracking-tight text-ink">
+            <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
               Eight services, one senior partner
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted leading-relaxed">
@@ -98,7 +98,7 @@ export default function ServicesPage() {
                       <span className={`h-2.5 w-2.5 rounded-full ${accent.dot}`} />
                     </div>
 
-                    <h2 className="relative mt-6 text-2xl font-semibold leading-tight text-ink">
+                    <h2 className="relative mt-6 text-2xl font-semibold tracking-tight text-ink">
                       {pillar.title}
                     </h2>
                     <p className="relative mt-3 text-sm text-muted leading-relaxed">{pillar.metaDescription}</p>

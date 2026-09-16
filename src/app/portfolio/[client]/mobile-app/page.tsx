@@ -116,7 +116,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                   <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                     Case study · Property &amp; real estate
                   </span>
-                  <h1 className="mt-5 text-4xl font-bold leading-[1.04] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
+                  <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
                     A cross-platform app, from one codebase.
                   </h1>
                   <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted">{app.body}</p>
@@ -208,7 +208,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                   <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                     The work
                   </span>
-                  <h2 className="mt-4 max-w-2xl text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl lg:text-[2.75rem]">
+                  <h2 className="mt-4 max-w-2xl text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                     Screen by screen, and why each one is built that way.
                   </h2>
                 </div>
@@ -310,7 +310,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                   <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                     Scope
                   </span>
-                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl lg:text-[2.75rem]">
+                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                     What I handled on this project.
                   </h2>
                 </div>
@@ -344,7 +344,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                   <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                     Outcome
                   </span>
-                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl lg:text-[2.75rem]">
+                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                     What it changed.
                   </h2>
                 </div>

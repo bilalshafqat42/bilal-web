@@ -104,7 +104,7 @@ export default async function ClientCaseStudy({ params }: Props) {
             <Reveal>
               <div className="mt-8 max-w-3xl">
                 <Image src={c.logo} alt={c.name} width={2000} height={551} priority className="h-10 w-auto" />
-                <h1 className="mt-7 text-4xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.05] tracking-tight text-ink">
+                <h1 className="mt-7 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
                   {c.headline}
                 </h1>
                 <p className="mt-6 text-lg text-muted leading-relaxed">{c.intro}</p>
@@ -122,7 +122,8 @@ export default async function ClientCaseStudy({ params }: Props) {
         <section className="relative mt-20 sm:mt-28">
           <div className="site-container">
             <Reveal>
-              <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">The brief</span>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                 Scope of work
               </h2>
               <p className="mt-4 max-w-3xl text-lg text-muted leading-relaxed">{c.scopeIntro}</p>
@@ -144,7 +145,8 @@ export default async function ClientCaseStudy({ params }: Props) {
           <section className="relative mt-20 sm:mt-28">
             <div className="site-container">
               <Reveal>
-                <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+                <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Website</span>
+                <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                   {c.website.heading}
                 </h2>
                 <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">{c.website.body}</p>
@@ -212,7 +214,8 @@ export default async function ClientCaseStudy({ params }: Props) {
 
                 <Reveal delay={0.1}>
                   <div>
-                    <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+                    <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Mobile app</span>
+                    <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                       {c.mobileApp.heading}
                     </h2>
                     <p className="mt-4 text-lg text-muted leading-relaxed">{c.mobileApp.body}</p>
@@ -227,7 +230,8 @@ export default async function ClientCaseStudy({ params }: Props) {
           <section className="relative mt-20 sm:mt-28">
             <div className="site-container">
               <Reveal>
-                <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+                <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Brand and social</span>
+                <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                   {c.brandSocial.heading}
                 </h2>
                 <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">{c.brandSocial.body}</p>
@@ -246,7 +250,8 @@ export default async function ClientCaseStudy({ params }: Props) {
           <section id="projects" className="relative mt-20 scroll-mt-28 border-t border-border pt-20 sm:mt-28 sm:pt-24">
             <div className="site-container">
               <Reveal>
-                <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+                <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Campaigns</span>
+                <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                   {c.projects.length === 1 ? "Development campaign" : "Development campaigns"}
                 </h2>
                 <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">
@@ -297,7 +302,8 @@ export default async function ClientCaseStudy({ params }: Props) {
                   style={{ animationDelay: "-4s" }}
                 />
                 <div className="relative">
-                  <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-ink">
+                  <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Next step</span>
+                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                     Launching a development? <span className="text-gradient">Let&apos;s talk.</span>
                   </h2>
                   <div className="mt-9 flex flex-wrap items-center justify-center gap-4">

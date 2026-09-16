@@ -215,7 +215,7 @@ export default function DisciplinePage({ slug }: { slug: string }) {
             <span className="mt-8 block font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
               {d.title} · {items.length} {items.length === 1 ? "piece" : "pieces"}
             </span>
-            <h1 className="mt-4 max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl lg:text-[2.75rem]">
+            <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
               {d.page.headline}
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">

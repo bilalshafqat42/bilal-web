@@ -50,7 +50,7 @@ export default function FaqPage() {
               <ChevronRight size={13} />
               <span className="text-ink">FAQ</span>
             </nav>
-            <h1 className="mt-8 text-4xl sm:text-5xl lg:text-[3.25rem] font-bold leading-[1.06] tracking-tight text-ink">
+            <h1 className="mt-8 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
               Questions people actually ask
             </h1>
             <p className="mt-6 text-lg text-muted leading-relaxed">
@@ -77,7 +77,7 @@ export default function FaqPage() {
           <section key={group.id} id={group.id} className="relative mt-16 scroll-mt-28 sm:mt-20">
             <div className="mx-auto max-w-3xl px-6">
               <Reveal>
-                <h2 className="text-2xl sm:text-3xl font-semibold leading-tight text-ink">
+                <h2 className="text-2xl font-semibold tracking-tight text-ink">
                   {group.title}
                 </h2>
               </Reveal>
@@ -113,7 +113,8 @@ export default function FaqPage() {
                   style={{ animationDelay: "-4s" }}
                 />
                 <div className="relative">
-                  <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-ink">
+                  <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Next step</span>
+                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                     Still deciding? <span className="text-gradient">Just ask.</span>
                   </h2>
                   <p className="mx-auto mt-4 max-w-xl text-muted leading-relaxed">

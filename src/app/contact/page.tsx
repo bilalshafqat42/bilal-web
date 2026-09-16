@@ -114,10 +114,10 @@ export default function ContactPage() {
               layout. Centring is kept for the closing CTA below, where it is a
               deliberate full-width moment rather than the page's default. */}
           <div className="site-container relative">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold uppercase">
+            <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
               Contact
             </span>
-            <h1 className="mt-5 text-4xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.05] tracking-tight text-ink">
+            <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
               Talk to the person who&apos;ll actually do the work
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-muted leading-relaxed">
@@ -266,7 +266,7 @@ export default function ContactPage() {
                 />
                 <div className="relative">
                   <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Start anywhere</span>
-                  <h2 className="mt-3 text-3xl sm:text-4xl font-semibold leading-tight tracking-tight text-ink">
+                  <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                     Not sure what you need yet?{" "}
                     <span className="text-gradient">Start there.</span>
                   </h2>

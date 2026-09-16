@@ -37,7 +37,7 @@ export default function CapabilityLedger() {
         </span>
 
         <div className="mt-7 grid grid-cols-1 gap-8 lg:grid-cols-[1.35fr_1fr] lg:items-start lg:gap-16">
-          <h2 className="text-4xl font-semibold leading-[1.08] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
+          <h2 className="text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
             Four disciplines.
             <br />
             One{" "}

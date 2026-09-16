@@ -118,7 +118,7 @@ export default function PricingPage() {
               <ChevronRight size={13} />
               <span className="text-ink">Pricing</span>
             </nav>
-            <h1 className="mt-8 text-4xl sm:text-5xl lg:text-[3.25rem] font-bold leading-[1.06] tracking-tight text-ink">
+            <h1 className="mt-8 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
               How projects are priced
             </h1>
             <p className="mt-6 text-lg text-muted leading-relaxed">
@@ -133,7 +133,8 @@ export default function PricingPage() {
         <section className="relative mt-16 sm:mt-20">
           <div className="mx-auto max-w-5xl px-6">
             <Reveal>
-              <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-ink">
+              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Engagement models</span>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                 Four ways of working
               </h2>
             </Reveal>
@@ -156,7 +157,8 @@ export default function PricingPage() {
         <section className="relative mt-20 sm:mt-24">
           <div className="mx-auto max-w-5xl px-6">
             <Reveal>
-              <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-ink">
+              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Cost drivers</span>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                 What moves the price
               </h2>
               <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">
@@ -196,7 +198,8 @@ export default function PricingPage() {
         <section className="relative mt-20 sm:mt-24">
           <div className="mx-auto max-w-3xl px-6">
             <Reveal>
-              <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-ink">
+              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Questions</span>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                 Pricing questions
               </h2>
             </Reveal>
@@ -231,7 +234,8 @@ export default function PricingPage() {
                   style={{ animationDelay: "-4s" }}
                 />
                 <div className="relative">
-                  <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-ink">
+                  <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Next step</span>
+                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                     Describe the project, <span className="text-gradient">get a real number.</span>
                   </h2>
                   <p className="mx-auto mt-4 max-w-xl text-muted leading-relaxed">

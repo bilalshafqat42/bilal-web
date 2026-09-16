@@ -130,7 +130,7 @@ export default function AppointmentBooking() {
         <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gold/15 text-gold">
           <Check size={22} />
         </span>
-        <h2 className="mt-5 text-2xl font-semibold text-ink">Request sent</h2>
+        <h2 className="mt-5 text-2xl font-semibold tracking-tight text-ink">Request sent</h2>
         <p className="mx-auto mt-3 max-w-sm text-base leading-relaxed text-muted">
           You asked for {chosenLabel} at {slot}. I confirm every call by email
           personally, usually the same working day, so treat this as requested
@@ -236,7 +236,7 @@ export default function AppointmentBooking() {
 
     return (
       <div className="glass-strong rounded-2xl border border-border p-6 sm:p-8">
-        <h2 className="text-2xl font-semibold leading-tight text-ink sm:text-[1.75rem]">
+        <h2 className="text-2xl font-semibold tracking-tight text-ink">
           Book your 30-minute clarity call
         </h2>
         <p className="mt-3 text-base leading-relaxed text-muted">
@@ -275,7 +275,7 @@ export default function AppointmentBooking() {
         </div>
       </div>
 
-      <h2 className="mt-6 text-2xl font-semibold leading-tight text-ink sm:text-[1.75rem]">
+      <h2 className="mt-6 text-2xl font-semibold tracking-tight text-ink">
         Book your 30-minute clarity call
       </h2>
       <p className="mt-3 text-base leading-relaxed text-muted">

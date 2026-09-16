@@ -115,10 +115,10 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
 
             <Reveal>
               <div className="mt-8">
-                <span className={`inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide uppercase ${accent.icon}`}>
+                <span className={`inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] ${accent.icon}`}>
                   {category.title}
                 </span>
-                <h1 className="mt-5 text-4xl sm:text-5xl lg:text-[3.25rem] font-bold leading-[1.06] tracking-tight text-ink">
+                <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
                   {category.headline}
                 </h1>
                 <p className="mt-6 text-lg text-muted leading-relaxed">{category.intro}</p>
@@ -146,7 +146,8 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
         <section className="relative mt-20 sm:mt-24">
           <div className="mx-auto max-w-4xl px-6">
             <Reveal>
-              <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Scope</span>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                 What this covers
               </h2>
             </Reveal>
@@ -174,7 +175,8 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
           <section className="relative mt-20 sm:mt-24">
             <div className="mx-auto max-w-4xl px-6">
               <Reveal>
-                <h2 className="text-3xl font-semibold leading-tight text-ink sm:text-4xl lg:text-[2.75rem]">
+                <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Process</span>
+                <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                   How this works in practice
                 </h2>
               </Reveal>
@@ -202,7 +204,8 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
           <section className="relative mt-20 sm:mt-24">
             <div className="mx-auto max-w-4xl px-6">
               <Reveal>
-                <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold leading-tight text-ink">
+                <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Questions</span>
+                <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                   Frequently asked
                 </h2>
               </Reveal>
@@ -266,7 +269,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
         <section className="relative mt-20 sm:mt-24">
           <div className="mx-auto max-w-4xl px-6">
             <Reveal>
-              <h2 className="text-2xl font-semibold text-ink">Other services</h2>
+              <h2 className="text-2xl font-semibold tracking-tight text-ink">Other services</h2>
             </Reveal>
             <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {others.map((o) => (
