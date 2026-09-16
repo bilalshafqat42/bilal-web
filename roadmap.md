@@ -1993,3 +1993,47 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
     Verified: `h1-check` 28/28, `schema-check` 28/28 (HowTo still carries 4
     steps from the same data the page renders), `search-check` 32 checks,
     `discipline-check`, `tsc`, `lint`, production build. Matrix v3.5.
+
+195. **FAQs added to `/process` — and the thin-content problem closed with them (2026-09-16)** — **done. `/process` is now fully clean.**
+
+    Bilal asked for FAQs on this page. They also happen to be the honest way to
+    fix its word count: **360 → 673 words**, past the 600 threshold, without a
+    single padded sentence.
+
+    **Five questions, none of them duplicating `/faq`.** That page already
+    answers "how does a project usually start", "what do you need from me to get
+    started" and "how do you measure whether marketing is working". Repeating
+    those would put the same answer on two indexable pages competing with each
+    other — the exact problem item 23 records for the engagement models. These
+    five are about the *process itself*:
+
+    1. Does every project go through all four stages?
+    2. Is the process the same for a campaign as it is for a website?
+    3. Who runs each stage?
+    4. What happens after stage four?
+    5. At what point do I find out what it costs?
+
+    **Every answer restates something already published on this site**, and the
+    source of each is recorded in a comment above the array so the next person
+    can check rather than trust: `faqs.ts` ("Can you work with our existing
+    agency or in-house team", "Who actually does the work"), `disciplines.ts`
+    ("Can you take over an existing website"), this page's own intro line, and
+    stage 04's own bullet "Handover or ongoing support".
+
+    `FAQPage` added to the graph via `faqNode`, built from the same array the
+    page renders, so the markup cannot describe an answer a visitor cannot read.
+    Schema is now `WebPage` + `HowTo` + `BreadcrumbList` + `FAQPage`. As item 180
+    records, `FAQPage` no longer produces a Google rich result — it is kept
+    because it is valid and AI search reads it, not because it will show stars.
+
+    **`/process` final state:** 673 words, 745KB, 1 h1, 7 h2, eyebrow on all 7
+    sections, 2 heading declarations, four schema types. **Fully clean.**
+
+    **Still open and still Bilal's:** what each stage *produces*. The page says
+    what happens and answers how the work runs, but not what the client receives
+    at the end of a stage, how long one runs, or whether a project can stop
+    between them. That is deliberately absent, not overlooked.
+
+    Matrix v3.6: **23 of 28 routes fully clean.** Verified: `h1-check` 28/28,
+    `schema-check` 28/28, `search-check` 32 checks, `discipline-check`, `tsc`,
+    `lint`, production build.
