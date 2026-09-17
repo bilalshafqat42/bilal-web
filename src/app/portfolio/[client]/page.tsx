@@ -258,6 +258,17 @@ export default async function ClientCaseStudy({ params }: Props) {
                   Each launch ran the same way: a landing page built to capture
                   qualified leads, and the campaign creative that fed it.
                 </p>
+                {/* Contextual link to the vertical page. This is the most
+                    relevant page on the site to send a property developer to,
+                    and the vertical needs inbound links from somewhere other
+                    than the footer to be worth crawling. */}
+                <Link
+                  href="/real-estate-marketing"
+                  className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+                >
+                  How an off-plan launch is run, start to finish
+                  <ArrowRight size={15} />
+                </Link>
               </Reveal>
 
               <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

@@ -39,6 +39,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      // The off-plan vertical. Sits at the root rather than under /services
+      // because it is an industry page cutting across several disciplines, not
+      // a ninth service category.
+      url: `${baseUrl}/real-estate-marketing`,
+      lastModified: dateFor("/real-estate-marketing"),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/pricing`,
       lastModified: dateFor("/pricing"),
       changeFrequency: "monthly",

@@ -162,6 +162,18 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              {/* The off-plan vertical. Hand-written rather than derived, because
+                  it is an industry page and `disciplinesWithPages()` only knows
+                  about disciplines. Without a link here it was an orphan — no
+                  page on the site pointed at it. */}
+              <li>
+                <Link
+                  href="/real-estate-marketing"
+                  className="text-sm text-muted transition-colors hover:text-gold"
+                >
+                  Real Estate Marketing
+                </Link>
+              </li>
               <li>
                 <Link href="/portfolio" className="text-sm text-muted transition-colors hover:text-gold">
                   All work

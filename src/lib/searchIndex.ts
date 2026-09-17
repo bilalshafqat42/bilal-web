@@ -124,6 +124,16 @@ export function buildIndex(): Chunk[] {
     url: "/pricing",
     kind: "info",
   });
+  // The off-plan vertical. Added by hand because this page is a standalone
+  // route rather than a service category, so none of the builders above reach
+  // it — without this it is the one page on the site its own search cannot find.
+  chunks.push({
+    title: "Real estate marketing for off-plan launches",
+    body:
+      "Off-plan property launch marketing for developers in Dubai and the UK: the landing page, the campaign creative and the lead capture built together rather than bought separately. Four launches for LEOS Developments over two years - Hadley Heights, Cavendish Square, Weybridge Gardens and Weybridge Gardens 2 - plus the corporate website, the mobile app and the brand social work. The entry price sits in the hero so unqualified traffic self-selects out, one primary call to action short enough to finish on a phone, a separate route for existing buyers so they stay out of the new-enquiry list, and a brochure download as a lower-commitment second entry point.",
+    url: "/real-estate-marketing",
+    kind: "service",
+  });
   chunks.push({
     title: "Getting in touch",
     body: "Email bilalshafqat42@gmail.com or WhatsApp +971 52 976 6006. Based in Dubai, Gulf Standard Time UTC+4, Monday to Friday. Replies usually within one business day, same day on WhatsApp. Works with clients across the UAE and internationally.",

@@ -2227,3 +2227,62 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
     `header-item-in`, the `.header-enter` rules, both nth-child delays and the
     reduced-motion block are all present in the production chunk. **Site JS
     unchanged at 740-758KB** — the animation adds no JavaScript at all.
+
+200. **`/real-estate-marketing` built — executes Phase 3 item 10 (2026-09-17)** — **done. The site's 29th route.**
+
+    The vertical page the roadmap has called the "highest-value unplayed card"
+    since August. Measured evidence for building it rather than anything else:
+    **5 real estate case study pages totalling 3,871 words, 4 named launches, 92
+    references to real estate in `caseStudies.ts` — and zero pages targeting the
+    phrase.**
+
+    **A standalone route, not a ninth `megaMenuGroups` entry.** Every service
+    page is a *discipline*; this is an *industry*, so it cuts across several of
+    them. A category's `items` must also each match a pillar section title by
+    exact string, which a vertical cannot satisfy. `/real-estate-marketing`
+    rather than `/services/...` is the URL the roadmap specified, and the shorter
+    path is the better target for the phrase.
+
+    **Framing decision made without Bilal.** He was asked whether the page should
+    sell the full launch package or specifically off-plan lead generation, and
+    answered "please start". The full package was chosen: it is what the evidence
+    actually covers end to end, and one person owning all of it is the argument
+    only he can make. The sharper phrasing sits in the title and headline.
+
+    **Every specific is lifted from published work** — the price qualifier in the
+    hero (AED 1M on Hadley, AED 600K on Weybridge 2), the UAE-formatted phone
+    field, the brochure as a lower-commitment second route, Check Construction
+    Progress keeping existing buyers out of the new-enquiry list, the five-slide
+    carousel ordering, the light editorial template distinct from the parent
+    brand. Nothing is a general claim about property marketing.
+
+    **No campaign results appear anywhere on it.** Lead counts and cost per lead
+    for Hadley Heights are still outstanding and need LEOS's permission. The page
+    argues from decisions and shipped work instead.
+
+    **Two things caught by measuring rather than by eye:**
+
+    - **The page was an orphan.** Zero of the 29 routes linked to it. An orphan
+      page is barely crawled, so the whole build would have been wasted. Now
+      linked from the footer (which puts it on all 29) and contextually from the
+      LEOS client page, which is the most relevant page to send a developer from.
+    - **It was invisible to the site's own search.** `buildIndex()` walks
+      pillars, categories, FAQs, clients and disciplines — a standalone route
+      reaches none of them. A hand-written chunk was added; index 183 → 184.
+
+    Title landed at 63 characters on the first pass and was trimmed to 58.
+
+    **Final state:** 1,118 words, title 58, description 155, 1 h1, 5 h2, eyebrow
+    on all 5 sections, 2 heading declarations, 740KB, `Service` +
+    `BreadcrumbList` + `FAQPage`. Four FAQs, none duplicating the six on Hadley
+    Heights.
+
+    **Mobile Development was considered and deliberately not built.** One app,
+    one client, 1,309 words — against four launches and 3,871 for real estate. It
+    is already a proper section inside `/services/website-app-development`, the
+    strongest page on the site at 1,465 words. Splitting it out would weaken a
+    strong page to start a thin one. Revisit at the second app.
+
+    Verified: `h1-check` 29/29, `schema-check` 29/29, `search-check` 32 checks,
+    `discipline-check`, `tsc`, `lint`, build, and **zero routes failing any hard
+    check**.
