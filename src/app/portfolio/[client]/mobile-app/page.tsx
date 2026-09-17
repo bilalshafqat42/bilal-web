@@ -107,6 +107,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${c.name} App — React Native Case Study`,
     description: `A cross-platform iOS and Android app for ${c.name}, built in React Native from a single codebase and walked through screen by screen.`,
     alternates: { canonical: `/portfolio/${c.slug}/mobile-app` },
+    // Its own card rather than inheriting the site default. Supplied by Bilal at
+    // exactly 1200x630, which is the size every platform crops to.
+    openGraph: {
+      title: `${c.name} App — React Native Case Study`,
+      description: `A cross-platform iOS and Android app for ${c.name}, built in React Native from a single codebase.`,
+      url: `${SITE}/portfolio/${c.slug}/mobile-app`,
+      images: [
+        {
+          url: `${SITE}/portfolio/leos/mobile-app/og-leos-mobile.avif`,
+          width: 1200,
+          height: 630,
+          alt: `The ${c.name} app sign-in screen shown on an iPhone`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [`${SITE}/portfolio/leos/mobile-app/og-leos-mobile.avif`],
+    },
   };
 }
 
@@ -338,13 +357,31 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                                 "radial-gradient(ellipse 70% 60% at 50% 40%, rgba(242,201,76,0.07), transparent 72%)",
                             }}
                           />
-                          <div
-                            className={`relative w-[196px] xl:mb-[-36px] xl:w-[204px] ${
-                              phoneRight ? "rotate-[7deg]" : "rotate-[-7deg]"
-                            }`}
-                          >
-                            <DeviceFrame capture={s.capture} eager={i === 0} />
-                          </div>
+                          {/* A lifestyle mockup already contains a phone, so it
+                              is shown as-is. Wrapping it in DeviceFrame would
+                              render a phone inside a phone, and the tilt that
+                              suits a bare frame fights a photographed one. */}
+                          {s.mockup ? (
+                            <div className="relative w-full max-w-[420px] overflow-hidden rounded-2xl border border-border">
+                              <Image
+                                src={s.capture.src}
+                                alt={s.capture.alt}
+                                width={s.capture.width}
+                                height={s.capture.height}
+                                sizes="(min-width:1280px) 420px, 90vw"
+                                priority={i === 0}
+                                className="h-auto w-full"
+                              />
+                            </div>
+                          ) : (
+                            <div
+                              className={`relative w-[196px] xl:mb-[-36px] xl:w-[204px] ${
+                                phoneRight ? "rotate-[7deg]" : "rotate-[-7deg]"
+                              }`}
+                            >
+                              <DeviceFrame capture={s.capture} eager={i === 0} />
+                            </div>
+                          )}
                         </div>
 
                         <div className="flex flex-col justify-center px-8 pb-10 pt-2 xl:order-2 xl:py-12">

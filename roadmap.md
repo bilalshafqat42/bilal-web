@@ -2518,3 +2518,69 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
     Same reasoning holds for the other three anchor-only disciplines — Web
     Designing, Paid Marketing and CRM Integration. Email is the one Bilal asked
     for; the others queue behind the same evidence test.
+
+207. **Work page rebuilt argument-first, email marketing page built, LEOS app images replaced (2026-09-17)** — **done. 30 routes.**
+
+    **A. The mobile app case study was broken, and nobody had noticed.** Bilal
+    replaced the LEOS app images and moved the originals into `raw/`. **All six
+    images the code referenced were 404ing**, including the lead composite
+    `leos-app-5-screens.avif`, which no longer exists anywhere. Found by checking
+    every referenced path against the filesystem, not by looking at the page.
+
+    The new set is five lifestyle mockups (phones photographed on gold and
+    concrete), not flat screen recordings. That mattered: three of them go where
+    `DeviceFrame` used to render a phone frame, and **wrapping a mockup in a
+    device frame puts a phone inside a phone**. A `mockup?: boolean` now marks
+    those three and they render directly, untilted — the 7° rotation that suits a
+    bare frame fights a photographed one.
+
+    Two screens — `home` and `developments` — have no mockup, so their original
+    captures were restored from `raw/` and still use `DeviceFrame`. **The set is
+    therefore visually mixed until Bilal supplies mockups for those two.**
+
+    The lead image's alt text was rewritten. It described "five screens shown in
+    iPhone frames", which is not what the new image shows, and alt text
+    describing a different picture is worse than none.
+
+    **`og-leos-mobile.avif` wired up** at exactly 1200x630, with a matching
+    `twitter:summary_large_image`. This route previously inherited the site
+    default.
+
+    **B. `/portfolio` rebuilt to the wireframe (item 205's comparison).**
+
+    - **H1 is now a claim, not a category.** "Four off-plan launches where one
+      person owned the page and the spend" replaces "Case studies across
+      marketing, design & development". Of the seven portfolio pages measured on
+      2026-09-17, only brande.ae and michaeltsirakis.com opened with a claim; the
+      other five used a category label.
+    - **A "one decision" block above the grid** — the GEO block. AI answers quote
+      specific checkable reasoning, and the entry-price trade is the most
+      quotable paragraph on the site. Lifted from the Hadley Heights case study
+      rather than written fresh.
+    - **Featured card removed.** It linked to LEOS Developments; so does the
+      first card in the grid directly below it.
+    - **Logo wall removed.** "Trusted Across UK & UAE Real Estate" above one
+      logo. None of the seven references shows a logo wall with a single logo.
+      The component is untouched and returns at a third client.
+    - **Discipline strip moved below the work.** Above it, it competed with the
+      grid's own filters. Its comment claimed it was the hub the Portfolio mega
+      menu pointed into — that menu was removed with the nav trim, so the comment
+      was corrected too.
+    - Title and description rewritten; the old description said "browse by
+      discipline", which described the page this one replaced.
+
+    **C. `/services/email-marketing` built (closes the build half of item 206).**
+    1,227 words. **It argues method, not results, and says so on the page.** Its
+    first FAQ is "Do you have a published email case study?" and the answer is
+    no. No email campaign exists in `caseStudies.ts` to derive proof from, and
+    the alternative — plausible outcomes nobody can point at — is what item 206
+    was written to avoid. The four depth blocks cover segmentation, sequences
+    versus campaigns, where email sits against WhatsApp in the UAE, and
+    deliverability as a DNS problem rather than a copy problem.
+
+    The Email Marketing discipline's `serviceHref` was repointed from
+    `/services/digital-marketing#email-marketing` to the new page.
+
+    Verified: `h1-check` 30/30, `schema-check` 30/30, `search-check` 32 checks
+    (index 184 → 196), `discipline-check`, `tsc`, `lint`, build, **zero routes
+    failing any hard check, zero broken images on the app case study**.

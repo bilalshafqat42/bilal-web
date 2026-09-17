@@ -220,7 +220,9 @@ export const disciplines: Discipline[] = [
     title: "Email Marketing",
     group: "Marketing",
     blurb: "Sequences and broadcasts that reach the inbox",
-    serviceHref: "/services/digital-marketing#email-marketing",
+    // Was an anchor inside /services/digital-marketing until the page existed
+    // (roadmap 206). Now a destination of its own.
+    serviceHref: "/services/email-marketing",
   },
   {
     slug: "crm-integration",

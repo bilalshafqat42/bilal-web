@@ -613,6 +613,52 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     ],
   },
   {
+    /** Added 2026-09-17 at Bilal's request (roadmap 206).
+     *
+     *  **This page argues method, not results, and that is deliberate.** No case
+     *  study on this site involves an email campaign, so there is nothing to
+     *  derive proof from. Rather than pad it with plausible outcomes nobody can
+     *  point at, every claim here describes how the work is done. The page says
+     *  so in the open, because a service page with no proof that pretends
+     *  otherwise is worse than one that is honest about it. */
+    slug: "email-marketing",
+    title: "Email Marketing",
+    accent: "gold",
+    headline: "Email that follows up properly, because the CRM behind it is set up right",
+    intro:
+      "Most email problems in the UAE are not writing problems. The sequence fires from a list nobody segmented, to contacts a form dropped in with no source attached, about an offer that stopped running. Email is the last step of a chain, and it fails where the chain does — which is usually two steps earlier, in the form or the CRM.",
+    metaTitle: "Email Marketing & Automation, Dubai — Bilal Shafqat",
+    metaDescription:
+      "Welcome and nurture sequences, list segmentation and campaign design, wired into the CRM that feeds them. Dubai-based, for UAE and UK clients.",
+    faqs: [
+      {
+        question: "Do you have a published email case study?",
+        answer:
+          "Not yet. The work on this site is website, app, launch campaign and social, and none of those write-ups involve an email sequence. I would rather tell you that than show you a number you cannot check. If email is the main thing you need, ask on the call and I will be straight about whether I am the right person for it.",
+      },
+      {
+        question: "Is email still worth it in the UAE when everyone uses WhatsApp?",
+        answer:
+          "They do different jobs. WhatsApp is immediate and personal, which makes it right for a hot lead and wrong for a fourteen-message nurture sequence nobody asked for. Email carries the long middle — the buyer six months out who is not ready to talk. Most setups here need both, with the CRM deciding which channel a contact is on.",
+      },
+      {
+        question: "Which platform do you work in?",
+        answer:
+          "Whichever one your CRM already talks to. I set up HubSpot, Zoho and Salesforce, and the email tool that matters is the one that shares a contact record with them rather than keeping a second list that drifts out of date. If you have no CRM yet, that decision comes first and the email tool follows it.",
+      },
+      {
+        question: "Do you write the emails or just build the sequence?",
+        answer:
+          "Both, and they are hard to separate usefully — the sequence structure is a writing decision. If you have a brand voice or an in-house writer, I will build to it and say where the structure is fighting the copy.",
+      },
+    ],
+    items: [
+      { title: "Email Marketing", pillarSlug: "paid-marketing" },
+      { title: "WhatsApp Marketing", pillarSlug: "paid-marketing" },
+      { title: "CRM & MarTech Integration", pillarSlug: "crm-marketing-automation" },
+    ],
+  },
+  {
     slug: "video-conversion",
     title: "Video & Conversion",
     headline: "Video that gets watched, and pages that convert what it sends",

@@ -160,6 +160,11 @@ export type Client = {
        *  capture itself — a spec panel is only worth having if a reader could
        *  check it against the screen next to it. */
       glance: { label: string; value: string }[];
+      /** True when `capture` is a lifestyle mockup that already contains a
+       *  phone, rather than a flat screen recording. Those must not be rendered
+       *  inside `DeviceFrame` — the result is a phone inside a phone. Added
+       *  2026-09-17 when Bilal supplied mockups for three of the five screens. */
+      mockup?: boolean;
       capture: Capture;
     }[];
     /** The constraints the design had to satisfy. Reasoning, not measurements —
@@ -502,11 +507,17 @@ export const clients: Client[] = [
     },
     mobileApp: {
       heading: "The mobile app",
+      /** Replaced 2026-09-17. The old `leos-app-5-screens.avif` composite no
+       *  longer exists — Bilal supplied a set of lifestyle mockups instead, and
+       *  this is the lead one. The alt text changed with it: the previous text
+       *  described five screens in device frames, which is not what this image
+       *  shows, and alt text that describes a different picture is worse than
+       *  none. */
       lead: {
-        src: "/portfolio/leos/mobile-app/leos-app-5-screens.avif",
-        width: 2403,
-        height: 1231,
-        alt: "Five screens of the LEOS app shown in iPhone frames: the menu, sign-in, the Hadley Heights home screen, the developments list, and the enquiry form",
+        src: "/portfolio/leos/mobile-app/leos-mobile-featured.avif",
+        width: 1376,
+        height: 768,
+        alt: "The LEOS app open on the Hadley Heights development, shown on an iPhone resting on a brushed gold surface",
       },
       body:
         "A cross-platform app for iOS and Android, built in React Native from a single codebase. It carries the same developments as the website — Hadley Heights, Weybridge Gardens and Cavendish Square — so a buyer who first saw a launch page finds the same units, the same photography and the same enquiry routes on their phone rather than a thinner version of the site.",
@@ -575,10 +586,11 @@ export const clients: Client[] = [
           label: "Sign in",
           journey:
             "The first decision is whether to make anyone sign in at all. Most first visits to a property app are browsing, not buying, so a wall in front of the developments loses the people it is meant to qualify. Continue as guest sits directly under the login button, at the same weight — an account is offered, not demanded.",
+          mockup: true,
           capture: {
-            src: "/portfolio/leos/mobile-app/leos-login.avif",
-            width: 1206,
-            height: 2622,
+            src: "/portfolio/leos/mobile-app/leos-login-mobile.avif",
+            width: 1398,
+            height: 768,
             alt: "LEOS app sign-in screen with email and password fields and a continue-as-guest option",
             label: "Sign in",
           },
@@ -635,10 +647,11 @@ export const clients: Client[] = [
           label: "Menu",
           journey:
             "Developments, investments, the LEOS Hub and news, as a slide-over rather than a tab bar — five destinations of uneven importance do not divide well into equal tabs. Log out sits at the bottom in the accent colour, visible rather than buried in a settings screen two levels down.",
+          mockup: true,
           capture: {
-            src: "/portfolio/leos/mobile-app/leos-menu.avif",
-            width: 1206,
-            height: 2622,
+            src: "/portfolio/leos/mobile-app/leos-mobile-menu.avif",
+            width: 1080,
+            height: 1920,
             alt: "LEOS app slide-over menu with developments, investments, LEOS Hub, news and about",
             label: "Menu",
           },
@@ -655,10 +668,11 @@ export const clients: Client[] = [
           tag: "Reachable from every card",
           journey:
             "Name, email, phone and a message. Every extra field on a property enquiry costs completions, and the ones that matter for a first conversation are how to reach someone and roughly what they want. Qualification happens on the call, not in the form. It is reachable from every development card, so nobody has to navigate back to a contact page to act on what they are looking at.",
+          mockup: true,
           capture: {
-            src: "/portfolio/leos/mobile-app/contact.avif",
-            width: 1206,
-            height: 2622,
+            src: "/portfolio/leos/mobile-app/enquiry.avif",
+            width: 1080,
+            height: 1920,
             alt: "LEOS app enquiry screen headed How can we help, with full name, email, phone and message fields above a send enquiry button",
             label: "Enquire",
           },

@@ -10,16 +10,18 @@ import {
 } from "@/data/disciplines";
 import Nav from "@/components/Nav";
 import CaseStudyGrid from "@/components/CaseStudyGrid";
-import LogoWall from "@/components/LogoWall";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { SITE_URL, breadcrumbNode, graph, ref, ID } from "@/lib/schema";
 import { disciplinesWithPages } from "@/data/disciplines";
 
 export const metadata: Metadata = {
-  title: "Portfolio — Web, App, UI/UX & Social Work | Bilal Shafqat",
+  title: "Portfolio — Off-Plan Launches & App Work | Bilal Shafqat",
+  // The old description said "browse by discipline", which described the page
+  // this one replaced — the discipline browser is now a footnote below the work,
+  // not the page's purpose.
   description:
-    "Browse by discipline: web design and development, UI/UX, React Native apps and social media creative, with full case studies.",
+    "Four off-plan property launches, a corporate website and a cross-platform app for one Dubai and UK developer. Each opens into the decisions behind it.",
   alternates: {
     canonical: "/portfolio",
   },
@@ -27,6 +29,13 @@ export const metadata: Metadata = {
 
 
 /**
+ * `LogoWall` was removed from this page on 2026-09-17. Its headline reads
+ * "Trusted Across UK & UAE Real Estate" and there is one client behind it, so a
+ * plural claim sat above a single logo — which draws attention to the gap rather
+ * than covering it. None of the seven portfolio pages reviewed that day shows a
+ * logo wall with one logo. The component is untouched and goes back the moment
+ * there is a third client.
+ *
  * Structured data. This page had none until 2026-09-16, which meant Google had
  * no typed description of it at all.
  */
@@ -75,45 +84,71 @@ export default function PortfolioPage() {
             h1 sat halfway down inside the old `CaseStudies` section. Removing
             that section took the h1 with it, which is exactly the failure
             `SectionHeading`'s own comment warns about. */}
-        <section className="site-container pb-12">
+        {/* Argument-first, per the journey comparison. The old H1 was "Case
+            studies across marketing, design & development" — a category label
+            any agency could write. Six of the seven reference sites read on
+            2026-09-17 open with exactly that kind of label; the two that do not
+            are the two worth copying.
+
+            The keyword is still here. A claim and a search term are not in
+            conflict: "off-plan launches", "Dubai" and "campaign" all survive. */}
+        <section className="site-container pb-10">
           <Reveal>
             <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
-              Portfolio
+              Selected work
             </span>
-            <h1 className="mt-4 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
-              Case studies across{" "}
-              <span className="text-gradient">marketing, design &amp; development</span>
+            <h1 className="mt-4 max-w-[20ch] text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
+              Four off-plan launches where{" "}
+              <span className="text-gradient">one person owned the page and the spend</span>
             </h1>
             <p className="mt-6 max-w-[62ch] text-lg leading-relaxed text-muted">
-              Real projects, each one opening into the brief behind it, the decisions
-              that shaped it and what actually shipped.
+              Plus a corporate website and a cross-platform app for the same Dubai and
+              UK developer. Every project below opens into the brief, the decisions
+              behind it and what shipped.
             </p>
           </Reveal>
         </section>
 
-        <section className="site-container">
-          <Link
-            href="/portfolio/leos-developments"
-            className="card-hover group flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border panel px-7 py-6"
-          >
-            <span>
-              <span className="text-xs font-medium uppercase tracking-wide text-gold">
-                Featured case study
-              </span>
-              <span className="mt-1.5 block text-xl font-semibold text-ink">
-                LEOS Developments — website, brand social &amp; the Hadley Heights launch
-              </span>
-            </span>
-            <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
-              View case study →
-            </span>
-          </Link>
+        {/* The GEO block. AI answers quote specific, checkable reasoning — this
+            is the most quotable paragraph on the page, and it is lifted from the
+            Hadley Heights case study rather than written for the index. */}
+        <section className="site-container pb-14">
+          <Reveal>
+            <div className="max-w-[68ch] border-l-2 border-gold/60 pl-6">
+              <p className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                One decision, as an example
+              </p>
+              <p className="mt-3 text-lg leading-relaxed text-ink">
+                The entry price sits in the hero — from AED 1 million on Hadley
+                Heights — so someone outside the bracket leaves before filling in a
+                form.
+              </p>
+              <p className="mt-3 text-base leading-relaxed text-muted">
+                It costs clicks, and it looks worse on a traffic report. It produces a
+                better cost per qualified lead, which is the number that matters. That
+                is only a trade worth making when the same person owns the page and the
+                spend pointed at it.
+              </p>
+            </div>
+          </Reveal>
         </section>
-        {/* Browse by discipline. This is the hub the Portfolio mega menu points
-            into, so it has to hold the same nine disciplines and the same
-            honest routing — the four without a case study link to their service
-            page rather than to a URL that does not exist. Counts are derived,
-            never written. */}
+
+        {/* One grid of real case studies, replacing two sections that both
+            claimed to be the portfolio: `WorkByType`, 26 loose captures sliced
+            by artefact type, and `CaseStudies`, five hard-coded entries with no
+            images and no links to any of the six case studies that exist. */}
+        <CaseStudyGrid />
+
+        {/* Browse by discipline, moved below the work on 2026-09-17.
+            Above it, it competed with the grid's own filters and asked a visitor
+            to choose a route before anything had given them a reason to care.
+
+            It used to be described as the hub the Portfolio mega menu pointed
+            into; that menu was removed with the nav trim, so this and the footer
+            are now the routes to the discipline pages. It still holds all nine
+            disciplines with the same honest routing — the four without a case
+            study link to their service page rather than to a URL that does not
+            exist. Counts are derived, never written. */}
         <section className="site-container pt-16 sm:pt-20">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6 border-b border-border pb-6">
@@ -185,13 +220,7 @@ export default function PortfolioPage() {
         {/* Moved here from the homepage: this is the page the trust claim
             belongs on, and it now introduces the case studies rather than
             repeating the homepage. */}
-        <LogoWall />
 
-        {/* One grid of real case studies, replacing two sections that both
-            claimed to be the portfolio: `WorkByType`, 26 loose captures sliced
-            by artefact type, and `CaseStudies`, five hard-coded entries with no
-            images and no links to any of the six case studies that exist. */}
-        <CaseStudyGrid />
         <Contact />
       </main>
       <Footer />
