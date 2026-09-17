@@ -790,3 +790,78 @@ h1, h2, h3, h4, .font-display {
     transition: none;
   }
 }
+
+/* Work filter on /portfolio.
+ *
+ * Radio inputs plus `:has()`. No JavaScript, and every card stays in the HTML
+ * whichever filter is selected — a JS filter that removes cards from the DOM
+ * would hide most of the portfolio from anything that reads the page without
+ * running scripts.
+ *
+ * `:has()` is supported in every browser released since early 2023. Where it is
+ * not, nothing breaks: all the cards simply stay visible, which is the correct
+ * fallback for a filter.
+ */
+.work-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+.work-chip:hover {
+  color: var(--color-ink);
+  border-color: color-mix(in oklab, var(--color-gold) 40%, transparent);
+}
+/* The input is `sr-only`, so the label has to carry the focus ring or a
+   keyboard user cannot see where they are. */
+.work-filter input:focus-visible + .work-chip {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+.work-filter input:checked + .work-chip {
+  color: var(--color-bg);
+  background-color: var(--color-gold);
+  border-color: var(--color-gold);
+}
+.work-chip-count {
+  font-family: var(--font-mono, ui-monospace), monospace;
+  font-size: 0.7rem;
+  opacity: 0.7;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hide what does not match.
+ *
+ * **These four tokens are written by hand and must match the disciplines that
+ * `disciplinesInWork()` can return.** The chips themselves are derived from the
+ * data, so adding a fifth discipline with a portfolio page would render a chip
+ * with no rule behind it — it would look enabled and filter nothing. If a
+ * discipline is ever added, add its token here too. The tokens come from
+ * `token()` in `CaseStudyGrid.tsx`: lower case, non-alphanumerics to hyphens. */
+.work-item {
+  transition: opacity 0.3s ease;
+}
+.work-filter:has(#work-filter-web-development:checked) .work-item:not([data-tags~="web-development"]),
+.work-filter:has(#work-filter-ui-ux-design:checked) .work-item:not([data-tags~="ui-ux-design"]),
+.work-filter:has(#work-filter-mobile-development:checked) .work-item:not([data-tags~="mobile-development"]),
+.work-filter:has(#work-filter-social-media-marketing:checked) .work-item:not([data-tags~="social-media-marketing"]) {
+  display: none;
+}
+
+/* A filtered view is a short list, so the wide card stops earning a full row. */
+.work-filter:not(:has(#work-filter-all:checked)) .work-item {
+  grid-column: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-chip,
+  .work-item {
+    transition: none;
+  }
+}

@@ -31,6 +31,14 @@ import { disciplinesInWork } from "@/data/disciplines";
  * show.
  */
 
+/** A tag becomes a CSS-safe token so `[data-tags~="..."]` can match it.
+ *
+ *  **Paired with a hand-written block of `:has()` rules in `globals.css`.** The
+ *  chips below are derived from the data, but the rules that actually hide cards
+ *  are not — a new discipline with a portfolio page would get a chip that
+ *  filters nothing until its token is added there too. */
+const token = (t: string) => t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
 type Card = {
   href: string;
   image: string;
@@ -91,6 +99,13 @@ export default function CaseStudyGrid() {
   const cards = buildCards();
   if (!cards.length) return null;
 
+  // Filters are derived from the tags the cards actually carry, and ordered by
+  // how many pieces sit behind each one. A hard-coded list would eventually
+  // offer a filter that matches nothing.
+  const counts = new Map<string, number>();
+  for (const c of cards) for (const t of c.tags) counts.set(t, (counts.get(t) ?? 0) + 1);
+  const filters = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+
   return (
     <section className="site-container py-16 sm:py-20">
       <Reveal>
@@ -106,66 +121,111 @@ export default function CaseStudyGrid() {
         </p>
       </Reveal>
 
-      <div className="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-2">
-        {cards.map((card) => (
-          <Reveal key={card.href} className={card.wide ? "lg:col-span-2" : undefined}>
-            <Link
-              href={card.href}
-              className="card-hover group flex h-full flex-col overflow-hidden rounded-2xl border border-border panel"
+      {/* Filtering is done with radio inputs and `:has()`, not JavaScript.
+          Three reasons: every card stays in the HTML whichever filter is
+          selected, so Google and AI crawlers always see all of them; radios are
+          keyboard operable and announced correctly with no ARIA to get wrong;
+          and this component stays a server component costing no client JS. */}
+      <div className="work-filter mt-10">
+        <fieldset className="border-0 p-0">
+          <legend className="sr-only">Filter work by discipline</legend>
+          <div className="flex flex-wrap items-center gap-2 border-b border-border pb-5">
+            <input
+              type="radio"
+              name="work-filter"
+              id="work-filter-all"
+              defaultChecked
+              className="peer/all sr-only"
+            />
+            <label htmlFor="work-filter-all" className="work-chip">
+              All work
+              <span className="work-chip-count">{cards.length}</span>
+            </label>
+
+            {filters.map(([tag, n]) => (
+              <span key={tag} className="contents">
+                <input
+                  type="radio"
+                  name="work-filter"
+                  id={`work-filter-${token(tag)}`}
+                  className="sr-only"
+                />
+                <label htmlFor={`work-filter-${token(tag)}`} className="work-chip">
+                  {tag}
+                  <span className="work-chip-count">{n}</span>
+                </label>
+              </span>
+            ))}
+          </div>
+        </fieldset>
+
+        <ol className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-2">
+          {cards.map((card) => (
+            <li
+              key={card.href}
+              data-tags={card.tags.map(token).join(" ")}
+              className={`work-item ${card.wide ? "lg:col-span-2" : ""}`}
             >
-              {/* Padded well rather than a bleed image. Captures on this site
-                  range from 2403x1231 to a 1206x5807 phone screen; letting each
-                  one define its own card edge is what made the old page read as
-                  a pile of unrelated objects. */}
-              <div className="bg-bg-soft/60 p-4 sm:p-6">
-                <div
-                  className={`relative overflow-hidden rounded-xl border border-border/60 ${
-                    card.wide ? "aspect-[16/7]" : "aspect-[16/10]"
-                  }`}
+              <Reveal>
+                <Link
+                  href={card.href}
+                  className="card-hover group flex h-full flex-col overflow-hidden rounded-2xl border border-border panel"
                 >
-                  <Image
-                    src={card.image}
-                    alt=""
-                    fill
-                    sizes={card.wide ? "(min-width:1024px) 1100px, 100vw" : "(min-width:1024px) 540px, 100vw"}
-                    className={`object-cover transition-transform duration-500 group-hover:scale-[1.02] ${
-                      card.position === "top" ? "object-top" : "object-center"
-                    }`}
-                  />
-                </div>
-              </div>
+                  {/* Padded well rather than a bleed image. Captures on this site
+                      range from 2403x1231 to a 1206x5807 phone screen; letting each
+                      one define its own card edge is what made the old page read as
+                      a pile of unrelated objects. */}
+                  <div className="bg-bg-soft/60 p-4 sm:p-6">
+                    <div
+                      className={`relative overflow-hidden rounded-xl border border-border/60 ${
+                        card.wide ? "aspect-[16/7]" : "aspect-[16/10]"
+                      }`}
+                    >
+                      <Image
+                        src={card.image}
+                        alt=""
+                        fill
+                        sizes={card.wide ? "(min-width:1024px) 1100px, 100vw" : "(min-width:1024px) 540px, 100vw"}
+                        className={`object-cover transition-transform duration-500 group-hover:scale-[1.02] ${
+                          card.position === "top" ? "object-top" : "object-center"
+                        }`}
+                      />
+                    </div>
+                  </div>
 
-              <div className="flex flex-1 flex-col px-5 pb-6 pt-1 sm:px-7 sm:pb-7">
-                <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted/70">
-                  {card.eyebrow}
-                </span>
-                <span className="mt-2.5 flex items-start justify-between gap-3 text-lg font-semibold leading-snug text-ink sm:text-xl">
-                  {card.name}
-                  <ArrowUpRight
-                    size={18}
-                    className="mt-1 shrink-0 text-muted transition-colors group-hover:text-gold"
-                  />
-                </span>
-                <span className="mt-2.5 block max-w-[58ch] text-sm leading-relaxed text-muted">
-                  {card.summary}
-                </span>
+                  <div className="flex flex-1 flex-col px-5 pb-6 pt-1 sm:px-7 sm:pb-7">
+                    <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted/70">
+                      {card.eyebrow}
+                    </span>
+                    <span className="mt-2.5 flex items-start justify-between gap-3 text-lg font-semibold leading-snug text-ink sm:text-xl">
+                      {card.name}
+                      <ArrowUpRight
+                        size={18}
+                        className="mt-1 shrink-0 text-muted transition-colors group-hover:text-gold"
+                      />
+                    </span>
+                    <span className="mt-2.5 block max-w-[58ch] text-sm leading-relaxed text-muted">
+                      {card.summary}
+                    </span>
 
-                {card.tags.length ? (
-                  <span className="mt-5 flex flex-wrap gap-2">
-                    {card.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-full border border-border px-3 py-1 text-[0.7rem] text-muted"
-                      >
-                        {t}
+                    {card.tags.length ? (
+                      <span className="mt-5 flex flex-wrap gap-2">
+                        {card.tags.map((t) => (
+                          <span
+                            key={t}
+                            className="rounded-full border border-border px-3 py-1 text-[0.7rem] text-muted"
+                          >
+                            {t}
+                          </span>
+                        ))}
                       </span>
-                    ))}
-                  </span>
-                ) : null}
-              </div>
-            </Link>
-          </Reveal>
-        ))}
+                    ) : null}
+                  </div>
+                </Link>
+              </Reveal>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );

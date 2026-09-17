@@ -2431,3 +2431,49 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
     inline styles per frame and so sidesteps interpolation entirely — but that
     would have hidden the bug rather than fixed it, at ~100KB on all 29 routes.
     Site JavaScript unchanged at 740-758KB.
+
+205. **Filters on the work page, in CSS (2026-09-17)** — **done.**
+
+    Bilal sent Musemind's case study page and asked for the same pattern:
+    filter chips above a grid of case study cards. Their page loads its cards
+    with JavaScript, but the structure is clear — an upper toggle (Client / R&D),
+    then All / Mobile App / Web Design, then cards with a name and tag pills.
+
+    **Checked the counts before building, because a filter with nothing behind
+    it is worse than no filter:** Web Development 5 of 6, UI/UX Design 4, Mobile
+    Development 2, Social Media Marketing 2. Thin, but every chip returns
+    something, so it is worth having.
+
+    **Filtering is radio inputs plus `:has()`, not JavaScript.** Three reasons,
+    in order of importance:
+
+    1. **Every card stays in the HTML whichever filter is selected.** A JS filter
+       that removes cards from the DOM would hide most of the portfolio from
+       anything reading the page without running scripts — which on a portfolio
+       page is the whole point of having one.
+    2. Radios are keyboard operable and announced correctly with no ARIA to get
+       wrong. The input is `sr-only`, so the *label* carries the focus ring —
+       without that a keyboard user cannot see where they are.
+    3. `CaseStudyGrid` stays a server component costing no client JS.
+
+    Where `:has()` is unsupported, nothing breaks: all cards stay visible, which
+    is the correct fallback for a filter.
+
+    **Chips are derived from the tags the cards actually carry**, ordered by
+    count, so the page cannot offer a filter that matches nothing.
+
+    **A trap worth recording, documented in both files.** The chips are derived
+    from data but **the `:has()` rules that hide cards are hand-written**. Adding
+    a fifth discipline with a portfolio page would render a chip with no rule
+    behind it — it would look enabled and filter nothing. Cross-referenced
+    comments now sit in `CaseStudyGrid.tsx` and `globals.css` so whoever adds one
+    finds the second half.
+
+    **Not copied from the reference:** the Client / R&D toggle. Every project on
+    this site is client work, so that row would be a control with one real
+    option.
+
+    `/portfolio`: 626 words, 1 h1, eyebrow on all 4 sections, 740KB — unchanged,
+    since the filter adds no JavaScript. Verified: `h1-check` 29/29,
+    `schema-check` 29/29, `search-check`, `discipline-check`, `tsc`, `lint`,
+    build, zero routes failing any hard check.
