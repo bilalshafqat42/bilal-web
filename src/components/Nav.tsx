@@ -42,7 +42,9 @@ const links: { label: string; href: string; mega?: MegaId }[] = [
   { label: "Portfolio", href: "/portfolio", mega: "portfolio" },
   { label: "Services", href: "/services", mega: "services" },
   { label: "Process", href: "/process" },
-  { label: "Pricing", href: "/pricing" },
+  // Pricing removed from the bar on 2026-09-17. The page is unchanged and stays
+  // in the sitemap; it is still reached from the footer, from every service
+  // page's engagement block and from /process.
   { label: "About", href: "/about" },
   { label: "FAQ", href: "/faq" },
   { label: "Book a call", href: "/appointment" },
