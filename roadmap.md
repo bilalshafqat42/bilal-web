@@ -2477,3 +2477,44 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
     since the filter adds no JavaScript. Verified: `h1-check` 29/29,
     `schema-check` 29/29, `search-check`, `discipline-check`, `tsc`, `lint`,
     build, zero routes failing any hard check.
+
+206. **Email marketing needs its own service page — logged, not built (2026-09-17)** — **open.**
+
+    Bilal asked for this to go in the roadmap.
+
+    **Where it sits today:** a section, `#email-marketing`, inside
+    `/services/digital-marketing`, reached from the mega menu. There is no
+    `/services/email-marketing` — that URL 404s. It is one of the four
+    disciplines in `disciplines.ts` that route to a service anchor rather than to
+    a page of their own.
+
+    **Why it is worth its own page.** "Email marketing Dubai" is a distinct
+    commercial query with its own intent; nobody searching it lands on a page
+    titled "Digital Marketing & Lead Generation" and feels they have arrived. It
+    is also one of the few services here that is bought as a standalone retainer
+    rather than as part of a build, which is the test for whether a service earns
+    a page.
+
+    **The precedent to follow is item 200.** `/real-estate-marketing` was built
+    because there was 3,871 words of published evidence behind it. **Email
+    marketing currently has none** — no case study mentions an email campaign, no
+    capture shows a template, and `caseStudies.ts` has nothing to derive from.
+    Building the page first and finding evidence later is how the four thin
+    discipline pages happened.
+
+    **So this is blocked on Bilal, not on time.** What would unblock it:
+
+    - One campaign he has actually run: the client (or a sector if under NDA),
+      the list size, what the sequence was for, and what happened.
+    - Or template screenshots he owns the rights to publish.
+    - Failing both, honest scope: what he would do for a new client, written as a
+      method rather than as results.
+
+    **Deliberately not doing the obvious thing.** The content could be padded out
+    of the existing `#email-marketing` section, which would produce a page that
+    ranks for nothing and duplicates a page that already works. Item 205's rule
+    applies: a page with nothing behind it advertises the gap.
+
+    Same reasoning holds for the other three anchor-only disciplines — Web
+    Designing, Paid Marketing and CRM Integration. Email is the one Bilal asked
+    for; the others queue behind the same evidence test.
