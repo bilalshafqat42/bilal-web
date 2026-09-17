@@ -590,3 +590,125 @@ h1, h2, h3, h4, .font-display {
     display: none;
   }
 }
+
+/* Header: full bar at the top, floating pill once scrolled.
+ *
+ * The rule this is built around: **the <header> keeps a constant height in both
+ * states.** It is `position: sticky`, so it occupies real space in the document
+ * — growing or shrinking it would push every page's content up and down as you
+ * scroll. The pill is therefore inset *within* that fixed height rather than
+ * given margin, and nothing below the header ever moves.
+ *
+ * What animates is the shell inside it: height, width, radius, background,
+ * border and shadow. All of those are cheap enough here because the element is
+ * a single row that is already promoted to its own layer by `sticky`.
+ *
+ * The bar's own background fades out as the pill fades in, so content scrolls
+ * behind the pill on either side — which is the whole point of the effect.
+ */
+.nav-header {
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.nav-shell {
+  height: 100%;
+  border: 1px solid transparent;
+  border-radius: 0;
+  transition: height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    max-width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease,
+    backdrop-filter 0.4s ease;
+}
+
+/* Scrolled state. The bar goes transparent and loses its rule; the shell pulls
+   in from the edges, shortens, rounds off and lifts. */
+.nav-header.is-floating {
+  background-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.nav-header.is-floating .nav-shell {
+  height: 52px;
+  max-width: calc(100% - 1.5rem);
+  border-radius: 999px;
+  border-color: var(--color-border);
+  /* Not fully opaque: a hint of the page moving underneath is what makes it
+     read as floating rather than as a second bar. */
+  background-color: color-mix(in oklab, var(--color-bg) 82%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: 0 10px 30px -12px rgb(0 0 0 / 0.65), 0 2px 8px -4px rgb(0 0 0 / 0.4);
+}
+
+@media (min-width: 1024px) {
+  .nav-header.is-floating .nav-shell {
+    height: 64px;
+    /* Capped as well as inset, so on a wide monitor the pill stays a pill
+       instead of stretching into a slightly rounded bar. */
+    max-width: min(1180px, calc(100% - 3rem));
+  }
+}
+
+/* The shell carries its own horizontal padding as a utility class, which is
+   right for a full-width bar and too tight once it is a pill. */
+.nav-header.is-floating .nav-shell {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+@media (min-width: 1024px) {
+  .nav-header.is-floating .nav-shell {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-header,
+  .nav-shell {
+    transition: none;
+  }
+}
+
+/* Mega menu, while the header is floating.
+ *
+ * The panel is `absolute inset-x-0 top-full` against the <header>, so it always
+ * opens below the bar's full height — correct in both states. What is wrong in
+ * the floating state is its width: a full-bleed dropdown hanging under an inset
+ * pill reads as two unrelated objects. It therefore takes the pill's width and
+ * radius, and drops the top border it only needed when it sat flush under a
+ * full-width bar. */
+.nav-header.is-floating .mega-panel {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.nav-header.is-floating .mega-panel-inner {
+  max-width: calc(100% - 0rem);
+  margin-inline: auto;
+  border-top-width: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .nav-header.is-floating .mega-panel {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .nav-header.is-floating .mega-panel-inner {
+    max-width: min(1180px, 100%);
+  }
+}
+
+.mega-panel-inner {
+  transition: max-width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mega-panel-inner {
+    transition: none;
+  }
+}

@@ -25,8 +25,9 @@ import { industriesWithWork } from "@/data/caseStudies";
  * to have. The timeline was doing a clip-path unroll with staggered columns,
  * which looked good but pulled GSAP, ScrollTrigger and useGSAP into the header
  * on every page for one dropdown. A fade and a short lift reads almost the
- * same and costs nothing. The scroll-shrink animation on the whole bar is not
- * restored: the design has a fixed bordered bar, so there is nothing to shrink.
+ * same and costs nothing. The bar itself does now respond to scroll — it
+ * collapses into a floating pill — but in CSS, driven by one boolean, not by a
+ * scroll-linked timeline.
  *
  * The interaction details below are the parts worth keeping and are easy to
  * lose in a rewrite — each one exists because of a specific failure.
@@ -70,13 +71,20 @@ function MegaPanel({
     <div
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
-      className={`absolute inset-x-0 top-full hidden transition-[opacity,transform] duration-200 lg:block ${
+      className={`mega-panel absolute inset-x-0 top-full hidden transition-[opacity,transform] duration-200 lg:block ${
         isOpen
           ? "visible translate-y-0 opacity-100"
           : "invisible -translate-y-2 opacity-0 pointer-events-none"
       }`}
     >
-      <div role="group" aria-label={label} className="glass-nav border-t border-border shadow-2xl shadow-black/40">
+      {/* `mega-panel-inner` picks up the pill's width and radius while the
+          header is floating, so the dropdown stays visually attached to the bar
+          it came from instead of spanning the viewport under an inset pill. */}
+      <div
+        role="group"
+        aria-label={label}
+        className="mega-panel-inner glass-nav border-t border-border shadow-2xl shadow-black/40"
+      >
         <div className="px-10 py-10">{children}</div>
       </div>
     </div>
@@ -251,6 +259,9 @@ function ServicesMenu({ onNavigate }: { onNavigate: () => void }) {
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  /** True once the page has scrolled far enough for the bar to collapse into a
+   *  floating pill. */
+  const [scrolled, setScrolled] = useState(false);
   const [megaOpen, setMegaOpen] = useState<MegaId | null>(null);
 
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -274,6 +285,26 @@ export default function Nav() {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     closeTimer.current = setTimeout(() => setMegaOpen(null), 250);
   };
+
+  // Collapse the bar into a floating pill on scroll, expand it back at the top.
+  //
+  // Two thresholds, not one: collapsing at 72px and expanding again at 24px
+  // gives 48px of hysteresis. With a single threshold, a trackpad resting
+  // exactly on it flips the header back and forth on every stray pixel.
+  //
+  // `passive: true` tells the browser the handler will never call
+  // preventDefault, so scrolling is not blocked waiting on it. State is only
+  // set when the boolean actually changes, so this does not re-render on every
+  // scroll event.
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled((prev) => (prev ? y > 24 : y > 72));
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -310,8 +341,15 @@ export default function Nav() {
   }, [open]);
 
   return (
-    <header className="header-enter sticky top-0 z-50 border-b border-border bg-bg">
-      <div className="mx-auto flex h-[68px] w-full items-center justify-between px-6 lg:h-[84px] lg:px-10">
+    // The header keeps a constant height in both states. The pill is inset
+    // *within* that height rather than adding margin to it, so nothing below
+    // ever moves — a sticky header that changes height shifts the whole page.
+    <header
+      className={`header-enter nav-header sticky top-0 z-50 h-[68px] lg:h-[84px] ${
+        scrolled ? "is-floating" : ""
+      }`}
+    >
+      <div className="nav-shell mx-auto flex w-full items-center justify-between px-6 lg:px-10">
         <Link href="/" className="shrink-0" aria-label="Bilal Shafqat — home">
           <Image
             src="/logo/bs-logo.svg"

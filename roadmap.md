@@ -2286,3 +2286,43 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
     Verified: `h1-check` 29/29, `schema-check` 29/29, `search-check` 32 checks,
     `discipline-check`, `tsc`, `lint`, build, and **zero routes failing any hard
     check**.
+
+201. **Header collapses into a floating pill on scroll (2026-09-17)** — **done.**
+
+    Bilal sent Musemind's header: a rounded pill inset from the edges, floating
+    over the page. Wanted on scroll, with the full bar returning at the top.
+
+    **The rule the whole thing is built around: the `<header>` keeps a constant
+    height in both states.** It is `position: sticky`, so it occupies real space
+    in the document. Giving the pill margin — the obvious way to inset it —
+    would change the header's height and push every page's content up and down
+    as you scroll. The pill is therefore inset *within* a fixed 68px / 84px
+    header, and nothing below it ever moves.
+
+    What animates is the shell inside: height 84 → 64, width in to
+    `min(1180px, 100% - 3rem)`, radius to a pill, plus background, border and
+    lift. The bar's own background fades to transparent at the same time, so
+    content scrolls behind the pill on either side — which is the effect.
+
+    **Two thresholds, not one.** It collapses at 72px and expands again at 24px.
+    With a single threshold a trackpad resting on it flips the header back and
+    forth on every stray pixel. The listener is `passive` and only sets state
+    when the boolean actually changes, so it does not re-render on every scroll
+    event.
+
+    **The mega menu needed handling too.** It is `absolute inset-x-0 top-full`
+    against the header, so it opens below the bar's full height in both states —
+    correct vertically without changes. Its *width* was wrong: a full-bleed
+    dropdown hanging under an inset pill reads as two unrelated objects. It now
+    takes the pill's width and radius and drops the top border it only needed
+    when sitting flush under a full-width bar.
+
+    **A stale comment was corrected rather than left.** The file has said since
+    item 23 that "the scroll-shrink animation on the whole bar is not restored:
+    the design has a fixed bordered bar, so there is nothing to shrink." That is
+    no longer true.
+
+    CSS only — no library, and the site's JavaScript is unchanged. Disabled under
+    `prefers-reduced-motion`. Verified: `h1-check` 29/29, `schema-check` 29/29,
+    `search-check`, `discipline-check`, `tsc`, `lint`, build, zero routes failing
+    any hard check.
