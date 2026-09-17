@@ -607,9 +607,13 @@ h1, h2, h3, h4, .font-display {
  * behind the pill on either side — which is the whole point of the effect.
  */
 .nav-header {
+  top: 0;
   background-color: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
-  transition: background-color 0.4s ease, border-color 0.4s ease;
+  /* `top` is in the list so the pill glides down into its floating position
+     instead of jumping there the instant the threshold is crossed. */
+  transition: top 0.45s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.4s ease,
+    border-color 0.4s ease;
 }
 
 .nav-shell {
@@ -634,12 +638,16 @@ h1, h2, h3, h4, .font-display {
   height: 52px;
   max-width: calc(100% - 1.5rem);
   border-radius: 999px;
-  border-color: var(--color-border);
-  /* Not fully opaque: a hint of the page moving underneath is what makes it
-     read as floating rather than as a second bar. */
-  background-color: color-mix(in oklab, var(--color-bg) 82%, transparent);
-  backdrop-filter: blur(14px) saturate(140%);
-  box-shadow: 0 10px 30px -12px rgb(0 0 0 / 0.65), 0 2px 8px -4px rgb(0 0 0 / 0.4);
+  /* No border. The shadow and the blur already separate the pill from the page
+     behind it, and a visible outline made it read as a box sitting on top
+     rather than as glass floating over. */
+  border-color: transparent;
+  /* Deliberately well under half opaque, so the blur is actually visible. At
+     the previous 82% almost nothing showed through and the backdrop filter was
+     doing no work you could see. */
+  background-color: color-mix(in oklab, var(--color-bg) 58%, transparent);
+  backdrop-filter: blur(22px) saturate(160%);
+  box-shadow: 0 16px 40px -14px rgb(0 0 0 / 0.75), 0 2px 10px -4px rgb(0 0 0 / 0.5);
 }
 
 @media (min-width: 1024px) {
@@ -648,6 +656,21 @@ h1, h2, h3, h4, .font-display {
     /* Capped as well as inset, so on a wide monitor the pill stays a pill
        instead of stretching into a slightly rounded bar. */
     max-width: min(1180px, calc(100% - 3rem));
+  }
+}
+
+/* The pill sits clear of the top of the window rather than against it.
+ *
+ * Applied as a sticky offset, not as margin: `top` moves where the header
+ * parks without changing the height it occupies in the document, so this still
+ * costs no layout shift. 80px on desktop as asked; a much smaller gap on a
+ * phone, where 80px of empty band is a meaningful share of the screen. */
+.nav-header.is-floating {
+  top: 12px;
+}
+@media (min-width: 1024px) {
+  .nav-header.is-floating {
+    top: 80px;
   }
 }
 
@@ -688,8 +711,10 @@ h1, h2, h3, h4, .font-display {
   max-width: calc(100% - 0rem);
   margin-inline: auto;
   border-top-width: 0;
-  border: 1px solid var(--color-border);
+  /* Matches the pill: no outline, blur and shadow doing the separating. */
+  border: 0;
   border-radius: 1.25rem;
+  backdrop-filter: blur(22px) saturate(160%);
 }
 
 @media (min-width: 1024px) {

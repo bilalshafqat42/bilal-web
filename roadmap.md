@@ -2326,3 +2326,34 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
     `prefers-reduced-motion`. Verified: `h1-check` 29/29, `schema-check` 29/29,
     `search-check`, `discipline-check`, `tsc`, `lint`, build, zero routes failing
     any hard check.
+
+202. **Floating header refined: search and timezone out, 80px offset, no border, real blur (2026-09-17)** — **done.**
+
+    Four changes from Bilal, plus two bugs visible in the screenshot he sent that
+    he had not named: **the logo was overlapping "PORTFOLIO" and the CTA had
+    wrapped to two lines.** At the pill's narrower width the row was simply
+    overfull.
+
+    - **Search button and "Dubai, UTC+4" removed from the bar.** That is what
+      fixed the overlap — they were roughly 140px of the row. **Search is not
+      gone:** `Cmd+K` still opens the panel from anywhere, and a visible "Search
+      this site" entry was added to the mobile menu, because removing the icon
+      from the bar would otherwise have left a phone with no route to it at all.
+      That was a silent functionality loss, not part of the request.
+    - **80px top offset on desktop, 12px on mobile.** Applied as a sticky `top`,
+      not as margin: `top` changes where the header parks without changing the
+      height it occupies, so this still costs no layout shift. `top` is in the
+      transition list, so the pill glides down rather than jumping. 80px of empty
+      band is a meaningful share of a phone screen, hence the smaller value
+      there.
+    - **Border removed** from both the pill and the mega panel. The shadow and
+      the blur already separate them from the page; an outline made the pill read
+      as a box sitting on top rather than glass floating over.
+    - **Blur made visible.** It was already `blur(14px)`, but at 82% opaque
+      almost nothing showed through and the filter was doing no work anyone could
+      see. Now 58% opacity with `blur(22px) saturate(160%)`, and the mega panel
+      matches.
+
+    Still CSS only, no library, site JavaScript unchanged at 739-758KB. Verified:
+    `h1-check` 29/29, `schema-check` 29/29, `search-check`, `discipline-check`,
+    `tsc`, `lint`, build, zero routes failing any hard check.

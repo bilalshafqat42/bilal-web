@@ -449,23 +449,15 @@ export default function Nav() {
         </nav>
 
         <div className="flex items-center gap-5">
-          {/* Dubai does not observe daylight saving, so the offset is fixed and
-              safe as static text. Reading it from a clock would mean client JS
-              and a hydration mismatch for no gain. */}
-          {/* Was a floating pill in the bottom-left corner, where it sat over the
-              project strip on a 14-inch screen. Cmd+K still works from
-              anywhere; this is the discoverable route to the same panel. */}
-          <button
-            type="button"
-            onClick={openSearchPanel}
-            aria-label="Search this site"
-            className="hidden items-center gap-2 rounded-full border border-border px-3 py-2 text-muted transition-colors hover:border-gold/40 hover:text-ink xl:inline-flex"
-          >
-            <Search size={15} />
-            <kbd className="hidden font-sans text-[10px] text-muted/70 xl:inline">⌘K</kbd>
-          </button>
+          {/* The search button and the "Dubai, UTC+4" label were removed from
+              the bar on 2026-09-17: at the floating pill's width the row was
+              overfull, the logo overlapped the first nav link and the CTA
+              wrapped to two lines.
 
-          <span className="hidden text-sm text-muted xl:inline">Dubai, UTC+4</span>
+              Search is not gone — Cmd+K still opens the panel from anywhere, and
+              the mobile menu now carries a visible entry point, because taking
+              the icon out of the bar would otherwise have left a phone with no
+              way to reach it at all. */}
           <Link
             href="/appointment"
             // `whitespace-nowrap` so the label can never wrap: a two-line
@@ -474,14 +466,6 @@ export default function Nav() {
           >
             Book a free consultation
           </Link>
-          <button
-            type="button"
-            onClick={openSearchPanel}
-            aria-label="Search this site"
-            className="p-1 text-ink xl:hidden"
-          >
-            <Search size={20} />
-          </button>
 
           <button
             type="button"
@@ -655,6 +639,19 @@ export default function Nav() {
             >
               Book a free consultation
             </Link>
+            {/* The only visible route to search on a phone, now that the bar
+                does not carry the icon. */}
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                openSearchPanel();
+              }}
+              className="mt-5 inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-ink"
+            >
+              <Search size={16} />
+              Search this site
+            </button>
             <span className="mt-5 pb-10 text-sm text-muted">Dubai, UTC+4</span>
           </nav>
         </div>
