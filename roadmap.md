@@ -2388,3 +2388,46 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
     as the pill's. The floating panel now uses the same 58% the pill does.
 
     Top offset changed from 80px to 40px on desktop, as asked.
+
+204. **The floating header snapped instead of animating — non-interpolatable values, not a missing library (2026-09-17)** — **done.**
+
+    Bilal: "it appears suddenly looks very bad", and offered GSAP if that is what
+    it takes. It was not a library problem.
+
+    **`.nav-shell` had no base `max-width`, so its computed value was `none` —
+    and `none` cannot be interpolated to a length.** The browser therefore jumped
+    straight to the end value no matter what the transition said. The transition
+    was declared, listed `max-width`, and could never once have run. The same
+    trap applied to `height: 100%`, and to the floating `max-width` of
+    `min(1180px, calc(100% - 3rem))`, which does not reliably interpolate from a
+    percentage either.
+
+    Every animated property is now a value that can actually be interpolated:
+
+    | Property | Base | Floating |
+    |---|---|---|
+    | `height` | 68px / 84px | 48px / 62px |
+    | `max-width` | 100% | 100% / 1180px |
+    | `border-radius` | 0 | 999px |
+    | `padding-inline` (on the header) | 0 | 0.75rem / 1.5rem |
+    | `top` | 0 | 12px / 40px |
+
+    **The side gutter moved from `max-width` to padding on the header**, because
+    padding animates reliably and a `min()`/`calc()` max-width does not.
+
+    **The header also now centres its shell** (`display: flex; align-items:
+    center`). Without it the shortened pill hung off the top of the header's
+    fixed height instead of sitting in the middle of it.
+
+    **Trigger moved from a fixed 72px to 70% of the page's first section**, so
+    the change happens as the hero leaves rather than a few pixels into the
+    scroll. Measured per page and re-measured on resize, since the hero is a
+    different height on every template. Clamped to 120-620px: a very short first
+    section would otherwise trigger almost immediately, and a full-height hero
+    would hold the bar expanded for most of a screen. Hysteresis kept — it
+    expands again at 60% of the trigger.
+
+    **Still no GSAP.** It was offered and would have worked, because it writes
+    inline styles per frame and so sidesteps interpolation entirely — but that
+    would have hidden the bug rather than fixed it, at ~100KB on all 29 routes.
+    Site JavaScript unchanged at 740-758KB.

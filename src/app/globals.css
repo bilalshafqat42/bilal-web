@@ -620,21 +620,40 @@ h1, h2, h3, h4, .font-display {
  */
 .nav-header {
   top: 0;
+  /* Centres the shell vertically, so when it shrinks to a pill it sits in the
+     middle of the header's fixed height rather than hanging off the top. */
+  display: flex;
+  align-items: center;
   background-color: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
   /* `top` is in the list so the pill glides down into its floating position
      instead of jumping there the instant the threshold is crossed. */
-  transition: top 0.45s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.4s ease,
-    border-color 0.4s ease;
+  transition: top 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    padding-inline 0.5s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.45s ease,
+    border-color 0.45s ease;
 }
 
 .nav-shell {
-  height: 100%;
+  /* Explicit lengths in BOTH states, and an explicit base `max-width`.
+   *
+   * This is what made the change snap instead of animate. With no `max-width`
+   * declared, the base value is `none` — and `none` cannot be interpolated to a
+   * length, so the browser jumped straight to the end value however long the
+   * transition said it was. The same trap applies to `height: 100%`, which is
+   * why both states now use pixels.
+   *
+   * The side gutter is handled by padding on the header rather than by shrinking
+   * `max-width` to a `calc()`/`min()` expression, because those do not reliably
+   * interpolate from a percentage either. */
+  height: 68px;
+  max-width: 100%;
   border: 1px solid transparent;
   border-radius: 0;
-  transition: height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    max-width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    border-radius 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+  margin-inline: auto;
+  width: 100%;
+  transition: height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    max-width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 0.5s cubic-bezier(0.22, 1, 0.36, 1),
     background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease,
     backdrop-filter 0.4s ease;
 }
@@ -647,8 +666,8 @@ h1, h2, h3, h4, .font-display {
 }
 
 .nav-header.is-floating .nav-shell {
-  height: 52px;
-  max-width: calc(100% - 1.5rem);
+  height: 48px;
+  max-width: 100%;
   border-radius: 999px;
   /* No border. The shadow and the blur already separate the pill from the page
      behind it, and a visible outline made it read as a box sitting on top
@@ -663,11 +682,28 @@ h1, h2, h3, h4, .font-display {
 }
 
 @media (min-width: 1024px) {
+  .nav-shell {
+    height: 84px;
+  }
   .nav-header.is-floating .nav-shell {
-    height: 64px;
-    /* Capped as well as inset, so on a wide monitor the pill stays a pill
-       instead of stretching into a slightly rounded bar. */
-    max-width: min(1180px, calc(100% - 3rem));
+    height: 62px;
+    /* A pure length, so it interpolates cleanly from the base 100%. Caps the
+       pill on a wide monitor instead of letting it stretch into a rounded bar. */
+    max-width: 1180px;
+  }
+}
+
+/* The inset comes from the header's own padding. Padding animates reliably;
+   a `max-width` of `min(...)` or `calc(...)` does not. */
+.nav-header {
+  padding-inline: 0;
+}
+.nav-header.is-floating {
+  padding-inline: 0.75rem;
+}
+@media (min-width: 1024px) {
+  .nav-header.is-floating {
+    padding-inline: 1.5rem;
   }
 }
 

@@ -297,22 +297,45 @@ export default function Nav() {
 
   // Collapse the bar into a floating pill on scroll, expand it back at the top.
   //
-  // Two thresholds, not one: collapsing at 72px and expanding again at 24px
-  // gives 48px of hysteresis. With a single threshold, a trackpad resting
-  // exactly on it flips the header back and forth on every stray pixel.
+  // The trigger is 70% of the way down the page's first section, not a fixed
+  // pixel value, so the change happens as the hero leaves rather than a few
+  // pixels into the scroll. Measured rather than assumed, because the hero is a
+  // different height on every template and different again on a phone.
+  //
+  // Clamped at both ends: a page whose first section is very short would
+  // otherwise trigger almost immediately, and a full-height hero would keep the
+  // bar expanded for most of a screen.
+  //
+  // Two thresholds, not one. Collapsing at the trigger and expanding again at
+  // 60% of it leaves a gap; with a single threshold, a trackpad resting exactly
+  // on it flips the header back and forth on every stray pixel.
   //
   // `passive: true` tells the browser the handler will never call
-  // preventDefault, so scrolling is not blocked waiting on it. State is only
-  // set when the boolean actually changes, so this does not re-render on every
+  // preventDefault, so scrolling is not blocked waiting on it. State is only set
+  // when the boolean actually changes, so this does not re-render on every
   // scroll event.
   useEffect(() => {
+    const trigger = { current: 200 };
+
+    const measure = () => {
+      const first = document.querySelector("main section");
+      const h = first instanceof HTMLElement ? first.offsetHeight : 0;
+      trigger.current = Math.min(Math.max(h * 0.7, 120), 620);
+    };
+
     const onScroll = () => {
       const y = window.scrollY;
-      setScrolled((prev) => (prev ? y > 24 : y > 72));
+      setScrolled((prev) => (prev ? y > trigger.current * 0.6 : y > trigger.current));
     };
+
+    measure();
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", measure);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", measure);
+    };
   }, []);
 
   useEffect(() => () => {
