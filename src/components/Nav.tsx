@@ -38,16 +38,23 @@ import { industriesWithWork } from "@/data/caseStudies";
  *  triggers and the possibility of both panels being open at once. */
 type MegaId = "portfolio" | "services";
 
+/**
+ * Trimmed on 2026-09-17 from seven items to four.
+ *
+ * "Portfolio" became "Work" and lost its mega menu: /portfolio is now a grid of
+ * case studies (item 198), so the label names what is behind it and the link
+ * goes straight there rather than opening a panel of disciplines first.
+ *
+ * Pricing, FAQ and "Book a call" all came out of the bar. None of the pages
+ * changed and all three are still linked from the footer on every route, so they
+ * lose a nav slot rather than internal link equity. "Book a call" was also a
+ * duplicate: the gold button beside it points at the same /appointment page.
+ */
 const links: { label: string; href: string; mega?: MegaId }[] = [
-  { label: "Portfolio", href: "/portfolio", mega: "portfolio" },
+  { label: "Work", href: "/portfolio" },
   { label: "Services", href: "/services", mega: "services" },
   { label: "Process", href: "/process" },
-  // Pricing removed from the bar on 2026-09-17. The page is unchanged and stays
-  // in the sitemap; it is still reached from the footer, from every service
-  // page's engagement block and from /process.
   { label: "About", href: "/about" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Book a call", href: "/appointment" },
 ];
 
 /** The panel shell both mega menus render inside. Extracted when the second
