@@ -2357,3 +2357,34 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
     Still CSS only, no library, site JavaScript unchanged at 739-758KB. Verified:
     `h1-check` 29/29, `schema-check` 29/29, `search-check`, `discipline-check`,
     `tsc`, `lint`, build, zero routes failing any hard check.
+
+203. **The floating header's blur was doing nothing, and the cause was the header's own entrance animation (2026-09-17)** — **done.**
+
+    Bilal: "i can't see any background blur effect". He was right, and it was
+    self-inflicted from item 199.
+
+    **`.header-enter` used `animation-fill-mode: both`, which keeps the final
+    keyframe applied forever — leaving `transform: translateY(0)` on the
+    `<header>`.** An element whose transform is anything other than `none` forms
+    a **backdrop root**, and `backdrop-filter` on a descendant can then only see
+    what is painted *inside* that root. Inside the header there is nothing, so
+    the pill's blur was filtering an empty backdrop. `blur(22px)` was in the
+    stylesheet and had no possible effect.
+
+    Fixed by switching to `animation-fill-mode: backwards`, which applies the
+    from-state before the animation and lets the element fall back to its own
+    styles once it ends. The final keyframe is `opacity: 1; translateY(0)` —
+    identical to the resting state — so nothing changes visually and the
+    backdrop root disappears.
+
+    **Worth keeping in mind generally: `backdrop-filter` is silently cancelled by
+    `transform`, `filter`, `opacity < 1`, `mask` or `contain` on any ancestor.**
+    It fails without a warning and the CSS looks correct. Checked the rest of the
+    chain while here — `body`, the layout wrapper and the header carry none of
+    them.
+
+    **A second invisible blur found in the same pass.** `.glass-nav` sets a 90%
+    opaque background, so the mega panel's `blur(36px)` was nearly as pointless
+    as the pill's. The floating panel now uses the same 58% the pill does.
+
+    Top offset changed from 80px to 40px on desktop, as asked.

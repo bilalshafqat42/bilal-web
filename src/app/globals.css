@@ -489,7 +489,19 @@ h1, h2, h3, h4, .font-display {
 }
 
 .header-enter {
-  animation: header-drop 0.62s cubic-bezier(0.22, 1, 0.36, 1) both;
+  /* `backwards`, not `both`.
+   *
+   * `both` keeps the final keyframe applied forever, which leaves
+   * `transform: translateY(0)` on the header. A transform of anything other
+   * than `none` makes an element a **backdrop root**, and `backdrop-filter` on
+   * a descendant can then only see what is painted inside that root — nothing.
+   * The floating pill's blur was therefore silently doing nothing at all.
+   *
+   * `backwards` applies the from-state before the animation starts and lets the
+   * element fall back to its own styles once it ends. Since the final keyframe
+   * is opacity 1 and translateY(0), which is exactly the resting state, nothing
+   * changes visually and the backdrop root disappears. */
+  animation: header-drop 0.62s cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -670,7 +682,7 @@ h1, h2, h3, h4, .font-display {
 }
 @media (min-width: 1024px) {
   .nav-header.is-floating {
-    top: 80px;
+    top: 40px;
   }
 }
 
@@ -711,10 +723,15 @@ h1, h2, h3, h4, .font-display {
   max-width: calc(100% - 0rem);
   margin-inline: auto;
   border-top-width: 0;
-  /* Matches the pill: no outline, blur and shadow doing the separating. */
+  /* Matches the pill: no outline, blur and shadow doing the separating.
+     `glass-nav` sets a 90% opaque background, which would leave this panel's
+     blur as invisible as the pill's was — so it is overridden here to the same
+     value the pill uses. */
   border: 0;
   border-radius: 1.25rem;
+  background: color-mix(in oklab, var(--color-bg) 58%, transparent);
   backdrop-filter: blur(22px) saturate(160%);
+  box-shadow: 0 16px 40px -14px rgb(0 0 0 / 0.75);
 }
 
 @media (min-width: 1024px) {
