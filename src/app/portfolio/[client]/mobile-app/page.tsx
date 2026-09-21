@@ -8,7 +8,6 @@ import Footer from "@/components/Footer";
 import { WorkProof } from "@/components/ProofLoop";
 import Contact from "@/components/Contact";
 import Reveal from "@/components/Reveal";
-import DeviceFrame from "@/components/DeviceFrame";
 import FaqSection from "@/components/FaqSection";
 import CtaButton from "@/components/CtaButton";
 import { clients, getClient } from "@/data/caseStudies";
@@ -342,60 +341,26 @@ export default async function MobileAppCaseStudy({ params }: Props) {
               </div>
             </section>
 
-            {/* The whole app in one band, before the screen-by-screen detail.
-                This is the part of the reference Bilal picked out: phones
-                grouped on a tinted ground rather than presented one at a time.
-                It answers "what is this app" at a glance, and the walkthrough
-                below then answers "why is it built that way".
-
-                It replaced a single full-bleed crop of one screen, which showed
-                less and said nothing. */}
-            <section className="relative mt-20 overflow-hidden bg-bg-soft/60 py-16 sm:mt-24 sm:py-20">
-              <div className="site-container">
-                <Reveal>
-                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
-                    The app
-                  </span>
-                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
-                    Every screen, end to end
-                  </h2>
-                  <p className="mt-4 max-w-[62ch] text-lg leading-relaxed text-muted">
-                    Sign in through to enquiry — the whole path a buyer takes, in the
-                    order they take it. Each one scrolls inside its frame.
-                  </p>
-                </Reveal>
-
-                {/* Horizontal scroll below lg rather than a wrap: five phones
-                    wrapped onto two rows stop reading as a sequence, and the
-                    sequence is the point. */}
-                <div className="no-scrollbar -mx-6 mt-12 flex gap-5 overflow-x-auto px-6 pb-2 lg:mx-0 lg:grid lg:grid-cols-5 lg:gap-6 lg:overflow-visible lg:px-0">
-                  {app.screens.map((s, i) => (
-                    <Reveal key={s.key} delay={i * 0.06} className="w-[62vw] shrink-0 sm:w-[38vw] lg:w-auto">
-                      <figure>
-                        <DeviceFrame capture={s.capture} eager={i === 0} />
-                        <figcaption className="mt-4 text-center">
-                          <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] tabular-nums text-gold">
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
-                          <span className="mt-1 block text-sm font-medium text-ink">{s.label}</span>
-                        </figcaption>
-                      </figure>
-                    </Reveal>
-                  ))}
-                </div>
-              </div>
-            </section>
           </>
         ) : null}
 
-        {/* Screen by screen. Alternating sides so the eye is not tracking one
-            column all the way down a long page. */}
+        {/* Screen by screen, rebuilt 2026-09-21.
+         *
+         * Two things changed at Bilal's request. The `DeviceFrame` phone
+         * chrome is gone — the captures are designed screens and he wants them
+         * shown as they are, which also removes a decorative bezel, a status
+         * bar and a scroll container from every one of them. And the separate
+         * framed "every screen" band above this was dropped: it showed the same
+         * five images a second time, which is weight for nothing.
+         *
+         * Layout follows the reference Bilal sent: a wide image band, then the
+         * reasoning underneath it, stacked — rather than a phone and a column of
+         * text alternating sides down the page.
+         */}
         <section id="screens" className="relative mt-24 scroll-mt-28 sm:mt-32">
           <div className="site-container">
-            {/* Header, with the count and capture note set right and small — it is
-                reference information, not a second heading. */}
             <Reveal>
-              <div className="mx-auto flex max-w-[1160px] flex-wrap items-end justify-between gap-6 border-b border-border pb-8">
+              <div className="flex flex-wrap items-end justify-between gap-6 border-b border-border pb-8">
                 <div>
                   <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                     The work
@@ -406,110 +371,85 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                 </div>
                 <div className="text-sm leading-relaxed text-muted/70 sm:text-right">
                   <p>{total} screens</p>
-                  <p>Captured from the iOS build</p>
+                  <p>React Native, iOS and Android</p>
                 </div>
               </div>
             </Reveal>
+          </div>
 
-            <ol className="mx-auto mt-10 max-w-[1160px] space-y-5">
-              {app.screens.map((s, i) => {
-                // Phone and spec panel swap sides on alternate rows; the copy stays in
-                // the middle. Reading five identical rows down a long page is what makes
-                // a case study feel like a spreadsheet.
-                const phoneRight = i % 2 === 1;
-                return (
-                  <li key={s.key}>
+          <ol className="mt-16 space-y-20 sm:space-y-28">
+            {app.screens.map((s, i) => (
+              <li key={s.key}>
+                <Reveal>
+                  {/* Two image treatments, because there are two kinds of asset.
+                      A lifestyle mockup is already composed and landscape, so it
+                      runs full-bleed. A screen capture is 1206px wide and up to
+                      5807 tall — cropping that into a landscape band shows a top
+                      strip and throws away the screen. Those render at their own
+                      proportions, capped by height and centred on a tinted
+                      ground, which is what "as it is" means for a tall screen. */}
+                  {s.mockup ? (
+                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-bg-soft sm:aspect-[21/9]">
+                      <Image
+                        src={s.capture.src}
+                        alt={s.capture.alt}
+                        fill
+                        sizes="100vw"
+                        priority={i === 0}
+                        className="object-cover object-center"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex justify-center bg-bg-soft py-12 sm:py-16">
+                      <Image
+                        src={s.capture.src}
+                        alt={s.capture.alt}
+                        width={s.capture.width}
+                        height={s.capture.height}
+                        sizes="(min-width:640px) 420px, 70vw"
+                        priority={i === 0}
+                        className="h-auto max-h-[78vh] w-auto max-w-[70vw] rounded-2xl sm:max-w-[420px]"
+                      />
+                    </div>
+                  )}
+                </Reveal>
+
+                <div className="site-container">
+                  <div className="mt-10 grid grid-cols-1 gap-x-12 gap-y-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)]">
                     <Reveal>
-                      <div className="grid grid-cols-1 overflow-hidden rounded-3xl border border-border bg-surface/25 md:grid-cols-[minmax(0,260px)_minmax(0,1fr)] xl:grid-cols-[minmax(0,272px)_minmax(0,1fr)_minmax(0,272px)]">
-                        {/* Phone panel. Tilted and allowed to run past the panel edge,
-                            so it reads as a device photographed on a surface rather
-                            than an image pasted into a box. `overflow-hidden` on the
-                            card does the cropping. */}
-                        <div
-                          className={`relative flex items-center justify-center px-8 py-10 xl:items-start xl:pb-0 xl:pt-12 ${
-                            phoneRight ? "xl:order-3" : "xl:order-1"
-                          }`}
-                        >
-                          <div
-                            aria-hidden="true"
-                            className="pointer-events-none absolute inset-0"
-                            style={{
-                              background:
-                                "radial-gradient(ellipse 70% 60% at 50% 40%, rgba(242,201,76,0.07), transparent 72%)",
-                            }}
-                          />
-                          {/* A lifestyle mockup already contains a phone, so it
-                              is shown as-is. Wrapping it in DeviceFrame would
-                              render a phone inside a phone, and the tilt that
-                              suits a bare frame fights a photographed one. */}
-                          {s.mockup ? (
-                            <div className="relative w-full max-w-[420px] overflow-hidden rounded-2xl border border-border">
-                              <Image
-                                src={s.capture.src}
-                                alt={s.capture.alt}
-                                width={s.capture.width}
-                                height={s.capture.height}
-                                sizes="(min-width:1280px) 420px, 90vw"
-                                priority={i === 0}
-                                className="h-auto w-full"
-                              />
-                            </div>
-                          ) : (
-                            <div
-                              className={`relative w-[196px] xl:mb-[-36px] xl:w-[204px] ${
-                                phoneRight ? "rotate-[7deg]" : "rotate-[-7deg]"
-                              }`}
-                            >
-                              <DeviceFrame capture={s.capture} eager={i === 0} />
-                            </div>
-                          )}
-                        </div>
-
-                        <div className="flex flex-col justify-center px-8 pb-10 pt-2 xl:order-2 xl:py-12">
-                          <span className="font-mono text-xs text-muted/70">
-                            <span className="mr-2 inline-block h-px w-6 align-middle bg-gold/50" />
-                            {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-                            <span className="mx-2 text-muted/40">·</span>
-                            <span className="text-gold">{s.label}</span>
-                          </span>
-                          <h3 className="mt-4 max-w-[30rem] text-2xl font-semibold leading-snug tracking-tight text-ink">
-                            {s.headline}
-                          </h3>
-                          <p className="mt-4 max-w-[32rem] text-base leading-relaxed text-muted">{s.journey}</p>
-                          <span className="mt-7 inline-flex self-start rounded-full border border-gold/25 bg-gold/[0.06] px-4 py-1.5 text-xs text-gold/90">
-                            {s.tag}
-                          </span>
-                        </div>
-
-                        {/* At a glance. Every value here is readable off the capture
-                            beside it, which is the only thing that makes a spec panel
-                            worth printing. */}
-                        <div
-                          className={`flex flex-col justify-center border-t border-border px-8 py-10 md:col-span-2 xl:col-span-1 xl:border-l xl:border-t-0 xl:py-12 ${
-                            phoneRight ? "xl:order-1 xl:border-l-0 xl:border-r" : "xl:order-3"
-                          }`}
-                        >
-                          <p className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-muted/60">
-                            At a glance
-                          </p>
-                          <dl className="mt-6 space-y-5 md:grid md:grid-cols-3 md:gap-8 md:space-y-0 xl:block xl:space-y-5">
-                            {s.glance.map((g) => (
-                              <div key={g.label} className="border-b border-border/70 pb-4 last:border-b-0 last:pb-0 md:border-b-0 md:pb-0 xl:border-b xl:pb-4 xl:last:border-b-0 xl:last:pb-0">
-                                <dt className="font-mono text-[0.6rem] uppercase tracking-[0.16em] text-muted/60">
-                                  {g.label}
-                                </dt>
-                                <dd className="mt-1.5 text-sm text-ink">{g.value}</dd>
-                              </div>
-                            ))}
-                          </dl>
-                        </div>
+                      <div>
+                        <span className="font-mono text-xs tabular-nums text-muted/70">
+                          <span className="mr-2 inline-block h-px w-6 bg-gold/50 align-middle" />
+                          {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+                          <span className="mx-2 text-muted/40">·</span>
+                          <span className="text-gold">{s.label}</span>
+                        </span>
+                        <h3 className="mt-4 max-w-[26ch] text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl">
+                          {s.headline}
+                        </h3>
+                        <p className="mt-4 max-w-[62ch] text-base leading-relaxed text-muted">
+                          {s.journey}
+                        </p>
                       </div>
                     </Reveal>
-                  </li>
-                );
-              })}
-            </ol>
-          </div>
+
+                    <Reveal delay={0.08}>
+                      <dl className="divide-y divide-border border-y border-border">
+                        {s.glance.map((g) => (
+                          <div key={g.label} className="flex items-baseline justify-between gap-4 py-3">
+                            <dt className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted/70">
+                              {g.label}
+                            </dt>
+                            <dd className="text-sm text-ink">{g.value}</dd>
+                          </div>
+                        ))}
+                      </dl>
+                    </Reveal>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ol>
         </section>
 
         {app.scope ? (

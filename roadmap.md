@@ -2675,3 +2675,48 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
     Page is now 1,436 words, 13 images, 742KB. Verified: `h1-check` 30/30,
     `schema-check` 30/30, `search-check`, `discipline-check`, `tsc`, `lint`,
     build, zero routes failing any hard check.
+
+210. **App case study rebuilt: no device frames, plain images, reference layout (2026-09-21)** — **done.**
+
+    Bilal: "remove the ios mobile phone case you do i want to use plain designed
+    images as it is to make the page light weight", and lay the page out like the
+    Transpo reference.
+
+    **`DeviceFrame` is gone from this page.** Every screen was being rendered
+    inside a drawn iPhone bezel with a notch, a fake 9:41 status bar and a scroll
+    container. The captures are designed screens; the chrome was competing with
+    the work rather than presenting it.
+
+    **The separate "Every screen, end to end" band added in item 209 was
+    removed.** It showed the same five images a second time. Adding it was the
+    right instinct for the reference's *grouping*, but once the walkthrough
+    itself became image bands the band was pure duplication — and the brief this
+    time was explicitly to make the page lighter.
+
+    | | Before | After |
+    |---|---|---|
+    | Images in the DOM | 13 | **8** |
+    | Phone chrome | 5 frames | **0** |
+    | Words | 1,436 | 1,347 |
+
+    **Two image treatments, because there are two kinds of asset.** A lifestyle
+    mockup is already composed and landscape, so it runs full-bleed. A screen
+    capture is 1206px wide and up to **5,807 tall** — cropping that into a
+    landscape band shows a top strip and throws the screen away. Those render at
+    their own proportions, height-capped and centred on a tinted ground, which is
+    what "as it is" means for a tall screen. The first attempt cropped them and
+    was wrong.
+
+    **On weight, measured rather than claimed.** The fallback `src` requests
+    w=1600 for everything, which totals 586KB and is the number a naive check
+    reports. That is not what a browser downloads: `sizes` tells it to pick the
+    640px variant for the tall screens. **Realistic payload is 349KB across six
+    images**, the largest being the 5,807px developments list at 118KB. JS
+    unchanged at 742KB.
+
+    Page order is now About the project → The problem → The solution → Screen by
+    screen → The approach → What it changed → Next case study → FAQ →
+    disciplines → contact.
+
+    Verified: `h1-check` 30/30, `schema-check` 30/30, `search-check`,
+    `discipline-check`, `tsc`, `lint`, build, zero routes failing any hard check.
