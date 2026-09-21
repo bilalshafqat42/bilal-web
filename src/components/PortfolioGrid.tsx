@@ -16,7 +16,13 @@ type Card = {
   href: string;
   image: string;
   alt: string;
-  /** Tall phone captures are framed rather than cropped, see below. */
+  /** Tall phone captures are framed rather than cropped, see below.
+   *
+   *  Unused since 2026-09-21, when the one card that set it — a Weybridge
+   *  Gardens 2 mobile web capture filed under Mobile Development — was replaced
+   *  by the LEOS app mockup, which is landscape. Kept because the next tall
+   *  capture added here will need it again, and the alternative is a 367x5317
+   *  image cropped to a landscape box showing only a top strip. */
   portrait?: boolean;
 };
 
@@ -33,7 +39,11 @@ const cards: Card[] = [
     alt: "Award-winner social creative for LEOS Developments over a residential high-rise",
   },
   {
-    label: "App Development",
+    // Relabelled from "App Development" on 2026-09-21. The card shows a launch
+    // landing page and its own headline says "Next.js builds" — it was web
+    // development filed under app development, while the real app sat in no slot
+    // at all.
+    label: "Web Development",
     headline: "High-converting Next.js builds, engineered around the campaigns that feed them.",
     client: "Hadley Heights",
     deliverable: "Launch landing page",
@@ -42,16 +52,18 @@ const cards: Card[] = [
     alt: "Hadley Heights lead capture landing page",
   },
   {
+    // Was the Weybridge Gardens 2 *mobile landing page* — a responsive website,
+    // filed under Mobile Development. The site has a real cross-platform app and
+    // this slot was pointing at a web page instead of at it.
     label: "Mobile Development",
-    headline: "Phone-first interfaces, not desktop layouts squeezed down to fit.",
-    client: "Weybridge Gardens 2",
-    deliverable: "Mobile landing page",
-    href: "/portfolio/leos-developments/weybridge-gardens-2",
-    image: "/portfolio/leos/weybridge-gardens-2/landing-page/weybridge-mobile.avif",
-    alt: "Weybridge Gardens 2 mobile landing page",
-    // A 367x5317 capture cropped to a landscape box shows only a top strip that
-    // reads as a desktop page, contradicting the headline above it.
-    portrait: true,
+    headline: "One codebase, two app stores, the same inventory as the website.",
+    client: "LEOS Developments",
+    deliverable: "Cross-platform mobile app",
+    href: "/portfolio/leos-developments/mobile-app",
+    image: "/portfolio/leos/mobile-app/leos-mobile-featured.avif",
+    alt: "The LEOS app open on the Hadley Heights development, shown on an iPhone",
+    // Landscape mockup, so it takes the standard crop rather than the phone
+    // framing the tall capture needed.
   },
   {
     label: "UI/UX Design",
