@@ -326,25 +326,6 @@ export default async function MobileAppCaseStudy({ params }: Props) {
               </div>
             </section>
 
-            {/* Full-bleed band between the problem and the solution, which is
-                the rhythm of the reference: narrative, then a wide image, then
-                narrative. Uses a screen the walkthrough below also covers —
-                there is no separate set of brand or environment photography to
-                draw on here, and inventing one is not an option. */}
-            {app.screens[1] ? (
-              <section className="relative mt-20 sm:mt-24">
-                <div className="relative aspect-[16/9] w-full overflow-hidden sm:aspect-[21/9]">
-                  <Image
-                    src={app.screens[1].capture.src}
-                    alt={app.screens[1].capture.alt}
-                    fill
-                    sizes="100vw"
-                    className="object-cover object-center"
-                  />
-                </div>
-              </section>
-            ) : null}
-
             <section className="relative mt-20 bg-bg-soft/50 py-16 sm:mt-24 sm:py-20">
               <div className="site-container">
                 <Reveal>
@@ -358,6 +339,50 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                     {app.constraints.pull}
                   </p>
                 </Reveal>
+              </div>
+            </section>
+
+            {/* The whole app in one band, before the screen-by-screen detail.
+                This is the part of the reference Bilal picked out: phones
+                grouped on a tinted ground rather than presented one at a time.
+                It answers "what is this app" at a glance, and the walkthrough
+                below then answers "why is it built that way".
+
+                It replaced a single full-bleed crop of one screen, which showed
+                less and said nothing. */}
+            <section className="relative mt-20 overflow-hidden bg-bg-soft/60 py-16 sm:mt-24 sm:py-20">
+              <div className="site-container">
+                <Reveal>
+                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                    The app
+                  </span>
+                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                    Every screen, end to end
+                  </h2>
+                  <p className="mt-4 max-w-[62ch] text-lg leading-relaxed text-muted">
+                    Sign in through to enquiry — the whole path a buyer takes, in the
+                    order they take it. Each one scrolls inside its frame.
+                  </p>
+                </Reveal>
+
+                {/* Horizontal scroll below lg rather than a wrap: five phones
+                    wrapped onto two rows stop reading as a sequence, and the
+                    sequence is the point. */}
+                <div className="no-scrollbar -mx-6 mt-12 flex gap-5 overflow-x-auto px-6 pb-2 lg:mx-0 lg:grid lg:grid-cols-5 lg:gap-6 lg:overflow-visible lg:px-0">
+                  {app.screens.map((s, i) => (
+                    <Reveal key={s.key} delay={i * 0.06} className="w-[62vw] shrink-0 sm:w-[38vw] lg:w-auto">
+                      <figure>
+                        <DeviceFrame capture={s.capture} eager={i === 0} />
+                        <figcaption className="mt-4 text-center">
+                          <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] tabular-nums text-gold">
+                            {String(i + 1).padStart(2, "0")}
+                          </span>
+                          <span className="mt-1 block text-sm font-medium text-ink">{s.label}</span>
+                        </figcaption>
+                      </figure>
+                    </Reveal>
+                  ))}
+                </div>
               </div>
             </section>
           </>

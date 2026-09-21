@@ -2630,3 +2630,48 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
     Verified: `h1-check` 30/30, `schema-check` 30/30, `search-check` 32 checks,
     `discipline-check`, `tsc`, `lint`, build, zero routes failing any hard check,
     zero broken images on the page.
+
+209. **The app screens presented as a band, the way Bilal liked in the reference (2026-09-21)** — **done.**
+
+    Bilal: "i like the way they represent their mobile app … don't add the budget
+    timing things but we can make it case study like them page design? with what
+    we have."
+
+    **What the reference actually does with its screens:** groups phones on a
+    tinted ground — three at a time on a navy band, then a lighter band mixing
+    phones with a panel — rather than presenting one screen at a time down a long
+    column. That grouping is the thing he picked out.
+
+    **Added: "Every screen, end to end."** All five screens as device frames in
+    one row on a tinted band, numbered and captioned — Sign in, Home,
+    Developments, Menu, Enquire. It answers *what is this app* at a glance, and
+    the existing walkthrough below then answers *why is it built that way*.
+    Horizontal scroll below `lg` rather than wrapping: five phones on two rows
+    stop reading as a sequence, and the sequence is the point.
+
+    It replaced the single full-bleed crop added in item 208, which showed one
+    screen and said nothing.
+
+    Sits after *The solution*, not before it. First placement put it between
+    *The problem* and *The solution*, which answered "what is it" before the page
+    had explained the approach.
+
+    **Full inventory of the app imagery, since Bilal asked.** Five flat screen
+    captures in `mobile-app/raw/` (login 1206x2622, home 1206x3547, developments
+    1206x5807, menu 1206x2622, enquire 1206x2622) and four lifestyle mockups
+    supplied on 17 September, plus the OG crop. **That is the whole set** — there
+    is no brand, environment or packaging photography of the kind the reference
+    runs between its sections, which is the real reason its page feels longer and
+    richer. Structure was never the gap.
+
+    **One filing quirk found, not a content error.**
+    `cavendish/mobile-app/cavendish-mobile-app.avif` is the Cavendish Square
+    *mobile web landing page* — it shows Register Your Interest and Check
+    Construction Progress, which are landing page actions. The folder name says
+    `mobile-app`; the data around it is correct, labelling it `mobileCapture`
+    with "Cavendish Square — mobile". Left alone: the path is referenced and the
+    label a reader sees is accurate.
+
+    Page is now 1,436 words, 13 images, 742KB. Verified: `h1-check` 30/30,
+    `schema-check` 30/30, `search-check`, `discipline-check`, `tsc`, `lint`,
+    build, zero routes failing any hard check.
