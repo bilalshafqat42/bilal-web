@@ -279,32 +279,88 @@ export default async function MobileAppCaseStudy({ params }: Props) {
         {/* Constraints: the pull quote states the problem, the numbered points
             are what it forced. */}
         {app.constraints ? (
-          <section className="relative mt-24 sm:mt-32">
-            <div className="site-container">
-              <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.25fr] lg:gap-16">
+          <>
+            {/* Restructured 2026-09-21 to the shape Bilal asked for: named
+                narrative sections — About, The Problem, The Solution — rather
+                than one unlabelled pull-quote-and-list block. The content is the
+                same; what changed is that each part now says what it is, which
+                is also what makes the page legible to a crawler reading the
+                outline rather than the layout. */}
+            <section className="relative mt-24 sm:mt-32">
+              <div className="site-container">
                 <Reveal>
-                  <p className="border-l-2 border-gold/70 pl-6 text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-[1.75rem]">
+                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                    The brief
+                  </span>
+                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                    About the project
+                  </h2>
+                  <p className="mt-6 max-w-[68ch] text-lg leading-relaxed text-muted">{app.body}</p>
+                </Reveal>
+              </div>
+            </section>
+
+            <section className="relative mt-20 sm:mt-24">
+              <div className="site-container">
+                <Reveal>
+                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                    What made it hard
+                  </span>
+                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                    The problem
+                  </h2>
+                </Reveal>
+                <ol className="mt-12 grid grid-cols-1 gap-x-12 gap-y-10 lg:grid-cols-3">
+                  {app.constraints.points.map((pt, i) => (
+                    <Reveal key={pt.title} delay={i * 0.08}>
+                      <li className="border-t border-border pt-6">
+                        <span className="font-mono text-xs tabular-nums text-gold">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <p className="mt-3 text-lg font-semibold leading-snug text-ink">{pt.title}</p>
+                        <p className="mt-3 text-base leading-relaxed text-muted">{pt.body}</p>
+                      </li>
+                    </Reveal>
+                  ))}
+                </ol>
+              </div>
+            </section>
+
+            {/* Full-bleed band between the problem and the solution, which is
+                the rhythm of the reference: narrative, then a wide image, then
+                narrative. Uses a screen the walkthrough below also covers —
+                there is no separate set of brand or environment photography to
+                draw on here, and inventing one is not an option. */}
+            {app.screens[1] ? (
+              <section className="relative mt-20 sm:mt-24">
+                <div className="relative aspect-[16/9] w-full overflow-hidden sm:aspect-[21/9]">
+                  <Image
+                    src={app.screens[1].capture.src}
+                    alt={app.screens[1].capture.alt}
+                    fill
+                    sizes="100vw"
+                    className="object-cover object-center"
+                  />
+                </div>
+              </section>
+            ) : null}
+
+            <section className="relative mt-20 bg-bg-soft/50 py-16 sm:mt-24 sm:py-20">
+              <div className="site-container">
+                <Reveal>
+                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                    The answer
+                  </span>
+                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                    The solution
+                  </h2>
+                  <p className="mt-6 max-w-[62ch] border-l-2 border-gold/70 pl-6 text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-[1.75rem]">
                     {app.constraints.pull}
                   </p>
                 </Reveal>
-                <Reveal delay={0.1}>
-                  <ol className="space-y-8">
-                    {app.constraints.points.map((pt, i) => (
-                      <li key={pt.title} className="grid grid-cols-[auto_1fr] gap-5">
-                        <span className="font-mono text-xs text-gold">
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        <div>
-                          <p className="font-semibold text-ink">{pt.title}</p>
-                          <p className="mt-2 text-base leading-relaxed text-muted">{pt.body}</p>
-                        </div>
-                      </li>
-                    ))}
-                  </ol>
-                </Reveal>
               </div>
-            </div>
-          </section>
+            </section>
+          </>
         ) : null}
 
         {/* Screen by screen. Alternating sides so the eye is not tracking one
@@ -437,10 +493,14 @@ export default async function MobileAppCaseStudy({ params }: Props) {
               <Reveal>
                 <div>
                   <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
-                    Scope
+                    How it was built
                   </span>
+                  {/* Renamed from "What I handled on this project" on
+                      2026-09-21. The reference labels this section Approach, and
+                      the content is the same thing: what was actually done, in
+                      the order it was done. */}
                   <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
-                    What I handled on this project.
+                    The approach
                   </h2>
                 </div>
               </Reveal>
@@ -508,7 +568,18 @@ export default async function MobileAppCaseStudy({ params }: Props) {
         {siblings.length > 0 ? (
           <section className="relative mt-24 sm:mt-32">
             <div className="site-container">
-              <div className="grid grid-cols-1 gap-4 border-t border-border pt-10 sm:grid-cols-2">
+              {/* Labelled on 2026-09-21. It was two unheaded cards, which reads
+                  as pagination furniture; the reference gives it a heading and
+                  it becomes a deliberate next step. */}
+              <Reveal>
+                <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                  Keep reading
+                </span>
+                <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                  Next case study
+                </h2>
+              </Reveal>
+              <div className="mt-10 grid grid-cols-1 gap-4 border-t border-border pt-10 sm:grid-cols-2">
                 {siblings.map((p, i) => (
                   <Link
                     key={p.slug}

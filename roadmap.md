@@ -2584,3 +2584,49 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
     Verified: `h1-check` 30/30, `schema-check` 30/30, `search-check` 32 checks
     (index 184 → 196), `discipline-check`, `tsc`, `lint`, build, **zero routes
     failing any hard check, zero broken images on the app case study**.
+
+208. **The mobile app case study restructured to the Musemind "Transpo" shape (2026-09-21)** — **done.**
+
+    Bilal sent two full-page screenshots of Musemind's Transpo case study and
+    asked for this page to match it.
+
+    **What the reference does, section by section:** title and one-line summary,
+    a four-column fact strip, a full-bleed hero image, then *About the project*,
+    *The Problem*, a full-bleed image, *The Solution* on a tinted band, *Key
+    Challenges*, long runs of full-bleed imagery, *Approach*, *Next Case Study*,
+    and a contact form.
+
+    **What changed here.** The content was already present; almost none of it was
+    labelled. The constraints block was one unheaded pull-quote beside a numbered
+    list, which reads as decoration — the reference's strength is that every part
+    announces what it is, which is also what makes the page legible to a crawler
+    reading the outline rather than the layout.
+
+    | Was | Now |
+    |---|---|
+    | (unlabelled pull quote + list) | **About the project** → **The problem** → **The solution** |
+    | — | full-bleed image band between problem and solution |
+    | "What I handled on this project." | **The approach** |
+    | two unheaded prev/next cards | **Next case study**, with a heading |
+
+    Order is now: About the project → The problem → [image] → The solution →
+    Screen by screen → The approach → What it changed → Next case study → FAQ →
+    disciplines → contact. 1,389 words.
+
+    **What was deliberately not copied, and why it matters.** The reference's
+    fact strip carries *Duration 3 Months*, *Budget $400k+* and *Team Maximised*;
+    its stats band carries *7M+*, *30K+*, *3500+*. **None of those exist for this
+    project.** This page's own `outcomes` block already names the two figures that
+    are missing — enquiries per month and time to first response — rather than
+    filling them, and that rule was not broken to match a layout.
+
+    The reference also runs long stretches of brand, uniform, packaging and
+    billboard photography between sections. **There is no equivalent set here** —
+    the assets are five app screens and the mockups Bilal supplied on 17
+    September. One full-bleed band was added using a screen the walkthrough also
+    covers, which is honest reuse; inventing an environment shoot is not an
+    option.
+
+    Verified: `h1-check` 30/30, `schema-check` 30/30, `search-check` 32 checks,
+    `discipline-check`, `tsc`, `lint`, build, zero routes failing any hard check,
+    zero broken images on the page.
