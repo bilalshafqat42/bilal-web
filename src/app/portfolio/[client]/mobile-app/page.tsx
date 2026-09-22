@@ -309,6 +309,12 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                     The problem
                   </h2>
                 </Reveal>
+                <Reveal>
+                  <p className="mt-5 max-w-[62ch] text-lg leading-relaxed text-muted">
+                    Three things constrained this build before a single screen was
+                    designed:
+                  </p>
+                </Reveal>
                 <ol className="mt-12 grid grid-cols-1 gap-x-12 gap-y-10 lg:grid-cols-3">
                   {app.constraints.points.map((pt, i) => (
                     <Reveal key={pt.title} delay={i * 0.08}>
@@ -343,6 +349,38 @@ export default async function MobileAppCaseStudy({ params }: Props) {
 
           </>
         ) : null}
+
+        {/* Key Challenges. The reference carries this between the solution and
+            the approach, and it is the one section this page had no equivalent
+            for. Built from each screen's own `tag` — the one-line takeaway
+            already written for it — so it states the interface decisions without
+            repeating The Problem above, which covers the external constraints. */}
+        <section className="relative mt-24 sm:mt-32">
+          <div className="site-container">
+            <Reveal>
+              <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                What had to be solved
+              </span>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                Key challenges
+              </h2>
+              <p className="mt-5 max-w-[62ch] text-lg leading-relaxed text-muted">
+                The app had to be operable in one hand by someone who may never have
+                seen the website. That required:
+              </p>
+            </Reveal>
+            <ul className="mt-10 grid grid-cols-1 gap-x-12 gap-y-4 sm:grid-cols-2">
+              {app.screens.map((s, i) => (
+                <Reveal key={s.key} delay={i * 0.05}>
+                  <li className="flex items-baseline gap-4 border-b border-border py-4">
+                    <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                    <span className="text-base leading-relaxed text-ink">{s.tag}</span>
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
+          </div>
+        </section>
 
         {/* Screen by screen, rebuilt 2026-09-21.
          *
@@ -467,6 +505,9 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                   <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
                     The approach
                   </h2>
+                  <p className="mt-5 max-w-[62ch] text-lg leading-relaxed text-muted">
+                    Design and build were the same job here, done in this order:
+                  </p>
                 </div>
               </Reveal>
               <div className="mt-12 grid grid-cols-1 gap-10 border-t border-border pt-10 sm:grid-cols-3 sm:gap-8">

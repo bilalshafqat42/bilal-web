@@ -2720,3 +2720,47 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
 
     Verified: `h1-check` 30/30, `schema-check` 30/30, `search-check`,
     `discipline-check`, `tsc`, `lint`, build, zero routes failing any hard check.
+
+211. **App case study matched to the Transpo page structure, read from the live page (2026-09-22)** — **done.**
+
+    Bilal sent the actual URL rather than screenshots, so the structure was read
+    off the page instead of inferred.
+
+    **What Transpo actually does.** Six named sections — *About the project, The
+    Problem, The Solution, Key Challenges, Approach, Next Case Study* — each
+    following the same copy shape: **a lead-in sentence ending in a colon, then
+    short statements.** "Logistics websites often struggle with the same
+    challenges:" then four. "The challenge was to simplify complex logistics
+    content without removing important details. This required:" then five. "We
+    started by defining the main user journeys… Then we:" then five.
+
+    **One thing deliberately not copied:** they mark section names as `h3` and
+    the bullet statements as `h2`, which inverts the hierarchy. This page keeps
+    section names as `h2`, because `h1-check`, the type scale from item 189 and
+    every crawler reading the outline all depend on that being right.
+
+    **What changed here.** The page already had About, The Problem, The Solution
+    and The Approach from item 208. Added:
+
+    - **Key challenges**, the one section with no equivalent. Built from each
+      screen's own `tag` — the one-line takeaway already written for it — so it
+      states the *interface* decisions without repeating The Problem, which
+      covers the *external* constraints. "Guest browsing by default", "Actions
+      sit with the content", "Price on the card, not behind a tap", "Weighted,
+      not evenly split", "Reachable from every card".
+    - **Lead-in lines** on The Problem and The Approach, matching the
+      colon-then-list pattern.
+
+    Order is now About the project → The problem → The solution → Key challenges
+    → Screen by screen → The approach → What it changed → Next case study, which
+    is Transpo's order with the screen walkthrough sitting where Transpo runs its
+    long image sequences.
+
+    **Nothing invented to fill a slot.** Every bullet in all four lists is text
+    that already existed in `caseStudies.ts`; the only new copy is the four
+    lead-in sentences. Transpo's fact strip fields — duration, budget, team — and
+    its stats band remain absent, per item 208.
+
+    1,422 words, 8 images, 742KB. Verified: `h1-check` 30/30, `schema-check`
+    30/30, `search-check`, `discipline-check`, `tsc`, `lint`, build, zero routes
+    failing any hard check.
