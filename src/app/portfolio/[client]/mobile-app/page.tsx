@@ -108,13 +108,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: { canonical: `/portfolio/${c.slug}/mobile-app` },
     // Its own card rather than inheriting the site default. Supplied by Bilal at
     // exactly 1200x630, which is the size every platform crops to.
+    //
+    // JPEG, not the AVIF original. WhatsApp and Facebook share one link-preview
+    // crawler, and its supported formats are JPEG, PNG, GIF and WebP — an AVIF
+    // og:image is fetched and then not rendered, so the link shares with no
+    // picture at all. Bilal named WhatsApp specifically. The site's two other OG
+    // images are already JPEG; this one was the odd case.
     openGraph: {
       title: `${c.name} App — React Native Case Study`,
       description: `A cross-platform iOS and Android app for ${c.name}, built in React Native from a single codebase.`,
       url: `${SITE}/portfolio/${c.slug}/mobile-app`,
       images: [
         {
-          url: `${SITE}/portfolio/leos/mobile-app/og-leos-mobile.avif`,
+          url: `${SITE}/portfolio/leos/mobile-app/og-leos-mobile.jpg`,
           width: 1200,
           height: 630,
           alt: `The ${c.name} app sign-in screen shown on an iPhone`,
@@ -123,7 +129,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      images: [`${SITE}/portfolio/leos/mobile-app/og-leos-mobile.avif`],
+      images: [`${SITE}/portfolio/leos/mobile-app/og-leos-mobile.jpg`],
     },
   };
 }
