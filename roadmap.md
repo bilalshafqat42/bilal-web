@@ -2764,3 +2764,45 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
     1,422 words, 8 images, 742KB. Verified: `h1-check` 30/30, `schema-check`
     30/30, `search-check`, `discipline-check`, `tsc`, `lint`, build, zero routes
     failing any hard check.
+
+212. **App case study decluttered; homepage title was being truncated by Google (2026-09-23)** — **done.**
+
+    **The title finding, from Bilal's own screenshot.** Google was rendering the
+    homepage as "Bilal Shafqat — Freelance Digital Marketer & Developer **…**" —
+    **cutting "Dubai" off entirely.** The title was 60 characters and inside
+    every character-count rule this project has used, including the matrix
+    threshold. **Google truncates by pixel width, not character count**, and this
+    one is wide. Shortened to "Bilal Shafqat — Digital Marketer & Developer,
+    Dubai" (51): dropping "Freelance" buys back the room and keeps the one word
+    carrying local intent.
+
+    Worth carrying forward: **the 45-60 character matrix check is a proxy, not a
+    guarantee.** A title inside it can still be cut.
+
+    **Why the page felt complex, having read the reference's actual sequence.**
+    Transpo runs images **back to back with nothing attached** — six in a row
+    after Key Challenges, nine after Approach — and keeps its text in separate,
+    pure blocks. This page attached a headline, a paragraph and a three-row spec
+    table beneath every single image. That interleaving was the complexity.
+
+    - The image run now carries a caption only: number, label, and the decision
+      as one line.
+    - The journey paragraphs moved into **Design decisions**, a plain two-column
+      list after the images — the reference's shape, statements grouped rather
+      than threaded between pictures.
+    - The `glance` spec tables are no longer rendered. They remain in
+      `caseStudies.ts` if ever wanted; they were reference detail buying visual
+      noise.
+    - "Screen by screen, and why each one is built that way." became **The
+      screens**, since the "why" now lives below.
+
+    **Answered directly, because Bilal asked directly: no, I cannot index pages
+    for him.** That requires his Google Search Console account. What was verified
+    instead: `robots.txt` 200 and declaring the sitemap, `sitemap.xml` 200 with
+    30 URLs, no `noindex` anywhere, and **every canonical on production pointing
+    at itself** — checked across ten routes. Nothing technical is blocking
+    indexing.
+
+    1,390 words, 8 images. Verified: `h1-check` 30/30, `schema-check` 30/30,
+    `search-check`, `discipline-check`, `tsc`, `lint`, build, zero routes failing
+    any hard check.

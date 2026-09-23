@@ -8,7 +8,13 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bilalshafqat.com"),
-  title: "Bilal Shafqat — Freelance Digital Marketer & Developer Dubai",
+  // Shortened 2026-09-23 from "Bilal Shafqat — Freelance Digital Marketer &
+  // Developer Dubai". That was 60 characters and inside the usual limit, but
+  // Google truncates by *pixel width*, not character count — a live search
+  // showed it cut to "…Digital Marketer & Developer …", losing "Dubai"
+  // entirely. Dropping "Freelance" buys the room back and keeps the one word
+  // that carries local intent.
+  title: "Bilal Shafqat — Digital Marketer & Developer, Dubai",
   // 233 characters before this, the longest on the site — Google cuts around
   // 160, so roughly the last third was being dropped mid-sentence.
   description:
@@ -29,7 +35,7 @@ export const metadata: Metadata = {
     "social media management UAE",
   ],
   openGraph: {
-    title: "Bilal Shafqat — Freelance Digital Marketer & Developer Dubai",
+    title: "Bilal Shafqat — Digital Marketer & Developer, Dubai",
     description:
       // Was a different sentence from the meta description: a list of four
       // services ending "one senior partner, four pillars". A share card is

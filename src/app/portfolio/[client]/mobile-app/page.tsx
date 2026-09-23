@@ -403,8 +403,11 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                   <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                     The work
                   </span>
+                  {/* Was "Screen by screen, and why each one is built that
+                      way." The "why" moved to Design decisions below, so the
+                      heading now says only what this run of images is. */}
                   <h2 className="mt-4 max-w-2xl text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
-                    Screen by screen, and why each one is built that way.
+                    The screens
                   </h2>
                 </div>
                 <div className="text-sm leading-relaxed text-muted/70 sm:text-right">
@@ -453,41 +456,57 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                 </Reveal>
 
                 <div className="site-container">
-                  <div className="mt-10 grid grid-cols-1 gap-x-12 gap-y-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)]">
-                    <Reveal>
-                      <div>
-                        <span className="font-mono text-xs tabular-nums text-muted/70">
-                          <span className="mr-2 inline-block h-px w-6 bg-gold/50 align-middle" />
-                          {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-                          <span className="mx-2 text-muted/40">·</span>
-                          <span className="text-gold">{s.label}</span>
-                        </span>
-                        <h3 className="mt-4 max-w-[26ch] text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl">
-                          {s.headline}
-                        </h3>
-                        <p className="mt-4 max-w-[62ch] text-base leading-relaxed text-muted">
-                          {s.journey}
-                        </p>
-                      </div>
-                    </Reveal>
-
-                    <Reveal delay={0.08}>
-                      <dl className="divide-y divide-border border-y border-border">
-                        {s.glance.map((g) => (
-                          <div key={g.label} className="flex items-baseline justify-between gap-4 py-3">
-                            <dt className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted/70">
-                              {g.label}
-                            </dt>
-                            <dd className="text-sm text-ink">{g.value}</dd>
-                          </div>
-                        ))}
-                      </dl>
-                    </Reveal>
-                  </div>
+                  {/* Caption only: number, label, and the decision as one line.
+                      The reference attaches nothing at all to its images, and
+                      what made this page feel busy was a two-column block under
+                      every screen — a headline, a paragraph and a three-row spec
+                      table. The paragraphs moved into "Design decisions" below,
+                      where they read as a list instead of interrupting the run
+                      of images. The `glance` specs are no longer rendered; they
+                      remain in `caseStudies.ts` if they are ever wanted back. */}
+                  <Reveal>
+                    <div className="mt-6 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                      <span className="font-mono text-xs tabular-nums text-muted/70">
+                        {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+                      </span>
+                      <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                        {s.label}
+                      </span>
+                      <p className="w-full max-w-[52ch] text-base leading-relaxed text-muted">
+                        {s.headline}
+                      </p>
+                    </div>
+                  </Reveal>
                 </div>
               </li>
             ))}
           </ol>
+        </section>
+
+        {/* The reasoning, as a list rather than threaded between the images.
+            This is the reference's shape: runs of images, then a block of short
+            statements, and never the two interleaved. */}
+        <section className="relative mt-24 sm:mt-32">
+          <div className="site-container">
+            <Reveal>
+              <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                Why each screen is built that way
+              </span>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                Design decisions
+              </h2>
+            </Reveal>
+            <ol className="mt-12 space-y-10">
+              {app.screens.map((s, i) => (
+                <Reveal key={s.key} delay={i * 0.05}>
+                  <li className="grid grid-cols-1 gap-x-10 gap-y-2 border-t border-border pt-7 lg:grid-cols-[minmax(0,18rem)_minmax(0,1fr)]">
+                    <p className="text-lg font-semibold leading-snug text-ink">{s.headline}</p>
+                    <p className="max-w-[68ch] text-base leading-relaxed text-muted">{s.journey}</p>
+                  </li>
+                </Reveal>
+              ))}
+            </ol>
+          </div>
         </section>
 
         {app.scope ? (
