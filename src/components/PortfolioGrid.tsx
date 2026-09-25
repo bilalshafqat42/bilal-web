@@ -233,8 +233,8 @@ export default function PortfolioGrid() {
                     Each is then fitted to the frame, which trims the sides of
                     the wider ones and keeps every pixel dark. 47-70KB each.
                     
-                    **The frame is 1200:878 — thirty per cent taller than the
-                    16:9 it started at**, on Bilal's instruction, and the assets
+                    **The frame is 1200:1141 — two rounds of "thirty per cent
+                    taller" on top of the 16:9 it started at**, on Bilal's instruction, and the assets
                     were re-cut to match rather than the CSS just being
                     stretched. A taller frame shows more of whatever is behind
                     it, so leaving 16:9 thumbnails in a 1.37 frame would have
@@ -247,7 +247,7 @@ export default function PortfolioGrid() {
                     removed the stripe, and cost far more: those files run to
                     1600x6644, so the browser would fetch an entire page scroll
                     to paint a 316px thumbnail. */}
-                <div className="relative aspect-[1200/878] overflow-hidden rounded-xl bg-surface/40">
+                <div className="relative aspect-[1200/1141] overflow-hidden rounded-xl bg-surface/40">
                   <Image
                     src={card.image}
                     alt={card.alt}

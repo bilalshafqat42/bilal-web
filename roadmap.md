@@ -4606,3 +4606,50 @@ The one thumbnail that still reads light at the bottom is the Hadley Heights
 social creative, which is a pale square artwork rather than a crop artefact.
 
 All four checks pass against a production server.
+
+### 252. Work thumbnails, thirty per cent taller again
+
+Frame from `aspect-[1200/878]` to `aspect-[1200/1141]` — ≈1.05:1, near square.
+Measured at 1440: 316 → **411px** in the three-up row, 486 → **631px** in the
+two-up, 231 → **300px** in the four-up. +30% on all nine.
+
+**On "don't distort them".** They never were and still are not: every image is
+`object-fit: cover`, which preserves the source aspect ratio and crops the
+overflow rather than stretching. Confirmed on all nine after the change. The
+five landing page thumbnails were also re-cut to 1200x1141, so they now match
+their frame exactly and are not cropped by the browser at all.
+
+#### The crop anchor had to move to the left
+
+At 1.05 only about **half of each hero's width survives** (50–57%). Centred,
+that sliced every development name in two: the grid read "ENDISH ARE",
+"GE GARDENS" and "BRIDGE GARDENS 2". A property landing page puts its logo and
+its headline on the left, so the crop is now anchored `left top` and all of
+them are whole. The cost is the right-hand side — Hadley Heights loses part of
+its callback form, which is the lesser loss.
+
+| Thumbnail | Browser-side crop after re-cut |
+| --- | --- |
+| The five landing pages | **none** — asset matches the frame |
+| The two square social creatives | 5% off top and bottom |
+| The two landscape app mockups | 41–42% off the sides |
+
+The two app mockups are the remaining weak point: they are 1.79 and 1.82 wide
+and lose nearly half their width to a near-square frame. Worth a purpose-made
+crop if this ratio stays.
+
+#### A cache trap worth recording
+
+The first verification of this change reported the thumbnails as 691x388 — a
+16:9 ratio — when the assets on disk were 1200x1141. **Next's image optimiser
+caches on source path, width and quality, not on file contents**, so
+overwriting an image in place serves the old optimised variant indefinitely.
+113 entries were sitting in `.next/cache/images`.
+
+This matters beyond the measurement: it means item 251's verification was also
+reading stale images, and that **a deploy which overwrites an image at the same
+path will serve the old crop from cache**. Either clear `.next/cache/images` on
+deploy or give re-cut assets new filenames. Not yet a live problem — none of
+this has been deployed.
+
+All four checks pass against a production server.
