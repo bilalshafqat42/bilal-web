@@ -230,14 +230,24 @@ export default function PortfolioGrid() {
                     detected by scanning down for the row where the capture
                     turns light, rather than assumed, because the four heroes
                     run from 1.78:1 to 2.05:1 and no single guess fits them.
-                    Each is then fitted to 16:9, which trims the sides of the
-                    wider ones and keeps every pixel dark. 42-69KB each.
+                    Each is then fitted to the frame, which trims the sides of
+                    the wider ones and keeps every pixel dark. 47-70KB each.
+                    
+                    **The frame is 1200:878 — thirty per cent taller than the
+                    16:9 it started at**, on Bilal's instruction, and the assets
+                    were re-cut to match rather than the CSS just being
+                    stretched. A taller frame shows more of whatever is behind
+                    it, so leaving 16:9 thumbnails in a 1.37 frame would have
+                    put the white stripe straight back. The heroes are all wider
+                    than 1.37 (1.78 to 2.05), so the extra height is paid for by
+                    cropping the sides, centred, rather than by reaching further
+                    down the page.
                     
                     Pointing these at the full captures instead would also have
                     removed the stripe, and cost far more: those files run to
                     1600x6644, so the browser would fetch an entire page scroll
                     to paint a 316px thumbnail. */}
-                <div className="relative aspect-video overflow-hidden rounded-xl bg-surface/40">
+                <div className="relative aspect-[1200/878] overflow-hidden rounded-xl bg-surface/40">
                   <Image
                     src={card.image}
                     alt={card.alt}

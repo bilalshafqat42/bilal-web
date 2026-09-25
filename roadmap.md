@@ -4575,3 +4575,34 @@ portfolio" button, which is what made an early white-band reading come back
 clean when four thumbnails were visibly banded. Scope to `.grid > a`.
 
 All four checks pass against a production server.
+
+### 251. Work thumbnails, thirty per cent taller
+
+Frame from `aspect-video` (16:9) to `aspect-[1200/878]` (≈1.37:1).
+
+| Row | Cell width | Thumbnail height before | After |
+| --- | --- | --- | --- |
+| 1, three across | 432px | 243px | **316px** |
+| 2, two across | 664px | 374px | **486px** |
+| 3, four across | 316px | 178px | **231px** |
+
++30% on all nine, measured.
+
+**The assets were re-cut, not just stretched.** A taller frame shows more of
+whatever sits behind it, so leaving the 16:9 thumbnails in a 1.37 frame would
+have put item 250's white stripe straight back. The five landing page
+thumbnails are regenerated at 1200x878 from the same detected hero heights.
+
+The extra height is paid for by **cropping the sides, centred**, not by
+reaching further down the page — every hero is wider than 1.37 (they run 1.78
+to 2.05), and reaching down is where the white is. Visible cost: the site
+header and logo are trimmed on the two widest captures. Acceptable against
+getting a taller image, and the alternative — anchoring the crop left to keep
+the logo — would cut the calls to action on the right instead.
+
+Files grew from 42–69KB to 47–70KB. Bottom edge measures 0% light on all five.
+
+The one thumbnail that still reads light at the bottom is the Hadley Heights
+social creative, which is a pale square artwork rather than a crop artefact.
+
+All four checks pass against a production server.
