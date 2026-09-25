@@ -3,17 +3,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown, ArrowRight, Search } from "lucide-react";
 import { openSearchPanel } from "@/lib/searchPanel";
 import { accentClasses, megaMenuGroups, slugify } from "@/data/pillars";
-import {
-  disciplineGroups,
-  disciplineHref,
-  disciplineCount,
-  disciplinePieces,
-  hasPortfolioPage,
-} from "@/data/disciplines";
-import { industriesWithWork } from "@/data/caseStudies";
 
 /**
  * Site header.
@@ -32,11 +25,17 @@ import { industriesWithWork } from "@/data/caseStudies";
  * The interaction details below are the parts worth keeping and are easy to
  * lose in a rewrite — each one exists because of a specific failure.
  */
-/** `mega` names which panel a link opens, so the header can drive two of them
- *  off one piece of state. It was a boolean while there was only the services
- *  panel; a second boolean would have meant two independent timers, two
- *  triggers and the possibility of both panels being open at once. */
-type MegaId = "portfolio" | "services";
+/** `mega` names which panel a link opens rather than being a boolean, so the
+ *  header can drive any number of panels off one piece of state — two
+ *  booleans would mean two timers, two triggers and the possibility of both
+ *  being open at once.
+ *
+ *  Only "services" remains. The Portfolio panel was removed from `links` on
+ *  2026-09-17 when /portfolio became a grid of case studies, but its component
+ *  and its mobile `<details>` twin were left behind — ~160 lines behind a
+ *  condition that could never be true, still compiled into the client bundle
+ *  and rendering nowhere. Deleted 2026-09-24 (roadmap 213.13). */
+type MegaId = "services";
 
 /**
  * Trimmed on 2026-09-17 from seven items to four.
@@ -100,127 +99,15 @@ function MegaPanel({
   );
 }
 
-/** Contents of the Portfolio panel. */
-function PortfolioMenu({ onNavigate }: { onNavigate: () => void }) {
-  return (
-    <>
-      {/* Three themed columns rather than nine equal cells. Nine disciplines
-          in one row is unscannable, and each of these headings is a category
-          a buyer actually searches for. */}
-      <div className="grid grid-cols-3 gap-x-10">
-        {disciplineGroups.map((group) => (
-          <div key={group.name}>
-            <span className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-muted/60">
-              {group.name}
-            </span>
-            <ul className="mt-4 space-y-4">
-              {group.disciplines.map((d) => {
-                const count = disciplineCount(d);
-                const live = hasPortfolioPage(d) || Boolean(d.aliasHref);
-                const pieces = live ? disciplinePieces(d) : [];
-                return (
-                  <li key={d.slug}>
-                    <Link
-                      href={disciplineHref(d)}
-                      onClick={() => onNavigate()}
-                      className="group/item block"
-                    >
-                      <span className="flex items-baseline gap-2.5">
-                        <span className="text-sm font-semibold text-ink transition-colors group-hover/item:text-gold">
-                          {d.title}
-                        </span>
-                        {/* The count is the honest signal in this menu: it is
-                            derived from the case study data, so a discipline
-                            with no work carries no badge rather than a
-                            flattering nought. */}
-                        {count > 0 ? (
-                          <span className="shrink-0 rounded-full border border-gold/25 bg-gold/[0.07] px-2 py-0.5 font-mono text-[0.6rem] text-gold/90">
-                            {count}
-                          </span>
-                        ) : (
-                          <span className="shrink-0 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-muted/45">
-                            Service
-                          </span>
-                        )}
-                      </span>
-                      <span className="mt-1 block text-xs leading-relaxed text-muted/80">
-                        {d.blurb}
-                      </span>
-                    </Link>
-                    {/* Sub-links are the generic deliverable types inside the
-                        discipline, with a count each. They were client names
-                        until 2026-09-09, which put "LEOS Developments" and
-                        "Cavendish Square" under every column and made the menu
-                        read as a real-estate portfolio rather than as a list of
-                        what can be built. */}
-                    {pieces.length > 0 ? (
-                      <ul className="mt-2 space-y-1.5 border-l border-border pl-3">
-                        {pieces.map((piece) => (
-                          <li key={piece.href + piece.label}>
-                            <Link
-                              href={piece.href}
-                              onClick={() => onNavigate()}
-                              className="flex items-baseline gap-2 text-xs text-muted transition-colors hover:text-ink"
-                            >
-                              {piece.label}
-                              <span className="font-mono text-[0.6rem] text-muted/45">
-                                {piece.count}
-                              </span>
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : null}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      {/* Sector rail. Derived from the client data, so a sector cannot appear
-          here before a client in it exists. It is the second axis a buyer
-          browses on — "have you worked in my industry" — and keeping it derived
-          is what stops it becoming a list of aspirations.
-
-          It replaces a hard-coded "Featured case study: LEOS Developments"
-          link, which was the last client name left in this panel. */}
-      <div className="mt-8 border-t border-border pt-6">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-          <span className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-muted/60">
-            By sector
-          </span>
-          {industriesWithWork().map(({ industry, clients }) => (
-            <Link
-              key={industry}
-              href={clients.length === 1 ? `/portfolio/${clients[0].slug}` : "/portfolio"}
-              onClick={() => onNavigate()}
-              className="rounded-full border border-border px-3 py-1 text-xs text-muted transition-colors hover:border-gold/40 hover:text-ink"
-            >
-              {industry}
-              <span className="ml-1.5 font-mono text-[0.6rem] text-muted/45">{clients.length}</span>
-            </Link>
-          ))}
-        </div>
-
-        <Link
-          href="/portfolio"
-          onClick={() => onNavigate()}
-          className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
-        >
-          View the full portfolio <ArrowRight size={15} />
-        </Link>
-      </div>
-    </>
-  );
-}
-
 /** Contents of the Services panel. */
 function ServicesMenu({ onNavigate }: { onNavigate: () => void }) {
   return (
     <>
-      <div className="grid grid-cols-4 gap-x-8 gap-y-8">
+      {/* Three columns, not four. Nine groups across four gives 4 + 4 + 1 and
+          strands a single card on the third row — the same shape `ProofLoop`
+          already fixed for the discipline cards (roadmap 213.36). Three gives
+          3 + 3 + 3. */}
+      <div className="grid grid-cols-3 gap-x-8 gap-y-8">
         {megaMenuGroups.map((group) => {
           const accent = accentClasses[group.accent];
           return (
@@ -267,11 +154,23 @@ function ServicesMenu({ onNavigate }: { onNavigate: () => void }) {
 }
 
 export default function Nav() {
+  // One instance now lives in the root layout for the whole visit, so anything
+  // that used to be re-derived by remounting has to watch the path instead.
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   /** True once the page has scrolled far enough for the bar to collapse into a
    *  floating pill. */
   const [scrolled, setScrolled] = useState(false);
   const [megaOpen, setMegaOpen] = useState<MegaId | null>(null);
+
+  /** The bar is light while it sits over a light band, and dark the moment it
+   *  lifts into its floating pill.
+   *
+   *  Keyed on the route because the homepage is the only page that opens on a
+   *  white section (`DisciplineStatement`); every other route opens on
+   *  `--color-bg`. If a second page ever gets a light opener, replace this with
+   *  a data attribute the page sets, rather than adding a second pathname. */
+  const light = !scrolled && pathname === "/";
 
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const triggerRefs = useRef<Partial<Record<MegaId, HTMLAnchorElement | null>>>({});
@@ -336,11 +235,38 @@ export default function Nav() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", measure);
     };
-  }, []);
+    // Re-measured on every route change, which this did not have to do while
+    // the header was imported into each page and therefore remounted with it
+    // (roadmap 213.17). Now that one instance lives in the root layout for the
+    // whole visit, a mount-only measurement would keep the first page's hero
+    // height forever and collapse the pill at the wrong point on every page
+    // after it. The hero is a different height on every template.
+  }, [pathname]);
 
   useEffect(() => () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
   }, []);
+
+  // Close both menus on navigation.
+  //
+  // Every link inside them already calls this on click, so in normal use it
+  // changes nothing. It matters for the routes that do not go through a link —
+  // browser back and forward — which used to be covered for free by the header
+  // remounting per page (roadmap 213.17). With one instance for the whole
+  // visit, an open drawer would otherwise survive a back button press and sit
+  // over the previous page.
+  //
+  // Adjusted during render rather than in an effect. This is derived state, and
+  // React documents this pattern for it; an effect would trip
+  // `react-hooks/set-state-in-effect` and render one frame with the menu still
+  // open before correcting itself. Same shape as the query/highlight reset in
+  // `SpotlightSearch`.
+  const [lastPath, setLastPath] = useState(pathname);
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
+    setOpen(false);
+    setMegaOpen(null);
+  }
 
   useEffect(() => {
     if (!megaOpen) return;
@@ -379,12 +305,16 @@ export default function Nav() {
     <header
       className={`header-enter nav-header sticky top-0 z-50 h-[68px] lg:h-[84px] ${
         scrolled ? "is-floating" : ""
-      }`}
+      } ${light ? "is-light" : ""}`}
     >
       <div className="nav-shell mx-auto flex w-full items-center justify-between px-6 lg:px-10">
         <Link href="/" className="shrink-0" aria-label="Bilal Shafqat — home">
+          {/* The wordmark is white, so it needs a dark cut for the light bar.
+              Same file with the 15 white fills swapped; the gold badge is
+              untouched in both. */}
           <Image
-            src="/logo/bs-logo.svg"
+            key={light ? "dark" : "light"}
+            src={light ? "/logo/bs-logo-dark.svg" : "/logo/bs-logo.svg"}
             alt="Bilal Shafqat"
             width={161}
             height={63}
@@ -418,7 +348,9 @@ export default function Nav() {
                       }
                       openMega(link.mega!);
                     }}
-                    className="text-[0.75rem] uppercase tracking-[0.06em] text-muted transition-colors hover:text-ink"
+                    className={`text-[0.75rem] uppercase tracking-[0.06em] transition-colors ${
+                      light ? "text-[#54545c] hover:text-[#14140f]" : "text-muted hover:text-ink"
+                    }`}
                   >
                     {link.label}
                   </Link>
@@ -433,7 +365,9 @@ export default function Nav() {
                     aria-expanded={megaOpen === link.mega}
                     aria-haspopup="true"
                     aria-label={`${megaOpen === link.mega ? "Close" : "Open"} ${link.label.toLowerCase()} menu`}
-                    className="p-1 text-muted transition-colors hover:text-ink"
+                    className={`p-1 transition-colors ${
+                      light ? "text-[#54545c] hover:text-[#14140f]" : "text-muted hover:text-ink"
+                    }`}
                   >
                     <ChevronDown
                       size={14}
@@ -461,18 +395,16 @@ export default function Nav() {
                   onEnter={() => openMega(link.mega!)}
                   onLeave={closeMega}
                 >
-                  {link.mega === "portfolio" ? (
-                    <PortfolioMenu onNavigate={() => setMegaOpen(null)} />
-                  ) : (
-                    <ServicesMenu onNavigate={() => setMegaOpen(null)} />
-                  )}
+                  <ServicesMenu onNavigate={() => setMegaOpen(null)} />
                 </MegaPanel>
               </div>
             ) : (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[0.75rem] uppercase tracking-[0.06em] text-muted transition-colors hover:text-ink"
+                className={`text-[0.75rem] uppercase tracking-[0.06em] transition-colors ${
+                  light ? "text-[#54545c] hover:text-[#14140f]" : "text-muted hover:text-ink"
+                }`}
               >
                 {link.label}
               </Link>
@@ -481,15 +413,18 @@ export default function Nav() {
         </nav>
 
         <div className="flex items-center gap-5">
-          {/* The search button and the "Dubai, UTC+4" label were removed from
-              the bar on 2026-09-17: at the floating pill's width the row was
-              overfull, the logo overlapped the first nav link and the CTA
-              wrapped to two lines.
+          {/* No search control in the bar.
+           *
+           * Taken out in item 202 for an overfull row, put back in 213.24
+           * because Cmd+K was the only desktop route in, and taken out again
+           * here at Bilal's instruction after seeing it on the light bar. His
+           * call, recorded rather than re-argued.
+           *
+           * The consequence stands: on desktop the panel is reachable only by
+           * Cmd+K, which is undiscoverable to a non-developer. The mobile
+           * drawer keeps its visible "Search this site" entry, so phones are
+           * unaffected. */}
 
-              Search is not gone — Cmd+K still opens the panel from anywhere, and
-              the mobile menu now carries a visible entry point, because taking
-              the icon out of the bar would otherwise have left a phone with no
-              way to reach it at all. */}
           <Link
             href="/appointment"
             // `whitespace-nowrap` so the label can never wrap: a two-line
@@ -504,7 +439,7 @@ export default function Nav() {
             onClick={() => setOpen(true)}
             aria-label="Open menu"
             aria-expanded={open}
-            className="-mr-1 p-1 text-ink lg:hidden"
+            className={`-mr-1 p-1 lg:hidden ${light ? "text-[#14140f]" : "text-ink"}`}
           >
             <Menu size={24} />
           </button>
@@ -543,65 +478,7 @@ export default function Nav() {
 
           <nav aria-label="Primary" className="flex flex-col px-6 py-4">
             {links.map((link) =>
-              link.mega === "portfolio" ? (
-                // Native <details> rather than more state: it is keyboard
-                // accessible for free and needs no JavaScript to expand.
-                <details key={link.href} className="group border-b border-border">
-                  <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-lg font-semibold text-ink marker:hidden">
-                    Portfolio
-                    <ChevronDown size={18} className="transition-transform group-open:rotate-180" />
-                  </summary>
-                  <div className="pb-3">
-                    <Link
-                      href="/portfolio"
-                      onClick={() => setOpen(false)}
-                      className="block py-2 text-sm font-semibold text-gold"
-                    >
-                      The full portfolio
-                    </Link>
-                    {disciplineGroups.map((group) => (
-                      <div key={group.name} className="pt-3">
-                        <span className="block py-1 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted/60">
-                          {group.name}
-                        </span>
-                        {group.disciplines.map((d) => {
-                          const count = disciplineCount(d);
-                          return (
-                            <Link
-                              key={d.slug}
-                              href={disciplineHref(d)}
-                              onClick={() => setOpen(false)}
-                              className="flex items-baseline justify-between gap-3 py-1.5 pl-3 text-sm text-ink"
-                            >
-                              <span>{d.title}</span>
-                              <span className="shrink-0 font-mono text-[0.6rem] text-muted/60">
-                                {count > 0 ? count : "Service"}
-                              </span>
-                            </Link>
-                          );
-                        })}
-                      </div>
-                    ))}
-
-                    {/* Same sector rail as the desktop panel, same derivation. */}
-                    <div className="flex flex-wrap items-center gap-2 pt-5">
-                      <span className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted/60">
-                        By sector
-                      </span>
-                      {industriesWithWork().map(({ industry, clients }) => (
-                        <Link
-                          key={industry}
-                          href={clients.length === 1 ? `/portfolio/${clients[0].slug}` : "/portfolio"}
-                          onClick={() => setOpen(false)}
-                          className="rounded-full border border-border px-3 py-1 text-xs text-muted"
-                        >
-                          {industry}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </details>
-              ) : link.mega === "services" ? (
+              link.mega === "services" ? (
                 <details key={link.href} className="group border-b border-border">
                   <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-lg font-semibold text-ink marker:hidden">
                     Services

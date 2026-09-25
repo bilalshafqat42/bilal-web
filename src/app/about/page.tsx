@@ -2,8 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import SocialLinks from "@/components/SocialLinks";
 import { pillars, accentClasses } from "@/data/pillars";
@@ -93,8 +91,7 @@ export default function AboutPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <Nav />
-      <main className="flex-1 pb-16 sm:pb-20">
+      <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="site-container relative grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
@@ -103,7 +100,7 @@ export default function AboutPage() {
                 <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                   About
                 </span>
-                <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
+                <h1 className="t-h1 mt-5 text-ink">
                   15 years of marketing, design, and development experience, in{" "}
                   <span className="underline decoration-gold decoration-4 underline-offset-4">
                     one senior partner
@@ -153,7 +150,10 @@ export default function AboutPage() {
               src="/images/bilal-shirt.avif"
               alt="Bilal Shafqat"
               fill
-              sizes="(min-width: 1024px) 34vw, 100vw"
+              // 46vw, not 34vw. The column is `lg:w-[46%]` and the image is then
+            // scaled 1.035, so a 34vw variant was being stretched across it —
+            // a soft portrait in the first thing anyone sees (roadmap 213.18).
+            sizes="(min-width: 1024px) 46vw, 100vw"
               className="hero-portrait object-cover object-[50%_15%] brightness-[1.04] contrast-[1.12] grayscale lg:origin-top lg:scale-[1.035]"
               priority
             />
@@ -164,7 +164,7 @@ export default function AboutPage() {
           <div className="site-container">
             <Reveal>
               <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">The work</span>
-              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+              <h2 className="t-h2 mt-4 text-ink">
                 What I actually do
               </h2>
               <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">
@@ -192,7 +192,7 @@ export default function AboutPage() {
                       >
                         <Icon size={20} className={accent.icon} />
                       </span>
-                      <h3 className="mt-5 text-xl font-semibold text-ink">{pillar.label}</h3>
+                      <h3 className="t-h4 mt-5 text-ink">{pillar.label}</h3>
                       <p className="mt-3 text-sm text-muted leading-relaxed">
                         {pillar.shortDescription}
                       </p>
@@ -212,7 +212,7 @@ export default function AboutPage() {
           <div className="site-container">
             <Reveal>
               <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">How I work</span>
-              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+              <h2 className="t-h2 mt-4 text-ink">
                 How working with me is different
               </h2>
             </Reveal>
@@ -221,7 +221,7 @@ export default function AboutPage() {
               {principles.map((p, i) => (
                 <Reveal key={p.title} delay={i * 0.08}>
                   <div className="h-full rounded-2xl border border-border panel p-7">
-                    <h3 className="text-lg font-semibold text-ink leading-snug">{p.title}</h3>
+                    <h3 className="t-h5 text-ink">{p.title}</h3>
                     <p className="mt-3 text-sm text-muted leading-relaxed">{p.body}</p>
                   </div>
                 </Reveal>
@@ -234,7 +234,7 @@ export default function AboutPage() {
           <div className="site-container">
             <Reveal>
               <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Stack</span>
-              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+              <h2 className="t-h2 mt-4 text-ink">
                 Platforms and tools I work in
               </h2>
               <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">
@@ -279,7 +279,7 @@ export default function AboutPage() {
                 />
                 <div className="relative">
                   <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Next step</span>
-                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                  <h2 className="t-h2 mt-4 text-ink">
                     Based in Dubai, <span className="text-gradient">working with you directly.</span>
                   </h2>
                   <p className="mx-auto mt-4 max-w-xl text-muted leading-relaxed">
@@ -293,7 +293,6 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

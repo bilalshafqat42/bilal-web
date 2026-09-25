@@ -147,7 +147,7 @@ export default function PortfolioGrid() {
                       "View case study" line on the same baseline in every card,
                       however many lines the headline runs to. */}
                   <div className="flex flex-1 flex-col p-6 sm:p-7">
-                    <h3 className="text-xl font-semibold leading-snug text-ink sm:text-2xl">
+                    <h3 className="t-h4 text-ink">
                       {card.headline}
                     </h3>
                     <div className="mt-auto flex items-end justify-between gap-4 pt-6">

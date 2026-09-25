@@ -78,15 +78,23 @@ export default function Footer() {
                 <p className="mt-1 text-xs uppercase tracking-wide text-muted/80">{meta}</p>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{line}</p>
                 <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1">
-                  {actions.map((a) => (
-                    <a
-                      key={a.href}
-                      href={a.href}
-                      className="break-words text-sm font-medium text-gold transition-opacity hover:opacity-75"
-                    >
-                      {a.label}
-                    </a>
-                  ))}
+                  {actions.map((a) => {
+                    // This array mixes `tel:` with a real route, so it cannot
+                    // be one or the other wholesale — `next/link` on a `tel:`
+                    // breaks it, and a plain anchor on `/appointment` reloads
+                    // the document. Split on the href instead.
+                    const cls =
+                      "break-words text-sm font-medium text-gold transition-opacity hover:opacity-75";
+                    return a.href.startsWith("/") ? (
+                      <Link key={a.href} href={a.href} className={cls}>
+                        {a.label}
+                      </Link>
+                    ) : (
+                      <a key={a.href} href={a.href} className={cls}>
+                        {a.label}
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -120,9 +128,9 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5">
               {companyLinks.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="text-sm text-muted transition-colors hover:text-gold">
+                  <Link href={l.href} className="text-sm text-muted transition-colors hover:text-gold">
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -133,9 +141,9 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5">
               {serviceLinks.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="text-sm text-muted transition-colors hover:text-gold">
+                  <Link href={l.href} className="text-sm text-muted transition-colors hover:text-gold">
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

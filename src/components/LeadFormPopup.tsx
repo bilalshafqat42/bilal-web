@@ -1,21 +1,29 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { MessageSquarePlus, X, Loader2, CheckCircle2, AlertCircle, MessageCircle } from "lucide-react";
 import { getAttribution, getFacebookCookies } from "@/lib/attribution";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { trackLead, generateEventId } from "@/lib/analytics";
+import WhatsAppLink from "@/components/WhatsAppLink";
+import { useFocusTrap } from "@/lib/focusTrap";
 
-const WHATSAPP_HREF = `https://wa.me/971529766006?text=${encodeURIComponent(
-  "Hi Bilal, I found you through bilalshafqat.com and wanted to ask about a project."
-)}`;
+const POPUP_MESSAGE =
+  "Hi Bilal, I found you through bilalshafqat.com and wanted to ask about a project.";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
 export default function LeadFormPopup() {
   const router = useRouter();
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  // This dialog never moved focus into itself, so opening the enquiry form left
+  // a keyboard user on the trigger with no indication anything had happened,
+  // and Tab then walked the page behind it (roadmap 213.9).
+  useFocusTrap(dialogRef, open);
 
   useEffect(() => {
     if (!open) return;
@@ -29,6 +37,30 @@ export default function LeadFormPopup() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  // Dismiss once the navigation the submit started has actually landed.
+  //
+  // This component lives in the root layout, so a client-side route change does
+  // not unmount it and `open` survived a successful submission: the visitor
+  // arrived on /thank-you with the "Query sent" modal still covering it and
+  // `body.overflow` still `hidden`, needing a click to escape — at the moment
+  // immediately after converting (roadmap 213.11).
+  //
+  // Closing on the path change rather than before `router.push` keeps the
+  // success state visible while a slow navigation is in flight, which is the
+  // only feedback the visitor gets in that window, and still leaves nothing
+  // over the destination once it arrives.
+  //
+  // Adjusted during render rather than in an effect: derived state, and an
+  // effect here trips `react-hooks/set-state-in-effect`.
+  const [lastPath, setLastPath] = useState(pathname);
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
+    if (open) {
+      setOpen(false);
+      setStatus("idle");
+    }
+  }
 
   const closeAndReset = () => {
     setOpen(false);
@@ -61,7 +93,10 @@ export default function LeadFormPopup() {
       });
       const result = await res.json();
       if (result.success) {
-        trackLead("website-popup", undefined, eventId);
+        // `counted: false` is the honeypot's answer — a success the bot believes
+        // and the analytics must not. Only a submission the route actually
+        // forwarded is a conversion.
+        if (result.counted !== false) trackLead("website-popup", undefined, eventId);
         setStatus("success");
         form.reset();
         router.push("/thank-you?source=enquiry");
@@ -78,7 +113,11 @@ export default function LeadFormPopup() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="btn-primary fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold shadow-lg shadow-black/30 transition-shadow hover:shadow-xl"
+        // Stands down while the consent banner is up. Two competing calls to
+        // action at once is the wrong ask, and on a phone the banner covered
+        // this button outright (roadmap 213.35). It returns as soon as the
+        // visitor answers, either way.
+        className="btn-primary fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold shadow-lg shadow-black/30 transition-shadow hover:shadow-xl floating-enquiry"
         aria-haspopup="dialog"
       >
         <MessageSquarePlus size={18} />
@@ -87,6 +126,7 @@ export default function LeadFormPopup() {
 
       {open ? (
         <div
+          ref={dialogRef}
           role="dialog"
           aria-modal="true"
           aria-labelledby="lead-form-heading"
@@ -110,7 +150,7 @@ export default function LeadFormPopup() {
             {status === "success" ? (
               <div className="py-6 text-center">
                 <CheckCircle2 size={40} className="mx-auto text-gold" />
-                <h3 className="mt-4 text-lg font-semibold text-ink">Query sent</h3>
+                <h3 className="t-h5 mt-4 text-ink">Query sent</h3>
                 <p className="mt-2 text-sm text-muted leading-relaxed">
                   Thanks for reaching out. I&apos;ll get back to you shortly.
                 </p>
@@ -124,7 +164,7 @@ export default function LeadFormPopup() {
               </div>
             ) : (
               <>
-                <h3 id="lead-form-heading" className="text-lg font-semibold text-ink">
+                <h3 id="lead-form-heading" className="t-h5 text-ink">
                   Send a quick query
                 </h3>
                 <p className="mt-1.5 text-sm text-muted leading-relaxed">
@@ -231,15 +271,14 @@ export default function LeadFormPopup() {
                     tokens, one widget instead of three. */}
                 <div className="mt-5 border-t border-border pt-5">
                   <p className="text-xs text-muted">Prefer to message?</p>
-                  <a
-                    href={WHATSAPP_HREF}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <WhatsAppLink
+                    context="quick-enquiry-popup"
+                    message={POPUP_MESSAGE}
                     className="mt-2.5 inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-gold/40 hover:text-gold"
                   >
                     <MessageCircle size={15} className="text-gold" />
                     Continue on WhatsApp
-                  </a>
+                  </WhatsAppLink>
                 </div>
               </>
             )}

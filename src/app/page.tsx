@@ -1,6 +1,8 @@
-import Nav from "@/components/Nav";
 import StructuredData from "@/components/StructuredData";
 import HeroBanner from "@/components/HeroBanner";
+import DisciplineStatement from "@/components/DisciplineStatement";
+import HomeParallax from "@/components/HomeParallax";
+import AboutSplit from "@/components/AboutSplit";
 import CapabilityLedger from "@/components/CapabilityLedger";
 import PortfolioGrid from "@/components/PortfolioGrid";
 import Results from "@/components/Results";
@@ -8,7 +10,6 @@ import ProcessCompact from "@/components/ProcessCompact";
 import Engagement from "@/components/Engagement";
 import AskAssistant from "@/components/AskAssistant";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 
 /**
  * Homepage: eight sections, down from eleven.
@@ -34,10 +35,32 @@ export default function Home() {
   return (
     <>
       <StructuredData />
-      <Nav />
-      <main className="flex-1">
-        <HeroBanner />
-        <CapabilityLedger />
+      <main id="main" tabIndex={-1} className="flex-1">
+        {/* The opener and the hero move as a pair: the statement pinned
+            behind and drifting down, the hero riding over it and widening from
+            80% to full bleed as it reaches the header. See `HomeParallax` —
+            including why it is not GSAP. */}
+        <HomeParallax
+          opener={<DisciplineStatement />}
+          hero={<HeroBanner />}
+          after={<AboutSplit />}
+        />
+        {/* Pulled up one window, so it is **already sitting behind** the about
+            band rather than arriving after it. The band lifts off it at the end
+            of its scroll range and this is what is underneath — see the lift in
+            `AboutSplit`. `z-[15]` puts it under that band (z-20) and over the
+            hero (z-10); `motion-safe:lg:` because without the lift there is
+            nothing to be behind, and the overlap would simply hide it.
+
+            **`bg-bg` is not cosmetic.** `CapabilityLedger` has never painted a
+            ground of its own — it did not need one while it sat in normal flow
+            over the page background. Pulled up over the pinned hero it was
+            transparent, so the hero photograph showed straight through the
+            capability list and the two sections rendered on top of each other.
+            Bilal sent a screenshot of exactly that. */}
+        <div className="relative z-[15] bg-bg motion-safe:lg:-mt-[100svh]">
+          <CapabilityLedger />
+        </div>
         <PortfolioGrid />
         <Results />
         <ProcessCompact />
@@ -45,7 +68,6 @@ export default function Home() {
         <AskAssistant />
         <Contact />
       </main>
-      <Footer />
     </>
   );
 }

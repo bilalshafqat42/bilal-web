@@ -30,7 +30,24 @@ export function CaptureFrame({
           </>
         )}
       </div>
-      <div className="no-scrollbar max-h-[70vh] overflow-y-auto">
+      {/* A focusable, named scroll region.
+       *
+       * These captures run to ~6,000px inside a 70vh window. It had no
+       * `tabindex`, so Chrome and Safari would not focus it and a keyboard user
+       * could not scroll it at all — WCAG 2.1.1 (roadmap 213.10) — and
+       * `.no-scrollbar` hid the only cue that there was more to see, on the one
+       * element holding the actual work. Both are gone: the scrollbar now shows
+       * (inside browser chrome that reads as correct anyway) and the frame takes
+       * focus.
+       *
+       * `role="region"` with a name is what makes a screen reader announce it
+       * as something enterable rather than an unlabelled box. */}
+      <div
+        tabIndex={0}
+        role="region"
+        aria-label={`${capture.label} — scrollable full-page capture`}
+        className="max-h-[70vh] overflow-y-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-gold"
+      >
         <Image
           src={capture.src}
           alt={capture.alt}
@@ -46,7 +63,13 @@ export function CaptureFrame({
         <p className="border-t border-border px-4 py-2.5 text-center text-xs text-muted">
           {capture.label}
         </p>
-      ) : null}
+      ) : (
+        // Discoverability, not decoration. Nothing told a visitor the frame
+        // scrolled, so most never saw past the top 70vh of a 6,000px capture.
+        <p className="border-t border-border px-4 py-2.5 text-center text-xs text-muted/70">
+          Scroll inside the frame to read the full page
+        </p>
+      )}
     </div>
   );
 }

@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { CornerDownLeft, Search, Sparkles, X } from "lucide-react";
 import { search, type Chunk } from "@/lib/searchRank";
 import { loadSearchIndex } from "@/lib/searchData";
 import { SEARCH_OPEN_EVENT } from "@/lib/searchPanel";
+import { useFocusTrap } from "@/lib/focusTrap";
 
 const STARTERS = [
   "I need a website",
@@ -22,6 +24,7 @@ const KIND_LABEL: Record<Chunk["kind"], string> = {
 };
 
 export default function SpotlightSearch() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
@@ -31,6 +34,7 @@ export default function SpotlightSearch() {
   const [index, setIndex] = useState<Chunk[] | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   // Starts on open rather than on the first keystroke, so the request overlaps
   // the panel's own transition and the index is usually there before anyone has
@@ -95,6 +99,10 @@ export default function SpotlightSearch() {
     };
   }, [open]);
 
+  // The panel already focused the input and restored focus on close; the trap
+  // is what stops Tab leaving it for the page behind (roadmap 213.9).
+  useFocusTrap(dialogRef, open, inputRef);
+
   // Reset the highlighted row when the query changes. Done during render rather
   // than in an effect: it is derived state, so an effect would render one frame
   // with a stale highlight before correcting it.
@@ -114,7 +122,12 @@ export default function SpotlightSearch() {
       setActive((i) => (i - 1 + results.length) % results.length);
     } else if (e.key === "Enter") {
       e.preventDefault();
-      window.location.href = results[active].url;
+      // `router.push`, not `window.location.href`. The old version reloaded the
+      // whole document, discarding the client router — and it was only *not* a
+      // visible bug because the reload happened to unmount this panel, which a
+      // mouse click on a result did not (roadmap 213.11).
+      close();
+      router.push(results[active].url);
     }
   }
 
@@ -133,9 +146,10 @@ export default function SpotlightSearch() {
 
   return (
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
-      aria-label="AI Search"
+      aria-label="Search this site"
       className="fixed inset-0 z-[70] flex items-start justify-center px-4 pt-[12vh]"
     >
       <button
@@ -199,6 +213,9 @@ export default function SpotlightSearch() {
                   key={r.url + r.title}
                   href={r.url}
                   data-index={i}
+                  // Without this the panel stayed open over the page it had
+                  // just navigated to, with the scroll lock still applied.
+                  onClick={close}
                   onMouseEnter={() => setActive(i)}
                   className={`flex items-start gap-3 rounded-xl px-3 py-3 transition-colors ${
                     i === active ? "bg-white/[0.07]" : "hover:bg-white/5"

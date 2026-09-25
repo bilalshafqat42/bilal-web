@@ -1,18 +1,20 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
-import Nav from "@/components/Nav";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 import PortfolioShowcase from "@/components/PortfolioShowcase";
 import ClientLogoRow from "@/components/ClientLogoRow";
-import { megaMenuGroups, accentClasses } from "@/data/pillars";
+import { megaMenuGroups, accentClasses, spellCount } from "@/data/pillars";
 import { SITE_URL, breadcrumbNode, graph, ref, ID } from "@/lib/schema";
+
+/** Read from the data, never typed as a word. See `spellCount` — the page said
+ *  "eight" above nine cards for as long as the ninth category existed. */
+const count = spellCount(megaMenuGroups.length);
+const Count = count.charAt(0).toUpperCase() + count.slice(1);
 
 export const metadata: Metadata = {
   title: "Services — Marketing, Development & Design | Bilal Shafqat",
-  description:
-    "Paid marketing, website and app development, UI/UX and brand design, and CRM automation. Eight categories, one senior partner.",
+  description: `Paid marketing, website and app development, UI/UX and brand design, and CRM automation. ${Count} categories, one senior partner.`,
   alternates: {
     canonical: "/services",
   },
@@ -31,8 +33,7 @@ const schema = graph([
     "@id": `${pageUrl}#page`,
     url: pageUrl,
     name: "Services",
-    description:
-      "Eight service categories across paid marketing, development, design and CRM automation, delivered by one person rather than an agency team.",
+    description: `${Count} service categories across paid marketing, development, design and CRM automation, delivered by one person rather than an agency team.`,
     inLanguage: "en",
     isPartOf: ref(ID.website, "WebSite"),
     about: ref(ID.business, "ProfessionalService"),
@@ -59,16 +60,15 @@ export default function ServicesPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <Nav />
-      <main className="flex-1 pb-16 sm:pb-20">
+      <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="relative mx-auto max-w-4xl px-6 text-center">
             <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
               Services
             </span>
-            <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
-              Eight services, one senior partner
+            <h1 className="t-h1 mt-5 text-ink">
+              {Count} services, one senior partner
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted leading-relaxed">
               Paid marketing, website and app development, design and conversion,
@@ -98,7 +98,7 @@ export default function ServicesPage() {
                       <span className={`h-2.5 w-2.5 rounded-full ${accent.dot}`} />
                     </div>
 
-                    <h2 className="relative mt-6 text-2xl font-semibold tracking-tight text-ink">
+                    <h2 className="t-h3 relative mt-6 text-ink">
                       {pillar.title}
                     </h2>
                     <p className="relative mt-3 text-sm text-muted leading-relaxed">{pillar.metaDescription}</p>
@@ -141,7 +141,6 @@ export default function ServicesPage() {
         </div>
       </main>
       <Contact />
-      <Footer />
     </>
   );
 }

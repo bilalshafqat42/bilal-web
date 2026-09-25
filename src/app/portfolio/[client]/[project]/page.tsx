@@ -3,10 +3,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
-import Nav from "@/components/Nav";
 import TrackView from "@/components/TrackView";
 import { caseStudyDepth } from "@/data/caseStudyDepth";
-import Footer from "@/components/Footer";
 import { WorkProof } from "@/components/ProofLoop";
 import GalleryLightbox from "@/components/GalleryLightbox";
 import Reveal from "@/components/Reveal";
@@ -130,8 +128,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       ) : null}
       <TrackView name={p.name} category="Case study" />
-      <Nav />
-      <main className="flex-1 pb-16 sm:pb-20">
+      <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="site-container relative">
@@ -155,9 +152,21 @@ export default async function ProjectCaseStudy({ params }: Props) {
                     Development campaign
                   </span>
                   {p.logo ? (
-                    <Image src={p.logo} alt={p.name} width={900} height={1983} priority className="mt-6 h-16 w-auto" />
+                    <Image
+                      src={p.logo}
+                      alt={p.name}
+                      // Read from the project, not hardcoded. These were fixed
+                      // at Hadley Heights' 900x1983 for every development, and
+                      // since `w-auto` derives the box from the attributes, the
+                      // three landscape-ish marks rendered about a third of the
+                      // intended size.
+                      width={p.logoWidth ?? 900}
+                      height={p.logoHeight ?? 1983}
+                      priority
+                      className="mt-6 h-16 w-auto"
+                    />
                   ) : null}
-                  <h1 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
+                  <h1 className="t-h1 mt-6 text-ink">
                     {p.headline}
                   </h1>
                   <p className="mt-6 max-w-2xl text-lg text-muted leading-relaxed">{p.summary}</p>
@@ -228,7 +237,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
                     <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                       The approach
                     </span>
-                    <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                    <h2 className="t-h2 mt-3 text-ink">
                       How this was approached
                     </h2>
                   </div>
@@ -238,7 +247,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
                   {depth.map((block) => (
                     <Reveal key={block.heading}>
                       <div className="border-t border-border pt-8">
-                        <h3 className="text-xl font-semibold text-ink sm:text-2xl">{block.heading}</h3>
+                        <h3 className="t-h4 text-ink">{block.heading}</h3>
                         <div className="mt-4 space-y-4">
                           {block.paragraphs.map((para) => (
                             <p key={para.slice(0, 40)} className="max-w-[68ch] text-base leading-relaxed text-muted">
@@ -260,7 +269,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
             <div className="site-container">
               <Reveal>
                 <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Landing page</span>
-                <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                <h2 className="t-h2 mt-4 text-ink">
                   {p.landingPage.heading}
                 </h2>
                 <p className="mt-4 max-w-3xl text-lg text-muted leading-relaxed">{p.landingPage.body}</p>
@@ -293,7 +302,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
             <div className="site-container">
               <Reveal>
                 <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Creative</span>
-                <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                <h2 className="t-h2 mt-4 text-ink">
                   {p.gallery.heading}
                 </h2>
                 <p className="mt-4 max-w-3xl text-lg text-muted leading-relaxed">{p.gallery.body}</p>
@@ -334,26 +343,8 @@ export default async function ProjectCaseStudy({ params }: Props) {
           </div>
         </section>
 
-        <section className="relative mt-16 sm:mt-20">
-          <div className="mx-auto max-w-5xl px-6">
-            <Reveal>
-              <div className="relative overflow-hidden rounded-[2rem] border border-border glass-strong px-8 py-14 text-center sm:px-16">
-                <div
-                  className="blob pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet/50"
-                  style={{ animationDelay: "-4s" }}
-                />
-                <div className="relative">
-                  <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Next step</span>
-                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
-                    Need this for your launch? <span className="text-gradient">Let&apos;s talk.</span>
-                  </h2>
-                  <CtaButton href="/appointment" className="mt-9">Book a free consultation</CtaButton>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-        {/* Campaign results. Only entries with a value render, so a launch whose
+        {/* Campaign results, above the closing CTA.
+            Only entries with a value render, so a launch whose
             numbers have not been released shows nothing rather than a row of
             dashes — the placeholder problem from item 134, in a new place. */}
         {p.results?.some((r) => r.value) ? (
@@ -364,7 +355,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
                   <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                     Results
                   </span>
-                  <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                  <h2 className="t-h2 mt-3 text-ink">
                     What the campaign produced
                   </h2>
                 </div>
@@ -388,6 +379,25 @@ export default async function ProjectCaseStudy({ params }: Props) {
           </section>
         ) : null}
 
+        <section className="relative mt-16 sm:mt-20">
+          <div className="mx-auto max-w-5xl px-6">
+            <Reveal>
+              <div className="relative overflow-hidden rounded-[2rem] border border-border glass-strong px-8 py-14 text-center sm:px-16">
+                <div
+                  className="blob pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet/50"
+                  style={{ animationDelay: "-4s" }}
+                />
+                <div className="relative">
+                  <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Next step</span>
+                  <h2 className="t-h2 mt-4 text-ink">
+                    Need this for your launch? <span className="text-gradient">Let&apos;s talk.</span>
+                  </h2>
+                  <CtaButton href="/appointment" className="mt-9">Book a free consultation</CtaButton>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
         {/* This layout is now shared by every FAQ on the site. It started
             here, and `FaqSection` is a straight extraction of it. */}
         <FaqSection
@@ -399,7 +409,6 @@ export default async function ProjectCaseStudy({ params }: Props) {
 
         <WorkProof clientSlug={c.slug} projectSlug={p.slug} />
       </main>
-      <Footer />
     </>
   );
 }

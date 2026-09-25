@@ -2806,3 +2806,1564 @@ No on-page work guarantees a top ranking on Google, Bing, Yahoo, or citation in 
     1,390 words, 8 images. Verified: `h1-check` 30/30, `schema-check` 30/30,
     `search-check`, `discipline-check`, `tsc`, `lint`, build, zero routes failing
     any hard check.
+
+213. **OPEN WORK QUEUE — full code and experience audit, 31 static routes (2026-09-24)** — **in progress. This is the list to work through.** Read of all 90 source files (16,740 lines), then verified against a production build rather than inferred from source: the prerendered HTML in `.next/server/app` and the client chunks in `.next/static`. Full document: https://claude.ai/artifact/3TNUbBAoWai8V8yeFBtXpg
+    - **38 findings.** IDs below carry both the roadmap number and the artifact's own ID (C-01, H-03, …) so the two documents cannot drift. Anything marked **measured** was counted in build output, not read off the source.
+    - **Clean, and not to be re-litigated:** build, lint and `tsc` all pass with zero errors; 40 routes generated; exactly **1 `<h1>` on all 31 static routes** (counted); the item 180.1 bundle defect is **closed** — `loadSearchIndex()` now fetches instead of `buildIndex()` at module scope; `framer-motion` and `gsap` are absent from `package.json`; the lead API's hardening, the Consent Mode v2 `gtag()` call shape, the `@id`-referenced schema graph and the CSS-only work filter are all correct and should be left alone.
+
+    **CRITICAL — losing leads or corrupting the data the ad account bids on**
+
+    - [x] **213.1 (done 2026-09-24) (C-01) — The booking conversion never fires.** `NEXT_PUBLIC_CALCOM_LINK` is set, so `AppointmentBooking.tsx:232` returns the Cal.com branch on every render and the `trackSchedule()` call at line 115 is unreachable. Every primary CTA on the site resolves to `/appointment`, and a booking made there sends **no `schedule_call` to GA4 and no `Schedule` to Meta**. Phase 1 of this file lists `schedule_call` as one of two key events Bilal must star in the GA4 UI — it can never appear in Recent events, so that task is impossible to complete. **Fix:** subscribe to Cal.com's `bookingSuccessful` embed event in `CalBooking.tsx` and call `trackSchedule()` from it. **Target: one real booking produces one `schedule_call` and one Meta `Schedule`.** **Done.** `CalBooking` now takes an `onBooked` prop and registers Cal's `bookingSuccessful` action; `AppointmentBooking` passes `() => trackSchedule("appointment-page", topic)`. The handler is held in a ref so the one-shot mount effect always calls the current one — re-registering per render would have fired the conversion several times for one booking — and it is registered before the `ui` call because Cal replays its queue in order. **Still to verify on production: one real test booking should produce one `schedule_call` in GA4 Realtime and one `Schedule` in Meta Events Manager.**
+    - [x] **213.2 (done 2026-09-24) (C-02) — Every blocked bot is counted as a lead.** `api/lead/route.ts:208` deliberately answers `{ success: true }` to the honeypot so bots do not learn they were caught — correct server behaviour. But all four clients only check `result.success`, so they then fire `trackLead()`, pushing `generate_lead` to GA4 and `Lead` to Meta for a submission that was discarded. On a site about to run paid campaigns this is worse than a reporting error: **Meta optimises delivery toward whoever produced those events**, so bot traffic trains the ad account. **Fix:** return `{ success: true, counted: false }` and gate every `trackLead()` on `counted !== false`. Bots still see a success. **Target: a honeypot submission fires 0 analytics events.** **Done.** The route now answers the honeypot with `{ success: true, counted: false }` — the bot still sees a success and learns nothing — and all four clients (`LeadFormPopup`, `ContactForm`, `InlineLeadForm`, `AppointmentBooking`) gate their `trackLead`/`trackSchedule` on `counted !== false`.
+    - [x] **213.3 (C-03) (resolved 2026-09-24) — No GA4 and no Consent Mode in the build.** `Analytics.tsx:86` returns `null` when neither `NEXT_PUBLIC_GA4_ID` nor `NEXT_PUBLIC_GTM_ID` is set. Neither is in `.env.local`. **Measured: `grep googletagmanager` and `grep consent-default` against the built homepage both return 0.** The asymmetry is the dangerous part — the Meta pixel has a hardcoded fallback ID (`MetaPixel.tsx:29`) so it loads anyway. A build with this env sends conversions to Meta and nothing to GA4, and the `consent-default` script that sets the Consent Mode v2 denied-by-default state never renders at all. **Fix:** confirm `NEXT_PUBLIC_GA4_ID` is set in Hostinger's environment, then check the live site for `gtag/js` in the network panel. **Blocked on Bilal for the production check.** **RESOLVED — production was fine; this was a local-env-only gap.** Bilal sent the Hostinger environment variables panel: `NEXT_PUBLIC_GA4_ID = G-NRHYJPM1S9` is set, along with `NEXT_PUBLIC_CALCOM_LINK`, `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`, `CRM_LEAD_API_KEY` and `CRM_LEAD_API_URL`. So GA4 and the Consent Mode defaults have been live all along and the finding applied only to the local `.env.local`, which has three of the five. **Two things Hostinger does NOT have, and should:** `NEXT_PUBLIC_BING_SITE_VERIFICATION` (item 65 recorded Bing as verified and "made permanent" via the meta tag, but without this variable that tag never renders — so Bing verification is presumably resting on the restored `.html` file instead, which is exactly the fragility item 65 set out to avoid), and `INDEXNOW_KEY` (the script falls back to a hardcoded default, so submissions work, but the variable is documented in `.env.local.example` and should match).
+    - [x] **213.4 (done 2026-09-24) (C-04) — The `<h1>` ships at `opacity: 0` on 19 of 31 routes.** `Reveal.tsx:74` writes `opacity: 0` as an inline style during **server** rendering and clears it only after hydration plus an IntersectionObserver callback. **Measured from the prerendered HTML:** the h1 sits inside an `opacity:0` wrapper on `/about`, `/portfolio`, `/process`, `/real-estate-marketing`, all 5 case studies and all 9 service pages; peak 45 hidden blocks on one page. LCP cannot resolve until JavaScript has downloaded, parsed and hydrated — the metric Bilal sells, paid on his own most important pages — and if hydration ever fails those pages render blank. **Fix:** invert the default so the server renders at rest and a `data-reveal` attribute adds the from-state after mount, the way `.reveal-item` already works in `globals.css`. **Target: 0 routes with an h1 inside an `opacity:0` wrapper.** **Done, and the reveal is not lost.** The insight is that **an element already on screen was never going to animate** — its observer fires on the first callback — so hiding it bought nothing and cost the score. `Reveal` now renders at rest on the server; on mount each element measures itself and only something genuinely **below the fold** takes the from-state, which the visitor cannot see happen. `.reveal-item` in `globals.css` was inverted the same way: visible by default, hidden only under `[data-reveal="out"]`, with the reduced-motion backstop given matching specificity so it still wins. **Verified in the rebuilt HTML: 0 routes with an h1 inside an `opacity:0` wrapper (was 19), and 0 occurrences of `opacity:0` in the server HTML of any route (was 300+).** The initial HTML is now complete with JavaScript disabled.
+    - [x] **213.5 (done 2026-09-24) (C-05) — The footer full-reloads the site on every click.** `Footer.tsx:123` and `:136` render `<a href={l.href}>` rather than `next/link`. Because the href is a **variable**, ESLint's `no-html-link-for-pages` — which only inspects string literals — never flagged them, which is why they survived the 64-link conversion recorded in Phase 0 item 3. **Measured: 14 raw internal `<a>` in the footer of the built homepage, on all 31 routes.** Phase 0 records this as "3 document loads, now 0"; it is 0 from the nav and 14 links per page from the footer. **Fix:** swap both for `<Link>`. Leave line 84 alone — that array mixes `tel:` with routes. **Target: 0 raw internal anchors in the footer.** **Done, and one more than planned.** Both `<a href={l.href}>` blocks in the Company and Services columns are now `<Link>`. The regions array at line 84 was going to be left alone because it mixes `tel:` with a route — but that left `/appointment` still reloading the document, so it now splits on `href.startsWith("/")` and uses `Link` for the route and `<a>` for the `tel:`. **Verified in the rebuilt homepage footer: 0 raw internal anchors (was 14).**
+
+    **HIGH — visible to a prospect, or blocking a service in Phase 3**
+
+    - [x] **213.6 (done 2026-09-24) (H-01) — "Eight services" renders above nine service cards.** `megaMenuGroups` has 9 entries; `services/page.tsx:85` maps over it and the h1 at `:71` says eight. So does the meta description at `:35` that Google displays, and `llms.txt/route.ts:28` that AI crawlers read. **Measured: 9 cards inside `<main>`, 9 `/services/[slug]` pages generated, headline says 8.** A visitor can count them. **Fix:** derive it — `{megaMenuGroups.length} services, one senior partner` — so it cannot drift again, and correct the description and `llms.txt` by hand. **Done.** New `spellCount()` in `pillars.ts` and the page now reads `{Count} services, one senior partner` from `megaMenuGroups.length`; the page meta description, the `CollectionPage` schema description and `llms.txt` all derive from the same source. **Verified in the rebuilt HTML: h1 reads "Nine services, one senior partner", 9 cards render, 0 occurrences of "Eight" anywhere in `<main>`.**
+    - [x] **213.7 (done 2026-09-24) (H-02) — Three of four development logos render at the wrong aspect ratio.** `portfolio/[client]/[project]/page.tsx:158` hardcodes `width={900} height={1983}` for every project logo. Those are Hadley Heights' dimensions. With `h-16 w-auto` the browser derives the box width from the **attributes**, not the file, so Weybridge Gardens (real viewBox 1500×1253), Weybridge Gardens 2 (1000×1314) and Cavendish Square (1000×1828) all render into a ~29px-wide box. **Measured in rendered HTML.** **Fix:** store `logoWidth`/`logoHeight` per project in `caseStudies.ts`, or give the wrapper a fixed height and the image `h-full w-auto object-contain`. **Done.** `Project` gained `logoWidth`/`logoHeight`, set from each SVG's own viewBox, and the template reads them instead of the hardcoded 900x1983. **Verified in the rebuilt HTML:** Hadley Heights 900x1983, Weybridge Gardens 1500x1253, Weybridge Gardens 2 1000x1314, Cavendish Square 1000x1828 — all four now matching their files.
+    - [x] **213.8 (done 2026-09-24) (H-03) — No skip link anywhere on the site.** None of the 17 page templates has one, so a keyboard or screen reader user tabs the full header — logo, four nav items, the Services chevron, the CTA — on every page before reaching content. **WCAG 2.4.1 Bypass Blocks, Level A.** Phase 3 item 13 proposes selling WCAG 2.2 conformance audits and already treats the mega menu as a hard prerequisite; this is the same class of failure and was never on the list. A prospect running axe on `bilalshafqat.com` finds it in seconds. **Fix:** one `<a href="#main" class="sr-only focus:not-sr-only …">` as the first child of `<body>` in the root layout, plus `id="main"` on each `<main>`. **Target: axe reports 0 bypass-block violations.** **Done.** A `sr-only focus:not-sr-only` skip link is now the first child of `<body>` in the root layout, and `id="main" tabIndex={-1}` was added to the `<main>` of all 18 templates. **Verified in the rebuilt HTML: all 31 real routes carry both the link and its target** (`_global-error` has neither, correctly, since it replaces the layout). This is the Level A failure that had to close before Phase 3 item 13 could be sold.
+    - [x] **213.9 (done 2026-09-24) (H-04) — No dialog on the site traps focus.** `LeadFormPopup.tsx:88`, `GalleryLightbox.tsx:111` and `SpotlightSearch.tsx:135` all declare `role="dialog" aria-modal="true"`, and in all three Tab walks straight out into the page behind, which is neither `inert` nor `aria-hidden` — so the markup actively lies about the behaviour. `LeadFormPopup` is worst: it never moves focus into the dialog at all, so a keyboard user who opens the enquiry form is left at the trigger with no sign anything happened. `GalleryLightbox` is best — it focuses the close button and restores focus on exit — and needs only the trap. **Fix:** one shared `useFocusTrap(ref, open)` used by all three, plus `inert` on the page wrapper while open. **Done, one hook for all three.** New `src/lib/focusTrap.ts`: remembers what was focused, moves focus in, cycles Tab and Shift+Tab, marks the rest of the page `inert`, and restores focus on close. `LeadFormPopup` needed all of it — it never moved focus in at all. `SpotlightSearch` and `GalleryLightbox` already focused and restored correctly and needed only the trap. **One thing worth not undoing:** `inert` is applied by walking *up the ancestor chain* rather than across `document.body`'s children, because the three dialogs sit at different depths — the popup and the search panel are body-level, but the lightbox renders inside the page section that owns it, so a body-level-only version would have left the whole of `<main>` reachable behind it. Escape is deliberately not handled in the hook; each dialog already owns its own close behaviour.
+    - [x] **213.10 (done 2026-09-24) (H-05) — The screenshot frames cannot be scrolled by keyboard.** `CaseStudyParts.tsx:33` and `DeviceFrame.tsx:78` both wrap captures in `.no-scrollbar overflow-y-auto` with a height cap — captures up to 5,800px inside a 70vh or 300px window. No `tabindex`, so Chrome and Safari will not focus the container, and the scrollbar is hidden so there is no cue the content continues. Beyond accessibility this is a plain UX loss: the best work is inside those frames and most visitors will never discover they scroll. **Fix:** `tabindex="0"` plus `role="region"` with an accessible name, drop `.no-scrollbar` here, add a fade and a "scroll the full page" caption. **Done.** Both `CaptureFrame` and `DeviceFrame`'s scroll containers now take `tabIndex={0}`, `role="region"` and an `aria-label` naming the capture, with a visible `focus-visible` ring. `CaptureFrame` also drops `.no-scrollbar` — a scrollbar inside drawn browser chrome reads as correct — and gains a "Scroll inside the frame to read the full page" caption, because nothing told a visitor that 70vh was the top of a 6,000px capture. `DeviceFrame` keeps `.no-scrollbar` deliberately: a scrollbar inside a phone bezel reads as a rendering fault, so its caption carries the cue instead.
+    - [x] **213.11 (done 2026-09-24) (H-06) — Overlays stay open on top of the page they navigate to.** Both components live in the root layout, so a client-side navigation does not unmount them and `open` survives. `LeadFormPopup.tsx:63` sets the success state and immediately calls `router.push("/thank-you")`, so the visitor lands on the thank-you page with the modal still covering it and `body.overflow` still `hidden` — the moment immediately after someone converts. `SpotlightSearch.tsx:205` leaves the panel open over the destination when a result is clicked; pressing Enter does not, but only because that path uses `window.location.href` and hard-reloads, discarding the client router. **Fix:** close before `router.push`; add `onClick={close}` to each result; replace `window.location.href` with `router.push`. **Done, both, and one of them differently than first planned.** `SpotlightSearch` now closes on a result click and uses `router.push` instead of `window.location.href` — the old Enter path hard-reloaded the document, and was only *not* a visible bug because the reload happened to unmount the panel, which a mouse click did not. `LeadFormPopup` was going to close before `router.push`, but that removes the only feedback a visitor gets while a slow navigation is in flight; it now keeps the success state visible and dismisses on the **path change**, so nothing is left over `/thank-you` and the scroll lock is released. Both resets are adjusted during render rather than in an effect, the pattern used in 213.17.
+    - [ ] **213.12 (H-07) — One client, and one number, across the entire portfolio.** `caseStudies.ts:458` contains exactly one entry, `leos-developments`. Every case study, discipline page, sector chip and industry rail derives from it. **Measured: 0 projects define a `results` value; 1 outcome figure exists site-wide — "1 — Codebase for both platforms"; 0 testimonials; 3 of 4 homepage work cards are the same client.** The homepage section headed *Results & Impact — Measurable outcomes* promises "lead volume, conversion rate" and then shows three capability claims. The honesty is real and worth keeping — the code refuses to render a stat without a value — but a prospect cannot tell "has results, cannot publish them" from "has no results", and the site currently reads as the second. **This is 180.10 and 180.11, still open, and it is worth more than every other item here combined.** **Fix:** LEOS permission for the Hadley Heights figures; failing that, two named testimonials, or the Mövenpick and Oceara case studies already staged in `_incoming/`. Rename the homepage section until it has measurements in it, and say why a figure is absent on **every** case study rather than only the app one.
+    - [x] **213.13 (done 2026-09-24) (H-08) — Roughly 360 lines of unreachable code, some of it shipped to the browser.** The Portfolio mega menu came out of the `links` array on 2026-09-17 but `PortfolioMenu` and its mobile `<details>` twin remain in `Nav.tsx:100-210` and `:545-600` — ~160 lines behind a condition that can never be true, **measured present in 2 client chunks and rendering 0 times in any HTML.** `AppointmentBooking.tsx` carries ~200 more behind the Cal.com branch: the day strip, the generated 09:00–17:30 slots, the name and email inputs, the submit handler and the success state. The comment at `:30` claims those hours match the footer; the footer says 9am to 6pm. **Fix:** delete both. This is the same job as 180.6, in two new files. **Done. 398 lines deleted, and 130KB of client JavaScript with them.** `Nav.tsx` 724 -> 552: `PortfolioMenu`, its mobile `<details>` twin, the dead branch that selected it, six now-unused imports, and `MegaId` narrowed to the one member that exists. `AppointmentBooking.tsx` 448 -> 222: `workingDays`, the generated 09:00-17:30 `SLOTS`, the submit handler, the success state, the whole request form and eight pieces of state. **Verified: "By sector" (unique to `PortfolioMenu`) no longer appears in any client chunk, and total client JS is 789KB against 919KB before.** An unset `NEXT_PUBLIC_CALCOM_LINK` now degrades to a route into `/contact#enquiry` rather than to a slot picker that collected a preference and called it a booking. Several comments describing the deleted flow were corrected rather than left behind, including one that claimed its hours matched the footer when they did not.
+    - [ ] **213.14 (H-09) — The homepage assistant has no API key, and its prompt contradicts the site.** `ANTHROPIC_API_KEY` is absent from `.env.local`, so `api/ask/route.ts:78` returns 503 and the "Ask anything" section never produces an answer — it degrades to local search results, which is good design, but the feature is dead. Separately `:17` instructs the model *"There are no published prices"* while `Engagement.tsx` renders AED 31,500, AED 16,000/month and AED 3,500/session on the homepage and `/pricing`, and `schema.ts:122` declares `priceRange: "AED 3500 - 31500"` — and one of the four suggested questions is "How much does a landing page cost?". The route also uses `claude-opus-5` while its own comment at `:102` says this is "retrieval and paraphrase over a small corpus, not a reasoning problem"; the limit is 12 questions per IP per hour in process memory with no global cap. **Fix:** set the key or remove the section; correct the pricing paragraph; move to Haiku 4.5. **PARTLY DONE 2026-09-24.** The two things that did not need Bilal are fixed: the system prompt no longer claims there are no published prices — it now states the three "from" figures and points at `/pricing` — and the model moved from `claude-opus-5` to Haiku 4.5, which is what the route's own comment always argued for and removes the cost exposure of 12 Opus questions per IP per hour with no global cap. **Still open and blocked on Bilal: `ANTHROPIC_API_KEY` is unset, so the section still returns 503 and degrades to local search results.**
+
+    **MEDIUM — consistency, duplication and measurement gaps**
+
+    - [x] **213.15 (done 2026-09-24) (M-01) — The same copy printed twice on two pages.** `portfolio/[client]/mobile-app/page.tsx` renders `app.body` at `:238` (hero) and again at `:303` ("About the project") — the same ~200-character paragraph about one screen apart; each screen's `headline` also appears twice, as the image caption and as the "Design decisions" lead-in. `pricing/page.tsx` defines its own four engagement models at `:138` and then also renders `<Engagement variant="detailed" />` at `:205`, the same four again — **measured: all four model names appear 2× inside `<main>`** — with the second set being the only one carrying prices, below the FAQ. **Fix:** drop the case study hero paragraph; delete the local `models` array on `/pricing` and move `<Engagement>` up. The prices should not be the last thing on the pricing page. **Done, both pages.** The app case study's "About the project" section keeps its heading (the outline needs the anchor) but now carries `c.scopeIntro` instead of repeating the hero's `app.body`. `/pricing` lost its local `models` array entirely and `<Engagement variant="detailed" />` moved up into that slot — so the four models appear once, with their prices, above the cost drivers and the FAQ rather than as the last content on the page. **Verified in the rebuilt HTML: each model name now appears 1x inside `<main>` (was 2x), all three AED figures present, 0 duplicated long paragraphs on the app case study.**
+    - [ ] **213.16 (M-02) — Four different container widths across the site.** `.site-container` on 9 templates (h1 at 40px), `mx-auto max-w-4xl px-6` on `/services` and all 9 service pages (~512px), `max-w-5xl` on `/faq`, `max-w-3xl` on `/pricing` and `/404` (~576px). `/pricing` changes width **within itself** — a `max-w-3xl` hero over `max-w-5xl` body sections. The comment in `contact/page.tsx:112` records this being measured and fixed — "the h1 started 296px from the left here and 40px on every other page" — but it was fixed on `/contact` only. Moving from `/portfolio` to `/services` shifts the whole page half a screen sideways; this is the single most visible "not quite one site" signal in the build, and the companion to the type-scale work in item 189. **Fix:** `.site-container` for page shells, with an inner `max-w-[68ch]` on prose.
+    - [x] **213.17 (done 2026-09-24) (M-03) — The header re-animates on every navigation.** `Nav` is imported individually into all 17 page templates instead of the root layout, so it unmounts and remounts on every client-side route change: the `.header-enter` drop-in from item 199 replays each time and the scrolled pill state from item 201 resets. `Footer` has the same duplication without the visible symptom. **Fix:** move `<Nav />` and `<Footer />` into `layout.tsx` around `{children}` and delete 34 imports. The entrance then plays once per visit, as designed. **Done.** `<Nav />` and `<Footer />` moved into `layout.tsx` around `{children}`; 18 files (17 page templates plus `DisciplinePage`) lost both the render and the import. **Verified: all 31 real routes render exactly 1 `<header>` and 1 `<footer>`** — `_global-error.html` has neither, correctly, since it replaces the root layout. **Two consequences of the refactor found and fixed rather than shipped:** the pill threshold was only ever re-measured because the header remounted per page, so the effect now depends on `pathname` or it would keep the first page's hero height for the whole visit; and an open mobile drawer would have survived a browser back press, so both menus now reset on a path change — adjusted during render, the pattern `SpotlightSearch` already uses, rather than in an effect that trips `set-state-in-effect`.
+    - [x] **213.18 (done 2026-09-24) (M-04) — The portrait is served too small, from a source too large.** `HeroBanner.tsx:107` and `about/page.tsx:157` both declare `sizes="(min-width: 1024px) 34vw, 100vw"` while the container is `lg:w-[46%]` and then scaled 1.035 — Next picks a 34vw variant and the browser stretches it across 46%, so the portrait is soft at the exact moment the site makes its first impression. Separately `next.config.ts:41-50` caps `deviceSizes` at 1600 and justifies it with "no source image here is wider than 1928px"; `bilal-shirt.avif` is **3368×5056**, and `/appointment` renders it full-bleed at `sizes="100vw"`. On self-hosted Hostinger every variant is re-encoded on our own CPU from that 17-megapixel source. **Fix:** correct both `sizes` to `46vw`; downsample the portrait to ~1800px wide and keep the 1600 cap. **Partly done — the bug is fixed, one chore remains.** Both heroes now declare `sizes="(min-width: 1024px) 46vw, 100vw"`, matching the `lg:w-[46%]` column they actually occupy. **Still to do:** downsample `bilal-shirt.avif` from 3368x5056 to ~1800px wide. The false claim in `next.config.ts` that no source exceeds 1928px is corrected in place rather than deleted, so the cap's reasoning still reads true.
+    - [x] **213.19 (done 2026-09-24) (M-05) — The 404 page routes recovering visitors through a redirect.** `not-found.tsx:59` maps over `pillars` and links to `/services/{pillar.slug}`; one of those is `design-content-conversion`, which `next.config.ts:14` 308-redirects to `/services` because the pillar was retired. `about/page.tsx:186` fixed exactly this with `pillar.ledgerHref ?? …` and left a comment explaining why. The 404 page — whose only job is recovering a lost visitor — never got the fix. **Fix:** use `pillar.ledgerHref ?? \`/services/${pillar.slug}\``, as About does. **Done.** `not-found.tsx` uses `pillar.ledgerHref ?? …`, the same fix `/about` already had. A visitor who has already hit a 404 no longer gets a 308 on the way out.
+    - [x] **213.20 (done 2026-09-24) (M-06) — Most WhatsApp clicks are not tracked.** **Measured: 7 `wa.me` links across the site, 3 `trackWhatsApp()` calls.** The untracked ones include the contact page's WhatsApp channel card (`contact/page.tsx:39`), the service-page link (`services/[slug]/page.tsx:268`), the popup's (`LeadFormPopup.tsx:235`) and the form-failure fallback (`ContactForm.tsx:248`) — the last being the highest-intent WhatsApp click on the site, from someone who has already typed an enquiry. Phase 1 lists `whatsapp_click` among the events that "fire automatically, nothing to create in either UI"; it fires from under half of them. **Fix:** a `<WhatsAppLink context="…">` component so a new link cannot be added untracked. It can also carry the `target`/`rel` two of the seven omit. **Done, and the original count here was wrong — it was worse.** `grep trackWhatsApp` returned 3 hits, but one was the function definition in `analytics.ts` and one was an import, so **1 of 6 links fired the event, not 3 of 7.** New `src/components/WhatsAppLink.tsx` owns the number, the `target`/`rel` and the `trackWhatsApp()` call; all six call sites now use it (`contact-page-card`, `service-page:{slug}`, `thank-you-page`, `quick-enquiry-popup`, `contact-form-success`, `contact-form-fallback`). **0 raw `wa.me` hrefs remain in `src/app` or `src/components`**, so a new link cannot be added untracked. `ContactForm`'s prefilled fallback message is now built at click time rather than on every render.
+    - [ ] **213.21 (M-07) — Three lead forms at three different levels of quality.** `ContactForm.tsx` is the good one: visible labels, `autoComplete` on every field, `aria-live` on the status region, and it reads the API's `fallback` flag to offer a prefilled WhatsApp message. `InlineLeadForm.tsx` — the form on all 9 service pages — has none of that: placeholders instead of labels (they vanish as soon as someone types), no `autoComplete` so phone autofill never offers, no `aria-live`, and an error at `:59` reading "Try WhatsApp or email instead" that supplies neither a link nor an address. `LeadFormPopup` ignores `fallback` too and shows a generic "Something went wrong." **The `fallback` contract already exists server-side and 1 of 4 clients honours it.** **Fix:** lift `ContactForm`'s field markup and submit handler into a shared piece.
+    - [x] **213.22 (done 2026-09-24) (M-08) — Full lead PII written to the server log.** `api/lead/route.ts:366`, `:388` and `:397` all log `JSON.stringify(lead)` — name, email, phone and the enquiry message in clear text on Hostinger's log volume. The intent is right (never silently lose a lead) but under **UAE PDPL** this creates a second, unmanaged store of personal data with no retention policy, in a place `/privacy` does not mention. **Fix:** log a redacted record — name initial, email domain, message length, attribution — and write the full payload to a queue we control and can purge. **Done.** New `redactedLead()` keeps what diagnoses a delivery failure — type, name *length*, email *domain*, whether a phone was given, message length, service, budget, timeline, page, UTMs, eventId — and drops everything that identifies the person. All three CRM-failure paths use it. The email domain is kept deliberately: "the CRM rejects gmail.com addresses" is a real failure mode and a domain alone identifies nobody.
+    - [x] **213.23 (done 2026-09-24) (M-09) — Withdrawing consent leaves the cookies in place.** `consent.ts:39` removes the localStorage key, clears sessionStorage and reloads. The comment is honest that a loaded tracker cannot be unloaded, but `_ga`, `_ga_*` and `_fbp` survive the reload and keep identifying the visitor. Withdrawal has to be as effective as consent was. **Fix:** expire the known cookie names on the current host and the registrable domain before reloading. **Done.** `clearConsent()` now expires `_ga`, `_ga_*`, `_gid`, `_fbp`, `_fbc` and `_gcl_*` before reloading, on both the exact host and the registrable domain — a cookie set on `.bilalshafqat.com` is not removed by expiring it on `bilalshafqat.com`, and the two are indistinguishable when reading `document.cookie`. Named rather than wildcarded, so a blind sweep cannot delete something a future tool sets for a necessary purpose.
+    - [~] **213.24 (M-10) — Site search has no visible entry point on desktop.** **REVERSED BY BILAL 2026-09-24, see item 217.** The icon went back in and he asked for it out again after seeing it on the light bar. Recorded as his decision, not re-argued. The finding itself still stands: on desktop the panel is reachable only by Cmd+K, which is undiscoverable to a non-developer, behind a ranking module, an index builder, a JSON route and 32 CI fixtures. The mobile drawer keeps its visible entry, so phones are unaffected. The panel's rename from "AI Search" to "Search this site" stays. The search button came out of the bar in item 202 to fix an overflow problem, so on desktop the only route in is ⌘K — undiscoverable to anyone who is not a developer. The mobile drawer kept a visible entry. Behind it sits `searchRank.ts`, `searchIndex.ts`, a JSON route and 32 CI fixtures, effectively invisible to most visitors. Two smaller things in the same file: the panel is labelled **"AI Search"** with a sparkle and invites "Ask anything" while being a lexical keyword search, so someone typing a question gets keyword matches; and `SpotlightSearch.tsx:121` still says the panel "is now opened from the header's search button", which no longer exists. **Fix:** put a compact icon back in the bar — there is room now the nav is four items — and label the panel "Search this site". **Done.** A search button is back in the desktop bar. What made room is that the nav is four items now rather than the seven it had when item 202 pulled the icon out; the "Dubai, UTC+4" label stays out. The panel's `aria-label` also changed from "AI Search" to "Search this site" — it is a lexical keyword search, and inviting "ask anything" was a promise it does not keep. The stale comment claiming the panel "is now opened from the header's search button" is true again.
+    - [ ] **213.25 (M-11) — The About page never introduces the person.** The sitemap in this file calls for "personal story / growth narrative, expanded". What is there: a positioning statement, the four pillars again, three principles, a tool list, the audience grid, a CTA. No history and no route into the work. It also opens with the **identical** portrait, crop, treatment and layout as the homepage hero — so on the one page where "who is this person" is the reader's actual question, the page repeats the homepage and then lists software. **Fix:** three or four paragraphs of real narrative and a different photograph. Cheapest credibility gain available after 213.12. **Blocked on Bilal for the content.**
+    - [x] **213.26 (done 2026-09-24) (M-12) — The closing CTA sits above the proof on case studies.** On `portfolio/[client]/[project]/page.tsx` the order is approach → landing page → creative → siblings → **"Need this for your launch? Let's talk"** → **Results** → FAQ → disciplines. The strongest persuasion asset renders below the ask. `portfolio/[client]/page.tsx:321` does the same with `WorkProof`. Nobody has noticed because no project has results yet (213.12) — the moment LEOS releases a number it lands in the wrong place. **Fix:** move the results block above the CTA card. **Done, both templates.** On the project page the order is now siblings -> **Results** -> closing CTA -> FAQ -> WorkProof; on the client page `WorkProof` moved above the CTA card. **Verified in the rebuilt HTML for the client page**; the project page is verified in source order, since no project yet has a `results` value for the section to render (213.12).
+    - [ ] **213.27 (M-13) — Two of three client logos go nowhere.** `ClientLogoRow.tsx:58` and `:66` render Tomorrow World and Refine greyed and non-interactive because neither has a case study; only LEOS links. The handling is honest and documented, but in the homepage's only proof section two of three marks are dead ends, and `HeroBanner.tsx:169` reads "For LEOS Developments, Tomorrow World and Refine" — naming two clients with nothing behind them. A logo that changes on hover invites the click it then refuses. **Fix:** publish something for both, or link them to a filtered `/portfolio` view with an honest "case study in preparation" line.
+
+    **POLISH — cheap to close**
+
+    - [ ] **213.28 (P-01) — There are no webfonts, and headings match body text on Apple devices.** `globals.css:14` sets `--font-display` to `"Segoe UI", ui-sans-serif, system-ui` and `:15` sets `--font-sans` to `ui-sans-serif, system-ui, …, "Segoe UI"`. On macOS and iOS neither resolves to Segoe, so **both become San Francisco** — display and body are the same typeface. On Windows both resolve to Segoe UI. There is no type pairing on any platform and no `next/font` anywhere in the project. The performance argument for system fonts is sound, but this is a portfolio that sells design and typography is the first thing a peer reads. **Fix:** one variable display face through `next/font/local`, headings only, keep system sans for body. Also declare `--font-mono` — `.work-chip-count` references it and it is never defined.
+    - [x] **213.29 (done 2026-09-24) (P-02) — Smooth scrolling ignores reduced-motion.** `globals.css:22` declares `html { scroll-behavior: smooth }` unconditionally. Every other animation in the file is properly guarded — there are seven `prefers-reduced-motion` blocks — so this is an oversight rather than a position. Smooth scrolling is a known vestibular trigger. **Fix:** wrap it in `@media (prefers-reduced-motion: no-preference)`. **Done.** `scroll-behavior: smooth` is now inside `@media (prefers-reduced-motion: no-preference)`, matching the seven guards already in the file.
+    - [x] **213.30 (done 2026-09-24) (P-03) — Six American spellings in visible copy.** The data files are consistently British (24 instances of `optimise`, `organised`, `prioritised`); the components leak *optimization* in `Results.tsx:61`, `WhoIWorkWith.tsx:48` and `Process.tsx:74`, *prioritized* in `Engagement.tsx:63`, *specialized* in `WhoIWorkWith.tsx:40`, and *behavior* in `PortfolioShowcase.tsx:148` and `AskAssistant.tsx:46`. Minor alone; on a UAE site that otherwise holds the convention exactly it reads as copy assembled from two sources. **Fix:** six string edits. `ad_personalization` in `Analytics.tsx` is a Google API parameter — leave it. **Done, with one trap avoided.** Four prose fixes plus `behaviour` in two files. A blanket `behavior -> behaviour` replace broke `scrollIntoView({ behavior })` and `scrollTo({ behavior })` — those are DOM API properties, not prose, and were reverted. **0 US spellings remain in visible copy**; the three remaining hits are the CSS `scroll-behavior` property and two `behavior: "smooth"` API literals.
+    - [x] **213.31 (done 2026-09-24) (P-04) — Comments describe libraries the project no longer has.** Neither `framer-motion` nor `gsap` is in `package.json`, but `Reveal.tsx:17` states "Engagement and WhoIWorkWith still use framer for AnimatePresence … so the library still loads on the two pages that render them" — both were converted to CSS grid transitions — and `ProcessCompact.tsx:17` says the full process page "needs it for the pinned scroll", which item 194 removed. Worth fixing precisely **because** the comments in this repo are trustworthy; two false ones cost more here than they would elsewhere. **Fix:** delete both paragraphs. **Done.** `ProcessCompact.tsx`'s claim that /process still needs GSAP is corrected — item 194 removed GSAP from the project. `Reveal.tsx`'s claim that `Engagement` and `WhoIWorkWith` still load framer-motion went with that file's rewrite in 213.4 and is replaced by an accurate note. The remaining mention in `WhoIWorkWith.tsx:86` is past tense and correct, so it stays.
+    - [ ] **213.32 (P-05) — Two CTAs break this file's own hard rule.** 15 of 19 `CtaButton` instances read "Book a free consultation". `not-found.tsx:42` says "Start a conversation" and `pricing/page.tsx:224` says "Get a quote", both pointing at `/appointment` in the gold primary style. The two navigational exceptions ("View the full portfolio", "See my work while you wait") are legitimate. "Get a quote" is arguably the stronger CTA on a pricing page. **Decision for Bilal:** align both, or amend the hard rule to permit a page-specific primary where intent is already established.
+    - [x] **213.33 (done 2026-09-24) (P-06) — Case study cards contribute no headings.** `CaseStudyGrid.tsx:200` marks card titles as `<span>`, so `/portfolio` — a page whose purpose is six case studies — exposes no headings between the section `<h2>` and the discipline list, and a screen reader user cannot navigate the work by heading. A heading is allowed to contain a link. **Fix:** change the title `<span>` to `<h3>`. No visual change. **Done.** The card title `<span>` is an `<h3>`. No visual change; `/portfolio` now exposes a heading per case study instead of none between its section `h2` and the discipline list.
+    - [x] **213.34 (done 2026-09-24) (P-07) — Assets: an orphan portrait, a 168KB logo, Next's starter SVGs.** `public/` totals 7.0MB. Unreferenced: `images/bilal-shirt-old.avif` (568K), `logo/bilal-square-dark.svg` (12K), and `next.svg` / `vercel.svg` / `file.svg` / `globe.svg` / `window.svg` from the starter. `weybridge-gardens-2-logo.svg` is **168K** of genuine path data — and `next/image` does not optimise SVGs, so it ships whole every time that case study loads. Also `9fdglf0….html` and `cfc44ddc….txt`, verification leftovers superseded by the meta-tag method in `layout.tsx:54`. **Fix:** delete the orphans; run the Weybridge logo through SVGO, expect 10–20KB. **Done.** Deleted `bilal-shirt-old.avif` (568K), the five Next starter SVGs and stray `.DS_Store` files. **Correction, same day: two files I deleted as "orphans" were load-bearing and have been restored.** `cfc44ddc83791ced09cff999b9915876.txt` is the **IndexNow key file** — `scripts/indexnow.mjs:21` fetches it at the site root and aborts the whole submission if it is missing or its contents do not match. `9fdglf0lohnw1wqvbs26lt9w4ekr6r.html` is a search-engine verification file whose body is its own filename. `bilal-square-dark.svg` was restored too: genuinely unreferenced, but it is a brand asset and 12KB is not worth the risk. **The lesson, because it will recur:** the orphan check grepped `src/` for references, and this entire class of file is *deliberately* unreferenced — it exists to be fetched directly by an external service and is never linked from the site. Never delete a root-level `.txt`/`.html` with a random-looking name on the strength of a grep. `weybridge-gardens-2-logo.svg` through SVGO: **167KB -> 108KB, viewBox preserved** (checked, because the logo sizing in 213.7 depends on it). `public/` is 6.3M against 7.0M.
+    - [x] **213.35 (done 2026-09-24) (P-08) — The cookie banner covers the Quick Enquiry button.** `CookieConsent.tsx:35` is `fixed inset-x-0 bottom-0 z-[60]`; `LeadFormPopup.tsx:81` is `fixed bottom-6 right-6 z-40`. On a phone the banner stacks to a column and occupies the lower third, hiding the floating CTA for the whole of a first visit — the visit where it matters most. This is 180.13 in a new place. Also in that file: the close button at `:74` is `absolute right-4 top-4` but the card it sits in has no `relative`, so it positions against the outer fixed wrapper and lands a few pixels off. **Fix:** hide the enquiry button while the banner is open, or lift it above the banner height; add `relative` to the card. **Done.** `CookieConsent` sets `data-consent-open` on `<html>` while it is up, and a rule in `globals.css` hides the floating Quick Enquiry button for that time — two competing calls to action at once is the wrong ask, and on a phone the banner covered the button outright. **A Tailwind arbitrary variant was tried first and replaced with a real CSS rule, because it was not verified to compile; the rule is confirmed present in the built CSS.** The banner's card also gained `relative`, so its mobile close button anchors to the card rather than to the fixed wrapper.
+    - [x] **213.36 (done 2026-09-24) (P-09) — Nine services in a four-column menu.** `Nav.tsx:223` uses `grid-cols-4` with 9 groups, giving 4 + 4 + 1 and a single stranded card on the third row of the Services mega menu. `ProofLoop.tsx:27` already solves exactly this with a `DESKTOP_COLS` lookup and a comment about "four disciplines as a row of three and one stranded underneath". **Fix:** three columns, or reuse the lookup. **Done.** Three columns, so nine groups fall 3 + 3 + 3 instead of 4 + 4 + 1 with one stranded card.
+    - [x] **213.37 (done 2026-09-24) (P-10) — The intro paragraph sits above the `<h1>` on `/appointment`.** `appointment/page.tsx:200` renders the paragraph and `:205` the h1, so the page title is the third thing read, visually and in the DOM. Every other page puts the h1 first. Defensible as a design choice, but not one the rest of the site makes. **Fix:** swap them, or keep the order deliberately and record why. **Done.** The `<h1>` now precedes the intro paragraph, matching every other page.
+    - [ ] **213.38 (P-11) — Three different taxonomies for the same work.** The homepage says **four disciplines** (`pillars`), `/services` says **eight** and shows nine (`megaMenuGroups`), and `/portfolio`'s browser offers **nine disciplines** across three groups (`disciplines.ts`) which are a different nine. A visitor moving between them holds three overlapping maps of one offering. Each split is individually well argued in the code comments; the aggregate is the problem, not any one of them. **Fix:** decide which is customer-facing and make the other two explicitly subordinate in the copy — "four disciplines, nine specialisms" rather than three independent counts.
+
+    **AGREED WORK ORDER — column-first, as in item 180.** (1) Stop the measurement bleeding: 213.1, 213.2, 213.3, 213.20. (2) Email LEOS for the Hadley Heights numbers — longest lead time, worth more than the rest combined. (3) Fix what a prospect can see: 213.6, 213.7, 213.15. (4) Un-hide the h1 and un-break the footer: 213.4, 213.5, 213.17. (5) Close the accessibility gaps before selling WCAG work: 213.8, 213.9, 213.10, 213.29, 213.33. (6) One container width, one type pairing: 213.16, 213.28. (7) Delete the dead code and fix the overlays: 213.11, 213.13, 213.31. (8) Everything else.
+
+    **NOT COVERED by this audit, and each worth its own pass:** real-device testing (no emulator, no physical hardware — the responsiveness findings are static review of every breakpoint plus the built HTML, not a hardware pass), live-site network inspection, production environment variables, and Lighthouse or axe runs against the deployed site.
+
+214. **App case study: one column width, measured against the live Transpo page (2026-09-24)** — **done.**
+
+    Bilal asked whether the page looks like the reference and sent both URLs, so
+    this was measured rather than judged by eye. Both pages rendered at 1440 in
+    headless Chromium and every image measured.
+
+    **What the reference actually does.** Transpo is **21,812px** tall with **19
+    images**, and almost every one of them renders at **1264px** inside a
+    contained column — only the hero goes full-bleed. The rhythm never breaks.
+    Where it has a tall capture that cannot fill that column, it sits the capture
+    on a clearly tinted panel and lets the *panel* fill the width.
+
+    **What this page was doing.** Six images at **three different widths**:
+    1440px full-bleed for the three lifestyle mockups, and **318px and 194px**
+    for the two tall screen recordings, each floating in a 1440px band that was
+    78% and 87% empty. A 7x swing in image width on one page, which is why two of
+    five screens read as a loading failure rather than a composition. The bands
+    were already `bg-bg-soft` (#0e0e13), two points off the page background, so
+    the "tinted ground" the old comment described registered as nothing.
+
+    **The fix is width discipline, not more images.** Bilal wants 6-8 images
+    maximum and already has 6, so nothing was added.
+
+    - **One `max-w-[1200px]` column for all five screens.** Full-bleed is gone.
+      The full-bleed images were what made the narrow ones look broken by
+      comparison.
+    - **New `.screen-panel`** in `globals.css`: a warm ground that lifts toward
+      the site's gold rather than to another near-black, so a narrow capture sits
+      on a chosen surface instead of in a hole.
+    - **Mockups take a fixed 16:9 window and crop to fill it.** A first attempt
+      let them render at their own proportions, which was wrong and caught by
+      measuring: two of the three are shot **portrait at 1080x1920**, so at
+      column width they came out **1200 x 2133** — one image two full screens
+      tall. Every mockup is now the same height whichever way it was shot.
+
+    **Measured after:** all five screens in a 1200px column; the three mockups
+    identical at 1200x675; the two captures at 279px and 170px on panels that
+    fill the column. No horizontal overflow at 390, 768, 1440 or 1920.
+
+    **Still weak, and honestly so.** `projects.avif` is **1206x5807 (1:4.81)**,
+    nearly five phone screens tall. On a panel it renders 170px wide and nothing
+    on it is legible. The panel stops it looking broken; it does not make it
+    useful. Three ways out, all needing Bilal: crop it to the top two or three
+    screens so it renders wider, pair it with `home-screen.avif` on one panel as
+    a two-up comparison (which is what Transpo does with its side-by-side rows),
+    or shoot it as a lifestyle mockup like the other three.
+
+    **One part of the reference deliberately not copied,** as in item 211:
+    Transpo marks section names `h3` and its bullet statements `h2`, inverting
+    the hierarchy. This page keeps sections as `h2`.
+
+    Verified: `tsc`, `lint`, build, `h1-check` 30/30, `schema-check` 30/30,
+    `search-check` 32/32, `discipline-check`.
+
+215. **Breadth statement built as its own section, tentwenty pattern. Hero untouched (2026-09-24)** — **done.**
+
+    Bilal sent four screenshots of tentwenty.com: one sentence that never
+    changes, and one word at the end that does, sitting **on** a solid colour
+    block rather than being coloured text. Theirs rotates client names — g42,
+    pinza, aldar, astrazeneca.
+
+    **Why the client-name version was not copied.** That pattern works because
+    the rotating word *is* the proof. Running it here would rotate LEOS,
+    Tomorrow World and Refine: two have no case study behind them (213.12) and
+    one is Bilal's employer, which is a different proposition from a logo in a
+    trust row. **`RotatingDiscipline.tsx` is already the right shape for it —
+    when three real case studies exist, swap the `PHRASES` array for client
+    names and nothing else changes.**
+
+    **What rotates instead.** Bilal's objection to the first attempt was right:
+    "From campaign to code / App Store / CRM" named three things and he does
+    nine. So the sentence carries the argument and the rotation carries the
+    breadth:
+
+    > **Fifteen years across** ▌paid ads▐
+
+    cycling **paid ads → UI/UX design → web apps → mobile apps → marketing
+    tools → CRM automation → all of it.**
+
+    **It is its own section, and it opens the page.** Two corrections got here.
+    A first attempt replaced the hero's `<h1>`; Bilal said to leave the hero
+    alone, and he was right — "One senior partner." is already the hero's first
+    line, so "One senior partner for ..." there said it twice in one viewport.
+    A second attempt then placed the new section *below* the hero, which was a
+    misreading: "leave the hero as it is" meant do not change its content, not
+    leave it first. **`DisciplineStatement` is now the first thing in `<main>`,
+    with the hero directly beneath it, untouched** — same headline, same
+    paragraph, same original `steps()` typing effect. The stem "Fifteen years
+    across" is lifted from the hero's own paragraph, so the two agree without
+    repeating.
+
+    **It renders a `<p>`, not a heading, now that it sits above the hero.** The
+    hero owns the page's only `<h1>` and `h1-check` enforces that on all 30
+    routes; an `h2` before that `h1` would invert the outline for anyone
+    navigating by heading. This is a display statement rather than a section
+    title, so a paragraph is the honest element, and the `<section>` carries an
+    `aria-label` so the landmark is still named. Verified in the built page:
+    first three headings are `h1` "One senior partner…", then `h2` "Four
+    disciplines…", then `h2` "What I Actually Build".
+
+    Deliberately sparse, as the reference is: one line, one arrow link to
+    `/services`, nothing else. The temptation is to add cards underneath, which
+    would turn it back into the list it exists to avoid.
+
+    **Three decisions worth not undoing:**
+
+    - **It ends on "all of it."** Any single frame of the others reads as a
+      specialist claim — "One senior partner for web apps" is narrower than the
+      page means. Landing on the payoff collapses the list back into the point,
+      and it is also the resting frame, so it is what a late arrival sees.
+    - **It runs once and stops.** An endless loop in an `<h1>` fails WCAG 2.2.2
+      (Pause, Stop, Hide), Level A, which Phase 3 item 13 cannot afford.
+      `prefers-reduced-motion` skips the animation entirely.
+    - **Timing is measured in JS, not `steps()`.** The old effect hard-coded
+      character counts in `globals.css` with a warning that rewording meant
+      editing them by hand. Slicing the string means the copy is free to change.
+
+    **One bug caught by checking the built HTML rather than the browser.** The
+    first version stacked an invisible copy of the longest phrase to reserve
+    width, plus an `sr-only` copy for the accessible name. `aria-hidden` hides
+    text from a screen reader but **not from a crawler**, so the rendered `<h1>`
+    came out as *"One senior partner forCRM automationall of it.all of it."* —
+    which is what Google would have read. Both were deleted: the block sits
+    alone on its own line, so its width changing moves nothing else, and no
+    reservation was needed. **The `<h1>` now reads "One senior partner for all
+    of it." for a crawler, a screen reader and with JavaScript off.**
+
+    Colour is `bg-gold` with `#14140f` ink, the exact pairing `.btn-primary`
+    already uses, so the block reads as native rather than bolted on.
+
+    **Superseded:** an earlier note here held a hero *layout* restructure for
+    sign-off. Bilal has since said to leave the hero as it is, so that is closed
+    rather than pending.
+
+    Verified at 1440 and 390: no horizontal overflow, `h1-check` 30/30,
+    `schema-check` 30/30, `search-check` 32/32, `discipline-check`, `tsc`,
+    `lint`, build.
+
+216. **The homepage opens on a white band, and the header goes light with it (2026-09-24)** — **done.**
+
+    Bilal, on the section from item 215: more copy, a white ground, "make the
+    topbar navigation header and the changing text background to be white ...
+    and make the stick header to be darker version." So the page now opens
+    light and turns dark the moment it scrolls, which is the contrast the
+    tentwenty reference is built on.
+
+    - **`DisciplineStatement` is white** (`.opener-light`), with its own ink
+      rather than the page tokens — `--color-ink` and `--color-muted` are tuned
+      for near-black and are unreadable here. Measured on white: ink `#14140f`
+      at **17.4:1**, body `#55555e` at **7.3:1**, both clear of AA. The gold
+      block keeps its dark ink so it reads identically on either ground; gold
+      *text* on white is about 1.8:1 and is never used.
+    - **The bar is light at rest and dark once floating.** `.nav-header.is-light`
+      is written as `:not(.is-floating)` rather than relying on source order —
+      both selectors are (0,2,0), so whichever came last would have won by
+      accident. The colour change rides the transition already declared on
+      `.nav-header`, so it eases rather than snaps.
+    - **A dark wordmark was needed.** `bs-logo.svg` is 15 white fills and would
+      have been invisible on white. `bs-logo-dark.svg` is the same file with
+      those swapped to `#14140f`; the gold badge and its `#2C2C2C` mark are
+      untouched in both. Nav links, the chevron, the search icon and the
+      hamburger all take a dark cut in the light state.
+    - **`light` is keyed on `pathname === "/"`,** because the homepage is the
+      only route that opens on a white section; everything else opens on
+      `--color-bg`. **If a second page ever gets a light opener, replace this
+      with a data attribute the page sets rather than adding a second pathname.**
+    - **More copy, as asked.** The band was one line and a link, which left the
+      right-hand side empty at desktop. It is now two columns: the rotating
+      statement left, and the discipline list stated in prose on the right. The
+      rotation makes the range *felt*; the prose is where it is actually said,
+      so a visitor arriving after the sequence has rested still gets all of it.
+
+    Verified at 1440 and 390: header `rgb(255,255,255)` at rest and transparent
+    with the dark pill once scrolled, no horizontal overflow, `h1-check` 30/30,
+    `schema-check` 30/30, `search-check` 32/32, `discipline-check`, `tsc`,
+    `lint`, build.
+
+
+217. **Opener typography and the search icon, on Bilal's review (2026-09-24)** — **done.**
+
+    Three changes after seeing item 216 live.
+
+    - **Search control out of the bar.** Removed in item 202 for an overfull
+      row, restored in 213.24 because Cmd+K was the only desktop route in,
+      removed again here. **His decision; 213.24 is reopened rather than left
+      ticked.** The mobile drawer keeps its visible "Search this site" entry.
+    - **Heading up, prose down.** The statement goes 4.4rem to **5rem** at
+      desktop (70px to 80px measured) and the supporting copy 18px to **14px**.
+      The size gap is the hierarchy: at 18px against 70px the two read as two
+      headlines. The grid moved from 1.15fr/0.85fr to **1.5fr/0.5fr** to give
+      the larger statement the room — measured at 1440 it renders 734px wide in
+      its column and does not wrap.
+    - **Copy cut to one paragraph,** as Bilal specified. The disciplines list
+      that sat above it is what the rotating block already says frame by frame,
+      so stating it again in prose was the same content twice. What remains is
+      the part the rotation cannot make: *"One point of contact for all of it.
+      No account managers, no handoffs, and no week spent translating between
+      three suppliers."*
+
+    **One thing to watch:** the band is now a large statement, three lines of
+    small text and a link on a full white screen. It reads as deliberate at
+    1440. If it ever feels thin, the fix is less vertical padding rather than
+    more copy — the copy length is Bilal's explicit call.
+
+    Verified: heading 80px, body 14px, no wrap at 1440, no horizontal overflow
+    at 390, `h1-check` 30/30, `schema-check` 30/30, `search-check` 32/32,
+    `discipline-check`, `tsc`, `lint`, build.
+
+218. **Opener: continuous loop, longer stem, CTA under the paragraph (2026-09-24)** — **done.**
+
+    - **Stem is now "Fifteen years of experience across".** Wraps to two lines
+      at desktop with the gold block on the third, which reads better than the
+      single line it replaced.
+    - **The rotation loops continuously at ~3s a phrase, on Bilal's
+      instruction.** It ran once and rested before. Typing and erasing are fixed
+      per character and the hold absorbs the difference, so a short phrase does
+      not flash past while a long one drags. **Measured: 1s samples over 13s
+      gave three samples per phrase and the loop wrapped cleanly.**
+    - **The CTA moved under the paragraph, behind a divider,** as asked. The
+      right column is now paragraph -> rule -> "What I can do for you".
+    - **Search control removed from the bar** (see item 217 and the reopened
+      213.24).
+
+    **The pause control is load-bearing, not decoration.** WCAG 2.2.2 (Pause,
+    Stop, Hide) is **Level A**: motion that starts automatically and runs past
+    five seconds needs a mechanism to stop it. A loop that ran once was
+    self-limiting and needed none; a continuous loop does. It sits at the end of
+    the CTA row at caption weight so it does not compete with the link, carries
+    `aria-pressed` and a state-dependent label, and holds the block on whatever
+    frame it was showing — **verified: paused at "marketing tool" and still
+    reading "marketing tool" 3.5s later.** `prefers-reduced-motion` stops the
+    animation independently.
+
+    **Deleting that button turns the first screen of the site into a Level A
+    failure**, on the site that plans to sell WCAG 2.2 audits (Phase 3 item 13).
+    It is commented as such in `DisciplineStatement.tsx`.
+
+    `DisciplineStatement` became a client component: the control and the
+    rotation share state, and the alternative was threading a render prop
+    through a server boundary for one button.
+
+    Verified at 390, 768, 1440 and 1920: no horizontal overflow, control present
+    at every width. `h1-check` 30/30, `schema-check` 30/30, `search-check`
+    32/32, `discipline-check`, `tsc`, `lint`, build.
+
+219. **Grammar fix on the opener: "across" was the wrong preposition (2026-09-24)** — **done.**
+
+    Bilal asked for the line to be checked properly, saying his English is not
+    strong. He was right to ask. The grammar was valid but the **preposition was
+    wrong in five of the seven frames**, which is the kind of error that reads as
+    non-native to a British or Emirati client.
+
+    **"Across" means *spanning several things*, so it needs a plural or
+    collective object.** "Experience across marketing, design and development" is
+    correct — three fields. "Experience across UI/UX design" is not, because that
+    is one field. It happened to work on "all of it" and just about survived the
+    plurals, which is why it went unnoticed.
+
+    Stem is now **"Fifteen years of experience in"**.
+
+    **A second problem the fix exposed: the list mixed fields with deliverables.**
+    A preposition of field wants a discipline after it. "Experience in web
+    development" is idiomatic; "experience in web apps" is not, because a web app
+    is a thing built rather than a field worked in. So:
+
+    | was | now |
+    |---|---|
+    | web apps | web development |
+    | mobile apps | app development |
+    | marketing tools | *removed* — a deliverable, not a field |
+
+    Six frames now, each reading as a complete, idiomatic sentence:
+
+    > Fifteen years of experience in **paid ads** / **UI/UX design** /
+    > **web development** / **app development** / **CRM automation** /
+    > **all of it.**
+
+    The longer stem wraps to two lines at desktop with the block on the third,
+    which reads better than the single line it replaced.
+
+    Verified at 390, 768, 1440 and 1920: no horizontal overflow. `h1-check`
+    30/30, `schema-check` 30/30, `search-check` 32/32, `discipline-check`,
+    `tsc`, `lint`, build.
+
+220. **Opener grid set to 60 / 10 / 30 at desktop (2026-09-24)** — **done.**
+
+    Bilal's spec: heading 60%, 10% gap, then the paragraph and its CTA in 30%.
+
+    `lg:grid-cols-[60%_30%] lg:gap-x-[10%]`. **Percentages rather than `fr`
+    units, deliberately** — those three numbers are the instruction, and `fr`
+    would redistribute space as the content changed and quietly stop being
+    60/10/30. `lg:gap-y-0` is needed too, or the row gap from the stacked mobile
+    layout applies at desktop and pushes the columns apart vertically.
+
+    **A character cap was undercutting the track and had to go.** The statement
+    carried `max-w-[17ch]`, which at 1920 held it to ~820px inside a 1104px
+    column — the measured split came out **44.6 / 25.4 / 30**, not 60/10/30. The
+    cap is now `sm:max-w-none`, so the column sets the measure at desktop and the
+    explicit `<br />` still puts the gold block on its own line. It is kept below
+    `sm`, where a character cap is the right tool.
+
+    **Measured at four desktop widths — 1280, 1440, 1728 and 1920 — all exactly
+    60% / 10% / 30%.** The statement wraps to three lines up to 1440 and two from
+    1728, which is the column doing its job rather than a fixed break. Mobile
+    still stacks, no horizontal overflow at 390.
+
+    `h1-check` 30/30, `schema-check` 30/30, `search-check` 32/32,
+    `discipline-check`, `tsc`, `lint`, build.
+
+221. **The gold block clipped its own descenders (2026-09-24)** — **done.**
+
+    Bilal, from a screenshot: the block "is not looking in the center ... the
+    letter p touches the bottom line of the yellow corner, but if its written CRM
+    it looks center." He was right, and it is a real typography bug rather than a
+    matter of taste.
+
+    **Cause: the parent's `leading-[1.04]`.** A sans face needs roughly **1.2em**
+    for its full content area — ascender plus descender. At a line-height of
+    1.04 the line box is *shorter than the glyphs it holds*, so half-leading goes
+    negative and descenders hang outside it. The block's background is painted to
+    the line box, so the `p` of "paid ads" ran to the edge while "CRM
+    automation", which has no descender below the baseline, sat comfortably
+    centred. Four of the six phrases have a descender, so this was visible most
+    of the time.
+
+    **Fix: the block sets its own `leading-[1.25]`,** which contains the whole
+    content area, and its padding moved from a fixed `px-3 py-1` to `px-[0.18em]
+    py-[0.04em]` so it scales with the type — the same block renders at 2.4rem on
+    a phone and 4.6rem at desktop, where a fixed 4px is proportionally a very
+    different amount of air.
+
+    **Measured after: the block is the same height for every phrase** — 98px at
+    desktop for both "paid ads" and "CRM automation" — and no glyph escapes it.
+    The two caps-only phrases carry slightly more space under the baseline, which
+    is correct: a highlight box should be one consistent height, not resize per
+    word.
+
+    Scales cleanly: 51px block at 390, 77px at 768, 98px at 1440 and 1920. No
+    horizontal overflow at any width. `h1-check` 30/30, `schema-check` 30/30,
+    `search-check` 32/32, `discipline-check`, `tsc`, `lint`, build.
+
+222. **Opener padding made symmetric at 90px (2026-09-24)** — **done.**
+
+    Bilal measured it off the element inspector: 144px above, 112px below.
+    `pt-36` against `pb-28` — asymmetric, and at that scale visibly so.
+
+    Replaced the whole `pb-20 pt-28 sm:pb-24 sm:pt-32 lg:pb-28 lg:pt-36` ladder
+    with a single **`py-[90px]`**. One value rather than a `pt`/`pb` pair, so the
+    two cannot drift apart again the next time one of them is tuned — which is
+    how they got to 144/112 in the first place.
+
+    **Verified: padding-top and padding-bottom both compute to exactly 90px at
+    390, 768, 1440 and 1920.**
+
+    One consequence worth knowing: 90px is now the value at *every* width, where
+    the old ladder scaled down on phones. At 390 that is 180px of vertical air on
+    an 844px screen. It reads fine and it is what was asked for; if it ever feels
+    heavy on mobile, add a smaller `py` below `sm` rather than reintroducing an
+    asymmetric pair.
+
+    `h1-check` 30/30, `schema-check` 30/30, `search-check` 32/32,
+    `discipline-check`, `tsc`, `lint`, build.
+
+223. **Hero typing effect removed, and the hero inset to 80% (2026-09-24)** — **done.**
+
+    **The typewriter is gone.** "One senior partner. / Campaign to code." is
+    plain text now, at Bilal's instruction. Two typed headlines in the first two
+    screens was one too many once the opener above took the animated moment, and
+    this is the line that should simply be read. **Verified: at 300ms the `h1`
+    already reports the full text with `clip-path: none`, `animation: none`,
+    `opacity: 1`.**
+
+    **93 lines of now-dead CSS went with it** — `@keyframes type-reveal`,
+    `.type-line`, `.type-line-1`, `.type-line-2`, `.type-caret` and their
+    reduced-motion guard. Those `steps()` values were literal character counts
+    per line, which is why the markup carried a standing warning to update them
+    whenever the headline was reworded; that trap is gone. **`@keyframes
+    caret-blink` is deliberately kept** — `.type-caret-block`, the opener's
+    caret, still uses it.
+
+    **The hero is 80% of the viewport at desktop**, centred, full width below
+    `lg` where 80% of a phone is just a narrow column. The whole section moves
+    together — headline, portrait, proof bar and the recent-work row — so it
+    reads as one inset block rather than a full-bleed band with an inset
+    headline in it.
+
+    **The portrait's bleed now ends at the column, not the viewport.** It is
+    `lg:absolute lg:right-0` against the grid, and the grid is now a child of the
+    80% wrapper, so "right" means the right edge of the column. That is correct
+    here: a portrait bleeding past an inset hero into open background reads as an
+    overflow bug rather than a bleed. The `lg:px-10` gutters and the
+    `lg:pr-[13rem]` reserved for the floating enquiry button were removed with
+    it — inside an 80% column those doubled up.
+
+    **Measured: 1152px at 1440 and 1536px at 1920, both exactly 80%; 100% at
+    390.** No horizontal overflow. `h1-check` 30/30, `schema-check` 30/30,
+    `search-check` 32/32, `discipline-check`, `tsc`, `lint`, build.
+
+224. **White gutters beside the 80% hero (2026-09-24)** — **done, with one thing for Bilal to look at.**
+
+    The section is now `bg-white` and the dark fill moved onto the 80% wrapper,
+    so the 20% the hero does not cover reads as gutters rather than as the page
+    showing through. Below `lg` the wrapper is 100% wide and the white never
+    shows. **Verified at 1440: gutters `rgb(255,255,255)`, inset block
+    `rgb(8,8,11)` at exactly 80%; at 390 the block is 100%.**
+
+    **The join to the section below now has a visible step.** The hero's dark
+    block stops at 80% and `CapabilityLedger` immediately resumes full-bleed
+    dark, so the white gutters end on a hard horizontal edge with dark on both
+    sides of it. It reads as a rendering fault rather than as a decision.
+
+    Three ways out, none of them chosen yet because this is a look rather than a
+    bug:
+
+    1. **Carry the inset down the page** — the sections below also sit at 80% on
+       white. Most consistent, and closest to the reference; it is also the
+       largest change, since every section's padding was tuned for full bleed.
+    2. **Round the hero block's corners** so it reads as a deliberate card
+       floating on white rather than as a band that failed to reach the edge.
+    3. **Put the white only where it is doing work** — keep the gutters beside
+       the hero and let the white run behind the opener above it as one field,
+       with the dark page starting cleanly below the hero.
+
+    I would take 2 as the cheap fix and 1 as the right one.
+
+    `h1-check` 30/30, `schema-check` 30/30, `search-check` 32/32,
+    `discipline-check`, `tsc`, `lint`, build.
+
+225. **Two defects the 80% inset introduced, both mine (2026-09-24)** — **fixed.**
+
+    Bilal: the hero "looks like cutoff very unprofessional". He was right on both
+    counts and both were caused by item 223.
+
+    **1. The inner gutters were stripped.** When insetting the hero I removed
+    `lg:px-10` from the text column, the `lg:pr-[13rem]` from the proof bar and
+    the recent-work row, reasoning that they "doubled up" inside an 80% column.
+    They did not: **the 80% wrapper carries no padding of its own**, so content
+    ran flush to the dark block's edge. "For LEOS Developments, Tomorrow World
+    and Refine" sat hard against the right side and read as clipped text.
+    Restored as `lg:px-14` on each block inside, with the portrait deliberately
+    outside it because it is meant to reach the block edge. **Measured after: the
+    tightest text now clears the block edge by 56px.**
+
+    **2. The floating nav pill rendered as a grey slab.** Its
+    `color-mix(… 58%, transparent)` was tuned when every page was dark end to
+    end, where translucency reads as glass. The homepage now opens on white, so
+    the pill spends its first screens over white or over the white gutters beside
+    the inset hero — and 58% of a near-black over white is flat grey. It is now
+    **solid `var(--color-bg)`**, so the pill is the same object on every
+    background. The blur still works at the moment of transition; it is simply no
+    longer what legibility depends on. **Verified: `rgb(8, 8, 11)` while
+    floating.**
+
+    **The lesson, because it will recur:** insetting a full-bleed section is not
+    just a width change. Every gutter, reserved space and translucency in it was
+    tuned against the viewport edge, and each one has to be re-reasoned against
+    the new container.
+
+    **Still open from item 224** and not chosen by Bilal: the step where the
+    hero's 80% block meets the full-bleed `CapabilityLedger` below it.
+
+    `h1-check` 30/30, `schema-check` 30/30, `search-check` 32/32,
+    `discipline-check`, `tsc`, `lint`, build.
+
+226. **Parallax on the opener and hero (2026-09-24)** — **done, built without GSAP.**
+
+    Bilal's spec: the animated statement sits behind and drifts down on scroll,
+    the hero rides over it, and as the hero nears the top its block widens from
+    80% to full bleed. He asked for GSAP.
+
+    **Not GSAP, and the reason is this project's own history.** `gsap` plus
+    `ScrollTrigger` plus `@gsap/react` is roughly 100KB on all 30 routes, and
+    **items 189 and 194 removed exactly that, for exactly that reason** — item
+    194's title is "GSAP gone from the project entirely". `HomeParallax.tsx` is
+    about 1KB and produces the same effect. The shape maps onto a ScrollTrigger
+    one-to-one if it is ever wanted: one progress value driving three
+    properties. Raised once, and swappable on request.
+
+    **How it works.** The opener is `sticky` rather than transformed into place —
+    pinning it and letting the hero scroll over is what produces the depth; a
+    transform alone moves it without changing what covers what. The 52px
+    downward drift is the flourish on top of that. The hero's width is written as
+    a CSS custom property (`--hero-w`) that `HeroBanner` reads, so the parallax
+    never needs to know how that section is built and the hero still renders
+    server-side.
+
+    **Width is a layout property**, so every distinct value costs a reflow of the
+    hero. Values are rounded to 0.5% and unchanged frames skipped, which turns a
+    per-frame reflow into roughly forty across the whole scroll. Scroll listener
+    is `passive` and rAF-batched.
+
+    **Measured at 1440, scrolling 0 to 900px:**
+
+    | scroll | hero width | opener drift | overflow |
+    |---|---|---|---|
+    | 0 | 80% | 0px | no |
+    | 150 | 86.5% | 17px | no |
+    | 300 | 94% | 36px | no |
+    | 450 | 100% | 52px | no |
+    | 900 | 100% | 52px | no |
+
+    Content holds at every step — headline, paragraph, both CTAs, portrait,
+    proof bar and the recent-work row all intact mid-transition.
+
+    **This closes item 224 as a side effect.** At full bleed the hero meets
+    `CapabilityLedger` cleanly, so the 80% step that read as a rendering fault is
+    gone — and `--hero-w` defaults to **100%**, so the server-rendered page, a
+    visitor without JavaScript and reduced motion all get the clean join rather
+    than an inset hero that never widens.
+
+    **Verified:** reduced motion holds 100% with `transform: none` through a
+    scroll; at 390 the opener is `static`, untransformed, hero 100%, no overflow.
+    `h1-check` 30/30, `schema-check` 30/30, `search-check` 32/32,
+    `discipline-check`, `tsc`, `lint`, build.
+
+227. **Parallax moved onto GSAP, homepage only (2026-09-24)** — **done.** Supersedes the hand-rolled version in item 226.
+
+    Bilal's decision after the cost was put to him: GSAP, **limited to the
+    homepage**. Items 189 and 194 removed GSAP from this project because it was
+    landing on every route for one effect; that objection is answered by the
+    constraint rather than by avoiding the library.
+
+    **Two things keep it contained, and removing either puts GSAP back on all 30
+    routes:**
+
+    1. **Only `app/page.tsx` imports `HomeParallax`.** A second importing route
+       makes Next hoist gsap into the shared chunk.
+    2. **The import is dynamic, inside the effect.** gsap lands in its own async
+       chunk fetched after hydration, so it is absent from the homepage's
+       *initial* payload as well as from every other route's.
+
+    **Measured, by diffing the chunks each route's HTML actually references:**
+
+    | route | chunks | initial JS | vs before gsap |
+    |---|---|---|---|
+    | `/` | 11 | 729 KB | unchanged |
+    | `/privacy` | 11 | 706 KB | unchanged |
+    | `/contact` | 11 | 714 KB | unchanged |
+    | `/about` | 11 | 713 KB | unchanged |
+    | `/services` | 11 | 716 KB | unchanged |
+
+    Total static JS is 794 KB -> 905 KB, and **all 111 KB of that sits in two
+    async chunks no route references on load.** A grep for "ScrollTrigger" also
+    matches a 24 KB chunk the homepage *does* reference — that one holds the
+    import path, not the library. Worth knowing before anyone re-runs the check
+    and concludes the containment failed.
+
+    **What GSAP buys, honestly:** `scrub: 0.3`, so the value eases toward the
+    scroll position instead of snapping to it, and `matchMedia`, which tears the
+    animation down and runs the reset when the breakpoint or the motion
+    preference stops matching. The rest is the same logic as item 226.
+
+    **A bug the swap introduced and the measurement caught:** `onUpdate` does not
+    fire until the scroll enters the trigger's range, so on arrival the hero sat
+    at its 100% default and snapped to 80% the instant you scrolled. Fixed with
+    `onRefresh`, which fires on init and after every resize — exactly when the
+    resting state needs setting.
+
+    **Measured after, at 1440:** 80% at rest, 84% at 100px, 89% at 200, 94% at
+    300, 98.5% at 400, 100% from 500 — with the opener drifting 0 to 52px across
+    the same range. Smooth, no jump on the first scroll, no horizontal overflow.
+
+    `h1-check` 30/30, `schema-check` 30/30, `search-check` 32/32,
+    `discipline-check`, `tsc`, `lint`, build.
+
+228. **Hero snaps to full height as well as full width (2026-09-24)** — **done.**
+
+    Bilal, on the parallax: "it overlaps smoothly but it needs to all snapping to
+    be full width and height as well."
+
+    **The hero's height was fixed at 841px** regardless of viewport — measured
+    identical at 1440x900, 1512x982 and 1920x1080. So on a 1080px screen it
+    covered **78%** of the window when it arrived at the top, with the next
+    section showing underneath. Full width was landing; full height was not.
+
+    A second custom property, `--hero-fill`, now runs 0 to 1 on the same
+    progress, and the block takes
+    `lg:min-h-[calc(var(--hero-fill,1)*100svh)]`. Rounded to 1% and deduped for
+    the same reason as the width: `min-height` is a layout property and `scrub`
+    would otherwise reflow the hero every frame.
+
+    **Where the gained height goes matters.** The block is now `lg:flex-col` and
+    the headline row `lg:flex-1`, so the extra space lands on the headline and
+    the portrait rather than stretching the proof bar into a band. The text
+    column centres itself with `lg:justify-center` once the row is taller than
+    its content, and the portrait — already `lg:inset-y-0` — grows with it,
+    which also means it is cut off less than before.
+
+    **Measured:**
+
+    | | 1440x900 | 1920x1080 |
+    |---|---|---|
+    | at rest | 80% wide, 93% of viewport | 83% wide, 77% of viewport |
+    | snapped | **100% wide, 100% tall** | **100% wide, 100% tall** |
+
+    `svh` rather than `vh`, so a mobile browser's collapsing toolbar could never
+    make this overshoot — though it is `lg:` only in any case. Reduced motion and
+    phones are unaffected: the height is natural below `lg`, and `--hero-fill`
+    defaults to 1 so the server-rendered page and a visitor without JavaScript
+    get the full-height hero rather than a short one that never fills.
+
+    `h1-check` 30/30, `schema-check` 30/30, `search-check` 32/32,
+    `discipline-check`, `tsc`, `lint`, build.
+
+229. **The "bold divider" under the header (2026-09-24)** — **done.** Bilal
+    reported a heavy rule between the header and the opener text and asked for a
+    normal one.
+
+    It was not a divider. Nothing draws a border there. The opener is `sticky`
+    *and* drifts down by up to 52px under the parallax (item 227), and the strip
+    it vacates under the header exposed whatever sits behind the parallax
+    wrapper — which was `body`, painted `--color-bg` at `#08080b`. A dark band
+    of growing height, pinned under the header, reads exactly like a thick rule.
+
+    Fixed by painting the parallax root `bg-white`, so the vacated strip matches
+    the opener above it and nothing shows through.
+
+    **Measured** at 1440x900, sampling one pixel below the header: `rgb(255,
+    255, 255)` at 150px and 300px of scroll. At 450px and 600px it is `rgb(8, 8,
+    11)`, which is correct — the hero has genuinely risen under the header by
+    then and that is the hero's own ground.
+
+230. **Portrait: monochrome at rest, colour wiped in under the cursor
+    (2026-09-24)** — **done.** Bilal: *"normally show my image black n white
+    filter, but when mouse cursor hovers it shows my image with colors with
+    smoky effect and parallax style makes my picture to move as well."*
+
+    New component `src/components/PortraitReveal.tsx`, three mechanisms:
+
+    | | How |
+    |---|---|
+    | colour | Two copies of one file stacked; the mono version is a CSS `grayscale` filter, so there is no second asset and the browser fetches one image |
+    | smoke | A radial mask on the colour copy, centred on the cursor: opaque to 40%, then a long falloff to nothing at 320px |
+    | parallax | Both copies shift up to 16px against the cursor |
+
+    Three numbers that are constraints rather than taste:
+
+    - **16px of shift, not more.** The portrait is masked at its edges by
+      `.hero-portrait`; past roughly 20px the image pulls out from under that
+      mask and a hard edge appears.
+    - **320px of radius, not 420.** At 420 the circle covered almost the whole
+      portrait, so it read as a plain colour toggle. At 320 the falloff is
+      visible across the lower suit and it reads as wiping condensation off
+      glass, which is what was asked for.
+    - **`.hero-portrait` moved from the `<img>` onto the wrapper.** It
+      composites two mask layers already; stacking the reveal on top would need
+      a third `mask-composite` layer whose behaviour differs across browsers.
+
+    Everything is driven through CSS custom properties written on one element,
+    so a mouse move costs one style write and no React render.
+
+    **Measured** at 1440x900, hovering the face: `--r` 0px at rest → 320px on
+    hover, layer transform `matrix(1, 0, 0, 1, 0, 5.8)`. Reduced motion keeps
+    the colour reveal and drops the movement — `--r` 320px, `transform: none` —
+    because the reveal is a state change and the drift is the part that is
+    actually motion. At 390x844 the portrait stays monochrome, which is the
+    intended resting state; no horizontal overflow at any of the three widths.
+
+    `tsc`, `lint` clean, build 40/40.
+
+231. **The hero snaps, rather than resting half-open (2026-09-24)** — **done.**
+    Bilal: *"make the snapping more so the full height and width shown of the
+    hero section at a time."*
+
+    Item 228 made full width and full height arrive together, but `scrub` alone
+    means the block rests wherever the scroll stopped. Stop in the middle of the
+    range and you get 91% wide and 88% of the viewport tall — a state that is
+    neither of the two the design has, and the one most likely to be on screen
+    because the range was 420px, most of a screen of scrolling.
+
+    Two changes, and they work as a pair:
+
+    - **`TRAVEL` 420 → 260.** A quicker commit, so the ends are what you look at
+      rather than the transition.
+    - **`snap: { snapTo: [0, 1] }` on the ScrollTrigger.** Only the two ends are
+      allowed, so releasing anywhere inside the range settles to the inset block
+      or to the full-bleed one. Width and height arrive together because both
+      read the same progress.
+
+    `delay: 0.05` is what keeps this from fighting the reader: the snap waits
+    for the scroll to actually stop rather than tugging at a finger still on the
+    wheel, and `duration` caps at 0.3s because a longer settle feels like the
+    page took the scroll away.
+
+    **Measured**, scrolling to seven positions and reading the resting state
+    after the snap had settled:
+
+    | | 1440x900 | 1920x1080 |
+    |---|---|---|
+    | resting states seen | 80% / fill 0, or 100% / fill 1 | 80% / fill 0, or 100% / fill 1 |
+    | intermediate states | **none** | **none** |
+    | block when open | **1440x900** | **1920x1080** |
+    | block when inset | 1152x834 | 1536x834 |
+
+    Every one of the fourteen samples landed on an end state. `lg:` and
+    `prefers-reduced-motion: no-preference` only, as the rest of the parallax
+    is, so phones and reduced motion keep the plain full-bleed hero and nothing
+    ever moves the scroll position for them.
+
+    `tsc`, `lint` clean, build 40/40.
+
+232. **Hero corners at 20px, and an about/portrait split under it
+    (2026-09-24)** — **done.** Two requests from Bilal in one message.
+
+    **(a) 20px corners on the hero.** With `overflow-hidden` alongside them —
+    the portrait is absolutely positioned to the right edge of the block, so
+    without the clip it squares the two right-hand corners off again.
+
+    The radius is tied to `--hero-fill` rather than being a constant, and that
+    is a fix rather than a flourish: `lg:rounded-[calc((1 -
+    var(--hero-fill,1))*20px)]`, so it is 20px while the hero is the inset card
+    and eases to 0 as it reaches full bleed. Held at a constant 20px it looked
+    right at rest and wrong once open — an edge-to-edge block with rounded
+    corners cuts four wedges out of itself, and the white parallax wrapper
+    (item 229) showed through the bottom two as notches sitting on the dark
+    section below. Measured at 1440x900 before the fix: two white wedges roughly
+    20px square at the block's bottom corners. After: none. `lg:` only, because
+    below `lg` the hero is always full bleed and the same wedges would appear
+    down the sides.
+
+    **Measured:** `border-radius` 20px at rest, 0px once snapped open.
+
+    **(b) `AboutSplit`, new section directly under the hero.** Text left,
+    portrait right, 50% of the screen each at desktop as specified — so a
+    full-bleed grid rather than two cells inside `.site-container`. The image
+    runs to the viewport edge and only the text carries a gutter, set to
+    `2.5rem` so its left edge lines up with every other section on the page.
+
+    Three decisions worth keeping:
+
+    - **The other portrait.** `bilal-shafqat-coat.avif`, not the hero's
+      `bilal-shirt.avif`, and in colour where the hero rests in monochrome.
+      Repeating one photograph two screens below itself reads as a template.
+    - **The copy is a rewrite, not a lift from /about.** Repeating that page's
+      paragraphs verbatim would put two URLs on the site competing for the same
+      words. This is the short version and it links onward.
+    - **Three facts, not a service list.** The services are already stated twice
+      above it, by the rotating opener and the hero paragraph.
+
+    A server component, and it should stay one: text and an image, nothing here
+    reacts to the visitor.
+
+    **Measured** at 1440x900: the two cells are **720x845 each**, at x=0 and
+    x=720. No horizontal overflow at 1440 or at 390, where the grid stacks and
+    the image takes a height of its own — `fill` needs a sized parent and there
+    is no sibling column left to take the height from.
+
+    `h1-check` 30/30, `schema-check` 30/30, `search-check` 32/32,
+    `discipline-check`, `tsc`, `lint`, build 40/40.
+
+233. **The split band becomes white / dark, facts on the right
+    (2026-09-24)** — **done.** Revises item 232(b). Bilal: *"make them in 2
+    columns left column needs to be white color and right column please remove
+    the image and add this"*, pasting the facts and CTA markup that had been
+    sitting under the prose.
+
+    So the portrait comes out, the prose keeps the left half on **white**, and
+    the facts and the two calls to action take the right half on the site's dark
+    ground. The band now runs the two grounds side by side, which makes it the
+    first real piece of the black/white/yellow direction rather than a one-off.
+
+    **Why the two columns do not share classes.** `text-ink` and `text-muted`
+    are tuned for the dark ground and are close to invisible on white, so the
+    left column names its colours outright — `#14140f` for the heading and
+    `#55555e` for the paragraphs, the same pair `DisciplineStatement` uses on
+    its white band. The eyebrow is `#9a7b18` rather than `text-gold`: the site
+    gold is a highlight colour for dark grounds and drops to roughly 1.8:1 on
+    white, which fails WCAG 1.4.3 at that size. The darker gold holds the same
+    hue at about 4.7:1.
+
+    Two smaller decisions:
+
+    - **The section's own ground stays dark.** If the columns ever come out at
+      different heights, the shortfall then reads as part of the right column
+      rather than as a white gap under the left one.
+    - **The rule moved.** It sat above the facts when everything was one column,
+      separating them from the prose. The column edge does that now, so the rule
+      does the job that is left: parting the figures from the actions.
+
+    **Measured** at 1440x900: **720x595 each**, at x=0 and x=720, the left cell
+    computing to `rgb(255, 255, 255)`. No horizontal overflow at 1440 or 390; at
+    390 the grid stacks, white block then dark.
+
+    `h1-check` 30/30, `schema-check` 30/30, `search-check` 32/32,
+    `discipline-check`, `tsc`, `lint`, build 40/40.
+
+234. **The snap leaves no white strip above the hero (2026-09-24)** — **done.**
+    Bilal sent two screenshots: the hero snapped open with an empty white band
+    across the top of the window, the floating header sitting in it. *"it needs
+    to snap full screen so there will be no white screen empty space on the top."*
+
+    The ScrollTrigger range was measured against the header — `start: top
+    ${HEADER + TRAVEL}px`, `end: top ${HEADER}px` — so the open state put the
+    hero's top edge 84px down the window, level with the bottom of the header
+    bar, and the white parallax wrapper (item 229) filled the 84px above it.
+
+    The premise was wrong rather than the number. **The header floats over the
+    page rather than occupying space**, so there is nothing for the hero to sit
+    below: at full bleed its top edge belongs at the top of the window, with the
+    header pill over it exactly as it is over every other section of the site.
+    `end` is now `"top top"`, `start` is `top ${TRAVEL}px`, and the `HEADER`
+    constant is gone.
+
+    **Measured**, sampling the pixel 4px from the top of the window at each
+    resting state:
+
+    | | 1440x900 | 1920x1080 |
+    |---|---|---|
+    | hero top when open | **0px** | **0px** |
+    | block when open | **1440x900** | **1920x1080** |
+    | top pixel when open | `rgb(8, 8, 11)` | `rgb(8, 8, 11)` |
+    | top pixel at rest | `rgb(255, 255, 255)` | `rgb(255, 255, 255)` |
+
+    White at the top while the hero is the inset card is correct — that is the
+    opener's own ground, and it is what the card sits on.
+
+    `h1-check` 30/30, `schema-check` 30/30, `search-check` 32/32,
+    `discipline-check`, `tsc`, `lint`, build 40/40.
+
+235. **One type scale for the whole site (2026-09-24)** — **done.** Bilal asked
+    for h1 to h6 set properly, at modern case-study sizes, with the phone and
+    tablet values stated.
+
+    **What was there.** No scale, just per-component strings. Four different
+    sizes were doing the job of h2 and five were doing the job of h3, and
+    `SectionHeading` carried its own two hard-coded strings that were half a
+    step out from headings written inline elsewhere. That is how a site ends up
+    looking assembled rather than designed.
+
+    **The scale**, in `globals.css` as `--t-h1`…`--t-h6` plus `--t-display`:
+
+    | | phone 375 | tablet 768 | tablet 1024 | desktop 1280+ |
+    |---|---|---|---|---|
+    | display | 44px | 58px | 67px | **76px** |
+    | h1 | 40px | 54px | 63px | **72px** |
+    | h2 | 32px | 39px | 44px | **48px** |
+    | h3 | 24px | 27px | 30px | **32px** |
+    | h4 | 20px | 22px | 23px | **24px** |
+    | h5 | 18px | 19px | 19px | **20px** |
+    | h6 | 16px | 16px | 16px | **16px** |
+
+    Four decisions behind those numbers:
+
+    - **Fluid, not stepped.** Each size interpolates between 375px and 1280px,
+      so there is no jump at a breakpoint and no width where a heading is the
+      wrong size for its column. The `clamp()` floor and ceiling are what the
+      phone and the large desktop actually get.
+    - **Wide steps at the top, narrow at the bottom.** h1 to h2 is a 1.5x drop;
+      h4 to h5 is 1.2x. An even ratio the whole way down gives six sizes that
+      all look adjacent, which is the same as having no hierarchy.
+    - **Tracking tightens as size grows** (-0.03em at display, 0 at h6) and line
+      height loosens (1.02 to 1.4). A face set at 72px needs less letter spacing
+      than the same face at 16px.
+    - **`--t-display` is not a seventh level.** It is the homepage hero and the
+      opener statement, and nothing else. A page that uses it twice has stopped
+      having a hierarchy. It had to be measured against h1 rather than set by
+      eye: the first version topped out *below* h1 on a wide screen, so the hero
+      came out smaller than the heading on /about.
+
+    **The migration was two passes, and the second one was the necessary one.**
+    96 headings across 34 files lost their size, weight, leading and tracking
+    classes and took `t-h1`…`t-h6` by tag. That was wrong: a heading's tag is
+    its place in the document outline, not its size. Service card titles are
+    `<h2>` and went to 48px, filling the card edge to edge; `<h3>` card titles
+    went from 18px to 32px. The second pass re-stepped 34 headings by the size
+    they actually had before, read out of `git show HEAD:<file>` — so a 24px
+    card title lands on h4 at 24px and only page and section titles step up.
+    Five files whose heading count had changed since the last commit were done
+    by hand.
+
+    Colour, spacing and layout classes were left alone throughout; only the four
+    typographic properties moved.
+
+    **Measured** across twelve routes at 375, 768 and 1440: no page overflow and
+    no heading whose text overflows its own box at any of the three.
+
+    `h1-check` 30/30, `schema-check` 30/30, `search-check` 32/32,
+    `discipline-check`, `tsc`, `lint`, build 40/40.
+
+236. **The about band becomes 25 / 15 / 60 (2026-09-24)** — **done.** Revises
+    item 233. Bilal specified it column by column: 25% heading in black on
+    white, 15% empty and white, 60% body in white on black with the gold CTA.
+
+    The empty middle column is the point of the layout rather than a gap that
+    happened. It is what makes the white read as a deliberate field the heading
+    sits in, and it is the same device as the homepage opener directly above it
+    (60 / 10 / 30): a wide measure of air between the statement and the detail.
+
+    Three things that make it hold together:
+
+    - **The grounds are drawn by the section, not by the cells.** The section is
+      white and only the third column paints itself dark, so columns one and two
+      are one continuous white field with no seam between them, and any height
+      difference lands in the white rather than showing as a gap under the black.
+    - **Percentages, not `fr`.** Those three numbers are the instruction. `fr`
+      would redistribute space as the copy changed and quietly stop being
+      25/15/60.
+    - **No `max-w` on the heading.** The column is 25% of the screen and that is
+      the measure. A character cap on top of it would undercut the track, which
+      is exactly what happened to the opener statement in item 224.
+
+    The empty column is `aria-hidden` because there is nothing to announce, and
+    `hidden lg:block` because on a phone the columns stack and an empty one
+    would be dead scroll.
+
+    **Measured** at 1440x900: **360px (25.0%) / 216px (15.0%) / 864px (60.0%)**,
+    at x=0, 360 and 576, all three 696px tall, the third computing to
+    `rgb(8, 8, 11)`. No horizontal overflow at 1440 or 390.
+
+    `h1-check` 30/30, `schema-check` 30/30, `search-check` 32/32,
+    `discipline-check`, `tsc`, `lint`, build 40/40.
+
+237. **The about band goes full height, in front of a pinned hero, and enters
+    on scroll (2026-09-24)** — **done.** Bilal: full screen height, the hero
+    behind and this band in front, then on scroll the left column in from the
+    left with its text appearing, then the right column up from the bottom with
+    its text appearing, in GSAP.
+
+    **(a) The layering needed the band moved inside `HomeParallax`.** A sticky
+    element can only travel inside its own parent. With the band left outside
+    the parallax wrapper, the hero would have unstuck at exactly the moment the
+    band arrived, which is the one moment it has to stay. `HomeParallax` now
+    takes an `after` slot and the homepage passes `AboutSplit` into it. Three
+    pinned layers:
+
+    | z | layer | behaviour |
+    |---|---|---|
+    | 0 | opener | pinned, drifts down |
+    | 10 | hero | pinned, rides over the opener |
+    | 20 | about | scrolls over the hero |
+
+    **A zero-height marker div now drives the width and height animation.** The
+    hero is sticky, so its position stops tracking the scroll once it pins and
+    ScrollTrigger was measuring a start and end that moved underneath it. The
+    marker sits at the hero's place in normal flow and never moves, which is
+    what a trigger has to be. Pinning via ScrollTrigger's own `pin` was the
+    other option and was not taken: `pinSpacing: false` takes the hero out of
+    flow, and the band below jumps up by a full hero height the instant the pin
+    engages. CSS `sticky` keeps it in flow and there is no jump.
+
+    **(b) The entrance** is one GSAP timeline, four steps, each overlapping the
+    one before so it reads as a single move: left column in (`xPercent: -100`),
+    its text up and in, right column up (`yPercent: 100`), its text up and in.
+    `once: true` — it is an entrance, not a scrub.
+
+    Three things about it that are load-bearing:
+
+    - **Built with `.from()`, never `.to()`.** The resting state is what the
+      server renders, so the band is complete and readable before any
+      JavaScript runs, for a crawler, and for anyone the animation never
+      reaches. `.to()` would mean shipping the hidden state in the HTML and
+      hoping the script arrives.
+    - **`overflow-hidden` on the section.** The columns start outside their own
+      box; without the clip they push the page sideways and down while
+      travelling.
+    - **`lg:` and `no-preference` only**, like the rest of the homepage motion.
+
+    **Measured** at 1440x900. The pin: hero top holds at **0px** from scroll 666
+    to 1100 while the band rises from 754 to 320 over it, then both move
+    together. The timeline, sampled while playing: left `-237px → -37px → 0`,
+    heading opacity `0 → 0.79 → 1`, right column `+900px → +508px → +8px → 0`,
+    CTA opacity `0 → 1`. Section height **900px**, exactly the viewport.
+
+    Reduced motion and 390px both read `transform: none` and opacity 1 on every
+    element, section 1104px tall where the columns stack. No horizontal overflow
+    on any of seven routes.
+
+    `h1-check` 30/30, `schema-check` 30/30, `search-check` 32/32,
+    `discipline-check`, `tsc`, `lint`, build 40/40.
+
+238. **The hero no longer flashes full width on load; the two about columns
+    animate separately (2026-09-24)** — **done.**
+
+    **(a) The flash.** Bilal: *"the hero section first shows full width then goes
+    back to the container width while loading, it gives very bad impact on user
+    experience."* Correct, and it was in the code from item 227 onward.
+
+    `--hero-w` and `--hero-fill` were an inline `style` on the parallax wrapper,
+    set to the **full-bleed** state, with GSAP correcting them to the inset state
+    on `onRefresh`. That correction cannot happen until React has hydrated *and*
+    the dynamic `gsap` import has landed, so every desktop visitor saw the hero
+    at full width for a beat and then watched it shrink into the container.
+
+    Fixed by moving the resting state into `globals.css` as `.home-parallax`,
+    with the inset values behind the same two conditions the animation runs
+    under — `(min-width: 1024px) and (prefers-reduced-motion: no-preference)`.
+    The inset state is now the *first* paint, with no JavaScript involved and
+    nothing to correct. GSAP's inline writes still win while scrolling, because
+    an inline style beats a stylesheet rule, and the cleanup now calls
+    `removeProperty` rather than setting 100% — the sheet decides which resting
+    state applies, so overwriting it with one fixed value would be wrong.
+
+    **Measured**, sampling the hero's width every 60ms from first paint for 2.4
+    seconds at 1440x900:
+
+    | | width seen |
+    |---|---|
+    | from first paint | **1152px, and nothing else** |
+    | with JavaScript disabled | 1152px |
+    | reduced motion | 1440px |
+    | phone, 390 viewport | 390px |
+
+    Before the fix that first row was 1440 then 1152.
+
+    **(b) Separate column animations**, on Bilal's instruction. The two columns
+    were one timeline, so the right column's move was scheduled off the left
+    column's clock and they could only run as one block. Each column now owns
+    its own timeline and its own ScrollTrigger, keyed to itself.
+
+    The two `start` values are what keeps the order readable: the columns sit
+    side by side and cross any one line of the window at the same moment, so the
+    right column is given a later line (`top 62%` against the left's `top 80%`)
+    rather than a delay on a shared timeline. That also makes the order survive
+    a fast scroll, where the left can finish while the right is still waiting.
+
+    **Measured** at 1440x900: with the section's top at 78% of the window the
+    left column reads `matrix(1, 0, 0, 1, 0, 0)` — arrived — while the right
+    still reads `matrix(1, 0, 0, 1, 0, 900)`, parked a full screen below. At 60%
+    both read zero.
+
+    `h1-check` 30/30, `schema-check` 30/30, `search-check` 32/32,
+    `discipline-check`, `tsc`, `lint`, build 40/40.
+
+239. **The about band arrives over the pinned hero, scrubbed by the scroll
+    (2026-09-24)** — **done.** Supersedes the entrance in items 237 and 238.
+    Bilal described what he wanted step by step: on the hero, scroll, the hero
+    stays where it is behind everything, the left column opens from the left
+    while the other half is still empty, more scroll and the dark column comes
+    up from the bottom, then its text, one by one.
+
+    Two things were wrong before, and the second one is why the first was not
+    obvious.
+
+    **(a) It was played, not scrubbed.** The timeline fired once when the band
+    came into view and then ran at its own speed. So it was over before the
+    scroll gesture was, and the scroll had no relationship to what was on
+    screen. The scroll position is the playhead now: stop and it stops, scroll
+    back and it runs backwards.
+
+    **(b) The section had a background, so the hero was never visible.** The
+    band was `bg-white`, which covered the pinned hero the instant it arrived,
+    and the columns then animated over a blank white field rather than over the
+    photograph. Only the two panels are painted now and the section itself has
+    no ground at all, so everything they have not covered yet **is** the hero
+    showing through. That is the whole effect, and giving this section a
+    background at any point in the future removes it.
+
+    The white field is one element spanning columns one and two rather than two
+    painted cells, because it is one move; animating two would show a seam
+    between them while they travelled.
+
+    **The scroll length comes from a tall section with a sticky stage inside it,
+    not from GSAP's `pin`** — same reasoning as the hero in item 237. `pin`
+    takes the element out of flow and everything below jumps up by its height
+    the moment it engages.
+
+    **The text is hidden by a `set` at build time, then tweened *to* its resting
+    state.** Neither `from` nor `fromTo` works here: placed later in a scrubbed
+    timeline, neither applies its start values until the playhead reaches it, so
+    the text sat fully visible and then snapped to invisible the moment its turn
+    came. Measured both ways: heading opacity 1.00 at every scroll position
+    before its own step, then 0.24 once inside it.
+
+    **Measured** at 1440x900, scrolling through the range 90px at a time:
+
+    | scrolled | white panel | dark panel | heading | body | hero top |
+    |---|---|---|---|---|---|
+    | +0 | -396px | +900px | 0.00 | 0.00 | 0 |
+    | +225 | **0** | +900px | 0.00 | 0.00 | 0 |
+    | +360 | 0 | +900px | **0.63** | 0.00 | 0 |
+    | +450 | 0 | +695px | 1.00 | 0.00 | 0 |
+    | +630 | 0 | **0** | 1.00 | 0.00 | 0 |
+    | +720 | 0 | 0 | 1.00 | **0.77** | 0 |
+    | +900 | 0 | 0 | 1.00 | 1.00 | 0 |
+
+    The hero's top reads 0 at every single sample: it does not move through any
+    of it. Each step also finishes before the next begins, which is the "one by
+    one" that was asked for.
+
+    Everything is done by 78% of the range, leaving the last fifth as a beat
+    where the finished band simply sits there. Without it the last word arrived
+    at the same instant the section began to scroll away.
+
+    **`motion-safe:` on the extra height and the sticky stage.** Reduced motion
+    was getting the full 1800px section with nothing moving through 900px of it.
+    Measured after: 900px at reduced motion, 1800px at full motion, 1104px on a
+    phone where the columns stack.
+
+    `h1-check` 30/30, `schema-check` 30/30, `search-check` 32/32,
+    `discipline-check`, `tsc`, `lint`, build 40/40.
+
+240. **The diagonal wipe, and the services reveal (2026-09-24)** — **done.**
+    Revises item 239. Bilal: the white panel *"comes from bottom left to top
+    right corner, it's wrong, it needs to appear from left to right"*, then the
+    text, then the dark panel bottom to top, then its text, and then the band
+    should scroll up and reveal the services section *"like it's already there
+    all the time."*
+
+    **(a) The diagonal.** The panel's tween was horizontal-only, so the vertical
+    component was not coming from the tween. The stage is `sticky`, and the
+    timeline started at the section's `top top` — which is the same instant the
+    stage pins, give or take the few pixels of smoothing that `scrub` adds. For
+    those few pixels the stage was still travelling up the window while the
+    panel had already begun travelling right, and the two together read as one
+    diagonal move.
+
+    Fixed by starting the wipe at 0.06 of the range rather than 0, roughly 80px
+    of scroll, by which point the stage is certainly still. **Measured** through
+    the whole wipe: `stage top 0` at every sample, the panel going `x -576 →
+    -385 → -65 → 0` with no vertical component at all.
+
+    **(b) The order needed retiming.** The body text was still fading in at 0.67
+    opacity when the lift had already started, because one stagger value was
+    being used for a two-element group and a six-element group. Split into
+    `showHead` and `showBody`, so six lines take no longer than two.
+
+    **(c) The reveal.** `CapabilityLedger` is pulled up a full window
+    (`-mt-[100svh]`) at `z-[15]`, which puts it under the about band (z-20) and
+    over the hero (z-10) — so it is **already sitting behind the band** rather
+    than arriving after it. The band then lifts straight up and off over the
+    last 12% of the range. It leaves at several times scroll speed while the
+    section behind rises at scroll speed, and that difference is what makes the
+    thing behind read as having been there the whole time.
+
+    **Measured** at 1440x900 across the 1260px range:
+
+    | | stage | white x | dark y | heading | body | services top | hero top |
+    |---|---|---|---|---|---|---|---|
+    | 0% | 0 | -576 | 900 | 0.00 | 0.00 | 1260 | 0 |
+    | 22% | 0 | **-65** | 900 | 0.00 | 0.00 | 1049 | 0 |
+    | 35% | 0 | 0 | 900 | **0.30** | 0.00 | 885 | 0 |
+    | 58% | 0 | 0 | **112** | 1.00 | 0.00 | 595 | 0 |
+    | 82% | 0 | 0 | 0 | 1.00 | **0.89** | 293 | 0 |
+    | 94% | **-111** | 0 | -111 | 1.00 | 1.00 | 142 | 0 |
+    | 100% | **-900** | 0 | -900 | 1.00 | 1.00 | 66 | 0 |
+
+    Five steps, none of them overlapping, and the hero's top reads 0 at every
+    one of them.
+
+    **The overlap is gated, and that matters.** `motion-safe:lg:` on the
+    negative margin, because without the lift there is nothing to sit behind and
+    a full window of overlap would simply hide the section. Measured: -900px of
+    margin at full motion on desktop, **0px** at reduced motion, at 768 and at
+    390.
+
+    `h1-check` 30/30, `schema-check` 30/30, `search-check` 32/32,
+    `discipline-check`, `tsc`, `lint`, build 40/40.
+
+241. **The about heading aligns with the paragraph opposite (2026-09-24)** —
+    **done.** Bilal drew a line from the top of the right column's first
+    paragraph across to the heading.
+
+    Both columns were centring themselves inside the stage, and because they are
+    very different heights, centring put their tops in different places. Both
+    now start from the top of the stage.
+
+    That aligns the *eyebrow* with the paragraph, which is not what was asked
+    for. The right column therefore carries an empty stand-in for the eyebrow
+    opposite: the eyebrow's own classes and a `&nbsp;`, so the offset is
+    whatever that line actually measures at this breakpoint and font size rather
+    than a number copied out of the inspector that stops being right the next
+    time the eyebrow is touched.
+
+    **A `&nbsp;` and not a copy of the words**, because duplicated text is
+    duplicated for a crawler even when it is invisible and `aria-hidden` — the
+    same trap that put "all of it.all of it." inside the `<h1>` in item 213.
+
+    **Measured:** heading top and paragraph top differ by **0.0px** at 1440x900,
+    1280x800 and 1024x768.
+
+242. **Mega menu readability, and the services section painting a ground
+    (2026-09-24)** — **done.** Two reports in one message.
+
+    **(a) The mega menu was see-through.** `.nav-header.is-floating
+    .mega-panel-inner` was set to 58% opacity, a value copied from the nav pill.
+    The pill is six words over whatever happens to be behind it; the panel is
+    four columns of links, and at 58% the page underneath was legible through
+    the text. Raised to **96%**, with the blur up from 22px to 40px — a heavier
+    blur is what lets a background stay visible while ceasing to compete, by
+    turning it into a wash of colour rather than shapes the eye keeps trying to
+    resolve. Shadow deepened to match.
+
+    `-webkit-backdrop-filter` added alongside the standard property here and on
+    `.glass-nav` and `.mega-backdrop`. Safari still needs it, and without it
+    those three surfaces were flat plates with no blur at all on that browser.
+
+    **Measured** in the floating state: `oklab(… / 0.96)`, `blur(40px)
+    saturate(1.5)`. At the top of the page the panel keeps `.glass-nav`'s 0.9,
+    which was never the complaint.
+
+    **(b) The hero was showing through the services section.** Bilal sent a
+    screenshot of the capability list and the hero rendered on top of each
+    other, and this one was mine, from item 240. `CapabilityLedger` has never
+    painted a ground of its own — it did not need one while it sat in normal
+    flow over the page background. Pulled up a full window to sit behind the
+    about band, it was transparent over the pinned hero, so the photograph came
+    straight through the text.
+
+    Fixed with `bg-bg` on the wrapper. **Measured** by sampling what actually
+    paints inside the services block while scrolling through it, at 1440x900,
+    1512x760 and 1280x700: wrapper background `rgb(8, 8, 11)` and **no hero
+    bleed-through at any of the three**.
+
+    `h1-check` 30/30, `schema-check` 30/30, `search-check` 32/32,
+    `discipline-check`, `tsc`, `lint`, build 40/40.
+
+### 243. Nav pill: 20px offset, and back to glass at 75%
+
+Two instructions in one line: the floating header's top offset from 40px to
+20px, and the pill's background back to translucent black over a blur, "so the
+font needs to be readable".
+
+The pill has now carried three values, so the reasoning matters more than the
+number:
+
+| Pass | Alpha | Blur | Why it failed / holds |
+| --- | --- | --- | --- |
+| Original | 58% | 22px | Over the white opener the page beneath stayed legible **as shapes**. 22px is not enough blur to dissolve body text into a wash, so transparency alone read as a grey slab with ghosts in it. |
+| Item 238 | opaque | 22px | Legible, but the effect was gone. |
+| **This** | **75%** | **32px** | Glass. Enough blur that what is behind becomes colour rather than form, and enough opacity that white nav text stays about 8:1 against the worst case, which is pure white behind. |
+
+Transparency without blur is a tint, not glass. The two values have to move
+together.
+
+Measured in the floating state at 1440x900: `top` **20px**, shell top edge 31px
+from the window, background `oklab(0.135975 0.0018299 -0.00659403 / 0.75)`,
+`backdrop-filter: blur(32px) saturate(1.6)`. `-webkit-backdrop-filter` added
+alongside, or Safari renders a flat 75% plate with no blur.
+
+The mega panel keeps its 96% from item 241. It is four columns of links rather
+than a row of six words, and that was the surface reported as unreadable.
+
+### 244. Hero snap: 0.12–0.3s to 0.5–0.9s
+
+Reported as "snaps good but it's not smooth animation, it's sudden". It was.
+
+| | Before | After |
+| --- | --- | --- |
+| `snap.duration` | 0.12–0.3s | 0.5–0.9s |
+| `snap.delay` | 0.05s | 0.12s |
+| `snap.ease` | `power2.inOut` | `power3.out` |
+| `scrub` | 0.3 | 0.6 |
+| width quantisation | 0.5% | 0.25% |
+
+260px of travel crossed in 0.2s is about four frames of real motion, so the eye
+gets the start state and the end state and nothing between them. At 0.5–0.9s it
+gets 30 to 54.
+
+`out` rather than `inOut` because `inOut` puts the slowest part at the
+*beginning*: the first thing you see after releasing is the block barely moving,
+then hurrying. `power3.out` commits at once and settles gently, which is how
+something with weight comes to rest.
+
+The quantisation had to follow. 0.5% gave the 80→100 range 40 distinct values,
+which is plenty across 18 frames and visibly stepped across 54.
+
+Measured by sampling `--hero-w` every animation frame after a release:
+
+| Release point | Travel | Frames that changed | Motion window |
+| --- | --- | --- | --- |
+| 50% of range | 90% → 100% | 21 | 633ms |
+| 25% of range | 85% → 100% | 20 | 808ms |
+
+### 245. About band: centred vertically, tops still aligned
+
+"align vertically center but the text heading needs to align top vertically to
+the paragraph only." Those two pull against each other, and the fix is to stop
+centring the columns and start centring the row they share.
+
+The columns hold very different amounts of copy. Stretching both to full height
+and centring each one's contents independently puts their tops in two different
+places by definition. So:
+
+- The stage centres its single child: `lg:items-stretch` → `lg:items-center`.
+- Inside it the grid is `lg:items-start`, so both columns begin on the same
+  row edge and the heading lines up with the paragraph opposite.
+- The row as a whole is centred on the tallest column, which is the dark one.
+
+That required splitting the dark column in two. It was painting its own ground,
+which meant it had to stretch to full height, which is exactly what the centring
+forbids. The ground is now an absolutely positioned panel at `inset-y-0 right-0
+w-[60%]` — the same shape the white field already had — and it is that panel,
+not the cell, that rises from the bottom in the entrance. `bg-bg` stays on the
+cell for the stacked mobile layout, where there is no panel.
+
+Measured with everything settled:
+
+| Viewport | Heading top − paragraph top | Space above the row | Space below |
+| --- | --- | --- | --- |
+| 1440x900 | **0.0px** | 85.4px | 85.4px |
+| 1280x800 | **0.0px** | 35.5px | 35.5px |
+| 1024x768 | **0.0px** | 7.8px | 7.8px |
+
+One measurement trap worth recording: read mid-reveal, the delta comes out at up
+to −28px, which is exactly the 28px `y` the text reveal starts from. It is the
+animation, not the layout. Park at 0.86 of the scrubbed range, not 0.6.
+
+### 246. Site sweep, 2026-09-25
+
+Asked to look over the site and find errors. Swept all 30 sitemap routes at
+1440x900 and 390x844 in headless Chromium for console errors, page errors,
+failed requests, non-200 responses, horizontal overflow, broken images,
+unnamed controls, heading-level skips, duplicate metadata and internal link
+integrity.
+
+**Clean:** no heading-level skips, no duplicate titles, no duplicate meta
+descriptions, every description inside 70–165 characters, canonical on all 30,
+all 30 unique internal links returning 200, no horizontal overflow at either
+width, and no page errors in any of the three homepage motion states.
+
+**Two findings were my sweep's fault, not the site's**, and both are worth
+recording so the next sweep does not re-raise them:
+
+- *"Broken images"* on most routes. `naturalWidth === 0` on a `loading="lazy"`
+  image that is simply below the fold and has not decoded yet. After scrolling
+  each page to the bottom and waiting: zero broken images.
+- *"41 unnamed links"* on every route. The closed mega menu is
+  `visibility: hidden`, and `innerText` returns `""` for hidden text. The links
+  have their labels; they are just not rendered. Checked by reading
+  `textContent` instead, which returns "Paid Marketing", "Meta Ads" and so on.
+
+#### Fixed: duplicate FAQ entry on two service pages
+
+`/services/graphic-design-branding` and `/services/video-conversion` each
+carried the same question twice, with answers reworded but identical in
+substance:
+
+| Route | Question | Positions |
+| --- | --- | --- |
+| graphic-design-branding | "Do you do print as well as digital?" | 3rd and 8th of 9 |
+| video-conversion | "Do you shoot video or only edit?" | 1st and 6th of 8 |
+
+Three consequences, only one of which was visible in the console:
+
+1. A React duplicate-key warning, which is how it surfaced. The FAQ list keys
+   on the question string.
+2. The question appeared **twice in the accordion** for a reader.
+3. It appeared twice in the `FAQPage` JSON-LD. Verified in the served HTML:
+   10 `mainEntity` questions with one duplicated. Google's rich-result
+   guidance treats duplicate questions on a `FAQPage` as grounds for dropping
+   the markup, so this was an SEO liability as well as a content one.
+
+Removed the later of each pair, keeping the earlier position and its wording.
+`serviceDepth` now has no duplicate question on any of the nine services,
+checked programmatically rather than by eye.
+
+`schema-check` passes both before and after, which is the point worth noting:
+it validates shape, not uniqueness. Not worth a new check for a two-instance
+problem, but if a third appears, uniqueness belongs in `schema-check`.
+
+#### Open: nav labels fail contrast over the white field
+
+Item 243 put the pill back to 75% translucent black. Over the dark hero that is
+fine. Over the white opener and the white half of the about band it is not.
+
+Sampled from rendered pixels at 1440x900, not computed from the CSS:
+
+| Pill sits over | Composite background | Nav label `rgb(154,154,166)` @12px | WCAG AA (4.5:1) |
+| --- | --- | --- | --- |
+| Dark hero | `rgb(8, 8, 11)` | **7.19:1** | passes |
+| White field | `rgb(70, 70, 72)` | **3.38:1** | **fails** |
+
+The pill also renders as two different colours along its own length while it
+straddles the 40/60 boundary of the about band.
+
+Two ways out, both measured:
+
+- **Alpha 75% → 82%.** Puts the composite over white at about `rgb(52,52,55)`
+  and the labels at 4.5:1. Keeps the glass everywhere and costs a little of
+  the transparency Bilal asked for.
+- **Leave 75% and lighten the labels** from `rgb(154,154,166)` to about
+  `rgb(180,180,190)`. Keeps the transparency, makes the labels lighter on the
+  dark pages too.
+
+Not changed unilaterally: the alpha is a value Bilal has now set three times,
+and the second option changes type colour site-wide. His call.
+
+#### Open, minor: about band is taller than a 600px viewport
+
+The stage is `min-h-svh` with the content row centred inside it. Where the row
+is taller than the window the stage grows, and because it is `sticky top-0` the
+overflow sits below the fold for the whole pinned phase.
+
+| Viewport | Row height | Stage height | CTA row bottom | Visible |
+| --- | --- | --- | --- | --- |
+| 1440x900 | 729 | 900 | 684 | yes |
+| 1512x820 | 729 | 820 | 663 | yes |
+| 1440x760 | 729 | 760 | 633 | yes |
+| 1366x650 | 729 | 729 | 634 | yes, 16px to spare |
+| 1024x600 | 752 | 752 | 634 | **no, 34px below the fold** |
+
+1366x650 is a real laptop with browser chrome and it fits. 1024x600 does not,
+and is rare. Pre-existing rather than a regression from item 245 — the content
+was the same height when the columns were stretched — but it is the constraint
+to remember if that column ever gains a line.
+
+### 247. The homepage animation felt strange because the page was taking the scroll
+
+Reported as "the animation speed and scrolling little strange". Traced it by
+logging every scroll event under real wheel input rather than by jumping the
+page to positions, which is what hid it before: `scrollTo` cannot reveal a
+component that fights the person scrolling.
+
+**Two defects, both in the hero.** The about band traced clean throughout.
+
+#### Defect 1: the snap was scroll-jacking
+
+`ScrollTrigger`'s `snap` works by scrolling the window for you. With a 260px
+range and `snapTo: [0, 1]`, almost every gesture in the first screen of the
+page was inside it. Measured:
+
+| Gesture | Asked for | Page moved | Overshoot |
+| --- | --- | --- | --- |
+| Six 100px notches, 120ms apart | +600 | +670 | +70 |
+| Three 100px notches, 500ms apart | +300 | +535 | **+235** |
+| One 60px nudge inside the range | +60 | +251 | **+191** |
+| Two notches back up | −200 | −200 | 0 |
+
+A 60px nudge producing 251px of travel is the page overruling the gesture. That
+is the "strange".
+
+#### Defect 2: the snap was aiming at a moving target
+
+`--hero-fill` drove `min-height` from the block's natural 834px to 900px, so
+the **document grew 66px while the hero opened** — 10726px closed, 10792px
+open. The snap was scrolling toward a position that moved underneath it. That
+is where the wobble at the end came from; the trace shows `+38, −8` at 1829ms
+and 2134ms, after the gesture had finished.
+
+#### The fix: a threshold, not a range
+
+The hero is now a two-state tween on its own clock. Nothing touches scroll
+position at any point.
+
+| | Before | After |
+| --- | --- | --- |
+| Mechanism | `scrub: 0.6` + `snap` across 260px | state toggle at one line |
+| Opens at | anywhere in scroll 260–520 | scroll 520, exactly when it pins |
+| Duration | 0.5–0.9s, scroll-driven | 0.7s `power3.inOut`, self-driven |
+| Height animates | yes, 834→900 | no, `min-h-svh` in both states |
+| Document height | 10726 → 10792 | constant |
+
+**Tying the open to the pin is the part that matters.** My first pass opened
+170px early, which quietly reintroduced item 234's bug: a band you could stop
+in with the hero full-bleed but not yet at the top, showing a strip of white
+wrapper above it. Bilal sent two screenshots of exactly that. Opening at
+`top top` removes the state by construction — while the hero is inset, white
+around it is the design; the moment it is full bleed it is also pinned at
+`top: 0`, so there is nothing above it to show.
+
+No hysteresis on the close, deliberately. Offsetting it would buy stability at
+one pixel and pay for it with a band where the hero is full-bleed and unpinned.
+`overwrite: true` on the tween means hovering on the line reverses it smoothly
+instead of queueing two tweens.
+
+Making the hero `min-h-svh` in both states costs 66px of extra height at rest:
+the inset block now fills the window vertically with white margins down its
+sides rather than all four. Cheaper than the wobble it removes.
+
+**Measured after:**
+
+| Gesture | Asked for | Page moved | Overshoot |
+| --- | --- | --- | --- |
+| Six 100px notches, fast | +600 | +600 | **0** |
+| Three 100px notches, slow | +300 | +300 | **0** |
+| One 60px nudge | +60 | +60 | **0** |
+| Two notches back up | −200 | −200 | **0** |
+| Forty notches, whole page | +4800 | +4800 | **0** |
+
+Resting state sampled at thirteen scroll positions from 0 to 1300: the block is
+1152px wide at every position up to 515, and 1440px wide with `top = 0` from
+520 on. **No resting position has a white strip above a full-bleed hero.**
+
+#### Also: the about band had 214px of dead scroll
+
+Everything finished at 0.71 and the lift began at 0.88, which across a 1260px
+range was 214px of scrolling with nothing responding — about a quarter of a
+screen where the page appears to have stopped listening.
+
+The band also carried the overlap bug from item 240 again, for the same reason:
+**a group finishes at `start + stagger × (n − 1) + duration`, not at `start`.**
+The six-element body group began at 0.65 and was still running at 0.89, past the
+lift. Measured: CTA row at 0.33 opacity with the stage already 92px up.
+
+Section shortened 240svh → 210svh and the beats rebudgeted against the 990px
+range that leaves:
+
+| Beat | Scroll | Length |
+| --- | --- | --- |
+| White field wipes in | 59 → 237 | 178px |
+| Heading | 267 → 396 | 128px |
+| Dark panel rises | 425 → 584 | 158px |
+| Body, figures, CTA | 613 → 782 | 168px |
+| Beat | 782 → 851 | 69px |
+| Lift | 851 → 990 | 138px |
+
+Verified at nine positions: text is fully in at 78%, the lift starts at 86%, and
+**no position lifts while any text is still fading.**
+
+Clean at 1440 reduced-motion, 1440, 1024, 768 and 390 — no console or page
+errors, no horizontal overflow. `h1-check` 30/30, `schema-check` 30/30,
+`search-check` 32/32, `discipline-check`, `tsc`, `lint`, build 40/40.

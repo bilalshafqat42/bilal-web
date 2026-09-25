@@ -18,7 +18,11 @@
  * being touched, so seeding purely from that one file understates it.
  */
 export const contentDates: Record<string, string> = {
-  "/": "2026-09-05",
+  // 2026-09-25: the homepage gained a genuinely new section — the "About me"
+  // band, with its own prose, three figures and a CTA — plus the rotating
+  // discipline opener above the hero. New copy, not a restyle, so this is the
+  // kind of change the date is for.
+  "/": "2026-09-25",
   "/about": "2026-09-05",
   "/services": "2026-09-04",
   "/portfolio": "2026-09-04",

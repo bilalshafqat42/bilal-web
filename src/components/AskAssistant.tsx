@@ -109,7 +109,7 @@ export default function AskAssistant() {
           <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
             <Sparkles size={13} /> Ask anything
           </span>
-          <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+          <h2 className="t-h2 mt-4 text-ink">
             Not sure what you need?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-muted leading-relaxed">

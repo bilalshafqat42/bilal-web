@@ -29,7 +29,7 @@ export default function Hero() {
                 <Sparkles size={14} /> Marketing · Design · Development Studio
               </span>
 
-              <h1 className="mt-6 text-4xl sm:text-5xl lg:text-[3.4rem] font-semibold leading-[1.1] text-ink">
+              <h1 className="t-h1 mt-6 text-ink">
                 One partner for everything from{" "}
                 <span className="text-gradient">paid ads to shipped product.</span>
               </h1>

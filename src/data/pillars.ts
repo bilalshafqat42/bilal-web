@@ -391,6 +391,23 @@ export function getCategoryBySlug(slug: string): MegaMenuGroup | undefined {
 // Marketing in from the Paid Marketing pillar. Every item title must exactly
 // match a section title on its pillarSlug's page, since the link is built
 // from `slugify(item.title)` matching that section's anchor id.
+/**
+ * The number of service categories, spelled out for prose.
+ *
+ * Added 2026-09-24 (roadmap 213.6). The /services h1, its meta description and
+ * llms.txt all said "eight" while this array held nine and the page rendered
+ * nine cards — a count a visitor can check by looking. Reading it from the data
+ * is the only version that cannot drift again.
+ */
+const COUNT_WORDS = [
+  "zero", "one", "two", "three", "four", "five",
+  "six", "seven", "eight", "nine", "ten", "eleven", "twelve",
+] as const;
+
+export function spellCount(n: number): string {
+  return COUNT_WORDS[n] ?? String(n);
+}
+
 export const megaMenuGroups: MegaMenuGroup[] = [
   {
     slug: "paid-marketing",

@@ -40,7 +40,7 @@ export default function CapabilityLedger() {
         </span>
 
         <div className="mt-7 grid grid-cols-1 gap-8 lg:grid-cols-[1.35fr_1fr] lg:items-start lg:gap-16">
-          <h2 className="text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+          <h2 className="t-h2 text-ink">
             Four disciplines.
             <br />
             One{" "}
@@ -75,7 +75,7 @@ export default function CapabilityLedger() {
                   {String(i + 1).padStart(2, "0")}
                 </span>
 
-                <h3 className="text-2xl font-semibold leading-snug tracking-tight text-ink">
+                <h3 className="t-h4 text-ink">
                   <Link
                     href={pillar.ledgerHref ?? `/services/${pillar.slug}`}
                     className="outline-none after:absolute after:inset-0 focus-visible:underline focus-visible:decoration-gold focus-visible:underline-offset-4"

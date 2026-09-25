@@ -60,7 +60,7 @@ const models: Model[] = [
     price: "from AED 3,500 per session",
     description: "High-level review and guidance focused on clarity and measurable outcomes.",
     idealFor: ["A marketing, UX, or technical review", "Expert input before a bigger investment", "Independent insight without execution dependency"],
-    contribute: ["Marketing, UX & technical performance review", "A prioritized action plan", "Optional support to implement recommendations"],
+    contribute: ["Marketing, UX & technical performance review", "A prioritised action plan", "Optional support to implement recommendations"],
     bestFor: "Best for leadership teams needing clarity and direction.",
   },
 ];
@@ -76,7 +76,7 @@ function EngagementCard({ model, defaultExpanded = false }: { model: Model; defa
       <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-gold/20 to-violet/20 border border-border text-gold">
         <model.icon size={22} />
       </div>
-      <h3 className="mt-6 text-lg sm:text-xl font-semibold text-ink leading-snug">{model.title}</h3>
+      <h3 className="t-h4 mt-6 text-ink">{model.title}</h3>
       {model.price ? (
         <p className="mt-2 text-sm font-semibold text-gold">{model.price}</p>
       ) : null}

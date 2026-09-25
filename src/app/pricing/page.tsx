@@ -1,8 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ChevronRight, Minus, Plus } from "lucide-react";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import FaqSection from "@/components/FaqSection";
 import CtaButton from "@/components/CtaButton";
@@ -25,28 +23,6 @@ export const metadata: Metadata = {
   },
 };
 
-const models = [
-  {
-    title: "Project-Based",
-    body: "A defined deliverable with a fixed scope, timeline and price agreed before anything starts. Best when you know what you want built — a landing page, a brand identity, a CRM setup.",
-    bestFor: "One clear outcome with a defined end.",
-  },
-  {
-    title: "Monthly Retainer",
-    body: "A recurring block of work each month across marketing, design or development. Best when the work is continuous rather than a single deliverable, such as running campaigns or maintaining a site.",
-    bestFor: "Ongoing work with no natural finish line.",
-  },
-  {
-    title: "Ongoing Partner",
-    body: "Embedded support alongside your existing team for larger or longer-running initiatives, where you need someone who knows the context rather than briefing a new supplier each time.",
-    bestFor: "Longer programmes and in-house teams with a gap.",
-  },
-  {
-    title: "Consulting & Advisory",
-    body: "A review and a recommendation, without me doing the implementation. Useful when you have a team who can execute but want an independent read on strategy, tracking or spend.",
-    bestFor: "You have the people; you want the direction checked.",
-  },
-];
 
 // The genuinely useful part of a pricing page for anyone who cannot yet be quoted:
 // what actually moves the number, in both directions.
@@ -109,8 +85,7 @@ export default function PricingPage() {
   return (
     <>
       <JsonLd nodes={nodes} />
-      <Nav />
-      <main className="flex-1 pb-16 sm:pb-20">
+      <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="relative mx-auto max-w-3xl px-6">
@@ -119,7 +94,7 @@ export default function PricingPage() {
               <ChevronRight size={13} />
               <span className="text-ink">Pricing</span>
             </nav>
-            <h1 className="mt-8 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
+            <h1 className="t-h1 mt-8 text-ink">
               How projects are priced
             </h1>
             <p className="mt-6 text-lg text-muted leading-relaxed">
@@ -131,35 +106,26 @@ export default function PricingPage() {
           </div>
         </section>
 
-        <section className="relative mt-16 sm:mt-20">
-          <div className="mx-auto max-w-5xl px-6">
-            <Reveal>
-              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Engagement models</span>
-              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
-                Four ways of working
-              </h2>
-            </Reveal>
-            <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
-              {models.map((m) => (
-                <Reveal key={m.title}>
-                  <div className="flex h-full flex-col rounded-2xl border border-border panel p-7">
-                    <h3 className="text-xl font-semibold text-ink">{m.title}</h3>
-                    <p className="mt-3 flex-1 text-sm text-muted leading-relaxed">{m.body}</p>
-                    <p className="mt-5 border-t border-border pt-4 text-xs text-gold">
-                      {m.bestFor}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* The engagement models, once.
+ *
+ * This page used to define its own four — Project-Based, Monthly Retainer,
+ * Ongoing Partner, Consulting & Advisory — render them here without prices,
+ * and then render `<Engagement variant="detailed" />` below the FAQ, which is
+ * the same four *with* the prices. Measured: every model name appeared twice
+ * inside <main> (roadmap 213.15).
+ *
+ * The duplicate is gone and the real block moved up into its slot. The prices
+ * are the reason someone opens a page called "How projects are priced"; they
+ * were the last thing on it.
+ */}
+        <Engagement variant="detailed" />
+
 
         <section className="relative mt-20 sm:mt-24">
           <div className="mx-auto max-w-5xl px-6">
             <Reveal>
               <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Cost drivers</span>
-              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+              <h2 className="t-h2 mt-4 text-ink">
                 What moves the price
               </h2>
               <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">
@@ -170,7 +136,7 @@ export default function PricingPage() {
             <div className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-2">
               <Reveal>
                 <div className="h-full rounded-2xl border border-border panel p-7">
-                  <h3 className="flex items-center gap-2 text-lg font-semibold text-ink">
+                  <h3 className="t-h5 flex items-center gap-2 text-ink">
                     <Plus size={17} className="text-gold" /> Pushes cost up
                   </h3>
                   <ul className="mt-5 space-y-3">
@@ -182,7 +148,7 @@ export default function PricingPage() {
               </Reveal>
               <Reveal delay={0.08}>
                 <div className="h-full rounded-2xl border border-border panel p-7">
-                  <h3 className="flex items-center gap-2 text-lg font-semibold text-ink">
+                  <h3 className="t-h5 flex items-center gap-2 text-ink">
                     <Minus size={17} className="text-cyan" /> Brings cost down
                   </h3>
                   <ul className="mt-5 space-y-3">
@@ -198,12 +164,6 @@ export default function PricingPage() {
 
         <FaqSection eyebrow="Questions" title="Pricing questions" faqs={faqs} className="mt-20 sm:mt-24" />
 
-        {/* The expanded engagement models, linked from every service page as
-            "How engagements work". Cards start open here: a visitor who
-            followed that link has already asked the question the collapsed
-            state hides. */}
-        <Engagement variant="detailed" />
-
         <section className="relative mt-20 sm:mt-24">
           <div className="mx-auto max-w-5xl px-6">
             <Reveal>
@@ -214,7 +174,7 @@ export default function PricingPage() {
                 />
                 <div className="relative">
                   <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Next step</span>
-                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                  <h2 className="t-h2 mt-4 text-ink">
                     Describe the project, <span className="text-gradient">get a real number.</span>
                   </h2>
                   <p className="mx-auto mt-4 max-w-xl text-muted leading-relaxed">
@@ -228,7 +188,6 @@ export default function PricingPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

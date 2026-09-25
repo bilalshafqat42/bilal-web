@@ -49,7 +49,7 @@ export default function FaqSection({ eyebrow, title, faqs, id, className }: Prop
                 {eyebrow}
               </span>
             ) : null}
-            <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+            <h2 className="t-h2 mt-3 text-ink">
               {title}
             </h2>
           </div>

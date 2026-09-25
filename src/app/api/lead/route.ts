@@ -111,6 +111,39 @@ function clean(value: unknown, max: number, keepNewlines = false): string | unde
   return out.length > max ? out.slice(0, max) : out;
 }
 
+/**
+ * What a failed delivery is allowed to leave in the host's log.
+ *
+ * All three CRM-failure paths used to log `JSON.stringify(lead)` — name, email,
+ * phone and the whole enquiry message in clear text on Hostinger's log volume
+ * (roadmap 213.22). The intent was right: never silently lose a lead. But under
+ * **UAE PDPL** that created a second, unmanaged store of personal data, with no
+ * retention policy, in a place `/privacy` does not mention and nobody purges.
+ *
+ * This keeps what diagnoses a failure — when, from where, which campaign, how
+ * big the message was — and drops what identifies the person. The email domain
+ * is kept because "the CRM rejects gmail.com addresses" is a real failure mode
+ * and the domain alone does not identify anyone.
+ */
+function redactedLead(lead: Record<string, unknown>) {
+  const email = typeof lead.email === "string" ? lead.email : "";
+  const message = typeof lead.message === "string" ? lead.message : "";
+  return {
+    type: lead.type,
+    nameLength: typeof lead.name === "string" ? lead.name.length : 0,
+    emailDomain: email.includes("@") ? email.slice(email.lastIndexOf("@")) : "none",
+    hasPhone: Boolean(lead.phone),
+    messageLength: message.length,
+    service: lead.service,
+    budget: lead.budget,
+    timeline: lead.timeline,
+    pageUrl: lead.pageUrl,
+    utmSource: lead.utmSource,
+    utmCampaign: lead.utmCampaign,
+    eventId: lead.eventId,
+  };
+}
+
 /** Rejections are logged in one shape so spam and genuine failures can be told
  *  apart in the host's log viewer without reading every line. `reason` is a
  *  stable token; the detail is whatever helps diagnose that reason. */
@@ -205,9 +238,18 @@ export async function POST(request: Request) {
 
   // Honeypot: real visitors never fill this in. Answer success so bots do not
   // learn they were caught and retry with the field removed.
+  //
+  // `counted: false` is the part that matters, and it was missing. Every client
+  // read only `success` and then fired `trackLead()`, so a blocked bot pushed
+  // `generate_lead` to GA4 and `Lead` to Meta for a submission that was
+  // discarded here. Meta optimises delivery toward whoever produced those
+  // events, so the honeypot was quietly training the ad account on bot traffic.
+  //
+  // A bot sees `success: true` and learns nothing, which is the whole point of
+  // the lie. The extra field only tells an honest client not to count it.
   if (body.botcheck) {
     logRejection("honeypot", ip, { source: clean(body.source, LIMITS.generic) });
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, counted: false });
   }
 
   if (!(await turnstileOk(body.turnstileToken, ip))) {
@@ -363,7 +405,7 @@ export async function POST(request: Request) {
   // WhatsApp/email instead. Silently returning success here would lose real leads,
   // which is exactly the defect this route shipped with.
   if (!crmUrl) {
-    console.error("[LEAD NOT DELIVERED — CRM_LEAD_API_URL unset]", JSON.stringify(lead));
+    console.error("[LEAD NOT DELIVERED — CRM_LEAD_API_URL unset]", JSON.stringify(redactedLead(lead)));
     return NextResponse.json(
       { success: false, fallback: true, error: "Lead intake is not configured yet." },
       { status: 503 }
@@ -385,7 +427,7 @@ export async function POST(request: Request) {
 
     if (!crmResponse.ok) {
       const detail = await crmResponse.text().catch(() => "");
-      console.error("[LEAD NOT DELIVERED — CRM rejected]", crmResponse.status, detail, JSON.stringify(lead));
+      console.error("[LEAD NOT DELIVERED — CRM rejected]", crmResponse.status, detail, JSON.stringify(redactedLead(lead)));
       return NextResponse.json(
         { success: false, fallback: true, error: "The lead system rejected this submission." },
         { status: 502 }
@@ -394,7 +436,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error("[LEAD NOT DELIVERED — CRM unreachable]", err, JSON.stringify(lead));
+    console.error("[LEAD NOT DELIVERED — CRM unreachable]", err, JSON.stringify(redactedLead(lead)));
     return NextResponse.json(
       { success: false, fallback: true, error: "Could not reach the lead system right now." },
       { status: 502 }

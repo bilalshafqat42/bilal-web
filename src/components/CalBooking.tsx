@@ -26,6 +26,15 @@ type Props = {
   link: string;
   /** Carried into the booking notes so the answers arrive before the call. */
   prefill: { name?: string; email?: string; notes?: string };
+  /**
+   * Fired once Cal confirms a booking.
+   *
+   * This is the only signal a booking happened. The page's own submit handler
+   * was replaced by this embed, and with it went the `trackSchedule()` call —
+   * so from the day `NEXT_PUBLIC_CALCOM_LINK` was set until this was added,
+   * every primary CTA on the site led to a conversion nothing recorded.
+   */
+  onBooked?: () => void;
 };
 
 declare global {
@@ -48,8 +57,13 @@ declare global {
  *  the experiment. */
 const LAYOUT = "month_view" as const;
 
-export default function CalBooking({ link, prefill }: Props) {
+export default function CalBooking({ link, prefill, onBooked }: Props) {
   const mounted = useRef(false);
+  // Held in a ref so the one-shot effect below always calls the current
+  // handler. The effect deliberately runs once — re-registering Cal's callback
+  // on every render would fire the conversion several times for one booking.
+  const onBookedRef = useRef(onBooked);
+  onBookedRef.current = onBooked;
 
   useEffect(() => {
     if (mounted.current) return;
@@ -112,6 +126,18 @@ export default function CalBooking({ link, prefill }: Props) {
         ...prefill,
       },
     });
+    // The conversion. `bookingSuccessful` is Cal's own confirmation that a slot
+    // was actually taken, so this counts bookings rather than button presses —
+    // the same rule the form handlers follow.
+    //
+    // Registered before `ui` rather than after because Cal replays its queue in
+    // order, and a callback queued after the embed has already rendered can
+    // miss an immediate booking.
+    window.Cal?.("on", {
+      action: "bookingSuccessful",
+      callback: () => onBookedRef.current?.(),
+    });
+
     window.Cal?.("ui", {
       theme: "dark",
       // The panel above the embed already carries the title, the description,

@@ -112,7 +112,7 @@ export default function CaseStudyGrid() {
         <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
           The work
         </span>
-        <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+        <h2 className="t-h2 mt-3 text-ink">
           Every project, start to finish
         </h2>
         <p className="mt-4 max-w-[62ch] text-lg leading-relaxed text-muted">
@@ -197,13 +197,19 @@ export default function CaseStudyGrid() {
                     <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted/70">
                       {card.eyebrow}
                     </span>
-                    <span className="mt-2.5 flex items-start justify-between gap-3 text-lg font-semibold leading-snug text-ink sm:text-xl">
+                    {/* An `h3`, not a `span`. This page exists to show six case
+                        studies and exposed no headings at all between the
+                        section `h2` and the discipline list, so a screen reader
+                        user could not navigate the work by heading (roadmap
+                        213.33). A heading is allowed to sit inside a link, and
+                        nothing changes visually. */}
+                    <h3 className="t-h4 mt-2.5 flex items-start justify-between gap-3 text-ink">
                       {card.name}
                       <ArrowUpRight
                         size={18}
                         className="mt-1 shrink-0 text-muted transition-colors group-hover:text-gold"
                       />
-                    </span>
+                    </h3>
                     <span className="mt-2.5 block max-w-[58ch] text-sm leading-relaxed text-muted">
                       {card.summary}
                     </span>

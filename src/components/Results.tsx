@@ -58,7 +58,7 @@ const stats = [
   {
     icon: TrendingUp,
     title: "Strategy → Execution Ownership",
-    description: "From planning and design to launch, tracking, and optimization",
+    description: "From planning and design to launch, tracking, and optimisation",
   },
 ];
 
@@ -71,7 +71,7 @@ export default function Results() {
             <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
               Results &amp; Impact
             </span>
-            <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+            <h2 className="t-h2 mt-4 text-ink">
               Measurable outcomes across{" "}
               <span className="text-gradient">marketing, design &amp; development.</span>
             </h2>

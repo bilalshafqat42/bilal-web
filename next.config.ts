@@ -44,7 +44,12 @@ const nextConfig: NextConfig = {
     // and a 2x phone needs ~680px for these tiles. With 828 in the list Next
     // upscaled 800 -> 828 and re-encoded an already-lossy AVIF, which added
     // weight with no extra detail. 800 gives an exact match instead.
-    // Capped at 1600 because that is now the widest raster source on the site.
+    // Capped at 1600. NOTE: `bilal-shirt.avif` is 3368x5056, so the claim above
+    // that nothing here exceeds 1928px is wrong and has been since that file was
+    // added (roadmap 213.18). The cap is still right — nothing on the site is
+    // *displayed* above 1600 CSS px — but the source should be downsampled to
+    // ~1800px wide so the optimiser is not decoding 17 megapixels on our own
+    // CPU to produce a 1600px variant.
     // Any larger entry only ever produced an upscale — more bytes, no more
     // detail, and a re-encode of already-lossy AVIF on our own CPU.
     deviceSizes: [640, 800, 1080, 1280, 1600],

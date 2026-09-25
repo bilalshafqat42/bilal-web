@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import ConsentReset from "@/components/ConsentReset";
 import { SITE_URL, breadcrumbNode, graph, ref, ID } from "@/lib/schema";
 
@@ -85,15 +83,14 @@ export default function PrivacyPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <Nav />
-      <main className="flex-1 pb-16 sm:pb-20">
+      <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="relative mx-auto max-w-3xl px-6">
             <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
               Privacy
             </span>
-            <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
+            <h1 className="t-h1 mt-5 text-ink">
               What this site stores
             </h1>
             <p className="mt-6 text-lg text-muted leading-relaxed">
@@ -111,7 +108,7 @@ export default function PrivacyPage() {
             <div className="space-y-5">
               {rows.map((r) => (
                 <div key={r.what} className="rounded-2xl border border-border panel p-6">
-                  <h2 className="text-2xl font-semibold tracking-tight text-ink">{r.what}</h2>
+                  <h2 className="t-h3 text-ink">{r.what}</h2>
                   <dl className="mt-4 space-y-2.5 text-sm">
                     <div className="flex flex-col gap-0.5 sm:flex-row sm:gap-3">
                       <dt className="w-28 shrink-0 text-xs uppercase tracking-wide text-gold">Stored</dt>
@@ -131,7 +128,7 @@ export default function PrivacyPage() {
             </div>
 
             <div className="mt-10 rounded-2xl border border-border panel p-6">
-              <h2 className="text-2xl font-semibold tracking-tight text-ink">Changing your mind</h2>
+              <h2 className="t-h3 text-ink">Changing your mind</h2>
               <p className="mt-3 text-sm leading-relaxed text-muted">
                 Use the button below and the banner will ask again, whichever way
                 you answered the first time. It also clears the campaign source
@@ -139,7 +136,7 @@ export default function PrivacyPage() {
                 does the same thing.
               </p>
               <ConsentReset className="mt-4" />
-              <h2 className="mt-6 text-2xl font-semibold tracking-tight text-ink">What you can ask me for</h2>
+              <h2 className="t-h3 mt-6 text-ink">What you can ask me for</h2>
               <p className="mt-3 text-sm text-muted leading-relaxed">
                 You can ask what I hold about you, ask me to correct it, or ask me
                 to delete it. Email{" "}
@@ -150,7 +147,7 @@ export default function PrivacyPage() {
                 which.
               </p>
 
-              <h2 className="mt-6 text-2xl font-semibold tracking-tight text-ink">Who is responsible for this</h2>
+              <h2 className="t-h3 mt-6 text-ink">Who is responsible for this</h2>
               <p className="mt-3 text-sm text-muted leading-relaxed">
                 Bilal Shafqat, working as an independent freelancer in Dubai,
                 United Arab Emirates. Questions about anything on this page go to
@@ -164,7 +161,6 @@ export default function PrivacyPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

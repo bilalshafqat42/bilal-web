@@ -25,6 +25,21 @@ export default function CookieConsent() {
     setOpen(false);
   }
 
+  // Publish the banner's presence so the floating Quick Enquiry button can get
+  // out of its way. On a phone the banner stacks to a column and fills the
+  // lower third of the screen, hiding that button for the whole of a first
+  // visit — the visit where it matters most (roadmap 213.35).
+  //
+  // A data attribute rather than shared state: neither component has to import
+  // the other, and the rule lives with the button it moves.
+  useEffect(() => {
+    if (!open) return;
+    document.documentElement.dataset.consentOpen = "true";
+    return () => {
+      delete document.documentElement.dataset.consentOpen;
+    };
+  }, [open]);
+
   if (!open) return null;
 
   return (
@@ -34,7 +49,10 @@ export default function CookieConsent() {
       aria-labelledby="consent-title"
       className="pointer-events-none fixed inset-x-0 bottom-0 z-[60] p-3 sm:p-5"
     >
-      <div className="glass-nav pointer-events-auto mx-auto flex max-w-4xl flex-col gap-4 rounded-2xl border border-border p-5 shadow-2xl shadow-black/40 sm:flex-row sm:items-center sm:gap-6 sm:p-6">
+      {/* `relative` so the mobile close button below positions against this
+          card rather than against the fixed wrapper, where it landed a few
+          pixels off (roadmap 213.35). */}
+      <div className="glass-nav pointer-events-auto relative mx-auto flex max-w-4xl flex-col gap-4 rounded-2xl border border-border p-5 shadow-2xl shadow-black/40 sm:flex-row sm:items-center sm:gap-6 sm:p-6">
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold/15">
           <Cookie size={19} className="text-gold" />
         </span>

@@ -19,8 +19,13 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+/* Guarded, like every other animation in this file.
+   Smooth scrolling is a known vestibular trigger, and this was the one
+   declaration here that ignored the preference (roadmap 213.29). */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -31,6 +36,113 @@ body {
 
 h1, h2, h3, h4, .font-display {
   font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ---------------------------------------------------------------------------
+   The type scale.
+   ---------------------------------------------------------------------------
+
+   One scale for every heading on the site, replacing the per-component
+   `text-3xl sm:text-4xl` strings that used to set them. Before this there were
+   four different sizes doing the job of h2 and five doing the job of h3, which
+   is how a site ends up looking assembled rather than designed.
+
+   **Fluid rather than stepped.** Each size interpolates between two anchor
+   points — 375px, the narrow phone, and 1280px, where it stops growing — so
+   there is no jump at a breakpoint and no width where a heading is the wrong
+   size for its column. The `clamp()` floor and ceiling are what the phone and
+   the large desktop actually get; the middle term is the line between them.
+
+   **The steps are wide at the top and narrow at the bottom**, which is what
+   makes a page readable at a glance: h1 to h2 is a 1.5x drop, h4 to h5 is
+   1.2x. An even ratio all the way down gives six sizes that all look adjacent.
+
+   |    | phone 375 | tablet 768 | desktop 1280+ |
+   |----|-----------|------------|---------------|
+   | h1 | 40px      | 54px       | 72px          |
+   | h2 | 32px      | 39px       | 48px          |
+   | h3 | 24px      | 28px       | 32px          |
+   | h4 | 20px      | 22px       | 24px          |
+   | h5 | 18px      | 19px       | 20px          |
+   | h6 | 16px      | 16px       | 16px          |
+
+   `--t-display` runs 44px / 58px / 76px, one step above h1 at every width.
+   It has to be measured against h1 rather than set by eye: the first version
+   of it topped out *below* h1 on a wide screen, so the hero was smaller than
+   the heading on /about.
+
+   `--t-display` sits above h1 and is the homepage hero and the rotating opener
+   only. It is not a seventh heading level: it is one editorial size for the
+   first screen, and a page that uses it twice has stopped having a hierarchy.
+
+   Tracking tightens as the size grows because a face set at 72px needs less
+   space between letters than the same face at 16px — leave it at 0 and large
+   display type reads as loose. Line height does the same in the other
+   direction: 1.02 at display size, 1.4 at body-adjacent sizes. */
+:root {
+  --t-display: clamp(2.75rem, 1.92rem + 3.54vw, 4.75rem);
+  --t-h1: clamp(2.5rem, 1.67rem + 3.54vw, 4.5rem);
+  --t-h2: clamp(2rem, 1.59rem + 1.77vw, 3rem);
+  --t-h3: clamp(1.5rem, 1.29rem + 0.88vw, 2rem);
+  --t-h4: clamp(1.25rem, 1.15rem + 0.44vw, 1.5rem);
+  --t-h5: clamp(1.125rem, 1.07rem + 0.22vw, 1.25rem);
+  --t-h6: 1rem;
+}
+
+/* Applied to the element, so a heading that carries no class is still on the
+   scale — and so the utility classes below have something to agree with. A
+   component that needs a heading to look like a different level uses the
+   matching `.t-hN` class rather than re-inventing a size. */
+h1,
+.t-display,
+.t-h1 {
+  font-size: var(--t-h1);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+.t-display {
+  font-size: var(--t-display);
+  line-height: 1.02;
+}
+
+h2,
+.t-h2 {
+  font-size: var(--t-h2);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+h3,
+.t-h3 {
+  font-size: var(--t-h3);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+h4,
+.t-h4 {
+  font-size: var(--t-h4);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+h5,
+.t-h5 {
+  font-size: var(--t-h5);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+h6,
+.t-h6 {
+  font-size: var(--t-h6);
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 ::selection {
@@ -164,6 +276,7 @@ h1, h2, h3, h4, .font-display {
 .glass-nav {
   background: rgba(12, 12, 16, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(36px) saturate(140%);
   backdrop-filter: blur(36px) saturate(140%);
 }
 
@@ -171,6 +284,7 @@ h1, h2, h3, h4, .font-display {
    translucent panel above it stays readable over any section. */
 .mega-backdrop {
   background: rgba(6, 6, 9, 0.82);
+  -webkit-backdrop-filter: blur(18px) saturate(115%);
   backdrop-filter: blur(18px) saturate(115%);
 }
 
@@ -429,12 +543,22 @@ h1, h2, h3, h4, .font-display {
  *
  * Capped at eight: past that the last item would wait nearly a second, and
  * every grid on this site wraps well before eight visible-at-once items. */
+/* Visible by default, hidden only when the parent says so.
+ *
+ * Inverted 2026-09-24 (roadmap 213.4). `.reveal-item` used to carry
+ * `opacity: 0` unconditionally, so every staggered card was blank in the
+ * server-rendered HTML and stayed blank until hydration. `RevealStagger` now
+ * writes `data-reveal="out"` only for a group that is genuinely below the fold,
+ * so an element the visitor can already see is never hidden — and the initial
+ * HTML is complete with JavaScript disabled. */
 .reveal-item {
-  opacity: 0;
-  transform: translateY(24px);
   transition:
     opacity 500ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-reveal="out"] .reveal-item {
+  opacity: 0;
+  transform: translateY(24px);
 }
 [data-reveal="in"] .reveal-item {
   opacity: 1;
@@ -449,7 +573,13 @@ h1, h2, h3, h4, .font-display {
 [data-reveal="in"] .reveal-item:nth-child(n + 8) { transition-delay: 0.7s; }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal-item {
+  /* `[data-reveal]` is carried so this still wins on specificity against the
+     `[data-reveal="out"]` rule above (0,2,0). With reduced motion `useReveal`
+     returns at "rest" and never writes the attribute, so this is a backstop
+     rather than the mechanism — but a backstop that loses the cascade is not
+     one. */
+  .reveal-item,
+  [data-reveal] .reveal-item {
     opacity: 1;
     transform: none;
     transition: none;
@@ -510,98 +640,17 @@ h1, h2, h3, h4, .font-display {
   }
 }
 
-/* Hero headline typing effect.
+/* The hero's typewriter reveal lived here until 2026-09-24.
  *
- * `clip-path`, not the classic `width: 0 -> 100%` typewriter. The width trick
- * needs `white-space: nowrap`, and "One senior partner." at the mobile size is
- * about 320px against roughly 342px of available width on a 390px phone — it
- * fits, but a 360px phone would overflow and push a horizontal scrollbar onto
- * the homepage. `clip-path` reveals the same way without touching layout, so
- * the line still wraps normally if it ever needs to.
+ * Removed with the effect itself: `@keyframes type-reveal`, `.type-line`,
+ * `.type-line-1`, `.type-line-2`, `.type-caret` and their reduced-motion
+ * guard. Its `steps()` values were literal character counts per line, which is
+ * why the markup carried a warning to update them whenever the headline was
+ * reworded — a maintenance trap the opener's JS-measured version does not have.
  *
- * It is also cheaper: `width` is a layout property and animating it reflows on
- * every frame; `clip-path` is composited.
- *
- * `steps()` is what makes it read as typing rather than a wipe — the reveal
- * lands on character boundaries instead of sliding continuously. The counts are
- * the literal character counts of each line, so they must be updated if the
- * headline is ever reworded.
- *
- * The text is ordinary markup inside the <h1>. Nothing is injected by script,
- * so it is in the initial HTML for crawlers and read normally by a screen
- * reader regardless of the animation. HeroBanner stays a server component with
- * no client JavaScript.
+ * `@keyframes caret-blink` is deliberately NOT removed: `.type-caret-block`,
+ * the opener's caret, still uses it.
  */
-@keyframes type-reveal {
-  from {
-    clip-path: inset(0 100% 0 0);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-  }
-}
-
-@keyframes caret-blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
-.type-line {
-  display: inline-block;
-  /* Held clipped before its delay elapses, so line two is not visible while
-     line one is still typing. */
-  animation-fill-mode: both;
-  animation-name: type-reveal;
-}
-
-/* Step counts are literal rather than `steps(var(--chars))`: a variable inside a
-   timing function is valid CSS but relies on substitution producing something
-   parseable, and a silent failure here leaves the page's h1 clipped. Durations
-   differ per line so both type at the same rate — ~50ms a character — instead
-   of the longer line racing to finish in the same time.
-
-   These counts are the literal character counts of each line and must be
-   updated if the headline is reworded. */
-.type-line-1 {
-  animation-duration: 0.95s;
-  animation-delay: 0.35s;
-  animation-timing-function: steps(19);
-}
-.type-line-2 {
-  animation-duration: 0.85s;
-  animation-delay: 1.3s;
-  animation-timing-function: steps(17);
-}
-
-/* The caret arrives when line two *finishes* (1.3s delay + 0.85s duration), not
-   when it starts. It sits after the clipped span at the line's full width, so
-   showing it earlier would park it ahead of the text and have the typing run
-   toward a caret that was already waiting there. */
-.type-caret {
-  display: inline-block;
-  width: 0.06em;
-  height: 0.78em;
-  margin-left: 0.06em;
-  vertical-align: baseline;
-  background: currentColor;
-  opacity: 0;
-  animation: caret-blink 1s step-end 2.15s infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .type-line {
-    animation: none;
-    clip-path: none;
-  }
-  .type-caret {
-    display: none;
-  }
-}
 
 /* Header: full bar at the top, floating pill once scrolled.
  *
@@ -673,11 +722,25 @@ h1, h2, h3, h4, .font-display {
      behind it, and a visible outline made it read as a box sitting on top
      rather than as glass floating over. */
   border-color: transparent;
-  /* Deliberately well under half opaque, so the blur is actually visible. At
-     the previous 82% almost nothing showed through and the backdrop filter was
-     doing no work you could see. */
-  background-color: color-mix(in oklab, var(--color-bg) 58%, transparent);
-  backdrop-filter: blur(22px) saturate(160%);
+  /* Glass: translucent black over a heavy blur, at Bilal's instruction.
+   *
+   * It has been three values now — 58%, then opaque, now 75% — so the reasoning
+   * matters more than the number. 58% failed over the white opener: the page
+   * beneath stayed legible *as shapes* through the pill, because 22px of blur
+   * is not enough to dissolve body text into a wash. Opaque fixed legibility by
+   * removing the effect entirely.
+   *
+   * 75% with 32px of blur is the middle: white nav text sits at about 8:1
+   * against the composite over the worst case, which is pure white behind, and
+   * the blur turns whatever is back there into colour rather than form. That
+   * combination is what glass actually is — transparency alone is just a tint.
+   *
+   * `color-mix` rather than an rgba literal so the pill follows `--color-bg`
+   * if the palette moves, and `-webkit-` alongside the standard property
+   * because Safari still ships the blur prefixed. */
+  background-color: color-mix(in oklab, var(--color-bg) 75%, transparent);
+  -webkit-backdrop-filter: blur(32px) saturate(160%);
+  backdrop-filter: blur(32px) saturate(160%);
   box-shadow: 0 16px 40px -14px rgb(0 0 0 / 0.75), 0 2px 10px -4px rgb(0 0 0 / 0.5);
 }
 
@@ -718,7 +781,7 @@ h1, h2, h3, h4, .font-display {
 }
 @media (min-width: 1024px) {
   .nav-header.is-floating {
-    top: 40px;
+    top: 20px;
   }
 }
 
@@ -760,14 +823,24 @@ h1, h2, h3, h4, .font-display {
   margin-inline: auto;
   border-top-width: 0;
   /* Matches the pill: no outline, blur and shadow doing the separating.
-     `glass-nav` sets a 90% opaque background, which would leave this panel's
-     blur as invisible as the pill's was — so it is overridden here to the same
-     value the pill uses. */
+     
+     **96%, not 58%.** The pill's value was copied here, and the pill is a bar
+     of six words over whatever happens to be behind it. This panel is four
+     columns of links, and at 58% the page underneath was legible through the
+     text — reported as unreadable, and correctly. The blur goes up with it,
+     because a heavier blur is what lets a background stay *visible* while
+     ceasing to compete: 40px turns whatever is behind into a wash of colour
+     instead of shapes the eye keeps trying to resolve.
+     
+     `-webkit-backdrop-filter` alongside the standard property: Safari still
+     needs it, and without it the panel there is a flat 92% plate with no blur
+     at all. */
   border: 0;
   border-radius: 1.25rem;
-  background: color-mix(in oklab, var(--color-bg) 58%, transparent);
-  backdrop-filter: blur(22px) saturate(160%);
-  box-shadow: 0 16px 40px -14px rgb(0 0 0 / 0.75);
+  background: color-mix(in oklab, var(--color-bg) 96%, transparent);
+  -webkit-backdrop-filter: blur(40px) saturate(150%);
+  backdrop-filter: blur(40px) saturate(150%);
+  box-shadow: 0 24px 60px -18px rgb(0 0 0 / 0.85);
 }
 
 @media (min-width: 1024px) {
@@ -862,6 +935,178 @@ h1, h2, h3, h4, .font-display {
 @media (prefers-reduced-motion: reduce) {
   .work-chip,
   .work-item {
+    transition: none;
+  }
+}
+
+/* The floating Quick Enquiry button stands down while the consent banner is up.
+ *
+ * The banner is `fixed inset-x-0 bottom-0 z-[60]` and the button is
+ * `fixed bottom-6 right-6 z-40`, so on a phone — where the banner stacks to a
+ * column and fills the lower third — the button was covered outright for the
+ * whole of a first visit, which is the visit where it matters most
+ * (roadmap 213.35). Two competing calls to action at once is also the wrong
+ * ask. `CookieConsent` sets the attribute while it is open and removes it the
+ * moment the visitor answers, either way. */
+html[data-consent-open] .floating-enquiry {
+  display: none;
+}
+
+/* Ground for a tall screen capture on the app case study.
+ *
+ * A 1206x5807 screen recording cannot fill a 1200px column without being
+ * stretched into a lie, so it stays narrow and gets a surface to sit on
+ * instead. Measured against the reference: Transpo does exactly this, putting
+ * its tall captures on a clearly tinted panel so the narrow image reads as a
+ * composition rather than as something that failed to load.
+ *
+ * Warm, not another near-black. `bg-bg-soft` (#0e0e13) was already behind these
+ * and sat two points off the page background, so it registered as nothing. This
+ * lifts toward the site's gold rather than to grey, which is what keeps it
+ * looking chosen. */
+.screen-panel {
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 0%, rgba(242, 201, 76, 0.07), transparent 70%),
+    linear-gradient(180deg, #17150f 0%, #121116 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Caret for the rotating hero block.
+ *
+ * Distinct from `.type-caret`: that one sat after white text on the page
+ * background, this sits inside a gold block, so it takes the block's ink
+ * colour. It is rendered only while typing and removed once the headline
+ * rests, so nothing on the page blinks forever. */
+.type-caret-block {
+  display: inline-block;
+  width: 0.06em;
+  height: 0.72em;
+  margin-left: 0.04em;
+  vertical-align: baseline;
+  background: currentColor;
+  animation: caret-blink 1s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .type-caret-block {
+    display: none;
+  }
+}
+
+/* Light bar, for a page that opens on a white band.
+ *
+ * `:not(.is-floating)` rather than relying on source order: `.nav-header.is-light`
+ * and `.nav-header.is-floating` are both (0,2,0), so whichever came last would
+ * win by accident. The moment the bar lifts into its pill it goes dark, which is
+ * the whole point — light over the white opener, dark over everything below it.
+ *
+ * The transition is already declared on `.nav-header`, so the colour change
+ * rides the same 0.45s ease as the floating state rather than snapping. */
+.nav-header.is-light:not(.is-floating) {
+  background-color: #ffffff;
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+/* The white opener.
+ *
+ * Its own tokens rather than the page's: `--color-ink` and `--color-muted` are
+ * tuned for near-black and are unreadable here. Measured on white — ink
+ * #14140f is 17.4:1 and muted #55555e is 7.3:1, both clear of AA.
+ *
+ * The gold block keeps its dark ink, so it reads the same on either ground; gold
+ * *text* on white would be about 1.8:1 and is never used. */
+/* The homepage parallax's resting state.
+ *
+ * **These two values have to be here rather than on the element in JSX, and
+ * that is a bug fix.** They used to be an inline `style` on the wrapper, set to
+ * the full-bleed state, with GSAP correcting them to the inset state after
+ * hydration and after its own dynamic import had landed. So every desktop
+ * visitor saw the hero at full width for a beat and then watched it shrink into
+ * the container — reported by Bilal, and rightly, as a bad first impression.
+ *
+ * In the stylesheet the inset state is the *first* paint. No JavaScript is
+ * involved and there is nothing to correct. GSAP's inline writes still win
+ * while scrolling, because an inline style beats a stylesheet rule.
+ *
+ * The media query is the same pair of conditions the animation itself runs
+ * under, so the full-bleed defaults above stay exactly right for a phone, for
+ * reduced motion, and for a visitor with no JavaScript at all — none of whom
+ * ever get the inset state.
+ */
+.home-parallax {
+  --hero-w: 100%;
+  --hero-fill: 1;
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .home-parallax {
+    --hero-w: 80%;
+    --hero-fill: 0;
+  }
+}
+
+.opener-light {
+  background-color: #ffffff;
+  color: #14140f;
+}
+
+/* Portrait reveal — monochrome at rest, colour wiped in under the cursor.
+ *
+ * All three effects are driven by custom properties this element sets on
+ * itself, so a mouse move is one style write and no React render.
+ *
+ * Defaults matter: `--r` is 0 and the offsets are 0, so before any pointer
+ * arrives — and on a touch device, which never fires the handlers — the
+ * portrait is exactly the monochrome image it was before this existed. */
+.portrait-reveal {
+  --mx: 50%;
+  --my: 50%;
+  --r: 0px;
+  --dx: 0px;
+  --dy: 0px;
+}
+
+/* The parallax. Transform only, so it composites; the transition is what makes
+   the drift lag the cursor slightly instead of tracking it rigidly, which is
+   the difference between parallax and the image being dragged. */
+.portrait-layer {
+  transform: translate3d(var(--dx), var(--dy), 0);
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* The smoke.
+ *
+ * A long, soft falloff rather than a hard-edged circle: opaque to 40%, then
+ * fading out over the remaining 60%. A tight edge reads as a spotlight cut into
+ * the picture; this reads as wiping condensation off glass, which is what was
+ * asked for.
+ *
+ * `--r` animates from 0, so the colour grows out of the cursor on enter and
+ * retreats into it on leave rather than blinking. */
+.portrait-colour {
+  -webkit-mask-image: radial-gradient(
+    circle var(--r) at var(--mx) var(--my),
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.92) 40%,
+    rgba(0, 0, 0, 0.45) 72%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    circle var(--r) at var(--mx) var(--my),
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.92) 40%,
+    rgba(0, 0, 0, 0.45) 72%,
+    transparent 100%
+  );
+  transition: -webkit-mask-image 420ms ease-out, mask-image 420ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The colour reveal stays — it is a state change, not motion. The drift is
+     the part that is actually movement, so only that is removed. */
+  .portrait-layer {
+    transform: none;
     transition: none;
   }
 }

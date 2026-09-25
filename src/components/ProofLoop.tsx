@@ -72,7 +72,7 @@ export function ServiceProof({ serviceSlug }: { serviceSlug: string }) {
           <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
             The proof
           </span>
-          <h2 className="mt-3 max-w-2xl text-2xl font-semibold tracking-tight text-ink">
+          <h2 className="t-h3 mt-3 max-w-2xl text-ink">
             Shipped work behind this service
           </h2>
         </div>
@@ -106,7 +106,7 @@ export function WorkProof({
           <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
             What went into this
           </span>
-          <h2 className="mt-3 max-w-2xl text-2xl font-semibold tracking-tight text-ink">
+          <h2 className="t-h3 mt-3 max-w-2xl text-ink">
             The disciplines this work is made of
           </h2>
         </div>

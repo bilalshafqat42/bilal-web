@@ -1,7 +1,5 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import { pillars } from "@/data/pillars";
 import CtaButton from "@/components/CtaButton";
 
@@ -15,15 +13,14 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <>
-      <Nav />
-      <main className="flex-1 pb-16 sm:pb-20">
+      <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="relative mx-auto max-w-3xl px-6">
             <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
               404
             </span>
-            <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
+            <h1 className="t-h1 mt-5 text-ink">
               That page isn&apos;t here any more
             </h1>
             {/* Most traffic here arrives from search results for the old
@@ -59,7 +56,11 @@ export default function NotFound() {
               {pillars.map((pillar) => (
                 <Link
                   key={pillar.slug}
-                  href={`/services/${pillar.slug}`}
+                  // `ledgerHref` where the pillar has one, as /about does.
+                  // `design-content-conversion` was retired and 308s to the
+                  // services hub, so the raw slug sent a visitor who had
+                  // already hit a 404 straight through a redirect (213.19).
+                  href={pillar.ledgerHref ?? `/services/${pillar.slug}`}
                   className="card-hover rounded-2xl border border-border panel px-5 py-4 text-sm font-medium text-ink"
                 >
                   {pillar.label}
@@ -69,7 +70,6 @@ export default function NotFound() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

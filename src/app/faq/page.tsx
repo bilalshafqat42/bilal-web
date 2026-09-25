@@ -1,8 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ChevronRight } from "lucide-react";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import FaqSection from "@/components/FaqSection";
 import { faqGroups, allFaqs } from "@/data/faqs";
@@ -41,8 +39,7 @@ export default function FaqPage() {
   return (
     <>
       <JsonLd nodes={nodes} />
-      <Nav />
-      <main className="flex-1 pb-16 sm:pb-20">
+      <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="relative mx-auto max-w-3xl px-6">
@@ -51,7 +48,7 @@ export default function FaqPage() {
               <ChevronRight size={13} />
               <span className="text-ink">FAQ</span>
             </nav>
-            <h1 className="mt-8 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
+            <h1 className="t-h1 mt-8 text-ink">
               Questions people actually ask
             </h1>
             <p className="mt-6 text-lg text-muted leading-relaxed">
@@ -104,7 +101,7 @@ export default function FaqPage() {
                 />
                 <div className="relative">
                   <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Next step</span>
-                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                  <h2 className="t-h2 mt-4 text-ink">
                     Still deciding? <span className="text-gradient">Just ask.</span>
                   </h2>
                   <p className="mx-auto mt-4 max-w-xl text-muted leading-relaxed">
@@ -118,7 +115,6 @@ export default function FaqPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

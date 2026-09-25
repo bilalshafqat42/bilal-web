@@ -5,9 +5,9 @@ import { ArrowRight, Check, FileText, Loader2, MessageCircle } from "lucide-reac
 import { pillars } from "@/data/pillars";
 import { getAttribution, getFacebookCookies } from "@/lib/attribution";
 import { useRouter } from "next/navigation";
-import { trackLead, trackWhatsApp, generateEventId } from "@/lib/analytics";
+import { trackLead, generateEventId } from "@/lib/analytics";
+import WhatsAppLink from "@/components/WhatsAppLink";
 
-const WHATSAPP = "971529766006";
 const EMAIL = "bilalshafqat42@gmail.com";
 
 type Status = "idle" | "submitting" | "success" | "fallback" | "error";
@@ -85,9 +85,10 @@ export default function ContactForm() {
       .filter(Boolean)
       .join("\n");
 
-  const whatsappHref = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
-    `Hi Bilal, I tried the contact form on your site.\n\n${summary()}`
-  )}`;
+  // Built at click time rather than on every render: `summary()` reads the
+  // live field values, and this is only ever needed once the send has failed.
+  const fallbackMessage = () =>
+    `Hi Bilal, I tried the contact form on your site.\n\n${summary()}`;
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -118,7 +119,9 @@ export default function ContactForm() {
       if (res.ok && data.success) {
         // Fired only on confirmed delivery, so the conversion count matches
         // what actually reached the CRM rather than counting button presses.
-        trackLead("contact-page-form", values.service, eventId);
+        // `counted: false` marks the honeypot's deliberate fake success — the
+        // bot is told it worked, the analytics are not.
+        if (data.counted !== false) trackLead("contact-page-form", values.service, eventId);
         setStatus("success");
         // Client-side push, so GA4 and the pixel record the /thank-you page view
         // without a full reload. The inline success state still shows if the
@@ -140,20 +143,17 @@ export default function ContactForm() {
         <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gold/15">
           <Check size={22} className="text-gold" />
         </span>
-        <h3 className="mt-5 text-xl font-semibold text-ink">Thanks, that&apos;s come through.</h3>
+        <h3 className="t-h4 mt-5 text-ink">Thanks, that&apos;s come through.</h3>
         <p className="mt-3 text-sm text-muted leading-relaxed">
           I&apos;ll come back to you personally, usually within one business day.
           If it&apos;s urgent, WhatsApp is faster.
         </p>
-        <a
-          href={`https://wa.me/${WHATSAPP}`}
-          onClick={() => trackWhatsApp("contact-form-success")}
-          target="_blank"
-          rel="noopener noreferrer"
+        <WhatsAppLink
+          context="contact-form-success"
           className="mt-6 inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
         >
           <MessageCircle size={15} /> Message on WhatsApp
-        </a>
+        </WhatsAppLink>
       </div>
     );
   }
@@ -163,7 +163,7 @@ export default function ContactForm() {
       <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
         The form
       </span>
-      <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">Send me the details</h2>
+      <h2 className="t-h3 mt-3 text-ink">Send me the details</h2>
       <p className="mt-2 text-sm text-muted leading-relaxed">
         The more you can tell me, the more useful my first reply will be.
       </p>
@@ -245,9 +245,13 @@ export default function ContactForm() {
               form above.
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
-              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold">
+              <WhatsAppLink
+                context="contact-form-fallback"
+                message={fallbackMessage()}
+                className="btn-primary inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold"
+              >
                 <MessageCircle size={15} /> Send on WhatsApp
-              </a>
+              </WhatsAppLink>
             </div>
           </div>
         ) : null}

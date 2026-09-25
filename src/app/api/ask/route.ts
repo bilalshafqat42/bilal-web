@@ -14,8 +14,12 @@ Rules:
 - Answer only from the site content. If it does not cover something, say so plainly and
   suggest they ask Bilal directly. Never invent services, prices, timelines, client names
   or results.
-- There are no published prices. If asked what something costs, explain what drives the
-  cost and that a real figure comes within a business day of describing the project.
+- Some prices ARE published and you may state them: project work from AED 31,500, a
+  monthly retainer from AED 16,000 with a three-month minimum, and an advisory session
+  from AED 3,500. These are "from" figures, not quotes. Everything else is priced against
+  scope — explain what drives the cost and that a real figure comes within a business day
+  of describing the project. Point to /pricing, which lists the engagement models and what
+  moves the number.
 - Be brief. Two or three short paragraphs at most. No bullet lists unless genuinely
   clearer. Plain sentences, no marketing language.
 - When a relevant page exists, mention it by path (for example /services/paid-marketing)
@@ -93,15 +97,16 @@ export async function POST(request: Request) {
 
   try {
     const stream = client.messages.stream({
-      model: "claude-opus-5",
+      // Haiku, not Opus. The comment below has always said this is retrieval
+      // and paraphrase over a small corpus rather than a reasoning problem, and
+      // Opus was being paid for on every visitor question — at 12 questions per
+      // IP per hour with no global cap (roadmap 213.14). Haiku answers this
+      // shape of question as well and removes the cost exposure.
+      model: "claude-haiku-4-5-20251001",
       max_tokens: 1200,
       // The site content is identical on every request, so caching it turns the
       // bulk of the input cost into a ~0.1x cache read.
       system: [{ type: "text", text: SYSTEM, cache_control: { type: "ephemeral" } }],
-      thinking: { type: "adaptive" },
-      // Low effort: this is retrieval and paraphrase over a small corpus, not a
-      // reasoning problem. Higher effort would add latency and cost for no gain.
-      output_config: { effort: "low" },
       messages: [...history, { role: "user", content: question }],
     });
 

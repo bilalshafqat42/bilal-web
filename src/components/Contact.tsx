@@ -18,7 +18,7 @@ export default function Contact() {
               <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                 Book A Consultation
               </span>
-              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+              <h2 className="t-h2 mt-4 text-ink">
                 Have a project in mind? <span className="text-gradient">Let&apos;s start it.</span>
               </h2>
               <p className="mt-4 max-w-xl mx-auto text-muted leading-relaxed">

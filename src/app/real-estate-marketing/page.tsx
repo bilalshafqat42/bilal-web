@@ -1,8 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import CtaButton from "@/components/CtaButton";
 import FaqSection from "@/components/FaqSection";
@@ -173,8 +171,7 @@ export default function RealEstateMarketingPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <Nav />
-      <main className="flex-1">
+      <main id="main" tabIndex={-1} className="flex-1">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="site-container relative">
@@ -182,7 +179,7 @@ export default function RealEstateMarketingPage() {
               <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                 Off-plan property
               </span>
-              <h1 className="mt-4 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
+              <h1 className="t-h1 mt-4 text-ink">
                 Real estate marketing for{" "}
                 <span className="text-gradient">off-plan launches</span>
               </h1>
@@ -210,7 +207,7 @@ export default function RealEstateMarketingPage() {
             <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
               The parts
             </span>
-            <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+            <h2 className="t-h2 mt-4 text-ink">
               What an off-plan launch actually needs
             </h2>
             <p className="mt-4 max-w-[62ch] text-lg leading-relaxed text-muted">
@@ -222,7 +219,7 @@ export default function RealEstateMarketingPage() {
             {parts.map((p) => (
               <Reveal key={p.title}>
                 <div className="h-full rounded-2xl border border-border panel p-6 sm:p-7">
-                  <h3 className="text-lg font-semibold text-ink">{p.title}</h3>
+                  <h3 className="t-h5 text-ink">{p.title}</h3>
                   <p className="mt-2.5 text-base leading-relaxed text-muted">{p.body}</p>
                 </div>
               </Reveal>
@@ -235,7 +232,7 @@ export default function RealEstateMarketingPage() {
             <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
               What decides it
             </span>
-            <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+            <h2 className="t-h2 mt-4 text-ink">
               Four decisions that separate a launch page from a brochure
             </h2>
           </Reveal>
@@ -247,7 +244,7 @@ export default function RealEstateMarketingPage() {
                     {d.n}
                   </span>
                   <div>
-                    <h3 className="text-xl font-semibold leading-snug text-ink sm:text-2xl">
+                    <h3 className="t-h4 text-ink">
                       {d.title}
                     </h3>
                     <p className="mt-3 max-w-[68ch] text-base leading-relaxed text-muted">
@@ -272,7 +269,7 @@ export default function RealEstateMarketingPage() {
               <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                 The launches
               </span>
-              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+              <h2 className="t-h2 mt-4 text-ink">
                 Every one of them, written up
               </h2>
               <p className="mt-4 max-w-[62ch] text-lg leading-relaxed text-muted">
@@ -314,7 +311,6 @@ export default function RealEstateMarketingPage() {
 
         <Contact />
       </main>
-      <Footer />
     </>
   );
 }

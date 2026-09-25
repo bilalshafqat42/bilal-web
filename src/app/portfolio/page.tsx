@@ -8,10 +8,8 @@ import {
   disciplineCount,
   hasPortfolioPage,
 } from "@/data/disciplines";
-import Nav from "@/components/Nav";
 import CaseStudyGrid from "@/components/CaseStudyGrid";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 import { SITE_URL, breadcrumbNode, graph, ref, ID } from "@/lib/schema";
 import { disciplinesWithPages } from "@/data/disciplines";
 
@@ -77,8 +75,7 @@ export default function PortfolioPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <Nav />
-      <main className="flex-1 pt-28">
+      <main id="main" tabIndex={-1} className="flex-1 pt-28">
         {/* A real hero with the page's h1 in it. Until 2026-09-16 this page had
             no hero at all: it opened on a featured-work link card, and its only
             h1 sat halfway down inside the old `CaseStudies` section. Removing
@@ -97,7 +94,7 @@ export default function PortfolioPage() {
             <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
               Selected work
             </span>
-            <h1 className="mt-4 max-w-[20ch] text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
+            <h1 className="t-h1 mt-4 max-w-[20ch] text-ink">
               Four off-plan launches where{" "}
               <span className="text-gradient">one person owned the page and the spend</span>
             </h1>
@@ -156,7 +153,7 @@ export default function PortfolioPage() {
                 <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                   Browse by discipline
                 </span>
-                <h2 className="mt-4 max-w-2xl text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                <h2 className="t-h2 mt-4 max-w-2xl text-ink">
                   Start with what you need built
                 </h2>
               </div>
@@ -223,7 +220,6 @@ export default function PortfolioPage() {
 
         <Contact />
       </main>
-      <Footer />
     </>
   );
 }

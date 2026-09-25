@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 import LeadFormPopup from "@/components/LeadFormPopup";
 import CookieConsent from "@/components/CookieConsent";
 import SpotlightSearch from "@/components/SpotlightSearch";
@@ -71,9 +73,42 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col bg-bg text-ink">
+        {/* Skip link — WCAG 2.4.1 Bypass Blocks, Level A.
+         *
+         * The site had none on any of its 31 routes, so a keyboard or screen
+         * reader user tabbed the whole header — logo, four nav items, the
+         * Services chevron, the CTA — before reaching content, on every page
+         * (roadmap 213.8). Phase 3 item 13 proposes selling WCAG 2.2
+         * conformance audits; a prospect running axe here would have found a
+         * Level A failure in seconds.
+         *
+         * First child of `<body>` so it is the first tab stop. Visually hidden
+         * until focused rather than hidden outright: `display: none` would take
+         * it out of the tab order and defeat the point. */}
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-gold focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-[#14140f] focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-bg"
+        >
+          Skip to content
+        </a>
+
         <Analytics />
         <MetaPixel />
+        {/* The header and footer live here, not in each page.
+         *
+         * They were imported individually into all 17 page templates plus
+         * `DisciplinePage`, so every client-side navigation unmounted and
+         * remounted them: the `.header-enter` drop-in from item 199 replayed on
+         * every route change and the floating-pill state from item 201 reset,
+         * which is not what a persistent header does. Rendering them around
+         * `{children}` keeps one instance for the life of the visit, so the
+         * entrance plays once, as designed.
+         *
+         * `not-found.tsx` gets them from here too, which is why it no longer
+         * renders its own. */}
+        <Nav />
         {children}
+        <Footer />
         <SpotlightSearch />
         <LeadFormPopup />
         <CookieConsent />

@@ -2,8 +2,6 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import AppointmentBooking from "@/components/AppointmentBooking";
 import FaqSection from "@/components/FaqSection";
 import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID } from "@/lib/schema";
@@ -138,9 +136,8 @@ const reassurance = [
 export default function AppointmentPage() {
   return (
     <>
-      <Nav />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <main className="flex-1">
+      <main id="main" tabIndex={-1} className="flex-1">
         {/* Full bleed. The portrait is pushed left so the booking panel on the
             right never lands on top of it. */}
         {/* `overflow-clip`, not `overflow-hidden`. Both clip the full-bleed
@@ -197,16 +194,20 @@ export default function AppointmentPage() {
                 Taking work now
               </span>
 
-              <p className="mt-7 max-w-md text-lg leading-relaxed text-muted">
-                One conversation, one person, and a straight answer about whether
-                I am the right fit for what you are trying to do.
-              </p>
-
-              <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
+              {/* Heading first, then the paragraph. This page used to render
+                  the intro above the h1, so its title was the third thing read
+                  both visually and in the DOM — the only page on the site that
+                  did (roadmap 213.37). */}
+              <h1 className="t-h1 mt-7 text-ink">
                 Let&apos;s talk about
                 <br />
                 <span className="text-gradient">what you need</span>
               </h1>
+
+              <p className="mt-6 max-w-md text-lg leading-relaxed text-muted">
+                One conversation, one person, and a straight answer about whether
+                I am the right fit for what you are trying to do.
+              </p>
 
               <ul className="mt-9 space-y-3">
                 {reassurance.map((item) => (
@@ -257,7 +258,6 @@ export default function AppointmentPage() {
           className="pb-20 sm:pb-24"
         />
       </main>
-      <Footer />
     </>
   );
 }

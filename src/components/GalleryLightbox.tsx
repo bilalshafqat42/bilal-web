@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import type { Gallery } from "@/data/caseStudies";
+import { useFocusTrap } from "@/lib/focusTrap";
 
 /**
  * Click-to-enlarge for the campaign gallery.
@@ -26,6 +27,7 @@ export default function GalleryLightbox({
 }) {
   const [open, setOpen] = useState<number | null>(null);
   const hostRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   // Focus is returned here on close, so a keyboard user is not dropped at the
   // top of the document after viewing a slide.
@@ -101,6 +103,10 @@ export default function GalleryLightbox({
     if (open === null) lastTrigger.current?.focus();
   }, [open]);
 
+  // This one already focused the close button and restored focus on exit — it
+  // was the best of the three — and only ever needed the trap itself.
+  useFocusTrap(dialogRef, open !== null, closeRef);
+
   const item = open === null ? null : gallery.items[open];
 
   return (
@@ -109,6 +115,7 @@ export default function GalleryLightbox({
 
       {item ? (
         <div
+          ref={dialogRef}
           role="dialog"
           aria-modal="true"
           aria-label={`${gallery.heading}, slide ${open! + 1} of ${count}`}

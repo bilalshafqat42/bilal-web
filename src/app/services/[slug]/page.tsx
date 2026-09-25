@@ -2,9 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowRight, ChevronRight } from "lucide-react";
-import Nav from "@/components/Nav";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 import { ServiceProof } from "@/components/ProofLoop";
 import Reveal from "@/components/Reveal";
 import FaqSection from "@/components/FaqSection";
@@ -18,6 +16,7 @@ import {
 import { serviceDepth } from "@/data/serviceDepth";
 import TrackView from "@/components/TrackView";
 import InlineLeadForm from "@/components/InlineLeadForm";
+import WhatsAppLink from "@/components/WhatsAppLink";
 import CtaButton from "@/components/CtaButton";
 import ClientLogoRow from "@/components/ClientLogoRow";
 import JsonLd from "@/components/JsonLd";
@@ -101,8 +100,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
     <>
       <JsonLd nodes={nodes} />
       <TrackView name={category.title} category="Service" />
-      <Nav />
-      <main className="flex-1 pb-16 sm:pb-20">
+      <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="relative mx-auto max-w-4xl px-6">
@@ -119,7 +117,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                 <span className={`inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] ${accent.icon}`}>
                   {category.title}
                 </span>
-                <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
+                <h1 className="t-h1 mt-5 text-ink">
                   {category.headline}
                 </h1>
                 <p className="mt-6 text-lg text-muted leading-relaxed">{category.intro}</p>
@@ -148,7 +146,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
           <div className="mx-auto max-w-4xl px-6">
             <Reveal>
               <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Scope</span>
-              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+              <h2 className="t-h2 mt-4 text-ink">
                 What this covers
               </h2>
             </Reveal>
@@ -156,7 +154,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
               {sections.map(({ item, resolved }) => (
                 <Reveal key={item.title}>
                   <div id={slugify(item.title)} className="scroll-mt-28 border-t border-border pt-8">
-                    <h3 className="text-xl sm:text-2xl font-semibold text-ink">{item.title}</h3>
+                    <h3 className="t-h4 text-ink">{item.title}</h3>
                     <p className="mt-3 text-muted leading-relaxed">{resolved!.section.body}</p>
                     <ul className="mt-5 flex flex-wrap gap-2">
                       {resolved!.section.bullets.map((b) => (
@@ -177,7 +175,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
             <div className="mx-auto max-w-4xl px-6">
               <Reveal>
                 <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Process</span>
-                <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                <h2 className="t-h2 mt-4 text-ink">
                   How this works in practice
                 </h2>
               </Reveal>
@@ -185,7 +183,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                 {depth.blocks.map((block) => (
                   <Reveal key={block.heading}>
                     <div className="border-t border-border pt-8">
-                      <h3 className="text-xl font-semibold text-ink sm:text-2xl">{block.heading}</h3>
+                      <h3 className="t-h4 text-ink">{block.heading}</h3>
                       <div className="mt-4 space-y-4">
                         {block.paragraphs.map((para) => (
                           <p key={para.slice(0, 40)} className="text-base leading-relaxed text-muted">
@@ -211,7 +209,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
               want to start a conversation. */}
           <Reveal>
             <div className="mt-10 rounded-2xl border border-border panel p-6 sm:p-8">
-              <h3 className="text-lg font-semibold text-ink sm:text-xl">
+              <h3 className="t-h4 text-ink">
                 Still not sure if this is what you need?
               </h3>
               <p className="mt-2.5 text-base leading-relaxed text-muted">
@@ -233,12 +231,12 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                 >
                   Book a call <ArrowRight size={14} />
                 </Link>
-                <a
-                  href="https://wa.me/971529766006"
+                <WhatsAppLink
+                  context={`service-page:${category.slug}`}
                   className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-white/5"
                 >
                   WhatsApp
-                </a>
+                </WhatsAppLink>
               </div>
             </div>
           </Reveal>
@@ -249,7 +247,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
         <section className="relative mt-20 sm:mt-24">
           <div className="mx-auto max-w-4xl px-6">
             <Reveal>
-              <h2 className="text-2xl font-semibold tracking-tight text-ink">Other services</h2>
+              <h2 className="t-h3 text-ink">Other services</h2>
             </Reveal>
             <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {others.map((o) => (
@@ -272,7 +270,6 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
 
         <Contact />
       </main>
-      <Footer />
     </>
   );
 }

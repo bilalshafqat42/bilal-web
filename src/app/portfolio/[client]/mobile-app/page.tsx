@@ -3,8 +3,6 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import { WorkProof } from "@/components/ProofLoop";
 import Contact from "@/components/Contact";
 import Reveal from "@/components/Reveal";
@@ -213,8 +211,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
       />
-      <Nav />
-      <main className="flex-1">
+      <main id="main" tabIndex={-1} className="flex-1">
         {/* Hero: copy left, composite right. */}
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
@@ -232,7 +229,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                   <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                     Case study · Property &amp; real estate
                   </span>
-                  <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
+                  <h1 className="t-h1 mt-5 text-ink">
                     A cross-platform app, from one codebase.
                   </h1>
                   <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted">{app.body}</p>
@@ -297,10 +294,18 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                   <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                     The brief
                   </span>
-                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                  <h2 className="t-h2 mt-4 text-ink">
                     About the project
                   </h2>
-                  <p className="mt-6 max-w-[68ch] text-lg leading-relaxed text-muted">{app.body}</p>
+                  {/* `app.body` is already the hero paragraph a screen above.
+                      Printing it again here was the same ~200 characters twice
+                      on one page (roadmap 213.15). This section keeps its
+                      heading — it is the anchor the outline needs — and carries
+                      the scope sentence instead, which is the thing the hero
+                      does not say. */}
+                  <p className="mt-6 max-w-[68ch] text-lg leading-relaxed text-muted">
+                    {c.scopeIntro}
+                  </p>
                 </Reveal>
               </div>
             </section>
@@ -311,7 +316,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                   <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                     What made it hard
                   </span>
-                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                  <h2 className="t-h2 mt-4 text-ink">
                     The problem
                   </h2>
                 </Reveal>
@@ -343,7 +348,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                   <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                     The answer
                   </span>
-                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                  <h2 className="t-h2 mt-4 text-ink">
                     The solution
                   </h2>
                   <p className="mt-6 max-w-[62ch] border-l-2 border-gold/70 pl-6 text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-[1.75rem]">
@@ -367,7 +372,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
               <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                 What had to be solved
               </span>
-              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+              <h2 className="t-h2 mt-4 text-ink">
                 Key challenges
               </h2>
               <p className="mt-5 max-w-[62ch] text-lg leading-relaxed text-muted">
@@ -412,7 +417,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                   {/* Was "Screen by screen, and why each one is built that
                       way." The "why" moved to Design decisions below, so the
                       heading now says only what this run of images is. */}
-                  <h2 className="mt-4 max-w-2xl text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                  <h2 className="t-h2 mt-4 max-w-2xl text-ink">
                     The screens
                   </h2>
                 </div>
@@ -424,44 +429,68 @@ export default async function MobileAppCaseStudy({ params }: Props) {
             </Reveal>
           </div>
 
-          <ol className="mt-16 space-y-20 sm:space-y-28">
+          {/* One column width for every screen.
+            *
+            * Measured against the reference at 1440px: Transpo renders almost
+            * every image at a steady **1264px** inside a contained column, with
+            * only its hero going full-bleed. This page used three widths —
+            * 1440px for the three lifestyle mockups and **318px and 194px** for
+            * the two tall captures, which floated in a 1440px band that was 78%
+            * and 87% empty. A 7x swing in image width on one page is what made
+            * two of five screens read as a loading failure rather than a
+            * composition.
+            *
+            * So: one `max-w-[1200px]` column, and the difference between a
+            * landscape mockup and a 1:4.8 screen recording is handled *inside*
+            * that column rather than by changing its width.
+            */}
+          <ol className="mt-16 space-y-16 sm:space-y-20">
             {app.screens.map((s, i) => (
-              <li key={s.key}>
-                <Reveal>
-                  {/* Two image treatments, because there are two kinds of asset.
-                      A lifestyle mockup is already composed and landscape, so it
-                      runs full-bleed. A screen capture is 1206px wide and up to
-                      5807 tall — cropping that into a landscape band shows a top
-                      strip and throws away the screen. Those render at their own
-                      proportions, capped by height and centred on a tinted
-                      ground, which is what "as it is" means for a tall screen. */}
-                  {s.mockup ? (
-                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-bg-soft sm:aspect-[21/9]">
-                      <Image
-                        src={s.capture.src}
-                        alt={s.capture.alt}
-                        fill
-                        sizes="100vw"
-                        priority={i === 0}
-                        className="object-cover object-center"
-                      />
-                    </div>
-                  ) : (
-                    <div className="flex justify-center bg-bg-soft py-12 sm:py-16">
-                      <Image
-                        src={s.capture.src}
-                        alt={s.capture.alt}
-                        width={s.capture.width}
-                        height={s.capture.height}
-                        sizes="(min-width:640px) 420px, 70vw"
-                        priority={i === 0}
-                        className="h-auto max-h-[78vh] w-auto max-w-[70vw] rounded-2xl sm:max-w-[420px]"
-                      />
-                    </div>
-                  )}
-                </Reveal>
+              <li key={s.key} className="site-container">
+                <div className="mx-auto w-full max-w-[1200px]">
+                  <Reveal>
+                    {s.mockup ? (
+                      /* A lifestyle mockup is a photograph, so it takes a fixed
+                         landscape window and crops to fill it.
+                         
+                         Letting these render at their own proportions was wrong:
+                         two of the three are shot portrait at 1080x1920, so at
+                         column width they came out **1200 x 2133** — a single
+                         image two full screens tall. One fixed 16:9 window
+                         instead, so every mockup on the page is the same height
+                         whichever way it was shot. */
+                      <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl">
+                        <Image
+                          src={s.capture.src}
+                          alt={s.capture.alt}
+                          fill
+                          sizes="(min-width: 1280px) 1200px, 100vw"
+                          priority={i === 0}
+                          className="object-cover object-center"
+                        />
+                      </div>
+                    ) : (
+                      /* A tall screen recording on a panel that fills the column.
+                         This is the reference's own answer to the same problem:
+                         the capture stays narrow, because it is a phone screen
+                         and stretching it would be a lie, but it sits on a
+                         deliberate ground rather than in empty space. The panel
+                         is warm rather than another near-black, so it reads as a
+                         chosen surface instead of the page showing through. */
+                      <div className="screen-panel flex justify-center rounded-2xl px-6 py-12 sm:py-16">
+                        <Image
+                          src={s.capture.src}
+                          alt={s.capture.alt}
+                          width={s.capture.width}
+                          height={s.capture.height}
+                          sizes="(min-width: 640px) 360px, 70vw"
+                          priority={i === 0}
+                          className="h-auto max-h-[820px] w-auto max-w-[70vw] rounded-xl shadow-2xl shadow-black/50 sm:max-w-[380px]"
+                        />
+                      </div>
+                    )}
+                  </Reveal>
 
-                <div className="site-container">
                   {/* Caption only: number, label, and the decision as one line.
                       The reference attaches nothing at all to its images, and
                       what made this page feel busy was a two-column block under
@@ -471,7 +500,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                       of images. The `glance` specs are no longer rendered; they
                       remain in `caseStudies.ts` if they are ever wanted back. */}
                   <Reveal>
-                    <div className="mt-6 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                    <div className="mt-5 flex flex-wrap items-baseline gap-x-4 gap-y-1">
                       <span className="font-mono text-xs tabular-nums text-muted/70">
                         {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
                       </span>
@@ -498,7 +527,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
               <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                 Why each screen is built that way
               </span>
-              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+              <h2 className="t-h2 mt-4 text-ink">
                 Design decisions
               </h2>
             </Reveal>
@@ -527,7 +556,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                       2026-09-21. The reference labels this section Approach, and
                       the content is the same thing: what was actually done, in
                       the order it was done. */}
-                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                  <h2 className="t-h2 mt-4 text-ink">
                     The approach
                   </h2>
                   <p className="mt-5 max-w-[62ch] text-lg leading-relaxed text-muted">
@@ -539,7 +568,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                 {app.scope.map((group) => (
                   <Reveal key={group.heading}>
                     <div>
-                      <h3 className="font-semibold text-ink">{group.heading}</h3>
+                      <h3 className="t-h6 text-ink">{group.heading}</h3>
                       <ul className="mt-5 space-y-3">
                         {group.items.map((item) => (
                           <li key={item} className="flex items-start gap-2.5 text-sm leading-relaxed text-muted">
@@ -564,7 +593,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                   <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                     Outcome
                   </span>
-                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                  <h2 className="t-h2 mt-4 text-ink">
                     What it changed.
                   </h2>
                 </div>
@@ -606,7 +635,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                 <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                   Keep reading
                 </span>
-                <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                <h2 className="t-h2 mt-4 text-ink">
                   Next case study
                 </h2>
               </Reveal>
@@ -645,7 +674,6 @@ export default async function MobileAppCaseStudy({ params }: Props) {
 
         <Contact />
       </main>
-      <Footer />
     </>
   );
 }

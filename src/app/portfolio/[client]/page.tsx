@@ -3,9 +3,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowRight, ChevronRight } from "lucide-react";
-import Nav from "@/components/Nav";
 import TrackView from "@/components/TrackView";
-import Footer from "@/components/Footer";
 import { WorkProof } from "@/components/ProofLoop";
 import GalleryLightbox from "@/components/GalleryLightbox";
 import Reveal from "@/components/Reveal";
@@ -88,8 +86,7 @@ export default async function ClientCaseStudy({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <TrackView name={c.name} category="Client" />
-      <Nav />
-      <main className="flex-1 pb-16 sm:pb-20">
+      <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="site-container relative">
@@ -104,7 +101,7 @@ export default async function ClientCaseStudy({ params }: Props) {
             <Reveal>
               <div className="mt-8 max-w-3xl">
                 <Image src={c.logo} alt={c.name} width={2000} height={551} priority className="h-10 w-auto" />
-                <h1 className="mt-7 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
+                <h1 className="t-h1 mt-7 text-ink">
                   {c.headline}
                 </h1>
                 <p className="mt-6 text-lg text-muted leading-relaxed">{c.intro}</p>
@@ -123,7 +120,7 @@ export default async function ClientCaseStudy({ params }: Props) {
           <div className="site-container">
             <Reveal>
               <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">The brief</span>
-              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+              <h2 className="t-h2 mt-4 text-ink">
                 Scope of work
               </h2>
               <p className="mt-4 max-w-3xl text-lg text-muted leading-relaxed">{c.scopeIntro}</p>
@@ -132,7 +129,7 @@ export default async function ClientCaseStudy({ params }: Props) {
               {c.scope.map((s) => (
                 <Reveal key={s.heading}>
                   <div className="h-full rounded-2xl border border-border panel p-7">
-                    <h3 className="text-lg font-semibold text-ink">{s.heading}</h3>
+                    <h3 className="t-h5 text-ink">{s.heading}</h3>
                     <p className="mt-3 text-sm text-muted leading-relaxed">{s.body}</p>
                   </div>
                 </Reveal>
@@ -146,7 +143,7 @@ export default async function ClientCaseStudy({ params }: Props) {
             <div className="site-container">
               <Reveal>
                 <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Website</span>
-                <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                <h2 className="t-h2 mt-4 text-ink">
                   {c.website.heading}
                 </h2>
                 <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">{c.website.body}</p>
@@ -215,7 +212,7 @@ export default async function ClientCaseStudy({ params }: Props) {
                 <Reveal delay={0.1}>
                   <div>
                     <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Mobile app</span>
-                    <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                    <h2 className="t-h2 mt-4 text-ink">
                       {c.mobileApp.heading}
                     </h2>
                     <p className="mt-4 text-lg text-muted leading-relaxed">{c.mobileApp.body}</p>
@@ -231,7 +228,7 @@ export default async function ClientCaseStudy({ params }: Props) {
             <div className="site-container">
               <Reveal>
                 <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Brand and social</span>
-                <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                <h2 className="t-h2 mt-4 text-ink">
                   {c.brandSocial.heading}
                 </h2>
                 <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">{c.brandSocial.body}</p>
@@ -251,7 +248,7 @@ export default async function ClientCaseStudy({ params }: Props) {
             <div className="site-container">
               <Reveal>
                 <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Campaigns</span>
-                <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                <h2 className="t-h2 mt-4 text-ink">
                   {c.projects.length === 1 ? "Development campaign" : "Development campaigns"}
                 </h2>
                 <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">
@@ -289,7 +286,7 @@ export default async function ClientCaseStudy({ params }: Props) {
                         }`}
                       />
                       <div className="flex flex-1 flex-col p-6">
-                        <h3 className="text-xl font-semibold text-ink">{p.name}</h3>
+                        <h3 className="t-h4 text-ink">{p.name}</h3>
                         <p className="mt-2.5 flex-1 text-sm text-muted leading-relaxed">{p.cardBlurb}</p>
                         <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
                           View the campaign{" "}
@@ -304,6 +301,7 @@ export default async function ClientCaseStudy({ params }: Props) {
           </section>
         ) : null}
 
+        <WorkProof clientSlug={c.slug} />
         <section className="relative mt-20 sm:mt-28">
           <div className="mx-auto max-w-5xl px-6">
             <Reveal>
@@ -314,7 +312,7 @@ export default async function ClientCaseStudy({ params }: Props) {
                 />
                 <div className="relative">
                   <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Next step</span>
-                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                  <h2 className="t-h2 mt-4 text-ink">
                     Launching a development? <span className="text-gradient">Let&apos;s talk.</span>
                   </h2>
                   <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
@@ -328,9 +326,7 @@ export default async function ClientCaseStudy({ params }: Props) {
             </Reveal>
           </div>
         </section>
-        <WorkProof clientSlug={c.slug} />
       </main>
-      <Footer />
     </>
   );
 }

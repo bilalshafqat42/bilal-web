@@ -462,11 +462,6 @@ export const serviceDepth: Record<string, Depth> = {
         answer:
           "Two to four weeks for a focused identity with guidelines, longer if it extends into a full system across print and campaign templates. The variable is rarely the design time, it is how quickly feedback comes back and how many people need to agree, so I would rather know who the decision-maker is at the start than discover it at round three.",
       },
-      {
-        question: "Do you do print as well as digital?",
-        answer:
-          "Yes, brochures, hoardings and sales material included, supplied print-ready with bleed and colour handled properly rather than as a screen file sent to a printer and hoped for.",
-      },
     ],
   },
 
@@ -646,11 +641,6 @@ export const serviceDepth: Record<string, Depth> = {
         question: "How long does a video take?",
         answer:
           "An edit from supplied footage is usually days rather than weeks. The delay is almost always feedback rounds and music or licensing decisions, so agreeing who approves it before we start saves the most time.",
-      },
-      {
-        question: "Do you shoot video or only edit?",
-        answer:
-          "My side is editing, motion and post-production. For shooting I work alongside production teams, which is exactly the arrangement I have with Choppershoot, where I handle the digital side rather than the camera.",
       },
       {
         question: "How much traffic do we need before CRO is worth doing?",

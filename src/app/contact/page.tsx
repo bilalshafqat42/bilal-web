@@ -1,10 +1,9 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowUpRight, Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
+import WhatsAppLink from "@/components/WhatsAppLink";
 import SocialLinks from "@/components/SocialLinks";
 import CtaButton from "@/components/CtaButton";
 import { SITE_URL, breadcrumbNode, graph, ref, ID } from "@/lib/schema";
@@ -38,7 +37,11 @@ const channels = [
     icon: MessageCircle,
     label: "WhatsApp",
     value: "+971 52 976 6006",
-    href: "https://wa.me/971529766006",
+    // Rendered by WhatsAppLink rather than as a plain href, so this card
+    // reports `whatsapp_click` like every other WhatsApp route on the site.
+    // It did not, and it is the most prominent one on the contact page.
+    whatsapp: "contact-page-card" as const,
+    href: undefined as string | undefined,
     note: "Fastest route to a first reply.",
   },
   {
@@ -104,8 +107,7 @@ export default function ContactPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
       />
-      <Nav />
-      <main className="flex-1 pb-16 sm:pb-20">
+      <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           {/* Left-aligned at the container edge, not a centred 4xl column.
@@ -117,7 +119,7 @@ export default function ContactPage() {
             <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
               Contact
             </span>
-            <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
+            <h1 className="t-h1 mt-5 text-ink">
               Talk to the person who&apos;ll actually do the work
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-muted leading-relaxed">
@@ -187,23 +189,34 @@ export default function ContactPage() {
                   </>
                 );
 
+                const cardClass =
+                  "card-hover group flex h-full flex-col rounded-2xl border border-border panel p-7";
+                const openAffordance = (
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
+                    Open{" "}
+                    <ArrowUpRight
+                      size={15}
+                      className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    />
+                  </span>
+                );
+
                 return (
                   <Reveal key={channel.label} delay={i * 0.08}>
-                    {channel.href ? (
+                    {"whatsapp" in channel && channel.whatsapp ? (
+                      <WhatsAppLink context={channel.whatsapp} className={cardClass}>
+                        {body}
+                        {openAffordance}
+                      </WhatsAppLink>
+                    ) : channel.href ? (
                       <a
                         href={channel.href}
                         target={external ? "_blank" : undefined}
                         rel={external ? "noopener noreferrer" : undefined}
-                        className="card-hover group flex h-full flex-col rounded-2xl border border-border panel p-7"
+                        className={cardClass}
                       >
                         {body}
-                        <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
-                          Open{" "}
-                          <ArrowUpRight
-                            size={15}
-                            className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                          />
-                        </span>
+                        {openAffordance}
                       </a>
                     ) : (
                       // No "Open" affordance either: a card that cannot be
@@ -229,7 +242,7 @@ export default function ContactPage() {
               <Reveal delay={0.1}>
                 <div className="h-full rounded-2xl border border-border panel p-7">
                   <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Where to find me</span>
-                  <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">Where I am and when</h2>
+                  <h2 className="t-h3 mt-3 text-ink">Where I am and when</h2>
                   <ul className="mt-5 space-y-4 text-sm text-muted">
                     <li className="flex items-start gap-3">
                       <MapPin size={16} className="mt-0.5 shrink-0 text-gold" />
@@ -266,7 +279,7 @@ export default function ContactPage() {
                 />
                 <div className="relative">
                   <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Start anywhere</span>
-                  <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                  <h2 className="t-h2 mt-3 text-ink">
                     Not sure what you need yet?{" "}
                     <span className="text-gradient">Start there.</span>
                   </h2>
@@ -296,7 +309,6 @@ export default function ContactPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

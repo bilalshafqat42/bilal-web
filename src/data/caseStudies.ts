@@ -48,6 +48,15 @@ export type Project = {
    *  takes query parameters some crawlers drop, and it is not a stable file. */
   ogImage?: string;
   logo?: string;
+  /** The logo's own intrinsic size.
+   *
+   *  Required alongside `logo`. The project template used to hardcode
+   *  900x1983 — Hadley Heights' dimensions — for every logo, and because
+   *  `h-16 w-auto` derives the box width from the width/height *attributes*
+   *  rather than from the file, the other three marks rendered into a ~29px
+   *  box. Read these off the SVG's viewBox. */
+  logoWidth?: number;
+  logoHeight?: number;
   cardImage: string;
   /** Page captures are tall strips, so a centre crop shows a meaningless middle
    *  slice. "top" keeps the hero, which is the part worth showing. */
@@ -193,6 +202,8 @@ const hadleyHeights: Project = {
   // horizontal slice of a very tall image.
   ogImage: "/portfolio/leos/hadley-heights/og-hadley-heights.jpg",
   logo: "/portfolio/leos/hadley-heights/logo/hadley-heights.svg",
+  logoWidth: 900,
+  logoHeight: 1983,
   cardImage: "/portfolio/leos/hadley-heights/social-media/1.avif",
   cardBlurb:
     "Off-plan launch for a 216-apartment development in Jumeirah Village Circle. Lead capture landing page plus a five-slide campaign carousel.",
@@ -310,6 +321,8 @@ const weybridgeGardens: Project = {
   slug: "weybridge-gardens",
   name: "Weybridge Gardens",
   logo: "/portfolio/leos/weybridge-gardens/logo/weybridge-logo.svg",
+  logoWidth: 1500,
+  logoHeight: 1253,
   // This creative carries the original WG wordmark, so it belongs to phase one
   // rather than the Provence Edition.
   cardImage: "/portfolio/leos/social-media/3.avif",
@@ -355,6 +368,8 @@ const weybridgeGardens2: Project = {
   slug: "weybridge-gardens-2",
   name: "Weybridge Gardens 2",
   logo: "/portfolio/leos/weybridge-gardens-2/logo/weybridge-gardens-2-logo.svg",
+  logoWidth: 1000,
+  logoHeight: 1314,
   cardImage: "/portfolio/leos/weybridge-gardens-2/landing-page/weybridge-landing-page.avif",
   cardImagePosition: "top",
   cardBlurb:
@@ -407,6 +422,8 @@ const cavendishSquare: Project = {
   slug: "cavendish-square",
   name: "Cavendish Square",
   logo: "/portfolio/leos/cavendish/logo/cavendish-logo.svg",
+  logoWidth: 1000,
+  logoHeight: 1828,
   cardImage: "/portfolio/leos/cavendish/landing-page/cavendish-web.avif",
   cardImagePosition: "top",
   cardBlurb:

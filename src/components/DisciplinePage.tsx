@@ -3,8 +3,6 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowRight, ArrowUpRight, ChevronRight } from "lucide-react";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import Reveal, { RevealStagger, RevealItem } from "@/components/Reveal";
 import FaqSection from "@/components/FaqSection";
 import CtaButton from "@/components/CtaButton";
@@ -200,9 +198,8 @@ export default function DisciplinePage({ slug }: { slug: string }) {
 
   return (
     <>
-      <Nav />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <main className="flex-1 pt-28">
+      <main id="main" tabIndex={-1} className="flex-1 pt-28">
         <section className="site-container">
           <Reveal>
             <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm text-muted">
@@ -216,7 +213,7 @@ export default function DisciplinePage({ slug }: { slug: string }) {
             <span className="mt-8 block font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
               {d.title} · {items.length} {items.length === 1 ? "piece" : "pieces"}
             </span>
-            <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
+            <h1 className="t-h1 mt-4 max-w-3xl text-ink">
               {d.page.headline}
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
@@ -259,7 +256,7 @@ export default function DisciplinePage({ slug }: { slug: string }) {
             >
               <Reveal>
                 <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-border pb-4">
-                  <h2 className="text-2xl font-semibold tracking-tight text-ink">{g.deliverable}</h2>
+                  <h2 className="t-h3 text-ink">{g.deliverable}</h2>
                   <span className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
                     {g.items.length} {g.items.length === 1 ? "capture" : "captures"}
                   </span>
@@ -281,7 +278,7 @@ export default function DisciplinePage({ slug }: { slug: string }) {
 
         <section className="site-container py-20 sm:py-24">
           <Reveal>
-            <h2 className="text-2xl font-semibold tracking-tight text-ink">Browse another discipline</h2>
+            <h2 className="t-h3 text-ink">Browse another discipline</h2>
             <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {siblings.map((s) => (
                 <Link
@@ -309,7 +306,6 @@ export default function DisciplinePage({ slug }: { slug: string }) {
           </Reveal>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

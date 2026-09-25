@@ -308,7 +308,7 @@ export default function PortfolioShowcase() {
                 {s.label}
               </span>
               <div className="absolute inset-x-0 bottom-0 p-5">
-                <h3 className="text-xl font-semibold leading-tight text-white">{s.headline}</h3>
+                <h3 className="t-h4 text-white">{s.headline}</h3>
                 <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-white/70">{s.detail}</p>
                 <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
                   Learn more <ArrowRight size={14} />

@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import CtaButton from "@/components/CtaButton";
+import PortraitReveal from "@/components/PortraitReveal";
 
 /**
  * Homepage banner: headline, portrait, proof bar, recent work.
@@ -41,22 +41,98 @@ const RECENT = [
 
 export default function HeroBanner() {
   return (
-    <section id="home" className="relative overflow-hidden bg-bg">
-      <div className="relative grid grid-cols-1 lg:grid-cols-[1fr_minmax(0,34%)] lg:items-stretch">
-        <div className="relative z-10 px-6 pb-12 pt-12 sm:pt-16 lg:px-10 lg:pb-[3.75rem] lg:pt-[4.75rem]">
+    <section id="home" className="relative overflow-hidden bg-white">
+      {/* White ground, dark block.
+       *
+       * The section is white so the 20% the inset hero does not cover reads as
+       * gutters rather than as the page showing through. The dark fill moved
+       * onto the 80% wrapper below, which also keeps it full-bleed under `lg`,
+       * where that wrapper is 100% wide and the white never shows. */}
+      {/* 80% of the viewport at desktop, centred, at Bilal's instruction.
+       *
+       * The whole hero moves together — headline, portrait, proof bar and the
+       * recent-work row — so the section reads as one inset block rather than
+       * a full-bleed band with an inset headline inside it.
+       *
+       * The portrait keeps its bleed: it is `lg:absolute lg:right-0` against
+       * the grid below, and the grid is now this wrapper's child, so "right"
+       * means the right edge of the 80% column instead of the viewport. That is
+       * the intended behaviour here — a portrait bleeding past an inset hero
+       * into open background would read as an overflow bug, not a bleed.
+       *
+       * Full width below `lg`, where 80% of a phone is just a narrow column.
+       *
+       * **The `lg:px-14` on the blocks inside is not optional.** Insetting the
+       * hero without it let text run flush to the dark block's edge — "For LEOS
+       * Developments, Tomorrow World and Refine" sat hard against the right
+       * side and read as clipped. The wrapper carries no padding of its own, so
+       * each block inside supplies its own, and the portrait stays outside that
+       * because it is meant to reach the block edge. */}
+      {/* Width comes from `--hero-w`, which `HomeParallax` drives from scroll
+           position — 80% while the hero sits down the page, widening to 100% as
+           it reaches the header. Defaults to 100%, so the server-rendered page
+           and anyone without JavaScript get the full-bleed hero rather than an
+           inset one that never widens. */}
+      {/* 20px corners, as asked, and `overflow-hidden` with them — the portrait
+          is absolutely positioned to the right edge of this block, so without
+          the clip it would square the two right-hand corners off again.
+          
+          **The radius is tied to `--hero-fill` rather than being a constant,
+          and that is a fix rather than a flourish.** 20px while the block is
+          the inset card, easing to 0 as it reaches full bleed. Held at a
+          constant 20px it looked correct at rest and wrong once open: an
+          edge-to-edge block with rounded corners cuts four wedges out of
+          itself, and the white parallax wrapper showed through the bottom two
+          as notches sitting on the dark section below. Measured at 1440x900
+          before this: two white wedges roughly 20px square at the block's
+          bottom corners.
+          
+          `lg:` only, because below `lg` the hero is always full bleed and the
+          same wedges would appear down the sides. */}
+      {/* **`min-h-svh` in both states, and the height no longer animates.**
+      
+          It used to be `calc(var(--hero-fill) * 100svh)`, so the block grew
+          from 834px to 900px as it opened — and that made the **document** 66px
+          taller mid-animation, measured at 10726px closed against 10792px open.
+          Anything scrolling the window toward a target was therefore aiming at
+          a target that moved underneath it, which is where the little
+          overshoot-and-correct wobble at the end of the open came from.
+          
+          Fixing it costs almost nothing visually: the inset block is now 66px
+          taller at rest, which is the same block filling the window's height
+          with white margins down its sides rather than all four. Only the width
+          and the corner radius animate now, and neither of those changes the
+          height of anything below. */}
+      <div className="overflow-hidden bg-bg lg:mx-auto lg:flex lg:min-h-svh lg:flex-col lg:rounded-[calc((1-var(--hero-fill,1))*20px)] lg:w-[var(--hero-w,100%)]">
+      {/* `lg:flex-1` so the height the block gains on snap lands here, on the
+          headline and the portrait, rather than stretching the proof bar. */}
+      <div className="relative grid grid-cols-1 lg:flex-1 lg:grid-cols-[1fr_minmax(0,34%)] lg:items-stretch">
+        <div className="relative z-10 px-6 pb-12 pt-12 sm:pt-16 lg:flex lg:flex-col lg:justify-center lg:px-14 lg:pb-[3.75rem] lg:pt-[4.75rem]">
           <span className="inline-flex items-center gap-2.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted">
             <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold" />
             Available for new work
           </span>
 
-          <h1 className="mt-8 text-[2.1rem] font-bold leading-[1.05] tracking-[-0.02em] text-ink sm:text-5xl lg:mt-11 lg:text-[4.6rem]">
-            {/* Character counts live in `globals.css` as `--chars` on each
-                line; rewording the headline means updating them, or the reveal
-                will step at the wrong rate. */}
-            <span className="type-line type-line-1">One senior partner.</span>
+          {/* Plain text, no reveal.
+           *
+           * This carried a `clip-path` typewriter effect whose `steps()` counts
+           * were hard-coded per line in `globals.css`, with a standing warning
+           * that rewording the headline meant editing them by hand. Removed at
+           * Bilal's instruction once the opener above took on the animated
+           * moment — two typed headlines in the first two screens was one too
+           * many, and this is the line that should simply be read.
+           *
+           * The `.type-line*` and `.type-caret` rules went with it. Do not
+           * confuse those with `.type-caret-block`, which the opener still
+           * uses. */}
+          {/* `t-display`, not `t-h1`: the first screen gets the one editorial
+              size that sits above the scale. Used here and by the opener
+              statement, and nowhere else — a page that uses it twice has
+              stopped having a hierarchy. */}
+          <h1 className="t-display mt-8 text-ink lg:mt-11">
+            One senior partner.
             <br />
-            <span className="type-line type-line-2">Campaign to code.</span>
-            <span aria-hidden="true" className="type-caret" />
+            Campaign to code.
           </h1>
 
           <p className="mt-7 max-w-[30ch] lg:mt-11 text-base leading-relaxed text-muted sm:max-w-[46ch] lg:text-[1.05rem]">
@@ -100,12 +176,18 @@ export default function HeroBanner() {
               left-edge fade has to be desktop-only and an inline style cannot
               carry a media query. On a phone this image runs full width, where
               fading its left quarter looks like a fault, not a blend. */}
-          <Image
+          {/* Monochrome at rest; colour wiped in under the cursor, with a soft
+              parallax drift. The edge masks that used to sit on this `<img>`
+              moved onto `PortraitReveal`'s wrapper — see the note in that file
+              for why they cannot stack with the reveal mask. */}
+          <PortraitReveal
             src="/images/bilal-shirt.avif"
             alt="Bilal Shafqat"
-            fill
-            sizes="(min-width: 1024px) 34vw, 100vw"
-            className="hero-portrait object-cover object-[50%_15%] brightness-[1.04] contrast-[1.12] grayscale lg:origin-top lg:scale-[1.035]"
+            // 46vw, not 34vw. The column is `lg:w-[46%]` and the image is then
+            // scaled 1.035, so a 34vw variant was being stretched across it —
+            // a soft portrait in the first thing anyone sees (roadmap 213.18).
+            sizes="(min-width: 1024px) 46vw, 100vw"
+            className="object-cover object-[50%_15%] brightness-[1.04] contrast-[1.12] lg:origin-top lg:scale-[1.035]"
             priority
           />
         </div>
@@ -124,7 +206,7 @@ export default function HeroBanner() {
             // The last cell reserves the same gutter as the project strip: the
             // enquiry button is fixed to the bottom-right, and at 1280x800 the
             // shorter viewport put it directly over this cell's label.
-            className={`border-border px-6 py-7 lg:px-10 lg:py-9 lg:last:pr-[13rem] ${
+            className={`border-border px-6 py-7 lg:px-8 lg:py-9 lg:first:pl-14 lg:last:pr-14 ${
               i % 2 === 0 ? "border-r lg:border-r" : "lg:border-r"
             } ${i < STATS.length - 1 ? "border-b lg:border-b-0" : ""} lg:last:border-r-0`}
           >
@@ -135,7 +217,7 @@ export default function HeroBanner() {
 
       </dl>
 
-      <div className="border-b border-border px-6 py-6 lg:px-10 lg:pr-[13rem]">
+      <div className="border-b border-border px-6 py-6 lg:px-14">
         <div className="lg:flex lg:items-center lg:justify-between lg:gap-8">
           <div className="lg:flex lg:items-center lg:gap-6">
             <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted">
@@ -169,6 +251,7 @@ export default function HeroBanner() {
             For LEOS Developments, Tomorrow World and Refine
           </p>
         </div>
+      </div>
       </div>
     </section>
   );

@@ -52,7 +52,9 @@ export default function InlineLeadForm({ service }: { service: string }) {
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.success) {
-        trackLead("service-page-form", service, eventId);
+        // See the honeypot note in api/lead/route.ts: a blocked bot gets
+        // `success: true, counted: false` and must not reach the analytics.
+        if (data.counted !== false) trackLead("service-page-form", service, eventId);
         router.push("/thank-you?source=enquiry");
         return;
       }

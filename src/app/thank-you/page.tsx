@@ -1,8 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Check, Clock, Mail } from "lucide-react";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
+import WhatsAppLink from "@/components/WhatsAppLink";
 import CtaButton from "@/components/CtaButton";
 
 export const metadata: Metadata = {
@@ -49,8 +48,7 @@ export default async function ThankYouPage({ searchParams }: PageProps) {
 
   return (
     <>
-      <Nav />
-      <main className="flex-1 pb-16 sm:pb-20">
+      <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="relative mx-auto max-w-2xl px-6 text-center">
@@ -58,7 +56,7 @@ export default async function ThankYouPage({ searchParams }: PageProps) {
               <Check size={26} />
             </span>
 
-            <h1 className="mt-7 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]">
+            <h1 className="t-h1 mt-7 text-ink">
               {copy.heading}
             </h1>
             <p className="mx-auto mt-5 max-w-lg text-lg leading-relaxed text-muted">{copy.body}</p>
@@ -91,12 +89,12 @@ export default async function ThankYouPage({ searchParams }: PageProps) {
 
             <p className="mt-9 text-sm text-muted">
               Something urgent?{" "}
-              <a
-                href="https://wa.me/971529766006"
+              <WhatsAppLink
+                context="thank-you-page"
                 className="text-gold underline underline-offset-4 hover:opacity-80"
               >
                 WhatsApp me
-              </a>{" "}
+              </WhatsAppLink>{" "}
               or call{" "}
               <a href="tel:+971529766006" className="text-gold underline underline-offset-4 hover:opacity-80">
                 +971 52 976 6006
@@ -106,7 +104,6 @@ export default async function ThankYouPage({ searchParams }: PageProps) {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
-import Nav from "@/components/Nav";
 import Process from "@/components/Process";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 import FaqSection from "@/components/FaqSection";
 import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID } from "@/lib/schema";
 import { processSteps } from "@/data/process";
@@ -132,8 +130,7 @@ export default function ProcessPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <Nav />
-      <main className="flex-1">
+      <main id="main" tabIndex={-1} className="flex-1">
         <Process />
 
         {/* Deliberately a pointer, not the models themselves. Engagement models
@@ -172,7 +169,6 @@ export default function ProcessPage() {
 
         <Contact />
       </main>
-      <Footer />
     </>
   );
 }

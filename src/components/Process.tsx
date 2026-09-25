@@ -71,7 +71,7 @@ export default function Process() {
           eyebrow="How I Work"
           title="A Structured Path From"
           highlight="Brief To Shipped Work"
-          description="Whether it's a paid campaign, a website, or a custom application, every project follows the same clear process — from brief to launch to optimization."
+          description="Whether it's a paid campaign, a website, or a custom application, every project follows the same clear process — from brief to launch to optimisation."
           align="left"
         />
 
@@ -135,7 +135,7 @@ export default function Process() {
                     </span>
                   </div>
 
-                  <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+                  <h2 className="t-h2 mt-4 text-ink">
                     {s.title}
                   </h2>
 

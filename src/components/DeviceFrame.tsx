@@ -74,8 +74,17 @@ export default function DeviceFrame({
             </div>
           </div>
 
+          {/* Focusable and named, for the same reason as `CaptureFrame` — a
+              5,800px screen recording inside a 300px frame that no keyboard
+              could reach (roadmap 213.10). `.no-scrollbar` stays here: a
+              scrollbar drawn inside a phone bezel reads as a rendering fault
+              rather than an affordance, so the caption below carries the cue
+              instead. */}
           <div
-            className={`no-scrollbar overflow-y-auto ${
+            tabIndex={0}
+            role="region"
+            aria-label={`${capture.label} — scrollable app screen`}
+            className={`no-scrollbar overflow-y-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-gold ${
               isIos ? "aspect-[1206/2622]" : "aspect-[1440/3120]"
             }`}
           >

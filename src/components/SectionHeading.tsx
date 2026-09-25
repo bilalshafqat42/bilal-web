@@ -31,13 +31,16 @@ export default function SectionHeading({
         ) : null}
         <Heading
           className={
-            // An h1 is the page title and takes the site-wide h1 size; the same
-            // component used as a section h2 takes the section size. Without
-            // this split, /portfolio and /process shipped a 36px h1 while every
-            // other page had 56px.
-            Heading === "h1"
-              ? "mt-4 text-4xl font-bold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-[3.5rem]"
-              : "mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl"
+            // An h1 is the page title and takes the h1 step; the same component
+            // used as a section title takes the h2 step. Without this split,
+            // /portfolio and /process shipped a section-sized h1 while every
+            // other page had a page-sized one.
+            //
+            // The size itself lives in the scale in `globals.css`, not here.
+            // These used to be two hard-coded strings, which is how this
+            // component ended up half a step out from headings written inline
+            // elsewhere.
+            Heading === "h1" ? "t-h1 mt-4 text-ink" : "t-h2 mt-4 text-ink"
           }
         >
           {title} {highlight ? <span className="text-gradient">{highlight}</span> : null}

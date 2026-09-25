@@ -14,9 +14,10 @@ import { processSteps } from "@/data/process";
  * Server component. It reads the same `processSteps` as the full version, so
  * the two can never drift; it just ignores `image`, `alt` and `bullets`.
  *
- * No GSAP here, deliberately. The full version needs it for the pinned scroll;
- * a four-across row does not, and importing it would pull GSAP and
- * ScrollTrigger onto the homepage for no visual gain.
+ * No animation library here, and none on /process either. The full version was
+ * a GSAP pinned scroll until item 194 removed it — and removed GSAP from the
+ * project with it — so the note that used to sit here, saying the full version
+ * still needed it, had been wrong since (roadmap 213.31).
  */
 export default function ProcessCompact() {
   return (

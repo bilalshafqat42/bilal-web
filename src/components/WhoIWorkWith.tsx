@@ -37,7 +37,7 @@ const audiences: Audience[] = [
   {
     icon: Home,
     title: "Real Estate Developers & Agencies (UAE)",
-    description: "Specialized marketing and web support for off-plan and ready property sales in competitive markets.",
+    description: "Specialised marketing and web support for off-plan and ready property sales in competitive markets.",
     bullets: ["Campaign-specific landing pages & funnels", "Paid ads targeting investors & buyers", "CRM-ready lead capture & qualification"],
     note: "Teams focused on high-intent leads and cost efficiency.",
   },
@@ -45,7 +45,7 @@ const audiences: Audience[] = [
     icon: Users,
     title: "In-House Teams & Growing Companies",
     description: "I work as an extension of internal teams to support marketing, design, or development capacity.",
-    bullets: ["Paid marketing & funnel optimization", "Web, mobile & custom app development", "Design & social content support"],
+    bullets: ["Paid marketing & funnel optimisation", "Web, mobile & custom app development", "Design & social content support"],
     note: "Companies needing hands-on expertise without full-time overhead.",
   },
   {
@@ -66,7 +66,7 @@ function AudienceCard({ audience }: { audience: Audience }) {
       <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-gold/20 to-violet/20 border border-border text-gold">
         <audience.icon size={22} />
       </div>
-      <h3 className="mt-6 text-lg sm:text-xl font-semibold text-ink leading-snug">{audience.title}</h3>
+      <h3 className="t-h4 mt-6 text-ink">{audience.title}</h3>
       <p className="mt-3 text-base text-muted leading-relaxed">{audience.description}</p>
       <p className="mt-4 text-sm italic text-muted/80 flex-1">{audience.note}</p>
 
