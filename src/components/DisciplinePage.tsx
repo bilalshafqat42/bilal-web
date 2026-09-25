@@ -16,6 +16,7 @@ import {
 } from "@/data/disciplines";
 import { groupByDeliverable, deliverableAnchor, type Item } from "@/lib/portfolioItems";
 import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID } from "@/lib/schema";
+import { OG_IMAGES, OG_IMAGE_URL } from "@/lib/ogImage";
 
 /**
  * One component behind every `/portfolio/{discipline}` page.
@@ -141,11 +142,18 @@ export function disciplineMetadata(slug: string): Metadata {
       description: d.page.metaDescription,
       type: "website",
       url: `/portfolio/${d.slug}`,
+      // Declaring `openGraph` here replaces the root layout's wholesale rather
+      // than merging into it, so without this line these four pages share with
+      // no picture at all. See `src/lib/ogImage.ts`.
+      images: OG_IMAGES,
     },
     twitter: {
       card: "summary_large_image",
       title: d.page.metaTitle,
       description: d.page.metaDescription,
+      // `summary_large_image` with no image is just a text card with extra
+      // steps: the card type sets the shape, the image fills it.
+      images: [OG_IMAGE_URL],
     },
   };
 }

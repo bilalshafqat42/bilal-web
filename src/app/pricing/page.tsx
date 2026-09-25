@@ -7,6 +7,7 @@ import CtaButton from "@/components/CtaButton";
 import Engagement from "@/components/Engagement";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL, faqNode, breadcrumbNode } from "@/lib/schema";
+import { OG_IMAGES } from "@/lib/ogImage";
 
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
       "The four engagement models, what pushes cost up or down, and how to get a real figure quickly.",
     type: "website",
     url: "/pricing",
+    images: OG_IMAGES,
   },
 };
 

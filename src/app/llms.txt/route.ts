@@ -7,6 +7,13 @@ const SITE = "https://bilalshafqat.com";
 
 // Generated, not hand-written. The previous static file listed 6 of 20 pages
 // because it was maintained by hand and fell behind every time a page shipped.
+//
+// The core-page list below is still written by hand, and on 2026-09-25 it was
+// caught two pages short: /appointment and /real-estate-marketing were in the
+// sitemap at priority 0.9 — the two highest-intent commercial URLs on the site
+// — and absent here, so an assistant reading this file could not point anyone
+// at the booking page. Diffed the sitemap against the URLs this file emits;
+// worth repeating whenever a route is added.
 export async function GET() {
   const lines: string[] = [];
 
@@ -31,6 +38,8 @@ Full content for machine reading: ${SITE}/llms-full.txt
 - [Process](${SITE}/process): the four delivery stages — brief and discovery, planning and design, build and launch, then measurement and iteration, with worked examples
 - [Pricing](${SITE}/pricing): engagement models and what drives cost — no published price list
 - [FAQ](${SITE}/faq): freelancer vs agency, timezones, process, measurement
+- [Book a consultation](${SITE}/appointment): the booking page every primary CTA points at — pick a slot for a free call
+- [Real estate marketing](${SITE}/real-estate-marketing): off-plan and property developer work — campaigns, launch sites and CRM, as one vertical
 - [Contact](${SITE}/contact): enquiry form, email, WhatsApp
 - [Privacy](${SITE}/privacy): what the site stores`);
 

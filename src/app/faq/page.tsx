@@ -7,6 +7,7 @@ import { faqGroups, allFaqs } from "@/data/faqs";
 import CtaButton from "@/components/CtaButton";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL, faqNode, breadcrumbNode } from "@/lib/schema";
+import { OG_IMAGES } from "@/lib/ogImage";
 
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
       "Straight answers on freelancer versus agency, timezones, how projects start, and how results are measured.",
     type: "website",
     url: "/faq",
+    images: OG_IMAGES,
   },
 };
 

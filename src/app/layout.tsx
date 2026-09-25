@@ -45,6 +45,46 @@ export const metadata: Metadata = {
       // sentence the search result does.
       "One senior partner for paid marketing, web and app development, design and CRM automation. Dubai-based, working with founders and property developers.",
     type: "website",
+    // **The site-wide share card, and it did not exist before 2026-09-25.**
+    //
+    // Measured across the sitemap: 6 of 30 routes carried an `og:image` — the
+    // case studies, which set their own — and the other 24 carried none,
+    // including the homepage, /services and every service page. A link with no
+    // og:image shares as a bare text row on WhatsApp, LinkedIn and Slack, which
+    // for a designer's portfolio is the worst possible first impression.
+    //
+    // Declared here rather than per page because Next's metadata inherits: the
+    // six pages with their own image keep it, and the other 24 pick this up
+    // without being touched.
+    //
+    // **JPEG, not AVIF.** WhatsApp and Facebook share one link-preview crawler
+    // and it renders JPEG, PNG, GIF and WebP only — an AVIF og:image is fetched
+    // and then silently not drawn. That is the same trap the LEOS card hit in
+    // the 2026-09-23 commit.
+    //
+    // 1200x630 is the size both Facebook and LinkedIn crop to. An absolute URL
+    // because several crawlers will not resolve a relative one.
+    images: [
+      {
+        url: "https://bilalshafqat.com/images/og-default.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Bilal Shafqat — paid marketing, web and app development, design and CRM automation, Dubai",
+      },
+    ],
+  },
+  // `summary_large_image`, not the default `summary`.
+  //
+  // Every route was serving `twitter:card: summary`, which renders a small
+  // square thumbnail beside the text. With a 1200x630 card that means the image
+  // is centre-cropped to a square and most of it is thrown away. X, and every
+  // other client that reads Twitter card tags, honours this.
+  twitter: {
+    card: "summary_large_image",
+    title: "Bilal Shafqat — Digital Marketer & Developer, Dubai",
+    description:
+      "One senior partner for paid marketing, web and app development, design and CRM automation. Dubai-based, working with founders and property developers.",
+    images: ["https://bilalshafqat.com/images/og-default.jpg"],
   },
   icons: {
     icon: "/logo/bs.svg",

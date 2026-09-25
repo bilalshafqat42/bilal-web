@@ -21,6 +21,7 @@ import CtaButton from "@/components/CtaButton";
 import ClientLogoRow from "@/components/ClientLogoRow";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL, serviceNode, faqNode, breadcrumbNode } from "@/lib/schema";
+import { OG_IMAGES } from "@/lib/ogImage";
 
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -42,6 +43,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: c.metaDescription,
       type: "website",
       url: `/services/${c.slug}`,
+      images: OG_IMAGES,
     },
   };
 }

@@ -4367,3 +4367,73 @@ Verified at nine positions: text is fully in at 78%, the lift starts at 86%, and
 Clean at 1440 reduced-motion, 1440, 1024, 768 and 390 — no console or page
 errors, no horizontal overflow. `h1-check` 30/30, `schema-check` 30/30,
 `search-check` 32/32, `discipline-check`, `tsc`, `lint`, build 40/40.
+
+### 248. Share cards: 6 of 30 routes had one, now 30 of 30
+
+Measured while gathering SEO metrics, not reported by anyone, which is the
+point: a missing `og:image` is invisible on the site itself and only shows up
+the moment someone pastes a link into WhatsApp.
+
+**Coverage before:** 6 of 30 routes carried an `og:image`, all of them case
+studies that set their own. The other 24 carried none, including `/`,
+`/services`, `/about`, `/portfolio` and all nine service pages. Every
+`twitter:card` on the site was `summary`, the small square variant.
+
+**What made it two rounds of work rather than one.** Adding `images` to the
+root layout took coverage from 6 to **15**, not to 30. Next's metadata merge
+**replaces `openGraph` wholesale when a route declares one** — it does not
+merge field by field — so every page that set its own share title and
+description silently dropped the parent's image with it: `/pricing`, `/faq`,
+the nine service categories and the four discipline pages. The remaining 15
+were closed by spreading a shared constant into each of those blocks.
+
+`src/lib/ogImage.ts` holds the URL and the image object so the next page to
+declare `openGraph` has something to reach for.
+
+| | Before | After |
+| --- | --- | --- |
+| `og:image` | 6 / 30 | **30 / 30** |
+| `twitter:image` | 0 / 30 | **30 / 30** |
+| `twitter:card` | `summary` | `summary_large_image` |
+
+The six case studies keep their own bespoke cards; verified that
+`/portfolio/leos-developments/mobile-app` still serves `og-leos-mobile.jpg`.
+
+**JPEG, not AVIF.** WhatsApp and Facebook share one link-preview crawler and it
+renders JPEG, PNG, GIF and WebP only — an AVIF `og:image` is fetched and then
+silently not drawn. Same trap as the 2026-09-23 LEOS commit. Absolute URLs,
+because several crawlers will not resolve a relative one.
+
+The artwork is a **functional default, not a designed card**: the portrait
+already on the site, the name, the one-line service summary and the domain, on
+the site's own ground, generated at 1200x630. Replacing
+`public/images/og-default.jpg` at the same path changes all 30 cards with no
+code change, which is the handover Bilal should take.
+
+#### llms.txt was two pages short
+
+Diffed the URLs `llms.txt` emits against the sitemap: `/appointment` and
+`/real-estate-marketing` were missing. Both sit at priority 0.9 — the two
+highest-intent commercial URLs on the site — so an assistant reading the file
+could not point anyone at the booking page. Added. The diff is now empty, and
+it is worth re-running whenever a route is added, since that list is still
+maintained by hand while the rest of the file is generated.
+
+#### A measurement warning worth keeping
+
+Every page-weight number taken before this point in the session was wrong.
+`npm run start` had been failing with `EADDRINUSE` against a dev server already
+on port 3000, and the failure is only visible in the start log — the page still
+serves and still reflects file edits through HMR, so nothing looks amiss. The
+give-away was in the chunk names: `next-devtools` at 729KB and `hmr-client`.
+Real figures came from a production server on port 3100.
+
+| | Measured against dev | Measured against production |
+| --- | --- | --- |
+| Median JS, compressed | 804KB | **207KB** |
+| Median JS, uncompressed | 3.9MB | **667KB** |
+| Median page total | 894KB | **452KB** |
+
+Behavioural findings from earlier in the session stand — the DOM, CSS and
+animation logic are identical in both — but **always check the start log, and
+always run measurement servers on a port of their own.**
