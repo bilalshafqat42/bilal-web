@@ -181,6 +181,26 @@ const SPAN: Record<number, string> = {
   4: "lg:col-span-3",
 };
 
+/** Frame ratio by row length.
+ *
+ *  The three-up and four-up rows are 1200:1141, near square. **The two-up row
+ *  is 1200:799, thirty per cent shorter**, at Bilal's instruction.
+ *
+ *  It earns the exception. Those two cells are 664px wide against 432 and 316
+ *  for the other rows, so at the shared near-square ratio they came out 631px
+ *  tall — half again as tall as anything else on the page, and the row read as
+ *  two posters rather than as part of the same grid. A wider frame on the
+ *  widest cells brings the row back into the rhythm.
+ *
+ *  `cavendish-thumb.avif` is cut at 1200:799 to match, so it is not cropped by
+ *  the browser at all. That asset is used by exactly one card, in this row; if
+ *  the row pattern changes, re-cut it. */
+const FRAME: Record<number, string> = {
+  2: "lg:aspect-[1200/799]",
+  3: "",
+  4: "",
+};
+
 export default function PortfolioGrid() {
   const rows = rowsOf(cards);
 
@@ -247,7 +267,11 @@ export default function PortfolioGrid() {
                     removed the stripe, and cost far more: those files run to
                     1600x6644, so the browser would fetch an entire page scroll
                     to paint a 316px thumbnail. */}
-                <div className="relative aspect-[1200/1141] overflow-hidden rounded-xl bg-surface/40">
+                <div
+                  className={`relative aspect-[1200/1141] overflow-hidden rounded-xl bg-surface/40 ${
+                    FRAME[row.length] ?? ""
+                  }`}
+                >
                   <Image
                     src={card.image}
                     alt={card.alt}

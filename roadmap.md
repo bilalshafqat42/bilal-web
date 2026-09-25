@@ -4653,3 +4653,46 @@ deploy or give re-cut assets new filenames. Not yet a live problem — none of
 this has been deployed.
 
 All four checks pass against a production server.
+
+### 253. The middle row gets its own, shorter frame
+
+Rows one and three unchanged. The two-up row goes from `1200/1141` to
+`1200/799` — thirty per cent shorter.
+
+| Row | Cell width | Thumbnail height | Change |
+| --- | --- | --- | --- |
+| 1, three across | 432px | 411px | unchanged |
+| 2, two across | 664px | 631 → **442px** | **−30%** |
+| 3, four across | 316px | 300px | unchanged |
+
+It earns the exception rather than just being asked for. Those two cells are
+664px wide against 432 and 316 for the other rows, so at the shared near-square
+ratio they came out 631px tall — half again as tall as anything else on the
+page, and the row read as two posters sitting next to the grid rather than
+inside it. A wider frame on the widest cells puts the row back in the rhythm.
+
+`cavendish-thumb.avif` re-cut at 1200x799 so it matches its frame and is not
+cropped by the browser at all. That asset is used by exactly one card, in this
+row; if the row pattern changes it needs re-cutting.
+
+#### `lg:` only, and that was a real bug for a minute
+
+The rows come from a JavaScript pattern, not from the rendered layout. Ungated,
+the shorter ratio followed those two cards down to tablet and phone, where
+there is no two-up row — so two cards in the middle of an otherwise uniform
+stack were mysteriously shorter than their neighbours. Measured at 768 and 390:
+two thumbnail heights instead of one.
+
+| Viewport | Thumbnail heights |
+| --- | --- |
+| 1440 | 411 / 442 / 300 |
+| 1280 | 360 / 389 / 262 |
+| 1024 | 279 / 304 / 202 |
+| 768 | 331, uniform |
+| 390 | 325, uniform |
+
+All nine remain `object-fit: cover`, so nothing is stretched. The square social
+creative in this row now takes a 33% top-and-bottom crop; checked that the
+award ribbon still reads.
+
+All four checks pass against a production server.
