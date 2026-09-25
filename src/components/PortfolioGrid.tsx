@@ -104,7 +104,17 @@ export default function PortfolioGrid() {
         {/* items-stretch plus h-full on the card is what makes the four equal
             height: the grid row sizes to the tallest, and each card fills it
             rather than sitting at its own content height. */}
-        <div className="mt-16 grid items-stretch gap-6 sm:grid-cols-2 lg:gap-8">
+        {/* Three across from `lg`, at Bilal's instruction — it was two at every
+            size from 640px up.
+            
+            **There are four cards, so the second row holds one.** Three columns
+            and four items cannot fill two rows; the fourth sits alone at a
+            third of the width with two thirds of the row empty beside it.
+            `items-stretch` stops it growing to fill that space, which would be
+            worse, but the gap is inherent to the count rather than to the CSS.
+            Either a fifth and sixth card or two columns fixes it, and that is a
+            content decision rather than a layout one. */}
+        <div className="mt-16 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {cards.map((card) => (
             <Reveal key={card.label + card.client} className="h-full">
               <Link href={card.href} className="group flex h-full flex-col">
@@ -117,7 +127,7 @@ export default function PortfolioGrid() {
                             src={card.image}
                             alt={card.alt}
                             fill
-                            sizes="170px"
+                            sizes="(max-width: 1024px) 170px, 130px"
                             className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.05]"
                           />
                         </div>
@@ -127,7 +137,12 @@ export default function PortfolioGrid() {
                         src={card.image}
                         alt={card.alt}
                         fill
-                        sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 41vw"
+                        // Recalculated for three columns. The container is
+                        // full-bleed with 40px gutters and a 32px gap, so a
+                        // card is roughly (100vw - 80 - 64) / 3 at desktop.
+                        // Left at 41vw it would fetch the two-column width and
+                        // waste about a third of every card's bytes.
+                        sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 31vw"
                         className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.05]"
                       />
                     )}

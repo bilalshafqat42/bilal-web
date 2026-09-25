@@ -4437,3 +4437,29 @@ Real figures came from a production server on port 3100.
 Behavioural findings from earlier in the session stand — the DOM, CSS and
 animation logic are identical in both — but **always check the start log, and
 always run measurement servers on a port of their own.**
+
+### 249. "What I Actually Build" goes to three columns
+
+`sm:grid-cols-2` at every size from 640px up, now `sm:grid-cols-2
+lg:grid-cols-3`.
+
+| Viewport | Columns | Rows | Card width |
+| --- | --- | --- | --- |
+| 1440x900 | 3 | 3 + 1 | 432px |
+| 1280x800 | 3 | 3 + 1 | 379px |
+| 1024x768 | 3 | 3 + 1 | 293px |
+| 768x1024 | 2 | 2 + 2 | 348px |
+| 390x844 | 1 | 1+1+1+1 | 342px |
+
+**There are four cards, so the second row holds one.** Three columns and four
+items cannot fill two rows: the fourth sits at a third of the width with two
+thirds of the row empty beside it. `items-stretch` stops it growing to fill
+that space, which would look worse, but the gap is inherent to the count. A
+fifth and sixth card, or two columns, is the only real fix and both are
+content decisions rather than layout ones. Flagged to Bilal.
+
+The `sizes` attribute had to follow. It said `41vw` at desktop, tuned for two
+columns; a card is now roughly `(100vw − 80 − 64) / 3`. Left alone the browser
+would have fetched the two-column width and wasted about a third of every
+card's bytes. Set to `31vw`, and the portrait-card inner image from a flat
+`170px` to `(max-width: 1024px) 170px, 130px`.
