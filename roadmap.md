@@ -4463,3 +4463,115 @@ columns; a card is now roughly `(100vw − 80 − 64) / 3`. Left alone the brows
 would have fetched the two-column width and wasted about a third of every
 card's bytes. Set to `31vw`, and the portrait-card inner image from a flat
 `170px` to `(max-width: 1024px) 170px, 130px`.
+
+### 250. "What I Actually Build" rebuilt to the reference
+
+Bilal sent a reference and three instructions: make the section look like it,
+one hover animation only, and a 3 / 2 / 4 row rhythm on desktop.
+
+#### The card is gone; the image is the card
+
+Removed: the panel, its border and background, the overlaid discipline label,
+the bottom scrim, the arrow button, the headline sentence, and the
+client/deliverable stack. What is left is a picture, the project name, and a
+row of discipline pills — the reference's shape.
+
+#### One animation, and the section stopped being a client component
+
+Bilal asked for exactly one: the thumbnail grows a little under the cursor.
+Two things had to go for that to be true.
+
+- A fixed-position **"VIEW WORK" disc** that tracked the cursor across the
+  whole section, costing two state updates per mouse move.
+- **`Reveal` wrappers**, which faded each card in on scroll. A grid that is
+  invisible until you reach it is also invisible in a screenshot or a print.
+
+Both were the only reason the file carried `"use client"`. With them gone there
+is no state and no effect, so it is a **server component again** and the whole
+section ships as HTML with no JavaScript behind it.
+
+The hover is `group-hover:scale-[1.04]` over 0.5s. Worth recording that
+Tailwind v4 compiles `scale-*` to the **`scale` property, not `transform`** —
+`getComputedStyle(img).transform` stays `none` while the element is scaled, so
+the first measurement said the hover was dead when it was working. Read
+`.scale`. `transition-transform` in v4 covers transform, translate, scale and
+rotate, so the transition still applies.
+
+#### 3 / 2 / 4, from one grid
+
+One 12-column grid, not one grid per row: separate grids would each solve their
+own widths and the gaps between rows would stop matching the gaps within them.
+12 is the width because it divides by 3, 2 and 4 with nothing over.
+
+The pattern is `[3, 2, 4]` and the rows are sliced from it, rather than a span
+baked into each card — a hard-coded `col-span-4` on card three breaks silently
+the day a card is inserted in front of it. The span map is written out
+longhand because Tailwind scans source for whole class names and
+`lg:col-span-${n}` generates no CSS at all.
+
+| Viewport | Rows |
+| --- | --- |
+| 1440, 1280, 1024 | **3 / 2 / 4** |
+| 820, 768 | 2 / 2 / 2 / 2 / 1 |
+| 390 | nine single-column rows |
+
+Desktop only, as asked. A four-up row at tablet width gives each piece about
+170px.
+
+#### Real work instead of placeholders
+
+Bilal offered placeholders "for the time being". These are nine real published
+projects with real routes instead — a placeholder on a portfolio is a claim
+about work that does not exist, and `caseStudies` already held enough. They are
+all LEOS, which is honest but does mean the homepage reads as a single-client
+portfolio. Revisit when a second client can be shown; see 213.12.
+
+#### The thumbnails had to be cut, not cropped by CSS
+
+Four thumbnails had a white stripe along the bottom edge. The first fix
+attempted — widening the frame from 16:10 to 16:9 — **did not work, and
+measuring said why.**
+
+The landing page hero crops are 1.45:1, and each turns white at **70–80% of its
+own height** where the page's next section starts. `cover` in a 1.78 frame
+shows the top 82%, so the stripe survived. Hiding it on the worst of them needs
+a 2.07:1 window, which is a letterbox rather than a thumbnail.
+
+| Source | Ratio | Dark content runs to |
+| --- | --- | --- |
+| hadley-heights-…-hero | 1.45 | 79% |
+| weybridge-gardens-…-hero | 1.45 | 80% |
+| cavendish-web-hero | 1.45 | 71% |
+| weybridge-…-hero | 1.45 | 70% |
+
+So the thumbnails are now their own assets, cut from the full-page captures at
+each page's **real** hero height — found by scanning down for the row where the
+capture turns light, because the four heroes run 1.78:1 to 2.05:1 and no single
+guess fits them — then fitted to 16:9. 42–69KB each, and the bottom edge of all
+five measures 0% light.
+
+Pointing the cards at the full captures would also have removed the stripe and
+cost far more: those files reach 1600x6644, so the browser would fetch a whole
+page scroll to paint a 316px thumbnail.
+
+Two more crop fixes:
+
+- Square social creatives get `object-center`. A 1:1 in a 16:9 frame loses 44%
+  of its height whatever you do, and taking it off the top was cutting through
+  the middle of "HADLEY HEIGHTS".
+- The Cavendish app capture is 367x5317 — a full phone scroll — so a landscape
+  frame showed the status bar and a strip of sky. Replaced with a 1398x768 app
+  screen, near enough 16:9 that the frame crops almost nothing.
+
+#### Cost
+
+Nine thumbnails instead of four cards, so the homepage's image budget rises.
+Fully scrolled at 1440x900: **html 28KB, JS 257KB, CSS 16KB, images 395KB,
+total 967KB.** The JS figure is the whole homepage including GSAP; this section
+now contributes none of it.
+
+A measurement note: `#work-carousel a` also matches the "View the full
+portfolio" button, which is what made an early white-band reading come back
+clean when four thumbnails were visibly banded. Scope to `.grid > a`.
+
+All four checks pass against a production server.
