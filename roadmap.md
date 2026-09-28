@@ -4849,3 +4849,70 @@ footer uses — kept deliberately.
   breakpoint. Same trap as the first sweep in item 246.
 
 `npm run warm` regenerated all 232 variants in 19.4s. All four checks pass.
+
+### 256. Cache-Control for HTML pages, before a CDN goes in front
+
+Next sends every prerendered page as `Cache-Control: s-maxage=31536000` — a
+year — with no `max-age` and no revalidation directive. Confirmed on the live
+site and locally on `/`, `/about` and `/services/paid-marketing`.
+
+On Vercel that is safe: a deploy purges their edge cache as part of shipping.
+This site is self-hosted behind LiteSpeed, and **the moment any shared cache
+sits in front of it, that year becomes literal** — the CDN would serve the same
+HTML until 2027 and deploys would appear to do nothing.
+
+That matters now rather than hypothetically, because a CDN is the obvious next
+move. Measured on the live homepage, the 870ms TTFB breaks down as:
+
+| Stage | Time |
+| --- | --- |
+| TCP connect | ~270ms |
+| TLS handshake | ~300ms |
+| Server responding | ~280ms |
+
+**Two thirds is connect and TLS, not server time.** The origin is already
+serving a cached prerender (`x-nextjs-cache: HIT`, `x-nextjs-prerender: 1`), so
+there is nothing left to optimise in code — the fix is to terminate the
+connection closer to the visitor. Which means a CDN. Which means this header
+had to be right first.
+
+Replaced with the standard safe trio:
+
+```
+public, max-age=0, s-maxage=600, stale-while-revalidate=86400
+```
+
+| Directive | Effect |
+| --- | --- |
+| `max-age=0` | browsers always revalidate, so a visitor never reads a stale page |
+| `s-maxage=600` | a CDN serves it for ten minutes, still absorbing nearly all traffic |
+| `stale-while-revalidate=86400` | for a day after, the CDN may serve the old copy *while* fetching a new one behind it, so nobody waits on the origin |
+
+Staleness capped at ten minutes instead of a year, with the TTFB benefit kept
+almost in full.
+
+#### The matcher took two passes
+
+The first version, `/:path((?!_next/|api/).*)`, was too broad. It left static
+chunks and `/_next/image` alone correctly, but it **silently replaced the
+deliberate headers on the machine-readable files** — `llms.txt` lost its
+`max-age=3600`, and `sitemap.xml` lost `must-revalidate`.
+
+Narrowed to `/:path((?!_next/|api/)[^.]*)`. Page routes never contain a dot;
+file-like paths always do, which separates the two cleanly.
+
+Verified across every path type:
+
+| Path | Cache-Control |
+| --- | --- |
+| `/`, `/about`, `/services`, a case study | the new page value |
+| `sitemap.xml` | `public, max-age=0, must-revalidate` (unchanged) |
+| `llms.txt`, `llms-full.txt` | `public, max-age=3600` (unchanged) |
+| `robots.txt` | `public, max-age=0` (unchanged) |
+| `_next/static/chunks/*.js`, `*.css` | `max-age=31536000, immutable` (unchanged) |
+| `_next/image` | `max-age=2592000, must-revalidate` (unchanged) |
+
+Content-hashed chunks are the one thing that *should* be cached for a year, so
+overwriting those would have been the worse bug of the two.
+
+All four checks pass; every route still 200.

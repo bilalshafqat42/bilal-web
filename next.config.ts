@@ -1,6 +1,58 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  /**
+   * Cache-Control for HTML pages.
+   *
+   * **Why this exists.** Next sends prerendered pages as
+   * `Cache-Control: s-maxage=31536000` — a year — with no `max-age` and no
+   * revalidation. On Vercel that is safe, because a deploy purges their edge
+   * cache as part of shipping. This site is self-hosted behind LiteSpeed, and
+   * the moment any shared cache or CDN sits in front of it (Cloudflare's free
+   * tier is the obvious next move, since two thirds of the site's 870ms TTFB
+   * is connect and TLS rather than server time) that year becomes literal:
+   * the CDN would serve the same HTML until 2027 and deploys would appear to
+   * do nothing.
+   *
+   * The replacement is the standard safe trio:
+   *
+   *   max-age=0                  browsers always revalidate, so a visitor
+   *                              never reads a stale page
+   *   s-maxage=600               a CDN serves it for ten minutes, which still
+   *                              absorbs essentially all traffic
+   *   stale-while-revalidate     for a day after that the CDN may serve the
+   *                              old copy *while* fetching a new one in the
+   *                              background, so nobody waits on the origin
+   *
+   * Staleness is capped at ten minutes instead of a year, and the TTFB benefit
+   * of a CDN is kept almost in full.
+   *
+   * **The matcher deliberately excludes `_next/`, `api/` and anything with a
+   * dot in it.** Static chunks
+   * are content-hashed and ship `max-age=31536000, immutable`, which is
+   * correct and must not be overwritten — they are the one thing that *should*
+   * be cached for a year. API routes set their own headers.
+   */
+  async headers() {
+    return [
+      {
+        // Page routes only. `[^.]*` excludes anything with a dot in it, which
+        // is every file-like path: `sitemap.xml`, `robots.txt`, `llms.txt` and
+        // `llms-full.txt` each set their own Cache-Control deliberately in
+        // their route handlers, and an over-broad matcher here silently
+        // replaced them — `llms.txt` lost its `max-age=3600`. Page routes never
+        // contain a dot, so this separates the two cleanly.
+        source: "/:path((?!_next/|api/)[^.]*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=0, s-maxage=600, stale-while-revalidate=86400",
+          },
+        ],
+      },
+    ];
+  },
+
   async redirects() {
     return [
       // /about-me was a real WordPress URL with existing links and ranking
