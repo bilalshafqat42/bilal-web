@@ -4977,3 +4977,56 @@ the SDK only ever ran server-side. What went is a server route, a dependency, a
 recurring cost, and a class of failure that cannot happen now.
 
 All four checks pass.
+
+### 258. The proof wall replaces the results section
+
+Rebuilt to the design Bilal sent. The old section led with an adjective —
+"Measurable outcomes across marketing, design & development" — and then showed
+three cards that contained no measurements. The new one leads with a claim
+about **method**, which is the part that is true today.
+
+| | Before | After |
+| --- | --- | --- |
+| Heading | "Measurable outcomes across…" | "Numbers first. Opinions second." |
+| Supporting panel | none | "How these numbers are produced" — baseline, client-owned tracking, one monthly report |
+| Figures | 3 cards, no numbers in them | 4 figures with source and qualifier |
+| Client logos | a bare row | labelled "Worked with" with a rule |
+| Handoff | none | a bar linking the case studies and the booking page |
+
+The method panel is the real differentiator and the reason it earns the right
+column: every freelancer claims results and almost none explain the
+measurement. It also stays true whichever figures end up in the cards, which is
+why it is written as method rather than outcome.
+
+#### Three of the four figures are placeholders, and the code enforces that
+
+**Nothing in this section has been measured against a real account.** Roadmap
+213.12 records why: lead volume and conversion data belong to the client and
+none has been released for publication.
+
+Each stat carries a `verified` flag. Unverified values are wrapped in brackets
+**at render time rather than in the string**, so the brackets cannot be deleted
+without also flipping the flag — a figure cannot be quietly promoted to a fact
+by editing a string. Renders today as `[3.2x]`, `[-41%]`, `[18]`, and `15+`,
+the last being the only one that needs nobody's permission.
+
+This is a guard, not a solution. **A bracketed number is still a number to a
+visitor** — someone skimming reads "3.2x return on ad spend" and does not stop
+to wonder what brackets mean. Publishing these as they stand would be a
+fabricated performance claim on a site that sells measurement, which is the one
+claim this business cannot afford to get wrong. Either replace each with a
+client-approved figure or ship fewer cards; the grid handles two, three or four.
+
+#### Two deliberate deviations from the design
+
+- **The design's two extra client tiles, `[Client 4]` and `[Client 5]`, are not
+  built.** Empty seats on a live page read as a roster with names withheld,
+  which is a claim rather than a layout. `ClientLogoRow` grows on its own as
+  clients are added.
+- **"Five case studies" is derived, not typed.** It counts project URLs in
+  `caseStudies` — five today — so it cannot go stale the next time a project is
+  added or removed. A hand-typed count is a claim with a shelf life.
+
+Verified at 1440, 1024, 768 and 390: the figure grid runs 4 / 4 / 2 / 1 across
+those widths, no horizontal overflow, no page errors, and the derived count
+reads "5 case studies" at every size.
