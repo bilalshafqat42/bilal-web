@@ -4916,3 +4916,64 @@ Content-hashed chunks are the one thing that *should* be cached for a year, so
 overwriting those would have been the worse bug of the two.
 
 All four checks pass; every route still 200.
+
+### 257. The AI assistant goes free: model removed, site search kept
+
+Bilal's decision — no Anthropic key, free version only. Closes audit item
+213.14, which had been open since the key question was first raised.
+
+**Removed:** `src/app/api/ask/route.ts`, the `@anthropic-ai/sdk` dependency
+(runtime dependencies now 5), the `ANTHROPIC_API_KEY` block in
+`.env.local.example`, and everything in `AskAssistant` that existed to stream
+model output — the reader loop, the `streaming` state, the optimistic
+placeholder turn, and `withLinks`.
+
+`src/lib/siteContent.ts` stays: `llms-full.txt` builds from it too.
+`proxy.ts` keeps its `anthropic-ai` entry, which is the *crawler* detection
+feeding Performo's AI Visibility report and has nothing to do with the API.
+
+**Worth being honest about what was lost: nothing a visitor ever had.** No key
+was ever set, so `/api/ask` answered 503 to every request the site has made to
+it since the feature shipped. The local search underneath is what people were
+actually getting, and it is genuinely good — 196 chunks, ranked in the browser,
+no network round trip after the index loads.
+
+Both bugs fixed in item 254 were in the code just deleted. They were real while
+they lasted, and the fixes bought two days of correct behaviour before the
+feature was retired. Not wasted — the spinner one was the reason this
+conversation reached the key decision at all.
+
+#### The copy had to change with it
+
+The section promised "Answers come from this site, so nothing is made up."
+True of a model reading the site; the wrong word for a search, which returns
+pages rather than prose. A section that under-delivers on its own first
+sentence is worse than one that promises less.
+
+| | Before | After |
+| --- | --- | --- |
+| Eyebrow | "Ask anything" | "Find it fast" |
+| Promise | "Answers come from this site" | "Points you at the page that covers it" |
+| Empty result | an error message | "Nothing on the site covers that yet" + a link to Bilal |
+
+The empty result is the part worth keeping deliberate. With a full-site index,
+"nothing matched" is a real answer rather than a failure — it means the site
+genuinely does not cover it — so it hands over to the contact page instead of
+apologising.
+
+#### Measured after
+
+| | Result |
+| --- | --- |
+| `POST /api/ask` | **404** |
+| Requests to `/api/ask` from the page | **0** |
+| Real question | 3 matching pages |
+| Nonsense question | empty-state message, handoff CTA after the second search |
+| Page errors | none |
+| Homepage JS | 256KB, against 257KB before |
+
+The JS figure is the honest one: **the saving is not in the browser**, because
+the SDK only ever ran server-side. What went is a server route, a dependency, a
+recurring cost, and a class of failure that cannot happen now.
+
+All four checks pass.
