@@ -22,17 +22,71 @@ const SUGGESTIONS = [
   "What have you done for property developers?",
 ];
 
-/** Turns "/services/paid-marketing" in the answer text into a real link. */
+/** The first segment of every real route on the site.
+ *
+ *  A list rather than a shape check, and it is the whole fix for the bug
+ *  below. Twelve short strings, so it costs nothing in the bundle; if a new
+ *  top-level route is added, add it here or the assistant will stop linking
+ *  it. That is the safe direction to fail in — a missing link is invisible, a
+ *  link to a 404 is not. */
+const ROUTE_ROOTS = new Set([
+  "about",
+  "appointment",
+  "contact",
+  "faq",
+  "portfolio",
+  "pricing",
+  "privacy",
+  "process",
+  "real-estate-marketing",
+  "services",
+  "thank-you",
+]);
+
+/** Turns "/services/paid-marketing" in the answer text into a real link.
+ *
+ *  **Two guards, and both were missing.** The old version linked anything
+ *  matching `/` plus lowercase letters or digits, which turned ordinary prose
+ *  into broken links — measured against sentences this assistant is actually
+ *  prompted to write:
+ *
+ *    "available 24/7"          -> a link to /7
+ *    "AED 3,500/session"       -> a link to /session
+ *    "design/development"      -> a link to /development
+ *
+ *  Each one rendered as gold underlined text and led to a 404. The system
+ *  prompt tells the model to quote "AED 3,500", so that middle case was not
+ *  hypothetical.
+ *
+ *  1. **The slash must not follow a word character.** That alone kills all
+ *     three above, because in each the `/` sits between two words or digits.
+ *     Done with a capture group rather than a lookbehind, which Safari only
+ *     gained recently.
+ *  2. **The first segment must be a real route.** Catches the rest: a model
+ *     that invents `/blog` or `/case-studies` gets plain text, not a link to
+ *     a page that does not exist. */
 function withLinks(text: string) {
-  return text.split(/(\/[a-z0-9-]+(?:\/[a-z0-9-]+)*)/g).map((part, i) =>
-    /^\/[a-z0-9-]+(\/[a-z0-9-]+)*$/.test(part) ? (
+  // Group 1 is whatever precedes the path, so it is preserved rather than
+  // swallowed by the split.
+  const parts = text.split(/(^|[^\w])(\/[a-z0-9-]+(?:\/[a-z0-9-]+)*)/g);
+
+  return parts.map((part, i) => {
+    const isPath =
+      typeof part === "string" &&
+      part.startsWith("/") &&
+      ROUTE_ROOTS.has(part.split("/")[1] ?? "") &&
+      // Only the path capture group can be a link. A preceding-character group
+      // never starts with "/", so this holds without tracking group indices.
+      /^\/[a-z0-9-]+(\/[a-z0-9-]+)*$/.test(part);
+
+    return isPath ? (
       <a key={i} href={part} className="text-gold underline underline-offset-2 hover:opacity-80">
         {part}
       </a>
     ) : (
       <span key={i}>{part}</span>
-    )
-  );
+    );
+  });
 }
 
 export default function AskAssistant() {
@@ -97,6 +151,28 @@ export default function AskAssistant() {
       if (!results.length) setError("Couldn't reach the assistant. Email bilalshafqat42@gmail.com.");
     } finally {
       setStreaming(false);
+      // **Drop the placeholder turn if nothing ever arrived for it.**
+      //
+      // `ask` optimistically appends an empty assistant turn so the answer has
+      // somewhere to stream into, and the renderer treats "no content and no
+      // results" as "still loading" and draws a spinner. Every path that ended
+      // without filling that turn — a non-OK response, a thrown fetch, a stream
+      // that closed with zero bytes — left the placeholder behind, so the
+      // spinner span forever.
+      //
+      // Reproduced with no `ANTHROPIC_API_KEY` set, which is the current live
+      // state: `/api/ask` answers 503, and a question the local search cannot
+      // match showed the error message *and* a spinner that never stopped.
+      //
+      // In `finally` rather than in each branch so there is one place to be
+      // right, and a functional update so it reads the turn the stream actually
+      // left rather than the one captured when this closure was created.
+      setTurns((prev) => {
+        const last = prev[prev.length - 1];
+        return last?.role === "assistant" && !last.content && !last.results?.length
+          ? prev.slice(0, -1)
+          : prev;
+      });
     }
   }
 

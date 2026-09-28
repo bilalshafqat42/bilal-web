@@ -4696,3 +4696,75 @@ creative in this row now takes a 33% top-and-bottom crop; checked that the
 award ribbon still reads.
 
 All four checks pass against a production server.
+
+### 254. Two bugs in the Ask assistant
+
+Found in a homepage code review, both reproduced in a browser before being
+touched, both in `AskAssistant`.
+
+#### A spinner that never stopped
+
+`ask()` optimistically appends an empty assistant turn for the answer to stream
+into, and the renderer treats "no content and no results" as "still loading"
+and draws a spinner. **Every path that ended without filling that turn left the
+placeholder behind**: a non-OK response, a thrown fetch, or a stream that
+closed with zero bytes. `streaming` went false, the spinner did not.
+
+It was live. There is no `ANTHROPIC_API_KEY` set, so `/api/ask` answers 503 on
+every request:
+
+| Question | Before | After |
+| --- | --- | --- |
+| "Do you build mobile apps?" | 3 search results, no spinner | unchanged |
+| A question the local search cannot match | error message **plus a spinner that never stopped** | error message, no spinner |
+
+Fixed in `finally` rather than in each branch, so there is one place to be
+right, with a functional update so it reads the turn the stream actually left.
+
+#### Ordinary prose turned into broken links
+
+`withLinks` linked anything matching `/` plus lowercase letters or digits, so
+sentences this assistant is *prompted* to write became 404s:
+
+| Answer text | Link produced |
+| --- | --- |
+| "available 24/7" | `/7` |
+| "AED 3,500/session" | `/session` |
+| "design/development" | `/development` |
+| "Turnaround is 2/3 weeks" | `/3` |
+
+Gold, underlined, and dead. The system prompt tells the model to quote
+"AED 3,500", so the middle case was not hypothetical.
+
+Two guards now:
+
+1. **The slash must not follow a word character.** That alone kills all four —
+   in each the `/` sits between two words or digits. Written as a capture group
+   rather than a lookbehind, which Safari only gained recently.
+2. **The first segment must be a real route**, against an eleven-entry set.
+   Catches a model inventing `/blog` or `/case-studies`.
+
+Verified against nine sentences: every genuine path still links, every false
+positive is gone, and no text is lost or duplicated by the split.
+
+A new top-level route must be added to `ROUTE_ROOTS` or the assistant stops
+linking it — the safe direction to fail in, since a missing link is invisible
+and a link to a 404 is not.
+
+#### Clean in the same review
+
+One h1, no duplicate ids, no unlabelled links, no horizontal overflow at 1440,
+1024 or 390; no console or page errors beyond the 503 above; all 204 images
+with correct alt handling; GSAP tears down properly on a desktop-to-phone
+resize mid-scroll with no text stranded invisible; the about/services parallax
+handoff clean at six viewport sizes.
+
+Two things flagged and then disproved: an apparent overlap between the about
+band and the services section, which is the intended parallax with opaque
+panels, and an apparent bleed-through, which was the probe landing on the
+cookie banner.
+
+Left alone, noted only: the stream decoder is never flushed after the loop, so
+a multi-byte character straddling the final chunk boundary would be dropped;
+and the dynamic GSAP imports have no `.catch()`, so a failed chunk load logs an
+unhandled rejection without breaking anything visible.
