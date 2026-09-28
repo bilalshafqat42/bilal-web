@@ -44,12 +44,14 @@ const nextConfig: NextConfig = {
     // and a 2x phone needs ~680px for these tiles. With 828 in the list Next
     // upscaled 800 -> 828 and re-encoded an already-lossy AVIF, which added
     // weight with no extra detail. 800 gives an exact match instead.
-    // Capped at 1600. NOTE: `bilal-shirt.avif` is 3368x5056, so the claim above
-    // that nothing here exceeds 1928px is wrong and has been since that file was
-    // added (roadmap 213.18). The cap is still right — nothing on the site is
-    // *displayed* above 1600 CSS px — but the source should be downsampled to
-    // ~1800px wide so the optimiser is not decoding 17 megapixels on our own
-    // CPU to produce a 1600px variant.
+    // Capped at 1600, because nothing on the site is *displayed* above 1600 CSS
+    // px. `bilal-shirt.avif` used to break the "nothing exceeds 1928px" claim
+    // above at 3368x5056 — 17 megapixels decoded on our own CPU to produce a
+    // 1600px variant, on the site's most-requested image. Downsampled to 1800px
+    // on 2026-09-28: measured 2244ms to 1463ms for a full set of five variants,
+    // a 35% saving, and the 1600px output came out *smaller* (164KB to 155KB)
+    // because the discarded detail was only adding noise. No source in `public/`
+    // now exceeds 1800px.
     // Any larger entry only ever produced an upscale — more bytes, no more
     // detail, and a re-encode of already-lossy AVIF on our own CPU.
     deviceSizes: [640, 800, 1080, 1280, 1600],
@@ -57,8 +59,22 @@ const nextConfig: NextConfig = {
 
     // Default is 4 hours, after which a variant is re-encoded from scratch on
     // the next request — repeated CPU cost for an image that never changes.
-    // Filenames are content-addressed, so a long TTL is safe: a changed image
-    // gets a new URL rather than a stale cache hit.
+    //
+    // **The original justification here was wrong and is worth correcting.** It
+    // said filenames are content-addressed so a long TTL is safe. They are not:
+    // `/images/bilal-shirt.avif` and everything under `/portfolio` are plain
+    // paths with no hash. Next's optimiser caches on source path, width and
+    // quality rather than on file contents, so **replacing an image in place
+    // keeps serving the old variant for up to 30 days.**
+    //
+    // Hit on 2026-09-25 while re-cutting five thumbnails: the page kept serving
+    // the previous crops, and a measurement run reported them at the old aspect
+    // ratio long after the files had changed.
+    //
+    // The TTL is still right — it saves real CPU on a box that has little. The
+    // rule that goes with it is: **when you replace an image, give it a new
+    // filename**, or clear `.next/cache/images` as part of the deploy, before
+    // the `npm run warm` pass.
     minimumCacheTTL: 2592000, // 30 days
   },
 };

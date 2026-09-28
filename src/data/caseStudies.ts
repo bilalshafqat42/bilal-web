@@ -770,16 +770,3 @@ export function caseStudyUrls(): string[] {
     ...c.projects.map((p) => `/portfolio/${c.slug}/${p.slug}`),
   ]);
 }
-
-/** Sectors that actually have work behind them, in the order they appear in the
- *  data. Derived rather than listed, so a sector cannot show in the menu before
- *  a client in it exists — and appears the moment one does. */
-export function industriesWithWork(): { industry: Industry; clients: Client[] }[] {
-  const byIndustry = new Map<Industry, Client[]>();
-  for (const c of clients) {
-    const list = byIndustry.get(c.industry) ?? [];
-    list.push(c);
-    byIndustry.set(c.industry, list);
-  }
-  return [...byIndustry].map(([industry, cs]) => ({ industry, clients: cs }));
-}

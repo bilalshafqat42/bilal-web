@@ -2,8 +2,6 @@ import type { Faq } from "./pillars";
 import {
   allItems,
   itemsOfKind,
-  groupByDeliverable,
-  deliverableAnchor,
   type Item,
   type ItemKind,
 } from "@/lib/portfolioItems";
@@ -279,32 +277,6 @@ export function disciplineCount(d: Discipline): number {
 
 export function disciplinesWithPages(): Discipline[] {
   return disciplines.filter(hasPortfolioPage);
-}
-
-/** Menu sub-links: the generic deliverable types inside a discipline, with the
- *  count of each.
- *
- *  These were client names until 2026-09-09, taken from each item's `label`.
- *  With one client in the data that put "LEOS Developments" and "Cavendish
- *  Square" under every discipline, and the menu read as a real-estate portfolio
- *  rather than as a list of what can be built. Deliverable types stay generic
- *  however many clients or sectors sit behind them, and they are what a buyer
- *  is actually scanning for.
- */
-export function disciplinePieces(
-  d: Discipline
-): { label: string; href: string; count: number }[] {
-  // An aliased discipline lands on a section of a sibling's page, so repeating
-  // that sibling's sub-links beside it would print the same three rows twice in
-  // adjacent columns. Its own title, count and blurb are enough.
-  if (d.countFrom) return [];
-  const source = d;
-  const base = hasPortfolioPage(source) ? `/portfolio/${source.slug}` : source.serviceHref;
-  return groupByDeliverable(disciplineItems(source)).map((g) => ({
-    label: g.deliverable,
-    href: `${base}#${deliverableAnchor(g.deliverable)}`,
-    count: g.items.length,
-  }));
 }
 
 /**

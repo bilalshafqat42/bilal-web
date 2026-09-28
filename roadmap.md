@@ -4768,3 +4768,84 @@ Left alone, noted only: the stream decoder is never flushed after the loop, so
 a multi-byte character straddling the final chunk boundary would be dropped;
 and the dynamic GSAP imports have no `.catch()`, so a failed chunk load logs an
 unhandled rejection without breaking anything visible.
+
+### 255. Image optimisation and a dead-code sweep
+
+Two jobs in one pass.
+
+#### The portrait was 17 megapixels
+
+`public/images/bilal-shirt.avif` was **3368x5056**, and nothing on the site ever
+displays it above 1600 CSS px. It appears on four routes, and on the homepage it
+loads **twice** — `PortraitReveal` stacks a colour copy over a monochrome one.
+So the server was decoding 17 megapixels, twice, to paint the hero.
+
+`next.config.ts` had flagged this in a comment since roadmap 213.18 and it had
+never been done.
+
+| | Before | After |
+| --- | --- | --- |
+| Dimensions | 3368x5056 | **1800x2702** |
+| Megapixels | 17.0 | **4.9** |
+| File on disk | 586KB | 224KB |
+| Time to encode all five variants | 2244ms | **1463ms** |
+| Output at 1600px | 164KB | **155KB** |
+
+**35% less CPU per variant, and the output is smaller.** The discarded pixels
+were adding weight, not detail. No source in `public/` now exceeds 1800px.
+
+#### The cache note in `next.config.ts` was wrong
+
+It justified the 30-day `minimumCacheTTL` with "filenames are content-addressed,
+so a long TTL is safe". They are not — `/images/` and `/portfolio/` are plain
+paths with no hash. Next's optimiser caches on **source path, width and
+quality, not on file contents**, so replacing an image in place keeps serving
+the old variant for up to 30 days.
+
+Hit for real on 2026-09-25 while re-cutting thumbnails. The TTL is still right;
+the rule that goes with it is now written down: **give a replaced image a new
+filename**, or clear `.next/cache/images` on deploy before the `warm` pass.
+
+#### Dead code removed
+
+Everything below was verified unreferenced before deletion, not guessed.
+
+| Removed | Why it was dead |
+| --- | --- |
+| `src/components/Hero.tsx` (112 lines) | Superseded by `HeroBanner`; imported nowhere |
+| `src/components/LogoWall.tsx` (41 lines) | Removed from `/portfolio` on 2026-09-17; its logos live in `ClientLogoRow` |
+| `industriesWithWork()` in `caseStudies.ts` | No caller anywhere, not even inside its own file |
+| `disciplinePieces()` in `disciplines.ts` | Same |
+| `.glow-gold`, `.text-gradient-violet`, `.marquee-track`, `.hero-backdrop` | Defined in `globals.css`, used by no component. `.hero-backdrop` belonged to the deleted `Hero.tsx`; `.marquee-track` to a skills ticker removed long ago |
+| `og-leos-mobile.avif` | Superseded by the JPEG in 640ce1e — WhatsApp's crawler will not render AVIF |
+| Four stray PNG screenshots, 11MB | Untracked and unreferenced; never deployed, only cluttering the working copy |
+
+Deleting `disciplinePieces` orphaned two imports in the same file
+(`groupByDeliverable`, `deliverableAnchor`); both are still used by
+`DisciplinePage`, so only the import line was trimmed. Re-ran the scan after
+each removal until it came back empty: **zero files are now unimported.**
+
+#### Deliberately kept
+
+Seventeen exports are used only inside their own file, so the `export` keyword
+is redundant. Left alone: they are the public shape of the data modules, and
+stripping the keyword is churn with no measurable gain.
+
+`react-dom` and the `@types/*` packages show as "never imported" by a naive
+scan. They are required by React and TypeScript respectively. `proxy` in
+`src/proxy.ts` is the Next 16 middleware entry point, not a dead export.
+`bilal-square-dark.svg` is unreferenced but is the pair of the light logo the
+footer uses — kept deliberately.
+
+#### Two false positives worth recording
+
+- **Social creatives 2, 4, 5, 6, 7 looked unreferenced.** They are loaded from a
+  `basePath` plus an index in `caseStudies.ts`, which a literal-string scan
+  cannot see. Deleting them would have broken every case study gallery.
+- **`/services` reports five "broken" images at every width.** There are two
+  carousels, one `hidden lg:flex` and one `lg:hidden`, each holding the same
+  pictures. The browser correctly declines to load whichever set is hidden, so
+  `naturalWidth === 0` is right rather than broken — a different five at each
+  breakpoint. Same trap as the first sweep in item 246.
+
+`npm run warm` regenerated all 232 variants in 19.4s. All four checks pass.
