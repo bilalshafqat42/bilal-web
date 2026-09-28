@@ -5030,3 +5030,29 @@ client-approved figure or ship fewer cards; the grid handles two, three or four.
 Verified at 1440, 1024, 768 and 390: the figure grid runs 4 / 4 / 2 / 1 across
 those widths, no horizontal overflow, no page errors, and the derived count
 reads "5 case studies" at every size.
+
+### 259. Proof wall down to three figures
+
+Four cards to three, on instruction. Grid `lg:grid-cols-4` → `lg:grid-cols-3`.
+
+**Dropped "18 products shipped", and it was the right one to lose.** "Products"
+is undefined — a landing page, a mobile app and a brand system are not the same
+unit — so it was the only figure here that could not be checked even in
+principle. The two that remain are unverified but at least well defined, and
+unlike that one they are figures a client could actually confirm.
+
+Left: `[3.2x]` return on ad spend, `[-41%]` cost per qualified lead, and `15+`
+years. The first two still render bracketed because `verified` is false on
+both; the third is the only figure on the page that needs nobody's permission.
+
+| Viewport | Cards per row | Card width |
+| --- | --- | --- |
+| 1440 | 3 | 440px |
+| 1024 | 3 | 301px |
+| 768 | 2 then 1 | 350px |
+| 390 | 1 | 342px |
+
+No horizontal overflow at any width, no page errors, all four checks pass.
+
+The warning from item 258 stands unchanged: two of the three are still
+placeholders, and a bracketed number is still a number to a visitor.

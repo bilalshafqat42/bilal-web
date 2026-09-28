@@ -31,6 +31,13 @@ import { caseStudyUrls } from "@/data/caseStudies";
  * So: replace each one with a figure a client has approved, or set
  * `verified: false` entries aside and ship with fewer cards. The grid handles
  * two, three or four. What it must not do is go live pretending.
+ *
+ * **Three cards, on Bilal's instruction (2026-09-28).** The one dropped was
+ * "18 products shipped", and it was the right one to lose: "products" is
+ * undefined — a landing page, an app and a brand system are not the same unit —
+ * so it is the only figure here that could not be checked even in principle.
+ * The other two are unverified but at least well defined, and unlike this one
+ * they are figures a client could actually confirm.
  * ---------------------------------------------------------------------------
  */
 
@@ -59,13 +66,6 @@ const stats: Stat[] = [
     label: "Cost per qualified lead",
     detail: "Within the first 90 days of taking over an account",
     meta: "Qualified, not raw",
-    verified: false,
-  },
-  {
-    value: "18",
-    label: "Products shipped",
-    detail: "Web and mobile builds taken from brief to live",
-    meta: "Custom · WordPress · Mobile",
     verified: false,
   },
   {
@@ -144,7 +144,7 @@ export default function Results() {
 
         {/* The figures. `items-stretch` plus `h-full` so a card with a longer
             detail line does not leave its neighbours short. */}
-        <RevealStagger className="mt-14 grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4">
+        <RevealStagger className="mt-14 grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3">
           {stats.map((s) => (
             <RevealItem key={s.label} className="h-full">
               <div className="flex h-full flex-col rounded-2xl border border-border panel p-6">
