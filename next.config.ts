@@ -55,6 +55,27 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
+      // **www to non-www, 301.** Every page was answering on both hostnames
+      // with byte-identical content — verified on the live site: `/about`
+      // returned 200 at `bilalshafqat.com` and at `www.bilalshafqat.com`.
+      //
+      // The canonical tag already pointed at the non-www URL, which is why
+      // nothing was broken, but a canonical is a *hint*. Search Console still
+      // discovers, crawls and reports the www copies — usually as "Alternate
+      // page with proper canonical tag", and if Google ever disagrees with the
+      // hint, as "Duplicate, Google chose a different canonical than user".
+      // A redirect is the instruction the hint was only suggesting.
+      //
+      // Matched on the `host` header rather than configured at DNS, because the
+      // Next app is already what answers on www — the request reaches this
+      // middleware either way. `permanent: true` is a 308, which preserves the
+      // method and, like a 301, passes ranking history to the surviving URL.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.bilalshafqat.com" }],
+        destination: "https://bilalshafqat.com/:path*",
+        permanent: true,
+      },
       // /about-me was a real WordPress URL with existing links and ranking
       // history, so it is redirected rather than left to 404. 308 is permanent,
       // which is what passes the old page's equity to the new one.

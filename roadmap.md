@@ -5668,3 +5668,46 @@ rather than a design.
 Verified at 1920, 1440, 1024, 768 and 390: proof wall 3 cards, pricing table 4
 columns by 5 rows, no overflow, no page errors, and **0 bracketed strings in the
 rendered text**. All four checks pass.
+
+### 272. www and non-www were both serving the whole site
+
+Investigating a Search Console error. The site answers on **both hostnames with
+byte-identical content**, verified live:
+
+| URL | Status |
+| --- | --- |
+| `https://bilalshafqat.com/about` | 200 |
+| `https://www.bilalshafqat.com/about` | 200, identical |
+
+Both `http://` variants already 301 to their `https://` equivalent, so TLS was
+never the gap — the hostname was.
+
+**The canonical tag was already right**, pointing every www page at the non-www
+URL, which is why nothing was visibly broken and why rankings were not split.
+But a canonical is a *hint*. Google still discovers and crawls the www copies,
+and Search Console reports them — normally as **"Alternate page with proper
+canonical tag"**, and if Google ever disagrees with the hint, as **"Duplicate,
+Google chose a different canonical than user"**. Both are the same underlying
+cause: two addresses, one page.
+
+A 308 from www to non-www is the instruction the canonical was only suggesting.
+
+Matched on the `host` header in `next.config.ts` rather than configured at DNS,
+because the Next app is already what answers on www — the request reaches the
+redirect either way, and keeping it in the repo means it is reviewable and
+deploys with everything else.
+
+Verified with a spoofed Host header:
+
+| Request | Result |
+| --- | --- |
+| `www` + `/` | 308 → `https://bilalshafqat.com/` |
+| `www` + `/about` | 308 → `https://bilalshafqat.com/about` |
+| `www` + `/services/ui-ux-design` | 308 → `https://bilalshafqat.com/services/ui-ux-design` |
+| non-www `/`, `/about` | 200, untouched |
+
+The path is preserved, so a www link to a deep page still lands on that page
+rather than the homepage — which is what makes this safe for any inbound links
+already pointing at www.
+
+The five existing WordPress redirects still resolve. All four checks pass.
