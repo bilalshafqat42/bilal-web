@@ -69,7 +69,7 @@ export default function DisciplineStatement() {
             // 60/10/30 of the time. The column sets the measure instead, and the
             // explicit `<br />` below still puts the gold block on its own line.
             className="t-display max-w-[17ch] sm:max-w-none">
-            Fifteen years of experience in{" "}
+            Fifteen years of experience&nbsp;in
             <br />
             <RotatingDiscipline paused={paused} />
           </p>

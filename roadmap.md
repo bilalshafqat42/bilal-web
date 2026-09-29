@@ -5367,3 +5367,60 @@ design. A stacked-vs-side-by-side check that compares `top` reports every
 breakpoint as stacked. Compare `left` instead.
 
 All four checks pass.
+
+### 266. The orphaned "in" — fixed, but not the way it was asked
+
+Bilal: "please remove the linebreak from the left column." The screenshot shows
+why — at 1920 the statement read:
+
+```
+Fifteen years of experience
+in
+[app development]
+```
+
+"in" alone on a line, which is exactly the orphan a typographer would delete.
+
+**Removing the `<br />` fixes that and breaks something worse.** With the break
+gone, whether the sentence fits on two lines or needs three depends on how long
+the rotating phrase is — and the phrase changes every three seconds, forever.
+Measured across 1024–1920 in 32px steps:
+
+| | |
+| --- | --- |
+| Widths that change height as the word rotates | **12 of 29 sampled, 1056 to 1408** |
+| Worst case | 1280px: **179px against 256px — a 77px jump** |
+
+That is a continuous layout shift on most laptop widths, repeating every
+rotation, and the columns are `items-end` so the right-hand column bounces with
+it. The site's CLS is currently **0.0005**; this would have wrecked the one
+Core Web Vital that is comfortably perfect.
+
+Two fixes were tried and rejected:
+
+- **Reserve three line boxes (`min-h-[3lh]`).** Still jumped at five widths.
+  The gold block carries `leading-[1.25]` against the statement's `1.02`, so a
+  line containing the block is taller than `1lh` and the unit cannot describe
+  it.
+- **Reserve the block's width.** Deterministic, and it turns the gold
+  highlight into a fixed 616px bar with "all of it." (255px) floating in it.
+  That is a different design, not a bug fix.
+
+**What shipped instead: the break stays, and `experience&nbsp;in` glues the
+orphan to the word before it.** Same visual outcome Bilal was after — the
+lonely "in" is gone — with no reflow at all.
+
+```
+Fifteen years of
+experience in
+[paid ads]
+```
+
+Measured at 1024, 1088, 1152, 1280, 1366, 1440, 1600 and 1920: the first two
+lines read "Fifteen years of" / "experience in" at **every** width, and the
+height is stable across all six phrases at each one. No width jumps.
+
+Flagged to Bilal that this is not literally what he asked for, with the
+fixed-width-block version offered if he prefers the break genuinely gone.
+
+All four checks pass.
