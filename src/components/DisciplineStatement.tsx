@@ -68,10 +68,10 @@ export default function DisciplineStatement() {
             // so the measured split came out 44.6/25.4/30 instead of the
             // 60/10/30 of the time. The column sets the measure instead, and the
             // explicit `<br />` below still puts the gold block on its own line.
-            className="t-display max-w-[17ch] sm:max-w-none">
-            Fifteen years of experience&nbsp;in
+            className="t-display max-w-[17ch] sm:max-w-none lg:text-[min(4.75rem,5.4vw)]!">
+            Fifteen years of experience
             <br />
-            <RotatingDiscipline paused={paused} />
+            in&nbsp;<RotatingDiscipline paused={paused} />
           </p>
 
           <div className="lg:pb-4">

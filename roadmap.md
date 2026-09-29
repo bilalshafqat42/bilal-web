@@ -5455,3 +5455,51 @@ the heading height is identical across all six phrases at each one, so nothing
 reflows as the word types. Nothing clipped, no overflow.
 
 All four checks pass.
+
+### 268. The statement is exactly two rows on desktop
+
+Asked for, precisely: "Fifteen years of experience" on row one, "in — dynamic
+text" on row two, maximum and minimum two rows.
+
+Two changes, and the second was the real work.
+
+**1. The break moved.** It was after "in"; it is now after "experience", and
+row two is `in&nbsp;` plus the rotating block. The non-breaking space is
+load-bearing: without it the longest phrase at the narrowest desktop width
+pushes the block onto a third line. This replaces the `experience&nbsp;in` glue
+from item 266 — "in" cannot be orphaned at the end of row one any more because
+it is not there.
+
+**2. The statement got its own font size.** The break alone gave two rows from
+1366 up and **three below it**. `--t-display` reaches its 76px maximum at about
+a 1210px viewport, but this column is 70% of a container that is still growing,
+so between 1024 and 1365 the type sat at full size in a column too narrow for
+it. Measured at 1024: row one needed **772px of a 661px column**.
+
+`lg:text-[min(4.75rem,5.4vw)]!` ties the size to the viewport so it reaches
+76px only once the column can hold the line, at about 1407px.
+
+| Width | Font | Rows |
+| --- | --- | --- |
+| 1024 | 55px | **2** |
+| 1120 | 60px | **2** |
+| 1280 | 69px | **2** |
+| 1366 | 74px | **2** |
+| 1440 → 2560 | 76px | **2** |
+
+All six phrases, at all eleven widths sampled, with the paragraph height
+identical across phrases at each width — so nothing reflows as the word types.
+
+Two details worth keeping:
+
+- **Scoped to this paragraph, not to `--t-display`.** The hero `h1` shares that
+  token and has an entirely different measure; changing it there would have
+  shrunk the hero to fix the opener.
+- **The `!` is required.** `.t-display` is declared in `globals.css` after the
+  Tailwind import, so at equal specificity it wins over the utility. Without
+  the important flag the class generated correctly and did nothing — measured
+  67px at 1024 either way, which is exactly the sort of silent no-op that reads
+  as "the change didn't work".
+
+Below `lg` nothing moved: 45px at 390, 53px at 640, 58px at 768, 67px at 1023,
+no overflow at any width. All four checks pass.
