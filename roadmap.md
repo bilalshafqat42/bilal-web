@@ -5212,3 +5212,66 @@ delete it or earn it — a bracketed one is a placeholder, not a soft claim.
   "Who I work with".
 
 All four checks pass.
+
+### 263. `.site-container` capped at 1440
+
+Bilal: "on the desktop view 100% width is killing the whole design… what if the
+section is 100% but the content is inside the container?" That is the standard
+pattern, and the cost of not having it was measurable.
+
+| Screen | Container before | Longest body line before |
+| --- | --- | --- |
+| 1280 | 1280 | 681px |
+| 1440 | 1440 | 681px |
+| 1920 | 1920 | 1062px |
+| 2560 | 2560 | **1478px** |
+
+Comfortable reading is 45 to 75 characters. On a 27-inch monitor one line of
+copy crossed nearly the whole screen, and the eye loses its place returning to
+the start of the next.
+
+**The codebase already half-believed this.** The note above the rule said long-
+form prose must not inherit the full width because "a 1840px line is unreadable
+however consistent it is", and six pages — /about, /faq, /contact, /privacy and
+two case study templates — had opted out into their own narrower columns. Six
+workarounds is the sign the container was wrong, not the pages.
+
+One rule, `max-width: 1440px` inside the existing `lg` block, fixes 27
+components and 69 usages at once.
+
+**1440 rather than something tighter**, because it is the most common desktop
+width and the one the designs are drawn at: a 1440 laptop sees no change at
+all, and the cap only engages above that, which is where the problem was.
+
+#### The hero is untouched, at Bilal's instruction — and it needed no exception
+
+`HeroBanner` never used `.site-container`. It matches the header's padding
+instead, so the headline aligns to the wordmark and the portrait can bleed off
+the right edge, neither of which a centred column can do. The only mention of
+the class in that file is a comment explaining why it is *not* used, so the cap
+passed it by without a special case.
+
+At 1920 the hero block is 1536 (80% of the viewport, as designed) and the
+content below is 1440. Both centred, the hero slightly wider — which is the
+intended relationship, not a mismatch.
+
+#### Measured after
+
+| Screen | Container | Longest line |
+| --- | --- | --- |
+| 1024 | 1024 | — |
+| 1280 | 1280 | 750px |
+| 1440 | **1440** | 750px |
+| 1920 | **1440** | 750px |
+| 2560 | **1440** | 750px |
+
+Nothing grows with the viewport any more. Checked across /, /services,
+/portfolio, /about, /pricing, /process, /faq, /contact and a case study at
+1920: every container 1440, no page overflow, no errors.
+
+Also narrowed the engagement footnote from `max-w-4xl` to `max-w-[68ch]`. It
+was the widest paragraph left on the homepage at 130 characters — added by me
+the day before, and the cap alone would not have touched it because 896px is
+under 1440.
+
+All four checks pass.

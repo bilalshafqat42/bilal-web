@@ -263,7 +263,7 @@ export default function Engagement({
           </div>
         </Reveal>
 
-        <p className="mt-10 flex max-w-4xl gap-3 text-sm leading-relaxed text-muted">
+        <p className="mt-10 flex max-w-[68ch] gap-3 text-sm leading-relaxed text-muted">
           <Info size={16} className="mt-0.5 shrink-0 text-muted/60" aria-hidden="true" />
           Prices exclude ad spend and third-party licences. Every model starts with the
           same free consultation, and you get a written scope before anything is invoiced.

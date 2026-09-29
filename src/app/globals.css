@@ -178,6 +178,28 @@ h6,
   .site-container {
     width: 100%;
     padding-inline: 2.5rem;
+    /* **Capped at 1440 on 2026-09-29.** Until then this was full-bleed at every
+       width, and the cost was measured rather than assumed: the longest body
+       paragraph ran 105 characters at 1440 and **114 characters, 1478px wide,
+       at 2560**. Comfortable reading is 45 to 75. On a 27-inch monitor a single
+       line of copy crossed nearly the whole screen, and the eye loses its place
+       coming back to the start of the next one.
+
+       1440 rather than something tighter because it is the most common desktop
+       width and the one the designs are drawn at: a 1440 laptop sees no change
+       at all, and the cap only engages on the larger monitors where the problem
+       actually is.
+
+       The comment above — that long-form prose does not inherit this, because
+       a 1840px line is unreadable — was right about the symptom and wrong about
+       the fix. Six pages had opted out into their own narrower columns to work
+       around it. That is the sign the container was wrong, not the pages.
+
+       **The hero is untouched, deliberately.** It never used this class: it
+       matches the header's padding so the headline aligns to the wordmark and
+       the portrait can bleed off the right edge, neither of which a centred
+       column can do. Sections stay full width; only their content is capped. */
+    max-width: 1440px;
   }
 }
 
