@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import { ArrowRight } from "lucide-react";
 import CtaButton from "@/components/CtaButton";
 
@@ -149,13 +149,27 @@ export default function AboutSplit() {
           // next begins: that is the "one by one" that was asked for, and an
           // overlap would put two things in motion at once.
           //
-          // **The beat between the last word and the lift was too long.** It
-          // ran 0.71 to 0.88, which across the old 1260px range was 214px of
-          // scrolling with nothing responding — about a quarter of a screen
-          // where the page appears to have stopped listening. Shortened to
-          // 0.76–0.85, and the section itself shortened from 240svh to 210svh,
-          // which takes the beat to roughly 90px. Still a pause, no longer a
-          // gap.
+          // **The assembled band now holds for a quarter of the range, and
+          // that is the whole point of this revision.**
+          //
+          // Bilal: "this section goes very fast while scrolling… a new user
+          // comes and he never finds out this section." Measured, that was a
+          // precise description. The animation finished at 0.79 and the lift
+          // began at 0.86, so the *completed* band — the state the section
+          // exists to show — was on screen for **69px of scroll**, a fraction
+          // of a second at any normal speed. Everything before it was assembly
+          // and everything after was exit. There was never a moment where the
+          // section simply was.
+          //
+          // Assembly is now compressed into the first two thirds and the
+          // finished band holds from 0.65 to 0.90 — about 315px, four and a
+          // half times longer — before it lifts. The section went from 210svh
+          // back to 240svh to pay for that without slowing the beats down.
+          //
+          // This is the opposite correction to the one made at 210svh, which
+          // shortened a *dead* gap between the last word landing and the lift.
+          // A pause before the thing is finished is a gap; a pause with the
+          // finished thing on screen is the point.
           // **The first tween starts at 0.06, not 0, and that is a fix.** The
           // stage is `sticky`, so for the last few pixels before it pins it is
           // still travelling up the window. Starting the wipe at 0 meant the
@@ -163,17 +177,17 @@ export default function AboutSplit() {
           // together read as a diagonal from the bottom left — which is exactly
           // what Bilal reported. A sixteenth of the range is roughly 80px of
           // scroll, by which point the stage is certainly still.
-          tl.from(white, { xPercent: -100, duration: 0.18 }, 0.06)
-            .to(headText, showHead, 0.27)
-            .from(darkPanel, { yPercent: 100, duration: 0.16 }, 0.43)
-            .to(darkText, showBody, 0.62)
+          tl.from(white, { xPercent: -100, duration: 0.13 }, 0.03)
+            .to(headText, showHead, 0.17)
+            .from(darkPanel, { yPercent: 100, duration: 0.14 }, 0.32)
+            .to(darkText, showBody, 0.48)
             // The lift. The whole band travels straight up and off, uncovering
             // the section behind it — which is already in place rather than
             // arriving, because `page.tsx` pulls it up one window under this
             // one. It rises at scroll speed while the band leaves at several
             // times that, which is the parallax: the thing behind reads as
             // having been there the whole time.
-            .to(stage, { yPercent: -100, duration: 0.14, ease: "power2.in" }, 0.86);
+            .to(stage, { yPercent: -100, duration: 0.10, ease: "power2.in" }, 0.90);
 
           return () => {
             tl.scrollTrigger?.kill();
@@ -198,21 +212,35 @@ export default function AboutSplit() {
     <section
       ref={sectionRef}
       aria-labelledby="about-split-heading"
-      // 210svh at desktop: one window for the stage to be looked at, 110svh for
-      // the animation to be scrubbed across. It was 240svh, which left a long
+      // 240svh at desktop: one window for the stage to be looked at, 140svh for
+      // the animation to be scrubbed across. Most of the extra height buys the
+      // hold on the assembled band rather than slower beats. It was 240svh, which left a long
       // stretch near the end where nothing was moving; see the timing note in
       // the effect above. **`motion-safe:`, so
       // reduced motion does not get 900px of empty scrolling for an animation
       // that never runs** — measured at 1800px before this, with nothing moving
       // through any of it. No background — see the note above; the hero shows
       // through whatever the panels have not covered.
-      className="relative motion-safe:lg:min-h-[210svh]"
+      className="relative motion-safe:lg:min-h-[240svh]"
     >
       {/* The stage. Sticky, so it holds still at the top of the window while
           the section's second window of height scrolls past underneath it.
           `overflow-hidden` contains the panels while they are outside it. */}
       <div
         ref={stageRef}
+        // `--content` and `--gutter` are declared here so the panels and the
+        // grid below both derive from one number. Capping the content at 1440
+        // without them would break the design: the panels are viewport-relative
+        // and the columns are content-relative, so above 1440 the colour split
+        // and the column split land in different places — measured at 1920, the
+        // white would end at 768 while the dark column started at 816, leaving
+        // a 48px strip of dark background with no content on it.
+        style={
+          {
+            "--content": "min(1440px, 100%)",
+            "--gutter": "calc((100% - min(1440px, 100%)) / 2)",
+          } as CSSProperties
+        }
         className="relative overflow-hidden lg:flex lg:min-h-svh lg:items-center motion-safe:lg:sticky motion-safe:lg:top-0"
       >
         {/* The white field: columns one and two together, 40% of the screen.
@@ -221,7 +249,7 @@ export default function AboutSplit() {
         <div
           ref={whiteRef}
           aria-hidden="true"
-          className="absolute inset-0 bg-white lg:right-auto lg:w-[40%]"
+          className="absolute inset-0 bg-white lg:right-auto lg:w-[calc(var(--gutter)+0.4*var(--content))]"
         />
 
         {/* The dark field: column three, 60% of the screen, painted as a
@@ -239,7 +267,7 @@ export default function AboutSplit() {
         <div
           ref={darkPanelRef}
           aria-hidden="true"
-          className="absolute inset-y-0 right-0 hidden bg-bg lg:block lg:w-[60%]"
+          className="absolute inset-y-0 right-0 hidden bg-bg lg:block lg:w-[calc(var(--gutter)+0.6*var(--content))]"
         />
 
         {/* Percentages rather than fr units because those three numbers are the
@@ -257,7 +285,10 @@ export default function AboutSplit() {
             Stretching them instead, then centring each one's contents, cannot
             do this: the columns hold very different amounts of copy, so two
             independent centrings put their tops in two different places. */}
-        <div className="relative grid w-full grid-cols-1 lg:grid-cols-[25%_15%_60%] lg:items-start">
+        {/* Capped at 1440 and centred, matching `.site-container` everywhere
+            else on the site. The panels above stay full-bleed — the section is
+            still edge to edge, only its content is not. */}
+        <div className="relative mx-auto grid w-full grid-cols-1 lg:w-[var(--content)] lg:grid-cols-[25%_15%_60%] lg:items-start">
           {/* 1. The heading, black on the white field. */}
           <div
             ref={headRef}

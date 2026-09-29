@@ -5275,3 +5275,63 @@ the day before, and the cap alone would not have touched it because 896px is
 under 1440.
 
 All four checks pass.
+
+### 264. The about band: capped at 1440, and given a hold
+
+Two requests. The second turned out to have a precise cause.
+
+#### "It goes very fast… a new user never finds out this section"
+
+Measured, and he was describing something exact. The animation finished at 0.79
+and the lift began at 0.86, so the **completed band — the state the section
+exists to show — was on screen for 69px of scroll.** Everything before it was
+assembly and everything after was exit. There was never a moment where the
+section simply *was*.
+
+| Phase | Before | After |
+| --- | --- | --- |
+| White wipe | 178px | 164px |
+| Heading | 128px | 164px |
+| Dark panel | 158px | 176px |
+| Body, figures, CTA | 168px | 214px |
+| **Assembled and holding** | **69px** | **328px** |
+| Lift away | 138px | 126px |
+
+Assembly compressed into the first two thirds, section back from 210svh to
+240svh to pay for the hold without slowing the individual beats. Verified by
+scanning the range in 2% steps for "all text at opacity 1 and the stage not yet
+lifting": assembled from 64% to 90%, **328px, 4.8x longer.**
+
+**No scroll snapping was added, deliberately.** Bilal asked for "snapping like
+functionality", and item 247 removed exactly that from the hero because
+ScrollTrigger's snap scrolls the window for you — a 60px nudge produced 251px
+of travel. The complaint here was that the section passes unnoticed, and the
+cause was a 69px resting state rather than the scroll rate. Fixing the cause
+leaves the scroll honest: a 45-notch wheel still delivers +5400 for +5400, zero
+overshoot. If a literal snap is still wanted, CSS `scroll-snap-type: y
+proximity` is the version that does not fight the user, and is a separate
+change.
+
+#### The 1440 cap, and why it needed more than a max-width
+
+The panels are viewport-relative (40/60) and the columns are content-relative
+(25/15/60). Capping the content alone would have split them apart: **measured at
+1920, the white would end at 768 while the dark column began at 816**, leaving a
+48px strip of dark background carrying no content.
+
+So the stage now declares `--content: min(1440px, 100%)` and `--gutter` beside
+it, and the panels derive from the same numbers — each bleeds to its viewport
+edge and meets on the content's own 40% line.
+
+| Viewport | Grid | White ends | Dark starts | Dark column starts | Panels bleed |
+| --- | --- | --- | --- | --- | --- |
+| 1280 | 1280 @ 0 | 512 | 512 | 512 | 0…1280 |
+| 1440 | 1440 @ 0 | 576 | 576 | 576 | 0…1440 |
+| 1920 | 1440 @ 240 | 816 | 816 | 816 | 0…1920 |
+| 2560 | 1440 @ 560 | 1136 | 1136 | 1136 | 0…2560 |
+
+Colour split and column split land on the same pixel at every width, and the
+section is still edge to edge.
+
+Clean at 1920, 1440, 1440 reduced-motion, 1024 and 390: no overflow, no errors,
+all text at full opacity after the sequence. All four checks pass.
