@@ -1,206 +1,273 @@
-"use client";
+import Link from "next/link";
+import { Info } from "lucide-react";
+import Reveal from "./Reveal";
 
-import { useState, useId } from "react";
-import { Package, RefreshCw, Users2, Send, ChevronDown, type LucideIcon } from "lucide-react";
-import SectionHeading from "./SectionHeading";
-import Reveal, { RevealStagger, RevealItem } from "./Reveal";
-import CtaButton from "@/components/CtaButton";
+/**
+ * The four engagement models, as one comparison table.
+ *
+ * Rebuilt 2026-09-29 to the design Bilal sent. It replaces four cards with a
+ * "See details" accordion each — a shape that made the reader open four things
+ * and hold them in their head to compare, which is the opposite of what someone
+ * choosing between options is trying to do. The design's own subtitle names the
+ * fix: "No accordions, no 'contact for pricing'."
+ *
+ * ---------------------------------------------------------------------------
+ * **A real `<table>`, not a grid of divs.** This is tabular data: four models
+ * against six attributes. A screen reader user on a real table can ask for the
+ * value at "Monthly retainer / Time to start" and get it, because `scope="col"`
+ * and `scope="row"` tell it what the cell belongs to. In a div grid that
+ * relationship does not exist and the whole thing reads as sixty loose phrases.
+ *
+ * **It scrolls sideways below `lg` rather than restacking.** A five-column
+ * table cannot become four readable cards without rendering the content twice,
+ * once per layout, and duplicated content is duplicated for a crawler. The
+ * alternative CSS-only restack turns the table column-major — every model's
+ * "commitment" together, then every model's "best for" — which is grouped by
+ * attribute rather than by model, and answers a question nobody asked. A
+ * horizontally scrolled comparison table is a pattern people already know.
+ * ---------------------------------------------------------------------------
+ *
+ * **On the prices.** `AED 31,500`, `AED 16,000` and `AED 3,500` are real and
+ * already published on /pricing and in the site content. The three-month
+ * retainer minimum is real too. Everything still in brackets is not: the
+ * ongoing-partner rate, every "time to start", the support and session windows,
+ * and the "most chosen" badge — see the note on that below.
+ */
 
 type Model = {
-  icon: LucideIcon;
-  title: string;
-  /** A published "from" figure, or omitted where there isn't one yet.
-   *
-   *  Only the three models priced by *hours included* carry a number, because
-   *  that scope is a decision rather than an estimate: a retainer is 30 hours
-   *  because that is what it is sold as, and an advisory session is four. Those
-   *  cannot turn out to be wrong mid-project.
-   *
-   *  "Ongoing Partner" has no figure because none was supplied, and the per-
-   *  service build prices are held back for the opposite reason to the three
-   *  below: they are priced by hours *required*, which is a guess about how long
-   *  a job takes until two projects have been timed. */
-  price?: string;
-  description: string;
-  idealFor: string[];
-  contribute: string[];
-  bestFor: string;
+  name: string;
+  price: string;
+  priceNote: string;
+  /** The raised, gold-priced column. One only, or it stops meaning anything. */
+  featured?: boolean;
+  /** Unverified prices render bracketed, the same guard the proof wall and the
+   *  process timings use: the brackets are applied at render time, never typed
+   *  into the string, so a figure cannot be promoted to a commitment by editing
+   *  a string. */
+  priceVerified: boolean;
+  cta: { label: string; href: string };
 };
 
 const models: Model[] = [
   {
-    icon: Package,
-    title: "Project-Based",
-    price: "from AED 31,500",
-    description: "A defined deliverable with a clear scope, timeline, and price.",
-    idealFor: ["A website, app, or ad campaign with a clear brief", "Graphic design or social content for a launch", "A one-off build with no ongoing commitment"],
-    contribute: ["Fixed-scope proposal and timeline", "Design, development, or campaign delivery", "Handover with documentation or training"],
-    bestFor: "Best for focused projects with clear goals and timelines.",
+    name: "Project-based",
+    price: "AED 31,500",
+    priceNote: "starting price",
+    priceVerified: true,
+    cta: { label: "Get a quote", href: "/contact" },
   },
   {
-    icon: RefreshCw,
-    title: "Monthly Retainer",
-    price: "from AED 16,000 / month, minimum 3 months",
-    description: "Ongoing marketing, design, or development support on a recurring basis.",
-    idealFor: ["Continuous paid ad management", "Regular social content & posting", "Ongoing feature development or site updates"],
-    contribute: ["Monthly deliverables & reporting", "Priority turnaround on requests", "A single point of contact across disciplines"],
-    bestFor: "Best for businesses needing consistent, ongoing output.",
+    name: "Monthly retainer",
+    price: "AED 16,000",
+    priceNote: "per month",
+    featured: true,
+    priceVerified: true,
+    cta: { label: "Book a free consultation", href: "/appointment" },
   },
   {
-    icon: Users2,
-    title: "Ongoing Partner / Dedicated Support",
-    description: "Embedded support alongside your team for larger or longer-running initiatives.",
-    idealFor: ["Multi-channel campaigns running in parallel", "A product roadmap with continuous development", "Teams that need extra hands without a full hire"],
-    contribute: ["Cross-functional marketing, design & dev support", "Direct collaboration with your internal team", "Flexible capacity as needs change"],
-    bestFor: "Best for scaling teams or fast-moving projects.",
+    name: "Ongoing partner",
+    price: "AED amount",
+    priceNote: "per month",
+    priceVerified: false,
+    cta: { label: "Discuss it", href: "/contact" },
   },
   {
-    icon: Send,
-    title: "Consulting & Advisory",
-    price: "from AED 3,500 per session",
-    description: "High-level review and guidance focused on clarity and measurable outcomes.",
-    idealFor: ["A marketing, UX, or technical review", "Expert input before a bigger investment", "Independent insight without execution dependency"],
-    contribute: ["Marketing, UX & technical performance review", "A prioritised action plan", "Optional support to implement recommendations"],
-    bestFor: "Best for leadership teams needing clarity and direction.",
+    name: "Consulting",
+    price: "AED 3,500",
+    priceNote: "per session",
+    priceVerified: true,
+    cta: { label: "Book a session", href: "/appointment" },
   },
 ];
 
-function EngagementCard({ model, defaultExpanded = false }: { model: Model; defaultExpanded?: boolean }) {
-  const [expanded, setExpanded] = useState(defaultExpanded);
-  // Stable across server and client render, and unique per card — several of
-  // these sit on the page at once, so a hard-coded id would collide.
-  const detailsId = useId();
+/** One entry per row. `cells` is in the same order as `models`, and a cell is
+ *  either a string or a list — the "what you get" row is the only list, and
+ *  giving it its own type rather than joining with commas keeps it a list for
+ *  a screen reader too.
+ *
+ *  A cell marked `muted` is an exclusion rather than an inclusion: "No
+ *  implementation" is what consulting does *not* include, and rendering it at
+ *  the same weight as the things it does include reads as a feature. */
+type Cell = string | { items: (string | { text: string; muted: true })[] };
 
-  return (
-    <div className="card-hover h-full rounded-2xl border border-border panel p-7 flex flex-col">
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-gold/20 to-violet/20 border border-border text-gold">
-        <model.icon size={22} />
-      </div>
-      <h3 className="t-h4 mt-6 text-ink">{model.title}</h3>
-      {model.price ? (
-        <p className="mt-2 text-sm font-semibold text-gold">{model.price}</p>
-      ) : null}
-      <p className="mt-3 text-base text-muted leading-relaxed">{model.description}</p>
-      <p className="mt-4 text-sm italic text-muted/80">{model.bestFor}</p>
+const rows: { label: string; cells: Cell[] }[] = [
+  {
+    label: "Commitment",
+    cells: ["One scope", "Minimum 3 months", "[2] days a week", "One session"],
+  },
+  {
+    label: "Best for",
+    cells: [
+      "A focused project with a clear goal and deadline",
+      "Consistent output month after month",
+      "A scaling team that needs capacity, not a vendor",
+      "A team that needs a second opinion, not hands",
+    ],
+  },
+  {
+    label: "What you get",
+    cells: [
+      { items: ["Fixed scope and price", "Design and build", "Tracking before launch", "[30] days support"] },
+      { items: ["One agreed focus a month", "Marketing, design or dev", "Report against one metric", "Direct access, no PM layer"] },
+      { items: ["Inside your tools", "Priority over other work", "Quarterly planning", "Handover docs as standard"] },
+      { items: ["[90] minute session", "Campaign or build review", "Written recommendations", { text: "No implementation", muted: true }] },
+    ],
+  },
+  {
+    label: "Time to start",
+    cells: ["[1 to 2] weeks", "[1] week", "[2 to 3] weeks", "[2 to 3] days"],
+  },
+  {
+    label: "Reporting",
+    cells: ["At handover", "Monthly", "Weekly", "Written summary"],
+  },
+];
 
-      <button
-        type="button"
-        onClick={() => setExpanded((v) => !v)}
-        aria-expanded={expanded}
-        aria-controls={detailsId}
-        className="mt-5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-gold hover:text-gold-2 transition-colors"
-      >
-        {expanded ? "Hide details" : "See details"}
-        <ChevronDown size={14} className={`transition-transform ${expanded ? "rotate-180" : ""}`} />
-      </button>
-
-      {/* Expand/collapse without framer-motion.
-       *
-       * This was `AnimatePresence` animating height 0 to auto, and it was the
-       * only thing still pulling a 141KB animation library onto the homepage
-       * and /about. A grid row going `0fr` to `1fr` animates to automatic
-       * height in CSS, which is the one thing height transitions could not do
-       * until recently and the reason a library was reached for.
-       *
-       * `min-h-0` on the inner wrapper is what lets the row actually collapse;
-       * without it the grid keeps the content's height and nothing moves.
-       *
-       * `inert` while collapsed because the content stays in the DOM now rather
-       * than being unmounted. Without it the hidden bullets stay focusable and
-       * are read out by a screen reader, which the old version never did.
-       */}
-      <div
-        id={detailsId}
-        inert={!expanded}
-        className={`grid overflow-hidden transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(.22,1,.36,1)] motion-reduce:transition-none ${
-          expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-        }`}
-      >
-        <div className="min-h-0">
-          <div className="pt-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gold">
-              Ideal when you need
-            </p>
-            <ul className="mt-2 space-y-1.5">
-              {model.idealFor.map((b) => (
-                <li key={b} className="text-sm text-muted flex gap-2">
-                  <span className="text-gold">—</span>
-                  {b}
-                </li>
-              ))}
-            </ul>
-
-            <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gold">
-              How I contribute
-            </p>
-            <ul className="mt-2 space-y-1.5">
-              {model.contribute.map((b) => (
-                <li key={b} className="text-sm text-muted flex gap-2">
-                  <span className="text-gold">—</span>
-                  {b}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+const colClass = (m: Model) =>
+  m.featured ? "bg-surface/50" : "";
 
 /**
- * Engagement models — how to buy.
- *
- * Two variants of one component rather than two components, since the models
- * themselves are identical and only the framing differs:
- *
- *   "homepage"  the offer, with the audience line and a CTA. This replaced the
- *               separate "Growth Partnerships" section, whose full version now
- *               lives on `/about`; the audience is a single line here instead
- *               of its own homepage section.
- *   "detailed"  for `/pricing` and linked from each service page as "How
- *               engagements work". Cards start expanded, since a visitor who
- *               followed a link named that has already asked the question the
- *               collapsed state hides. No CTA: those pages carry their own, and
- *               a second one competes with it.
+ * `variant` is kept from the previous version because `/pricing` renders this
+ * too, under a heading that has already asked the question. Only the eyebrow
+ * differs now: the old variants also toggled an audience line and a closing
+ * CTA, and the accordion's default-open state, none of which survive a table.
  */
-export default function Engagement({ variant = "homepage" }: { variant?: "homepage" | "detailed" }) {
-  const detailed = variant === "detailed";
-
+export default function Engagement({
+  variant = "homepage",
+}: {
+  variant?: "homepage" | "detailed";
+}) {
   return (
-    <section id="engagement" className="relative py-24 sm:py-32 bg-bg-soft/40">
+    <section id="engagement" className="relative py-24 sm:py-32">
       <div className="site-container">
-        <SectionHeading
-          eyebrow={detailed ? "How Engagements Work" : "Pricing & Engagement"}
-          title="Flexible Engagement Models,"
-          highlight="Built To Match Your Project"
-          description="Work with me however fits best — a single project, a monthly retainer, embedded support, or independent advisory."
-        />
-
-        {/* Replaces the former "Growth Partnerships" homepage section with one
-            line. The full version is on /about under "Who I work with". */}
-        {detailed ? null : (
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted">
-            Working with founders, UAE real estate developers, in-house teams and agencies.
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center gap-3 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+              <span aria-hidden="true" className="h-px w-6 bg-gold/60" />
+              {variant === "detailed" ? "How Engagements Work" : "Pricing & Engagement"}
+            </span>
+            <h2 className="t-h2 mt-5 text-ink">Compare the four models side by side</h2>
+          </div>
+          <p className="max-w-sm text-base leading-relaxed text-muted lg:text-right">
+            No accordions, no &ldquo;contact for pricing&rdquo;. Everything you need to
+            shortlist is on this screen.
           </p>
-        )}
+        </div>
 
-        <RevealStagger className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {models.map((m) => (
-            <RevealItem key={m.title}>
-              <EngagementCard model={m} defaultExpanded={detailed} />
-            </RevealItem>
-          ))}
-        </RevealStagger>
+        {/* `tabindex` and a label on the scroller: a region that scrolls must be
+            reachable by keyboard, or the columns past the fold are unreachable
+            without a mouse. */}
+        <Reveal className="mt-14 lg:mt-16">
+          <div
+            role="region"
+            aria-label="Engagement models compared"
+            tabIndex={0}
+            className="-mx-6 overflow-x-auto px-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold sm:mx-0 sm:px-0"
+          >
+            <table className="w-full min-w-[56rem] border-collapse text-left">
+              <caption className="sr-only">
+                The four engagement models compared by commitment, what suits each one,
+                what is included, time to start and reporting.
+              </caption>
 
-        {detailed ? null : (
-          <Reveal className="mt-14 text-center">
-            <div>
-              <p className="mx-auto max-w-xl text-muted">Let&apos;s discuss your goals and define the right approach.</p>
-              <CtaButton href="/appointment" className="mt-5">Book a free consultation</CtaButton>
-            </div>
-          </Reveal>
-        )}
+              <thead>
+                <tr>
+                  <td className="w-[11rem] align-bottom" />
+                  {models.map((m) => (
+                    <th
+                      key={m.name}
+                      scope="col"
+                      className={`w-1/4 rounded-t-2xl p-5 align-bottom font-normal ${colClass(m)}`}
+                    >
+                      <span className="flex flex-wrap items-start justify-between gap-2">
+                        <span className="t-h4 text-ink">{m.name}</span>
+                        {m.featured ? (
+                          /* Bracketed because it is a claim about what clients
+                             choose, and with one published client there is
+                             nothing behind it yet. Delete the badge or earn it;
+                             a bracketed one is a placeholder, not a soft claim. */
+                          <span className="rounded-full bg-gold px-3 py-1 text-[0.65rem] font-semibold uppercase leading-tight tracking-wide text-[#14140f]">
+                            [Most chosen]
+                          </span>
+                        ) : null}
+                      </span>
+                      <span
+                        className={`mt-3 block text-2xl font-bold ${
+                          m.featured ? "text-gold" : "text-ink"
+                        }`}
+                      >
+                        {m.priceVerified ? m.price : `AED [amount]`}
+                      </span>
+                      <span className="mt-1 block text-sm text-muted">{m.priceNote}</span>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+
+              <tbody>
+                {rows.map((row) => (
+                  <tr key={row.label} className="align-top">
+                    <th
+                      scope="row"
+                      className="border-t border-border py-5 pr-6 font-mono text-[0.65rem] font-normal uppercase tracking-[0.16em] text-muted/70"
+                    >
+                      {row.label}
+                    </th>
+                    {row.cells.map((cell, i) => (
+                      <td
+                        key={models[i].name}
+                        className={`border-t border-border p-5 text-base leading-relaxed text-ink/90 ${colClass(models[i])}`}
+                      >
+                        {typeof cell === "string" ? (
+                          cell
+                        ) : (
+                          <ul className="space-y-2">
+                            {cell.items.map((it) => {
+                              const text = typeof it === "string" ? it : it.text;
+                              const muted = typeof it !== "string";
+                              return (
+                                <li key={text} className={muted ? "text-muted/60" : undefined}>
+                                  {text}
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+
+                <tr>
+                  <td className="border-t border-border" />
+                  {models.map((m) => (
+                    <td
+                      key={m.name}
+                      className={`border-t border-border p-5 pb-7 rounded-b-2xl ${colClass(m)}`}
+                    >
+                      <Link
+                        href={m.cta.href}
+                        className={`inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-colors ${
+                          m.featured
+                            ? "btn-primary"
+                            : "border border-border text-ink hover:border-gold/40"
+                        }`}
+                      >
+                        {m.cta.label}
+                      </Link>
+                    </td>
+                  ))}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </Reveal>
+
+        <p className="mt-10 flex max-w-4xl gap-3 text-sm leading-relaxed text-muted">
+          <Info size={16} className="mt-0.5 shrink-0 text-muted/60" aria-hidden="true" />
+          Prices exclude ad spend and third-party licences. Every model starts with the
+          same free consultation, and you get a written scope before anything is invoiced.
+        </p>
       </div>
     </section>
   );

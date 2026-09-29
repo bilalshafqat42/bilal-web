@@ -5144,3 +5144,71 @@ The "you get" lines bottom-align rather than their dividers top-aligning, so
 the last line of every column sits on one baseline. The dividers themselves
 stagger where descriptions differ in length, which is what the reference design
 does too.
+
+### 262. Engagement models become one comparison table
+
+Rebuilt to the design Bilal sent. It replaces four cards, each with a "See
+details" accordion, with a single table — a shape that asked the reader to open
+four things and hold them in their head to compare, which is the opposite of
+what someone choosing between options is doing. The design's own subtitle names
+the fix: *"No accordions, no 'contact for pricing'."*
+
+#### A real `<table>`, not a grid of divs
+
+Four models against six attributes is tabular data. On a real table a screen
+reader user can ask for the value at "Monthly retainer / Time to start" and get
+it, because `scope="col"` and `scope="row"` say what each cell belongs to. In a
+div grid that relationship does not exist and the section reads as sixty loose
+phrases. Verified: 4 column headers, 5 row headers, and a `<caption>`.
+
+#### It scrolls sideways below `lg` rather than restacking
+
+Two alternatives were rejected:
+
+- **Render cards on mobile and a table on desktop.** That means the content
+  twice in the DOM, and duplicated content is duplicated for a crawler.
+- **Restack the table with CSS.** A table restacks column-major — every model's
+  commitment together, then every model's "best for" — which groups by
+  attribute rather than by model and answers a question nobody asked.
+
+So the table keeps one shape and the region scrolls. It carries
+`role="region"`, an accessible name and `tabindex={0}`, because a scrollable
+region that is not focusable puts the far columns out of reach of a keyboard.
+
+| Viewport | Table | Page |
+| --- | --- | --- |
+| 1440 | fits, no scroll | no overflow |
+| 1024 | fits, no scroll | no overflow |
+| 768 | scrolls sideways | no overflow |
+| 390 | scrolls sideways | no overflow |
+
+The page itself never scrolls sideways at any width — only the region does.
+
+#### What is real and what is not
+
+`AED 31,500`, `AED 16,000`, `AED 3,500` and the three-month retainer minimum
+are **real** — already published on /pricing and in the site content, so they
+render plain.
+
+Bracketed, and still unverified: the ongoing-partner rate, all four "time to
+start" values, `[2] days a week`, `[30] days support`, `[90] minute session`,
+and the `[Most chosen]` badge. Same render-time bracket guard as the proof wall
+and the process timings.
+
+**The badge deserves its own note.** "Most chosen" is a claim about what
+clients pick, and with one published client there is nothing behind it. Either
+delete it or earn it — a bracketed one is a placeholder, not a soft claim.
+
+#### Two things that changed beyond the design
+
+- **`variant` is kept**, because `/pricing` renders this too. Only the eyebrow
+  differs now; the old variants also toggled an audience line, a closing CTA
+  and the accordion's default-open state, none of which survive a table.
+  Verified `/pricing` still renders the table under "How Engagements Work".
+- **The homepage audience line is gone** — "Working with founders, UAE real
+  estate developers, in-house teams and agencies." The design has no slot for
+  it. It was real positioning copy and a genuine keyword line, so it is worth
+  rehoming rather than losing; /about already carries the full version under
+  "Who I work with".
+
+All four checks pass.
