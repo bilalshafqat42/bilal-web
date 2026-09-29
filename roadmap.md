@@ -5424,3 +5424,34 @@ Flagged to Bilal that this is not literally what he asked for, with the
 fixed-width-block version offered if he prefers the break genuinely gone.
 
 All four checks pass.
+
+### 267. Opener band: 65/10/25 becomes 70/5/25
+
+Third setting today, as instructed. The statement column gains five points from
+the gap rather than from the paragraph, which keeps the right column at the 25%
+set in item 265.
+
+| Viewport | Split | Right column |
+| --- | --- | --- |
+| 1920 | **70 / 5 / 25** | 340px |
+| 1600 | **70 / 5 / 25** | 340px |
+| 1440 | **70 / 5 / 25** | 340px |
+| 1280 | **70 / 5 / 25** | 300px |
+| 1024 | **70 / 5 / 25** | 236px |
+| 768, 390 | one column | — |
+
+**A useful side effect: the statement now fits on one line at 1440 and above.**
+
+| Width | How it breaks |
+| --- | --- |
+| 1920, 1600, 1440 | "Fifteen years of experience in" — one line |
+| 1280, 1152, 1024 | "Fifteen years of" / "experience in" |
+
+At 65% it needed two lines at every width. The orphan fix from item 266 still
+holds at the narrower widths, and is simply not needed at the wider ones now.
+
+Re-ran the rotation stability check from item 266 at all five desktop widths:
+the heading height is identical across all six phrases at each one, so nothing
+reflows as the word types. Nothing clipped, no overflow.
+
+All four checks pass.

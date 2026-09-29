@@ -41,9 +41,9 @@ export default function DisciplineStatement() {
       className="opener-light relative py-[90px]"
     >
       <div className="site-container">
-        <div // 65 / 10 / 25 at desktop, as specified: the statement takes 65%, a 10%
+        <div // 70 / 5 / 25 at desktop, as specified: the statement takes 70%, a 5%
             // gap, then the paragraph and its CTA in the remaining 25%. Was
-            // 60/10/30 until 2026-09-29.
+            // 60/10/30, then 65/10/25, both on 2026-09-29.
             //
             // Percentages rather than fr units because those three numbers are the
             // instruction — fr would redistribute space as the content changed and
@@ -54,7 +54,7 @@ export default function DisciplineStatement() {
             //
             // `gap-y-0` at lg, or the row gap from the stacked mobile layout would
             // still apply and push the columns apart vertically.
-            className="grid gap-10 lg:grid-cols-[65%_25%] lg:items-end lg:gap-x-[10%] lg:gap-y-0">
+            className="grid gap-10 lg:grid-cols-[70%_25%] lg:items-end lg:gap-x-[5%] lg:gap-y-0">
           {/* A `<p>`, not a heading.
            *
            * The hero owns the page's only `<h1>` and `h1-check` enforces that on
