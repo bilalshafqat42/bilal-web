@@ -5503,3 +5503,53 @@ Two details worth keeping:
 
 Below `lg` nothing moved: 45px at 390, 53px at 640, 58px at 768, 67px at 1023,
 no overflow at any width. All four checks pass.
+
+### 269. Next 16.2.12 → 16.3.7: a critical RCE that hits this site exactly
+
+`npm audit` reported 6 vulnerabilities, 1 critical. The critical one is not
+generic:
+
+> **Next.js: Unauthenticated Remote Code Execution in Image Optimization API
+> when AVIF files are used** — GHSA-2xp9-vwfh-vxw4
+
+Both conditions are met here, and not incidentally:
+
+| Condition | This site |
+| --- | --- |
+| Uses the Image Optimization API | every page, on every image |
+| Serves AVIF | `formats: ["image/avif", "image/webp"]` |
+| AVIF files in `public/` | **36** |
+
+Unauthenticated RCE on shared hosting is the account, not a sandbox. Caught
+before deploying rather than after, which is the only piece of luck in it.
+
+The other five are DoS and path-traversal issues in build tooling —
+`brace-expansion`, `js-yaml`, `nanoid`, `postcss`, `sharp` — reachable at build
+time rather than by a visitor. `postcss` and `sharp` are transitive through
+`next`, so the same bump fixed them.
+
+**`npm i next@16.3.7 eslint-config-next@16.3.7` took the count to zero.** A
+patch-level move inside 16.x, not a major upgrade. `npm audit fix` afterwards
+found nothing left to do.
+
+#### Verified rather than assumed
+
+A dependency bump on a site with this much layout and animation work in it
+needs more than a green build.
+
+| Check | Result |
+| --- | --- |
+| `npm audit` | **0 vulnerabilities** |
+| `tsc`, `lint`, build | clean, 39/39 pages |
+| Four site checks | h1 30/30, schema 30/30, search 32/32, discipline |
+| 10 routes at 1440 | 200, one h1, no broken images, no overflow, no console or page errors |
+| Scroll honesty | 30 notches asked +3600, got +3600, overshoot 0 |
+| Container cap | 1440 |
+| Opener statement | still exactly 2 rows |
+| Work grid | 3/2/4 at 1920, 1440, 1024; 2-up at 768; stacked at 390 |
+| Reduced motion | about text at full opacity, no overflow |
+| Image warming | 232 variants re-encoded cleanly |
+
+Nothing regressed. The homepage work from items 247 to 268 — the scroll
+behaviour, the container cap, the two-row statement, the 3/2/4 grid — all still
+measures the same as before the upgrade.
