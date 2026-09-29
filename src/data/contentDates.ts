@@ -18,7 +18,8 @@
  * being touched, so seeding purely from that one file understates it.
  */
 export const contentDates: Record<string, string> = {
-  // 2026-09-29: the results section was replaced by the proof wall — new
+  // 2026-09-29: the results section was replaced by the proof wall and the
+  // process section by the four-stage timeline, both with new copy — new
   // heading, new body copy, a new "how these numbers are produced" panel and a
   // new handoff bar. On 2026-09-25 it was the "About me" band and the rotating
   // opener. Both are new copy rather than a restyle, which is what this date is

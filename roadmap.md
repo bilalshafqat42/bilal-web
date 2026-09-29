@@ -5081,3 +5081,66 @@ today's date, which is the one page that actually changed.
 date and nothing complains, so the only way to catch this is to read the output.
 If a third route ever goes missing, the fix is to make `dateFor` throw in
 development rather than fall back.
+
+### 261. The process section becomes a four-stage timeline
+
+Rebuilt to the design Bilal sent. The old version was four bordered cells under
+a centred heading — accurate, and it answered none of the questions a buyer
+actually has at that point on the page. The new one answers three.
+
+| Question | What answers it now |
+| --- | --- |
+| How long does each stage take? | the timing pill |
+| What do I actually receive? | the "you get" line |
+| **What will you need from me?** | the bar at the bottom |
+
+The third is the one worth keeping. Every freelancer describes their process;
+almost none state the client's own time cost up front, and it is the thing a
+busy buyer is quietly worried about. "About [3] hours in week one, then one
+feedback round per stage" is a stronger sales argument than any adjective in
+the old version.
+
+Other changes: heading moved left with "See the full process" promoted to a
+pill beside it, rather than a text link buried under the cards where it read as
+an afterthought.
+
+#### Timing and deliverables live in the shared data
+
+`timing` and `deliverable` were added to `ProcessStep`, not to the component, so
+`/process` can use them later and the two renderings still cannot drift — which
+is the whole reason `process.ts` exists.
+
+`timing` carries the same `verified` guard as the proof wall: brackets are
+applied at render time, never typed into the string, so a duration cannot be
+quietly promoted to a commitment. Three ranges are unverified; "Ongoing" is
+plain because it describes shape rather than length.
+
+**Check the durations against two or three finished projects before they read
+as a promise.** A timeline a client holds you to is worse than no timeline.
+
+#### The rail is drawn per item, not behind the row
+
+A single absolutely positioned line cannot know where the columns wrap — this
+is four across at `lg`, two at `sm` and one below that, and a full-width rule
+would cut across the gaps in the wrapped layouts. Each item draws its own dot
+and the segment to its right; the last draws no segment, and the segments are
+`lg:` only.
+
+`aria-hidden` on the whole rail: it restates the numbering that is already in
+the text.
+
+| Viewport | Stages per row | Column width |
+| --- | --- | --- |
+| 1440 | 4 | 316px |
+| 1024 | 4 | 212px |
+| 768 | 2 | 344px |
+| 390 | 1 | 342px |
+
+No horizontal overflow at any width. `/process` still renders all four stages
+with one h1 and no errors, which is the check that matters after touching
+shared data. All four checks pass.
+
+The "you get" lines bottom-align rather than their dividers top-aligning, so
+the last line of every column sits on one baseline. The dividers themselves
+stagger where descriptions differ in length, which is what the reference design
+does too.
