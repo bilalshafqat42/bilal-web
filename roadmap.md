@@ -5553,3 +5553,56 @@ needs more than a green build.
 Nothing regressed. The homepage work from items 247 to 268 — the scroll
 behaviour, the container cap, the two-row statement, the 3/2/4 grid — all still
 measures the same as before the upgrade.
+
+### 270. The Hostinger build has been failing: Turbopack cannot spawn its PostCSS worker
+
+Bilal's hPanel showed auto-deployment connected and working, and **"Last
+deployment: Build failed"** on commit `e0daa9b`. That is why nothing shipped:
+the pipeline was fine, the build was not. Worth recording how long that hid —
+the site kept serving an older successful build, so the dashboard looked
+normal from the outside.
+
+The log:
+
+```
+FATAL: An unexpected Turbopack error occurred.
+Error [TurbopackInternalError]: [project]/src/app/globals.css [app-client] (css)
+Caused by:
+- creating new process
+- node process exited before we could connect to it with exit status: 0
+  Process output:
+  Process error output:
+```
+
+Turbopack runs PostCSS — Tailwind v4 via `@tailwindcss/postcss` — by spawning a
+Node subprocess. On this shared host that subprocess **exits immediately, status
+0, with empty stdout and stderr**. An exit code of zero with no output is not a
+crash in our CSS; it is the process never getting to run. Shared hosting caps
+concurrent processes, and this is what hitting that cap looks like from inside
+Turbopack.
+
+Nothing in `globals.css` is wrong. The same file builds locally every time.
+
+**Fix: `next build --webpack`.** Webpack runs PostCSS in-process instead of
+spawning a worker for it, so the failure cannot occur. Verified locally:
+
+| | Result |
+| --- | --- |
+| `next build --webpack` | exit 0, **39/39 pages**, 12.7s |
+| Four site checks | h1 30/30, schema 30/30, search 32/32, discipline |
+| Proof wall, pricing table, process timeline | all present in the output |
+| Work grid | 3/2/4 at 1920 and 1440, stacked at 390 |
+| Container cap | 1440 |
+| Opener statement | 2 rows |
+| Broken images, overflow, page errors | none at 1920, 1440 or 390 |
+
+The webpack output behaves identically to the Turbopack one.
+
+**Changed the `build` script rather than passing the flag only on the server**,
+deliberately: the whole reason this went unnoticed is that local builds and
+server builds were using different bundlers, so a server-only failure could
+never show up here. One bundler for both is worth more than Turbopack's few
+seconds. `next dev` still uses Turbopack — it does not run on the server.
+
+If webpack also fails there, the next thing to try is fewer workers, since the
+underlying constraint is process count rather than the bundler.
