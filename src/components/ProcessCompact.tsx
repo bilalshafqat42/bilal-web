@@ -20,24 +20,15 @@ import { processSteps } from "@/data/process";
  * thing a busy buyer is quietly worried about.
  *
  * ---------------------------------------------------------------------------
- * **The bracketed durations are estimates, not commitments**, and the same
- * guard used by the proof wall applies: `timing.verified` is false on the three
- * week ranges, and the brackets are added at render time rather than typed into
- * the string, so they cannot be removed without flipping the flag. "Ongoing" is
- * plain because it describes shape rather than length, and needs nobody's
- * confirmation.
- *
- * Check these against two or three finished projects before letting them read
- * as a promise. A timeline a client holds you to is worse than no timeline.
+ * **The stage durations are verified against the site's own published copy**,
+ * not estimated — see the note on `timing` in `process.ts`. They shipped
+ * bracketed, which on a live page reads as an unfinished template rather than
+ * as caution.
  * ---------------------------------------------------------------------------
  *
  * Still a server component reading the same `processSteps` as `/process`, so
  * the two cannot drift. It ignores `bullets`, `proofHref` and `proofLabel`.
  */
-
-/** What the client has to put in. Bracketed for the same reason as the
- *  durations: nobody has measured it. */
-const ASK = { hours: "3", minutes: "30" };
 
 export default function ProcessCompact() {
   return (
@@ -126,13 +117,23 @@ export default function ProcessCompact() {
 
         {/* The client's own time cost, stated before they have to ask. */}
         <div className="mt-16 flex flex-col gap-6 rounded-2xl border border-border panel p-7 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
+          {/* **No hour counts here, deliberately.** This shipped as "about [3]
+              hours in week one" and "[30] minutes a month" — both invented, both
+              live, both read as commitments. Nobody had timed either.
+
+              The point of the bar survives without them: what a buyer is
+              actually worried about is being dragged into standing calls, and
+              "one feedback round per stage, no daily check-ins" answers that
+              without a number that could turn out to be wrong on the first
+              project. Put real figures back the moment two projects have been
+              timed. */}
           <div>
             <p className="font-semibold text-ink">
-              What I need from you: about [{ASK.hours}] hours in week one
+              What I need from you: a kickoff session, then one round of feedback per stage
             </p>
             <p className="mt-1.5 text-sm leading-relaxed text-muted">
-              After that, one feedback round per stage and [{ASK.minutes}] minutes a month.
-              No daily check-ins, no standing calls.
+              No daily check-ins, no standing calls, and no chasing you for sign-off you
+              did not agree to give.
             </p>
           </div>
           <CtaButton href="/appointment">Book a free consultation</CtaButton>

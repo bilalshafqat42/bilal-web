@@ -4,6 +4,7 @@ import Reveal, { RevealStagger, RevealItem } from "./Reveal";
 import ClientLogoRow from "./ClientLogoRow";
 import CtaButton from "@/components/CtaButton";
 import { caseStudyUrls } from "@/data/caseStudies";
+import { disciplinesWithPages } from "@/data/disciplines";
 
 /**
  * The proof wall — the single proof section on the homepage.
@@ -13,32 +14,23 @@ import { caseStudyUrls } from "@/data/caseStudies";
  * figures, the client row, and one handoff bar.
  *
  * ---------------------------------------------------------------------------
- * **READ THIS BEFORE DEPLOYING.**
+ * **Every figure here is checkable, and two of them are counted rather than
+ * claimed.**
  *
- * Three of the four figures below are **placeholders, not results**. They are
- * marked `verified: false` and render inside square brackets, which is this
- * codebase's placeholder convention (see the `[Client Name]` note in roadmap
- * 213). Nothing in this file has been measured against a real account, and
- * roadmap 213.12 records why: lead volume and conversion data belong to the
- * client, and none has been released for publication.
+ * It shipped with `[3.2x]` return on ad spend and `[-41%]` cost per qualified
+ * lead. Both were placeholders, both went live, and both were read by real
+ * visitors as facts — a bracketed number is still a number to someone skimming.
+ * Nothing had ever been measured against a real account, and roadmap 213.12
+ * records why: that data belongs to the client and none has been released.
  *
- * **A bracketed number is still a number to a visitor.** Someone skimming reads
- * "3.2x return on ad spend" and does not stop to wonder what the brackets mean.
- * Publishing these as they stand would be a fabricated performance claim on a
- * site that sells measurement — the one claim this business cannot afford to
- * get wrong.
+ * They are gone. What replaced them is derived from the site's own data — the
+ * case study count and the discipline count both come from the files that build
+ * those pages, so neither can drift from what the site actually contains.
  *
- * So: replace each one with a figure a client has approved, or set
- * `verified: false` entries aside and ship with fewer cards. The grid handles
- * two, three or four. What it must not do is go live pretending.
- *
- * **Three cards, on Bilal's instruction (2026-09-28).** The one dropped was
- * "18 products shipped", and it was the right one to lose: "products" is
- * undefined — a landing page, an app and a brand system are not the same unit —
- * so it is the only figure here that could not be checked even in principle.
- * The other two are unverified but at least well defined, and unlike this one
- * they are figures a client could actually confirm.
- * ---------------------------------------------------------------------------
+ * **If a client approves a real performance figure, add it here with
+ * `verified: true`.** The `verified` flag stays because the next unverified
+ * number should be caught the same way: it renders bracketed, which is a
+ * warning to us, not a design.
  */
 
 type Stat = {
@@ -55,27 +47,27 @@ type Stat = {
 
 const stats: Stat[] = [
   {
-    value: "3.2x",
-    label: "Return on ad spend",
-    detail: "Blended across 12 off-plan lead campaigns",
-    meta: "Meta · Google · TikTok",
-    verified: false,
-  },
-  {
-    value: "-41%",
-    label: "Cost per qualified lead",
-    detail: "Within the first 90 days of taking over an account",
-    meta: "Qualified, not raw",
-    verified: false,
-  },
-  {
-    // The only one that needs no client's permission, and the only one that is
-    // true today. It is last rather than first because the three above are the
-    // ones a buyer is actually weighing.
     value: "15+",
     label: "Years, one point of contact",
     detail: "Strategy, design and build without a handoff layer",
     meta: "Based in Dubai, UAE",
+    verified: true,
+  },
+  {
+    // Counted from `caseStudies`, not typed, so it cannot go stale.
+    value: `${caseStudyUrls().filter((u) => u.split("/").length > 3).length}`,
+    label: "Case studies published",
+    detail: "Each with the brief, the decisions and what shipped",
+    meta: "Brief · Build · Outcome",
+    verified: true,
+  },
+  {
+    // The same four the capability ledger names, counted from the data behind
+    // it rather than asserted twice.
+    value: `${disciplinesWithPages().length}`,
+    label: "Disciplines, one contract",
+    detail: "Marketing, design, web and mobile under one agreement",
+    meta: "No subcontractors",
     verified: true,
   },
 ];

@@ -38,7 +38,13 @@ type Model = {
   name: string;
   price: string;
   priceNote: string;
-  /** The raised, gold-priced column. One only, or it stops meaning anything. */
+  /** The raised, gold-priced column. One only, or it stops meaning anything.
+   *
+   *  This no longer carries a "[Most chosen]" badge. That is a claim about what
+   *  clients pick, and with one published client there is nothing behind it —
+   *  it shipped bracketed, which is a placeholder rather than a soft claim. The
+   *  column is still raised and still the one with the primary CTA, which makes
+   *  the same recommendation without asserting anything. */
   featured?: boolean;
   /** Unverified prices render bracketed, the same guard the proof wall and the
    *  process timings use: the brackets are applied at render time, never typed
@@ -66,9 +72,12 @@ const models: Model[] = [
   },
   {
     name: "Ongoing partner",
-    price: "AED amount",
-    priceNote: "per month",
-    priceVerified: false,
+    // No published rate, and none has ever been supplied — the previous version
+    // of this file said exactly that. It shipped as "AED [amount]", which reads
+    // as a page nobody finished rather than as a price that depends on scope.
+    price: "Priced on scope",
+    priceNote: "agreed per engagement",
+    priceVerified: true,
     cta: { label: "Discuss it", href: "/contact" },
   },
   {
@@ -93,7 +102,7 @@ type Cell = string | { items: (string | { text: string; muted: true })[] };
 const rows: { label: string; cells: Cell[] }[] = [
   {
     label: "Commitment",
-    cells: ["One scope", "Minimum 3 months", "[2] days a week", "One session"],
+    cells: ["One scope", "Minimum 3 months", "Agreed days each week", "One session"],
   },
   {
     label: "Best for",
@@ -107,15 +116,11 @@ const rows: { label: string; cells: Cell[] }[] = [
   {
     label: "What you get",
     cells: [
-      { items: ["Fixed scope and price", "Design and build", "Tracking before launch", "[30] days support"] },
+      { items: ["Fixed scope and price", "Design and build", "Tracking before launch", "Post-launch support"] },
       { items: ["One agreed focus a month", "Marketing, design or dev", "Report against one metric", "Direct access, no PM layer"] },
       { items: ["Inside your tools", "Priority over other work", "Quarterly planning", "Handover docs as standard"] },
-      { items: ["[90] minute session", "Campaign or build review", "Written recommendations", { text: "No implementation", muted: true }] },
+      { items: ["Four-hour session", "Campaign or build review", "Written recommendations", { text: "No implementation", muted: true }] },
     ],
-  },
-  {
-    label: "Time to start",
-    cells: ["[1 to 2] weeks", "[1] week", "[2 to 3] weeks", "[2 to 3] days"],
   },
   {
     label: "Reporting",
@@ -181,15 +186,6 @@ export default function Engagement({
                     >
                       <span className="flex flex-wrap items-start justify-between gap-2">
                         <span className="t-h4 text-ink">{m.name}</span>
-                        {m.featured ? (
-                          /* Bracketed because it is a claim about what clients
-                             choose, and with one published client there is
-                             nothing behind it yet. Delete the badge or earn it;
-                             a bracketed one is a placeholder, not a soft claim. */
-                          <span className="rounded-full bg-gold px-3 py-1 text-[0.65rem] font-semibold uppercase leading-tight tracking-wide text-[#14140f]">
-                            [Most chosen]
-                          </span>
-                        ) : null}
                       </span>
                       <span
                         className={`mt-3 block text-2xl font-bold ${

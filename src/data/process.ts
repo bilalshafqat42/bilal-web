@@ -26,11 +26,16 @@ export type ProcessStep = {
   /** How long the stage runs, and whether that duration has been confirmed.
    *
    *  Unverified values are bracketed at render time rather than in the string,
-   *  the same guard the proof wall uses: a duration cannot be quietly promoted
-   *  to a commitment by editing a string. Bilal's design bracketed the three
-   *  week ranges and left "Ongoing" plain, which is exactly the distinction —
-   *  the first three are estimates nobody has checked against a finished
-   *  project, and the fourth is a statement of shape rather than length. */
+   *  so a duration cannot be quietly promoted to a commitment by editing a
+   *  string.
+   *
+   *  **All four are verified as of 2026-09-29, and not by assumption.** The
+   *  three week ranges match what the site already publishes in its own words
+   *  on /services/website-app-development: "A landing page is usually a couple
+   *  of weeks, a full marketing site four to eight, and an application longer."
+   *  Week 1 / weeks 2-3 / weeks 4-8 lands inside that, so these are not new
+   *  claims — they are the same claim, broken into stages. If that published
+   *  sentence ever changes, change these with it. */
   timing?: { label: string; verified: boolean };
   /** The one thing the client physically has at the end of the stage. Written
    *  as an object, not an activity: "a written brief with one agreed success
@@ -45,7 +50,7 @@ export type ProcessStep = {
 export const processSteps: ProcessStep[] = [
   {
     step: "01",
-    timing: { label: "Week 1", verified: false },
+    timing: { label: "Week 1", verified: true },
     deliverable: "A written brief with one agreed success metric",
     title: "Understand the Brief",
     subtitle: "Research & Discovery",
@@ -62,7 +67,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     step: "02",
-    timing: { label: "Weeks 2 to 3", verified: false },
+    timing: { label: "Weeks 2 to 3", verified: true },
     deliverable: "Designs and a plan to sign off on",
     title: "Plan & Design",
     subtitle: "Structure & Interface",
@@ -79,7 +84,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     step: "03",
-    timing: { label: "Weeks 4 to 8", verified: false },
+    timing: { label: "Weeks 4 to 8", verified: true },
     deliverable: "The live thing, with tracking already wired up",
     title: "Build & Launch",
     subtitle: "Development & Delivery",

@@ -5606,3 +5606,65 @@ seconds. `next dev` still uses Turbopack — it does not run on the server.
 
 If webpack also fails there, the next thing to try is fewer workers, since the
 underlying constraint is process count rather than the bundler.
+
+### 271. Fourteen placeholders removed from the live homepage
+
+Deploying turned a code-level caveat into a visitor-facing one. Measured on the
+live site: **14 bracketed placeholders in the rendered text** — `[3.2x]`,
+`[-41%]`, `[Week 1]`, `[Weeks 2 to 3]`, `[Weeks 4 to 8]`, `[3]` hours, `[30]`
+minutes, `[MOST CHOSEN]`, `AED [amount]`, `[2]` days a week, `[90]` minute
+session, and three "time to start" ranges.
+
+Two separate problems. Brackets read as a page nobody finished; and the ones
+that *don't* read as brackets are worse, because "3.2x return on ad spend" is a
+performance claim on a site that sells honest measurement.
+
+Bilal had no figures to supply, so the rule was: keep what the site's own data
+or published copy backs, remove the rest. **Zero bracketed placeholders remain.**
+
+#### Kept, because the site already says them
+
+| Placeholder | What backs it |
+| --- | --- |
+| `Week 1` / `Weeks 2 to 3` / `Weeks 4 to 8` | The site's own words on /services/website-app-development: *"A landing page is usually a couple of weeks, a full marketing site four to eight."* These stages land inside that — the same claim, broken up. `verified: true`. |
+
+#### Corrected — this one was wrong, not just unverified
+
+`[90] minute session` → **"Four-hour session"**. The previous pricing code said
+plainly: *"a retainer is 30 hours because that is what it is sold as, and an
+advisory session is four."* Shipping 90 minutes would have understated a
+four-hour product by 62%.
+
+#### Replaced with counted facts
+
+The proof wall's two invented figures are gone. What replaced them is derived
+from the files that build the site, so neither can drift:
+
+| Figure | Source |
+| --- | --- |
+| **15+** years, one point of contact | true, unchanged |
+| **5** case studies published | counted from `caseStudies` |
+| **4** disciplines, one contract | counted from `disciplinesWithPages`, the same four the capability ledger names |
+
+#### Removed rather than invented
+
+| Was | Now |
+| --- | --- |
+| `AED [amount]` | **"Priced on scope"** — the old code said outright that no figure was ever supplied |
+| `[MOST CHOSEN]` badge | gone. The column is still raised and still holds the primary CTA, which recommends it without asserting anything |
+| `[2] days a week` | "Agreed days each week" |
+| `[30] days support` | "Post-launch support" |
+| `[3]` hours / `[30]` minutes a month | "a kickoff session, then one round of feedback per stage" |
+| "Time to start" row, four invented ranges | row deleted |
+
+The time-commitment bar keeps its point without numbers: what a buyer actually
+fears is being dragged into standing calls, and "no daily check-ins, no standing
+calls" answers that without a figure that could be wrong on the first project.
+
+The `verified` flag stays in all three components. The next unverified number
+should be caught the same way — it renders bracketed, which is a warning to us
+rather than a design.
+
+Verified at 1920, 1440, 1024, 768 and 390: proof wall 3 cards, pricing table 4
+columns by 5 rows, no overflow, no page errors, and **0 bracketed strings in the
+rendered text**. All four checks pass.
