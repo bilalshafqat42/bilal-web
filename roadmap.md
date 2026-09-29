@@ -5056,3 +5056,28 @@ No horizontal overflow at any width, no page errors, all four checks pass.
 
 The warning from item 258 stands unchanged: two of the three are still
 placeholders, and a bracketed number is still a number to a visitor.
+
+### 260. `/real-estate-marketing` had no content date
+
+Found by reading the **rendered sitemap** rather than the source: that route
+was dated today while nothing about it had been touched.
+
+`contentDates` had no entry for it, so `dateFor` fell back to `Date.now()` —
+meaning the page has been telling Google and Bing it changed **on every single
+deploy** since the file was introduced. That is precisely the signal the file
+was built to stop sending: its own docstring says a `lastmod` that fires for
+everything every time carries no information and can suppress recrawl priority
+for the pages that genuinely did change.
+
+Added at 2026-09-05, matching the other pages seeded in that pass.
+
+Also bumped `/` to 2026-09-29: the results section was replaced by the proof
+wall, which is new copy rather than a restyle.
+
+Sitemap now shows six distinct dates across 30 routes, with exactly one at
+today's date, which is the one page that actually changed.
+
+**Worth generalising:** the fallback is silent. A new route gets a plausible
+date and nothing complains, so the only way to catch this is to read the output.
+If a third route ever goes missing, the fix is to make `dateFor` throw in
+development rather than fall back.

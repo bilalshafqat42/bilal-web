@@ -18,11 +18,12 @@
  * being touched, so seeding purely from that one file understates it.
  */
 export const contentDates: Record<string, string> = {
-  // 2026-09-25: the homepage gained a genuinely new section — the "About me"
-  // band, with its own prose, three figures and a CTA — plus the rotating
-  // discipline opener above the hero. New copy, not a restyle, so this is the
-  // kind of change the date is for.
-  "/": "2026-09-25",
+  // 2026-09-29: the results section was replaced by the proof wall — new
+  // heading, new body copy, a new "how these numbers are produced" panel and a
+  // new handoff bar. On 2026-09-25 it was the "About me" band and the rotating
+  // opener. Both are new copy rather than a restyle, which is what this date is
+  // for.
+  "/": "2026-09-29",
   "/about": "2026-09-05",
   "/services": "2026-09-04",
   "/portfolio": "2026-09-04",
@@ -32,6 +33,12 @@ export const contentDates: Record<string, string> = {
   "/appointment": "2026-09-05",
   "/process": "2026-09-05",
   "/privacy": "2026-09-05",
+  // Was missing entirely until 2026-09-29, so `dateFor` fell back to
+  // `Date.now()` and this page told Google it had changed **on every single
+  // deploy** — the exact signal this file exists to stop sending. Caught by
+  // reading the rendered sitemap rather than the source: the route was dated
+  // today while nothing about it had been touched.
+  "/real-estate-marketing": "2026-09-05",
 };
 
 /** Service category pages all read from `src/data/pillars.ts`. */
