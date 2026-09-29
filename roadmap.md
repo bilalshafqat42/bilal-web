@@ -5335,3 +5335,35 @@ section is still edge to edge.
 
 Clean at 1920, 1440, 1440 reduced-motion, 1024 and 390: no overflow, no errors,
 all text at full opacity after the sequence. All four checks pass.
+
+### 265. Opener band: 60/10/30 becomes 65/10/25
+
+The homepage opener's two columns, as instructed. Percentages rather than `fr`
+for the same reason as before — those three numbers are the instruction, and
+`fr` would redistribute space as the copy changed and quietly stop being
+65/10/25.
+
+Measured, not assumed:
+
+| Viewport | Split | Container |
+| --- | --- | --- |
+| 1920 | **65 / 10 / 25** | 1360px |
+| 1600 | **65 / 10 / 25** | 1360px |
+| 1440 | **65 / 10 / 25** | 1360px |
+| 1280 | **65 / 10 / 25** | 1200px |
+| 1024 | **65 / 10 / 25** | 944px |
+| 768, 390 | one column | — |
+
+`lg:` only, as asked — below that the two stack and a percentage split has
+nothing to divide.
+
+Checked the right column survives losing five points, since 25% of 944 is only
+236px: the paragraph runs three lines at 1440 and four at 1024, the CTA row
+still fits inside the column, and nothing is clipped at any width.
+
+A measurement note for the next person: this grid is `lg:items-end`, so the two
+columns are bottom-aligned and their *tops* differ by hundreds of pixels by
+design. A stacked-vs-side-by-side check that compares `top` reports every
+breakpoint as stacked. Compare `left` instead.
+
+All four checks pass.

@@ -41,15 +41,20 @@ export default function DisciplineStatement() {
       className="opener-light relative py-[90px]"
     >
       <div className="site-container">
-        <div // 60 / 10 / 30 at desktop, as specified: the statement takes 60%, a 10%
-            // gap, then the paragraph and its CTA in the remaining 30%. Percentages
-            // rather than fr units because those three numbers are the instruction —
-            // fr would redistribute space as the content changed and quietly stop
-            // being 60/10/30.
+        <div // 65 / 10 / 25 at desktop, as specified: the statement takes 65%, a 10%
+            // gap, then the paragraph and its CTA in the remaining 25%. Was
+            // 60/10/30 until 2026-09-29.
             //
-            // `gap-y-0` at lg or the row gap from the stacked mobile layout would
+            // Percentages rather than fr units because those three numbers are the
+            // instruction — fr would redistribute space as the content changed and
+            // quietly stop being 65/10/25.
+            //
+            // `lg:` only. Below that the two stack and a percentage split has
+            // nothing to divide.
+            //
+            // `gap-y-0` at lg, or the row gap from the stacked mobile layout would
             // still apply and push the columns apart vertically.
-            className="grid gap-10 lg:grid-cols-[60%_30%] lg:items-end lg:gap-x-[10%] lg:gap-y-0">
+            className="grid gap-10 lg:grid-cols-[65%_25%] lg:items-end lg:gap-x-[10%] lg:gap-y-0">
           {/* A `<p>`, not a heading.
            *
            * The hero owns the page's only `<h1>` and `h1-check` enforces that on
@@ -58,11 +63,11 @@ export default function DisciplineStatement() {
            * This is a display statement rather than a section title, so a
            * paragraph is the honest element, and the `<section>` carries an
            * `aria-label` so the landmark is still named. */}
-          <p // No `max-w` at desktop. A character cap undercut the 60% track — at
-            // 1920 it held the text to ~820px inside a 1104px column, so the
-            // measured split came out 44.6/25.4/30 instead of 60/10/30. The
-            // column now sets the measure and the explicit `<br />` below still
-            // puts the gold block on its own line.
+          <p // No `max-w` at desktop. A character cap undercut the statement's
+            // track — at 1920 it held the text to ~820px inside a 1104px column,
+            // so the measured split came out 44.6/25.4/30 instead of the
+            // 60/10/30 of the time. The column sets the measure instead, and the
+            // explicit `<br />` below still puts the gold block on its own line.
             className="t-display max-w-[17ch] sm:max-w-none">
             Fifteen years of experience in{" "}
             <br />
