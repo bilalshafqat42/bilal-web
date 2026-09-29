@@ -8,7 +8,7 @@ import PortfolioGrid from "@/components/PortfolioGrid";
 import Results from "@/components/Results";
 import ProcessCompact from "@/components/ProcessCompact";
 import Engagement from "@/components/Engagement";
-import AskAssistant from "@/components/AskAssistant";
+import HomeFaq from "@/components/HomeFaq";
 import Contact from "@/components/Contact";
 
 /**
@@ -65,7 +65,7 @@ export default function Home() {
         <Results />
         <ProcessCompact />
         <Engagement />
-        <AskAssistant />
+        <HomeFaq />
         <Contact />
       </main>
     </>

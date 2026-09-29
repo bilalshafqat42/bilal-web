@@ -5711,3 +5711,51 @@ rather than the homepage — which is what makes this safe for any inbound links
 already pointing at www.
 
 The five existing WordPress redirects still resolve. All four checks pass.
+
+### 273. The search box becomes an FAQ section
+
+Rebuilt to the design Bilal sent. It replaces "Not sure what you need?" — a
+search box that asked the visitor to do the work: type a question, read three
+results, click one. This answers the five questions they were going to type.
+
+`AskAssistant` is deleted. Item 257 had already stripped it back to local
+search when the model was removed; this removes the last of it. Nothing else
+imported it, and `SpotlightSearch` (⌘K) still uses the same index, so
+`search-check` is unaffected — 32/32, 196 chunks.
+
+#### Both placeholders in the design were resolved, not shipped
+
+| Design | Shipped | Why |
+| --- | --- | --- |
+| "starts at AED **[amount]**" | no figure | The site's own position on /services/website-app-development is that quoting before scope "is guesswork". The answer now says that, then lists the three prices that *are* published: 31,500, 16,000, 3,500. |
+| "Around **[45]** minutes" | **"Thirty minutes"** | The booking is a Cal.com event whose path is `bilalshafqat/30min`. 45 would have been wrong, not merely unverified. |
+
+#### No `FAQPage` schema here, deliberately
+
+`/faq` already carries it with 15 questions, and one of them — "Can you work
+with clients outside the UAE?" — is also on this list. Publishing `FAQPage` on
+two URLs that share questions is the cross-page form of the duplicate that
+broke two service pages in item 254, and Google treats duplicated FAQ markup as
+grounds for dropping it. Verified: **`/` has 0 FAQPage blocks, `/faq` has 1.**
+
+This section links to `/faq` instead, which is also the honest thing to do with
+five of fifteen questions.
+
+#### Answers are the site's own words
+
+Four of the five are lifted from `faqs.ts` and `serviceDepth.ts` rather than
+written fresh, so they cannot contradict the pages they came from. The property
+developer answer names LEOS for the projects, because that is the client with
+published case studies, and names Tomorrow World and Refine as clients without
+attaching projects to them — which is exactly what the logo row already claims
+and no more.
+
+#### No accordion
+
+Same reasoning as the pricing table in item 262: someone scanning five
+questions should not click five times to find the one that applies, and text
+behind a toggle is text a skimming reader never sees.
+
+Verified at 1920, 1440, 1024, 768 and 390: five questions and five answers at
+every width, two columns above `lg` and stacked below, the CTA and the /faq link
+present throughout, no overflow and no page errors. All four checks pass.
