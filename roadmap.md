@@ -5815,3 +5815,104 @@ it. Either populate the galleries or drop the wrapper.
   "thirty minutes" written into the FAQ in item 273.
 
 All four checks pass.
+
+---
+
+## Open issues from the Performo SEO snapshot (2026-09-30)
+
+Raised from Performo's 90-day export plus verification against the live site.
+Numbered so they can be closed one at a time.
+
+### 275. OPEN — Every page earning search impressions returns 404
+
+**The finding.** Thirteen WordPress-era blog URLs still carry essentially all
+of the site's search visibility, and every one of them is dead. The 308 seen
+first is only Next stripping the trailing slash; the path underneath does not
+exist.
+
+| Page | Impressions | Lands on |
+| --- | ---: | --- |
+| `/10-best-websites-to-master-ui-ux-design/` | 1,660 | **404** |
+| `/8-must-have-free-icon-libraries-for-designers/` | 906 | **404** |
+| `/react-native-flatlist-vs-scrollview/` | 781 | **404** |
+| `/react-usecallback-hook-explained/` | 677 | **404** |
+| `/what-are-em-and-rem-units/` | 632 | **404** |
+| `/react-usereducer-hook-explained/` | 560 | **404** |
+| `/react-useimperativehandle-hook-explained/` | 551 | **404** |
+| `/6-best-ai-powered-figma-plugins/` | 360 | **404** |
+| `/8-best-websites-for-design-inspiration/` | 281 | **404** |
+| `/top-10-productivity-tools-to-boost-efficiency/` | 251 | **404** |
+| `/react-usecontext-hook-explained/` | 112 | **404** |
+| `/mastering-flexbox-in-css/` | 83 | **404** |
+| `/react-usememo-hook-explained/` | 79 | **404** |
+| **Total** | **~6,900** | |
+
+For scale: the homepage earns 137. `/about-me/` is the only legacy URL that
+survives, because it has a redirect.
+
+**This is almost certainly the Search Console error Bilal asked about on
+2026-09-29**, which was investigated as a www duplicate at the time — that was
+a real find (item 272) but not this.
+
+**The content is recoverable.** All four spot-checked URLs are in the Wayback
+Machine, most captured 2026-06-06. Verified one end to end:
+`react-usecallback-hook-explained` returns 1,068 words with its real headings —
+Introduction, What is useCallback?, Why is this useful?, Example 1: Memoizing a
+Handler, useCallback vs useMemo. Not a stub.
+
+**Not on disk.** `portfolio/localhost.sql` is a 72KB dump with no `wp_posts`
+and none of the slugs, so there is no local WordPress export to restore from.
+
+**The fix is to serve them at the same URLs.** Google already ranks these
+addresses; they need to answer 200 rather than 404. A `/blog/<slug>` path would
+not inherit anything — the URL has to match exactly.
+
+**Do not redirect them to service pages.** Established in `next.config.ts` when
+the training URLs were retired: pointing a tutorial-intent URL at a marketing
+page is a soft 404, and Google can penalise the destination for it.
+
+**Honest about the value.** This recovers authority and clears errors, not
+leads: 1,660 impressions on the best post produced 2 clicks. Someone searching
+"what is rem css" is not hiring a marketer. It also closes the content gap
+behind the SIO score in item 247 — the site has nothing for a visitor who is
+not ready to buy.
+
+**Needs from Bilal:** scope. All 13, the top 5 (~70% of the lost impressions),
+or none.
+
+### 276. OPEN — The site ranks 4.8 for "bilal shafqat"
+
+His own name, and the single highest-intent query he has: 39 impressions, 1
+click, **2.4% CTR against a site-wide 0.07%**. Something outranks him for him.
+
+The cheapest win in the snapshot and unrelated to the blog decision. Needs
+diagnosis first — who holds 1-3, and whether it is a `Person`/`sameAs` gap, a
+title-tag issue, or simply a stronger profile on another platform.
+
+### 277. OPEN — Search visibility is near zero for anything commercial
+
+Weighted average position **45.8**; top-3 share **0.3%**; 400 of 418 queries at
+position 21 or worse. The commercial terms rank worst of all — "ui ux solutions"
+at 92.1, "ux design website" at 44.0.
+
+Not a bug and not quickly fixable: this is domain authority and content depth
+over months. Recorded so it is not mistaken for a technical fault.
+
+### 278. OPEN — Case study galleries are empty
+
+From the 2026-09-30 code review. `GalleryLightbox` is imported by both case
+study templates and **every project has `gallery: 0` items**, so it wraps its
+children and never opens — roughly 5KB of client JS on six routes for a feature
+with no data. A content gap rather than a defect. Populate or remove.
+
+### What the snapshot says is already working
+
+Worth recording alongside the problems, because three numbers are genuinely
+good and none of them should be disturbed while fixing the above:
+
+- **112 live AI answer fetches**, and every page assistants pull is one of the
+  new commercial ones — `/services`, `/pricing`, `/process`, `/appointment`,
+  the LEOS case study. The GEO work in items 246-248 is landing.
+- **134 sessions to 6 enquiries, 4.5%.** The site converts; almost nobody
+  arrives.
+- **PageSpeed 100/100/100/100**, LCP 466ms, CLS 0.000.
