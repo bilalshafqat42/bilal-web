@@ -6314,9 +6314,13 @@ No duplicate titles across the 52. 58 live outbound links, with the same three
 dead destinations pruned again — `links.mjs` re-adds them on every run, so that
 prune is not optional.
 
-**Still not restored:** `/graphic-designing-course/`,
-`/frontend-development-course/` and `/react-js-development-course/` are sales
-pages for paid courses the current site does not offer. Bilal's call.
+**Not restored, decided 2026-09-30.** `/graphic-designing-course/`,
+`/frontend-development-course/` and `/react-js-development-course/` stay 404.
+Bilal no longer teaches, so these are sales pages for a product that does not
+exist. A live page selling it would be worse than the 404 — it converts into an
+enquiry nobody can fulfil. Left to decay out of the index on their own, and
+**not** redirected to a service page, which would be a soft 404 of exactly the
+kind `next.config.ts` warns about.
 
 ### 283. DONE (2026-09-30) — Blog in the nav, and articles aligned to the grid
 
@@ -6383,3 +6387,41 @@ Also worth knowing: viewing the sitemap in Chrome showed a
 `<script src="chrome-extension://...">` injected into the XML tree. That is the
 browser's own extension rendering, not the served bytes. `curl` returns clean
 XML. The same class of false alarm as the ColorZilla hydration warning.
+
+### 285. DONE (2026-09-30) — Full technical audit of all 83 live pages
+
+Crawled every URL in the sitemap and checked the things that usually rot when a
+site grows from 30 pages to 83 in a day.
+
+**Clean:** no duplicate titles across 83 pages, no duplicate meta descriptions,
+every page has a canonical and all point at `bilalshafqat.com`, every page
+carries an `og:image` and `lang="en"`, and **no broken internal links** — the
+only off-sitemap `href`s are SVG logo assets, all returning 200.
+
+**Fixed:** two meta descriptions ran past what Google renders, at 214 and 304
+characters. All 83 now sit inside 50-160.
+
+**Analytics confirmed live on the new pages.** GA4 `G-NRHYJPM1S9` loads on the
+recovered articles as well as the existing routes, so the 52 posts are being
+measured rather than arriving invisibly.
+
+**Core Web Vitals, measured on the live site at 1440px:**
+
+| Page | LCP | CLS | LCP element |
+| --- | ---: | ---: | --- |
+| An article | **1.32s** | **0** | `h1` |
+| `the-ultimate-css-cheat-sheet` | **1.64s** | **0** | `h1` |
+| `/services/ui-ux-design` | **1.60s** | 0.0007 | `h1` |
+| `/` | 2.75s | 0.0003 | `img` |
+| `/blog` | 3.48s | **0** | `p` |
+
+The articles are comfortably good and the missing images are part of why: the
+LCP element is text, so nothing waits on a download and there is nothing
+unsized to shift the layout.
+
+**The two amber pages are not a page problem.** `/blog` has 744 DOM nodes and
+188KB of HTML — it is not heavy. **TTFB is 937-1027ms on every page measured**,
+which is item 279: one origin in Phoenix, 268ms from Dubai, two round trips
+before the server is asked for anything. Roughly a second of every LCP here is
+network distance. Trimming markup will not move it; moving the origin closer
+would move all of it, and would likely take both amber pages green on its own.
