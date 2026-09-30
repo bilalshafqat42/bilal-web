@@ -6348,3 +6348,38 @@ column is capped inside it: `max-w-[46rem]` for the prose and the standfirst,
 `max-w-[58rem]` for the headline, all flush to the container's left edge. The
 page now shares its left margin with every other page while the text keeps a
 readable measure.
+
+### 284. DONE (2026-09-30) — Google had never been given the sitemap
+
+**Found from Bilal's Sitemaps screenshot.** Search Console listed two sitemaps,
+both WordPress leftovers, and **neither was the site's own**:
+
+| Submitted | Live status | Discovered pages |
+| --- | --- | ---: |
+| `/sitemap_index.xml` (Jul 2025) | **404** | 0 |
+| `/news-sitemap.xml` (Jan 2025) | **404** | 0 |
+| `/sitemap.xml` — the real one | 200, 83 URLs | **never submitted** |
+
+`sitemap_index.xml` was last read **3 February 2026** and reported *"Sitemap
+index processed successfully"* — a green tick that means only that the XML
+parsed, not that anything was found. The single file inside it,
+`/post-sitemap.xml`, said "Couldn't fetch". So the one reassuring word on the
+screen sat above two zeroes, and it stayed that way for eight months.
+
+This compounded everything else in 275-282: the posts were dead *and* the map
+that would have told Google about their replacements pointed at files that no
+longer existed.
+
+**Submitted 2026-09-30. Success, read the same day, 83 pages discovered.**
+
+**Worth remembering: "Couldn't fetch" immediately after submitting is not an
+error.** The row showed it with an **empty "Last read"** column, which means
+queued, not broken. Verified independently while it was still showing that:
+HTTP 200 to a Googlebot user-agent, `application/xml`, valid XML, 83 `<url>`
+entries, no off-domain URLs, not blocked by robots.txt, and listed in robots.txt.
+It read Success within the hour.
+
+Also worth knowing: viewing the sitemap in Chrome showed a
+`<script src="chrome-extension://...">` injected into the XML tree. That is the
+browser's own extension rendering, not the served bytes. `curl` returns clean
+XML. The same class of false alarm as the ColorZilla hydration warning.
