@@ -100,8 +100,14 @@ export default function AboutPage() {
                 <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                   About
                 </span>
+                {/* The name leads, because this is the page Google should
+                    return for "bilal shafqat" and the `h1` carried no name at
+                    all — only the title tag and the paragraph below did
+                    (roadmap 276). "experience," came out in exchange, so the
+                    line grows by three characters rather than fifteen and the
+                    hero keeps its height. */}
                 <h1 className="t-h1 mt-5 text-ink">
-                  15 years of marketing, design, and development experience, in{" "}
+                  Bilal Shafqat. 15 years of marketing, design and development, in{" "}
                   <span className="underline decoration-gold decoration-4 underline-offset-4">
                     one senior partner
                   </span>

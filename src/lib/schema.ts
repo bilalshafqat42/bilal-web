@@ -51,7 +51,13 @@ const SAME_AS = [
   "https://www.instagram.com/imbilalshafqat/",
   "https://www.facebook.com/imBilalshafqat",
   "https://x.com/bilalshafqat42",
-  "https://www.youtube.com/@bilalshafqat42",
+  // @bilal-4d, not @bilalshafqat42. The old handle in this list was a **404**:
+  // the Person node told Google "this is my channel" and pointed at a dead
+  // page, on the entity signal the site most needs (roadmap 276). Confirmed by
+  // Bilal from the channel's own About panel, which names him and links back
+  // here — not guessed from the username pattern, which is exactly how the
+  // wrong one got in.
+  "https://www.youtube.com/@bilal-4d",
   "https://www.tiktok.com/@imbilalshafqat",
   "https://www.pinterest.com/bilalshafqat42/",
 ];

@@ -6020,7 +6020,7 @@ opens. Both sides are now fixtures, so changing that weighting fails the build.
 All 13 original URLs return 200 through the trailing-slash 308, and
 `/nonsense-url` still 404s.
 
-### 276. OPEN — The site ranks 4.8 for "bilal shafqat"
+### 276. PARTLY DONE (2026-09-30) — The site ranks 4.8 for "bilal shafqat"
 
 His own name, and the single highest-intent query he has: 39 impressions, 1
 click, **2.4% CTR against a site-wide 0.07%**. Something outranks him for him.
@@ -6155,3 +6155,38 @@ needed to get there.
 **Worth remembering:** this was invisible from the source. `slice(0, 3)` reads
 as obviously correct. It only showed up by fetching all 44 live routes,
 stripping the chrome, and counting what actually links to what.
+
+
+---
+
+**Two entity signals fixed, 2026-09-30.**
+
+**The `sameAs` list pointed at a dead YouTube channel.** `@bilalshafqat42`
+returned **404**. The `Person` node was telling Google "this is my channel" and
+naming a page that does not exist — on the one query this item is about. The
+real handle is **`@bilal-4d`** ("Bilal-4D | by Bilal Shafqat"), confirmed by
+Bilal from the channel's own About panel, which names him and links back here.
+
+Note how the wrong one got in: `@bilalshafqat42` matches his handle pattern on
+X and Pinterest, so it looks right. The comment above `SAME_AS` already warned
+that nothing there may be inferred from a username pattern, and this was
+inferred anyway. **Fetch the profile before adding it.**
+
+**The `/about` `h1` carried no name.** It read "15 years of marketing, design,
+and development experience, in one senior partner" — on the page Google should
+return for his name. Only the title tag and the body paragraph had it. Now
+"Bilal Shafqat. 15 years of marketing, design and development, in **one senior
+partner**". "experience," came out in exchange, so the line grew by three
+characters, not fifteen: measured at 4 lines / 300px on desktop and 5 / 211px
+at 390px, with the CTA still above the fold.
+
+**The homepage `h1` was deliberately left alone.** "One senior partner. Campaign
+to code." is the brand line, the name is already in the title tag and three
+times in the body, and the whole query is 39 impressions. Rewriting the hero to
+chase that is a bad trade.
+
+**Still unknown: who actually outranks him.** It cannot be checked from here —
+the available search tool is US-only and his market is the UAE. Most likely his
+own social profiles, which is normal for a personal name and not necessarily
+worth fighting. Worth a manual look from a Dubai connection before spending
+anything else on it.
