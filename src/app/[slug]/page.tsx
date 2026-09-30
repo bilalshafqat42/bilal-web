@@ -8,7 +8,7 @@ import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL, articleNode, breadcrumbNode } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
-import { blogPosts, blogPost, readingMinutes } from "@/data/blogPosts";
+import { blogPosts, blogPost, readingMinutes, metaTitleOf } from "@/data/blogPosts";
 import { BLOG_RECOVERED_ON } from "@/data/contentDates";
 
 /**
@@ -36,12 +36,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const post = blogPost(slug);
   if (!post) return {};
+  // The short form for the tab and the search result; the full headline still
+  // renders as the `h1` below.
+  const metaTitle = metaTitleOf(post);
   return {
-    title: post.title,
+    title: metaTitle,
     description: post.description,
     alternates: { canonical: `/${post.slug}` },
     openGraph: {
-      title: post.title,
+      title: metaTitle,
       description: post.description,
       // `article`, not `website` — these carry a real publication date and a
       // named author, which is exactly what the type exists to express.

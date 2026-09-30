@@ -63,6 +63,17 @@ const MUST_FIND = [
   ["useimperativehandle", "useImperativeHandle"],
   ["flatlist vs scrollview", "FlatList"],
   ["design inspiration websites", "Design Inspiration"],
+  ["flexbox", "Flexbox"],
+  ["em and rem units", "EM and REM"],
+  ["figma plugins", "Figma Plugins"],
+  ["free icon libraries", "Icon Libraries"],
+  ["productivity tools", "Productivity Tools"],
+  // The articles must not take a hiring query off the page that sells the work.
+  // "ui ux designer" returned "8 Must-Have Free Icon Libraries for Designers"
+  // once all thirteen were indexed, which is what the `article` kind's score
+  // demotion exists to stop. Asserted against the service page, so a change to
+  // that weighting fails here rather than quietly costing an enquiry.
+  ["ui ux designer", "UI/UX"],
 ];
 
 // nothing on this site answers these, so they must return zero results

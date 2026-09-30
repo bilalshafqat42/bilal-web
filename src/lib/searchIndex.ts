@@ -155,7 +155,7 @@ export function buildIndex(): Chunk[] {
       title: post.title,
       body: `${post.description} ${headings}`,
       url: `/${post.slug}`,
-      kind: "info",
+      kind: "article",
     });
   }
 

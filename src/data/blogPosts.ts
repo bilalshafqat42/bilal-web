@@ -54,7 +54,16 @@ export type Block =
 
 export type BlogPost = {
   slug: string;
+  /** The article's own headline, exactly as published. This is the `h1`. */
   title: string;
+  /** A shorter `<title>` for the eight headlines that Google truncates.
+   *
+   *  Google cuts the title tag around 60 characters; the longest of these runs
+   *  to 91, so "...with Real Examples and Best Practices (2025 Guide)" was
+   *  never visible in a result — it spent the CTR and showed an ellipsis. The
+   *  keyword stays at the front, the stale year goes, and the on-page headline
+   *  is untouched: what ranked was the body and the `h1`, and neither moves. */
+  metaTitle?: string;
   description: string;
   /** ISO date, from the original byline. */
   published: string;
@@ -84,3 +93,6 @@ export const BLOG_CONTENT_DATE = blogPosts
 /** Roughly how long the article takes to read, at 200 words per minute — the
  *  conventional figure. Rounded up, and never below one. */
 export const readingMinutes = (p: BlogPost) => Math.max(1, Math.ceil(p.words / 200));
+
+/** What goes in `<title>`: the short form where one exists, else the headline. */
+export const metaTitleOf = (p: BlogPost) => p.metaTitle ?? p.title;

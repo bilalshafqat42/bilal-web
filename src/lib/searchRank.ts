@@ -20,7 +20,7 @@ export type Chunk = {
   title: string;
   body: string;
   url: string;
-  kind: "service" | "faq" | "work" | "info";
+  kind: "service" | "faq" | "work" | "info" | "article";
 };
 
 /** Words carrying no signal on this site.
@@ -161,6 +161,14 @@ export function search(index: Chunk[], query: string, limit = 3): Chunk[] {
 
       if (matched === q.length && q.length > 1) score += 4;
       if (chunk.kind === "faq") score *= 1.15; // an FAQ is usually the most direct answer
+      // An article is reference, not an offer. The recovered posts are the
+      // longest text on the site and several are titled for the same words the
+      // service pages sell on, so on raw score "ui ux designer" returned "8
+      // Must-Have Free Icon Libraries for Designers" ahead of the UI/UX service
+      // page — a hiring query answered with a tutorial. They still win when the
+      // query is actually about their subject, because the demotion is small
+      // next to the gap an on-topic title opens up.
+      if (chunk.kind === "article") score *= 0.72;
       return { chunk, score, matched, exact };
     })
     // A single-term query can only ever score on one term, so it needs a lower

@@ -5952,8 +5952,73 @@ scrolling past its own name. Measured in a headless browser, not assumed. It is
 still the page's only `h1`.
 
 **Still worth doing:** ping IndexNow (`npm run indexnow`) after deploy so Bing
-and Yandex recrawl the eight URLs rather than waiting to discover them, and
-request validation in Search Console.
+and Yandex recrawl the URLs rather than waiting to discover them, and request
+validation in Search Console.
+
+---
+
+**Extended to all thirteen, 2026-09-30.** Bilal chose full scope. The site now
+carries the whole of the old blog: **~6,900 impressions recovered, not 4,701.**
+
+**Two of the five were nearly lost to a silent extraction bug.** The icon
+libraries post (906 impressions, the second-biggest number in the table above)
+came out at **45 words** and the productivity post at 198. Both were built with
+**Elementor**, which emits body copy as bare text nodes inside
+`div.elementor-widget-container` with no `<p>` wrapper at all. A tag-walking
+extractor finds nothing and reports success — it does not error, it just
+returns a stub. Rewritten to replace block tags with line markers and read the
+result line by line, so bare text becomes a paragraph the same way a `<p>`
+does: **45 → 362 words** and **198 → 740**. The lesson is the usual one: the
+check that caught it was reading the output, not the code.
+
+**Three posts ended on someone else's article.** WordPress renders a related-post
+teaser as another article's `<h3>` plus its opening paragraph, which is
+indistinguishable from this article's own content once the tags are stripped —
+`mastering-flexbox-in-css` ended mid-way through "Best Developer Tools for
+2025". Cut at the `related-inner` / `comment-respond` container instead, which
+is the only reliable boundary. The comment threads and a trailing hashtag dump
+went with it.
+
+**Outbound links: 39 live across five listicles.** Three were removed after
+checking each destination in a real browser rather than trusting a fetch, since
+half these hosts answer 403 while being perfectly alive:
+
+| Link | Why it went |
+| --- | --- |
+| `appmotion.design` | Deleted Framer site |
+| `uxarchive.com` | Broken DNS |
+| `atlasicons.com` | **Returns 200, but the domain is now a music photo archive** |
+
+The last one is the reason a status code is not enough. A 200 from a domain
+that changed hands sends a reader somewhere irrelevant under Bilal's
+recommendation, which is worse than a dead link.
+
+**Title tags shortened on eight posts.** Google truncates near 60 characters
+and the longest headline ran to 91, so "...with Real Examples and Best
+Practices (2025 Guide)" was never visible — it spent the click-through and
+showed an ellipsis. A `metaTitle` field now carries the short form for
+`<title>` and Open Graph; **the `h1` and the body are untouched**, which is what
+actually ranked. The stale "2025" went with the trim. All 13 are now under 60.
+
+**One regression, caught by the fixtures.** With all thirteen indexed, the query
+**"ui ux designer" returned "8 Must-Have Free Icon Libraries for Designers"**
+ahead of the UI/UX service page — a hiring query answered with a tutorial. The
+articles are the longest text on the site and several are titled for the words
+the service pages sell on. Fixed with a new `article` chunk kind carrying a
+0.72 score factor: reference, not an offer. They still win on their own
+subjects, because the demotion is small next to the gap an on-topic title
+opens. Both sides are now fixtures, so changing that weighting fails the build.
+
+| Check | 8 posts | 13 posts |
+| --- | ---: | ---: |
+| Sitemap routes | 39 | **44** |
+| h1-check | 39 pass | **44 pass** |
+| schema-check | 39 pass | **44 pass** |
+| search-check fixtures | 39 | **45** |
+| Index chunks | 204 | **209** |
+
+All 13 original URLs return 200 through the trailing-slash 308, and
+`/nonsense-url` still 404s.
 
 ### 276. OPEN — The site ranks 4.8 for "bilal shafqat"
 

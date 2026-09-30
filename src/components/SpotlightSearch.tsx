@@ -21,6 +21,7 @@ const KIND_LABEL: Record<Chunk["kind"], string> = {
   faq: "Answer",
   work: "Portfolio",
   info: "Info",
+  article: "Article",
 };
 
 export default function SpotlightSearch() {
