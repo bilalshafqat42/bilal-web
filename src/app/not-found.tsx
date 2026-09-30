@@ -23,13 +23,19 @@ export default function NotFound() {
             <h1 className="t-h1 mt-5 text-ink">
               That page isn&apos;t here any more
             </h1>
-            {/* Most traffic here arrives from search results for the old
-                WordPress blog, so say what happened rather than pretend the
-                link was simply mistyped. */}
+            {/* Most traffic here still arrives from search results for the old
+                WordPress blog, so say what happened rather than pretend the link
+                was simply mistyped.
+                
+                Rewritten 2026-09-30: this used to read "those articles have been
+                retired", which was true for a month and is now false — all 52
+                are back at their original URLs (roadmap 282). A 404 telling
+                someone the thing they searched for no longer exists, on a site
+                where it does, sends them straight back to the results page. */}
             <p className="mt-6 text-lg text-muted leading-relaxed">
-              This site used to host a blog of development and design tutorials.
-              Those articles have been retired while the site focuses on client
-              work. If you arrived from a search result, that&apos;s why.
+              The articles that used to live here are back, but this particular
+              address isn&apos;t one of them. If you arrived from a search result,
+              the writing is all still on the site.
             </p>
             <p className="mt-4 text-lg text-muted leading-relaxed">
               If you&apos;re here about a project, everything you need is below.
@@ -37,6 +43,15 @@ export default function NotFound() {
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <CtaButton href="/appointment">Start a conversation</CtaButton>
+              {/* The likeliest thing a visitor landing on a dead blog URL
+                  actually wants, so it sits beside the commercial CTA rather
+                  than in the footer. */}
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
+              >
+                Read the articles
+              </Link>
               <Link
                 href="/portfolio"
                 className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
