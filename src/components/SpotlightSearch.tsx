@@ -153,7 +153,12 @@ export default function SpotlightSearch() {
       className="fixed inset-0 z-[70] flex items-start justify-center px-4 pt-[12vh]"
     >
       <button
-        aria-label="Close AI Search"
+        // Was "Close AI Search". There is no AI here and there never was in
+        // this component — it searches a local index. The model-backed
+        // assistant that justified the wording was removed in item 257 and the
+        // homepage section that replaced it in item 273; this label outlived
+        // both.
+        aria-label="Close search"
         onClick={close}
         className="mega-backdrop absolute inset-0 cursor-default"
       />
@@ -171,8 +176,11 @@ export default function SpotlightSearch() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={onKeyDown}
-            placeholder="Ask anything about my work or services..."
-            aria-label="Ask anything about my work or services"
+            // "Ask anything" promises a conversational answer. This returns
+            // matching pages, which is a different thing and the same
+            // over-promise that was corrected on the homepage in item 257.
+            placeholder="Search the site — services, work, pricing…"
+            aria-label="Search this site"
             className="min-w-0 flex-1 bg-transparent text-base text-ink placeholder:text-muted/70 outline-none"
           />
           <button onClick={close} aria-label="Close" className="shrink-0 text-muted hover:text-ink">

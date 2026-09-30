@@ -5759,3 +5759,59 @@ behind a toggle is text a skimming reader never sees.
 Verified at 1920, 1440, 1024, 768 and 390: five questions and five answers at
 every width, two columns above `lg` and stacked below, the CTA and the /faq link
 present throughout, no overflow and no page errors. All four checks pass.
+
+### 274. Full code review, 2026-09-30
+
+Asked for a whole-codebase review. Build, types and lint clean; 30 routes swept
+at 1440 and 390 for console errors, page errors, failed requests, non-200s,
+broken images, horizontal overflow, duplicate ids, unlabelled links and missing
+alt attributes: **no problems found**.
+
+Interaction was tested too, since a page load exercises none of it:
+
+| | Result |
+| --- | --- |
+| ⌘K search | opens, returns results, Escape removes it from the DOM |
+| Cookie banner | appears after ~1.5s, dismisses, stays dismissed on reload |
+| Mobile nav | opens, locks scroll, closes on Escape |
+| `/portfolio` filter | 15 → 14 cards, CSS `:has()` working |
+| Contact form | handles failure; `POST /api/lead` returns 200 |
+| Booking | "Show available times" loads the Cal.com `30min` embed |
+
+#### One real finding: the search still called itself AI
+
+`SpotlightSearch` carried `aria-label="Close AI Search"` and
+`placeholder="Ask anything about my work or services..."`. There is no AI in
+it and never was — it searches a local index. The model-backed assistant that
+justified the wording went in item 257 and the homepage section that replaced
+it in item 273; these labels outlived both.
+
+"Ask anything" is also the same over-promise corrected on the homepage: it
+returns matching pages, not answers. Now "Search the site — services, work,
+pricing…" and "Close search". Verified rendered: no AI wording remains, and the
+search still returns 4 results for "pricing".
+
+#### Observation, not a defect: the gallery lightbox has nothing to show
+
+`GalleryLightbox` is imported by both case study templates, and **every project
+has `gallery: 0` items** — so it wraps its children and never opens. Roughly
+5KB of client JS on six routes for a feature with no data behind it. That is a
+content gap rather than a bug: the component works, nothing has been given to
+it. Either populate the galleries or drop the wrapper.
+
+#### Three false alarms worth recording, so the next review does not repeat them
+
+- **"Escape does not close the search."** `offsetParent` is always `null` for a
+  `position: fixed` element, so the visibility check was meaningless. Measured
+  by bounding box and `display` instead: ⌘K takes it to 1440x900 `display:flex`
+  with the input focused, Escape removes it from the DOM entirely.
+- **"Three focusable elements inside a closed dialog."** `querySelector('[role=dialog]')`
+  was matching the *cookie banner*, which was legitimately open. There is never
+  more than one dialog present at a time.
+- **"The booking page has no calendar."** The Cal embed loads on click, not on
+  page load, and the button says "Show available times" rather than anything
+  containing "book". The iframe appears with
+  `app.cal.com/bilalshafqat/30min/embed` — which independently confirms the
+  "thirty minutes" written into the FAQ in item 273.
+
+All four checks pass.
