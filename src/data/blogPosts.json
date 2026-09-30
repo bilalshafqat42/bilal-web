@@ -1457,7 +1457,8 @@
       },
       {
         "t": "h3",
-        "v": "Awwwards"
+        "v": "Awwwards",
+        "href": "https://www.awwwards.com/"
       },
       {
         "t": "p",
@@ -1480,7 +1481,8 @@
       },
       {
         "t": "h3",
-        "v": "Dark.design"
+        "v": "Dark.design",
+        "href": "https://www.dark.design/"
       },
       {
         "t": "p",
@@ -1503,7 +1505,8 @@
       },
       {
         "t": "h3",
-        "v": "Behance"
+        "v": "Behance",
+        "href": "https://www.behance.net/"
       },
       {
         "t": "p",
@@ -1526,7 +1529,8 @@
       },
       {
         "t": "h3",
-        "v": "Dribbble"
+        "v": "Dribbble",
+        "href": "https://dribbble.com/"
       },
       {
         "t": "p",
@@ -1549,7 +1553,8 @@
       },
       {
         "t": "h3",
-        "v": "Collect UI"
+        "v": "Collect UI",
+        "href": "https://collectui.com/"
       },
       {
         "t": "p",
@@ -1595,7 +1600,8 @@
       },
       {
         "t": "h3",
-        "v": "Land Book"
+        "v": "Land Book",
+        "href": "https://land-book.com/"
       },
       {
         "t": "p",
@@ -1693,7 +1699,8 @@
       },
       {
         "t": "h2",
-        "v": "1. Principle.Design"
+        "v": "1. Principle.Design",
+        "href": "https://principles.design/"
       },
       {
         "t": "p",
@@ -1701,7 +1708,8 @@
       },
       {
         "t": "h2",
-        "v": "2. Nielsen Norman Group (NNG)"
+        "v": "2. Nielsen Norman Group (NNG)",
+        "href": "https://www.nngroup.com/"
       },
       {
         "t": "p",
@@ -1709,7 +1717,8 @@
       },
       {
         "t": "h2",
-        "v": "3. UX Hints TL;DR"
+        "v": "3. UX Hints TL;DR",
+        "href": "https://uxhints.com/"
       },
       {
         "t": "p",
@@ -1717,7 +1726,8 @@
       },
       {
         "t": "h2",
-        "v": "4. Interaction Design Foundation (IDF)"
+        "v": "4. Interaction Design Foundation (IDF)",
+        "href": "https://www.interaction-design.org/blog"
       },
       {
         "t": "p",
@@ -1725,7 +1735,8 @@
       },
       {
         "t": "h2",
-        "v": "5. Growth Design"
+        "v": "5. Growth Design",
+        "href": "https://growth.design/"
       },
       {
         "t": "p",
@@ -1733,7 +1744,8 @@
       },
       {
         "t": "h2",
-        "v": "6. Dark Patterns Tip Line"
+        "v": "6. Dark Patterns Tip Line",
+        "href": "https://darkpatternstipline.org/"
       },
       {
         "t": "p",
@@ -1741,7 +1753,8 @@
       },
       {
         "t": "h2",
-        "v": "7. UX Collective"
+        "v": "7. UX Collective",
+        "href": "https://uxdesign.cc/"
       },
       {
         "t": "p",
@@ -1749,7 +1762,8 @@
       },
       {
         "t": "h2",
-        "v": "8. Untools"
+        "v": "8. Untools",
+        "href": "https://untools.co/"
       },
       {
         "t": "p",
@@ -1757,7 +1771,8 @@
       },
       {
         "t": "h2",
-        "v": "9. Usability Geek"
+        "v": "9. Usability Geek",
+        "href": "https://usabilitygeek.com/"
       },
       {
         "t": "p",
@@ -1765,7 +1780,8 @@
       },
       {
         "t": "h2",
-        "v": "10. Ethical Design"
+        "v": "10. Ethical Design",
+        "href": "https://www.ethicaldesignresources.com/"
       },
       {
         "t": "p",

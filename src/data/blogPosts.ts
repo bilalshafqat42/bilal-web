@@ -35,7 +35,21 @@ import raw from "./blogPosts.json";
 export type BlockType = "h2" | "h3" | "p" | "code" | "list";
 
 export type Block =
-  | { t: "h2" | "h3" | "p" | "code"; v: string }
+  /** `href` appears only on the two listicles, where the heading *is* the entry
+   *  for a site — "Awwwards", "3. UX Hints TL;DR". The original posts linked out
+   *  from the paragraph beneath; the first recovery pass kept the prose and
+   *  dropped the anchors, which left "10 Best Websites to Master UI UX Design"
+   *  naming ten sites and linking to none of them. That is a worse outcome than
+   *  the missing images: the list is the whole point of the page.
+   *
+   *  Two of the eighteen are deliberately absent. `appmotion.design` is a
+   *  deleted Framer site and `uxarchive.com` has broken DNS — both checked in a
+   *  real browser, because a plain fetch reports 403 for half these hosts and
+   *  they are merely bot-blocking, not down. The recommendations still read; we
+   *  just do not send anyone to a dead page. Worth re-checking if either
+   *  returns. */
+  | { t: "h2" | "h3"; v: string; href?: string }
+  | { t: "p" | "code"; v: string }
   | { t: "list"; v: string[]; ordered?: boolean };
 
 export type BlogPost = {

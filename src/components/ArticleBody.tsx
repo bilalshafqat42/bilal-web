@@ -1,3 +1,5 @@
+import { ExternalLink } from "lucide-react";
+
 import type { Block } from "@/data/blogPosts";
 
 /**
@@ -40,13 +42,33 @@ export default function ArticleBody({ blocks }: { blocks: Block[] }) {
           seen.set(id, n + 1);
           if (n) id = `${id}-${n + 1}`;
 
+          // On the listicles the heading names a site, and the original post
+          // linked to it. `rel="noopener"` for the usual reason; no `nofollow`,
+          // because these are genuine editorial recommendations rather than
+          // paid placements, and marking them otherwise would be a lie about
+          // what they are.
+          const label = b.href ? (
+            <a
+              href={b.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-baseline gap-1.5 text-ink underline decoration-gold/40 underline-offset-[6px] transition-colors hover:text-gold hover:decoration-gold"
+            >
+              {b.v}
+              <ExternalLink size={15} aria-hidden="true" className="shrink-0 self-center text-gold/70" />
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
+          ) : (
+            b.v
+          );
+
           return b.t === "h2" ? (
             <h2 key={i} id={id} className="t-h3 mt-14 scroll-mt-28 text-ink first:mt-0">
-              {b.v}
+              {label}
             </h2>
           ) : (
             <h3 key={i} id={id} className="t-h5 mt-10 scroll-mt-28 text-ink first:mt-0">
-              {b.v}
+              {label}
             </h3>
           );
         }
