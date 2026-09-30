@@ -6038,7 +6038,32 @@ at 92.1, "ux design website" at 44.0.
 Not a bug and not quickly fixable: this is domain authority and content depth
 over months. Recorded so it is not mistaken for a technical fault.
 
-### 278. OPEN — Case study galleries are empty
+### 278. NOT A BUG (verified 2026-09-30) — Case study galleries are empty
+
+**Verified against the live site on 2026-09-30: the galleries are populated and
+the lightbox works.** The "gallery: 0" reading behind this item was wrong.
+
+Measured on `/portfolio/leos-developments/hadley-heights` in a real browser:
+five tiles present, clicking one opens a dialog labelled "Campaign carousel,
+slide 1 of 5", ArrowRight advances it to slide 2, Escape closes it, and focus
+returns to the `figure` that opened it. No page errors.
+
+**Two things made this look broken and are worth remembering.** The tiles are
+`figure[role="button"]`, not `<button>`, so a `button:has(img)` selector finds
+nothing and reads as "no gallery". And `[role="dialog"]` matches the cookie
+banner as well, so a bare count never returns zero — the same false positive
+already recorded in the notes on `offsetParent` and the Cal embed. Assert on
+the dialog's `aria-label`, not on its presence.
+
+**Also cleared while checking:**
+
+- **The Open Graph card is not a placeholder.** `og-default.jpg` is a real
+  1200x630 branded card — portrait, name, service line, domain — at 42KB.
+- **Nav contrast passes.** Measured 7.55:1 for a nav link over the floating
+  pill, including where white page content sits behind it. The 3.38:1 figure
+  predates the pill becoming a 75% dark `color-mix` with backdrop blur, which
+  keeps the text on a dark ground regardless of what is underneath.
+
 
 From the 2026-09-30 code review. `GalleryLightbox` is imported by both case
 study templates and **every project has `gallery: 0` items**, so it wraps its
@@ -6056,3 +6081,39 @@ good and none of them should be disturbed while fixing the above:
 - **134 sessions to 6 enquiries, 4.5%.** The site converts; almost nobody
   arrives.
 - **PageSpeed 100/100/100/100**, LCP 466ms, CLS 0.000.
+
+### 279. OPEN — Two thirds of every page load is spent connecting, not serving
+
+**The finding.** Measured against the live site on 2026-09-30, three runs:
+
+| | Run 1 | Run 2 | Run 3 |
+| --- | ---: | ---: | ---: |
+| Connect | 0.268s | 0.288s | 0.290s |
+| TLS complete | 0.650s | 0.686s | 0.619s |
+| **TTFB** | **0.941s** | **0.981s** | **0.983s** |
+
+TTFB sits just under a second, and **roughly 65-70% of it is gone before the
+server is asked for anything** — TCP plus the TLS handshake. That is not slow
+code. The build is static, PageSpeed scores 100, and the pages weigh 616-846KB.
+It is distance: one origin in a single location, and a round trip per visitor.
+
+**Why it matters more today than last week.** It is a fixed tax on all 44
+routes, and 13 of those are a day old and about to be recrawled. TTFB feeds
+directly into LCP, which is a ranking signal, and Googlebot's crawl budget
+responds to how fast a host answers — the blog recovery is the moment this is
+worth paying down.
+
+**The fix is a CDN in front of the origin.** Cloudflare's free tier terminates
+TLS at an edge node near the visitor instead of at the Hostinger origin, which
+is what removes the handshake from the critical path. The HTML cache headers
+this needs are already set in `next.config.ts` (`s-maxage=600`,
+`stale-while-revalidate=86400`), so the site is configured for a shared cache
+that is not yet there.
+
+**Cost: AED 0 on the free tier.** Stated as the assumption: Cloudflare Free
+covers CDN, TLS and caching at no charge; nothing here needs Pro.
+
+**Needs from Bilal:** the domain's nameservers pointed at Cloudflare. That is a
+registrar change, not a code change, and it is the one step that cannot be done
+from this repo. Worth doing after the blog URLs are confirmed recrawled, so a
+DNS change is not competing with a recrawl for attribution.
