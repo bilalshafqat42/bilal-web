@@ -96,3 +96,28 @@ export const readingMinutes = (p: BlogPost) => Math.max(1, Math.ceil(p.words / 2
 
 /** What goes in `<title>`: the short form where one exists, else the headline. */
 export const metaTitleOf = (p: BlogPost) => p.metaTitle ?? p.title;
+
+/** The three posts to offer at the end of an article.
+ *
+ *  The window rotates: each post points at the three that follow it, wrapping
+ *  round the end of the list. That is not a styling choice — it is the only
+ *  part of these pages' internal linking this file controls.
+ *
+ *  It replaces `blogPosts.filter(notSelf).slice(0, 3)`, which always returned
+ *  the three *newest* posts. Measured against the live site afterwards: those
+ *  three had 13 inbound internal links each, one had 4, and **the other nine
+ *  had exactly one** — the listing on `/blog` — while every external link the
+ *  domain has ever earned points at the homepage. Deep pages rank substantially
+ *  on their own links, so nine of thirteen were being starved by a `slice`.
+ *
+ *  Rotation gives every post exactly three, and because the list is ordered by
+ *  date the neighbours are already topical: the six React posts were published
+ *  together in June and July, the design listicles in January and February. So
+ *  an even spread and a relevant one turn out to be the same thing here, with
+ *  no tag matching needed. */
+export function relatedPosts(slug: string, count = 3): BlogPost[] {
+  const i = blogPosts.findIndex((p) => p.slug === slug);
+  if (i < 0) return blogPosts.slice(0, count);
+  const n = blogPosts.length;
+  return Array.from({ length: Math.min(count, n - 1) }, (_, k) => blogPosts[(i + 1 + k) % n]);
+}

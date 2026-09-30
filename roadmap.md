@@ -6117,3 +6117,41 @@ covers CDN, TLS and caching at no charge; nothing here needs Pro.
 registrar change, not a code change, and it is the one step that cannot be done
 from this repo. Worth doing after the blog URLs are confirmed recrawled, so a
 DNS change is not competing with a recrawl for attribution.
+
+### 280. DONE (2026-09-30) — Nine of thirteen articles had one internal link
+
+**Found by crawling the live site rather than reading the code.** Search
+Console shows the domain's entire external link profile — 95 links from 11
+domains — pointing at **one page, the homepage**. Nothing else on the site has
+ever earned a link. Deep pages rank substantially on their own links, so the
+internal graph is the only lever available here, and it was wasting itself.
+
+Inbound *body* links per article (header and footer excluded, since site chrome
+links every page equally and tells us nothing):
+
+| Article | Before | After |
+| --- | ---: | ---: |
+| The three newest | 13 | 4 |
+| `react-usecallback-hook-explained` | 4 | 4 |
+| **The other nine** | **1** | **4** |
+
+**The cause was a `slice`.** The "Keep reading" block read
+`blogPosts.filter(notSelf).slice(0, 3)` — and since the list is sorted newest
+first, that returned *the same three posts on every article*. Twelve pages all
+pointed at the same three, nine posts were reachable only from the `/blog`
+listing, and the link equity piled up on whichever three happened to be newest.
+It would also have silently re-pointed itself every time a post was added.
+
+**Now a rotating window:** each post links to the three that follow it, wrapping
+round the end of the list. Every post gives three and receives three, plus one
+from `/blog` — measured at exactly 4 each, min and max.
+
+**Rotation turned out to be the relevant choice as well as the even one.** The
+list is ordered by date and the topics were written in clusters: the six React
+posts in June and July 2025, the design listicles in January and February. So
+a post's neighbours are already its subject matter, and no tag matching was
+needed to get there.
+
+**Worth remembering:** this was invisible from the source. `slice(0, 3)` reads
+as obviously correct. It only showed up by fetching all 44 live routes,
+stripping the chrome, and counting what actually links to what.

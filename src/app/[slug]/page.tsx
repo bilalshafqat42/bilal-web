@@ -8,7 +8,8 @@ import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL, articleNode, breadcrumbNode } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
-import { blogPosts, blogPost, readingMinutes, metaTitleOf } from "@/data/blogPosts";
+import { blogPost, readingMinutes, metaTitleOf, relatedPosts } from "@/data/blogPosts";
+import { blogPosts } from "@/data/blogPosts";
 import { BLOG_RECOVERED_ON } from "@/data/contentDates";
 
 /**
@@ -74,7 +75,7 @@ export default async function ArticlePage({ params }: PageProps) {
   if (!post) notFound();
 
   const url = `${SITE_URL}/${post.slug}`;
-  const related = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const related = relatedPosts(post.slug);
 
   const nodes = [
     breadcrumbNode(url, [
