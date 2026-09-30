@@ -100,7 +100,7 @@ export default async function ArticlePage({ params }: PageProps) {
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
         <section className="relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="relative mx-auto max-w-3xl px-6">
+          <div className="site-container relative">
             <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-muted">
               <Link href="/" className="transition-colors hover:text-ink">Home</Link>
               <ChevronRight size={13} />
@@ -114,9 +114,12 @@ export default async function ArticlePage({ params }: PageProps) {
                 `t-h1` the title alone filled a 1440x900 viewport — the reader
                 reached the article by scrolling past its own name. Measured, not
                 assumed. The element is still the page's only `h1`. */}
-            <h1 className="t-h2 mt-8 text-balance text-ink">{post.title}</h1>
+            <h1 className="t-h2 mt-8 max-w-[58rem] text-balance text-ink">{post.title}</h1>
 
-            <p className="mt-6 text-lg leading-relaxed text-muted">{post.description}</p>
+            {/* Same measure as the body below. Left at the container's full
+                1360px it ran to roughly 200 characters on one line, which is
+                unreadable however well it aligns. */}
+            <p className="mt-6 max-w-[46rem] text-lg leading-relaxed text-muted">{post.description}</p>
 
             <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted">
               <time dateTime={post.published}>{formatDate(post.published)}</time>
@@ -131,12 +134,23 @@ export default async function ArticlePage({ params }: PageProps) {
           </div>
         </section>
 
-        <article className="relative mx-auto max-w-3xl px-6">
-          <ArticleBody blocks={post.blocks} />
+        {/* `site-container` so the article starts on the same vertical line as
+            /about and every other page — measured at 1600px, the old
+            `mx-auto max-w-3xl` put it 320px further in than the rest of the
+            site, which is what Bilal spotted.
+
+            The prose keeps a readable measure inside that container rather than
+            running the full 1440: a 1360px line is roughly 200 characters and
+            nobody reads that. So the column is capped and left-aligned, which
+            is what makes it line up with the heading above it. */}
+        <article className="site-container relative">
+          <div className="max-w-[46rem]">
+            <ArticleBody blocks={post.blocks} />
+          </div>
         </article>
 
         <section className="relative mt-20 sm:mt-24">
-          <div className="mx-auto max-w-5xl px-6">
+          <div className="site-container">
             <Reveal>
               <div className="relative overflow-hidden rounded-[2rem] border border-border glass-strong px-8 py-14 text-center sm:px-16">
                 <div
@@ -163,7 +177,7 @@ export default async function ArticlePage({ params }: PageProps) {
 
         {related.length ? (
           <section className="relative mt-20 sm:mt-24">
-            <div className="mx-auto max-w-5xl px-6">
+            <div className="site-container">
               <h2 className="t-h4 text-ink">Keep reading</h2>
               <ul className="mt-8 grid gap-4 sm:grid-cols-3">
                 {related.map((p) => (

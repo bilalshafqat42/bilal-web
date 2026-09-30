@@ -6317,3 +6317,34 @@ prune is not optional.
 **Still not restored:** `/graphic-designing-course/`,
 `/frontend-development-course/` and `/react-js-development-course/` are sales
 pages for paid courses the current site does not offer. Bilal's call.
+
+### 283. DONE (2026-09-30) — Blog in the nav, and articles aligned to the grid
+
+**Both spotted by Bilal on the live site.**
+
+**`Blog` is back in the top nav.** Item 216 cut the bar to four items, and that
+was right at the time — there was no blog to link to. There are now 52 articles
+carrying the traffic the rest of the site does not, and reaching them only from
+the footer made the largest section of the site the least visible.
+
+**The articles were not on the site's grid.** Measured at a 1600px viewport,
+left edge of the `h1`:
+
+| Page | Before | After |
+| --- | ---: | ---: |
+| `/about` | 120 | 120 |
+| `/blog` | 312 | **120** |
+| An article | 440 | **120** |
+
+The article pages used `mx-auto max-w-3xl px-6` — a centred 768px column — while
+the rest of the site uses `.site-container`, a 1440px cap with a 2.5rem gutter.
+So an article began **320px further in** than every other page, which is exactly
+the misalignment Bilal saw.
+
+**Width is not the same as measure.** Moving to `site-container` alone would set
+the body text 1360px wide, which is roughly 200 characters a line and unreadable
+whatever it lines up with. So the container matches the site and the reading
+column is capped inside it: `max-w-[46rem]` for the prose and the standfirst,
+`max-w-[58rem]` for the headline, all flush to the container's left edge. The
+page now shares its left margin with every other page while the text keeps a
+readable measure.

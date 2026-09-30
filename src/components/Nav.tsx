@@ -53,6 +53,11 @@ const links: { label: string; href: string; mega?: MegaId }[] = [
   { label: "Work", href: "/portfolio" },
   { label: "Services", href: "/services", mega: "services" },
   { label: "Process", href: "/process" },
+  // Added back on 2026-09-30, at Bilal's request. The trim above was made when
+  // there was no blog to link to; there are now 52 articles carrying the
+  // traffic the rest of the site does not (roadmap 281), and reaching them only
+  // from the footer made the largest section of the site the least visible.
+  { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
 ];
 
