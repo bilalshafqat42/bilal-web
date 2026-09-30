@@ -171,6 +171,44 @@ export function faqNode(url: string, qa: { question: string; answer: string }[])
   };
 }
 
+/** A recovered WordPress article (roadmap 275).
+ *
+ *  `datePublished` is the original byline date and `dateModified` the day the
+ *  post was brought back, which are genuinely different events — claiming the
+ *  piece was written this year would misdate a year-old article to both readers
+ *  and crawlers.
+ *
+ *  No `image`: the article artwork did not survive the migration, and pointing
+ *  `image` at the site-wide OG card would describe a picture the article does
+ *  not contain. Google treats it as optional for `Article`; a wrong value is
+ *  worse than a missing one.
+ */
+export function articleNode(opts: {
+  url: string;
+  headline: string;
+  description: string;
+  datePublished: string;
+  dateModified: string;
+  keywords: string[];
+  wordCount: number;
+}) {
+  return {
+    "@type": "Article",
+    "@id": `${opts.url}#article`,
+    headline: opts.headline,
+    description: opts.description,
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified,
+    keywords: opts.keywords,
+    wordCount: opts.wordCount,
+    inLanguage: "en",
+    author: ref(ID.person, "Person"),
+    publisher: ref(ID.business, "ProfessionalService"),
+    isPartOf: ref(ID.website, "WebSite"),
+    mainEntityOfPage: { "@type": "WebPage", "@id": opts.url },
+  };
+}
+
 export function breadcrumbNode(url: string, trail: { name: string; item: string }[]) {
   return {
     "@type": "BreadcrumbList",

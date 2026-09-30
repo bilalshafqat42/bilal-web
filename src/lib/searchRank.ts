@@ -23,7 +23,16 @@ export type Chunk = {
   kind: "service" | "faq" | "work" | "info";
 };
 
-const STOP = new Set(["the","a","an","and","or","is","are","do","does","you","your","can","i","to","for","of","in","on","with","it","me","my","we","what","how","much","have","has","be","this","that","any","need","want","looking","help","get","would","like","some","please","hi","hello"]);
+/** Words carrying no signal on this site.
+ *
+ *  "best" and "top" were added when the recovered articles landed (roadmap
+ *  275). They are ranking qualifiers, not subjects, but two of the eight titles
+ *  open with one — so across a 204-chunk index they read as *rare*, which is
+ *  exactly what the IDF weighting rewards. The nonsense fixture "best
+ *  restaurants" scored a clean title hit on "10 Best Websites to Master UI UX
+ *  Design" and cleared the noise gate. What discriminates in those titles is
+ *  "websites", "design" and "inspiration"; the qualifier carries nothing. */
+const STOP = new Set(["the","a","an","and","or","is","are","do","does","you","your","can","i","to","for","of","in","on","with","it","me","my","we","what","how","much","have","has","be","this","that","any","need","want","looking","help","get","would","like","some","please","hi","hello","best","top"]);
 
 /**
  * Crude suffix stripping, not a real stemmer.

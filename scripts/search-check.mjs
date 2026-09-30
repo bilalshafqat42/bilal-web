@@ -50,6 +50,19 @@ const MUST_FIND = [
   ["portfolio", "Portfolio"],
   ["social media portfolio", "Social Media Marketing"],
   ["can you take over an existing ad account", "ad account"],
+  // The recovered articles (roadmap 275). These are the only pages on the site
+  // that answer a technical how-to, so without a fixture each the site search
+  // could stop reaching 6,900 impressions' worth of content and nothing would
+  // say so. Asserted on the distinctive word in the title, not the qualifier:
+  // "best" and "top" are stop words precisely because two of these titles open
+  // with one.
+  ["usecallback", "useCallback"],
+  ["usememo", "useMemo"],
+  ["usereducer", "useReducer"],
+  ["usecontext", "useContext"],
+  ["useimperativehandle", "useImperativeHandle"],
+  ["flatlist vs scrollview", "FlatList"],
+  ["design inspiration websites", "Design Inspiration"],
 ];
 
 // nothing on this site answers these, so they must return zero results

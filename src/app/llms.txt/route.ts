@@ -2,6 +2,7 @@ import { megaMenuGroups } from "@/data/pillars";
 import { clients } from "@/data/caseStudies";
 import { faqGroups } from "@/data/faqs";
 import { disciplinesWithPages, disciplineItems } from "@/data/disciplines";
+import { blogPosts } from "@/data/blogPosts";
 
 const SITE = "https://bilalshafqat.com";
 
@@ -41,7 +42,18 @@ Full content for machine reading: ${SITE}/llms-full.txt
 - [Book a consultation](${SITE}/appointment): the booking page every primary CTA points at — pick a slot for a free call
 - [Real estate marketing](${SITE}/real-estate-marketing): off-plan and property developer work — campaigns, launch sites and CRM, as one vertical
 - [Contact](${SITE}/contact): enquiry form, email, WhatsApp
+- [Writing](${SITE}/blog): ${blogPosts.length} technical articles on React hooks, React Native and design practice
 - [Privacy](${SITE}/privacy): what the site stores`);
+
+  // The articles sit at the root of the domain, not under /blog — they are the
+  // original WordPress URLs, restored (roadmap 275). Listed individually
+  // because an assistant asked "how does useCallback work" should be able to
+  // reach the article, not just the index that links to it.
+  lines.push(`## Writing
+`);
+  for (const post of blogPosts) {
+    lines.push(`- [${post.title}](${SITE}/${post.slug}): ${post.description} Published ${post.published}.`);
+  }
 
   lines.push(`## Services\n`);
   for (const g of megaMenuGroups) {

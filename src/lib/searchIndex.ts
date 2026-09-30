@@ -14,6 +14,7 @@ import { disciplinesWithPages, disciplineItems } from "@/data/disciplines";
 
 export type { Chunk } from "./searchRank";
 import type { Chunk } from "./searchRank";
+import { blogPosts } from "@/data/blogPosts";
 
 export function buildIndex(): Chunk[] {
   const chunks: Chunk[] = [];
@@ -140,6 +141,23 @@ export function buildIndex(): Chunk[] {
     url: "/contact",
     kind: "info",
   });
+
+  // The recovered articles (roadmap 275). One chunk per post: the description
+  // plus the headings, which is what someone searching "usecallback" or
+  // "flatlist" is actually reaching for. The full body would swamp the index —
+  // these eight are longer than every service page put together.
+  for (const post of blogPosts) {
+    const headings = post.blocks
+      .filter((b) => b.t === "h2" || b.t === "h3")
+      .map((b) => b.v as string)
+      .join(". ");
+    chunks.push({
+      title: post.title,
+      body: `${post.description} ${headings}`,
+      url: `/${post.slug}`,
+      kind: "info",
+    });
+  }
 
   // The same heading can be reached from two builders (a category and the
 

@@ -14,7 +14,15 @@
  * Usage:  npm run schema-check
  *         BASE_URL=http://localhost:3020 npm run schema-check
  */
+import { readFileSync } from "node:fs";
+
 const BASE = (process.env.BASE_URL || "http://localhost:3000").replace(/\/$/, "");
+
+/** Read rather than hard-coded, so this file cannot fall out of step with the
+ *  posts that actually exist. */
+const BLOG_SLUGS = JSON.parse(
+  readFileSync(new URL("../src/data/blogPosts.json", import.meta.url), "utf8"),
+).map((p) => p.slug);
 
 /** Types that must never appear. There are no verified reviews, and inventing
  *  review or rating markup is a manual-action risk, not a ranking tactic. */
@@ -30,6 +38,16 @@ const EXPECTED = [
   [/^\/contact$/, ["ContactPage"]],
   [/^\/portfolio\/[^/]+$/, ["BreadcrumbList"]],
   [/^\/portfolio\/[^/]+\/[^/]+$/, ["BreadcrumbList"]],
+  [/^\/blog$/, ["Blog", "BreadcrumbList"]],
+  // The recovered articles live at the root, so there is no path shape that
+  // picks them out without also matching /about and /faq. The slugs are read
+  // from the same JSON the routes render, which is the point: adding a post
+  // extends this check automatically, and deleting one makes the pattern match
+  // nothing — itself a failure below.
+  ...BLOG_SLUGS.map((slug) => [
+    new RegExp(`^/${slug.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`),
+    ["Article", "BreadcrumbList"],
+  ]),
 ];
 
 async function get(url) {

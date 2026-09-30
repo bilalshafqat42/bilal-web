@@ -5823,7 +5823,7 @@ All four checks pass.
 Raised from Performo's 90-day export plus verification against the live site.
 Numbered so they can be closed one at a time.
 
-### 275. OPEN — Every page earning search impressions returns 404
+### 275. DONE (2026-09-30) — Every page earning search impressions returns 404
 
 **The finding.** Thirteen WordPress-era blog URLs still carry essentially all
 of the site's search visibility, and every one of them is dead. The 308 seen
@@ -5879,6 +5879,81 @@ not ready to buy.
 
 **Needs from Bilal:** scope. All 13, the top 5 (~70% of the lost impressions),
 or none.
+
+---
+
+**Resolved 2026-09-30. Eight of the thirteen restored, at their original URLs.**
+
+**Scope taken: the six React posts plus the two UI/UX ones** — about 4,700 of
+the ~6,900 impressions. The five left out are the generic listicles
+(`what-are-em-and-rem-units`, `8-must-have-free-icon-libraries-for-designers`,
+`6-best-ai-powered-figma-plugins`, `top-10-productivity-tools-to-boost-efficiency`,
+`mastering-flexbox-in-css`). They were dropped on subject, not traffic: they say
+nothing a reader could not get from ten better-ranked pages, and one of them —
+the icon libraries post at 906 impressions — is the second-biggest number in the
+table. **Bilal has not confirmed this split.** Restoring the other five is a
+data-file change and nothing more; the routes, schema and checks already cover
+them.
+
+**Where they live.** At the root — `/react-usecallback-hook-explained`, not
+`/blog/react-usecallback-hook-explained` — via `src/app/[slug]/page.tsx` with
+`dynamicParams = false`. A dynamic segment at the root answers every path no
+static route claims, so without that flag the site would have lost its 404
+entirely; with it, only the eight slugs render and everything else 404s as
+before. Verified: `/this-page-does-not-exist` still returns 404, and all twelve
+existing routes still return 200.
+
+`/blog` is the index, listing the posts. That split is deliberate. A tidy
+`/blog/<slug>` layout with redirects would be better architecture on a site
+starting fresh; here it would put a redirect hop in front of the only URLs with
+any ranking history, to buy a prettier path nobody has ever linked to.
+
+**Measured, against the built output on port 3100:**
+
+| Check | Before | After |
+| --- | ---: | ---: |
+| Sitemap routes | 30 | **39** |
+| h1-check | 30 pass | **39 pass** |
+| schema-check | 30 pass | **39 pass** |
+| search-check fixtures | 32 | **39** |
+| Search index chunks | 196 | **204** |
+
+All eight indexed URLs now return 200 through the usual trailing-slash 308.
+Article page weight is 616KB against the homepage's 846KB.
+
+**What did not survive, and was dropped rather than faked.** The images are
+gone: Wayback never captured `/wp-content/uploads` (`archived_snapshots` comes
+back empty for every one) and the origin has purged them. Neither local zip
+holds them — both are the Refine portfolio app. So the posts are text-only.
+The WordPress chrome (duplicated title, byline row, comment count) and the
+decorative heading emoji went too. **The prose, headings and code are Bilal's
+own, verbatim.** Nothing was regenerated or paraphrased.
+
+`datePublished` is the real 2025 byline, `dateModified` the recovery date. The
+sitemap sends the recovery date, because what changed is that these pages exist
+again — and that is the change Google needs to recrawl.
+
+**One regression caught by the fixtures, not by reading the source.** The
+nonsense query `"best restaurants"` started returning "10 Best Websites to
+Master UI UX Design". Two of the eight titles open with "best", which on a
+204-chunk index made the word read as *rare* — exactly what the IDF weighting
+rewards — and it cleared the noise gate on a clean title hit. `"best"` and
+`"top"` are now stop words alongside `"need"` and `"looking"`: they are ranking
+qualifiers, not subjects. Seven fixtures were added so the new content is
+protected rather than merely not breaking anything.
+
+**Also wired in:** `/blog` in the footer (not the nav — item 216 trimmed that
+to four deliberately, and the footer is on every route), the eight posts in
+`llms.txt` and the assistant corpus, and one search chunk per post.
+
+**The article title is `t-h2`, not `t-h1`.** At `t-h1` a 78-character headline
+filled a 1440x900 viewport on its own — the reader reached the article by
+scrolling past its own name. Measured in a headless browser, not assumed. It is
+still the page's only `h1`.
+
+**Still worth doing:** ping IndexNow (`npm run indexnow`) after deploy so Bing
+and Yandex recrawl the eight URLs rather than waiting to discover them, and
+request validation in Search Console.
 
 ### 276. OPEN — The site ranks 4.8 for "bilal shafqat"
 

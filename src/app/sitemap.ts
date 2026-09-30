@@ -5,12 +5,14 @@ import {
   SERVICES_CONTENT_DATE,
   PORTFOLIO_CONTENT_DATE,
   DISCIPLINE_CONTENT_DATE,
+  BLOG_RECOVERED_ON,
 } from "@/data/contentDates";
 
 /** Falls back to the build date only for a route with no recorded entry, so a
  *  new page is never worse off than it was before this change. */
 const dateFor = (path: string) => new Date(contentDates[path] ?? Date.now());
 import { caseStudyUrls } from "@/data/caseStudies";
+import { blogPosts } from "@/data/blogPosts";
 import { disciplinesWithPages } from "@/data/disciplines";
 
 const baseUrl = "https://bilalshafqat.com";
@@ -89,6 +91,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(BLOG_RECOVERED_ON),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    // The eight recovered articles, at the root of the domain rather than under
+    // /blog — these are the URLs Google already has, and the whole point of
+    // restoring them is that those URLs stop returning 404 (roadmap 275).
+    //
+    // `lastModified` is the recovery date, not the 2025 byline: what changed is
+    // that the page exists again, and that is the change we want recrawled.
+    ...blogPosts.map((p) => ({
+      url: `${baseUrl}/${p.slug}`,
+      lastModified: new Date(BLOG_RECOVERED_ON),
+      changeFrequency: "yearly" as const,
+      // Below the service and portfolio pages: these bring reach, but the
+      // pages that convert are the ones that should be crawled first.
+      priority: 0.5,
+    })),
     // All four case studies read from src/data/caseStudies.ts, so they share
     // that file's date rather than each claiming to have changed today.
     ...caseStudyUrls().map((path) => ({

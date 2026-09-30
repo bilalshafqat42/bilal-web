@@ -10,6 +10,7 @@ import { faqGroups } from "@/data/faqs";
 import { serviceDepth } from "@/data/serviceDepth";
 import { clients } from "@/data/caseStudies";
 import { disciplinesWithPages, disciplineItems } from "@/data/disciplines";
+import { blogPosts } from "@/data/blogPosts";
 
 export function buildSiteContent(): string {
   const parts: string[] = [];
@@ -73,6 +74,21 @@ ${p.summary}
 Facts: ${p.facts.map((f) => `${f.label}: ${f.value}`).join("; ")}.
 ${p.landingPage ? p.landingPage.body : ""}`);
     }
+  }
+
+  // The recovered articles (roadmap 275). Headings rather than full bodies: the
+  // point is that an assistant knows these pages exist and what each covers, and
+  // the full text is a fetch away at the URL. Dropping the whole corpus in would
+  // roughly double this file for content that is reference, not sales.
+  parts.push(`# Writing\n`);
+  for (const post of blogPosts) {
+    const headings = post.blocks
+      .filter((b) => b.t === "h2")
+      .map((b) => b.v as string)
+      .join("; ");
+    parts.push(`## ${post.title}  (page: /${post.slug})
+${post.description}
+Published ${post.published}. Covers: ${headings}.`);
   }
 
   parts.push(`# Frequently asked questions\n`);

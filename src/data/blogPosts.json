@@ -1,0 +1,1824 @@
+[
+  {
+    "slug": "react-useimperativehandle-hook-explained",
+    "title": "React useImperativeHandle Hook Explained with Real Examples and Best Practices (2025 Guide)",
+    "description": "Ever needed to call a function inside a child component — from the parent? React’s useImperativeHandle hook makes that possible.",
+    "published": "2025-07-01",
+    "tags": [
+      "React Hooks",
+      "React Js"
+    ],
+    "words": 473,
+    "blocks": [
+      {
+        "t": "h2",
+        "v": "Introduction"
+      },
+      {
+        "t": "p",
+        "v": "Most React developers use ref for accessing DOM elements. But what if you want a parent component to trigger a custom method defined inside a child component?"
+      },
+      {
+        "t": "p",
+        "v": "That’s where useImperativeHandle() comes in. It lets you define exactly what a parent can do with a ref passed to a child component. Combined with forwardRef(), this hook gives you a controlled way to expose internal functionality of a component — without breaking encapsulation."
+      },
+      {
+        "t": "h3",
+        "v": "In this guide, you’ll learn:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "What useImperativeHandle does",
+          "When and why to use it",
+          "How to combine it with forwardRef()",
+          "Real-world examples (like focus and reset)",
+          "Common mistakes and best practices"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "What is useImperativeHandle?"
+      },
+      {
+        "t": "p",
+        "v": "useImperativeHandle is a React hook that lets you customize what gets exposed through a ref from a child component to its parent. It works in combination with forwardRef()."
+      },
+      {
+        "t": "h3",
+        "v": "Why it exists:"
+      },
+      {
+        "t": "p",
+        "v": "Normally, a ref gives access to the DOM node or component instance. But with function components (which don’t expose instances), you need a way to expose specific methods or values."
+      },
+      {
+        "t": "h3",
+        "v": "Syntax:"
+      },
+      {
+        "t": "code",
+        "v": "useImperativeHandle(ref, () => ({\n  methodName() {\n    // custom logic\n  }\n}), [dependencies]);"
+      },
+      {
+        "t": "h2",
+        "v": "Basic Example: Exposing a Method from a Child"
+      },
+      {
+        "t": "h3",
+        "v": "Step 1: Create the child component with forwardRef"
+      },
+      {
+        "t": "code",
+        "v": "import { useImperativeHandle, forwardRef } from 'react';\n\nconst CustomInput = forwardRef((props, ref) => {\n  const inputRef = useRef();\n\n  useImperativeHandle(ref, () => ({\n    focusInput() {\n      inputRef.current.focus();\n    }\n  }));\n\n  return <input ref={inputRef} />;\n});"
+      },
+      {
+        "t": "h3",
+        "v": "Step 2: Use it in the parent"
+      },
+      {
+        "t": "code",
+        "v": "function Parent() {\n  const inputRef = useRef();\n\n  return (\n    <>\n      <CustomInput ref={inputRef} />\n      <button onClick={() => inputRef.current.focusInput()}>\n        Focus Child Input\n      </button>\n    </>\n  );\n}"
+      },
+      {
+        "t": "p",
+        "v": "Now, clicking the button in the parent calls a method defined inside the child component."
+      },
+      {
+        "t": "h2",
+        "v": "When Should You Use useImperativeHandle?"
+      },
+      {
+        "t": "p",
+        "v": "useImperativeHandle is ideal for:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Exposing controlled APIs from reusable components",
+          "Accessing focus(), scrollIntoView(), or reset() methods",
+          "Form libraries with uncontrolled inputs",
+          "Custom behaviors like animations, validators, or measurements"
+        ]
+      },
+      {
+        "t": "h3",
+        "v": "Common Real-World Use Cases:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Auto-focus an input or text field",
+          "Resetting internal state of a form",
+          "Triggering a scroll or highlight in a nested list"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "Don’t Use It For Everything"
+      },
+      {
+        "t": "p",
+        "v": "Don’t use useImperativeHandle if:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Props or context can do the job",
+          "You’re trying to update state inside the parent",
+          "You can lift the state and pass it down instead"
+        ]
+      },
+      {
+        "t": "p",
+        "v": "useImperativeHandle is for special cases — not general data flow. If used incorrectly, it can break unidirectional React data patterns."
+      },
+      {
+        "t": "h2",
+        "v": "Comparison with Other Hooks"
+      },
+      {
+        "t": "h2",
+        "v": "Advanced Example: Resetting a Form"
+      },
+      {
+        "t": "code",
+        "v": "const CustomForm = forwardRef((props, ref) => {\n  const [input, setInput] = useState(\"\");\n\n  useImperativeHandle(ref, () => ({\n    reset() {\n      setInput(\"\");\n    }\n  }));\n\n  return (\n    <input\n      value={input}\n      onChange={(e) => setInput(e.target.value)}\n    />\n  );\n});"
+      },
+      {
+        "t": "h3",
+        "v": "In the parent:"
+      },
+      {
+        "t": "code",
+        "v": "const formRef = useRef();\n\n<CustomForm ref={formRef} />\n<button onClick={() => formRef.current.reset()}>\n  Reset Form\n</button>"
+      },
+      {
+        "t": "p",
+        "v": "This allows the parent to reset the form input — without needing to lift state or re-render the entire component tree."
+      },
+      {
+        "t": "h2",
+        "v": "Common Mistakes to Avoid"
+      },
+      {
+        "t": "h3",
+        "v": "1. Forgetting to wrap in forwardRef"
+      },
+      {
+        "t": "p",
+        "v": "useImperativeHandle only works when the component is wrapped in forwardRef(). Without it, the parent can’t attach a ref."
+      },
+      {
+        "t": "h3",
+        "v": "2. Exposing too many methods"
+      },
+      {
+        "t": "p",
+        "v": "Don’t treat useImperativeHandle like a dumping ground. Keep the API minimal — only expose what's necessary."
+      },
+      {
+        "t": "h3",
+        "v": "3. Using it for state control"
+      },
+      {
+        "t": "p",
+        "v": "useImperativeHandle is about triggering effects — not managing shared state. Don’t pass values through it that can be handled with props."
+      },
+      {
+        "t": "h2",
+        "v": "Best Practices for useImperativeHandle in 2025"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Always pair it with forwardRef()",
+          "Expose the minimal, focused API possible",
+          "Use useRef() in the parent to control behavior",
+          "Document clearly in reusable components (e.g., form libraries)",
+          "Avoid side effects in imperative methods — keep them controlled"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "Summary: When and Why to Use useImperativeHandle"
+      },
+      {
+        "t": "p",
+        "v": "useImperativeHandle is a specialized React hook that empowers parent components to call specific methods inside a child. It’s perfect for controlling focus, reset, scrolling, or other non-state-driven interactions."
+      },
+      {
+        "t": "p",
+        "v": "✅ Great for:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Uncontrolled form management",
+          "Input focus or scroll triggers",
+          "Component libraries exposing controlled APIs"
+        ]
+      },
+      {
+        "t": "p",
+        "v": "❌ Avoid it when:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "You can use props or context",
+          "The goal is to pass reactive data",
+          "You’re trying to manage parent state from a child"
+        ]
+      },
+      {
+        "t": "p",
+        "v": "Mastering useImperativeHandle helps you write more modular, reusable, and expressive React components — especially for advanced use cases in 2025 and beyond."
+      }
+    ]
+  },
+  {
+    "slug": "react-usereducer-hook-explained",
+    "title": "React useReducer Hook Explained with Real Examples and Best Practices (2025 Guide)",
+    "description": "Confused about when to use useReducer in React? Learn how this powerful hook helps manage complex state logic, with real examples and best practices for 2025.",
+    "published": "2025-06-30",
+    "tags": [
+      "React Hooks",
+      "React Js"
+    ],
+    "words": 363,
+    "blocks": [
+      {
+        "t": "h2",
+        "v": "Introduction"
+      },
+      {
+        "t": "p",
+        "v": "Managing state in React is easy — until it’s not. When your component’s state logic becomes complex, using multiple useState calls can quickly get messy and hard to maintain."
+      },
+      {
+        "t": "p",
+        "v": "This is where useReducer comes in. It gives you a structured way to manage state transitions, especially when those transitions depend on the previous state."
+      },
+      {
+        "t": "h3",
+        "v": "In this guide, you'll learn:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "What useReducer is",
+          "When to use it vs useState",
+          "How it compares to Redux",
+          "How to structure reducers",
+          "Real-world examples and best practices"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "What is useReducer?"
+      },
+      {
+        "t": "p",
+        "v": "useReducer is a React hook that’s an alternative to useState for managing more complex state."
+      },
+      {
+        "t": "p",
+        "v": "It works similarly to Redux by using a reducer function and a dispatch method:"
+      },
+      {
+        "t": "code",
+        "v": "const [state, dispatch] = useReducer(reducer, initialState);"
+      },
+      {
+        "t": "p",
+        "v": "This hook returns the current state and a dispatch function you can use to trigger state updates based on actions."
+      },
+      {
+        "t": "h2",
+        "v": "Why Use useReducer Instead of useState?"
+      },
+      {
+        "t": "p",
+        "v": "useReducer shines in components where:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "There are multiple pieces of state",
+          "State updates are conditional or depend on previous state",
+          "You want to centralize state logic in one function"
+        ]
+      },
+      {
+        "t": "p",
+        "v": "useState is great for simple values like booleans, strings, and numbers — but when your state logic grows in complexity, useReducer helps keep it maintainable."
+      },
+      {
+        "t": "h2",
+        "v": "Basic Syntax of useReducer"
+      },
+      {
+        "t": "code",
+        "v": "function reducer(state, action) {\n  switch (action.type) {\n    case \"increment\":\n      return { count: state.count + 1 };\n    case \"decrement\":\n      return { count: state.count - 1 };\n    default:\n      return state;\n  }\n}\n\nconst [state, dispatch] = useReducer(reducer, { count: 0 });"
+      },
+      {
+        "t": "h3",
+        "v": "Usage:"
+      },
+      {
+        "t": "code",
+        "v": "<button onClick={() => dispatch({ type: \"increment\" })}>\n  {state.count}\n</button>"
+      },
+      {
+        "t": "h2",
+        "v": "useReducer vs useState"
+      },
+      {
+        "t": "h2",
+        "v": "Example: Toggle & Counter Together"
+      },
+      {
+        "t": "code",
+        "v": "const initialState = { count: 0, show: true };\n\nfunction reducer(state, action) {\n  switch (action.type) {\n    case \"increment\":\n      return { ...state, count: state.count + 1 };\n    case \"toggle\":\n      return { ...state, show: !state.show };\n    default:\n      return state;\n  }\n}\n\nconst [state, dispatch] = useReducer(reducer, initialState);"
+      },
+      {
+        "t": "p",
+        "v": "Now both count and show are controlled in one predictable place."
+      },
+      {
+        "t": "h2",
+        "v": "useReducer + useContext for Global State"
+      },
+      {
+        "t": "p",
+        "v": "Want to manage shared state across multiple components without Redux?"
+      },
+      {
+        "t": "p",
+        "v": "Use useReducer inside a context provider:"
+      },
+      {
+        "t": "code",
+        "v": "const AuthContext = createContext();\n\nfunction AuthProvider({ children }) {\n  const [state, dispatch] = useReducer(authReducer, { isAuthenticated: false });\n\n  return (\n    <AuthContext.Provider value={{ state, dispatch }}>\n      {children}\n    </AuthContext.Provider>\n  );\n}"
+      },
+      {
+        "t": "h2",
+        "v": "Common Mistakes to Avoid"
+      },
+      {
+        "t": "h3",
+        "v": "1. Returning the old state instead of a new copy"
+      },
+      {
+        "t": "code",
+        "v": "// ❌ Mutating state\nstate.count++;\n\n// ✅ Correct\nreturn { ...state, count: state.count + 1 };"
+      },
+      {
+        "t": "h3",
+        "v": "2. Handling too many unrelated things in one reducer"
+      },
+      {
+        "t": "p",
+        "v": "Split reducers or use multiple reducers with combineReducers (in Redux) or custom logic in React."
+      },
+      {
+        "t": "h3",
+        "v": "3. Using it when useState would be simpler"
+      },
+      {
+        "t": "p",
+        "v": "If you just need to toggle a boolean or store a single input, stick with useState()."
+      },
+      {
+        "t": "h2",
+        "v": "When to Use useReducer (Best Scenarios)"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Complex forms with validation logic",
+          "Multi-step workflows (wizards, tabs)",
+          "State objects with multiple sub-properties",
+          "Redux-like global stores without external libraries",
+          "Reusable UI components with configurable state behavior"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "Best Practices for useReducer (2025)"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Always return new state objects (avoid mutation)",
+          "Use constants for action types to reduce typos",
+          "Group related state into one reducer",
+          "Combine with useContext for lightweight global state",
+          "Use action creators for better readability"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "Final Thoughts"
+      },
+      {
+        "t": "p",
+        "v": "useReducer() gives you better structure and flexibility than useState() when state logic becomes complex or when you need shared logic across multiple components."
+      },
+      {
+        "t": "h3",
+        "v": "Use it when:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "You have multiple values that change together",
+          "Your state transitions are based on conditions",
+          "You want to extract state logic for readability"
+        ]
+      },
+      {
+        "t": "p",
+        "v": "Don’t replace useState in every case — but when you need it, useReducer makes your code scalable and maintainable."
+      }
+    ]
+  },
+  {
+    "slug": "react-usememo-hook-explained",
+    "title": "React useMemo Hook Explained with Real Examples and Best Practices (2025 Guide)",
+    "description": "Learn how to use the React useMemo hook to optimize performance, avoid unnecessary recalculations, and improve app speed. Includes real-world examples and",
+    "published": "2025-06-26",
+    "tags": [
+      "React Js",
+      "React Hooks"
+    ],
+    "words": 442,
+    "blocks": [
+      {
+        "t": "h2",
+        "v": "Introduction"
+      },
+      {
+        "t": "p",
+        "v": "In modern React applications, performance matters. While React efficiently manages re-renders, complex or expensive computations inside components can cause lags, dropped frames, or unnecessary reprocessing."
+      },
+      {
+        "t": "p",
+        "v": "This is where the useMemo hook becomes essential."
+      },
+      {
+        "t": "p",
+        "v": "useMemo() helps developers prevent unnecessary recalculations by memoizing the return value of a function. In short: it lets you cache expensive computations between renders — only recalculating when necessary."
+      },
+      {
+        "t": "h3",
+        "v": "In this guide, you’ll learn:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "What useMemo does",
+          "How to use it properly",
+          "When (and when not) to use it",
+          "Common use cases and real code examples",
+          "Performance tips and 2025 best practices"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "What is useMemo?"
+      },
+      {
+        "t": "p",
+        "v": "useMemo is a built-in React hook that returns a memoized value. It helps avoid recalculating a result unless the dependencies change."
+      },
+      {
+        "t": "h3",
+        "v": "Syntax:"
+      },
+      {
+        "t": "code",
+        "v": "const memoizedValue = useMemo(() => {\n  return computeExpensiveValue(input);\n}, [input]);"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "The function is only re-executed when one of the dependencies changes.",
+          "Otherwise, React reuses the cached result."
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "Why Use useMemo?"
+      },
+      {
+        "t": "p",
+        "v": "In React, any time a component re-renders, all the code inside its body re-runs — including function calls and computations."
+      },
+      {
+        "t": "p",
+        "v": "This is fine for most logic. But when you have expensive calculations (sorting, filtering, transformations), they can slow your app down."
+      },
+      {
+        "t": "p",
+        "v": "useMemo solves this by caching the result and skipping the recalculation unless needed."
+      },
+      {
+        "t": "h2",
+        "v": "Example: Sorting a List"
+      },
+      {
+        "t": "p",
+        "v": "Let’s say you’re sorting a large array on every render:"
+      },
+      {
+        "t": "code",
+        "v": "const sortedList = list.sort((a, b) => a - b);"
+      },
+      {
+        "t": "p",
+        "v": "This will run every time your component renders — even if list hasn’t changed."
+      },
+      {
+        "t": "h3",
+        "v": "Optimized with useMemo:"
+      },
+      {
+        "t": "code",
+        "v": "const sortedList = useMemo(() => {\n  return [...list].sort((a, b) => a - b);\n}, [list]);"
+      },
+      {
+        "t": "p",
+        "v": "Now, the sort only runs when list changes — improving performance."
+      },
+      {
+        "t": "h2",
+        "v": "When Should You Use useMemo?"
+      },
+      {
+        "t": "h3",
+        "v": "Use it when:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "You have expensive calculations",
+          "You want to memoize derived state",
+          "You're passing computed props to memoized child components",
+          "You want to optimize large data structures"
+        ]
+      },
+      {
+        "t": "h3",
+        "v": "Avoid it when:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "The logic is lightweight or simple",
+          "You don’t gain noticeable performance benefits",
+          "Your dependencies change on every render"
+        ]
+      },
+      {
+        "t": "p",
+        "v": "Remember: Memoization itself has overhead. Don’t use useMemo “just in case.” Profile first."
+      },
+      {
+        "t": "h2",
+        "v": "useMemo vs useCallback"
+      },
+      {
+        "t": "p",
+        "v": "Developers often confuse useMemo with useCallback. Here's the difference:"
+      },
+      {
+        "t": "h2",
+        "v": "Example: Filtering a List"
+      },
+      {
+        "t": "code",
+        "v": "const filteredItems = useMemo(() => {\n  return items.filter(item => item.active);\n}, [items]);"
+      },
+      {
+        "t": "p",
+        "v": "This will only re-run the filter if items changes."
+      },
+      {
+        "t": "h2",
+        "v": "Example: Avoiding Expensive Math"
+      },
+      {
+        "t": "code",
+        "v": "const heavyCalc = useMemo(() => {\n  let result = 0;\n  for (let i = 0; i < 1e7; i++) {\n    result += Math.random();\n  }\n  return result;\n}, []);"
+      },
+      {
+        "t": "p",
+        "v": "Without useMemo, this runs on every render. With it, it runs only once (because the dependency array is empty)."
+      },
+      {
+        "t": "h2",
+        "v": "Common useMemo Mistakes"
+      },
+      {
+        "t": "h3",
+        "v": "1. Using it for everything"
+      },
+      {
+        "t": "p",
+        "v": "If the function is fast and cheap — don’t memoize it."
+      },
+      {
+        "t": "h3",
+        "v": "2. Missing or incorrect dependencies"
+      },
+      {
+        "t": "p",
+        "v": "Always include all referenced variables in the dependency array. Otherwise, you'll get stale values."
+      },
+      {
+        "t": "h3",
+        "v": "3. Assuming useMemo always improves performance"
+      },
+      {
+        "t": "p",
+        "v": "Memoization has overhead. It only helps when the cost of recalculating is higher than the cost of caching."
+      },
+      {
+        "t": "h2",
+        "v": "Best Practices for useMemo in 2025"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Use for real performance gains — not just style",
+          "Wrap only expensive operations",
+          "Keep the dependency array accurate",
+          "Use React DevTools to inspect performance before optimizing",
+          "Pair with React.memo and useCallback for full optimization"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "When to Combine useMemo with React.memo"
+      },
+      {
+        "t": "p",
+        "v": "If you're passing computed props into a memoized child component (via React.memo), useMemo ensures the child doesn't re-render unless necessary."
+      },
+      {
+        "t": "h3",
+        "v": "Example:"
+      },
+      {
+        "t": "code",
+        "v": "const filtered = useMemo(() => {\n  return items.filter(i => i.active);\n}, [items]);\n\n<MemoizedList data={filtered} />"
+      },
+      {
+        "t": "h2",
+        "v": "Summary: useMemo Hook in React"
+      },
+      {
+        "t": "p",
+        "v": "React’s useMemo is a powerful optimization tool — when used correctly."
+      },
+      {
+        "t": "h3",
+        "v": "Key Takeaways:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "It memoizes return values — skipping re-computation unless needed",
+          "It helps improve performance for expensive logic",
+          "Don’t overuse it; memoization comes with a cost"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "react-usecallback-hook-explained",
+    "title": "React useCallback Hook Explained with Examples and Best Practices (2025 Guide)",
+    "description": "Learn what React useCallback hook does, when to use it, and how it helps prevent unnecessary re-renders in your components. Includes real examples.",
+    "published": "2025-06-25",
+    "tags": [
+      "React Hooks",
+      "React Js"
+    ],
+    "words": 484,
+    "blocks": [
+      {
+        "t": "h2",
+        "v": "Introduction"
+      },
+      {
+        "t": "p",
+        "v": "React's useCallback is one of those hooks that seems confusing at first — until you start dealing with unnecessary re-renders or memoized components."
+      },
+      {
+        "t": "p",
+        "v": "In React, functions are re-created on every render. This behavior is harmless in most cases, but when passing callbacks to deeply nested or memoized child components, re-creating the function can cause unnecessary re-renders and performance issues."
+      },
+      {
+        "t": "p",
+        "v": "This is where useCallback shines."
+      },
+      {
+        "t": "h3",
+        "v": "In this guide, you’ll learn:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "What useCallback is",
+          "How it works and why it exists",
+          "How it compares to useMemo and inline functions",
+          "When to use it — and when not to",
+          "Real-world use cases with code examples"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "What is useCallback?"
+      },
+      {
+        "t": "p",
+        "v": "useCallback is a built-in React hook that lets you memoize a function — meaning it returns the same function reference between renders unless one of its dependencies has changed."
+      },
+      {
+        "t": "h3",
+        "v": "Syntax:"
+      },
+      {
+        "t": "code",
+        "v": "const memoizedFn = useCallback(() => {\n  // your logic\n}, [dependencies]);"
+      },
+      {
+        "t": "p",
+        "v": "If none of the dependencies change, React will return the exact same function — avoiding unnecessary function recreation and preventing extra renders in child components."
+      },
+      {
+        "t": "h2",
+        "v": "Why is this useful?"
+      },
+      {
+        "t": "p",
+        "v": "When you pass a function as a prop to a memoized child component (e.g., using React.memo), even a new function reference — with identical logic — can cause that component to re-render."
+      },
+      {
+        "t": "p",
+        "v": "useCallback ensures that the function reference remains stable, helping with performance and preventing extra renders."
+      },
+      {
+        "t": "h2",
+        "v": "Example 1: Memoizing a Handler"
+      },
+      {
+        "t": "code",
+        "v": "import { useCallback, useState } from 'react';\n\nfunction Parent() {\n  const [count, setCount] = useState(0);\n\n  const increment = useCallback(() => {\n    setCount(c => c + 1);\n  }, []);\n\n  return <Child onClick={increment} />;\n}"
+      },
+      {
+        "t": "p",
+        "v": "Without useCallback, the increment function would be re-created on every render, potentially triggering unnecessary renders in Child."
+      },
+      {
+        "t": "h2",
+        "v": "useCallback vs useMemo"
+      },
+      {
+        "t": "p",
+        "v": "Both useCallback and useMemo help with memoization — but they do different things."
+      },
+      {
+        "t": "h2",
+        "v": "Example 2: useCallback vs Inline Function"
+      },
+      {
+        "t": "code",
+        "v": "<Button onClick={() => doSomething()} />"
+      },
+      {
+        "t": "code",
+        "v": "const handleClick = useCallback(() => doSomething(), []);\n<Button onClick={handleClick} />"
+      },
+      {
+        "t": "p",
+        "v": "In the first case, a new function is created every render. In the second case, handleClick stays the same between renders — avoiding unnecessary re-renders of Button."
+      },
+      {
+        "t": "h2",
+        "v": "Real Use Case: Avoid Re-rendering Memoized Children"
+      },
+      {
+        "t": "code",
+        "v": "const Child = React.memo(({ onClick }) => {\n  console.log(\"Child rendered\");\n  return <button onClick={onClick}>Click</button>;\n});\n\nfunction Parent() {\n  const [count, setCount] = useState(0);\n\n  const handleClick = useCallback(() => {\n    console.log(\"Clicked\");\n  }, []);\n\n  return (\n    <>\n      <p>Count: {count}</p>\n      <button onClick={() => setCount(count + 1)}>Increment</button>\n      <Child onClick={handleClick} />\n    </>\n  );\n}"
+      },
+      {
+        "t": "p",
+        "v": "Here, Child will NOT re-render unless handleClick changes — which it won’t, thanks to useCallback()."
+      },
+      {
+        "t": "h2",
+        "v": "When to Use useCallback"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "You're passing a function as a prop to a memoized child component",
+          "You want to avoid unnecessary function recreation",
+          "You're building reusable components or component libraries",
+          "You’re using a stable callback in an effect"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "When NOT to Use useCallback"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Your function doesn’t affect performance when recreated",
+          "You’re not passing it to memoized children",
+          "Your dependencies change frequently (useCallback won’t help much)"
+        ]
+      },
+      {
+        "t": "p",
+        "v": "Note: Don’t use useCallback everywhere \"just in case.\" It adds complexity and memory overhead. Use it when it solves a specific performance issue."
+      },
+      {
+        "t": "h2",
+        "v": "Common Mistakes with useCallback"
+      },
+      {
+        "t": "h3",
+        "v": "1. Overusing it"
+      },
+      {
+        "t": "p",
+        "v": "Don’t wrap every function in useCallback by default. Only use it for actual memoization needs."
+      },
+      {
+        "t": "h3",
+        "v": "2. Missing dependencies"
+      },
+      {
+        "t": "code",
+        "v": "useCallback(() => {\n  doSomething(message);\n}, []); // 🚫 'message' should be in dependencies"
+      },
+      {
+        "t": "h3",
+        "v": "3. Using it without memoized children"
+      },
+      {
+        "t": "p",
+        "v": "If you’re not using React.memo or passing functions to children, useCallback might have no benefit."
+      },
+      {
+        "t": "h2",
+        "v": "Best Practices for useCallback (2025)"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Use with React.memo to prevent child re-renders",
+          "Use with stable dependencies to avoid re-creating the function",
+          "Combine with useEffect when passing a callback that must not change",
+          "Profile performance with dev tools before applying",
+          "Clean up side effects when passing memoized callbacks to useEffect"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "Summary: Master useCallback to Improve React Performance"
+      },
+      {
+        "t": "p",
+        "v": "useCallback is not just a \"nice to have\" — it’s essential when building performant React apps with lots of components or heavy rendering logic."
+      },
+      {
+        "t": "h3",
+        "v": "Remember:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "It returns a memoized version of your function",
+          "It helps avoid unnecessary re-renders",
+          "It should be used selectively — not everywhere"
+        ]
+      },
+      {
+        "t": "p",
+        "v": "If you work with React.memo, nested components, or reusable hooks — useCallback is your best friend."
+      }
+    ]
+  },
+  {
+    "slug": "react-usecontext-hook-explained",
+    "title": "React useContext Hook Explained (With Real Examples and Best Practices)",
+    "description": "Learn how the react useContext hook works in React with examples and best practices. Simplify global state without prop drilling. Ideal for beginners.",
+    "published": "2025-06-20",
+    "tags": [
+      "React Hooks",
+      "React Js"
+    ],
+    "words": 382,
+    "blocks": [
+      {
+        "t": "h2",
+        "v": "Introduction: What is useContext()?"
+      },
+      {
+        "t": "p",
+        "v": "One of the most common challenges in React development is sharing state across deeply nested components without passing props through every level. That’s where React’s Context API and the useContext() hook come in."
+      },
+      {
+        "t": "p",
+        "v": "useContext() is a built-in hook introduced in React 16.8 that allows you to read context values directly in function components. When used correctly, it eliminates the need for prop drilling and makes your code more maintainable and scalable."
+      },
+      {
+        "t": "h3",
+        "v": "In this guide, you’ll learn:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "What useContext is",
+          "How it works with the Context API",
+          "When to use it (and when not to)",
+          "Real code examples",
+          "Best practices for 2025"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "What Is the React Context API?"
+      },
+      {
+        "t": "p",
+        "v": "The React Context API allows you to create global variables (context) that can be passed throughout your component tree — without needing to pass props manually at every level."
+      },
+      {
+        "t": "p",
+        "v": "It’s ideal for values that many components need access to, like:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Theme (light/dark)",
+          "Auth status",
+          "Language settings",
+          "Layout direction"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "Why useContext()?"
+      },
+      {
+        "t": "p",
+        "v": "The useContext() hook simplifies the consumption of context in function components. Before hooks, developers had to use <Consumer> components or static context types in class components — both verbose and harder to read."
+      },
+      {
+        "t": "h3",
+        "v": "Syntax:"
+      },
+      {
+        "t": "code",
+        "v": "const value = useContext(MyContext);"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "MyContext is the context object created via React.createContext()",
+          "value is whatever you passed into the <Provider> component"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "How to Use useContext in React"
+      },
+      {
+        "t": "p",
+        "v": "Let’s walk through a real-world example of using useContext() to manage a global theme."
+      },
+      {
+        "t": "h3",
+        "v": "Step 1: Create a Context"
+      },
+      {
+        "t": "code",
+        "v": "import { createContext } from 'react';\n\nconst ThemeContext = createContext('light');"
+      },
+      {
+        "t": "h3",
+        "v": "Step 2: Wrap Your App in a Provider"
+      },
+      {
+        "t": "code",
+        "v": "<ThemeContext.Provider value=\"dark\">\n  <App />\n</ThemeContext.Provider>"
+      },
+      {
+        "t": "h3",
+        "v": "Step 3: Access the Context with useContext()"
+      },
+      {
+        "t": "code",
+        "v": "import { useContext } from 'react';\n\nfunction Navbar() {\n  const theme = useContext(ThemeContext);\n  return <div className={theme}>Navbar</div>;\n}"
+      },
+      {
+        "t": "h2",
+        "v": "Real-World Example: Auth Context"
+      },
+      {
+        "t": "h3",
+        "v": "AuthContext.js"
+      },
+      {
+        "t": "code",
+        "v": "import { createContext } from 'react';\nexport const AuthContext = createContext(null);"
+      },
+      {
+        "t": "h3",
+        "v": "App.js"
+      },
+      {
+        "t": "code",
+        "v": "import { AuthContext } from './AuthContext';\n\nfunction App() {\n  const user = { name: \"Jane\", role: \"admin\" };\n\n  return (\n    <AuthContext.Provider value={user}>\n      <Dashboard />\n    </AuthContext.Provider>\n  );\n}"
+      },
+      {
+        "t": "h3",
+        "v": "Any Nested Component:"
+      },
+      {
+        "t": "code",
+        "v": "import { useContext } from 'react';\nimport { AuthContext } from './AuthContext';\n\nfunction Sidebar() {\n  const user = useContext(AuthContext);\n  return <p>Welcome, {user.name}</p>;\n}"
+      },
+      {
+        "t": "h2",
+        "v": "useContext() vs Prop Drilling"
+      },
+      {
+        "t": "h2",
+        "v": "useContext + useState or useReducer"
+      },
+      {
+        "t": "p",
+        "v": "useContext() is often combined with useState() or useReducer() to manage and distribute dynamic state."
+      },
+      {
+        "t": "h3",
+        "v": "Example:"
+      },
+      {
+        "t": "code",
+        "v": "const AuthContext = createContext();\n\nfunction AuthProvider({ children }) {\n  const [user, setUser] = useState(null);\n\n  return (\n    <AuthContext.Provider value={{ user, setUser }}>\n      {children}\n    </AuthContext.Provider>\n  );\n}"
+      },
+      {
+        "t": "p",
+        "v": "Now, child components can access both user and setUser using useContext()."
+      },
+      {
+        "t": "h2",
+        "v": "Best Practices for useContext (2025)"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Use it for global, shared, low-frequency state",
+          "Combine with useState or useReducer for dynamic updates",
+          "Split context by domain — theme, auth, cart, etc.",
+          "Wrap your app in centralized providers for cleaner structure"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "Common Mistakes to Avoid"
+      },
+      {
+        "t": "h3",
+        "v": "1. Forgetting to wrap components with the Provider"
+      },
+      {
+        "t": "p",
+        "v": "You’ll get undefined or default values."
+      },
+      {
+        "t": "h3",
+        "v": "2. Putting fast-updating state in context"
+      },
+      {
+        "t": "p",
+        "v": "Don't use context for values like form fields or animations — it causes unnecessary re-renders."
+      },
+      {
+        "t": "h3",
+        "v": "3. Using useContext when props would be simpler"
+      },
+      {
+        "t": "p",
+        "v": "If you’re only passing a prop down 1–2 levels, use props instead of context."
+      },
+      {
+        "t": "h2",
+        "v": "When Not to Use useContext"
+      },
+      {
+        "t": "p",
+        "v": "Context is not a replacement for libraries like Redux or Zustand. It’s best used for:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Static values",
+          "Low-frequency updates",
+          "Global settings (theme, language, auth)"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "Summary: useContext in React — Simplified"
+      },
+      {
+        "t": "p",
+        "v": "useContext() makes accessing shared state in React easy, readable, and maintainable. It eliminates the need to pass props through every component, helping you write cleaner and more scalable applications."
+      },
+      {
+        "t": "h3",
+        "v": "Key takeaways:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Great for static or global data",
+          "Works with createContext() and <Provider>",
+          "Use with useState() or useReducer() for dynamic updates",
+          "Not ideal for high-frequency updates or large state trees"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "react-native-flatlist-vs-scrollview",
+    "title": "React Native FlatList vs ScrollView- What to Use and When in 2025",
+    "description": "Confused between FlatList and ScrollView in React Native? This in-depth guide explains when to use each, how they differ, and which one is better for",
+    "published": "2025-06-13",
+    "tags": [
+      "React Js"
+    ],
+    "words": 523,
+    "blocks": [
+      {
+        "t": "h2",
+        "v": "Introduction: FlatList vs ScrollView — A Common Developer Dilemma"
+      },
+      {
+        "t": "p",
+        "v": "If you’ve spent any time building mobile apps in React Native, you’ve probably used ScrollView and FlatList. And if you’re like most developers, you may have even used them interchangeably — especially for rendering vertical lists of content."
+      },
+      {
+        "t": "p",
+        "v": "At first glance, they look similar. Both allow you to display scrollable views. But under the hood, they work very differently — and choosing the wrong one can lead to performance issues, memory overuse, and a poor user experience."
+      },
+      {
+        "t": "p",
+        "v": "In this article, we’ll break down:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "What FlatList and ScrollView actually are",
+          "When to use each one",
+          "Key differences in performance and features",
+          "Real-world examples and best practices"
+        ]
+      },
+      {
+        "t": "p",
+        "v": "By the end, you’ll know exactly which to use — and why."
+      },
+      {
+        "t": "h2",
+        "v": "What Are ScrollView and FlatList?"
+      },
+      {
+        "t": "p",
+        "v": "Both ScrollView and FlatList are components provided by React Native to create scrollable content in your apps."
+      },
+      {
+        "t": "h3",
+        "v": "ScrollView"
+      },
+      {
+        "t": "p",
+        "v": "ScrollView renders all of its child components at once. That means if you pass it 1000 items, it will try to render all of them when the component mounts — regardless of whether they’re visible or not."
+      },
+      {
+        "t": "h3",
+        "v": "FlatList"
+      },
+      {
+        "t": "p",
+        "v": "FlatList is a more advanced component that is optimized for large data sets. It only renders the visible items on screen, and as the user scrolls, it lazily loads new content."
+      },
+      {
+        "t": "h2",
+        "v": "Key Differences Between FlatList and ScrollView"
+      },
+      {
+        "t": "h2",
+        "v": "ScrollView: When to Use It"
+      },
+      {
+        "t": "p",
+        "v": "You should use ScrollView when:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "You’re rendering a small number of items (usually fewer than 20)",
+          "The content size is fixed or predictable",
+          "You need flexible layout control inside the scrollable area",
+          "Performance is not a concern"
+        ]
+      },
+      {
+        "t": "code",
+        "v": "import { ScrollView, Text } from 'react-native';\n\n<ScrollView>\n  {items.map((item) => (\n    <Text key={item.id}>{item.name}</Text>\n  ))}\n</ScrollView>"
+      },
+      {
+        "t": "h2",
+        "v": "FlatList: When to Use It"
+      },
+      {
+        "t": "p",
+        "v": "You should use FlatList when:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "You’re dealing with medium to large datasets",
+          "Your list contains repeating or structured items",
+          "You want to support features like: Lazy loading",
+          "Pull to refresh",
+          "Pagination",
+          "Item separators"
+        ]
+      },
+      {
+        "t": "code",
+        "v": "import { FlatList, Text } from 'react-native';\n\n<FlatList\n  data={items}\n  renderItem={({ item }) => <Text>{item.name}</Text>}\n  keyExtractor={(item) => item.id.toString()}\n/>"
+      },
+      {
+        "t": "h2",
+        "v": "Common Mistakes to Avoid"
+      },
+      {
+        "t": "p",
+        "v": "This is the most frequent issue. Developers use ScrollView for a long list of items — which leads to performance problems like:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "App crashes on lower-end devices",
+          "Slow rendering",
+          "Poor scroll experience",
+          "High memory consumption"
+        ]
+      },
+      {
+        "t": "p",
+        "v": "If you have more than 20 list items, default to using FlatList."
+      },
+      {
+        "t": "h2",
+        "v": "Performance Comparison: Real-World Results"
+      },
+      {
+        "t": "p",
+        "v": "Let’s compare a list of 1000 items:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Loads all 1000 items in memory at once",
+          "Takes longer to mount the component",
+          "Scroll gets laggy or stuck on mid-range devices",
+          "Uses more CPU/GPU resources"
+        ]
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Loads only 10–12 items (based on screen size)",
+          "Scroll stays smooth",
+          "Saves memory and boosts performance",
+          "Supports infinite scrolling and dynamic loading"
+        ]
+      },
+      {
+        "t": "p",
+        "v": "Verdict: FlatList wins for performance every time you're dealing with unbounded or dynamic lists."
+      },
+      {
+        "t": "h2",
+        "v": "FlatList Features Worth Using"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "onEndReached: Trigger pagination when the user scrolls to the end",
+          "ListHeaderComponent & ListFooterComponent: Add headers or footers inside the list",
+          "refreshing & onRefresh: Add pull-to-refresh functionality",
+          "ItemSeparatorComponent: Automatically insert dividers between items",
+          "initialNumToRender: Control how many items render initially"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "When You Might Combine ScrollView and FlatList"
+      },
+      {
+        "t": "p",
+        "v": "In rare cases, you may need to nest scrollable components."
+      },
+      {
+        "t": "p",
+        "v": "For example:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "A parent ScrollView for vertical scroll",
+          "A child FlatList for horizontal scrolling (carousel)"
+        ]
+      },
+      {
+        "t": "p",
+        "v": "But be careful! Nested scrolls can lead to gesture conflicts, especially on Android."
+      },
+      {
+        "t": "h2",
+        "v": "Summary: When to Use Which?"
+      },
+      {
+        "t": "h2",
+        "v": "Final Thoughts"
+      },
+      {
+        "t": "p",
+        "v": "Choosing between FlatList and ScrollView in React Native isn’t just about syntax — it’s about performance, user experience, and scalability."
+      },
+      {
+        "t": "p",
+        "v": "Use ScrollView when the content is short and simple. Use FlatList when you're dealing with data — especially when the list might grow."
+      },
+      {
+        "t": "p",
+        "v": "By making the right choice early, you avoid rework, crashes, and slow UI in production."
+      }
+    ]
+  },
+  {
+    "slug": "8-best-websites-for-design-inspiration",
+    "title": "8 Best Websites for Design Inspiration & Trends in 2025",
+    "description": "In today's fast-paced digital landscape, staying ahead of design trends and maintaining a wellspring of creativity is crucial for designers, developers, and",
+    "published": "2025-02-13",
+    "tags": [
+      "UI UX Design"
+    ],
+    "words": 802,
+    "blocks": [
+      {
+        "t": "h2",
+        "v": "Insights"
+      },
+      {
+        "t": "p",
+        "v": "Before diving into the specific websites, it's important to understand the value of these platforms:"
+      },
+      {
+        "t": "list",
+        "ordered": true,
+        "v": [
+          "Continuous inspiration: Regular visits to these sites can help overcome creative blocks and provide fresh ideas for projects.",
+          "Trend awareness: These platforms showcase cutting-edge designs, helping you stay current with industry trends.",
+          "Skill development: Observing high-quality work can inspire you to learn new techniques and improve your craft.",
+          "Community engagement: Many of these sites offer opportunities to connect with fellow creatives, fostering collaboration and growth.",
+          "Diverse perspectives: Each platform has its unique focus, offering a wide range of design styles and approaches."
+        ]
+      },
+      {
+        "t": "p",
+        "v": "Now, let's explore the 8 must-visit websites that can elevate your creative process and keep you at the forefront of design trends."
+      },
+      {
+        "t": "h2",
+        "v": "8 Must-Visit and Best Websites for Design Inspiration"
+      },
+      {
+        "t": "h3",
+        "v": "Awwwards"
+      },
+      {
+        "t": "p",
+        "v": "Awwwards is a prestigious platform that recognizes and promotes the best of web design and development. It serves as a hub for cutting-edge digital experiences and innovative web solutions."
+      },
+      {
+        "t": "p",
+        "v": "Pros:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Curated selection of high-quality websites",
+          "Scoring system based on design, usability, creativity, and content",
+          "Regular awards (Site of the Day, Month, Year) to highlight exceptional work",
+          "Comprehensive filtering options for specific inspiration needs",
+          "Educational resources and industry insights"
+        ]
+      },
+      {
+        "t": "h3",
+        "v": "Dark.design"
+      },
+      {
+        "t": "p",
+        "v": "Dark.design is a specialized platform showcasing outstanding examples of dark mode designs across various digital products and websites."
+      },
+      {
+        "t": "p",
+        "v": "Pros:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Focused collection of dark mode interfaces",
+          "Inspiration for creating visually appealing and eye-friendly designs",
+          "Highlights innovative approaches to color schemes and contrast",
+          "Helps designers adapt to the growing trend of dark mode preferences",
+          "Provides insights into accessibility considerations for low-light interfaces"
+        ]
+      },
+      {
+        "t": "h3",
+        "v": "Behance"
+      },
+      {
+        "t": "p",
+        "v": "Behance, owned by Adobe, is a leading platform for showcasing and discovering creative work across various disciplines."
+      },
+      {
+        "t": "p",
+        "v": "Pros:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Diverse range of creative projects, from graphic design to photography",
+          "Robust community features for feedback and collaboration",
+          "Integration with Adobe Creative Cloud for seamless workflow",
+          "Opportunity to gain exposure and connect with potential clients",
+          "Curated galleries and featured projects for quick inspiration"
+        ]
+      },
+      {
+        "t": "h3",
+        "v": "Dribbble"
+      },
+      {
+        "t": "p",
+        "v": "Dribbble is a community-driven platform where designers share small screenshots or \"shots\" of their work, works-in-progress, and other projects."
+      },
+      {
+        "t": "p",
+        "v": "Pros:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Quick visual inspiration from a wide range of design disciplines",
+          "Active community with opportunities for feedback and networking",
+          "Job board for design professionals",
+          "\"Playoffs\" feature encouraging creative iterations and collaborations",
+          "Easy-to-use interface for browsing and discovering new work"
+        ]
+      },
+      {
+        "t": "h3",
+        "v": "Collect UI"
+      },
+      {
+        "t": "p",
+        "v": "Collect UI is a platform that aggregates and curates daily UI design inspiration from various sources."
+      },
+      {
+        "t": "p",
+        "v": "Pros:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Daily updates with fresh UI design examples",
+          "Focused on specific UI elements and patterns",
+          "Easy navigation through categories like buttons, forms, and landing pages",
+          "Provides direct links to original sources for deeper exploration",
+          "Helps designers stay current with UI trends and best practices"
+        ]
+      },
+      {
+        "t": "h3",
+        "v": "UX Archive"
+      },
+      {
+        "t": "p",
+        "v": "UX Archive is a unique resource that focuses on user flows and interactions within mobile applications."
+      },
+      {
+        "t": "p",
+        "v": "Pros:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "In-depth look at user experience patterns in popular apps",
+          "Organized by specific tasks (e.g., onboarding, search, checkout)",
+          "Helps designers understand and improve common user journeys",
+          "Valuable resource for mobile app designers and UX professionals",
+          "Provides context and rationale behind UX decisions"
+        ]
+      },
+      {
+        "t": "h3",
+        "v": "Land Book"
+      },
+      {
+        "t": "p",
+        "v": "Land Book is a gallery showcasing beautiful landing pages from various industries and styles."
+      },
+      {
+        "t": "p",
+        "v": "Pros:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Curated collection of high-quality landing page designs",
+          "Inspiration for creating impactful first impressions",
+          "Diverse range of industries and design approaches",
+          "Helps designers understand effective conversion-oriented design",
+          "Regular updates with fresh examples"
+        ]
+      },
+      {
+        "t": "h3",
+        "v": "App Motion"
+      },
+      {
+        "t": "p",
+        "v": "App Motion is a platform dedicated to showcasing innovative mobile app animations and interactions."
+      },
+      {
+        "t": "p",
+        "v": "Pros:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Focused on the dynamic aspects of mobile app design",
+          "Inspiration for creating engaging and intuitive user experiences",
+          "Demonstrates creative ways to enhance app functionality through motion",
+          "Helps designers stay current with animation trends in mobile design",
+          "Often includes explanations or breakdowns of complex animations"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "FAQs"
+      },
+      {
+        "t": "p",
+        "v": "1. How often should I visit these websites for inspiration? It's beneficial to check these sites regularly, perhaps weekly or bi-weekly, to stay current with trends and maintain a fresh perspective on your work."
+      },
+      {
+        "t": "p",
+        "v": "2. Can I submit my own work to these platforms? Many of these platforms, such as Awwwards, Behance, and Dribbble, allow designers to submit their work for consideration and showcase."
+      },
+      {
+        "t": "p",
+        "v": "3. Are these websites only for web and app designers? While many focus on digital design, platforms like Behance cater to a wide range of creative disciplines, making them valuable for various types of designers and artists."
+      },
+      {
+        "t": "p",
+        "v": "4. How can I make the most of these inspiration websites? Create collections or boards of your favorite designs, analyze why certain designs appeal to you, and try to incorporate new techniques or styles into your own work."
+      },
+      {
+        "t": "p",
+        "v": "5. Are there any paid features on these websites? Some platforms offer premium features or memberships that provide additional resources, job opportunities, or enhanced showcasing options."
+      },
+      {
+        "t": "p",
+        "v": "By regularly visiting and engaging with these 8 websites, you'll be well-equipped to spark your creativity, stay ahead of design trends, and continually improve your craft. Remember, the key is not just to observe but to analyze, learn, and apply these inspirations to your own unique projects and style."
+      }
+    ]
+  },
+  {
+    "slug": "10-best-websites-to-master-ui-ux-design",
+    "title": "10 Best Websites to Master UI UX Design",
+    "description": "10 Best Websites to Master UI & UX Design. User Experience (UX) and User Interface (UI) design are essential skills for creating seamless digital experiences.",
+    "published": "2025-02-03",
+    "tags": [
+      "UI UX Design"
+    ],
+    "words": 742,
+    "blocks": [
+      {
+        "t": "p",
+        "v": "User Experience (UX) and User Interface (UI) design are essential skills for creating seamless digital experiences. Whether you're a beginner or a seasoned designer, continuous learning is key. Thankfully, there are many platforms that offer valuable insights, case studies, and best practices to help you master UI/UX design."
+      },
+      {
+        "t": "h2",
+        "v": "Best Websites to Master UI UX Design"
+      },
+      {
+        "t": "p",
+        "v": "Here are 10 of the best websites to enhance your knowledge and skills in UX and UI design."
+      },
+      {
+        "t": "h2",
+        "v": "1. Principle.Design"
+      },
+      {
+        "t": "p",
+        "v": "Principles.Design is an excellent resource for UI/UX designers who want to create interactive and animated prototypes. It provides tools that help designers build realistic app interfaces, test transitions, and explore interactive elements. The platform is particularly useful for those working on mobile and web application designs. With an easy-to-use interface, Principle makes prototyping an intuitive and enjoyable experience."
+      },
+      {
+        "t": "h2",
+        "v": "2. Nielsen Norman Group (NNG)"
+      },
+      {
+        "t": "p",
+        "v": "The Nielsen Norman Group (NNG) is one of the most respected authorities in UX research. Founded by usability experts Jakob Nielsen and Don Norman, the website offers in-depth articles, case studies, and reports on usability and human-centered design. Their research-backed approach helps designers understand user behavior, making it easier to create effective and user-friendly digital products."
+      },
+      {
+        "t": "h2",
+        "v": "3. UX Hints TL;DR"
+      },
+      {
+        "t": "p",
+        "v": "UX Hints TL;DR is perfect for designers who want concise, actionable insights on UX best practices. It provides quick tips, key takeaways, and summaries of important UX concepts, saving time while delivering valuable knowledge. This website is ideal for designers looking to stay updated with the latest trends and principles without having to read lengthy articles."
+      },
+      {
+        "t": "h2",
+        "v": "4. Interaction Design Foundation (IDF)"
+      },
+      {
+        "t": "p",
+        "v": "The Interaction Design Foundation (IDF) is one of the largest online UX/UI learning platforms. It offers a vast range of courses, articles, and expert-led tutorials on usability, interaction design, and human-computer interaction. The platform is known for its affordability and high-quality learning materials, making it accessible to designers at all levels."
+      },
+      {
+        "t": "h2",
+        "v": "5. Growth Design"
+      },
+      {
+        "t": "p",
+        "v": "Growth Design is a fantastic resource for UX designers interested in the intersection of design and psychology. It provides engaging, comic-style case studies that break down real-world UX decisions made by top companies. By analyzing the strategies used by leading brands, designers can learn how to improve conversions, enhance user engagement, and create delightful experiences."
+      },
+      {
+        "t": "h2",
+        "v": "6. Dark Patterns Tip Line"
+      },
+      {
+        "t": "p",
+        "v": "Dark patterns are deceptive UX practices that manipulate users into making unintended choices. The Dark Patterns Tip Line helps designers identify and avoid these unethical design tactics. The platform educates UX professionals about deceptive patterns, ensuring they create transparent, user-friendly experiences instead of misleading ones."
+      },
+      {
+        "t": "h2",
+        "v": "7. UX Collective"
+      },
+      {
+        "t": "p",
+        "v": "UX Collective is a popular community-driven blog featuring articles from experienced UX/UI designers worldwide. It covers topics such as design thinking, research methodologies, accessibility, and usability. The platform is a great place to discover case studies, design critiques, and deep dives into emerging trends in UX/UI design."
+      },
+      {
+        "t": "h2",
+        "v": "8. Untools"
+      },
+      {
+        "t": "p",
+        "v": "Untools provides frameworks and mental models to help designers think critically and solve complex UX/UI challenges. It offers a collection of problem-solving techniques, decision-making guides, and design thinking tools. This platform is particularly useful for UX strategists and product designers looking to improve their problem-solving skills."
+      },
+      {
+        "t": "h2",
+        "v": "9. Usability Geek"
+      },
+      {
+        "t": "p",
+        "v": "Usability Geek focuses on usability principles, accessibility, and human-centered design. The website offers expert articles, research-backed insights, and practical guides on improving digital experiences. Whether you're working on a website, app, or enterprise software, Usability Geek provides knowledge to enhance usability and user satisfaction."
+      },
+      {
+        "t": "h2",
+        "v": "10. Ethical Design"
+      },
+      {
+        "t": "p",
+        "v": "Ethical Design promotes the importance of designing products that respect user privacy, autonomy, and well-being. It encourages designers to create digital experiences that prioritize transparency and ethical considerations. This platform is essential for UX professionals who want to build trustworthy and responsible products while maintaining user trust."
+      },
+      {
+        "t": "h2",
+        "v": "FAQ"
+      },
+      {
+        "t": "h3",
+        "v": "1. Why is UX/UI design important?"
+      },
+      {
+        "t": "p",
+        "v": "UX/UI design is crucial for creating digital products that are easy to use, visually appealing, and efficient. Good design enhances user satisfaction, increases engagement, and improves conversion rates."
+      },
+      {
+        "t": "h3",
+        "v": "2. Which website is best for beginners?"
+      },
+      {
+        "t": "p",
+        "v": "For beginners, Interaction Design Foundation (IDF) and UX Hints TL;DR are great options. IDF offers structured courses, while UX Hints TL;DR provides quick, easy-to-digest insights."
+      },
+      {
+        "t": "h3",
+        "v": "3. What are dark patterns in UX design?"
+      },
+      {
+        "t": "p",
+        "v": "Dark patterns are deceptive UX tactics that trick users into taking actions they didn't intend, such as subscribing to services or sharing personal data. Dark Patterns Tip Line helps designers recognize and avoid these unethical practices."
+      },
+      {
+        "t": "h3",
+        "v": "4. How can I stay updated with UX/UI trends?"
+      },
+      {
+        "t": "p",
+        "v": "Regularly reading platforms like UX Collective, Growth Design, and Usability Geek will keep you informed about the latest trends, case studies, and best practices."
+      },
+      {
+        "t": "h3",
+        "v": "5. What tools should I use for UX/UI design?"
+      },
+      {
+        "t": "p",
+        "v": "Popular UX/UI tools include Figma, Adobe XD, Sketch, and Principle for prototyping and design. Untools is also great for decision-making and strategy development."
+      },
+      {
+        "t": "p",
+        "v": "By leveraging these 10 platforms, you can sharpen your UX/UI skills, stay informed about industry trends, and create user-friendly, ethical digital experiences. Which of these websites is your favorite? Let us know in the comments!"
+      }
+    ]
+  }
+]

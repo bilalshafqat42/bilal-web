@@ -53,3 +53,12 @@ export const PORTFOLIO_CONTENT_DATE = "2026-08-28";
  *  as the shared captures, so they date from when that copy was written rather
  *  than from the case study data. */
 export const DISCIPLINE_CONTENT_DATE = "2026-09-09";
+
+/** The eight WordPress articles restored on this date (roadmap 275). Their
+ *  `published` dates are the original 2025 bylines and live in
+ *  `src/data/blogPosts.json`; this is when they came back, which is what
+ *  `dateModified` and the sitemap's `lastModified` should say. Dating the
+ *  sitemap entries 2025 would tell Google these URLs have not changed since —
+ *  when in fact they went from 404 to 200 today, which is the one thing we need
+ *  it to notice. */
+export const BLOG_RECOVERED_ON = "2026-09-30";
