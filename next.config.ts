@@ -89,6 +89,12 @@ const nextConfig: NextConfig = {
       // intent and a direct equivalent exists, so a 308 sends both the searcher
       // and the ranking history somewhere genuinely relevant.
       { source: "/contact-us", destination: "/contact", permanent: true },
+      // WordPress served the homepage at /home as well as /, and Search
+      // Console still lists /home/ among the 404s (last crawled 9 Sep 2026).
+      // It is the same page, so this is a genuine duplicate being pointed at
+      // its canonical address — not a dead tutorial URL being swept into a
+      // marketing page, which is the thing the note above forbids.
+      { source: "/home", destination: "/", permanent: true },
       { source: "/web-application-development", destination: "/services/website-app-development", permanent: true },
       { source: "/ui-ux-design", destination: "/services/ui-ux-design", permanent: true },
       // "Web design" intent is covered by the UI/UX page, which includes web and

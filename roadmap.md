@@ -6190,3 +6190,62 @@ the available search tool is US-only and his market is the UAE. Most likely his
 own social profiles, which is normal for a personal name and not necessarily
 worth fighting. Worth a manual look from a Dubai connection before spending
 anything else on it.
+
+### 281. DONE (2026-09-30) — The migration cost 95.6% of search impressions
+
+**Quantified from Bilal's Search Console export, and it is worse than this
+roadmap has been treating it.**
+
+| Period | Days | Total impressions | Daily average |
+| --- | ---: | ---: | ---: |
+| 10 Jul to 30 Aug 2026 | 52 | 6,948 | **133.6** |
+| 2 Sep to 21 Sep 2026 | 20 | 117 | **5.8** |
+
+The cliff is three days wide: 101 on 30 Aug, 40 on 31 Aug, 22 on 1 Sep, **2 on
+2 Sep**, and it never recovered. That is a **95.6% loss**, and this repo's first
+commit is 26 July with the homepage rebuild landing 2-4 September — the Next.js
+site replaced WordPress at the end of August, the posts did not come with it,
+and the impressions left with them.
+
+Note the total before the cliff: **6,948**. The SEO snapshot attributed ~6,900
+to the dead blog URLs. It is the same traffic. **Those posts were the site's
+entire search presence**, and item 275's framing — "recovers authority and
+clears errors, not leads" — understated it. The leads point stands; the traffic
+point was wrong.
+
+**Three more dead posts, found from the same export.**
+
+Items 275 and its extension were scoped from the *snapshot's impressions
+table*, which lists the top thirteen. Search Console's own 404 report lists
+**22** URLs, and among them were three posts nobody had counted:
+
+| Restored | Published | Words |
+| --- | --- | ---: |
+| `/must-have-developer-tools-for-2025/` | 2025-02-12 | 1,041 |
+| `/javascript-console-methods/` | 2025-03-09 | 416 |
+| `/master-infinite-scroll-in-javascript/` | 2025-05-26 | 287 |
+
+**Sixteen posts now, not thirteen.** The lesson is that the impressions table
+was never the list of dead URLs — it was the list of *dead URLs that still
+earned impressions*. The authoritative source is Page indexing -> Not found
+(404) -> Export.
+
+**`/home` now redirects to `/`.** WordPress served the homepage at both, so this
+points a genuine duplicate at its canonical address. It is not the pattern the
+note in `next.config.ts` forbids, which is sweeping dead tutorial URLs into
+marketing pages.
+
+**Correctly left as 404:** `/category/ai/`, `/category/design/`,
+`/category/ui-ux-design/`, `/what-are-em-and-rem-units/feed/`. Archives and
+feeds should not be indexed, so a 404 is the right answer and validating them
+would only ask Google to recheck pages that are meant to be gone.
+
+**Two pages deliberately not restored, pending Bilal.**
+`/graphic-designing-course/` (1,288 words) and `/frontend-development-course/`
+(412 words) are **sales pages for paid courses** — "Join me, Bilal Shafqat, on
+an immersive journey", "My Comprehensive, Personalized Course". The current site
+sells no courses. Restoring a live sales page for a product that may no longer
+exist is worse than a 404, and it is his call rather than a recovery decision.
+
+Checks: 44 -> **47 sitemap routes**, h1 and schema 47/47, search 45/45, index
+212 chunks, internal links still exactly 4 per post across all sixteen.
