@@ -6249,3 +6249,71 @@ exist is worse than a 404, and it is his call rather than a recovery decision.
 
 Checks: 44 -> **47 sitemap routes**, h1 and schema 47/47, search 45/45, index
 212 chunks, internal links still exactly 4 per post across all sixteen.
+
+### 282. DONE (2026-09-30) — The blog was 52 posts, not 13
+
+**Bilal exported all four Page indexing reports, and the scope was wrong by a
+factor of four.** Every previous item here — 275, its extension, 281 — was
+scoped from lists that only ever showed *part* of the old site:
+
+| Source used | What it actually lists |
+| --- | --- |
+| SEO snapshot impressions table | Dead URLs **that still earned impressions** (13) |
+| Not found (404) report | Dead URLs **Google recrawled recently** (22) |
+| + Blocked by robots.txt (21), Excluded by noindex (16), Crawled - not indexed (36) | The rest of the old site |
+
+None of them is the list of pages that existed. The authoritative source turned
+out to be the **Wayback CDX index**, queried once for the whole domain:
+
+```
+https://web.archive.org/cdx/search/cdx?url=bilalshafqat.com&matchType=domain
+  &output=json&filter=statuscode:200&filter=mimetype:text/html&collapse=urlkey
+```
+
+**72 archived pages. 16 were on the site. 36 of the remaining 56 were real
+articles** — the other 20 are old WordPress site furniture (`/about-us`,
+`/services`, `/team`, `/my-account`, `/hello-world`) that the Next.js site
+already replaces, plus the three course pages.
+
+**52 posts now, 27,703 words.** Every one at its original URL.
+
+**What the reports hid.** "Blocked by robots.txt" and "Excluded by noindex" read
+like configuration problems and are neither: the current `robots.txt` blocks
+only `/api/` and **no page on the site carries a noindex tag**. They are Google
+remembering the *WordPress* rules, last crawled in May 2026. Buried among those
+stale entries were a dozen real articles — `the-ultimate-css-cheat-sheet`,
+`react-useeffect-hook-explained-with-examples`, `top-10-javascript-array-methods`
+— that no 404 report ever showed, because Google had not tried to fetch them
+recently enough to notice they were gone.
+
+**Two pipeline fixes were needed.**
+
+*Rate limiting.* The `archive.org/wayback/available` endpoint returns **429**
+after a few dozen calls, silently, as an HTML error page that JSON-parses to
+nothing — so a per-URL availability check reported "not archived" for 25 pages
+that were all archived. One bulk CDX query replaces 25 lookups and cannot
+mislead this way. Downloads still need `--retry 5 --retry-delay 15`; 16 of 36
+failed on the first pass and all 16 succeeded on the retry.
+
+*Date extraction.* The cleaner read the byline from `blocks[1]`, which threw on
+the first post whose theme put it elsewhere. It now scans the opening blocks for
+a month name, and falls back to a date written as a bare paragraph.
+
+**26 of the 52 needed a shortened `metaTitle`**, the longest being 83
+characters. All are now under 60.
+
+| Check | 16 posts | 52 posts |
+| --- | ---: | ---: |
+| Sitemap routes | 47 | **83** |
+| h1-check | 47 pass | **83 pass** |
+| schema-check | 47 pass | **83 pass** |
+| Index chunks | 212 | **248** |
+| Internal links per post | 4 | **4** (min and max) |
+
+No duplicate titles across the 52. 58 live outbound links, with the same three
+dead destinations pruned again — `links.mjs` re-adds them on every run, so that
+prune is not optional.
+
+**Still not restored:** `/graphic-designing-course/`,
+`/frontend-development-course/` and `/react-js-development-course/` are sales
+pages for paid courses the current site does not offer. Bilal's call.
