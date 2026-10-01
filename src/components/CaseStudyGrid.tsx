@@ -2,7 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import Reveal from "./Reveal";
-import { clients } from "@/data/caseStudies";
+import { publishedClients } from "@/data/caseStudies";
+import { OG_IMAGE_URL } from "@/lib/ogImage";
 import { disciplinesInWork } from "@/data/disciplines";
 
 /**
@@ -55,10 +56,10 @@ type Card = {
 function buildCards(): Card[] {
   const out: Card[] = [];
 
-  for (const c of clients) {
+  for (const c of publishedClients()) {
     out.push({
       href: `/portfolio/${c.slug}`,
-      image: c.website?.capture.src ?? c.ogImage,
+      image: c.website?.capture.src ?? c.ogImage ?? OG_IMAGE_URL,
       position: "top",
       wide: true,
       eyebrow: c.industry,

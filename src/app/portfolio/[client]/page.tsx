@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Image from "next/image";
 import ClientWordmark from "@/components/ClientWordmark";
+import { OG_IMAGES, OG_IMAGE_URL } from "@/lib/ogImage";
 import { notFound } from "next/navigation";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import TrackView from "@/components/TrackView";
@@ -28,15 +29,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: c.title,
     description: c.description,
+    // A draft is reachable so Bilal can review the layout, and must not be
+    // indexed: the copy is placeholder, and the company is an employer whose
+    // permission is still outstanding. `follow` stays on so the nav links on
+    // the page are still crawled normally.
+    ...(c.draft ? { robots: { index: false, follow: true } } : {}),
     alternates: { canonical: `/portfolio/${c.slug}` },
     openGraph: {
       title: c.title,
       description: c.description,
       type: "article",
       url: `/portfolio/${c.slug}`,
-      images: [{ url: c.ogImage, width: 1200, height: 630, alt: `${c.name} campaign creative` }],
+      images: c.ogImage
+        ? [{ url: c.ogImage, width: 1200, height: 630, alt: `${c.name} campaign creative` }]
+        : OG_IMAGES,
     },
-    twitter: { card: "summary_large_image", title: c.title, description: c.description, images: [c.ogImage] },
+    twitter: {
+      card: "summary_large_image",
+      title: c.title,
+      description: c.description,
+      images: c.ogImage ? [c.ogImage] : [OG_IMAGE_URL],
+    },
   };
 }
 
@@ -60,7 +73,7 @@ export default async function ClientCaseStudy({ params }: Props) {
     inLanguage: "en",
     dateModified: new Date().toISOString().split("T")[0],
     genre: "Real estate marketing case study",
-    image: `${SITE}${c.ogImage}`,
+    image: c.ogImage ? `${SITE}${c.ogImage}` : OG_IMAGE_URL,
     creator: { "@id": `${SITE}/#person`, "@type": "Person" },
     about: { "@type": "Organization", name: c.name, description: c.intro },
     hasPart: c.projects.map((p) => ({

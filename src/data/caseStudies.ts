@@ -121,6 +121,19 @@ export type Client = {
   slug: string;
   name: string;
   industry: Industry;
+  /** Not finished, and not for the public yet.
+   *
+   *  A draft client is reachable at its own URL so Bilal can review the layout,
+   *  and is kept out of the sitemap, out of the portfolio grid and out of the
+   *  index with `robots: noindex`. Three things make that necessary rather than
+   *  tidy: the copy is placeholder text, the screenshots have not arrived, and
+   *  the companies are current or former employers whose written permission is
+   *  still outstanding (roadmap 300). Any one of those alone would be a reason
+   *  not to publish.
+   *
+   *  Remove the flag to publish. Nothing else needs changing: the sitemap, the
+   *  grid and the checks all read this field. */
+  draft?: boolean;
   /** The brand mark, when we have the file.
    *
    *  Optional since 2026-10-01. Several case studies exist as screenshots with
@@ -129,7 +142,10 @@ export type Client = {
    *  move anything on the page. Holding a case study back over a missing vector
    *  file would keep real work off the site for a decorative reason. */
   logo?: string;
-  ogImage: string;
+  /** The share card. Optional since 2026-10-01: a draft case study has no
+   *  artwork yet, and the site-wide default is a better answer than holding the
+   *  page back or inventing a path to a file that does not exist. */
+  ogImage?: string;
   title: string;
   description: string;
   headline: string;
@@ -480,6 +496,82 @@ const cavendishSquare: Project = {
 };
 
 export const clients: Client[] = [
+  // ------------------------------------------------------------------
+  // Drafts. Not in the sitemap, not in the grid, `noindex` on the page.
+  //
+  // Placeholders so Bilal can see the layout while he gathers screenshots and
+  // writes up what he did. Every string below is a stand-in and reads like one
+  // on purpose: nothing here should be mistaken for finished copy and shipped
+  // by accident. Remove `draft: true` to publish, once the screenshots, the
+  // write-up and the company's written permission are all in hand (roadmap
+  // 300, 301).
+  //
+  // No logo and no ogImage on any of them. `ClientWordmark` sets the name as
+  // type, and the share card falls back to the site default.
+  // ------------------------------------------------------------------
+  {
+    slug: "psi",
+    name: "PSI",
+    industry: "Real Estate & Property",
+    draft: true,
+    title: "PSI — DRAFT, not published",
+    description: "DRAFT placeholder. Awaiting screenshots, write-up and permission.",
+    headline: "DRAFT: one line on what the work achieved",
+    intro:
+      "DRAFT PLACEHOLDER. Two or three sentences on who PSI are, what the work was, and over what period. Replace before publishing.",
+    facts: [
+      { label: "Company", value: "PSI" },
+      { label: "Sector", value: "TBC" },
+      { label: "Role", value: "TBC" },
+      { label: "Scope", value: "TBC" },
+    ],
+    scopeIntro: "DRAFT PLACEHOLDER. One paragraph framing the scope of the work.",
+    scope: [{ heading: "DRAFT", body: "DRAFT PLACEHOLDER. What was delivered." }],
+    projects: [],
+    keywords: [],
+  },
+  {
+    slug: "texdale",
+    name: "Texdale",
+    industry: "Professional Services",
+    draft: true,
+    title: "Texdale — DRAFT, not published",
+    description: "DRAFT placeholder. Awaiting screenshots, write-up and permission.",
+    headline: "DRAFT: one line on what the work achieved",
+    intro:
+      "DRAFT PLACEHOLDER. Texdale is a textile chemicals business. Replace with who they are, what the work was, and over what period.",
+    facts: [
+      { label: "Company", value: "Texdale" },
+      { label: "Sector", value: "Textile chemicals" },
+      { label: "Role", value: "TBC" },
+      { label: "Scope", value: "TBC" },
+    ],
+    scopeIntro: "DRAFT PLACEHOLDER. One paragraph framing the scope of the work.",
+    scope: [{ heading: "DRAFT", body: "DRAFT PLACEHOLDER. What was delivered." }],
+    projects: [],
+    keywords: [],
+  },
+  {
+    slug: "petsmarket",
+    name: "PetsMarket",
+    industry: "E-commerce & Retail",
+    draft: true,
+    title: "PetsMarket — DRAFT, not published",
+    description: "DRAFT placeholder. Awaiting screenshots, write-up and permission.",
+    headline: "DRAFT: one line on what the work achieved",
+    intro:
+      "DRAFT PLACEHOLDER. PetsMarket is an e-commerce business. Replace with who they are, what the work was, and over what period.",
+    facts: [
+      { label: "Company", value: "PetsMarket" },
+      { label: "Sector", value: "E-commerce" },
+      { label: "Role", value: "TBC" },
+      { label: "Scope", value: "TBC" },
+    ],
+    scopeIntro: "DRAFT PLACEHOLDER. One paragraph framing the scope of the work.",
+    scope: [{ heading: "DRAFT", body: "DRAFT PLACEHOLDER. What was delivered." }],
+    projects: [],
+    keywords: [],
+  },
   {
     slug: "leos-developments",
     name: "LEOS Developments",
@@ -759,6 +851,13 @@ export const clients: Client[] = [
   },
 ];
 
+/** The clients that are ready to be seen. Everything that lists, links to or
+ *  enumerates case studies reads this rather than `clients`, so a draft cannot
+ *  leak into the grid or the sitemap by somebody forgetting to filter. */
+export function publishedClients(): Client[] {
+  return clients.filter((c) => !c.draft);
+}
+
 export function getClient(slug: string): Client | undefined {
   return clients.find((c) => c.slug === slug);
 }
@@ -771,7 +870,7 @@ export function getProject(clientSlug: string, projectSlug: string) {
 
 /** Every case-study URL, for the sitemap. */
 export function caseStudyUrls(): string[] {
-  return clients.flatMap((c) => [
+  return publishedClients().flatMap((c) => [
     `/portfolio/${c.slug}`,
     ...(c.mobileApp ? [`/portfolio/${c.slug}/mobile-app`] : []),
     ...c.projects.map((p) => `/portfolio/${c.slug}/${p.slug}`),

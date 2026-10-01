@@ -7070,3 +7070,44 @@ A screenshot of an internal dashboard, a CRM, an unpublished design or anything
 containing customer data is not, and `Capture` images must be checked for
 visible personal data before they are committed. UAE PDPL applies to a
 screenshot exactly as it applies to a spreadsheet.
+
+### 302. DONE (2026-10-01) — Draft case studies: reachable, not published
+
+Bilal asked for the three placeholders to go in now, with the real content to
+follow. Publishing them as normal pages would put thin placeholder copy naming
+his current and former employers into Google's index, which is the one outcome
+item 300 exists to avoid.
+
+So `Client` gained `draft?: boolean`, and a draft is:
+
+| | Draft | Published |
+| --- | --- | --- |
+| Reachable at its URL | **yes**, so the layout can be reviewed | yes |
+| In the sitemap | no | yes |
+| In the portfolio grid | no | yes |
+| `robots` | **`noindex, follow`** | indexable |
+
+`publishedClients()` is the filter, and **everything that lists or enumerates
+case studies reads it** rather than `clients`: `caseStudyUrls()` for the
+sitemap and `CaseStudyGrid` for the grid. The point of routing both through one
+accessor is that a draft cannot leak by somebody forgetting to filter in a
+third place later.
+
+`follow` stays on so the page's own navigation is still crawled normally. Only
+the placeholder content is withheld.
+
+Two fields became optional to make this possible, both with real fallbacks
+rather than empty strings:
+
+- `Client.logo` → `ClientWordmark` (item 301)
+- `Client.ogImage` → the site-wide `OG_IMAGE_URL`, which also removed a latent
+  trap in the project template, where `p.ogImage ?? c.ogImage` would have gone
+  undefined for any client without a card.
+
+Every placeholder string reads "DRAFT" or "DRAFT PLACEHOLDER" on purpose.
+Nothing here should be mistakable for finished copy and shipped by accident.
+
+Verified on the built output: sitemap still 86 routes, 0 draft URLs in it, 0 in
+the grid, and all three pages return 200 with `noindex, follow`.
+
+To publish one: remove `draft: true`. Nothing else changes.

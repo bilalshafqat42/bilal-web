@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { OG_IMAGE_URL } from "@/lib/ogImage";
 import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
 import TrackView from "@/components/TrackView";
 import { caseStudyDepth } from "@/data/caseStudyDepth";
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { client: c, project: p } = found;
   const title = `${p.name} — ${c.name} Campaign Case Study`;
   const url = `/portfolio/${c.slug}/${p.slug}`;
-  const og = p.ogImage ?? c.ogImage;
+  const og = p.ogImage ?? c.ogImage ?? OG_IMAGE_URL;
   return {
     title,
     description: p.cardBlurb,
