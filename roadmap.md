@@ -7111,3 +7111,19 @@ Verified on the built output: sitemap still 86 routes, 0 draft URLs in it, 0 in
 the grid, and all three pages return 200 with `noindex, follow`.
 
 To publish one: remove `draft: true`. Nothing else changes.
+
+**One leak, caught immediately after.** The commit above claimed
+`publishedClients()` covered everywhere that enumerates case studies. It did
+not: `lib/searchIndex.ts` still read `clients`, so all three drafts were
+findable in the site's own search box. Fixed in the next commit.
+
+What caught it was `search-check` printing **"Index: 254 chunks"** where the
+previous run printed 251. The three extra chunks were the three drafts. That
+number exists in the output for exactly this reason — a pass-or-fail check
+would have said "All 45 search checks passed" and nothing else, and the leak
+would have shipped.
+
+Worth remembering as a pattern rather than as a one-off: a filter applied in
+"everywhere that matters" is only as good as the list of places someone
+remembered. Three places read the client list, the comment above named two, and
+the one it missed is the one a visitor can type into.

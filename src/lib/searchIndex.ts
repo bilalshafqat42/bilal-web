@@ -7,7 +7,7 @@
 
 import { pillars, megaMenuGroups } from "@/data/pillars";
 import { faqGroups } from "@/data/faqs";
-import { clients } from "@/data/caseStudies";
+import { publishedClients } from "@/data/caseStudies";
 import { serviceDepth } from "@/data/serviceDepth";
 import { disciplinesWithPages, disciplineItems } from "@/data/disciplines";
 
@@ -102,7 +102,12 @@ export function buildIndex(): Chunk[] {
     }
   }
 
-  for (const client of clients) {
+  // `publishedClients()`, not `clients`. A draft case study is placeholder
+  // copy naming a current or former employer, and the on-site search box is a
+  // third way to reach it alongside the sitemap and the grid. Caught by the
+  // chunk count in `search-check` jumping 251 to 254 — which is exactly why
+  // that number is printed rather than just a pass or fail.
+  for (const client of publishedClients()) {
     chunks.push({
       title: client.name,
       body: `${client.intro} ${client.keywords.join(". ")}.`,
