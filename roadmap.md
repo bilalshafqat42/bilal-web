@@ -7127,3 +7127,73 @@ Worth remembering as a pattern rather than as a one-off: a filter applied in
 "everywhere that matters" is only as good as the list of places someone
 remembered. Three places read the client list, the comment above named two, and
 the one it missed is the one a visitor can type into.
+
+### 303. DONE (2026-10-01) — The YouTube channel is identified by ID as well as handle
+
+From Bilal's YouTube Studio screen: the channel is `Bilal-4D | by Bilal Shafqat`,
+handle `@bilal-4d`, permanent ID `UCqvEvXi8KbZ4OLp-osVtOMw`. Verified live.
+
+`SAME_AS` now carries both forms. The `/channel/UC...` URL is minted when a
+channel is created and never changes; the handle is the one a human recognises
+and the one that breaks. Bilal is planning to rename the handle (item 296), and
+when he does the handle line goes stale while the ID line keeps resolving.
+
+That is the whole point: roadmap 289 was the site linking a dead YouTube handle
+for weeks because nobody opened it. The ID makes the same failure survivable.
+
+Also confirmed from the screenshot, and worth recording because it is half of a
+link pair: **the channel's Links section points at `www.bilalshafqat.com`.** So
+the site claims the channel in `sameAs` and the channel claims the site back.
+That reciprocal pair is what makes the claim verifiable rather than asserted.
+
+One thing to fix when he next edits it: the link is `www.bilalshafqat.com` and
+the site redirects www to non-www (roadmap 272). It works, it just costs a hop.
+
+### 304. DECIDED (2026-10-01) — Employer permission: Bilal's call
+
+I flagged that work done as an employee normally belongs to the employer, that
+most UAE contracts carry confidentiality clauses, and that Refine is a current
+employer selling into the same market. Bilal has considered it and decided
+written permission is not needed.
+
+Recorded here as his decision rather than re-argued. The three practical rules
+from item 300 still apply to what gets built, because they are editorial rather
+than legal: **only work that was public at the time, no performance figures the
+company has not published itself, and no personal data in any screenshot.** The
+last of those is UAE PDPL and is not a matter of anyone's preference.
+
+The framing from item 300 stands too, and it is the thing that does most of the
+work here: these are presented as **his experience**, not as freelance clients.
+
+### 305. OPEN — The YouTube and website loop
+
+Bilal wants to publish learning videos and use them for traffic. The channel is
+58 videos and 64 subscribers, so the content exists and the distribution does
+not.
+
+The site currently does nothing with any of it. No embeds, no `VideoObject`
+schema, no video anywhere. That is the gap worth closing, and it is worth more
+than another upload: a video embedded in an article that already ranks gets
+distribution the channel cannot give it, and the article gets dwell time it
+cannot generate on its own.
+
+What to build when there are video IDs to map:
+
+1. **A `video` field on `BlogPost`**, so an article can carry one.
+2. **A lazy facade embed.** A real YouTube iframe is roughly 700KB and would
+   undo the LCP work on the fastest pages on the site. The facade is a
+   thumbnail plus a play button that swaps in the iframe on click.
+3. **`VideoObject` in the article graph**, which is what makes a video eligible
+   for the video thumbnail in search results.
+
+Needed from Bilal: which video maps to which article. 22 React articles and a
+channel covering React, Next.js and Node suggests the overlap is already there.
+
+**The strategic note, recorded because it keeps coming up.** The channel's
+description covers Design, Development, Marketing and AI. Four subjects is
+four audiences, and a channel that does not resolve to one thing is the usual
+reason a 58-video channel has 64 subscribers. The same mismatch applies as the
+blog has: tutorials for developers build an audience that will not hire a Dubai
+marketer. The version that serves both is AI and automation **for marketers**,
+which is the one subject where his channel, his services and his commercial
+goal point the same way.

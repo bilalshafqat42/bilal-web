@@ -57,6 +57,19 @@ const SAME_AS = [
   // Bilal from the channel's own About panel, which names him and links back
   // here — not guessed from the username pattern, which is exactly how the
   // wrong one got in.
+  // Both YouTube URLs, deliberately.
+  //
+  // The `/channel/UC...` form is the permanent identifier: it is minted when
+  // the channel is created and never changes, whatever the handle does. The
+  // `@handle` form is the one a human recognises and the one that breaks.
+  //
+  // Bilal is planning to move the handle to `@bilalshafqat` (roadmap 296). When
+  // he does, the line below goes stale and the line above still resolves, so
+  // the Person entity keeps a working link to the channel through the rename
+  // rather than pointing at a 404 again — which is exactly what happened in
+  // roadmap 289. Verified live on 2026-10-01; channel ID read from his own
+  // YouTube Studio screen, not derived from anything.
+  "https://www.youtube.com/channel/UCqvEvXi8KbZ4OLp-osVtOMw",
   "https://www.youtube.com/@bilal-4d",
   "https://www.tiktok.com/@imbilalshafqat",
   "https://www.pinterest.com/bilalshafqat42/",
