@@ -51,7 +51,22 @@ const SAME_AS = [
   "https://www.instagram.com/imbilalshafqat/",
   "https://www.facebook.com/imBilalshafqat",
   "https://x.com/bilalshafqat42",
-  // @bilal-4d, not @bilalshafqat42. The old handle in this list was a **404**:
+  // @bilalshafqat42, as of 2026-10-02 — and this line has now been wrong in both
+  // directions, which is the reason the `/channel/UC…` URL below exists:
+  //
+  //   until 2026-10-01  @bilalshafqat42  a 404, inferred from the LinkedIn and X
+  //                                      handles and never opened
+  //   2026-10-01        @bilal-4d        the real channel at the time
+  //   2026-10-02        @bilalshafqat42  Bilal renamed the channel, so the handle
+  //                                      he wanted is now genuinely his
+  //
+  // Confirmed against the channel ID, not the handle: both forms resolve today
+  // and both canonicalise to UCqvEvXi8KbZ4OLp-osVtOMw with its 64 subscribers,
+  // which proves he renamed the 58-video channel rather than moving to the empty
+  // one. `@bilal-4d` answers for 14 more days under YouTube's previous-handle
+  // hold and then stops, so it is not a safe link to keep.
+  //
+  // The original note on this line, kept because the lesson still holds:
   // the Person node told Google "this is my channel" and pointed at a dead
   // page, on the entity signal the site most needs (roadmap 276). Confirmed by
   // Bilal from the channel's own About panel, which names him and links back
@@ -70,7 +85,7 @@ const SAME_AS = [
   // roadmap 289. Verified live on 2026-10-01; channel ID read from his own
   // YouTube Studio screen, not derived from anything.
   "https://www.youtube.com/channel/UCqvEvXi8KbZ4OLp-osVtOMw",
-  "https://www.youtube.com/@bilal-4d",
+  "https://www.youtube.com/@bilalshafqat42",
   "https://www.tiktok.com/@imbilalshafqat",
   "https://www.pinterest.com/bilalshafqat42/",
 ];

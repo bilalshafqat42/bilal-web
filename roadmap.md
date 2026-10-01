@@ -7446,3 +7446,47 @@ markup describes the page it sits on.
 
 Sitemap 88 → 92. Checks: 92/92 h1, 92/92 schema, 45/45 search, 57/57 related.
 Verified at 1440 and 390, no horizontal overflow anywhere.
+
+### 312. DONE (2026-10-02) — YouTube rename landed, and both copies moved together (closes 294, 296)
+
+Bilal renamed the channel. Verified against the **channel ID** rather than the
+handle, which is the only check that distinguishes a rename from a switch:
+
+| URL | Canonicalises to | Subscribers |
+| --- | --- | ---: |
+| `/channel/UCqvEvXi8KbZ4OLp-osVtOMw` | itself | 64 |
+| `/@bilalshafqat42` | the same channel | 64 |
+| `/@bilal-4d` | the same channel | 64 |
+
+So he renamed the 58-video channel rather than moving to the empty one, which
+is what item 296 said to do. All 58 videos, the 64 subscribers and the watch
+history came with it.
+
+`@bilal-4d` still answers under YouTube's 14-day previous-handle hold and then
+stops, so the site had to move now rather than when it broke.
+
+This line has now been wrong in both directions:
+
+```
+until 2026-10-01   @bilalshafqat42   a 404, inferred from the LinkedIn and X
+                                     handles and never opened (roadmap 289)
+2026-10-01         @bilal-4d         the real channel at the time
+2026-10-02         @bilalshafqat42   renamed, so the original guess is now true
+```
+
+That history is in both files, because the handle being right by coincidence is
+exactly how it would get guessed again.
+
+**The two copies drifted again while being fixed**, which is almost funny. The
+script wrote `SocialLinks.tsx`, then failed its assertion on `lib/schema.ts`
+because item 303 had already rewritten that comment block. For a moment the
+site had the new handle in the visible link and the old one in the structured
+data, which is roadmap 289 precisely. Caught by the script failing loudly rather
+than skipping, and finished in the same change.
+
+The real protection is still item 303: `sameAs` carries
+`/channel/UCqvEvXi8KbZ4OLp-osVtOMw` alongside the handle, and that URL cannot
+go stale.
+
+Verified in the built output: the only YouTube URLs the site renders are
+`@bilalshafqat42` and the channel ID.

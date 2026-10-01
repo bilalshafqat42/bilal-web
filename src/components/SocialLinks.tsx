@@ -77,13 +77,22 @@ export const socials = [
   { name: "LinkedIn", href: "https://www.linkedin.com/in/bilalshafqat42", icon: LinkedinIcon },
   { name: "Instagram", href: "https://www.instagram.com/imbilalshafqat/", icon: InstagramIcon },
   { name: "TikTok", href: "https://www.tiktok.com/@imbilalshafqat", icon: TikTokIcon },
-  // `@bilal-4d`, not `@bilalshafqat42`. The latter was inferred from the
-  // pattern the other handles follow and it is a 404 — verified live on
-  // 2026-10-01, so this link had been dead on every page of the site. The
-  // real channel is "Bilal-4D | by Bilal Shafqat". `SAME_AS` in lib/schema.ts
-  // was corrected on 2026-09-30 and this one was missed, which is exactly why
-  // a handle must never be guessed from another handle.
-  { name: "YouTube", href: "https://www.youtube.com/@bilal-4d", icon: YoutubeIcon },
+  // `@bilalshafqat42`. This line has now been wrong in both directions, so the
+  // history is worth keeping short and exact:
+  //
+  //   until 2026-10-01  @bilalshafqat42  — a 404. Inferred from the LinkedIn and
+  //                                        X handles and never opened.
+  //   2026-10-01        @bilal-4d        — the real channel at the time.
+  //   2026-10-02        @bilalshafqat42  — Bilal renamed the channel itself, so
+  //                                        the handle he originally wanted is now
+  //                                        genuinely his.
+  //
+  // Confirmed against the channel ID rather than the handle: both forms resolve
+  // today and both canonicalise to UCqvEvXi8KbZ4OLp-osVtOMw with 64 subscribers,
+  // which is how we know he renamed the 58-video channel rather than moving to
+  // the empty one. `@bilal-4d` still answers only because YouTube holds a
+  // previous handle for 14 days, so it is not a safe link.
+  { name: "YouTube", href: "https://www.youtube.com/@bilalshafqat42", icon: YoutubeIcon },
   { name: "Pinterest", href: "https://www.pinterest.com/bilalshafqat42/", icon: PinterestIcon },
   { name: "Behance", href: "https://www.behance.net/bilalshafqat", icon: BehanceMonogram },
   { name: "Dribbble", href: "https://dribbble.com/bilalshafqat", icon: DribbbleIcon },
