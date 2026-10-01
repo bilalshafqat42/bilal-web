@@ -83,7 +83,7 @@ export const socials = [
   //   until 2026-10-01  @bilalshafqat42  — a 404. Inferred from the LinkedIn and
   //                                        X handles and never opened.
   //   2026-10-01        @bilal-4d        — the real channel at the time.
-  //   2026-10-02        @bilalshafqat42  — Bilal renamed the channel itself, so
+  //   2026-10-01        @bilalshafqat42  — Bilal renamed the channel itself, so
   //                                        the handle he originally wanted is now
   //                                        genuinely his.
   //

@@ -7287,7 +7287,7 @@ integrity, which its header now says.
 the data is a convention the next person breaks. Nothing caught this except the
 numbers looking wrong by eye, which is not a control.
 
-### 308. DONE (2026-10-02) — Eleven headings had nothing under them, because tables were being dropped
+### 308. DONE (2026-10-01) — Eleven headings had nothing under them, because tables were being dropped
 
 Bilal asked for the FlatList article to be updated. Reading it turned up two
 headings with no content at all: "Key Differences Between FlatList and
@@ -7333,7 +7333,7 @@ type.
 `related-check` asserts both: no empty headings, and every table row the same
 length as its head.
 
-### 309. DONE (2026-10-02) — The best-ranking page on the site, expanded
+### 309. DONE (2026-10-01) — The best-ranking page on the site, expanded
 
 `/react-native-flatlist-vs-scrollview/` sits at **position 24.8** with 781
 impressions. That is the best position of any non-brand page here, better than
@@ -7348,7 +7348,7 @@ reasons not to, and the nested-scroll answer, which is to invert it and use
 Added rather than rewritten. Something on this page already works at position
 24 and there was no reason to disturb it.
 
-### 310. DONE (2026-10-02) — Two more Dubai commercial articles
+### 310. DONE (2026-10-01) — Two more Dubai commercial articles
 
 | Slug | Words | Tier 4 item |
 | --- | ---: | --- |
@@ -7367,7 +7367,7 @@ single number would be fiction.
 
 Sitemap 86 → 88. Checks: 88/88 h1, 88/88 schema, 45/45 search, 57/57 related.
 
-### 311. DONE (2026-10-02) — Light opener on every page, gold blur gone, blog paginated
+### 311. DONE (2026-10-01) — Light opener on every page, gold blur gone, blog paginated
 
 Three requests from Bilal, one of which turned into a lesson about the build.
 
@@ -7447,7 +7447,7 @@ markup describes the page it sits on.
 Sitemap 88 → 92. Checks: 92/92 h1, 92/92 schema, 45/45 search, 57/57 related.
 Verified at 1440 and 390, no horizontal overflow anywhere.
 
-### 312. DONE (2026-10-02) — YouTube rename landed, and both copies moved together (closes 294, 296)
+### 312. DONE (2026-10-01) — YouTube rename landed, and both copies moved together (closes 294, 296)
 
 Bilal renamed the channel. Verified against the **channel ID** rather than the
 handle, which is the only check that distinguishes a rename from a switch:
@@ -7471,7 +7471,7 @@ This line has now been wrong in both directions:
 until 2026-10-01   @bilalshafqat42   a 404, inferred from the LinkedIn and X
                                      handles and never opened (roadmap 289)
 2026-10-01         @bilal-4d         the real channel at the time
-2026-10-02         @bilalshafqat42   renamed, so the original guess is now true
+2026-10-01         @bilalshafqat42   renamed, so the original guess is now true
 ```
 
 That history is in both files, because the handle being right by coincidence is

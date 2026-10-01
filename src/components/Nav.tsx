@@ -171,7 +171,7 @@ export default function Nav() {
   /** The bar is light while it sits over a light band, and dark the moment it
    *  lifts into its floating pill.
    *
-   *  Every page opens on white as of 2026-10-02, so this is simply "not
+   *  Every page opens on white as of 2026-10-01, so this is simply "not
    *  scrolled". It used to be `pathname === "/"`, because the homepage was the
    *  only white opener, and the comment here said to replace it with something
    *  better rather than add a second pathname if that ever changed. It changed

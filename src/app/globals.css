@@ -257,7 +257,7 @@ h6,
  * It was `.grid-fade::after`: two radial gradients in `rgba(242, 201, 76, …)`
  * under `blur(70px)`, sized for a hero with a lot of empty space around it. It
  * was dropped from the article template on 2026-10-01 and from every page on
- * 2026-10-02, at Bilal's instruction both times.
+ * 2026-10-01, at Bilal's instruction both times.
  *
  * The dot field in `::before` stays. That is texture; this was atmosphere, and
  * it fought the content on every page that had more than four words in its
@@ -1021,7 +1021,7 @@ html[data-consent-open] .floating-enquiry {
 
 /* A light opener band, for every page's hero.
  *
- * Until 2026-10-02 only the homepage opened on white. Bilal asked for the same
+ * Until 2026-10-01 only the homepage opened on white. Bilal asked for the same
  * treatment across the site, so this exists to be dropped onto a hero `section`
  * without touching anything inside it.
  *

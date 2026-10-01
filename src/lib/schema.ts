@@ -51,13 +51,13 @@ const SAME_AS = [
   "https://www.instagram.com/imbilalshafqat/",
   "https://www.facebook.com/imBilalshafqat",
   "https://x.com/bilalshafqat42",
-  // @bilalshafqat42, as of 2026-10-02 — and this line has now been wrong in both
+  // @bilalshafqat42, as of 2026-10-01 — and this line has now been wrong in both
   // directions, which is the reason the `/channel/UC…` URL below exists:
   //
   //   until 2026-10-01  @bilalshafqat42  a 404, inferred from the LinkedIn and X
   //                                      handles and never opened
   //   2026-10-01        @bilal-4d        the real channel at the time
-  //   2026-10-02        @bilalshafqat42  Bilal renamed the channel, so the handle
+  //   2026-10-01        @bilalshafqat42  Bilal renamed the channel, so the handle
   //                                      he wanted is now genuinely his
   //
   // Confirmed against the channel ID, not the handle: both forms resolve today
