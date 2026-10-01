@@ -7231,3 +7231,58 @@ is the only one that needs changing, and only once `@bilalshafqat42` resolves.
 Worth flagging to Bilal: YouTube allows two handle changes per 14 days and
 holds the previous handle for 14 days. If `@bilalshafqat42` is taken and then
 reverted, that budget is spent.
+
+### 307. DONE (2026-10-01) — All eleven remaining listicles renewed (closes 291)
+
+Split by what the content actually needed, not by what the title said.
+
+**Six are timeless reference and lost the year entirely.** The JavaScript array
+methods, the three React state options, FlatList versus ScrollView, TypeScript
+and Node. None of these APIs changed, so the content was never stale, only the
+date on it was. A reference page does not need a year, and giving it 2026 would
+have been the fake freshness item 291 warned about. The in-body references went
+too, so the body no longer contradicts the title.
+
+Also fixed in passing: `React Native FlatList vs ScrollView- What to Use` had a
+hyphen doing a colon's job.
+
+**Five name specific tools and sites, so they earned 2026 by being checked.**
+All 22 outbound links opened and verified on 2026-10-01, plus the seven AI
+tools named without links in the AI article.
+
+| Result | Count |
+| --- | ---: |
+| Live, 200 | 18 |
+| Live, blocked to automation, **confirmed in a browser** | 4 |
+| Dead | **0** |
+
+The four that needed a browser: `behance.net` and `land-book.com` (Cloudflare),
+`dribbble.com` (202), `to-do.office.com` (417). Same trap as `atlasicons.com`
+in roadmap 282 and the Facebook link in 289 — a status code is not a verdict.
+
+Each dated article now ends with the line "Every tool and link in this article
+was opened and checked on 1 October 2026", which is what makes the date a
+statement rather than a decoration.
+
+**No title on the site now carries a past year.**
+
+#### The bug this turned up
+
+Recomputing `words` after editing inflated fifteen articles by roughly 30%.
+
+`words` is **prose only**: `p` and `list` blocks, not headings and not code.
+That rule was never written down. It was simply how the WordPress extraction
+happened to work, and it held on all 40 untouched articles including the 30
+containing code blocks. My formula counted every block.
+
+It propagated: `readingMinutes` is `words / 200`, and `wordCount` in the
+`Article` schema reads the same field, so three articles written this week were
+also wrong, including the rewritten UI/UX piece at 1,953 instead of 1,838.
+
+All 55 recomputed on the correct rule, and `scripts/related-check.mjs` now
+asserts it. The script's job widened from "related links" to blog data
+integrity, which its header now says.
+
+**The lesson is the general one.** A convention that lives only in the shape of
+the data is a convention the next person breaks. Nothing caught this except the
+numbers looking wrong by eye, which is not a control.

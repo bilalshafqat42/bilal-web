@@ -1,5 +1,8 @@
 /**
- * Regression check for the "Keep reading" links at the foot of every article.
+ * Data integrity checks for the recovered articles.
+ *
+ * Two unrelated things, in one script because both read the same module and
+ * neither is big enough to justify its own npm script.
  *
  * Two things can go wrong here and neither shows up in a build.
  *
@@ -15,6 +18,19 @@
  *
  * So this asserts both: every article is linked from at least one other, and
  * articles that share a tag with something actually link to it.
+ *
+ *
+ * ---------------------------------------------------------------------------
+ * 2. **Word counts.** `words` is prose only: `p` and `list` blocks, not
+ *    headings and not code. That rule was never written down anywhere, it was
+ *    simply how the WordPress extraction happened to work, and on 2026-10-01 I
+ *    recomputed fifteen articles with a formula that counted every block. The
+ *    counts came out roughly 30% high, `readingMinutes` inflated with them, and
+ *    `wordCount` in the Article schema went with it.
+ *
+ *    Nothing caught it except the numbers looking wrong by eye. So the rule is
+ *    asserted here now: a convention that lives only in the shape of the data
+ *    is a convention that gets broken by the next person to touch it.
  *
  * Usage:  npm run related-check
  */
@@ -64,6 +80,20 @@ for (const post of blogPosts) {
   }
 }
 
+/** Prose only: `p` and `list`. Headings are navigation and code is not read at
+ *  reading speed, so neither belongs in a reading-time estimate. */
+const proseWords = (post) =>
+  post.blocks
+    .filter((b) => b.t === "p" || b.t === "list")
+    .reduce((n, b) => n + (Array.isArray(b.v) ? b.v.join(" ") : b.v).trim().split(/\s+/).length, 0);
+
+for (const post of blogPosts) {
+  const expected = proseWords(post);
+  if (post.words !== expected) {
+    fail(`${post.slug} stores words=${post.words}, prose is ${expected}`);
+  }
+}
+
 const orphans = [...inbound].filter(([, n]) => n === 0).map(([s]) => s);
 for (const slug of orphans) fail(`${slug} is never offered as related reading by any article`);
 
@@ -74,7 +104,7 @@ if (failed) {
 
 const counts = [...inbound.values()];
 console.log(
-  `All ${blogPosts.length} articles linked. Inbound related links: ` +
+  `All ${blogPosts.length} articles linked, word counts correct. Inbound related links: ` +
     `min ${Math.min(...counts)}, max ${Math.max(...counts)}. ` +
     `${tagged} articles had a same-tag pool and all three links stayed on topic ` +
     `(${offTopic} off-topic).`,
