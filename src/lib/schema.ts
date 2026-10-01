@@ -62,15 +62,48 @@ const SAME_AS = [
   "https://www.pinterest.com/bilalshafqat42/",
 ];
 
+/** What the Person and the business are described as knowing.
+ *
+ *  Expanded 2026-10-01. Bilal has no UAE trade licence, so a verified Google
+ *  Business Profile with a confirmed address is not available to him. That
+ *  removes the local pack, which is the usual route to ranking for anything
+ *  with "Dubai" in it, and it means the entity signal has to come from this
+ *  site instead: a well-described Person, consistently linked to real profiles,
+ *  is the version of this that does not require a licence.
+ *
+ *  Every entry must correspond to work the site actually shows. This list is a
+ *  claim about competence, and the same rule governs it as governs `priceRange`
+ *  and `areaServed`: it describes what is delivered, not what is wanted. Each
+ *  line below maps to a service page or to shipped work in the portfolio. */
 const KNOWS_ABOUT = [
+  // The four pillars, as the services pages name them.
   "Paid Marketing & Lead Generation",
   "Website & App Development",
   "Design, Content & Conversion Optimization",
   "CRM & Marketing Automation",
+  // Platforms, named specifically. "Digital marketing" as a bare term says
+  // nothing a search engine can use; the platform names are what a brief
+  // actually contains.
   "Google Ads & Performance Max",
   "Meta, LinkedIn & TikTok Advertising",
+  "Snapchat Advertising",
   "HubSpot, Zoho & Salesforce CRM Setup",
   "Conversion Rate Optimization (CRO)",
+  // Disciplines with their own service pages.
+  "Search Engine Optimisation",
+  "Email Marketing & Automation",
+  "Social Media Marketing",
+  "UI/UX & Product Design",
+  "Graphic Design & Branding",
+  "Server-Side Tracking & Conversions API",
+  // Build stack, from the /about page's stated stack.
+  "React & Next.js Development",
+  "React Native Mobile App Development",
+  "WordPress Development",
+  // Sectors with delivered work behind them, which is what makes them
+  // legitimate here rather than aspirational.
+  "Real Estate & Property Marketing",
+  "E-commerce Marketing",
 ];
 
 const ADDRESS = {
@@ -93,6 +126,19 @@ export function personNode() {
     address: ADDRESS,
     sameAs: SAME_AS,
     knowsAbout: KNOWS_ABOUT,
+    // `hasOccupation` states the role and where it is performed, which
+    // `jobTitle` alone does not. Without a verified Business Profile this is
+    // the only structured statement on the site that ties the person to Dubai
+    // as a place of work rather than merely as a postal address.
+    //
+    // No `estimatedSalary`, no `experienceRequirements` and no date range: all
+    // three would be figures not visible on any page, which this file forbids.
+    hasOccupation: {
+      "@type": "Occupation",
+      name: "Freelance Digital Marketer, Designer & Developer",
+      occupationLocation: { "@type": "City", name: "Dubai" },
+      skills: KNOWS_ABOUT.join(", "),
+    },
     worksFor: ref(ID.business, "ProfessionalService"),
   };
 }

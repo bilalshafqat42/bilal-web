@@ -6959,3 +6959,83 @@ The pattern: **every excluded term is a head term with no location and no
 buying intent.** Volume without intent costs the same effort and returns
 nothing, which is precisely the trap the recovered blog already demonstrates —
 6,933 impressions from developers who will never hire a Dubai marketer.
+
+### 299. DONE (2026-10-01) — The Person entity carries the weight the Business Profile cannot
+
+Bilal has no UAE trade licence, so a verified Google Business Profile with a
+confirmed address is not available to him. That removes the local pack, which
+is the normal route to ranking for anything with "Dubai" in it.
+
+What is available without a licence is the entity signal from this site. A
+well-described Person, consistently linked to real profiles, is the version of
+this that does not require anyone's verification.
+
+Two changes to `lib/schema.ts`:
+
+**`knowsAbout` expanded from 8 entries to 20.** The old list named the four
+pillars and four platforms. It did not mention SEO, email marketing, social
+media marketing, UI/UX, branding, React, Next.js, React Native or WordPress,
+all of which have their own service page or shipped work behind them. "Digital
+marketing" as a bare term says nothing a search engine can use; platform and
+framework names are what a brief actually contains.
+
+**`hasOccupation` added.** `jobTitle` states a role. `hasOccupation` states a
+role *and where it is performed*:
+
+```
+"hasOccupation": {
+  "@type": "Occupation",
+  "name": "Freelance Digital Marketer, Designer & Developer",
+  "occupationLocation": { "@type": "City", "name": "Dubai" },
+  "skills": "..."
+}
+```
+
+Without a Business Profile, this is now the only structured statement on the
+site tying the person to Dubai as a place of work rather than as a postal
+address.
+
+No `estimatedSalary`, no `experienceRequirements`, no date range. All three
+would be figures not visible on any page, which this file forbids for the same
+reason it forbids `AggregateRating`.
+
+The governing rule still holds: every `knowsAbout` entry maps to a service page
+or to delivered work. It is a claim about competence, not a wish list, exactly
+as `areaServed` is limited to AE and GB.
+
+### 300. OPEN — Portfolio framing: experience, not clients
+
+Bilal has clarified the intent: he wants to show the work he did for these
+companies as **his experience**, not to present them as freelance clients. That
+distinction is the whole thing, and it changes what should be built.
+
+| Framing | Says | Risk |
+| --- | --- | --- |
+| "My clients" | they hired him as a freelancer | Misleading for employed work, and the higher-risk reading |
+| "Where I've worked" / "Experience" | he did this work, in a role | Accurate. This is what a CV does. |
+
+So the portfolio sections for employed work should read as work history. LEOS
+is already written this way and the existing page does not need changing: it
+says "two years with LEOS Developments" and describes the scope, which is a
+statement about his experience rather than a claim of a freelance engagement.
+
+Three practical rules for the companies still to be added, which reduce the
+risk without needing anyone's legal opinion:
+
+1. **Only publicly visible work.** A live website, a public campaign, an app in
+   a store. Nothing internal, nothing unpublished.
+2. **No performance figures** unless the company has published them itself.
+   This is the same rule `lib/schema.ts` applies to `AggregateRating`.
+3. **Written permission per company**, which is usually given, especially by
+   former employers.
+
+Refine is the current employer and is the one to be most careful with. Nothing
+about Refine goes on this site until that is confirmed in writing.
+
+Still needed from Bilal before any of these can be built: for each of PSI,
+Texdale and PetsMarket, the live URL of the work, a two-line description of
+what he did, and his role at the time.
+
+`Client.logo` will need to become optional, with a text wordmark fallback, so
+a company can go up before its logo file exists. Not built yet, because there
+is no content to put behind it.
