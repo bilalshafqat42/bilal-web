@@ -172,7 +172,7 @@ export default function RealEstateMarketingPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <main id="main" tabIndex={-1} className="flex-1">
-        <section className="relative overflow-hidden pt-32 sm:pt-40">
+        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="site-container relative">
             <Reveal>

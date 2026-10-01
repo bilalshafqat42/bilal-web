@@ -130,7 +130,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
       ) : null}
       <TrackView name={p.name} category="Case study" />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
-        <section className="relative overflow-hidden pt-32 sm:pt-40">
+        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="site-container relative">
             <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-muted">
@@ -164,7 +164,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
                       width={p.logoWidth ?? 900}
                       height={p.logoHeight ?? 1983}
                       priority
-                      className="mt-6 h-16 w-auto"
+                      className="client-mark mt-6 h-16 w-auto"
                     />
                   ) : null}
                   <h1 className="t-h1 mt-6 text-ink">

@@ -171,11 +171,15 @@ export default function Nav() {
   /** The bar is light while it sits over a light band, and dark the moment it
    *  lifts into its floating pill.
    *
-   *  Keyed on the route because the homepage is the only page that opens on a
-   *  white section (`DisciplineStatement`); every other route opens on
-   *  `--color-bg`. If a second page ever gets a light opener, replace this with
-   *  a data attribute the page sets, rather than adding a second pathname. */
-  const light = !scrolled && pathname === "/";
+   *  Every page opens on white as of 2026-10-02, so this is simply "not
+   *  scrolled". It used to be `pathname === "/"`, because the homepage was the
+   *  only white opener, and the comment here said to replace it with something
+   *  better rather than add a second pathname if that ever changed. It changed
+   *  for fifteen templates at once, so the pathname check is gone entirely.
+   *
+   *  `pathname` is still read below for the active-link state, so nothing else
+   *  moves. */
+  const light = !scrolled;
 
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const triggerRefs = useRef<Partial<Record<MegaId, HTMLAnchorElement | null>>>({});

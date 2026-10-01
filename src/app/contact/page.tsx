@@ -108,7 +108,7 @@ export default function ContactPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
       />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
-        <section className="relative overflow-hidden pt-32 sm:pt-40">
+        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           {/* Left-aligned at the container edge, not a centred 4xl column.
               Measured before this: the h1 started 296px from the left here and

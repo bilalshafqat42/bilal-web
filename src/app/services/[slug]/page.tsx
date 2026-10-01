@@ -103,7 +103,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
       <JsonLd nodes={nodes} />
       <TrackView name={category.title} category="Service" />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
-        <section className="relative overflow-hidden pt-32 sm:pt-40">
+        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="relative mx-auto max-w-4xl px-6">
             <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted">

@@ -252,29 +252,17 @@ h6,
 /* A single soft warmth behind the heading. Two stacked radials rather than one,
    because a lone gradient at this size reads as a grey smudge; the pair keeps a
    centre without ever becoming a visible light source. */
-/* The article hero keeps the dot texture and drops the gold glow.
-   The ::after above is a 70px-blurred gold wash, which reads as atmosphere
-   behind a short marketing headline and as a smudge behind a 70-character
-   article title sitting on a white-on-black text page. Bilal called it ugly on
-   the blog and he is right: the blur is sized for a hero with a lot of empty
-   space around it, and an article has none. */
-.grid-fade--flat::after {
-  display: none;
-}
+/* The gold glow that used to live here is gone.
+ *
+ * It was `.grid-fade::after`: two radial gradients in `rgba(242, 201, 76, …)`
+ * under `blur(70px)`, sized for a hero with a lot of empty space around it. It
+ * was dropped from the article template on 2026-10-01 and from every page on
+ * 2026-10-02, at Bilal's instruction both times.
+ *
+ * The dot field in `::before` stays. That is texture; this was atmosphere, and
+ * it fought the content on every page that had more than four words in its
+ * heading. */
 
-.grid-fade::after {
-  content: "";
-  position: absolute;
-  left: 32%;
-  top: 24%;
-  width: 78%;
-  height: 68%;
-  transform: translate(-50%, -50%);
-  filter: blur(70px);
-  background-image:
-    radial-gradient(ellipse 50% 50% at 50% 50%, rgba(242, 201, 76, 0.13), transparent 72%),
-    radial-gradient(ellipse 80% 70% at 45% 55%, rgba(205, 152, 42, 0.08), transparent 76%);
-}
 
 .glass {
   background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
@@ -1029,6 +1017,136 @@ html[data-consent-open] .floating-enquiry {
 .opener-light {
   background-color: #ffffff;
   color: #14140f;
+}
+
+/* A light opener band, for every page's hero.
+ *
+ * Until 2026-10-02 only the homepage opened on white. Bilal asked for the same
+ * treatment across the site, so this exists to be dropped onto a hero `section`
+ * without touching anything inside it.
+ *
+ * **It redefines the tokens rather than restyling the children.** Tailwind v4
+ * compiles `text-ink` to `color: var(--color-ink)`, so moving the variables
+ * here flips every descendant — headings, body copy, borders, panels — in one
+ * rule. The alternative was a light variant of every utility on fifteen page
+ * templates, which would have drifted apart within a month.
+ *
+ * Contrast measured on white, all clear of AA:
+ *   ink    #14140f  17.4:1
+ *   muted  #55555e   7.3:1
+ *   gold   #8a6a05   5.2:1
+ *
+ * That gold is the one real substitution. `--color-gold` #f2c94c on white is
+ * about 1.6:1 and completely unreadable, and it is the colour of every eyebrow
+ * label on the site. The darker value keeps the hue, so the band still reads as
+ * the same brand, and is legible.
+ *
+ * The gold *fills* are unaffected and should be: `.btn-primary` is a literal
+ * `linear-gradient(92deg, #f2c94c, #f7a53b)` with #14140f text on it, not the
+ * token. There the gold is the ground and the dark ink sits on top, so it is
+ * already correct on either background. Checked rather than assumed. */
+.page-opener {
+  background-color: #ffffff;
+  color: #14140f;
+  /* All fifteen heroes carry `pt-32 sm:pt-40` and no bottom padding, which was
+     fine while the band had no colour of its own: the gap below the last line
+     came from the next section's top margin. Now there is a visible edge there,
+     and without this the white stops flush against the final line of the
+     standfirst. Set here rather than on fifteen `className` strings so the
+     band's shape stays one decision. */
+  padding-bottom: 3.5rem;
+}
+
+@media (min-width: 640px) {
+  .page-opener {
+    padding-bottom: 4.5rem;
+  }
+}
+
+/* **Why these are explicit overrides and not token redefinitions.**
+ *
+ * The obvious implementation is to move `--color-ink` and friends onto
+ * `.page-opener` and let the cascade flip every descendant in one rule. That
+ * does not work here, and the reason is one word in `globals.css` line 3:
+ * `@theme inline`. With `inline`, Tailwind v4 substitutes each token's literal
+ * value into the utility at build time — `.text-ink{color:#f5f5f7}` — rather
+ * than emitting `var(--color-ink)`. Redefining the variable downstream has no
+ * effect at all, which is exactly what the first attempt produced: a white
+ * band with white text on it, measured at 1.09:1.
+ *
+ * Dropping `inline` from the theme would make the token approach work and would
+ * also change every utility on the site from a literal to a `var()` lookup.
+ * That is a site-wide change to fix one band, so the narrower fix wins.
+ *
+ * The list below is not guesswork: it is every colour utility that actually
+ * appears inside the fifteen hero sections, read out of the markup. If a hero
+ * gains a new one it will render in its dark-mode colour and look wrong, which
+ * is visible rather than silent.
+ *
+ * Contrast on white, all clear of AA:
+ *   ink    #14140f  17.4:1
+ *   muted  #55555e   7.3:1
+ *   gold   #8a6a05   5.2:1
+ *
+ * The gold is the one real substitution. #f2c94c on white is about 1.6:1 and is
+ * the colour of every eyebrow label on the site. The darker value holds the hue
+ * so the band still reads as the same brand.
+ *
+ * Gold *fills* are deliberately untouched: `.btn-primary` is a literal
+ * `linear-gradient(92deg, #f2c94c, #f7a53b)` with #14140f on top, so the gold
+ * is the ground there and already correct on either background. Checked, not
+ * assumed. */
+.page-opener .text-ink { color: #14140f; }
+.page-opener .text-muted { color: #55555e; }
+.page-opener .text-muted\/70 { color: rgba(85, 85, 94, 0.7); }
+.page-opener .text-gold { color: #8a6a05; }
+.page-opener .hover\:text-ink:hover { color: #14140f; }
+.page-opener .hover\:text-gold:hover { color: #8a6a05; }
+.page-opener .text-border { color: rgba(0, 0, 0, 0.22); }
+
+.page-opener .border-border { border-color: rgba(0, 0, 0, 0.14); }
+.page-opener .bg-border { background-color: rgba(0, 0, 0, 0.14); }
+.page-opener .hover\:border-gold\/35:hover { border-color: rgba(138, 106, 5, 0.45); }
+.page-opener .border-gold\/30 { border-color: rgba(138, 106, 5, 0.4); }
+
+.page-opener .bg-surface\/60 { background-color: rgba(0, 0, 0, 0.04); }
+.page-opener .bg-gold\/10 { background-color: rgba(138, 106, 5, 0.12); }
+.page-opener .bg-white\/15 { background-color: rgba(0, 0, 0, 0.08); }
+/* A white tint over white is invisible, so the hover affordance has to invert. */
+.page-opener .hover\:bg-white\/5:hover { background-color: rgba(0, 0, 0, 0.05); }
+
+.page-opener .decoration-gold { text-decoration-color: #8a6a05; }
+
+/* The gradient runs white to gold, which over white loses its first 45%. Over
+   the light band it starts from the dark ink instead, so the word still reads
+   as a gradient rather than fading out of existence. */
+.page-opener .text-gradient {
+  background: linear-gradient(92deg, #14140f 10%, #8a6a05 55%, #a0761f 85%);
+}
+
+/* A native select renders its own list using the page's colour scheme. `dark`
+   on a white band gives a dark popup under light text, which is jarring. */
+.page-opener [class*="color-scheme:dark"] { color-scheme: light; }
+
+/* Client logos are white SVGs, drawn for the dark page they used to sit on.
+ * On the light band they are a white mark on white: the LEOS page rendered a
+ * 40px gap above its headline where the logo was, which is exactly the kind of
+ * thing that ships because the layout still looks deliberate.
+ *
+ * `brightness(0)` collapses any colour to black, which is correct for a
+ * monochrome mark and is why this is not `invert(1)` — invert would turn a
+ * coloured logo into its negative rather than into a silhouette. Every mark
+ * carrying this class today is a `-white.svg`. A logo that is genuinely
+ * multicoloured should not take the class and should ship a dark variant
+ * instead. */
+.page-opener .client-mark {
+  filter: brightness(0);
+}
+
+/* The dot texture is a white stipple, invisible on white. Over the light band
+   it becomes a dark one at the same weight. */
+.page-opener .grid-fade::before {
+  background-image: radial-gradient(circle at 1px 1px, rgba(20, 20, 15, 0.1) 1px, transparent 0);
 }
 
 /* Portrait reveal — monochrome at rest, colour wiped in under the cursor.

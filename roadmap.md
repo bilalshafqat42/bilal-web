@@ -7366,3 +7366,83 @@ cost per click, and says why: it varies by sector by a factor of twenty and a
 single number would be fiction.
 
 Sitemap 86 → 88. Checks: 88/88 h1, 88/88 schema, 45/45 search, 57/57 related.
+
+### 311. DONE (2026-10-02) — Light opener on every page, gold blur gone, blog paginated
+
+Three requests from Bilal, one of which turned into a lesson about the build.
+
+#### The gold blur, removed everywhere
+
+`.grid-fade::after` was two radial gradients in `rgba(242, 201, 76, …)` under
+`blur(70px)`. Dropped from the article template on 2026-10-01 and from all
+fifteen templates now. The dot field in `::before` stays: that is texture, this
+was atmosphere, and it fought the content on every page with more than four
+words in its heading. `.grid-fade--flat` existed for one day and is gone with
+it.
+
+#### Every page opens on white
+
+The homepage already did, via `DisciplineStatement` and `.opener-light`, and
+the comment on `Nav`'s light state said what to do if a second page ever needed
+it. Fifteen needed it at once, so the `pathname === "/"` check is gone entirely
+and `light` is now simply `!scrolled`.
+
+**The implementation that did not work, and why it matters.** The obvious move
+is to redefine `--color-ink` and friends on the opener and let the cascade flip
+every descendant. It produced a white band with white text on it, measured at
+**1.09:1**. The cause is one word on line 3 of `globals.css`: `@theme inline`.
+With `inline`, Tailwind v4 substitutes each token's literal value into the
+utility at build time — `.text-ink{color:#f5f5f7}` — instead of emitting
+`var(--color-ink)`, so there is nothing downstream to override.
+
+Dropping `inline` would make the token approach work and would also convert
+every utility on the site from a literal to a `var()` lookup. A site-wide change
+to fix one band is the wrong trade, so `.page-opener` carries explicit
+overrides for the colour utilities that actually appear in the heroes, read out
+of the markup rather than guessed.
+
+Measured on the built pages, all clear of AA:
+
+| | Ratio |
+| --- | ---: |
+| `h1` | **18.47:1** |
+| body copy `#55555e` | 7.38:1 |
+| eyebrow `#8a6a05` | **5.07:1** |
+
+That gold is the one real substitution. #f2c94c on white is about 1.6:1 and is
+the colour of every eyebrow label on the site. Gold *fills* are untouched and
+should be: `.btn-primary` is a literal gradient with #14140f on top, so the
+gold is the ground there and was already correct. Checked, not assumed.
+
+Two things the band broke that the screenshots caught:
+
+- **No bottom padding.** All fifteen heroes carry `pt-32 sm:pt-40` and nothing
+  below, which was invisible while the band had no colour. The white stopped
+  flush against the last line of the standfirst. Set once in CSS.
+- **Client logos vanished.** They are white SVGs drawn for a dark page. The
+  LEOS case study rendered a 40px gap above its headline, which ships easily
+  because the layout still looks deliberate. `.page-opener .client-mark` applies
+  `brightness(0)` — a silhouette, not `invert(1)`, which would turn a coloured
+  logo into its negative.
+
+#### Blog pagination
+
+Fifty-seven posts on one page. Now twelve per page, five pages.
+
+**Page one stays at `/blog`.** It is the indexed URL, the one in the nav and the
+one every article breadcrumb points at, so redirecting it to `/blog/page/1` for
+route symmetry would move an established URL for nothing. `/blog/page/1` is a
+404 rather than a duplicate.
+
+Each page carries a **self-canonical**, not a canonical back to `/blog`.
+Pointing them all at page one tells Google the rest are duplicates, and an
+article that appears only on page four would then have no route in from the
+index at all. They are in the sitemap for the same reason, derived from
+`totalBlogPages()` so publishing the post that spills onto page six adds that
+page with no edit.
+
+The `Blog` node on each page lists **that page's** posts rather than all 57. The
+markup describes the page it sits on.
+
+Sitemap 88 → 92. Checks: 92/92 h1, 92/92 schema, 45/45 search, 57/57 related.
+Verified at 1440 and 390, no horizontal overflow anywhere.

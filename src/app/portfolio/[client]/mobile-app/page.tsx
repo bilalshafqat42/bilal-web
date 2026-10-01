@@ -213,7 +213,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
       />
       <main id="main" tabIndex={-1} className="flex-1">
         {/* Hero: copy left, composite right. */}
-        <section className="relative overflow-hidden pt-32 sm:pt-40">
+        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="site-container relative">
             <Link

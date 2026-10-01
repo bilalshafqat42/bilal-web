@@ -101,7 +101,7 @@ export default async function ClientCaseStudy({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <TrackView name={c.name} category="Client" />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
-        <section className="relative overflow-hidden pt-32 sm:pt-40">
+        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="site-container relative">
             <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted">
@@ -115,7 +115,7 @@ export default async function ClientCaseStudy({ params }: Props) {
             <Reveal>
               <div className="mt-8 max-w-3xl">
                 {c.logo ? (
-                  <Image src={c.logo} alt={c.name} width={2000} height={551} priority className="h-10 w-auto" />
+                  <Image src={c.logo} alt={c.name} width={2000} height={551} priority className="client-mark h-10 w-auto" />
                 ) : (
                   <ClientWordmark name={c.name} />
                 )}

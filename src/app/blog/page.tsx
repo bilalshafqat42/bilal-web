@@ -6,7 +6,8 @@ import CtaButton from "@/components/CtaButton";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL, breadcrumbNode, ID, ref } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
-import { blogPosts, readingMinutes } from "@/data/blogPosts";
+import BlogList from "@/components/BlogList";
+import { blogPageSlice, totalBlogPages } from "@/lib/blogPagination";
 
 export const metadata: Metadata = {
   title: "Writing — Notes on React, Front-End and Design",
@@ -23,16 +24,10 @@ export const metadata: Metadata = {
   },
 };
 
-const formatDate = (iso: string) =>
-  new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-    timeZone: "UTC",
-  });
-
 export default function BlogIndexPage() {
   const url = `${SITE_URL}/blog`;
+  const totalPages = totalBlogPages();
+  const posts = blogPageSlice(1);
 
   // A `Blog` node listing the posts, rather than eight loose `Article` nodes
   // duplicating what each article page already declares about itself. The
@@ -52,7 +47,10 @@ export default function BlogIndexPage() {
       inLanguage: "en",
       author: ref(ID.person, "Person"),
       publisher: ref(ID.business, "ProfessionalService"),
-      blogPost: blogPosts.map((p) => ({
+      // The posts on *this* page, not all 57. The markup is a description of
+      // the page it sits on, and listing entries a visitor cannot see here is
+      // the same mistake as claiming a rating nobody left.
+      blogPost: posts.map((p) => ({
         "@type": "BlogPosting",
         "@id": `${SITE_URL}/${p.slug}#article`,
         headline: p.title,
@@ -66,7 +64,7 @@ export default function BlogIndexPage() {
     <>
       <JsonLd nodes={nodes} />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
-        <section className="relative overflow-hidden pt-32 sm:pt-40">
+        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="site-container relative">
             <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted">
@@ -84,34 +82,7 @@ export default function BlogIndexPage() {
 
         <section className="relative mt-14 sm:mt-16">
           <div className="site-container">
-            <ul className="border-t border-border">
-              {blogPosts.map((p) => (
-                <li key={p.slug}>
-                  <Link
-                    href={`/${p.slug}`}
-                    className="group grid gap-3 border-b border-border py-8 transition-colors sm:grid-cols-[9rem_1fr_auto] sm:items-baseline sm:gap-6"
-                  >
-                    <time
-                      dateTime={p.published}
-                      className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted"
-                    >
-                      {formatDate(p.published)}
-                    </time>
-                    <div>
-                      <h2 className="t-h5 text-ink transition-colors group-hover:text-gold">
-                        {p.title}
-                      </h2>
-                      <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
-                        {p.description}
-                      </p>
-                    </div>
-                    <span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted">
-                      {readingMinutes(p)} min
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <BlogList posts={posts} page={1} totalPages={totalPages} />
           </div>
         </section>
 

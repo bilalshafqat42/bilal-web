@@ -13,6 +13,7 @@ import {
 const dateFor = (path: string) => new Date(contentDates[path] ?? Date.now());
 import { caseStudyUrls } from "@/data/caseStudies";
 import { blogPosts } from "@/data/blogPosts";
+import { totalBlogPages, blogPagePath } from "@/lib/blogPagination";
 import { disciplinesWithPages } from "@/data/disciplines";
 
 const baseUrl = "https://bilalshafqat.com";
@@ -97,7 +98,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.6,
     },
-    // The eight recovered articles, at the root of the domain rather than under
+    // Writing, page two onward. Each one carries its own canonical rather than
+    // pointing back at /blog, so they belong in the sitemap: an article that
+    // appears only on page four has no other route in from the index.
+    //
+    // Derived from `totalBlogPages()` rather than listed, so publishing the
+    // article that spills onto a new page adds that page here with no edit.
+    ...Array.from({ length: totalBlogPages() - 1 }, (_, i) => ({
+      url: `${baseUrl}${blogPagePath(i + 2)}`,
+      lastModified: new Date(BLOG_RECOVERED_ON),
+      changeFrequency: "monthly" as const,
+      // Below /blog itself: these are navigation, not destinations.
+      priority: 0.4,
+    })),
+    // The recovered articles, at the root of the domain rather than under
     // /blog — these are the URLs Google already has, and the whole point of
     // restoring them is that those URLs stop returning 404 (roadmap 275).
     //
