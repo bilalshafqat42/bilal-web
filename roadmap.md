@@ -6425,3 +6425,57 @@ which is item 279: one origin in Phoenix, 268ms from Dubai, two round trips
 before the server is asked for anything. Roughly a second of every LCP here is
 network distance. Trimming markup will not move it; moving the origin closer
 would move all of it, and would likely take both amber pages green on its own.
+
+### 286. DONE (2026-10-01) — The WordPress category archives redirect to /blog
+
+Search Console's "Not found (404)" report listed 22 URLs. Validation was
+requested on 2026-09-30 and Google confirmed it had started. Checking all 22
+against the live site the next morning:
+
+| Outcome | Count |
+| --- | ---: |
+| Now 200 | 16 |
+| Still 404 | 6 |
+
+The 16 are every restored article plus `/blog/` and `/home/`, so the work in
+281–284 did what it was meant to.
+
+Of the remaining six, three are `/category/ai/`, `/category/ui-ux-design/` and
+`/category/design/`. These now 308 to `/blog`.
+
+That looks like it contradicts the note in `next.config.ts` forbidding exactly
+this move for `/graphic-designing-course` and `/frontend-development-course`,
+so the distinction is worth writing down. The test is not "does the old URL
+have traffic", it is "does a genuine successor exist". A category archive was
+a list of the articles filed under one topic. `/blog` is a list of all 52,
+which includes every article those three archives held. The visitor gets the
+thing they clicked for. A course page, by contrast, has no successor at all —
+Bilal has stopped teaching — and pointing it at a marketing page is the soft
+404 the note describes.
+
+Wildcarded as `/category/:path*` rather than enumerated. WordPress generated
+an archive for every category and tag it ever held, and Search Console has
+only surfaced the three Google happened to recrawl. The wildcard also catches
+the paginated forms (`/category/design/page/2/`).
+
+Verified against the built output on a production server, following the chain
+rather than reading the first hop — the trailing slash is stripped first, so
+`/category/ai/` is two hops:
+
+```
+/category/ai/              -> /blog           200, 2 hops
+/category/design/page/2/   -> /blog           200, 2 hops
+/graphic-designing-course/ -> (unchanged)     404, still correct
+```
+
+The three that stay 404 are the two course pages and
+`/what-are-em-and-rem-units/feed/`, a WordPress RSS URL. All three are
+correct: a 404 is the honest answer for a page that no longer exists, and it
+lets them de-index cleanly.
+
+Worth expecting: the validation Google started on 2026-09-30 will report
+**Failed**, because it marks the whole batch failed the moment one sampled URL
+still 404s. That is not a regression. The 16 fixed URLs still leave the error
+list; the three deliberate 404s stay listed, which is what should happen.
+
+Checks after: 83/83 h1, 83/83 schema, 45/45 search, disciplines OK.

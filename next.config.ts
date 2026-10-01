@@ -100,6 +100,22 @@ const nextConfig: NextConfig = {
       // "Web design" intent is covered by the UI/UX page, which includes web and
       // mobile interface work.
       { source: "/web-design", destination: "/services/ui-ux-design", permanent: true },
+      // WordPress category archives. Search Console lists /category/ai/,
+      // /category/ui-ux-design/ and /category/design/ among the 404s.
+      //
+      // These redirect where the course URLs deliberately do not, and the
+      // difference is whether a genuine successor exists. A category archive
+      // listed the articles filed under one topic; /blog lists all 52 of them,
+      // including every article those three archives held. The visitor who
+      // clicked a category link wanted a list of writing and gets a list of
+      // writing, which is what separates this from the soft 404 the note below
+      // describes — a tutorial URL swept into a marketing page.
+      //
+      // Wildcarded rather than enumerated: WordPress generated an archive for
+      // every category and tag it ever had, and Search Console has only
+      // surfaced the three Google happened to recrawl. Paginated archives
+      // (/category/design/page/2/) are caught by the same rule.
+      { source: "/category/:path*", destination: "/blog", permanent: true },
       // Deliberately NOT redirecting /training or the course URLs. Bilal has
       // stopped offering training, and pointing a tutorial-intent URL at a
       // marketing page is a soft 404 — Google treats it as a poor match and it
