@@ -32,6 +32,20 @@ import type { BlogPost } from "@/data/blogPosts";
  *  under development rather than design because the posts carrying them are
  *  about writing the CSS, not about the visual decision behind it. */
 const TAG_ROUTES: { service: string; tags: string[] }[] = [
+  // The commercial tags come first, ahead of the subject tags the recovered
+  // WordPress posts carry. An article written to be found by a Dubai business
+  // owner comparing agencies has an unambiguous destination, and nothing below
+  // should be able to outrank it: "Digital Marketing" beating "Pricing" to the
+  // services hub would be a silent downgrade of the only articles on this site
+  // with buying intent behind them.
+  {
+    service: "paid-marketing",
+    tags: ["Paid Ads"],
+  },
+  {
+    service: "digital-marketing",
+    tags: ["Digital Marketing", "Seo"],
+  },
   {
     service: "ui-ux-design",
     tags: ["UI UX Design", "Figma", "Design"],
@@ -39,6 +53,7 @@ const TAG_ROUTES: { service: string; tags: string[] }[] = [
   {
     service: "website-app-development",
     tags: [
+      "Web Development",
       "React Js",
       "React Hooks",
       "Redux",
@@ -49,10 +64,6 @@ const TAG_ROUTES: { service: string; tags: string[] }[] = [
       "CSS",
       "Flexbox",
     ],
-  },
-  {
-    service: "digital-marketing",
-    tags: ["Seo"],
   },
 ];
 
@@ -68,6 +79,13 @@ const TAG_ROUTES: { service: string; tags: string[] }[] = [
 type Pitch = { eyebrow: string; heading: string; accent: string; body: string };
 
 const PITCHES: Record<string, Pitch> = {
+  "paid-marketing": {
+    eyebrow: "Campaign work",
+    heading: "Want this",
+    accent: "spent better?",
+    body:
+      "I plan and run paid campaigns across Google, Meta, TikTok, Snapchat and LinkedIn, with the tracking built before the spend starts so the reporting is cost per enquiry rather than cost per click.",
+  },
   "ui-ux-design": {
     eyebrow: "Design work",
     heading: "Want this",

@@ -6663,3 +6663,77 @@ the content is not stale, only the title is. Those can lose the year entirely
 rather than gain a new one — a hook explainer does not need a date at all.
 
 Blocked on Bilal confirming which tools in the listicles he still rates.
+
+### 292. DONE (2026-10-01) — Five React titles lose the year rather than gain one
+
+The React API has not changed, so the content of the hook explainers is not
+stale, only the title was. A hook explainer does not need a date at all, so
+these dropped "(2025 Guide)" rather than becoming "(2026 Guide)" — a date
+earns its place only where the content is genuinely time-sensitive, and
+claiming freshness without it is the trap described in item 291.
+
+`metaTitle` set per post at 41 to 54 characters, comfortably inside the width
+Google renders.
+
+Eleven listicles still carry a past year. They name specific tools and cannot
+be updated honestly without confirming those tools still exist on the terms the
+article claims. Bilal has asked for them to be renewed; that is the next
+content batch.
+
+### 293. DONE (2026-10-01) — Three commercial articles, for the business Bilal actually runs
+
+The strategic problem named in the audit: 6,933 impressions arrive from people
+searching "what is rem css", "usereducer" and "free icon library". Those are
+developers learning to code. They will not hire a Dubai marketing freelancer.
+The site had a blog for a different business than the one it sells.
+
+Three articles written for buying intent rather than learning intent:
+
+| Slug | Words | Routes to |
+| --- | ---: | --- |
+| `how-much-does-a-website-cost-in-dubai` | 1,409 | Website & App Development |
+| `google-ads-vs-meta-ads-dubai-real-estate` | 1,255 | Paid Marketing |
+| `freelance-digital-marketer-vs-agency-dubai` | 1,325 | Digital Marketing |
+
+Each is longer than any recovered article except the rewritten UI/UX piece,
+because these are the ones that have to compete against agency content.
+
+**Every AED figure is Bilal's own published rate**, taken from `/pricing`:
+AED 31,500 project minimum, AED 16,000 monthly retainer, AED 3,500 consulting
+session. Each article says in its closing line that these are his rates and not
+a market survey. No competitor pricing, market average or industry statistic is
+quoted anywhere, because none could be evidenced — the agency comparison
+article says so explicitly rather than inventing a range.
+
+Licensing is mentioned in two of the three and in both cases stops at "ask to
+see it, and take advice from a qualified professional". Licensing and tax are
+not this site's advice to give.
+
+The freelancer-versus-agency article argues the agency side properly, listing
+five situations where an agency is the better answer. An article that concludes
+"hire me" in every scenario converts worse than one a reader trusts.
+
+`TAG_ROUTES` in `articleServices.ts` gained `paid-marketing` and
+`digital-marketing` ahead of the subject tags, so a commercial article can
+never be outranked to the services hub by a generic tag. New pitch copy for
+paid marketing.
+
+Sitemap 83 → 86 routes, picked up automatically. Checks: 86/86 h1, 86/86
+schema, 45/45 search, 55/55 related, 251 search chunks.
+
+### 294. OPEN — Two YouTube channels exist, and the site links the right one for now
+
+Bilal intends to move to `@bilalshafqat`. Both handles currently resolve and
+they are different channels:
+
+| Handle | Channel | Content |
+| --- | --- | --- |
+| `@bilal-4d` | Bilal-4D \| by Bilal Shafqat | **64 subscribers, 58 videos** |
+| `@bilalshafqat` | Bilal Shafqat | 5 videos, no audience yet |
+
+So the site stays on `@bilal-4d` until the move actually happens. Switching now
+would point every page at the emptier of the two channels and discard the
+history attached to the other.
+
+Switch both `SocialLinks.tsx` and `SAME_AS` in `lib/schema.ts` together when he
+confirms. Item 289 exists because those two drifted apart once already.
