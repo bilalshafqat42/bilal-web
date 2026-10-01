@@ -11,6 +11,7 @@ import { OG_IMAGES } from "@/lib/ogImage";
 import { blogPost, readingMinutes, metaTitleOf, relatedPosts } from "@/data/blogPosts";
 import { blogPosts } from "@/data/blogPosts";
 import { BLOG_RECOVERED_ON } from "@/data/contentDates";
+import { serviceForArticle } from "@/data/articleServices";
 
 /**
  * The recovered articles, at the root of the domain.
@@ -76,6 +77,10 @@ export default async function ArticlePage({ params }: PageProps) {
 
   const url = `${SITE_URL}/${post.slug}`;
   const related = relatedPosts(post.slug);
+  // The service this article is actually about, resolved from its tags. See
+  // `articleServices.ts` for why the route off an article is topic-matched
+  // rather than the one block of copy all 52 used to share.
+  const service = serviceForArticle(post);
 
   const nodes = [
     breadcrumbNode(url, [
@@ -159,16 +164,33 @@ export default async function ArticlePage({ params }: PageProps) {
                 />
                 <div className="relative">
                   <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
-                    Working on something
+                    {service.pitch.eyebrow}
                   </span>
                   <h2 className="t-h2 mt-4 text-ink">
-                    Need this <span className="text-gradient">built properly?</span>
+                    {service.pitch.heading}{" "}
+                    <span className="text-gradient">{service.pitch.accent}</span>
                   </h2>
                   <p className="mx-auto mt-4 max-w-xl leading-relaxed text-muted">
-                    I build the web and mobile products these notes come out of. A first
-                    conversation costs nothing and often ends with a smaller scope than you expected.
+                    {service.pitch.body}
                   </p>
-                  <CtaButton href="/appointment" className="mt-9">Book a free consultation</CtaButton>
+                  {/* Two routes out, not one. The booking link is the strong
+                      ask and stays primary; the service link is the weaker one
+                      for a reader who wants to know what the work involves
+                      before giving up a calendar slot — which, on a page
+                      someone reached by searching "what is rem css", is most
+                      of them. It is also the internal link that was missing
+                      entirely: the articles carry the impressions and nothing
+                      pointed from them at a commercial page. */}
+                  <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+                    <CtaButton href="/appointment">Book a free consultation</CtaButton>
+                    <Link
+                      href={service.href}
+                      className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink transition-colors hover:bg-white/5"
+                    >
+                      See {service.label}
+                      <ChevronRight size={15} />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </Reveal>

@@ -9152,7 +9152,9 @@
     "title": "UX vs UI The Perfect Balance for a Winning Product",
     "description": "In the world of digital design, two terms often come up—User Experience (UX) and User Interface (UI). While they are closely related, they serve distinct",
     "published": "2025-01-31",
-    "tags": [],
+    "tags": [
+      "UI UX Design"
+    ],
     "words": 632,
     "blocks": [
       {
@@ -9823,7 +9825,7 @@
     "description": "CSS uses various units to define lengths, such as px (pixels), % (percentages), and relative units like em and rem. Unlike absolute units like pixels, EM and",
     "published": "2025-01-24",
     "tags": [
-      "UI UX Design"
+      "CSS"
     ],
     "words": 615,
     "blocks": [
@@ -11580,7 +11582,10 @@
     "title": "Redux Made Easy: Beginner's Guide to State Management in React JS",
     "description": "A beginner's guide to Redux in React, building a simple counter app to explain actions, reducers and the store.",
     "published": "2024-09-17",
-    "tags": [],
+    "tags": [
+      "React Js",
+      "Redux"
+    ],
     "words": 349,
     "blocks": [
       {
@@ -11747,7 +11752,9 @@
     "title": "React JS State management for beginners",
     "description": "In this tutorial, you’ll learn about react js state management, useState, what are props? understanding prop drilling, solving prop drilling and what is redux",
     "published": "2023-11-09",
-    "tags": [],
+    "tags": [
+      "React Js"
+    ],
     "words": 453,
     "blocks": [
       {

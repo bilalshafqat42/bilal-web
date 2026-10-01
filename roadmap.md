@@ -6479,3 +6479,100 @@ still 404s. That is not a regression. The 16 fixed URLs still leave the error
 list; the three deliberate 404s stay listed, which is what should happen.
 
 Checks after: 83/83 h1, 83/83 schema, 45/45 search, disciplines OK.
+
+### 287. DONE (2026-10-01) — The articles carried the traffic and pointed nowhere commercial
+
+Measured from Search Console on 2026-09-30: the 13 article pages earning
+impressions earn **6,933** between them. The service pages earn almost none.
+The articles are where the audience already is.
+
+The only route off an article was `/appointment`, under one block of copy
+shared by all 52:
+
+> Need this **built properly?** I build the web and mobile products these notes
+> come out of.
+
+True of the React posts. Simply wrong on an article about UI/UX design
+websites, Figma plugins or free icon libraries — a reader who had just been
+told about icon libraries was being asked whether they needed a product built.
+And there was no link from any article to any service page at all.
+
+`src/data/articleServices.ts` now resolves each article to the service it is
+actually about, from `post.tags`, and carries per-service copy. The CTA keeps
+`/appointment` as the primary ask and adds the service page as the softer
+second route, for the reader who wants to know what the work involves before
+giving up a calendar slot — which, on a page someone reached by searching
+"what is rem css", is most of them.
+
+Resolution across all 52:
+
+| Destination | Articles |
+| --- | ---: |
+| `/services/website-app-development` | 36 |
+| `/services/ui-ux-design` | 12 |
+| `/services` (hub) | 3 |
+| `/services/digital-marketing` | 1 |
+
+Driven from tags rather than a slug list, because a slug list needs an edit
+every time a post is added and silently misses it when nobody remembers.
+
+Three data bugs surfaced on the way, all of them in the WordPress metadata
+rather than in the code:
+
+- `ux-vs-ui-the-perfect-balance-for-a-winning`,
+  `redux-made-easy-beginners-guide-to-state-management-in-react-js` and
+  `react-js-state-management-for-beginners` had **no tags at all**. Tagged.
+- `what-are-em-and-rem-units` was tagged `UI UX Design`. Its Search Console
+  queries are "what is rem css", "what is 1rem", "what is a rem", "what is rem
+  unit", "how does em work" — every one a CSS syntax question. Retagged `CSS`.
+
+`websites-every-developer-must-bookmark` is also tagged `UI UX Design` despite
+the title; read in full, it really is a list of design resources aimed at
+developers, so the tag stands.
+
+The 3 that resolve to the hub are `ai-tools-every-creator-must-try-in-2025`,
+`chatgpt-vs-deepseek-the-ultimate-ai-showdown` and
+`top-10-productivity-tools-to-boost-efficiency`. Their tags name a tool rather
+than a discipline, so any specific service would be a guess.
+
+### 288. DONE (2026-10-01) — "Keep reading" was rotation, not relevance
+
+`relatedPosts` picked the next three posts in file order. That guaranteed every
+article an inbound link, which is what it was written for (roadmap 280), but it
+spent the link on an unrelated subject: a React hooks article offered whatever
+happened to sit beside it in the JSON.
+
+Twenty-two of the 52 articles are React and twelve are design. Linking within
+those groups is what tells a search engine the site covers a subject in depth
+rather than holding 52 unrelated pages, and internal links are the only part of
+that signal we control without waiting on anyone else to link to us.
+
+Now scored on shared tags, with rotation distance as the tiebreak.
+
+**The repair pass is the part worth remembering.** Scoring purely on shared
+tags orphaned two articles outright —
+`react-usestate-hook-explained-with-examples` and
+`master-infinite-scroll-in-javascript`. In a 22-article React cluster the same
+few posts win every comparison and the rest are never offered by anyone, so an
+orphan's only inbound link is the blog index. That is the exact problem
+rotation existed to solve, and a naive topical sort trades one property for the
+other. A second pass gives every orphan a host, preferring a host that shares a
+tag and only ever displacing a link whose target has another inbound link.
+
+Caught by `scripts/related-check.mjs`, added here and wired to
+`npm run related-check`. It asserts both properties: no orphans, and no
+off-topic link where an on-topic one was available.
+
+```
+All 52 articles linked. Inbound related links: min 1, max 6.
+43 articles had a same-tag pool and all three links stayed on topic (0 off-topic).
+```
+
+The map is computed once for the whole collection rather than per call, because
+"is anything left unlinked" is a question about the set, not about one post.
+
+Verified in the built output at 1440px and 390px: no horizontal overflow, the
+two CTA buttons sit side by side on desktop and stack on phone.
+
+Checks after: 83/83 h1, 83/83 schema, 45/45 search, disciplines OK, 52/52
+related.

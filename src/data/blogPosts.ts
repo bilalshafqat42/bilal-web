@@ -115,9 +115,99 @@ export const metaTitleOf = (p: BlogPost) => p.metaTitle ?? p.title;
  *  together in June and July, the design listicles in January and February. So
  *  an even spread and a relevant one turn out to be the same thing here, with
  *  no tag matching needed. */
-export function relatedPosts(slug: string, count = 3): BlogPost[] {
-  const i = blogPosts.findIndex((p) => p.slug === slug);
-  if (i < 0) return blogPosts.slice(0, count);
+/**
+ * The three articles to offer at the foot of an article.
+ *
+ * Related by shared tags, with index rotation as the tiebreak, then a repair
+ * pass so nothing is left unlinked.
+ *
+ * Rotation on its own — which is all this did until 2026-10-01 — picked the
+ * next three posts in file order, so a React hooks article offered whatever
+ * happened to sit beside it in the JSON. It guaranteed every post an inbound
+ * link, which was the bug it was written to fix (roadmap 280), but it spent
+ * that link on an unrelated subject.
+ *
+ * Shared tags matter beyond the reader's experience. Twenty-two of the 52
+ * articles are React and twelve are design; linking within those groups is
+ * what tells a search engine the site covers a subject in depth rather than
+ * holding 52 unrelated pages. Internal links are the only part of that signal
+ * we control without waiting on anyone else to link to us.
+ *
+ * The repair pass is not optional. Scoring purely on shared tags orphaned two
+ * articles outright — `react-usestate-hook-explained-with-examples` and
+ * `master-infinite-scroll-in-javascript` — because in a 22-article React
+ * cluster the same few posts win every comparison and the rest are never
+ * offered by anyone. An orphan's only inbound link is the blog index, which is
+ * the exact problem rotation existed to solve, so the fix had to keep both
+ * properties rather than trade one for the other.
+ *
+ * `scripts/related-check.mjs` asserts both: no orphans, and no off-topic link
+ * where an on-topic one was available.
+ */
+type Related = Record<string, BlogPost[]>;
+
+/** Computed once for the whole collection rather than per call, because "is
+ *  anything left unlinked" is a question about the set, not about one post. */
+const RELATED: Related = (() => {
   const n = blogPosts.length;
-  return Array.from({ length: Math.min(count, n - 1) }, (_, k) => blogPosts[(i + 1 + k) % n]);
+  const index = new Map(blogPosts.map((p, i) => [p.slug, i]));
+
+  // Pass one: the three best matches for each post. Ties on shared-tag count
+  // fall through to rotation distance, which is unique per post, so the result
+  // never depends on sort stability.
+  const picks = new Map<string, BlogPost[]>();
+  for (let i = 0; i < n; i++) {
+    const self = blogPosts[i];
+    const tags = new Set(self.tags);
+    const scored = blogPosts
+      .map((p, j) => ({
+        post: p,
+        shared: p.tags.filter((t) => tags.has(t)).length,
+        distance: (j - i + n) % n,
+      }))
+      .filter((c) => c.distance !== 0)
+      .sort((a, b) => b.shared - a.shared || a.distance - b.distance);
+    picks.set(self.slug, scored.slice(0, Math.min(3, n - 1)).map((c) => c.post));
+  }
+
+  const inbound = new Map(blogPosts.map((p) => [p.slug, 0]));
+  for (const list of picks.values()) {
+    for (const p of list) inbound.set(p.slug, (inbound.get(p.slug) ?? 0) + 1);
+  }
+
+  // Pass two: give every orphan a home. Orphans are visited in file order and
+  // hosts are chosen by rotation distance, so the outcome is the same on every
+  // build rather than depending on Map iteration order.
+  for (const orphan of blogPosts) {
+    if ((inbound.get(orphan.slug) ?? 0) > 0) continue;
+    const oi = index.get(orphan.slug)!;
+
+    // Prefer a host that shares a tag, so the repaired link is still on topic;
+    // failing that, any post at all, taken in rotation order from the orphan.
+    const hosts = blogPosts
+      .map((p, j) => ({ post: p, j, shared: p.tags.filter((t) => orphan.tags.includes(t)).length }))
+      .filter((h) => h.post.slug !== orphan.slug)
+      .sort((a, b) => b.shared - a.shared || ((a.j - oi + n) % n) - ((b.j - oi + n) % n));
+
+    for (const host of hosts) {
+      const list = picks.get(host.post.slug)!;
+      if (list.some((p) => p.slug === orphan.slug)) break;
+      // Only displace a link whose target has another inbound link, or the
+      // repair would simply move the orphan problem to a different article.
+      const victim = list[list.length - 1];
+      if ((inbound.get(victim.slug) ?? 0) <= 1) continue;
+      list[list.length - 1] = orphan;
+      inbound.set(victim.slug, (inbound.get(victim.slug) ?? 0) - 1);
+      inbound.set(orphan.slug, 1);
+      break;
+    }
+  }
+
+  return Object.fromEntries(picks) as Related;
+})();
+
+export function relatedPosts(slug: string, count = 3): BlogPost[] {
+  const list = RELATED[slug];
+  if (!list) return blogPosts.filter((p) => p.slug !== slug).slice(0, count);
+  return list.slice(0, count);
 }
