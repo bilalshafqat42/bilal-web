@@ -121,7 +121,14 @@ export type Client = {
   slug: string;
   name: string;
   industry: Industry;
-  logo: string;
+  /** The brand mark, when we have the file.
+   *
+   *  Optional since 2026-10-01. Several case studies exist as screenshots with
+   *  no logo asset, and the page renders `ClientWordmark` instead: the name set
+   *  as type at the same optical height, so adding a real logo later does not
+   *  move anything on the page. Holding a case study back over a missing vector
+   *  file would keep real work off the site for a decorative reason. */
+  logo?: string;
   ogImage: string;
   title: string;
   description: string;

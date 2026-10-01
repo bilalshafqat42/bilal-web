@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import Image from "next/image";
+import ClientWordmark from "@/components/ClientWordmark";
 import { notFound } from "next/navigation";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import TrackView from "@/components/TrackView";
@@ -100,7 +101,11 @@ export default async function ClientCaseStudy({ params }: Props) {
 
             <Reveal>
               <div className="mt-8 max-w-3xl">
-                <Image src={c.logo} alt={c.name} width={2000} height={551} priority className="h-10 w-auto" />
+                {c.logo ? (
+                  <Image src={c.logo} alt={c.name} width={2000} height={551} priority className="h-10 w-auto" />
+                ) : (
+                  <ClientWordmark name={c.name} />
+                )}
                 <h1 className="t-h1 mt-7 text-ink">
                   {c.headline}
                 </h1>

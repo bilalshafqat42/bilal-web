@@ -7039,3 +7039,34 @@ what he did, and his role at the time.
 `Client.logo` will need to become optional, with a text wordmark fallback, so
 a company can go up before its logo file exists. Not built yet, because there
 is no content to put behind it.
+
+### 301. DONE (2026-10-01) — Case studies no longer wait on a logo file
+
+Bilal has screenshots of the work for PSI, Texdale and PetsMarket and no logo
+assets, and no live URLs either. The structure already handled the missing URL,
+since `Client.website` is optional. The logo was the blocker: `Client.logo` was
+a required string, so a case study could not go up without one.
+
+`logo` is now optional, and `ClientWordmark` renders the name set in the site's
+display face when it is absent.
+
+Deliberately **not** a grey box with the name in it. A placeholder that looks
+like a placeholder tells a visitor the page is unfinished, and these pages will
+not be unfinished: the work is real and the writing is real, only the vector
+file is missing. The wordmark is set at `h-10`, matching the rendered height of
+the `<Image>` it stands in for, so adding a real logo later does not move
+anything else on the page.
+
+Nothing published yet. This is the capability, not the content.
+
+Still needed from Bilal per company: the screenshots, two lines on what he did,
+and his role at the time. No live URL required.
+
+One consequence of there being no URL worth writing down: a screenshot is not
+self-verifying the way a live link is. The rule from item 300 therefore carries
+more weight, not less — only work that was public at the time goes up. A
+screenshot of a live website, a published campaign or a store listing is fine.
+A screenshot of an internal dashboard, a CRM, an unpublished design or anything
+containing customer data is not, and `Capture` images must be checked for
+visible personal data before they are committed. UAE PDPL applies to a
+screenshot exactly as it applies to a spreadsheet.
