@@ -7197,3 +7197,37 @@ blog has: tutorials for developers build an audience that will not hire a Dubai
 marketer. The version that serves both is AI and automation **for marketers**,
 which is the one subject where his channel, his services and his commercial
 goal point the same way.
+
+### 306. IN PROGRESS (2026-10-01) — YouTube rename not yet propagated; Facebook fixed
+
+**Facebook: done.** The page now reads "Bilal Shafqat | Dubai". It read "Bilal
+Shaqat", missing the f, which is a brand-search problem on a profile the site
+links from every page.
+
+**YouTube: not yet.** Bilal's Studio screen shows name "Bilal Shafqat" and
+handle `@bilalshafqat42` with a green validation tick. Checked live on
+2026-10-01, immediately after:
+
+| URL | Result |
+| --- | --- |
+| `@bilalshafqat42` | **404** |
+| `@bilal-4d` | 200, still titled "Bilal-4D \| by Bilal Shafqat" |
+| `@bilalshafqat` | 200, the separate 5-video channel |
+| `/channel/UCqvEvXi8KbZ4OLp-osVtOMw` | 200, still the old name |
+
+The channel ID returning the old title is the telling one: nothing has
+propagated. A green tick in the handle field means the handle is *available*,
+not that it has been taken. The Studio form has a **Publish** button, visible in
+the earlier screenshot, and the change does not exist until it is pressed.
+
+**So the site's links are unchanged and stay on `@bilal-4d`.** Switching to a
+handle that currently 404s would recreate roadmap 289 exactly, three days after
+fixing it, and this time knowingly.
+
+Item 303 is why this costs nothing: `sameAs` already carries
+`/channel/UCqvEvXi8KbZ4OLp-osVtOMw`, which survives any rename. The handle line
+is the only one that needs changing, and only once `@bilalshafqat42` resolves.
+
+Worth flagging to Bilal: YouTube allows two handle changes per 14 days and
+holds the previous handle for 14 days. If `@bilalshafqat42` is taken and then
+reverted, that budget is spent.
