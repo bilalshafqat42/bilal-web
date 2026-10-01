@@ -9,7 +9,7 @@ import type { Block } from "@/data/blogPosts";
  * WordPress markup, and piping that through `dangerouslySetInnerHTML` would
  * carry the old theme's classes, inline styles and tracking attributes onto
  * this site — and hand an injection surface to whatever the scrape happened to
- * pick up. A closed set of five block types cannot express anything but the
+ * pick up. A closed set of six block types cannot express anything but the
  * text, and every one of them is rendered as an element this file chose.
  *
  * Headings carry slug `id`s so a section can be linked to directly. They are
@@ -96,6 +96,45 @@ export default function ArticleBody({ blocks }: { blocks: Block[] }) {
                 </li>
               ))}
             </Tag>
+          );
+        }
+
+        if (b.t === "table") {
+          return (
+            // `overflow-x-auto` on the wrapper, same reasoning as the `pre`
+            // below: a wide comparison must scroll inside its own box rather
+            // than drag the article sideways at phone width. `w-full` with
+            // `min-w-[34rem]` on the table keeps it full-bleed on desktop and
+            // scrollable rather than crushed on a phone.
+            <div key={i} className="mt-6 overflow-x-auto rounded-xl border border-border">
+              <table className="w-full min-w-[34rem] border-collapse text-left text-base text-muted sm:text-lg">
+                <thead>
+                  <tr className="border-b border-border bg-bg-soft">
+                    {b.head.map((h, j) => (
+                      <th key={j} scope="col" className="px-5 py-3.5 font-semibold text-ink">
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {b.rows.map((row, r) => (
+                    <tr key={r} className="border-b border-border/60 last:border-0">
+                      {row.map((cell, j) => (
+                        // First column is the row's label, so it reads as a
+                        // heading for the row rather than as another value.
+                        <td
+                          key={j}
+                          className={`px-5 py-3.5 align-top leading-relaxed ${j === 0 ? "font-medium text-ink" : ""}`}
+                        >
+                          {cell}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           );
         }
 

@@ -1,5 +1,435 @@
 [
   {
+    "slug": "wordpress-or-nextjs-for-your-business-website",
+    "title": "WordPress or Next.js: Which Should Your Business Website Use?",
+    "metaTitle": "WordPress or Next.js for a Business Website",
+    "description": "An honest comparison from someone who builds both, including the cases where WordPress is clearly the right answer and Next.js would be a mistake.",
+    "published": "2026-10-02",
+    "tags": [
+      "Dubai",
+      "Web Development",
+      "Pricing"
+    ],
+    "blocks": [
+      {
+        "t": "p",
+        "v": "I build in both, which is the only reason this comparison is worth reading. Most articles on this question are written by agencies who only sell one of them."
+      },
+      {
+        "t": "p",
+        "v": "The short answer: if your team needs to change the site themselves every week without calling anyone, WordPress. If the site is a product rather than a brochure, or performance is a business requirement rather than a preference, Next.js. Most Dubai businesses asking me this question should use WordPress, and I say that as someone whose own site is built in Next.js."
+      },
+      {
+        "t": "h2",
+        "v": "The comparison"
+      },
+      {
+        "t": "table",
+        "head": [
+          "",
+          "WordPress",
+          "Next.js"
+        ],
+        "rows": [
+          [
+            "Who can edit content",
+            "Anyone, through an admin panel",
+            "A developer, unless you add a CMS"
+          ],
+          [
+            "Time to launch",
+            "Fast, especially with a theme",
+            "Slower, everything is built"
+          ],
+          [
+            "Performance out of the box",
+            "Depends entirely on hosting and plugins",
+            "Very fast by default"
+          ],
+          [
+            "Plugins for common needs",
+            "Enormous ecosystem",
+            "You build it or integrate it"
+          ],
+          [
+            "Security maintenance",
+            "Ongoing, plugins are the usual way in",
+            "Much smaller surface"
+          ],
+          [
+            "Running cost",
+            "Hosting plus plugin licences",
+            "Hosting, often less"
+          ],
+          [
+            "Finding someone else to maintain it",
+            "Easy anywhere",
+            "Harder, more expensive"
+          ],
+          [
+            "Right for",
+            "Brochure sites, blogs, most SMEs",
+            "Products, apps, high-traffic or custom builds"
+          ]
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "The case for WordPress"
+      },
+      {
+        "t": "p",
+        "v": "It runs a very large share of the web for a reason, and dismissing it is a developer habit rather than a business judgement."
+      },
+      {
+        "t": "p",
+        "v": "The decisive advantage is independence. Your marketing person can add a page, change a price, publish a post and swap a photograph without a developer, a deployment or a wait. For most businesses that is worth more than any performance benchmark, because the alternative is that the site slowly goes out of date while everyone waits for someone technical to have time."
+      },
+      {
+        "t": "p",
+        "v": "The second advantage is the ecosystem. Bookings, multilingual, e-commerce, forms, memberships: all of it exists, most of it is cheap, and none of it has to be built. If your requirement is a solved problem, paying to solve it again is hard to justify."
+      },
+      {
+        "t": "p",
+        "v": "The third is replaceability. If you and I stop working together, you can find someone to maintain a WordPress site in an afternoon, in Dubai or anywhere else. That is a genuine risk reduction and it should be part of the decision."
+      },
+      {
+        "t": "h2",
+        "v": "The case for Next.js"
+      },
+      {
+        "t": "p",
+        "v": "Next.js wins when the site has to do something rather than say something."
+      },
+      {
+        "t": "list",
+        "v": [
+          "Performance is a requirement, not an aspiration. A fast site by default rather than a slow one you optimise.",
+          "The interface is custom. Calculators, configurators, dashboards, filtered search over real data.",
+          "It shares code with an app. One language across web, mobile and backend is a real saving.",
+          "Traffic is large enough that hosting efficiency matters financially.",
+          "Security posture is a concern. There is no plugin layer, which is how most WordPress sites are actually compromised."
+        ]
+      },
+      {
+        "t": "p",
+        "v": "On that last point, to be fair to WordPress: the software itself is not the usual problem. Abandoned plugins and skipped updates are. A maintained WordPress site is not insecure. An unmaintained one is, and most are unmaintained."
+      },
+      {
+        "t": "h2",
+        "v": "The honest middle: Next.js with a CMS"
+      },
+      {
+        "t": "p",
+        "v": "The objection to Next.js is almost always editing, and it is solvable. Pair it with a headless CMS and your team gets an admin panel while the site keeps the performance."
+      },
+      {
+        "t": "p",
+        "v": "What this costs you is not the licence fee. It is a second system to configure, a second thing to keep current, and a setup where changing the shape of a page still needs a developer even though changing its words does not. That is a reasonable trade for a content-heavy site that must also be fast. It is over-engineering for a nine-page brochure site."
+      },
+      {
+        "t": "h2",
+        "v": "How to choose, in four questions"
+      },
+      {
+        "t": "list",
+        "ordered": true,
+        "v": [
+          "Will someone non-technical need to change content weekly? If yes, WordPress, or Next.js with a CMS.",
+          "Is the site mostly pages, or mostly features? Pages means WordPress. Features means Next.js.",
+          "Would a one-second improvement in load time change your revenue? If you can answer yes with a number, Next.js earns its cost.",
+          "What happens if your developer disappears? If that worries you, WordPress is the safer answer and that is a legitimate reason to pick it."
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "What this does not depend on"
+      },
+      {
+        "t": "p",
+        "v": "Two things people expect to matter here and which mostly do not."
+      },
+      {
+        "t": "p",
+        "v": "SEO is not a reason to pick either. Both can rank extremely well and both can rank badly. Google reads the rendered page, and a well-built WordPress site beats a badly built Next.js one every time. Anyone telling you a framework will fix your rankings is selling a rebuild."
+      },
+      {
+        "t": "p",
+        "v": "Cost is closer than it is usually presented. WordPress is cheaper to start and carries ongoing plugin licences and maintenance. Next.js costs more upfront and often less to run. Over three years the gap is smaller than the first invoice suggests, in both directions."
+      },
+      {
+        "t": "h2",
+        "v": "Frequently asked questions"
+      },
+      {
+        "t": "h3",
+        "v": "Is WordPress slow?"
+      },
+      {
+        "t": "p",
+        "v": "It can be very fast. Most slow WordPress sites are slow because of a heavy theme, a dozen plugins and cheap shared hosting, not because of WordPress. Fix those three and the difference from a custom build narrows a long way."
+      },
+      {
+        "t": "h3",
+        "v": "Can I move from WordPress to Next.js later?"
+      },
+      {
+        "t": "p",
+        "v": "Yes, and it is a rebuild, not a migration. Content transfers; design, functionality and integrations get rebuilt. The important part is keeping your URLs, because that is what carries your search rankings. A move that changes every URL without redirects will cost you traffic, which is the mistake this site itself made and had to repair."
+      },
+      {
+        "t": "h3",
+        "v": "What about Wix or Squarespace?"
+      },
+      {
+        "t": "p",
+        "v": "Genuinely fine for a small brochure site, and better than a bad custom build. The limits arrive when you need something the platform does not offer, and you cannot extend your way past them. You are also renting rather than owning, which matters more to some businesses than others."
+      },
+      {
+        "t": "h3",
+        "v": "Which is better for an e-commerce site in the UAE?"
+      },
+      {
+        "t": "p",
+        "v": "If it is a straightforward catalogue, a hosted platform or WooCommerce will get you selling faster and cheaper. Custom builds earn their cost when the buying experience is itself unusual. Either way the real work is payment gateways, delivery and VAT handling, none of which is a framework decision."
+      },
+      {
+        "t": "h3",
+        "v": "What do you build in?"
+      },
+      {
+        "t": "p",
+        "v": "Both, and I will tell you which one your project needs rather than which one I would prefer to build. This site is Next.js. Several client sites are WordPress, deliberately, because the client needed to run them without me."
+      },
+      {
+        "t": "p",
+        "v": "Last updated 2 October 2026."
+      }
+    ],
+    "words": 906
+  },
+  {
+    "slug": "google-ads-or-seo-which-first-dubai",
+    "title": "Google Ads or SEO: Which Should a Dubai Business Start With?",
+    "metaTitle": "Google Ads or SEO: Which to Start With in Dubai",
+    "description": "Which to fund first when you cannot fund both, what each one actually costs in Dubai, and the honest case for doing them in the other order.",
+    "published": "2026-10-02",
+    "tags": [
+      "Dubai",
+      "Paid Ads",
+      "Digital Marketing"
+    ],
+    "blocks": [
+      {
+        "t": "p",
+        "v": "If you can only fund one, start with Google Ads. Not because it is better, but because it answers a question SEO cannot answer for six months: do people searching for what you sell actually convert on your website?"
+      },
+      {
+        "t": "p",
+        "v": "That is the whole argument in one sentence. The rest of this explains when it is wrong."
+      },
+      {
+        "t": "h2",
+        "v": "They are not alternatives"
+      },
+      {
+        "t": "p",
+        "v": "The comparison is usually framed as a choice between two ways of getting the same traffic. It is not. One is a media buy and one is an asset you build."
+      },
+      {
+        "t": "table",
+        "head": [
+          "",
+          "Google Ads",
+          "SEO"
+        ],
+        "rows": [
+          [
+            "Time to first result",
+            "Hours",
+            "Three to six months, often longer"
+          ],
+          [
+            "What stops when you stop paying",
+            "Everything, immediately",
+            "Nothing, for a while"
+          ],
+          [
+            "Cost shape",
+            "Ongoing, per click",
+            "Upfront effort, then maintenance"
+          ],
+          [
+            "Control over which query you appear for",
+            "Precise",
+            "Indirect"
+          ],
+          [
+            "Competition in Dubai",
+            "You outbid",
+            "You outlast"
+          ],
+          [
+            "What it proves",
+            "Whether your offer converts",
+            "Whether your content deserves to rank"
+          ]
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "Why Google Ads first, in most cases"
+      },
+      {
+        "t": "p",
+        "v": "SEO is a bet that takes months to settle. If the bet is wrong, you find out in month six, having spent the whole time writing content for queries that do not convert."
+      },
+      {
+        "t": "p",
+        "v": "Google Ads settles the same bet in two weeks. You learn which exact phrases produce enquiries, what a lead costs, and whether your landing page can close anyone at all. That is research you would otherwise be guessing at, and it makes the SEO work that follows far better aimed."
+      },
+      {
+        "t": "p",
+        "v": "There is a second, less obvious benefit. Running ads forces you to fix your tracking, your landing pages and your follow-up, because the cost of not fixing them is visible every day. SEO lets all three stay broken for months without complaint."
+      },
+      {
+        "t": "h2",
+        "v": "When SEO first is the right call"
+      },
+      {
+        "t": "p",
+        "v": "I would reverse the advice in these situations, and they are not rare."
+      },
+      {
+        "t": "list",
+        "v": [
+          "Your margins will not survive Dubai click prices. Some sectors, property and legal services among the worst, have cost per click high enough that a small business cannot make the arithmetic work at any volume.",
+          "You already know what converts. If you have years of enquiry data, you do not need ads to tell you which queries matter.",
+          "Your buyers research for months. A long consideration cycle rewards content that is there the whole time over an ad that is there when the budget is.",
+          "You are building to sell. Organic traffic is an asset on a balance sheet. Ad performance is not."
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "What each actually costs in Dubai"
+      },
+      {
+        "t": "p",
+        "v": "I am not going to quote a market cost per click, because it varies by sector by a factor of twenty and any single figure would be fiction. What I can tell you is the shape of the spend."
+      },
+      {
+        "t": "p",
+        "v": "With Google Ads you need enough budget for the data to mean something. A campaign running on a token amount produces numbers too small to draw conclusions from, which is the worst outcome: you pay and you learn nothing. Decide what you can spend for three months before you start, not after."
+      },
+      {
+        "t": "p",
+        "v": "With SEO the cost is mostly time, yours or someone else's, and it is front-loaded. The maintenance after is real but much smaller. The trap is treating it as a monthly fee for an indefinite period with no defined outcome, which is how a lot of Dubai SEO retainers are sold."
+      },
+      {
+        "t": "p",
+        "v": "For reference, my own rates are published: projects from AED 31,500, retainers from AED 16,000 a month, a four-hour review session at AED 3,500. Those exclude ad spend, which is paid to Google rather than to me and is never part of a quote."
+      },
+      {
+        "t": "h2",
+        "v": "The thing that decides this more than the choice does"
+      },
+      {
+        "t": "p",
+        "v": "Neither works if you cannot measure a lead through to a sale."
+      },
+      {
+        "t": "p",
+        "v": "The most common failure I see in Dubai is not picking the wrong channel. It is running one for a year with no way to tell which enquiries came from where, then judging the whole thing on a feeling. Before you spend on either:"
+      },
+      {
+        "t": "list",
+        "ordered": true,
+        "v": [
+          "Conversion tracking that fires on a real enquiry, not on a page view",
+          "Leads landing in a CRM with their source attached automatically",
+          "A qualification status your sales side actually updates",
+          "A review date set in advance, so the decision is not made on a bad week"
+        ]
+      },
+      {
+        "t": "p",
+        "v": "That is a week of work and it changes which answer you get to every other question on this page."
+      },
+      {
+        "t": "h2",
+        "v": "A sensible sequence"
+      },
+      {
+        "t": "p",
+        "v": "For a business with a modest budget and no existing data, in order:"
+      },
+      {
+        "t": "list",
+        "ordered": true,
+        "v": [
+          "Fix tracking. One week.",
+          "Run Google Ads on a tight set of high-intent searches for three months. Learn what converts.",
+          "Write the SEO content aimed at the phrases the ads proved out.",
+          "Keep a reduced ad budget on the terms that work while the organic rankings build.",
+          "Shift the balance towards organic as it starts producing, and keep ads for the terms where you will never outrank the portals."
+        ]
+      },
+      {
+        "t": "p",
+        "v": "That last point matters in Dubai specifically. For property, recruitment and several other sectors, the first page belongs to large portals and no amount of content will displace them. Paid is the only way onto that page, and it is worth knowing that before you fund a year of content trying."
+      },
+      {
+        "t": "h2",
+        "v": "Frequently asked questions"
+      },
+      {
+        "t": "h3",
+        "v": "How long until SEO works in Dubai?"
+      },
+      {
+        "t": "p",
+        "v": "For a new site on a competitive commercial term, plan on six to twelve months and be pleased if it is faster. For long, specific, lower-competition phrases, sometimes weeks. Anyone promising page one in thirty days is describing a term nobody searches."
+      },
+      {
+        "t": "h3",
+        "v": "Can I do both on a small budget?"
+      },
+      {
+        "t": "p",
+        "v": "Yes, and it is usually better than splitting evenly. Run ads narrowly, on a handful of your highest-intent searches only, rather than broadly on a thin budget. Spend the rest of your effort on content. The mistake is a wide ad campaign funded too lightly to ever gather enough data."
+      },
+      {
+        "t": "h3",
+        "v": "Does running Google Ads help my organic rankings?"
+      },
+      {
+        "t": "p",
+        "v": "Not directly. Google has said repeatedly that ad spend is not a ranking factor and there is no evidence otherwise. It helps indirectly, by showing you which queries convert, which makes your content choices better."
+      },
+      {
+        "t": "h3",
+        "v": "What about SEO for Arabic searches?"
+      },
+      {
+        "t": "p",
+        "v": "Worth considering and routinely skipped, which is exactly why it can be cheaper to win. It is a real content project rather than a translation, and it only makes sense if you can serve and sell to those customers properly when they arrive."
+      },
+      {
+        "t": "h3",
+        "v": "Should I use a freelancer or an agency for this?"
+      },
+      {
+        "t": "p",
+        "v": "Covered properly in a separate article on this site. The short version: if your constraint is expertise on a focused problem, a freelancer. If it is volume across several channels every week, an agency."
+      },
+      {
+        "t": "p",
+        "v": "Last updated 2 October 2026. AED figures are my own published rates, not a market survey."
+      }
+    ],
+    "words": 990
+  },
+  {
     "slug": "freelance-digital-marketer-vs-agency-dubai",
     "title": "Freelance Digital Marketer vs Agency in Dubai: What It Really Costs",
     "metaTitle": "Freelance Digital Marketer vs Agency in Dubai",
@@ -686,7 +1116,7 @@
       "React Hooks",
       "React Js"
     ],
-    "words": 473,
+    "words": 525,
     "blocks": [
       {
         "t": "h2",
@@ -820,6 +1250,35 @@
         "v": "Comparison with Other Hooks"
       },
       {
+        "t": "table",
+        "head": [
+          "Hook",
+          "What it gives you",
+          "Who reads it"
+        ],
+        "rows": [
+          [
+            "useRef",
+            "A mutable box that survives re-renders",
+            "The component that owns it"
+          ],
+          [
+            "forwardRef",
+            "Passes a ref through to a child's DOM node",
+            "The parent, directly"
+          ],
+          [
+            "useImperativeHandle",
+            "Replaces what the parent sees on that ref with an API you choose",
+            "The parent, through your methods"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "v": "useImperativeHandle is the rarest of the three and should stay that way. It exists so a child can expose focus() or reset() without handing the parent its whole DOM node. If you find yourself reaching for it to share data rather than to trigger an action, the answer is props or state."
+      },
+      {
         "t": "h2",
         "v": "Advanced Example: Resetting a Form"
       },
@@ -932,7 +1391,7 @@
       "React Hooks",
       "React Js"
     ],
-    "words": 363,
+    "words": 398,
     "blocks": [
       {
         "t": "h2",
@@ -1021,6 +1480,45 @@
       {
         "t": "h2",
         "v": "useReducer vs useState"
+      },
+      {
+        "t": "table",
+        "head": [
+          "",
+          "useState",
+          "useReducer"
+        ],
+        "rows": [
+          [
+            "Best for",
+            "One or two independent values",
+            "Several values that change together"
+          ],
+          [
+            "Update logic",
+            "Lives in the component",
+            "Lives in one reducer function"
+          ],
+          [
+            "Next state depends on previous",
+            "Awkward, needs the callback form",
+            "Natural, the reducer receives it"
+          ],
+          [
+            "Testing",
+            "Needs the component",
+            "Reducer is a pure function, testable alone"
+          ],
+          [
+            "Boilerplate",
+            "Almost none",
+            "A reducer and action types"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "v": "The honest rule: reach for useReducer when you notice two or three useState calls that always change in the same event handler. Until then useState is not the wrong choice, it is the smaller one."
       },
       {
         "t": "h2",
@@ -1629,7 +2127,7 @@
       "React Js",
       "React Hooks"
     ],
-    "words": 478,
+    "words": 513,
     "blocks": [
       {
         "t": "p",
@@ -1759,6 +2257,40 @@
       {
         "t": "h2",
         "v": "useRef vs useState: What's the Difference?"
+      },
+      {
+        "t": "table",
+        "head": [
+          "",
+          "useState",
+          "useRef"
+        ],
+        "rows": [
+          [
+            "Triggers a re-render",
+            "Yes",
+            "No"
+          ],
+          [
+            "Value survives re-renders",
+            "Yes",
+            "Yes"
+          ],
+          [
+            "Read the latest value synchronously",
+            "No, it is captured per render",
+            "Yes, through .current"
+          ],
+          [
+            "Typical use",
+            "Anything the user sees",
+            "DOM nodes, timers, previous values, mutable flags"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "v": "The distinction that matters: changing a ref does not tell React anything happened. If the screen needs to change, it is state. If you only need to remember something between renders, it is a ref."
       },
       {
         "t": "h2",
@@ -1922,7 +2454,7 @@
       "React Hooks",
       "React Js"
     ],
-    "words": 467,
+    "words": 510,
     "blocks": [
       {
         "t": "h2",
@@ -2116,6 +2648,35 @@
         "v": "When to Use Built-in vs Additional Hooks"
       },
       {
+        "t": "table",
+        "head": [
+          "",
+          "Built-in hooks",
+          "Additional hooks"
+        ],
+        "rows": [
+          [
+            "Examples",
+            "useState, useEffect, useContext",
+            "useMemo, useCallback, useRef, useReducer, useImperativeHandle"
+          ],
+          [
+            "How often you need them",
+            "Nearly every component",
+            "When a specific problem appears"
+          ],
+          [
+            "Reach for them",
+            "By default",
+            "After you have measured, or when the pattern genuinely fits"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "v": "The common mistake is treating the second column as a sign of seniority and wrapping everything in useMemo and useCallback. Both have a cost of their own, and applied everywhere they usually make a component slower and always make it harder to read."
+      },
+      {
         "t": "h2",
         "v": "Common Mistakes to Avoid"
       },
@@ -2208,7 +2769,7 @@
       "React Hooks",
       "React Js"
     ],
-    "words": 382,
+    "words": 432,
     "blocks": [
       {
         "t": "h2",
@@ -2346,6 +2907,40 @@
       {
         "t": "h2",
         "v": "useContext() vs Prop Drilling"
+      },
+      {
+        "t": "table",
+        "head": [
+          "",
+          "Prop drilling",
+          "useContext"
+        ],
+        "rows": [
+          [
+            "Where the value lives",
+            "Passed down through every level",
+            "Read directly by whoever needs it"
+          ],
+          [
+            "Components in between",
+            "Must accept and forward props they never use",
+            "Untouched"
+          ],
+          [
+            "Re-renders",
+            "Only the components on the path",
+            "Every consumer when the value changes"
+          ],
+          [
+            "Best for",
+            "Two or three levels",
+            "Theme, auth, locale, anything genuinely global"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "v": "Context is not a performance optimisation and it is not a state manager. It solves one problem, which is getting a value to a distant component without threading it through everything in between. Used for data that changes often, it re-renders every consumer and costs more than the drilling did."
       },
       {
         "t": "h2",
@@ -3028,7 +3623,7 @@
       "Javascript",
       "Es6"
     ],
-    "words": 507,
+    "words": 542,
     "blocks": [
       {
         "t": "h2",
@@ -3316,6 +3911,55 @@
         "v": "Real-World Use Cases"
       },
       {
+        "t": "table",
+        "head": [
+          "Method",
+          "Reach for it when"
+        ],
+        "rows": [
+          [
+            "map()",
+            "Turning API results into view models"
+          ],
+          [
+            "filter()",
+            "Showing only the rows that match a search or a status"
+          ],
+          [
+            "reduce()",
+            "Totals, grouping, turning an array into an object"
+          ],
+          [
+            "find()",
+            "Looking up one record by id"
+          ],
+          [
+            "some() / every()",
+            "Form validation, permission checks"
+          ],
+          [
+            "includes()",
+            "Checking membership without an index comparison"
+          ],
+          [
+            "sort()",
+            "Ordering a table, remembering it mutates in place"
+          ],
+          [
+            "slice()",
+            "Pagination, or copying before a mutating method"
+          ],
+          [
+            "flat() / flatMap()",
+            "Flattening nested results from several requests"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "v": "One trap worth naming: sort() and reverse() change the original array rather than returning a new one. In React that means mutating state directly, which will not re-render. Copy first with slice() or a spread."
+      },
+      {
         "t": "h2",
         "v": "Summary: Master the Array, Master JavaScript"
       },
@@ -3355,7 +3999,7 @@
       "React Js",
       "Redux"
     ],
-    "words": 529,
+    "words": 583,
     "blocks": [
       {
         "t": "h2",
@@ -3532,6 +4176,51 @@
         "v": "Side-by-Side Comparison"
       },
       {
+        "t": "table",
+        "head": [
+          "",
+          "useState",
+          "Context API",
+          "Redux Toolkit"
+        ],
+        "rows": [
+          [
+            "Scope",
+            "One component",
+            "A subtree",
+            "The whole app"
+          ],
+          [
+            "Setup cost",
+            "None",
+            "Small",
+            "A store, slices, a provider"
+          ],
+          [
+            "Devtools",
+            "React Devtools",
+            "React Devtools",
+            "Time-travel debugging"
+          ],
+          [
+            "Best for",
+            "Local UI state",
+            "Theme, auth, locale",
+            "Shared server data and complex flows"
+          ],
+          [
+            "Re-render behaviour",
+            "The component",
+            "Every consumer",
+            "Only subscribed selectors"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "v": "Most applications need all three, used for different things, rather than one of them used for everything. The order to adopt them in is the order of the columns: start local, lift to context when a value is genuinely shared, and reach for Redux when you can name the problem it solves for you."
+      },
+      {
         "t": "h2",
         "v": "How to Choose: Decision Guide"
       },
@@ -3605,12 +4294,12 @@
   {
     "slug": "react-native-flatlist-vs-scrollview",
     "title": "React Native FlatList vs ScrollView: What to Use and When",
-    "description": "Confused between FlatList and ScrollView in React Native? This in-depth guide explains when to use each, how they differ, and which one is better for",
+    "description": "When to use FlatList and when ScrollView in React Native, the props that fix a slow list, and why nesting them is usually the wrong question.",
     "published": "2025-06-13",
     "tags": [
       "React Js"
     ],
-    "words": 523,
+    "words": 1082,
     "blocks": [
       {
         "t": "h2",
@@ -3669,6 +4358,51 @@
       {
         "t": "h2",
         "v": "Key Differences Between FlatList and ScrollView"
+      },
+      {
+        "t": "table",
+        "head": [
+          "",
+          "ScrollView",
+          "FlatList"
+        ],
+        "rows": [
+          [
+            "Rendering",
+            "All children, immediately",
+            "Only what is on screen, plus a buffer"
+          ],
+          [
+            "Memory with 1,000 items",
+            "All 1,000 mounted",
+            "Roughly 10 to 12 mounted"
+          ],
+          [
+            "Mount time",
+            "Grows with the list",
+            "Roughly constant"
+          ],
+          [
+            "Built-in pull to refresh",
+            "No",
+            "Yes, via refreshing and onRefresh"
+          ],
+          [
+            "Built-in pagination",
+            "No",
+            "Yes, via onEndReached"
+          ],
+          [
+            "Separators, headers, footers",
+            "Hand-rolled",
+            "Built in"
+          ],
+          [
+            "Right for",
+            "Short, fixed content",
+            "Any list driven by data"
+          ]
+        ]
       },
       {
         "t": "h2",
@@ -3812,6 +4546,186 @@
       {
         "t": "h2",
         "v": "Summary: When to Use Which?"
+      },
+      {
+        "t": "table",
+        "head": [
+          "Your situation",
+          "Use"
+        ],
+        "rows": [
+          [
+            "A settings screen with a dozen rows",
+            "ScrollView"
+          ],
+          [
+            "A form that scrolls",
+            "ScrollView"
+          ],
+          [
+            "A feed, a chat, a product list",
+            "FlatList"
+          ],
+          [
+            "Anything paginated from an API",
+            "FlatList"
+          ],
+          [
+            "Grouped sections with headers",
+            "SectionList"
+          ],
+          [
+            "Thousands of rows, still janky on FlatList",
+            "Consider FlashList"
+          ]
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "The FlatList props that actually matter"
+      },
+      {
+        "t": "p",
+        "v": "FlatList is faster than ScrollView out of the box, but most of the complaints about it being slow come down to four props left at their defaults on a list that needed them set."
+      },
+      {
+        "t": "table",
+        "head": [
+          "Prop",
+          "What it does",
+          "Set it when"
+        ],
+        "rows": [
+          [
+            "keyExtractor",
+            "Tells FlatList how to identify a row",
+            "Always, unless your items already have an id field"
+          ],
+          [
+            "getItemLayout",
+            "Removes the need to measure rows",
+            "Every row is the same height. This is the single biggest win"
+          ],
+          [
+            "initialNumToRender",
+            "How many rows to render on first paint",
+            "The first screen is slow to appear"
+          ],
+          [
+            "windowSize",
+            "How many screens of content to keep mounted",
+            "Scrolling shows blank space, or memory is too high"
+          ],
+          [
+            "removeClippedSubviews",
+            "Detaches off-screen views on Android",
+            "Long lists on Android, and test it, it can cause blanking"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "v": "If you set only one of these, make it getItemLayout. Without it FlatList has to measure every row as it scrolls, which is exactly the work it exists to avoid."
+      },
+      {
+        "t": "code",
+        "v": "<FlatList\n  data={items}\n  keyExtractor={(item) => item.id}\n  getItemLayout={(_, index) => ({\n    length: ROW_HEIGHT,\n    offset: ROW_HEIGHT * index,\n    index,\n  })}\n  initialNumToRender={10}\n  windowSize={5}\n  renderItem={({ item }) => <Row item={item} />}\n/>"
+      },
+      {
+        "t": "h2",
+        "v": "Stop re-creating renderItem on every render"
+      },
+      {
+        "t": "p",
+        "v": "A common and expensive mistake: defining renderItem inline means a new function on every render, so FlatList cannot tell that nothing changed and re-renders rows it did not need to."
+      },
+      {
+        "t": "code",
+        "v": "// Every render creates a new function.\n<FlatList renderItem={({ item }) => <Row item={item} />} />\n\n// Stable across renders.\nconst renderItem = useCallback(({ item }) => <Row item={item} />, []);\n<FlatList renderItem={renderItem} />"
+      },
+      {
+        "t": "p",
+        "v": "Pair that with React.memo on the row component itself. The two together are usually worth more than any prop you can tune, because they stop the work rather than making it faster."
+      },
+      {
+        "t": "h2",
+        "v": "What about SectionList?"
+      },
+      {
+        "t": "p",
+        "v": "SectionList is FlatList with grouping built in. If your data is naturally split into sections with headers, contacts grouped by letter, orders grouped by date, bookings grouped by month, use it rather than flattening your data and faking the headers inside a FlatList."
+      },
+      {
+        "t": "p",
+        "v": "It takes the same performance props and behaves the same way. The only real difference is the shape of the data it expects."
+      },
+      {
+        "t": "h2",
+        "v": "When FlatList is still not fast enough"
+      },
+      {
+        "t": "p",
+        "v": "On very large lists, or rows with images and complex layouts, FlatList can still show blank space while scrolling fast. The usual next step is FlashList, Shopify's drop-in replacement, which recycles row views instead of mounting and unmounting them."
+      },
+      {
+        "t": "p",
+        "v": "Two honest caveats before you reach for it. It is a third-party dependency, so it is one more thing to keep current. And most lists that feel slow on FlatList are slow because of the mistakes above rather than because of FlatList, so fix those first and measure again. Swapping libraries to avoid setting getItemLayout is not a fix."
+      },
+      {
+        "t": "h2",
+        "v": "Nested scrolling: usually the wrong question"
+      },
+      {
+        "t": "p",
+        "v": "Putting a FlatList inside a ScrollView produces a warning, gesture conflicts on Android, and the loss of the virtualisation you came for, because a FlatList with unbounded height renders everything."
+      },
+      {
+        "t": "p",
+        "v": "The fix is almost always to invert it. Make the FlatList the outer component and put the content that was above it into ListHeaderComponent:"
+      },
+      {
+        "t": "code",
+        "v": "<FlatList\n  data={items}\n  ListHeaderComponent={<ProfileHeader />}\n  ListFooterComponent={<Footer />}\n  renderItem={renderItem}\n/>"
+      },
+      {
+        "t": "p",
+        "v": "The header scrolls with the list, the list stays virtualised, and there is only one scroll gesture on screen. A horizontal FlatList inside a vertical one is fine, because the gestures do not compete."
+      },
+      {
+        "t": "h2",
+        "v": "Frequently asked questions"
+      },
+      {
+        "t": "h3",
+        "v": "How many items before I should switch from ScrollView to FlatList?"
+      },
+      {
+        "t": "p",
+        "v": "There is no exact number, and twenty is a reasonable rule of thumb. The better question is whether the count is bounded. A settings screen has a fixed number of rows forever, so ScrollView is fine at any size. Anything driven by an API has no ceiling, so start with FlatList even while the list is short."
+      },
+      {
+        "t": "h3",
+        "v": "Why is my FlatList showing blank space while I scroll?"
+      },
+      {
+        "t": "p",
+        "v": "It is rendering more slowly than you are scrolling. Set getItemLayout if rows are a fixed height, raise windowSize, memoise the row component, and check whether each row is doing work it could do once, such as formatting dates or building objects inside the render."
+      },
+      {
+        "t": "h3",
+        "v": "Does FlatList work with pull to refresh and infinite scroll?"
+      },
+      {
+        "t": "p",
+        "v": "Both are built in. refreshing and onRefresh give you pull to refresh; onEndReached with onEndReachedThreshold gives you pagination. That is a genuine reason to choose it over ScrollView even for a short list that will grow."
+      },
+      {
+        "t": "h3",
+        "v": "Is ScrollView ever the better choice for performance?"
+      },
+      {
+        "t": "p",
+        "v": "Yes, for small fixed content. FlatList has real overhead: it measures, it tracks what is visible, it mounts and unmounts rows. On ten items that overhead is pure cost with no benefit. ScrollView is not a worse FlatList, it is a different tool."
       },
       {
         "t": "h2",
@@ -6121,7 +7035,7 @@
       "Es6",
       "Javascript"
     ],
-    "words": 330,
+    "words": 392,
     "blocks": [
       {
         "t": "p",
@@ -6130,6 +7044,10 @@
       {
         "t": "h2",
         "v": "JavaScript ES6 Features"
+      },
+      {
+        "t": "p",
+        "v": "ES6, released as ECMAScript 2015, is the version that reshaped how JavaScript is written day to day. Everything below is supported in every current browser and in Node, so none of it needs a build step or a polyfill any more. The features are ordered roughly by how often they come up in real code rather than by how advanced they are."
       },
       {
         "t": "h2",
@@ -6737,11 +7655,15 @@
     "tags": [
       "React Js"
     ],
-    "words": 469,
+    "words": 517,
     "blocks": [
       {
         "t": "h2",
         "v": "React Tips and Tricks for Efficient Development"
+      },
+      {
+        "t": "p",
+        "v": "None of what follows is a trick in the sense of being clever. They are the habits that separate a component someone else can pick up from one that has to be rewritten, and most of them cost nothing at the time and save a great deal later."
       },
       {
         "t": "h2",

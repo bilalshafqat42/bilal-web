@@ -7286,3 +7286,83 @@ integrity, which its header now says.
 **The lesson is the general one.** A convention that lives only in the shape of
 the data is a convention the next person breaks. Nothing caught this except the
 numbers looking wrong by eye, which is not a control.
+
+### 308. DONE (2026-10-02) — Eleven headings had nothing under them, because tables were being dropped
+
+Bilal asked for the FlatList article to be updated. Reading it turned up two
+headings with no content at all: "Key Differences Between FlatList and
+ScrollView" and "Summary: When to Use Which?".
+
+Swept all 55 articles. **Eleven genuinely empty headings across ten articles**,
+and the pattern names the cause:
+
+```
+useReducer vs useState
+useRef vs useState: What's the Difference?
+useContext() vs Prop Drilling
+Side-by-Side Comparison
+Key Differences Between FlatList and ScrollView
+Comparison with Other Hooks
+```
+
+Every one introduces a comparison. They were **tables** in the WordPress
+original, `Block` had no table type, and the extraction dropped them in silence.
+The same class of loss as the stripped outbound anchors in roadmap 282, found
+the same way: by reading the data rather than the rendered page, which still
+looked finished.
+
+A first sweep reported 64 empty headings across 36 articles, which was wrong. An
+`h2` "FAQs" followed by its `h3` questions is correct structure, not an empty
+section. The real test is a heading followed by a heading **at the same or a
+higher level**, which gives 11.
+
+**`Block` gained `{ t: "table"; head: string[]; rows: string[][] }`**, rendered
+in `ArticleBody` inside an `overflow-x-auto` wrapper so a wide comparison
+scrolls in its own box rather than dragging the article sideways at 390px.
+Verified at both widths, no page overflow either way.
+
+Worth having beyond the repair: these are "X vs Y" articles, and a comparison
+table is the format Google lifts into a featured snippet for that query.
+
+Adding the variant made the compiler find two places reading `b.v` on a block
+that might not have one, in `searchIndex.ts` and `siteContent.ts`. Both already
+filtered to headings and both papered over the narrowing with `as string`. They
+now use a type predicate, so the cast is gone and the filter is what proves the
+type.
+
+`related-check` asserts both: no empty headings, and every table row the same
+length as its head.
+
+### 309. DONE (2026-10-02) — The best-ranking page on the site, expanded
+
+`/react-native-flatlist-vs-scrollview/` sits at **position 24.8** with 781
+impressions. That is the best position of any non-brand page here, better than
+the UI/UX article at 45, and it was 523 words with two empty headings.
+
+Now 1,082 words. Added: the five FlatList props that fix a slow list with a
+table saying when to set each, the inline-`renderItem` mistake with the
+`useCallback` fix, `SectionList`, when to reach for FlashList and the two
+reasons not to, and the nested-scroll answer, which is to invert it and use
+`ListHeaderComponent` rather than nest at all.
+
+Added rather than rewritten. Something on this page already works at position
+24 and there was no reason to disturb it.
+
+### 310. DONE (2026-10-02) — Two more Dubai commercial articles
+
+| Slug | Words | Tier 4 item |
+| --- | ---: | --- |
+| `google-ads-or-seo-which-first-dubai` | 990 | 86 |
+| `wordpress-or-nextjs-for-your-business-website` | 906 | 82 |
+
+Both argue against themselves where the honest answer requires it. The Ads
+versus SEO piece lists four situations where SEO should come first, including
+Dubai sectors where click prices make paid unviable at any volume. The
+WordPress piece says most Dubai businesses asking the question should use
+WordPress, written on a site built in Next.js, and says so explicitly.
+
+No invented market figures in either. The Ads article declines to quote a Dubai
+cost per click, and says why: it varies by sector by a factor of twenty and a
+single number would be fiction.
+
+Sitemap 86 → 88. Checks: 88/88 h1, 88/88 schema, 45/45 search, 57/57 related.

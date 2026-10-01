@@ -32,7 +32,7 @@ import raw from "./blogPosts.json";
  * date of this recovery. Saying these went up in 2026 would be a lie to both
  * readers and crawlers about content that is a year old.
  */
-export type BlockType = "h2" | "h3" | "p" | "code" | "list";
+export type BlockType = "h2" | "h3" | "p" | "code" | "list" | "table";
 
 export type Block =
   /** `href` appears only on the two listicles, where the heading *is* the entry
@@ -50,7 +50,23 @@ export type Block =
    *  returns. */
   | { t: "h2" | "h3"; v: string; href?: string }
   | { t: "p" | "code"; v: string }
-  | { t: "list"; v: string[]; ordered?: boolean };
+  | { t: "list"; v: string[]; ordered?: boolean }
+  /** A comparison table: `head` is the header row, `rows` the body.
+   *
+   *  Added 2026-10-01 because its absence was losing content. Eleven headings
+   *  across ten articles had nothing under them at all — "useReducer vs
+   *  useState", "Side-by-Side Comparison", "Key Differences Between FlatList
+   *  and ScrollView" — and the pattern gives the cause away: every one of them
+   *  introduced a table in the WordPress original, and the extraction had no
+   *  block type to put a table into, so it dropped them silently. The same
+   *  class of loss as the stripped anchors described above, found the same way:
+   *  by looking at the data rather than at the rendered page.
+   *
+   *  Worth having beyond the repair. These are "X vs Y" articles, and a
+   *  comparison table is the format Google lifts into a featured snippet for
+   *  exactly that query. Every row must be the same length as `head`, which
+   *  `scripts/related-check.mjs` asserts. */
+  | { t: "table"; head: string[]; rows: string[][] };
 
 export type BlogPost = {
   slug: string;

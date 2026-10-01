@@ -14,7 +14,7 @@ import { disciplinesWithPages, disciplineItems } from "@/data/disciplines";
 
 export type { Chunk } from "./searchRank";
 import type { Chunk } from "./searchRank";
-import { blogPosts } from "@/data/blogPosts";
+import { blogPosts, type Block } from "@/data/blogPosts";
 
 export function buildIndex(): Chunk[] {
   const chunks: Chunk[] = [];
@@ -153,8 +153,11 @@ export function buildIndex(): Chunk[] {
   // these eight are longer than every service page put together.
   for (const post of blogPosts) {
     const headings = post.blocks
-      .filter((b) => b.t === "h2" || b.t === "h3")
-      .map((b) => b.v as string)
+      // A type predicate rather than a plain filter plus `as string`: with
+      // `table` in the union not every block has `v`, and the cast would have
+      // gone on silently lying once it did not.
+      .filter((b): b is Extract<Block, { t: "h2" | "h3" }> => b.t === "h2" || b.t === "h3")
+      .map((b) => b.v)
       .join(". ");
     chunks.push({
       title: post.title,

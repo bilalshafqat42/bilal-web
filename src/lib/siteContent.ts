@@ -10,7 +10,7 @@ import { faqGroups } from "@/data/faqs";
 import { serviceDepth } from "@/data/serviceDepth";
 import { clients } from "@/data/caseStudies";
 import { disciplinesWithPages, disciplineItems } from "@/data/disciplines";
-import { blogPosts } from "@/data/blogPosts";
+import { blogPosts, type Block } from "@/data/blogPosts";
 
 export function buildSiteContent(): string {
   const parts: string[] = [];
@@ -83,8 +83,8 @@ ${p.landingPage ? p.landingPage.body : ""}`);
   parts.push(`# Writing\n`);
   for (const post of blogPosts) {
     const headings = post.blocks
-      .filter((b) => b.t === "h2")
-      .map((b) => b.v as string)
+      .filter((b): b is Extract<Block, { t: "h2" | "h3" }> => b.t === "h2")
+      .map((b) => b.v)
       .join("; ");
     parts.push(`## ${post.title}  (page: /${post.slug})
 ${post.description}
