@@ -252,6 +252,16 @@ h6,
 /* A single soft warmth behind the heading. Two stacked radials rather than one,
    because a lone gradient at this size reads as a grey smudge; the pair keeps a
    centre without ever becoming a visible light source. */
+/* The article hero keeps the dot texture and drops the gold glow.
+   The ::after above is a 70px-blurred gold wash, which reads as atmosphere
+   behind a short marketing headline and as a smudge behind a 70-character
+   article title sitting on a white-on-black text page. Bilal called it ugly on
+   the blog and he is right: the blur is sized for a hero with a lot of empty
+   space around it, and an article has none. */
+.grid-fade--flat::after {
+  display: none;
+}
+
 .grid-fade::after {
   content: "";
   position: absolute;

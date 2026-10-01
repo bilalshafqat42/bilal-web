@@ -6737,3 +6737,225 @@ history attached to the other.
 
 Switch both `SocialLinks.tsx` and `SAME_AS` in `lib/schema.ts` together when he
 confirms. Item 289 exists because those two drifted apart once already.
+
+### 295. DONE (2026-10-01) — Articles run the full 1440, and the gold blur is gone
+
+Two asks from Bilal, both on the article template.
+
+**The gold blur.** `.grid-fade::after` is a 70px-blurred gold wash, two radial
+gradients at `rgba(242, 201, 76, 0.13)`. It reads as atmosphere behind a
+four-word marketing headline with space around it, and as a smudge behind a
+70-character article title on a page that is otherwise white text on black.
+New `.grid-fade--flat` modifier suppresses the `::after` and keeps the dot
+texture, applied on the article hero only. Every other page is unchanged.
+
+**The width.** The prose sat in `max-w-[46rem]` inside `site-container`. Now
+full container width, 1440 capped, matching every other page.
+
+Measured after the change: a body paragraph is 1360px, roughly **148
+characters per line**. The typographic convention is 60 to 80, and the earlier
+comment in this file defending the cap was right on the typography.
+
+Bilal asked for full width twice, so it is his call and the cap is gone. The
+note left in the source says what to do if the long lines read badly: do not
+re-cap the text, put something in the right-hand space instead — a sticky
+contents list or the service CTA — which is how a publication fills a wide
+column without stretching the measure. Written down so nobody quietly reverts
+a deliberate decision.
+
+### 296. OPEN — YouTube consolidation, deferred by Bilal
+
+Two channels, detail in item 294. `@bilal-4d` has 58 videos and 64
+subscribers; `@bilalshafqat` has 5 videos and no audience. Bilal will handle
+the move himself.
+
+**The thing worth not getting wrong:** YouTube allows renaming the handle on an
+existing channel. Renaming `@bilal-4d` keeps all 58 videos, the subscribers and
+the watch history. Moving to the 5-video channel starts again. The handle
+`@bilalshafqat` has to be freed before the rename can take it.
+
+When he confirms, change `SocialLinks.tsx` and `SAME_AS` in `lib/schema.ts`
+**in the same commit**. Item 289 exists because those two drifted apart once
+and the site linked a 404 for weeks.
+
+### 297. OPEN — Google Business Profile optimisation
+
+Confirmed to exist: the share link resolves to a Google Knowledge Graph entity
+(`kgmid=/g/1hjgr1tzj`) for "Bilal Shafqat", served on `hl=en-AE`.
+
+This is the largest untapped lever for every keyword with "Dubai" in it,
+because the local pack sits above the organic results. It costs nothing.
+
+In order of impact:
+
+1. **Reviews.** The dominant local ranking factor and the one Bilal can move
+   this week. Two years with Leos Developments and no public review of it.
+2. **Primary category.** One primary, everything else secondary. The primary
+   category carries far more weight than the rest combined.
+3. **Services and service areas**, filled out properly rather than left blank.
+4. **Posts**, which are weighted for freshness. The three Dubai commercial
+   articles are exactly the right thing to post.
+5. **The direct Maps URL**, needed from Bilal. `share.google` links are not
+   stable identifiers, so nothing should go into `SAME_AS` until we have the
+   canonical one. Then it joins `lib/schema.ts` so the Person entity and the
+   Business Profile are explicitly connected.
+
+Licensing question raised by Bilal and **not answered here**. A Business
+Profile requires a genuine business, and operating a business in the UAE
+generally requires a trade licence or freelance permit. The specifics depend on
+his structure, free zone and activity, which is a question for a qualified
+professional and not for this file.
+
+### 298. OPEN — The 100-keyword target list
+
+Built from what the site can realistically win, not from what has the most
+volume. Three rules behind the selection:
+
+- **"Freelance" is the qualifier that makes these winnable.** Bilal cannot
+  outrank a 40-person agency for "digital marketing Dubai". He can own
+  "freelance digital marketer Dubai", because agencies do not want that word
+  anywhere near their pages.
+- **No search volumes are quoted.** Nothing here is measured, and inventing
+  numbers would make the list look authoritative while being fiction. Where
+  Search Console already has data, the keyword is marked ✅.
+- **Intent over volume.** A term with a hundred searches and a budget behind it
+  beats one with ten thousand and none.
+
+#### Tier 1 — attack now (1-25)
+
+Highest intent, lowest competition, directly commercial.
+
+1. freelance digital marketer Dubai
+2. digital marketing freelancer Dubai
+3. freelance digital marketing expert Dubai
+4. freelance web designer Dubai
+5. freelance web developer Dubai
+6. freelance UI UX designer Dubai
+7. Google Ads freelancer Dubai
+8. Meta ads freelancer Dubai
+9. freelance SEO consultant Dubai
+10. freelance marketing consultant Dubai
+11. hire freelance digital marketer Dubai
+12. freelance digital marketer UAE
+13. digital marketing freelancer UAE
+14. freelance web designer UAE
+15. how much does a website cost in Dubai ✅ *(article live)*
+16. website development cost Dubai
+17. digital marketing cost Dubai
+18. freelancer vs agency Dubai ✅ *(article live)*
+19. digital marketing agency vs freelancer
+20. freelance marketer rates Dubai
+21. Dubai freelance developer portfolio
+22. independent digital marketing consultant Dubai
+23. freelance Google Ads specialist Dubai
+24. freelance social media manager Dubai
+25. one person marketing agency Dubai
+
+#### Tier 2 — service and location (26-55)
+
+Realistic within 6 to 12 months as authority builds.
+
+26. digital marketing services Dubai
+27. web design Dubai
+28. web development Dubai
+29. UI UX design Dubai
+30. UI UX design services Dubai
+31. mobile app development Dubai
+32. React developer Dubai
+33. Next.js developer Dubai
+34. WordPress developer Dubai
+35. ecommerce website development Dubai
+36. landing page design Dubai
+37. website redesign Dubai
+38. Google Ads management Dubai
+39. Meta ads management Dubai
+40. PPC management Dubai
+41. paid media Dubai
+42. performance marketing Dubai
+43. email marketing Dubai
+44. email automation Dubai
+45. social media marketing Dubai
+46. social media management Dubai
+47. content marketing Dubai
+48. SEO services Dubai
+49. local SEO Dubai
+50. conversion rate optimisation Dubai
+51. CRM setup Dubai
+52. HubSpot consultant Dubai
+53. Zoho consultant Dubai
+54. marketing automation Dubai
+55. server side tracking Dubai
+
+#### Tier 3 — industry verticals (56-75)
+
+Bilal's actual client base. Narrower, far higher intent, and backed by real
+work rather than claims.
+
+56. real estate marketing Dubai
+57. real estate digital marketing Dubai
+58. property marketing Dubai
+59. real estate lead generation Dubai
+60. off plan property marketing Dubai
+61. real estate website development Dubai
+62. property portal development Dubai
+63. Google Ads for real estate Dubai ✅ *(article live)*
+64. Meta ads for real estate Dubai ✅ *(article live)*
+65. real estate CRM Dubai
+66. developer marketing Dubai
+67. brokerage marketing Dubai
+68. holiday homes marketing Dubai
+69. short term rental marketing Dubai
+70. hospitality marketing Dubai
+71. ecommerce marketing Dubai
+72. B2B marketing Dubai
+73. industrial marketing UAE
+74. chemical industry marketing UAE
+75. textile industry marketing UAE
+
+#### Tier 4 — comparison and cost, the articles to write (76-90)
+
+Every one of these is a question a buyer types before hiring. Each deserves its
+own article on the pattern of item 293.
+
+76. cost of digital marketing in Dubai
+77. Google Ads budget Dubai
+78. how much to spend on Google Ads Dubai
+79. digital marketing retainer cost UAE
+80. web design agency vs freelancer Dubai
+81. in house marketer vs freelancer
+82. WordPress vs Next.js for business
+83. Wix vs WordPress Dubai
+84. best CRM for Dubai real estate
+85. HubSpot vs Zoho UAE
+86. Google Ads vs SEO which first
+87. how to choose a digital marketing freelancer
+88. questions to ask a web developer before hiring
+89. what does a digital marketing freelancer do
+90. do I need a trade licence to hire a freelancer UAE
+
+#### Tier 5 — brand and existing strength (91-100)
+
+91. Bilal Shafqat ✅ *(position 4.8, the only term currently ranking)*
+92. Bilal Shafqat Dubai
+93. Bilal Shafqat digital marketing
+94. Bilal Shafqat developer
+95. ux design website ✅ *(279 impressions, position 44)*
+96. best ux design websites ✅ *(89 impressions, position 30.8)*
+97. best ux sites ✅ *(73 impressions, position 28.7)*
+98. ai figma plugin ✅ *(71 impressions, position 34.8)*
+99. free icon library ✅ *(63 impressions, position 57.5)*
+100. react hooks explained ✅ *(cluster of 22 articles)*
+
+#### Deliberately excluded
+
+| Term | Why |
+| --- | --- |
+| marketing manager | Job seekers and employers hiring staff. Never produces freelance work, whatever it ranks. |
+| digital marketing | Wikipedia, Coursera and HubSpot own it. Informational intent. |
+| web developer, web designer | Students asking what the job is. |
+| SEO | Impossibly competitive, and low intent without a modifier. |
+
+The pattern: **every excluded term is a head term with no location and no
+buying intent.** Volume without intent costs the same effort and returns
+nothing, which is precisely the trap the recovered blog already demonstrates —
+6,933 impressions from developers who will never hire a Dubai marketer.
