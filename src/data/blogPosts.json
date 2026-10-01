@@ -8987,97 +8987,182 @@
   },
   {
     "slug": "10-best-websites-to-master-ui-ux-design",
-    "title": "10 Best Websites to Master UI UX Design",
-    "description": "10 Best Websites to Master UI & UX Design. User Experience (UX) and User Interface (UI) design are essential skills for creating seamless digital experiences.",
+    "title": "10 Best UX Design Websites to Learn From in 2026",
+    "description": "The ten UI/UX design websites worth your time, every link opened and verified in October 2026, with what each one is free for and what it charges.",
     "published": "2025-02-03",
     "tags": [
       "UI UX Design"
     ],
-    "words": 742,
+    "words": 1953,
     "blocks": [
       {
         "t": "p",
-        "v": "User Experience (UX) and User Interface (UI) design are essential skills for creating seamless digital experiences. Whether you're a beginner or a seasoned designer, continuous learning is key. Thankfully, there are many platforms that offer valuable insights, case studies, and best practices to help you master UI/UX design."
-      },
-      {
-        "t": "h2",
-        "v": "Best Websites to Master UI UX Design"
+        "v": "There is no shortage of lists like this one. The problem with most of them is that nobody checks the links afterwards, so you work through ten recommendations and find three dead domains, two sites that have quietly become something else, and a paywall where the free course used to be."
       },
       {
         "t": "p",
-        "v": "Here are 10 of the best websites to enhance your knowledge and skills in UX and UI design."
-      },
-      {
-        "t": "h2",
-        "v": "1. Principle.Design",
-        "href": "https://principles.design/"
+        "v": "Every site below was opened and read on 1 October 2026 before it was listed. Where a site has changed since this article was first published, the entry says so. Where something is free, it says what is free and what is not, because \"free resource\" usually means a free article and a paid course."
       },
       {
         "t": "p",
-        "v": "Principles.Design is an excellent resource for UI/UX designers who want to create interactive and animated prototypes. It provides tools that help designers build realistic app interfaces, test transitions, and explore interactive elements. The platform is particularly useful for those working on mobile and web application designs. With an easy-to-use interface, Principle makes prototyping an intuitive and enjoyable experience."
+        "v": "These are the ten worth your time, roughly in the order a working designer would actually use them."
       },
       {
         "t": "h2",
-        "v": "2. Nielsen Norman Group (NNG)",
+        "v": "How to use this list"
+      },
+      {
+        "t": "p",
+        "v": "Reading design websites is not the same as learning design, and it is worth being honest about which one you are doing. Most people who bookmark twenty UX blogs end up reading none of them."
+      },
+      {
+        "t": "p",
+        "v": "A better approach is to pick one site for each of three jobs. One for research you can cite when somebody questions a decision. One for a structured course if you are learning from scratch. One for a weekly habit, so you see what the field is arguing about. Everything else is reference material you search when a specific problem lands on your desk."
+      },
+      {
+        "t": "p",
+        "v": "Each entry below says which of those three jobs it does."
+      },
+      {
+        "t": "h2",
+        "v": "1. Nielsen Norman Group",
         "href": "https://www.nngroup.com/"
       },
       {
         "t": "p",
-        "v": "The Nielsen Norman Group (NNG) is one of the most respected authorities in UX research. Founded by usability experts Jakob Nielsen and Don Norman, the website offers in-depth articles, case studies, and reports on usability and human-centered design. Their research-backed approach helps designers understand user behavior, making it easier to create effective and user-friendly digital products."
+        "v": "If you only use one site on this list, use this one. Nielsen Norman Group was founded by Jakob Nielsen and Don Norman, and it is the closest thing user experience has to a standards body. When you need to tell a client that their idea will not work, this is where the evidence comes from. The articles are research-backed rather than opinion, which matters enormously in a field where most advice is somebody's preference stated confidently."
+      },
+      {
+        "t": "list",
+        "v": [
+          "Best for: settling arguments with evidence",
+          "Free: a very large archive of articles, plus a YouTube channel with short research summaries",
+          "Paid: training courses and UX certification, priced for companies rather than individuals",
+          "Start with: their articles on usability heuristics, which underpin most of the field"
+        ]
       },
       {
         "t": "h2",
-        "v": "3. UX Hints TL;DR",
-        "href": "https://uxhints.com/"
+        "v": "2. Interaction Design Foundation",
+        "href": "https://www.interaction-design.org/"
       },
       {
         "t": "p",
-        "v": "UX Hints TL;DR is perfect for designers who want concise, actionable insights on UX best practices. It provides quick tips, key takeaways, and summaries of important UX concepts, saving time while delivering valuable knowledge. This website is ideal for designers looking to stay updated with the latest trends and principles without having to read lengthy articles."
+        "v": "The largest structured UX education platform online, and the one to use if you want a course rather than a blog. The teaching is organised into proper courses with a beginning and an end, which is exactly what most self-taught designers are missing. It is worth knowing the model before you sign up: the courses run on an annual membership rather than per-course pricing."
+      },
+      {
+        "t": "list",
+        "v": [
+          "Best for: learning in a structured order instead of reading at random",
+          "Free: a large encyclopedia of UX literature and their design blog",
+          "Paid: membership, which unlocks the courses and certificates",
+          "Start with: the free encyclopedia chapters before you decide whether to pay"
+        ]
       },
       {
         "t": "h2",
-        "v": "4. Interaction Design Foundation (IDF)",
-        "href": "https://www.interaction-design.org/blog"
-      },
-      {
-        "t": "p",
-        "v": "The Interaction Design Foundation (IDF) is one of the largest online UX/UI learning platforms. It offers a vast range of courses, articles, and expert-led tutorials on usability, interaction design, and human-computer interaction. The platform is known for its affordability and high-quality learning materials, making it accessible to designers at all levels."
-      },
-      {
-        "t": "h2",
-        "v": "5. Growth Design",
-        "href": "https://growth.design/"
-      },
-      {
-        "t": "p",
-        "v": "Growth Design is a fantastic resource for UX designers interested in the intersection of design and psychology. It provides engaging, comic-style case studies that break down real-world UX decisions made by top companies. By analyzing the strategies used by leading brands, designers can learn how to improve conversions, enhance user engagement, and create delightful experiences."
-      },
-      {
-        "t": "h2",
-        "v": "6. Dark Patterns Tip Line",
-        "href": "https://darkpatternstipline.org/"
-      },
-      {
-        "t": "p",
-        "v": "Dark patterns are deceptive UX practices that manipulate users into making unintended choices. The Dark Patterns Tip Line helps designers identify and avoid these unethical design tactics. The platform educates UX professionals about deceptive patterns, ensuring they create transparent, user-friendly experiences instead of misleading ones."
-      },
-      {
-        "t": "h2",
-        "v": "7. UX Collective",
+        "v": "3. UX Collective",
         "href": "https://uxdesign.cc/"
       },
       {
         "t": "p",
-        "v": "UX Collective is a popular community-driven blog featuring articles from experienced UX/UI designers worldwide. It covers topics such as design thinking, research methodologies, accessibility, and usability. The platform is a great place to discover case studies, design critiques, and deep dives into emerging trends in UX/UI design."
+        "v": "A community publication where working designers write about what they are actually running into. Because it publishes many authors rather than one house voice, the quality varies, but the range is the point: you get accessibility, research methods, design critique and career writing in the same feed. Their newsletter is one of the few in this field worth keeping subscribed to."
+      },
+      {
+        "t": "list",
+        "v": [
+          "Best for: a weekly habit, and seeing what practitioners are arguing about",
+          "Free: most articles",
+          "Note: it is published on Medium, so some articles sit behind Medium's paywall",
+          "Start with: the newsletter rather than the site, so it comes to you"
+        ]
       },
       {
         "t": "h2",
-        "v": "8. Untools",
+        "v": "4. Growth.Design",
+        "href": "https://growth.design/"
+      },
+      {
+        "t": "p",
+        "v": "Case studies presented as comics, which sounds gimmicky and is not. Each one walks through a real product decision made by a company you have heard of, then explains the psychology behind why it worked or failed. If you have ever struggled to explain to a client why a change matters, this is the site that teaches you how to tell that story."
+      },
+      {
+        "t": "list",
+        "v": [
+          "Best for: understanding the psychology under an interface, and learning to explain it",
+          "Free: the case studies",
+          "Paid: their courses and premium material",
+          "Start with: any case study on a product you already use, so you can check their reasoning against your own experience"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "5. Untools",
         "href": "https://untools.co/"
       },
       {
         "t": "p",
-        "v": "Untools provides frameworks and mental models to help designers think critically and solve complex UX/UI challenges. It offers a collection of problem-solving techniques, decision-making guides, and design thinking tools. This platform is particularly useful for UX strategists and product designers looking to improve their problem-solving skills."
+        "v": "Not a design site at all, which is why it is on the list. Untools is a collection of thinking tools and decision-making frameworks: first principles, second-order thinking, systems maps, and similar. Design problems are usually thinking problems wearing a visual disguise, and this is the site that gives you a structure for the thinking part. Small, free, and completely free of filler."
+      },
+      {
+        "t": "list",
+        "v": [
+          "Best for: untangling a problem before you open a design tool",
+          "Free: all of it",
+          "Start with: the decision-making section"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "6. Laws of UX",
+        "href": "https://lawsofux.com/"
+      },
+      {
+        "t": "p",
+        "v": "A single-purpose reference site collecting the psychological principles that come up constantly in interface work: Hick's Law, Fitts's Law, Jakob's Law, the Von Restorff effect, and the rest. Each one gets a plain explanation and the research behind it. This was not in the original version of this article and should have been, because it is the fastest way to put a name to something you already do instinctively."
+      },
+      {
+        "t": "list",
+        "v": [
+          "Best for: naming the principle behind a decision you have already made",
+          "Free: all of it",
+          "Start with: Jakob's Law, which explains most arguments about \"making it look different\""
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "7. Baymard Institute",
+        "href": "https://baymard.com/"
+      },
+      {
+        "t": "p",
+        "v": "The most specific site here, and the most valuable if you work on anything that takes payment. Baymard runs large-scale usability research on e-commerce and publishes the findings, including a long-running benchmark of checkout usability across major retailers. If you are designing a cart, a checkout or a product page, this is research you can hand a client directly."
+      },
+      {
+        "t": "list",
+        "v": [
+          "Best for: e-commerce, checkout and anything with a conversion target",
+          "Free: a substantial portion of their research articles",
+          "Paid: full research access and their benchmark database",
+          "Start with: their checkout usability findings"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "8. UX Hints",
+        "href": "https://uxhints.com/"
+      },
+      {
+        "t": "p",
+        "v": "Short, specific posts on one idea at a time, organised by topic: accessibility, typography, usability, user testing, UX laws. It still runs the \"UX Hints TL;DR\" format the name is known for. Useful when you have a narrow question and do not want a 3,000-word essay around the answer."
+      },
+      {
+        "t": "list",
+        "v": [
+          "Best for: a quick answer to a specific question",
+          "Free: the articles and the newsletter",
+          "Start with: the topic index rather than the homepage"
+        ]
       },
       {
         "t": "h2",
@@ -9086,66 +9171,151 @@
       },
       {
         "t": "p",
-        "v": "Usability Geek focuses on usability principles, accessibility, and human-centered design. The website offers expert articles, research-backed insights, and practical guides on improving digital experiences. Whether you're working on a website, app, or enterprise software, Usability Geek provides knowledge to enhance usability and user satisfaction."
+        "v": "A long-running usability and UX blog with a practical bent. Where Nielsen Norman Group writes the research, Usability Geek tends to write the version you can apply on Monday morning. Strong on accessibility and on the unglamorous parts of usability that get skipped."
+      },
+      {
+        "t": "list",
+        "v": [
+          "Best for: practical usability writing you can act on immediately",
+          "Free: the blog",
+          "Paid: they also list UX courses",
+          "Start with: their accessibility writing"
+        ]
       },
       {
         "t": "h2",
-        "v": "10. Ethical Design",
+        "v": "10. Dark Patterns Tip Line",
+        "href": "https://darkpatternstipline.org/"
+      },
+      {
+        "t": "p",
+        "v": "A public archive of deceptive design: the countdown timers that reset, the unsubscribe buttons hidden three screens deep, the pre-ticked boxes. It exists so people can report what has been done to them, which makes it a catalogue of exactly the techniques you should refuse to build. Read it as a list of things to say no to when somebody asks for \"something that converts better\"."
+      },
+      {
+        "t": "list",
+        "v": [
+          "Best for: recognising a manipulative pattern before you are asked to build one",
+          "Free: all of it",
+          "Related: Ethical Design Resources at ethicaldesignresources.com collects the positive version, which is a curated set of tools and references for designing responsibly"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "One correction from the earlier version of this article"
+      },
+      {
+        "t": "p",
+        "v": "The original list included a site called \"Principle.Design\" and described it as a prototyping tool for building animated app interfaces. That conflated two different things, and it is worth correcting rather than quietly deleting."
+      },
+      {
+        "t": "p",
+        "v": "Principle is a Mac prototyping application. principles.design is something else entirely: a free library of real-world design principles published by actual companies and teams, collected as decision-making frameworks. It is a genuinely useful site, it is simply not a prototyping tool. If you were looking for the prototyping application, that is a separate product. If you want the principles library, it is worth a visit for a different reason: reading how other teams wrote their principles is the fastest way to write your own."
+      },
+      {
+        "t": "h2",
+        "v": "Also worth bookmarking"
+      },
+      {
+        "t": "p",
+        "v": "Three more that did not make the ten but earn a place in a browser folder."
+      },
+      {
+        "t": "h3",
+        "v": "Smashing Magazine",
+        "href": "https://www.smashingmagazine.com/category/ux/"
+      },
+      {
+        "t": "p",
+        "v": "Long-form, technically detailed articles sitting at the join between design and front-end code. Particularly good when the problem is a design decision with engineering consequences."
+      },
+      {
+        "t": "h3",
+        "v": "Ethical Design Resources",
         "href": "https://www.ethicaldesignresources.com/"
       },
       {
         "t": "p",
-        "v": "Ethical Design promotes the importance of designing products that respect user privacy, autonomy, and well-being. It encourages designers to create digital experiences that prioritize transparency and ethical considerations. This platform is essential for UX professionals who want to build trustworthy and responsible products while maintaining user trust."
+        "v": "A curated, maintained collection of tools and references for designing responsibly. Small and still actively updated."
+      },
+      {
+        "t": "h3",
+        "v": "Nielsen Norman Group on YouTube",
+        "href": "https://www.youtube.com/@NNgroup"
+      },
+      {
+        "t": "p",
+        "v": "Listed separately from the main site because the format changes how useful it is. Short videos, usually one research finding each, and easier to get through than the written archive."
       },
       {
         "t": "h2",
-        "v": "FAQ"
+        "v": "If you are starting from zero"
+      },
+      {
+        "t": "p",
+        "v": "Pick three, not ten. A reasonable starting set is Interaction Design Foundation for structure, Nielsen Norman Group for evidence, and the UX Collective newsletter for a weekly pulse. That covers learning, proving and keeping up."
+      },
+      {
+        "t": "p",
+        "v": "Then build something. Every site on this list is more useful once you have a real interface in front of you and a specific problem to solve. Reading about usability heuristics in the abstract is far less effective than reading them while looking at a screen you designed and cannot work out why people are abandoning."
+      },
+      {
+        "t": "h2",
+        "v": "Frequently asked questions"
       },
       {
         "t": "h3",
-        "v": "1. Why is UX/UI design important?"
+        "v": "What is the difference between UI and UX design?"
       },
       {
         "t": "p",
-        "v": "UX/UI design is crucial for creating digital products that are easy to use, visually appealing, and efficient. Good design enhances user satisfaction, increases engagement, and improves conversion rates."
+        "v": "UX is the decision about what the product does and in what order. UI is the decision about how that looks and behaves on screen. A booking flow that asks for payment before showing the price is a UX problem, and no amount of visual polish fixes it. A booking flow with the right steps but unreadable text is a UI problem. In practice one person often does both, but they fail in different ways and it helps to know which one you are looking at."
       },
       {
         "t": "h3",
-        "v": "2. Which website is best for beginners?"
+        "v": "Which of these websites is best for a complete beginner?"
       },
       {
         "t": "p",
-        "v": "For beginners, Interaction Design Foundation (IDF) and UX Hints TL;DR are great options. IDF offers structured courses, while UX Hints TL;DR provides quick, easy-to-digest insights."
+        "v": "Interaction Design Foundation, because it is organised as courses rather than as a feed. Beginners usually suffer from too much unordered information rather than too little, and a structured sequence solves that. Laws of UX is a good second, because it gives you vocabulary quickly."
       },
       {
         "t": "h3",
-        "v": "3. What are dark patterns in UX design?"
+        "v": "Are any of these actually free?"
       },
       {
         "t": "p",
-        "v": "Dark patterns are deceptive UX tactics that trick users into taking actions they didn't intend, such as subscribing to services or sharing personal data. Dark Patterns Tip Line helps designers recognize and avoid these unethical practices."
+        "v": "Untools, Laws of UX and Dark Patterns Tip Line are entirely free. Nielsen Norman Group, Growth.Design, Baymard and Interaction Design Foundation publish a substantial amount free and charge for courses, certification or full research access. UX Collective is free except where an article sits behind Medium's paywall."
       },
       {
         "t": "h3",
-        "v": "4. How can I stay updated with UX/UI trends?"
+        "v": "What are dark patterns?"
       },
       {
         "t": "p",
-        "v": "Regularly reading platforms like UX Collective, Growth Design, and Usability Geek will keep you informed about the latest trends, case studies, and best practices."
+        "v": "Interface designs that work against the person using them: a cancel button hidden behind four screens, a pre-ticked subscription box, a countdown that resets when you reload. They are called deceptive design patterns in current regulatory language. They often do raise short-term conversion, which is why clients ask for them, and they damage trust and increasingly attract regulatory attention. The Dark Patterns Tip Line is a catalogue of them."
       },
       {
         "t": "h3",
-        "v": "5. What tools should I use for UX/UI design?"
+        "v": "Do I need a design degree to work in UI/UX?"
       },
       {
         "t": "p",
-        "v": "Popular UX/UI tools include Figma, Adobe XD, Sketch, and Principle for prototyping and design. Untools is also great for decision-making and strategy development."
+        "v": "No. Portfolios decide hiring in this field, not qualifications. What a portfolio has to show is reasoning rather than screenshots: what the problem was, what you tried, what the result was. Three projects explained properly will beat twenty pretty images. Every site on this list helps you build the reasoning half."
+      },
+      {
+        "t": "h3",
+        "v": "How often should I be reading these?"
       },
       {
         "t": "p",
-        "v": "By leveraging these 10 platforms, you can sharpen your UX/UI skills, stay informed about industry trends, and create user-friendly, ethical digital experiences. Which of these websites is your favorite? Let us know in the comments!"
+        "v": "One newsletter weekly, and the rest on demand when a specific problem arrives. Trying to read all ten regularly is how people end up reading none of them. Reference sites are for searching, not for subscribing."
+      },
+      {
+        "t": "p",
+        "v": "Last checked and updated on 1 October 2026. Every link above was opened and verified on that date."
       }
-    ]
+    ],
+    "metaTitle": "10 Best UX Design Websites to Learn From (2026)"
   },
   {
     "slug": "ux-vs-ui-the-perfect-balance-for-a-winning",

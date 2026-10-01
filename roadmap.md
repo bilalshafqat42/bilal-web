@@ -6576,3 +6576,90 @@ two CTA buttons sit side by side on desktop and stack on phone.
 
 Checks after: 83/83 h1, 83/83 schema, 45/45 search, disciplines OK, 52/52
 related.
+
+### 289. DONE (2026-10-01) — The site's YouTube link was a 404 on every page
+
+Found while verifying outbound links on the rewritten UI/UX article.
+`SocialLinks.tsx` pointed at `https://www.youtube.com/@bilalshafqat42`, which
+returns **404**. The real channel is `@bilal-4d`, "Bilal-4D | by Bilal Shafqat".
+
+The handle had been inferred from the pattern the other profiles follow
+(`linkedin.com/in/bilalshafqat42`, `x.com/bilalshafqat42`,
+`pinterest.com/bilalshafqat42`). It looked right and was never opened.
+
+`SAME_AS` in `lib/schema.ts` was corrected on 2026-09-30 when Bilal sent a
+screenshot of the real channel. This copy was missed, so the structured data
+named the right channel while every rendered page linked a dead one. Two
+sources for the same fact, one updated.
+
+All nine social links verified live on 2026-10-01:
+
+| Profile | Result |
+| --- | --- |
+| Dribbble, Behance, Instagram, LinkedIn, Pinterest, TikTok, X | 200 |
+| Facebook | 400 to curl, **200 in a real browser** — Facebook blocks scripted requests, so the status code alone was wrong |
+| YouTube | **404, fixed** |
+
+The Facebook case is the same trap as `atlasicons.com` in roadmap 282: a status
+code is not a verdict. It needed a browser.
+
+Noted for Bilal, not a code issue: the Facebook page is named "Bilal Shaqat",
+missing the f. That is a brand-search problem on Facebook's side and only he
+can change it.
+
+### 290. DONE (2026-10-01) — The highest-value article rewritten
+
+`/10-best-websites-to-master-ui-ux-design/` is the single biggest asset on the
+site: **1,660 impressions** over 90 days, more than twice the next page, at an
+average position of 45.1. Six queries point at it — "ux design website" (279),
+"best ux design websites" (89), "best ux sites" (73), "ui ux solutions" (42),
+"best user experience websites" (38), "best ux websites" (28).
+
+It was 742 words with no images, against competitors running two to four times
+that length with screenshots of every site listed.
+
+Now **1,953 words**. What changed beyond length:
+
+- **A factual error corrected in the open.** The original listed
+  "Principle.Design" and described a prototyping tool for animated app
+  interfaces. That is Principle, a Mac application. `principles.design` is a
+  free library of real-world design principles, a different thing entirely.
+  The rewrite says so explicitly rather than quietly deleting the entry.
+- **Every link opened and read** on 2026-10-01 before being listed, and the
+  article says so with the date. `uxdesign.cc` 403s to automation because it
+  sits behind Cloudflare on Medium; browser-verified as live and correct.
+- **Three sites added** that should have been there: Laws of UX, Baymard
+  Institute, Smashing Magazine's UX section. Kept in a separate section so the
+  title's promise of ten still holds.
+- **Free versus paid stated per site**, which is the thing these lists always
+  omit and the reader always wants.
+- **FAQ rewritten** from five thin answers to six substantial ones, covering
+  the questions this cluster actually gets asked.
+
+Title: "10 Best Websites to Master UI UX Design" → "10 Best UX Design Websites
+to Learn From in 2026". The dominant query is "ux design website", which the
+old title did not contain in that order. The 2026 is earned here: the content
+really was reviewed and re-verified on that date, which is the distinction
+drawn in item 291 below.
+
+Slug unchanged. It carries all the ranking history.
+
+`@NNgroup` was verified before shipping rather than assumed, after the
+`@bilalshafqat42` find in 289 above.
+
+### 291. OPEN — The other fifteen "2025" titles need Bilal's input
+
+Sixteen of 52 titles carried a past year. One is now 2026 (item 290), by way of
+an actual content review. Fifteen remain.
+
+**These must not be bulk-edited.** Changing a date without reviewing the
+content is fake freshness, Google detects it, and it can cost more than the
+stale date does. Each listicle needs its tools confirmed as still existing,
+still free where the article says free, and still the best answer.
+
+The deep-dive explainers (`useCallback`, `useReducer`, `useRef`, `useMemo`,
+`useImperativeHandle`) are a different case: the React API has not changed, so
+the content is not stale, only the title is. Those can lose the year entirely
+rather than gain a new one — a hook explainer does not need a date at all.
+
+Blocked on Bilal confirming which tools in the listicles he still rates.

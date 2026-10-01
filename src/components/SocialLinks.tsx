@@ -77,7 +77,13 @@ export const socials = [
   { name: "LinkedIn", href: "https://www.linkedin.com/in/bilalshafqat42", icon: LinkedinIcon },
   { name: "Instagram", href: "https://www.instagram.com/imbilalshafqat/", icon: InstagramIcon },
   { name: "TikTok", href: "https://www.tiktok.com/@imbilalshafqat", icon: TikTokIcon },
-  { name: "YouTube", href: "https://www.youtube.com/@bilalshafqat42", icon: YoutubeIcon },
+  // `@bilal-4d`, not `@bilalshafqat42`. The latter was inferred from the
+  // pattern the other handles follow and it is a 404 — verified live on
+  // 2026-10-01, so this link had been dead on every page of the site. The
+  // real channel is "Bilal-4D | by Bilal Shafqat". `SAME_AS` in lib/schema.ts
+  // was corrected on 2026-09-30 and this one was missed, which is exactly why
+  // a handle must never be guessed from another handle.
+  { name: "YouTube", href: "https://www.youtube.com/@bilal-4d", icon: YoutubeIcon },
   { name: "Pinterest", href: "https://www.pinterest.com/bilalshafqat42/", icon: PinterestIcon },
   { name: "Behance", href: "https://www.behance.net/bilalshafqat", icon: BehanceMonogram },
   { name: "Dribbble", href: "https://dribbble.com/bilalshafqat", icon: DribbbleIcon },
