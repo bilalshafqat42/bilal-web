@@ -7859,3 +7859,58 @@ Three errors in the setup, found 2026-10-02:
   Real Estate Digital Marketing, all of which showed 0 selected.
 - **Tracked keywords**: all 24 showed `—` for both volume and difficulty. The
   project was tracking twenty-four terms nobody searches.
+
+### 323. DONE (2026-10-02) — Phase 1 shipped: ten titles aimed at what people search
+
+The competitor tracking Bilal set up produced the number that makes the case:
+
+| Site | Backlinks | Estimated traffic |
+| --- | ---: | ---: |
+| **sumayyalatheef.com** | **6** | **3,231** |
+| fathimanashath.com | 75 | 859 |
+| sajidsulaiman.com | 185 | 188 |
+| atif.ae | 2,698 | 70 |
+| **webdesignerdubai.ae** | **9,186** | **2** |
+
+**Six backlinks produce 3,231 visits; nine thousand produce two.** In this
+market backlinks barely correlate with traffic. Aim does.
+
+And the column that states the problem outright: **Common Keywords with all ten
+competitors is 0.** This site shares not one ranking keyword with any of the
+people winning its money terms. It was not losing the race, it was not in it.
+
+Ten titles changed, measured against Google's ~600px budget before shipping:
+
+| Page | Was | Now | px |
+| --- | --- | --- | ---: |
+| `/` | Bilal Shafqat — Digital Marketer & Developer, Dubai | Freelance Digital Marketer in Dubai — Bilal Shafqat | 461 → **457** |
+| digital-marketing | Digital Marketing & Lead Generation, Dubai | Freelance Digital Marketing Expert in Dubai | 529 → 529 |
+| paid-marketing | Paid Marketing & Ads Management | Freelance Google Ads & Paid Ads Expert in Dubai | 457 → **444** |
+| ui-ux-design | UI/UX & Product Design Services, Dubai | Freelance Web & App Designer in Dubai | 504 → **502** |
+| website-app-development | Website & App Development, Dubai | Freelance Web & App Developer in Dubai | 461 → 513 |
+| email-marketing | Email Marketing & Automation, Dubai | Freelance Email Marketing Manager in Dubai | 475 → 545 |
+| social-media-marketing | Social Media Marketing & Management | Freelance Social Media Manager in Dubai | 492 → 516 |
+| graphic-design-branding | Branding & Graphic Design, Dubai | Freelance Graphic Designer in Dubai | 449 → 472 |
+| crm-marketing-automation | CRM Setup & Marketing Automation | Freelance CRM & Automation Consultant in Dubai | 465 → **445** |
+| video-conversion | Video Editing & Conversion Rate Optimisation | Freelance Video Editor & CRO Specialist in Dubai | 551 → **442** |
+
+Widest is 545px against a 600px budget; six of the ten are **narrower** than
+what they replace. The homepage adds "Freelance" and still shrinks, because
+moving the name to the end removes a dash and its spacing — which is the
+answer to the 2026-09-23 truncation that caused "Freelance" to be dropped in
+the first place.
+
+Two of these carried no "Dubai" at all (`paid-marketing`,
+`social-media-marketing`) and none carried "freelance".
+
+`Person.jobTitle` goes from "Digital Marketing, Design & Development
+Specialist" to **"Freelance Digital Marketer"**. Three disciplines at equal
+weight tells a search engine the site is about nothing in particular. Design
+and development are still described in full by `knowsAbout` and by their own
+pages; what changed is which one leads.
+
+**Nothing moved on screen.** No layout change, no h1 change, no copy change. A
+visitor sees an identical site. Only the browser tab, the search result and the
+structured data differ.
+
+Checks: 92/92 h1, 92/92 schema, 45/45 search, 57/57 related, disciplines OK.

@@ -175,7 +175,13 @@ export function personNode() {
     "@type": "Person",
     "@id": ID.person,
     name: "Bilal Shafqat",
-    jobTitle: "Digital Marketing, Design & Development Specialist",
+    // "Freelance Digital Marketer" since 2026-10-02, matching the titles and the
+    // positioning in roadmap 320. The previous value listed three disciplines
+    // with equal weight, which tells a search engine the site is about nothing
+    // in particular. Design and development are still described in full by
+    // `knowsAbout` and by their own service pages; what changed is which one
+    // leads.
+    jobTitle: "Freelance Digital Marketer",
     description:
       "Freelance digital marketing, design and development specialist in Dubai, working across paid marketing, web and app development, design and CRM automation as a single point of contact.",
     url: SITE_URL,

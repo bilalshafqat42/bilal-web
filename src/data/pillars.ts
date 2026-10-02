@@ -408,6 +408,18 @@ export function spellCount(n: number): string {
   return COUNT_WORDS[n] ?? String(n);
 }
 
+  // Titles rewritten 2026-10-02 (roadmap 320, Phase 1). Every competing
+  // freelance site in Dubai leads its title with the search phrase and puts the
+  // name second — thirteen of thirteen, checked live. This site was the only one
+  // doing it the other way, which is why sumayyalatheef.com outranks it on six
+  // backlinks and domain authority 4.
+  //
+  // Two of these carried no "Dubai" at all and none carried "freelance", which
+  // is the one word that makes these terms winnable: agencies will not use it.
+  //
+  // Each measured against Google's ~600px title budget before shipping, because
+  // the September 23 shortening exists for exactly that reason. Widest here is
+  // 545px; six of the nine are narrower than what they replace.
 export const megaMenuGroups: MegaMenuGroup[] = [
   {
     slug: "paid-marketing",
@@ -415,7 +427,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "Paid marketing that reports cost per lead, not impressions",
     intro:
       "Paid media only works when it is built around the sales pipeline it feeds. I plan, launch and manage campaigns across Google and every major social platform, with conversion tracking configured before a dirham is spent, so performance is measured against real enquiries rather than clicks and reach.",
-    metaTitle: "Paid Marketing & Ads Management — Bilal Shafqat",
+    metaTitle: "Freelance Google Ads & Paid Ads Expert in Dubai",
     metaDescription:
       "Google, Meta, TikTok and LinkedIn campaigns run by a Dubai freelance specialist. Conversion tracking from day one, reported as cost per lead.",
     faqs: [
@@ -450,7 +462,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "Social media handled end to end, not just designed and handed over",
     intro:
       "Most social work stops at delivering assets. This covers the whole thing: the strategy, the content calendar, the creative itself, and the actual posting and engagement. Because the same person also runs the paid campaigns, organic and paid reinforce each other instead of running as separate projects.",
-    metaTitle: "Social Media Marketing & Management — Bilal Shafqat",
+    metaTitle: "Freelance Social Media Manager in Dubai — Bilal Shafqat",
     metaDescription:
       "Social media strategy, content design, planning and channel management from Dubai, aligned with the paid campaigns running alongside it.",
     faqs: [
@@ -482,7 +494,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     // "Digital Marketing & Outreach", but the title said neither — it opened on
     // "Lead Generation", so the page Bilal wants found for "digital marketing"
     // never used the phrase in the one field that matters most.
-    metaTitle: "Digital Marketing & Lead Generation, Dubai — Bilal Shafqat",
+    metaTitle: "Freelance Digital Marketing Expert in Dubai — Bilal Shafqat",
     metaDescription:
       "Demand generation, lead capture, email and WhatsApp marketing from a Dubai-based freelance specialist. Built as one sequence rather than disconnected tactics.",
     faqs: [
@@ -511,7 +523,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "Websites and apps built to support the marketing pointed at them",
     intro:
       "A site that looks good but does not convert is a cost, not an asset. I build on Next.js for speed and search performance, React Native for mobile, and the MERN stack for custom tools, designed from the start around whatever campaigns will be sending traffic to them.",
-    metaTitle: "Website & App Development, Dubai — Bilal Shafqat",
+    metaTitle: "Freelance Web & App Developer in Dubai — Bilal Shafqat",
     metaDescription:
       "Next.js and WordPress websites, landing pages, cross-platform mobile apps and custom tools, built by a Dubai developer who also runs the campaigns.",
     faqs: [
@@ -544,7 +556,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "Interface design judged on how it is used, not how it presents",
     intro:
       "A mockup that wins approval and then confuses users has failed. UI and UX work here covers wireframing, prototyping and interface design for both web and mobile, with each platform's own conventions respected rather than one generic layout stretched across both. Designs hand off cleanly into development because the same person builds them.",
-    metaTitle: "UI/UX & Product Design Services, Dubai — Bilal Shafqat",
+    metaTitle: "Freelance Web & App Designer in Dubai — Bilal Shafqat",
     metaDescription:
       "Wireframing, prototyping, web and mobile interface design and design systems, from a Dubai-based freelance designer who also develops the build.",
     faqs: [
@@ -572,7 +584,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "Identity that holds up beyond the logo file",
     intro:
       "A logo is the easy part. What matters is whether the identity still works on a website, an ad, a brochure and a pitch deck once other people are applying it. This covers logo, colour and typography systems, documented brand guidelines so anyone can apply them consistently, and the company profile and pitch materials that carry the brand into a room.",
-    metaTitle: "Branding & Graphic Design, Dubai — Bilal Shafqat",
+    metaTitle: "Freelance Graphic Designer in Dubai — Bilal Shafqat",
     metaDescription:
       "Logo design, colour and typography systems, documented brand guidelines, company profiles and pitch decks, from a Dubai-based freelance designer.",
     faqs: [
@@ -600,7 +612,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "The layer that stops leads being lost between systems",
     intro:
       "Most leads a business loses were not lost to bad marketing. They were lost to a follow-up that never happened, because nothing was tracking them properly. This connects campaigns, website and CRM into one system: HubSpot, Zoho or Salesforce configured around how your team actually sells, server-side tracking so conversion data survives browser restrictions, and automation so a new enquiry gets a response in minutes.",
-    metaTitle: "CRM Setup & Marketing Automation — Bilal Shafqat",
+    metaTitle: "Freelance CRM & Automation Consultant in Dubai",
     metaDescription:
       "HubSpot, Zoho and Salesforce setup, server-side tracking and Conversions API, and marketing automation workflows, from a Dubai-based freelance specialist.",
     faqs: [
@@ -644,7 +656,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "Email that follows up properly, because the CRM behind it is set up right",
     intro:
       "Most email problems in the UAE are not writing problems. The sequence fires from a list nobody segmented, to contacts a form dropped in with no source attached, about an offer that stopped running. Email is the last step of a chain, and it fails where the chain does — which is usually two steps earlier, in the form or the CRM.",
-    metaTitle: "Email Marketing & Automation, Dubai — Bilal Shafqat",
+    metaTitle: "Freelance Email Marketing Manager in Dubai — Bilal Shafqat",
     metaDescription:
       "Welcome and nurture sequences, list segmentation and campaign design, wired into the CRM that feeds them. Dubai-based, for UAE and UK clients.",
     faqs: [
@@ -681,7 +693,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "Video that gets watched, and pages that convert what it sends",
     intro:
       "Video and conversion work belong together: one drives attention, the other decides whether that attention turns into an enquiry. This covers video editing for how high-consideration audiences actually watch, alongside conversion rate work on the pages that traffic lands on, tested against real behaviour rather than opinion.",
-    metaTitle: "Video Editing & Conversion Rate Optimisation — Bilal Shafqat",
+    metaTitle: "Freelance Video Editor & CRO Specialist in Dubai",
     metaDescription:
       "Video editing for high-consideration marketing plus conversion rate optimisation, landing page audits and A/B testing, from a Dubai freelance specialist.",
     faqs: [

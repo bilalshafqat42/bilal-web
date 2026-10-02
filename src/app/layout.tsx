@@ -10,17 +10,24 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bilalshafqat.com"),
-  // Shortened 2026-09-23 from "Bilal Shafqat — Freelance Digital Marketer &
-  // Developer Dubai". That was 60 characters and inside the usual limit, but
-  // Google truncates by *pixel width*, not character count — a live search
-  // showed it cut to "…Digital Marketer & Developer …", losing "Dubai"
-  // entirely. Dropping "Freelance" buys the room back and keeps the one word
-  // that carries local intent.
-  title: "Bilal Shafqat — Digital Marketer & Developer, Dubai",
+  // Reordered 2026-10-02. "Freelance" is back, and this time it costs nothing:
+  // at 457px this is *narrower* than the 461px it replaces, because moving the
+  // name to the end removes a dash and its spacing. The 2026-09-23 note below
+  // is why that matters.
+  //
+  //   Shortened 2026-09-23 from "Bilal Shafqat — Freelance Digital Marketer &
+  //   Developer Dubai". That was 60 characters and inside the usual limit, but
+  //   Google truncates by *pixel width*, not character count — a live search
+  //   showed it cut to "…Digital Marketer & Developer …", losing "Dubai".
+  //
+  // Keyword first, name second, which is what every competing freelance site in
+  // Dubai does and what this one did not (roadmap 319). The brand ranking is
+  // safe: the name is still in the title and the domain is the name.
+  title: "Freelance Digital Marketer in Dubai — Bilal Shafqat",
   // 233 characters before this, the longest on the site — Google cuts around
   // 160, so roughly the last third was being dropped mid-sentence.
   description:
-    "One senior partner for paid marketing, web and app development, design and CRM automation. Dubai-based, working with founders and property developers.",
+    "Freelance digital marketer in Dubai. Paid ads, SEO, social and email, plus the websites and apps behind them. One senior partner, not an agency.",
   alternates: {
     canonical: "/",
   },
@@ -37,13 +44,13 @@ export const metadata: Metadata = {
     "social media management UAE",
   ],
   openGraph: {
-    title: "Bilal Shafqat — Digital Marketer & Developer, Dubai",
+    title: "Freelance Digital Marketer in Dubai — Bilal Shafqat",
     description:
       // Was a different sentence from the meta description: a list of four
       // services ending "one senior partner, four pillars". A share card is
       // read in a chat window in under a second, so it gets the same clear
       // sentence the search result does.
-      "One senior partner for paid marketing, web and app development, design and CRM automation. Dubai-based, working with founders and property developers.",
+      "Freelance digital marketer in Dubai. Paid ads, SEO, social and email, plus the websites and apps behind them. One senior partner, not an agency.",
     type: "website",
     // **The site-wide share card, and it did not exist before 2026-09-25.**
     //
@@ -81,9 +88,9 @@ export const metadata: Metadata = {
   // other client that reads Twitter card tags, honours this.
   twitter: {
     card: "summary_large_image",
-    title: "Bilal Shafqat — Digital Marketer & Developer, Dubai",
+    title: "Freelance Digital Marketer in Dubai — Bilal Shafqat",
     description:
-      "One senior partner for paid marketing, web and app development, design and CRM automation. Dubai-based, working with founders and property developers.",
+      "Freelance digital marketer in Dubai. Paid ads, SEO, social and email, plus the websites and apps behind them. One senior partner, not an agency.",
     images: ["https://bilalshafqat.com/images/og-default.jpg"],
   },
   icons: {
