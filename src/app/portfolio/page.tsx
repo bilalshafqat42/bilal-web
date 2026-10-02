@@ -10,7 +10,7 @@ import {
 } from "@/data/disciplines";
 import CaseStudyGrid from "@/components/CaseStudyGrid";
 import Contact from "@/components/Contact";
-import { SITE_URL, breadcrumbNode, graph, ref, ID } from "@/lib/schema";
+import { SITE_URL, breadcrumbNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
 import { disciplinesWithPages } from "@/data/disciplines";
 
 export const metadata: Metadata = {
@@ -74,7 +74,7 @@ const schema = graph([
 export default function PortfolioPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(schema) }} />
       <main id="main" tabIndex={-1} className="flex-1 pt-28">
         {/* A real hero with the page's h1 in it. Until 2026-09-16 this page had
             no hero at all: it opened on a featured-work link card, and its only

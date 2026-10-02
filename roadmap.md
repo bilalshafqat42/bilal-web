@@ -7490,3 +7490,65 @@ go stale.
 
 Verified in the built output: the only YouTube URLs the site renders are
 `@bilalshafqat42` and the channel ID.
+
+### 313. DONE (2026-10-02) — Next.js 16.3.8: a security release we were one version behind
+
+Found during a full code review. `npm audit` reported **0 vulnerabilities** on
+16.3.7, which is why this had not surfaced: the advisory database had not
+flagged the installed version. The release notes for 16.3.8, published
+2026-09-30, say otherwise.
+
+| Severity | Advisory | Applies here? |
+| --- | --- | --- |
+| **High** | Server-Side Request Forgery in Image Optimization | **Yes** — `next/image` is used throughout |
+| Medium | Information disclosure in App Router metadata image routes via `dynamicParams` bypass | **Yes** — `dynamicParams = false` on `[slug]` and `/blog/page/[n]` |
+| Medium | Cache poisoning of SSG and ISR pages in **self-hosted** applications | **Yes** — self-hosted on Hostinger |
+| Medium | Cache poisoning leading to cross-user content substitution and persistent denial of service | Yes |
+| Medium | Pending `use cache` fill leaking Draft Mode content | No, not used |
+| Medium | Cache leak across root param values in nested `use cache` | No |
+| Low | Information disclosure in the dev server's MCP endpoint | Dev only |
+
+Four of the seven are live concerns, and the three that matter most are exactly
+the shape of this deployment: image optimisation, `dynamicParams`, and
+self-hosted static generation.
+
+Upgraded to 16.3.8, pinned exact, with `eslint-config-next` to match. Build
+clean, all five checks pass.
+
+**The lesson is about the check, not the version.** `npm audit` is a necessary
+check and not a sufficient one: it answers "has the database flagged what I
+have", which lags "has my framework shipped security fixes". Roadmap 269 was
+the same framework and the same class of problem. Reading the release notes for
+the next patch version is the step that catches it.
+
+### 314. DONE (2026-10-02) — Structured data is escaped, everywhere rather than in one place
+
+The same review turned up `JsonLd.tsx` carrying this claim:
+
+> The content is built from typed objects in `@/lib/schema`, never from user
+> input, so there is nothing to inject.
+
+True of the code and not quite true of the data. `blogPosts.json` is a scrape
+of a WordPress site, and **two recovered articles carry the literal string
+`</script>` in their body**. The HTML parser ends a `<script>` at the first
+`</script`, inside a JSON string or not.
+
+Nothing was broken: no field that reaches the graph contains it, verified across
+all 57 articles and every data file. But "safe because of which fields we happen
+to pass today" is a property one refactor removes, and silently.
+
+**The more interesting half.** Hardening `JsonLd` would have fixed seven pages
+and looked like a fix. **Twelve page templates render their own `<script>` tag**
+with their own `JSON.stringify`, so most of the site's structured data would
+have stayed unescaped behind a component that now claimed to be safe.
+
+So `jsonLdSafe` lives in `lib/schema.ts` next to `graph()`, and all nineteen
+call sites use it. Escaping `<` only, deliberately: the U+2028/U+2029 escape
+usually bundled with it guards against consumers that `eval` rather than parse,
+JSON-LD consumers parse, and there is not one of either character anywhere in
+the site's data. Checked, not assumed. A guard against nothing, written in
+escape sequences that are easy to get wrong, is worse than no guard — which
+this file proved by getting them wrong twice before the check caught it.
+
+Verified by fetching every page in the sitemap: **91 pages, 99 JSON-LD blocks,
+all parse, none contains a raw `<`.**

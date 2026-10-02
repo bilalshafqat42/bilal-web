@@ -6,7 +6,7 @@ import ContactForm from "@/components/ContactForm";
 import WhatsAppLink from "@/components/WhatsAppLink";
 import SocialLinks from "@/components/SocialLinks";
 import CtaButton from "@/components/CtaButton";
-import { SITE_URL, breadcrumbNode, graph, ref, ID } from "@/lib/schema";
+import { SITE_URL, breadcrumbNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Contact Bilal Shafqat — Digital Marketer & Developer, Dubai",
@@ -105,7 +105,7 @@ export default function ContactPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(contactSchema) }}
       />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
         <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">

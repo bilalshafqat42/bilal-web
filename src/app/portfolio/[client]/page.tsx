@@ -13,6 +13,7 @@ import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/CaseStudyPart
 import { clients, getClient } from "@/data/caseStudies";
 import CtaButton from "@/components/CtaButton";
 import DeviceFrame from "@/components/DeviceFrame";
+import { jsonLdSafe } from "@/lib/schema";
 
 const SITE = "https://bilalshafqat.com";
 
@@ -97,8 +98,8 @@ export default async function ClientCaseStudy({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }} />
       <TrackView name={c.name} category="Client" />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
         <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">

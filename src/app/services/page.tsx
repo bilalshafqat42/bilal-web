@@ -5,7 +5,7 @@ import Contact from "@/components/Contact";
 import PortfolioShowcase from "@/components/PortfolioShowcase";
 import ClientLogoRow from "@/components/ClientLogoRow";
 import { megaMenuGroups, accentClasses, spellCount } from "@/data/pillars";
-import { SITE_URL, breadcrumbNode, graph, ref, ID } from "@/lib/schema";
+import { SITE_URL, breadcrumbNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
 
 /** Read from the data, never typed as a word. See `spellCount` — the page said
  *  "eight" above nine cards for as long as the ninth category existed. */
@@ -59,7 +59,7 @@ const schema = graph([
 export default function ServicesPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(schema) }} />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
         <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />

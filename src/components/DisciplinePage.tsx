@@ -15,7 +15,7 @@ import {
   disciplineCount,
 } from "@/data/disciplines";
 import { groupByDeliverable, deliverableAnchor, type Item } from "@/lib/portfolioItems";
-import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID } from "@/lib/schema";
+import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
 import { OG_IMAGES, OG_IMAGE_URL } from "@/lib/ogImage";
 
 /**
@@ -206,7 +206,7 @@ export default function DisciplinePage({ slug }: { slug: string }) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(schema) }} />
       <main id="main" tabIndex={-1} className="flex-1 pt-28">
         <section className="site-container">
           <Reveal>

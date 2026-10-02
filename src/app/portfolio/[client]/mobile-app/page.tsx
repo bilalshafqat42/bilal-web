@@ -9,7 +9,7 @@ import Reveal from "@/components/Reveal";
 import FaqSection from "@/components/FaqSection";
 import CtaButton from "@/components/CtaButton";
 import { clients, getClient } from "@/data/caseStudies";
-import { SITE_URL as SITE } from "@/lib/schema";
+import { SITE_URL as SITE, jsonLdSafe } from "@/lib/schema";
 
 /**
  * The mobile app case study.
@@ -201,15 +201,15 @@ export default async function MobileAppCaseStudy({ params }: Props) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(work) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(work) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(faqSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }}
       />
       <main id="main" tabIndex={-1} className="flex-1">
         {/* Hero: copy left, composite right. */}

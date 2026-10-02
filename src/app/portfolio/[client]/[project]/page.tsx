@@ -14,6 +14,7 @@ import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/CaseStudyPart
 import { clients, getProject } from "@/data/caseStudies";
 import CtaButton from "@/components/CtaButton";
 import DeviceFrame from "@/components/DeviceFrame";
+import { jsonLdSafe } from "@/lib/schema";
 
 const SITE = "https://bilalshafqat.com";
 
@@ -123,10 +124,10 @@ export default async function ProjectCaseStudy({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }} />
       {faqSchema ? (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(faqSchema) }} />
       ) : null}
       <TrackView name={p.name} category="Case study" />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">

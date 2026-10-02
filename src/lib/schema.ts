@@ -20,6 +20,36 @@
  *   page. `priceRange` is the live example — see `businessNode`.
  */
 
+/**
+ * `JSON.stringify` for a `<script type="application/ld+json">` body.
+ *
+ * The HTML parser ends a `<script>` at the first `</script`, whether or not it
+ * sits inside a JSON string. Escaping `<` as its `\u003c` form is the same
+ * character to a JSON parser and invisible to the HTML one, which closes that
+ * off for good.
+ *
+ * Lives here rather than in `JsonLd.tsx` because `JsonLd` is not the only
+ * caller: twelve page templates render their own `<script>` tag with their own
+ * `JSON.stringify`, so hardening only the component would have left most of the
+ * site's structured data unescaped while looking fixed.
+ *
+ * The risk is not theoretical in the way it first appears. The note this
+ * replaced said the graph is built from typed objects and never from user
+ * input — true of the code, not quite true of the data. `blogPosts.json` is a
+ * scrape of a WordPress site and two recovered articles carry the literal
+ * `</script>` in their body. Nothing puts an article body into the graph today,
+ * so nothing was broken; but "safe because of which fields we happen to pass"
+ * is a property one refactor removes, silently.
+ *
+ * Deliberately only `<`. The escape usually bundled with this one covers U+2028
+ * and U+2029, which are valid in JSON and illegal in JavaScript source and so
+ * break a consumer that evaluates rather than parses. JSON-LD consumers parse,
+ * and there is not one of either character anywhere in the site's data —
+ * checked, not assumed. A guard against nothing, written in escape sequences
+ * that are easy to get wrong, is worse than no guard.
+ */
+export const jsonLdSafe = (value: unknown) => JSON.stringify(value).replace(/</g, "\\u003c");
+
 export const SITE_URL = "https://bilalshafqat.com";
 
 /** Stable node identities. Referenced with `ref()` rather than repeated. */

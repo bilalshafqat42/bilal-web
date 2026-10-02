@@ -5,7 +5,7 @@ import SectionHeading from "@/components/SectionHeading";
 import Process from "@/components/Process";
 import Contact from "@/components/Contact";
 import FaqSection from "@/components/FaqSection";
-import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID } from "@/lib/schema";
+import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
 import { processSteps } from "@/data/process";
 
 export const metadata: Metadata = {
@@ -129,7 +129,7 @@ const schema = graph([
 export default function ProcessPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(schema) }} />
       <main id="main" tabIndex={-1} className="flex-1">
         <Process />
 

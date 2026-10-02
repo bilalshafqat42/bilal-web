@@ -4,7 +4,7 @@ import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
 import AppointmentBooking from "@/components/AppointmentBooking";
 import FaqSection from "@/components/FaqSection";
-import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID } from "@/lib/schema";
+import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Book a Free 30-Minute Call — Bilal Shafqat, Dubai",
@@ -136,7 +136,7 @@ const reassurance = [
 export default function AppointmentPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(schema) }} />
       <main id="main" tabIndex={-1} className="flex-1">
         {/* Full bleed. The portrait is pushed left so the booking panel on the
             right never lands on top of it. */}
