@@ -7914,3 +7914,51 @@ visitor sees an identical site. Only the browser tab, the search result and the
 structured data differ.
 
 Checks: 92/92 h1, 92/92 schema, 45/45 search, 57/57 related, disciplines OK.
+
+### 324. DONE (2026-10-02) — Ubersuggest site audit: two real findings, two to ignore
+
+Four issues reported. Checked each against the site rather than acting on the
+label.
+
+| Issue | Reported | Verdict |
+| --- | --- | --- |
+| Low word count | `/blog`, 133 words, **HIGH impact** | **Partly real.** The count is wrong; the intro was thin. |
+| Title tag too short | 4 articles under 30 chars | **Real.** Fixed. |
+| Poorly formatted URL | `/appointment`, `/blog` | **Ignore** (roadmap 318) |
+| Keywords check | `/appointment`, `/blog` | **Ignore**, same check twice |
+
+**Low word count.** The reported 133 is not what the page contains: measured on
+the live page, `<main>` holds **539 words**. The tool appears not to count link
+text, which on an index page is most of it.
+
+The intro, though, genuinely was two sentences — thin for the only page that
+explains what 57 articles are about. Now three paragraphs, 659 words on the
+page.
+
+**Deliberately not padded to the 2,200 words the audit recommends.** This is an
+index. Its job is to route a reader to the right article, and filler added to
+satisfy a word count makes it worse at that, not better. What was missing was a
+straight description of what is here and who it is for, which is what was
+added.
+
+**Short titles.** All four were real, and one was worse than reported:
+
+| Slug | Was | Now |
+| --- | --- | --- |
+| `exploring-react-19-hooks` | Exploring React 19 Hooks (24) | Exploring the New React 19 Hooks, with Examples (47) |
+| `most-useful-react-hooks` | **Most useful react hooks** (23) | The Most Useful React Hooks, and When to Use Each (49) |
+| `must-have-developer-tools-for-2025` | Best Developer Tools for 2026 (29) | Best Developer Tools for 2026: Boost Your Workflow (50) |
+| `what-are-em-and-rem-units` | What Are EM and REM Units? (26) | What Are EM and REM Units in CSS? A Clear Guide (47) |
+
+`most-useful-react-hooks` was also the only title on the site in sentence case
+with "react" lowercase — sloppy, and not something the audit flagged. Its `h1`
+is now "The Most Useful React Hooks" too.
+
+All four measured: 450-482px against the ~600px budget. **No title on the site
+is now under 30 characters.**
+
+**The two ignored issues** are the same check twice, both already reasoned
+through in item 318: the URL does not contain the target keyword. `/blog` being
+flagged for this is the clearest sign the check lacks context — it is the
+conventional URL for a blog index and changing it would cost more than it could
+possibly return.

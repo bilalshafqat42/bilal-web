@@ -73,9 +73,34 @@ export default function BlogIndexPage() {
               <span className="text-ink">Writing</span>
             </nav>
             <h1 className="t-h1 mt-8 text-ink">Writing</h1>
+            {/* Expanded 2026-10-02. An Ubersuggest site audit flagged this page
+                for thin content. Its count of 133 words was wrong — the page
+                carries 539 in `<main>` — but the *intro* really was two
+                sentences, which is thin for the only page that explains what
+                57 articles are about.
+
+                Deliberately not padded to the "2,200 words" the audit
+                recommends. This is an index: its job is to route a reader to
+                the right article, and filler added to satisfy a word count
+                makes it worse at that. What was missing was a straight
+                description of what is here and who it is for. */}
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
               Notes on the things I hit in client work — React hooks that look simple until
               they cost you a render, and the design references I keep going back to.
+            </p>
+            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted">
+              Fifty-seven pieces, written across two broad halves. The technical half covers
+              React and React Native, the hooks in detail, state management, CSS and Node, and
+              it is written from problems that turned up on real builds rather than from the
+              documentation. The design half is mostly references: the sites worth returning
+              to, the tools that earn their place, and what has actually changed rather than
+              what is being announced.
+            </p>
+            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted">
+              More recently there is a third strand, for people hiring rather than building:
+              what a website costs in Dubai, whether to start with Google Ads or SEO, and how
+              a freelancer compares with an agency. Every link in every list has been opened
+              and checked, with the date on the page.
             </p>
           </div>
         </section>
