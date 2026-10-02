@@ -581,6 +581,66 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     ],
   },
   {
+    // Added 2026-10-02 (roadmap 320, Phase 2). Split out of
+    // `website-app-development`, which covered web and mobile on one page.
+    //
+    // The measured case for splitting is the strongest on the whole keyword
+    // board: "mobile app development dubai" is **2,400 searches at difficulty
+    // 13**, "mobile app development company dubai" 1,900 at 12, and "android
+    // app development dubai" 260 at **7**. Nothing else combines that volume
+    // with that little competition.
+    //
+    // A page cannot rank for two different searches at once. "Website & App
+    // Development" was aimed at neither "web developer Dubai" nor "mobile app
+    // developer Dubai", so it lost both. The web page keeps its slug and its
+    // ranking history; this one is new.
+    //
+    // "mobile app development company dubai" is deliberately not the target.
+    // Same reason as the SEO agency term in the category below: one person is
+    // not a company, and the site does not claim to be one.
+    slug: "mobile-app-development",
+    title: "Mobile App Development",
+    accent: "violet",
+    headline: "Apps for iOS and Android, built once and marketed by the person who built them",
+    intro:
+      "Most app projects in Dubai fail somewhere other than the code. They ship without analytics, so nobody can say which screen loses people. They launch with no campaign behind them, so the download numbers never arrive. Or they are built as a separate thing from the website and the two never share a user, a login or a number.",
+    metaTitle: "Mobile App Developer in Dubai — Bilal Shafqat",
+    metaDescription:
+      "React Native apps for iOS and Android from a Dubai freelancer, with analytics and the launch campaign built in. Shipped work, not a portfolio of mockups.",
+    faqs: [
+      {
+        question: "Native or React Native?",
+        answer:
+          "React Native for almost everything a business needs: one codebase for iOS and Android, which halves the build and halves the maintenance forever after. Native earns its cost when the app leans on hardware in a way the bridge handles badly, which is rarer than it is claimed to be. The LEOS app on this site is React Native and runs on both stores.",
+      },
+      {
+        question: "How long does an app take?",
+        answer:
+          "A focused app with a clear scope is usually a few months rather than a few weeks, and the build is rarely the long part. Store review, content, and the decisions that get deferred until something is on a screen take longer than people expect. I would rather give you a range after seeing the scope than a number now that we both know is wrong.",
+      },
+      {
+        question: "Do you submit to the App Store and Play Store?",
+        answer:
+          "Yes, under your developer accounts rather than mine. That matters at the end of the relationship: an app published under a supplier's account is one you cannot update without them. The accounts should be yours from the first submission.",
+      },
+      {
+        question: "Can you market the app as well as build it?",
+        answer:
+          "That is the reason to use me rather than a development shop. The tracking goes in during the build instead of being retrofitted, the store listing is written as a conversion page, and the launch campaign is planned against the same funnel. Most apps are built by one supplier and marketed by another, and the join is where the measurement disappears.",
+      },
+      {
+        question: "What happens after launch?",
+        answer:
+          "Apps need maintenance whether or not you plan for it: OS updates break things, store requirements change, and the first month of real usage always reveals something. Budget for it. I will tell you honestly whether that is a retainer with me or a handover to your own team.",
+      },
+    ],
+    items: [
+      { title: "Mobile App Development", pillarSlug: "website-app-development" },
+      { title: "Mobile App Design", pillarSlug: "design-content-conversion" },
+      { title: "Custom Marketing Tools & Calculators", pillarSlug: "website-app-development" },
+    ],
+  },
+  {
     slug: "ui-ux-design",
     title: "UI/UX Design",
     headline: "Interface design judged on how it is used, not how it presents",

@@ -8015,3 +8015,42 @@ revisited.
 Sitemap 92 → 93. `/services` now mentions SEO 13 times where it mentioned it
 none. Search index 253 → 261 chunks. Checks: 93/93 h1, 93/93 schema, 45/45
 search, 57/57 related.
+
+### 326. DONE (2026-10-02) — Mobile app development split out of the web page
+
+The strongest volume-to-difficulty numbers on the whole keyword board:
+
+| Term | Volume | Difficulty |
+| --- | ---: | ---: |
+| mobile app development dubai | **2,400** | **13** |
+| mobile application development dubai | 2,400 | 13 |
+| mobile app development company dubai | 1,900 | 12 |
+| **android app development dubai** | 260 | **7** |
+| mobile app developer Dubai | 720 | 17 |
+
+Nothing else on the list combines that volume with that little competition.
+
+It was all being served by `/services/website-app-development`, titled
+"Website & App Development". **A page cannot rank for two different searches at
+once.** That page was aimed at neither "web developer Dubai" nor "mobile app
+developer Dubai", so it competed for neither.
+
+Now `/services/mobile-app-development`, titled **"Mobile App Developer in
+Dubai"**. The web page keeps its slug and whatever ranking history it has; this
+one is new, so nothing is risked.
+
+**"mobile app development company dubai" (1,900/12) is deliberately not the
+target**, for the same reason "seo agency in dubai" (8,100/17) is not. One
+person is not a company. Two of the three biggest numbers on the board are now
+excluded on the same principle, which is the right trade and should stay made.
+
+The FAQ answers the questions this cluster actually gets: React Native versus
+native, how long it takes, who owns the store accounts — **"under your
+developer accounts rather than mine"**, because an app published under a
+supplier's account cannot be updated without them — and what happens after
+launch.
+
+No collision with the existing `/portfolio/mobile-app-development` discipline
+page; both return 200 and they do different jobs.
+
+Sitemap 93 → 94. Search index 261 → 267 chunks. Checks all pass.
