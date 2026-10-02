@@ -7552,3 +7552,38 @@ this file proved by getting them wrong twice before the check caught it.
 
 Verified by fetching every page in the sitemap: **91 pages, 99 JSON-LD blocks,
 all parse, none contains a raw `<`.**
+
+### 315. DONE (2026-10-02) — Security headers, which the site had none of
+
+Checked the live response during the review. It carried
+`content-security-policy: upgrade-insecure-requests` from Hostinger and nothing
+else, plus `x-powered-by: Next.js`.
+
+| Header | Was | Now |
+| --- | --- | --- |
+| `Strict-Transport-Security` | absent | `max-age=31536000; includeSubDomains` |
+| `X-Content-Type-Options` | absent | `nosniff` |
+| `X-Frame-Options` | absent | `DENY` |
+| `Referrer-Policy` | absent | `strict-origin-when-cross-origin` |
+| `Permissions-Policy` | absent | camera, mic, geolocation, FLoC all denied |
+| `x-powered-by` | **`Next.js`** | **removed** (`poweredByHeader: false`) |
+
+`x-powered-by` is the one worth naming. It tells an attacker which framework is
+running and therefore which advisories to try, which is precisely the situation
+item 313 describes, and it buys nothing.
+
+No HSTS `preload`. That is a one-way door requiring a submission to Chrome's
+list, and it is not worth it here.
+
+The matcher is `/:path*`, deliberately broader than the Cache-Control rule
+below it. Every response wants these headers and none of them collides with a
+route that sets its own caching. Verified: `/about` keeps
+`s-maxage=600, stale-while-revalidate=86400` and `/llms.txt` keeps
+`max-age=3600`, which the over-broad matcher in an earlier version of that rule
+had once silently replaced.
+
+`X-Frame-Options: DENY` stops anyone framing this site. It does not affect the
+Cal.com booking embed, where this site is the parent and Cal is the frame.
+Checked that `/appointment` still renders its "Show available times" button; the
+embed itself is absent from the initial HTML by design, because it is 4.9MB of
+third-party JavaScript loaded only on request.

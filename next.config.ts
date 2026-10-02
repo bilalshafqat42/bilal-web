@@ -33,8 +33,60 @@ const nextConfig: NextConfig = {
    * correct and must not be overwritten — they are the one thing that *should*
    * be cached for a year. API routes set their own headers.
    */
+  /** `x-powered-by: Next.js` on every response, confirmed live on 2026-10-02.
+   *  It tells an attacker which framework and therefore which advisories to try,
+   *  and buys nothing. Off. */
+  poweredByHeader: false,
+
   async headers() {
     return [
+      {
+        // Security headers, site-wide. Checked against the live response on
+        // 2026-10-02, which carried only `content-security-policy:
+        // upgrade-insecure-requests` from Hostinger and none of these.
+        //
+        // This matcher is deliberately `/:path*`, unlike the cache rule below:
+        // every response wants these, including `sitemap.xml` and the static
+        // chunks, and none of them conflicts with a Cache-Control the route
+        // sets for itself.
+        source: "/:path*",
+        headers: [
+          {
+            // Tells a browser to use HTTPS for this host for a year, so a
+            // first request over http cannot be intercepted before the
+            // redirect. Two years is the usual value; one is enough and is
+            // easier to back out of if a subdomain is ever added on http.
+            // No `preload`, which is a one-way door needing a submission to
+            // Chrome's list and is not worth it for this site.
+            key: "Strict-Transport-Security",
+            value: "max-age=31536000; includeSubDomains",
+          },
+          {
+            // Stops a browser guessing a response's type. The classic case is
+            // a user upload served as text/plain and sniffed as HTML.
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            // No third party may frame this site, which removes clickjacking
+            // against the booking and enquiry forms.
+            key: "X-Frame-Options",
+            value: "DENY",
+          },
+          {
+            // Send the full URL within this origin and only the origin to
+            // anyone else, so a query string never leaks across a link out.
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
+          },
+          {
+            // Nothing on the site asks for any of these, so deny them. A
+            // browser then refuses the request outright rather than prompting.
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+          },
+        ],
+      },
       {
         // Page routes only. `[^.]*` excludes anything with a dot in it, which
         // is every file-like path: `sitemap.xml`, `robots.txt`, `llms.txt` and
