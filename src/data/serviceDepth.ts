@@ -16,6 +16,87 @@ export type Faq = { question: string; answer: string };
 type Depth = { blocks: DepthBlock[]; faqs: Faq[] };
 
 export const serviceDepth: Record<string, Depth> = {
+  // Added 2026-10-02. The three categories built this week had no depth entry
+  // and ran 649-797 words against 1,145-1,316 for the established ones. This
+  // file exists because Search Console reported 48 URLs as "Crawled, currently
+  // not indexed" when the category pages averaged 250 words, so shipping three
+  // thin pages and waiting would have repeated a solved problem.
+  //
+  // Mobile first, because the measured numbers make it the most commercially
+  // valuable service on the site: "mobile app developer dubai" 720 searches at
+  // difficulty 16 with a **$113.13 CPC**, "mobile app development dubai" 1,900
+  // at 23 and $92.99, "mobile app development company dubai" 1,600 at 29 and
+  // **$176.83**. Nothing else on the board is close; the web design terms sit
+  // around $8.
+  "mobile-app-development": {
+    blocks: [
+      {
+        heading: "One codebase, two stores, half the maintenance",
+        paragraphs: [
+          "React Native builds iOS and Android from the same code. That halves the build, and it halves every change you make for as long as the app exists, which is the part that matters more. An app is not a project that finishes; it is a thing you keep paying for. Two native codebases means every fix, every OS update and every new screen gets done twice, forever.",
+          "Native earns its cost when an app leans hard on hardware in a way the bridge handles badly, and that is rarer than it is claimed to be. The LEOS app on this site is React Native and runs on both stores. If your requirement genuinely needs native, I will tell you, and I will tell you it costs roughly twice as much to build and to keep.",
+        ],
+      },
+      {
+        heading: "Android is not an afterthought here",
+        paragraphs: [
+          "A lot of UAE app projects are designed on an iPhone and tested on an iPhone, then shipped to an Android audience that is larger. Android devices span a far wider range of screens, OS versions and processing power, and a layout that holds on the newest phone can break on a three-year-old one that half your users carry.",
+          "So Android gets tested on real devices rather than on the one simulator that always passes. Back button behaviour, keyboard handling, deep links and notification permissions all differ, and each is the kind of detail that looks trivial until a user hits it on their first run and never opens the app again.",
+        ],
+      },
+      {
+        heading: "Analytics go in during the build, not after launch",
+        paragraphs: [
+          "The most common thing wrong with an app I inherit is that nobody can say where users stop. There is a download number, a vague sense that engagement is low, and no event data to explain either. Retrofitting that after launch means a release cycle, a store review, and waiting weeks for enough data to mean anything.",
+          "Putting it in during the build costs almost nothing. Screen views, the two or three actions that actually matter for your business, and the drop-off points you already suspect. Then the first month of real usage answers questions instead of raising them, and the second release is aimed at something you measured rather than something you assumed.",
+        ],
+      },
+      {
+        heading: "The store listing is a conversion page",
+        paragraphs: [
+          "Most of the people who see your app never download it, and the decision happens on the store listing in a few seconds. The first two lines of the description, the icon and the first screenshot carry almost all of it. Treating that page as paperwork to be completed at the end is how good apps get bad install rates.",
+          "It is also where the app meets search. App Store and Play Store listings are indexed, and so is the web page you point your campaigns at. Because I run the campaigns as well as build the app, the listing, the landing page and the ads say the same thing, which is harder to achieve than it sounds when three suppliers own the three pieces.",
+        ],
+      },
+      {
+        heading: "The accounts are yours from the first submission",
+        paragraphs: [
+          "Apps get submitted under your Apple Developer and Google Play accounts, not mine. This sounds like a formality and is not: an app published under a supplier's account cannot be updated, transferred or taken down without that supplier, and transferring it afterwards is a process rather than a click.",
+          "The same applies to the analytics property, the push notification service and any backend. You should own every account the app depends on. If a developer resists that, it is worth asking why, because the answer is usually that it makes you harder to leave.",
+        ],
+      },
+      {
+        heading: "What it costs, and what moves the number",
+        paragraphs: [
+          "Project work starts at AED 31,500 and an app is usually well above that, because the scope is wider than a website by definition: two platforms, a backend, store submission, and the review cycle. I would rather give you a range after seeing what the app has to do than a figure now that we both know is a guess.",
+          "What moves it most: whether the app needs its own backend or can use what you already run, how many screens genuinely differ rather than repeat, whether payments are involved, and whether offline use is a requirement. Those four decisions account for most of the difference between a straightforward build and a long one.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can you take over an app someone else built?",
+        answer:
+          "Often, and the first thing I would do is read the code before quoting, because inherited React Native projects vary enormously. Some are clean and a handover takes days. Some are three years of patches on an abandoned version and the honest answer is that rebuilding costs less than maintaining. I will tell you which one you have before you commit to anything.",
+      },
+      {
+        question: "Do I need an app at all, or will a mobile site do?",
+        answer:
+          "A fair question and the answer is often the site. An app earns its cost when you need push notifications, offline use, device hardware, or a genuinely repeat relationship with the same user. If what you need is for your website to work properly on a phone, that is a far cheaper problem and I would rather tell you that than sell you an app.",
+      },
+      {
+        question: "How much does app maintenance cost?",
+        answer:
+          "Budget for it rather than being surprised by it. iOS and Android both ship changes that break things, store requirements shift, and the first months of real usage always surface something. Whether that is a retainer with me or a handover to your own team depends on how much the app changes after launch, and I will be straight about which makes sense.",
+      },
+      {
+        question: "Can you do the launch campaign too?",
+        answer:
+          "That is the reason to use one person rather than a development shop and an agency. The tracking is built in rather than retrofitted, the store listing is written as a conversion page, and the campaign is planned against the same funnel. Most apps are built by one supplier and marketed by another, and the join is exactly where the measurement disappears.",
+      },
+    ],
+  },
+
   "paid-marketing": {
     blocks: [
       {

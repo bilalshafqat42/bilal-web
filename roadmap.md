@@ -8113,3 +8113,63 @@ Sitemap 94 → 95. Search index 267 → 273 chunks. Checks all pass.
 **What remains: Phase 3 is blocked on Bilal** checking Meta, TikTok, Snapchat
 and LinkedIn ad volume, and **Phase 4 is blocked on screenshots.** There is no
 more Phase work that can be done without him.
+
+### 328. DONE (2026-10-02) — Depth for the mobile app page, which the data says is the most valuable service
+
+With all 38 tracked keywords returning data, one cluster is not close to the
+rest:
+
+| Keyword | Volume | **CPC** | Difficulty |
+| --- | ---: | ---: | ---: |
+| mobile app development company dubai | 1,600 | **$176.83** | 29 |
+| mobile app developer dubai | 720 | **$113.13** | **16** |
+| mobile app development dubai | 1,900 | $92.99 | 23 |
+| android app development dubai | 260 | $24.50 | 18 |
+
+CPC is the market pricing a click. Advertisers pay $93-177 for these; the web
+design terms sit around **$8**. `mobile app developer dubai` at 720 searches,
+difficulty 16 and $113 a click is the single best opportunity on the board.
+
+And the page built for it yesterday was the thinnest on the site:
+
+| Page | Words |
+| --- | ---: |
+| paid-marketing | 1,316 |
+| digital-marketing | 1,207 |
+| graphic-design-branding | 1,145 |
+| seo | 797 |
+| **mobile-app-development** | **680** |
+| web-design | 649 |
+
+The three new categories had no `serviceDepth` entry. **That file exists
+because Search Console once reported 48 URLs as "Crawled, currently not
+indexed" when the category pages averaged 250 words.** Shipping three thin
+pages and waiting would have repeated a problem already solved once.
+
+Mobile now 680 → **1,714 words**. Six long-form sections:
+
+- One codebase, two stores, half the maintenance
+- **Android is not an afterthought here** — targets "android app development
+  dubai" (260/18) and the real point that UAE projects get designed on an
+  iPhone for an audience that is mostly not
+- Analytics go in during the build, not after launch
+- The store listing is a conversion page
+- **The accounts are yours from the first submission** — an app published under
+  a supplier's account cannot be updated without them
+- What it costs, and what moves the number
+
+Four more FAQs, including "Do I need an app at all, or will a mobile site do?"
+answered with "often the site", because an app sold to someone who needed a
+better mobile site is a bad engagement whoever bills for it.
+
+Search index 273 → 283 chunks. **SEO and web design still need the same
+treatment** and are the next two jobs.
+
+Also recorded from the same data, against earlier assumptions:
+
+- **`freelance graphic designer dubai` is 390 searches at difficulty 20.** That
+  page had been treated as minor. It is not.
+- **`seo consultant dubai` is 480 at difficulty 29 with a $74.66 CPC**, which
+  justifies the SEO depth entry more than the volume alone did.
+- `seo agency in dubai` is 8,100 at $95.89. Still excluded (item 325), but the
+  scale of what that decision costs is now measured rather than estimated.
