@@ -7698,3 +7698,164 @@ barely exists, on a page that does not compete in search.
 The general point for future tool reports: these are heuristics applied without
 context. Worth reading, worth investigating, not worth automatically obeying.
 In this case the investigation was worth far more than the fix would have been.
+
+## The search plan (2026-10-02) — decided once, items 319 onward
+
+Written to be the single reference, because it has been re-litigated several
+times. Everything here is measured, from Ubersuggest on 2026-10-02 and from the
+site's own Search Console export. Where a number is absent, that is stated
+rather than guessed.
+
+### 319. The evidence the plan rests on
+
+**Head terms are unwinnable and that is now a number, not an opinion.**
+
+| Term | Difficulty | Avg backlinks in top 10 | Avg DA |
+| --- | ---: | ---: | ---: |
+| web design | 60 | **47,700** | 73 |
+| freelance digital marketer dubai | **4** | 23 | 38 |
+| google ads freelancer dubai | **4** | **10** | 48 |
+| how much does a website cost in dubai | 7 | 12 | 51 |
+| digital marketing freelancer dubai | 7 | 19 | 41 |
+| email marketing dubai | 16 | 24 | 46 |
+
+The site has roughly 11 referring domains. 47,700 is not a gap content closes;
+10 to 24 is.
+
+**The competitive set is individual freelancers, not agencies.** Checked live,
+all 200:
+
+```
+sumayyalatheef.com        Digital Marketing Freelancer in Dubai | Sumayya Latheef
+fathimanashath.com        Best Freelance Digital Marketer in Dubai | SEO | SMM | Web
+sajidsulaiman.com         Sajid Sulaiman - Freelance Web Designer & Digital Marketer in…
+atif.ae                   Freelance Web Designer Dubai, Web Developer - Atif Iqbal
+rinshadmuhd.com           Freelance Digital Marketing Expert in Dubai | Rinshad
+therahna.com              Freelance Digital Marketing Specialist in Dubai UAE | Rahna
+nilopherjumi.com          Digital marketing freelancer in dubai | Nilopher Jumi
+designersham.com          UAE's Best Multi-skilled Licensed Freelance Web Designer in Du…
+saadashraf.net            Freelance Web Designer Dubai | Web Developer UAE
+shaheenwebdeveloper.com   Freelance Web Designer Dubai, Best freelance website Developer
+yasirjamal.com            Web Design Dubai | Freelance Web Designer & Developer in Dubai
+adswithmubin.com          Digital Marketing Freelancer in Dubai | Mubin Shaikh
+dmcreativepro.com         Digital Marketing & Web Designer Freelancer in Dubai UAE
+webdesignerdubai.ae       Freelance Web Designer Dubai | Get Custom Websites - Omer Faro…
+```
+
+**Thirteen of thirteen lead with the keyword and put the name second.** This
+site is the only one doing it the other way:
+
+```
+Bilal Shafqat — Digital Marketer & Developer, Dubai
+```
+
+That is the whole of why `sumayyalatheef.com` outranks this site on **six
+backlinks and domain authority 4**. Her page is aimed. This one is not.
+
+### 320. What gets built, and what deliberately does not
+
+**Rejected: the 18 × 4 × 5 matrix.** Eighteen services across four emirates
+across five industries is 360 near-identical pages. That is Google's doorway
+page policy almost word for word, and the penalty lands on the domain rather
+than on the pages. With 57 articles and clean technical SEO already banked, it
+is not a sensible bet.
+
+**Rejected: Sharjah and Ajman pages.** Negligible volume, and no delivered work
+in either emirate. A location page for a place you have never worked is the
+clearest doorway signal there is, and the first thing a sharp client checks.
+Dubai pages already rank for UAE queries.
+
+**Rejected: industry service pages.** "Digital marketing for textile chemicals
+in Dubai", written with no textile client, is a thin page. The same claim
+backed by a Texdale case study is proof. **Industries are covered by case
+studies, not by service pages.**
+
+**Rejected: separate pages per emirate, per industry, or per ad platform
+without measured demand.** See the traffic/proof split in 322.
+
+#### Phase 1 — nine existing pages, aimed (no new URLs, no risk)
+
+| Page | Title becomes |
+| --- | --- |
+| `/` | Freelance Digital Marketer in Dubai — Bilal Shafqat |
+| `/services/digital-marketing` | Freelance Digital Marketing Expert in Dubai — Bilal Shafqat |
+| `/services/paid-marketing` | Freelance Google Ads & Paid Ads Expert in Dubai — Bilal Shafqat |
+| `/services/ui-ux-design` | Freelance Web & App Designer in Dubai — Bilal Shafqat |
+| `/services/website-app-development` | Freelance Web Developer in Dubai — Bilal Shafqat |
+| `/services/email-marketing` | Freelance Email Marketing Manager in Dubai — Bilal Shafqat |
+| `/services/social-media-marketing` | Freelance Social Media Manager in Dubai — Bilal Shafqat |
+| `/services/graphic-design-branding` | Freelance Graphic Designer in Dubai — Bilal Shafqat |
+| `/services/crm-marketing-automation` | Freelance CRM & Automation Consultant in Dubai — Bilal Shafqat |
+
+Two of these currently carry no "Dubai" at all (`paid-marketing`,
+`social-media-marketing`) and none carries "freelance".
+
+Every title is measured against Google's ~600px budget before shipping. The
+September 23 change exists because a 60-character title was truncated by pixel
+width and lost "Dubai"; the replacement for the homepage is **457px against the
+current 461px**, so it adds "Freelance" and gets *narrower*.
+
+#### Phase 2 — three new pages, in this order
+
+| Page | Why | Measured |
+| --- | --- | --- |
+| `/freelance-seo-consultant-dubai` | **Biggest gap.** `/services` does not contain the word "SEO" once | "seo agency in dubai" 8.1K/diff 17; "SEO consultant Dubai" 480/20; "seo consultant in dubai" 140/13 |
+| `/mobile-app-developer-dubai` | Best volume-to-difficulty ratio on the list | "mobile app development dubai" 2.4K/**13**; "android app development dubai" 260/**7** |
+| `/freelance-web-designer-dubai` | Highest measured volume among the freelance terms | 140-170/diff 7-20 |
+
+**"seo agency in dubai" at 8,100 is the largest number on the board and must
+not be targeted.** It is an agency term and this is not an agency. The
+consultant variants are the honest ones.
+
+#### Phase 3 — paid ads hub and spokes
+
+`/services/paid-marketing` becomes a hub with a page per platform. The
+structure is legitimate; the condition is that each page is genuinely distinct.
+**If the same page could be written five times with the platform name swapped,
+it is a doorway network and must not be built.**
+
+| Spoke | Measured volume | Role |
+| --- | --- | --- |
+| Google Ads | **390/diff 9**, plus 170, 170, 140 across variants | **Traffic** |
+| Meta Ads | absent from the data | Proof |
+| TikTok Ads | absent from the data | Proof |
+| Snapchat Ads | absent from the data | Proof |
+| LinkedIn Ads | absent from the data | Proof |
+
+A proof page still earns its place: a prospect clicks "TikTok Ads" to confirm
+the service exists, and an assistant answering "who runs Snapchat ads in Dubai"
+needs something to cite. It simply will not bring visitors, and should not be
+written as though it will.
+
+Blocked on Bilal checking the four absent platforms in Ubersuggest. Any that
+shows real volume moves to the traffic column and is written differently.
+
+#### Phase 4 — case studies
+
+PSI, Texdale, PetsMarket. This is the industry coverage, and the proof layer
+that decides whether a visitor who arrives actually enquires.
+
+### 321. Deliberately excluded keywords
+
+| Term | Why |
+| --- | --- |
+| web design, web developer, digital marketing | 47.7K backlinks in the top 10 |
+| **seo agency in dubai** (8.1K) | Agency term; this is a freelancer. Not an honest claim. |
+| **ui ux designer jobs in dubai** (210) | **Job seekers.** Same trap as "marketing manager". |
+| ui ux jobs dubai, ui ux jobs in dubai (210 each) | Same |
+| freelance sio manager | Not a term. Probably SEO. |
+| freelance geo manager | GEO is real and emerging; volume today is near zero |
+
+### 322. Fixes to the Ubersuggest project itself
+
+Three errors in the setup, found 2026-10-02:
+
+- **Competitors**: all ten selected were agencies (digitalnexa, chainreactionweb,
+  growcombine, socialeyez, trafficdigital, amplifyme, bruceclay, igloodigital,
+  redberries, nomads). Replaced with the fourteen freelancers in item 319.
+- **AI prompts**: all ten slots spent on "UI UX Design Education" and "Digital
+  Design Tutorials" — prompts about enrolling in design courses. **Bilal stopped
+  teaching.** The slots belong on Paid Advertising, Website & App Development and
+  Real Estate Digital Marketing, all of which showed 0 selected.
+- **Tracked keywords**: all 24 showed `—` for both volume and difficulty. The
+  project was tracking twenty-four terms nobody searches.
