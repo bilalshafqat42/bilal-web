@@ -8054,3 +8054,62 @@ No collision with the existing `/portfolio/mobile-app-development` discipline
 page; both return 200 and they do different jobs.
 
 Sitemap 93 → 94. Search index 261 → 267 chunks. Checks all pass.
+
+### 327. DONE (2026-10-02) — Phase 2 complete: web design split out, and two "A & B" titles narrowed
+
+The last Phase 2 item was a web designer page. Building it exposed that the
+same mistake existed twice more.
+
+**One page cannot rank for two different searches.** That is the argument that
+justified splitting mobile out of `website-app-development`, and once stated it
+applies to every title joined by an ampersand:
+
+| Page | Was aimed at | Now |
+| --- | --- | --- |
+| `ui-ux-design` | Freelance Web **&** App Designer — neither | **Freelance UI/UX Designer in Dubai** |
+| `website-app-development` | Freelance Web **&** App Developer — neither | **Freelance Web Developer in Dubai** |
+| `web-design` | did not exist | **Freelance Web Designer in Dubai** |
+
+Both narrowed titles are also smaller: 502 → 456px and 513 → 454px.
+
+Measured for the new page: "freelance web designer dubai" at 140-170 searches
+and difficulty 7-20 **depending on which Ubersuggest report you read**. Worth
+recording that the numbers move between reports — they are estimates, not
+readings, and the plan should not be built on any single one of them.
+
+**The head term "web design" is not the target and never was.** Difficulty 60,
+top ten averaging 47,700 backlinks, against this site's eleven referring
+domains. That number is what started this plan in item 319.
+
+#### Phase 2 is complete
+
+| Page | Target | Measured |
+| --- | --- | --- |
+| `/services/seo` | Freelance SEO Consultant in Dubai | 140/13, 480/20 |
+| `/services/mobile-app-development` | Mobile App Developer in Dubai | 2,400/13, 260/7 |
+| `/services/web-design` | Freelance Web Designer in Dubai | 140-170/7-20 |
+
+Twelve service pages now, each aimed at one search:
+
+```
+Freelance Google Ads & Paid Ads Expert in Dubai
+Freelance SEO Consultant in Dubai
+Freelance Digital Marketing Expert in Dubai
+Freelance Social Media Manager in Dubai
+Freelance Email Marketing Manager in Dubai
+Freelance Web Developer in Dubai
+Mobile App Developer in Dubai
+Freelance UI/UX Designer in Dubai
+Freelance Web Designer in Dubai
+Freelance Graphic Designer in Dubai
+Freelance CRM & Automation Consultant in Dubai
+Freelance Video Editor & CRO Specialist in Dubai
+```
+
+On 29 September not one of these said "freelance" and two did not say "Dubai".
+
+Sitemap 94 → 95. Search index 267 → 273 chunks. Checks all pass.
+
+**What remains: Phase 3 is blocked on Bilal** checking Meta, TikTok, Snapchat
+and LinkedIn ad volume, and **Phase 4 is blocked on screenshots.** There is no
+more Phase work that can be done without him.

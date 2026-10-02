@@ -553,7 +553,11 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "Websites and apps built to support the marketing pointed at them",
     intro:
       "A site that looks good but does not convert is a cost, not an asset. I build on Next.js for speed and search performance, React Native for mobile, and the MERN stack for custom tools, designed from the start around whatever campaigns will be sending traffic to them.",
-    metaTitle: "Freelance Web & App Developer in Dubai — Bilal Shafqat",
+    // Narrowed 2026-10-02, once mobile got its own page in the category above.
+    // "Web & App Developer" carried both and so was aimed at neither, which is
+    // the mistake this whole phase exists to undo. Mobile searches now land on
+    // the mobile page; this one is for "web developer Dubai".
+    metaTitle: "Freelance Web Developer in Dubai — Bilal Shafqat",
     metaDescription:
       "Next.js and WordPress websites, landing pages, cross-platform mobile apps and custom tools, built by a Dubai developer who also runs the campaigns.",
     faqs: [
@@ -646,7 +650,13 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "Interface design judged on how it is used, not how it presents",
     intro:
       "A mockup that wins approval and then confuses users has failed. UI and UX work here covers wireframing, prototyping and interface design for both web and mobile, with each platform's own conventions respected rather than one generic layout stretched across both. Designs hand off cleanly into development because the same person builds them.",
-    metaTitle: "Freelance Web & App Designer in Dubai — Bilal Shafqat",
+    // Narrowed 2026-10-02 from "Freelance Web & App Designer in Dubai". That
+    // title tried to carry web design and product design at once, which is the
+    // same mistake "Website & App Development" made and the reason mobile was
+    // split out in the category above. Web design now has its own page; this
+    // one keeps UI/UX and product work, which is a different search and a
+    // different buyer.
+    metaTitle: "Freelance UI/UX Designer in Dubai — Bilal Shafqat",
     metaDescription:
       "Wireframing, prototyping, web and mobile interface design and design systems, from a Dubai-based freelance designer who also develops the build.",
     faqs: [
@@ -666,6 +676,62 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       { title: "UI/UX Design", pillarSlug: "design-content-conversion" },
       { title: "Web Design", pillarSlug: "design-content-conversion" },
       { title: "Mobile App Design", pillarSlug: "design-content-conversion" },
+    ],
+  },
+  {
+    // Added 2026-10-02 (roadmap 320, Phase 2, final item). Split out of
+    // `ui-ux-design` for the same reason mobile was split out of
+    // `website-app-development`: one page cannot rank for two different
+    // searches, and "Freelance Web & App Designer" was aimed at neither.
+    //
+    // Measured: "freelance web designer dubai" 140-170 searches at difficulty
+    // 7-20 depending on which Ubersuggest report you read, and "web design
+    // freelancer dubai" at difficulty 4. The numbers move between reports,
+    // which is worth knowing — they are estimates, not readings.
+    //
+    // The head term "web design" is **not** the target: difficulty 60, and the
+    // top ten average 47,700 backlinks against this site's eleven referring
+    // domains. That is the number that started this whole plan (roadmap 319).
+    slug: "web-design",
+    title: "Web Design",
+    accent: "gold",
+    headline: "Websites designed around what you need them to do, not around a template",
+    intro:
+      "A website that looks good and converts nobody is a cost. Most of the design decisions that matter here are not visual ones: what the first screen has to say, how few steps stand between interest and an enquiry, and what gets cut. The visual work comes after those, and is much easier once they are settled.",
+    metaTitle: "Freelance Web Designer in Dubai — Bilal Shafqat",
+    metaDescription:
+      "Website and landing page design from a Dubai freelancer who also builds and markets what he designs. Designed around enquiries, not around a template.",
+    faqs: [
+      {
+        question: "Do you design in Figma or straight in code?",
+        answer:
+          "Figma for anything with stakeholders, because changing a decision is cheap there and expensive once it is built. Straight into code for a landing page where the layout is settled and the work is in the detail. I will tell you which one your project is rather than defaulting to the one that bills more hours.",
+      },
+      {
+        question: "Can you design it if someone else builds it?",
+        answer:
+          "Yes, and the handover is where these projects usually lose their quality. I hand over a file a developer can actually build from, with the states, the breakpoints and the edge cases drawn rather than implied. If you want, I will review the build against the design before it goes live.",
+      },
+      {
+        question: "What about WordPress or Wix?",
+        answer:
+          "Both are fine, and for a lot of businesses they are the right answer — you can run the site yourself without calling anyone. The design work does not change much; what changes is how much of it survives the platform. I will say early if what you want is going to fight the tool you have chosen.",
+      },
+      {
+        question: "How is this different from a design agency?",
+        answer:
+          "You work with the person designing it. There is no account manager translating your feedback and no junior doing the work the pitch was won on. The trade is capacity: one person has a ceiling. If you need several designs a week across several brands, an agency is the better answer.",
+      },
+      {
+        question: "Do you do the copy as well?",
+        answer:
+          "I write the structure and the working copy, because layout and words are the same decision — you cannot design a page around content that does not exist yet. If you have a writer or a brand voice, I design to it and say where the structure is fighting the words.",
+      },
+    ],
+    items: [
+      { title: "Web Design", pillarSlug: "design-content-conversion" },
+      { title: "UI/UX Design", pillarSlug: "design-content-conversion" },
+      { title: "Conversion Rate Optimization (CRO)", pillarSlug: "design-content-conversion" },
     ],
   },
   {
