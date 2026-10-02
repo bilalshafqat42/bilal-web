@@ -7587,3 +7587,44 @@ Cal.com booking embed, where this site is the parent and Cal is the frame.
 Checked that `/appointment` still renders its "Show available times" button; the
 embed itself is absent from the initial HTML by design, because it is 4.9MB of
 third-party JavaScript loaded only on request.
+
+### 316. MEASURED (2026-10-02) — Performance, and a measurement that nearly fooled me
+
+Live, from Dubai, five routes at 1440px:
+
+| Route | LCP | CLS | HTML |
+| --- | ---: | ---: | ---: |
+| `/` | 2,708ms | 0.0001 | 216KB |
+| `/blog` | 2,712ms | 0 | 97KB |
+| `/how-much-does-a-website-cost-in-dubai` | **1,184ms** | 0 | 103KB |
+| `/services/ui-ux-design` | **1,204ms** | 0 | 140KB |
+| `/portfolio/leos-developments` | **1,208ms** | 0 | 138KB |
+
+**CLS is zero or near it on every page**, which is the metric most sites fail.
+Articles, services and case studies are comfortably inside the 2.5s LCP bar.
+The homepage and `/blog` sit just over it.
+
+**The near-miss is worth recording.** Playwright reported TTFB of 262-285ms,
+against the 937-1,027ms in item 279, and the obvious conclusion was that the
+origin problem had resolved itself. It has not.
+
+`performance.getEntriesByType("navigation")` measures
+`responseStart - requestStart`, which **starts after the connection is
+established**. It excludes DNS, TCP and TLS. curl measures from the beginning:
+
+```
+connect  = 0.252s
+ttfb     = 0.775s   (five samples, 0.768 - 0.780, all cache HIT)
+total    = 1.44s
+```
+
+So roughly **250ms of connection** plus **520ms of server time**, and the real
+figure is ~775ms rather than 270ms. Item 279 stands.
+
+Two different tools, two defensible definitions of "TTFB", a threefold
+difference, and the flattering one was the one that confirmed what I wanted to
+believe. The check that caught it was running a second tool rather than
+re-running the first.
+
+The ~250ms connection portion is the part the free Hostinger datacenter move
+would remove. The ~520ms of server time is separate and would not change.
