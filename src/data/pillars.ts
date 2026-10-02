@@ -608,7 +608,12 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "Apps for iOS and Android, built once and marketed by the person who built them",
     intro:
       "Most app projects in Dubai fail somewhere other than the code. They ship without analytics, so nobody can say which screen loses people. They launch with no campaign behind them, so the download numbers never arrive. Or they are built as a separate thing from the website and the two never share a user, a login or a number.",
-    metaTitle: "Mobile App Developer in Dubai — Bilal Shafqat",
+    // "Freelance" added 2026-10-02 at Bilal's request, for consistency with the
+    // other eleven. It costs 95px (418 → 513, still inside the ~600 budget) and
+    // keeps "Mobile App Developer in Dubai" intact as a phrase, so the match for
+    // the measured term is unaffected. The word is also the one that makes these
+    // terms winnable at all — agencies will not use it (roadmap 319).
+    metaTitle: "Freelance Mobile App Developer in Dubai — Bilal Shafqat",
     metaDescription:
       "React Native apps for iOS and Android from a Dubai freelancer, with analytics and the launch campaign built in. Shipped work, not a portfolio of mockups.",
     faqs: [
