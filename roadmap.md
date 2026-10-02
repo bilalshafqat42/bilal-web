@@ -8173,3 +8173,48 @@ Also recorded from the same data, against earlier assumptions:
   justifies the SEO depth entry more than the volume alone did.
 - `seo agency in dubai` is 8,100 at $95.89. Still excluded (item 325), but the
   scale of what that decision costs is now measured rather than estimated.
+
+### 329. DONE (2026-10-02) — SEO and web design brought up to depth (Phase 2 fully finished)
+
+The last two of the three new categories. All six service pages built or
+touched this week now carry long-form content:
+
+| Page | Was | Now |
+| --- | ---: | ---: |
+| mobile-app-development | 680 | **1,714** |
+| seo | 797 | **1,812** |
+| web-design | 649 | **1,439** |
+| *(established, for comparison)* | | 1,145-1,316 |
+
+**SEO** covers the technical work first, how different Dubai local search is
+when an AI overview and a three-slot local pack sit above organic, "winnable is
+a number not an opinion" using this site's own 47,700-versus-ten figures as the
+worked example, reporting against enquiries, AI search, and a section titled
+**what I will not promise** — no number-one guarantees, and an explicit note
+that one person has a capacity ceiling where an agency does not.
+
+**Web design** covers the decisions that are not visual, designing narrow
+first, speed as a design decision rather than a tuning exercise, the enquiry
+rather than the template, and what the client owns at handover. The last FAQ
+answers "will a redesign help my rankings" with **"not automatically, and done
+carelessly it makes it worse"**, citing this site's own URL migration as the
+example rather than a hypothetical.
+
+#### The check earned its place again
+
+`search-check` failed on the noise fixture **"cheap flights"**, which matched a
+new heading: *"The technical work comes first, and it is usually the cheap
+part"*.
+
+That is the fixture working exactly as designed — a nonsense query returning a
+result means the index has become too loose. The heading now reads "the
+smallest part", which is better writing anyway.
+
+Worth noting what caught it. Not a human reading the page, and not the build:
+one noise fixture among 45, added months ago for a different reason, flagged a
+single adjective in 3,000 words of new copy.
+
+Search index 283 → 302 chunks. All five checks pass.
+
+**Phase 2 is now complete in substance as well as in structure.** Phase 3 is
+blocked on the four ad platform volumes; Phase 4 on screenshots.

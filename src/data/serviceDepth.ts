@@ -28,6 +28,156 @@ export const serviceDepth: Record<string, Depth> = {
   // at 23 and $92.99, "mobile app development company dubai" 1,600 at 29 and
   // **$176.83**. Nothing else on the board is close; the web design terms sit
   // around $8.
+  // Added 2026-10-02, same reason as mobile above: 797 words against 1,145 to
+  // 1,316 on the established pages, and this file exists because Google
+  // declined to index 48 thin pages here once already.
+  //
+  // Measured: "seo consultant dubai" 480 searches at difficulty 29 with a
+  // **$74.66 CPC**, "seo consultant in dubai" 140 at 13, and the long-tail
+  // "freelance seo consultant dubai" showing 0 volume at difficulty 4 — which
+  // means below Ubersuggest's measurement floor rather than no demand.
+  //
+  // "seo agency in dubai" is 8,100 at $95.89 and stays excluded (item 325).
+  "seo": {
+    blocks: [
+      {
+        heading: "The technical work comes first, and it is usually the smallest part",
+        paragraphs: [
+          "Most sites I audit are not held back by keywords. They are held back by things underneath: pages a crawler cannot read properly, titles that describe the company instead of the search, headings that run two words together, structured data that is absent or broken, and a server that takes a second to answer before anything else can start.",
+          "None of that is glamorous and most of it is a few days of work. It is also the part that has to be right before content can do anything, because a page Google struggles to read will not rank however well it is written. I would rather find a technical problem and fix it in a week than sell you six months of content on a site that cannot carry it.",
+        ],
+      },
+      {
+        heading: "Local search in Dubai is a different game",
+        paragraphs: [
+          "For most commercial searches here, the first thing on the page is not an organic result. It is an AI overview, then a local pack of three businesses, then People Also Ask. Organic position one can be the sixth thing a person sees, and on some terms nearly half of searchers click nothing at all.",
+          "That changes what is worth chasing. A term where the local pack dominates is won through a Google Business Profile and reviews rather than through content, and no amount of writing will get you above it. Part of the job is telling you which of your terms are like that, because funding a year of content for a page you cannot reach is the most expensive mistake in this field.",
+        ],
+      },
+      {
+        heading: "Winnable is a number, not an opinion",
+        paragraphs: [
+          "Before writing anything I want two figures for each target: how many backlinks the current top ten carry, and what is already occupying the first page. Those decide whether content can win the term at all. A term where the top ten average forty thousand backlinks is not a content problem, it is a different sport.",
+          "This site is the worked example. The head term for its own field has a top ten averaging 47,700 backlinks; the qualified version of the same term has ten to twenty-four. Same service, same city, and the difference between a year of wasted writing and a reachable page is one word in the search.",
+        ],
+      },
+      {
+        heading: "Reported against enquiries, not rankings",
+        paragraphs: [
+          "Rankings move for reasons that have nothing to do with you, and a report full of green arrows next to terms nobody searches is the oldest trick in this industry. Before work starts I want conversion tracking firing on a real enquiry and leads landing in your CRM with their source attached. Without that, neither of us can tell SEO from luck.",
+          "What you should get monthly is which queries produced enquiries, which pages those people landed on, and what changed. Position is a diagnostic in that report, not the headline.",
+        ],
+      },
+      {
+        heading: "AI search is becoming a separate problem",
+        paragraphs: [
+          "Being quoted inside ChatGPT, Gemini or a Google AI Overview is not the same as ranking below one, and the work is not identical. It rewards structured data an assistant can parse, claims specific enough to be checkable, and content organised around questions rather than around keyword density.",
+          "The search volume for the term itself is still near zero, so this is not something to buy as a product yet. It is something to build into the work: the structured data, the answer-shaped content and the crawler access that make a page citable cost almost nothing extra when done alongside everything else.",
+        ],
+      },
+      {
+        heading: "What I will not promise",
+        paragraphs: [
+          "Number one on a term you name, by a date. Anyone offering that is either describing a search nobody uses or has not checked who they would have to displace. What I will give you before any money moves is an honest read on which of your terms are reachable, which need paid instead, and roughly how long the reachable ones take.",
+          "I am also one person rather than an agency, which is a real limit as well as a real advantage. You get the work done by someone with fifteen years behind it instead of by a junior under an account manager. You get one person's capacity. If you need six deliverables a week across several channels, an agency is genuinely the better answer and I will say so on the call.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Will you need access to my site to do this?",
+        answer:
+          "Yes, and the level depends on the platform. For WordPress an admin login; for a custom build, access to the repository or a developer I can hand specific changes to. I will also want Search Console and Analytics access, which are read-only and the two places the actual answers live. If you do not have Search Console set up, that is the first thing we do and it is free.",
+      },
+      {
+        question: "Do you write the content as well?",
+        answer:
+          "Yes, and for most sites that is where the time goes once the technical work is done. If you have a writer, I give them the brief: the query, the questions to answer, the competing pages and what they miss. That usually produces better work than me writing in a voice that is not yours.",
+      },
+      {
+        question: "What if my competitors have thousands of backlinks?",
+        answer:
+          "Then that term is not winnable with content and I will tell you early. But it is worth checking rather than assuming, because the qualified versions of the same search are often held by sites with almost none. A competitor of mine ranks first for a term in this market on six backlinks. Volume and authority are far less correlated here than people expect.",
+      },
+      {
+        question: "How is this different from what an SEO agency does?",
+        answer:
+          "In the deliverables, often not much. In who does them, entirely. The audit, the fixes and the writing are done by the person you briefed. The trade is capacity and continuity: one person has a ceiling and takes holidays. Decide which of those two things your situation needs more.",
+      },
+    ],
+  },
+
+  // Added 2026-10-02. 649 words, the thinnest of the three new categories.
+  //
+  // Measured: "freelance web designer dubai" 170 searches at difficulty 20 with
+  // an **$8.37 CPC** — real demand, and notably the cheapest clicks of any
+  // service here, which is worth knowing when deciding where to spend effort.
+  // "web design freelancer dubai" shows 0 at difficulty 4.
+  //
+  // The head term "web design" is not a target: difficulty 60, top ten
+  // averaging 47,700 backlinks (roadmap 319).
+  "web-design": {
+    blocks: [
+      {
+        heading: "The decisions that matter are not visual ones",
+        paragraphs: [
+          "What the first screen has to say, how few steps stand between interest and an enquiry, what gets cut: those settle how a site performs, and they are mostly made before anything is drawn. A page that looks excellent and buries the one thing a visitor came for is a cost, not an asset, and no amount of visual craft rescues it.",
+          "So the early conversation is about who lands on each page, what they already know, and what you want them to do next. The visual work comes after, and it is much faster once those are agreed. Starting with the look is how projects end up with six rounds of revisions that are really arguments about strategy.",
+        ],
+      },
+      {
+        heading: "Designed on a phone, because that is where the visitors are",
+        paragraphs: [
+          "Most traffic in this market arrives on a phone, usually from an ad or a social post, often on a connection that is not the office wifi. A design signed off on a 27-inch monitor and squeezed down afterwards tends to produce a phone layout nobody chose: the hero crops badly, the form is below three screens of scrolling, and the call button is where a thumb cannot reach.",
+          "Designing the narrow layout first forces the hard choices early, which is exactly why it works. If something does not earn its place on a phone, it rarely earns it on a desktop either.",
+        ],
+      },
+      {
+        heading: "Speed is a design decision before it is a technical one",
+        paragraphs: [
+          "Most slow sites are slow because of what was designed into them: a full-screen video header, a carousel of uncompressed photographs, four webfonts, and a stack of third-party scripts each loading on every page. Those are choices made in the design, and no amount of optimisation afterwards fully undoes them.",
+          "This site runs 100 on both desktop and mobile in Lighthouse, with layout shift at zero. That is not a tuning achievement, it is the result of deciding early what the page does not need to load.",
+        ],
+      },
+      {
+        heading: "Designed around the enquiry, not around the template",
+        paragraphs: [
+          "A template decides the shape of your page before anyone has asked what it is for, and the result usually reads like every other site using it. That is fine for a brochure and expensive for a page you are sending paid traffic to, where the gap between a good layout and an adequate one shows up directly in cost per enquiry.",
+          "The part most sites get wrong is the ask. One clear action per page, repeated where a reader is actually ready rather than only at the bottom, and a form that requests the minimum. Every extra field costs you completions, and most forms collect three things nobody ever reads.",
+        ],
+      },
+      {
+        heading: "Handover, and what you own",
+        paragraphs: [
+          "If someone else builds what I design, the handover is where quality usually leaks. A file a developer can build from has the states drawn rather than implied: hover, focus, error, empty, loading, and the breakpoints between. Without those, a developer invents them, and the result is a site that resembles the design rather than matching it.",
+          "You own the design files, the domain and the hosting account, regardless of who builds it. That sounds like a formality until the relationship ends and you discover the site is somewhere you cannot reach.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can you redesign without rebuilding everything?",
+        answer:
+          "Often, yes, and it is usually the better value. Many sites need the homepage, the main service page and the enquiry flow rather than all forty pages. I would rather fix the three that carry the traffic than quote a full rebuild you do not need.",
+      },
+      {
+        question: "Do you work with my developer?",
+        answer:
+          "Yes. I hand over a file they can build from and, if you want, review the build against the design before launch. That review is worth more than it sounds: it is where the small differences that add up get caught, while they are still cheap to fix.",
+      },
+      {
+        question: "How many revisions do I get?",
+        answer:
+          "Enough to get it right, and the honest answer is that rounds are a symptom rather than a unit. Projects that need six usually did not settle the strategy before the design started. If we agree who the page is for and what it has to do first, the visual revisions are normally small and few.",
+      },
+      {
+        question: "Will my site rank better after a redesign?",
+        answer:
+          "Not automatically, and a redesign done carelessly makes it worse. The usual damage is URLs changing without redirects, which throws away whatever ranking history those pages had. This site had to repair exactly that after a migration, so it is not a theoretical risk. Keep the URLs, or redirect every one of them.",
+      },
+    ],
+  },
+
   "mobile-app-development": {
     blocks: [
       {
