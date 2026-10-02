@@ -7962,3 +7962,56 @@ through in item 318: the URL does not contain the target keyword. `/blog` being
 flagged for this is the clearest sign the check lacks context — it is the
 conventional URL for a blog index and changing it would cost more than it could
 possibly return.
+
+### 325. DONE (2026-10-02) — Phase 2 begins: SEO was missing from the site entirely
+
+The plan called for a new SEO page. Looking for where to put it found something
+worse than a missing page.
+
+| Checked | Result |
+| --- | --- |
+| "SEO" on `/services` | **0 mentions** |
+| An SEO section anywhere in `pillars.ts` | **none existed** |
+| A service category for it | **none** |
+
+So the site did not under-describe SEO. It did not describe it at all, for a
+service Bilal delivers, against measured demand: "seo consultant in dubai" at
+140 searches and difficulty **13**, "SEO consultant Dubai" at 480 and 20.
+
+Built as a **category rather than a standalone page**, which is the difference
+between a page that exists and a page that is connected. A category appears in
+the mega menu, on the `/services` hub and in the internal link graph
+automatically. A standalone page would have needed every one of those added by
+hand and would have drifted.
+
+Two new sections on the marketing pillar:
+
+- **Search Engine Optimisation (SEO)** — technical audit, research mapped to
+  pages, on-page, local, and reporting against enquiries
+- **Generative Engine Optimisation (GEO)** — being quoted inside AI answers
+  rather than ranking below them
+
+GEO is included for a reason worth stating: **the term's own search volume is
+near zero**, which is why item 321 excluded "freelance geo manager" as a
+keyword. But this site already records AI assistants opening its pages because
+someone asked a question. It is a real service with no search demand yet, which
+makes it a section rather than a page.
+
+#### The agency line, held
+
+"seo agency in dubai" is **8,100 searches at difficulty 17** — the largest
+number on the entire keyword board and three times the next one.
+
+**It stays excluded.** Bilal is one person without a trade licence. Calling the
+site an agency would be a false statement about what a client is buying, and it
+would be the second claim this week that a competitor can make honestly and
+this site cannot — "Licensed" being the first. The page says "one person, not
+an agency" in its own meta description and answers "Are you an SEO agency?"
+with "No", including when an agency is the better answer.
+
+Giving up 8,100 searches for that is the correct trade and should not be
+revisited.
+
+Sitemap 92 → 93. `/services` now mentions SEO 13 times where it mentioned it
+none. Search index 253 → 261 chunks. Checks: 93/93 h1, 93/93 schema, 45/45
+search, 57/57 related.

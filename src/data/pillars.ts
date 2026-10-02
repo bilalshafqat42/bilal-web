@@ -98,6 +98,36 @@ export const pillars: Pillar[] = [
         bullets: ["Landing pages & lead capture forms", "Gated content & lead magnets", "Lead qualification & CRM handoff"],
       },
       {
+        // Added 2026-10-02. SEO was the largest gap on the site: the word did
+        // not appear once on /services, there was no section for it anywhere in
+        // this file, and "seo consultant in dubai" shows 140 searches at
+        // difficulty 13 with "SEO consultant Dubai" at 480/20. The site was
+        // invisible for a service it actually delivers.
+        //
+        // It sits under this pillar rather than its own because the pillar is
+        // really "marketing" despite its name — it already holds Demand
+        // Generation, Lead Generation, Email and WhatsApp.
+        title: "Search Engine Optimisation (SEO)",
+        body: "Technical SEO, content structure and the measurement behind both. Most sites here are not held back by keywords but by the things underneath them: pages search engines cannot read properly, titles that describe the business instead of the search, and no way to tell which rankings produced an enquiry.",
+        bullets: [
+          "Technical audit: crawling, indexing, Core Web Vitals, structured data",
+          "Keyword and competitor research, mapped to pages rather than to a list",
+          "On-page work: titles, headings, internal linking, schema",
+          "Local SEO for Dubai and UAE search",
+          "Reporting against enquiries rather than rankings",
+        ],
+      },
+      {
+        title: "Generative Engine Optimisation (GEO)",
+        body: "Being quoted by ChatGPT, Gemini and Google's AI Overviews is becoming a separate problem from ranking, and the answer is not the same work. It depends on structured data an assistant can parse, clear and checkable claims, and content organised around questions rather than keywords.",
+        bullets: [
+          "Structured data an assistant can read and cite",
+          "Content written as answers to real questions",
+          "llms.txt and crawler access for AI agents",
+          "Tracking which pages assistants actually open",
+        ],
+      },
+      {
         title: "Email Marketing",
         body: "Email sequences and campaigns that follow up on leads and keep past clients engaged, tied into the same CRM and automation setup.",
         bullets: ["Welcome & nurture sequences", "Campaign design & copy", "List segmentation"],
@@ -639,6 +669,61 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       { title: "Marketing Automation Workflows", pillarSlug: "crm-marketing-automation" },
       { title: "Performance Marketing & Optimisation", pillarSlug: "paid-marketing" },
       { title: "Growth Marketing", pillarSlug: "crm-marketing-automation" },
+    ],
+  },
+  {
+    // Added 2026-10-02 (roadmap 320, Phase 2). The largest gap measured: the
+    // word "SEO" appeared nowhere on /services, no section for it existed in
+    // this file, and the site therefore could not rank for a service it
+    // delivers. "seo consultant in dubai" is 140 searches at difficulty 13;
+    // "SEO consultant Dubai" is 480 at 20.
+    //
+    // **Consultant, not agency.** "seo agency in dubai" is 8,100 searches at
+    // difficulty 17 and is the largest number on the whole keyword board. It is
+    // also a term this site must not claim: Bilal is one person without a trade
+    // licence, and calling himself an agency would be a false statement about
+    // what a client is buying. The consultant variants are the honest ones and
+    // they are winnable.
+    slug: "seo",
+    title: "SEO & AI Search",
+    accent: "cyan",
+    headline: "Found by search engines, and quoted by the assistants replacing them",
+    intro:
+      "Two things have to be true for search to bring you work. The pages have to be readable by a crawler and aimed at what someone actually types, and the result has to be worth clicking when it appears. Most sites in Dubai fail the second long before the first: they rank for the company name, which only people who already know them ever search.",
+    metaTitle: "Freelance SEO Consultant in Dubai — Bilal Shafqat",
+    metaDescription:
+      "Technical SEO, local search and AI visibility from a Dubai freelancer. Measured against enquiries rather than rankings. One person, not an agency.",
+    faqs: [
+      {
+        question: "Can you get me to number one?",
+        answer:
+          "Nobody can promise that, and anyone who does is describing a search term nobody uses. What I can tell you before we start is whether a term is winnable: the number of backlinks the current top ten carry, and whether the first page is already taken by portals and AI answers. For some terms the honest answer is that paid is your only route onto page one, and it is better to know that before you fund a year of content.",
+      },
+      {
+        question: "How long does SEO take in Dubai?",
+        answer:
+          "For a new site on a competitive commercial term, plan on six to twelve months. For long, specific, lower-competition phrases, sometimes weeks. The variable is not effort, it is how much authority the pages above you already have.",
+      },
+      {
+        question: "Are you an SEO agency?",
+        answer:
+          "No, and the distinction matters when you compare quotes. I am one person. You get the work done by someone with fifteen years behind it rather than by a junior under an account manager, and you get one person's capacity rather than a team's. If you need six deliverables a week across several channels, an agency is genuinely the better answer and I will say so.",
+      },
+      {
+        question: "What is GEO and do I need it?",
+        answer:
+          "Generative Engine Optimisation: being quoted inside ChatGPT, Gemini and Google's AI Overviews rather than ranking below them. It is early, the search volume for the term itself is near zero, and it is already affecting results — this site gets AI assistants opening its pages because someone asked a question. The work overlaps with good SEO but is not identical: it rewards structured data and clear, checkable claims over keyword placement.",
+      },
+      {
+        question: "How will I know it worked?",
+        answer:
+          "Enquiries, not rankings. Rankings are a diagnostic and they move for reasons that have nothing to do with you. Before any work starts I want conversion tracking firing on a real enquiry and leads landing in your CRM with their source attached, because without that neither of us can tell SEO from luck.",
+      },
+    ],
+    items: [
+      { title: "Search Engine Optimisation (SEO)", pillarSlug: "paid-marketing" },
+      { title: "Generative Engine Optimisation (GEO)", pillarSlug: "paid-marketing" },
+      { title: "Demand Generation", pillarSlug: "paid-marketing" },
     ],
   },
   {
