@@ -102,7 +102,7 @@ export default function Results() {
                 Results &amp; Impact
               </span>
               <h2 className="t-h2 mt-5 text-ink">
-                Numbers first.
+                Numbers first.{" "}
                 <br />
                 Opinions second.
               </h2>

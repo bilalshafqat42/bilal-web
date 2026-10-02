@@ -41,7 +41,7 @@ export default function CapabilityLedger() {
 
         <div className="mt-7 grid grid-cols-1 gap-8 lg:grid-cols-[1.35fr_1fr] lg:items-start lg:gap-16">
           <h2 className="t-h2 text-ink">
-            Four disciplines.
+            Four disciplines.{" "}
             <br />
             One{" "}
             <span className="bg-gradient-to-r from-[#f8dd8f] via-gold to-gold-2 bg-clip-text text-transparent">

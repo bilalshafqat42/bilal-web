@@ -198,8 +198,16 @@ export default function AppointmentPage() {
                   the intro above the h1, so its title was the third thing read
                   both visually and in the DOM — the only page on the site that
                   did (roadmap 213.37). */}
+              {/* `{" "}` before the break, which looks redundant and is not. A
+                  `<br>` ends a line and contributes no character, so the h1's
+                  text content read "Let\u2019s talk aboutwhat you need" — which
+                  is what a screen reader announced and what Google read as the
+                  heading. Visually nothing changes: the break still breaks and
+                  the trailing space collapses. Found 2026-10-02 via an
+                  Ubersuggest flag on this page that was about something else
+                  entirely. */}
               <h1 className="t-h1 mt-7 text-ink">
-                Let&apos;s talk about
+                Let&apos;s talk about{" "}
                 <br />
                 <span className="text-gradient">what you need</span>
               </h1>

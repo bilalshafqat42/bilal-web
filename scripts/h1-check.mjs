@@ -1,5 +1,6 @@
 /**
- * Asserts that every route in the sitemap has exactly one non-empty <h1>.
+ * Asserts that every route in the sitemap has exactly one non-empty <h1>, and
+ * that no heading loses a word boundary at a line break.
  *
  * This exists because /process shipped with none. `SectionHeading` renders an
  * `h2` by default, so any page whose only heading comes from that component has
@@ -10,6 +11,20 @@
  * Routes come from the sitemap rather than a hard-coded list, so a new page is
  * covered the moment it becomes discoverable — which is exactly when it starts
  * to matter.
+ *
+ * The second assertion was added 2026-10-02. `/appointment` rendered
+ *
+ *     Let's talk about<br /><span>what you need</span>
+ *
+ * which looks right and reads "Let's talk aboutwhat you need": a `<br>` ends a
+ * line and contributes no character, so the two words ran together in the text
+ * content. That is what a screen reader announces and what a search engine
+ * reads as the heading, and nothing about the rendered page shows it. It
+ * surfaced only because an unrelated SEO-tool flag sent me to look at that URL.
+ *
+ * The test compares the heading's text with the same heading as it would read
+ * if every `<br>` were a space. If those differ, the markup implies a boundary
+ * the DOM does not have.
  *
  * No browser. Every page here is server-rendered, so the heading is in the
  * initial HTML and a fetch is enough.
@@ -74,6 +89,17 @@ for (const path of paths) {
   if (found.length === 0) failures.push([path, "no <h1>"]);
   else if (found.length > 1) failures.push([path, `${found.length} <h1> elements: ${found.join(" | ").slice(0, 90)}`]);
   else if (!found[0]) failures.push([path, "<h1> is empty"]);
+
+  // h1, h2 and h3: a `<br>` between two words joins them in the text content.
+  for (const m of html.matchAll(/<(h[1-3])\b[^>]*>([\s\S]*?)<\/\1>/gi)) {
+    const raw = m[2];
+    if (!/<br\b/i.test(raw)) continue;
+    const asRead = textOf(raw);
+    const asWritten = textOf(raw.replace(/<br\s*\/?>/gi, " "));
+    if (asRead !== asWritten) {
+      failures.push([path, `<${m[1]}> loses a space at a <br>: "${asRead.slice(0, 60)}"`]);
+    }
+  }
 }
 
 if (failures.length) {

@@ -7628,3 +7628,73 @@ re-running the first.
 
 The ~250ms connection portion is the part the free Hostinger datacenter move
 would remove. The ~520ms of server time is separate and would not change.
+
+### 317. DONE (2026-10-02) — Four headings ran two words together, found via an unrelated flag
+
+Ubersuggest flagged `/appointment` with "poorly formatted URL for SEO", failing
+only its **keywords check**: the URL does not contain the page's target
+keyword. That flag is not worth acting on, and the reasoning is in item 318.
+
+Opening the page to check turned up something that was:
+
+```
+Let&apos;s talk about
+<br />
+<span className="text-gradient">what you need</span>
+```
+
+The `h1`'s text content read **"Let's talk aboutwhat you need"**. JSX strips
+whitespace containing a newline, and a `<br>` ends a line without contributing a
+character, so the two words joined. That is what a screen reader announces and
+what a crawler reads as the heading. Nothing about the rendered page shows it,
+because the line break is still there visually.
+
+`h1-check` now compares each `h1`, `h2` and `h3`'s text against the same
+heading with every `<br>` replaced by a space. If they differ, the markup
+implies a word boundary the DOM does not have.
+
+It found three more immediately, all on the homepage, all shipped:
+
+| Page | Read as | Should read |
+| --- | --- | --- |
+| `/appointment` | "Let's talk aboutwhat you need" | "Let's talk about what you need" |
+| `/` h1 | "One senior partner.Campaign to code." | "One senior partner. Campaign to code." |
+| `/` h2 | "Four disciplines.One point of contact." | "Four disciplines. One point of contact." |
+| `/` h2 | "Numbers first.Opinions second." | "Numbers first. Opinions second." |
+
+**The homepage `h1` is the one that matters.** It is the strongest heading on
+the site, on the page that ranks 4.9 for the brand term.
+
+All four fixed with `{" "}` before the break. Nothing moves visually: the break
+still breaks and the trailing space collapses.
+
+Worth noting how this was found. Four shipped defects, on the highest-value
+page on the site, invisible to the build, to lint, to five existing checks and
+to every screenshot — surfaced by following up a third-party flag that was
+itself about something else and not worth fixing.
+
+### 318. NOT A BUG (2026-10-02) — The Ubersuggest URL flag on /appointment
+
+The check that fails is "does this URL contain the page's target keyword".
+`/appointment` does not contain "book", "consultation" or "Dubai".
+
+Not acting on it, for three reasons.
+
+**It earns no search traffic by design.** `/appointment` appears nowhere in the
+ranking tables. Its only presence in the snapshot is 5 AI answer fetches. It is
+a conversion page reached from 22 internal links and from the primary CTA on
+every page, not a page anyone searches for.
+
+**Keywords in the URL are among the weakest signals there are.** The page
+already carries the keywords where they count: the title is "Book a Free
+30-Minute Call — Bilal Shafqat, Dubai" and the description names Dubai and the
+services.
+
+**The change costs more than it returns.** Renaming to
+`/book-a-consultation-dubai` means a 301, updating 22 internal links, and
+re-earning whatever equity the current URL holds — to improve a signal that
+barely exists, on a page that does not compete in search.
+
+The general point for future tool reports: these are heuristics applied without
+context. Worth reading, worth investigating, not worth automatically obeying.
+In this case the investigation was worth far more than the fix would have been.
