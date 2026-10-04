@@ -1,5 +1,390 @@
 [
   {
+    "slug": "questions-to-ask-a-web-developer-before-hiring",
+    "title": "Questions to Ask a Web Developer Before You Hire Them",
+    "metaTitle": "Questions to Ask a Web Developer Before Hiring",
+    "description": "Twelve questions that separate a developer who will leave you with a working asset from one who leaves you dependent, with the answers to listen for.",
+    "published": "2026-10-04",
+    "tags": [
+      "Dubai",
+      "Web Development",
+      "Pricing"
+    ],
+    "blocks": [
+      {
+        "t": "p",
+        "v": "Most people hiring a developer ask about price and timeline, get two numbers, and pick the better pair. Both numbers are usually wrong, and neither tells you the thing that actually matters: whether you will end up owning a working asset or renting one from somebody you cannot leave."
+      },
+      {
+        "t": "p",
+        "v": "These are the questions worth asking instead. I have put the answer to listen for under each, including where the honest answer is not the one that wins the pitch."
+      },
+      {
+        "t": "h2",
+        "v": "Ownership, and this is the one people skip"
+      },
+      {
+        "t": "h3",
+        "v": "1. Who owns the code when we are finished?"
+      },
+      {
+        "t": "p",
+        "v": "You should. Get it in writing. A surprising number of arrangements leave the code with the developer and the client with a licence to use it, which means every future change has to go through the same person at whatever price they name."
+      },
+      {
+        "t": "h3",
+        "v": "2. Whose account is the hosting in, and whose is the domain?"
+      },
+      {
+        "t": "p",
+        "v": "Yours, both of them. This is the single most common way businesses get trapped. If your domain is registered to an agency and the relationship ends badly, recovering it ranges from tedious to impossible. Register it yourself, today, before the project starts."
+      },
+      {
+        "t": "h3",
+        "v": "3. Will I have the design files?"
+      },
+      {
+        "t": "p",
+        "v": "Yes, and they should be organised enough for another designer to continue from. A handover that is a folder of flattened images is not a handover."
+      },
+      {
+        "t": "h2",
+        "v": "How you will know it worked"
+      },
+      {
+        "t": "h3",
+        "v": "4. Will analytics and conversion tracking be set up before launch?"
+      },
+      {
+        "t": "p",
+        "v": "If the answer is \"we can add that later\", you are being told it is not part of the quote. Later means after you have spent money driving traffic you cannot measure. Tracking belongs in the build."
+      },
+      {
+        "t": "h3",
+        "v": "5. What counts as a conversion, and how will it be recorded?"
+      },
+      {
+        "t": "p",
+        "v": "A real enquiry, not a page view and not a button click. A developer who has thought about this will ask you what a lead is worth and where it goes afterwards. One who has not will talk about traffic."
+      },
+      {
+        "t": "h3",
+        "v": "6. What will the site score on Core Web Vitals?"
+      },
+      {
+        "t": "p",
+        "v": "A good answer names the metrics and says what the target is. A vague one about it being \"fast and responsive\" means nobody is measuring. Anyone can check the result afterwards in about thirty seconds, so an evasive answer here is telling."
+      },
+      {
+        "t": "h2",
+        "v": "What happens when it goes wrong"
+      },
+      {
+        "t": "h3",
+        "v": "7. What happens if something breaks in month three?"
+      },
+      {
+        "t": "p",
+        "v": "You want a named arrangement: a warranty period, a retainer, or an hourly rate agreed in advance. \"We will look after you\" is not an arrangement, and the moment you need it is the moment you discover that."
+      },
+      {
+        "t": "h3",
+        "v": "8. Who maintains it, and what does that cost?"
+      },
+      {
+        "t": "p",
+        "v": "Websites are not finished when they launch. Platforms update, plugins break, certificates expire. Ask for the number. A developer who says maintenance is not needed has either not maintained a site for long or is not telling you about the cost."
+      },
+      {
+        "t": "h3",
+        "v": "9. What is the notice period, and what happens to my accounts?"
+      },
+      {
+        "t": "p",
+        "v": "Ask this at the start, when nobody is annoyed. The answer tells you how the relationship is designed to end, and that tells you a great deal about how it is designed to run."
+      },
+      {
+        "t": "h2",
+        "v": "Scope, and the honest answers"
+      },
+      {
+        "t": "h3",
+        "v": "10. What is explicitly not included?"
+      },
+      {
+        "t": "p",
+        "v": "The most useful question on this list. Content, photography, stock imagery, plugin licences, hosting, maintenance, training and tracking are the usual exclusions, and the gap between two quotes is often entirely explained by which of these each one assumed."
+      },
+      {
+        "t": "h3",
+        "v": "11. Who writes the content?"
+      },
+      {
+        "t": "p",
+        "v": "Whoever it is, it is on the critical path. More builds are delayed by missing copy than by code. If it is you, start before the design does."
+      },
+      {
+        "t": "h3",
+        "v": "12. Show me something you built that is still live, and tell me what it does for the business."
+      },
+      {
+        "t": "p",
+        "v": "Not a portfolio of designs, a working site. Then listen to whether they talk about the visual work or about what the site was for. Both matter; only one of them is usually mentioned."
+      },
+      {
+        "t": "h2",
+        "v": "Answers that should worry you"
+      },
+      {
+        "t": "list",
+        "v": [
+          "A fixed price given before anyone asked what the site needs to do",
+          "A price per page, which prices the thing nobody cares about",
+          "\"SEO included\" with no detail about what that means",
+          "Hosting that must be theirs, with no transfer path",
+          "A portfolio of designs rather than live, working sites",
+          "No mention of analytics anywhere in the proposal",
+          "Discomfort at the ownership questions"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "Frequently asked questions"
+      },
+      {
+        "t": "h3",
+        "v": "Is the cheapest quote ever the right one?"
+      },
+      {
+        "t": "p",
+        "v": "Sometimes, and you can usually tell by putting the exclusions side by side. A cheaper quote that excludes content, tracking and maintenance is not cheaper, it is smaller. Compare what you end up owning, not what you pay on day one."
+      },
+      {
+        "t": "h3",
+        "v": "Should I use a freelancer or an agency?"
+      },
+      {
+        "t": "p",
+        "v": "Covered properly in a separate article on this site. Briefly: a freelancer if your constraint is expertise on a focused problem, an agency if it is volume across several channels every week."
+      },
+      {
+        "t": "h3",
+        "v": "What if I do not understand the technical answers?"
+      },
+      {
+        "t": "p",
+        "v": "Say so and ask them to explain it again in plain terms. How someone handles that question is itself information. A developer who cannot explain their work to the person paying for it will be hard to work with for the whole project."
+      },
+      {
+        "t": "h3",
+        "v": "How many quotes should I get?"
+      },
+      {
+        "t": "p",
+        "v": "Three is plenty, and they are only comparable once you have asked all twelve questions above of each. Two quotes with the same number and different exclusions are not the same price."
+      },
+      {
+        "t": "p",
+        "v": "Last updated 4 October 2026."
+      }
+    ],
+    "words": 740
+  },
+  {
+    "slug": "best-crm-for-dubai-real-estate",
+    "title": "The Best CRM for a Dubai Real Estate Business",
+    "metaTitle": "Best CRM for Dubai Real Estate (2026)",
+    "description": "How to choose a CRM for a Dubai property business, what the portals and portal feeds change, and why the setup matters far more than the software.",
+    "published": "2026-10-04",
+    "tags": [
+      "Dubai",
+      "Real Estate",
+      "Digital Marketing"
+    ],
+    "blocks": [
+      {
+        "t": "p",
+        "v": "Almost every CRM comparison answers the wrong question. The software you pick matters far less than how it is set up, and in Dubai property there are three setup decisions that decide whether the thing works at all: where leads come in from, who is allowed to own one, and what counts as qualified."
+      },
+      {
+        "t": "p",
+        "v": "Get those right and most of the mainstream options will do. Get them wrong and the best CRM on the market becomes an expensive contact list."
+      },
+      {
+        "t": "h2",
+        "v": "What Dubai property actually changes"
+      },
+      {
+        "t": "p",
+        "v": "Most CRM advice is written for software companies with one website and a long sales cycle. Property here is different in four ways, and each one breaks a setup that ignored it."
+      },
+      {
+        "t": "list",
+        "v": [
+          "Leads arrive from portals as well as from your own site, and portal leads arrive without the campaign data your own forms capture.",
+          "The same person enquires on three listings in a week, which creates three records unless the system is told not to.",
+          "Agents compete over ownership, so the rules about who gets a lead have to be explicit before the first argument rather than after it.",
+          "WhatsApp is the real channel. A CRM that cannot show a WhatsApp conversation against the contact record is missing most of what happened."
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "The options, honestly"
+      },
+      {
+        "t": "table",
+        "head": [
+          "",
+          "Best for",
+          "Watch out for"
+        ],
+        "rows": [
+          [
+            "HubSpot",
+            "Marketing-led teams who want reporting that works out of the box",
+            "Costs climb steeply as contacts grow"
+          ],
+          [
+            "Zoho",
+            "Price-sensitive teams who will configure it properly",
+            "Flexible enough to be configured badly"
+          ],
+          [
+            "Salesforce",
+            "Large teams with a dedicated admin",
+            "Overkill, and genuinely needs that admin"
+          ],
+          [
+            "Property-specific CRMs",
+            "Portal feeds and listings handled natively",
+            "Weaker marketing automation, smaller ecosystem"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "v": "I set up HubSpot, Zoho and Salesforce. If you push me for one answer without seeing your setup: Zoho if budget leads and someone will own the configuration, HubSpot if marketing leads and you want the reporting to work without a specialist. Neither is the right answer for every business, which is why the real work is the next three sections rather than the choice itself."
+      },
+      {
+        "t": "h2",
+        "v": "Decision one: every lead arrives with its source attached"
+      },
+      {
+        "t": "p",
+        "v": "This is the one that decides whether you can ever measure marketing. A lead that lands with no campaign, no ad and no landing page attached is a lead you cannot trace, and at the end of the quarter nobody can say which spend produced which deal."
+      },
+      {
+        "t": "p",
+        "v": "Website forms are the easy part: hidden fields carry the campaign data through. Portal leads are harder, because the portal sends you a name and a number and nothing else. The usual answer is to tag by source on arrival so at least the channel is known, and to accept that portal leads will never carry campaign detail."
+      },
+      {
+        "t": "p",
+        "v": "Server-side tracking matters here more than most people expect. Browser-based tracking loses a meaningful share of conversions to ad blockers and privacy settings, and what it loses it loses silently. Sending the conversion from your server instead closes most of that gap."
+      },
+      {
+        "t": "h2",
+        "v": "Decision two: duplicate rules, before you have duplicates"
+      },
+      {
+        "t": "p",
+        "v": "A buyer enquiring on four launches in a fortnight is normal behaviour, not an error. Without a matching rule you end up with four records, four agents, and a buyer who gets called four times by the same company. That is how a good lead becomes an annoyed one."
+      },
+      {
+        "t": "p",
+        "v": "Match on phone number rather than email. In this market the phone number is the reliable identifier and the email is often supplied carelessly, if at all. Decide in advance whether a second enquiry reopens the original record or creates a linked one, because retrofitting that decision across a year of data is painful."
+      },
+      {
+        "t": "h2",
+        "v": "Decision three: what qualified means, in writing"
+      },
+      {
+        "t": "p",
+        "v": "Most CRMs arrive with stages like \"qualified\" and \"opportunity\" and no definition behind either. Two agents then use them differently and the pipeline report becomes fiction."
+      },
+      {
+        "t": "p",
+        "v": "Write the definition down before launch, in terms somebody could argue about and resolve. Not \"interested\" but something closer to: spoke to them, they have a budget range, they are buying within six months, they know the starting price. The point is not the exact wording, it is that two people reading the same record reach the same answer."
+      },
+      {
+        "t": "p",
+        "v": "This is also what lets you optimise advertising properly. Feed that qualified status back to Google and Meta and the platforms start finding people who look like real buyers instead of people who look like form-fillers."
+      },
+      {
+        "t": "h2",
+        "v": "WhatsApp belongs in the CRM"
+      },
+      {
+        "t": "p",
+        "v": "In Dubai property, most of the conversation that matters happens on WhatsApp, and most of it is invisible to the CRM. An agent leaves and takes the context with them, because the context was in a chat on a personal phone."
+      },
+      {
+        "t": "p",
+        "v": "The fix is the WhatsApp Business API connected to the CRM, so the conversation sits against the contact record. It costs something and it is worth it: it survives staff turnover, it makes handovers possible, and it is the only way the pipeline report reflects what actually happened."
+      },
+      {
+        "t": "h2",
+        "v": "What a sensible setup costs"
+      },
+      {
+        "t": "p",
+        "v": "Licences depend on seats and tier, and any figure I gave would be out of date by the time you read it. What I can tell you is the shape of the cost: the software is usually the smaller number and the configuration is the larger one, particularly in the first year."
+      },
+      {
+        "t": "p",
+        "v": "My own rates are published: projects from AED 31,500, retainers from AED 16,000 a month, a four-hour review session at AED 3,500. A CRM setup that includes tracking, portal integration, duplicate rules and WhatsApp is project work rather than an afternoon."
+      },
+      {
+        "t": "h2",
+        "v": "Frequently asked questions"
+      },
+      {
+        "t": "h3",
+        "v": "Can I migrate from one CRM to another later?"
+      },
+      {
+        "t": "p",
+        "v": "Yes, and it is more work than it sounds. Contacts and deals move; automation, reports, integrations and the history of what happened largely do not. Plan on rebuilding the configuration. That is an argument for configuring properly the first time rather than for never changing."
+      },
+      {
+        "t": "h3",
+        "v": "Do I need a property-specific CRM?"
+      },
+      {
+        "t": "p",
+        "v": "If your main problem is listings and portal feeds, it will save you real work. If your main problem is knowing which marketing produced which deal, a mainstream CRM configured properly usually gets you further, because the marketing side of the property-specific tools tends to be thinner."
+      },
+      {
+        "t": "h3",
+        "v": "How long does a setup take?"
+      },
+      {
+        "t": "p",
+        "v": "A straightforward one is weeks rather than months, and the long part is never the software. It is agreeing the definitions, getting access to portals and ad accounts, and deciding the ownership rules. Those are decisions only your business can make."
+      },
+      {
+        "t": "h3",
+        "v": "What if my agents will not use it?"
+      },
+      {
+        "t": "p",
+        "v": "That is the most common failure and it is not a software problem. Agents avoid a CRM that makes their day longer and no part of it easier. The ones that get used reduce typing, show the WhatsApp thread, and make the next action obvious. If adoption is the worry, design for the agent's day first and the manager's report second."
+      },
+      {
+        "t": "h3",
+        "v": "Should the CRM or the website own the lead form?"
+      },
+      {
+        "t": "p",
+        "v": "The website, submitting to the CRM. A form embedded from the CRM is quick to set up and usually slower to load, harder to style, and awkward to pass campaign data through. Your own form on your own page, posting to the CRM, gives you control of all three."
+      },
+      {
+        "t": "p",
+        "v": "Last updated 4 October 2026. AED figures are my own published rates, not a market survey."
+      }
+    ],
+    "words": 1081
+  },
+  {
     "slug": "wordpress-or-nextjs-for-your-business-website",
     "title": "WordPress or Next.js: Which Should Your Business Website Use?",
     "metaTitle": "WordPress or Next.js for a Business Website",

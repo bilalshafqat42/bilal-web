@@ -1,6 +1,6 @@
 # SEO snapshot — Bilal Shafqat Digital
 
-Generated 2026-10-02 from Performo. Covers the last 90 days.
+Generated 2026-10-04 from Performo. Covers the last 90 days.
 
 Regenerate with:
 
@@ -13,24 +13,24 @@ This file is written by a script. Edits here are overwritten.
 
 ## Where the site sits in search
 
-- **414 queries** analysed, 2630 impressions, 2 clicks
-- **Top-3 share: 0.3%** — the share of impressions in positions 1-3, which is the zone answer engines quote from
-- Weighted average position: 45.7
+- **411 queries** analysed, 2570 impressions, 2 clicks
+- **Top-3 share: 0.4%** — the share of impressions in positions 1-3, which is the zone answer engines quote from
+- Weighted average position: 45.6
 
 | Position band | Queries | Impressions |
 |---|---:|---:|
 | 1-3 | 3 | 9 |
 | 4-10 | 3 | 45 |
 | 11-20 | 12 | 31 |
-| 21+ | 396 | 2545 |
+| 21+ | 393 | 2485 |
 
 ## What those searchers want
 
 | Intent | Queries | Impressions | Clicks | CTR | Avg pos |
 |---|---:|---:|---:|---:|---:|
-| Unclear | 240 | 1811 | 0 | 0.0% | 49.0 |
-| Comparing options | 107 | 656 | 1 | 0.2% | 39.5 |
-| Still researching | 65 | 118 | 0 | 0.0% | 45.6 |
+| Unclear | 238 | 1762 | 0 | 0.0% | 48.9 |
+| Comparing options | 107 | 650 | 1 | 0.2% | 39.5 |
+| Still researching | 64 | 113 | 0 | 0.0% | 45.4 |
 | Looking for you | 2 | 45 | 1 | 2.2% | 4.6 |
 
 ## Closest to page one
@@ -47,7 +47,7 @@ Worth a direct, clearly-headed answer on the page — this is what AEO rewards.
 
 | Question | Position | Impressions |
 |---|---:|---:|
-| what is rem css | 59.1 | 9 |
+| what is rem css | 59.3 | 8 |
 | what is usecallback | 1.0 | 5 |
 | what is 1 rem | 60.5 | 4 |
 | what is 1rem | 49.3 | 3 |
@@ -62,50 +62,50 @@ Worth a direct, clearly-headed answer on the page — this is what AEO rewards.
 
 | Query | Impressions | Clicks | Position |
 |---|---:|---:|---:|
-| ux design website | 276 | 0 | 43.9 |
+| ux design website | 273 | 0 | 43.9 |
 | ux website | 149 | 0 | 53.8 |
-| productivity tools | 113 | 0 | 44.9 |
-| best ux design websites | 87 | 0 | 30.5 |
-| best ux sites | 73 | 0 | 28.7 |
-| ai figma plugin | 69 | 0 | 34.8 |
-| free icon library | 59 | 0 | 57.3 |
-| usereducer | 58 | 0 | 45.1 |
-| figma ai plugin | 55 | 0 | 33.2 |
+| productivity tools | 108 | 0 | 44.9 |
+| best ux design websites | 86 | 0 | 30.5 |
+| best ux sites | 72 | 0 | 28.6 |
+| ai figma plugin | 67 | 0 | 34.8 |
+| usereducer | 57 | 0 | 45.1 |
+| figma ai plugin | 54 | 0 | 33.1 |
+| free icon library | 54 | 0 | 56.6 |
 | icon library | 48 | 0 | 70.4 |
-| useimperativehandle | 46 | 0 | 34.0 |
+| useimperativehandle | 43 | 0 | 34.2 |
 | user experience website | 43 | 0 | 49.4 |
 | bilal shafqat | 42 | 1 | 4.7 |
-| ui ux solutions | 41 | 0 | 91.9 |
+| ui ux solutions | 40 | 0 | 92.0 |
 | best user experience websites | 37 | 0 | 33.6 |
 | best ux website | 33 | 0 | 47.0 |
-| best ui ux design website | 32 | 0 | 36.9 |
+| best ui ux design website | 31 | 0 | 36.3 |
 | best ux websites | 27 | 0 | 44.5 |
-| free icons library | 27 | 0 | 57.0 |
 | rem vs em | 27 | 0 | 37.0 |
+| best user experience design websites | 25 | 0 | 67.8 |
 
 ## Pages earning the impressions
 
 | Page | Impressions | Clicks | Position |
 |---|---:|---:|---:|
-| /10-best-websites-to-master-ui-ux-design/ | 1646 | 2 | 45.1 |
-| /8-must-have-free-icon-libraries-for-designers/ | 881 | 0 | 60.5 |
-| /react-native-flatlist-vs-scrollview/ | 777 | 1 | 24.9 |
+| /10-best-websites-to-master-ui-ux-design/ | 1633 | 2 | 45.1 |
+| /8-must-have-free-icon-libraries-for-designers/ | 864 | 0 | 60.5 |
+| /react-native-flatlist-vs-scrollview/ | 775 | 1 | 24.9 |
 | /react-usecallback-hook-explained/ | 677 | 0 | 51.0 |
-| /what-are-em-and-rem-units/ | 621 | 0 | 42.0 |
-| /react-usereducer-hook-explained/ | 551 | 0 | 45.8 |
-| /react-useimperativehandle-hook-explained/ | 545 | 0 | 28.7 |
-| /6-best-ai-powered-figma-plugins/ | 351 | 0 | 32.5 |
-| /8-best-websites-for-design-inspiration/ | 276 | 0 | 36.2 |
-| /top-10-productivity-tools-to-boost-efficiency/ | 249 | 0 | 45.9 |
-| / | 137 | 8 | 4.9 |
+| /what-are-em-and-rem-units/ | 613 | 0 | 41.8 |
+| /react-usereducer-hook-explained/ | 543 | 0 | 45.8 |
+| /react-useimperativehandle-hook-explained/ | 539 | 0 | 28.8 |
+| /6-best-ai-powered-figma-plugins/ | 347 | 0 | 32.5 |
+| /8-best-websites-for-design-inspiration/ | 275 | 0 | 36.3 |
+| /top-10-productivity-tools-to-boost-efficiency/ | 243 | 0 | 46.0 |
+| / | 136 | 8 | 4.9 |
 | /react-usecontext-hook-explained/ | 112 | 0 | 39.4 |
-| /mastering-flexbox-in-css/ | 82 | 0 | 48.4 |
+| /mastering-flexbox-in-css/ | 80 | 0 | 47.8 |
 | /react-usememo-hook-explained/ | 78 | 0 | 41.0 |
 | /about-me/ | 74 | 0 | 47.6 |
 
 ## Bing
 
-- 57 days synced, 3796 impressions, 9 clicks
+- 59 days synced, 3805 impressions, 9 clicks
 - Bing feeds Copilot, so it matters more than its search share suggests
 
 ## Site speed
@@ -119,7 +119,7 @@ Core Web Vitals (desktop): LCP 466ms · CLS 0.000 · TBT 11ms
 
 ## Traffic and conversion
 
-- Sessions (Google Analytics, synced): **141**
+- Sessions (Google Analytics, synced): **144**
 - Enquiries recorded in Performo: **4**
 - Visit to enquiry: **2.8%**
 
@@ -127,8 +127,8 @@ Sessions come from Analytics and enquiries from Performo — two separate system
 
 ## AI assistants
 
-- **112 live answer fetches** — an assistant opened a page because someone asked it a question
-- 1270 training crawls, which say nothing about visibility
+- **113 live answer fetches** — an assistant opened a page because someone asked it a question
+- 1296 training crawls, which say nothing about visibility
 
 Pages assistants actually pull:
 

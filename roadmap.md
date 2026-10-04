@@ -8218,3 +8218,76 @@ Search index 283 → 302 chunks. All five checks pass.
 
 **Phase 2 is now complete in substance as well as in structure.** Phase 3 is
 blocked on the four ad platform volumes; Phase 4 on screenshots.
+
+### 330. MEASURED (2026-10-04) — Two days on, nothing has moved, which is correct
+
+Snapshot refreshed against 2026-10-02:
+
+| | 2 Oct | 4 Oct |
+| --- | ---: | ---: |
+| Impressions | 2,630 | 2,570 |
+| Weighted avg position | 45.7 | 45.6 |
+| Clicks | 2 | 2 |
+| Sessions | 141 | 144 |
+| AI training crawls | 1,270 | **1,296** |
+
+Flat, as expected. Google has not recrawled. **14 October remains the first
+honest read**, and running this again before then produces noise that invites
+bad decisions.
+
+Two items closed on Bilal's side: **`Refine-Admin` is private** (the API now
+404s) and the **profile README is live** at `bilalshafqat42/bilalshafqat42`.
+
+### 331. OPEN — The proof layer is thin in depth, not just in count
+
+Looking for unblocked work turned up something the service-page audit had
+missed. The portfolio pages are the thinnest on the site:
+
+| Page | Words |
+| --- | ---: |
+| Service pages, after this week | 1,145-1,812 |
+| `/portfolio` | 667 |
+| **`/portfolio/leos-developments`** | **620** |
+| `/portfolio/ui-ux-design` | **369** |
+| `/portfolio/web-development` | **348** |
+| `/portfolio/mobile-app-development` | **348** |
+
+**The only case study on the site is shorter than every service page**, and the
+three discipline pages are essentially an intro paragraph wrapped around an
+image gallery.
+
+**Deliberately not fixed by me.** Expanding a case study about a real client
+engagement means inventing specifics about work I was not part of, and a case
+study with invented detail is worse than a short honest one — it is also the
+first thing a prospect would catch out. This needs Bilal's account of the work,
+not my prose.
+
+What would help, per deliverable: what the brief was, what was decided and why,
+what he would do differently. No figures unless LEOS has published them.
+
+### 332. DONE (2026-10-04) — Two more Dubai commercial articles
+
+| Slug | Words | Tier 4 item |
+| --- | ---: | --- |
+| `best-crm-for-dubai-real-estate` | 1,081 | 84 |
+| `questions-to-ask-a-web-developer-before-hiring` | 740 | 88 |
+
+Seven of the fifteen Tier 4 articles now exist.
+
+**The CRM piece argues that the software choice barely matters** and spends its
+length on the three setup decisions that do: source attribution on every lead,
+duplicate rules written before there are duplicates, and a definition of
+"qualified" two people would agree on. It names the four Dubai-property-specific
+problems a generic CRM setup ignores, including that WhatsApp holds most of the
+conversation and almost none of it reaches the CRM.
+
+**The hiring piece is twelve questions with the answer to listen for**,
+including where the honest answer loses the pitch. The ownership three come
+first — code, domain, design files — because that is what people skip and what
+traps them.
+
+No invented licence prices in either. The CRM article says plainly that any
+figure would be out of date by the time it is read, and quotes only Bilal's own
+published rates.
+
+Sitemap 95 → 97. Search index 302 → 304 chunks. All five checks pass.
