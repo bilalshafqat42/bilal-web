@@ -64,28 +64,28 @@ export const pillars: Pillar[] = [
     sections: [
       {
         title: "Google Ads & Performance Max",
-        body: "Search, Shopping, Display, and Performance Max campaigns built around the keywords and audiences your actual customers use, with conversion tracking set up before a single dirham is spent.",
-        bullets: ["Search & Shopping campaigns", "Performance Max setup", "Conversion tracking & attribution"],
+        body: "Search is the only channel where someone tells you what they want in their own words, which is why it is almost always where a budget should start. The work is less about writing ads than about controlling what you pay for: separating brand from category so you are not bidding against people looking for you by name, separating markets so the UAE is not lumped in with the UK, and building the negative keyword list that stops the other eighty per cent of the traffic. Performance Max will spend whatever you give it and reports back very little, so it goes in after the search campaigns have told us what converts, never before.",
+        bullets: ["Search, Shopping and Performance Max", "Negative keyword lists, built before launch and maintained after", "Brand and category separated, so you stop paying twice for your own name", "Conversion tracking server-side, so the reporting survives ad blockers"],
       },
       {
         title: "Meta Ads",
-        body: "Facebook and Instagram campaigns built around real business KPIs, from awareness through to lead capture, not vanity engagement.",
-        bullets: ["Campaign structure & audience targeting", "Creative testing & iteration", "Retargeting & lookalike audiences"],
+        body: "On Meta nobody is looking for you, so the creative does the targeting. A well-shot video of one specific thing will find the people interested in that thing more reliably than any audience setting, which is why the production matters more here than the campaign structure. The trap is instant forms: they produce a lot of leads cheaply and a meaningful share of them are not real prospects. A cheap cost per lead on a Meta report can be a very expensive cost per meeting once the calls are made, and I would rather show you the second number.",
+        bullets: ["Facebook and Instagram, feed, Stories and Reels", "Creative produced rather than repurposed from a brochure", "Instant forms with a qualifying question, so volume does not drown quality", "Retargeting built on real site behaviour, not a catch-all pixel audience"],
       },
       {
         title: "TikTok Ads",
-        body: "TikTok campaigns built for how that audience actually watches: native-feeling creative and fast testing cycles rather than repurposed static ads.",
-        bullets: ["In-feed & Spark ads", "Creative testing", "Audience & interest targeting"],
+        body: "TikTok punishes advertising that looks like advertising. Creative made for Meta and reposted here reliably underperforms, because the feed is judged against organic video made by people with no budget and a better instinct for the platform. It rewards volume and iteration: several rough cuts tested quickly beats one polished film, and the winner is rarely the one that looked best in the edit. Worth testing where the product is visual and the audience skews younger, and worth skipping where it is neither.",
+        bullets: ["Creative made for the platform, not adapted to it", "Several variants tested rather than one hero cut", "Spark Ads from organic posts that already earned attention", "Honest reporting on whether it is working for your product"],
       },
       {
         title: "Snapchat Ads",
-        body: "Snapchat campaigns for reaching a younger, mobile-first audience, useful alongside a broader UAE social strategy.",
-        bullets: ["Story & collection ads", "Audience targeting", "Campaign setup & tracking"],
+        body: "Snapchat is stronger in the UAE than its global share suggests, and it is routinely skipped by advertisers who assume it is a teenage app. Reach here is cheap and the formats are native: vertical video, AR lenses, and a feed people scroll quickly. It works for awareness and for products with a visual hook, and it does not work for considered B2B purchases. I will tell you which of those you have before any budget moves.",
+        bullets: ["Vertical video and story formats", "AR lenses where the product suits one", "Cheap reach for launches and awareness", "A clear answer on whether your product fits the platform"],
       },
       {
         title: "LinkedIn Advertising",
-        body: "LinkedIn campaigns for B2B lead generation and account-based targeting, where the buyer is a company, not just an individual.",
-        bullets: ["Lead gen forms", "Account-based targeting", "Sponsored content & InMail"],
+        body: "LinkedIn costs several times what the other platforms do per click, and for the right audience it is still the cheapest way to reach them. Targeting by job title, company and seniority is something no other platform does properly, which makes it the right choice for commercial property, B2B services and recruitment, and the wrong one for most residential property. Budget accordingly: the same spend that buys a broad campaign elsewhere buys a narrow one here, and narrow is the point.",
+        bullets: ["Targeting by job title, company size and seniority", "Sponsored content and message ads", "Right for B2B and commercial property, usually wrong for residential", "Lead gen forms wired into the CRM rather than exported by hand"],
       },
       {
         title: "Demand Generation",
@@ -457,7 +457,12 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "Paid marketing that reports cost per lead, not impressions",
     intro:
       "Paid media only works when it is built around the sales pipeline it feeds. I plan, launch and manage campaigns across Google and every major social platform, with conversion tracking configured before a dirham is spent, so performance is measured against real enquiries rather than clicks and reach.",
-    metaTitle: "Freelance Google Ads & Paid Ads Expert in Dubai",
+    // Narrowed 2026-10-04 when Google Ads got its own page below. "Google Ads &
+    // Paid Ads" carried two searches and so competed for neither — the same
+    // ampersand problem fixed on the designer and developer pages in Phase 2.
+    // This is now the hub: the platform sections live here, Google Ads has the
+    // volume and therefore its own page.
+    metaTitle: "Freelance Paid Ads Expert in Dubai — Bilal Shafqat",
     metaDescription:
       "Google, Meta, TikTok and LinkedIn campaigns run by a Dubai freelance specialist. Conversion tracking from day one, reported as cost per lead.",
     faqs: [
@@ -484,6 +489,65 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       { title: "TikTok Ads", pillarSlug: "paid-marketing" },
       { title: "Snapchat Ads", pillarSlug: "paid-marketing" },
       { title: "LinkedIn Advertising", pillarSlug: "paid-marketing" },
+    ],
+  },
+  {
+    // Added 2026-10-04 (Phase 3). Google Ads is the only one of the five
+    // platforms with measured demand: "Google Ads agency Dubai" 390 searches at
+    // difficulty **9**, plus "google ads agency in dubai" 170/11, "google
+    // adwords company dubai" 170/11 and "google ads dubai" 140/24 — roughly 870
+    // searches across the variants, at the lowest difficulty on the board.
+    //
+    // Meta, TikTok, Snapchat and LinkedIn are deliberately NOT pages. None of
+    // them appeared in Ubersuggest's suggestions for this site, which is weak
+    // evidence of low volume rather than proof of none, and four near-identical
+    // pages chasing nothing is the doorway pattern this plan rejects (roadmap
+    // 320). They are deepened sections on the hub with working anchors —
+    // `/services/paid-marketing#tiktok-ads` is already a destination a prospect
+    // can be sent to and an assistant can cite.
+    //
+    // If Bilal's four-credit check comes back with real volume on any of them,
+    // that one becomes a page and is written to rank rather than to prove.
+    slug: "google-ads",
+    title: "Google Ads",
+    accent: "cyan",
+    headline: "Search is the one channel where people tell you what they want",
+    intro:
+      "Everywhere else you interrupt someone. On search they have typed the thing they are looking for, in their own words, which makes it the shortest route from a budget to an enquiry and usually the place to start. It is also the easiest place to waste money, because the default settings are built to spend it.",
+    metaTitle: "Freelance Google Ads Expert in Dubai — Bilal Shafqat",
+    metaDescription:
+      "Google Ads planned and managed by a Dubai freelancer, with tracking built before the spend starts and reporting in cost per enquiry rather than cost per click.",
+    faqs: [
+      {
+        question: "What budget do I need to start?",
+        answer:
+          "Enough for the data to mean something, which is the real constraint rather than any minimum Google sets. A campaign running on a token amount produces numbers too small to draw conclusions from, and that is the worst outcome: you spend and learn nothing. Decide what you can commit for three months before launching, not after.",
+      },
+      {
+        question: "Why is my cost per click so high in Dubai?",
+        answer:
+          "Because in several sectors here you are bidding against portals and agencies with far larger budgets. Property is the clearest case. That is not always fixable, and the honest answer is sometimes that a term is not worth buying at any price. What is fixable is how much of your spend reaches people who were never going to convert, which is usually most of it.",
+      },
+      {
+        question: "Should I use Performance Max?",
+        answer:
+          "Eventually, rarely first. It will spend whatever you give it and tell you very little about where it went. Run search campaigns until you know which terms and audiences convert, then let Performance Max work from that, with brand excluded so it does not take credit for people who were already looking for you.",
+      },
+      {
+        question: "Do you work in my account or your own?",
+        answer:
+          "Yours, under your billing, with you as owner. This matters more than it sounds: an agency that builds campaigns in its own account keeps the conversion history when the relationship ends, and you start from zero with whoever comes next. Your data should stay yours.",
+      },
+      {
+        question: "How soon will I see results?",
+        answer:
+          "Clicks immediately, useful conclusions in weeks. The first fortnight is mostly learning which searches you are actually showing for, which is rarely what anyone expected. Judge it on cost per qualified enquiry after a month, not on the dashboard after three days.",
+      },
+    ],
+    items: [
+      { title: "Google Ads & Performance Max", pillarSlug: "paid-marketing" },
+      { title: "Lead Generation", pillarSlug: "paid-marketing" },
+      { title: "Performance Marketing & Optimisation", pillarSlug: "paid-marketing" },
     ],
   },
   {

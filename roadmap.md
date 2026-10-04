@@ -8291,3 +8291,57 @@ figure would be out of date by the time it is read, and quotes only Bilal's own
 published rates.
 
 Sitemap 95 → 97. Search index 302 → 304 chunks. All five checks pass.
+
+### 333. DONE (2026-10-04) — Phase 3: one Google Ads page, four deepened sections
+
+Built without the four-credit volume check, on the strongest available prior
+rather than waiting. Google Ads is the only one of the five platforms with
+measured demand:
+
+| Term | Volume | Difficulty |
+| --- | ---: | ---: |
+| Google Ads agency Dubai | 390 | **9** |
+| google ads agency in dubai | 170 | 11 |
+| google adwords company dubai | 170 | 11 |
+| google ads dubai | 140 | 24 |
+
+Roughly 870 searches across the variants, at the lowest difficulty on the
+board. **None of Meta, TikTok, Snapchat or LinkedIn appeared anywhere in
+Ubersuggest's suggestions for this site** — weak evidence of low volume rather
+than proof of none, which is exactly why the gate existed.
+
+**So: one page, four sections, not five pages.**
+
+Four near-identical pages chasing unmeasured demand is the doorway pattern item
+320 rejects, and the proof function is already served —
+`/services/paid-marketing#tiktok-ads` is a working anchor a prospect can be
+sent to and an assistant can cite. The five platform sections went from 15-28
+word stubs to real content; the hub is 1,316 → **1,792 words**.
+
+Each section says something only true of its platform: TikTok punishes creative
+that looks like advertising; Snapchat is stronger in the UAE than its global
+share suggests and is routinely skipped for that reason; LinkedIn costs several
+times more per click and is still cheapest for the right audience; Meta's
+instant forms trade lead quality for volume.
+
+**`/services/google-ads` is new**, and the hub was retitled from "Freelance
+Google Ads **&** Paid Ads Expert in Dubai" — the same ampersand problem fixed
+on the designer and developer pages in Phase 2, where a title carrying two
+searches competes for neither.
+
+**If Bilal's four-credit check returns real volume on any platform**, that one
+becomes a page and is written to rank instead of to prove. The work done here
+is not wasted either way: the section content moves to the page.
+
+#### One cosmetic consequence, flagged rather than accepted silently
+
+The mega menu is `grid-cols-3`. Twelve groups gave a clean 4 × 3; **thirteen
+strands "Video & Conversion" alone on a fifth row.** `Nav.tsx` carries a
+comment about avoiding exactly that shape, so it is a deliberate choice someone
+made rather than an accident.
+
+Checked on the render: it reads acceptably, the partial row is left-aligned and
+nothing is broken. But it is a visible gap and it is Bilal's call whether to
+rebalance the grid, reorder the groups, or leave it.
+
+Sitemap 97 → 98. Search index 304 → 310 chunks. All five checks pass.
