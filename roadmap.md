@@ -8381,3 +8381,59 @@ percentage-of-spend fee** — it pays more when the client spends more, on a
 channel where the right advice is often to spend less.
 
 Search index 310 → 320 chunks. All checks pass.
+
+### 335. DONE (2026-10-04) — The four-credit check overturned the prior, and two pages followed
+
+Measured, all four at difficulty 12 with **no search volume data available**:
+
+| Term | Volume | Top-10 backlinks | Best related term |
+| --- | --- | ---: | --- |
+| meta ads dubai | none | 0 | **facebook ads dubai, 90** |
+| linkedin ads dubai | none | — (SERP returned nothing) | **linkedin marketing dubai, 70** |
+| snapchat ads dubai | none | 0 | snapchat marketing dubai, 10 |
+| tiktok ads dubai | none | **818** | "is tiktok banned in dubai", 50 |
+
+**My prior was that all four were proof pages. Two of them are not, and
+neither is called what I would have called it.**
+
+- **"meta ads dubai" has no volume; "facebook ads dubai" has 90.** Meta renamed
+  itself in 2021 and the searches did not follow. Ninety is the same volume as
+  "freelance web developer dubai" and higher than several terms that already
+  have pages.
+- **"linkedin ads dubai" returned no search results at all**; "linkedin
+  marketing dubai" has 70 and "linkedin marketing services in dubai" 30. So the
+  page is LinkedIn **marketing**, not LinkedIn ads.
+
+Two new pages, named for the search rather than for the brand:
+`/services/facebook-ads` (1,364 words) and `/services/linkedin-marketing`
+(1,123). Both with their `serviceDepth` entry **in the same commit**, rather
+than in a follow-up for the third time.
+
+The Facebook SERP is unusually open: the top ten average **0 backlinks** at
+domain authority 34, and the three sites holding the top places have zero each.
+
+**TikTok and Snapchat correctly got nothing.** TikTok's only related demand is
+"is tiktok banned in dubai" at 50, which is not a buyer, and its top ten
+averages 818 backlinks because `ads.tiktok.com` holds it with 8,200. Snapchat's
+best related term is 10 searches. Both stay as sections on the paid hub.
+
+**This is the clearest argument yet for checking rather than reasoning.** Four
+credits moved two services from "section" to "page" and renamed both. The prior
+was defensible and wrong.
+
+A side effect worth recording: the mega menu is `grid-cols-3`, and **15 groups
+is exactly five rows**. The stranded card flagged in item 333 fixed itself.
+
+#### "cheap" is now effectively reserved on this site
+
+`search-check` failed again on the noise fixture **"cheap flights"**, this time
+against the heading "The cheap lead is the expensive one". It caught the same
+word on 2026-10-02 in "usually the cheap part".
+
+The fixture is right: a site search for "cheap flights" should return nothing.
+What it exposes is that a two-word query can match on one common word.
+Tightening that in `searchRank.ts` is the proper fix and **was not taken** — 45
+fixtures depend on the current scoring and changing ranking to spare one
+adjective is a bad trade. Noted in the script instead: use "low-cost".
+
+Sitemap 98 → 100. Search index 320 → 345 chunks.

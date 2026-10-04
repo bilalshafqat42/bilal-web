@@ -77,6 +77,19 @@ const MUST_FIND = [
 ];
 
 // nothing on this site answers these, so they must return zero results
+// Nonsense queries. If any of these returns a result, the index has gone loose
+// enough that a real query gets noise too.
+//
+// "cheap flights" has now caught the word "cheap" twice, in headings written
+// months apart: "usually the cheap part" (2026-10-02) and "the cheap lead is
+// the expensive one" (2026-10-04). Both were reworded, because the fixture is
+// right — a site search for "cheap flights" should return nothing.
+//
+// What it really exposes is that a two-word query can match on one common word.
+// Tightening that in `searchRank.ts` is the proper fix and was not taken: 45
+// fixtures depend on the current scoring, and a ranking change to spare one
+// adjective is a bad trade. The practical consequence is that "cheap" is
+// effectively reserved on this site. Use "low-cost" or "inexpensive".
 const MUST_NOT_FIND = [
   "pizza delivery",
   "quantum physics",

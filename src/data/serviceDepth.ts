@@ -187,6 +187,102 @@ export const serviceDepth: Record<string, Depth> = {
   // drive both its menu links and its page sections. One shared section between
   // a hub and its spoke is normal and not a penalty, but only while the spoke is
   // plainly the deeper treatment. At 784 words it was not; at ~1,800 it is.
+  // Added 2026-10-04 in the same commit that created the page, rather than in a
+  // follow-up for the third time. 757 words without it.
+  "facebook-ads": {
+    blocks: [
+      {
+        heading: "The low-cost lead is the expensive one",
+        paragraphs: [
+          "Instant forms are the most common thing wrong with Meta accounts in this market. They produce leads at a cost per lead that looks excellent on the report and a meaningful share of them are not real prospects: somebody tapped twice between two videos and the form filled itself from their profile without being read.",
+          "The report says AED 12 a lead. The sales team says half the numbers do not answer and a third were never interested. Both are true, and only one of them is in the dashboard. The number to hold the account to is cost per qualified conversation, which usually makes a slightly more expensive lead the cheaper one.",
+        ],
+      },
+      {
+        heading: "Friction in the right place",
+        paragraphs: [
+          "The fix is not a longer form, which lowers volume without raising quality. It is one question an idle tapper will not bother to answer and a genuine buyer will: a budget band, a timeframe, which development. One well-chosen question removes most of the accidental submissions and keeps almost all of the real ones.",
+          "Then speed. A Meta lead decays in minutes, not days, because the person was not looking for you and will have moved on by the afternoon. If the follow-up is a call the next working day, the form quality barely matters.",
+        ],
+      },
+      {
+        heading: "Creative is the targeting",
+        paragraphs: [
+          "Audience settings matter far less here than on search, because the algorithm finds the people who respond to the creative faster than any targeting you can specify. A video of one specific unit will find the people interested in that kind of unit. A generic brand film will find nobody in particular.",
+          "Which means production is most of the work, and it is where most property campaigns in Dubai underinvest. Renders cut for a brochure perform badly in a vertical feed against video shot for it. Several rough cuts tested quickly beats one polished film, and the winner is regularly the one that looked worst in the edit.",
+        ],
+      },
+      {
+        heading: "Tracking that survives the browser",
+        paragraphs: [
+          "Browser-based pixel tracking loses a meaningful share of conversions to ad blockers, privacy settings and iOS, and it loses them silently. The account optimises towards the conversions it can still see, which is a biased sample of the real ones.",
+          "Server-side tracking through the Conversions API closes most of that gap, and feeding the qualified status back changes what the platform looks for. Tell Meta success is a form fill and it finds people who fill forms. Tell it success is a qualified enquiry and the targeting shifts underneath you.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can you fix an account someone else is running?",
+        answer:
+          "Usually, and the audit comes first: what is actually being tracked, what the form asks, and where the spend is going. That is a four-hour session at AED 3,500 with written recommendations you can hand to whoever runs it. Often the answer is a form question and a tracking fix rather than a new agency.",
+      },
+      {
+        question: "What about WhatsApp ads?",
+        answer:
+          "Click-to-WhatsApp converts well in this market and is worth testing against lead forms, because the conversation starts in the channel people actually reply in. It needs the WhatsApp Business API connected to your CRM or the conversation stays on somebody's personal phone and leaves with them.",
+      },
+      {
+        question: "Why do you call it Facebook when it is Meta?",
+        answer:
+          "Because that is what people in Dubai type. \"Meta ads dubai\" has no measurable search volume; \"facebook ads dubai\" has ninety searches a month. The company renamed itself in 2021 and the searches did not follow. Naming the page after the brand rather than the search would cost real visitors.",
+      },
+    ],
+  },
+
+  // Added 2026-10-04 with the page.
+  "linkedin-marketing": {
+    blocks: [
+      {
+        heading: "What you are actually paying for",
+        paragraphs: [
+          "A click here costs several times what it does on Meta, and the comparison is misleading. On Meta you pay a little to reach a lot of people, most of whom are irrelevant. On LinkedIn you pay a lot to reach exactly the heads of procurement at companies over a certain size in a named industry, which no other platform can do.",
+          "So the arithmetic only works for audiences that are narrow and valuable. A commercial property deal or a B2B contract justifies a high cost per click. A residential apartment usually does not, and I would rather say so before the budget moves than after.",
+        ],
+      },
+      {
+        heading: "Organic usually beats paid here",
+        paragraphs: [
+          "LinkedIn rewards posts from people far more than posts from company pages, and in this market a founder posting regularly will outperform a funded company page without much contest. It costs time rather than money, and the time is not transferable: a ghost-written post in a voice nobody recognises performs like an advert.",
+          "The sensible sequence is organic first, then ads amplifying what already earned engagement. Running cold ads to an audience that has never seen you is the expensive way to find out whether the message works.",
+        ],
+      },
+      {
+        heading: "Targeting that is worth the premium",
+        paragraphs: [
+          "Job title, seniority, company size, industry, and the companies themselves by name. For an account-based approach where you can list the fifty organisations worth reaching, nothing else comes close, and the cost per click stops being the relevant number.",
+          "The trap is going too broad to bring the price down, which removes the only reason to be on the platform. Narrow is the point. If the targeting is wide enough that Meta could have reached them, use Meta.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "How small can a LinkedIn budget be?",
+        answer:
+          "Smaller than people expect if the audience is genuinely narrow, because a few thousand of the right people do not take much to reach. What does not work is a small budget against a broad audience: you reach a fraction of them once and learn nothing.",
+      },
+      {
+        question: "Do you write the content as well?",
+        answer:
+          "I will draft and structure it, and for a founder's own profile the voice has to stay theirs or it reads as ghost-written, which on LinkedIn is obvious and counterproductive. The usual arrangement is that I give the structure and the angle and the founder writes the words.",
+      },
+      {
+        question: "Is LinkedIn worth it in the UAE specifically?",
+        answer:
+          "For B2B and commercial property, yes, and the professional audience here is unusually concentrated. For consumer products, almost never. The question is not the market, it is whether the people you need can be described by job title.",
+      },
+    ],
+  },
+
   "google-ads": {
     blocks: [
       {

@@ -551,6 +551,109 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     ],
   },
   {
+    // Added 2026-10-04 after the four-credit check, which overturned the prior.
+    //
+    // "meta ads dubai" has **no measurable search volume** — but the term
+    // people actually type is **"facebook ads dubai", at 90 searches**, which
+    // is the same volume as "freelance web developer dubai" and higher than
+    // several terms that already have pages. The platform renamed itself in
+    // 2021 and the searches did not follow.
+    //
+    // The SERP is unusually open: the top ten average **0 backlinks** at domain
+    // authority 34, and the sites holding it (lengreo.com, lucidly.ae,
+    // bigalc.ae) have 0, 0 and 0 respectively. There is nothing to outrank.
+    //
+    // The page is named for the search, not for the brand's current name.
+    slug: "facebook-ads",
+    title: "Facebook & Meta Ads",
+    accent: "violet",
+    headline: "The creative does the targeting, and the form decides what you get",
+    intro:
+      "Nobody opens Facebook or Instagram to buy something, so a campaign here has to earn attention rather than capture it. That makes the creative the real targeting mechanism, and it makes the lead form the place where most budgets quietly go wrong.",
+    metaTitle: "Freelance Facebook Ads Expert in Dubai — Bilal Shafqat",
+    metaDescription:
+      "Facebook and Instagram campaigns run by a Dubai freelancer, measured on qualified enquiries rather than on the cheap leads instant forms are good at producing.",
+    faqs: [
+      {
+        question: "Why do my Meta leads never answer the phone?",
+        answer:
+          "Because instant forms are designed to be easy, and easy produces volume rather than intent. Somebody taps twice between two videos and the form auto-fills from their profile without them reading it. The fix is friction in the right place: one qualifying question the idle tapper will not bother with, and a follow-up call within minutes rather than the next working day.",
+      },
+      {
+        question: "Facebook or Instagram?",
+        answer:
+          "Both, from one campaign, with the placements decided by where the results actually come from rather than by assumption. In the UAE the split varies enormously by product and by audience age, and it is cheap to find out and expensive to guess.",
+      },
+      {
+        question: "Do you make the creative or do I supply it?",
+        answer:
+          "I make it, and that is usually the deciding factor. A campaign is mostly creative here, and repurposed brochure images perform badly against video made for the feed. If you have a brand team producing assets, I will work to them and say honestly when the creative is the thing holding the account back.",
+      },
+      {
+        question: "How much should I budget?",
+        answer:
+          "Enough to get out of the learning phase on each campaign, which is the real floor rather than any minimum Meta publishes. Spreading a small budget across five audiences keeps all five learning and none converting. Fewer campaigns with more behind each is almost always the better call at the start.",
+      },
+      {
+        question: "Is it worth it for property?",
+        answer:
+          "For awareness and for launches, yes, and the cost per lead will look excellent next to Google. For qualified buyers it needs the tracking and the qualification in place first, or you end up paying for volume that your sales team then has to filter by hand. There is a longer piece on this site comparing it directly with Google Ads for Dubai property.",
+      },
+    ],
+    items: [
+      { title: "Meta Ads", pillarSlug: "paid-marketing" },
+      { title: "Social Media Marketing", pillarSlug: "design-content-conversion" },
+      { title: "Lead Generation", pillarSlug: "paid-marketing" },
+    ],
+  },
+  {
+    // Added 2026-10-04, same check. "linkedin ads dubai" has no measurable
+    // volume and its SERP returned **no results at all**; "linkedin marketing
+    // dubai" has **70 searches**, with "linkedin marketing services in dubai"
+    // at 30. So the page is LinkedIn marketing, not LinkedIn ads.
+    //
+    // TikTok and Snapchat got no page from the same check: neither term has
+    // volume, TikTok's best related search is "is tiktok banned in dubai" (50,
+    // wrong intent entirely) and its top ten averages **818 backlinks** because
+    // ads.tiktok.com holds it. Both stay as sections on the paid hub.
+    slug: "linkedin-marketing",
+    title: "LinkedIn Marketing",
+    accent: "cyan",
+    headline: "The only platform where you can target the job title you need",
+    intro:
+      "LinkedIn costs several times what the other platforms do per click, and for a narrow commercial audience it is still the cheapest way to reach them. Targeting by job title, company size and seniority is something no other channel does properly, which makes it right for B2B and commercial property and wrong for most residential.",
+    metaTitle: "Freelance LinkedIn Marketing in Dubai — Bilal Shafqat",
+    metaDescription:
+      "LinkedIn campaigns and content for B2B and commercial property in Dubai, targeted by job title and company rather than by interest, and wired into your CRM.",
+    faqs: [
+      {
+        question: "Why is LinkedIn so expensive?",
+        answer:
+          "Because the targeting is worth it to advertisers who need it. You are paying for the ability to reach heads of procurement at companies over a certain size, which no other platform can do. Judge it on cost per qualified conversation rather than cost per click, and for the right audience it is often the cheapest channel by that measure.",
+      },
+      {
+        question: "Is LinkedIn worth it for real estate?",
+        answer:
+          "For commercial property and for investor audiences, often yes. For residential, usually not, and I would rather tell you that than take the budget. The exception is a development aimed squarely at a professional segment you can name, where the targeting earns its premium.",
+      },
+      {
+        question: "Ads, or organic content, or both?",
+        answer:
+          "For most UAE businesses, organic content from a real person outperforms the company page by a wide margin, and costs nothing but time. Ads work best amplifying content that already earned engagement rather than running cold. If you have a founder willing to post, start there.",
+      },
+      {
+        question: "Can lead gen forms feed my CRM?",
+        answer:
+          "Yes, and they should. LinkedIn lead gen forms convert well because they pre-fill from the profile, which is also why they need the same qualifying question Meta forms do. Wired into the CRM with the campaign attached, so the source survives to the point where someone can tell you whether it produced revenue.",
+      },
+    ],
+    items: [
+      { title: "LinkedIn Advertising", pillarSlug: "paid-marketing" },
+      { title: "Demand Generation", pillarSlug: "paid-marketing" },
+      { title: "Lead Generation", pillarSlug: "paid-marketing" },
+    ],
+  },
+  {
     slug: "social-media-marketing",
     title: "Social Media Marketing",
     headline: "Social media handled end to end, not just designed and handed over",
