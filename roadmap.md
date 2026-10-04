@@ -8345,3 +8345,39 @@ nothing is broken. But it is a visible gap and it is Bilal's call whether to
 rebalance the grid, reorder the groups, or leave it.
 
 Sitemap 97 → 98. Search index 304 → 310 chunks. All five checks pass.
+
+### 334. DONE (2026-10-04) — Google Ads page given depth, and the hub/spoke overlap resolved
+
+`/services/google-ads` shipped at **784 words** in the same commit that created
+it — the Phase 2 mistake repeated, in a file that exists specifically because
+Google once declined to index 48 thin pages here.
+
+It also left a real overlap. A group's `items` drive both its mega-menu links
+and the scope sections rendered on its page, so "Google Ads & Performance Max"
+appeared on `/services/paid-marketing` **and** on `/services/google-ads`.
+Measured across the two live pages: 8 shared sentences, of which 7 are site
+chrome (the CTA, contact details, the engagement-models block) and one is that
+scope section.
+
+One shared section between a hub and its spoke is normal and not a penalty —
+but only while the spoke is plainly the deeper treatment of the topic. At 784
+words against the hub's 1,792 it was not. At **1,676** it is.
+
+| Page | Words | Role |
+| --- | ---: | --- |
+| `/services/paid-marketing` | 1,792 | Hub. Five platforms, four of them in full. |
+| `/services/google-ads` | **1,676** | The spoke with measured demand |
+
+Six sections on the new depth, each saying something the hub does not: the
+first week is spent subtracting rather than bidding; brand and category belong
+in separate campaigns, and bidding on your own name is defensive for some
+businesses and a tax for others; Performance Max goes in later with brand
+excluded or it absorbs people who were already looking for you; some Dubai
+terms are not worth buying at any price.
+
+Two FAQ answers worth keeping: an audit at AED 3,500 as the sensible first
+step, including when that turns out to be enough on its own, and **no
+percentage-of-spend fee** — it pays more when the client spends more, on a
+channel where the right advice is often to spend less.
+
+Search index 310 → 320 chunks. All checks pass.

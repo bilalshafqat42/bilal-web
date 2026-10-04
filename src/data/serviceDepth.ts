@@ -178,6 +178,84 @@ export const serviceDepth: Record<string, Depth> = {
     ],
   },
 
+  // Added 2026-10-04. Shipped at 784 words in the same commit that created the
+  // page, which repeats the Phase 2 mistake: this file exists because Google
+  // declined to index 48 thin pages here.
+  //
+  // It also resolves a real overlap. `/services/paid-marketing` renders the
+  // same "Google Ads & Performance Max" scope section, because a group's items
+  // drive both its menu links and its page sections. One shared section between
+  // a hub and its spoke is normal and not a penalty, but only while the spoke is
+  // plainly the deeper treatment. At 784 words it was not; at ~1,800 it is.
+  "google-ads": {
+    blocks: [
+      {
+        heading: "The first week is spent on what you are paying for",
+        paragraphs: [
+          "Google will happily spend a budget on searches that were never going to convert, and the default settings help it. The expensive part of most accounts is not the bid, it is the breadth: broad match reaching for anything loosely related, no negative list, and a search terms report nobody has read since launch.",
+          "So the first work is subtraction. Pull the search terms report, see what you actually showed for, and build the negative list from reality rather than from a template. In Dubai property that single exercise routinely removes a third of the spend without touching a bid, because a large share of the traffic is brokers, students and people researching a city they are not buying in.",
+        ],
+      },
+      {
+        heading: "Brand and category are separate campaigns",
+        paragraphs: [
+          "Someone searching your company name has already decided. Someone searching your category has not. Running both in one campaign means the cheap, high-converting brand clicks flatter the whole thing, the category terms look better than they are, and you keep funding something that is not working because the blended number looks fine.",
+          "Split them and the picture becomes honest. It also stops you paying full price to appear above your own organic result, which is a cost worth measuring rather than assuming. For some businesses bidding on your own name is defensive and correct, because competitors bid on it. For others it is a tax you are paying to Google for traffic you already had.",
+        ],
+      },
+      {
+        heading: "Performance Max comes later, with brand excluded",
+        paragraphs: [
+          "Performance Max is given a budget and a goal and reports back very little about where the money went. That is manageable once you know which terms and audiences convert, and close to unmanageable before. Running it first is how accounts end up spending well with nothing learned.",
+          "When it does go in, brand searches are excluded. Without that exclusion it quietly absorbs the people who were already looking for you, counts their conversions as its own, and reports a cost per acquisition that cannot be true.",
+        ],
+      },
+      {
+        heading: "Dubai costs what it costs, and some terms are not worth buying",
+        paragraphs: [
+          "Click prices here are high in several sectors because you are bidding against portals and agencies with budgets you will not match. Property is the clearest example: the portals occupy the first page and outbid almost everyone on the obvious terms.",
+          "That is not always a problem to be solved. Sometimes the honest answer is that a term is not worth buying at any price, and the budget belongs on narrower searches with less competition and more intent. I would rather tell you that in week one than take a management fee for losing an auction every day.",
+        ],
+      },
+      {
+        heading: "The landing page is part of the campaign",
+        paragraphs: [
+          "Sending paid traffic to a homepage wastes a meaningful share of what you paid for. The page should match the ad, load fast on a phone, and ask for the minimum. Most of the gap between two accounts with the same budget is not in the bidding, it is in what happens after the click.",
+          "This is where building and marketing in the same pair of hands actually pays. The page is built to the campaign rather than handed over as a brief, and when the data says the form is the problem, the form changes that week rather than entering someone else's backlog.",
+        ],
+      },
+      {
+        heading: "Reported in enquiries, not clicks",
+        paragraphs: [
+          "Before a dirham is spent I want conversion tracking firing on a real enquiry rather than a page view, and server-side tracking through the Conversions API where the browser alone no longer reports reliably. Without that the optimisation is guesswork dressed as data.",
+          "What you should get monthly is cost per qualified enquiry, which searches produced them, and what changed. Impressions and click-through rate are diagnostics in that report, not the headline. If the account cannot produce that, fixing it comes before anything else.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can you audit my existing account before I commit?",
+        answer:
+          "Yes, and it is usually the sensible first step. A four-hour review at AED 3,500 covers the structure, the search terms report, what is actually being tracked and where the waste is, with written recommendations you can hand to whoever runs the account. If that turns out to be enough, it is enough.",
+      },
+      {
+        question: "Do you charge a percentage of ad spend?",
+        answer:
+          "No. A percentage fee pays me more when you spend more, which is the wrong incentive on a channel where the best advice is often to spend less. My rates are published: projects from AED 31,500, retainers from AED 16,000 a month. Ad spend is paid to Google and is never part of a quote.",
+      },
+      {
+        question: "What if my account was built by someone else?",
+        answer:
+          "That is most of them. I work inside your account rather than rebuilding in mine, so the conversion history stays yours. Some accounts need restructuring and some need a negative list and a week of attention. I will tell you which after looking rather than before.",
+      },
+      {
+        question: "How long should I commit for?",
+        answer:
+          "Three months is a reasonable first commitment. The first fortnight is mostly finding out what you are really showing for, and anything shorter judges the account on its learning period. Be wary of twelve-month minimums offered before anyone has looked at the data.",
+      },
+    ],
+  },
+
   "mobile-app-development": {
     blocks: [
       {
