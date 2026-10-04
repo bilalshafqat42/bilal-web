@@ -1,5 +1,2267 @@
 [
   {
+    "slug": "what-does-a-web-developer-do",
+    "title": "What Does a Web Developer Actually Do?",
+    "description": "A plain explanation of the job for people hiring one rather than becoming one: what the work involves, what it does not, and which kind you need.",
+    "published": "2026-10-04",
+    "tags": [
+      "Web Development",
+      "Dubai"
+    ],
+    "blocks": [
+      {
+        "t": "p",
+        "v": "Most explanations of this job are written for people who want to become a web developer. This one is written for the person who needs to hire one and is not sure what they are buying."
+      },
+      {
+        "t": "p",
+        "v": "The confusion is reasonable. The title covers work that ranges from arranging text on a page to building the system that moves money between two banks. Two people can both call themselves web developers and share almost no skills."
+      },
+      {
+        "t": "h2",
+        "v": "The short version"
+      },
+      {
+        "t": "p",
+        "v": "A web developer writes the code that makes a website or web application work. A designer decides what it should look like and how it should behave. A developer makes that real, connects it to the things it needs to talk to, and keeps it running once people are using it."
+      },
+      {
+        "t": "p",
+        "v": "If the designer draws the building, the developer builds it, runs the plumbing and wiring, and is the person you call when the lift stops."
+      },
+      {
+        "t": "h2",
+        "v": "What the work actually involves"
+      },
+      {
+        "t": "h3",
+        "v": "Turning a design into a working page"
+      },
+      {
+        "t": "p",
+        "v": "A design is a picture. The developer rebuilds it in code so it works at every screen size, loads quickly, responds to a keyboard as well as a mouse, and still reads correctly for someone using a screen reader. This part looks like the whole job from the outside. It is usually the smaller half."
+      },
+      {
+        "t": "h3",
+        "v": "Making it do something"
+      },
+      {
+        "t": "p",
+        "v": "A page that displays information is one problem. A page that does something is a different one. Search with filters, a form that produces a real enquiry, a booking flow, a calculator, a login, a payment. Each of these has rules, edge cases and failure states that nobody draws in the design."
+      },
+      {
+        "t": "p",
+        "v": "This is where almost all project time and almost all cost actually goes."
+      },
+      {
+        "t": "h3",
+        "v": "Connecting it to everything else"
+      },
+      {
+        "t": "p",
+        "v": "Very few businesses want a website that stands alone. They want enquiries in their CRM, orders in their accounting system, listings pulled from a property feed, messages arriving on WhatsApp. Each connection depends on somebody else's system, their documentation and their uptime."
+      },
+      {
+        "t": "h3",
+        "v": "Keeping it working"
+      },
+      {
+        "t": "p",
+        "v": "Software decays. Browsers update, dependencies get security patches, the payment provider changes an endpoint, somebody uploads a 12MB photograph and the homepage takes nine seconds to load. A developer who disappears at launch has handed you a liability with a nice homepage."
+      },
+      {
+        "t": "h2",
+        "v": "What a web developer does not do"
+      },
+      {
+        "t": "p",
+        "v": "Worth knowing before you assume it is included:"
+      },
+      {
+        "t": "list",
+        "v": [
+          "Write your copy. Most developers will not, and the ones who offer to are often not the right person for it.",
+          "Decide what the site should say or who it is for. That is strategy, and it should be settled before anyone opens a code editor.",
+          "Design it, unless they specifically also design. Plenty do both. Plenty do not, and a developer-made layout usually looks like one.",
+          "Market it. Building a site and getting people to it are separate jobs with separate budgets.",
+          "Take the photographs. The single most common reason a finished build sits unlaunched is that nobody owns the images."
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "The three kinds you will be offered"
+      },
+      {
+        "t": "p",
+        "v": "When someone says they are a web developer, they almost always mean one of these three."
+      },
+      {
+        "t": "table",
+        "head": [
+          "Kind",
+          "What they build",
+          "Hire when"
+        ],
+        "rows": [
+          [
+            "Front-end",
+            "Everything the user sees and touches: layout, interaction, responsiveness, performance in the browser",
+            "Your project is mostly presentation, or you already have a back-end"
+          ],
+          [
+            "Back-end",
+            "The part nobody sees: data, logic, accounts, payments, integrations, security",
+            "You need the site to store, calculate or exchange something"
+          ],
+          [
+            "Full stack",
+            "Both, usually with a stronger side",
+            "The project is small enough for one person, or you want one point of contact"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "v": "For a typical business website, full stack is the normal answer. For a product with real complexity on either side, two specialists beat one generalist."
+      },
+      {
+        "t": "h2",
+        "v": "Developer, engineer, programmer: does the word matter?"
+      },
+      {
+        "t": "p",
+        "v": "Not much, and anyone who tells you otherwise is describing a preference rather than a standard. There is no licensing body deciding who may use which title. Judge the work, not the noun."
+      },
+      {
+        "t": "p",
+        "v": "The one distinction worth noticing is that \"engineer\" is sometimes used to signal systems and scale rather than websites. If your project is a brochure site, that signal is not relevant to you."
+      },
+      {
+        "t": "h2",
+        "v": "What this means when you are hiring"
+      },
+      {
+        "t": "p",
+        "v": "Three things decide whether you get a working asset or an expensive problem, and none of them is the day rate:"
+      },
+      {
+        "t": "list",
+        "ordered": true,
+        "v": [
+          "Can they explain the part that is hard about your project? A developer who says everything is straightforward has not thought about it.",
+          "Will you speak to the person writing the code? In an agency you often will not, and a brief loses detail at every handover.",
+          "What happens in month three? Ask who fixes a bug after launch and what it costs. The answer tells you whether you are buying a project or a relationship."
+        ]
+      },
+      {
+        "t": "p",
+        "v": "I have written a longer list of hiring questions separately, including the ownership questions most people forget to ask until it is too late to ask them."
+      },
+      {
+        "t": "h2",
+        "v": "Frequently asked questions"
+      },
+      {
+        "t": "h3",
+        "v": "Do I need a web developer or a web designer?"
+      },
+      {
+        "t": "p",
+        "v": "If you need it to look right, a designer. If you need it to work, a developer. Most real projects need both, which is why many businesses hire one person who does both or an agency that supplies two."
+      },
+      {
+        "t": "h3",
+        "v": "Can one person build my whole website?"
+      },
+      {
+        "t": "p",
+        "v": "For most business websites, yes. A full stack developer who also designs can take a brochure site or a small application from nothing to launch. Past a certain complexity, one person becomes the bottleneck and a small team is faster."
+      },
+      {
+        "t": "h3",
+        "v": "How do I tell a good developer from a convincing one?"
+      },
+      {
+        "t": "p",
+        "v": "Ask to see something live that is still running, and ask what it does for that business. A portfolio of designs proves someone can present. A working site with real traffic behind it proves someone can finish."
+      },
+      {
+        "t": "h3",
+        "v": "What does a web developer cost in Dubai?"
+      },
+      {
+        "t": "p",
+        "v": "It depends far more on what you are building than on who builds it. My own published project minimum is AED 31,500 and retainers start at AED 16,000 a month, stated so there is one real number here rather than a range with nobody behind it. Those are my rates, not a market survey."
+      },
+      {
+        "t": "p",
+        "v": "Published 4 October 2026 by a Dubai-based freelance developer. All AED figures are my own published rates."
+      }
+    ],
+    "words": 883
+  },
+  {
+    "slug": "web-developer-vs-web-designer",
+    "title": "Web Developer vs Web Designer: What Is the Difference?",
+    "metaTitle": "Web Developer vs Web Designer: The Difference",
+    "description": "Two different jobs that get used as one word. What each actually produces, which one your project needs first, and what goes wrong when you hire the wrong one.",
+    "published": "2026-10-04",
+    "tags": [
+      "Web Development",
+      "Dubai"
+    ],
+    "blocks": [
+      {
+        "t": "p",
+        "v": "These two titles get used as though they are interchangeable, including by people selling both. They are not. Hiring the wrong one is one of the more expensive mistakes available to a business owner, because you usually do not find out until the project is half finished."
+      },
+      {
+        "t": "h2",
+        "v": "The difference in one line"
+      },
+      {
+        "t": "p",
+        "v": "A web designer decides what the site looks like and how it should behave. A web developer makes that real in code."
+      },
+      {
+        "t": "p",
+        "v": "Design produces a picture and a set of decisions. Development produces something you can actually click."
+      },
+      {
+        "t": "h2",
+        "v": "Side by side"
+      },
+      {
+        "t": "table",
+        "head": [
+          "",
+          "Web designer",
+          "Web developer"
+        ],
+        "rows": [
+          [
+            "Produces",
+            "Layouts, a visual system, prototypes",
+            "Working pages, logic, integrations"
+          ],
+          [
+            "Works in",
+            "Figma, and increasingly in the browser",
+            "Code, in a browser and on a server"
+          ],
+          [
+            "Decides",
+            "Hierarchy, type, colour, flow, what goes where",
+            "How it is built, what it connects to, how it performs"
+          ],
+          [
+            "Measured by",
+            "Whether people understand and act",
+            "Whether it works, loads and keeps working"
+          ],
+          [
+            "Fails by",
+            "A design that cannot be built or maintained",
+            "A build that works and looks assembled"
+          ]
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "Where the line genuinely blurs"
+      },
+      {
+        "t": "p",
+        "v": "Three areas sit in between, and whoever you hire should say clearly which of them they cover:"
+      },
+      {
+        "t": "list",
+        "v": [
+          "Responsive behaviour. A design shows two or three screen widths. Real screens are a continuous range, and somebody has to decide what happens in between.",
+          "Interaction and motion. How a menu opens, what a button does while it is loading, what a form says when it is wrong. Designers often specify this. Developers often end up deciding it.",
+          "Performance. A design can be technically buildable and still make a site slow, usually through imagery. The decision is made in design and paid for in development."
+        ]
+      },
+      {
+        "t": "p",
+        "v": "When these fall between two suppliers, they are nobody's job and they get decided by accident."
+      },
+      {
+        "t": "h2",
+        "v": "Which do you need first?"
+      },
+      {
+        "t": "p",
+        "v": "Design first, almost always. Building before the layout is settled means building it twice, and the second build is usually a patch on the first rather than a clean start."
+      },
+      {
+        "t": "p",
+        "v": "The exception is a project where the hard part is the logic rather than the presentation. An internal tool, a calculator, a system talking to three other systems. There, get the thing working and make it presentable afterwards."
+      },
+      {
+        "t": "h2",
+        "v": "What goes wrong when you hire only one"
+      },
+      {
+        "t": "h3",
+        "v": "Only a designer"
+      },
+      {
+        "t": "p",
+        "v": "You end up with a beautiful file and no website. Then you hire a developer who tells you parts of it cannot be built as drawn, or can be but will be slow, and you are renegotiating a design you have already paid for and already approved."
+      },
+      {
+        "t": "h3",
+        "v": "Only a developer"
+      },
+      {
+        "t": "p",
+        "v": "You get a site that works and looks like software. Typically: inconsistent spacing, too many typefaces, a layout that is really a stack of boxes, and no sense of what the visitor should do first. It will function perfectly and convert badly."
+      },
+      {
+        "t": "h2",
+        "v": "The case for one person doing both"
+      },
+      {
+        "t": "p",
+        "v": "I do both, so treat this as an interested opinion rather than a neutral one."
+      },
+      {
+        "t": "p",
+        "v": "The argument for it is that the three blurry areas above stop being handover problems. The person drawing the layout knows what it costs to build, so the design is already feasible, and the person building it knows what the design was for, so the compromises are the right ones."
+      },
+      {
+        "t": "p",
+        "v": "The argument against it is capacity and range. One person is a bottleneck, and very few people are genuinely excellent at both. On a large project with real design ambition, two specialists who communicate well will beat one generalist."
+      },
+      {
+        "t": "h2",
+        "v": "What to ask before you hire either"
+      },
+      {
+        "t": "list",
+        "ordered": true,
+        "v": [
+          "Which of these two jobs are you doing, and who is doing the other one?",
+          "Who decides responsive behaviour, interaction states and performance budgets?",
+          "Will I get the design files as well as the code, and in a form another person can continue from?",
+          "Show me a live site you took from design through to launch."
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "Frequently asked questions"
+      },
+      {
+        "t": "h3",
+        "v": "Is a web designer cheaper than a web developer?"
+      },
+      {
+        "t": "p",
+        "v": "Not reliably, and the comparison is not useful anyway because they produce different things. What you can compare is two quotes for the same complete outcome, design and build together, with the exclusions written down."
+      },
+      {
+        "t": "h3",
+        "v": "What about a UX designer, is that a third job?"
+      },
+      {
+        "t": "p",
+        "v": "Effectively yes. A UX designer works on structure, flow and whether people can accomplish what they came for. A web designer in common usage leans more towards the visual outcome. On small projects one person does both; on products they are usually different people."
+      },
+      {
+        "t": "h3",
+        "v": "Can I use a template and skip the designer?"
+      },
+      {
+        "t": "p",
+        "v": "You can, and for a business that needs a presence rather than a pipeline it is often the right call. Spend what you saved on photography and writing. A well-chosen template with real content beats a custom design with placeholder copy."
+      },
+      {
+        "t": "h3",
+        "v": "Who owns the design files at the end?"
+      },
+      {
+        "t": "p",
+        "v": "You should, and you should get this in writing before you pay anything. A handover that is a folder of flattened images is not a handover, because no other designer can continue from it."
+      },
+      {
+        "t": "p",
+        "v": "Published 4 October 2026 by a Dubai-based freelance designer and developer."
+      }
+    ],
+    "words": 685
+  },
+  {
+    "slug": "full-stack-front-end-or-back-end-developer",
+    "title": "Full Stack, Front-End or Back-End: Which Developer Do You Need?",
+    "metaTitle": "Full Stack, Front-End or Back-End Developer?",
+    "description": "The three developer specialisms explained for people hiring rather than coding, with a straight answer on which one your project actually needs.",
+    "published": "2026-10-04",
+    "tags": [
+      "Web Development",
+      "Dubai"
+    ],
+    "blocks": [
+      {
+        "t": "p",
+        "v": "You have had three quotes and each one describes the person differently. One is front-end, one is full stack, one is a software engineer. You are trying to work out whether this changes anything for you."
+      },
+      {
+        "t": "p",
+        "v": "Usually it changes quite a lot. Here is what each actually means and how to pick."
+      },
+      {
+        "t": "h2",
+        "v": "The split, plainly"
+      },
+      {
+        "t": "p",
+        "v": "Every web project has two halves. The half that runs in your visitor's browser, and the half that runs on a server somewhere."
+      },
+      {
+        "t": "p",
+        "v": "Front-end is the first half. Back-end is the second. Full stack is somebody who works across both."
+      },
+      {
+        "t": "h3",
+        "v": "Front-end"
+      },
+      {
+        "t": "p",
+        "v": "Everything the visitor sees and touches. The layout, the typography as it actually renders, what happens when they tap something, how fast it appears, whether it works on a four-year-old Android phone on a weak connection."
+      },
+      {
+        "t": "p",
+        "v": "A strong front-end developer is the difference between a site that feels expensive and one that feels like a form."
+      },
+      {
+        "t": "h3",
+        "v": "Back-end"
+      },
+      {
+        "t": "p",
+        "v": "Everything the visitor never sees. Where the data lives, who is allowed to see what, how a payment is taken without losing it, what happens when the property feed sends malformed data at two in the morning."
+      },
+      {
+        "t": "p",
+        "v": "Back-end problems are the ones that cost real money when they go wrong, because they involve data, payments or access."
+      },
+      {
+        "t": "h3",
+        "v": "Full stack"
+      },
+      {
+        "t": "p",
+        "v": "Both, with one side usually stronger. This is not a compromise title. For most business projects it is the correct hire, because the project is not big enough to keep two specialists busy and every handover between them costs you clarity."
+      },
+      {
+        "t": "p",
+        "v": "Ask any full stack developer which half they are stronger in. Anyone who says they are equally expert in both is selling."
+      },
+      {
+        "t": "h2",
+        "v": "Which one does your project need?"
+      },
+      {
+        "t": "table",
+        "head": [
+          "Your project",
+          "Who you need"
+        ],
+        "rows": [
+          [
+            "Brochure site, no accounts, no payments",
+            "Front-end, or full stack"
+          ],
+          [
+            "Site plus enquiry forms going into a CRM",
+            "Full stack"
+          ],
+          [
+            "Booking, payments, user accounts or a portal",
+            "Full stack, with real back-end strength"
+          ],
+          [
+            "Property search pulling from a live feed",
+            "Full stack, with real back-end strength"
+          ],
+          [
+            "Redesigning an existing site that already works",
+            "Front-end"
+          ],
+          [
+            "Internal tool where nobody cares how it looks",
+            "Back-end"
+          ],
+          [
+            "Product with a team and a roadmap",
+            "Specialists, not a generalist"
+          ]
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "The question that sorts it in one minute"
+      },
+      {
+        "t": "p",
+        "v": "Does the site need to remember anything?"
+      },
+      {
+        "t": "p",
+        "v": "If the answer is no, it only displays information, you are mostly in front-end territory. If the answer is yes, it stores enquiries, accounts, orders, bookings, uploads, anything, you need back-end capability and you should not hire someone who treats it as an afterthought."
+      },
+      {
+        "t": "h2",
+        "v": "Why this matters more than the day rate"
+      },
+      {
+        "t": "p",
+        "v": "A front-end specialist taking on a back-end project will usually get it working. The problem arrives later: data modelled badly, no thought given to who can see what, secrets stored where they should not be, and no plan for what happens when something fails halfway through."
+      },
+      {
+        "t": "p",
+        "v": "None of that shows at launch. All of it shows in month six, and fixing it then means rebuilding rather than patching."
+      },
+      {
+        "t": "h2",
+        "v": "What about the frameworks in the quote?"
+      },
+      {
+        "t": "p",
+        "v": "React, Next.js, Node, Laravel, WordPress. These are tools, and the choice matters less than people pretend as long as the person is genuinely fluent in the one they picked."
+      },
+      {
+        "t": "p",
+        "v": "The one thing worth checking is whether the choice suits who will run the site afterwards. A custom build needs a developer for every change. A WordPress site lets your team edit pages themselves. That is a business decision rather than a technical one, and it should be yours."
+      },
+      {
+        "t": "h2",
+        "v": "Frequently asked questions"
+      },
+      {
+        "t": "h3",
+        "v": "Is full stack worse than hiring two specialists?"
+      },
+      {
+        "t": "p",
+        "v": "For a small or medium project, no, and it is usually better. One person holds the whole picture and nothing is lost in handover. Past the point where one person cannot keep up, specialists win clearly."
+      },
+      {
+        "t": "h3",
+        "v": "Do I need a DevOps person as well?"
+      },
+      {
+        "t": "p",
+        "v": "For a normal business website, no. Modern hosting handles deployment, certificates and scaling without a dedicated person. For a product with uptime commitments and real traffic, eventually yes."
+      },
+      {
+        "t": "h3",
+        "v": "How do I check someone's back-end claim without being technical?"
+      },
+      {
+        "t": "p",
+        "v": "Ask what happens when a payment succeeds but the confirmation email fails, or what they do when an integration goes down. Someone with real back-end experience answers immediately and in detail, because they have lived it. Someone without changes the subject to frameworks."
+      },
+      {
+        "t": "h3",
+        "v": "Does the title affect what I should pay?"
+      },
+      {
+        "t": "p",
+        "v": "Less than the complexity of your project does. My own published project minimum is AED 31,500 regardless of which half the work sits in, with retainers from AED 16,000 a month. Those are my rates rather than market data."
+      },
+      {
+        "t": "p",
+        "v": "Published 4 October 2026 by a Dubai-based freelance full stack developer."
+      }
+    ],
+    "words": 622
+  },
+  {
+    "slug": "cost-to-hire-a-web-developer-in-dubai",
+    "title": "What It Costs to Hire a Web Developer in Dubai",
+    "metaTitle": "Cost to Hire a Web Developer in Dubai",
+    "description": "The four ways to hire a developer in Dubai, what each really costs once you include the parts nobody quotes, and how to compare them honestly.",
+    "published": "2026-10-04",
+    "tags": [
+      "Web Development",
+      "Pricing",
+      "Dubai"
+    ],
+    "blocks": [
+      {
+        "t": "p",
+        "v": "This is a different question from what a website costs. That one is about a project. This one is about a person, and the right answer depends on whether you need somebody for six weeks or for the next three years."
+      },
+      {
+        "t": "p",
+        "v": "I am a Dubai-based freelance developer, so the figures here are my own published rates and what I see quoted around me. They are not survey data and I am not presenting them as such."
+      },
+      {
+        "t": "h2",
+        "v": "Four ways to hire, and what each really costs"
+      },
+      {
+        "t": "h3",
+        "v": "A freelancer"
+      },
+      {
+        "t": "p",
+        "v": "You pay for output rather than for time in a seat. No visa, no end of service, no desk, no quiet months. You also get no guaranteed availability, and if they are unavailable in a crisis you have no bench."
+      },
+      {
+        "t": "p",
+        "v": "My own published figures, so there is at least one verifiable number on this page: project minimum AED 31,500, retainers from AED 16,000 a month, and a one-off review session at AED 3,500. Experienced Dubai freelancers generally sit in the tens of thousands of dirhams for a straightforward business website rather than the thousands."
+      },
+      {
+        "t": "h3",
+        "v": "A Dubai agency"
+      },
+      {
+        "t": "p",
+        "v": "You are buying continuity and capacity. An office, account management, a project manager and a bench of people, which means the work continues when somebody leaves. All of that sits in your quote whether or not your particular project benefits from it."
+      },
+      {
+        "t": "p",
+        "v": "Agency pricing for a business website commonly starts around the middle of the freelance range and climbs steeply. For a large project with many stakeholders, that structure earns its money. For a ten-page site, most of what you are paying for is the layer between you and the person doing the work."
+      },
+      {
+        "t": "h3",
+        "v": "An in-house hire"
+      },
+      {
+        "t": "p",
+        "v": "The salary is the part people quote and the smaller part of the real number. Budget also for visa and sponsorship costs, medical insurance, end of service gratuity, recruitment fees, equipment and software, and the time your own team spends managing them."
+      },
+      {
+        "t": "p",
+        "v": "Employment and visa costs in the UAE change, and they depend on your licence, your free zone and the role. Get the current figures from a qualified PRO or your corporate services provider rather than from an article. I am a developer, not your adviser on employment matters."
+      },
+      {
+        "t": "p",
+        "v": "The real question is whether you have enough work. A developer with nothing to build is the most expensive thing on this page."
+      },
+      {
+        "t": "h3",
+        "v": "An offshore team"
+      },
+      {
+        "t": "p",
+        "v": "The lowest headline number and the widest range of outcomes. The saving is genuine. So is the cost of time-zone gaps, a brief that has to be perfect because clarification takes a day, and nobody who can sit in a room with you."
+      },
+      {
+        "t": "p",
+        "v": "The offshore projects I have seen work well all had one thing in common: somebody technical on the client side who could specify properly and review critically. Without that, you are paying for exactly what you asked for, which is rarely what you meant."
+      },
+      {
+        "t": "h2",
+        "v": "Comparing them honestly"
+      },
+      {
+        "t": "table",
+        "head": [
+          "",
+          "Freelancer",
+          "Agency",
+          "In-house",
+          "Offshore"
+        ],
+        "rows": [
+          [
+            "Pay for",
+            "Output",
+            "Capacity",
+            "Availability",
+            "Hours"
+          ],
+          [
+            "Speed to start",
+            "Days",
+            "Weeks",
+            "Months",
+            "Weeks"
+          ],
+          [
+            "Access to the builder",
+            "Direct",
+            "Through an account manager",
+            "Direct",
+            "Through a manager"
+          ],
+          [
+            "Cost when work is quiet",
+            "Nothing",
+            "Retainer",
+            "Full salary",
+            "Low"
+          ],
+          [
+            "Risk",
+            "One person",
+            "Staff turnover",
+            "Hiring the wrong person",
+            "Specification and distance"
+          ],
+          [
+            "Best for",
+            "Defined projects, ongoing partner",
+            "Large multi-stakeholder work",
+            "Continuous internal demand",
+            "High volume, clear specs"
+          ]
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "What moves the number most"
+      },
+      {
+        "t": "p",
+        "v": "Not the hiring model. These, in order:"
+      },
+      {
+        "t": "list",
+        "ordered": true,
+        "v": [
+          "Custom functionality. A page that displays information is solved. A page that does something is a project inside the project. Booking, payments, calculators, portals, search with filters.",
+          "Integrations. Every connection to a CRM, a feed, a gateway or an accounting system is a dependency on somebody else's documentation and uptime. Individually easy, collectively expensive.",
+          "Arabic. Right to left mirrors the layout, not just the text. Navigation, icons, forms, charts and any asymmetric design all need a second decision. Budget it as a percentage of the build, not a line item.",
+          "Content. The most commonly forgotten cost and the most common reason a finished build sits unlaunched. Copy and photography belong in the budget unless you are personally writing and shooting them."
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "What is usually missing from the quote"
+      },
+      {
+        "t": "p",
+        "v": "Ask about every one of these before you compare two numbers, because a lower quote that excludes them is not lower:"
+      },
+      {
+        "t": "list",
+        "v": [
+          "Hosting and domain, annually, and whose account they sit in",
+          "Analytics and conversion tracking, set up before launch rather than bolted on after",
+          "Who owns the code and the design files when the engagement ends",
+          "What happens when something breaks in month three, and what it costs",
+          "Content, photography and any stock imagery, font or plugin licences",
+          "Training, so your team can run the thing without calling someone"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "Hourly, project or retainer?"
+      },
+      {
+        "t": "p",
+        "v": "Project pricing suits defined work with an end. The estimating risk sits with the developer rather than with you, which is why I price this way wherever the scope can be pinned down."
+      },
+      {
+        "t": "p",
+        "v": "A retainer suits continuous work, where the site keeps changing because the business keeps changing. Be careful with monthly pricing that is really a one-off build spread over twelve months, because at the end of it you may own nothing."
+      },
+      {
+        "t": "p",
+        "v": "Hourly is honest for advisory work and poor for building, because it pays for time rather than outcome and nobody is incentivised to finish."
+      },
+      {
+        "t": "h2",
+        "v": "Frequently asked questions"
+      },
+      {
+        "t": "h3",
+        "v": "Do I need a trade licence to hire a freelancer in the UAE?"
+      },
+      {
+        "t": "p",
+        "v": "You do not, but the person invoicing you generally needs to be licensed to do so legally. Ask for a trade licence or freelance permit before you pay anything, and take proper advice on your own obligations from a qualified professional. I am a developer and not your lawyer or accountant."
+      },
+      {
+        "t": "h3",
+        "v": "Is an offshore developer a false economy?"
+      },
+      {
+        "t": "p",
+        "v": "Not inherently. It becomes one when nobody on your side can write a precise brief or review the result critically. The saving is real and it is spent on management you may not have."
+      },
+      {
+        "t": "h3",
+        "v": "How do I compare two quotes that are far apart?"
+      },
+      {
+        "t": "p",
+        "v": "Put the exclusions side by side rather than the prices. One quote usually includes content, tracking, Arabic and three months of support, and the other includes a design and a handover. Most of the gap explains itself."
+      },
+      {
+        "t": "h3",
+        "v": "What is the lowest realistic way to get a business website here?"
+      },
+      {
+        "t": "p",
+        "v": "A well-chosen template with your own copy and real photographs. Honestly done, that beats a low-cost custom build. Spend the difference on writing and images, which is where the return actually is."
+      },
+      {
+        "t": "p",
+        "v": "Published 4 October 2026. All AED figures are my own published rates, stated so there is at least one verifiable number here. They are not a market survey."
+      }
+    ],
+    "words": 960
+  },
+  {
+    "slug": "ux-designer-vs-ui-designer",
+    "title": "UX Designer vs UI Designer: The Difference, Explained",
+    "metaTitle": "UX Designer vs UI Designer: The Difference",
+    "description": "Two roles that get written as one word. What each produces, why the order matters, and which one your project needs if you can only afford one.",
+    "published": "2026-10-04",
+    "tags": [
+      "UI UX Design",
+      "Design",
+      "Dubai"
+    ],
+    "blocks": [
+      {
+        "t": "p",
+        "v": "The two get written together so often that most people assume they are one job. In a small team they frequently are one person. They are not one skill."
+      },
+      {
+        "t": "p",
+        "v": "The short version: UX decides what should happen. UI decides how it looks and feels when it does."
+      },
+      {
+        "t": "h2",
+        "v": "UX design: does this work?"
+      },
+      {
+        "t": "p",
+        "v": "User experience design is about structure and flow. What a person came here to do, how many steps stand between them and doing it, what they see when they get it wrong, and whether they understand where they are."
+      },
+      {
+        "t": "p",
+        "v": "A UX designer produces things that are mostly not beautiful: flows, wireframes, a site structure, a list of states nobody thought about. The output is decisions."
+      },
+      {
+        "t": "p",
+        "v": "When UX is bad, people do not say the design is ugly. They say the site is confusing, or they say nothing and leave."
+      },
+      {
+        "t": "h2",
+        "v": "UI design: does this feel right?"
+      },
+      {
+        "t": "p",
+        "v": "User interface design is the surface. Typography, colour, spacing, hierarchy, iconography, the way a button changes under your finger, how a loading state behaves so a two-second wait does not feel like a failure."
+      },
+      {
+        "t": "p",
+        "v": "A UI designer produces the thing people recognise as design: a visual system that applies consistently across every screen, including the ones nobody drew."
+      },
+      {
+        "t": "p",
+        "v": "When UI is bad, the product feels unfinished or untrustworthy even when every flow is logically correct."
+      },
+      {
+        "t": "h2",
+        "v": "Side by side"
+      },
+      {
+        "t": "table",
+        "head": [
+          "",
+          "UX designer",
+          "UI designer"
+        ],
+        "rows": [
+          [
+            "Question",
+            "Can people do what they came for?",
+            "Does this look and feel right?"
+          ],
+          [
+            "Produces",
+            "Flows, wireframes, structure, states",
+            "Visual system, screens, components"
+          ],
+          [
+            "Works from",
+            "Research, analytics, support tickets, interviews",
+            "Brand, the UX structure, an existing system"
+          ],
+          [
+            "Measured by",
+            "Completion, drop-off, support volume",
+            "Consistency, clarity, perceived quality"
+          ],
+          [
+            "Failure looks like",
+            "Confusion, abandonment, repeated questions",
+            "Cheap, dated, or inconsistent"
+          ]
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "Why the order matters"
+      },
+      {
+        "t": "p",
+        "v": "UX comes first. Styling a flow that is wrong produces an attractive version of the wrong thing, and you will have paid twice: once for the design and once for the rebuild after it underperforms."
+      },
+      {
+        "t": "p",
+        "v": "This is the single most common sequencing mistake I see. Someone commissions visuals because visuals are what they can picture, approves them because they look good, and only discovers the structural problem once real people are using it."
+      },
+      {
+        "t": "h2",
+        "v": "If you can only afford one"
+      },
+      {
+        "t": "p",
+        "v": "Depends entirely on the project."
+      },
+      {
+        "t": "list",
+        "v": [
+          "A brochure website, straightforward structure, few pages: UI. The flow is already a solved problem and what you need is for it to look credible.",
+          "An application, a booking flow, a dashboard, anything with steps: UX. Attractive and confusing is worse than plain and obvious.",
+          "An existing site that gets traffic but few enquiries: UX. The visitors are arriving. Something between arriving and converting is broken, and it is rarely the colour.",
+          "A redesign where the current version works but looks dated: UI. Do not restructure something that is already performing."
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "What about everyone else in the list?"
+      },
+      {
+        "t": "p",
+        "v": "You will also see product designer, interaction designer, visual designer and service designer. Titles vary by company more than by discipline, and there is no body deciding who may use which."
+      },
+      {
+        "t": "p",
+        "v": "Broadly: a product designer covers UX and UI plus responsibility for what gets built and why. An interaction designer sits close to UX with a focus on behaviour and motion. A visual designer is UI without the structural half. Judge the portfolio, not the noun."
+      },
+      {
+        "t": "h2",
+        "v": "How to read a portfolio properly"
+      },
+      {
+        "t": "p",
+        "v": "Almost every design portfolio is a UI portfolio, because screens photograph well and flows do not. That tells you very little about UX ability."
+      },
+      {
+        "t": "p",
+        "v": "Three questions that separate them:"
+      },
+      {
+        "t": "list",
+        "ordered": true,
+        "v": [
+          "What was broken before you started, and how did you know? A UX answer cites evidence. A UI answer says the client wanted a refresh.",
+          "Show me something you removed. Good UX work usually deletes steps. Portfolios full of additions are visual work described as experience work.",
+          "What happened after it launched? Anyone who has done real UX knows at least one number. Anyone who does not will talk about how the client felt."
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "Frequently asked questions"
+      },
+      {
+        "t": "h3",
+        "v": "Can one person do both well?"
+      },
+      {
+        "t": "p",
+        "v": "Yes, and on small and medium projects it is usually the better arrangement because the structure and the surface stay in one head. On a large product with a team, they separate for good reasons: the work is simply too much for one person."
+      },
+      {
+        "t": "h3",
+        "v": "Is UX research essential or a luxury?"
+      },
+      {
+        "t": "p",
+        "v": "On a brochure site, mostly a luxury. On anything with a flow, essential, but it does not have to be expensive. Five conversations with real customers and a look at your own analytics will tell you more than most formal studies."
+      },
+      {
+        "t": "h3",
+        "v": "Where does a developer fit?"
+      },
+      {
+        "t": "p",
+        "v": "After both, and ideally in conversation with both. Many design decisions are only expensive once someone tries to build them, and a designer who has never shipped working software tends to specify things that are costly for no visible gain."
+      },
+      {
+        "t": "h3",
+        "v": "Do I need this if I am using a template?"
+      },
+      {
+        "t": "p",
+        "v": "You still need the UX decisions, you just make them yourself. What goes on the homepage, what the single most important action is, what order the sections run in. A template gives you the UI and leaves the thinking to you."
+      },
+      {
+        "t": "p",
+        "v": "Published 4 October 2026 by a Dubai-based designer and developer."
+      }
+    ],
+    "words": 735
+  },
+  {
+    "slug": "what-is-a-product-designer",
+    "title": "What Is a Product Designer, and When Do You Need One?",
+    "metaTitle": "What Is a Product Designer?",
+    "description": "The role explained without the jargon: what a product designer owns beyond screens, how it differs from UX and UI, and the point at which you actually need one.",
+    "published": "2026-10-04",
+    "tags": [
+      "UI UX Design",
+      "Design",
+      "Dubai"
+    ],
+    "blocks": [
+      {
+        "t": "p",
+        "v": "Product designer is the newest of the design titles and the most inconsistently used. At one company it means a UX designer with a broader remit. At another it means a UI designer with a nicer title. At a third it means someone who sits in roadmap meetings and argues about what to build."
+      },
+      {
+        "t": "p",
+        "v": "Here is what the role means when it is used properly, and whether your business needs one."
+      },
+      {
+        "t": "h2",
+        "v": "The definition worth using"
+      },
+      {
+        "t": "p",
+        "v": "A product designer is responsible for whether the thing being built is worth building, not only for how it looks and flows."
+      },
+      {
+        "t": "p",
+        "v": "That is the whole distinction. A UX designer is handed a problem and designs a solution. A product designer is involved in deciding which problem gets solved, pushes back when the answer is a feature nobody asked for, and owns the outcome afterwards."
+      },
+      {
+        "t": "h2",
+        "v": "What the job covers"
+      },
+      {
+        "t": "list",
+        "v": [
+          "Understanding the problem. Talking to customers, reading support tickets, watching what people actually do rather than what they say.",
+          "Deciding what to build. Including arguing that something should not be built, which is the most valuable and least popular part of the job.",
+          "Designing it. Structure and flow first, then the interface, usually inside a design system rather than from scratch each time.",
+          "Specifying the edges. Empty states, error states, what happens on a slow connection, what happens to someone who already has data.",
+          "Working with engineering. Not handing over a file and leaving, which is where most design value is lost.",
+          "Measuring. Did the change do what it was supposed to? If nobody checks, nobody learns."
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "Product designer, UX designer, UI designer"
+      },
+      {
+        "t": "table",
+        "head": [
+          "",
+          "Scope",
+          "Typically owns"
+        ],
+        "rows": [
+          [
+            "UI designer",
+            "The surface",
+            "Visual system, screens, components"
+          ],
+          [
+            "UX designer",
+            "Structure and flow",
+            "Research, wireframes, journeys"
+          ],
+          [
+            "Product designer",
+            "Problem through to outcome",
+            "All of the above, plus what gets built and whether it worked"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "v": "The scopes overlap heavily and the titles are not protected. Treat the table as a guide to what to ask about rather than a set of fixed definitions."
+      },
+      {
+        "t": "h2",
+        "v": "When you actually need one"
+      },
+      {
+        "t": "p",
+        "v": "You need a product designer when you have a product rather than a website. Specifically, when all three of these are true:"
+      },
+      {
+        "t": "list",
+        "ordered": true,
+        "v": [
+          "Your software is the thing customers use repeatedly, not a brochure they read once.",
+          "You have more ideas than capacity, so somebody has to decide what is worth building.",
+          "You can measure what happens after a release, so decisions can be judged rather than defended."
+        ]
+      },
+      {
+        "t": "p",
+        "v": "If you run a business website, a property listing site or a campaign landing page, you do not need a product designer. You need a designer and a developer. Hiring a product designer for brochure work means paying for judgement you have no decisions to apply it to."
+      },
+      {
+        "t": "h2",
+        "v": "Signs you have outgrown ad-hoc design"
+      },
+      {
+        "t": "list",
+        "v": [
+          "The same screen has been redesigned three times because nobody agreed what it was for",
+          "Every new feature looks slightly different from the last one",
+          "Developers are making design decisions in the dark because nothing specified the edge cases",
+          "Nobody can say whether the last release improved anything",
+          "Support answers the same question every week and nothing changes"
+        ]
+      },
+      {
+        "t": "p",
+        "v": "The last one is the clearest signal. A recurring support question is a design problem that has been converted into a staffing cost."
+      },
+      {
+        "t": "h2",
+        "v": "Hiring one"
+      },
+      {
+        "t": "p",
+        "v": "Ask about decisions rather than screens. Specifically, ask about something they argued against and lost, and what happened. Anyone who has genuinely held this role has that story and usually tells it well."
+      },
+      {
+        "t": "p",
+        "v": "Then ask what they measured. A product designer who cannot name a single number from their last role was doing UI design under a different title, which may be fine for your needs but is worth knowing before you pay for the wider remit."
+      },
+      {
+        "t": "h2",
+        "v": "Frequently asked questions"
+      },
+      {
+        "t": "h3",
+        "v": "Is product designer just a trendier title for UX designer?"
+      },
+      {
+        "t": "p",
+        "v": "Often, yes. The honest answer is that it depends on the company. The way to find out is to ask who decides what gets built there, and whether the designer is in that conversation."
+      },
+      {
+        "t": "h3",
+        "v": "Can a freelancer do product design?"
+      },
+      {
+        "t": "p",
+        "v": "Partly. The design and specification work transfers well. The parts that need continuity, being in the room when priorities change, following a release through to its numbers, work less well on short engagements. A long retainer gets closer than a project does."
+      },
+      {
+        "t": "h3",
+        "v": "Do I need one before I have customers?"
+      },
+      {
+        "t": "p",
+        "v": "No. Before customers, you need to build the smallest honest version of the idea and put it in front of people. Product design becomes valuable once you have real usage to learn from, because that is the raw material the role works with."
+      },
+      {
+        "t": "h3",
+        "v": "What does it cost in Dubai?"
+      },
+      {
+        "t": "p",
+        "v": "For project work, my own published minimum is AED 31,500 and retainers start at AED 16,000 a month. Those are my rates rather than a market survey. For a permanent hire, salaries vary widely with seniority and I would not put a figure on it without data I do not have."
+      },
+      {
+        "t": "p",
+        "v": "Published 4 October 2026 by a Dubai-based designer and developer."
+      }
+    ],
+    "words": 734
+  },
+  {
+    "slug": "what-a-ux-designer-actually-does",
+    "title": "What a UX Designer Actually Does on a Project",
+    "metaTitle": "What a UX Designer Actually Does",
+    "description": "A walk through a real UX engagement from first conversation to launch, written for people who are about to commission one and want to know what they are paying for.",
+    "published": "2026-10-04",
+    "tags": [
+      "UI UX Design",
+      "Design",
+      "Dubai"
+    ],
+    "blocks": [
+      {
+        "t": "p",
+        "v": "Descriptions of UX work tend to be either a list of deliverables or a diagram with five circles in it. Neither tells you what the person is doing on a Tuesday or why it is worth paying for."
+      },
+      {
+        "t": "p",
+        "v": "This is the shape of a real engagement, in the order it usually happens."
+      },
+      {
+        "t": "h2",
+        "v": "Before anything is drawn"
+      },
+      {
+        "t": "h3",
+        "v": "Finding out what the thing is for"
+      },
+      {
+        "t": "p",
+        "v": "The first conversation is not about the website. It is about the business. What does a good month look like, where do enquiries come from now, what happens to one after it arrives, and which part of that chain is the bottleneck."
+      },
+      {
+        "t": "p",
+        "v": "Half the time this conversation changes the brief. A client asks for a redesign and the actual problem is that enquiries arrive in an inbox nobody checks on Fridays."
+      },
+      {
+        "t": "h3",
+        "v": "Looking at what already happens"
+      },
+      {
+        "t": "p",
+        "v": "Analytics, if there are any worth reading. Which pages people land on, where they leave, what they search for on the site, which forms get started and abandoned."
+      },
+      {
+        "t": "p",
+        "v": "Then the sources nobody thinks of as research: the questions sales answers repeatedly, the complaints support handles weekly, the reasons people give for not buying. Those are a free, continuous study of where the current experience fails."
+      },
+      {
+        "t": "h3",
+        "v": "Talking to a few actual people"
+      },
+      {
+        "t": "p",
+        "v": "Five conversations with real customers beats a large survey for this kind of work. Not asking what they want, which produces polite fiction, but watching them try to do something and noticing where they hesitate."
+      },
+      {
+        "t": "h2",
+        "v": "Structure, before surface"
+      },
+      {
+        "t": "h3",
+        "v": "Deciding what goes where"
+      },
+      {
+        "t": "p",
+        "v": "What the site contains, how it is grouped, what the navigation says. This sounds trivial and is responsible for a large share of whether people find anything. Most businesses organise their site around their internal structure rather than around what a visitor is trying to do."
+      },
+      {
+        "t": "h3",
+        "v": "Mapping the journeys that matter"
+      },
+      {
+        "t": "p",
+        "v": "Usually two or three. The person ready to enquire. The person comparing options. The existing customer who needs something and should not be funnelled into the new-enquiry flow."
+      },
+      {
+        "t": "p",
+        "v": "Each one gets walked through step by step, and every step is a question: is this needed, can it be removed, what happens if it goes wrong."
+      },
+      {
+        "t": "h3",
+        "v": "Wireframes"
+      },
+      {
+        "t": "p",
+        "v": "Deliberately plain layouts with no styling, so the conversation stays on hierarchy and content rather than on colour. Clients often dislike this stage because it looks unfinished. It is the stage where changes are nearly free."
+      },
+      {
+        "t": "h2",
+        "v": "The part that gets skipped"
+      },
+      {
+        "t": "p",
+        "v": "Specifying every state, not just the one where everything works:"
+      },
+      {
+        "t": "list",
+        "v": [
+          "Empty. A dashboard with no data yet, a search with no results, a list before the first entry.",
+          "Loading. What is on screen during the two seconds the server is thinking.",
+          "Error. What the form says when it is wrong, and whether that tells the person how to fix it.",
+          "Too much. What happens when a name is sixty characters or a list has four hundred items.",
+          "Returning. What someone sees on their second visit, which is almost never the same as the first."
+        ]
+      },
+      {
+        "t": "p",
+        "v": "When these are not specified, the developer decides them under time pressure, and they become the parts of the product people complain about."
+      },
+      {
+        "t": "h2",
+        "v": "Working with the build"
+      },
+      {
+        "t": "p",
+        "v": "The handover is not a file and a farewell. Questions come up during the build that the design did not answer, and the answer either comes from the designer or gets improvised."
+      },
+      {
+        "t": "p",
+        "v": "A designer who has shipped working software specifies fewer expensive things, because they know which requests cost a day and which cost a fortnight for no visible gain."
+      },
+      {
+        "t": "h2",
+        "v": "After launch"
+      },
+      {
+        "t": "p",
+        "v": "The work is not finished at launch, it is finished when somebody checks whether it did what it was meant to do. Enquiries, completion rates, drop-off at the step that was redesigned, support volume on the question that prompted the project."
+      },
+      {
+        "t": "p",
+        "v": "This is also the part most commonly cut from a budget, which is why so many redesigns are followed by an argument about whether they worked."
+      },
+      {
+        "t": "h2",
+        "v": "What you should receive"
+      },
+      {
+        "t": "list",
+        "v": [
+          "The structure: what the site contains and how it is grouped",
+          "The journeys, step by step, for the flows that matter",
+          "Wireframes or designs covering every state, not only the ideal one",
+          "Source files organised well enough that another designer could continue",
+          "A short written record of what was decided and why"
+        ]
+      },
+      {
+        "t": "p",
+        "v": "That last one is worth asking for explicitly. A year later, nobody remembers why the form has three fields instead of seven, and without a record somebody adds four back."
+      },
+      {
+        "t": "h2",
+        "v": "Frequently asked questions"
+      },
+      {
+        "t": "h3",
+        "v": "How long does this take?"
+      },
+      {
+        "t": "p",
+        "v": "For a business website, the structural work is usually a couple of weeks and the delay is almost never the design. It is waiting for content, photographs and decisions from the client side."
+      },
+      {
+        "t": "h3",
+        "v": "Can I skip research if I know my customers?"
+      },
+      {
+        "t": "p",
+        "v": "You can skip formal research. Do not skip looking at your own analytics and asking your sales and support people what they get asked. That costs an afternoon and is the highest-value hour in the project."
+      },
+      {
+        "t": "h3",
+        "v": "What if I cannot afford the full process?"
+      },
+      {
+        "t": "p",
+        "v": "Keep two parts and drop the rest: the first conversation about what the site is for, and specifying the states. Those two carry most of the value. A one-off review session at AED 3,500 is how I usually handle a budget that will not stretch to a full engagement."
+      },
+      {
+        "t": "h3",
+        "v": "Who owns the files at the end?"
+      },
+      {
+        "t": "p",
+        "v": "You should, and in a form another designer can work from. Get it in writing before you pay anything. A folder of flattened images is not a handover."
+      },
+      {
+        "t": "p",
+        "v": "Published 4 October 2026 by a Dubai-based designer and developer. The AED figure is my own published rate."
+      }
+    ],
+    "words": 850
+  },
+  {
+    "slug": "freelance-designer-vs-design-agency",
+    "title": "Freelance Designer vs Design Agency: Which to Hire",
+    "metaTitle": "Freelance Designer vs Design Agency",
+    "description": "An honest comparison from someone with an obvious bias: what each model is genuinely better at, what each costs you, and the three questions that decide it.",
+    "published": "2026-10-04",
+    "tags": [
+      "UI UX Design",
+      "Pricing",
+      "Dubai"
+    ],
+    "blocks": [
+      {
+        "t": "p",
+        "v": "I am a freelance designer, so you should discount what follows accordingly. I have tried to write the version I would want to read if I were choosing, including the parts where an agency is the better answer."
+      },
+      {
+        "t": "h2",
+        "v": "What you are actually choosing between"
+      },
+      {
+        "t": "p",
+        "v": "Not a price. A structure."
+      },
+      {
+        "t": "p",
+        "v": "With a freelancer you get one person, directly, with no layer in between and no bench behind them. With an agency you get a team, access to it through an account manager, and continuity when somebody leaves."
+      },
+      {
+        "t": "p",
+        "v": "Everything else follows from that."
+      },
+      {
+        "t": "h2",
+        "v": "Where the freelancer wins"
+      },
+      {
+        "t": "h3",
+        "v": "You talk to the person doing the work"
+      },
+      {
+        "t": "p",
+        "v": "A brief loses detail at every handover. When you explain something to the person who will design it, nothing is translated and nothing is lost. This is the largest practical difference and the one clients notice first."
+      },
+      {
+        "t": "h3",
+        "v": "You pay for output rather than overhead"
+      },
+      {
+        "t": "p",
+        "v": "An office, a sales team, account management and project management sit in an agency quote whether or not your project benefits from them. On a small project, most of what you are paying for is the layer between you and the designer."
+      },
+      {
+        "t": "h3",
+        "v": "Speed"
+      },
+      {
+        "t": "p",
+        "v": "No internal approvals, no resourcing meeting, no waiting for a slot. A freelancer can usually start within days and change direction the same afternoon you ask."
+      },
+      {
+        "t": "h2",
+        "v": "Where the agency wins"
+      },
+      {
+        "t": "h3",
+        "v": "They do not get ill"
+      },
+      {
+        "t": "p",
+        "v": "This is the real risk with a freelancer and it is not a small one. One person has no cover. If they are unavailable at the wrong moment, your project stops. An agency absorbs that."
+      },
+      {
+        "t": "h3",
+        "v": "Capacity and range"
+      },
+      {
+        "t": "p",
+        "v": "A rebrand across fifteen touchpoints with four stakeholders and a deadline is a resourcing problem, not a design problem. Agencies are built for exactly that. A freelancer taking it on becomes the bottleneck."
+      },
+      {
+        "t": "h3",
+        "v": "Specialist depth"
+      },
+      {
+        "t": "p",
+        "v": "Motion, illustration, 3D, copywriting, photography and research are separate crafts. An agency has or can reach them. A freelancer has one or two and subcontracts the rest, which means you get a coordinator without agency coordination."
+      },
+      {
+        "t": "h3",
+        "v": "Somebody is accountable when it goes wrong"
+      },
+      {
+        "t": "p",
+        "v": "With a company there is a contract, an escalation path and a reputation at stake. With an individual there is an individual. Most of the time that is enough. Occasionally it is not."
+      },
+      {
+        "t": "h2",
+        "v": "Side by side"
+      },
+      {
+        "t": "table",
+        "head": [
+          "",
+          "Freelancer",
+          "Agency"
+        ],
+        "rows": [
+          [
+            "Access to the designer",
+            "Direct",
+            "Usually through an account manager"
+          ],
+          [
+            "Cost structure",
+            "Output only",
+            "Output plus overhead"
+          ],
+          [
+            "Speed to start",
+            "Days",
+            "Weeks"
+          ],
+          [
+            "Cover if unavailable",
+            "None",
+            "Built in"
+          ],
+          [
+            "Range of specialisms",
+            "One or two, deep",
+            "Broad"
+          ],
+          [
+            "Best for",
+            "Defined projects, ongoing partnership",
+            "Large multi-stakeholder programmes"
+          ],
+          [
+            "Main risk",
+            "One person",
+            "Juniors on your account, overhead you do not need"
+          ]
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "The three questions that decide it"
+      },
+      {
+        "t": "list",
+        "ordered": true,
+        "v": [
+          "How many people need to be involved on your side? One or two decision makers suits a freelancer. Five stakeholders across three departments needs the coordination an agency provides, and you will pay for it either way.",
+          "What happens if the work stops for two weeks? If that is survivable, a freelancer is fine. If it is not, pay for the bench.",
+          "How many different crafts does this genuinely need? One or two, go direct. Five, an agency assembles them faster than you can."
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "The question that does not decide it"
+      },
+      {
+        "t": "p",
+        "v": "Which is better at design. Neither, reliably. There are excellent freelancers and excellent agencies, and the correlation between price and quality in this industry is weaker than anyone would like."
+      },
+      {
+        "t": "p",
+        "v": "What you can judge is the specific person or team you would actually get. Which brings us to the thing worth checking either way."
+      },
+      {
+        "t": "h2",
+        "v": "The one thing to check with an agency"
+      },
+      {
+        "t": "p",
+        "v": "Ask who specifically will do the work, and ask to see their portfolio rather than the agency's."
+      },
+      {
+        "t": "p",
+        "v": "The pitch is often given by senior people and the work is often done by juniors. That is not dishonest, it is how agencies are economically structured, but you should know which version you are buying before you compare it with a freelancer who is personally doing all of it."
+      },
+      {
+        "t": "h2",
+        "v": "Frequently asked questions"
+      },
+      {
+        "t": "h3",
+        "v": "Is a freelancer always lower cost?"
+      },
+      {
+        "t": "p",
+        "v": "Usually on the invoice, not always in total. A freelancer who needs more management from your side, or who subcontracts three specialists and coordinates them loosely, can cost more in time and risk than a well-run agency."
+      },
+      {
+        "t": "h3",
+        "v": "Can I use both?"
+      },
+      {
+        "t": "p",
+        "v": "Commonly, and it works well. An agency for the brand programme, a freelancer on retainer for the continuous work afterwards. The second is where agencies are least cost effective and freelancers are strongest."
+      },
+      {
+        "t": "h3",
+        "v": "How do I reduce the single-person risk?"
+      },
+      {
+        "t": "p",
+        "v": "Insist on owning everything as you go rather than at the end: source files in your own storage, the site in your own hosting account, the domain in your own name. Then the worst case is an interruption rather than a loss."
+      },
+      {
+        "t": "h3",
+        "v": "What do you charge?"
+      },
+      {
+        "t": "p",
+        "v": "My published project minimum is AED 31,500, retainers start at AED 16,000 a month and a one-off review session is AED 3,500. Stated so there is a real number here rather than a range with nobody behind it. These are my rates and not a market average."
+      },
+      {
+        "t": "p",
+        "v": "Published 4 October 2026 by a Dubai-based freelance designer and developer. All AED figures are my own published rates."
+      }
+    ],
+    "words": 710
+  },
+  {
+    "slug": "what-is-mobile-app-development",
+    "title": "What Is Mobile App Development? A Guide for Non-Technical Founders",
+    "metaTitle": "What Is Mobile App Development?",
+    "description": "What actually happens when an app gets built, what each stage costs you in time and money, and the decisions you will be asked to make before anyone writes code.",
+    "published": "2026-10-04",
+    "tags": [
+      "Mobile Apps",
+      "Web Development",
+      "Dubai"
+    ],
+    "blocks": [
+      {
+        "t": "p",
+        "v": "If you are about to commission an app and have never done it before, the gap between what you imagine and what actually happens is wide. This is written to close it."
+      },
+      {
+        "t": "p",
+        "v": "No code in here. Just what the work is, what the decisions are, and where the money goes."
+      },
+      {
+        "t": "h2",
+        "v": "What an app actually is"
+      },
+      {
+        "t": "p",
+        "v": "Three separate things, and people quoting you often only price the first."
+      },
+      {
+        "t": "list",
+        "ordered": true,
+        "v": [
+          "The app itself. What someone downloads and taps. It lives on their phone.",
+          "The back-end. A server holding your data, deciding who may see what, and talking to anything else you use. Almost every app needs one. An app with no back-end is a brochure that happens to be installable.",
+          "The admin side. How you add content, see orders, answer messages, read numbers. If nobody builds this, you will be asking a developer to change things for you forever."
+        ]
+      },
+      {
+        "t": "p",
+        "v": "When a quote looks surprisingly low, check which of these three it covers."
+      },
+      {
+        "t": "h2",
+        "v": "The decisions you will be asked to make"
+      },
+      {
+        "t": "h3",
+        "v": "iOS, Android, or both"
+      },
+      {
+        "t": "p",
+        "v": "Both, eventually, in most cases. The question is what comes first, and it should be settled by where your customers are rather than by which phone you personally own."
+      },
+      {
+        "t": "h3",
+        "v": "Native or cross-platform"
+      },
+      {
+        "t": "p",
+        "v": "Native means building twice, once for each platform, in each platform's own language. Cross-platform means building once in something like React Native and shipping to both."
+      },
+      {
+        "t": "p",
+        "v": "This is the biggest technical decision in the project and it deserves its own conversation. I have written about the trade-off separately."
+      },
+      {
+        "t": "h3",
+        "v": "What is in version one"
+      },
+      {
+        "t": "p",
+        "v": "The most important decision and the one founders find hardest. Every feature you add before launch delays the day you learn whether anyone wants this."
+      },
+      {
+        "t": "p",
+        "v": "The useful test: if this feature did not exist, would the app still solve the problem? If yes, it is version two."
+      },
+      {
+        "t": "h2",
+        "v": "How a build actually runs"
+      },
+      {
+        "t": "h3",
+        "v": "Working out what it is"
+      },
+      {
+        "t": "p",
+        "v": "Who it is for, what it has to do, what success looks like. Usually a week or two of conversation, and the most valuable thing that happens in it is features being removed."
+      },
+      {
+        "t": "h3",
+        "v": "Design"
+      },
+      {
+        "t": "p",
+        "v": "Structure and flow first, then the interface. App design is not web design shrunk down. The patterns differ, iOS and Android have their own conventions, and the amount of screen you are designing for is small enough that every decision shows."
+      },
+      {
+        "t": "h3",
+        "v": "Building"
+      },
+      {
+        "t": "p",
+        "v": "The longest stage. Usually the back-end and the app progress in parallel, and you should expect to see something working, in your hands, every two weeks or so. If you are not seeing it, ask why."
+      },
+      {
+        "t": "h3",
+        "v": "Testing"
+      },
+      {
+        "t": "p",
+        "v": "On real devices, not only on a simulator. Old phones, weak connections, small screens, and the states that are not the happy path: no internet, permission denied, session expired."
+      },
+      {
+        "t": "h3",
+        "v": "Getting into the stores"
+      },
+      {
+        "t": "p",
+        "v": "Consistently underestimated. Apple and Google both review submissions, both have rules, and both can reject you for things that have nothing to do with whether the app works. Screenshots, a description, a privacy policy and age ratings all have to exist."
+      },
+      {
+        "t": "p",
+        "v": "Build in time for at least one rejection. It is normal."
+      },
+      {
+        "t": "h3",
+        "v": "After launch"
+      },
+      {
+        "t": "p",
+        "v": "This is not optional maintenance, it is the cost of having an app. Operating systems update twice a year and can break things. Store rules change. Certificates expire. Dependencies need security patches."
+      },
+      {
+        "t": "p",
+        "v": "An app nobody maintains stops working, usually within about eighteen months. Budget for it from the start."
+      },
+      {
+        "t": "h2",
+        "v": "Where the money goes"
+      },
+      {
+        "t": "p",
+        "v": "Roughly in this order, largest first:"
+      },
+      {
+        "t": "table",
+        "head": [
+          "What",
+          "Why it costs"
+        ],
+        "rows": [
+          [
+            "Custom functionality",
+            "Anything that is not a standard pattern: payments, live tracking, chat, offline use, complex search"
+          ],
+          [
+            "The back-end",
+            "Data, accounts, permissions, and every integration with somebody else's system"
+          ],
+          [
+            "Two platforms",
+            "Even cross-platform, there is platform-specific work and testing"
+          ],
+          [
+            "Design",
+            "More screens than people expect, because every state is a screen"
+          ],
+          [
+            "Store compliance",
+            "Privacy, permissions, account deletion and the review cycle"
+          ],
+          [
+            "Maintenance",
+            "Ongoing, forever, and the thing most commonly left out of a budget"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "v": "For reference, my own published project minimum is AED 31,500 and retainers start at AED 16,000 a month. App projects normally sit well above that minimum. Those are my rates rather than market data."
+      },
+      {
+        "t": "h2",
+        "v": "Do you actually need an app?"
+      },
+      {
+        "t": "p",
+        "v": "A fair question and I will give the honest answer: often not."
+      },
+      {
+        "t": "p",
+        "v": "An app earns its cost when people use it repeatedly, when it needs something only a phone has, like location, camera or notifications, or when it has to work without a connection. A booking tool, a delivery app, a field service tool, a loyalty programme."
+      },
+      {
+        "t": "p",
+        "v": "If people will use it once, a website does the same job for less money and nobody has to install anything. Getting someone to download an app is far harder than getting them to open a link, and that cost does not appear in any development quote."
+      },
+      {
+        "t": "h2",
+        "v": "Frequently asked questions"
+      },
+      {
+        "t": "h3",
+        "v": "How long does an app take to build?"
+      },
+      {
+        "t": "p",
+        "v": "A focused first version is commonly a few months. The things that stretch it are scope added during the build, integrations with systems you do not control, and waiting for content and decisions."
+      },
+      {
+        "t": "h3",
+        "v": "Do I own the app at the end?"
+      },
+      {
+        "t": "p",
+        "v": "You should, and the store accounts should be in your company's name rather than your developer's. Get this in writing before you pay anything. Apps have been lost this way."
+      },
+      {
+        "t": "h3",
+        "v": "What ongoing costs should I expect?"
+      },
+      {
+        "t": "p",
+        "v": "Apple and Google both charge annual developer fees. Then hosting for your back-end, any third-party services you use, and maintenance time. The fees change, so check the current figures with each store directly rather than relying on an article."
+      },
+      {
+        "t": "h3",
+        "v": "Can I start with a website and add an app later?"
+      },
+      {
+        "t": "p",
+        "v": "Usually the best plan. Prove people want the thing first, with something that costs less and ships sooner. If the back-end is built sensibly, the app can use the same one later rather than starting over."
+      },
+      {
+        "t": "p",
+        "v": "Published 4 October 2026 by a Dubai-based developer. All AED figures are my own published rates."
+      }
+    ],
+    "words": 816
+  },
+  {
+    "slug": "native-vs-cross-platform-app-development",
+    "title": "Native vs Cross-Platform: Which Should You Build?",
+    "metaTitle": "Native vs Cross-Platform App Development",
+    "description": "The biggest technical decision in an app project, explained without the religious argument: what each approach costs, what it rules out, and how to choose.",
+    "published": "2026-10-04",
+    "tags": [
+      "Mobile Apps",
+      "React Js",
+      "Dubai"
+    ],
+    "blocks": [
+      {
+        "t": "p",
+        "v": "Every app project arrives at this question, usually in the first week, and usually with two suppliers giving opposite answers with equal confidence."
+      },
+      {
+        "t": "p",
+        "v": "I build cross-platform, in React Native. I have tried to write this so you could use it to argue against me."
+      },
+      {
+        "t": "h2",
+        "v": "The two options"
+      },
+      {
+        "t": "h3",
+        "v": "Native"
+      },
+      {
+        "t": "p",
+        "v": "Build the app twice. Once for iOS in Swift, once for Android in Kotlin. Two codebases, often two developers, two sets of everything."
+      },
+      {
+        "t": "p",
+        "v": "You get the best possible performance, immediate access to anything a new operating system introduces, and an app that follows each platform's conventions exactly because it was built in them."
+      },
+      {
+        "t": "h3",
+        "v": "Cross-platform"
+      },
+      {
+        "t": "p",
+        "v": "Build once, ship to both. React Native and Flutter are the two serious options. One codebase, one team, most of the code shared."
+      },
+      {
+        "t": "p",
+        "v": "You get a meaningfully faster and lower-cost build, one place to fix a bug, and both platforms staying in step automatically. You give up some performance headroom and you occasionally wait for support for something brand new."
+      },
+      {
+        "t": "h2",
+        "v": "Side by side"
+      },
+      {
+        "t": "table",
+        "head": [
+          "",
+          "Native",
+          "Cross-platform"
+        ],
+        "rows": [
+          [
+            "Codebases",
+            "Two",
+            "One"
+          ],
+          [
+            "Build cost",
+            "Higher",
+            "Lower"
+          ],
+          [
+            "Ongoing cost",
+            "Two to maintain",
+            "One to maintain"
+          ],
+          [
+            "Performance ceiling",
+            "Highest",
+            "High, enough for most apps"
+          ],
+          [
+            "New OS features",
+            "Available immediately",
+            "Usually a short wait"
+          ],
+          [
+            "Platform feel",
+            "Exact",
+            "Very close, with care"
+          ],
+          [
+            "Hiring",
+            "Two specialisms",
+            "One, and React developers transfer across"
+          ]
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "When native is genuinely the right answer"
+      },
+      {
+        "t": "p",
+        "v": "Four situations, and they are narrower than native advocates suggest:"
+      },
+      {
+        "t": "list",
+        "ordered": true,
+        "v": [
+          "Heavy graphics. Games, 3D, real-time video processing, augmented reality. If the screen is redrawing constantly, build native.",
+          "Deep hardware work. Custom camera pipelines, Bluetooth peripherals, health sensors, anything unusual at the device level.",
+          "Day-one adoption of new platform features. If your product depends on using something Apple announced last month, native gets there first.",
+          "You already have native teams. The best technology is often the one your people already know."
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "When cross-platform is the right answer"
+      },
+      {
+        "t": "p",
+        "v": "Most business apps, honestly. Specifically:"
+      },
+      {
+        "t": "list",
+        "v": [
+          "The app is mostly screens, forms, lists, search and content. This covers the large majority of commercial apps.",
+          "You need both platforms and the budget is finite. Building once rather than twice is the single largest saving available in an app project.",
+          "You want to move quickly and change things after launch based on what you learn.",
+          "Your team already works in React. The skills transfer directly, which matters more over three years than any technical comparison."
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "The myths worth clearing up"
+      },
+      {
+        "t": "h3",
+        "v": "\"Cross-platform apps feel wrong\""
+      },
+      {
+        "t": "p",
+        "v": "They did, several years ago. Done carelessly they still can, usually because someone shipped one identical design to both platforms and ignored the conventions of each."
+      },
+      {
+        "t": "p",
+        "v": "That is a design failure rather than a technology one. Plenty of apps you use regularly are cross-platform and you have never noticed."
+      },
+      {
+        "t": "h3",
+        "v": "\"You will have to rebuild natively later\""
+      },
+      {
+        "t": "p",
+        "v": "Some products have. Usually because they outgrew the approach in a specific way, which is worth reading about, rather than because cross-platform collapses at scale."
+      },
+      {
+        "t": "p",
+        "v": "If you are weighing a rebuild in three years against shipping twice as slowly now, shipping now is almost always the better bet. You may not be in business in three years if you do not."
+      },
+      {
+        "t": "h3",
+        "v": "\"Cross-platform is half the price\""
+      },
+      {
+        "t": "p",
+        "v": "The saving is real and it is not fifty per cent. There is still platform-specific work, separate testing on both, two store submissions and two sets of compliance. Expect a meaningful saving rather than a halving."
+      },
+      {
+        "t": "h2",
+        "v": "React Native or Flutter?"
+      },
+      {
+        "t": "p",
+        "v": "Both are mature and both are fine choices. The deciding factor is usually not technical."
+      },
+      {
+        "t": "p",
+        "v": "React Native uses JavaScript and React, so your web developers can contribute and hiring is easier. Flutter uses Dart, which almost nobody knows before they start, and in exchange gives tighter control of rendering."
+      },
+      {
+        "t": "p",
+        "v": "If you have or want a web presence built in React, React Native shares skills, patterns and sometimes code. That is why I work in it."
+      },
+      {
+        "t": "h2",
+        "v": "How to decide in one conversation"
+      },
+      {
+        "t": "list",
+        "ordered": true,
+        "v": [
+          "Is the app graphics-heavy or doing unusual things with hardware? If yes, native. Stop here.",
+          "Do you need both platforms? If only one, native is less obviously wasteful.",
+          "Is budget or speed a real constraint? If yes, cross-platform.",
+          "What does your existing team know? Weight this heavily. It decides the next three years."
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "Frequently asked questions"
+      },
+      {
+        "t": "h3",
+        "v": "Will Apple or Google reject a cross-platform app?"
+      },
+      {
+        "t": "p",
+        "v": "No. Both stores are full of them. Rejections come from privacy, permissions, payments and content rules, which apply the same either way."
+      },
+      {
+        "t": "h3",
+        "v": "Can I mix the two?"
+      },
+      {
+        "t": "p",
+        "v": "Yes, and it is common. A cross-platform app can call native code for one demanding feature. You get the shared codebase everywhere else and native performance where it actually matters."
+      },
+      {
+        "t": "h3",
+        "v": "What about a progressive web app instead?"
+      },
+      {
+        "t": "p",
+        "v": "Worth considering if you do not genuinely need to be in the stores. No download, no review process, no store fees. You give up reliable push notifications on iOS and a presence where people look for apps."
+      },
+      {
+        "t": "h3",
+        "v": "Which costs less to maintain?"
+      },
+      {
+        "t": "p",
+        "v": "Cross-platform, clearly, and this is where the saving compounds. One bug fixed once rather than twice, every time, for the life of the product."
+      },
+      {
+        "t": "p",
+        "v": "Published 4 October 2026 by a Dubai-based React Native developer."
+      }
+    ],
+    "words": 716
+  },
+  {
+    "slug": "what-does-a-mobile-developer-do",
+    "title": "What Does a Mobile Developer Do?",
+    "description": "The job explained for people hiring one: what mobile work involves that web work does not, the two specialisms, and how to tell a real one from a convincing one.",
+    "published": "2026-10-04",
+    "tags": [
+      "Mobile Apps",
+      "Web Development",
+      "Dubai"
+    ],
+    "blocks": [
+      {
+        "t": "p",
+        "v": "A mobile developer builds the software that runs on a phone. That sentence is accurate and tells you nothing useful, so here is the version that helps if you are about to hire one."
+      },
+      {
+        "t": "h2",
+        "v": "What makes mobile different from web"
+      },
+      {
+        "t": "p",
+        "v": "People assume an app is a website in a smaller window. The differences are the reason app projects cost more and take longer."
+      },
+      {
+        "t": "h3",
+        "v": "You cannot fix it instantly"
+      },
+      {
+        "t": "p",
+        "v": "A broken website is fixed and live in minutes. A broken app has to be rebuilt, submitted, reviewed by Apple or Google, approved, and then actually installed by your users. Some of them will not update for months."
+      },
+      {
+        "t": "p",
+        "v": "This single difference changes how the work is done. Mobile developers test harder before release because the cost of being wrong is much higher."
+      },
+      {
+        "t": "h3",
+        "v": "The device is not reliable"
+      },
+      {
+        "t": "p",
+        "v": "A phone loses signal in a lift, runs out of storage, denies a permission, kills your app to save battery, or rotates mid-task. Every one of those is a state somebody has to handle."
+      },
+      {
+        "t": "h3",
+        "v": "Two platforms with real opinions"
+      },
+      {
+        "t": "p",
+        "v": "iOS and Android differ in navigation, permissions, notifications, background behaviour and what each store will allow. Even with one shared codebase, both have to be understood."
+      },
+      {
+        "t": "h3",
+        "v": "Somebody else can refuse to publish you"
+      },
+      {
+        "t": "p",
+        "v": "Apple and Google review every submission against rules that change. A mobile developer who has shipped apps knows the common rejection reasons and designs around them. One who has not will discover them with your deadline in the way."
+      },
+      {
+        "t": "h2",
+        "v": "The two kinds"
+      },
+      {
+        "t": "table",
+        "head": [
+          "Kind",
+          "Works in",
+          "Means"
+        ],
+        "rows": [
+          [
+            "Native",
+            "Swift for iOS, Kotlin for Android",
+            "Usually specialised in one platform, so two people for two platforms"
+          ],
+          [
+            "Cross-platform",
+            "React Native or Flutter",
+            "One person, one codebase, both platforms"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "v": "A cross-platform developer is not a lesser native developer. It is a different approach with its own trade-offs, which I have written about separately."
+      },
+      {
+        "t": "h2",
+        "v": "What the job involves beyond writing the app"
+      },
+      {
+        "t": "list",
+        "v": [
+          "Connecting to a back-end, and handling the many ways that connection fails",
+          "Storing data on the device so the app is useful on a weak connection",
+          "Push notifications, which involve both platforms, your server and a user who may have said no",
+          "Permissions: asking at the right moment and behaving sensibly when refused",
+          "Store submission, screenshots, privacy declarations, age ratings and the review cycle",
+          "Releases: staged rollouts, forcing an update when a version is unsafe, and supporting old versions still in the wild",
+          "Crash reporting and analytics, so you find out about problems before your customers tell you"
+        ]
+      },
+      {
+        "t": "p",
+        "v": "The last four are the ones people do not know to ask about and the ones that separate somebody who has shipped from somebody who has built."
+      },
+      {
+        "t": "h2",
+        "v": "What they usually do not do"
+      },
+      {
+        "t": "list",
+        "v": [
+          "Design the app, unless they specifically also design",
+          "Build the back-end, unless they are full stack. Many mobile developers are not, and this is the most common gap in an app project team",
+          "Write your store listing or take the screenshots",
+          "Market the app. Getting downloads is a separate job with a separate budget, and it is usually larger than people expect"
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "How to tell a real one"
+      },
+      {
+        "t": "p",
+        "v": "Four questions. The answers are easy to judge even if you are not technical, because experience shows immediately."
+      },
+      {
+        "t": "list",
+        "ordered": true,
+        "v": [
+          "Which apps of yours are live right now, and can I download one? Live and current beats an impressive case study. Anyone who has shipped has links.",
+          "Tell me about a rejection you have had. Everyone who has shipped more than a couple of apps has one. A specific story is proof. Vagueness is an answer.",
+          "What happens in my app when the connection drops halfway through something? Somebody experienced will tell you what they usually do and what it costs. Somebody who has not will say it will be handled.",
+          "Who builds the back-end? If the answer is anything other than a clear name, you have found a gap in the plan."
+        ]
+      },
+      {
+        "t": "h2",
+        "v": "Frequently asked questions"
+      },
+      {
+        "t": "h3",
+        "v": "Can a web developer build my app?"
+      },
+      {
+        "t": "p",
+        "v": "A React developer can learn React Native quickly and much of their knowledge transfers. What does not transfer is everything in the list above: releases, permissions, store review, offline behaviour. Ask specifically about those, not about the language."
+      },
+      {
+        "t": "h3",
+        "v": "Do I need one developer or two?"
+      },
+      {
+        "t": "p",
+        "v": "Cross-platform, usually one. Native, usually two, one per platform. Either way you also need a back-end, so check whether your developer covers it or whether that is a second hire."
+      },
+      {
+        "t": "h3",
+        "v": "What happens after launch?"
+      },
+      {
+        "t": "p",
+        "v": "Operating systems update twice a year and can break things, store rules change, certificates expire and dependencies need security patches. An app nobody maintains stops working, usually inside about eighteen months. Agree what maintenance looks like before you start, not after."
+      },
+      {
+        "t": "h3",
+        "v": "What does a mobile developer cost in Dubai?"
+      },
+      {
+        "t": "p",
+        "v": "My own published project minimum is AED 31,500 with retainers from AED 16,000 a month, and app projects usually sit well above that minimum because of the back-end and the two platforms. Those are my rates and not a market survey."
+      },
+      {
+        "t": "p",
+        "v": "Published 4 October 2026 by a Dubai-based React Native developer. All AED figures are my own published rates."
+      }
+    ],
+    "words": 728
+  },
+  {
     "slug": "questions-to-ask-a-web-developer-before-hiring",
     "title": "Questions to Ask a Web Developer Before You Hire Them",
     "metaTitle": "Questions to Ask a Web Developer Before Hiring",
@@ -4682,6 +6944,7 @@
     "description": "When to use FlatList and when ScrollView in React Native, the props that fix a slow list, and why nesting them is usually the wrong question.",
     "published": "2025-06-13",
     "tags": [
+      "Mobile Apps",
       "React Js"
     ],
     "words": 1082,

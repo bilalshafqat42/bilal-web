@@ -133,6 +133,29 @@ export const serviceDepth: Record<string, Depth> = {
         ],
       },
       {
+        // "responsive website design dubai", 210 searches at difficulty 28, and
+        // the page said "responsive" exactly once despite the section above
+        // being entirely about responsive behaviour. The subject was covered.
+        // The word a buyer actually searches for was not.
+        heading: "Responsive website design, which is more than a layout that shrinks",
+        paragraphs: [
+          "Responsive design gets treated as a technical checkbox, and the usual implementation is one layout that reflows until it fits. That produces pages that are technically responsive and practically unusable: a table scrolled sideways, a navigation that becomes a hamburger hiding the only link that matters, text at eleven pixels because it was sized for a desktop column.",
+          "A responsive design is a set of deliberate layouts, not one layout under stress. What gets reordered on a narrow screen, what gets hidden and what gets replaced with something better suited. A pricing table that works as three columns on a monitor usually works as three stacked cards on a phone, and that is a design decision somebody has to make.",
+          "The test I use is simple and it is not a device width. Can someone standing up, one-handed, on a weak connection, do the one thing the page exists for? If not, the layout is responsive and the design is not.",
+        ],
+      },
+      {
+        // "wordpress web design dubai", 110 searches at difficulty 9, which is
+        // among the lowest on the tracked list. The page mentioned WordPress
+        // once, in passing, despite it being a genuine part of the offer.
+        heading: "WordPress web design, when it is the right answer",
+        paragraphs: [
+          "Plenty of Dubai businesses are told they need a custom build when what they need is a site their own team can edit without calling anyone. If your marketing person wants to add a page on a Tuesday afternoon, WordPress is usually the honest recommendation, and I will give it even though a custom build is better paid work.",
+          "The version worth having is not a purchased theme with twenty plugins stacked on it. It is a design made for your business and built into WordPress properly, so the editing experience makes sense to a non-technical person and the site is not carrying code for features you do not use. Most slow WordPress sites are slow because of what was installed, not because of WordPress.",
+          "Where it stops being the right answer: anything with real custom functionality, a product rather than a site, or a business that will never edit a page and is paying a maintenance cost for flexibility it does not use. That conversation happens before the quote, not after.",
+        ],
+      },
+      {
         heading: "Speed is a design decision before it is a technical one",
         paragraphs: [
           "Most slow sites are slow because of what was designed into them: a full-screen video header, a carousel of uncompressed photographs, four webfonts, and a stack of third-party scripts each loading on every page. Those are choices made in the design, and no amount of optimisation afterwards fully undoes them.",
@@ -369,6 +392,16 @@ export const serviceDepth: Record<string, Depth> = {
         ],
       },
       {
+        // "android app development dubai", 260 searches at difficulty 26. The
+        // page had an Android section and never used the phrase a buyer types.
+        heading: "Android app development, which is half the work and most of the market",
+        paragraphs: [
+          "Android is the majority platform across much of this region, and it is routinely treated as the version that gets done second and tested least. The symptoms are familiar: a layout built to iOS proportions, a back gesture that does nothing, notifications that behave differently and nobody checked, and testing done on one recent flagship rather than on the four-year-old device a real customer is using.",
+          "Building cross-platform in React Native means the Android app is not a port. It is built in the same pass from the same codebase, which removes the budget pressure that usually causes the shortcuts. What still needs separate attention is the platform behaviour: navigation conventions, permissions, background limits, notification channels, and the Play Store's own review rules, which differ from Apple's.",
+          "Testing happens on real Android hardware rather than only in an emulator, including older devices and weak connections, because that is the condition most of your users are actually in.",
+        ],
+      },
+      {
         heading: "Analytics go in during the build, not after launch",
         paragraphs: [
           "The most common thing wrong with an app I inherit is that nobody can say where users stop. There is a download number, a vague sense that engagement is low, and no event data to explain either. Retrofitting that after launch means a release cycle, a store review, and waiting weeks for enough data to mean anything.",
@@ -578,6 +611,19 @@ export const serviceDepth: Record<string, Depth> = {
         paragraphs: [
           "A growing share of research happens inside ChatGPT, Claude, Perplexity and Google's AI results, and those systems read the page rather than a meta tag. Clean semantic HTML, question-shaped headings, specific numbers instead of vague claims, and content that stays current all matter more for that than any keyword density rule ever did.",
           "This is an evolving area and nobody publishes the ranking rules, so I will not promise placement in an AI answer. What I will do is make sure the site is structured so it can be read, quoted and attributed properly, and be straight with you about which parts of it are established practice and which are still educated guesswork.",
+        ],
+      },
+      {
+        // "digital marketer in uae" is 390 searches at difficulty 11 and four
+        // competitors rank for it. Every page on this site says Dubai. Nothing
+        // said UAE, so the term had nowhere to land. Also carries "digital
+        // marketing specialist" (260) and "strategist" (170), neither of which
+        // appeared anywhere despite describing the work accurately.
+        heading: "Working as a digital marketer across the UAE, not only in Dubai",
+        paragraphs: [
+          "Most of the work is Dubai, because most of the clients are. The market is not, and a campaign built only around Dubai search behaviour leaves money on the table in Abu Dhabi, Sharjah and the Northern Emirates, where competition is usually thinner and cost per enquiry lower.",
+          "What that changes in practice is targeting and language rather than the strategy. Search volumes differ by emirate, the Arabic to English split differs, and the hours people respond on WhatsApp differ. Those are settings on a campaign, not a different campaign, and they are the sort of thing that gets missed when everything is configured once for the UAE as a single market.",
+          "The title varies with who is asking. A digital marketing specialist is usually the person running the channels. A digital marketing strategist is usually the person deciding which channels, with what budget split, and what counts as the measurement. In a business of this size both are the same person, and that person should be able to explain why the plan is what it is rather than only execute it.",
         ],
       },
       {
@@ -797,6 +843,18 @@ export const serviceDepth: Record<string, Depth> = {
 
   "graphic-design-branding": {
     blocks: [
+      {
+        // "graphic design in dubai" is 390 searches at difficulty 20 and
+        // "dubai graphic designer" another 320. The page is titled "Graphic
+        // Design & Branding" and used neither phrase in its body, because the
+        // copy led with branding and treated graphic design as implied.
+        heading: "Graphic design in Dubai, beyond the brand guidelines deck",
+        paragraphs: [
+          "Branding projects get the attention and graphic design is what a business actually needs most weeks: the company profile for a tender, the pitch deck for Thursday, the hoarding for the site, the brochure the sales team hands over, the ad creative that has to exist in nine sizes by Sunday.",
+          "In this market the formats are specific. A company profile that will be printed and also emailed as a PDF. Bilingual layouts where the Arabic is set properly rather than pasted in and left looking like an afterthought. Collateral for an exhibition stand, where the viewing distance changes every size decision. Creative sized for the places UAE audiences actually are, which includes WhatsApp and Instagram more than it includes anything printed.",
+          "The reason to use one designer across these rather than whoever is available is consistency. A brand is not the logo file, it is what happens when fifteen different pieces are produced over a year by different people under deadline. That is the part guidelines are meant to protect and the part they usually fail to.",
+        ],
+      },
       {
         heading: "A system, not a folder of one-off assets",
         paragraphs: [

@@ -51,6 +51,10 @@ const TAG_ROUTES: { service: string; tags: string[] }[] = [
     tags: ["UI UX Design", "Figma", "Design"],
   },
   {
+    service: "mobile-app-development",
+    tags: ["Mobile Apps"],
+  },
+  {
     service: "website-app-development",
     tags: [
       "Web Development",
@@ -92,6 +96,13 @@ const PITCHES: Record<string, Pitch> = {
     accent: "designed properly?",
     body:
       "Reading about good interface design is the easy part. I design the websites, apps and product interfaces these notes come out of, working directly with you rather than through an account manager.",
+  },
+  "mobile-app-development": {
+    eyebrow: "App work",
+    heading: "Need the app",
+    accent: "actually built?",
+    body:
+      "I build iOS and Android apps in React Native, with the back-end and the store submission included rather than left as somebody else's problem. A first conversation costs nothing.",
   },
   "website-app-development": {
     eyebrow: "Build work",

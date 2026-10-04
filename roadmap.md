@@ -8485,3 +8485,141 @@ excluded terms and adding the consensus ones. Exports kept in
 The method is worth keeping: a term six competitors rank for is a far stronger
 signal than one tool's volume estimate for a single keyword, and no single
 export shows it. It only appears when the ten are merged.
+
+### 337. DONE (2026-10-04) — Rank tracking rebuilt, and a correction on difficulty
+
+The 47-keyword list went into Ubersuggest. Two things came out of it that the
+planning had wrong.
+
+**The old tracking list was measuring nothing useful.** Rank Tracking held 24
+terms carried over from before: `social media`, `wordpress`, `react js`,
+`next js`, `web developer`, `wix`, `bilal`. No location on any of them, 23 of
+the 24 not ranked, and the one that was ranked (`bilal shafqat`, position 3) is
+a vanity term. Replaced with the 47. One keyword kept its history.
+
+**SEO Difficulty moved by more than 20 points in both directions on a single
+refresh.** `seo consultant dubai` read 45 before the refresh and 7 after.
+`web designer dubai` went 32 to 12. `questions to ask a web developer` went the
+other way, 5 to 25.
+
+I had told Bilal to avoid `seo consultant dubai` on the strength of the 45.
+That advice was built on a stale number. The wider conclusion is the one worth
+keeping: **difficulty is a prior, not a measurement.** Real position on
+14 October settles it and nothing before then does.
+
+Credits: 463 to 412 for the refresh.
+
+### 338. DONE (2026-10-04) — Three clusters, eleven articles, aimed at the head terms
+
+Bilal asked to go after the generic job-title terms rather than drop them:
+`web development` (2,400), `web developer` (480), `full stack developer` (480),
+`ux designer` (320), `freelance designer` (320), `product designer` (140),
+`ui designer` (110), `mobile app development` (1,600), plus the long tail
+around them.
+
+I had argued against these twice. The objection stands and is recorded here so
+it is not quietly forgotten: **these are informational queries and the UAE
+results are job boards and course sites.** Ranking first for `web developer`
+plausibly delivers traffic and no enquiries, which is the worst outcome in SEO
+because it looks like success. He reaffirmed, so it is his call and the work is
+built in full.
+
+**The angle that makes it defensible.** There is a slice of that audience who
+are buyers: the business owner typing "web developer" because they do not know
+what to call the person they need. Every article is written for that reader.
+Same keyword, different reader. That is also why none of these is a page named
+after the keyword with the keyword repeated in it, which is a doorway page and
+is against Google's spam policy. Eleven articles that each genuinely answer
+something, all linking to one hub, is the legitimate version of the same shape.
+
+| Cluster | Hub | Articles | Head terms |
+| --- | --- | ---: | --- |
+| A | `/services/website-app-development` | 4 | web development, web developer, full stack developer |
+| B | `/services/ui-ux-design` | 4 | ux designer, ui designer, product designer, freelance designer |
+| C | `/services/mobile-app-development` | 4 | mobile app development, mobile developer |
+
+Cluster C is 3 new plus `react-native-flatlist-vs-scrollview`, retagged.
+
+**New tag `Mobile Apps`, routed first in `TAG_ROUTES`.** Without it the mobile
+articles carry `Web Development` and `React Js` as well, so all four would have
+resolved to the general development hub and the mobile service page would have
+gained nothing from the cluster that exists to feed it.
+
+`web-developer-vs-web-designer` lost its `UI UX Design` tag for the same
+reason: `ui-ux-design` sits above the development routes, so the one article
+explicitly about the developer/designer split was routing to the design hub.
+
+**Verified, not asserted.** `related-check` 70 articles, word counts correct,
+no orphans, 0 off-topic links. `search-check` 345 to 356 chunks, which is
+exactly +11 and confirms nothing leaked in; measured by running the check
+against the pre-merge file and again after. `h1-check` and `schema-check` 112
+routes. `tsc`, `eslint`, `next build` clean. Three pages pulled from a running
+server and read.
+
+Honest correction to something I said in the conversation: I told him the React
+Native articles gave Cluster C "a head start". There is one React Native
+article, not several. The recommendation to start with C still holds, on the
+volume and difficulty rather than on existing coverage.
+
+### 339. OPEN — Backlinks, one per day, starting 2026-10-05
+
+Schedule in `backlink-plan.md`. Links point at the three cluster hubs rather
+than the homepage, which is where every external link the domain has ever
+earned already goes.
+
+Honest note carried into that file: most directory and profile links are
+`nofollow` and do not pass ranking power directly. They are worth doing for
+referral traffic, for the consistency of name and address across the web, and
+because they are the only ones available without asking anyone for a favour.
+The links that actually move rankings are in weeks 9 to 13, and they are the
+hard ones.
+
+### 340. CLOSED (2026-10-04) — The LEOS Google review, dropped
+
+Bilal has decided not to ask. It was raised repeatedly as the highest-value
+single action available, and it is his call and his relationship. Closed rather
+than left open, so it stops reappearing in every "what next" list.
+
+The gap it would have filled is still real: no third-party review of the work
+exists anywhere public. If that becomes a problem later, the route is a written
+testimonial on the portfolio page rather than a Google review, since there is
+no Business Profile to review against without a trade licence.
+
+### 341. DONE (2026-10-04) — Five measured gaps on pages that already existed
+
+Not new pages. Five terms with real volume that had nowhere on the site to
+land, each added as a section to the page that already owns the subject.
+
+| Term | Vol | SD | Was | Now on |
+| --- | ---: | ---: | ---: | --- |
+| `digital marketer in uae` | 390 | 11 | 0 | `/services/digital-marketing` |
+| `graphic design in dubai` | 390 | 20 | 0 | `/services/graphic-design-branding` |
+| `android app development dubai` | 260 | 26 | 0 | `/services/mobile-app-development` |
+| `responsive website design dubai` | 210 | 28 | 1 | `/services/web-design` |
+| `wordpress web design dubai` | 110 | 9 | 1 | `/services/web-design` |
+| `digital marketing specialist` | 260 | 29 | 0 | `/services/digital-marketing` |
+| `digital marketing strategist` | 170 | 26 | 0 | `/services/digital-marketing` |
+
+**The measurement nearly went wrong.** The first count was taken over the whole
+document and showed most of these as already covered. They were not: the mega
+menu repeats all fifteen service names on every page, so every term looked
+present everywhere. Counting inside `<main>` only gave the real figures above.
+A whole-document grep on a site with a mega menu will always say the keyword is
+covered.
+
+**The pattern worth naming.** Four of these are cases where the subject was
+covered and the word was not. The web design page had an entire section about
+responsive behaviour and used "responsive" once. The mobile page had an Android
+section and never said "Android app development". The graphic design page is
+titled Graphic Design and led with branding throughout. Writing well about a
+subject does not mean using the phrase a buyer types, and on this site the two
+had drifted apart in four places.
+
+Verified against `<main>` on a running server before and after. All five phrases
+present, `search-check` 356 to 361 chunks which is exactly +5, `h1-check` and
+`schema-check` 112 routes, `tsc` and `eslint` clean.
+
+One miss caught on the first pass: the strategist sentence read "digital
+marketing specialist, strategist or consultant", so the phrase
+`digital marketing strategist` did not actually exist on the page. Rewritten
+and re-measured rather than assumed.
