@@ -8623,3 +8623,82 @@ One miss caught on the first pass: the strategist sentence read "digital
 marketing specialist, strategist or consultant", so the phrase
 `digital marketing strategist` did not actually exist on the page. Rewritten
 and re-measured rather than assumed.
+
+### 342. OPEN — Pinterest, what is done and what is left
+
+Started 2026-10-04. The account is real: 7,300 monthly views already, from
+3 followers, which is the point of Pinterest. It is a search engine, not a feed.
+
+**Done**
+
+- Domain verified. `p:domain_verify` added to `layout.tsx` and live on all 112
+  routes. Pinterest confirmed it.
+- Profile name changed from "full stack developer and UI/UX designer" framing to
+  "Bilal Shafqat | Digital Marketing, Dubai".
+- Bio rewritten to lead with digital marketing and keep the build as proof.
+- Profile visibility checked: private profile off, search privacy off. Both
+  correct. Search privacy on would have hidden the profile from Google, which
+  is the single setting that would make the whole exercise pointless.
+
+**Left, in priority order**
+
+1. **The email address reads `gail.com`, not `gmail.com`.** One missing letter.
+   Pinterest cannot reach him: no verification mail, no password reset, no
+   policy warnings. Everything else here is cosmetic next to this.
+2. **Press Save.** The header still showed the old name while the form showed
+   the new one, so the edits were not committed when the screenshot was taken.
+3. **Turn off auto-publish from Instagram.** It is currently on, pushing
+   Instagram posts into a board called "Social". Instagram images are square or
+   landscape; Pinterest ranks 2:3 vertical. This quietly fills the account with
+   the exact format that is already measured at zero views here, and it dilutes
+   a profile whose one winning pin proves the opposite format works.
+4. **Banner.** Still reads "WEB & MOBILE DEVELOPER" while the profile now says
+   digital marketing. Bilal is designing a replacement and has asked for time.
+5. **Delete the dead pins.** The Key2Code pin is another company's advert. Six
+   or so video pins render as a solid black rectangle with only a timer.
+6. **Rich Pins.** Submit any article URL to the validator. The site already
+   carries `og:title`, `og:description` and `og:image` on every page, so this
+   should pass without a code change.
+7. **Boards named for search**: Web Design Inspiration, UI UX Design Tips,
+   Digital Marketing Tips, Branding and Graphic Design, Dubai Business
+   Marketing. Not "Social", which ranks for nothing.
+8. **Minor**: postal code is `000000` and "include a retail location" is ticked
+   for a freelancer with no licensed premises. Harmless, but it is a stated fact
+   that is not quite true, on a profile whose value is credibility.
+
+**What the account's own data already settled**
+
+| Pin | Views |
+| --- | ---: |
+| Design Principles infographic | 6,800 |
+| CSS: EM vs REM | 506 |
+| Every pin with a video timer | 0 or 1 |
+
+Ten video pins, roughly zero views between them. One static infographic carries
+93% of all traffic to the account. The format question is answered and it was
+answered by his own posting, not by advice. Static vertical infographics, one a
+day, modelled on the pin that worked.
+
+**The honest limit, recorded so it is not forgotten later.** The audience here
+is designers, not buyers. 6,800 views produced no enquiries, and Pinterest
+outbound links are `nofollow`. This is a reputation and referral-traffic
+channel with a long shelf life. It is an evening task. The backlink plan
+(item 339) comes first.
+
+### 343. OPEN — Three things waiting on Bilal
+
+Carried forward so they do not get lost between sessions.
+
+1. **Remove the 21 stale keywords from Ubersuggest Rank Tracking.** The 47 are
+   in. The old generic terms are still there alongside them. Sort by SEO
+   Difficulty, remove everything at 31 and above, then eight more by search.
+2. **Positioning: clients or a salaried job?** He has moved the Pinterest name
+   to "Digital Marketing" and dropped "Manager", which points at clients and
+   matches the site. The question still decides what goes on LinkedIn, where
+   "Digital Marketing Manager" is the right phrase for a salaried role and the
+   wrong one for freelance work.
+3. **`NEXT_PUBLIC_BING_SITE_VERIFICATION` is not set in the deploy.** Found
+   while adding the Pinterest tag: the Bing verification meta tag is absent from
+   production because the variable was never set. Bing sends this site more
+   impressions than Google does, so this is worth five minutes in the Vercel
+   dashboard.
