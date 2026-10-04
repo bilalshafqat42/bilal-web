@@ -8437,3 +8437,51 @@ fixtures depend on the current scoring and changing ranking to spare one
 adjective is a bad trade. Noted in the script instead: use "low-cost".
 
 Sitemap 98 → 100. Search index 320 → 345 chunks.
+
+### 336. MEASURED (2026-10-04) — Ten competitor gap exports, and the word "in"
+
+185 rows across ten files, merged to **102 unique keywords**. The headline
+finding corrects volume figures this whole plan had been using.
+
+**People search "in Dubai", not "Dubai":**
+
+| Tracked | Volume | What people type | Volume |
+| --- | ---: | --- | ---: |
+| digital marketing freelancer dubai | 70 | digital marketing freelancer **in** dubai | **720** |
+| freelance digital marketer dubai | **0** | freelance digital marketer **in** dubai | **480** |
+
+Ten times the demand from one word, and the zero-volume variant was the one
+being tracked. **The page titles were already right** — they say "in Dubai" —
+so the pages are aimed correctly by luck of phrasing. The tracking list was not,
+and would have reported nothing for months while the pages did fine.
+
+**Six of ten competitors rank for the same four terms:**
+
+| Keyword | Volume | Difficulty | Competitors |
+| --- | ---: | ---: | ---: |
+| digital marketing freelancer in dubai | 720 | 25 | **6** |
+| freelance digital marketer in dubai | 480 | 24 | **6** |
+| best digital marketing freelancer in dubai | 320 | 14 | **6** |
+| freelance digital marketing expert in dubai | 170 | 18 | **6** |
+| digital marketing expert in dubai | 320 | **7** | 5 |
+| digital marketing specialist in dubai | 170 | **10** | 4 |
+
+That is the centre of gravity of this market, and the site ranks for none of it.
+
+Filtered out, with reasons: 15 Abu Dhabi terms (no delivered work), 15 agency
+and company terms (cannot be claimed), 9 "near me" terms (local pack, needs the
+Business Profile), and 5 from other people's businesses — **`adswithmubin.com`'s
+entire gap is car brake repair**, because he runs a separate car services site.
+
+Genuine gaps with no page behind them: `digital marketer in uae` (390/27, four
+competitors — everything here says Dubai and nothing says UAE), `graphic design
+in dubai` (390/30), `responsive website design dubai` (210/**15**), `wordpress
+web design dubai` (110/**8**).
+
+**Tracking list corrected from 38 to 47**, dropping 14 wrong-variant or
+excluded terms and adding the consensus ones. Exports kept in
+`~/Desktop/bilal/keyword-gap/`.
+
+The method is worth keeping: a term six competitors rank for is a far stronger
+signal than one tool's volume estimate for a single keyword, and no single
+export shows it. It only appears when the ten are merged.
