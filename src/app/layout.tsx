@@ -104,11 +104,29 @@ export const metadata: Metadata = {
     ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
       ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
       : {}),
-    // Bing Webmaster Tools. Same reasoning as Google: proving ownership from
-    // the app means it survives rebuilds, unlike an uploaded BingSiteAuth.xml.
-    ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
-      ? { other: { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION } }
-      : {}),
+    // One merged `other`, not two spreads. Bing and Pinterest both render
+    // through this key, so a second `...{ other: ... }` would silently replace
+    // the first rather than adding to it, and whichever came last would be the
+    // only tag on the page.
+    other: {
+      // Bing Webmaster Tools. Same reasoning as Google: proving ownership from
+      // the app means it survives rebuilds, unlike an uploaded BingSiteAuth.xml.
+      ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+        ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+        : {}),
+      // Pinterest domain verification, hardcoded rather than env-gated like the
+      // two above. This is deliberate and it is not a secret: the token only
+      // works by being served publicly in the HTML, so anyone who can read the
+      // page can read it, and keeping it in an environment variable would hide
+      // nothing while adding a way for the tag to go missing. Verification
+      // fails silently when the tag is absent, and a silent failure in a deploy
+      // variable is exactly the thing worth avoiding here.
+      //
+      // Claiming the domain is what makes Pinterest attribute every pin made
+      // from bilalshafqat.com to this account, and it is a precondition for
+      // Rich Pins reading the Open Graph tags the site already carries.
+      "p:domain_verify": "7b313ea4f2bddf04c3c63c7c002ca422",
+    },
   },
 };
 
