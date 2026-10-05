@@ -8963,3 +8963,34 @@ label is nil.
 
 Scores unchanged at 100 and 46, which is correct: internal links are not an
 on-page factor in this scorer, they are how authority moves between pages.
+
+### 351. CLOSED (2026-10-05) — GoodFirms does not accept freelancers
+
+Their support replied: "our platform currently does not support profiles
+offering individual freelancing services. As a result, we are unable to approve
+your profile."
+
+That is a policy rather than the duplicate-detection bug we spent time on. The
+"company name already exists" and "website already exists" errors were a side
+issue; even with those cleared the profile would not have been approved.
+
+**No honest workaround exists.** Presenting as a company would mean claiming to
+be something Bilal is not, on a platform whose whole product is vetted company
+profiles, and he holds no UAE trade licence to support the claim. Closed rather
+than worked around.
+
+**What it teaches, which is worth more than the listing.** Directories split in
+two and the split is not advertised on the signup page:
+
+- **Open to individuals**: Peerlist, Sortlist, Behance, Dribbble, Upwork,
+  Fiverr, Contra, Malt, Bark
+- **Companies only**: GoodFirms, and by the same logic probably Clutch, The
+  Manifest and DesignRush, all of which are built around company profiles and
+  company reviews
+
+Check the policy before filling in a profile. An hour was spent on this one,
+including a support ticket, for an outcome that was decided before the account
+existed.
+
+Sortlist accepted him, which is the useful counter-example: it asks for a
+company name but allows a team size of one and a freelancer work type.

@@ -160,8 +160,26 @@ a link from it, so these moved to the front.
 | --- | --- |
 | Peerlist profile | Live, workplace verified, one post with a link preview |
 | Sortlist profile | Built, publishing |
-| GoodFirms | Blocked. Their form rejects the company name and website as duplicates of Bilal's own account record. Support contacted. |
+| GoodFirms | **Rejected and closed.** See below. |
 | Pinterest | Domain verified and claimed, profile rewritten, banner and first pin live |
+
+**GoodFirms does not accept freelancers.** Their support replied on 5 October:
+"our platform currently does not support profiles offering individual
+freelancing services". That is a policy, not a bug, and the duplicate-name
+errors were a side issue. There is no honest way around it: the workaround
+would be to present as a company, and Bilal has no trade licence and is not
+one. Closed.
+
+**The lesson generalises.** Directories split into two kinds and only one is
+open to him:
+
+| Accepts individuals | Companies only |
+| --- | --- |
+| Peerlist, Sortlist, Behance, Dribbble, Upwork, Fiverr, Contra, Malt, Bark | GoodFirms, and probably Clutch, The Manifest and DesignRush, which are built around company profiles and reviews |
+
+Check the policy before filling in a profile rather than after. Clutch, The
+Manifest and DesignRush stay on the list but drop down the order, and if any of
+them refuses on the same grounds, remove it rather than arguing.
 
 Peerlist's link measured: `rel="noreferrer nofollow ugc"`. Check Sortlist and
 GoodFirms the same way rather than assuming either answer.
