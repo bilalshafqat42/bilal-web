@@ -117,7 +117,11 @@ export default function Footer() {
               className="h-16 w-auto"
             />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
-              One senior partner for paid marketing, website and app
+              Bilal Shafqat is a{" "}
+              <Link href="/" className="text-muted underline-offset-2 transition-colors hover:text-gold">
+                freelance digital marketer in Dubai
+              </Link>
+              , and one senior partner for paid marketing, website and app
               development, design, and the CRM automation that connects them.
               Working with founders, developers and agencies from Dubai and
               Pakistan.

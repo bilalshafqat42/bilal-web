@@ -136,8 +136,8 @@ export default function HeroBanner() {
           </h1>
 
           <p className="mt-7 max-w-[30ch] lg:mt-11 text-base leading-relaxed text-muted sm:max-w-[46ch] lg:text-[1.05rem]">
-            Fifteen years of paid marketing, web and app development, design and CRM automation. No
-            account managers, no handoffs.
+            A freelance digital marketer in Dubai, with fifteen years across paid marketing, web and
+            app development, design and CRM automation. No account managers, no handoffs.
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-8 lg:mt-14">

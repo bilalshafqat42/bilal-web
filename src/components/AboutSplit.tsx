@@ -305,7 +305,7 @@ export default function AboutSplit() {
                 measure; a character cap on top of it would undercut the track
                 and stop the split being 25/15/60. */}
             <h2 id="about-split-heading" data-reveal className="t-h2 mt-4 text-[#14140f]">
-              Fifteen years in one person, working out of Dubai
+              A freelance digital marketer in Dubai who builds it too
             </h2>
           </div>
 
@@ -348,10 +348,11 @@ export default function AboutSplit() {
                 the first says who, the second says why that arrangement is
                 worth anything to the reader. */}
             <p data-reveal className="max-w-[58ch] text-base leading-relaxed text-muted">
-              I am Bilal Shafqat. I run paid campaigns, design the interface,
-              write the code, and wire the CRM behind it. Not a studio and not a
-              network of subcontractors, so the person you brief is the person
-              who does the work.
+              I am Bilal Shafqat, and fifteen years of it sit in one person. I
+              run paid campaigns, design the interface, write the code, and wire
+              the CRM behind it. Not a studio and not a network of
+              subcontractors, so the person you brief is the person who does the
+              work.
             </p>
             <p data-reveal className="mt-4 max-w-[58ch] text-base leading-relaxed text-muted">
               Most projects lose their time and their quality at the seams
