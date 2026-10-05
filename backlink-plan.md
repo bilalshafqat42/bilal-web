@@ -148,6 +148,30 @@ costs more to undo than these 65 days are worth.
 
 ---
 
+## Progress
+
+**2026-10-05, day 1.** Three directories started on day one instead of across
+weeks three and four, because the search for `freelance digital marketer in
+Dubai` showed Sortlist, GoodFirms and Peerlist profile and article pages
+ranking for the target terms. A profile that itself ranks is worth as much as
+a link from it, so these moved to the front.
+
+| Task | Status |
+| --- | --- |
+| Peerlist profile | Live, workplace verified, one post with a link preview |
+| Sortlist profile | Built, publishing |
+| GoodFirms | Blocked. Their form rejects the company name and website as duplicates of Bilal's own account record. Support contacted. |
+| Pinterest | Domain verified and claimed, profile rewritten, banner and first pin live |
+
+Peerlist's link measured: `rel="noreferrer nofollow ugc"`. Check Sortlist and
+GoodFirms the same way rather than assuming either answer.
+
+Still to do on both live profiles: the portfolio entries, three each, linking
+to `/portfolio/leos-developments`, the homepage and
+`/services/mobile-app-development`.
+
+---
+
 Last day: Friday 01 January 2027.
 
 ## If you only do five of these
