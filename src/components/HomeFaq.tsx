@@ -114,14 +114,14 @@ export default function HomeFaq() {
               pricing table in item 262. Someone scanning five questions should
               not have to click five times to find the one that applies, and
               text behind a toggle is text a skimming reader never sees. */}
-          <dl className="divide-y divide-border">
+          <div className="divide-y divide-border">
             {faqs.map((f, i) => (
               <div key={f.q} className={i === 0 ? "pb-8" : "py-8"}>
-                <dt className="t-h4 text-ink">{f.q}</dt>
-                <dd className="mt-4 text-base leading-relaxed text-muted">{f.a}</dd>
+                <h3 className="t-h4 text-ink">{f.q}</h3>
+                <p className="mt-4 text-base leading-relaxed text-muted">{f.a}</p>
               </div>
             ))}
-          </dl>
+          </div>
         </div>
       </div>
     </section>

@@ -8887,3 +8887,38 @@ variants that ride on the same signals rather than needing their own h1.
 **The number that still matters more.** 100 on-page with ~90 backlinks loses to
 60 on-page with 500. On-page is the half Bilal controls and it is now finished
 on the homepage. Items 339 and the weeks 9 to 13 outreach are the other half.
+
+### 349. DONE (2026-10-05) — The repetition and the FAQ markup resolved each other
+
+Two open questions from item 348 turned out to be one answer.
+
+**The FAQ questions are now `<h3>`, not `<dt>` inside a `<dl>`.** I had refused
+this on the grounds that a description list is correct markup for
+question-and-answer pairs, which is true and was the wrong reason to refuse.
+The argument that settles it is accessibility: screen reader users navigate a
+long page by jumping between headings, and six questions buried in `<dt>` are
+absent from that list. Headings being a ranking signal is a bonus, not the
+reason. A heading cannot nest inside `<dt>`, so the list had to go rather than
+wrap.
+
+**That freed the about `<h2>`.** With the first FAQ question now a heading
+carrying `freelance digital marketer in dubai`, the h2 no longer had to repeat
+the h1 to satisfy "keyword in a subheading". It went back to `digital marketing
+expert in dubai`, 320 searches at difficulty **5**, the lowest competition on
+the board and a term with no heading anywhere on the site until now.
+
+Result: 100/100 on the primary keyword, the secondary rose 38 to 46, and the
+h1 and the h2 beside it no longer say the same sentence twice.
+
+**"What I Actually Build" renamed to "Work that shipped".** The heading read as
+a services list and the section is the portfolio grid: LEOS, Hadley Heights,
+Cavendish Square, the mobile app. The section's own description already said
+"Every piece here is work that shipped, not a concept", so the heading now
+agrees with it.
+
+**One thing deliberately not done.** Bilal asked for the best keywords across
+h1, h2, h3 and h4. Not every heading should carry one. Five of the eight h2s
+are about method, process, pricing and contact, and forcing a keyword into
+"From brief to shipped, in four stages" would make the page worse to read for a
+signal that is already satisfied twice over. The primary appears in the h1 and
+an h3, the secondary in an h2, and the rest stay written for people.

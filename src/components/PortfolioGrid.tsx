@@ -209,8 +209,8 @@ export default function PortfolioGrid() {
       <div className="site-container">
         <SectionHeading
           eyebrow="Selected Work"
-          title="What I Actually"
-          highlight="Build"
+          title="Work that"
+          highlight="shipped"
           description="Every piece here is work that shipped, not a concept."
         />
 
