@@ -30,6 +30,10 @@
         "v": "If the designer draws the building, the developer builds it, runs the plumbing and wiring, and is the person you call when the lift stops."
       },
       {
+        "t": "p",
+        "v": "Web development as a field covers both of those halves, and a third part nobody mentions at the quoting stage, which is keeping the thing alive after launch. All three are described below."
+      },
+      {
         "t": "h2",
         "v": "What the work actually involves"
       },
@@ -198,7 +202,7 @@
         "v": "Published 4 October 2026 by a Dubai-based freelance developer. All AED figures are my own published rates."
       }
     ],
-    "words": 883
+    "words": 916
   },
   {
     "slug": "web-developer-vs-web-designer",
@@ -411,6 +415,10 @@
         "v": "Usually it changes quite a lot. Here is what each actually means and how to pick."
       },
       {
+        "t": "p",
+        "v": "One more title to expect: application developer, which some people use for anyone building software and others reserve for apps rather than websites. It is not a fourth specialism. If a quote uses it, ask what they actually build rather than inferring it from the word."
+      },
+      {
         "t": "h2",
         "v": "The split, plainly"
       },
@@ -576,7 +584,7 @@
         "v": "Published 4 October 2026 by a Dubai-based freelance full stack developer."
       }
     ],
-    "words": 622
+    "words": 668
   },
   {
     "slug": "cost-to-hire-a-web-developer-in-dubai",
@@ -826,6 +834,10 @@
       },
       {
         "t": "p",
+        "v": "Job adverts compound it by asking for a UI/UX designer as though it were one qualification. In a small team it usually is one person. It is still two skills, and most people are genuinely strong at one of them."
+      },
+      {
+        "t": "p",
         "v": "The short version: UX decides what should happen. UI decides how it looks and feels when it does."
       },
       {
@@ -1002,7 +1014,7 @@
         "v": "Published 4 October 2026 by a Dubai-based designer and developer."
       }
     ],
-    "words": 735
+    "words": 775
   },
   {
     "slug": "what-is-a-product-designer",
@@ -2096,6 +2108,10 @@
         "v": "A mobile developer builds the software that runs on a phone. That sentence is accurate and tells you nothing useful, so here is the version that helps if you are about to hire one."
       },
       {
+        "t": "p",
+        "v": "Mobile development differs from web development in ways that are not obvious until a project is underway, and those differences are where the extra cost and the extra time come from."
+      },
+      {
         "t": "h2",
         "v": "What makes mobile different from web"
       },
@@ -2259,7 +2275,7 @@
         "v": "Published 4 October 2026 by a Dubai-based React Native developer. All AED figures are my own published rates."
       }
     ],
-    "words": 728
+    "words": 759
   },
   {
     "slug": "questions-to-ask-a-web-developer-before-hiring",
