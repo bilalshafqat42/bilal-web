@@ -8795,3 +8795,30 @@ showed -3295.
 
 Note for the rest of weeks 1 to 4: expect `nofollow` on every directory and
 check each one the same way rather than assuming either answer.
+
+### 346. OPEN (2026-10-05) — Choppershoot added as a fourth draft
+
+A production house Bilal has worked at as an employee. He intends to do their
+web design and a mobile app, and to use both as portfolio work.
+
+Added as a draft, the same as PSI, Texdale and PetsMarket: reachable at its own
+URL so the layout can be reviewed, `noindex`, out of the sitemap, out of the
+grid and out of the search index. Verified rather than assumed: the page serves
+`noindex, follow`, the sitemap count stays at 112 routes, and `search-check`
+stays at 366 chunks.
+
+`Media & Production` already existed in the `Industry` union, so no new sector
+was needed.
+
+**This one is further from publishable than the other three**, and the
+distinction matters. PSI, Texdale and PetsMarket are waiting on screenshots of
+work that exists. Choppershoot is waiting on the work. Nothing about it should
+go near the public site until the build is finished.
+
+The existing rule still applies and applies harder here: these are current or
+former employers, so **written permission before publishing**, not after.
+Describing work done as an employee as portfolio work is normal and fine; doing
+it without the company's agreement is how a reference turns into a problem.
+
+Removing `draft: true` publishes it. Do not remove it until the build exists,
+the write-up is Bilal's own account, and the permission is in writing.

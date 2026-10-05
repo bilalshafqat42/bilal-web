@@ -531,6 +531,31 @@ export const clients: Client[] = [
     keywords: [],
   },
   {
+    // Added 2026-10-05. A production house Bilal has worked at as an employee.
+    // The web design and the mobile app are planned rather than delivered, so
+    // this is further from publishable than the other three drafts: those are
+    // waiting on screenshots of work that exists, this is waiting on the work.
+    slug: "choppershoot",
+    name: "Choppershoot",
+    industry: "Media & Production",
+    draft: true,
+    title: "Choppershoot — DRAFT, not published",
+    description: "DRAFT placeholder. Work not yet delivered. Awaiting the build, the write-up and permission.",
+    headline: "DRAFT: one line on what the work achieved",
+    intro:
+      "DRAFT PLACEHOLDER. Choppershoot is a production house. The web design and mobile app are planned, not delivered. Replace with who they are, what the work was, and over what period, once it exists.",
+    facts: [
+      { label: "Company", value: "Choppershoot" },
+      { label: "Sector", value: "Production house" },
+      { label: "Role", value: "TBC" },
+      { label: "Scope", value: "TBC" },
+    ],
+    scopeIntro: "DRAFT PLACEHOLDER. One paragraph framing the scope of the work.",
+    scope: [{ heading: "DRAFT", body: "DRAFT PLACEHOLDER. What was delivered." }],
+    projects: [],
+    keywords: [],
+  },
+  {
     slug: "texdale",
     name: "Texdale",
     industry: "Professional Services",
