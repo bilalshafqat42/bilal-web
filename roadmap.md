@@ -8238,7 +8238,7 @@ bad decisions.
 Two items closed on Bilal's side: **`Refine-Admin` is private** (the API now
 404s) and the **profile README is live** at `bilalshafqat42/bilalshafqat42`.
 
-### 331. OPEN — The proof layer is thin in depth, not just in count
+### 331. CLOSED (2026-10-05, see item 352) — The proof layer is thin in depth, not just in count
 
 Looking for unblocked work turned up something the service-page audit had
 missed. The portfolio pages are the thinnest on the site:
@@ -8994,3 +8994,50 @@ existed.
 
 Sortlist accepted him, which is the useful counter-example: it asks for a
 company name but allows a team size of one and a freelancer work type.
+
+### 352. DONE (2026-10-05) — The proof layer, which was the thinnest part of the site
+
+`npm run audit`, added the same day, measured every page in the sitemap and gave
+item 331 its numbers at last. The pages a visitor reads immediately before
+deciding whether to make contact were a quarter the depth of the pages arguing
+the case.
+
+| Page | Before | After |
+| --- | ---: | ---: |
+| `/portfolio/ui-ux-design` | 369 | 764 |
+| `/portfolio/web-development` | 348 | 772 |
+| `/portfolio/mobile-app-development` | 348 | 713 |
+| `/portfolio/social-media-marketing` | 354 | 732 |
+| `/portfolio/leos-developments` | 620 | 1,223 |
+| `/about` | 674 | 1,051 |
+
+Site median was 912 and the service pages run 1,400 to 1,900.
+
+**Item 331 is closed, with the limitation it was opened for still standing.**
+I declined to write these in September because it would have meant inventing
+client detail. What changed is that writing Bilal's Sortlist entry made it
+obvious the material was already published on his own site, on
+`/real-estate-marketing` and in the case studies, sitting on pages nobody
+reaches. Reorganising his own words is not inventing anything.
+
+**No results anywhere, and the LEOS page now says why.** "The numbers belong to
+LEOS rather than to me, and publishing a client's results without their
+agreement is not something I will do for the sake of a more impressive
+portfolio." Stating the absence is stronger than leaving a gap where a figure
+should be, and it is the same move as the homepage proof section in item 348.
+
+**One `depth` field, three places.** `{ heading, paragraphs }[]`, matching
+`DepthBlock` in serviceDepth, added to the discipline page type and the `Client`
+type. One idea and one renderer rather than a third shape for the same thing.
+
+**`/about` was 674 words made entirely of cards**: four pillars, three
+principles, a tools list, an audience list, and no continuous prose anywhere.
+Cards state positions; prose persuades. Three sections added, and the one worth
+keeping is "What I am not", which names the ceiling on a one-person supplier and
+says an agency is the better answer for a six-channel programme. A page that
+only argues for itself is less convincing than one that says where it does not
+fit.
+
+**Also**: ten meta descriptions brought inside 120 to 160 characters. Four were
+never written, they were an article's opening sentence truncated by the
+WordPress recovery, ending mid-clause on "and" or a comma.

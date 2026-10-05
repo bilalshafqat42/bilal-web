@@ -320,6 +320,25 @@ export default async function ClientCaseStudy({ params }: Props) {
           </section>
         ) : null}
 
+        {c.depth ? (
+          <section className="relative mt-20 sm:mt-28">
+            <div className="mx-auto max-w-3xl px-6">
+              {c.depth.map((block, i) => (
+                <Reveal key={block.heading}>
+                  <div className={i > 0 ? "mt-12" : ""}>
+                    <h2 className="t-h3 text-ink">{block.heading}</h2>
+                    {block.paragraphs.map((para) => (
+                      <p key={para.slice(0, 40)} className="mt-5 text-base leading-relaxed text-muted">
+                        {para}
+                      </p>
+                    ))}
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
         <WorkProof clientSlug={c.slug} />
         <section className="relative mt-20 sm:mt-28">
           <div className="mx-auto max-w-5xl px-6">

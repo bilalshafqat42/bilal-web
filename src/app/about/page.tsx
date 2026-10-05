@@ -216,6 +216,67 @@ export default function AboutPage() {
 
         <section className="relative mt-24 sm:mt-32">
           <div className="site-container">
+            <div className="max-w-3xl">
+              <Reveal>
+                <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">The short version</span>
+                <h2 className="t-h2 mt-4 text-ink">How one person ended up doing four jobs</h2>
+                <p className="mt-6 text-base leading-relaxed text-muted">
+                  Not by plan. I started on the build side, writing code and designing
+                  interfaces, and kept being handed campaigns that pointed at pages
+                  somebody else had made. The pages were usually fine. What was broken
+                  was the seam: the ad promised one thing, the page said another, and the
+                  enquiry landed somewhere nobody was watching.
+                </p>
+                <p className="mt-5 text-base leading-relaxed text-muted">
+                  Fixing that meant learning the other half. Fifteen years later the two
+                  halves are one job, and the thing clients actually buy is the absence of
+                  a handover. Most marketers cannot build the thing they are marketing and
+                  most developers have never run a campaign, so the gap between them is
+                  where budgets quietly go.
+                </p>
+              </Reveal>
+
+              <Reveal>
+                <h2 className="t-h2 mt-14 text-ink">What I am not</h2>
+                <p className="mt-6 text-base leading-relaxed text-muted">
+                  Not an agency, and not a freelancer with a network of subcontractors
+                  behind a single invoice. One person, which has a real cost: there is a
+                  ceiling on capacity and no cover if I am unavailable. For a programme
+                  running across six channels every week, an agency is the better answer
+                  and I will say so.
+                </p>
+                <p className="mt-5 text-base leading-relaxed text-muted">
+                  Not the lowest price either. The published figures are on the pricing
+                  page rather than behind a conversation, and they rule some projects out.
+                  That is deliberate: a budget that cannot cover the work properly produces
+                  a result nobody is happy with, and finding that out at the quote stage is
+                  cheaper for both of us than finding it out in month three.
+                </p>
+              </Reveal>
+
+              <Reveal>
+                <h2 className="t-h2 mt-14 text-ink">How a first conversation goes</h2>
+                <p className="mt-6 text-base leading-relaxed text-muted">
+                  Thirty minutes, free, and it is not a pitch. You describe the business
+                  and the number you want to move, I ask questions, and you leave with a
+                  recommended approach and a price range. Often the recommendation is
+                  smaller than what you came in asking for, because the thing in the way is
+                  rarely the thing people think it is.
+                </p>
+                <p className="mt-5 text-base leading-relaxed text-muted">
+                  Sometimes the honest answer is that you do not need me. You do not need
+                  an app if a fast mobile site does the same job. You do not need a rebuild
+                  if the site works and the tracking is the problem. Telling you that costs
+                  me a project and buys the only thing worth having in a market this small,
+                  which is somebody who recommends you afterwards.
+                </p>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative mt-24 sm:mt-32">
+          <div className="site-container">
             <Reveal>
               <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">How I work</span>
               <h2 className="t-h2 mt-4 text-ink">

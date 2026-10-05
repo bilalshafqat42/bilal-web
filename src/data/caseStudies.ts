@@ -154,6 +154,15 @@ export type Client = {
   facts: Fact[];
   scope: { heading: string; body: string }[];
   scopeIntro: string;
+  /** Long-form sections under the projects grid.
+   *
+   *  Added 2026-10-05. `npm run audit` put this page at 620 words against a
+   *  site median of 912, on the only published case study the site has. Same
+   *  `{ heading, paragraphs }` shape as the discipline pages and serviceDepth.
+   *
+   *  No results in here and none to be added without Bilal's own figures. A
+   *  case study with invented numbers is worth less than one with none. */
+  depth?: { heading: string; paragraphs: string[] }[];
   website?: { heading: string; body: string; capture: Capture };
   /** Phone screens, rendered in phone frames rather than a square gallery grid.
    *  Deliberately not a `Gallery`: GalleryGrid forces `aspect-square
@@ -865,6 +874,44 @@ export const clients: Client[] = [
         },
       ],
     },
+    depth: [
+      {
+        heading: "Why one supplier across both halves was the point",
+        paragraphs: [
+          "The usual arrangement on a development launch is an agency for the campaign, a developer for the landing page and a designer somewhere between them. It works until something needs to change, at which point the agency is waiting on the developer, the developer is waiting on the designer, and a launch window that was always going to be short gets shorter.",
+          "Here the same person made the creative, built the page it pointed at and connected the enquiry to the CRM behind it. The practical effect is not that any single piece is better. It is that a change to the offer on a Tuesday reaches the ad, the page and the follow-up on the same day rather than across three suppliers and two weeks.",
+        ],
+      },
+      {
+        heading: "The problem every off-plan launch has",
+        paragraphs: [
+          "Off-plan property generates a high volume of enquiries and a low proportion of qualified ones. That is the shape of the market rather than a failure of any particular campaign, and a brief that asks for more leads usually makes it worse.",
+          "So the brief on each launch was the opposite: reduce the unqualified share without reducing the qualified count. That is a harder thing to ask for, because the headline number goes down and somebody has to be comfortable with that.",
+        ],
+      },
+      {
+        heading: "What the pages were built to do about it",
+        paragraphs: [
+          "The entry price sits in the hero rather than being withheld until a form is submitted. That loses traffic deliberately: somebody whose budget is a third of the entry price finds out in two seconds instead of after a sales call, and both sides are better off.",
+          "One primary call to action, short enough to finish one-handed on a phone, because most of the traffic arrives from a social ad on a mobile connection. A brochure download as a lower-commitment second route, for the visitor who is interested but not ready to speak to anyone. And a separate path for existing buyers, so somebody asking about a unit they already own does not land in the new-enquiry list and get called as a prospect.",
+          "None of those are clever. All of them are decisions somebody has to make before the page is built, and they are the reason these pages look the way they do rather than the way a template would.",
+        ],
+      },
+      {
+        heading: "Two markets, two sets of expectations",
+        paragraphs: [
+          "LEOS builds in both the United Kingdom and Dubai, and the two audiences behave differently enough to matter. A UK buyer expects more detail before enquiring and will read a long page. A Dubai buyer is more likely to arrive from a social ad, on a phone, and to continue the conversation on WhatsApp rather than email.",
+          "That changed the shape of the pages rather than the strategy: how much sits above the fold, how early the price appears, and whether the primary action opens a form or a chat. The corporate site had to hold both without reading as two different companies.",
+        ],
+      },
+      {
+        heading: "What this case study does not claim",
+        paragraphs: [
+          "There are no performance figures on this page. The numbers belong to LEOS rather than to me, and publishing a client's results without their agreement is not something I will do for the sake of a more impressive portfolio.",
+          "So what is here is the reasoning and the work itself: four launches, the corporate website, the mobile app and the brand creative, over two years. If you want to talk about outcomes, that is a conversation rather than a statistic on a web page, and it is one I am happy to have.",
+        ],
+      },
+    ],
     projects: [cavendishSquare, hadleyHeights, weybridgeGardens, weybridgeGardens2],
     keywords: [
       "real estate marketing",
