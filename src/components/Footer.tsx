@@ -60,6 +60,7 @@ const industries = [
   "Professional Services",
   "Hospitality",
   "E-commerce & Retail",
+  "Manufacturing & Industrial",
   "Media & Production",
 ];
 

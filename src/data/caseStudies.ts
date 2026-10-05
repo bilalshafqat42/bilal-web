@@ -115,6 +115,7 @@ export type Industry =
   | "Hospitality"
   | "Technology & SaaS"
   | "Professional Services"
+  | "Manufacturing & Industrial"
   | "Media & Production";
 
 export type Client = {
@@ -558,7 +559,7 @@ export const clients: Client[] = [
   {
     slug: "texdale",
     name: "Texdale",
-    industry: "Professional Services",
+    industry: "Manufacturing & Industrial",
     draft: true,
     title: "Texdale — DRAFT, not published",
     description: "DRAFT placeholder. Awaiting screenshots, write-up and permission.",

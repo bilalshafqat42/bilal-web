@@ -8822,3 +8822,23 @@ it without the company's agreement is how a reference turns into a problem.
 
 Removing `draft: true` publishes it. Do not remove it until the build exists,
 the write-up is Bilal's own account, and the permission is in writing.
+
+### 347. DONE (2026-10-05) — Texdale's sector corrected, PetsMarket was already right
+
+Texdale sells textile chemicals and was tagged `Professional Services`, which
+was a placeholder standing in for a sector the `Industry` union did not carry.
+The page gave itself away: the facts block already read "Textile chemicals"
+while the industry field said something else.
+
+Added `Manufacturing & Industrial` to the union and moved Texdale to it.
+PetsMarket was already `E-commerce & Retail` and needed no change.
+
+**Two lists, not one.** The `Industry` union in `caseStudies.ts` and the
+`industries` array in `Footer.tsx` are maintained separately, so a new sector
+has to be added in both or the footer silently omits it. Noted here because the
+next person to add a sector will hit the same thing. `Automotive` is already in
+the union and not in the footer, which is the drift this comment is about.
+
+An unpublished case study still belongs in the footer list: it reads "sectors
+worked in rather than pages that exist", and the Texdale work happened. Only
+the write-up is missing.
