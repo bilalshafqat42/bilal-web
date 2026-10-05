@@ -60,6 +60,17 @@ export type Discipline = {
      *  the same captures. Rendered on the page, because a reader who arrives
      *  from a sibling deserves to know why they are seeing a familiar image. */
     lens: string;
+    /** Long-form sections under the grid.
+     *
+     *  Added 2026-10-05. `npm run audit` measured these four pages at 348 to
+     *  369 words against a site median of 912, which made the proof layer the
+     *  thinnest content on the site: a visitor reads these immediately before
+     *  deciding whether to make contact, and they were a quarter the depth of
+     *  the pages arguing the case.
+     *
+     *  Same `{ heading, paragraphs }` shape as `DepthBlock` in serviceDepth, so
+     *  there is one idea and one renderer rather than two. */
+    depth?: { heading: string; paragraphs: string[] }[];
     faqs: Faq[];
   };
 };
@@ -81,6 +92,30 @@ export const disciplines: Discipline[] = [
       metaDescription:
         "Shipped React Native app screens and mobile web layouts. Every screen is live work, not a concept, and each links through to the decision behind it.",
       lens: "This page is the interface cut. It gathers the app screens and the mobile web layouts in one place because they answer the same question — what does a buyer do on a small screen — and it is the only page where they sit together with the design reasoning attached.",
+      depth: [
+        {
+          heading: "The decisions that do not show in a screenshot",
+          paragraphs: [
+            "A portfolio of app screens is easy to misread. What you are looking at is the surface, and the surface is the cheap part. The expensive decisions are the ones that produced it: whether a buyer should be forced to create an account before they can browse, whether the primary action sits on the card or behind a menu, how many fields an enquiry form can carry before the completion rate starts falling.",
+            "Those decisions are what the client paid for. On the property work they came down to one question asked repeatedly: is this step helping a serious buyer get to a conversation, or is it helping us collect data we will never use? Most of the screens here are shorter than their first draft for that reason.",
+          ],
+        },
+        {
+          heading: "Designed for the state where things go wrong",
+          paragraphs: [
+            "The screens that get designed are the ones where everything works. The screens that decide whether an app feels finished are the other ones: an empty list before the first entry, a slow connection, a permission the user declined, a session that expired while the phone was in a pocket, a name sixty characters long.",
+            "When those are not specified, the developer decides them under deadline pressure, and they become the parts people complain about. On this work they were specified, which is the main practical advantage of the same person designing and building: there is no handover at which the awkward states can be left out.",
+          ],
+        },
+        {
+          heading: "Interface work for a property buyer specifically",
+          paragraphs: [
+            "Off-plan property has a particular problem. The audience is wide, the product is expensive, and most of the traffic arriving from a campaign will never buy. An interface that makes it easy for everyone to enquire produces a long list and a frustrated sales team.",
+            "So the design does the qualifying. The entry price appears early rather than being withheld until a form is submitted. One primary action, short enough to finish one-handed on a phone. A brochure download as a lower-commitment second route for someone who is interested but not ready. A separate path for existing buyers, so somebody asking about a unit they already own does not land in the new-enquiry list.",
+            "None of that is visible in a screenshot. All of it is why these particular screens look the way they do.",
+          ],
+        },
+      ],
       faqs: [
         {
           question: "Do you design as well as build?",
@@ -125,6 +160,36 @@ export const disciplines: Discipline[] = [
       metaDescription:
         "Corporate websites and campaign landing pages built for speed, mobile and one clear enquiry action. The published set is property: a site and four launches.",
       lens: "This page carries both the design and the build, because they are the same seven captures looked at two ways: how each page is composed, and how it was implemented. Splitting that into two pages would mean two pages showing identical images, which is worth avoiding.",
+      depth: [
+        {
+          heading: "Built around the campaign pointing at it",
+          paragraphs: [
+            "Most of these sites exist to receive paid traffic. That changes what matters. A brochure site can afford a slow hero image and a form that asks nine questions. A page receiving paid clicks cannot, because every second of load time and every unnecessary field is being paid for per visitor.",
+            "So the build starts from the campaign rather than from the design: what the ad promised, what the visitor expects to see first, and what the single next action is. The tracking goes in before the traffic does, which means the reporting is cost per enquiry from the first day rather than cost per click with a guess attached.",
+          ],
+        },
+        {
+          heading: "Speed is decided before any code is written",
+          paragraphs: [
+            "Most slow sites are slow because of what was designed into them: a full-screen video header, a carousel of uncompressed photographs, four webfonts and a stack of third-party scripts loading on every page. No amount of optimisation afterwards fully undoes those choices.",
+            "That is the argument for the same person doing both. The decision to use one typeface rather than four is a design decision with a performance consequence, and it is cheap to make at the start and expensive to reverse at the end.",
+          ],
+        },
+        {
+          heading: "What happens after launch, which is most of the cost",
+          paragraphs: [
+            "A website is not finished at launch, it is launched. Browsers update, dependencies need security patches, a payment provider changes an endpoint, somebody uploads a twelve-megabyte photograph and the homepage takes nine seconds. A site nobody maintains degrades quietly and the business usually finds out from a customer.",
+            "On this work maintenance was part of the arrangement rather than an afterthought, and the accounts stayed in the client's name throughout. That second part matters more than it sounds: a surprising number of businesses discover at the end of a relationship that their domain or hosting sits inside somebody else's structure.",
+          ],
+        },
+        {
+          heading: "The stack, and why it is not the interesting part",
+          paragraphs: [
+            "React, Next.js and Node on the custom builds, WordPress where the client needed to edit pages without calling anyone. The choice matters far less than people pretend, as long as whoever builds it is genuinely fluent in what they picked.",
+            "The question worth asking is not which framework but who runs the site afterwards. A custom build needs a developer for every change. A WordPress site lets a marketing person add a page on a Tuesday afternoon. That is a business decision rather than a technical one, and it should belong to the client.",
+          ],
+        },
+      ],
       faqs: [
         {
           question: "What do you build websites with?",
@@ -154,6 +219,29 @@ export const disciplines: Discipline[] = [
       metaDescription:
         "Mobile app development portfolio: cross-platform React Native apps for iOS and Android from a single codebase, with each screen decision explained.",
       lens: "These screens also appear on the UI/UX Design page, where the subject is the interface decision. Here it is the app as a delivered product: one codebase, two platforms, and the same inventory as the website it sits alongside.",
+      depth: [
+        {
+          heading: "One codebase, two stores, and why that was the right call",
+          paragraphs: [
+            "These apps are React Native, which means iOS and Android were built once rather than twice. The saving is real and it is not the fifty per cent people expect: there is still platform-specific work, separate testing on both, two store submissions and two sets of compliance. What it removes is the budget pressure that normally causes Android to be treated as the version that gets done second and tested least.",
+            "In this region that matters more than it would elsewhere. Android is the majority platform across much of the UAE audience, and an app that was clearly built for iOS and ported afterwards is obvious to the people using it.",
+          ],
+        },
+        {
+          heading: "A mistake in an app is more expensive than one on a website",
+          paragraphs: [
+            "A broken page on a website is fixed and live in minutes. A broken app has to be rebuilt, submitted, reviewed by Apple or Google, approved, and then actually installed by users, some of whom will not update for months.",
+            "That single difference changes how the work is done. More testing before release, on real devices rather than only a simulator, including older phones and weak connections. A staged rollout rather than everyone at once. And a way to force an update when a version turns out to be unsafe, which has to be built before it is needed rather than after.",
+          ],
+        },
+        {
+          heading: "The parts of an app project nobody quotes for",
+          paragraphs: [
+            "Store submission is consistently underestimated. Apple and Google both review every submission against rules that change, and both can reject you for reasons unrelated to whether the app works: a missing privacy declaration, an account deletion route, a permission prompt that asks at the wrong moment, screenshots at the wrong sizes.",
+            "Then there is the back-end, which is where most of an app's real cost sits and which is invisible in any screenshot. Where the data lives, who may see what, what happens when an integration goes down at two in the morning. On this work the app and the back-end were built together, which is the arrangement that avoids the most common gap in an app project team.",
+          ],
+        },
+      ],
       faqs: [
         {
           question: "Do you build native or cross-platform?",
@@ -192,6 +280,36 @@ export const disciplines: Discipline[] = [
       metaDescription:
         "Brand and campaign creative designed as runs rather than one-off posts, so a feed reads as one brand instead of unrelated announcements.",
       lens: "This is the only page for the social work, and it is the full set rather than a selection. A portfolio of creative is more useful complete, because consistency across a run is the thing a client is actually buying.",
+      depth: [
+        {
+          heading: "A full set rather than a selection, deliberately",
+          paragraphs: [
+            "Most social portfolios show the best six pieces. This one shows the run, because consistency across a series is the thing a client is actually buying and a curated selection hides exactly the quality it claims to demonstrate.",
+            "What to look for is whether the twentieth piece still looks like it came from the same brand as the first. That is the part that gets hard, and it is the part that fails when creative is produced by whoever is available that week.",
+          ],
+        },
+        {
+          heading: "Organic and paid designed as one thing",
+          paragraphs: [
+            "The same creative direction runs across the organic grid and the paid campaigns here, because the same person was doing both. When those are split between a social agency and a media buyer, the ad and the post stop looking like they came from one company, and the audience notices before anyone internally does.",
+            "There is a practical benefit beyond the aesthetics. A piece of organic creative that performs can be put behind budget the same week rather than waiting for a quarterly review, and a paid creative that fails can be pulled before the spend accumulates.",
+          ],
+        },
+        {
+          heading: "Built for where the audience actually is",
+          paragraphs: [
+            "Most of this ran against a UAE audience, which has its own shape. Instagram carries the discovery, and Reels are the one organic distribution still genuinely reaching beyond followers. LinkedIn behaves differently and converts differently for anything selling to a business. WhatsApp is where a conversation actually continues, which means the job of a post is often to start something that finishes in a different app entirely.",
+            "The measure is therefore not follower count. It is how many people moved from a post to a conversation, which is why the profile link, the direct message routing and the page behind it matter more than the grid does.",
+          ],
+        },
+        {
+          heading: "What this work does not prove",
+          paragraphs: [
+            "There are no performance figures on this page. The numbers worth quoting belong to clients rather than to me, and a portfolio with invented percentages on it is worth less than one with none.",
+            "So judge this on the craft and the consistency, which are visible, and ask about the results in a conversation, where they can be discussed properly and in context.",
+          ],
+        },
+      ],
       faqs: [
         {
           question: "Do you write the copy as well as design the creative?",

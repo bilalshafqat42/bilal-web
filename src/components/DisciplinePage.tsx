@@ -275,6 +275,28 @@ export default function DisciplinePage({ slug }: { slug: string }) {
           ))}
         </section>
 
+        {/* The long-form sections, under the grid rather than over it: the
+            captures are what a visitor came for and the reasoning is what they
+            read once something has caught their eye. */}
+        {d.page.depth && (
+          <section className="site-container pt-20 sm:pt-24">
+            <div className="max-w-3xl">
+              {d.page.depth.map((block, i) => (
+                <Reveal key={block.heading}>
+                  <div className={i > 0 ? "mt-12" : ""}>
+                    <h2 className="t-h3 text-ink">{block.heading}</h2>
+                    {block.paragraphs.map((para) => (
+                      <p key={para.slice(0, 40)} className="mt-5 text-base leading-relaxed text-muted">
+                        {para}
+                      </p>
+                    ))}
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Was a bare definition list under a card-sized h2, which meant these
             pages had no section headings at all. Now the site-wide layout. */}
         <FaqSection

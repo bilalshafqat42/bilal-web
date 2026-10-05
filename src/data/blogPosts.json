@@ -1194,7 +1194,7 @@
     "slug": "what-a-ux-designer-actually-does",
     "title": "What a UX Designer Actually Does on a Project",
     "metaTitle": "What a UX Designer Actually Does",
-    "description": "A walk through a real UX engagement from first conversation to launch, written for people who are about to commission one and want to know what they are paying for.",
+    "description": "A real UX engagement from first conversation to launch, written for people about to commission one who want to know what they are paying for.",
     "published": "2026-10-04",
     "tags": [
       "UI UX Design",
@@ -1614,7 +1614,7 @@
     "slug": "what-is-mobile-app-development",
     "title": "What Is Mobile App Development? A Guide for Non-Technical Founders",
     "metaTitle": "What Is Mobile App Development?",
-    "description": "What actually happens when an app gets built, what each stage costs you in time and money, and the decisions you will be asked to make before anyone writes code.",
+    "description": "What happens when an app gets built, what each stage costs in time and money, and the decisions you will be asked to make before anyone writes code.",
     "published": "2026-10-04",
     "tags": [
       "Mobile Apps",
@@ -2095,7 +2095,7 @@
   {
     "slug": "what-does-a-mobile-developer-do",
     "title": "What Does a Mobile Developer Do?",
-    "description": "The job explained for people hiring one: what mobile work involves that web work does not, the two specialisms, and how to tell a real one from a convincing one.",
+    "description": "The job explained for people hiring one: what mobile work involves that web work does not, the two specialisms, and how to tell a real one from a good talker.",
     "published": "2026-10-04",
     "tags": [
       "Mobile Apps",
@@ -7735,7 +7735,7 @@
   {
     "slug": "learn-node-js-from-scratch",
     "title": "Learn Node.js from Scratch: A Beginner's Guide to Backend Development",
-    "description": "Start your backend development journey with JavaScript and unlock the power of Node.js",
+    "description": "Start backend development with JavaScript. What Node.js is, why it runs the way it does, and how to build and run your first server from scratch.",
     "published": "2025-06-11",
     "tags": [
       "Node JS"
@@ -9693,7 +9693,7 @@
   {
     "slug": "javascript-es6-features-a-comprehensive-guide",
     "title": "JavaScript ES6 Features: A Comprehensive Guide",
-    "description": "JavaScript ES6 Features introduced powerful features that enhance code readability, maintainability, and efficiency.",
+    "description": "The ES6 features that changed how JavaScript is written: let and const, arrow functions, destructuring, template literals, promises and modules.",
     "published": "2025-03-03",
     "tags": [
       "Es6",
@@ -10735,7 +10735,7 @@
   {
     "slug": "8-best-websites-for-design-inspiration",
     "title": "8 Best Websites for Design Inspiration and Trends in 2026",
-    "description": "In today's fast-paced digital landscape, staying ahead of design trends and maintaining a wellspring of creativity is crucial for designers, developers, and",
+    "description": "Eight sites worth returning to when the ideas run out, each one opened and checked. What each is good for, and which to use at which stage of a project.",
     "published": "2025-02-13",
     "tags": [
       "UI UX Design"
@@ -11194,7 +11194,7 @@
   {
     "slug": "websites-every-developer-must-bookmark",
     "title": "Websites Every Developer Must Bookmark for Stunning UI and Creative Design",
-    "description": "As a developer, your workflow and efficiency depend significantly on the resources you have at hand. Whether you're designing interfaces, structuring layouts,",
+    "description": "The reference sites worth keeping one click away: documentation, CSS and layout tools, icons, colour, and the utilities that save an hour every week.",
     "published": "2025-02-11",
     "tags": [
       "UI UX Design"
@@ -13941,7 +13941,7 @@
   {
     "slug": "chatgpt-vs-deepseek-the-ultimate-ai-showdown",
     "title": "ChatGPT vs. DeepSeek: The Ultimate AI Showdown",
-    "description": "Artificial Intelligence (AI) has revolutionized the way we work, communicate, and innovate. Among the top contenders in the AI space are OpenAI's ChatGPT and",
+    "description": "ChatGPT and DeepSeek compared on what they actually do well: reasoning, code, cost and openness. Which to reach for, and where each one still falls down.",
     "published": "2025-01-28",
     "tags": [
       "AI",
@@ -16042,7 +16042,7 @@
   {
     "slug": "redux-made-easy-beginners-guide-to-state-management-in-react-js",
     "title": "Redux Made Easy: Beginner's Guide to State Management in React JS",
-    "description": "A beginner's guide to Redux in React, building a simple counter app to explain actions, reducers and the store.",
+    "description": "A beginner's guide to Redux in React. Build a simple counter app and understand actions, reducers and the store by using them rather than reading about them.",
     "published": "2024-09-17",
     "tags": [
       "React Js",

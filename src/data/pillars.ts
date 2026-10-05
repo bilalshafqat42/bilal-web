@@ -706,7 +706,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     // never used the phrase in the one field that matters most.
     metaTitle: "Digital Marketing in Dubai — Bilal Shafqat",
     metaDescription:
-      "Digital marketing services in Dubai from one freelance specialist: demand generation, lead capture, email and WhatsApp, built as one sequence rather than separate tactics.",
+      "Digital marketing services in Dubai from one freelance specialist: paid ads, search, email and WhatsApp, run as one sequence rather than separate tactics.",
     faqs: [
       {
         question: "What is the difference between demand generation and lead generation?",
