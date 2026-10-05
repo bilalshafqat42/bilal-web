@@ -88,11 +88,13 @@ export default function CapabilityLedger() {
                   <p className="text-base leading-relaxed text-muted">{pillar.ledgerSummary}</p>
                   <ul className="mt-4 flex flex-wrap gap-2">
                     {pillar.ledgerTags.map((tag) => (
-                      <li
-                        key={tag}
-                        className="rounded-md border border-border bg-surface/60 px-3 py-1.5 font-mono text-xs text-muted"
-                      >
-                        {tag}
+                      <li key={tag.href + tag.label}>
+                        <Link
+                          href={tag.href}
+                          className="relative z-10 block rounded-md border border-border bg-surface/60 px-3 py-1.5 font-mono text-xs text-muted transition-colors hover:border-gold/50 hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                        >
+                          {tag.label}
+                        </Link>
                       </li>
                     ))}
                   </ul>

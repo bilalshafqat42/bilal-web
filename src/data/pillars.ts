@@ -13,6 +13,9 @@ export type Faq = {
   answer: string;
 };
 
+/** A chip under a ledger row: what it says, and the service page it opens. */
+export type LedgerTag = { label: string; href: string };
+
 export type Pillar = {
   slug: string;
   icon: LucideIcon;
@@ -26,8 +29,18 @@ export type Pillar = {
    *  row rhythm. */
   ledgerSummary: string;
   /** Three short tags for the ledger row. Distinct from `capabilities` for the
-   *  same reason: those run to five words each and would wrap. */
-  ledgerTags: [string, string, string];
+   *  same reason: those run to five words each and would wrap.
+   *
+   *  Each one links to the narrower service page it names. The row's own title
+   *  is a stretched link covering the whole row, so these have to sit above it
+   *  in the stacking order or the overlay swallows the click. See the
+   *  `relative z-10` in `CapabilityLedger`.
+   *
+   *  Labels are written for a reader scanning a chip, not for a crawler: the
+   *  page they point at carries the keyword, and three chips reading "SEO
+   *  Dubai", "Google Ads Dubai", "Web Design Dubai" would be the kind of thing
+   *  that makes a page look optimised rather than useful. */
+  ledgerTags: [LedgerTag, LedgerTag, LedgerTag];
   /** Where the ledger row links. Defaults to `/services/{slug}`, but that is
    *  not always live: `design-content-conversion` was retired on 2026-08-28
    *  when its content split across four narrower category pages, and now 308s
@@ -55,9 +68,9 @@ export const pillars: Pillar[] = [
     ledgerSummary:
       "Ads and search that bring qualified enquiries, measured on cost per booked call rather than clicks.",
     ledgerTags: [
-      "Meta, Google & TikTok",
-      "SEO",
-      "Landing page testing",
+      { label: "Google Ads", href: "/services/google-ads" },
+      { label: "Meta & TikTok ads", href: "/services/facebook-ads" },
+      { label: "SEO", href: "/services/seo" },
     ],
     heroDescription:
       "Paid media only works if it's built around your actual sales pipeline, not vanity metrics. I plan, launch, and manage campaigns across every major platform, then track every lead back to cost per acquisition and revenue, not just clicks and impressions.",
@@ -176,9 +189,9 @@ export const pillars: Pillar[] = [
     ledgerSummary:
       "Custom code, WordPress or mobile, chosen to fit your goal and budget instead of my preference.",
     ledgerTags: [
-      "React & MERN",
-      "WordPress",
-      "iOS & Android",
+      { label: "React & MERN", href: "/services/website-app-development" },
+      { label: "Web design", href: "/services/web-design" },
+      { label: "iOS & Android apps", href: "/services/mobile-app-development" },
     ],
     heroDescription:
       "A website that looks good but doesn't convert is a cost, not an asset. I design and build websites, mobile apps, and internal tools on modern, fast frameworks, built from the start to support whatever marketing is driving traffic to them.",
@@ -232,9 +245,9 @@ export const pillars: Pillar[] = [
     ledgerSummary:
       "Interfaces, creative and copy built to earn trust fast and turn existing traffic into enquiries.",
     ledgerTags: [
-      "Web & app UI/UX",
-      "Brand identity",
-      "Social creative",
+      { label: "Web & app UI/UX", href: "/services/ui-ux-design" },
+      { label: "Brand identity", href: "/services/graphic-design-branding" },
+      { label: "Social creative", href: "/services/social-media-marketing" },
     ],
     ledgerHref: "/services",
     heroDescription:
@@ -329,9 +342,9 @@ export const pillars: Pillar[] = [
     ledgerSummary:
       "Your marketing, site and sales data connected, so leads are tracked and followed up without anyone remembering to.",
     ledgerTags: [
-      "HubSpot, Zoho & Salesforce",
-      "Server-side tracking",
-      "Workflows",
+      { label: "HubSpot, Zoho & Salesforce", href: "/services/crm-marketing-automation" },
+      { label: "Email & WhatsApp", href: "/services/email-marketing" },
+      { label: "Lead generation", href: "/services/digital-marketing" },
     ],
     heroDescription:
       "Most of the leads a business loses aren't lost to bad marketing, they're lost to a follow-up that never happened because nothing was tracking them properly. This pillar connects everything else, campaigns, website, and CRM, into one system that doesn't rely on someone remembering to check a spreadsheet.",

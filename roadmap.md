@@ -8922,3 +8922,44 @@ are about method, process, pricing and contact, and forcing a keyword into
 "From brief to shipped, in four stages" would make the page worse to read for a
 signal that is already satisfied twice over. The primary appears in the h1 and
 an h3, the secondary in an h2, and the rest stay written for people.
+
+### 350. DONE (2026-10-05) — The homepage linked to 3 of 15 service pages
+
+Bilal noticed the services section did not seem to link anywhere and asked how
+it should be organised. It did link, to four destinations, and the measurement
+is the finding: **3 service pages had a body link from the homepage, 12 had
+none.**
+
+The four it reached did not include the four largest:
+
+| Not linked | Searches |
+| --- | ---: |
+| `/services/mobile-app-development` | 1,900 |
+| `/services/web-design` | 1,600 |
+| `/services/digital-marketing` | 1,300 |
+| `/services/social-media-marketing` | 880 |
+
+Nothing was orphaned, the footer and mega menu carry all fifteen on every page.
+But a body link from the strongest page on the site is worth considerably more
+than a footer link, and the strongest page was spending that on four rows.
+
+**Why it was capped at four.** Each ledger row is a stretched link: an invisible
+overlay cast from the row title covers the whole row. That is a good pattern for
+a clickable row and it means nothing else in the row can be a link, which is
+also why the arrow is `aria-hidden` and decorative.
+
+**The fix was already on the page.** Three plain chips sat under every row.
+Making them links costs nothing visually and needs `relative z-10` so they sit
+above the overlay rather than under it.
+
+**3 to 14 service links, with no design change.** Two pages remain unlinked from
+the homepage body, `linkedin-marketing` and `video-conversion`, which are the two
+smallest.
+
+Labels stayed written for a reader scanning a chip. "SEO", not "SEO Dubai". The
+page being linked carries the keyword; three chips stuffed with "Dubai" would
+make the section look optimised rather than useful, and the gain over a clean
+label is nil.
+
+Scores unchanged at 100 and 46, which is correct: internal links are not an
+on-page factor in this scorer, they are how authority moves between pages.
