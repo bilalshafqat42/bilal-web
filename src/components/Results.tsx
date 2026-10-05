@@ -99,17 +99,19 @@ export default function Results() {
             <div>
               <span className="inline-flex items-center gap-3 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
                 <span aria-hidden="true" className="h-px w-6 bg-gold/60" />
-                Results &amp; Impact
+                How the work is measured
               </span>
               <h2 className="t-h2 mt-5 text-ink">
-                Numbers first.{" "}
+                Measured properly,{" "}
                 <br />
-                Opinions second.
+                or not claimed at all.
               </h2>
               <p className="mt-5 max-w-lg text-lg leading-relaxed text-muted">
                 Every engagement starts with a tracked baseline and reports against one
-                number you agreed to. Below is the shape of that across UAE real estate,
-                eCommerce and service businesses.
+                number you agreed to. You will not find percentage claims on this page,
+                because the figures worth quoting belong to clients rather than to me.
+                What is published instead is how the measurement is set up, which is the
+                part you can check before you hire anyone.
               </p>
             </div>
           </Reveal>

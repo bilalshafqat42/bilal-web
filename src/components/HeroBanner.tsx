@@ -182,7 +182,7 @@ export default function HeroBanner() {
               for why they cannot stack with the reveal mask. */}
           <PortraitReveal
             src="/images/bilal-shirt.avif"
-            alt="Bilal Shafqat"
+            alt="Bilal Shafqat, freelance digital marketer in Dubai"
             // 46vw, not 34vw. The column is `lg:w-[46%]` and the image is then
             // scaled 1.035, so a 34vw variant was being stretched across it —
             // a soft portrait in the first thing anyone sees (roadmap 213.18).
