@@ -659,9 +659,9 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "Social media handled end to end, not just designed and handed over",
     intro:
       "Most social work stops at delivering assets. This covers the whole thing: the strategy, the content calendar, the creative itself, and the actual posting and engagement. Because the same person also runs the paid campaigns, organic and paid reinforce each other instead of running as separate projects.",
-    metaTitle: "Freelance Social Media Manager in Dubai — Bilal Shafqat",
+    metaTitle: "Social Media Marketing in Dubai — Bilal Shafqat",
     metaDescription:
-      "Social media strategy, content design, planning and channel management from Dubai, aligned with the paid campaigns running alongside it.",
+      "Social media marketing and management in Dubai: strategy, content, posting and community, run by the same freelancer handling the paid campaigns beside it.",
     faqs: [
       {
         question: "Do you post as well as design?",
@@ -691,9 +691,9 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     // "Digital Marketing & Outreach", but the title said neither — it opened on
     // "Lead Generation", so the page Bilal wants found for "digital marketing"
     // never used the phrase in the one field that matters most.
-    metaTitle: "Freelance Digital Marketing Expert in Dubai — Bilal Shafqat",
+    metaTitle: "Digital Marketing in Dubai — Bilal Shafqat",
     metaDescription:
-      "Demand generation, lead capture, email and WhatsApp marketing from a Dubai-based freelance specialist. Built as one sequence rather than disconnected tactics.",
+      "Digital marketing services in Dubai from one freelance specialist: demand generation, lead capture, email and WhatsApp, built as one sequence rather than separate tactics.",
     faqs: [
       {
         question: "What is the difference between demand generation and lead generation?",

@@ -525,6 +525,14 @@ export const serviceDepth: Record<string, Depth> = {
   "social-media-marketing": {
     blocks: [
       {
+        heading: "Social media marketing in Dubai, by one person rather than a department",
+        paragraphs: [
+          "Social media marketing in Dubai is sold in two shapes. An agency assigns you an account manager, a strategist, a designer and a community person, and you speak to the account manager. A low-cost freelancer sends you fifteen posts a month and nothing else happens. Neither is what most businesses here actually need.",
+          "What this is: one social media manager who writes the strategy, designs the creative, schedules and posts it, watches the inbox, and runs the paid budget behind it. Fewer people means fewer handovers, and in social that matters more than in most work because the gap between an idea and a post is where tone goes to die.",
+          "Scope is agreed per month rather than sold as a package with a number of posts on it, because posting volume is the least useful thing to buy. Three posts that say something beat fifteen that fill a grid, and a calendar built to hit a quota is how a brand ends up posting on International Pancake Day.",
+        ],
+      },
+      {
         heading: "Organic and paid are one system, not two",
         paragraphs: [
           "The most common waste I see is a social calendar built by one team and ad creative built by another, with nothing shared between them. The organic grid says one thing, the ads say another, and a buyer who sees both comes away unsure what the company actually is.",
@@ -536,6 +544,29 @@ export const serviceDepth: Record<string, Depth> = {
         paragraphs: [
           "A working month is a content plan tied to what the business is trying to sell that month rather than to a generic calendar, the creative to deliver it across feed, story and reel formats, scheduling, and community management so comments and direct messages get answered while intent is still warm.",
           "For launches, that plan is built backwards from the launch date: teaser, reveal, detail, urgency, then post-launch proof. Posting consistently is table stakes. Posting in a sequence that matches how a buyer actually decides is what makes the channel earn its budget.",
+        ],
+      },
+      {
+        // "social media management dubai" is 480 searches at a $106.58 CPC,
+        // the most expensive click measured anywhere on this site's board, and
+        // "social media management in dubai" another 590. The page covered
+        // management thoroughly and never used the phrase.
+        heading: "Social media management in Dubai, which is the part most people hand back",
+        paragraphs: [
+          "There is a difference between social media marketing and social media management, and most suppliers quietly sell the first while the client assumed the second. Marketing is the strategy and the creative. Management is the daily work: scheduling, posting at the hours your audience is actually awake, answering comments, routing the direct message that is really an enquiry to somebody who can close it.",
+          "Management is where most arrangements fail, because it is unglamorous and continuous and nobody puts it in a proposal. A folder of beautiful assets delivered on the first of the month is not management, and a business that has to post them itself has bought design, not social.",
+          "Here it is included. The calendar is agreed ahead, the posting happens on schedule, and the inbox is monitored on working days. Where a message is a genuine enquiry it goes to you with the context attached, not left in an app nobody opens at the weekend.",
+        ],
+      },
+      {
+        // "instagram marketing dubai", 170 searches at difficulty 15, which is
+        // low for this cluster. Instagram is the platform most UAE clients mean
+        // when they say social, and the page named it only in passing.
+        heading: "Instagram marketing in Dubai, and why it is not the whole answer",
+        paragraphs: [
+          "Instagram is what most UAE businesses mean when they say social media, and for a lot of them it is the right first channel: visual, local, and where the audience already is. Reels reach beyond your followers, which is the one organic distribution still genuinely working, and the UAE audience is on it heavily.",
+          "What it does not do is close. Instagram is a discovery channel, and a business judging it by follower count rather than by enquiries will be pleased with a number that means nothing. The measure is how many people moved from a post to a conversation, which is why the profile link, the direct message routing and the landing page behind it matter more than the grid.",
+          "LinkedIn carries a different audience and converts differently for anything B2B. TikTok reaches further and converts less reliably. Which combination is right depends on who is buying from you, and that is a conversation worth having before anyone commits to a content calendar.",
         ],
       },
       {
@@ -604,6 +635,31 @@ export const serviceDepth: Record<string, Depth> = {
         paragraphs: [
           "Paid traffic disappears the day you stop paying for it. Search visibility, content and outreach are slower and they compound, and a business that relies entirely on one is exposed. The mix matters more than the individual channel.",
           "That means technical SEO that is actually implemented rather than delivered as a spreadsheet of recommendations, content built around what buyers type into a search bar instead of what a company enjoys writing about, and internal linking so the pages you want ranking are supported by the rest of the site.",
+        ],
+      },
+      {
+        // "digital marketing in dubai" is 1,300 searches, larger than every
+        // term in this page's existing cluster combined, and "digital
+        // marketing services dubai" another 880. Both are claimable because
+        // they describe a service rather than a company. The 4,400-search
+        // "digital marketing agencies dubai" stays excluded for the same
+        // licence reason as "seo agency in dubai" in item 325.
+        heading: "What digital marketing in Dubai actually involves",
+        paragraphs: [
+          "Digital marketing is a category rather than a service, which is why quotes for it vary by a factor of ten. What sits under it here: paid advertising across Google, Meta, TikTok, Snapchat and LinkedIn; search visibility, meaning both classic SEO and the AI answers that increasingly sit above it; email and WhatsApp; the content that feeds all three; and the tracking that tells you which of them produced an enquiry.",
+          "The Dubai specifics change the shape of it more than people expect. The market is small enough that a national campaign is a city campaign, competitive enough that cost per click is high by international standards, and multilingual enough that an English-only funnel leaves money behind. WhatsApp is a primary channel here rather than an afterthought, and the response window people expect on it is measured in minutes.",
+          "Digital marketing services in Dubai are usually bought as a bundle and delivered as separate projects, which is where the margin goes. Running them as one sequence, with the same person deciding what the landing page says and what the ad promises, is the practical difference between a campaign that leaks and one that compounds.",
+          "Performance marketing is the half of this that is judged on a number rather than on reach: cost per enquiry, cost per qualified lead, cost per sale. That is the half I am usually hired for, and it is also the half that cannot be done honestly without the tracking being right first, which is why the tracking goes in before the spend starts rather than after somebody asks why the reporting does not add up.",
+        ],
+      },
+      {
+        // "whatsapp marketing dubai", 90 searches at a $33.22 CPC. The work is
+        // already in the service list and the depth never covered it.
+        heading: "WhatsApp marketing, which in this market is not optional",
+        paragraphs: [
+          "WhatsApp is the default business channel across the UAE, and treating it as a support inbox rather than a marketing channel leaves the most responsive audience you have untouched. People who ignore an email reply on WhatsApp within the hour.",
+          "What that looks like in practice: click-to-WhatsApp as the primary action on a campaign rather than a form, so somebody can enquire in two taps from a phone; an automated first reply that qualifies rather than says we will get back to you; broadcast campaigns to an opted-in list for launches and offers; and the whole thing connected to your CRM so a conversation becomes a record with a next action against it.",
+          "Consent matters and the rules are not optional. Messaging people who have not opted in gets a number blocked, and the UAE has its own data protection regime on top of the platform's rules. Build the list properly or the channel stops working, and take proper advice on your own obligations from a qualified professional.",
         ],
       },
       {

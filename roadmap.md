@@ -8702,3 +8702,54 @@ Carried forward so they do not get lost between sessions.
    production because the variable was never set. Bing sends this site more
    impressions than Google does, so this is worth five minutes in the Vercel
    dashboard.
+
+### 344. DONE (2026-10-05) — Two pages were aimed at 190 searches with 5,600 beside them
+
+Bilal ran the keyword research himself. Three groups came back and only two
+were worth anything.
+
+**WordPress: dropped.** His idea was to replace the dead brand terms with
+service variants, which is the right instinct. The numbers refused it.
+`wordpress developer dubai` 40/38, `wordpress development dubai` 30/16,
+`freelance wordpress developer dubai` 10/7, `wordpress designer dubai` 0. The
+entire claimable cluster is under 100 searches. The section already on
+`/services/web-design` (item 341) is the right amount of coverage. No page.
+
+**Social media: the find.** All claimable, no "company" or "agency":
+
+| Keyword | Vol | SD | CPC |
+| --- | ---: | ---: | ---: |
+| social media marketing in dubai | 880 | 28 | $42.64 |
+| social media marketing dubai | 720 | 33 | $34.01 |
+| social media management in dubai | 590 | 34 | $30.70 |
+| social media management dubai | 480 | 32 | **$106.58** |
+| social media marketing services dubai | 320 | 29 | $90.05 |
+| instagram marketing dubai | 170 | 15 | |
+
+The page's title was `Freelance Social Media Manager in Dubai`, which is
+**20 searches**, with 3,200 sitting beside it. $106.58 a click is the highest
+CPC measured anywhere on this site's board.
+
+**Digital marketing: the same mistake, larger.** `digital marketing in dubai`
+is **1,300** and `digital marketing services dubai` is 880, both claimable.
+The page title aimed at `freelance digital marketing expert in dubai`, 170.
+
+**Changes.** Both metaTitles and metaDescriptions rewritten, and four depth
+sections added: social media management, Instagram, digital marketing services,
+WhatsApp, plus performance marketing and a new opening section on the social
+page. `/services/social-media-marketing` 1,555 to 1,736 words,
+`/services/digital-marketing` 1,787 to 1,863.
+
+**Caught on the first pass.** Retitling put the big phrase in `<title>` and the
+body still did not contain it: `social media marketing in dubai` read **0** on
+the rendered page after the first build. The same failure as items 341 and 343,
+three times now in two days. The rule is worth stating plainly: **changing a
+title does not put the words on the page, and the page is what gets ranked.**
+Fixed with an opening section and re-measured.
+
+Difficulty here is 28 to 38 rather than the 5 to 13 we have been working at, so
+these are slower. The CPCs are the argument for doing them anyway.
+
+Verified: phrases counted inside `<main>` on a running server before and after,
+`search-check` 361 to 366 chunks, `h1-check` and `schema-check` 112 routes,
+`tsc`, `eslint` and `next build` clean.
