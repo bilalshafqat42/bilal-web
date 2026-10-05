@@ -16,6 +16,19 @@ they are the only links available without asking another human for a favour.
 client credits and the data piece. Those are the hard ones, which is exactly
 why they count.
 
+**Measured on 2026-10-05, on Peerlist.** The profile link renders as
+`rel="noreferrer nofollow ugc"`. Two of those tell Google not to count it.
+The third, `noreferrer`, strips the referrer header, which means the click
+arrives in Google Analytics as **direct traffic** rather than as a referral
+from peerlist.io. That is why Peerlist appends `?ref=peerlist` to the URL: the
+parameter is the only attribution left once the referrer is gone.
+
+So measure these in Engagement, Pages, filtering the path for `ref=`. Looking
+for the domain under Traffic acquisition will show nothing and you will
+wrongly conclude the profile sent you nobody. Expect the same pattern on most
+of the directories in weeks 1 to 4; check each one the same way rather than
+assuming.
+
 **Point links at the hub pages, not the homepage.** Every external link this
 domain has ever earned points at the homepage. The hubs have none.
 

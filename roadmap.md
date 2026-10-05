@@ -8753,3 +8753,45 @@ these are slower. The CPCs are the argument for doing them anyway.
 Verified: phrases counted inside `<main>` on a running server before and after,
 `search-check` 361 to 366 chunks, `h1-check` and `schema-check` 112 routes,
 `tsc`, `eslint` and `next build` clean.
+
+### 345. MEASURED (2026-10-05) — Peerlist, and how directory links actually behave
+
+Profile built: bio carrying "freelance digital marketer in Dubai", 10 tags,
+Cal.com booking link, location, four socials, one work entry.
+
+**Workplace verified, free.** Peerlist matched the login address
+`bilal@bilalshafqat.com` against the company website `bilalshafqat.com` and
+verified the work entry automatically. The domain mailbox created that same
+morning, to get past GoodFirms' refusal of a gmail address, paid for itself
+within the hour. The $19 ID verification was declined: a discoverability boost
+on a platform that has sent this site nothing is not worth buying before the
+free version has been tested.
+
+**The link, inspected rather than assumed:**
+
+    rel="noreferrer nofollow ugc"
+
+`nofollow` and `ugc` both say the same thing, so no ranking power passes. This
+is why the claim was checked instead of stated: the same assumption was made
+about the GitHub profile README in September and it was wrong then too.
+
+**The `noreferrer` is the part worth keeping.** It strips the referrer header,
+so a click from Peerlist lands in Google Analytics as *direct* traffic, not as
+a referral from peerlist.io. Peerlist appends `?ref=peerlist` to the outbound
+URL precisely because that parameter is the only attribution surviving. Measure
+it under Engagement and Pages by filtering the path for `ref=`, never under
+Traffic acquisition. Looking in the wrong report returns zero and reads like
+the profile failed.
+
+Checked while there: `https://bilalshafqat.com/?ref=peerlist` returns 200 and
+canonicalises to `https://bilalshafqat.com`, the same as the clean URL, so the
+parameter creates no duplicate and nothing needs fixing.
+
+**Articles are gated** behind something, completion or paid verification. Not
+worth more time: a short post with a link preview card carries the title,
+description and OG image, which is most of what an article would have done.
+Post limit is 480 characters, which is the whole reason the first attempt
+showed -3295.
+
+Note for the rest of weeks 1 to 4: expect `nofollow` on every directory and
+check each one the same way rather than assuming either answer.
