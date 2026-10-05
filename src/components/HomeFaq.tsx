@@ -43,7 +43,7 @@ const faqs = [
     // A question first and a keyword second: this is the one people genuinely
     // ask, because "freelancer" and "agency" are the two options they are
     // weighing, and it belongs at the top for that reason rather than this one.
-    q: "What does a freelance digital marketer actually cover?",
+    q: "What does a freelance digital marketer in Dubai actually cover?",
     a: "Paid ads on Google, Meta, TikTok, Snapchat and LinkedIn, search and content, email and WhatsApp, and the tracking underneath all of it. The difference from most digital marketing freelancers in Dubai is that I also build the landing pages and apps the campaigns point at, so the site and the spend are designed together instead of handed between two suppliers.",
   },
   {

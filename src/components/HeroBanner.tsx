@@ -130,7 +130,7 @@ export default function HeroBanner() {
               statement, and nowhere else — a page that uses it twice has
               stopped having a hierarchy. */}
           <h1 className="t-display mt-8 text-ink lg:mt-11">
-            One senior partner.{" "}
+            Freelance digital marketer in Dubai.{" "}
             <br />
             Campaign to code.
           </h1>

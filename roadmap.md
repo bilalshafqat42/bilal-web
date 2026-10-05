@@ -8842,3 +8842,48 @@ the union and not in the footer, which is the drift this comment is about.
 An unpublished case study still belongs in the footer list: it reads "sectors
 worked in rather than pages that exist", and the Texdale work happened. Only
 the write-up is missing.
+
+### 348. DONE (2026-10-05) — The homepage h1, and a scorer to replace guessing
+
+Bilal asked for the out-of-100 score Yoast and Rank Math show in WordPress.
+There is no plugin here, so `scripts/onpage-check.mjs` does the same job
+properly: it takes a URL and a keyword, fetches the **rendered** page, and
+scores fifteen on-page factors weighted to 100.
+
+    npm run onpage -- "<url>" "<keyword>"
+
+Two decisions in it that matter. It reads the live output rather than a CMS
+field, because four times in two days a title has claimed a keyword the body
+did not contain and only reading the output caught it. And it counts inside
+`<main>`, because the mega menu repeats fifteen service names on every page and
+a whole-document count reports every keyword as covered everywhere (item 341).
+
+**Homepage, `freelance digital marketer in dubai`: 86 to 100.**
+
+The single miss was the `<h1>`, worth 14 points, reading "One senior partner.
+Campaign to code." That line is better than anything with a keyword in it, so
+the keyword went **in front of it** rather than replacing it:
+
+    Freelance digital marketer in Dubai.
+    Campaign to code.
+
+**One wrong turn, recorded because the reasoning was wrong rather than the
+code.** Having put the phrase in the h1, I moved the `AboutSplit` h2 off it to
+avoid repetition, which cost the 8 points for "keyword in a subheading" and
+took the score to 92. A heading echoing the h1 is ordinary reinforcement, not
+stuffing. Restored, and `digital marketing expert in dubai` (320 searches at
+difficulty **5**, the lowest competition on the board) moved into that
+section's prose instead of losing its place entirely.
+
+**What was not done to reach 100.** The home FAQ renders questions as `<dt>`
+inside a `<dl>`, which is correct markup for a question list. Changing them to
+`<h3>` would have scored the same 8 points by making the markup worse. The
+checklist is a proxy; degrading the page to satisfy it defeats the purpose.
+
+Secondary terms score 29 to 38 and that is correct, not a failure. One page
+ranks primarily for one intent; the other eight homepage keywords are close
+variants that ride on the same signals rather than needing their own h1.
+
+**The number that still matters more.** 100 on-page with ~90 backlinks loses to
+60 on-page with 500. On-page is the half Bilal controls and it is now finished
+on the homepage. Items 339 and the weeks 9 to 13 outreach are the other half.

@@ -348,11 +348,11 @@ export default function AboutSplit() {
                 the first says who, the second says why that arrangement is
                 worth anything to the reader. */}
             <p data-reveal className="max-w-[58ch] text-base leading-relaxed text-muted">
-              I am Bilal Shafqat, and fifteen years of it sit in one person. I
-              run paid campaigns, design the interface, write the code, and wire
-              the CRM behind it. Not a studio and not a network of
-              subcontractors, so the person you brief is the person who does the
-              work.
+              I am Bilal Shafqat, a digital marketing expert in Dubai with
+              fifteen years of it sitting in one person. I run paid campaigns,
+              design the interface, write the code, and wire the CRM behind it.
+              Not a studio and not a network of subcontractors, so the person
+              you brief is the person who does the work.
             </p>
             <p data-reveal className="mt-4 max-w-[58ch] text-base leading-relaxed text-muted">
               Most projects lose their time and their quality at the seams
