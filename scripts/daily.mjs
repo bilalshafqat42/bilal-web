@@ -56,23 +56,30 @@ function score(doc, kw) {
   const alts = [...main.matchAll(/<img[^>]*alt="([^"]*)"/g)].map((m) => m[1].toLowerCase());
   const internal = [...main.matchAll(/<a[^>]*href="(\/[^"]*)"/g)].length;
   const first100 = words.slice(0, 100).join(" ").toLowerCase();
-  const count = low.split(kw).length - 1;
+  // Stop-word tolerant, matching onpage-check.mjs. A page saying "mobile app
+  // development in Dubai" satisfies the keyword "mobile app development dubai";
+  // literal matching marked it down for being written in English.
+  const STOP = "(?:in|for|the|a|an|at|of|and|to|on)";
+  const esc = (w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const pat = kw.trim().split(/\s+/).map(esc).join(`\\s+(?:${STOP}\\s+)?`);
+  const kwRe = new RegExp(pat, "i");
+  const count = (low.match(new RegExp(pat, "gi")) || []).length;
   const density = words.length ? (count * kw.split(/\s+/).length * 100) / words.length : 0;
 
   const checks = [
-    [12, title.toLowerCase().includes(kw)],
-    [4, title.toLowerCase().startsWith(kw)],
+    [12, kwRe.test(title)],
+    [4, kwRe.test(title.slice(0, kw.length + 8))],
     [4, title.length > 0 && title.length <= 60],
-    [8, desc.toLowerCase().includes(kw)],
+    [8, kwRe.test(desc)],
     [4, desc.length >= 120 && desc.length <= 160],
-    [14, h1s.some((h) => h.toLowerCase().includes(kw))],
+    [14, h1s.some((h) => kwRe.test(h))],
     [4, h1s.length === 1],
-    [8, subs.some((h) => h.toLowerCase().includes(kw))],
-    [8, first100.includes(kw)],
+    [8, subs.some((h) => kwRe.test(h))],
+    [8, kwRe.test(first100)],
     [8, count >= 2, count === 1 ? 0.5 : 0],
     [5, density >= 0.3 && density <= 2.5],
     [9, words.length >= 800, words.length >= 400 ? 0.5 : 0],
-    [4, alts.some((a) => a.includes(kw))],
+    [4, alts.some((a) => kwRe.test(a))],
     [4, internal >= 3],
     [4, /application\/ld\+json/.test(doc)],
   ];

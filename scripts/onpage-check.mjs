@@ -63,8 +63,33 @@ const alts = [...main.matchAll(/<img[^>]*alt="([^"]*)"/g)].map((m) => m[1].toLow
 const internal = [...main.matchAll(/<a[^>]*href="(\/[^"]*)"/g)].map((m) => m[1]);
 const hasSchema = /<script type="application\/ld\+json">/.test(doc);
 
+/**
+ * Match a keyword the way a search engine does, not the way `includes` does.
+ *
+ * Added 2026-10-06 after this scorer reported `/services/mobile-app-development`
+ * at 29/100 for "mobile app development dubai" on a page whose title, h1 and
+ * intro all said "mobile app development **in** Dubai". Google handles that
+ * stop word; literal string matching does not, and the page was being marked
+ * down for being written in English.
+ *
+ * The fix allows an optional stop word between any two keyword terms rather
+ * than stripping stop words from both sides, which would make "marketing in
+ * Dubai" match "marketing Dubai agency" and report a pass that is not real.
+ */
+const STOP = "(?:in|for|the|a|an|at|of|and|to|on)";
+function kwRegex(kw) {
+  const parts = kw.trim().split(/\s+/).map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  return new RegExp(parts.join(`\\s+(?:${STOP}\\s+)?`), "i");
+}
+/** How many times the keyword appears, stop words allowed between terms. */
+function kwCount(hay, kw) {
+  const parts = kw.trim().split(/\s+/).map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  const re = new RegExp(parts.join(`\\s+(?:${STOP}\\s+)?`), "gi");
+  return (hay.match(re) || []).length;
+}
+
 const first100 = words.slice(0, 100).join(" ").toLowerCase();
-const count = low.split(kw).length - 1;
+const count = kwCount(low, kw);
 const density = words.length ? (count * kw.split(/\s+/).length * 100) / words.length : 0;
 
 /** Each check scores `max` when `got` is true, or `part` of it when `partial`. */
@@ -72,13 +97,13 @@ const checks = [
   {
     name: "Keyword in <title>",
     max: 12,
-    got: title.toLowerCase().includes(kw),
+    got: kwRegex(kw).test(title),
     note: title ? `"${title}"` : "no title",
   },
   {
     name: "Keyword at the START of <title>",
     max: 4,
-    got: title.toLowerCase().startsWith(kw),
+    got: kwRegex("^\\s*" + kw).test(title) || kwRegex(kw).test(title.slice(0, kw.length + 6)),
     note: "Google weights the opening words",
   },
   {
@@ -90,7 +115,7 @@ const checks = [
   {
     name: "Keyword in meta description",
     max: 8,
-    got: desc.toLowerCase().includes(kw),
+    got: kwRegex(kw).test(desc),
     note: desc ? "" : "no description",
   },
   {
@@ -102,7 +127,7 @@ const checks = [
   {
     name: "Keyword in <h1>",
     max: 14,
-    got: h1s.some((h) => h.toLowerCase().includes(kw)),
+    got: h1s.some((h) => kwRegex(kw).test(h)),
     note: h1s[0] ? `"${h1s[0]}"` : "no h1",
   },
   {
@@ -114,13 +139,13 @@ const checks = [
   {
     name: "Keyword in an <h2> or <h3>",
     max: 8,
-    got: subs.some((h) => h.toLowerCase().includes(kw)),
+    got: subs.some((h) => kwRegex(kw).test(h)),
     note: `${subs.length} subheadings`,
   },
   {
     name: "Keyword in the first 100 words",
     max: 8,
-    got: first100.includes(kw),
+    got: kwRegex(kw).test(first100),
     note: "",
   },
   {
@@ -146,7 +171,7 @@ const checks = [
   {
     name: "Keyword in an image alt",
     max: 4,
-    got: alts.some((a) => a.includes(kw)),
+    got: alts.some((a) => kwRegex(kw).test(a)),
     note: `${alts.length} images with alt`,
   },
   {

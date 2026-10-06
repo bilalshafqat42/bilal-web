@@ -385,6 +385,14 @@ export const serviceDepth: Record<string, Depth> = {
         ],
       },
       {
+        heading: "What does mobile app development in Dubai cost?",
+        paragraphs: [
+          "My published project minimum is AED 31,500 and app projects normally sit well above it, because an app is three things rather than one: the app itself, the back end holding the data, and the admin side you use to run it. A quote that looks surprisingly low is usually pricing the first and leaving the other two out.",
+          "What moves the number, in order: custom functionality such as payments, live tracking, chat or offline use; the integrations with systems you do not control; building for two platforms, which costs less with React Native than with native but is never free; and the design, where every state is a screen and there are more of them than anyone expects.",
+          "Then maintenance, which is not optional and is the line most commonly missing from a budget. Operating systems update twice a year and can break things, store rules change, certificates expire. An app nobody maintains stops working, usually inside about eighteen months.",
+        ],
+      },
+      {
         heading: "Android is not an afterthought here",
         paragraphs: [
           "A lot of UAE app projects are designed on an iPhone and tested on an iPhone, then shipped to an Android audience that is larger. Android devices span a far wider range of screens, OS versions and processing power, and a layout that holds on the newest phone can break on a three-year-old one that half your users carry.",

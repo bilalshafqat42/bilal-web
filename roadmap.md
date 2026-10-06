@@ -9207,3 +9207,64 @@ Reworded to "consumer brand" and the reserved word documented in
 item 327.
 
 76 articles, 119 routes.
+
+### 357. CORRECTED (2026-10-06) — The heading change, undone the same day
+
+Bilal asked whether promoting every depth section to `h2` is good practice for
+the long run rather than a tweak. It is not, and item 356 was wrong.
+
+What I did: made the band heading a `<p>` carrying `t-h2` and promoted the
+sections beneath it from `h3` to `h2`.
+
+Why that was wrong on its own terms:
+
+- A `<p>` with heading styling **looks** like a heading to a sighted reader and
+  is **invisible** to anyone navigating by heading. That is the worst of both,
+  and it is the exact fault I corrected in the home FAQ three days earlier in
+  item 349, where the argument for moving `<dt>` to `<h3>` was precisely that
+  screen reader users navigate by heading.
+- It removed the grouping: eleven flat `h2`s with no indication which belong
+  together.
+- Heading level is a weak signal. The descriptive text is what carries weight,
+  and trading real structure for it is a bad exchange.
+
+The honest fix was a heading that earns its level. "How this works in practice"
+said nothing, so it now reads "How mobile app development works in practice",
+built from the category title. It stays a real `h2`, the sections stay `h3`
+because that is what they are, and the outline describes the document.
+
+**The rule worth keeping: never style a non-heading to look like a heading.**
+If it deserves to look like one, make it one. If it does not, do not style it
+that way.
+
+### 358. DONE (2026-10-06) — mobile-app-development 29 to 96, and the scorer was the bug
+
+1,900 searches, the largest term on the board, at difficulty 18 and $92.99 CPC.
+
+Title said "Freelance Mobile App **Developer** in Dubai", which is a different
+word from "development", and the h1, intro and description used neither form.
+All four rewritten.
+
+**Then it still read 29, and the page was not the problem.**
+
+    keyword:   mobile app development dubai
+    page says: mobile app development in Dubai
+
+`onpage-check.mjs` matched literally, so it marked the page down for being
+written in English. Writing "mobile app development Dubai" to satisfy a tool
+would have been the tail wagging the dog.
+
+Fixed in the tool: keyword terms now match with an optional stop word between
+them (`in`, `for`, `the`, `at`, `of`, `and`, `to`, `on`). Deliberately not by
+stripping stop words from both sides, which would make "marketing in Dubai"
+match "marketing Dubai agency" and report a pass that is not real.
+`daily.mjs` carries the same matcher.
+
+**What it revealed once fixed**, before any further work:
+
+    web-design   29 -> 41        seo   29 -> 41        pricing   80 -> 84
+
+Three pages had been scored wrong for the same reason.
+
+The 4 points left on mobile are image alt, and they stay for the reason given
+in item 355: the only images are client logos whose alt is the client's name.

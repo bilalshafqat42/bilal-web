@@ -785,17 +785,17 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     slug: "mobile-app-development",
     title: "Mobile App Development",
     accent: "violet",
-    headline: "Apps for iOS and Android, built once and marketed by the person who built them",
+    headline: "Mobile app development in Dubai, by the person who markets it too",
     intro:
-      "Most app projects in Dubai fail somewhere other than the code. They ship without analytics, so nobody can say which screen loses people. They launch with no campaign behind them, so the download numbers never arrive. Or they are built as a separate thing from the website and the two never share a user, a login or a number.",
+      "Mobile app development in Dubai fails somewhere other than the code, most of the time. Apps ship without analytics, so nobody can say which screen loses people. They launch with no campaign behind them, so the download numbers never arrive. Or they are built as a separate thing from the website and the two never share a user, a login or a number. One codebase in React Native, the back end behind it, and the launch campaign pointing at it, from the same person.",
     // "Freelance" added 2026-10-02 at Bilal's request, for consistency with the
     // other eleven. It costs 95px (418 → 513, still inside the ~600 budget) and
     // keeps "Mobile App Developer in Dubai" intact as a phrase, so the match for
     // the measured term is unaffected. The word is also the one that makes these
     // terms winnable at all — agencies will not use it (roadmap 319).
-    metaTitle: "Freelance Mobile App Developer in Dubai — Bilal Shafqat",
+    metaTitle: "Mobile App Development in Dubai — Bilal Shafqat",
     metaDescription:
-      "React Native apps for iOS and Android from a Dubai freelancer, with analytics and the launch campaign built in. Shipped work, not mockups.",
+      "Mobile app development in Dubai: React Native for iOS and Android, with the back end, the analytics and the launch campaign built in. Shipped work.",
     faqs: [
       {
         question: "Native or React Native?",
