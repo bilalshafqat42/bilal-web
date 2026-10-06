@@ -124,11 +124,11 @@ function ServicesMenu({ onNavigate }: { onNavigate: () => void }) {
 
           The numbering is not decoration. It says "this is a finite set you can
           read all of", which is the thing a long menu most needs to say. */}
-      <div className="grid grid-cols-4 gap-x-10">
+      <div className="grid grid-cols-3 gap-x-12">
         {serviceMenuColumns.map((column, i) => (
           <div
             key={column.title}
-            className={i > 0 ? "border-l border-border pl-10" : ""}
+            className={i > 0 ? "border-l border-border pl-12" : ""}
           >
             <div className="flex items-baseline gap-2.5">
               <span className="font-mono text-[0.7rem] text-gold">

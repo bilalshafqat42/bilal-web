@@ -9349,3 +9349,40 @@ beats anything in `@layer utilities` whatever the specificity. A Tailwind size
 class on a heading in this codebase does nothing. That is why every heading
 here carries a `t-*` class, which was a convention nobody had written down.
 Now noted at the top of the type scale in `globals.css`.
+
+### 361. CHANGED (2026-10-06) — The menu regrouped by discipline, at Bilal's suggestion
+
+He proposed grouping by Design / Development / Marketing instead of my four
+columns, and asked whether his or mine was better. His is better, for a reason
+worth recording.
+
+**Mine split marketing into "Paid Advertising" and "Marketing & Growth".** That
+is a practitioner's distinction. Somebody who wants Google Ads reads
+"Marketing" and would not necessarily look in a separate paid column for it, so
+the split helps the person who already knows the vocabulary and hinders
+everyone else. Three disciplines is also what Bilal actually sells, and a menu
+should say what the business is rather than how a specialist files it.
+
+    01 Marketing (8)    digital-marketing, paid-marketing, google-ads,
+                        facebook-ads, linkedin-marketing, social-media-marketing,
+                        seo, email-marketing
+    02 Design (4)       ui-ux-design, web-design, graphic-design-branding,
+                        video-conversion
+    03 Development (3)  website-app-development, mobile-app-development,
+                        crm-marketing-automation
+
+**Two placements decided by reading the pages rather than the labels.**
+
+`web-design` sits under Design rather than Development: its own page opens "most
+of the design decisions that matter here are not visual ones", which is a design
+argument, and somebody looking for a web designer is not looking for a
+developer.
+
+`crm-marketing-automation` sits under Development rather than Marketing: the
+page is about systems, integrations and server-side tracking, and the person who
+needs it is asking a technical question.
+
+**The columns are uneven, 8 / 4 / 3, and that is honest.** Marketing is the
+positioning and it carries the volume: 1,300 + 880 + 480 + 480 across its four
+largest pages. Padding Design and Development to match would mean inventing
+services.

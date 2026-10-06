@@ -478,10 +478,20 @@ export function spellCount(n: number): string {
  * of repeated tags, which is both shorter to read and honest about the shape of
  * the business.
  *
- * Deliberately not derived from `pillars`. The four pillars are an internal
- * taxonomy built around how the work is delivered; these four are built around
- * what somebody is looking for when they open a menu, and the two do not match.
- * Paid advertising is one pillar and four pages; CRM is one pillar and one page.
+ * Grouped by discipline, at Bilal's suggestion and over my own first attempt.
+ * Mine split marketing into "Paid Advertising" and "Marketing & Growth", which
+ * is a practitioner's distinction: somebody who wants Google Ads reads
+ * "Marketing" and would not necessarily look in a separate paid column for it.
+ * Three disciplines is also what he actually sells, and the menu should say
+ * what the business is rather than how a specialist files it.
+ *
+ * The columns are uneven, 8 / 4 / 3, and that is honest. Marketing is the
+ * positioning and it carries the volume. Padding the other two to match would
+ * mean inventing services.
+ *
+ * Deliberately not derived from `pillars`. Those four describe how the work is
+ * delivered and exist for the pillar pages; these three describe what somebody
+ * is looking for when they open a menu.
  */
 export type ServiceMenuColumn = {
   /** Shown as 01, 02, 03, 04. */
@@ -492,20 +502,36 @@ export type ServiceMenuColumn = {
 
 export const serviceMenuColumns: ServiceMenuColumn[] = [
   {
-    title: "Paid Advertising",
-    slugs: ["paid-marketing", "google-ads", "facebook-ads", "linkedin-marketing"],
+    // Marketing first and longest, because it is the positioning and because
+    // it is where the volume is: digital marketing in dubai 1,300, social
+    // media marketing in dubai 880, seo consultant dubai 480, google ads
+    // agency dubai 480.
+    title: "Marketing",
+    slugs: [
+      "digital-marketing",
+      "paid-marketing",
+      "google-ads",
+      "facebook-ads",
+      "linkedin-marketing",
+      "social-media-marketing",
+      "seo",
+      "email-marketing",
+    ],
   },
   {
-    title: "Marketing & Growth",
-    slugs: ["digital-marketing", "social-media-marketing", "seo", "email-marketing"],
+    // Web Design sits here rather than under Development. Its own page opens
+    // "most of the design decisions that matter here are not visual ones",
+    // which is a design argument, and a visitor looking for a web designer is
+    // not looking for a developer.
+    title: "Design",
+    slugs: ["ui-ux-design", "web-design", "graphic-design-branding", "video-conversion"],
   },
   {
-    title: "Websites & Apps",
-    slugs: ["website-app-development", "mobile-app-development", "web-design"],
-  },
-  {
-    title: "Design & Systems",
-    slugs: ["ui-ux-design", "graphic-design-branding", "crm-marketing-automation", "video-conversion"],
+    // CRM belongs here rather than under Marketing: the page is about systems,
+    // integrations and server-side tracking, and the person who needs it is
+    // asking a technical question.
+    title: "Development",
+    slugs: ["website-app-development", "mobile-app-development", "crm-marketing-automation"],
   },
 ];
 
