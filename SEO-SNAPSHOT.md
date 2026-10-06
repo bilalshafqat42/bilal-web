@@ -1,6 +1,6 @@
 # SEO snapshot — Bilal Shafqat Digital
 
-Generated 2026-10-04 from Performo. Covers the last 90 days.
+Generated 2026-10-06 from Performo. Covers the last 90 days.
 
 Regenerate with:
 
@@ -13,25 +13,25 @@ This file is written by a script. Edits here are overwritten.
 
 ## Where the site sits in search
 
-- **411 queries** analysed, 2570 impressions, 2 clicks
-- **Top-3 share: 0.4%** — the share of impressions in positions 1-3, which is the zone answer engines quote from
+- **424 queries** analysed, 2562 impressions, 2 clicks
+- **Top-3 share: 0.5%** — the share of impressions in positions 1-3, which is the zone answer engines quote from
 - Weighted average position: 45.6
 
 | Position band | Queries | Impressions |
 |---|---:|---:|
-| 1-3 | 3 | 9 |
-| 4-10 | 3 | 45 |
+| 1-3 | 4 | 12 |
+| 4-10 | 5 | 50 |
 | 11-20 | 12 | 31 |
-| 21+ | 393 | 2485 |
+| 21+ | 403 | 2469 |
 
 ## What those searchers want
 
 | Intent | Queries | Impressions | Clicks | CTR | Avg pos |
 |---|---:|---:|---:|---:|---:|
-| Unclear | 238 | 1762 | 0 | 0.0% | 48.9 |
-| Comparing options | 107 | 650 | 1 | 0.2% | 39.5 |
-| Still researching | 64 | 113 | 0 | 0.0% | 45.4 |
-| Looking for you | 2 | 45 | 1 | 2.2% | 4.6 |
+| Unclear | 251 | 1759 | 0 | 0.0% | 49.0 |
+| Comparing options | 106 | 641 | 1 | 0.2% | 39.6 |
+| Still researching | 65 | 114 | 0 | 0.0% | 45.5 |
+| Looking for you | 2 | 48 | 1 | 2.1% | 4.4 |
 
 ## Closest to page one
 
@@ -39,7 +39,7 @@ Ranking 4th-15th with real demand. The cheapest wins are here.
 
 | Query | Position | Impressions | Clicks |
 |---|---:|---:|---:|
-| bilal shafqat | 4.7 | 42 | 1 |
+| bilal shafqat | 4.5 | 45 | 1 |
 
 ## Questions people ask
 
@@ -62,50 +62,50 @@ Worth a direct, clearly-headed answer on the page — this is what AEO rewards.
 
 | Query | Impressions | Clicks | Position |
 |---|---:|---:|---:|
-| ux design website | 273 | 0 | 43.9 |
-| ux website | 149 | 0 | 53.8 |
-| productivity tools | 108 | 0 | 44.9 |
+| ux design website | 269 | 0 | 44.0 |
+| ux website | 148 | 0 | 53.7 |
+| productivity tools | 106 | 0 | 45.0 |
 | best ux design websites | 86 | 0 | 30.5 |
-| best ux sites | 72 | 0 | 28.6 |
-| ai figma plugin | 67 | 0 | 34.8 |
-| usereducer | 57 | 0 | 45.1 |
-| figma ai plugin | 54 | 0 | 33.1 |
-| free icon library | 54 | 0 | 56.6 |
+| best ux sites | 71 | 0 | 28.6 |
+| ai figma plugin | 65 | 0 | 34.8 |
+| usereducer | 56 | 0 | 45.1 |
+| figma ai plugin | 53 | 0 | 33.1 |
 | icon library | 48 | 0 | 70.4 |
-| useimperativehandle | 43 | 0 | 34.2 |
+| free icon library | 47 | 0 | 58.0 |
+| bilal shafqat | 45 | 1 | 4.5 |
+| useimperativehandle | 44 | 0 | 34.5 |
 | user experience website | 43 | 0 | 49.4 |
-| bilal shafqat | 42 | 1 | 4.7 |
-| ui ux solutions | 40 | 0 | 92.0 |
+| ui ux solutions | 39 | 0 | 91.8 |
 | best user experience websites | 37 | 0 | 33.6 |
 | best ux website | 33 | 0 | 47.0 |
 | best ui ux design website | 31 | 0 | 36.3 |
 | best ux websites | 27 | 0 | 44.5 |
-| rem vs em | 27 | 0 | 37.0 |
+| usecallback | 26 | 0 | 57.7 |
 | best user experience design websites | 25 | 0 | 67.8 |
 
 ## Pages earning the impressions
 
 | Page | Impressions | Clicks | Position |
 |---|---:|---:|---:|
-| /10-best-websites-to-master-ui-ux-design/ | 1633 | 2 | 45.1 |
-| /8-must-have-free-icon-libraries-for-designers/ | 864 | 0 | 60.5 |
+| /10-best-websites-to-master-ui-ux-design/ | 1622 | 2 | 45.1 |
+| /8-must-have-free-icon-libraries-for-designers/ | 849 | 0 | 60.7 |
 | /react-native-flatlist-vs-scrollview/ | 775 | 1 | 24.9 |
 | /react-usecallback-hook-explained/ | 677 | 0 | 51.0 |
-| /what-are-em-and-rem-units/ | 613 | 0 | 41.8 |
-| /react-usereducer-hook-explained/ | 543 | 0 | 45.8 |
-| /react-useimperativehandle-hook-explained/ | 539 | 0 | 28.8 |
-| /6-best-ai-powered-figma-plugins/ | 347 | 0 | 32.5 |
-| /8-best-websites-for-design-inspiration/ | 275 | 0 | 36.3 |
-| /top-10-productivity-tools-to-boost-efficiency/ | 243 | 0 | 46.0 |
-| / | 136 | 8 | 4.9 |
+| /what-are-em-and-rem-units/ | 602 | 0 | 42.1 |
+| /react-usereducer-hook-explained/ | 536 | 0 | 45.7 |
+| /react-useimperativehandle-hook-explained/ | 534 | 0 | 28.9 |
+| /6-best-ai-powered-figma-plugins/ | 338 | 0 | 32.7 |
+| /8-best-websites-for-design-inspiration/ | 272 | 0 | 36.3 |
+| /top-10-productivity-tools-to-boost-efficiency/ | 241 | 0 | 46.0 |
+| / | 145 | 8 | 4.7 |
 | /react-usecontext-hook-explained/ | 112 | 0 | 39.4 |
-| /mastering-flexbox-in-css/ | 80 | 0 | 47.8 |
 | /react-usememo-hook-explained/ | 78 | 0 | 41.0 |
+| /mastering-flexbox-in-css/ | 76 | 0 | 48.2 |
 | /about-me/ | 74 | 0 | 47.6 |
 
 ## Bing
 
-- 59 days synced, 3805 impressions, 9 clicks
+- 62 days synced, 3826 impressions, 9 clicks
 - Bing feeds Copilot, so it matters more than its search share suggests
 
 ## Site speed
@@ -119,21 +119,21 @@ Core Web Vitals (desktop): LCP 466ms · CLS 0.000 · TBT 11ms
 
 ## Traffic and conversion
 
-- Sessions (Google Analytics, synced): **144**
+- Sessions (Google Analytics, synced): **153**
 - Enquiries recorded in Performo: **4**
-- Visit to enquiry: **2.8%**
+- Visit to enquiry: **2.6%**
 
 Sessions come from Analytics and enquiries from Performo — two separate systems, so individual visits are not matched to individual leads. The ratio is a health signal, not a person-by-person trace.
 
 ## AI assistants
 
-- **113 live answer fetches** — an assistant opened a page because someone asked it a question
-- 1296 training crawls, which say nothing about visibility
+- **114 live answer fetches** — an assistant opened a page because someone asked it a question
+- 1447 training crawls, which say nothing about visibility
 
 Pages assistants actually pull:
 
+- `/` — 8
 - `/services` — 7
-- `/` — 7
 - `/pricing` — 7
 - `/process` — 6
 - `/portfolio/leos-developments` — 6
