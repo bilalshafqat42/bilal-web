@@ -9121,3 +9121,43 @@ address.
 Business Profile with a UAE location, which unlocks the local pack and the
 "near me" terms excluded in item 336, and makes the agency and company terms
 excluded throughout this project claimable for the first time.
+
+### 355. DONE (2026-10-06) — /services/digital-marketing, four dimensions at once
+
+Chosen over the two higher-volume pages because it is the hub of the
+positioning Bilal has settled on. Fixing it lifts every marketing page beneath
+it, and at 57 it was the shortest distance to a win.
+
+**SEO: 57 to 96.** The title already carried `digital marketing in dubai` and
+nothing else on the page did. The h1 read "Turning interest into a list of
+qualified, contactable buyers", which is a good line that names no service and
+no city. Now "Digital marketing in Dubai, run as one sequence rather than
+four". The intro, which is the first hundred words, was rewritten to open on
+the phrase, and the meta description said "digital marketing services in
+Dubai", a different string from the one being targeted.
+
+**The 4 points left are image alt, and they stay.** The only images on a
+service page are the client logos, whose alt is the client's name. Putting
+"digital marketing in Dubai" in a LEOS logo's alt would describe the image
+falsely for a screen reader in exchange for four points. 96 is the honest
+ceiling on this template.
+
+**User journey: a third route out of the hero.** It offered "Book a free
+consultation" and "See related work". Neither answers the question a first-time
+visitor has before both of them, which is what it costs, and `/pricing` was
+reachable only through a small gold link under the logo row, below the fold on
+most screens. "What this costs" now sits beside the other two. Somebody not
+ready to book and not interested in a portfolio had nowhere to go, which is the
+usual reason a service page gets one visit and never a second.
+
+**AI search: a quotable answer block.** A new section headed "What does digital
+marketing cost in Dubai?" answering in the first sentence, with the figures as
+plain text rather than inside a chart or an image. That is the shape a model
+lifts and attributes, and it costs a human reader nothing because it is the
+same thing they came to find out. It also states the honest disqualifier: under
+about AED 20,000 a month including ad spend, a retainer is the wrong shape.
+
+1,925 to 2,137 words.
+
+**Next, in volume order**: mobile-app-development (1,900), web-design (1,600),
+social-media-marketing (880, already 66), seo (480), google-ads (480).

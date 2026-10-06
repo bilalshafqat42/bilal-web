@@ -697,16 +697,16 @@ export const megaMenuGroups: MegaMenuGroup[] = [
   {
     slug: "digital-marketing",
     title: "Digital Marketing & Outreach",
-    headline: "Turning interest into a list of qualified, contactable buyers",
+    headline: "Digital marketing in Dubai, run as one sequence rather than four",
     intro:
-      "Demand generation builds awareness before someone is ready to buy. Lead generation captures it. Email and WhatsApp follow up on it. Treated separately these leak; run as one sequence they compound. This covers the full path from first awareness to a contact sitting in your CRM with a next action against it.",
+      "Digital marketing in Dubai is usually bought as a bundle and delivered as four separate projects, which is where the money goes. Demand generation builds awareness before someone is ready to buy, lead generation captures it, email and WhatsApp follow it up, and the tracking tells you which of them worked. Run by one person as one sequence, they compound instead of leaking. You get the full path from first awareness to a contact sitting in your CRM with a next action against it.",
     // The URL is /services/digital-marketing and the category is called
     // "Digital Marketing & Outreach", but the title said neither — it opened on
     // "Lead Generation", so the page Bilal wants found for "digital marketing"
     // never used the phrase in the one field that matters most.
     metaTitle: "Digital Marketing in Dubai — Bilal Shafqat",
     metaDescription:
-      "Digital marketing services in Dubai from one freelance specialist: paid ads, search, email and WhatsApp, run as one sequence rather than separate tactics.",
+      "Digital marketing in Dubai from one freelance specialist: paid ads, search, email and WhatsApp, run as one sequence rather than four separate projects.",
     faqs: [
       {
         question: "What is the difference between demand generation and lead generation?",

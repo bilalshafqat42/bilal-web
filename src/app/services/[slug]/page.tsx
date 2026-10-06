@@ -123,10 +123,21 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                   {category.headline}
                 </h1>
                 <p className="mt-6 text-lg text-muted leading-relaxed">{category.intro}</p>
-                <div className="mt-8 flex flex-wrap gap-4">
+                <div className="mt-8 flex flex-wrap items-center gap-4">
                   <CtaButton href="/appointment">Book a free consultation</CtaButton>
                   <Link href="/portfolio" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors">
                     See related work
+                  </Link>
+                  {/* The third option, and the one a first-time visitor usually
+                      wants before either of the others. It was reachable only
+                      through a small link below the logo row, which on most
+                      screens is under the fold. Someone not ready to book and
+                      not interested in a portfolio had nowhere to go. */}
+                  <Link
+                    href="/pricing"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-muted underline decoration-1 underline-offset-[6px] transition-colors hover:text-ink"
+                  >
+                    What this costs
                   </Link>
                 </div>
 

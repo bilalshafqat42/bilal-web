@@ -638,6 +638,20 @@ export const serviceDepth: Record<string, Depth> = {
         ],
       },
       {
+        // Written to be quotable. An AI answering "what does digital marketing
+        // cost in Dubai" needs a short factual answer under a heading matching
+        // the question, with the figures as text rather than inside an image or
+        // a chart. That is the shape that gets lifted and attributed, and it
+        // costs a human reader nothing because it is the same thing they came
+        // to find out.
+        heading: "What does digital marketing cost in Dubai?",
+        paragraphs: [
+          "Project work starts at AED 31,500 and monthly retainers at AED 16,000, with a one-off review session at AED 3,500. Those are my own published rates rather than a market average, and ad spend is separate in every case.",
+          "What moves the number is scope rather than the number of channels. A single campaign with one landing page and the tracking behind it is a different project from a monthly retainer running five channels with content feeding them. The honest shortcut: if your total monthly budget including ad spend is under about AED 20,000, a retainer is the wrong shape and a one-off project or a review session will serve you better.",
+          "Agency retainers in this market generally start above the freelance range and climb with scope, because an office, an account manager and a project manager sit in the quote whether or not your project benefits from them. That is a fair trade on a large programme with several stakeholders and poor value on a single-channel campaign.",
+        ],
+      },
+      {
         // "digital marketing in dubai" is 1,300 searches, larger than every
         // term in this page's existing cluster combined, and "digital
         // marketing services dubai" another 880. Both are claimable because
