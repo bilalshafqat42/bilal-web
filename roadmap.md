@@ -9093,3 +9093,31 @@ then and is wrong now.
 
 `/process` and `/faq` left at 673 and 739. Both are trust pages that read fine,
 and neither has search volume behind it worth the effort.
+
+### 354. DECIDED (2026-10-06) — The Pakistan address stays until the licence lands
+
+Bilal's Google Business Profile shows a Lahore address and it renders in the
+knowledge panel on branded searches, directly under a title reading "Freelance
+Digital Marketer in Dubai". I raised it as the single most damaging thing
+visible in search.
+
+His decision: the UAE trade licence is two to three months away, the address
+stays as it is until then, and every other profile presents him as Dubai-based,
+which is true. Once the licence lands he will set up the Business Profile
+properly and run Google Ads behind it.
+
+That is the right call and it is recorded so it stops being re-raised. The
+alternatives were worse: a fake Dubai address gets a profile suspended, and a
+suspended profile is worse than an inconsistent one.
+
+**The damage is narrower than it first looks**, which is worth holding onto.
+The knowledge panel appears on branded searches, and someone searching "bilal
+shafqat" by name has usually already met him, been referred, or is checking a
+proposal. The commercial terms the site is built for, `freelance digital
+marketer in dubai` and the rest, return ordinary results with no panel and no
+address.
+
+**Revisit when the licence arrives.** At that point: claim or re-verify the
+Business Profile with a UAE location, which unlocks the local pack and the
+"near me" terms excluded in item 336, and makes the agency and company terms
+excluded throughout this project claimable for the first time.
