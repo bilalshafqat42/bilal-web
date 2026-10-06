@@ -463,6 +463,52 @@ export function spellCount(n: number): string {
   // Each measured against Google's ~600px title budget before shipping, because
   // the September 23 shortening exists for exactly that reason. Widest here is
   // 545px; six of the nine are narrower than what they replace.
+/**
+ * The Services menu, as four numbered columns of real pages.
+ *
+ * Rebuilt 2026-10-06. The menu was fifteen flat groups, each with three to five
+ * sub-items, and the sub-items were the problem: **49 entries carrying 31
+ * unique labels.** "Lead Generation" appeared four times, "Demand Generation"
+ * three, and ten more twice each. None of them led anywhere of their own, they
+ * were anchors into a section of the parent page, so a reader comparing two
+ * columns saw the same phrases and learned nothing from the repetition.
+ *
+ * All fifteen service pages are real and live. They are what belongs in a menu.
+ * So the hierarchy is now four groups of real pages rather than fifteen groups
+ * of repeated tags, which is both shorter to read and honest about the shape of
+ * the business.
+ *
+ * Deliberately not derived from `pillars`. The four pillars are an internal
+ * taxonomy built around how the work is delivered; these four are built around
+ * what somebody is looking for when they open a menu, and the two do not match.
+ * Paid advertising is one pillar and four pages; CRM is one pillar and one page.
+ */
+export type ServiceMenuColumn = {
+  /** Shown as 01, 02, 03, 04. */
+  title: string;
+  /** Slugs from `megaMenuGroups`, in the order they should read. */
+  slugs: string[];
+};
+
+export const serviceMenuColumns: ServiceMenuColumn[] = [
+  {
+    title: "Paid Advertising",
+    slugs: ["paid-marketing", "google-ads", "facebook-ads", "linkedin-marketing"],
+  },
+  {
+    title: "Marketing & Growth",
+    slugs: ["digital-marketing", "social-media-marketing", "seo", "email-marketing"],
+  },
+  {
+    title: "Websites & Apps",
+    slugs: ["website-app-development", "mobile-app-development", "web-design"],
+  },
+  {
+    title: "Design & Systems",
+    slugs: ["ui-ux-design", "graphic-design-branding", "crm-marketing-automation", "video-conversion"],
+  },
+];
+
 export const megaMenuGroups: MegaMenuGroup[] = [
   {
     slug: "paid-marketing",

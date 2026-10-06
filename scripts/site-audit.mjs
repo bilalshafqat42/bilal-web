@@ -59,13 +59,6 @@ for (const url of urls) {
 }
 
 const ok = rows.filter((r) => r.status === 200);
-const group = (p) =>
-  p === "/" ? "home"
-  : p.startsWith("/services") ? "service"
-  : p.startsWith("/portfolio") ? "portfolio"
-  : p.startsWith("/blog") || ok.find((r) => r.path === p)?.h3 >= 0 && p.split("/").length === 2 && !["/about","/contact","/faq","/pricing","/process","/appointment","/privacy","/thank-you","/real-estate-marketing","/search-index.json"].includes(p) ? "article"
-  : "page";
-
 console.log("\n=== THIN PAGES (under 800 words in <main>) ===");
 const thin = ok.filter((r) => r.words < 800).sort((a, b) => a.words - b.words);
 for (const r of thin) console.log(`  ${String(r.words).padStart(5)}w  ${r.path}`);

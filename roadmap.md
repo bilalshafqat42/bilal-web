@@ -9308,3 +9308,44 @@ rounded CTA panel with centred text is a design device, not a misalignment, and
 flattening it would be following the rule past the point where it helps.
 
 No horizontal overflow at 1440, 1280, 834 or 390.
+
+### 360. DONE (2026-10-06) — The Services menu, fifteen groups down to four columns
+
+Bilal asked for the LEOS mega-menu treatment and whether unused entries had
+been removed. Nothing was unused: all fifteen service pages return 200. The
+problem was repetition.
+
+**49 entries carrying 31 unique labels.** "Lead Generation" appeared four
+times, "Demand Generation" three, and ten more twice each. None of them led
+anywhere of their own, they were anchors into a section of the parent page, so
+two columns side by side showed the same phrases and the repetition taught a
+reader nothing. Restyling that produces an elegant list of the same thing five
+times.
+
+**Four numbered columns of real pages** instead, in `serviceMenuColumns`:
+
+    01 Paid Advertising     paid-marketing, google-ads, facebook-ads, linkedin-marketing
+    02 Marketing & Growth   digital-marketing, social-media-marketing, seo, email-marketing
+    03 Websites & Apps      website-app-development, mobile-app-development, web-design
+    04 Design & Systems     ui-ux-design, graphic-design-branding, crm-marketing-automation, video-conversion
+
+All fifteen placed, none twice, none missing, and every entry is a page with
+its own keyword rather than an anchor. Anchor links in the menu: 0, was 49.
+
+**Deliberately not derived from `pillars`.** The four pillars describe how the
+work is delivered; these four describe what somebody is looking for when they
+open a menu, and the two do not match. Paid advertising is one pillar and four
+pages; CRM is one pillar and one page.
+
+**The mobile menu was worse than the desktop one** and is now the same four
+columns stacked. It had fifteen collapsible groups each hiding three to five
+repeated labels behind a tap: forty-nine taps to read a menu of fifteen pages.
+Now four headings and fifteen links, all visible.
+
+**A Tailwind v4 gotcha, found and documented.** `text-[0.95rem]` on the column
+titles rendered at display size and wrapped them onto two lines. The bare `h3`
+rule in `globals.css` sits **outside any cascade layer**, and unlayered CSS
+beats anything in `@layer utilities` whatever the specificity. A Tailwind size
+class on a heading in this codebase does nothing. That is why every heading
+here carries a `t-*` class, which was a convention nobody had written down.
+Now noted at the top of the type scale in `globals.css`.

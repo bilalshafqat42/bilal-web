@@ -14,7 +14,7 @@
  *         npm run daily -- --json      (machine-readable, no diff)
  */
 
-import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, readdirSync } from "node:fs";
 
 const BASE = "https://bilalshafqat.com";
 const DIR = new URL("../.seo-snapshots/", import.meta.url).pathname;

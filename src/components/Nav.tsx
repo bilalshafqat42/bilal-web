@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown, ArrowRight, Search } from "lucide-react";
 import { openSearchPanel } from "@/lib/searchPanel";
-import { accentClasses, megaMenuGroups, slugify } from "@/data/pillars";
+import { accentClasses, megaMenuGroups, serviceMenuColumns } from "@/data/pillars";
 
 /**
  * Site header.
@@ -108,41 +108,65 @@ function MegaPanel({
 function ServicesMenu({ onNavigate }: { onNavigate: () => void }) {
   return (
     <>
-      {/* Three columns, not four. Nine groups across four gives 4 + 4 + 1 and
-          strands a single card on the third row — the same shape `ProofLoop`
-          already fixed for the discipline cards (roadmap 213.36). Three gives
-          3 + 3 + 3. */}
-      <div className="grid grid-cols-3 gap-x-8 gap-y-8">
-        {megaMenuGroups.map((group) => {
-          const accent = accentClasses[group.accent];
-          return (
-            <div key={group.slug}>
-              <Link
-                href={`/services/${group.slug}`}
-                className="group/head flex items-center gap-2"
-                onClick={() => onNavigate()}
-              >
-                <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${accent.dot}`} />
-                <span className="text-sm font-semibold text-ink transition-colors group-hover/head:text-gold">
-                  {group.title}
-                </span>
-              </Link>
-              <ul className="mt-3 space-y-2.5">
-                {group.items.map((item) => (
-                  <li key={item.title}>
+      {/* Four numbered columns of real pages, replacing fifteen flat groups of
+          repeated tags.
+          -------------------------------------------------------------------
+          The old menu rendered 49 sub-items carrying 31 unique labels: "Lead
+          Generation" four times, "Demand Generation" three, ten more twice
+          each. None led anywhere of their own, they were anchors into a
+          section of the parent, so two columns side by side showed the same
+          phrases and the repetition taught a reader nothing.
+
+          All fifteen service pages are live and each has its own keyword and
+          its own content. Those are what belongs here. Grouping and order come
+          from `serviceMenuColumns`, which is organised around what somebody is
+          looking for rather than around how the work is delivered.
+
+          The numbering is not decoration. It says "this is a finite set you can
+          read all of", which is the thing a long menu most needs to say. */}
+      <div className="grid grid-cols-4 gap-x-10">
+        {serviceMenuColumns.map((column, i) => (
+          <div
+            key={column.title}
+            className={i > 0 ? "border-l border-border pl-10" : ""}
+          >
+            <div className="flex items-baseline gap-2.5">
+              <span className="font-mono text-[0.7rem] text-gold">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              {/* `t-h6`, not a Tailwind text size. The bare `h3` rule in
+                  globals.css sits outside any cascade layer, and unlayered CSS
+                  beats anything in `@layer utilities` regardless of
+                  specificity, so `text-[0.95rem]` on an `<h3>` renders at
+                  `--t-h3` and the column titles came out at display size and
+                  wrapped to two lines. That is why every heading on this site
+                  carries a `t-*` class rather than a Tailwind size. */}
+              <h3 className="t-h6 text-ink">{column.title}</h3>
+            </div>
+            <ul className="mt-5 space-y-3">
+              {column.slugs.map((slug) => {
+                const group = megaMenuGroups.find((g) => g.slug === slug);
+                if (!group) return null;
+                const accent = accentClasses[group.accent];
+                return (
+                  <li key={slug}>
                     <Link
-                      href={`/services/${group.slug}#${slugify(item.title)}`}
+                      href={`/services/${slug}`}
                       onClick={() => onNavigate()}
-                      className="text-sm text-muted transition-colors hover:text-ink"
+                      className="group/item flex items-start gap-2.5 text-sm text-muted transition-colors hover:text-ink"
                     >
-                      {item.title}
+                      <span
+                        aria-hidden="true"
+                        className={`mt-[0.45rem] h-1.5 w-1.5 shrink-0 rounded-full ${accent.dot} opacity-70 transition-opacity group-hover/item:opacity-100`}
+                      />
+                      {group.title}
                     </Link>
                   </li>
-                ))}
-              </ul>
-            </div>
-          );
-        })}
+                );
+              })}
+            </ul>
+          </div>
+        ))}
       </div>
 
       <div className="mt-8 border-t border-border pt-6">
@@ -501,40 +525,40 @@ export default function Nav() {
                     >
                       All services
                     </Link>
-                    {megaMenuGroups.map((group) => (
-                      <details key={group.slug} className="group/sub">
-                        <summary className="flex cursor-pointer list-none items-center justify-between py-2 text-sm text-ink marker:hidden">
-                          <span className="flex items-center gap-2">
-                            <span
-                              className={`h-1.5 w-1.5 shrink-0 rounded-full ${accentClasses[group.accent].dot}`}
-                            />
-                            {group.title}
+                    {/* Same four columns as the desktop panel, stacked. It was
+                        fifteen collapsible groups, each hiding three to five
+                        repeated labels behind a tap: forty-nine taps to see a
+                        menu of fifteen pages. Now four headings and fifteen
+                        links, all visible. */}
+                    {serviceMenuColumns.map((column, i) => (
+                      <div key={column.title} className={i > 0 ? "mt-5" : "mt-2"}>
+                        <div className="flex items-baseline gap-2">
+                          <span className="font-mono text-[0.65rem] text-gold">
+                            {String(i + 1).padStart(2, "0")}
                           </span>
-                          <ChevronDown
-                            size={14}
-                            className="transition-transform group-open/sub:rotate-180"
-                          />
-                        </summary>
-                        <div className="pb-1 pl-4">
-                          <Link
-                            href={`/services/${group.slug}`}
-                            onClick={() => setOpen(false)}
-                            className="block py-1.5 text-xs font-medium text-gold"
-                          >
-                            Overview
-                          </Link>
-                          {group.items.map((item) => (
-                            <Link
-                              key={item.title}
-                              href={`/services/${group.slug}#${slugify(item.title)}`}
-                              onClick={() => setOpen(false)}
-                              className="block py-1.5 text-xs text-muted"
-                            >
-                              {item.title}
-                            </Link>
-                          ))}
+                          <span className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">
+                            {column.title}
+                          </span>
                         </div>
-                      </details>
+                        {column.slugs.map((slug) => {
+                          const group = megaMenuGroups.find((g) => g.slug === slug);
+                          if (!group) return null;
+                          return (
+                            <Link
+                              key={slug}
+                              href={`/services/${slug}`}
+                              onClick={() => setOpen(false)}
+                              className="flex items-center gap-2 py-1.5 pl-1 text-sm text-ink"
+                            >
+                              <span
+                                aria-hidden="true"
+                                className={`h-1.5 w-1.5 shrink-0 rounded-full ${accentClasses[group.accent].dot}`}
+                              />
+                              {group.title}
+                            </Link>
+                          );
+                        })}
+                      </div>
                     ))}
                   </div>
                 </details>

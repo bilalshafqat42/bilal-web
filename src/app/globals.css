@@ -34,6 +34,13 @@ body {
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
+/* These element rules sit outside any cascade layer, which means they beat
+   anything in `@layer utilities` whatever the specificity. A Tailwind size
+   class on a heading does nothing: `<h3 class="text-sm">` still renders at
+   `--t-h3`. That is deliberate, it keeps the scale consistent, and it is why
+   every heading in this codebase carries a `t-*` class rather than a Tailwind
+   size. Found the hard way on 2026-10-06, when `text-[0.95rem]` on the mega
+   menu column titles rendered at display size and wrapped them to two lines. */
 h1, h2, h3, h4, .font-display {
   font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
 }
