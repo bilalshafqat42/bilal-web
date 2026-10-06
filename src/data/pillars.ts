@@ -494,10 +494,19 @@ export function spellCount(n: number): string {
  * is looking for when they open a menu.
  */
 export type ServiceMenuColumn = {
-  /** Shown as 01, 02, 03, 04. */
+  /** Shown as 01, 02, 03. */
   title: string;
   /** Slugs from `megaMenuGroups`, in the order they should read. */
   slugs: string[];
+  /** Grid columns this group occupies. Marketing takes two and splits its
+   *  eight into two lists of four, so the panel reads as four even columns of
+   *  three or four rather than one tall list beside two short ones.
+   *
+   *  The first attempt let the imbalance stand on the grounds that it was
+   *  honest. It was honest and it looked broken: eight items beside four and
+   *  three left most of the panel empty below the fourth row. Honest about the
+   *  business does not require uneven about the layout. */
+  span?: 1 | 2;
 };
 
 export const serviceMenuColumns: ServiceMenuColumn[] = [
@@ -507,12 +516,16 @@ export const serviceMenuColumns: ServiceMenuColumn[] = [
     // media marketing in dubai 880, seo consultant dubai 480, google ads
     // agency dubai 480.
     title: "Marketing",
+    span: 2,
+    // Order matters: the menu renders these down the first column then down
+    // the second, so the first four and the last four each have to be a group
+    // a reader recognises. Paid first, earned second.
     slugs: [
-      "digital-marketing",
       "paid-marketing",
       "google-ads",
       "facebook-ads",
       "linkedin-marketing",
+      "digital-marketing",
       "social-media-marketing",
       "seo",
       "email-marketing",

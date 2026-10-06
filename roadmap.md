@@ -9386,3 +9386,29 @@ needs it is asking a technical question.
 positioning and it carries the volume: 1,300 + 880 + 480 + 480 across its four
 largest pages. Padding Design and Development to match would mean inventing
 services.
+
+### 362. CORRECTED (2026-10-06) — The uneven menu looked broken, so it stopped being uneven
+
+I argued in item 361 that 8 / 4 / 3 was honest because marketing carries the
+volume, and that padding the other two would mean inventing services. That
+reasoning is still right and the layout was still wrong. Bilal said it looked
+unorganised and he was correct: eight items beside four and three left roughly
+two-thirds of the panel empty below the fourth row, and the vertical rules ran
+the full height emphasising it.
+
+**Honest about the business does not require uneven about the layout.** The fix
+is four grid columns with Marketing spanning two and splitting its eight into
+two lists of four, so the panel reads as four even columns of three or four.
+Panel height roughly halved, dead space gone, and the grouping is unchanged.
+
+**Then the reading order was wrong.** With the default row flow the eight read
+across, putting Digital Marketing beside Paid Marketing and Google Ads beside
+Facebook, so neither sub-column was a group: scanning the left one gave
+Digital, Google, LinkedIn, SEO. `grid-flow-col` with `grid-rows-4` makes them
+read down then across, and the order in `serviceMenuColumns` was reordered to
+match: the four paid services first, the four earned ones second. Each
+sub-column is now a group a reader recognises without being told.
+
+Three versions in one afternoon, each one a real improvement on the last, and
+the first two were mine. Bilal called both of them: the grouping in 361 and the
+shape here.

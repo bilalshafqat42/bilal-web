@@ -124,11 +124,13 @@ function ServicesMenu({ onNavigate }: { onNavigate: () => void }) {
 
           The numbering is not decoration. It says "this is a finite set you can
           read all of", which is the thing a long menu most needs to say. */}
-      <div className="grid grid-cols-3 gap-x-12">
+      <div className="grid grid-cols-4 gap-x-10">
         {serviceMenuColumns.map((column, i) => (
           <div
             key={column.title}
-            className={i > 0 ? "border-l border-border pl-12" : ""}
+            className={`${i > 0 ? "border-l border-border pl-10" : ""} ${
+              column.span === 2 ? "col-span-2" : ""
+            }`}
           >
             <div className="flex items-baseline gap-2.5">
               <span className="font-mono text-[0.7rem] text-gold">
@@ -143,7 +145,22 @@ function ServicesMenu({ onNavigate }: { onNavigate: () => void }) {
                   carries a `t-*` class rather than a Tailwind size. */}
               <h3 className="t-h6 text-ink">{column.title}</h3>
             </div>
-            <ul className="mt-5 space-y-3">
+            <ul
+              className={
+                column.span === 2
+                  ? // `grid-flow-col` with four rows, so the eight read DOWN
+                    // the first column and then down the second. With the
+                    // default row flow they read across, which put Digital
+                    // Marketing beside Paid Marketing and Google Ads beside
+                    // Facebook, so neither column was a group: scanning the
+                    // left column gave Digital, Google, LinkedIn, SEO. Down-
+                    // then-across puts the four paid services together and the
+                    // four earned ones together, which is what the order in
+                    // `serviceMenuColumns` already describes.
+                    "mt-5 grid grid-flow-col grid-rows-4 gap-x-10 gap-y-3"
+                  : "mt-5 space-y-3"
+              }
+            >
               {column.slugs.map((slug) => {
                 const group = megaMenuGroups.find((g) => g.slug === slug);
                 if (!group) return null;
