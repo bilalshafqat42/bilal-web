@@ -17,7 +17,8 @@
     "discipline-check": "node scripts/discipline-check.mjs",
     "onpage": "node scripts/onpage-check.mjs",
     "audit": "node scripts/site-audit.mjs",
-    "serp": "node scripts/serp-preview.mjs"
+    "serp": "node scripts/serp-preview.mjs",
+    "daily": "node scripts/daily.mjs"
   },
   "dependencies": {
     "gsap": "^3.15.0",

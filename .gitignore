@@ -10,3 +10,7 @@ _incoming
 
 # macOS folder metadata
 .DS_Store
+
+# Daily SEO measurements of the live site. Measurements, not source: a year
+# of these would be a year of noise in the history for no benefit.
+.seo-snapshots/
