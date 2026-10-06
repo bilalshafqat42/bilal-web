@@ -44,7 +44,7 @@ export default function FaqPage() {
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
         <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="relative mx-auto max-w-3xl px-6">
+          <div className="site-container relative">
             <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted">
               <Link href="/" className="hover:text-ink transition-colors">Home</Link>
               <ChevronRight size={13} />
@@ -94,7 +94,7 @@ export default function FaqPage() {
         ))}
 
         <section className="relative mt-20 sm:mt-24">
-          <div className="mx-auto max-w-5xl px-6">
+          <div className="site-container">
             <Reveal>
               <div className="relative overflow-hidden rounded-[2rem] border border-border glass-strong px-8 py-14 text-center sm:px-16">
                 <div

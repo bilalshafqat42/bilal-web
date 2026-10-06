@@ -17,7 +17,13 @@ export default function SectionHeading({
   title,
   highlight,
   description,
-  align = "center",
+  // Default changed to "left" on 2026-10-06. Measured at 1440: every section
+  // heading on the homepage sat at x=40 except "Work that shipped" at x=336,
+  // because this defaulted to centre and most callers never pass `align`. Three
+  // different left edges on one page is what Bilal spotted on /pricing, and
+  // this component was one of the two causes. Centring is still available; it
+  // now has to be asked for, which is the right way round for a default.
+  align = "left",
   as: Heading = "h2",
 }: SectionHeadingProps) {
   const isCenter = align === "center";

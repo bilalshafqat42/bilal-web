@@ -86,7 +86,7 @@ export default function PrivacyPage() {
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
         <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="relative mx-auto max-w-3xl px-6">
+          <div className="site-container relative">
             <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
               Privacy
             </span>
@@ -104,7 +104,7 @@ export default function PrivacyPage() {
         </section>
 
         <section className="relative mt-14">
-          <div className="mx-auto max-w-3xl px-6">
+          <div className="site-container">
             <div className="space-y-5">
               {rows.map((r) => (
                 <div key={r.what} className="rounded-2xl border border-border panel p-6">

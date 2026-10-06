@@ -9268,3 +9268,43 @@ Three pages had been scored wrong for the same reason.
 
 The 4 points left on mobile are image alt, and they stay for the reason given
 in item 355: the only images are client logos whose alt is the client's name.
+
+### 359. DONE (2026-10-06) — Three left edges on one page, measured and removed
+
+Bilal spotted it on `/pricing` on a 1440 MacBook: sections starting at visibly
+different distances from the left. Measured with Playwright, the left edge of
+every `h1` and `h2` at 1440:
+
+| Page | Left edges |
+| --- | --- |
+| `/` | 40, 200, 297, 336 |
+| `/pricing` | 40, 232, 297, 360 |
+| `/services/*` | 40, 296, 297 |
+| `/about` | 40, 297, 336 |
+| `/contact` | 40, 73, 297, 995 |
+
+**Two causes, both of them defaults nobody chose.**
+
+**1. Twenty-one centred containers.** `mx-auto max-w-Nxl px-6` centres its
+column, so the left edge depends on how wide the cap is: a `4xl` lands at 296,
+a `3xl` at 360, a `5xl` at 232. Three caps on one page produce three edges.
+All twenty-one became `.site-container`, which is the site's own edge at 40.
+The pattern that already worked is the one the About and Contact prose written
+this week used: `site-container` outside, a `max-w-*` child for the reading
+measure. Those sections measured 40 while their neighbours measured 232.
+
+**2. `SectionHeading` defaulted to `align="center"`.** Only two callers in the
+whole codebase pass `align` explicitly, so almost every section heading made
+with it was centred while every heading written inline was left. That is why
+"Work that shipped" sat at 336 on a homepage where every other `h2` sat at 40.
+Default is now `left`. Centring is still available and now has to be asked for,
+which is the right way round.
+
+**Result: 17 of 17 pages measure a single left edge of 40**, including the blog
+index, an article, a case study, a project page and the four discipline pages.
+
+Centred cards and grid columns are excluded from the check deliberately. A
+rounded CTA panel with centred text is a design device, not a misalignment, and
+flattening it would be following the rule past the point where it helps.
+
+No horizontal overflow at 1440, 1280, 834 or 390.

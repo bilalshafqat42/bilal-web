@@ -322,7 +322,7 @@ export default async function ClientCaseStudy({ params }: Props) {
 
         {c.depth ? (
           <section className="relative mt-20 sm:mt-28">
-            <div className="mx-auto max-w-3xl px-6">
+            <div className="site-container">
               {c.depth.map((block, i) => (
                 <Reveal key={block.heading}>
                   <div className={i > 0 ? "mt-12" : ""}>
@@ -341,7 +341,7 @@ export default async function ClientCaseStudy({ params }: Props) {
 
         <WorkProof clientSlug={c.slug} />
         <section className="relative mt-20 sm:mt-28">
-          <div className="mx-auto max-w-5xl px-6">
+          <div className="site-container">
             <Reveal>
               <div className="relative overflow-hidden rounded-[2rem] border border-border glass-strong px-8 py-14 text-center sm:px-16">
                 <div

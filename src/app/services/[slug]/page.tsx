@@ -105,7 +105,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
         <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="relative mx-auto max-w-4xl px-6">
+          <div className="site-container relative">
             <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted">
               <Link href="/" className="hover:text-ink transition-colors">Home</Link>
               <ChevronRight size={13} />
@@ -156,7 +156,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
         </section>
 
         <section className="relative mt-20 sm:mt-24">
-          <div className="mx-auto max-w-4xl px-6">
+          <div className="site-container">
             <Reveal>
               <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Scope</span>
               <h2 className="t-h2 mt-4 text-ink">
@@ -185,7 +185,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
 
         {depth ? (
           <section className="relative mt-20 sm:mt-24">
-            <div className="mx-auto max-w-4xl px-6">
+            <div className="site-container">
               {/* Corrected 2026-10-06, same day it was broken.
                   ---------------------------------------------------------
                   First attempt: the band heading became a styled `<p>` and the
@@ -279,7 +279,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
         ) : null}
 
         <section className="relative mt-20 sm:mt-24">
-          <div className="mx-auto max-w-4xl px-6">
+          <div className="site-container">
             <Reveal>
               <h2 className="t-h3 text-ink">Other services</h2>
             </Reveal>

@@ -337,7 +337,7 @@ export default function AboutPage() {
         <WhoIWorkWith />
 
         <section className="relative mt-24 sm:mt-32">
-          <div className="mx-auto max-w-5xl px-6">
+          <div className="site-container">
             <Reveal>
               <div className="relative overflow-hidden rounded-[2rem] border border-border glass-strong px-8 py-14 text-center sm:px-16">
                 <div

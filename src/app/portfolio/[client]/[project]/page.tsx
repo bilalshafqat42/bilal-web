@@ -382,7 +382,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
         ) : null}
 
         <section className="relative mt-16 sm:mt-20">
-          <div className="mx-auto max-w-5xl px-6">
+          <div className="site-container">
             <Reveal>
               <div className="relative overflow-hidden rounded-[2rem] border border-border glass-strong px-8 py-14 text-center sm:px-16">
                 <div
