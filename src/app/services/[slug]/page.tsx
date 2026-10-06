@@ -186,17 +186,25 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
         {depth ? (
           <section className="relative mt-20 sm:mt-24">
             <div className="mx-auto max-w-4xl px-6">
+              {/* The band label is a label, not a heading. It was an <h2>
+                  reading "How this works in practice", and the six or seven
+                  real sections underneath it were <h3>, which put every
+                  substantial heading on these fifteen pages one level below a
+                  generic sentence that says nothing. Google weights h2 above
+                  h3, and "What does digital marketing cost in Dubai?" deserves
+                  the higher level more than "How this works in practice" does.
+                  Visually nothing changes: `t-h4` still sets the size. */}
               <Reveal>
                 <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Process</span>
-                <h2 className="t-h2 mt-4 text-ink">
+                <p className="t-h2 mt-4 text-ink">
                   How this works in practice
-                </h2>
+                </p>
               </Reveal>
               <div className="mt-10 space-y-12">
                 {depth.blocks.map((block) => (
                   <Reveal key={block.heading}>
                     <div className="border-t border-border pt-8">
-                      <h3 className="t-h4 text-ink">{block.heading}</h3>
+                      <h2 className="t-h4 text-ink">{block.heading}</h2>
                       <div className="mt-4 space-y-4">
                         {block.paragraphs.map((para) => (
                           <p key={para.slice(0, 40)} className="text-base leading-relaxed text-muted">

@@ -96,6 +96,11 @@ const MUST_NOT_FIND = [
   "weather in tokyo",
   "cheap flights",
   "car insurance",
+  // "restaurant" is effectively reserved on this site, the same way "cheap" is
+  // above. A Snapchat and TikTok article on 2026-10-06 asked "Which should a
+  // Dubai restaurant start with?" in an FAQ heading, and article headings go
+  // into the search index, so it answered a query about restaurants. Reworded
+  // to "consumer brand" rather than relaxing the fixture.
   "best restaurants",
   "football scores",
   "hotel booking",

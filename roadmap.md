@@ -9161,3 +9161,49 @@ about AED 20,000 a month including ad spend, a retainer is the wrong shape.
 
 **Next, in volume order**: mobile-app-development (1,900), web-design (1,600),
 social-media-marketing (880, already 66), seo (480), google-ads (480).
+
+### 356. DONE (2026-10-06) — The marketing cluster, and a structural fix across all 15 service pages
+
+Bilal spotted the thing this project had missed for three days: **of 70
+articles, 43 routed to the development hub and 3 to digital marketing.** The
+content architecture said "developer" while the homepage said "freelance
+digital marketer". He was right and I built the three clusters in item 338 to
+the exact list of terms he gave me without noticing they were all build and
+design terms.
+
+**Six articles, Cluster M, feeding `/services/digital-marketing`:**
+
+    how-much-should-a-dubai-business-spend-on-digital-marketing   753w
+    google-ads-vs-meta-vs-tiktok-where-to-start-uae               739w
+    real-estate-marketing-dubai-what-generates-enquiries          822w
+    how-to-tell-if-your-digital-marketing-is-working              616w
+    why-your-leads-are-not-converting                             759w
+    snapchat-and-tiktok-ads-in-the-uae                            547w
+
+Marketing hubs went from 5 feeding articles to 11, four of them on
+`/services/paid-marketing` where the subject genuinely belongs there rather
+than at the hub.
+
+**Depth headings promoted from `h3` to `h2` on all fifteen service pages.** The
+band label "How this works in practice" was an `h2` and every substantial
+section beneath it was an `h3`, which put "What does digital marketing cost in
+Dubai?" one level below a sentence that says nothing. The label is now a `<p>`
+with the same class, so nothing moves visually. `/services/digital-marketing`
+went from 5 h2 to 11.
+
+**Retagging: not done, and that is the finding.** Every candidate turned out to
+be correctly routed. "How Much Does a Website Cost in Dubai" is about websites
+and belongs on the development hub; moving it to marketing to balance a number
+would be mislabelling. The imbalance is not mis-tagging, it is that 22 of the
+43 are recovered React articles from the old WordPress site, and those are
+genuinely React articles. The fix was to write marketing content, not to
+relabel development content.
+
+**One check caught a real collision.** The Snapchat article asked "Which should
+a Dubai restaurant start with?" in an FAQ heading, and article headings go into
+the search index, so the site's own search answered a query about restaurants.
+Reworded to "consumer brand" and the reserved word documented in
+`search-check.mjs` next to "cheap", which was reserved for the same reason in
+item 327.
+
+76 articles, 119 routes.
