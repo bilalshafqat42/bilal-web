@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   // this one replaced — the discipline browser is now a footnote below the work,
   // not the page's purpose.
   description:
-    "Four off-plan property launches, a corporate website and a cross-platform app for one Dubai and UK developer. Each opens into the decisions behind it.",
+    "Four off-plan property launches, a corporate website and a cross-platform app for a Dubai and UK developer, with the decisions behind each.",
   alternates: {
     canonical: "/portfolio",
   },

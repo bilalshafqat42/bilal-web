@@ -13,7 +13,7 @@ import { OG_IMAGES } from "@/lib/ogImage";
 export const metadata: Metadata = {
   title: "What a Freelance Digital Marketer Costs in Dubai",
   description:
-    "What a freelance digital marketer costs in Dubai, with published figures rather than a range. Project from AED 31,500, retainers from AED 16,000 a month.",
+    "What a freelance digital marketer costs in Dubai. Published figures, not a range: projects from AED 31,500, retainers from AED 16,000.",
   alternates: { canonical: "/pricing" },
   openGraph: {
     title: "What a Freelance Digital Marketer Costs in Dubai",
