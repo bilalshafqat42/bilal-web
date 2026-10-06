@@ -226,6 +226,34 @@ export default function AppointmentPage() {
                 ))}
               </ul>
 
+              <div className="mt-10 border-t border-border pt-8">
+                <h2 className="t-h3 text-ink">What the thirty minutes contains</h2>
+                <p className="mt-5 text-base leading-relaxed text-muted">
+                  You describe the business and the number you want to move. I ask
+                  questions, usually more than you expect, because the thing in the
+                  way is rarely the thing people arrive thinking it is. Then you get a
+                  recommended approach and a price range.
+                </p>
+                <p className="mt-4 text-base leading-relaxed text-muted">
+                  No deck, no screen share of case studies, and no follow-up sequence
+                  afterwards. If it is not a fit you will be told in the call rather
+                  than in a polite email a week later.
+                </p>
+
+                <h2 className="t-h3 mt-10 text-ink">What to have ready</h2>
+                <p className="mt-5 text-base leading-relaxed text-muted">
+                  Nothing is required. If you have them to hand, these make the thirty
+                  minutes go further: what you are currently spending and on what,
+                  where enquiries land once they arrive, and the one number you would
+                  most like to be different in six months.
+                </p>
+                <p className="mt-4 text-base leading-relaxed text-muted">
+                  If you have none of that the call still works. Half of them start
+                  with somebody saying they are not sure what they need, which is a
+                  perfectly good place to start from.
+                </p>
+              </div>
+
               <p className="mt-9 text-sm text-muted">
                 Prefer to write first?{" "}
                 <Link href="/contact" className="text-gold underline underline-offset-4 hover:opacity-80">

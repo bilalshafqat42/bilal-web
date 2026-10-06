@@ -9041,3 +9041,55 @@ fit.
 **Also**: ten meta descriptions brought inside 120 to 160 characters. Four were
 never written, they were an article's opening sentence truncated by the
 WordPress recovery, ending mid-clause on "and" or a comma.
+
+### 353. DONE (2026-10-06) — The basics pages, two different jobs
+
+Bilal asked to finish about, contact, appointment, blog and process before
+starting on the service pages. Worth recording why they were not all treated
+the same way.
+
+**Four of them are conversion pages, not keyword pages.** Nobody in Dubai
+searches "contact" or "appointment" to find a freelancer. Between them these
+pages are worth perhaps fifty searches a month against roughly 6,200 on the
+five service pages. Optimising them for keywords would have been effort spent
+on nothing.
+
+**`/pricing` is the exception and it is a real opportunity.** "What a freelance
+digital marketer costs in Dubai" is a question people genuinely ask, Bilal
+publishes actual figures, and almost nobody else in this market will put a
+number on a page. It scored **25/100** on three cost phrasings.
+
+| Page | Before | After | Treated as |
+| --- | ---: | ---: | --- |
+| `/pricing` | 659 | 1,118 | keyword page, 25 to 80 |
+| `/contact` | 327 | 585 | conversion |
+| `/appointment` | 432 | 597 | conversion |
+| `/about` | 674 | 1,051 | done in item 352 |
+
+**Title changed**: "Pricing & How Projects Are Costed" to "What a Freelance
+Digital Marketer Costs in Dubai", 48 characters, and it appears twice in the
+file because OpenGraph repeats it. The h1 moved from "How projects are priced"
+to the same phrase, and the opening paragraph now states the three published
+figures rather than making the reader scroll to a comparison table for them.
+
+**The section that earns the page its ranking** is not the price list, it is
+"Why a freelance digital marketer in Dubai costs what it costs": four supplier
+types that are not comparable because they are not selling the same thing, and
+the observation that what tells you something is not the figure but what is
+excluded from it. Ad spend is almost never included and a quote that does not
+mention it is not complete.
+
+**On contact and appointment, the work was not words.** It was answering the
+two questions a person has in the five seconds before deciding to get in touch:
+how long a reply takes and whether this is a sales call. Both now say so
+plainly, including that the recommendation is sometimes to do less, or to fix
+the tracking rather than the site, or that an app is not needed at all.
+
+**`/blog` deliberately untouched.** 671 words, and its own code comment from
+item 275 already explains why: it is an index, its job is to route a reader to
+the right article, and filler added to satisfy a word count makes it worse at
+exactly that. An Ubersuggest audit recommending 2,200 words for it was wrong
+then and is wrong now.
+
+`/process` and `/faq` left at 673 and 739. Both are trust pages that read fine,
+and neither has search volume behind it worth the effort.

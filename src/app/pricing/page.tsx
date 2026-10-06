@@ -11,12 +11,12 @@ import { OG_IMAGES } from "@/lib/ogImage";
 
 
 export const metadata: Metadata = {
-  title: "Pricing & How Projects Are Costed — Bilal Shafqat",
+  title: "What a Freelance Digital Marketer Costs in Dubai",
   description:
-    "How freelance marketing, development and design is priced in Dubai: the engagement models, what moves cost, and a figure without a sales call.",
+    "What a freelance digital marketer costs in Dubai, with published figures rather than a range. Project from AED 31,500, retainers from AED 16,000 a month.",
   alternates: { canonical: "/pricing" },
   openGraph: {
-    title: "Pricing & How Projects Are Costed — Bilal Shafqat",
+    title: "What a Freelance Digital Marketer Costs in Dubai",
     description:
       "The four engagement models, what pushes cost up or down, and how to get a real figure quickly.",
     type: "website",
@@ -97,13 +97,20 @@ export default function PricingPage() {
               <span className="text-ink">Pricing</span>
             </nav>
             <h1 className="t-h1 mt-8 text-ink">
-              How projects are priced
+              What a freelance digital marketer costs in Dubai
             </h1>
             <p className="mt-6 text-lg text-muted leading-relaxed">
-              No packages, no tiers you have to squeeze into. Four ways of working,
-              priced against the actual scope. This page explains what moves the
-              number so you can judge roughly where your project sits before we
-              speak.
+              Published figures rather than a range with nobody behind it. Project
+              work from AED 31,500, monthly retainers from AED 16,000, a one-off
+              review session at AED 3,500. No packages, no tiers you have to squeeze
+              into, and no form to fill in before you are told a number.
+            </p>
+            <p className="mt-4 text-lg text-muted leading-relaxed">
+              Below: the four ways of working compared, what pushes the number up or
+              down, and how to get a real figure for your own project. These are my
+              own rates and not a market survey, stated so there is at least one
+              verifiable number on the subject rather than another article that gives
+              a range and stops.
             </p>
           </div>
         </section>
@@ -159,6 +166,73 @@ export default function PricingPage() {
                     ))}
                   </ul>
                 </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative mt-20 sm:mt-24">
+          <div className="site-container">
+            <div className="max-w-3xl">
+              <Reveal>
+                <h2 className="t-h2 text-ink">
+                  Why a freelance digital marketer in Dubai costs what it costs
+                </h2>
+                <p className="mt-6 text-base leading-relaxed text-muted">
+                  The market splits four ways and the prices are not comparable,
+                  because you are not buying the same thing. A low-cost freelancer on
+                  a marketplace sells hours. An experienced freelancer sells a
+                  finished outcome and carries the estimating risk. An agency sells
+                  capacity and continuity, and the office and account layer are in
+                  the quote whether or not your project needs them. An in-house hire
+                  costs a salary plus visa, insurance, end of service and the months
+                  it takes to recruit.
+                </p>
+                <p className="mt-5 text-base leading-relaxed text-muted">
+                  So a figure on its own tells you very little. What tells you
+                  something is what is excluded. Ad spend is almost never included in
+                  any of them, and a quote that does not mention it is not complete.
+                </p>
+              </Reveal>
+
+              <Reveal>
+                <h2 className="t-h2 mt-14 text-ink">Why these numbers are published at all</h2>
+                <p className="mt-6 text-base leading-relaxed text-muted">
+                  Most Dubai suppliers will not put a price on a page. The reason
+                  given is that every project is different, which is true, and the
+                  reason underneath is that a number lets you leave before a
+                  conversation has had a chance to work on you.
+                </p>
+                <p className="mt-5 text-base leading-relaxed text-muted">
+                  Publishing them costs me the enquiries I could not have served
+                  anyway. If your budget is a fifth of the project minimum, finding
+                  that out here takes you four seconds and costs you nothing. Finding
+                  it out after two calls and a proposal wastes a week of your time
+                  and a week of mine.
+                </p>
+              </Reveal>
+
+              <Reveal>
+                <h2 className="t-h2 mt-14 text-ink">What you get that is not on the invoice</h2>
+                <p className="mt-6 text-base leading-relaxed text-muted">
+                  You brief the person who does the work. There is no account manager
+                  translating what you said, no junior assigned to your project after
+                  a senior person pitched it, and no week spent waiting while three
+                  suppliers establish whose turn it is.
+                </p>
+                <p className="mt-5 text-base leading-relaxed text-muted">
+                  Accounts stay in your name throughout: the domain, the hosting, the
+                  ad accounts, the analytics. That sounds like a detail until the
+                  engagement ends. A surprising number of businesses here discover a
+                  year in that they cannot move their own website because somebody
+                  else owns it.
+                </p>
+                <p className="mt-5 text-base leading-relaxed text-muted">
+                  And an honest no. If a fast mobile site does the job an app would
+                  do, or the problem is the tracking rather than the site, I will say
+                  so and quote for the smaller thing. That costs me a project and
+                  buys the only thing worth having in a market this size.
+                </p>
               </Reveal>
             </div>
           </div>

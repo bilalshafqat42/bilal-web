@@ -270,6 +270,57 @@ export default function ContactPage() {
         </section>
 
         <section className="relative mt-16 sm:mt-20">
+          <div className="site-container">
+            <div className="max-w-3xl">
+              <Reveal>
+                <h2 className="t-h2 text-ink">What happens after you send it</h2>
+                <p className="mt-6 text-base leading-relaxed text-muted">
+                  It reaches me. Not a shared inbox, not a sales team, and not an
+                  assistant who logs it and books a discovery call with somebody who
+                  then briefs me. I read it, and the reply comes from the person who
+                  would do the work.
+                </p>
+                <p className="mt-5 text-base leading-relaxed text-muted">
+                  Usually within one business day, Monday to Friday on Dubai hours,
+                  and the same day if you message on WhatsApp. If what you send is
+                  clear enough to price, the reply has a range in it rather than a
+                  request for a call to discuss your requirements.
+                </p>
+              </Reveal>
+
+              <Reveal>
+                <h2 className="t-h2 mt-14 text-ink">What it costs to ask</h2>
+                <p className="mt-6 text-base leading-relaxed text-muted">
+                  Nothing, and that is not a figure of speech. The first conversation
+                  is thirty minutes, free, and it is not a pitch. You describe the
+                  business and the number you want to move, and you leave with a
+                  recommended approach and a price range whether or not you hire me.
+                </p>
+                <p className="mt-5 text-base leading-relaxed text-muted">
+                  Sometimes the recommendation is to do less than you came in asking
+                  for, or to fix the tracking before touching the site, or that you do
+                  not need an app at all. Those answers are worth having and they cost
+                  nothing.
+                </p>
+              </Reveal>
+
+              <Reveal>
+                <h2 className="t-h2 mt-14 text-ink">If you would rather not write much</h2>
+                <p className="mt-6 text-base leading-relaxed text-muted">
+                  Three lines is plenty. What you are trying to achieve, any deadline,
+                  and whether something already exists: a site, a CRM, an ad account
+                  running. The detail comes later and I will ask for the rest.
+                </p>
+                <p className="mt-5 text-base leading-relaxed text-muted">
+                  There is no form behind the form. Nothing you send is added to a
+                  mailing list and nothing is shared with anyone.
+                </p>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative mt-16 sm:mt-20">
           <div className="mx-auto max-w-5xl px-6">
             <Reveal>
               <div className="relative overflow-hidden rounded-[2rem] border border-border glass-strong px-8 py-14 text-center sm:px-16">
