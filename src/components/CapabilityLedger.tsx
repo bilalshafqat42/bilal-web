@@ -1,17 +1,17 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { pillars } from "@/data/pillars";
+import { homeDisciplines } from "@/data/pillars";
 import CtaButton from "@/components/CtaButton";
 
 /**
- * The four disciplines, as a ledger of rows rather than a card deck.
+ * The three disciplines, as a ledger of rows rather than a card deck.
  *
  * Replaces the previous hover-to-reveal version, which showed one pillar at a
  * time in a card and hid the other three behind a hover. That cost more than it
  * looked: three quarters of the section was invisible on arrival, the reveal
  * did not exist at all on touch, and the whole thing needed `useState` plus
  * framer-motion to run. A visitor deciding whether one person can cover all
- * four disciplines needs to see all four at once — that is the entire argument
+ * three disciplines needs to see all three at once — that is the entire argument
  * the section is making.
  *
  * Server component by design. Every row is present in the HTML, so it costs no
@@ -41,7 +41,7 @@ export default function CapabilityLedger() {
 
         <div className="mt-7 grid grid-cols-1 gap-8 lg:grid-cols-[1.35fr_1fr] lg:items-start lg:gap-16">
           <h2 className="t-h2 text-ink">
-            Four disciplines.{" "}
+            Three disciplines.{" "}
             <br />
             One{" "}
             <span className="bg-gradient-to-r from-[#f8dd8f] via-gold to-gold-2 bg-clip-text text-transparent">
@@ -56,15 +56,15 @@ export default function CapabilityLedger() {
             Most businesses stitch this together from an agency, a developer and a freelancer, then
             spend their week translating between them.{" "}
             <strong className="font-semibold text-ink">
-              I do all four, so the strategy and the build never disagree.
+              I do all three, so the strategy and the build never disagree.
             </strong>
           </p>
         </div>
 
         <ul className="mt-14 border-t border-border">
-          {pillars.map((pillar, i) => (
+          {homeDisciplines.map((pillar, i) => (
             <li
-              key={pillar.slug}
+              key={pillar.label}
               // `group` and `relative` carry the stretched link below: the whole
               // row is clickable, while the accessible name stays just the
               // title rather than the title plus summary plus three tags.
@@ -77,7 +77,7 @@ export default function CapabilityLedger() {
 
                 <h3 className="t-h4 text-ink">
                   <Link
-                    href={pillar.ledgerHref ?? `/services/${pillar.slug}`}
+                    href={pillar.href}
                     className="outline-none after:absolute after:inset-0 focus-visible:underline focus-visible:decoration-gold focus-visible:underline-offset-4"
                   >
                     {pillar.label}
@@ -85,9 +85,9 @@ export default function CapabilityLedger() {
                 </h3>
 
                 <div>
-                  <p className="text-base leading-relaxed text-muted">{pillar.ledgerSummary}</p>
+                  <p className="text-base leading-relaxed text-muted">{pillar.summary}</p>
                   <ul className="mt-4 flex flex-wrap gap-2">
-                    {pillar.ledgerTags.map((tag) => (
+                    {pillar.tags.map((tag) => (
                       <li key={tag.href + tag.label}>
                         <Link
                           href={tag.href}

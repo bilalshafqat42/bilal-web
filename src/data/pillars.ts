@@ -509,6 +509,71 @@ export type ServiceMenuColumn = {
   span?: 1 | 2;
 };
 
+/**
+ * The three disciplines, as the homepage and the Services menu both state them.
+ *
+ * Added 2026-10-06. The homepage said "Four disciplines" and the menu said
+ * three, which is a contradiction a visitor can notice, and the fourth pillar
+ * was the weakest of the four anyway: "Design, Content & Conversion" has had no
+ * page of its own since 2026-08-28, and "CRM & Marketing Automation" is a
+ * capability rather than a discipline. Calling it a quarter of the business
+ * overstated it.
+ *
+ * Three is also what Bilal is: marketer, designer, developer. It is his GitHub
+ * bio, his Behance headline and the sentence that sells him. One taxonomy in
+ * the menu, on the homepage, in the bio and on every profile is worth more over
+ * a year than any clever grouping.
+ *
+ * **Deliberately separate from `pillars`.** That array still has four entries
+ * and is read by the contact form's dropdown, the 404 page and the item-to-
+ * pillar mapping, none of which make a claim about disciplines. Collapsing it
+ * would mean rewriting routing for a presentational change.
+ */
+export type Discipline3 = {
+  label: string;
+  summary: string;
+  /** A real page. No redirects: the old design pillar pointed at `/services`
+   *  because its own slug 308s, which worked and read as a loose end. */
+  href: string;
+  tags: LedgerTag[];
+};
+
+export const homeDisciplines: Discipline3[] = [
+  {
+    label: "Marketing",
+    summary:
+      "Paid advertising, search, social and email, run as one sequence and measured on cost per enquiry rather than clicks.",
+    href: "/services/digital-marketing",
+    tags: [
+      { label: "Google Ads", href: "/services/google-ads" },
+      { label: "Meta & TikTok ads", href: "/services/facebook-ads" },
+      { label: "SEO", href: "/services/seo" },
+    ],
+  },
+  {
+    label: "Design",
+    summary:
+      "Interfaces, brand and creative built to earn trust quickly and turn the traffic you already have into enquiries.",
+    href: "/services/ui-ux-design",
+    tags: [
+      { label: "Web & app UI/UX", href: "/services/ui-ux-design" },
+      { label: "Web design", href: "/services/web-design" },
+      { label: "Brand identity", href: "/services/graphic-design-branding" },
+    ],
+  },
+  {
+    label: "Development",
+    summary:
+      "Websites, mobile apps and the CRM and tracking behind them, so the marketing has something built for it to point at.",
+    href: "/services/website-app-development",
+    tags: [
+      { label: "React & Next.js", href: "/services/website-app-development" },
+      { label: "iOS & Android apps", href: "/services/mobile-app-development" },
+      { label: "CRM & tracking", href: "/services/crm-marketing-automation" },
+    ],
+  },
+];
+
 export const serviceMenuColumns: ServiceMenuColumn[] = [
   {
     // Marketing first and longest, because it is the positioning and because

@@ -50,7 +50,7 @@ const principles = [
   },
   {
     title: "No handoffs between disciplines",
-    body: "Most projects lose time and quality at the seams: the agency blames the developer, the developer blames the designer. Because all four disciplines sit with one person here, those seams do not exist.",
+    body: "Most projects lose time and quality at the seams: the agency blames the developer, the developer blames the designer. Because all three disciplines sit with one person here, those seams do not exist.",
   },
   {
     title: "Measured against pipeline, not impressions",
@@ -174,7 +174,7 @@ export default function AboutPage() {
                 What I actually do
               </h2>
               <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">
-                Four pillars that connect to each other, rather than four
+                Three disciplines that connect to each other, rather than three
                 services sold separately.
               </p>
             </Reveal>

@@ -9412,3 +9412,38 @@ sub-column is now a group a reader recognises without being told.
 Three versions in one afternoon, each one a real improvement on the last, and
 the first two were mine. Bilal called both of them: the grouping in 361 and the
 shape here.
+
+### 363. DONE (2026-10-06) — One taxonomy: three disciplines, everywhere
+
+The homepage said "Four disciplines", the Services menu said three, and the
+fourth pillar was the weakest of the four anyway. "Design, Content & Conversion"
+has had no page of its own since 2026-08-28 and its ledger row pointed at
+`/services` to dodge the 308. "CRM & Marketing Automation" is a capability, not
+a discipline, and calling it a quarter of the business overstated it.
+
+Three is what Bilal is: marketer, designer, developer. It is his GitHub bio, his
+Behance headline and the sentence that sells him.
+
+    01 Marketing     /services/digital-marketing     Google Ads · Meta & TikTok · SEO
+    02 Design        /services/ui-ux-design          UI/UX · Web design · Brand identity
+    03 Development   /services/website-app-development  React & Next.js · iOS & Android · CRM & tracking
+
+Every row now points at a real page. The old design row went to `/services`
+because its own slug redirects, which worked and read as a loose end.
+
+**`pillars` is untouched and still has four entries.** It is read by the contact
+form's dropdown, the 404 page and the item-to-pillar mapping, none of which make
+a claim about disciplines. Collapsing it would mean rewriting routing for a
+presentational change, so `homeDisciplines` sits beside it instead.
+
+**The sweep mattered more than the structure.** Four other places still said
+four, and the screenshot caught the one that would have embarrassed him: the
+ledger's own intro paragraph read "I do all four, so the strategy and the build
+never disagree", directly under a heading saying three. Also fixed on `/about`
+and `/process`, and in the component's own doc comment, which argued for four
+while rendering three.
+
+`/process` keeps "all four stages", which is the four-stage process and a
+different four.
+
+Homepage still scores 100 for `freelance digital marketer in dubai`.

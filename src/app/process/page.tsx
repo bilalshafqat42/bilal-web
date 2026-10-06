@@ -73,7 +73,7 @@ const faqs = [
   {
     question: "Who runs each stage?",
     answer:
-      "I do, all four of them. Strategy, campaign management, design and development come from the same person, so nothing is lost handing a brief from one stage to the next. Nothing is subcontracted without telling you first.",
+      "I do, all of them. Marketing, design and development come from the same person, so nothing is lost handing a brief from one stage to the next. Nothing is subcontracted without telling you first.",
   },
   {
     question: "What happens after stage four?",
