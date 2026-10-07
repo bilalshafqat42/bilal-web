@@ -6,6 +6,7 @@ import Contact from "@/components/Contact";
 import { ServiceProof } from "@/components/ProofLoop";
 import Reveal from "@/components/Reveal";
 import FaqSection from "@/components/FaqSection";
+import FurtherReading from "@/components/FurtherReading";
 import {
   megaMenuGroups,
   accentClasses,
@@ -301,6 +302,12 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
         {/* Proof loop: the work behind this service. Renders nothing for a
             service with no published work. */}
         <ServiceProof serviceSlug={category.slug} />
+
+        {/* The writing behind this service. Sits after the proof rather than
+            before it: shipped work is the stronger argument, and reading is
+            what somebody does when they are not ready to decide yet. Renders
+            nothing for the ten services with no articles of their own. */}
+        <FurtherReading serviceSlug={category.slug} />
 
         <Contact />
       </main>

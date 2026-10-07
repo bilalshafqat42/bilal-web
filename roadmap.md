@@ -9498,3 +9498,83 @@ padding are stripped and it becomes a plain underlined link at 20px. Found by
 measuring 834px as well as 390px.
 
 Final: **0 targets under 24px across 119 pages at 390, 834 and 1440.**
+
+### 365. DONE (2026-10-07) — The Services menu, four named columns
+
+Marketing was one column with `span: 2`, flowing eight items down two tracks
+with `grid-flow-col` so paid and earned stayed apart. The grouping was real and
+**invisible**: nothing on screen said the split was deliberate, so a reader saw
+eight names and an arbitrary wrap.
+
+Now four named columns, 4/4/3/4:
+
+    01 Marketing          02 Paid Marketing      03 Development         04 Design
+       Digital Marketing     Paid Marketing         Website & App Dev      UI/UX Design
+       SEO & AI Search       Google Ads             Mobile App Dev         Web Design
+       Social Media          Facebook & Meta Ads    CRM & MarTech          Graphic & Branding
+       Email Marketing       LinkedIn Marketing                            Video & Conversion
+
+No service changed pillar. Confirmed against the Claude app's own prototype of
+this menu, which independently put all fifteen services in the same three
+buckets, so the taxonomy question is settled.
+
+**Marketing before Paid**, on three grounds. Hierarchy: Paid Marketing is a
+child of Digital Marketing, which is the conclusion Bilal reached himself on
+2026-10-06, so left to right reads broad then narrow. Search: "digital
+marketing in dubai" is the largest term on the board at 1,300 and this puts its
+page first in source order sitewide. Journey: somebody who knows they want
+Google Ads will find it anywhere; somebody who does not needs the general box
+first.
+
+`span` is gone from `ServiceMenuColumn` and the `grid-flow-col` branch is gone
+from `Nav`, both now unreachable.
+
+### 366. DONE (2026-10-07) — Service pages linked to no articles at all
+
+Search Console on 2026-10-07 reported 44 pages "Crawled - currently not
+indexed". Thirty-one are WordPress feeds and tag archives that will never
+return. Thirteen are ours, crawled on 5 and 6 October — nine of them the
+job-title articles.
+
+Counting every internal link to those nine across all 119 sitemap URLs:
+
+    /blog and /blog/page/2     every article
+    other articles             2 to 5 each
+    service pages              0
+
+**Not one of the fifteen service pages linked to a single article.** Checked all
+fifteen; the only non-service link any carried was `/real-estate-marketing`.
+
+That matters because the service pages hold the rankings and whatever authority
+eleven referring domains buy, and all of it flowed nowhere — while nine new
+articles sat vouched for only by other new articles, which is a closed loop and
+a weak signal.
+
+Fixed with `serviceArticles.ts`, which **inverts `articleServices.ts`** by
+calling `serviceForArticle` on every post and grouping the result. Same map read
+two ways, so a retag lands in both directions at once. A hand-written slug list
+would go stale the first time an article shipped and nobody remembered — the
+failure the footer already has, carrying six of fifteen services hardcoded.
+
+Newest three per service, so every future article gets a service link the day it
+ships, which is exactly when it needs one.
+
+**Inheritance was tried and dropped.** The first version let the ten services
+with no articles of their own borrow from their menu parent: SEO and Email from
+Digital Marketing, Google Ads from Paid Marketing, Web Design from UI/UX.
+Modelled against the real data it put an **identical block on four pages** and
+covered **zero** additional articles, since the parent's newest three are
+already linked from the parent. All it added was duplication and a reader on the
+SEO page being shown an article about marketing budgets. Ten of fifteen service
+pages now render nothing here, which is the honest outcome.
+
+Result: fifteen new links from the five strongest pages, reaching **8 of the 9**
+unindexed articles. The miss is `freelance-designer-vs-design-agency`, fourth in
+the UI/UX bucket; showing four on one page and three on the others would be
+worse than the gap.
+
+**What this does not fix.** "Discovered - currently not indexed" is a judgement
+about whether the site is worth the crawl budget, and it tracks authority.
+Internal links help Google choose between our own pages; backlinks decide
+whether it cares about the site at all. Eleven referring domains is the
+constraint.
