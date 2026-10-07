@@ -412,6 +412,15 @@ export type MegaMenuGroup = {
   intro: string;
   metaTitle: string;
   metaDescription: string;
+  /** The "Typical timeline" line in the Services menu preview rail.
+   *
+   *  **Only set where this site already publishes the answer**, and each one
+   *  below names the FAQ it is condensed from. A timeline is a service promise:
+   *  inventing one would be the same fault as the prototype's fabricated
+   *  "Recent work" figures, which were dropped for the same reason. Seven of
+   *  the fifteen have no published answer and show no timeline rather than a
+   *  guessed one. */
+  railTimeline?: string;
   faqs: Faq[];
   items: MegaMenuItem[];
 };
@@ -628,6 +637,8 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     metaTitle: "Freelance Paid Marketing in Dubai — Bilal Shafqat",
     metaDescription:
       "Freelance paid marketing in Dubai across Google, Meta, TikTok and LinkedIn, with conversion tracking from day one and reporting in cost per lead.",
+    // Condensed from "How long before the numbers mean anything?"
+    railTimeline: "Two to four weeks before the numbers mean anything",
     faqs: [
       {
         question: "Which platforms do you manage?",
@@ -680,6 +691,8 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     metaTitle: "Freelance Google Ads in Dubai — Bilal Shafqat",
     metaDescription:
       "Google Ads in Dubai planned and managed by a freelancer, with tracking built before the spend starts and reporting in enquiries rather than clicks.",
+    // Condensed from "How soon will I see results?"
+    railTimeline: "Clicks immediately, useful conclusions in weeks",
     faqs: [
       {
         question: "What budget do I need to start?",
@@ -890,6 +903,8 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     metaTitle: "Freelance Web Developer in Dubai — Bilal Shafqat",
     metaDescription:
       "Freelance web developer in Dubai building Next.js and WordPress sites, landing pages and custom tools, for someone who runs the campaigns.",
+    // Condensed from "How long does a website take?"
+    railTimeline: "Landing page two weeks, a full site four to eight",
     faqs: [
       {
         question: "What do you build with?",
@@ -946,6 +961,8 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     metaTitle: "Mobile App Development in Dubai — Bilal Shafqat",
     metaDescription:
       "Mobile app development in Dubai: React Native for iOS and Android, with the back end, analytics and launch campaign built in. Shipped work.",
+    // Condensed from "How long does an app take?"
+    railTimeline: "Months rather than weeks, scope decides",
     faqs: [
       {
         question: "Native or React Native?",
@@ -1091,6 +1108,8 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     metaTitle: "Freelance Graphic Designer in Dubai — Bilal Shafqat",
     metaDescription:
       "Freelance graphic designer in Dubai: logo design, colour and typography systems, documented brand guidelines, company profiles and pitch decks.",
+    // Condensed from "How long does a brand project take?"
+    railTimeline: "Two to four weeks for an identity with guidelines",
     faqs: [
       {
         question: "Do we need a full rebrand?",
@@ -1167,6 +1186,8 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     metaTitle: "Freelance SEO Consultant in Dubai — Bilal Shafqat",
     metaDescription:
       "Freelance SEO consultant in Dubai covering technical SEO, local search and AI visibility, measured against enquiries rather than rankings.",
+    // Condensed from "How long does SEO take in Dubai?"
+    railTimeline: "Weeks for technical fixes, six to twelve months for rankings",
     faqs: [
       {
         question: "Can you get me to number one?",
@@ -1255,6 +1276,8 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     metaTitle: "Freelance Video Editor in Dubai — Bilal Shafqat",
     metaDescription:
       "Freelance video editor in Dubai, plus conversion rate optimisation, landing page audits and A/B testing on the pages that video sends traffic to.",
+    // Condensed from "How long does a video take?"
+    railTimeline: "Days from supplied footage, not weeks",
     faqs: [
       {
         question: "What kind of video do you edit?",

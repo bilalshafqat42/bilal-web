@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown, ArrowRight, Search } from "lucide-react";
 import { openSearchPanel } from "@/lib/searchPanel";
+import ServiceRail from "@/components/ServiceRail";
 import { accentClasses, megaMenuGroups, serviceMenuColumns } from "@/data/pillars";
 
 /**
@@ -106,6 +107,12 @@ function MegaPanel({
 
 /** Contents of the Services panel. */
 function ServicesMenu({ onNavigate }: { onNavigate: () => void }) {
+  /** Which service the preview rail is showing. `null` is the default panel.
+   *
+   *  Set on hover **and** on focus, so the rail works for somebody tabbing
+   *  through the menu rather than only for a mouse. */
+  const [preview, setPreview] = useState<string | null>(null);
+
   return (
     <>
       {/* Four numbered columns of real pages, replacing fifteen flat groups of
@@ -124,7 +131,11 @@ function ServicesMenu({ onNavigate }: { onNavigate: () => void }) {
 
           The numbering is not decoration. It says "this is a finite set you can
           read all of", which is the thing a long menu most needs to say. */}
-      <div className="grid grid-cols-4 gap-x-10">
+      {/* The rail is a fifth column, and only above `xl`. Below that the four
+          service columns already use the full width, and squeezing a preview
+          panel in would cost the menu more than it adds. There is no hover on a
+          phone at all, so the mobile menu does not render it. */}
+      <div className="grid grid-cols-4 gap-x-10 xl:grid-cols-[repeat(4,minmax(0,1fr))_1.08fr]">
         {serviceMenuColumns.map((column, i) => (
           <div
             key={column.title}
@@ -159,6 +170,8 @@ function ServicesMenu({ onNavigate }: { onNavigate: () => void }) {
                     <Link
                       href={`/services/${slug}`}
                       onClick={() => onNavigate()}
+                      onMouseEnter={() => setPreview(slug)}
+                      onFocus={() => setPreview(slug)}
                       className="group/item flex items-start gap-2.5 text-sm text-muted transition-colors hover:text-ink"
                     >
                       <span
@@ -173,6 +186,28 @@ function ServicesMenu({ onNavigate }: { onNavigate: () => void }) {
             </ul>
           </div>
         ))}
+
+        {/* `aria-hidden`, and every link inside it is `tabIndex={-1}`. The rail
+            shows what the service page already says and its one link goes where
+            the service link beside it goes, so to a screen reader it is fifteen
+            duplicate destinations and a paragraph read twice. `aria-live` would
+            be worse: announcing the panel on every hover turns a menu into a
+            stream of interruptions. Nothing here is unreachable — it is the
+            visual half of a link that is already in the tab order. */}
+        <div
+          aria-hidden="true"
+          className="hidden xl:block border-l border-border pl-10"
+        >
+          {/* `min-h` is load-bearing, not spacing. Without it the panel was 544px
+              closed and 640px on the tallest service, so the whole menu grew
+              under the cursor as you moved down a column — a jolt on every
+              hover. 32rem clears the tallest of the fifteen (Website & App
+              Development) with the card reserving the room
+              up front, so nothing reflows. */}
+          <div className="flex min-h-[32rem] rounded-2xl border border-border bg-surface/40 p-6">
+            <ServiceRail slug={preview} />
+          </div>
+        </div>
       </div>
 
       <div className="mt-8 border-t border-border pt-6">

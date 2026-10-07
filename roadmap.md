@@ -9770,3 +9770,53 @@ visible labels, and those words would stop being internal anchor text sitewide
 link text on 119 pages is a downgrade.
 
 Dropped. Recorded so it is not proposed a third time.
+
+### 373. DONE (2026-10-07) — The Services menu preview rail
+
+Fifteen service names and nothing else. Somebody who does not already know
+whether they want Web Design or UI/UX Design has to open one, read it, come back
+and open the other. **Every name in that menu was a blind click.**
+
+A fifth column now previews the hovered service: what it covers, three things it
+includes, and how long it usually takes.
+
+**Everything in it is already published on the site.** The paragraph is the
+first sentence of that service page's own intro, the bullets are its real
+section headings, and the timeline is condensed from a published FAQ answer,
+with the source FAQ named in a comment beside each one in `pillars.ts`.
+
+**Nothing was written for the menu, and that is the point.** The prototype this
+came from carried a "Recent work" line on every card — "Property developer, 4.6x
+ROAS", "Booking app, 12k installs" — and all fourteen were invented. A timeline
+is a service promise in the same way a result is a claim, so the **eight**
+services with no published answer show no timeline rather than a guessed one:
+digital-marketing, social-media-marketing, email-marketing, facebook-ads,
+linkedin-marketing, crm-marketing-automation, ui-ux-design, web-design.
+
+**The height jolt.** First build measured the panel at 544px closed and 640px on
+the tallest service, so the whole menu grew under the cursor as somebody moved
+down a column. Fixed with `min-h` on the card, which reserves the room up front.
+Measured again across the default state and all fifteen: **one height, 676px.**
+
+Two things that made 676 instead of 708. The paragraph is clamped to three lines
+— the opening sentences run 60 to 190 characters, and the longest forced 400px
+of void into every other state. And the meta block lost `mt-auto`, which had
+been pushing it to the bottom and leaving a visible gap mid-card; content now
+stacks from the top with the spare room trailing.
+
+**`aria-hidden`, with `tabIndex={-1}` on its link.** The rail repeats what the
+service page says and its link goes where the service link beside it already
+goes, so to a screen reader it is fifteen duplicate destinations and a paragraph
+read twice. `aria-live` would be worse: announcing on every hover turns a menu
+into a stream of interruptions. Nothing is unreachable — it is the visual half
+of a link already in the tab order.
+
+**Works on keyboard.** `onFocus` as well as `onMouseEnter`, verified by tabbing:
+six tabs, six matching rail headings.
+
+**Desktop only, `xl` and above.** Below that the four columns already use the
+full width. There is no hover on a phone, so the mobile menu does not render it.
+
+Verified: one panel height across sixteen states, no console errors, no
+horizontal overflow at 1600/1280/834, all five CI checks green, on-page scores
+unchanged.

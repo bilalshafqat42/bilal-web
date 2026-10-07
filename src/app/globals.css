@@ -1248,3 +1248,22 @@ html[data-consent-open] .floating-enquiry {
     transition: none;
   }
 }
+
+/* The Services menu preview rail swap.
+ *
+ * A fade and a 7px rise, 280ms. Short enough that moving down a list of
+ * services does not feel like waiting on an animation, long enough that the
+ * panel reads as replaced rather than as flickering.
+ *
+ * Applied in `ServiceRail.tsx` through `motion-safe:`, so it is absent under
+ * `prefers-reduced-motion` without needing a rule here. */
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
