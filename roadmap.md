@@ -9603,3 +9603,40 @@ Portfolio. Grid went `1.4fr 0.9fr 1.2fr 1.1fr 0.9fr` to
 has no sixth slot to span into.
 
 Checked on the rendered homepage: all fifteen `/services/` URLs present.
+
+### 368. DONE (2026-10-07) — /services/web-design, 41 to 92
+
+Scored **41/100** for "web designer dubai" on 1,804 words and sixteen
+subheadings. Not a thin page: a page whose title claimed a phrase the body
+contained **zero** times. The fifth time this exact title/body mismatch has been
+measured here, after the homepage, five service pages and four articles.
+
+| Check | Was | Now |
+| --- | ---: | ---: |
+| Keyword in `<h1>` | 0/14 | 14/14 |
+| Keyword in meta description | 0/8 | 8/8 |
+| Keyword in an `<h2>`/`<h3>` | 0/8 | 8/8 |
+| Keyword in the first 100 words | 0/8 | 8/8 |
+| Keyword twice in the body | 0/8 | 8/8 |
+| Density 0.3-2.5% | 0/5 | 5/5 |
+| **Total** | **41** | **92** |
+
+Three occurrences in 1,809 words, density 0.50%. Changes were the headline, the
+intro, the meta description and one depth heading. No section rewritten: the
+content was already there and already covered `responsive website design dubai`
+and `wordpress web design dubai` (roadmap 346).
+
+**Two checks deliberately left failing, 8 points.**
+
+*Keyword at the start of the title* (4). Would mean dropping "Freelance", the
+word that makes these terms winnable at all since agencies will not use it
+(roadmap 319), and which Bilal asked for on all twelve titles.
+
+*Keyword in an image alt* (4). The four images on this page are client logos and
+their alt text is the client name, which is what alt text is for. Writing
+"web designer in Dubai" into a logo's alt would be stuffing.
+
+**The description needed two passes.** At 158 characters it passed the 120-160
+check and rendered at **1014px against Google's ~920px budget** — truncated. The
+character count is not the measurement, which is why `serp-preview.mjs` exists
+(roadmap 336). Trimmed to 141 characters / 900px.

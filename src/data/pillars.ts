@@ -1030,12 +1030,25 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     slug: "web-design",
     title: "Web Design",
     accent: "gold",
-    headline: "Websites designed around what you need them to do, not around a template",
+    // Retargeted 2026-10-07 (roadmap 368). The page scored 41/100 for "web
+    // designer dubai" on 1,804 words and sixteen subheadings — not a thin page,
+    // a page whose title claimed a phrase the body contained **zero** times.
+    // The same title/body mismatch found on the homepage, five service pages
+    // and four articles, and the fifth time this exact fault has been measured.
+    //
+    // The headline and intro now carry the phrase; the h1 is what the scorer
+    // weights heaviest at 14 points and it was the single largest miss.
+    headline: "A freelance web designer in Dubai who designs around the enquiry, not the template",
     intro:
-      "A website that looks good and converts nobody is a cost. Most of the design decisions that matter here are not visual ones: what the first screen has to say, how few steps stand between interest and an enquiry, and what gets cut. The visual work comes after those, and is much easier once they are settled.",
+      "A website that looks good and converts nobody is a cost. Most of what a web designer in Dubai actually decides is not visual: what the first screen has to say, how few steps stand between interest and an enquiry, and what gets cut. The visual work comes after those, and is much easier once they are settled.",
+    // Deliberately still opening on "Freelance" rather than on the search
+    // phrase, which costs 4 points on the "keyword at the START of title"
+    // check. "Freelance" is the word that makes these terms winnable at all,
+    // since agencies will not use it (roadmap 319), and Bilal asked for it on
+    // all twelve titles. Four points is the right price for that.
     metaTitle: "Freelance Web Designer in Dubai — Bilal Shafqat",
     metaDescription:
-      "Website and landing page design from a Dubai freelancer who also builds and markets what he designs. Designed around enquiries, not around a template.",
+      "Freelance web designer in Dubai, designing websites and landing pages around enquiries rather than a template, by the person who builds them.",
     faqs: [
       {
         question: "Do you design in Figma or straight in code?",

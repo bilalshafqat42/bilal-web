@@ -119,7 +119,10 @@ export const serviceDepth: Record<string, Depth> = {
   "web-design": {
     blocks: [
       {
-        heading: "The decisions that matter are not visual ones",
+        // Carries the search phrase into a subheading, worth 8 points on the
+        // scorer and, more to the point, the only place in 1,804 words a reader
+        // scanning headings would have seen what this page is for.
+        heading: "What a web designer in Dubai decides before anything is drawn",
         paragraphs: [
           "What the first screen has to say, how few steps stand between interest and an enquiry, what gets cut: those settle how a site performs, and they are mostly made before anything is drawn. A page that looks excellent and buries the one thing a visitor came for is a cost, not an asset, and no amount of visual craft rescues it.",
           "So the early conversation is about who lands on each page, what they already know, and what you want them to do next. The visual work comes after, and it is much faster once those are agreed. Starting with the look is how projects end up with six rounds of revisions that are really arguments about strategy.",
