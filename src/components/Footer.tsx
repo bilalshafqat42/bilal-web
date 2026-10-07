@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { disciplinesWithPages, disciplineItems } from "@/data/disciplines";
+import { megaMenuGroups, serviceMenuColumns } from "@/data/pillars";
 import Image from "next/image";
 import { Building2, MapPin } from "lucide-react";
 import SocialLinks from "./SocialLinks";
@@ -43,14 +44,32 @@ const companyLinks = [
   { label: "Contact", href: "/contact" },
 ];
 
-const serviceLinks = [
-  { label: "Paid Marketing", href: "/services/paid-marketing" },
-  { label: "Website & App Development", href: "/services/website-app-development" },
-  { label: "UI/UX Design", href: "/services/ui-ux-design" },
-  { label: "Social Media Marketing", href: "/services/social-media-marketing" },
-  { label: "Graphic Design & Branding", href: "/services/graphic-design-branding" },
-  { label: "CRM & MarTech Integration", href: "/services/crm-marketing-automation" },
-];
+/**
+ * Every service, grouped the way the Services menu groups them.
+ *
+ * **Was six hardcoded links out of fifteen.** Nine service pages had no footer
+ * link at all, which on a site whose strongest signal is its own internal
+ * linking meant nine pages were being vouched for by the menu and nothing else.
+ * The footer renders on all 119 pages, so a link here is the cheapest sitewide
+ * vote a page can get, and it was the same omission the Portfolio column above
+ * was derived to avoid.
+ *
+ * Derived from `serviceMenuColumns` rather than listed, for the reason that
+ * column already records: a hardcoded list drifts the moment a service is added
+ * or renamed and nobody remembers this file. That is exactly how it got to six
+ * of fifteen.
+ *
+ * Grouped rather than flattened so the footer states the same taxonomy as the
+ * menu and the homepage. One taxonomy everywhere is worth more over a year than
+ * any per-surface cleverness (roadmap 363).
+ */
+const serviceGroups = serviceMenuColumns.map((column) => ({
+  title: column.title,
+  links: column.slugs
+    .map((slug) => megaMenuGroups.find((g) => g.slug === slug))
+    .filter((g): g is NonNullable<typeof g> => Boolean(g))
+    .map((g) => ({ label: g.title, href: `/services/${g.slug}` })),
+}));
 
 // Sectors worked in rather than pages that exist, so these are plain text. The
 // moment any of them earns a real page, it becomes a link.
@@ -108,7 +127,7 @@ export default function Footer() {
         {/* The oversized mark now opens the footer instead of closing it. */}
         <FooterWordmark />
 
-        <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.9fr_1.2fr_1.1fr_0.9fr]">
+        <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.8fr_2.4fr_1.1fr_0.9fr]">
           <div>
             <Image
               src="/logo/bilal-square-light.svg"
@@ -142,17 +161,33 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
+          {/* All fifteen, in two sub-columns under their menu headings. One flat
+              list of fifteen would run seven rows past every neighbour and make
+              the footer look broken; two sub-columns keep it the same height as
+              Company and Portfolio. */}
+          <div className="sm:col-span-2 lg:col-span-1">
             <p className="text-sm font-semibold text-ink">Services</p>
-            <ul className="mt-4 space-y-2.5">
-              {serviceLinks.map((l) => (
-                <li key={l.label}>
-                  <Link href={l.href} className="text-sm text-muted transition-colors hover:text-gold">
-                    {l.label}
-                  </Link>
-                </li>
+            <div className="mt-4 grid gap-x-8 gap-y-6 sm:grid-cols-2">
+              {serviceGroups.map((group) => (
+                <div key={group.title}>
+                  <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted/60">
+                    {group.title}
+                  </p>
+                  <ul className="mt-2.5 space-y-2.5">
+                    {group.links.map((l) => (
+                      <li key={l.href}>
+                        <Link
+                          href={l.href}
+                          className="text-sm text-muted transition-colors hover:text-gold"
+                        >
+                          {l.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
 
           {/* Portfolio, added when the discipline pages shipped. These are new

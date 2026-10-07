@@ -9578,3 +9578,28 @@ about whether the site is worth the crawl budget, and it tracks authority.
 Internal links help Google choose between our own pages; backlinks decide
 whether it cares about the site at all. Eleven referring domains is the
 constraint.
+
+### 367. DONE (2026-10-07) — The footer carried six services out of fifteen
+
+`Footer.tsx` listed six service links, hardcoded. **Nine service pages had no
+footer link at all**, which on a site whose strongest signal is its own internal
+linking meant nine pages were vouched for by the menu and by nothing else.
+
+The footer renders on all 119 pages, so a link here is the cheapest sitewide
+vote a page can get. The Portfolio column directly beside it was already derived
+from `disciplinesWithPages()` for exactly this reason, and the note there says
+so — the Services column was the one that never got the same treatment, which is
+how it drifted to six of fifteen.
+
+Now derived from `serviceMenuColumns` and `megaMenuGroups`, grouped under the
+same four headings the menu uses (roadmap 365), so the footer states the same
+taxonomy as the menu and the homepage.
+
+**Two sub-columns rather than one flat list.** Fifteen links in a single column
+ran seven rows past every neighbour and made the footer look broken. A 2x2 of
+the four menu groups inside a widened grid cell keeps it level with Company and
+Portfolio. Grid went `1.4fr 0.9fr 1.2fr 1.1fr 0.9fr` to
+`1.3fr 0.8fr 2.4fr 1.1fr 0.9fr`; no `col-span`, since the five-column template
+has no sixth slot to span into.
+
+Checked on the rendered homepage: all fifteen `/services/` URLs present.
