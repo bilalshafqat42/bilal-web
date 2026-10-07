@@ -9640,3 +9640,81 @@ their alt text is the client name, which is what alt text is for. Writing
 check and rendered at **1014px against Google's ~920px budget** — truncated. The
 character count is not the measurement, which is why `serp-preview.mjs` exists
 (roadmap 336). Trimmed to 141 characters / 900px.
+
+### 369. CORRECTED (2026-10-07) — The scorer marked a page down for punctuation
+
+`/services/ui-ux-design` scored **29/100** for "ui ux designer dubai" on a page
+whose title and h1 both read "UI/UX Designer in Dubai". The keyword splits on
+whitespace and the matcher then demanded whitespace in the page, so `UI/UX`
+never matched `ui ux`.
+
+Same class of bug as the stop-word one (roadmap 358): **the tool was wrong, not
+the page.** Google treats `UI/UX` and `UI UX` as the same thing.
+
+The separator is now `\s+` with an optional stop word, **or** a slash or hyphen.
+Hyphens for the same reason: "e-commerce", "cross-platform". Applied to both
+`onpage-check.mjs` and the duplicated scorer in `daily.mjs`.
+
+Lifted `/services/ui-ux-design` from 29 to 41 with no change to the page.
+
+### 370. DONE (2026-10-07) — All fifteen service pages retargeted, 29-96 to 92-96
+
+Bilal asked why the scores were so low and to fix every service page.
+
+Measured first, all fifteen against the phrase each page's own title claims:
+
+| | Was | Now |
+| --- | ---: | ---: |
+| pages at 92 or above | 3 | **15** |
+| pages at 41 or below | 10 | 0 |
+| lowest | 29 | 92 |
+
+**Eleven of the fifteen had the identical fault**: the title claimed a phrase
+the h1 and body contained **zero** times. Not thin pages — most run 1,500 to
+1,800 words with twelve to sixteen subheadings. The subject was covered; the
+phrase a buyer types was not. This is the sixth, seventh and eighth time this
+exact mismatch has been found here, after the homepage, five service pages and
+four articles.
+
+Per page: the headline, the first line of the intro, the meta description and
+one depth heading. **No section was rewritten and no claim was added.** Six
+titles also changed, where the existing wording blocked the phrase outright:
+
+| Page | Title was | Now |
+| --- | --- | --- |
+| email-marketing | Email Marketing **Manager** in Dubai | Email Marketing in Dubai |
+| paid-marketing | Paid **Ads Expert** in Dubai | Paid Marketing in Dubai |
+| google-ads | Google Ads **Expert** in Dubai | Google Ads in Dubai |
+| facebook-ads | Facebook Ads **Expert** in Dubai | Facebook Ads in Dubai |
+| crm-marketing-automation | CRM **&** Automation Consultant in Dubai | CRM Consultant in Dubai |
+| video-conversion | Video Editor **& CRO Specialist** in Dubai | Video Editor in Dubai |
+
+Each of those middle words broke the phrase a searcher types. "Google Ads Expert
+in Dubai" does not contain "google ads dubai".
+
+**Two checks left failing everywhere, 8 points, deliberately.**
+
+*Keyword at the start of the title.* Would mean dropping "Freelance", the word
+that makes these terms winnable at all since agencies will not use it (roadmap
+319), and which Bilal asked for across the set.
+
+*Keyword in an image alt.* The four images on every service page are client
+logos and their alt text is the client name, which is what alt text is for.
+
+**Seven descriptions were truncated and would have shipped that way.** All
+passed the 120-160 character check and rendered between 924px and 991px against
+Google's ~920px budget. Character count is not the measurement, which is why
+`serp-preview.mjs` exists (roadmap 336). All fifteen now fit.
+
+**Two caught by the CI checks.** A new facebook-ads heading used the word
+"cheap" and collided with the `cheap flights` noise fixture in `search-check` —
+a word already documented as reserved after the Snapchat article did the same
+thing (roadmap 331). And `schema-check` defaults to `localhost:3000`, which on
+this machine is a different project's dev server; it fails there and passes on
+the real port. Worth knowing before reading it as a regression.
+
+All five checks green: h1, schema, search, related, discipline.
+
+**What this does not mean.** 92 is a score from a checklist in this repository,
+not a signal from Google. On-page is the half we control and it is necessary
+rather than sufficient. The eleven referring domains still decide the order.

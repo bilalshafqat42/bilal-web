@@ -59,9 +59,13 @@ function score(doc, kw) {
   // Stop-word tolerant, matching onpage-check.mjs. A page saying "mobile app
   // development in Dubai" satisfies the keyword "mobile app development dubai";
   // literal matching marked it down for being written in English.
+  // Slash and hyphen allowed as separators too, matching onpage-check.mjs:
+  // "UI/UX Designer in Dubai" satisfies "ui ux designer dubai". Google treats
+  // the two as the same; demanding whitespace marked a page down for
+  // punctuation (roadmap 369).
   const STOP = "(?:in|for|the|a|an|at|of|and|to|on)";
   const esc = (w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const pat = kw.trim().split(/\s+/).map(esc).join(`\\s+(?:${STOP}\\s+)?`);
+  const pat = kw.trim().split(/\s+/).map(esc).join(`(?:\\s+(?:${STOP}\\s+)?|\\s*[/-]\\s*)`);
   const kwRe = new RegExp(pat, "i");
   const count = (low.match(new RegExp(pat, "gi")) || []).length;
   const density = words.length ? (count * kw.split(/\s+/).length * 100) / words.length : 0;

@@ -41,7 +41,7 @@ export const serviceDepth: Record<string, Depth> = {
   "seo": {
     blocks: [
       {
-        heading: "The technical work comes first, and it is usually the smallest part",
+        heading: "What an SEO consultant in Dubai does first, and why it is the smallest part",
         paragraphs: [
           "Most sites I audit are not held back by keywords. They are held back by things underneath: pages a crawler cannot read properly, titles that describe the company instead of the search, headings that run two words together, structured data that is absent or broken, and a server that takes a second to answer before anything else can start.",
           "None of that is glamorous and most of it is a few days of work. It is also the part that has to be right before content can do anything, because a page Google struggles to read will not rank however well it is written. I would rather find a technical problem and fix it in a week than sell you six months of content on a site that cannot carry it.",
@@ -218,7 +218,7 @@ export const serviceDepth: Record<string, Depth> = {
   "facebook-ads": {
     blocks: [
       {
-        heading: "The low-cost lead is the expensive one",
+        heading: "Why Facebook ads in Dubai produce low-cost leads and expensive meetings",
         paragraphs: [
           "Instant forms are the most common thing wrong with Meta accounts in this market. They produce leads at a cost per lead that looks excellent on the report and a meaningful share of them are not real prospects: somebody tapped twice between two videos and the form filled itself from their profile without being read.",
           "The report says AED 12 a lead. The sales team says half the numbers do not answer and a third were never interested. Both are true, and only one of them is in the dashboard. The number to hold the account to is cost per qualified conversation, which usually makes a slightly more expensive lead the cheaper one.",
@@ -269,7 +269,7 @@ export const serviceDepth: Record<string, Depth> = {
   "linkedin-marketing": {
     blocks: [
       {
-        heading: "What you are actually paying for",
+        heading: "What LinkedIn marketing in Dubai actually costs you, and buys you",
         paragraphs: [
           "A click here costs several times what it does on Meta, and the comparison is misleading. On Meta you pay a little to reach a lot of people, most of whom are irrelevant. On LinkedIn you pay a lot to reach exactly the heads of procurement at companies over a certain size in a named industry, which no other platform can do.",
           "So the arithmetic only works for audiences that are narrow and valuable. A commercial property deal or a B2B contract justifies a high cost per click. A residential apartment usually does not, and I would rather say so before the budget moves than after.",
@@ -312,7 +312,7 @@ export const serviceDepth: Record<string, Depth> = {
   "google-ads": {
     blocks: [
       {
-        heading: "The first week is spent on what you are paying for",
+        heading: "The first week of Google Ads in Dubai is spent finding what you are paying for",
         paragraphs: [
           "Google will happily spend a budget on searches that were never going to convert, and the default settings help it. The expensive part of most accounts is not the bid, it is the breadth: broad match reaching for anything loosely related, no negative list, and a search terms report nobody has read since launch.",
           "So the first work is subtraction. Pull the search terms report, see what you actually showed for, and build the negative list from reality rather than from a template. In Dubai property that single exercise routinely removes a third of the spend without touching a bid, because a large share of the traffic is brokers, students and people researching a city they are not buying in.",
@@ -468,7 +468,7 @@ export const serviceDepth: Record<string, Depth> = {
   "paid-marketing": {
     blocks: [
       {
-        heading: "Tracking goes in before the spend does",
+        heading: "Paid marketing in Dubai starts with the tracking, not the spend",
         paragraphs: [
           "Most accounts I inherit are spending money they cannot account for. The pixel fires on every page load rather than on a real enquiry, form submissions are counted twice, and the platform is optimising towards a conversion that does not mean anything. Until that is fixed, every reported number is fiction and every optimisation decision is a guess.",
           "So the first week is not campaign building. It is auditing what is currently tracked, defining what actually counts as a lead for your business, and wiring that up properly, including server-side tracking through the Conversions API where the browser alone is no longer reliable. Only once the measurement is honest does budget start moving.",
@@ -763,7 +763,7 @@ export const serviceDepth: Record<string, Depth> = {
   "website-app-development": {
     blocks: [
       {
-        heading: "Built around the campaign that feeds it",
+        heading: "What a web developer in Dubai should be building around",
         paragraphs: [
           "A landing page built in isolation from the campaign pointing at it is where most paid budget quietly leaks. The ad promises one thing, the page opens with another, and the form asks for eight fields when three would do. None of that shows up as a broken link, so it goes unnoticed for months.",
           "Because the campaign and the build sit with the same person here, the page is designed against the ad that will send traffic to it: the same promise above the fold, the qualifier high enough to filter, and one primary action with anything secondary visibly subordinate to it.",
@@ -851,7 +851,7 @@ export const serviceDepth: Record<string, Depth> = {
   "ui-ux-design": {
     blocks: [
       {
-        heading: "Design that survives contact with development",
+        heading: "What a UI/UX designer in Dubai hands a developer",
         paragraphs: [
           "A lot of interface design falls apart at handover. It looks right in the design file and then breaks in the browser, because the layout assumed one text length, the states were never drawn, and nobody decided what happens on a 360px screen.",
           "Because the same person builds it afterwards, the design is made against what the browser will actually do. Long names, empty states, error states and loading states are decided during design rather than improvised during development, which is where most of the visual drift between a mockup and a live site comes from.",
@@ -930,7 +930,7 @@ export const serviceDepth: Record<string, Depth> = {
         // "dubai graphic designer" another 320. The page is titled "Graphic
         // Design & Branding" and used neither phrase in its body, because the
         // copy led with branding and treated graphic design as implied.
-        heading: "Graphic design in Dubai, beyond the brand guidelines deck",
+        heading: "What a graphic designer in Dubai delivers beyond the guidelines deck",
         paragraphs: [
           "Branding projects get the attention and graphic design is what a business actually needs most weeks: the company profile for a tender, the pitch deck for Thursday, the hoarding for the site, the brochure the sales team hands over, the ad creative that has to exist in nine sizes by Sunday.",
           "In this market the formats are specific. A company profile that will be printed and also emailed as a PDF. Bilingual layouts where the Arabic is set properly rather than pasted in and left looking like an afterthought. Collateral for an exhibition stand, where the viewing distance changes every size decision. Creative sized for the places UAE audiences actually are, which includes WhatsApp and Instagram more than it includes anything printed.",
@@ -1013,7 +1013,7 @@ export const serviceDepth: Record<string, Depth> = {
   "crm-marketing-automation": {
     blocks: [
       {
-        heading: "The measurement problem underneath everything",
+        heading: "The measurement problem a CRM consultant in Dubai is really hired for",
         paragraphs: [
           "Almost every reporting argument I get called into is really a tracking problem. Marketing counts leads one way, sales counts them another, and both numbers are defended for weeks because neither is verifiable. The disagreement is not about performance, it is about definitions nobody wrote down.",
           "The fix is unglamorous: agree what a lead is, make the form capture it that way, make the CRM store it that way, and make the ad platform optimise towards that same event. Once the same definition runs end to end, the reporting argument disappears because there is only one number.",
@@ -1084,7 +1084,7 @@ export const serviceDepth: Record<string, Depth> = {
   "email-marketing": {
     blocks: [
       {
-        heading: "The list is the problem, not the email",
+        heading: "Email marketing in Dubai fails at the list, not at the writing",
         paragraphs: [
           "A nurture sequence sent to one undifferentiated list is a broadcast wearing a costume. The person who downloaded a floor plan last week and the person who enquired eighteen months ago and went quiet need different messages, and if the list cannot tell them apart then neither can the sequence. Segmentation is not an advanced feature you add later; it is the thing that decides whether any of it works.",
           "That segmentation has to come from data the forms actually capture. If the enquiry form collects a name and an email and nothing else, there is nothing to segment on, and no amount of writing fixes it. This is why the email work and the CRM work are the same job — I would rather change the form than write cleverer copy around a field that was never collected.",
@@ -1133,7 +1133,7 @@ export const serviceDepth: Record<string, Depth> = {
   "video-conversion": {
     blocks: [
       {
-        heading: "Video that has a job to do",
+        heading: "What a video editor in Dubai should be briefed on",
         paragraphs: [
           "Video is expensive to produce and easy to waste. A film that wins compliments internally and moves nothing commercially is a common and costly outcome, usually because nobody decided what it was for before it was made.",
           "So the brief starts with the job: stopping the scroll in a feed, explaining a product to someone already interested, or reassuring a buyer who is close to deciding. Those are three different edits, three different lengths and three different opening seconds, and a single film rarely does all three well.",

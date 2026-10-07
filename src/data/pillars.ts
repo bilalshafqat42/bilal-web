@@ -617,17 +617,17 @@ export const megaMenuGroups: MegaMenuGroup[] = [
   {
     slug: "paid-marketing",
     title: "Paid Marketing",
-    headline: "Paid marketing that reports cost per lead, not impressions",
+    headline: "Paid marketing in Dubai, reported as cost per lead rather than impressions",
     intro:
-      "Paid media only works when it is built around the sales pipeline it feeds. I plan, launch and manage campaigns across Google and every major social platform, with conversion tracking configured before a dirham is spent, so performance is measured against real enquiries rather than clicks and reach.",
+      "Paid marketing in Dubai only works when it is built around the sales pipeline it feeds. I plan, launch and manage campaigns across Google and every major social platform, with conversion tracking configured before a dirham is spent, so performance is measured against real enquiries rather than clicks and reach.",
     // Narrowed 2026-10-04 when Google Ads got its own page below. "Google Ads &
     // Paid Ads" carried two searches and so competed for neither — the same
     // ampersand problem fixed on the designer and developer pages in Phase 2.
     // This is now the hub: the platform sections live here, Google Ads has the
     // volume and therefore its own page.
-    metaTitle: "Freelance Paid Ads Expert in Dubai — Bilal Shafqat",
+    metaTitle: "Freelance Paid Marketing in Dubai — Bilal Shafqat",
     metaDescription:
-      "Google, Meta, TikTok and LinkedIn campaigns run by a Dubai freelance specialist. Conversion tracking from day one, reported as cost per lead.",
+      "Freelance paid marketing in Dubai across Google, Meta, TikTok and LinkedIn, with conversion tracking from day one and reporting in cost per lead.",
     faqs: [
       {
         question: "Which platforms do you manage?",
@@ -674,12 +674,12 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     slug: "google-ads",
     title: "Google Ads",
     accent: "cyan",
-    headline: "Search is the one channel where people tell you what they want",
+    headline: "Google Ads in Dubai: the one channel where people type what they want",
     intro:
-      "Everywhere else you interrupt someone. On search they have typed the thing they are looking for, in their own words, which makes it the shortest route from a budget to an enquiry and usually the place to start. It is also the easiest place to waste money, because the default settings are built to spend it.",
-    metaTitle: "Freelance Google Ads Expert in Dubai — Bilal Shafqat",
+      "Everywhere else you interrupt someone. On search they have typed the thing they are looking for, in their own words, which makes Google Ads in Dubai the shortest route from a budget to an enquiry and usually the place to start. It is also the easiest place to waste money, because the default settings are built to spend it.",
+    metaTitle: "Freelance Google Ads in Dubai — Bilal Shafqat",
     metaDescription:
-      "Google Ads planned and managed by a Dubai freelancer, with tracking built before the spend starts and reporting in cost per enquiry rather than cost per click.",
+      "Google Ads in Dubai planned and managed by a freelancer, with tracking built before the spend starts and reporting in enquiries rather than clicks.",
     faqs: [
       {
         question: "What budget do I need to start?",
@@ -730,12 +730,12 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     slug: "facebook-ads",
     title: "Facebook & Meta Ads",
     accent: "violet",
-    headline: "The creative does the targeting, and the form decides what you get",
+    headline: "Facebook ads in Dubai: the creative targets, the form decides what you get",
     intro:
-      "Nobody opens Facebook or Instagram to buy something, so a campaign here has to earn attention rather than capture it. That makes the creative the real targeting mechanism, and it makes the lead form the place where most budgets quietly go wrong.",
-    metaTitle: "Freelance Facebook Ads Expert in Dubai — Bilal Shafqat",
+      "Nobody opens Facebook or Instagram to buy something, so Facebook ads in Dubai have to earn attention rather than capture it. That makes the creative the real targeting mechanism, and it makes the lead form the place where most budgets quietly go wrong.",
+    metaTitle: "Freelance Facebook Ads in Dubai — Bilal Shafqat",
     metaDescription:
-      "Facebook and Instagram campaigns run by a Dubai freelancer, measured on qualified enquiries rather than on the cheap leads instant forms are good at producing.",
+      "Facebook ads in Dubai across Facebook and Instagram, measured on qualified enquiries rather than the cheap leads instant forms tend to produce.",
     faqs: [
       {
         question: "Why do my Meta leads never answer the phone?",
@@ -782,12 +782,12 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     slug: "linkedin-marketing",
     title: "LinkedIn Marketing",
     accent: "cyan",
-    headline: "The only platform where you can target the job title you need",
+    headline: "LinkedIn marketing in Dubai, the one place you can target a job title",
     intro:
-      "LinkedIn costs several times what the other platforms do per click, and for a narrow commercial audience it is still the cheapest way to reach them. Targeting by job title, company size and seniority is something no other channel does properly, which makes it right for B2B and commercial property and wrong for most residential.",
+      "LinkedIn marketing in Dubai costs several times what the other platforms do per click, and for a narrow commercial audience it is still the cheapest way to reach them. Targeting by job title, company size and seniority is something no other channel does properly, which makes it right for B2B and commercial property and wrong for most residential.",
     metaTitle: "Freelance LinkedIn Marketing in Dubai — Bilal Shafqat",
     metaDescription:
-      "LinkedIn campaigns and content for B2B and commercial property in Dubai, targeted by job title and company rather than by interest, and wired into your CRM.",
+      "LinkedIn marketing in Dubai for B2B and commercial property, targeted by job title and company rather than by interest, and wired into your CRM.",
     faqs: [
       {
         question: "Why is LinkedIn so expensive?",
@@ -819,12 +819,12 @@ export const megaMenuGroups: MegaMenuGroup[] = [
   {
     slug: "social-media-marketing",
     title: "Social Media Marketing",
-    headline: "Social media handled end to end, not just designed and handed over",
+    headline: "Social media marketing in Dubai, handled end to end rather than handed over",
     intro:
-      "Most social work stops at delivering assets. This covers the whole thing: the strategy, the content calendar, the creative itself, and the actual posting and engagement. Because the same person also runs the paid campaigns, organic and paid reinforce each other instead of running as separate projects.",
+      "Most social media marketing in Dubai stops at delivering assets. This covers the whole thing: the strategy, the content calendar, the creative itself, and the actual posting and engagement. Because the same person also runs the paid campaigns, organic and paid reinforce each other instead of running as separate projects.",
     metaTitle: "Social Media Marketing in Dubai — Bilal Shafqat",
     metaDescription:
-      "Social media marketing and management in Dubai: strategy, content, posting and community, run by the same freelancer handling the paid campaigns beside it.",
+      "Social media marketing in Dubai: strategy, content, posting and community, run by the same freelancer handling the paid campaigns beside it.",
     faqs: [
       {
         question: "Do you post as well as design?",
@@ -856,7 +856,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     // never used the phrase in the one field that matters most.
     metaTitle: "Digital Marketing in Dubai — Bilal Shafqat",
     metaDescription:
-      "Digital marketing in Dubai from one freelance specialist: paid ads, search, email and WhatsApp, run as one sequence rather than four separate projects.",
+      "Digital marketing in Dubai from one freelance specialist: paid ads, search, email and WhatsApp, run as one sequence rather than four projects.",
     faqs: [
       {
         question: "What is the difference between demand generation and lead generation?",
@@ -880,16 +880,16 @@ export const megaMenuGroups: MegaMenuGroup[] = [
   {
     slug: "website-app-development",
     title: "Website & App Development",
-    headline: "Websites and apps built to support the marketing pointed at them",
+    headline: "A freelance web developer in Dubai who builds for the marketing pointed at it",
     intro:
-      "A site that looks good but does not convert is a cost, not an asset. I build on Next.js for speed and search performance, React Native for mobile, and the MERN stack for custom tools, designed from the start around whatever campaigns will be sending traffic to them.",
+      "A site that looks good but does not convert is a cost, not an asset, and most of what a web developer in Dubai is asked for is the second half of that. I build on Next.js for speed and search performance, React Native for mobile, and the MERN stack for custom tools, designed from the start around whatever campaigns will be sending traffic to them.",
     // Narrowed 2026-10-02, once mobile got its own page in the category above.
     // "Web & App Developer" carried both and so was aimed at neither, which is
     // the mistake this whole phase exists to undo. Mobile searches now land on
     // the mobile page; this one is for "web developer Dubai".
     metaTitle: "Freelance Web Developer in Dubai — Bilal Shafqat",
     metaDescription:
-      "Next.js and WordPress websites, landing pages, cross-platform mobile apps and custom tools, built by a Dubai developer who also runs the campaigns.",
+      "Freelance web developer in Dubai building Next.js and WordPress sites, landing pages and custom tools, for someone who runs the campaigns.",
     faqs: [
       {
         question: "What do you build with?",
@@ -982,9 +982,9 @@ export const megaMenuGroups: MegaMenuGroup[] = [
   {
     slug: "ui-ux-design",
     title: "UI/UX Design",
-    headline: "Interface design judged on how it is used, not how it presents",
+    headline: "A UI/UX designer in Dubai, judged on how the product gets used",
     intro:
-      "A mockup that wins approval and then confuses users has failed. UI and UX work here covers wireframing, prototyping and interface design for both web and mobile, with each platform's own conventions respected rather than one generic layout stretched across both. Designs hand off cleanly into development because the same person builds them.",
+      "A mockup that wins approval and then confuses users has failed, which is the only test a UI/UX designer in Dubai should be judged on. UI and UX work here covers wireframing, prototyping and interface design for both web and mobile, with each platform's own conventions respected rather than one generic layout stretched across both. Designs hand off cleanly into development because the same person builds them.",
     // Narrowed 2026-10-02 from "Freelance Web & App Designer in Dubai". That
     // title tried to carry web design and product design at once, which is the
     // same mistake "Website & App Development" made and the reason mobile was
@@ -993,7 +993,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     // different buyer.
     metaTitle: "Freelance UI/UX Designer in Dubai — Bilal Shafqat",
     metaDescription:
-      "Wireframing, prototyping, web and mobile interface design and design systems, from a Dubai-based freelance designer who also develops the build.",
+      "Freelance UI/UX designer in Dubai: wireframing, prototyping, web and mobile interface design and design systems, from someone who builds them.",
     faqs: [
       {
         question: "Do you deliver design systems or one-off screens?",
@@ -1085,12 +1085,12 @@ export const megaMenuGroups: MegaMenuGroup[] = [
   {
     slug: "graphic-design-branding",
     title: "Graphic Design & Branding",
-    headline: "Identity that holds up beyond the logo file",
+    headline: "A graphic designer in Dubai for identity that holds up beyond the logo file",
     intro:
-      "A logo is the easy part. What matters is whether the identity still works on a website, an ad, a brochure and a pitch deck once other people are applying it. This covers logo, colour and typography systems, documented brand guidelines so anyone can apply them consistently, and the company profile and pitch materials that carry the brand into a room.",
+      "A logo is the easy part, and it is the smallest thing a graphic designer in Dubai is actually asked for. What matters is whether the identity still works on a website, an ad, a brochure and a pitch deck once other people are applying it. This covers logo, colour and typography systems, documented brand guidelines so anyone can apply them consistently, and the company profile and pitch materials that carry the brand into a room.",
     metaTitle: "Freelance Graphic Designer in Dubai — Bilal Shafqat",
     metaDescription:
-      "Logo design, colour and typography systems, documented brand guidelines, company profiles and pitch decks, from a Dubai-based freelance designer.",
+      "Freelance graphic designer in Dubai: logo design, colour and typography systems, documented brand guidelines, company profiles and pitch decks.",
     faqs: [
       {
         question: "Do we need a full rebrand?",
@@ -1113,12 +1113,12 @@ export const megaMenuGroups: MegaMenuGroup[] = [
   {
     slug: "crm-marketing-automation",
     title: "CRM & MarTech Integration",
-    headline: "The layer that stops leads being lost between systems",
+    headline: "A CRM consultant in Dubai for the layer where leads get lost",
     intro:
-      "Most leads a business loses were not lost to bad marketing. They were lost to a follow-up that never happened, because nothing was tracking them properly. This connects campaigns, website and CRM into one system: HubSpot, Zoho or Salesforce configured around how your team actually sells, server-side tracking so conversion data survives browser restrictions, and automation so a new enquiry gets a response in minutes.",
-    metaTitle: "Freelance CRM & Automation Consultant in Dubai",
+      "Most leads a business loses were not lost to bad marketing, which is why a CRM consultant in Dubai is usually called in after the ads are already working. They were lost to a follow-up that never happened, because nothing was tracking them properly. This connects campaigns, website and CRM into one system: HubSpot, Zoho or Salesforce configured around how your team actually sells, server-side tracking so conversion data survives browser restrictions, and automation so a new enquiry gets a response in minutes.",
+    metaTitle: "Freelance CRM Consultant in Dubai — Bilal Shafqat",
     metaDescription:
-      "HubSpot, Zoho and Salesforce setup, server-side tracking and Conversions API, and marketing automation workflows, from a Dubai-based freelance specialist.",
+      "Freelance CRM consultant in Dubai: HubSpot, Zoho and Salesforce setup, server-side tracking, Conversions API and automation workflows.",
     faqs: [
       {
         question: "Which CRMs do you work with?",
@@ -1161,12 +1161,12 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     slug: "seo",
     title: "SEO & AI Search",
     accent: "cyan",
-    headline: "Found by search engines, and quoted by the assistants replacing them",
+    headline: "What an SEO consultant in Dubai is actually hired to fix",
     intro:
-      "Two things have to be true for search to bring you work. The pages have to be readable by a crawler and aimed at what someone actually types, and the result has to be worth clicking when it appears. Most sites in Dubai fail the second long before the first: they rank for the company name, which only people who already know them ever search.",
+      "Two things have to be true for search to bring you work. The pages have to be readable by a crawler and aimed at what someone actually types, and the result has to be worth clicking when it appears. Most sites fail the second long before the first, and most of what an SEO consultant in Dubai gets hired for sits there: pages that rank for the company name, which only people who already know you ever search.",
     metaTitle: "Freelance SEO Consultant in Dubai — Bilal Shafqat",
     metaDescription:
-      "Technical SEO, local search and AI visibility from a Dubai freelancer. Measured against enquiries rather than rankings. One person, not an agency.",
+      "Freelance SEO consultant in Dubai covering technical SEO, local search and AI visibility, measured against enquiries rather than rankings.",
     faqs: [
       {
         question: "Can you get me to number one?",
@@ -1212,12 +1212,12 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     slug: "email-marketing",
     title: "Email Marketing",
     accent: "gold",
-    headline: "Email that follows up properly, because the CRM behind it is set up right",
+    headline: "Email marketing in Dubai is only as good as the CRM behind it",
     intro:
-      "Most email problems in the UAE are not writing problems. The sequence fires from a list nobody segmented, to contacts a form dropped in with no source attached, about an offer that stopped running. Email is the last step of a chain, and it fails where the chain does — which is usually two steps earlier, in the form or the CRM.",
-    metaTitle: "Freelance Email Marketing Manager in Dubai — Bilal Shafqat",
+      "Most email marketing in Dubai fails for reasons that are not writing problems. The sequence fires from a list nobody segmented, to contacts a form dropped in with no source attached, about an offer that stopped running. Email is the last step of a chain, and it fails where the chain does — which is usually two steps earlier, in the form or the CRM.",
+    metaTitle: "Freelance Email Marketing in Dubai — Bilal Shafqat",
     metaDescription:
-      "Welcome and nurture sequences, list segmentation and campaign design, wired into the CRM that feeds them. Dubai-based, for UAE and UK clients.",
+      "Email marketing in Dubai: welcome and nurture sequences, list segmentation and campaign design, wired into the CRM that actually feeds them.",
     faqs: [
       {
         question: "Do you have a published email case study?",
@@ -1249,12 +1249,12 @@ export const megaMenuGroups: MegaMenuGroup[] = [
   {
     slug: "video-conversion",
     title: "Video & Conversion",
-    headline: "Video that gets watched, and pages that convert what it sends",
+    headline: "A video editor in Dubai, plus the pages that convert what the video sends",
     intro:
-      "Video and conversion work belong together: one drives attention, the other decides whether that attention turns into an enquiry. This covers video editing for how high-consideration audiences actually watch, alongside conversion rate work on the pages that traffic lands on, tested against real behaviour rather than opinion.",
-    metaTitle: "Freelance Video Editor & CRO Specialist in Dubai",
+      "Hiring a video editor in Dubai and a conversion specialist separately is how the two stop talking: one drives attention, the other decides whether that attention turns into an enquiry. This covers video editing for how high-consideration audiences actually watch, alongside conversion rate work on the pages that traffic lands on, tested against real behaviour rather than opinion.",
+    metaTitle: "Freelance Video Editor in Dubai — Bilal Shafqat",
     metaDescription:
-      "Video editing for high-consideration marketing plus conversion rate optimisation, landing page audits and A/B testing, from a Dubai freelance specialist.",
+      "Freelance video editor in Dubai, plus conversion rate optimisation, landing page audits and A/B testing on the pages that video sends traffic to.",
     faqs: [
       {
         question: "What kind of video do you edit?",

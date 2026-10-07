@@ -77,15 +77,34 @@ const hasSchema = /<script type="application\/ld\+json">/.test(doc);
  * Dubai" match "marketing Dubai agency" and report a pass that is not real.
  */
 const STOP = "(?:in|for|the|a|an|at|of|and|to|on)";
-function kwRegex(kw) {
-  const parts = kw.trim().split(/\s+/).map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
-  return new RegExp(parts.join(`\\s+(?:${STOP}\\s+)?`), "i");
+
+/**
+ * The separator allowed between two keyword terms.
+ *
+ * Whitespace, optionally one stop word, **or a slash or hyphen**.
+ *
+ * The slash was added 2026-10-07 after this scorer reported
+ * `/services/ui-ux-design` at 29/100 for "ui ux designer dubai" on a page whose
+ * title and h1 both say "UI/UX Designer in Dubai". Google treats `UI/UX` and
+ * `UI UX` as the same thing; splitting the keyword on whitespace and then
+ * demanding whitespace in the page does not, and the page was marked down for
+ * punctuation. Same class of bug as the stop-word one below it: the tool was
+ * wrong, not the page.
+ *
+ * Hyphens for the same reason — "e-commerce", "cross-platform".
+ */
+const SEP = `(?:\\s+(?:${STOP}\\s+)?|\\s*[/-]\\s*)`;
+const escape = (w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+function kwPattern(kw) {
+  return kw.trim().split(/\s+/).map(escape).join(SEP);
 }
-/** How many times the keyword appears, stop words allowed between terms. */
+function kwRegex(kw) {
+  return new RegExp(kwPattern(kw), "i");
+}
+/** How many times the keyword appears, stop words and slashes allowed between
+ *  terms. */
 function kwCount(hay, kw) {
-  const parts = kw.trim().split(/\s+/).map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
-  const re = new RegExp(parts.join(`\\s+(?:${STOP}\\s+)?`), "gi");
-  return (hay.match(re) || []).length;
+  return (hay.match(new RegExp(kwPattern(kw), "gi")) || []).length;
 }
 
 const first100 = words.slice(0, 100).join(" ").toLowerCase();
