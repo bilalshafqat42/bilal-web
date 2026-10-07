@@ -323,7 +323,7 @@ export default function PortfolioShowcase() {
       <div className="site-container mt-10">
         <Link
           href="/portfolio"
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+          className="tap-target inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
         >
           View the full portfolio <ArrowRight size={15} />
         </Link>

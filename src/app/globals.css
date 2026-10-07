@@ -152,6 +152,38 @@ h6,
   line-height: 1.4;
 }
 
+/* ---------------------------------------------------------------------------
+   Tap targets.
+   ---------------------------------------------------------------------------
+   WCAG 2.2 AA (2.5.8) asks for 24x24 CSS pixels on anything you tap, with an
+   exception for links inside a sentence. Measured at 390px on 2026-10-07,
+   excluding that exception:
+
+     breadcrumb links                16px high
+     "What this costs"               20px
+     "How engagements work"          20px
+     "More about how I work"         20px
+     "See work across these services" 20px
+
+   All standalone, all failing. These are small text links that sit on their own
+   line, which is exactly the case the rule exists for: a thumb is about 44px
+   wide and a 16px target is a lottery.
+
+   Padding rather than a bigger font, so nothing moves visually: the extra
+   height is transparent and the line-height already absorbs it in a flex row.
+   `min-height` with `inline-flex` keeps the box honest when the text is one
+   line of 16px.
+
+   Scoped to `nav[aria-label="Breadcrumb"]` and `.tap-target` rather than all
+   small links, because a link inside a paragraph is exempt and padding it would
+   break the prose line height for no gain. */
+nav[aria-label="Breadcrumb"] a,
+.tap-target {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}
+
 ::selection {
   background: var(--color-gold);
   color: #14140f;

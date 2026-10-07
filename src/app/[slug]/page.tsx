@@ -220,7 +220,7 @@ export default async function ArticlePage({ params }: PageProps) {
 
               <Link
                 href="/blog"
-                className="mt-10 inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-ink"
+                className="tap-target mt-10 inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-ink"
               >
                 <ArrowLeft size={15} /> All writing
               </Link>

@@ -9447,3 +9447,54 @@ while rendering three.
 different four.
 
 Homepage still scores 100 for `freelance digital marketer in dubai`.
+
+### 364. DONE (2026-10-07) — Bug sweep: one real defect, two false alarms
+
+Bilal asked whether there were any bugs or glitches. Swept every template with a
+real browser for console errors, failed requests, missing alt text, unlabelled
+links, duplicate ids and tap target size.
+
+**Clean**: no console errors, no page errors, no missing `alt` attribute, no
+duplicate `id`, no non-200, on every template.
+
+**Two false alarms, both worth recording so they are not re-reported.**
+
+The checker flagged two links on the homepage as having no accessible name,
+`/appointment` and `/about`. Reading the markup, both have visible text: "Book a
+free consultation" and "More about how I work". `innerText` returns an empty
+string for an element that is not laid out, and both sit inside a `Reveal` that
+starts hidden. `textContent` would have been the right property. Nothing wrong
+with the page.
+
+Google Analytics shows one blocked `/g/collect` request per page in a headless
+browser. Consent defaults to denied and the headless run never accepts, which is
+the consent gate working. Real sessions are arriving: 153 in the last snapshot.
+
+**One real defect: tap targets under 24px.** WCAG 2.2 AA (2.5.8) asks for 24x24
+CSS pixels, with an exception for links inside a sentence. Measured at 390px,
+excluding that exception:
+
+    breadcrumb links                 16px
+    "What this costs"                20px
+    "SEE DETAILS" x4 on /about       16px
+    "All LEOS Developments work"     20px
+    "See work across these services" 20px
+
+Twenty-three standalone links across the site, all small text links sitting on
+their own line, which is exactly the case the rule exists for: a thumb is around
+44px wide and a 16px target is a lottery.
+
+Fixed with a `.tap-target` class and a rule on `nav[aria-label="Breadcrumb"] a`,
+both setting `min-height: 24px` with `inline-flex`. Padding rather than a larger
+font, so nothing moves visually.
+
+**Scoped rather than global.** A blanket `main a:not(p a)` rule would also hit
+card and grid links that already clear 24px, and forcing `inline-flex` onto a
+link wrapping a block element would break those layouts.
+
+**The last one was only visible at tablet width.** The hero's "See the work" is
+a bordered pill on a phone and clears 24px easily; at `sm:` the border and
+padding are stripped and it becomes a plain underlined link at 20px. Found by
+measuring 834px as well as 390px.
+
+Final: **0 targets under 24px across 119 pages at 390, 834 and 1440.**

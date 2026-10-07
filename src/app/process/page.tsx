@@ -153,7 +153,7 @@ export default function ProcessPage() {
             </p>
             <Link
               href="/pricing#engagement"
-              className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+              className="tap-target mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
             >
               See engagement models and pricing <ArrowRight size={15} />
             </Link>

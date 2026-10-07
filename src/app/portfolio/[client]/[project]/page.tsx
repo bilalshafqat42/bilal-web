@@ -324,7 +324,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
             <div className="flex flex-wrap items-center justify-between gap-6 border-t border-border pt-10">
               <Link
                 href={`/portfolio/${c.slug}`}
-                className="inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-gold transition-colors"
+                className="tap-target inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-gold transition-colors"
               >
                 <ArrowLeft size={15} /> All {c.name} work
               </Link>
@@ -334,7 +334,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
                     <Link
                       key={s.slug}
                       href={`/portfolio/${c.slug}/${s.slug}`}
-                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold hover:opacity-80 transition-opacity"
+                      className="tap-target inline-flex items-center gap-1.5 text-sm font-semibold text-gold hover:opacity-80 transition-opacity"
                     >
                       {s.name} <ArrowRight size={15} />
                     </Link>

@@ -119,14 +119,14 @@ export function WorkProof({
         <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-border pt-6">
           <Link
             href="/pricing"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+            className="tap-target inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
           >
             How work like this is priced <ArrowRight size={15} />
           </Link>
-          <Link href="/process" className="text-sm text-muted transition-colors hover:text-ink">
+          <Link href="/process" className="tap-target text-sm text-muted transition-colors hover:text-ink">
             How a project runs, start to finish
           </Link>
-          <Link href="/about" className="text-sm text-muted transition-colors hover:text-ink">
+          <Link href="/about" className="tap-target text-sm text-muted transition-colors hover:text-ink">
             Who you would be working with
           </Link>
         </div>

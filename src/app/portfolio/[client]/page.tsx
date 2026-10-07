@@ -194,7 +194,7 @@ export default async function ClientCaseStudy({ params }: Props) {
                           more of it inline. */}
                       <Link
                         href={`/portfolio/${c.slug}/mobile-app`}
-                        className="mt-5 inline-flex w-full items-center justify-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+                        className="tap-target mt-5 inline-flex w-full items-center justify-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
                       >
                         Read the app case study <ArrowRight size={15} />
                       </Link>
@@ -280,7 +280,7 @@ export default async function ClientCaseStudy({ params }: Props) {
                     than the footer to be worth crawling. */}
                 <Link
                   href="/real-estate-marketing"
-                  className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+                  className="tap-target mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
                 >
                   How an off-plan launch is run, start to finish
                   <ArrowRight size={15} />

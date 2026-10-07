@@ -190,7 +190,7 @@ function ServicesMenu({ onNavigate }: { onNavigate: () => void }) {
         <Link
           href="/services"
           onClick={() => onNavigate()}
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+          className="tap-target inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
         >
           View all services <ArrowRight size={15} />
         </Link>

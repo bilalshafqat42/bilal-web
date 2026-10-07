@@ -239,7 +239,7 @@ export default function DisciplinePage({ slug }: { slug: string }) {
               <CtaButton href="/appointment">Book a free consultation</CtaButton>
               <Link
                 href={d.serviceHref}
-                className="text-sm font-semibold text-ink underline decoration-gold/50 decoration-2 underline-offset-4 transition-colors hover:text-gold"
+                className="tap-target text-sm font-semibold text-ink underline decoration-gold/50 decoration-2 underline-offset-4 transition-colors hover:text-gold"
               >
                 What this service includes
               </Link>
@@ -329,7 +329,7 @@ export default function DisciplinePage({ slug }: { slug: string }) {
             </div>
             <Link
               href="/portfolio"
-              className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+              className="tap-target mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
             >
               The full portfolio <ArrowRight size={15} />
             </Link>

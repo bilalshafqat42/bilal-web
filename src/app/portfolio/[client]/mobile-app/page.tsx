@@ -218,7 +218,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
           <div className="site-container relative">
             <Link
               href={`/portfolio/${c.slug}`}
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition-colors hover:text-gold"
+              className="tap-target inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition-colors hover:text-gold"
             >
               <ArrowLeft size={15} /> {c.name}
             </Link>
@@ -237,7 +237,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                     <CtaButton href="/appointment">Book a free consultation</CtaButton>
                     <Link
                       href="#screens"
-                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink underline decoration-1 underline-offset-[6px] transition-opacity hover:opacity-80"
+                      className="tap-target inline-flex items-center gap-1.5 text-sm font-semibold text-ink underline decoration-1 underline-offset-[6px] transition-opacity hover:opacity-80"
                     >
                       See {total} screens, one by one
                     </Link>

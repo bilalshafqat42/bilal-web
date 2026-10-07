@@ -193,7 +193,7 @@ export default function RealEstateMarketingPage() {
                 <CtaButton href="/appointment">Book a free consultation</CtaButton>
                 <Link
                   href="/portfolio/leos-developments"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+                  className="tap-target inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
                 >
                   See the work <ArrowRight size={15} />
                 </Link>
@@ -252,7 +252,7 @@ export default function RealEstateMarketingPage() {
                     </p>
                     <Link
                       href={d.href}
-                      className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+                      className="tap-target mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
                     >
                       {d.label} <ArrowRight size={15} />
                     </Link>

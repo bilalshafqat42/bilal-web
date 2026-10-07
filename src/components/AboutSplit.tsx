@@ -385,7 +385,7 @@ export default function AboutSplit() {
               <CtaButton href="/appointment">Book a free consultation</CtaButton>
               <Link
                 href="/about"
-                className="group inline-flex items-center gap-2 text-sm font-semibold text-ink transition-opacity hover:opacity-70"
+                className="tap-target group inline-flex items-center gap-2 text-sm font-semibold text-ink transition-opacity hover:opacity-70"
               >
                 More about how I work
                 <ArrowRight

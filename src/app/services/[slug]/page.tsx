@@ -135,7 +135,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                       not interested in a portfolio had nowhere to go. */}
                   <Link
                     href="/pricing"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-muted underline decoration-1 underline-offset-[6px] transition-colors hover:text-ink"
+                    className="tap-target inline-flex items-center gap-2 text-sm font-semibold text-muted underline decoration-1 underline-offset-[6px] transition-colors hover:text-ink"
                   >
                     What this costs
                   </Link>
@@ -146,7 +146,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                 <ClientLogoRow variant="row" className="mt-10 justify-start" />
                 <Link
                   href="/pricing#engagement"
-                  className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+                  className="tap-target mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
                 >
                   How engagements work <ArrowRight size={15} />
                 </Link>

@@ -117,7 +117,7 @@ export default function CapabilityLedger() {
           <CtaButton href="/appointment">Book a free consultation</CtaButton>
           <Link
             href="/portfolio"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+            className="tap-target inline-flex items-center gap-2 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
           >
             See work across these services <ArrowRight size={15} />
           </Link>

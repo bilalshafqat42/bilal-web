@@ -147,7 +147,7 @@ export default function HeroBanner() {
                 equal choices, which is the right hierarchy on a small screen. */}
             <Link
               href="/portfolio"
-              className="inline-flex justify-center rounded-full border border-border px-8 py-4 text-sm font-semibold text-ink transition-colors hover:bg-white/5 sm:rounded-none sm:border-0 sm:px-0 sm:py-0 sm:underline sm:decoration-1 sm:underline-offset-[6px] sm:hover:bg-transparent sm:hover:opacity-80"
+              className="tap-target justify-center rounded-full border border-border px-8 py-4 text-sm font-semibold text-ink transition-colors hover:bg-white/5 sm:rounded-none sm:border-0 sm:px-0 sm:py-0 sm:underline sm:decoration-1 sm:underline-offset-[6px] sm:hover:bg-transparent sm:hover:opacity-80"
             >
               See the work
             </Link>

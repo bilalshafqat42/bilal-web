@@ -75,7 +75,7 @@ function AudienceCard({ audience }: { audience: Audience }) {
         onClick={() => setExpanded((v) => !v)}
         aria-expanded={expanded}
         aria-controls={detailsId}
-        className="mt-5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-gold hover:text-gold-2 transition-colors"
+        className="tap-target mt-5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-gold hover:text-gold-2 transition-colors"
       >
         {expanded ? "Hide details" : "See details"}
         <ChevronDown size={14} className={`transition-transform ${expanded ? "rotate-180" : ""}`} />
