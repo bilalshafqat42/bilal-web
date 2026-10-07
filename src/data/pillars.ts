@@ -945,7 +945,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     // terms winnable at all — agencies will not use it (roadmap 319).
     metaTitle: "Mobile App Development in Dubai — Bilal Shafqat",
     metaDescription:
-      "Mobile app development in Dubai: React Native for iOS and Android, with the back end, the analytics and the launch campaign built in. Shipped work.",
+      "Mobile app development in Dubai: React Native for iOS and Android, with the back end, analytics and launch campaign built in. Shipped work.",
     faqs: [
       {
         question: "Native or React Native?",

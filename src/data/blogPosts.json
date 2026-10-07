@@ -17103,7 +17103,7 @@
   {
     "slug": "redux-made-easy-beginners-guide-to-state-management-in-react-js",
     "title": "Redux Made Easy: Beginner's Guide to State Management in React JS",
-    "description": "A beginner's guide to Redux in React. Build a simple counter app and understand actions, reducers and the store by using them rather than reading about them.",
+    "description": "A beginner's guide to Redux in React. Build a counter app and understand actions, reducers and the store by using them rather than reading about them.",
     "published": "2024-09-17",
     "tags": [
       "React Js",
