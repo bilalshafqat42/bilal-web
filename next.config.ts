@@ -168,6 +168,18 @@ const nextConfig: NextConfig = {
       // surfaced the three Google happened to recrawl. Paginated archives
       // (/category/design/page/2/) are caught by the same rule.
       { source: "/category/:path*", destination: "/blog", permanent: true },
+      // WordPress RSS endpoints. Search Console listed `/feed/`,
+      // `/react-hooks-explained/feed/` and `/react-usememo-hook-explained/feed/`
+      // under BOTH "Not found (404)" and "Page with redirect": the
+      // trailing-slash rule sent them to `/feed`, which then 404'd. A redirect
+      // into a dead end costs two crawls and teaches Google nothing.
+      //
+      // These have a genuine successor now that `/rss.xml` exists, which is the
+      // test the course URLs below fail — a feed reader asking for a feed gets
+      // a feed, rather than a tutorial URL being swept into a marketing page.
+      { source: "/feed", destination: "/rss.xml", permanent: true },
+      { source: "/:slug/feed", destination: "/rss.xml", permanent: true },
+      { source: "/comments/feed", destination: "/rss.xml", permanent: true },
       // Deliberately NOT redirecting /training or the course URLs. Bilal has
       // stopped offering training, and pointing a tutorial-intent URL at a
       // marketing page is a soft 404 — Google treats it as a poor match and it

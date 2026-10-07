@@ -9718,3 +9718,55 @@ All five checks green: h1, schema, search, related, discipline.
 **What this does not mean.** 92 is a score from a checklist in this repository,
 not a signal from Google. On-page is the half we control and it is necessary
 rather than sufficient. The eleven referring domains still decide the order.
+
+### 371. DONE (2026-10-07) — RSS feed, built for the dead end rather than the subscribers
+
+Search Console listed `/feed/`, `/react-hooks-explained/feed/` and
+`/react-usememo-hook-explained/feed/` under **both** "Not found (404)" **and**
+"Page with redirect". Traced live: the trailing-slash rule sent them to `/feed`,
+which then 404'd.
+
+    /feed/  →  308  →  /feed  →  404
+
+A redirect into a dead end is worse than a plain 404: Google spends two crawls
+to learn nothing, and the URL appears in two reports at once.
+
+`/rss.xml` now exists, generated from `blogPosts` for the reason `llms.txt`
+records — its static predecessor listed 6 of 20 pages because somebody had to
+remember. 76 items, RFC 822 dates, XML-escaped, `<link rel="alternate">` in the
+root layout so a reader finds it from any page.
+
+Redirects added for `/feed`, `/:slug/feed` and `/comments/feed`. These pass the
+test the retired course URLs fail: a feed reader asking for a feed gets a feed,
+rather than a tutorial URL being swept into a marketing page.
+
+**Said plainly to Bilal before building it: RSS is not a ranking factor.** The
+case is the dead end, half an hour, and the few people who still use a reader.
+He asked for it on those terms.
+
+Two details worth keeping. `published` is a date with no time, so it is parsed
+as `T00:00:00Z` rather than local midnight — left local it shifts the date by a
+day for everyone east of Greenwich, which is the whole audience. And
+`guid isPermaLink="false"`, because the guid is an identity rather than an
+address; left true, a reader that cannot fetch the URL may drop the item.
+
+Verified: XML parses, 76 items, none missing a required field, all four dead-end
+URLs resolve, sitemap unchanged at 119, all five CI checks green.
+
+### 372. DROPPED (2026-10-07) — Pillar names as hub links in the menu
+
+Proposed on 2026-10-06, when the menu was three columns and Marketing held eight
+items. The idea was to make each column heading the link to its hub and drop
+that hub from the list below it.
+
+**The four-column rebuild (roadmap 365) already solved what it was for.** Each
+column now leads with its own hub as the first item, which shows the hierarchy
+and keeps the column short.
+
+What remained was a real cost for a small gain: "Digital Marketing", "Paid
+Marketing", "Website & App Development" and "UI/UX Design" would stop being
+visible labels, and those words would stop being internal anchor text sitewide
+— on four pages now scoring 92. Replacing "UI/UX Design" with "Design" as the
+link text on 119 pages is a downgrade.
+
+Dropped. Recorded so it is not proposed a third time.

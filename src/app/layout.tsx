@@ -30,6 +30,10 @@ export const metadata: Metadata = {
     "Freelance digital marketer in Dubai. Paid ads, SEO, social and email, plus the websites and apps behind them. One senior partner, not an agency.",
   alternates: {
     canonical: "/",
+    // Site-wide, so a reader's "subscribe" button finds the feed from any page
+    // rather than only from /blog. Per-page `alternates` on the service and
+    // article routes override `canonical` and inherit this.
+    types: { "application/rss+xml": [{ url: "/rss.xml", title: "Bilal Shafqat — Writing" }] },
   },
   keywords: [
     "paid marketing Dubai",
