@@ -128,9 +128,7 @@ function ServicesMenu({ onNavigate }: { onNavigate: () => void }) {
         {serviceMenuColumns.map((column, i) => (
           <div
             key={column.title}
-            className={`${i > 0 ? "border-l border-border pl-10" : ""} ${
-              column.span === 2 ? "col-span-2" : ""
-            }`}
+            className={i > 0 ? "border-l border-border pl-10" : ""}
           >
             <div className="flex items-baseline gap-2.5">
               <span className="font-mono text-[0.7rem] text-gold">
@@ -145,22 +143,13 @@ function ServicesMenu({ onNavigate }: { onNavigate: () => void }) {
                   carries a `t-*` class rather than a Tailwind size. */}
               <h3 className="t-h6 text-ink">{column.title}</h3>
             </div>
-            <ul
-              className={
-                column.span === 2
-                  ? // `grid-flow-col` with four rows, so the eight read DOWN
-                    // the first column and then down the second. With the
-                    // default row flow they read across, which put Digital
-                    // Marketing beside Paid Marketing and Google Ads beside
-                    // Facebook, so neither column was a group: scanning the
-                    // left column gave Digital, Google, LinkedIn, SEO. Down-
-                    // then-across puts the four paid services together and the
-                    // four earned ones together, which is what the order in
-                    // `serviceMenuColumns` already describes.
-                    "mt-5 grid grid-flow-col grid-rows-4 gap-x-10 gap-y-3"
-                  : "mt-5 space-y-3"
-              }
-            >
+            {/* One list per column, no `grid-flow-col`. The previous version
+                gave Marketing `span: 2` and flowed eight items down two tracks
+                to keep paid and earned apart. The grouping was right and
+                invisible: a reader cannot tell a deliberate split from an
+                arbitrary wrap. The two halves are now two named columns, which
+                says the same thing out loud. */}
+            <ul className="mt-5 space-y-3">
               {column.slugs.map((slug) => {
                 const group = megaMenuGroups.find((g) => g.slug === slug);
                 if (!group) return null;

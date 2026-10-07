@@ -498,15 +498,6 @@ export type ServiceMenuColumn = {
   title: string;
   /** Slugs from `megaMenuGroups`, in the order they should read. */
   slugs: string[];
-  /** Grid columns this group occupies. Marketing takes two and splits its
-   *  eight into two lists of four, so the panel reads as four even columns of
-   *  three or four rather than one tall list beside two short ones.
-   *
-   *  The first attempt let the imbalance stand on the grounds that it was
-   *  honest. It was honest and it looked broken: eight items beside four and
-   *  three left most of the panel empty below the fourth row. Honest about the
-   *  business does not require uneven about the layout. */
-  span?: 1 | 2;
 };
 
 /**
@@ -576,25 +567,41 @@ export const homeDisciplines: Discipline3[] = [
 
 export const serviceMenuColumns: ServiceMenuColumn[] = [
   {
-    // Marketing first and longest, because it is the positioning and because
-    // it is where the volume is: digital marketing in dubai 1,300, social
-    // media marketing in dubai 880, seo consultant dubai 480, google ads
-    // agency dubai 480.
+    // Marketing and Paid Marketing are two named columns rather than one
+    // eight-item column split across two unlabelled tracks.
+    //
+    // The old version used `span: 2` and `grid-flow-col` to make eight items
+    // read down one track and then down the next. The grouping was real — paid
+    // in one track, earned in the other — but nothing on screen said so, and a
+    // reader cannot infer a split from position alone. Naming both halves costs
+    // one heading and removes the guess.
+    //
+    // Marketing sits first, Paid second, for three reasons:
+    //   1. Hierarchy. Paid Marketing is a child of Digital Marketing, which is
+    //      the conclusion Bilal reached himself on 2026-10-06. Left to right
+    //      should read broad then narrow.
+    //   2. Search. "digital marketing in dubai" is 1,300 searches, the largest
+    //      term on the board, and this puts its page first in source order on
+    //      every page of the site.
+    //   3. Journey. Somebody who already knows they want Google Ads will find
+    //      "Google Ads" wherever it sits. Somebody who does not know what they
+    //      want needs the general bucket in front of the specific one.
+    //
+    // Each column leads with its own hub page, so the broadest page in a group
+    // is the first thing read in it.
     title: "Marketing",
-    span: 2,
-    // Order matters: the menu renders these down the first column then down
-    // the second, so the first four and the last four each have to be a group
-    // a reader recognises. Paid first, earned second.
-    slugs: [
-      "paid-marketing",
-      "google-ads",
-      "facebook-ads",
-      "linkedin-marketing",
-      "digital-marketing",
-      "social-media-marketing",
-      "seo",
-      "email-marketing",
-    ],
+    slugs: ["digital-marketing", "seo", "social-media-marketing", "email-marketing"],
+  },
+  {
+    title: "Paid Marketing",
+    slugs: ["paid-marketing", "google-ads", "facebook-ads", "linkedin-marketing"],
+  },
+  {
+    // CRM belongs here rather than under Marketing: the page is about systems,
+    // integrations and server-side tracking, and the person who needs it is
+    // asking a technical question.
+    title: "Development",
+    slugs: ["website-app-development", "mobile-app-development", "crm-marketing-automation"],
   },
   {
     // Web Design sits here rather than under Development. Its own page opens
@@ -603,13 +610,6 @@ export const serviceMenuColumns: ServiceMenuColumn[] = [
     // not looking for a developer.
     title: "Design",
     slugs: ["ui-ux-design", "web-design", "graphic-design-branding", "video-conversion"],
-  },
-  {
-    // CRM belongs here rather than under Marketing: the page is about systems,
-    // integrations and server-side tracking, and the person who needs it is
-    // asking a technical question.
-    title: "Development",
-    slugs: ["website-app-development", "mobile-app-development", "crm-marketing-automation"],
   },
 ];
 
