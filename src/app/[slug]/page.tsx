@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ChevronRight, ArrowLeft } from "lucide-react";
 import ArticleBody from "@/components/ArticleBody";
+import ShareRow from "@/components/ShareRow";
 import CtaButton from "@/components/CtaButton";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
@@ -151,6 +152,10 @@ export default async function ArticlePage({ params }: PageProps) {
             this and undo a deliberate decision. */}
         <article className="site-container relative">
           <ArticleBody blocks={post.blocks} />
+          {/* At the foot of the body, above the service pitch. Sharing is what
+              someone does once they have read the thing, and the pitch is the
+              action that earns money, so the pitch stays last. */}
+          <ShareRow url={url} title={post.title} />
         </article>
 
         <section className="relative mt-20 sm:mt-24">

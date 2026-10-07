@@ -9867,3 +9867,49 @@ written for, plus the homepage and `/pricing`. Dropped: `/portfolio`, which is a
 conversion page, not a keyword page — scoring it against a head term reports 25
 forever, and forcing a keyword in would put it in competition with the homepage,
 which already scores 100 for that phrase.
+
+### 376. DONE (2026-10-07) — Share links on the articles
+
+Bilal asked for social share buttons and, sensibly, where they should go.
+
+**At the foot of the body, above the service pitch.** Three reasons, in order of
+how much they matter here:
+
+1. **Sharing happens after reading.** A bar between the h1 and the first
+   paragraph asks for an endorsement of something nobody has read yet.
+2. **The h1 is doing SEO work.** A share row above the opening pushes the
+   keyword-carrying first 100 words further down — the exact span
+   `onpage-check.mjs` scores at 8 points — and adds clutter above the fold on
+   mobile, where the bug sweep already found zero CTAs visible (roadmap 364).
+3. **There is no gutter for a sticky rail.** The article column runs the full
+   `site-container` width, at Bilal's request, twice.
+
+The service pitch stays last, because it is the action that earns money.
+
+**No share counts.** A count is social proof when it is high and the opposite
+when it is low, and these articles will read "1" for a long time. It also has to
+be fetched, which means a third-party request on every article load.
+
+**No AddThis, ShareThis or similar.** Third-party JavaScript, cookies the
+consent banner would then have to account for under the UAE PDPL, and Lighthouse
+points on a site scoring 100. Every link here is a plain URL: nothing fetched,
+nothing tracked, no dependency added.
+
+**WhatsApp first.** Generic widgets put it last or leave it out. This site's own
+copy says WhatsApp is the default business channel across the UAE, and a
+technical article passed between two people here goes through WhatsApp far more
+often than through X. Then LinkedIn, X and copy-link.
+
+**The native sheet where it exists.** `navigator.share` opens the OS share sheet
+with every app the person actually has. It is HTTPS-only and mostly mobile, so
+the button renders only once the browser confirms support and the explicit links
+remain the fallback.
+
+`LinkedinIcon` and `XIcon` are now exported from `SocialLinks` rather than
+redrawn, and `WhatsAppIcon` was added there beside them — Bilal's note about
+reusable components, applied to the thing being built rather than only to the
+audit list.
+
+Verified at 1440 and 390: renders, tap targets 36x36 (the 24px floor from
+roadmap 364), `rel="noopener noreferrer nofollow"` on all three, no console
+errors, five CI checks green, article score unchanged at 91.

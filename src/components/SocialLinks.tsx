@@ -16,7 +16,7 @@ function InstagramIcon() {
   );
 }
 
-function LinkedinIcon() {
+export function LinkedinIcon() {
   return (
     <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
       <rect x="3" y="9" width="3" height="10" />
@@ -30,7 +30,18 @@ function BehanceMonogram() {
   return <span className="text-[11px] font-bold tracking-tight">Be</span>;
 }
 
-function XIcon() {
+/** Not in the footer `socials` list — there is no public WhatsApp channel to
+ *  link to — but it is the share target that matters most in this market, so it
+ *  lives here beside the others rather than being redrawn in `ShareRow`. */
+export function WhatsAppIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+      <path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.38a9.86 9.86 0 0 0 4.74 1.2h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.13-2.9-7A9.82 9.82 0 0 0 12.04 2Zm0 18.06h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.1.81.83-3.03-.2-.31a8.2 8.2 0 0 1-1.26-4.4c0-4.54 3.7-8.23 8.23-8.23a8.18 8.18 0 0 1 8.22 8.24c0 4.54-3.69 8.23-8.23 8.23Zm4.51-6.16c-.25-.13-1.46-.72-1.69-.8-.22-.09-.39-.13-.55.12-.17.25-.63.8-.78.96-.14.17-.28.19-.53.07-.24-.13-1.04-.39-1.98-1.23a7.4 7.4 0 0 1-1.37-1.7c-.14-.25-.01-.38.11-.5.11-.12.25-.3.37-.44.13-.15.17-.25.25-.42.09-.17.04-.31-.02-.44-.06-.12-.55-1.34-.76-1.83-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.43.06-.65.31-.23.25-.86.84-.86 2.05s.88 2.38 1 2.54c.13.17 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.18 1.13.16 1.56.1.47-.07 1.46-.6 1.67-1.18.2-.57.2-1.07.14-1.17-.06-.11-.22-.17-.47-.3Z" />
+    </svg>
+  );
+}
+
+export function XIcon() {
   return (
     <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
       <path d="M18.24 2h3.36l-7.32 8.36L22.8 22h-6.78l-5.31-6.78L4.6 22H1.24l7.83-8.94L1.2 2h6.78l4.8 6.36L18.24 2Zm-2.37 18h1.87L8.19 4H6.2l9.67 16Z" />
