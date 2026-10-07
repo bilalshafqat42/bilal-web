@@ -20,18 +20,48 @@ const BASE = "https://bilalshafqat.com";
 const DIR = new URL("../.seo-snapshots/", import.meta.url).pathname;
 const today = new Date().toISOString().slice(0, 10);
 
-/** The pages worth tracking daily, with the keyword each is built for. */
+/** The pages worth tracking daily, with the keyword each is built for.
+ *
+ * **Rewritten 2026-10-07.** The old list covered 8 of the 15 service pages and
+ * two of its keywords were terms this site deliberately does not pursue, so the
+ * report showed `/services/google-ads` at 29 on a page scoring 92 against the
+ * phrase it is actually written for. A tracker that reports a failure you chose
+ * on purpose is noise, and noise in a daily report is worse than no report:
+ * after a week nobody reads the number that matters.
+ *
+ * Two deliberate omissions and why:
+ *
+ *   - **`google ads agency dubai`** (390 searches, difficulty 9) is the biggest
+ *     term in that cluster and is not claimable. One person is not an agency,
+ *     and the site does not say it is. `google ads dubai` is the honest target.
+ *   - **`/portfolio`, `/about`, `/faq`, `/contact`** are conversion pages, not
+ *     keyword pages. Scoring `/faq` against a head term reports 21 forever and
+ *     forcing a keyword in would put it in competition with the homepage, which
+ *     already scores 100 for that exact phrase.
+ *
+ * `/services/graphic-design-branding` is tracked on `graphic design in dubai`
+ * rather than `graphic designer dubai` on purpose: 390 searches at difficulty 20
+ * is the measured one, and it is the phrase the retarget briefly removed from
+ * the page before this report caught it (roadmap 374).
+ */
 const TRACKED = [
   ["/", "freelance digital marketer in dubai"],
-  ["/services/mobile-app-development", "mobile app development dubai"],
-  ["/services/web-design", "web designer dubai"],
   ["/services/digital-marketing", "digital marketing in dubai"],
-  ["/services/social-media-marketing", "social media marketing in dubai"],
   ["/services/seo", "seo consultant dubai"],
-  ["/services/google-ads", "google ads agency dubai"],
+  ["/services/social-media-marketing", "social media marketing in dubai"],
+  ["/services/email-marketing", "email marketing dubai"],
+  ["/services/paid-marketing", "paid marketing dubai"],
+  ["/services/google-ads", "google ads dubai"],
+  ["/services/facebook-ads", "facebook ads dubai"],
+  ["/services/linkedin-marketing", "linkedin marketing dubai"],
+  ["/services/website-app-development", "web developer dubai"],
+  ["/services/mobile-app-development", "mobile app development dubai"],
+  ["/services/crm-marketing-automation", "crm consultant dubai"],
+  ["/services/ui-ux-design", "ui ux designer dubai"],
+  ["/services/web-design", "web designer dubai"],
   ["/services/graphic-design-branding", "graphic design in dubai"],
+  ["/services/video-conversion", "video editor dubai"],
   ["/pricing", "freelance digital marketer costs in dubai"],
-  ["/portfolio", "digital marketing portfolio dubai"],
 ];
 
 const strip = (s) => s.replace(/<[^>]+>/g, " ");
@@ -159,11 +189,11 @@ siteRows.forEach(([label, val], i) => {
 });
 
 console.log("\n  PAGE SCORES");
-console.log(`    ${"page".padEnd(38)} ${"score".padStart(6)}  ${"1d".padStart(4)}  ${"7d".padStart(4)}   words`);
+console.log(`    ${"page".padEnd(40)} ${"score".padStart(6)}  ${"1d".padStart(4)}  ${"7d".padStart(4)}   words`);
 for (const [path] of TRACKED) {
   const p = snap.pages[path];
   console.log(
-    `    ${path.padEnd(38)} ${String(p.score).padStart(6)}  ${delta(p.score, prev?.pages[path]?.score)}  ` +
+    `    ${path.padEnd(40)} ${String(p.score).padStart(6)}  ${delta(p.score, prev?.pages[path]?.score)}  ` +
     `${delta(p.score, weekAgo?.pages[path]?.score)}   ${String(p.words).padStart(5)}`
   );
 }

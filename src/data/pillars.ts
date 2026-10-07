@@ -1104,7 +1104,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     title: "Graphic Design & Branding",
     headline: "A graphic designer in Dubai for identity that holds up beyond the logo file",
     intro:
-      "A logo is the easy part, and it is the smallest thing a graphic designer in Dubai is actually asked for. What matters is whether the identity still works on a website, an ad, a brochure and a pitch deck once other people are applying it. This covers logo, colour and typography systems, documented brand guidelines so anyone can apply them consistently, and the company profile and pitch materials that carry the brand into a room.",
+      "A logo is the easy part, and it is the smallest thing a graphic designer in Dubai is actually asked for. What matters is whether the identity still works on a website, an ad, a brochure and a pitch deck once other people are applying it. Graphic design in Dubai covers far more than the mark: logo, colour and typography systems, documented brand guidelines so anyone can apply them consistently, and the company profile and pitch materials that carry the brand into a room.",
     metaTitle: "Freelance Graphic Designer in Dubai — Bilal Shafqat",
     metaDescription:
       "Freelance graphic designer in Dubai: logo design, colour and typography systems, documented brand guidelines, company profiles and pitch decks.",

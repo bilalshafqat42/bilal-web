@@ -9820,3 +9820,50 @@ full width. There is no hover on a phone, so the mobile menu does not render it.
 Verified: one panel height across sixteen states, no console errors, no
 horizontal overflow at 1600/1280/834, all five CI checks green, on-page scores
 unchanged.
+
+### 374. CORRECTED (2026-10-07) — The retarget removed a measured term, and the daily report caught it
+
+`npm run daily` reported `/services/graphic-design-branding` at **29, down 12**,
+hours after the retarget that took every other service page to 92.
+
+**The retarget traded a measured term for an unmeasured one.** The page's
+opening heading read "Graphic design in Dubai, beyond the brand guidelines
+deck". The retarget replaced it with a "graphic designer" version, and that was
+the page's **only** occurrence of `graphic design in dubai` — 390 searches at
+difficulty 20, measured, and the exact phrase the heading had been written for
+in roadmap 346. The comment explaining why it existed was left directly above
+the heading that no longer carried it.
+
+Both phrases are real: `graphic design in dubai` at 390 and `dubai graphic
+designer` at 320. So the page now carries both — heading 1 the first, heading 3
+and the h1 the second, plus one mention in the intro. 29 → **58** on the
+measured term, 92 on the other, no description truncation.
+
+Swept every other measured term against the live pages in case the retarget had
+done the same elsewhere: `responsive website design`, `wordpress web design`,
+`android app development`, `digital marketing specialist`, `digital marketing
+strategist`, `social media marketing in dubai`, `seo consultant in dubai` all
+still present and unchanged. **This was the only one.**
+
+**The lesson is about the tooling, not the copy.** A rewrite aimed at one
+keyword can silently delete another, and nothing in the edit looks wrong at the
+time. The daily report found it in under a day because it diffs against
+yesterday. A one-off audit would not have.
+
+### 375. DONE (2026-10-07) — The daily report tracked 8 of 15 pages, two on terms we reject
+
+The same run showed `/services/google-ads` at 29 on a page that scores **92**
+against the phrase it is written for. The tracker was measuring it against
+`google ads agency dubai` — 390 searches at difficulty 9, the biggest term in
+that cluster, and **not claimable**: one person is not an agency and the site
+does not say it is.
+
+A tracker that reports a failure you chose on purpose is noise, and noise in a
+daily report is worse than no report, because after a week nobody reads the
+number that matters.
+
+`TRACKED` now covers all fifteen service pages on the terms they are actually
+written for, plus the homepage and `/pricing`. Dropped: `/portfolio`, which is a
+conversion page, not a keyword page — scoring it against a head term reports 25
+forever, and forcing a keyword in would put it in competition with the homepage,
+which already scores 100 for that phrase.

@@ -930,7 +930,17 @@ export const serviceDepth: Record<string, Depth> = {
         // "dubai graphic designer" another 320. The page is titled "Graphic
         // Design & Branding" and used neither phrase in its body, because the
         // copy led with branding and treated graphic design as implied.
-        heading: "What a graphic designer in Dubai delivers beyond the guidelines deck",
+        //
+        // Restored 2026-10-07. The 2026-10-07 retarget replaced this heading,
+        // which read "Graphic design in Dubai, beyond the brand guidelines
+        // deck", with a "graphic designer" version — and took the only
+        // occurrence of the **measured** 390-search phrase off the page with
+        // it, trading it for an unmeasured one. The daily report caught it as
+        // a 12-point drop the same evening.
+        //
+        // Both phrases now appear: this heading carries "graphic design in
+        // Dubai", and heading 3 below carries "graphic designer in Dubai".
+        heading: "Graphic design in Dubai, beyond the brand guidelines deck",
         paragraphs: [
           "Branding projects get the attention and graphic design is what a business actually needs most weeks: the company profile for a tender, the pitch deck for Thursday, the hoarding for the site, the brochure the sales team hands over, the ad creative that has to exist in nine sizes by Sunday.",
           "In this market the formats are specific. A company profile that will be printed and also emailed as a PDF. Bilingual layouts where the Arabic is set properly rather than pasted in and left looking like an afterthought. Collateral for an exhibition stand, where the viewing distance changes every size decision. Creative sized for the places UAE audiences actually are, which includes WhatsApp and Instagram more than it includes anything printed.",
@@ -945,7 +955,7 @@ export const serviceDepth: Record<string, Depth> = {
         ],
       },
       {
-        heading: "Launch and campaign creative",
+        heading: "What a graphic designer in Dubai is actually asked for",
         paragraphs: [
           "Most of my recent brand work has been launch creative for property, where a single development needs a coherent look across social, portal listings, brochures, hoardings and the landing page, produced quickly and consistently under a launch deadline.",
           "That work is built to be extended. Templates and a defined set of rules mean the tenth asset takes a fraction of the time the first did, and still belongs to the same brand, which is what makes design economics work over a campaign rather than a single post.",
