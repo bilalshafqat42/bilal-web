@@ -1,11 +1,13 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Contact from "@/components/Contact";
 import { ServiceProof } from "@/components/ProofLoop";
 import Reveal from "@/components/Reveal";
 import FaqSection from "@/components/FaqSection";
+import PageOpener from "@/components/PageOpener";
+import SecondaryButton from "@/components/SecondaryButton";
 import FurtherReading from "@/components/FurtherReading";
 import {
   megaMenuGroups,
@@ -54,7 +56,6 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
   const category = getCategoryBySlug(slug);
   if (!category) notFound();
 
-  const accent = accentClasses[category.accent];
   const sections = category.items
     .map((item) => ({ item, resolved: resolveItem(item) }))
     .filter((x) => x.resolved);
@@ -104,57 +105,41 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
       <JsonLd nodes={nodes} />
       <TrackView name={category.title} category="Service" />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
-        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
-          <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="site-container relative">
-            <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted">
-              <Link href="/" className="hover:text-ink transition-colors">Home</Link>
-              <ChevronRight size={13} />
-              <Link href="/services" className="hover:text-ink transition-colors">Services</Link>
-              <ChevronRight size={13} />
-              <span className="text-ink">{category.title}</span>
-            </nav>
-
-            <Reveal>
-              <div className="mt-8">
-                <span className={`inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] ${accent.icon}`}>
-                  {category.title}
-                </span>
-                <h1 className="t-h1 mt-5 text-ink">
-                  {category.headline}
-                </h1>
-                <p className="mt-6 text-lg text-muted leading-relaxed">{category.intro}</p>
-                <div className="mt-8 flex flex-wrap items-center gap-4">
-                  <CtaButton href="/appointment">Book a free consultation</CtaButton>
-                  <Link href="/portfolio" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors">
-                    See related work
-                  </Link>
-                  {/* The third option, and the one a first-time visitor usually
-                      wants before either of the others. It was reachable only
-                      through a small link below the logo row, which on most
-                      screens is under the fold. Someone not ready to book and
-                      not interested in a portfolio had nowhere to go. */}
-                  <Link
-                    href="/pricing"
-                    className="tap-target inline-flex items-center gap-2 text-sm font-semibold text-muted underline decoration-1 underline-offset-[6px] transition-colors hover:text-ink"
-                  >
-                    What this costs
-                  </Link>
-                </div>
-
-                {/* Evidence directly under the CTA, and a route to the buying
-                    question that follows it. */}
-                <ClientLogoRow variant="row" className="mt-10 justify-start" />
+        <PageOpener
+          crumbs={[
+            { label: "Home", href: "/" },
+            { label: "Services", href: "/services" },
+            { label: category.title },
+          ]}
+          title={category.headline}
+          standfirst={category.intro}
+          actions={
+            <div className="w-full">
+              <div className="flex flex-wrap items-center gap-4">
+                <CtaButton href="/appointment">Book a free consultation</CtaButton>
+                <SecondaryButton href="/portfolio">See related work</SecondaryButton>
+                {/* The third option, and the one a first-time visitor usually
+                    wants before either of the others. */}
                 <Link
-                  href="/pricing#engagement"
-                  className="tap-target mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+                  href="/pricing"
+                  className="tap-target inline-flex items-center gap-2 text-sm font-semibold text-muted underline decoration-1 underline-offset-[6px] transition-colors hover:text-ink"
                 >
-                  How engagements work <ArrowRight size={15} />
+                  What this costs
                 </Link>
               </div>
-            </Reveal>
-          </div>
-        </section>
+
+              {/* Evidence directly under the CTA, and a route to the buying
+                  question that follows it. */}
+              <ClientLogoRow variant="row" className="mt-10 justify-start" />
+              <Link
+                href="/pricing#engagement"
+                className="tap-target mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+              >
+                How engagements work <ArrowRight size={15} />
+              </Link>
+            </div>
+          }
+        />
 
         <section className="relative mt-20 sm:mt-24">
           <div className="site-container">

@@ -41,6 +41,14 @@ type Props = {
   actions?: ReactNode;
   /** Content beside the heading, on `lg` and up. Stacks under it below that. */
   aside?: ReactNode;
+  /** `h2` renders the h1 element at the h2 size.
+   *
+   *  The article template needs it. The scale is tuned for landing-page heroes
+   *  of three or four words; article headlines run to 78 characters, and at
+   *  `t-h1` the title alone filled a 1440x900 viewport, so the reader reached
+   *  the article by scrolling past its own name. Measured, not assumed. The
+   *  element stays the page's only `h1`, which `h1-check` enforces. */
+  titleSize?: "h1" | "h2";
   className?: string;
 };
 
@@ -51,13 +59,14 @@ export default function PageOpener({
   crumbs,
   actions,
   aside,
+  titleSize = "h1",
   className = "",
 }: Props) {
   const heading = (
     <div>
       {crumbs?.length ? <Breadcrumb items={crumbs} className="mb-8" /> : null}
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-      <h1 className={`t-h1 text-ink ${eyebrow ? "mt-4" : ""}`}>{title}</h1>
+      <h1 className={`t-${titleSize} text-balance text-ink ${eyebrow ? "mt-4" : ""}`}>{title}</h1>
       {standfirst ? (
         <div className="mt-6 max-w-2xl space-y-4 text-lg leading-relaxed text-muted">
           {standfirst}

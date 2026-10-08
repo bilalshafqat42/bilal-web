@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ChevronRight, ArrowLeft } from "lucide-react";
 import ArticleBody from "@/components/ArticleBody";
 import ShareRow from "@/components/ShareRow";
+import PageOpener from "@/components/PageOpener";
 import CtaButton from "@/components/CtaButton";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
@@ -104,39 +105,28 @@ export default async function ArticlePage({ params }: PageProps) {
     <>
       <JsonLd nodes={nodes} />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
-        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
-          <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="site-container relative">
-            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-muted">
-              <Link href="/" className="transition-colors hover:text-ink">Home</Link>
-              <ChevronRight size={13} />
-              <Link href="/blog" className="transition-colors hover:text-ink">Writing</Link>
-              <ChevronRight size={13} />
-              <span className="text-ink">{post.title}</span>
-            </nav>
-
-            {/* `t-h2`, not `t-h1`. The scale is tuned for landing-page heroes of
-                three or four words; these headlines run to 78 characters, and at
-                `t-h1` the title alone filled a 1440x900 viewport — the reader
-                reached the article by scrolling past its own name. Measured, not
-                assumed. The element is still the page's only `h1`. */}
-            <h1 className="t-h2 mt-8 text-balance text-ink">{post.title}</h1>
-
-            {/* Full container width, like the body below. */}
-            <p className="mt-6 text-lg leading-relaxed text-muted">{post.description}</p>
-
-            <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted">
+        <PageOpener
+          crumbs={[
+            { label: "Home", href: "/" },
+            { label: "Writing", href: "/blog" },
+            { label: post.title },
+          ]}
+          titleSize="h2"
+          title={post.title}
+          standfirst={post.description}
+          actions={
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted">
               <time dateTime={post.published}>{formatDate(post.published)}</time>
               <span aria-hidden="true" className="text-border">/</span>
               <span>{readingMinutes(post)} min read</span>
               {post.tags.map((t) => (
-                <span key={t} className="rounded-full border border-border px-3 py-1 tracking-[0.1em] text-muted">
+                <span key={t} className="r-chip border border-border px-3 py-1 tracking-[0.1em] text-muted">
                   {t}
                 </span>
               ))}
             </div>
-          </div>
-        </section>
+          }
+        />
 
         {/* Full `site-container` width, 1440 capped, matching every other page.
             The prose used to sit in a capped `max-w-[46rem]` column inside it
