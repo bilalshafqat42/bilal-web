@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useId } from "react";
-import { Building2, Home, Network, Users, ChevronDown, type LucideIcon } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import Reveal, { RevealStagger, RevealItem } from "./Reveal";
 import CtaButton from "@/components/CtaButton";
+import { audiences, type Audience } from "@/data/home";
 
 /**
  * Who I work with.
@@ -17,45 +18,6 @@ import CtaButton from "@/components/CtaButton";
  * Work With" as the eyebrow. On a page about who I am, the plain question is
  * the better heading, so the two swapped round.
  */
-type Audience = {
-  icon: LucideIcon;
-  title: string;
-  description: string;
-  bullets: string[];
-  note: string;
-};
-
-const audiences: Audience[] = [
-  {
-    icon: Building2,
-    title: "Startups & Founders",
-    description:
-      "Early-stage and scaling startups needing paid marketing, a website, or an MVP application without hiring a full team.",
-    bullets: ["Paid ads, funnels & landing pages", "Web & mobile MVP development", "Brand visuals & messaging"],
-    note: "Founders who need strategy and execution without hiring multiple specialists.",
-  },
-  {
-    icon: Home,
-    title: "Real Estate Developers & Agencies (UAE)",
-    description: "Specialised marketing and web support for off-plan and ready property sales in competitive markets.",
-    bullets: ["Campaign-specific landing pages & funnels", "Paid ads targeting investors & buyers", "CRM-ready lead capture & qualification"],
-    note: "Teams focused on high-intent leads and cost efficiency.",
-  },
-  {
-    icon: Users,
-    title: "In-House Teams & Growing Companies",
-    description: "I work as an extension of internal teams to support marketing, design, or development capacity.",
-    bullets: ["Paid marketing & funnel optimisation", "Web, mobile & custom app development", "Design & social content support"],
-    note: "Companies needing hands-on expertise without full-time overhead.",
-  },
-  {
-    icon: Network,
-    title: "Agencies & Consulting Partners",
-    description: "White-label or collaborative support for agencies that need reliable delivery on marketing, design, or dev.",
-    bullets: ["Paid ads & landing page execution", "Web, mobile & MERN development support", "Design & social content production"],
-    note: "Agencies that value clarity, quality, and dependable delivery.",
-  },
-];
 
 function AudienceCard({ audience }: { audience: Audience }) {
   const [expanded, setExpanded] = useState(false);

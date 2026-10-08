@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Info } from "lucide-react";
 import Reveal from "./Reveal";
 import Eyebrow from "@/components/Eyebrow";
+import { engagementModels as models, engagementRows as rows, type Model } from "@/data/home";
 
 /**
  * The four engagement models, as one comparison table.
@@ -35,61 +36,6 @@ import Eyebrow from "@/components/Eyebrow";
  * and the "most chosen" badge — see the note on that below.
  */
 
-type Model = {
-  name: string;
-  price: string;
-  priceNote: string;
-  /** The raised, gold-priced column. One only, or it stops meaning anything.
-   *
-   *  This no longer carries a "[Most chosen]" badge. That is a claim about what
-   *  clients pick, and with one published client there is nothing behind it —
-   *  it shipped bracketed, which is a placeholder rather than a soft claim. The
-   *  column is still raised and still the one with the primary CTA, which makes
-   *  the same recommendation without asserting anything. */
-  featured?: boolean;
-  /** Unverified prices render bracketed, the same guard the proof wall and the
-   *  process timings use: the brackets are applied at render time, never typed
-   *  into the string, so a figure cannot be promoted to a commitment by editing
-   *  a string. */
-  priceVerified: boolean;
-  cta: { label: string; href: string };
-};
-
-const models: Model[] = [
-  {
-    name: "Project-based",
-    price: "AED 31,500",
-    priceNote: "starting price",
-    priceVerified: true,
-    cta: { label: "Get a quote", href: "/contact" },
-  },
-  {
-    name: "Monthly retainer",
-    price: "AED 16,000",
-    priceNote: "per month",
-    featured: true,
-    priceVerified: true,
-    cta: { label: "Book a free consultation", href: "/appointment" },
-  },
-  {
-    name: "Ongoing partner",
-    // No published rate, and none has ever been supplied — the previous version
-    // of this file said exactly that. It shipped as "AED [amount]", which reads
-    // as a page nobody finished rather than as a price that depends on scope.
-    price: "Priced on scope",
-    priceNote: "agreed per engagement",
-    priceVerified: true,
-    cta: { label: "Discuss it", href: "/contact" },
-  },
-  {
-    name: "Consulting",
-    price: "AED 3,500",
-    priceNote: "per session",
-    priceVerified: true,
-    cta: { label: "Book a session", href: "/appointment" },
-  },
-];
-
 /** One entry per row. `cells` is in the same order as `models`, and a cell is
  *  either a string or a list — the "what you get" row is the only list, and
  *  giving it its own type rather than joining with commas keeps it a list for
@@ -98,36 +44,6 @@ const models: Model[] = [
  *  A cell marked `muted` is an exclusion rather than an inclusion: "No
  *  implementation" is what consulting does *not* include, and rendering it at
  *  the same weight as the things it does include reads as a feature. */
-type Cell = string | { items: (string | { text: string; muted: true })[] };
-
-const rows: { label: string; cells: Cell[] }[] = [
-  {
-    label: "Commitment",
-    cells: ["One scope", "Minimum 3 months", "Agreed days each week", "One session"],
-  },
-  {
-    label: "Best for",
-    cells: [
-      "A focused project with a clear goal and deadline",
-      "Consistent output month after month",
-      "A scaling team that needs capacity, not a vendor",
-      "A team that needs a second opinion, not hands",
-    ],
-  },
-  {
-    label: "What you get",
-    cells: [
-      { items: ["Fixed scope and price", "Design and build", "Tracking before launch", "Post-launch support"] },
-      { items: ["One agreed focus a month", "Marketing, design or dev", "Report against one metric", "Direct access, no PM layer"] },
-      { items: ["Inside your tools", "Priority over other work", "Quarterly planning", "Handover docs as standard"] },
-      { items: ["Four-hour session", "Campaign or build review", "Written recommendations", { text: "No implementation", muted: true }] },
-    ],
-  },
-  {
-    label: "Reporting",
-    cells: ["At handover", "Monthly", "Weekly", "Written summary"],
-  },
-];
 
 const colClass = (m: Model) =>
   m.featured ? "bg-surface/50" : "";

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, type CSSProperties } from "react";
 import { ArrowRight } from "lucide-react";
 import CtaButton from "@/components/CtaButton";
+import { aboutFacts as FACTS } from "@/data/home";
 
 /**
  * "About me", arriving over the pinned hero as you scroll.
@@ -53,12 +54,6 @@ import CtaButton from "@/components/CtaButton";
  * argument at length. Repeating its paragraphs verbatim would put two URLs on
  * the site competing for the same words.
  */
-
-const FACTS = [
-  { value: "15", label: "Years across marketing, design and development" },
-  { value: "1", label: "Point of contact, from the brief to the launch" },
-  { value: "UK + UAE", label: "Clients, working on Dubai hours" },
-] as const;
 
 export default function AboutSplit() {
   const sectionRef = useRef<HTMLElement>(null);

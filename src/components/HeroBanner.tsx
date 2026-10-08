@@ -4,6 +4,7 @@ import CtaButton from "@/components/CtaButton";
 import PortraitReveal from "@/components/PortraitReveal";
 import Eyebrow from "@/components/Eyebrow";
 import SecondaryButton from "@/components/SecondaryButton";
+import { heroStats as STATS, heroRecent as RECENT } from "@/data/home";
 
 /**
  * Homepage banner: headline, portrait, proof bar, recent work.
@@ -17,29 +18,6 @@ import SecondaryButton from "@/components/SecondaryButton";
  * edge, neither of which a centred column can do. It is the same padding scale,
  * not a new max-width.
  */
-
-/** Three, not four.
- *
- *  A fourth cell read "[ 0.0x ] — Your strongest client result goes here",
- *  rendered as a visible placeholder with a dashed rule. That was defensible
- *  while it was a design marker; it is not something to ship above the fold on
- *  a live site, where it reads as an unfinished page rather than as a slot
- *  awaiting a number.
- *
- *  Removed rather than filled: no campaign result has been shared for
- *  publication, and inventing one is not an option. To restore it, add a fourth
- *  entry here and change the grid below back to `lg:grid-cols-4`. */
-const STATS = [
-  { value: "15", label: "Years across marketing, design and development" },
-  { value: "4", label: "Disciplines, one person, not four suppliers" },
-  { value: "UK + UAE", label: "Property developers in the UK and UAE" },
-];
-
-const RECENT = [
-  { name: "Hadley Heights", href: "/portfolio/leos-developments/hadley-heights" },
-  { name: "Weybridge Gardens 2", href: "/portfolio/leos-developments/weybridge-gardens-2" },
-  { name: "Cavendish Square", href: "/portfolio/leos-developments/cavendish-square" },
-];
 
 export default function HeroBanner() {
   return (

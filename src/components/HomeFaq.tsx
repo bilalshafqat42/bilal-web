@@ -2,6 +2,7 @@ import Link from "next/link";
 import CtaButton from "@/components/CtaButton";
 import FaqSection from "@/components/FaqSection";
 import Surface from "@/components/Surface";
+import { homeFaqs as faqs } from "@/data/home";
 
 /**
  * The questions people ask before booking, answered on the page.
@@ -32,50 +33,6 @@ import Surface from "@/components/Surface";
  *   - The consultation is **30 minutes**, not 45: the booking is a Cal.com
  *     event whose path is `bilalshafqat/30min`.
  */
-
-const faqs = [
-  {
-    // Added 2026-10-05. Measured: the homepage carried 1,468 words and the
-    // phrase "digital marketing" appeared zero times, while three of the nine
-    // terms this page competes for contain it exactly: "digital marketing
-    // freelancer in dubai" (720), "digital marketing expert in dubai" (320)
-    // and "digital marketing freelance" (210). "Digital marketer" is a
-    // different string and does not cover them.
-    //
-    // A question first and a keyword second: this is the one people genuinely
-    // ask, because "freelancer" and "agency" are the two options they are
-    // weighing, and it belongs at the top for that reason rather than this one.
-    q: "What does a freelance digital marketer in Dubai actually cover?",
-    a: "Paid ads on Google, Meta, TikTok, Snapchat and LinkedIn, search and content, email and WhatsApp, and the tracking underneath all of it. The difference from most digital marketing freelancers in Dubai is that I also build the landing pages and apps the campaigns point at, so the site and the spend are designed together instead of handed between two suppliers.",
-  },
-  {
-    q: "Do you build mobile apps?",
-    // From the website-app-development FAQ, kept whole. The second half is the
-    // part worth keeping: telling someone they do not need an app is the
-    // answer that earns trust.
-    a: "Yes, with React Native so one codebase serves iOS and Android. I will also tell you when you do not need an app — for a lot of businesses a fast mobile website does the same job without app store approval and two platforms to maintain.",
-  },
-  {
-    q: "How much does a landing page cost?",
-    a: "It depends on scope, and any number quoted before understanding that is guesswork. What is published: project work starts at AED 31,500, a monthly retainer at AED 16,000, and an advisory session at AED 3,500. Describe what you have in mind and you get a real figure within a business day.",
-  },
-  {
-    q: "Can you work with clients outside the UAE?",
-    a: "Yes, and much of the work suits remote delivery well: audits, tracking implementation, landing page builds and design work do not require being in the same room. Campaign management that needs daily contact is easier within a few hours of Gulf Standard Time.",
-  },
-  {
-    q: "What have you done for property developers?",
-    // Named work is LEOS's, because that is the client with published case
-    // studies. Tomorrow World and Refine are named as clients rather than
-    // attached to projects, which is what the logo row already claims and no
-    // more.
-    a: "Campaigns, websites and apps for LEOS Developments, plus work for Tomorrow World Real Estate and Refine. The published case studies cover Hadley Heights, Weybridge Gardens and Cavendish Square: off-plan lead generation, launch and sales-gallery sites, and the CRM behind the enquiries.",
-  },
-  {
-    q: "What actually happens in the free consultation?",
-    a: "Thirty minutes. You describe the business and the number you want to move, I ask questions, and you leave with a recommended approach and a price range. No deck, no follow-up sequence, and no obligation.",
-  },
-];
 
 export default function HomeFaq() {
   return (

@@ -9913,3 +9913,88 @@ audit list.
 Verified at 1440 and 390: renders, tap targets 36x36 (the 24px floor from
 roadmap 364), `rel="noopener noreferrer nofollow"` on all three, no console
 errors, five CI checks green, article score unchanged at 91.
+
+### 377. DONE (2026-10-08) — The design system: scales, primitives, one template per page type
+
+Bilal's brief: "if I need to make changes design wise on any section it needs to
+reflect on all pages... I want to make it as professional as possible."
+
+Counted first, then built. Measured on 2026-10-08, before any change:
+
+| | Was | Now |
+| --- | ---: | ---: |
+| page header copies | 16 | 1 |
+| hand-written breadcrumbs | 9 | 0 |
+| hardcoded section rhythms | 68 (11 values) | 0 (3 values) |
+| ad-hoc card backgrounds | 72 (4 kinds) | 0 (3 levels) |
+| corner radius variants | 62 (3 kinds) | 0 (3 named) |
+| hand-rolled eyebrows | 98 (6 sizes) | 4 |
+| hand-rolled secondary buttons | 16 (4 sizes) | 7 |
+| FAQ designs | 2 | 1 |
+
+Nobody chose eleven rhythms or six eyebrow sizes. They accumulated one section
+at a time, which is how a site ends up looking assembled rather than designed.
+
+**Three layers.** Scales on `:root` in `globals.css`, fluid between the narrow
+phone and 1280px, built the way the type scale already worked. Five primitives:
+`Eyebrow`, `Breadcrumb`, `SecondaryButton`, `Surface`, `PageOpener`. Then the
+compositions that use them.
+
+**Two deliberate exceptions, both commented in the file so neither gets
+"fixed":** the homepage opens with a hero rather than a page header, and
+`/thank-you` is a centred confirmation screen.
+
+**Two bugs found on the way.**
+
+`.page-opener .text-gradient` used the `background` shorthand, which resets every
+background longhand it does not name — including `background-clip`. The gradient
+word rendered as a solid gold block with transparent text over it. Wrong on
+`/real-estate-marketing` since the white band shipped; putting `/portfolio` on
+the same band made it visible.
+
+Folding `HomeFaq` into `FaqSection` turned the homepage's `<h3>` questions into
+`<dt>`s and dropped it from 100 to 92. The fix was better than a revert: FAQ
+questions are headings on all ten pages now, and `/faq` exposes 20 where it
+offered a screen reader user none.
+
+**What deliberately did not become a component.** Sections that render once.
+A component with twelve props called from one place is harder to change than the
+markup it replaced. The line is: appears more than twice, it is a component.
+
+Verified after every commit: five CI checks green, zero lint warnings, zero
+horizontal overflow across 15 templates at 9 widths, one `h1` per page, and every
+page score unchanged — homepage 100, service pages 92 to 96.
+
+### 378. DONE (2026-10-08) — Homepage copy moved into `home.ts`
+
+Bilal asked whether the homepage should be data-driven "like theme development
+works", and whether the service and case study pages needed templates.
+
+**Two of the three already were.** `services/[slug]/page.tsx` renders fifteen
+pages from `pillars.ts`; `portfolio/[client]/[project]/page.tsx` renders the case
+studies from `caseStudies.ts`; `[slug]/page.tsx` renders 76 articles from
+`blogPosts.json`. Template plus fields, which is exactly the model he described.
+
+The homepage was the odd one out. `page.tsx` is 73 lines with **zero** hardcoded
+text — it was already pure composition — but the words lived inside the
+components, so changing the hero headline meant editing JSX while changing a
+service headline meant editing a string.
+
+Nine content blocks now live in `src/data/home.ts`, with the types and icons that
+travel with them.
+
+**This buys editing, not reuse, and the file says so.** The service template
+renders fifteen pages from one data file; that is reuse. Every homepage block
+renders once. What it buys is forty-odd strings sitting together, readable end
+to end, editable without touching a component.
+
+**Layout stayed in the components**, for the reason recorded in item 377.
+
+Three sections deliberately did not move, because their content already belongs
+to data files shared with other pages and copying it would create a second source
+of truth: the disciplines (`pillars.ts`), the process stages (`process.ts`) and
+the portfolio grid (`caseStudies.ts`).
+
+Verified: homepage renders 10 sections, 8 h2s, 54 links, 15 images, no console
+errors, **1,567 words in `<main>` against 1,567 on the live site** — byte for
+byte the same page — and still scores 100.

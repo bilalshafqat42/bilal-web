@@ -3,9 +3,10 @@ import Reveal, { RevealStagger, RevealItem } from "./Reveal";
 import ClientLogoRow from "./ClientLogoRow";
 import CtaButton from "@/components/CtaButton";
 import { caseStudyUrls } from "@/data/caseStudies";
-import { disciplinesWithPages } from "@/data/disciplines";
+
 import Eyebrow from "@/components/Eyebrow";
 import SecondaryButton from "@/components/SecondaryButton";
+import { resultStats as stats, resultMethod as METHOD } from "@/data/home";
 
 /**
  * The proof wall — the single proof section on the homepage.
@@ -33,56 +34,6 @@ import SecondaryButton from "@/components/SecondaryButton";
  * number should be caught the same way: it renders bracketed, which is a
  * warning to us, not a design.
  */
-
-type Stat = {
-  value: string;
-  label: string;
-  detail: string;
-  meta: string;
-  /** False until a client has approved the figure for publication. Unverified
-   *  values are wrapped in brackets at render time rather than in the string,
-   *  so removing the brackets is impossible without also flipping this flag —
-   *  which is the point. A figure cannot be quietly promoted to a fact. */
-  verified: boolean;
-};
-
-const stats: Stat[] = [
-  {
-    value: "15+",
-    label: "Years, one point of contact",
-    detail: "Strategy, design and build without a handoff layer",
-    meta: "Based in Dubai, UAE",
-    verified: true,
-  },
-  {
-    // Counted from `caseStudies`, not typed, so it cannot go stale.
-    value: `${caseStudyUrls().filter((u) => u.split("/").length > 3).length}`,
-    label: "Case studies published",
-    detail: "Each with the brief, the decisions and what shipped",
-    meta: "Brief · Build · Outcome",
-    verified: true,
-  },
-  {
-    // The same four the capability ledger names, counted from the data behind
-    // it rather than asserted twice.
-    value: `${disciplinesWithPages().length}`,
-    label: "Disciplines, one contract",
-    detail: "Marketing, design, web and mobile under one agreement",
-    meta: "No subcontractors",
-    verified: true,
-  },
-];
-
-/** How the numbers are produced. This panel is the real differentiator in the
- *  design: every freelancer claims results, and almost none explain the
- *  measurement. It is also the part that stays true regardless of which figures
- *  end up in the cards, which is why it is written as method rather than
- *  outcome. */
-const METHOD = [
-  "Baseline captured before anything changes",
-  "Tracked in your own GA4, CRM and ad accounts",
-  "One monthly report, no vanity metrics",
-];
 
 export default function Results() {
   // Derived, never hard-coded. The design's caption said "Five case studies";
