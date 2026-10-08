@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Reveal from "./Reveal";
 import Eyebrow from "@/components/Eyebrow";
 
@@ -11,6 +12,13 @@ type Props = {
   faqs: Faq[];
   /** Anchor target, for pages that link to their own questions. */
   id?: string;
+  /** A short gold rule before the eyebrow, for a section that opens a run. */
+  rule?: boolean;
+  /** A paragraph under the heading, in the sticky left column. */
+  intro?: ReactNode;
+  /** A card under the intro: the homepage's "Still not sure what you need?"
+   *  escape hatch. Sticks with the label on a tall screen. */
+  aside?: ReactNode;
   /** Vertical rhythm. Pages differ on whether this section opens or closes a
    *  run of sections, so the spacing is passed in rather than guessed. */
   className?: string;
@@ -34,8 +42,28 @@ type Props = {
  *
  * Renders nothing when there are no questions, so a page can pass a possibly
  * empty array without guarding at the call site.
+ *
+ * **2026-10-08: `HomeFaq` folded in here.** A seventh design had grown back on
+ * the homepage — `py-24 sm:py-32` against this one's `py-20 sm:py-24`, a 416px
+ * label column against 320px, `gap-20` against `gap-16`, `<h3>` questions at
+ * `t-h4` against `<dt>` at `text-lg sm:text-xl`, and no top border. Same
+ * content type, two presentations, on the two pages a visitor is most likely to
+ * see in one session.
+ *
+ * It brought two things worth keeping, which are now props rather than a second
+ * component: `intro`, the paragraph under the heading, and `aside`, the "Still
+ * not sure what you need?" card that sticks beside the answers.
  */
-export default function FaqSection({ eyebrow, title, faqs, id, className }: Props) {
+export default function FaqSection({
+  eyebrow,
+  title,
+  faqs,
+  id,
+  rule = false,
+  intro,
+  aside,
+  className,
+}: Props) {
   if (!faqs.length) return null;
 
   return (
@@ -44,15 +72,13 @@ export default function FaqSection({ eyebrow, title, faqs, id, className }: Prop
         <Reveal>
           {/* Sticky, so the label holds its place beside a long run of answers.
               Below lg it simply sits above them. */}
-          <div className="lg:sticky lg:top-32">
-            {eyebrow ? (
-              <Eyebrow>
-                {eyebrow}
-              </Eyebrow>
+          <div className="lg:sticky lg:top-32 lg:self-start">
+            {eyebrow ? <Eyebrow rule={rule}>{eyebrow}</Eyebrow> : null}
+            <h2 className={`t-h2 text-ink ${eyebrow ? "mt-3" : ""}`}>{title}</h2>
+            {intro ? (
+              <div className="mt-5 text-lg leading-relaxed text-muted">{intro}</div>
             ) : null}
-            <h2 className="t-h2 mt-3 text-ink">
-              {title}
-            </h2>
+            {aside ? <div className="mt-10">{aside}</div> : null}
           </div>
         </Reveal>
 

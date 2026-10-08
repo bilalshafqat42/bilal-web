@@ -1,6 +1,7 @@
 import Link from "next/link";
 import CtaButton from "@/components/CtaButton";
-import Eyebrow from "@/components/Eyebrow";
+import FaqSection from "@/components/FaqSection";
+import Surface from "@/components/Surface";
 
 /**
  * The questions people ask before booking, answered on the page.
@@ -78,53 +79,35 @@ const faqs = [
 
 export default function HomeFaq() {
   return (
-    <section id="faq" className="relative py-24 scroll-mt-28 sm:py-32">
-      <div className="site-container">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)] lg:gap-20">
-          {/* Left: the framing and the escape hatch. `lg:sticky` so the CTA
-              stays beside the answers on a tall screen rather than scrolling
-              away at the top. */}
-          <div className="lg:sticky lg:top-28 lg:self-start">
-            <Eyebrow>
-              <span aria-hidden="true" className="h-px w-6 bg-gold/60" />
-              Common questions
-            </Eyebrow>
-            <h2 className="t-h2 mt-5 text-ink">The questions I get before the first call</h2>
-            <p className="mt-5 text-lg leading-relaxed text-muted">
-              Answered here so you do not have to book a call to find out. If yours is not
-              covered,{" "}
-              <Link href="/faq" className="text-gold underline underline-offset-2">
-                there are more on the FAQ page
-              </Link>
-              , or ask it directly.
-            </p>
-
-            <div className="mt-10 rounded-2xl border border-border panel p-7">
-              <p className="font-semibold text-ink">Still not sure what you need?</p>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
-                Tell me the business and the number you want to move. You will get a
-                recommended approach and a price range, whether or not you hire me.
-              </p>
-              <CtaButton href="/appointment" className="mt-6">
-                Book a free consultation
-              </CtaButton>
-            </div>
-          </div>
-
-          {/* Right: the answers, open. No accordion — the same reasoning as the
-              pricing table in item 262. Someone scanning five questions should
-              not have to click five times to find the one that applies, and
-              text behind a toggle is text a skimming reader never sees. */}
-          <div className="divide-y divide-border">
-            {faqs.map((f, i) => (
-              <div key={f.q} className={i === 0 ? "pb-8" : "py-8"}>
-                <h3 className="t-h4 text-ink">{f.q}</h3>
-                <p className="mt-4 text-base leading-relaxed text-muted">{f.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
+    <FaqSection
+      id="faq"
+      className="scroll-mt-28 section-pad"
+      rule
+      eyebrow="Common questions"
+      title="The questions I get before the first call"
+      intro={
+        <>
+          Answered here so you do not have to book a call to find out. If yours is not
+          covered,{" "}
+          <Link href="/faq" className="text-gold underline underline-offset-2">
+            there are more on the FAQ page
+          </Link>
+          , or ask it directly.
+        </>
+      }
+      aside={
+        <Surface pad="lg" radius="card">
+          <p className="font-semibold text-ink">Still not sure what you need?</p>
+          <p className="mt-2 text-sm leading-relaxed text-muted">
+            Tell me the business and the number you want to move. You will get a
+            recommended approach and a price range, whether or not you hire me.
+          </p>
+          <CtaButton href="/appointment" className="mt-6">
+            Book a free consultation
+          </CtaButton>
+        </Surface>
+      }
+      faqs={faqs.map((f) => ({ question: f.q, answer: f.a }))}
+    />
   );
 }
