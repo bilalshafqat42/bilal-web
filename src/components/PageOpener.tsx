@@ -59,7 +59,9 @@ export default function PageOpener({
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
       <h1 className={`t-h1 text-ink ${eyebrow ? "mt-4" : ""}`}>{title}</h1>
       {standfirst ? (
-        <div className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{standfirst}</div>
+        <div className="mt-6 max-w-2xl space-y-4 text-lg leading-relaxed text-muted">
+          {standfirst}
+        </div>
       ) : null}
       {actions ? <div className="mt-9 flex flex-wrap items-center gap-3">{actions}</div> : null}
     </div>

@@ -1,8 +1,7 @@
-import Link from "next/link";
 import type { Metadata } from "next";
-import { ChevronRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import FaqSection from "@/components/FaqSection";
+import PageOpener from "@/components/PageOpener";
 import { faqGroups, allFaqs } from "@/data/faqs";
 import CtaButton from "@/components/CtaButton";
 import JsonLd from "@/components/JsonLd";
@@ -42,36 +41,30 @@ export default function FaqPage() {
     <>
       <JsonLd nodes={nodes} />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
-        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
-          <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="site-container relative">
-            <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted">
-              <Link href="/" className="hover:text-ink transition-colors">Home</Link>
-              <ChevronRight size={13} />
-              <span className="text-ink">FAQ</span>
-            </nav>
-            <h1 className="t-h1 mt-8 text-ink">
-              Questions people actually ask
-            </h1>
-            <p className="mt-6 text-lg text-muted leading-relaxed">
+        <PageOpener
+          crumbs={[{ label: "Home", href: "/" }, { label: "FAQ" }]}
+          title="Questions people actually ask"
+          standfirst={
+            <>
               Honest answers about how this works, including the parts that
               usually go unsaid. If your question isn&apos;t here, ask me directly
               and I&apos;ll add it.
-            </p>
-
-            <nav aria-label="Sections" className="mt-8 flex flex-wrap gap-2">
+            </>
+          }
+          actions={
+            <nav aria-label="Sections" className="flex flex-wrap gap-2">
               {faqGroups.map((g) => (
                 <a
                   key={g.id}
                   href={`#${g.id}`}
-                  className="rounded-full border border-border bg-surface/60 px-4 py-2 text-xs font-medium text-muted hover:text-ink hover:border-gold/35 transition-colors"
+                  className="tap-target rounded-full border border-border bg-surface/60 px-4 py-2 text-xs font-medium text-muted transition-colors hover:border-gold/35 hover:text-ink"
                 >
                   {g.title}
                 </a>
               ))}
             </nav>
-          </div>
-        </section>
+          }
+        />
 
         {/* One FaqSection per group, so the group name stays beside its own
             questions as you read them.

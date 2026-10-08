@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PageOpener from "@/components/PageOpener";
 import ConsentReset from "@/components/ConsentReset";
 import { SITE_URL, breadcrumbNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
 
@@ -84,24 +85,11 @@ export default function PrivacyPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(schema) }} />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
-        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
-          <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="site-container relative">
-            <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
-              Privacy
-            </span>
-            <h1 className="t-h1 mt-5 text-ink">
-              What this site stores
-            </h1>
-            <p className="mt-6 text-lg text-muted leading-relaxed">
-              Short version: no advertising cookie is written and the Meta Pixel
-              never loads until you accept on the cookie banner. Google Analytics
-              does load on every page, but it is set to store nothing about you
-              unless you accept, and declining keeps it that way. Everything this
-              site can store is listed below, in plain language.
-            </p>
-          </div>
-        </section>
+        <PageOpener
+          eyebrow="Privacy"
+          title="What this site stores"
+          standfirst="Short version: no advertising cookie is written and the Meta Pixel never loads until you accept on the cookie banner. Google Analytics does load on every page, but it is set to store nothing about you unless you accept, and declining keeps it that way. Everything this site can store is listed below, in plain language."
+        />
 
         <section className="relative mt-14">
           <div className="site-container">

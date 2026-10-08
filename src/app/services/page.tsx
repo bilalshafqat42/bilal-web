@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import PageOpener from "@/components/PageOpener";
 import { ArrowRight } from "lucide-react";
 import Contact from "@/components/Contact";
 import PortfolioShowcase from "@/components/PortfolioShowcase";
@@ -61,23 +62,12 @@ export default function ServicesPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(schema) }} />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
-        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
-          <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="site-container relative text-center">
-            <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
-              Services
-            </span>
-            <h1 className="t-h1 mt-5 text-ink">
-              {Count} services, one senior partner
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-muted leading-relaxed">
-              Paid marketing, website and app development, design and conversion,
-              and the CRM and automation that connects them, delivered
-              personally from strategy to launch, without handoffs between
-              departments.
-            </p>
-          </div>
-        </section>
+        <PageOpener
+          crumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
+          eyebrow="Services"
+          title={<>{Count} services, one senior partner</>}
+          standfirst="Paid marketing, website and app development, design and conversion, and the CRM and automation that connects them, delivered personally from strategy to launch, without handoffs between departments."
+        />
 
         <section className="relative mt-16 sm:mt-20">
           <div className="site-container">

@@ -1,6 +1,6 @@
-import Link from "next/link";
 import type { Metadata } from "next";
-import { ChevronRight } from "lucide-react";
+import PageOpener from "@/components/PageOpener";
+
 import Reveal from "@/components/Reveal";
 import CtaButton from "@/components/CtaButton";
 import JsonLd from "@/components/JsonLd";
@@ -64,15 +64,11 @@ export default function BlogIndexPage() {
     <>
       <JsonLd nodes={nodes} />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
-        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
-          <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="site-container relative">
-            <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted">
-              <Link href="/" className="transition-colors hover:text-ink">Home</Link>
-              <ChevronRight size={13} />
-              <span className="text-ink">Writing</span>
-            </nav>
-            <h1 className="t-h1 mt-8 text-ink">Writing</h1>
+        <PageOpener
+          crumbs={[{ label: "Home", href: "/" }, { label: "Writing" }]}
+          title="Writing"
+          standfirst={
+            <>
             {/* Expanded 2026-10-02. An Ubersuggest site audit flagged this page
                 for thin content. Its count of 133 words was wrong — the page
                 carries 539 in `<main>` — but the *intro* really was two
@@ -84,26 +80,27 @@ export default function BlogIndexPage() {
                 the right article, and filler added to satisfy a word count
                 makes it worse at that. What was missing was a straight
                 description of what is here and who it is for. */}
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-              Notes on the things I hit in client work — React hooks that look simple until
-              they cost you a render, and the design references I keep going back to.
-            </p>
-            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted">
-              Fifty-seven pieces, written across two broad halves. The technical half covers
-              React and React Native, the hooks in detail, state management, CSS and Node, and
-              it is written from problems that turned up on real builds rather than from the
-              documentation. The design half is mostly references: the sites worth returning
-              to, the tools that earn their place, and what has actually changed rather than
-              what is being announced.
-            </p>
-            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted">
-              More recently there is a third strand, for people hiring rather than building:
-              what a website costs in Dubai, whether to start with Google Ads or SEO, and how
-              a freelancer compares with an agency. Every link in every list has been opened
-              and checked, with the date on the page.
-            </p>
-          </div>
-        </section>
+              <p>
+                Notes on the things I hit in client work — React hooks that look simple until
+                they cost you a render, and the design references I keep going back to.
+              </p>
+              <p>
+                Fifty-seven pieces, written across two broad halves. The technical half covers
+                React and React Native, the hooks in detail, state management, CSS and Node, and
+                it is written from problems that turned up on real builds rather than from the
+                documentation. The design half is mostly references: the sites worth returning
+                to, the tools that earn their place, and what has actually changed rather than
+                what is being announced.
+              </p>
+              <p>
+                More recently there is a third strand, for people hiring rather than building:
+                what a website costs in Dubai, whether to start with Google Ads or SEO, and how
+                a freelancer compares with an agency. Every link in every list has been opened
+                and checked, with the date on the page.
+              </p>
+            </>
+          }
+        />
 
         <section className="relative mt-14 sm:mt-16">
           <div className="site-container">

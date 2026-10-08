@@ -1,6 +1,6 @@
-import Link from "next/link";
 import type { Metadata } from "next";
-import { ChevronRight, Minus, Plus } from "lucide-react";
+import PageOpener from "@/components/PageOpener";
+import { Minus, Plus } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import FaqSection from "@/components/FaqSection";
 import CtaButton from "@/components/CtaButton";
@@ -8,7 +8,6 @@ import Engagement from "@/components/Engagement";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL, faqNode, breadcrumbNode } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
-
 
 export const metadata: Metadata = {
   title: "What a Freelance Digital Marketer Costs in Dubai",
@@ -24,7 +23,6 @@ export const metadata: Metadata = {
     images: OG_IMAGES,
   },
 };
-
 
 // The genuinely useful part of a pricing page for anyone who cannot yet be quoted:
 // what actually moves the number, in both directions.
@@ -75,7 +73,6 @@ export default function PricingPage() {
     },
   ];
 
-
   // One graph, nodes keyed by @id. Both FAQ sets below are rendered visibly on
   // this page — verified, not assumed.
   const pageUrl = `${SITE_URL}/pricing`;
@@ -88,32 +85,27 @@ export default function PricingPage() {
     <>
       <JsonLd nodes={nodes} />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
-        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
-          <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="site-container relative">
-            <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted">
-              <Link href="/" className="hover:text-ink transition-colors">Home</Link>
-              <ChevronRight size={13} />
-              <span className="text-ink">Pricing</span>
-            </nav>
-            <h1 className="t-h1 mt-8 text-ink">
-              What a freelance digital marketer costs in Dubai
-            </h1>
-            <p className="mt-6 text-lg text-muted leading-relaxed">
-              Published figures rather than a range with nobody behind it. Project
-              work from AED 31,500, monthly retainers from AED 16,000, a one-off
-              review session at AED 3,500. No packages, no tiers you have to squeeze
-              into, and no form to fill in before you are told a number.
-            </p>
-            <p className="mt-4 text-lg text-muted leading-relaxed">
-              Below: the four ways of working compared, what pushes the number up or
-              down, and how to get a real figure for your own project. These are my
-              own rates and not a market survey, stated so there is at least one
-              verifiable number on the subject rather than another article that gives
-              a range and stops.
-            </p>
-          </div>
-        </section>
+        <PageOpener
+          crumbs={[{ label: "Home", href: "/" }, { label: "Pricing" }]}
+          title="What a freelance digital marketer costs in Dubai"
+          standfirst={
+            <>
+              <p>
+                Published figures rather than a range with nobody behind it. Project
+                work from AED 31,500, monthly retainers from AED 16,000, a one-off
+                review session at AED 3,500. No packages, no tiers you have to squeeze
+                into, and no form to fill in before you are told a number.
+              </p>
+              <p>
+                Below: the four ways of working compared, what pushes the number up or
+                down, and how to get a real figure for your own project. These are my
+                own rates and not a market survey, stated so there is at least one
+                verifiable number on the subject rather than another article that gives
+                a range and stops.
+              </p>
+            </>
+          }
+        />
 
         {/* The engagement models, once.
  *
@@ -128,7 +120,6 @@ export default function PricingPage() {
  * were the last thing on it.
  */}
         <Engagement variant="detailed" />
-
 
         <section className="relative mt-20 sm:mt-24">
           <div className="site-container">
