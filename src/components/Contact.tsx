@@ -7,7 +7,7 @@ import SecondaryButton from "@/components/SecondaryButton";
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative py-24 sm:py-32">
+    <section id="contact" className="relative section-pad">
       <div className="site-container">
         <Reveal>
           <div className="relative overflow-hidden r-panel surface-3 px-8 py-14 sm:px-16 sm:py-20 text-center">

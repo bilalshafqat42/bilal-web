@@ -30,7 +30,7 @@ import Eyebrow from "@/components/Eyebrow";
  */
 export default function CapabilityLedger() {
   return (
-    <section id="services" className="relative py-24 sm:py-32">
+    <section id="services" className="relative section-pad">
       <div className="site-container">
         {/* Was the last pill-shaped label on the site: item 189 gave it the mono
             type but left the pill border and the muted colour, so it read as a

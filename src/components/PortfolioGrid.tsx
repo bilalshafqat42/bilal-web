@@ -205,7 +205,7 @@ export default function PortfolioGrid() {
   const rows = rowsOf(cards);
 
   return (
-    <section id="work-carousel" className="relative py-20 sm:py-24">
+    <section id="work-carousel" className="relative section-pad">
       <div className="site-container">
         <SectionHeading
           eyebrow="Selected Work"

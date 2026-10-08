@@ -87,7 +87,7 @@ export default function FaqPage() {
           />
         ))}
 
-        <section className="relative mt-20 sm:mt-24">
+        <section className="relative section">
           <div className="site-container">
             <Reveal>
               <div className="relative overflow-hidden r-panel surface-3 px-8 py-14 text-center sm:px-16">

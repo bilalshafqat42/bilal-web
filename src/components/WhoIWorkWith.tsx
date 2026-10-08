@@ -108,7 +108,7 @@ function AudienceCard({ audience }: { audience: Audience }) {
 
 export default function WhoIWorkWith() {
   return (
-    <section className="relative py-24 sm:py-32">
+    <section className="relative section-pad">
       <div className="site-container">
         <SectionHeading
           eyebrow="Clients & Teams"

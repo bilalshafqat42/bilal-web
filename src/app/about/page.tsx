@@ -151,7 +151,7 @@ export default function AboutPage() {
           }
         />
 
-        <section className="relative mt-24 sm:mt-32">
+        <section className="relative section">
           <div className="site-container">
             <Reveal>
               <Eyebrow>The work</Eyebrow>
@@ -199,7 +199,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="relative mt-24 sm:mt-32">
+        <section className="relative section">
           <div className="site-container">
             <div className="max-w-3xl">
               <Reveal>
@@ -260,7 +260,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="relative mt-24 sm:mt-32">
+        <section className="relative section">
           <div className="site-container">
             <Reveal>
               <Eyebrow>How I work</Eyebrow>
@@ -282,7 +282,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="relative mt-24 sm:mt-32">
+        <section className="relative section">
           <div className="site-container">
             <Reveal>
               <Eyebrow>Stack</Eyebrow>
@@ -321,7 +321,7 @@ export default function AboutPage() {
             with" is the reader's actual question. */}
         <WhoIWorkWith />
 
-        <section className="relative mt-24 sm:mt-32">
+        <section className="relative section">
           <div className="site-container">
             <Reveal>
               <div className="relative overflow-hidden r-panel surface-3 px-8 py-14 text-center sm:px-16">

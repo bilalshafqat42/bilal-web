@@ -33,7 +33,7 @@ import SecondaryButton from "@/components/SecondaryButton";
 
 export default function ProcessCompact() {
   return (
-    <section id="process" className="relative py-24 sm:py-32">
+    <section id="process" className="relative section-pad">
       <div className="site-container">
         {/* Heading left, the escape hatch right. The old version centred the
             heading and buried "See the full process" below the cards, where it

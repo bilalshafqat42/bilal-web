@@ -137,7 +137,7 @@ export default function ProcessPage() {
             live on the homepage and on /pricing; rendering the full block here
             too would have put three copies of the same content on the site,
             two of them indexable, competing with each other. */}
-        <section className="relative py-24 sm:py-32 bg-bg-soft/40">
+        <section className="relative section-pad bg-bg-soft/40">
           <div className="site-container">
             <SectionHeading
               eyebrow="Pricing & Engagement"
@@ -164,7 +164,7 @@ export default function ProcessPage() {
           eyebrow="Questions"
           title="About how the work runs"
           faqs={faqs}
-          className="py-24 sm:py-32"
+          className="section-pad"
         />
 
         <Contact />

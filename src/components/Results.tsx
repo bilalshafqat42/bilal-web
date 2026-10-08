@@ -91,7 +91,7 @@ export default function Results() {
   const studies = caseStudyUrls().filter((u) => u.split("/").length > 3).length;
 
   return (
-    <section className="relative py-24 sm:py-32">
+    <section className="relative section-pad">
       <div className="site-container">
         {/* Claim and method, side by side. The method panel earns the right
             column: it is the answer to the question the figures provoke. */}

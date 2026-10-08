@@ -44,7 +44,7 @@ type Props = {
  * empty array without guarding at the call site.
  *
  * **2026-10-08: `HomeFaq` folded in here.** A seventh design had grown back on
- * the homepage — `py-24 sm:py-32` against this one's `py-20 sm:py-24`, a 416px
+ * the homepage — `section-pad` against this one's `section-pad`, a 416px
  * label column against 320px, `gap-20` against `gap-16`, `<h3>` questions at
  * `t-h4` against `<dt>` at `text-lg sm:text-xl`, and no top border. Same
  * content type, two presentations, on the two pages a visitor is most likely to
@@ -67,7 +67,7 @@ export default function FaqSection({
   if (!faqs.length) return null;
 
   return (
-    <section id={id} className={`site-container ${className ?? "py-20 sm:py-24"}`}>
+    <section id={id} className={`site-container ${className ?? "section-pad"}`}>
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] lg:gap-16">
         <Reveal>
           {/* Sticky, so the label holds its place beside a long run of answers.

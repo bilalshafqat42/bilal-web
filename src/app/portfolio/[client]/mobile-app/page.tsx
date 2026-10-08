@@ -289,7 +289,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                 same; what changed is that each part now says what it is, which
                 is also what makes the page legible to a crawler reading the
                 outline rather than the layout. */}
-            <section className="relative mt-24 sm:mt-32">
+            <section className="relative section">
               <div className="site-container">
                 <Reveal>
                   <Eyebrow>
@@ -311,7 +311,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
               </div>
             </section>
 
-            <section className="relative mt-20 sm:mt-24">
+            <section className="relative section">
               <div className="site-container">
                 <Reveal>
                   <Eyebrow>
@@ -367,7 +367,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
             for. Built from each screen's own `tag` — the one-line takeaway
             already written for it — so it states the interface decisions without
             repeating The Problem above, which covers the external constraints. */}
-        <section className="relative mt-24 sm:mt-32">
+        <section className="relative section">
           <div className="site-container">
             <Reveal>
               <Eyebrow>
@@ -407,7 +407,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
          * reasoning underneath it, stacked — rather than a phone and a column of
          * text alternating sides down the page.
          */}
-        <section id="screens" className="relative mt-24 scroll-mt-28 sm:mt-32">
+        <section id="screens" className="relative section scroll-mt-28">
           <div className="site-container">
             <Reveal>
               <div className="flex flex-wrap items-end justify-between gap-6 border-b border-border pb-8">
@@ -478,7 +478,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                          deliberate ground rather than in empty space. The panel
                          is warm rather than another near-black, so it reads as a
                          chosen surface instead of the page showing through. */
-                      <div className="screen-panel flex justify-center r-card px-6 py-12 sm:py-16">
+                      <div className="screen-panel flex justify-center r-card px-6 section-pad-tight">
                         <Image
                           src={s.capture.src}
                           alt={s.capture.alt}
@@ -522,7 +522,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
         {/* The reasoning, as a list rather than threaded between the images.
             This is the reference's shape: runs of images, then a block of short
             statements, and never the two interleaved. */}
-        <section className="relative mt-24 sm:mt-32">
+        <section className="relative section">
           <div className="site-container">
             <Reveal>
               <Eyebrow>
@@ -546,7 +546,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
         </section>
 
         {app.scope ? (
-          <section className="relative mt-24 sm:mt-32">
+          <section className="relative section">
             <div className="site-container">
               <Reveal>
                 <div>
@@ -587,7 +587,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
         ) : null}
 
         {outcomes.length > 0 ? (
-          <section className="relative mt-24 sm:mt-32">
+          <section className="relative section">
             <div className="site-container">
               <Reveal>
                 <div>
@@ -627,7 +627,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
         ) : null}
 
         {siblings.length > 0 ? (
-          <section className="relative mt-24 sm:mt-32">
+          <section className="relative section">
             <div className="site-container">
               {/* Labelled on 2026-09-21. It was two unheaded cards, which reads
                   as pagination furniture; the reference gives it a heading and
@@ -668,7 +668,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
           eyebrow="Common questions"
           title="About this app"
           faqs={faqs}
-          className="py-16 sm:py-20"
+          className="section-pad-tight"
         />
 
         <WorkProof clientSlug={c.slug} />

@@ -27,7 +27,7 @@ export default function FurtherReading({ serviceSlug }: { serviceSlug: string })
   if (!posts.length) return null;
 
   return (
-    <section className="relative mt-20 sm:mt-24">
+    <section className="relative section">
       <div className="site-container">
         <Reveal>
           <h2 className="t-h3 text-ink">Further reading</h2>

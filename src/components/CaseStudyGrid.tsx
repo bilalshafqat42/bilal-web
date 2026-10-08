@@ -109,7 +109,7 @@ export default function CaseStudyGrid() {
   const filters = [...counts.entries()].sort((a, b) => b[1] - a[1]);
 
   return (
-    <section className="site-container py-16 sm:py-20">
+    <section className="site-container section-pad-tight">
       <Reveal>
         <Eyebrow>
           The work

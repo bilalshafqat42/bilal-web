@@ -142,7 +142,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
           }
         />
 
-        <section className="relative mt-20 sm:mt-24">
+        <section className="relative section">
           <div className="site-container">
             <Reveal>
               <Eyebrow>Scope</Eyebrow>
@@ -171,7 +171,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
         </section>
 
         {depth ? (
-          <section className="relative mt-20 sm:mt-24">
+          <section className="relative section">
             <div className="site-container">
               {/* Corrected 2026-10-06, same day it was broken.
                   ---------------------------------------------------------
@@ -220,7 +220,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
           </section>
         ) : null}
 
-        <FaqSection eyebrow="Questions" title="Frequently asked" faqs={faqs} className="mt-20 sm:mt-24" />
+        <FaqSection eyebrow="Questions" title="Frequently asked" faqs={faqs} className="section" />
 
         {faqs.length ? (
           <section className="relative mt-12">
@@ -260,7 +260,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
           </section>
         ) : null}
 
-        <section className="relative mt-20 sm:mt-24">
+        <section className="relative section">
           <div className="site-container">
             <Reveal>
               <h2 className="t-h3 text-ink">Other services</h2>

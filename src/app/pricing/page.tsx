@@ -122,7 +122,7 @@ export default function PricingPage() {
  */}
         <Engagement variant="detailed" />
 
-        <section className="relative mt-20 sm:mt-24">
+        <section className="relative section">
           <div className="site-container">
             <Reveal>
               <Eyebrow>Cost drivers</Eyebrow>
@@ -163,7 +163,7 @@ export default function PricingPage() {
           </div>
         </section>
 
-        <section className="relative mt-20 sm:mt-24">
+        <section className="relative section">
           <div className="site-container">
             <div className="max-w-3xl">
               <Reveal>
@@ -230,9 +230,9 @@ export default function PricingPage() {
           </div>
         </section>
 
-        <FaqSection eyebrow="Questions" title="Pricing questions" faqs={faqs} className="mt-20 sm:mt-24" />
+        <FaqSection eyebrow="Questions" title="Pricing questions" faqs={faqs} className="section" />
 
-        <section className="relative mt-20 sm:mt-24">
+        <section className="relative section">
           <div className="site-container">
             <Reveal>
               <div className="relative overflow-hidden r-panel surface-3 px-8 py-14 text-center sm:px-16">

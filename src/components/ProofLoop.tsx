@@ -67,7 +67,7 @@ export function ServiceProof({ serviceSlug }: { serviceSlug: string }) {
   if (proof.length === 0) return null;
 
   return (
-    <section className="site-container py-16 sm:py-20">
+    <section className="site-container section-pad-tight">
       <Reveal>
         <div className="border-b border-border pb-5">
           <Eyebrow>
@@ -101,7 +101,7 @@ export function WorkProof({
   if (used.length === 0) return null;
 
   return (
-    <section className="site-container py-16 sm:py-20">
+    <section className="site-container section-pad-tight">
       <Reveal>
         <div className="border-b border-border pb-5">
           <Eyebrow>

@@ -70,7 +70,7 @@ export default function ServicesPage() {
           standfirst="Paid marketing, website and app development, design and conversion, and the CRM and automation that connects them, delivered personally from strategy to launch, without handoffs between departments."
         />
 
-        <section className="relative mt-16 sm:mt-20">
+        <section className="relative section-tight">
           <div className="site-container">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               {megaMenuGroups.map((pillar) => {
@@ -124,7 +124,7 @@ export default function ServicesPage() {
         <PortfolioShowcase />
 
         {/* Evidence immediately above the CTA in <Contact />. */}
-        <div className="site-container mt-20 sm:mt-24">
+        <div className="site-container section">
           <Eyebrow as="p" tone="muted" className="text-center">
             Trusted by
           </Eyebrow>

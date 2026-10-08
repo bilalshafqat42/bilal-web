@@ -157,7 +157,7 @@ export default function ContactPage() {
           }
         />
 
-        <section className="relative mt-16 sm:mt-20">
+        <section className="relative section-tight">
           <div className="site-container">
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
               {channels.map((channel, i) => {
@@ -224,7 +224,7 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section id="enquiry" className="relative mt-16 scroll-mt-28 sm:mt-20">
+        <section id="enquiry" className="relative section-tight scroll-mt-28">
           <div className="site-container">
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.35fr_0.65fr]">
               <Reveal>
@@ -261,7 +261,7 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section className="relative mt-16 sm:mt-20">
+        <section className="relative section-tight">
           <div className="site-container">
             <div className="max-w-3xl">
               <Reveal>
@@ -312,7 +312,7 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section className="relative mt-16 sm:mt-20">
+        <section className="relative section-tight">
           <div className="site-container">
             <Reveal>
               <div className="relative overflow-hidden r-panel surface-3 px-8 py-14 text-center sm:px-16">

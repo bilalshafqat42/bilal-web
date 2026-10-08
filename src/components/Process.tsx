@@ -63,7 +63,7 @@ export default function Process() {
   }, []);
 
   return (
-    <section id="process" className="relative bg-bg-soft/40 py-24 sm:py-32">
+    <section id="process" className="relative bg-bg-soft/40 section-pad">
       <div className="site-container">
         <SectionHeading
           // The only heading on /process, so it has to be the h1. SectionHeading

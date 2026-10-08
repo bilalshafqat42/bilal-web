@@ -292,7 +292,7 @@ export default function AboutSplit() {
           {/* 1. The heading, black on the white field. */}
           <div
             ref={headRef}
-            className="flex flex-col px-6 py-16 sm:py-20 lg:py-28 lg:pl-10 lg:pr-0"
+            className="flex flex-col px-6 section-pad-tight lg:py-28 lg:pl-10 lg:pr-0"
           >
             <span
               data-reveal
@@ -320,7 +320,7 @@ export default function AboutSplit() {
               layout, where there is no panel. */}
           <div
             ref={darkRef}
-            className="flex flex-col bg-bg px-6 py-16 sm:py-20 lg:bg-transparent lg:py-28 lg:pl-16 lg:pr-10"
+            className="flex flex-col bg-bg px-6 section-pad-tight lg:bg-transparent lg:py-28 lg:pl-16 lg:pr-10"
           >
             {/* An empty stand-in for the eyebrow opposite, so the paragraph
                 below starts on the same line as the heading rather than the

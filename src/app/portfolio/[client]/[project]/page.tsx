@@ -206,7 +206,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
         />
 
         {depth ? (
-          <section className="relative mt-20 sm:mt-28">
+          <section className="relative section">
             <div className="site-container">
               {/* Two columns at the full container width. This block used to be
                   `mx-auto max-w-3xl`, which centred it in a narrow column while
@@ -251,7 +251,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
         ) : null}
 
         {p.landingPage ? (
-          <section className="relative mt-20 sm:mt-28">
+          <section className="relative section">
             <div className="site-container">
               <Reveal>
                 <Eyebrow>Landing page</Eyebrow>
@@ -284,7 +284,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
         ) : null}
 
         {p.gallery ? (
-          <section className="relative mt-20 sm:mt-28">
+          <section className="relative section">
             <div className="site-container">
               <Reveal>
                 <Eyebrow>Creative</Eyebrow>
@@ -303,7 +303,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
           </section>
         ) : null}
 
-        <section className="relative mt-20 sm:mt-28">
+        <section className="relative section">
           <div className="site-container">
             <div className="flex flex-wrap items-center justify-between gap-6 border-t border-border pt-10">
               <Link
@@ -365,7 +365,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
           </section>
         ) : null}
 
-        <section className="relative mt-16 sm:mt-20">
+        <section className="relative section-tight">
           <div className="site-container">
             <Reveal>
               <div className="relative overflow-hidden r-panel surface-3 px-8 py-14 text-center sm:px-16">
@@ -390,7 +390,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
           eyebrow="Common questions"
           title="About this launch"
           faqs={p.faqs ?? []}
-          className="py-16 sm:py-20"
+          className="section-pad-tight"
         />
 
         <WorkProof clientSlug={c.slug} projectSlug={p.slug} />

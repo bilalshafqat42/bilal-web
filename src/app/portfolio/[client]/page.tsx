@@ -129,7 +129,7 @@ export default async function ClientCaseStudy({ params }: Props) {
           }
         />
 
-        <section className="relative mt-20 sm:mt-28">
+        <section className="relative section">
           <div className="site-container">
             <Reveal>
               <Eyebrow>The brief</Eyebrow>
@@ -152,7 +152,7 @@ export default async function ClientCaseStudy({ params }: Props) {
         </section>
 
         {c.website ? (
-          <section className="relative mt-20 sm:mt-28">
+          <section className="relative section">
             <div className="site-container">
               <Reveal>
                 <Eyebrow>Website</Eyebrow>
@@ -201,7 +201,7 @@ export default async function ClientCaseStudy({ params }: Props) {
         ) : null}
 
         {c.mobileApp ? (
-          <section className="relative mt-20 sm:mt-28">
+          <section className="relative section">
             <div className="site-container">
               {/* 70/30. The composite carries this section, so it takes the width
                   and the copy sits beside it rather than stacked above — which also
@@ -237,7 +237,7 @@ export default async function ClientCaseStudy({ params }: Props) {
         ) : null}
 
         {c.brandSocial ? (
-          <section className="relative mt-20 sm:mt-28">
+          <section className="relative section">
             <div className="site-container">
               <Reveal>
                 <Eyebrow>Brand and social</Eyebrow>
@@ -315,7 +315,7 @@ export default async function ClientCaseStudy({ params }: Props) {
         ) : null}
 
         {c.depth ? (
-          <section className="relative mt-20 sm:mt-28">
+          <section className="relative section">
             <div className="site-container">
               {c.depth.map((block, i) => (
                 <Reveal key={block.heading}>
@@ -334,7 +334,7 @@ export default async function ClientCaseStudy({ params }: Props) {
         ) : null}
 
         <WorkProof clientSlug={c.slug} />
-        <section className="relative mt-20 sm:mt-28">
+        <section className="relative section">
           <div className="site-container">
             <Reveal>
               <div className="relative overflow-hidden r-panel surface-3 px-8 py-14 text-center sm:px-16">

@@ -103,13 +103,13 @@ export default function BlogIndexPage() {
           }
         />
 
-        <section className="relative mt-14 sm:mt-16">
+        <section className="relative section-tight">
           <div className="site-container">
             <BlogList posts={posts} page={1} totalPages={totalPages} />
           </div>
         </section>
 
-        <section className="relative mt-20 sm:mt-24">
+        <section className="relative section">
           <div className="site-container">
             <Reveal>
               <div className="relative overflow-hidden r-panel surface-3 px-8 py-14 text-center sm:px-16">

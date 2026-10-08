@@ -150,7 +150,7 @@ export default async function ArticlePage({ params }: PageProps) {
           <ShareRow url={url} title={post.title} />
         </article>
 
-        <section className="relative mt-20 sm:mt-24">
+        <section className="relative section">
           <div className="site-container">
             <Reveal>
               <div className="relative overflow-hidden r-panel surface-3 px-8 py-14 text-center sm:px-16">
@@ -189,7 +189,7 @@ export default async function ArticlePage({ params }: PageProps) {
         </section>
 
         {related.length ? (
-          <section className="relative mt-20 sm:mt-24">
+          <section className="relative section">
             <div className="site-container">
               <h2 className="t-h4 text-ink">Keep reading</h2>
               <ul className="mt-8 grid gap-4 sm:grid-cols-3">

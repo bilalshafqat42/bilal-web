@@ -304,7 +304,7 @@ export default function DisciplinePage({ slug }: { slug: string }) {
           className="pt-20 sm:pt-24"
         />
 
-        <section className="site-container py-20 sm:py-24">
+        <section className="site-container section-pad">
           <Reveal>
             <h2 className="t-h3 text-ink">Browse another discipline</h2>
             <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">

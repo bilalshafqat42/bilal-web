@@ -144,7 +144,7 @@ export default function Engagement({
   variant?: "homepage" | "detailed";
 }) {
   return (
-    <section id="engagement" className="relative py-24 sm:py-32">
+    <section id="engagement" className="relative section-pad">
       <div className="site-container">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
           <div className="max-w-2xl">

@@ -98,7 +98,7 @@ export default async function BlogPagedPage({ params }: Props) {
           }
         />
 
-        <section className="relative mt-14 sm:mt-16">
+        <section className="relative section-tight">
           <div className="site-container">
             <BlogList posts={posts} page={page} totalPages={totalPages} />
           </div>
