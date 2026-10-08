@@ -53,8 +53,8 @@ costs more to undo than these 65 days are worth.
 | 1 | Mon 05 Oct | Behance profile | H | Add the site to the profile link field and to each project's description. You already have the profile. |
 | 2 | Tue 06 Oct | Dribbble profile | B | Point the profile link at the UI/UX hub, not the homepage. It is a design audience. |
 | 3 | Wed 07 Oct | GitHub profile | H | Profile README is already written. Confirm the website field is filled in on the profile itself, which is separate. |
-| 4 | Thu 08 Oct | LinkedIn profile website fields | H | You get three link slots. Use all three: site, portfolio, blog. |
-| 5 | Fri 09 Oct | LinkedIn featured section | W | Pin three articles. These are nofollow but they are read. |
+| 4 | Thu 08 Oct | LinkedIn profile website fields | H | **DONE.** Four links saved: homepage, /portfolio, /services/google-ads, Behance. The slot limit is higher than three. Note the display truncates all of them to the bare domain, so three from one domain look identical. |
+| 5 | ~~Fri 09 Oct~~ | ~~LinkedIn featured section~~ | - | **Dropped 2026-10-08.** Bilal keeps LinkedIn as an employment profile; his headline is his job and that is his call. Day 5 is now day 6 brought forward. |
 | 6 | Mon 12 Oct | YouTube channel links | H | Channel banner link plus the About section. Both. |
 | 7 | Tue 13 Oct | Upwork profile | P | Portfolio link in the profile and in each portfolio item. |
 | 8 | Wed 14 Oct | Fiverr profile | P | Same. Seller profiles allow a website field. |

@@ -10029,3 +10029,36 @@ The responsive audit on 2026-10-07 found three strings under 13px on a phone.
 Two are correct: a privacy note and a data-use note, both genuinely small print.
 The third was the list of what each audience gets on the homepage — real
 capability statements set at 12px. Now 14px.
+
+### 381. PAUSED (2026-10-08) — Scoring the articles waits for real data
+
+The 76 articles are the last surface never measured, so I scored the 24 written
+to rank. The numbers were noise and I stopped rather than let him act on them.
+
+`/what-does-a-web-developer-do` scored **29** for "what does a web developer
+do". Its title and h1 are "What Does a Web Developer **Actually** Do?" — the
+inserted adverb breaks a matcher that allows only stop words between terms.
+Google handles that without blinking. Third time this session the scorer was
+wrong rather than the page, after the stop words (358) and the slash (369).
+
+**The method does not transfer.** A service page's slug *is* its keyword:
+`/services/web-design` targets "web designer dubai". An article's slug is a
+headline written as a question, and its real keyword comes from search data. I
+was inventing the keyword and then marking the page against my own invention.
+
+Waiting for the Search Console read on **14 October**, which will show what the
+articles actually rank for — real impressions and positions. Optimise toward
+what Google already thinks a page is about, rather than toward a guess.
+
+The articles that could be tested fairly scored 76 to 87. Nothing is broken.
+
+### 382. CLOSED (2026-10-08) — LinkedIn stays an employment profile
+
+His headline reads "Performance Marketing Manager & Growth Engineer at Refine
+Dubai" while the site sells freelance services. Flagged once, with the note that
+his employment contract comes first and that I am not qualified to advise on it.
+He said to leave LinkedIn for job purposes.
+
+Day 4 shipped anyway (four website links). Day 5, the Featured section, is
+dropped from the plan. The 11,401 followers remain the largest single asset in
+reach terms, unused by choice.
