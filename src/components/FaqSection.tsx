@@ -83,21 +83,35 @@ export default function FaqSection({
         </Reveal>
 
         <Reveal>
-          {/* A definition list, because that is what this is. Hairlines rather
-              than cards: six bordered boxes in a column read as six separate
-              things, and these are one thing. */}
-          <dl className="divide-y divide-border border-t border-border">
+          {/* **`<h3>`, not `<dt>`.** This was a `<dl>` until 2026-10-08, on the
+              reasoning that a definition list is what a Q&A is. Two things
+              overruled it.
+
+              A screen reader user navigates a long page by heading. `/faq`
+              carries fifteen questions and, as a `<dl>`, offered not one heading
+              to jump between — the audit on 2026-10-07 flagged exactly that.
+              And the HTML spec forbids heading content inside `<dt>`, so there
+              is no version that keeps both.
+
+              It is also measurable: folding the homepage's own FAQ into this
+              component turned its `<h3>` questions into `<dt>`s and dropped the
+              homepage from 100 to 92, because the question carrying "freelance
+              digital marketer in Dubai" stopped counting as a subheading.
+
+              Hairlines rather than cards, unchanged: six bordered boxes in a
+              column read as six separate things, and these are one thing. */}
+          <div className="divide-y divide-border border-t border-border">
             {faqs.map((f) => (
               <div key={f.question} className="py-7 first:pt-8">
-                <dt className="text-lg font-semibold text-ink sm:text-xl">{f.question}</dt>
+                <h3 className="text-lg font-semibold text-ink sm:text-xl">{f.question}</h3>
                 {/* Capped in `ch`, not by a container width: the problem is the
                     ratio of font size to column, not the page. */}
-                <dd className="mt-3 max-w-[68ch] text-base leading-relaxed text-muted">
+                <p className="mt-3 max-w-[68ch] text-base leading-relaxed text-muted">
                   {f.answer}
-                </dd>
+                </p>
               </div>
             ))}
-          </dl>
+          </div>
         </Reveal>
       </div>
     </section>
