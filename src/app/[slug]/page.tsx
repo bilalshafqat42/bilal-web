@@ -163,7 +163,7 @@ export default async function ArticlePage({ params }: PageProps) {
             At `lg` (1024-1279) the middle column would fall to 468px, about 52
             characters, which is too narrow — so the rail drops and only the
             contents list stays. Below `lg` it is one column, as before. */}
-        <div className="site-container relative grid grid-cols-1 gap-12 lg:grid-cols-[210px_minmax(0,1fr)] xl:grid-cols-[240px_minmax(0,1fr)_300px]">
+        <div className="section-tight site-container relative grid grid-cols-1 gap-12 lg:grid-cols-[210px_minmax(0,1fr)] xl:grid-cols-[240px_minmax(0,1fr)_300px]">
           {/* Order: the contents list renders first in the DOM so a keyboard or
               screen-reader user reaches the article's structure before its
               body, and `order` only moves it visually on small screens. */}

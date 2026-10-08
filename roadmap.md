@@ -10121,3 +10121,31 @@ only. Net cost is 42 words of navigation.
 
 Verified: zero horizontal overflow at six widths, scroll tracking moves with the
 reader, no console errors, five CI checks green, article score unchanged at 91.
+
+### 384. CORRECTED (2026-10-08) — The new article grid skipped the spacing scale
+
+Bilal spotted it the same day: the dark section opened flush against the white
+band, with the contents list sitting on the seam.
+
+**My miss, and it is the exact drift the scale exists to prevent.** The gap
+above the article had never been a section rule — it was `mt-12` **inside**
+`ArticleBody`. With one column that looked like spacing. With three it pushed
+only the middle one down, so the contents list and the rail started at the band
+edge while the article started 48px lower.
+
+The spacing now lives on the grid as `section-tight`, which is where a gap
+between two sections belongs, and `ArticleBody` has no top margin at all.
+
+Measured after, from the bottom of the band to the top of each column:
+
+    1440px    grid 80   contents 80   article 80
+    1280px    grid 79   contents 79   article 79
+    1024px    grid 70   contents 70   article 70
+     390px    grid 48                 article 48
+
+Three columns, one line, and the value is the fluid clamp rather than a number
+typed into a component.
+
+**Worth recording as a pattern, not a one-off.** Any layout change that splits
+one column into several will expose spacing that was hiding inside a child.
+Check the siblings, not just the thing that moved.

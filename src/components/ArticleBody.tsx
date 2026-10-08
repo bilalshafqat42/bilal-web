@@ -27,7 +27,10 @@ export default function ArticleBody({ blocks }: { blocks: Block[] }) {
   const ids = headingIdMap(blocks);
 
   return (
-    <div className="mt-12">
+    // No top margin here. The gap above belongs to the grid in
+    // `[slug]/page.tsx`, so all three columns start on the same line; when it
+    // lived here it pushed only the middle one down.
+    <div>
       {blocks.map((b, i) => {
         if (b.t === "h2" || b.t === "h3") {
           const id = ids.get(i) ?? `section-${i}`;
