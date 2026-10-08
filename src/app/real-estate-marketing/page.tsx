@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import PageOpener from "@/components/PageOpener";
 import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import CtaButton from "@/components/CtaButton";
@@ -172,35 +173,35 @@ export default function RealEstateMarketingPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(schema) }} />
       <main id="main" tabIndex={-1} className="flex-1">
-        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
-          <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="site-container relative">
-            <Reveal>
-              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
-                Off-plan property
-              </span>
-              <h1 className="t-h1 mt-4 text-ink">
-                Real estate marketing for{" "}
-                <span className="text-gradient">off-plan launches</span>
-              </h1>
-              <p className="mt-6 max-w-[62ch] text-lg leading-relaxed text-muted">
-                Four launches for one developer across Dubai and the UK: the page, the
-                campaign creative and the lead capture built together by one person,
-                because a launch page and the spend pointed at it optimise against each
-                other when they are bought separately.
-              </p>
-              <div className="mt-9 flex flex-wrap items-center gap-4">
-                <CtaButton href="/appointment">Book a free consultation</CtaButton>
-                <Link
-                  href="/portfolio/leos-developments"
-                  className="tap-target inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
-                >
-                  See the work <ArrowRight size={15} />
-                </Link>
-              </div>
-            </Reveal>
-          </div>
-        </section>
+        <PageOpener
+          crumbs={[{ label: "Home", href: "/" }, { label: "Real estate marketing" }]}
+          eyebrow="Off-plan property"
+          title={
+            <>
+              Real estate marketing for{" "}
+              <span className="text-gradient">off-plan launches</span>
+            </>
+          }
+          standfirst={
+            <>
+              Four launches for one developer across Dubai and the UK: the page, the
+              campaign creative and the lead capture built together by one person,
+              because a launch page and the spend pointed at it optimise against each
+              other when they are bought separately.
+            </>
+          }
+          actions={
+            <>
+              <CtaButton href="/appointment">Book a free consultation</CtaButton>
+              <Link
+                href="/portfolio/leos-developments"
+                className="tap-target inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+              >
+                See the work <ArrowRight size={15} />
+              </Link>
+            </>
+          }
+        />
 
         <section className="site-container pt-20 sm:pt-24">
           <Reveal>

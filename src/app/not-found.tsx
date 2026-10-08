@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { pillars } from "@/data/pillars";
 import CtaButton from "@/components/CtaButton";
+import Eyebrow from "@/components/Eyebrow";
+import SecondaryButton from "@/components/SecondaryButton";
 
 export const metadata: Metadata = {
   title: "Page not found — Bilal Shafqat",
@@ -17,9 +19,7 @@ export default function NotFound() {
         <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="site-container relative">
-            <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
-              404
-            </span>
+            <Eyebrow>404</Eyebrow>
             <h1 className="t-h1 mt-5 text-ink">
               That page isn&apos;t here any more
             </h1>
@@ -46,18 +46,8 @@ export default function NotFound() {
               {/* The likeliest thing a visitor landing on a dead blog URL
                   actually wants, so it sits beside the commercial CTA rather
                   than in the footer. */}
-              <Link
-                href="/blog"
-                className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
-              >
-                Read the articles
-              </Link>
-              <Link
-                href="/portfolio"
-                className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
-              >
-                See recent work
-              </Link>
+              <SecondaryButton href="/blog">Read the articles</SecondaryButton>
+              <SecondaryButton href="/portfolio">See recent work</SecondaryButton>
             </div>
           </div>
         </section>

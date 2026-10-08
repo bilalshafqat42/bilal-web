@@ -1,5 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import PageOpener from "@/components/PageOpener";
+import Surface from "@/components/Surface";
+import Eyebrow from "@/components/Eyebrow";
 import { ArrowUpRight, Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
@@ -108,62 +111,51 @@ export default function ContactPage() {
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(contactSchema) }}
       />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
-        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
-          <div className="pointer-events-none absolute inset-0 grid-fade" />
-          {/* Left-aligned at the container edge, not a centred 4xl column.
-              Measured before this: the h1 started 296px from the left here and
-              40px on every other page, so moving between them shifted the whole
-              layout. Centring is kept for the closing CTA below, where it is a
-              deliberate full-width moment rather than the page's default. */}
-          <div className="site-container relative">
-            <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
-              Contact
-            </span>
-            <h1 className="t-h1 mt-5 text-ink">
-              Talk to the person who&apos;ll actually do the work
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg text-muted leading-relaxed">
+        <PageOpener
+          crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
+          eyebrow="Contact"
+          title={<>Talk to the person who&apos;ll actually do the work</>}
+          standfirst={
+            <>
               No sales team, no account manager, no discovery call with someone
               who then briefs somebody else. Whatever you send here reaches me
               directly, and I&apos;ll come back with honest next steps rather than
               a templated proposal.
-            </p>
+            </>
+          }
+          actions={
+            /* Two things a contact page owes a visitor: what to write, and what
+               happens after they press send. Both are answers Bilal gave on
+               2026-09-15, and the first also exists as the message field's
+               placeholder — this surfaces it before someone starts typing.
 
-            {/* Two things a contact page owes a visitor: what to write, and what
-                happens after they press send.
-                
-                Both are answers Bilal gave on 2026-09-15, and the first one also
-                already exists as the placeholder inside the message field — this
-                surfaces it before someone starts typing rather than after.
-                
-                Deliberately NOT here: a section on work he turns down. Asked
-                directly, he said he takes everything, so there is nothing true
-                to write. Inventing a filter to look selective is the kind of
-                thing a reader can test on the first call. */}
-            <dl className="mt-10 grid max-w-2xl gap-6 text-left sm:grid-cols-2">
-              <div className="rounded-2xl border border-border panel p-6">
-                <dt className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
-                  What to send
+               Deliberately NOT here: a section on work he turns down. Asked
+               directly, he said he takes everything, so there is nothing true to
+               write. */
+            <dl className="grid max-w-2xl gap-6 text-left sm:grid-cols-2">
+              <Surface as="div" radius="card">
+                <dt>
+                  <Eyebrow>What to send</Eyebrow>
                 </dt>
                 <dd className="mt-3 text-sm leading-relaxed text-muted">
                   What you are trying to achieve, any deadline you are working
                   to, and whether you already have a site, a CRM or an ad account
                   running. Three lines is plenty &mdash; the detail comes later.
                 </dd>
-              </div>
-              <div className="rounded-2xl border border-border panel p-6">
-                <dt className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
-                  What happens next
+              </Surface>
+              <Surface as="div" radius="card">
+                <dt>
+                  <Eyebrow>What happens next</Eyebrow>
                 </dt>
                 <dd className="mt-3 text-sm leading-relaxed text-muted">
                   I read it myself and reply within one business day, same day if
                   you message on WhatsApp. If it is a fit, the next step is a
                   30-minute call. If it is not, I will say so.
                 </dd>
-              </div>
+              </Surface>
             </dl>
-          </div>
-        </section>
+          }
+        />
 
         <section className="relative mt-16 sm:mt-20">
           <div className="site-container">
