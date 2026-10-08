@@ -3,12 +3,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { OG_IMAGE_URL } from "@/lib/ogImage";
-import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import TrackView from "@/components/TrackView";
 import { caseStudyDepth } from "@/data/caseStudyDepth";
 import { WorkProof } from "@/components/ProofLoop";
 import GalleryLightbox from "@/components/GalleryLightbox";
 import Reveal from "@/components/Reveal";
+import Surface from "@/components/Surface";
+import PageOpener from "@/components/PageOpener";
 import FaqSection from "@/components/FaqSection";
 import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/CaseStudyParts";
 import { clients, getProject } from "@/data/caseStudies";
@@ -131,95 +133,76 @@ export default async function ProjectCaseStudy({ params }: Props) {
       ) : null}
       <TrackView name={p.name} category="Case study" />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
-        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
-          <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="site-container relative">
-            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-muted">
-              <Link href="/" className="hover:text-ink transition-colors">Home</Link>
-              <ChevronRight size={13} />
-              <Link href="/portfolio" className="hover:text-ink transition-colors">Portfolio</Link>
-              <ChevronRight size={13} />
-              <Link href={`/portfolio/${c.slug}`} className="hover:text-ink transition-colors">{c.name}</Link>
-              <ChevronRight size={13} />
-              <span className="text-ink">{p.name}</span>
-            </nav>
-
-            {/* Two columns, mirroring the homepage banner: copy left, the work
-                itself right. The hero previously ran to `max-w-3xl` and left
-                roughly half the width empty on any desktop screen. */}
-            <div className="mt-8 grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_minmax(0,42%)] lg:gap-14">
-              <Reveal>
-                <div>
-                  <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
-                    Development campaign
-                  </span>
-                  {p.logo ? (
-                    <Image
-                      src={p.logo}
-                      alt={p.name}
-                      // Read from the project, not hardcoded. These were fixed
-                      // at Hadley Heights' 900x1983 for every development, and
-                      // since `w-auto` derives the box from the attributes, the
-                      // three landscape-ish marks rendered about a third of the
-                      // intended size.
-                      width={p.logoWidth ?? 900}
-                      height={p.logoHeight ?? 1983}
-                      priority
-                      className="client-mark mt-6 h-16 w-auto"
-                    />
-                  ) : null}
-                  <h1 className="t-h1 mt-6 text-ink">
-                    {p.headline}
-                  </h1>
-                  <p className="mt-6 max-w-2xl text-lg text-muted leading-relaxed">{p.summary}</p>
-                </div>
-              </Reveal>
-
-              {/* The landing page, cropped to its hero rather than shown whole.
-                  The capture is 1600x5568, so anything but a top crop is a
-                  meaningless middle slice; the full scroll is further down the
-                  page in its own frame. Browser chrome rather than a bare
-                  image, so it reads as a live page and matches the frame used
-                  in the section below. */}
-              {p.landingPage ? (
-                <Reveal delay={0.12}>
-                  <div className="overflow-hidden rounded-2xl border border-border panel">
-                    <div className="flex items-center gap-2 border-b border-border px-4 py-3">
-                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                      <span className="ml-3 truncate text-xs text-muted">{p.landingPage.capture.label}</span>
-                    </div>
-                    {/* The dedicated top-of-page crop where one exists. This is
-                        the page's LCP image, and the full captures run 4,500 to
-                        6,600px tall — downloading an entire page scroll to paint
-                        a 16:11 window is the most expensive thing on the page.
-                        `loading="eager"` alongside `priority` because Next's own
-                        LCP warning checks the `loading` attribute, and `priority`
-                        alone only omits `loading="lazy"` rather than setting it. */}
-                    <div className="relative aspect-[16/11] w-full">
-                      <Image
-                        src={p.landingPage.heroCrop?.src ?? p.landingPage.capture.src}
-                        alt={p.landingPage.capture.alt}
-                        fill
-                        sizes="(min-width: 1024px) 40vw, 92vw"
-                        priority
-                        loading="eager"
-                        className="object-cover object-top"
-                      />
-                    </div>
+        <PageOpener
+          crumbs={[
+            { label: "Home", href: "/" },
+            { label: "Portfolio", href: "/portfolio" },
+            { label: c.name, href: `/portfolio/${c.slug}` },
+            { label: p.name },
+          ]}
+          eyebrow="Development campaign"
+          above={
+            p.logo ? (
+              <Image
+                src={p.logo}
+                alt={p.name}
+                // Read from the project, not hardcoded. These were fixed at
+                // Hadley Heights' 900x1983 for every development, and since
+                // `w-auto` derives the box from the attributes, the three
+                // landscape-ish marks rendered about a third of the intended
+                // size.
+                width={p.logoWidth ?? 900}
+                height={p.logoHeight ?? 1983}
+                priority
+                className="client-mark h-16 w-auto"
+              />
+            ) : null
+          }
+          title={p.headline}
+          standfirst={p.summary}
+          /* The landing page, cropped to its hero rather than shown whole. The
+             capture is 1600x5568, so anything but a top crop is a meaningless
+             middle slice; the full scroll is further down the page in its own
+             frame. Browser chrome rather than a bare image, so it reads as a
+             live page and matches the frame used in the section below. */
+          aside={
+            p.landingPage ? (
+              <Reveal delay={0.12}>
+                <Surface pad="none" radius="card" className="overflow-hidden">
+                  <div className="flex items-center gap-2 border-b border-border px-4 py-3">
+                    <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                    <span className="ml-3 truncate text-xs text-muted">{p.landingPage.capture.label}</span>
                   </div>
-                </Reveal>
-              ) : null}
-            </div>
-
+                  {/* The dedicated top-of-page crop where one exists. This is
+                      the page's LCP image, and the full captures run 4,500 to
+                      6,600px tall. `loading="eager"` alongside `priority`
+                      because Next's own LCP warning checks the `loading`
+                      attribute, and `priority` alone only omits `lazy`. */}
+                  <div className="relative aspect-[16/11] w-full">
+                    <Image
+                      src={p.landingPage.heroCrop?.src ?? p.landingPage.capture.src}
+                      alt={p.landingPage.capture.alt}
+                      fill
+                      sizes="(min-width: 1024px) 40vw, 92vw"
+                      priority
+                      loading="eager"
+                      className="object-cover object-top"
+                    />
+                  </div>
+                </Surface>
+              </Reveal>
+            ) : null
+          }
+          actions={
             <Reveal delay={0.1}>
-              <div className="mt-10 max-w-4xl">
+              <div className="max-w-4xl">
                 <FactStrip facts={p.facts} />
               </div>
             </Reveal>
-          </div>
-        </section>
+          }
+        />
 
         {depth ? (
           <section className="relative mt-20 sm:mt-28">
