@@ -1,7 +1,6 @@
-import Link from "next/link";
 import type { Metadata } from "next";
+import PageOpener from "@/components/PageOpener";
 import { notFound } from "next/navigation";
-import { ChevronRight } from "lucide-react";
 import JsonLd from "@/components/JsonLd";
 import BlogList from "@/components/BlogList";
 import { SITE_URL, breadcrumbNode, ID, ref } from "@/lib/schema";
@@ -84,23 +83,20 @@ export default async function BlogPagedPage({ params }: Props) {
     <>
       <JsonLd nodes={nodes} />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
-        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
-          <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="site-container relative">
-            <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted">
-              <Link href="/" className="transition-colors hover:text-ink">Home</Link>
-              <ChevronRight size={13} />
-              <Link href="/blog" className="transition-colors hover:text-ink">Writing</Link>
-              <ChevronRight size={13} />
-              <span className="text-ink">Page {page}</span>
-            </nav>
-            <h1 className="t-h1 mt-8 text-ink">Writing</h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
+        <PageOpener
+          crumbs={[
+            { label: "Home", href: "/" },
+            { label: "Writing", href: "/blog" },
+            { label: `Page ${page}` },
+          ]}
+          title="Writing"
+          standfirst={
+            <>
               Page {page} of {totalPages}. Notes on the things I hit in client work, from React
               hooks to the design references I keep going back to.
-            </p>
-          </div>
-        </section>
+            </>
+          }
+        />
 
         <section className="relative mt-14 sm:mt-16">
           <div className="site-container">

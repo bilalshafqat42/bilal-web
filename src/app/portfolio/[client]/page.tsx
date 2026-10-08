@@ -2,9 +2,10 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Image from "next/image";
 import ClientWordmark from "@/components/ClientWordmark";
+import PageOpener from "@/components/PageOpener";
 import { OG_IMAGES, OG_IMAGE_URL } from "@/lib/ogImage";
 import { notFound } from "next/navigation";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import TrackView from "@/components/TrackView";
 import { WorkProof } from "@/components/ProofLoop";
 import GalleryLightbox from "@/components/GalleryLightbox";
@@ -102,38 +103,29 @@ export default async function ClientCaseStudy({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }} />
       <TrackView name={c.name} category="Client" />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
-        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
-          <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="site-container relative">
-            <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted">
-              <Link href="/" className="hover:text-ink transition-colors">Home</Link>
-              <ChevronRight size={13} />
-              <Link href="/portfolio" className="hover:text-ink transition-colors">Portfolio</Link>
-              <ChevronRight size={13} />
-              <span className="text-ink">{c.name}</span>
-            </nav>
-
-            <Reveal>
-              <div className="mt-8 max-w-3xl">
-                {c.logo ? (
-                  <Image src={c.logo} alt={c.name} width={2000} height={551} priority className="client-mark h-10 w-auto" />
-                ) : (
-                  <ClientWordmark name={c.name} />
-                )}
-                <h1 className="t-h1 mt-7 text-ink">
-                  {c.headline}
-                </h1>
-                <p className="mt-6 text-lg text-muted leading-relaxed">{c.intro}</p>
-              </div>
-            </Reveal>
-
+        <PageOpener
+          crumbs={[
+            { label: "Home", href: "/" },
+            { label: "Portfolio", href: "/portfolio" },
+            { label: c.name },
+          ]}
+          above={
+            c.logo ? (
+              <Image src={c.logo} alt={c.name} width={2000} height={551} priority className="client-mark h-10 w-auto" />
+            ) : (
+              <ClientWordmark name={c.name} />
+            )
+          }
+          title={c.headline}
+          standfirst={c.intro}
+          actions={
             <Reveal delay={0.1}>
-              <div className="mt-10 max-w-3xl">
+              <div className="max-w-3xl">
                 <FactStrip facts={c.facts} />
               </div>
             </Reveal>
-          </div>
-        </section>
+          }
+        />
 
         <section className="relative mt-20 sm:mt-28">
           <div className="site-container">

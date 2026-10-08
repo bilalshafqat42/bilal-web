@@ -39,6 +39,9 @@ type Props = {
   crumbs?: Crumb[];
   /** Buttons under the standfirst. */
   actions?: ReactNode;
+  /** Between the breadcrumb and the heading. The client logo on a portfolio
+   *  page, where the mark identifies the work before the headline does. */
+  above?: ReactNode;
   /** Content beside the heading, on `lg` and up. Stacks under it below that. */
   aside?: ReactNode;
   /** `h2` renders the h1 element at the h2 size.
@@ -58,6 +61,7 @@ export default function PageOpener({
   standfirst,
   crumbs,
   actions,
+  above,
   aside,
   titleSize = "h1",
   className = "",
@@ -65,6 +69,7 @@ export default function PageOpener({
   const heading = (
     <div>
       {crumbs?.length ? <Breadcrumb items={crumbs} className="mb-8" /> : null}
+      {above ? <div className="mb-7">{above}</div> : null}
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
       <h1 className={`t-${titleSize} text-balance text-ink ${eyebrow ? "mt-4" : ""}`}>{title}</h1>
       {standfirst ? (
