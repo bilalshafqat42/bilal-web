@@ -4,6 +4,9 @@ import { notFound } from "next/navigation";
 import { ChevronRight, ArrowLeft } from "lucide-react";
 import ArticleBody from "@/components/ArticleBody";
 import ShareRow from "@/components/ShareRow";
+import ArticleToc from "@/components/ArticleToc";
+import ArticleRail from "@/components/ArticleRail";
+import { tocOf } from "@/lib/headingIds";
 import PageOpener from "@/components/PageOpener";
 import CtaButton from "@/components/CtaButton";
 import Reveal from "@/components/Reveal";
@@ -85,6 +88,7 @@ export default async function ArticlePage({ params }: PageProps) {
   // `articleServices.ts` for why the route off an article is topic-matched
   // rather than the one block of copy all 52 used to share.
   const service = serviceForArticle(post);
+  const toc = tocOf(post.blocks);
 
   const nodes = [
     breadcrumbNode(url, [
@@ -142,13 +146,43 @@ export default async function ArticlePage({ params }: PageProps) {
             — which is how publications fill a wide column without stretching
             the measure. Noted here so the next person does not simply revert
             this and undo a deliberate decision. */}
-        <article className="site-container relative">
-          <ArticleBody blocks={post.blocks} />
-          {/* At the foot of the body, above the service pitch. Sharing is what
-              someone does once they have read the thing, and the pitch is the
-              action that earns money, so the pitch stays last. */}
-          <ShareRow url={url} title={post.title} />
-        </article>
+        {/* Three columns from `xl`, measured rather than chosen.
+            ----------------------------------------------------------------
+            Bilal asked twice for the article to run the full container width,
+            so the prose cap came off. Measured at 1440 on 2026-10-08 the text
+            ran 1,360px at 18px — about **151 characters a line**, against a
+            comfortable 60 to 80.
+
+                3 columns @ 1440     804px article     89 characters
+                2 columns @ 1440   1,152px article    128 characters
+                1 column  @ 1440   1,360px article    151 characters
+
+            Two columns barely helps. Three lands it, and it keeps the width he
+            asked for rather than taking it back.
+
+            At `lg` (1024-1279) the middle column would fall to 468px, about 52
+            characters, which is too narrow — so the rail drops and only the
+            contents list stays. Below `lg` it is one column, as before. */}
+        <div className="site-container relative grid grid-cols-1 gap-12 lg:grid-cols-[210px_minmax(0,1fr)] xl:grid-cols-[240px_minmax(0,1fr)_300px]">
+          {/* Order: the contents list renders first in the DOM so a keyboard or
+              screen-reader user reaches the article's structure before its
+              body, and `order` only moves it visually on small screens. */}
+          <div className="hidden lg:block">
+            <ArticleToc entries={toc} />
+          </div>
+
+          <article>
+            <ArticleBody blocks={post.blocks} />
+            {/* Still here as well as in the rail. The rail is for somebody
+                reading; this is the closing argument for somebody who
+                finished, and it is the only one a phone ever sees. */}
+            <ShareRow url={url} title={post.title} />
+          </article>
+
+          <div className="hidden xl:block">
+            <ArticleRail service={service} url={url} title={post.title} />
+          </div>
+        </div>
 
         <section className="relative section">
           <div className="site-container">

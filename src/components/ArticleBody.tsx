@@ -1,6 +1,7 @@
 import { ExternalLink } from "lucide-react";
 
 import type { Block } from "@/data/blogPosts";
+import { headingIdMap } from "@/lib/headingIds";
 
 /**
  * Renders a recovered article's body from typed blocks.
@@ -17,30 +18,19 @@ import type { Block } from "@/data/blogPosts";
  * an index (`#section-4`) is not.
  */
 
-/** Lowercase, punctuation stripped, spaces to hyphens. Two headings with the
- *  same text would collide, so the caller passes the running index as a
- *  tiebreak rather than this function silently producing a duplicate `id`. */
-function headingId(text: string, i: number) {
-  const base = text
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, "")
-    .trim()
-    .replace(/\s+/g, "-")
-    .slice(0, 60);
-  return base || `section-${i}`;
-}
-
 export default function ArticleBody({ blocks }: { blocks: Block[] }) {
-  const seen = new Map<string, number>();
+  // Ids come from `headingIdMap`, built by the same function the contents list
+  // reads, so a link in the sidebar cannot point at an anchor the body never
+  // rendered. A map keyed by block index rather than a counter: the React
+  // compiler rejects mutating a variable during render, and it is right to —
+  // the count would be wrong on any re-render that did not start from zero.
+  const ids = headingIdMap(blocks);
 
   return (
     <div className="mt-12">
       {blocks.map((b, i) => {
         if (b.t === "h2" || b.t === "h3") {
-          let id = headingId(b.v, i);
-          const n = seen.get(id) ?? 0;
-          seen.set(id, n + 1);
-          if (n) id = `${id}-${n + 1}`;
+          const id = ids.get(i) ?? `section-${i}`;
 
           // On the listicles the heading names a site, and the original post
           // linked to it. `rel="noopener"` for the usual reason; no `nofollow`,

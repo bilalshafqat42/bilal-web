@@ -10062,3 +10062,62 @@ He said to leave LinkedIn for job purposes.
 Day 4 shipped anyway (four website links). Day 5, the Featured section, is
 dropped from the plan. The 11,401 followers remain the largest single asset in
 reach terms, unused by choice.
+
+### 383. DONE (2026-10-08) — Three-column article layout, because the measure was wrong
+
+Bilal asked for a sticky contents list on the left, the article centred and a
+sidebar on the right. He was right, and the measurement showed he was more right
+than the two-column version I proposed first.
+
+He had asked twice for the article to run the full container width, so the prose
+cap came off (roadmap 320-era). The comment left in the file at the time said
+the fix, if the long lines read badly, was **not** to re-cap the text but to put
+something in the right-hand space. He arrived at exactly that independently.
+
+Measured at 1440 before the change: 1,360px of text at 18px, about **151
+characters a line**, against a comfortable 60 to 80.
+
+| Layout | Article width | Characters |
+| --- | ---: | ---: |
+| 1 column | 1,360px | 151 |
+| 2 columns | 1,152px | 128 |
+| **3 columns** | **804px** | **80** |
+
+**Two columns barely helps.** I proposed it and the arithmetic overruled me.
+
+**Contents on the left, not the right.** Documentation sites put "On this page"
+on the right, but they also carry a site-wide nav tree on the left — two
+navigations, so the per-page one goes second. There is one here, and in
+left-to-right reading the first column is where "where am I in this document"
+belongs.
+
+Breakpoints, because the middle column is the constraint:
+
+    >= 1280   contents | article | rail      80 chars at 1440, 63 at 1280
+    1024-1279 contents | article             76 chars
+    < 1024              article              as before
+
+**One source of truth for the anchors.** `lib/headingIds.ts` generates the ids,
+and both `ArticleBody` and the contents list read it. Two copies would drift the
+first time a heading gained a colon, and the failure is silent: the list still
+renders, every link still looks right, and none of them scrolls anywhere. The
+duplicated SEO scorer had the same shape (roadmap 379). Verified: 7 links, all
+resolve, at every width.
+
+**`h2` only, and nothing under four entries.** These articles run to 26
+headings; listing all of them is a second article down the side of the first.
+
+**A correction to roadmap 376.** The share row shipped at the foot of the body
+on reasoning that sharing happens after reading. True of the decision, false of
+the control: somebody who decides at paragraph three should not scroll to the
+bottom to act. It now sits in the rail as well, and stays at the foot for the
+phone, which never sees the rail.
+
+**Caught before shipping:** the rail first repeated the service pitch *body*,
+which already sits at the foot of every article. The same forty words twice on
+one page, inside `<main>`, took every article from 906 words to 981 and told a
+reader nothing the second time. The rail now carries the heading and the links
+only. Net cost is 42 words of navigation.
+
+Verified: zero horizontal overflow at six widths, scroll tracking moves with the
+reader, no console errors, five CI checks green, article score unchanged at 91.

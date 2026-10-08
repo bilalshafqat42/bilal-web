@@ -40,9 +40,12 @@ type Props = {
   /** Absolute URL. Built on the server so it is right in the markup. */
   url: string;
   title: string;
+  /** Stacked for the article sidebar, where the column is 300px and a single
+   *  row of four controls plus a label does not fit. */
+  compact?: boolean;
 };
 
-export default function ShareRow({ url, title }: Props) {
+export default function ShareRow({ url, title, compact = false }: Props) {
   const [copied, setCopied] = useState(false);
   // Resolved after mount: `navigator.share` cannot be read while rendering on
   // the server, and rendering the button unconditionally would show a control
@@ -79,7 +82,11 @@ export default function ShareRow({ url, title }: Props) {
       // `ref` rather than an effect: this runs once, on the element the browser
       // has already created, and avoids a second render pass on every article.
       ref={() => setCanShare(typeof navigator !== "undefined" && !!navigator.share)}
-      className="mt-14 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-border pt-7"
+      className={
+        compact
+          ? "mt-6 flex flex-col gap-3"
+          : "mt-14 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-border pt-7"
+      }
     >
       <Eyebrow size="sm" tone="muted">
         Share this
