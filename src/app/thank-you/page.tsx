@@ -49,6 +49,13 @@ export default async function ThankYouPage({ searchParams }: PageProps) {
   return (
     <>
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
+        {/* **The one page that does not use `PageOpener`, deliberately.**
+            Every other opener on the site is left-aligned with a breadcrumb, a
+            heading and a standfirst. This is a confirmation screen: a centred
+            tick, a short line, and what happens next. Forcing a page header
+            onto a success state would be consistency for its own sake, and the
+            homepage is excepted for the same kind of reason — it opens with a
+            hero, not a header. Both are recorded so neither gets "fixed". */}
         <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
           <div className="pointer-events-none absolute inset-0 grid-fade" />
           <div className="site-container relative text-center">

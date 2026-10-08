@@ -8,6 +8,7 @@ import Contact from "@/components/Contact";
 import Reveal from "@/components/Reveal";
 import FaqSection from "@/components/FaqSection";
 import CtaButton from "@/components/CtaButton";
+import PageOpener from "@/components/PageOpener";
 import { clients, getClient } from "@/data/caseStudies";
 import { SITE_URL as SITE, jsonLdSafe } from "@/lib/schema";
 import Eyebrow from "@/components/Eyebrow";
@@ -214,53 +215,27 @@ export default async function MobileAppCaseStudy({ params }: Props) {
       />
       <main id="main" tabIndex={-1} className="flex-1">
         {/* Hero: copy left, composite right. */}
-        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
-          <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="site-container relative">
-            <Link
-              href={`/portfolio/${c.slug}`}
-              className="tap-target inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition-colors hover:text-gold"
-            >
-              <ArrowLeft size={15} /> {c.name}
-            </Link>
-
-            <div className="mt-8 grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-14">
-              <Reveal>
-                <div>
-                  <Eyebrow>
-                    Case study · Property &amp; real estate
-                  </Eyebrow>
-                  <h1 className="t-h1 mt-5 text-ink">
-                    A cross-platform app, from one codebase.
-                  </h1>
-                  <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted">{app.body}</p>
-                  <div className="mt-9 flex flex-wrap items-center gap-6">
-                    <CtaButton href="/appointment">Book a free consultation</CtaButton>
-                    <Link
-                      href="#screens"
-                      className="tap-target inline-flex items-center gap-1.5 text-sm font-semibold text-ink underline decoration-1 underline-offset-[6px] transition-opacity hover:opacity-80"
-                    >
-                      See {total} screens, one by one
-                    </Link>
-                  </div>
-                </div>
-              </Reveal>
-
-              {app.lead ? (
-                <Reveal delay={0.1}>
-                  <Image
-                    src={app.lead.src}
-                    alt={app.lead.alt}
-                    width={app.lead.width}
-                    height={app.lead.height}
-                    sizes="(min-width: 1024px) 620px, 100vw"
-                    className="h-auto w-full"
-                    priority
-                  />
-                </Reveal>
-              ) : null}
-            </div>
-
+        <PageOpener
+          crumbs={[
+            { label: "Home", href: "/" },
+            { label: "Portfolio", href: "/portfolio" },
+            { label: c.name, href: `/portfolio/${c.slug}` },
+            { label: "Mobile app" },
+          ]}
+          eyebrow="Case study · Property &amp; real estate"
+          title="A cross-platform app, from one codebase."
+          standfirst={app.body}
+          actions={
+            <div className="w-full">
+              <div className="flex flex-wrap items-center gap-6">
+                <CtaButton href="/appointment">Book a free consultation</CtaButton>
+                <Link
+                  href="#screens"
+                  className="tap-target inline-flex items-center gap-1.5 text-sm font-semibold text-ink underline decoration-1 underline-offset-[6px] transition-opacity hover:opacity-80"
+                >
+                  See {total} screens, one by one
+                </Link>
+              </div>
             {/* Fact strip. Dividers are cell borders rather than a separate
                 element, so they cannot drift out of line with the grid. */}
             <Reveal delay={0.15}>
@@ -276,8 +251,24 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                 ))}
               </dl>
             </Reveal>
-          </div>
-        </section>
+            </div>
+          }
+          aside={
+            app.lead ? (
+              <Reveal delay={0.1}>
+                <Image
+                  src={app.lead.src}
+                  alt={app.lead.alt}
+                  width={app.lead.width}
+                  height={app.lead.height}
+                  sizes="(min-width: 1024px) 620px, 100vw"
+                  className="h-auto w-full"
+                  priority
+                />
+              </Reveal>
+            ) : null
+          }
+        />
 
         {/* Constraints: the pull quote states the problem, the numbered points
             are what it forced. */}
