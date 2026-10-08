@@ -55,8 +55,13 @@ function AudienceCard({ audience }: { audience: Audience }) {
       >
         <div className="min-h-0">
           <ul className="pt-4 space-y-1.5">
+            {/* `text-sm`, not `text-xs`. These are real capability statements,
+                not small print: the responsive audit on 2026-10-07 measured them
+                at 12px, which is below the floor for anything a visitor is meant
+                to read on a phone. The two other 12px strings on the site are a
+                privacy note and a data-use note, where it is correct. */}
             {audience.bullets.map((b) => (
-              <li key={b} className="text-xs text-muted flex gap-2">
+              <li key={b} className="flex gap-2 text-sm text-muted">
                 <span className="text-gold">—</span>
                 {b}
               </li>

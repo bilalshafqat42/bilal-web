@@ -9998,3 +9998,34 @@ the portfolio grid (`caseStudies.ts`).
 Verified: homepage renders 10 sections, 8 h2s, 54 links, 15 images, no console
 errors, **1,567 words in `<main>` against 1,567 on the live site** — byte for
 byte the same page — and still scores 100.
+
+### 379. DONE (2026-10-08) — One scorer, and `npm run onpage` answers a bare call
+
+Bilal ran `npm run onpage` and got a usage line and an exit code. That is a poor
+answer to somebody who wants to know where the site stands, and it was the one
+script of the four that did nothing without arguments.
+
+It now prints every tracked page with its score, names the lowest, and offers
+the exact command for the detail on that page.
+
+**The duplicated scorer is gone with it.** `daily.mjs` carried its own copy of
+the fifteen checks under a comment saying they were "kept in step by hand". They
+were not: on 2026-10-07 the daily report scored `/pricing` at **84** while the
+real scorer said **80**, because one copy had the partial-credit rules and the
+other did not. A daily report that disagrees with the tool it summarises is
+worse than no report.
+
+Both now import `scripts/lib/score.mjs`, and the tracked list moved to
+`scripts/lib/tracked.mjs` so the bare call has something to measure. Same
+duplication the component refactor removed from the UI, still sitting in the
+tooling.
+
+Today's report shows `/pricing -4`. That is the drift being corrected, not a
+page getting worse.
+
+### 380. DONE (2026-10-08) — The capability list was 12px
+
+The responsive audit on 2026-10-07 found three strings under 13px on a phone.
+Two are correct: a privacy note and a data-use note, both genuinely small print.
+The third was the list of what each audience gets on the homepage — real
+capability statements set at 12px. Now 14px.
