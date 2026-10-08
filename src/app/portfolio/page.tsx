@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import PageOpener from "@/components/PageOpener";
 import {
   disciplineGroups,
   disciplineHref,
@@ -75,7 +76,7 @@ export default function PortfolioPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(schema) }} />
-      <main id="main" tabIndex={-1} className="flex-1 pt-28">
+      <main id="main" tabIndex={-1} className="flex-1">
         {/* A real hero with the page's h1 in it. Until 2026-09-16 this page had
             no hero at all: it opened on a featured-work link card, and its only
             h1 sat halfway down inside the old `CaseStudies` section. Removing
@@ -89,22 +90,23 @@ export default function PortfolioPage() {
 
             The keyword is still here. A claim and a search term are not in
             conflict: "off-plan launches", "Dubai" and "campaign" all survive. */}
-        <section className="site-container pb-10">
-          <Reveal>
-            <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
-              Selected work
-            </span>
-            <h1 className="t-h1 mt-4 max-w-[20ch] text-ink">
+        <PageOpener
+          crumbs={[{ label: "Home", href: "/" }, { label: "Portfolio" }]}
+          eyebrow="Selected work"
+          title={
+            <>
               Four off-plan launches where{" "}
               <span className="text-gradient">one person owned the page and the spend</span>
-            </h1>
-            <p className="mt-6 max-w-[62ch] text-lg leading-relaxed text-muted">
+            </>
+          }
+          standfirst={
+            <>
               Plus a corporate website and a cross-platform app for the same Dubai and
               UK developer. Every project below opens into the brief, the decisions
               behind it and what shipped.
-            </p>
-          </Reveal>
-        </section>
+            </>
+          }
+        />
 
         {/* The GEO block. AI answers quote specific, checkable reasoning — this
             is the most quotable paragraph on the page, and it is lifted from the

@@ -44,6 +44,14 @@ type Props = {
   above?: ReactNode;
   /** Content beside the heading, on `lg` and up. Stacks under it below that. */
   aside?: ReactNode;
+  /** Content that bleeds to the viewport edge rather than stopping at the
+   *  container gutter: the portrait on `/about`.
+   *
+   *  A sibling of `.site-container`, not a cell inside it, because the
+   *  container is a centred 83.33% column — `right-0` against that stops at the
+   *  gutter, and the bleed is the whole point. The heading column is capped so
+   *  the copy never runs under the image. */
+  bleed?: ReactNode;
   /** `h2` renders the h1 element at the h2 size.
    *
    *  The article template needs it. The scale is tuned for landing-page heroes
@@ -63,11 +71,12 @@ export default function PageOpener({
   actions,
   above,
   aside,
+  bleed,
   titleSize = "h1",
   className = "",
 }: Props) {
   const heading = (
-    <div>
+    <div className={bleed ? "lg:max-w-[56%]" : undefined}>
       {crumbs?.length ? <Breadcrumb items={crumbs} className="mb-8" /> : null}
       {above ? <div className="mb-7">{above}</div> : null}
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
@@ -96,6 +105,7 @@ export default function PageOpener({
           heading
         )}
       </div>
+      {bleed}
     </section>
   );
 }

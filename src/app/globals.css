@@ -1242,9 +1242,18 @@ html[data-consent-open] .floating-enquiry {
 
 /* The gradient runs white to gold, which over white loses its first 45%. Over
    the light band it starts from the dark ink instead, so the word still reads
-   as a gradient rather than fading out of existence. */
+   as a gradient rather than fading out of existence.
+
+   **`background-image`, not `background`.** The shorthand resets every
+   background longhand it does not name, including `background-clip`, so this
+   rule was quietly setting `background-clip: border-box` and the text — which
+   is `color: transparent` by design — vanished into a solid gold block.
+   Measured on 2026-10-08: `background-clip` computed to `border-box` inside
+   `.page-opener` and `text` everywhere else. It had been wrong on
+   `/real-estate-marketing` since the white band shipped; migrating `/portfolio`
+   to `PageOpener` put a second page on it and made it obvious. */
 .page-opener .text-gradient {
-  background: linear-gradient(92deg, #14140f 10%, #8a6a05 55%, #a0761f 85%);
+  background-image: linear-gradient(92deg, #14140f 10%, #8a6a05 55%, #a0761f 85%);
 }
 
 /* A native select renders its own list using the page's colour scheme. `dark`

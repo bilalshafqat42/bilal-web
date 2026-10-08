@@ -2,9 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ArrowRight, ArrowUpRight, ChevronRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Reveal, { RevealStagger, RevealItem } from "@/components/Reveal";
 import FaqSection from "@/components/FaqSection";
+import PageOpener from "@/components/PageOpener";
 import CtaButton from "@/components/CtaButton";
 import {
   disciplines,
@@ -207,33 +208,29 @@ export default function DisciplinePage({ slug }: { slug: string }) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(schema) }} />
-      <main id="main" tabIndex={-1} className="flex-1 pt-28">
+      <main id="main" tabIndex={-1} className="flex-1">
+        <PageOpener
+          crumbs={[
+            { label: "Home", href: "/" },
+            { label: "Portfolio", href: "/portfolio" },
+            { label: d.title },
+          ]}
+          eyebrow={`${d.title} · ${items.length} ${items.length === 1 ? "piece" : "pieces"}`}
+          title={d.page.headline}
+          standfirst={
+            <>
+              <p>{d.page.intro}</p>
+              {/* Why this page exists next to its siblings. Several of these
+                  cuts draw on overlapping captures, and saying so is better than
+                  letting a reader wonder whether they have looped. */}
+              <p className="border-l-2 border-gold/60 pl-5 text-sm leading-relaxed text-muted/85">
+                {d.page.lens}
+              </p>
+            </>
+          }
+        />
         <section className="site-container">
           <Reveal>
-            <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm text-muted">
-              <Link href="/" className="transition-colors hover:text-ink">Home</Link>
-              <ChevronRight size={14} className="text-muted/50" />
-              <Link href="/portfolio" className="transition-colors hover:text-ink">Portfolio</Link>
-              <ChevronRight size={14} className="text-muted/50" />
-              <span className="text-ink">{d.title}</span>
-            </nav>
-
-            <span className="mt-8 block font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
-              {d.title} · {items.length} {items.length === 1 ? "piece" : "pieces"}
-            </span>
-            <h1 className="t-h1 mt-4 max-w-3xl text-ink">
-              {d.page.headline}
-            </h1>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-              {d.page.intro}
-            </p>
-
-            {/* Why this page exists next to its siblings. Several of these cuts
-                draw on overlapping captures, and saying so is better than
-                letting a reader wonder whether they have looped. */}
-            <p className="mt-8 max-w-2xl border-l-2 border-gold/60 pl-5 text-sm leading-relaxed text-muted/85">
-              {d.page.lens}
-            </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
               <CtaButton href="/appointment">Book a free consultation</CtaButton>

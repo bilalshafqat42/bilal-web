@@ -6,6 +6,8 @@ import Reveal from "@/components/Reveal";
 import SocialLinks from "@/components/SocialLinks";
 import { pillars, accentClasses } from "@/data/pillars";
 import CtaButton from "@/components/CtaButton";
+import SecondaryButton from "@/components/SecondaryButton";
+import PageOpener from "@/components/PageOpener";
 import WhoIWorkWith from "@/components/WhoIWorkWith";
 import { SITE_URL, breadcrumbNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
 
@@ -92,79 +94,61 @@ export default function AboutPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(schema) }} />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
-        <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
-          <div className="pointer-events-none absolute inset-0 grid-fade" />
-          <div className="site-container relative grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
-            <Reveal>
-              <div>
-                <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
-                  About
-                </span>
-                {/* The name leads, because this is the page Google should
-                    return for "bilal shafqat" and the `h1` carried no name at
-                    all — only the title tag and the paragraph below did
-                    (roadmap 276). "experience," came out in exchange, so the
-                    line grows by three characters rather than fifteen and the
-                    hero keeps its height. */}
-                <h1 className="t-h1 mt-5 text-ink">
-                  Bilal Shafqat. 15 years of marketing, design and development, in{" "}
-                  <span className="underline decoration-gold decoration-4 underline-offset-4">
-                    one senior partner
-                  </span>
-                </h1>
-                <p className="mt-6 max-w-2xl text-lg text-muted leading-relaxed">
-                  I&apos;m Bilal Shafqat, a Dubai-based freelance digital marketer,
-                  developer, and designer. Companies usually hire an agency for
-                  marketing, a developer for the website, and a freelancer for
-                  design, then spend their own time managing the handoffs between
-                  them. I do all of it myself, which means one brief, one point of
-                  contact, and one person accountable for the result.
-                </p>
-                <div className="mt-8 flex flex-wrap items-center gap-4">
-                  <CtaButton href="/appointment">Book a free consultation</CtaButton>
-                  <Link
-                    href="/portfolio"
-                    className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
-                  >
-                    View my work
-                  </Link>
-                </div>
-                <SocialLinks className="mt-8" />
+        <PageOpener
+          crumbs={[{ label: "Home", href: "/" }, { label: "About" }]}
+          eyebrow="About"
+          /* The name leads, because this is the page Google should return for
+             "bilal shafqat" and the `h1` carried no name at all — only the title
+             tag and the paragraph below did (roadmap 276). */
+          title={
+            <>
+              Bilal Shafqat. 15 years of marketing, design and development, in{" "}
+              <span className="underline decoration-gold decoration-4 underline-offset-4">
+                one senior partner
+              </span>
+            </>
+          }
+          standfirst={
+            <>
+              I&apos;m Bilal Shafqat, a Dubai-based freelance digital marketer,
+              developer, and designer. Companies usually hire an agency for
+              marketing, a developer for the website, and a freelancer for
+              design, then spend their own time managing the handoffs between
+              them. I do all of it myself, which means one brief, one point of
+              contact, and one person accountable for the result.
+            </>
+          }
+          actions={
+            <div className="w-full">
+              <div className="flex flex-wrap items-center gap-4">
+                <CtaButton href="/appointment">Book a free consultation</CtaButton>
+                <SecondaryButton href="/portfolio">View my work</SecondaryButton>
               </div>
-            </Reveal>
-
-          </div>
-
-          {/* Portrait, matching the homepage banner exactly: same photograph,
-              same crop, same monochrome treatment, bleeding off the right edge
-              rather than sitting in a bordered card.
-
-              It is a sibling of `.site-container` rather than a cell inside it,
-              because `site-container` is a centred 83.33% column — `right-0`
-              against that stops at the gutter, not at the viewport edge, and
-              the bleed is the whole point.
-
-              Mobile keeps it as a block in the flow under the copy, as the
-              homepage does. A photograph behind body text at phone width wrecks
-              legibility for no gain.
-
-              `.hero-portrait` carries the edge masks. The left fade in it is
-              desktop-only, which is why it lives in globals.css and not in an
-              inline style. */}
-          <div className="relative h-[360px] w-full sm:h-[440px] lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[46%] lg:overflow-hidden">
-            <Image
-              src="/images/bilal-shirt.avif"
-              alt="Bilal Shafqat"
-              fill
-              // 46vw, not 34vw. The column is `lg:w-[46%]` and the image is then
-            // scaled 1.035, so a 34vw variant was being stretched across it —
-            // a soft portrait in the first thing anyone sees (roadmap 213.18).
-            sizes="(min-width: 1024px) 46vw, 100vw"
-              className="hero-portrait object-cover object-[50%_15%] brightness-[1.04] contrast-[1.12] grayscale lg:origin-top lg:scale-[1.035]"
-              priority
-            />
-          </div>
-        </section>
+              <SocialLinks className="mt-8" />
+            </div>
+          }
+          /* Portrait, matching the homepage banner exactly: same photograph,
+             same crop, same monochrome treatment, bleeding off the right edge
+             rather than sitting in a bordered card. Mobile keeps it as a block
+             in the flow under the copy, as the homepage does — a photograph
+             behind body text at phone width wrecks legibility for no gain.
+             `.hero-portrait` carries the edge masks. */
+          bleed={
+            <div className="relative h-[360px] w-full sm:h-[440px] lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[46%] lg:overflow-hidden">
+              <Image
+                src="/images/bilal-shirt.avif"
+                alt="Bilal Shafqat"
+                fill
+                // 46vw, not 34vw. The column is `lg:w-[46%]` and the image is
+                // then scaled 1.035, so a 34vw variant was being stretched
+                // across it — a soft portrait in the first thing anyone sees.
+                sizes="(min-width: 1024px) 46vw, 100vw"
+                className="hero-portrait object-cover object-[50%_15%] brightness-[1.04] contrast-[1.12] grayscale lg:origin-top lg:scale-[1.035]"
+                priority
+              />
+            </div>
+          }
+        />
 
         <section className="relative mt-24 sm:mt-32">
           <div className="site-container">
