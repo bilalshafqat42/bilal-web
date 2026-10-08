@@ -189,6 +189,90 @@ nav[aria-label="Breadcrumb"] a,
   color: #14140f;
 }
 
+/* ---------------------------------------------------------------------------
+   The spacing, radius and surface scales.
+   ---------------------------------------------------------------------------
+
+   Built on 2026-10-08 for the same reason the type scale above exists, and
+   found the same way: by counting. Before this the site used **eleven**
+   different section rhythms, **three** corner radii and **four** card
+   backgrounds, none of them chosen as a set.
+
+     mt-20 sm:mt-24   15        rounded-2xl   57        panel             36
+     mt-24 sm:mt-32   11        rounded-xl    30        bg-surface/60     21
+     mt-20 sm:mt-28   10        rounded-[2rem] 9        bg-surface/40     10
+     mt-16 sm:mt-20    5                                glass-strong       9
+     py-24 sm:py-32    9
+     py-16 sm:py-20    7
+     py-20 sm:py-24    4
+     ... and four more
+
+   Nobody chose eleven rhythms. They accumulated, one section at a time, and
+   the result reads as assembled rather than designed.
+
+   **These are classes, not Tailwind utilities, and that is the point.** The
+   brief was that a design change in one place should reach every page. A
+   section written as `py-24 sm:py-32` has the decision baked into the markup of
+   whichever file it sits in; a section written as `.section` has it here, once.
+
+   Fluid rather than stepped, matching the type scale: each value interpolates
+   between the narrow phone and 1280px, so there is no jump at a breakpoint.
+   --------------------------------------------------------------------------- */
+
+:root {
+  /* Vertical rhythm. Three values, which is what the eleven collapse to once
+     you ask what each was actually for. */
+  --space-section: clamp(4.5rem, 3.2rem + 5.5vw, 8rem);   /* the default */
+  --space-section-tight: clamp(3rem, 2.2rem + 3.4vw, 5rem); /* two related blocks */
+  --space-block: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);  /* inside a section */
+
+  /* Corner radius. `--radius-panel` is the large one for full-width feature
+     blocks, `--radius-card` the everyday card, `--radius-chip` for tags and
+     pills that are smaller than their own radius would otherwise allow. */
+  --radius-panel: 2rem;
+  --radius-card: 1rem;
+  --radius-chip: 0.5rem;
+}
+
+/* Section rhythm. `.section` sets the gap ABOVE a block, so sections compose
+   without the double-margin problem a `py` on every one of them creates. */
+.section { margin-top: var(--space-section); }
+.section-tight { margin-top: var(--space-section-tight); }
+.section-pad { padding-block: var(--space-section); }
+.section-pad-tight { padding-block: var(--space-section-tight); }
+.block-gap { margin-top: var(--space-block); }
+
+/* ---------------------------------------------------------------------------
+   Surfaces.
+   ---------------------------------------------------------------------------
+   Three levels, named for how far a thing sits from the page rather than for
+   what it is made of. `surface-1` is a card on the page, `surface-2` a card on
+   a card, `surface-3` the floating one that needs to separate from whatever is
+   scrolling behind it.
+
+   Each sets its own border, so `class="surface-1"` is complete. The old
+   `border border-border panel` appeared 36 times and declared the border twice,
+   because `.panel` already had one. */
+.surface-1 {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+  border: 1px solid var(--color-border);
+}
+.surface-2 {
+  background: color-mix(in oklab, var(--color-surface) 60%, transparent);
+  border: 1px solid var(--color-border);
+}
+.surface-3 {
+  background: rgba(18, 18, 24, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+}
+
+.r-panel { border-radius: var(--radius-panel); }
+.r-card { border-radius: var(--radius-card); }
+.r-chip { border-radius: var(--radius-chip); }
+
+
+
 /* 12-column desktop layout: content occupies the middle 10 columns, leaving one
    column of margin on each side. Below the lg breakpoint a 12-column grid is
    meaningless on a phone, so it falls back to simple padding.
