@@ -8,6 +8,7 @@ import FaqSection from "@/components/FaqSection";
 import Contact from "@/components/Contact";
 import { clients } from "@/data/caseStudies";
 import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
+import Eyebrow from "@/components/Eyebrow";
 
 /**
  * The off-plan property vertical page.
@@ -205,9 +206,9 @@ export default function RealEstateMarketingPage() {
 
         <section className="site-container pt-20 sm:pt-24">
           <Reveal>
-            <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+            <Eyebrow>
               The parts
-            </span>
+            </Eyebrow>
             <h2 className="t-h2 mt-4 text-ink">
               What an off-plan launch actually needs
             </h2>
@@ -230,9 +231,9 @@ export default function RealEstateMarketingPage() {
 
         <section className="site-container pt-20 sm:pt-24">
           <Reveal>
-            <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+            <Eyebrow>
               What decides it
-            </span>
+            </Eyebrow>
             <h2 className="t-h2 mt-4 text-ink">
               Four decisions that separate a launch page from a brochure
             </h2>
@@ -241,9 +242,9 @@ export default function RealEstateMarketingPage() {
             {decisions.map((d) => (
               <Reveal key={d.n}>
                 <article className="grid grid-cols-1 gap-x-10 gap-y-4 border-t border-border pt-8 lg:grid-cols-[auto_minmax(0,1fr)]">
-                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] tabular-nums text-gold lg:w-16">
+                  <Eyebrow className="tabular-nums lg:w-16">
                     {d.n}
-                  </span>
+                  </Eyebrow>
                   <div>
                     <h3 className="t-h4 text-ink">
                       {d.title}
@@ -267,9 +268,9 @@ export default function RealEstateMarketingPage() {
         {launches.length ? (
           <section className="site-container pt-20 sm:pt-24">
             <Reveal>
-              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+              <Eyebrow>
                 The launches
-              </span>
+              </Eyebrow>
               <h2 className="t-h2 mt-4 text-ink">
                 Every one of them, written up
               </h2>

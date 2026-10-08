@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Info } from "lucide-react";
 import Reveal from "./Reveal";
+import Eyebrow from "@/components/Eyebrow";
 
 /**
  * The four engagement models, as one comparison table.
@@ -147,10 +148,10 @@ export default function Engagement({
       <div className="site-container">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
           <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-3 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+            <Eyebrow>
               <span aria-hidden="true" className="h-px w-6 bg-gold/60" />
               {variant === "detailed" ? "How Engagements Work" : "Pricing & Engagement"}
-            </span>
+            </Eyebrow>
             <h2 className="t-h2 mt-5 text-ink">Compare the four models side by side</h2>
           </div>
           <p className="max-w-sm text-base leading-relaxed text-muted lg:text-right">

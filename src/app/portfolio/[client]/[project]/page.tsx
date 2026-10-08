@@ -17,6 +17,7 @@ import { clients, getProject } from "@/data/caseStudies";
 import CtaButton from "@/components/CtaButton";
 import DeviceFrame from "@/components/DeviceFrame";
 import { jsonLdSafe } from "@/lib/schema";
+import Eyebrow from "@/components/Eyebrow";
 
 const SITE = "https://bilalshafqat.com";
 
@@ -219,9 +220,9 @@ export default async function ProjectCaseStudy({ params }: Props) {
               <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] lg:gap-16">
                 <Reveal>
                   <div className="lg:sticky lg:top-32">
-                    <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                    <Eyebrow>
                       The approach
-                    </span>
+                    </Eyebrow>
                     <h2 className="t-h2 mt-3 text-ink">
                       How this was approached
                     </h2>
@@ -253,7 +254,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
           <section className="relative mt-20 sm:mt-28">
             <div className="site-container">
               <Reveal>
-                <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Landing page</span>
+                <Eyebrow>Landing page</Eyebrow>
                 <h2 className="t-h2 mt-4 text-ink">
                   {p.landingPage.heading}
                 </h2>
@@ -286,7 +287,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
           <section className="relative mt-20 sm:mt-28">
             <div className="site-container">
               <Reveal>
-                <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Creative</span>
+                <Eyebrow>Creative</Eyebrow>
                 <h2 className="t-h2 mt-4 text-ink">
                   {p.gallery.heading}
                 </h2>
@@ -337,9 +338,9 @@ export default async function ProjectCaseStudy({ params }: Props) {
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] lg:gap-16">
               <Reveal>
                 <div className="lg:sticky lg:top-32">
-                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                  <Eyebrow>
                     Results
-                  </span>
+                  </Eyebrow>
                   <h2 className="t-h2 mt-3 text-ink">
                     What the campaign produced
                   </h2>
@@ -373,7 +374,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
                   style={{ animationDelay: "-4s" }}
                 />
                 <div className="relative">
-                  <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Next step</span>
+                  <Eyebrow>Next step</Eyebrow>
                   <h2 className="t-h2 mt-4 text-ink">
                     Need this for your launch? <span className="text-gradient">Let&apos;s talk.</span>
                   </h2>

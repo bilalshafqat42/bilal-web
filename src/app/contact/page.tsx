@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import PageOpener from "@/components/PageOpener";
 import Surface from "@/components/Surface";
-import Eyebrow from "@/components/Eyebrow";
 import { ArrowUpRight, Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
@@ -10,6 +9,7 @@ import WhatsAppLink from "@/components/WhatsAppLink";
 import SocialLinks from "@/components/SocialLinks";
 import CtaButton from "@/components/CtaButton";
 import { SITE_URL, breadcrumbNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
+import Eyebrow from "@/components/Eyebrow";
 
 export const metadata: Metadata = {
   title: "Contact Bilal Shafqat — Digital Marketer & Developer, Dubai",
@@ -233,7 +233,7 @@ export default function ContactPage() {
 
               <Reveal delay={0.1}>
                 <div className="h-full rounded-2xl border border-border panel p-7">
-                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Where to find me</span>
+                  <Eyebrow>Where to find me</Eyebrow>
                   <h2 className="t-h3 mt-3 text-ink">Where I am and when</h2>
                   <ul className="mt-5 space-y-4 text-sm text-muted">
                     <li className="flex items-start gap-3">
@@ -321,7 +321,7 @@ export default function ContactPage() {
                   style={{ animationDelay: "-4s" }}
                 />
                 <div className="relative">
-                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Start anywhere</span>
+                  <Eyebrow>Start anywhere</Eyebrow>
                   <h2 className="t-h2 mt-3 text-ink">
                     Not sure what you need yet?{" "}
                     <span className="text-gradient">Start there.</span>

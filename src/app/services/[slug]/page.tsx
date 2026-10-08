@@ -25,6 +25,7 @@ import ClientLogoRow from "@/components/ClientLogoRow";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL, serviceNode, faqNode, breadcrumbNode } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
+import Eyebrow from "@/components/Eyebrow";
 
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -144,7 +145,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
         <section className="relative mt-20 sm:mt-24">
           <div className="site-container">
             <Reveal>
-              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Scope</span>
+              <Eyebrow>Scope</Eyebrow>
               <h2 className="t-h2 mt-4 text-ink">
                 What this covers
               </h2>
@@ -194,7 +195,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                   is the part that matters, and the outline should describe the
                   document rather than chase a score. */}
               <Reveal>
-                <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Process</span>
+                <Eyebrow>Process</Eyebrow>
                 <h2 className="t-h2 mt-4 text-ink">
                   How {category.title.toLowerCase()} works in practice
                 </h2>

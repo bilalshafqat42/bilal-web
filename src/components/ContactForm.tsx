@@ -7,6 +7,7 @@ import { getAttribution, getFacebookCookies } from "@/lib/attribution";
 import { useRouter } from "next/navigation";
 import { trackLead, generateEventId } from "@/lib/analytics";
 import WhatsAppLink from "@/components/WhatsAppLink";
+import Eyebrow from "@/components/Eyebrow";
 
 const EMAIL = "bilalshafqat42@gmail.com";
 
@@ -160,9 +161,9 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="rounded-2xl border border-border panel p-7 sm:p-8">
-      <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+      <Eyebrow>
         The form
-      </span>
+      </Eyebrow>
       <h2 className="t-h3 mt-3 text-ink">Send me the details</h2>
       <p className="mt-2 text-sm text-muted leading-relaxed">
         The more you can tell me, the more useful my first reply will be.

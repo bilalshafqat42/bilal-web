@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import CtaButton from "@/components/CtaButton";
 import PortraitReveal from "@/components/PortraitReveal";
+import Eyebrow from "@/components/Eyebrow";
 
 /**
  * Homepage banner: headline, portrait, proof bar, recent work.
@@ -108,10 +109,10 @@ export default function HeroBanner() {
           headline and the portrait, rather than stretching the proof bar. */}
       <div className="relative grid grid-cols-1 lg:flex-1 lg:grid-cols-[1fr_minmax(0,34%)] lg:items-stretch">
         <div className="relative z-10 px-6 pb-12 pt-12 sm:pt-16 lg:flex lg:flex-col lg:justify-center lg:px-14 lg:pb-[3.75rem] lg:pt-[4.75rem]">
-          <span className="inline-flex items-center gap-2.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted">
+          <Eyebrow tone="muted" className="gap-2.5">
             <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold" />
             Available for new work
-          </span>
+          </Eyebrow>
 
           {/* Plain text, no reveal.
            *
@@ -220,9 +221,9 @@ export default function HeroBanner() {
       <div className="border-b border-border px-6 py-6 lg:px-14">
         <div className="lg:flex lg:items-center lg:justify-between lg:gap-8">
           <div className="lg:flex lg:items-center lg:gap-6">
-            <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted">
+            <Eyebrow tone="muted">
               Recent work
-            </span>
+            </Eyebrow>
 
             {/* A row of separated links at desktop; a divided list with its own
                 affordance per row on mobile, where a slash-separated row would

@@ -5,6 +5,7 @@ import Reveal from "./Reveal";
 import { publishedClients } from "@/data/caseStudies";
 import { OG_IMAGE_URL } from "@/lib/ogImage";
 import { disciplinesInWork } from "@/data/disciplines";
+import Eyebrow from "@/components/Eyebrow";
 
 /**
  * Every case study on the site, as one grid of cards.
@@ -110,9 +111,9 @@ export default function CaseStudyGrid() {
   return (
     <section className="site-container py-16 sm:py-20">
       <Reveal>
-        <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+        <Eyebrow>
           The work
-        </span>
+        </Eyebrow>
         <h2 className="t-h2 mt-3 text-ink">
           Every project, start to finish
         </h2>
@@ -195,9 +196,9 @@ export default function CaseStudyGrid() {
                   </div>
 
                   <div className="flex flex-1 flex-col px-5 pb-6 pt-1 sm:px-7 sm:pb-7">
-                    <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted/70">
+                    <Eyebrow size="sm" tone="muted">
                       {card.eyebrow}
-                    </span>
+                    </Eyebrow>
                     {/* An `h3`, not a `span`. This page exists to show six case
                         studies and exposed no headings at all between the
                         section `h2` and the discipline list, so a screen reader

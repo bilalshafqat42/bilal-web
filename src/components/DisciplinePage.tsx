@@ -18,6 +18,7 @@ import {
 import { groupByDeliverable, deliverableAnchor, type Item } from "@/lib/portfolioItems";
 import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
 import { OG_IMAGES, OG_IMAGE_URL } from "@/lib/ogImage";
+import Eyebrow from "@/components/Eyebrow";
 
 /**
  * One component behind every `/portfolio/{discipline}` page.
@@ -313,9 +314,9 @@ export default function DisciplinePage({ slug }: { slug: string }) {
                   href={disciplineHref(s)}
                   className="card-hover group rounded-2xl border border-border panel p-6"
                 >
-                  <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted/70">
+                  <Eyebrow size="sm" tone="muted">
                     {disciplineCount(s)} pieces
-                  </span>
+                  </Eyebrow>
                   <span className="mt-2.5 flex items-center justify-between gap-3 text-base font-semibold text-ink">
                     {s.title}
                     <ArrowRight size={16} className="shrink-0 text-muted transition-colors group-hover:text-gold" />

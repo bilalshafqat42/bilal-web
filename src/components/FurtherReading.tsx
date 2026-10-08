@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { readingMinutes } from "@/data/blogPosts";
 import { articlesForService } from "@/data/serviceArticles";
+import Eyebrow from "@/components/Eyebrow";
 
 /**
  * The articles behind one service, linked from the service page.
@@ -43,9 +44,9 @@ export default function FurtherReading({ serviceSlug }: { serviceSlug: string })
                 href={`/${p.slug}`}
                 className="group flex h-full flex-col rounded-2xl border border-border bg-surface/40 p-5 transition-colors hover:border-gold/35"
               >
-                <span className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted">
+                <Eyebrow size="sm" tone="muted">
                   {readingMinutes(p)} min read
-                </span>
+                </Eyebrow>
                 <span className="mt-3 text-base font-medium leading-snug text-ink transition-colors group-hover:text-gold">
                   {p.title}
                 </span>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import CtaButton from "@/components/CtaButton";
 import { processSteps } from "@/data/process";
+import Eyebrow from "@/components/Eyebrow";
 
 /**
  * The four delivery stages, as a timeline.
@@ -39,10 +40,10 @@ export default function ProcessCompact() {
             read as an afterthought rather than an offer. */}
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
           <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-3 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+            <Eyebrow>
               <span aria-hidden="true" className="h-px w-6 bg-gold/60" />
               How I Work
-            </span>
+            </Eyebrow>
             <h2 className="t-h2 mt-5 text-ink">From brief to shipped, in four stages</h2>
             <p className="mt-5 max-w-lg text-lg leading-relaxed text-muted">
               Same path on every project, whether it is a campaign, a website or an app.
@@ -93,9 +94,9 @@ export default function ProcessCompact() {
               </div>
 
               <h3 className="t-h4 mt-4 text-ink">{s.title}</h3>
-              <p className="mt-1 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted/70">
+              <Eyebrow as="p" tone="muted" className="mt-1">
                 {s.subtitle}
-              </p>
+              </Eyebrow>
               <p className="mt-4 text-base leading-relaxed text-muted">{s.description}</p>
 
               {s.deliverable ? (
@@ -105,9 +106,9 @@ export default function ProcessCompact() {
                    a comparison. */
                 <div className="mt-auto pt-8">
                   <hr className="border-t border-border" />
-                  <p className="mt-5 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted/70">
+                  <Eyebrow as="p" size="sm" tone="muted" className="mt-5">
                     You get
-                  </p>
+                  </Eyebrow>
                   <p className="mt-2 text-sm leading-relaxed text-ink/90">{s.deliverable}</p>
                 </div>
               ) : null}

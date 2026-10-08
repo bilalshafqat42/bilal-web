@@ -5,6 +5,7 @@ import ClientLogoRow from "./ClientLogoRow";
 import CtaButton from "@/components/CtaButton";
 import { caseStudyUrls } from "@/data/caseStudies";
 import { disciplinesWithPages } from "@/data/disciplines";
+import Eyebrow from "@/components/Eyebrow";
 
 /**
  * The proof wall — the single proof section on the homepage.
@@ -97,10 +98,10 @@ export default function Results() {
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:items-start lg:gap-16">
           <Reveal>
             <div>
-              <span className="inline-flex items-center gap-3 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+              <Eyebrow>
                 <span aria-hidden="true" className="h-px w-6 bg-gold/60" />
                 How the work is measured
-              </span>
+              </Eyebrow>
               <h2 className="t-h2 mt-5 text-ink">
                 Measured properly,{" "}
                 <br />
@@ -145,9 +146,9 @@ export default function Results() {
                 <p className="t-h2 text-gold">{s.verified ? s.value : `[${s.value}]`}</p>
                 <p className="mt-3 font-semibold leading-snug text-ink">{s.label}</p>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{s.detail}</p>
-                <p className="mt-auto pt-6 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted/70">
+                <Eyebrow as="p" size="sm" tone="muted" className="mt-auto pt-6">
                   {s.meta}
-                </p>
+                </Eyebrow>
               </div>
             </RevealItem>
           ))}
@@ -157,9 +158,9 @@ export default function Results() {
             the logos read as a continuation of the proof rather than a new
             section. */}
         <div className="mt-16 flex items-center gap-5">
-          <span className="shrink-0 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-muted/70">
+          <Eyebrow size="sm" tone="muted" className="shrink-0">
             Worked with
-          </span>
+          </Eyebrow>
           <span aria-hidden="true" className="h-px flex-1 bg-border" />
         </div>
         {/* The real clients only. The design carried two extra tiles reading

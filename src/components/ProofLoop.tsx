@@ -7,6 +7,7 @@ import {
   disciplineItems,
   type Discipline,
 } from "@/data/disciplines";
+import Eyebrow from "@/components/Eyebrow";
 
 /**
  * The proof loop, as two blocks.
@@ -46,9 +47,9 @@ function DisciplineCards({ items }: { items: Discipline[] }) {
           href={`/portfolio/${d.slug}`}
           className="card-hover group rounded-2xl border border-border panel p-6"
         >
-          <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted/70">
+          <Eyebrow size="sm" tone="muted">
             {disciplineItems(d).length} pieces
-          </span>
+          </Eyebrow>
           <span className="mt-2.5 flex items-center justify-between gap-3 text-base font-semibold text-ink">
             {d.title}
             <ArrowRight size={16} className="shrink-0 text-muted transition-colors group-hover:text-gold" />
@@ -69,9 +70,9 @@ export function ServiceProof({ serviceSlug }: { serviceSlug: string }) {
     <section className="site-container py-16 sm:py-20">
       <Reveal>
         <div className="border-b border-border pb-5">
-          <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+          <Eyebrow>
             The proof
-          </span>
+          </Eyebrow>
           <h2 className="t-h3 mt-3 max-w-2xl text-ink">
             Shipped work behind this service
           </h2>
@@ -103,9 +104,9 @@ export function WorkProof({
     <section className="site-container py-16 sm:py-20">
       <Reveal>
         <div className="border-b border-border pb-5">
-          <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+          <Eyebrow>
             What went into this
-          </span>
+          </Eyebrow>
           <h2 className="t-h3 mt-3 max-w-2xl text-ink">
             The disciplines this work is made of
           </h2>

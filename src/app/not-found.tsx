@@ -2,8 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { pillars } from "@/data/pillars";
 import CtaButton from "@/components/CtaButton";
-import Eyebrow from "@/components/Eyebrow";
 import SecondaryButton from "@/components/SecondaryButton";
+import Eyebrow from "@/components/Eyebrow";
 
 export const metadata: Metadata = {
   title: "Page not found — Bilal Shafqat",

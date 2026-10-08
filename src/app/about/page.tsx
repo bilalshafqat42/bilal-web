@@ -10,6 +10,7 @@ import SecondaryButton from "@/components/SecondaryButton";
 import PageOpener from "@/components/PageOpener";
 import WhoIWorkWith from "@/components/WhoIWorkWith";
 import { SITE_URL, breadcrumbNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
+import Eyebrow from "@/components/Eyebrow";
 
 export const metadata: Metadata = {
   title: "About Bilal Shafqat — Freelance Marketer & Developer, Dubai",
@@ -153,7 +154,7 @@ export default function AboutPage() {
         <section className="relative mt-24 sm:mt-32">
           <div className="site-container">
             <Reveal>
-              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">The work</span>
+              <Eyebrow>The work</Eyebrow>
               <h2 className="t-h2 mt-4 text-ink">
                 What I actually do
               </h2>
@@ -202,7 +203,7 @@ export default function AboutPage() {
           <div className="site-container">
             <div className="max-w-3xl">
               <Reveal>
-                <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">The short version</span>
+                <Eyebrow>The short version</Eyebrow>
                 <h2 className="t-h2 mt-4 text-ink">How one person ended up doing four jobs</h2>
                 <p className="mt-6 text-base leading-relaxed text-muted">
                   Not by plan. I started on the build side, writing code and designing
@@ -262,7 +263,7 @@ export default function AboutPage() {
         <section className="relative mt-24 sm:mt-32">
           <div className="site-container">
             <Reveal>
-              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">How I work</span>
+              <Eyebrow>How I work</Eyebrow>
               <h2 className="t-h2 mt-4 text-ink">
                 How working with me is different
               </h2>
@@ -284,7 +285,7 @@ export default function AboutPage() {
         <section className="relative mt-24 sm:mt-32">
           <div className="site-container">
             <Reveal>
-              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Stack</span>
+              <Eyebrow>Stack</Eyebrow>
               <h2 className="t-h2 mt-4 text-ink">
                 Platforms and tools I work in
               </h2>
@@ -329,7 +330,7 @@ export default function AboutPage() {
                   style={{ animationDelay: "-4s" }}
                 />
                 <div className="relative">
-                  <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Next step</span>
+                  <Eyebrow>Next step</Eyebrow>
                   <h2 className="t-h2 mt-4 text-ink">
                     Based in Dubai, <span className="text-gradient">working with you directly.</span>
                   </h2>

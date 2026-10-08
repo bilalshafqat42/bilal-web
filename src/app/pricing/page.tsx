@@ -8,6 +8,7 @@ import Engagement from "@/components/Engagement";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL, faqNode, breadcrumbNode } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
+import Eyebrow from "@/components/Eyebrow";
 
 export const metadata: Metadata = {
   title: "What a Freelance Digital Marketer Costs in Dubai",
@@ -124,7 +125,7 @@ export default function PricingPage() {
         <section className="relative mt-20 sm:mt-24">
           <div className="site-container">
             <Reveal>
-              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Cost drivers</span>
+              <Eyebrow>Cost drivers</Eyebrow>
               <h2 className="t-h2 mt-4 text-ink">
                 What moves the price
               </h2>
@@ -240,7 +241,7 @@ export default function PricingPage() {
                   style={{ animationDelay: "-4s" }}
                 />
                 <div className="relative">
-                  <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Next step</span>
+                  <Eyebrow>Next step</Eyebrow>
                   <h2 className="t-h2 mt-4 text-ink">
                     Describe the project, <span className="text-gradient">get a real number.</span>
                   </h2>

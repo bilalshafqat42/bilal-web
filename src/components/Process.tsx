@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import { processSteps as steps } from "@/data/process";
+import Eyebrow from "@/components/Eyebrow";
 
 /**
  * The four delivery stages.
@@ -127,12 +128,12 @@ export default function Process() {
                   className="scroll-mt-32 border-t border-border pt-8"
                 >
                   <div className="flex items-baseline gap-4">
-                    <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] tabular-nums text-gold">
+                    <Eyebrow className="tabular-nums">
                       {s.step}
-                    </span>
-                    <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted">
+                    </Eyebrow>
+                    <Eyebrow tone="muted">
                       {s.subtitle}
-                    </span>
+                    </Eyebrow>
                   </div>
 
                   <h2 className="t-h2 mt-4 text-ink">

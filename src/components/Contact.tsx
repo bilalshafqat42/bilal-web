@@ -2,6 +2,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import Reveal from "./Reveal";
 import SocialLinks from "./SocialLinks";
 import CtaButton from "@/components/CtaButton";
+import Eyebrow from "@/components/Eyebrow";
 
 export default function Contact() {
   return (
@@ -15,9 +16,9 @@ export default function Contact() {
             />
 
             <div className="relative">
-              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+              <Eyebrow>
                 Book A Consultation
-              </span>
+              </Eyebrow>
               <h2 className="t-h2 mt-4 text-ink">
                 Have a project in mind? <span className="text-gradient">Let&apos;s start it.</span>
               </h2>

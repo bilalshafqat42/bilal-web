@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { accentClasses, megaMenuGroups } from "@/data/pillars";
+import Eyebrow from "@/components/Eyebrow";
 
 /**
  * The preview panel beside the Services menu.
@@ -44,22 +45,22 @@ export default function ServiceRail({ slug }: { slug: string | null }) {
   if (!group) {
     return (
       <div className="flex w-full flex-col">
-        <p className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted/60">
+        <Eyebrow as="p" size="sm" tone="muted">
           Start here
-        </p>
+        </Eyebrow>
         <h3 className="t-h5 mt-3 text-ink">Not sure which one you need?</h3>
         <p className="mt-3 text-sm leading-relaxed text-muted">
           Most people arrive with a problem rather than a service name. Hover
           any service to see what it covers and how long it usually takes.
         </p>
         <div className="mt-6 border-t border-border pt-5">
-          <p className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted/60">
+          <Eyebrow as="p" size="sm" tone="muted">
             Based in
-          </p>
+          </Eyebrow>
           <p className="mt-1.5 text-sm text-ink">Dubai, UAE</p>
-          <p className="mt-4 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted/60">
+          <Eyebrow as="p" size="sm" tone="muted" className="mt-4">
             Typical reply
-          </p>
+          </Eyebrow>
           <p className="mt-1.5 text-sm text-ink">Within one working day</p>
         </div>
       </div>
@@ -73,9 +74,9 @@ export default function ServiceRail({ slug }: { slug: string | null }) {
     // reuses the element, the animation never re-runs, and the panel swaps with
     // a hard cut.
     <div key={group.slug} className="motion-safe:animate-[fade-rise_.28s_ease-out_both] flex w-full flex-col">
-      <p className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted/60">
+      <Eyebrow as="p" size="sm" tone="muted">
         What you get
-      </p>
+      </Eyebrow>
       <h3 className="t-h5 mt-3 text-ink">{group.title}</h3>
       {/* Clamped to three lines. The opening sentences run from 60 to 190
           characters across the fifteen, and left unclamped the tallest card
@@ -101,9 +102,9 @@ export default function ServiceRail({ slug }: { slug: string | null }) {
       <div className="mt-6 border-t border-border pt-5">
         {group.railTimeline ? (
           <>
-            <p className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted/60">
+            <Eyebrow as="p" size="sm" tone="muted">
               Typical timeline
-            </p>
+            </Eyebrow>
             <p className="mt-1.5 text-sm text-ink">{group.railTimeline}</p>
           </>
         ) : null}

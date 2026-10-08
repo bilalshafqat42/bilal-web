@@ -10,6 +10,7 @@ import FaqSection from "@/components/FaqSection";
 import CtaButton from "@/components/CtaButton";
 import { clients, getClient } from "@/data/caseStudies";
 import { SITE_URL as SITE, jsonLdSafe } from "@/lib/schema";
+import Eyebrow from "@/components/Eyebrow";
 
 /**
  * The mobile app case study.
@@ -226,9 +227,9 @@ export default async function MobileAppCaseStudy({ params }: Props) {
             <div className="mt-8 grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-14">
               <Reveal>
                 <div>
-                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                  <Eyebrow>
                     Case study · Property &amp; real estate
-                  </span>
+                  </Eyebrow>
                   <h1 className="t-h1 mt-5 text-ink">
                     A cross-platform app, from one codebase.
                   </h1>
@@ -266,9 +267,9 @@ export default async function MobileAppCaseStudy({ params }: Props) {
               <dl className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border lg:grid-cols-4">
                 {facts.map((f) => (
                   <div key={f.label} className="bg-bg p-6">
-                    <dt className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-muted/70">
+                    <Eyebrow as="dt" size="sm" tone="muted">
                       {f.label}
-                    </dt>
+                    </Eyebrow>
                     <dd className="mt-3 text-lg font-semibold text-ink">{f.value}</dd>
                     <dd className="mt-1 text-xs text-muted">{f.note}</dd>
                   </div>
@@ -291,9 +292,9 @@ export default async function MobileAppCaseStudy({ params }: Props) {
             <section className="relative mt-24 sm:mt-32">
               <div className="site-container">
                 <Reveal>
-                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                  <Eyebrow>
                     The brief
-                  </span>
+                  </Eyebrow>
                   <h2 className="t-h2 mt-4 text-ink">
                     About the project
                   </h2>
@@ -313,9 +314,9 @@ export default async function MobileAppCaseStudy({ params }: Props) {
             <section className="relative mt-20 sm:mt-24">
               <div className="site-container">
                 <Reveal>
-                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                  <Eyebrow>
                     What made it hard
-                  </span>
+                  </Eyebrow>
                   <h2 className="t-h2 mt-4 text-ink">
                     The problem
                   </h2>
@@ -345,9 +346,9 @@ export default async function MobileAppCaseStudy({ params }: Props) {
             <section className="relative mt-20 bg-bg-soft/50 py-16 sm:mt-24 sm:py-20">
               <div className="site-container">
                 <Reveal>
-                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                  <Eyebrow>
                     The answer
-                  </span>
+                  </Eyebrow>
                   <h2 className="t-h2 mt-4 text-ink">
                     The solution
                   </h2>
@@ -369,9 +370,9 @@ export default async function MobileAppCaseStudy({ params }: Props) {
         <section className="relative mt-24 sm:mt-32">
           <div className="site-container">
             <Reveal>
-              <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+              <Eyebrow>
                 What had to be solved
-              </span>
+              </Eyebrow>
               <h2 className="t-h2 mt-4 text-ink">
                 Key challenges
               </h2>
@@ -411,9 +412,9 @@ export default async function MobileAppCaseStudy({ params }: Props) {
             <Reveal>
               <div className="flex flex-wrap items-end justify-between gap-6 border-b border-border pb-8">
                 <div>
-                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                  <Eyebrow>
                     The work
-                  </span>
+                  </Eyebrow>
                   {/* Was "Screen by screen, and why each one is built that
                       way." The "why" moved to Design decisions below, so the
                       heading now says only what this run of images is. */}
@@ -504,9 +505,9 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                       <span className="font-mono text-xs tabular-nums text-muted/70">
                         {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
                       </span>
-                      <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                      <Eyebrow>
                         {s.label}
-                      </span>
+                      </Eyebrow>
                       <p className="w-full max-w-[52ch] text-base leading-relaxed text-muted">
                         {s.headline}
                       </p>
@@ -524,9 +525,9 @@ export default async function MobileAppCaseStudy({ params }: Props) {
         <section className="relative mt-24 sm:mt-32">
           <div className="site-container">
             <Reveal>
-              <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+              <Eyebrow>
                 Why each screen is built that way
-              </span>
+              </Eyebrow>
               <h2 className="t-h2 mt-4 text-ink">
                 Design decisions
               </h2>
@@ -549,9 +550,9 @@ export default async function MobileAppCaseStudy({ params }: Props) {
             <div className="site-container">
               <Reveal>
                 <div>
-                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                  <Eyebrow>
                     How it was built
-                  </span>
+                  </Eyebrow>
                   {/* Renamed from "What I handled on this project" on
                       2026-09-21. The reference labels this section Approach, and
                       the content is the same thing: what was actually done, in
@@ -590,9 +591,9 @@ export default async function MobileAppCaseStudy({ params }: Props) {
             <div className="site-container">
               <Reveal>
                 <div>
-                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                  <Eyebrow>
                     Outcome
-                  </span>
+                  </Eyebrow>
                   <h2 className="t-h2 mt-4 text-ink">
                     What it changed.
                   </h2>
@@ -632,9 +633,9 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                   as pagination furniture; the reference gives it a heading and
                   it becomes a deliberate next step. */}
               <Reveal>
-                <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                <Eyebrow>
                   Keep reading
-                </span>
+                </Eyebrow>
                 <h2 className="t-h2 mt-4 text-ink">
                   Next case study
                 </h2>
@@ -648,9 +649,9 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                       i === 1 ? "sm:text-right" : ""
                     }`}
                   >
-                    <span className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-muted/70">
+                    <Eyebrow size="sm" tone="muted">
                       {i === 1 ? "Next" : "Previous"}
-                    </span>
+                    </Eyebrow>
                     <span className="mt-3 flex items-center gap-2 text-lg font-semibold text-ink transition-colors group-hover:text-gold sm:justify-start">
                       {i === 1 ? null : <ArrowLeft size={16} className="shrink-0" />}
                       <span className={i === 1 ? "sm:ml-auto" : ""}>{p.name}</span>

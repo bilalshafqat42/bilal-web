@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { BatteryFull, SignalHigh, Wifi } from "lucide-react";
 import type { Capture } from "@/data/caseStudies";
+import Eyebrow from "@/components/Eyebrow";
 
 /**
  * A phone in a device frame, with drawn chrome.
@@ -105,9 +106,9 @@ export default function DeviceFrame({
         </div>
       </div>
       {caption ? (
-        <figcaption className="mt-3 text-center font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted">
+        <Eyebrow as="figcaption" tone="muted" className="mt-3 text-center">
           {caption}
-        </figcaption>
+        </Eyebrow>
       ) : null}
     </figure>
   );

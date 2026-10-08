@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { readingMinutes, type BlogPost } from "@/data/blogPosts";
 import { blogPagePath } from "@/lib/blogPagination";
+import Eyebrow from "@/components/Eyebrow";
 
 /** "2 Oct 2026" — UAE convention, and unambiguous where 10/02 is not. */
 const formatDate = (iso: string) =>
@@ -46,9 +47,9 @@ export default function BlogList({
                 <h2 className="t-h5 text-ink transition-colors group-hover:text-gold">{p.title}</h2>
                 <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">{p.description}</p>
               </div>
-              <span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted">
+              <Eyebrow tone="muted">
                 {readingMinutes(p)} min
-              </span>
+              </Eyebrow>
             </Link>
           </li>
         ))}

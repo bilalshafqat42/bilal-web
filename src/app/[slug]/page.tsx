@@ -14,6 +14,7 @@ import { blogPost, readingMinutes, metaTitleOf, relatedPosts } from "@/data/blog
 import { blogPosts } from "@/data/blogPosts";
 import { BLOG_RECOVERED_ON } from "@/data/contentDates";
 import { serviceForArticle } from "@/data/articleServices";
+import Eyebrow from "@/components/Eyebrow";
 
 /**
  * The recovered articles, at the root of the domain.
@@ -157,9 +158,9 @@ export default async function ArticlePage({ params }: PageProps) {
                   style={{ animationDelay: "-4s" }}
                 />
                 <div className="relative">
-                  <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                  <Eyebrow>
                     {service.pitch.eyebrow}
-                  </span>
+                  </Eyebrow>
                   <h2 className="t-h2 mt-4 text-ink">
                     {service.pitch.heading}{" "}
                     <span className="text-gradient">{service.pitch.accent}</span>
@@ -202,9 +203,9 @@ export default async function ArticlePage({ params }: PageProps) {
                       href={`/${p.slug}`}
                       className="group flex h-full flex-col rounded-2xl border border-border bg-surface/40 p-5 transition-colors hover:border-gold/35"
                     >
-                      <span className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted">
+                      <Eyebrow size="sm" tone="muted">
                         {readingMinutes(p)} min read
-                      </span>
+                      </Eyebrow>
                       <span className="mt-3 text-base font-medium leading-snug text-ink transition-colors group-hover:text-gold">
                         {p.title}
                       </span>

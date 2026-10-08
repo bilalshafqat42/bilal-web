@@ -7,6 +7,7 @@ import CtaButton from "@/components/CtaButton";
 import JsonLd from "@/components/JsonLd";
 import { SITE_URL, faqNode, breadcrumbNode } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
+import Eyebrow from "@/components/Eyebrow";
 
 
 export const metadata: Metadata = {
@@ -95,7 +96,7 @@ export default function FaqPage() {
                   style={{ animationDelay: "-4s" }}
                 />
                 <div className="relative">
-                  <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Next step</span>
+                  <Eyebrow>Next step</Eyebrow>
                   <h2 className="t-h2 mt-4 text-ink">
                     Still deciding? <span className="text-gradient">Just ask.</span>
                   </h2>

@@ -1,4 +1,5 @@
 import Reveal from "./Reveal";
+import Eyebrow from "@/components/Eyebrow";
 
 export type Faq = { question: string; answer: string };
 
@@ -45,9 +46,9 @@ export default function FaqSection({ eyebrow, title, faqs, id, className }: Prop
               Below lg it simply sits above them. */}
           <div className="lg:sticky lg:top-32">
             {eyebrow ? (
-              <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+              <Eyebrow>
                 {eyebrow}
-              </span>
+              </Eyebrow>
             ) : null}
             <h2 className="t-h2 mt-3 text-ink">
               {title}

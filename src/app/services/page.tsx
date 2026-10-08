@@ -7,6 +7,7 @@ import PortfolioShowcase from "@/components/PortfolioShowcase";
 import ClientLogoRow from "@/components/ClientLogoRow";
 import { megaMenuGroups, accentClasses, spellCount } from "@/data/pillars";
 import { SITE_URL, breadcrumbNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
+import Eyebrow from "@/components/Eyebrow";
 
 /** Read from the data, never typed as a word. See `spellCount` — the page said
  *  "eight" above nine cards for as long as the ninth category existed. */
@@ -124,9 +125,9 @@ export default function ServicesPage() {
 
         {/* Evidence immediately above the CTA in <Contact />. */}
         <div className="site-container mt-20 sm:mt-24">
-          <p className="text-center font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted">
+          <Eyebrow as="p" tone="muted" className="text-center">
             Trusted by
-          </p>
+          </Eyebrow>
           <ClientLogoRow variant="row" className="mt-6 justify-center" />
         </div>
       </main>

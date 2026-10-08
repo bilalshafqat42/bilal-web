@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Building2, MapPin } from "lucide-react";
 import SocialLinks from "./SocialLinks";
 import FooterWordmark from "./FooterWordmark";
+import Eyebrow from "@/components/Eyebrow";
 
 const EMAIL = "bilalshafqat42@gmail.com";
 
@@ -170,9 +171,9 @@ export default function Footer() {
             <div className="mt-4 grid gap-x-8 gap-y-6 sm:grid-cols-2">
               {serviceGroups.map((group) => (
                 <div key={group.title}>
-                  <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted/60">
+                  <Eyebrow as="p" size="sm" tone="muted">
                     {group.title}
-                  </p>
+                  </Eyebrow>
                   <ul className="mt-2.5 space-y-2.5">
                     {group.links.map((l) => (
                       <li key={l.href}>

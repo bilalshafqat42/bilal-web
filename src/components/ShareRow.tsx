@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Check, Link2, Share2 } from "lucide-react";
 import { LinkedinIcon, WhatsAppIcon, XIcon } from "@/components/SocialLinks";
+import Eyebrow from "@/components/Eyebrow";
 
 /**
  * Share links for an article.
@@ -80,9 +81,9 @@ export default function ShareRow({ url, title }: Props) {
       ref={() => setCanShare(typeof navigator !== "undefined" && !!navigator.share)}
       className="mt-14 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-border pt-7"
     >
-      <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted/70">
+      <Eyebrow size="sm" tone="muted">
         Share this
-      </span>
+      </Eyebrow>
 
       <div className="flex flex-wrap items-center gap-2">
         {links.map(({ name, href, Icon }) => (

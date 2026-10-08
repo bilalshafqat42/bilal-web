@@ -1,5 +1,6 @@
 import Link from "next/link";
 import CtaButton from "@/components/CtaButton";
+import Eyebrow from "@/components/Eyebrow";
 
 /**
  * The questions people ask before booking, answered on the page.
@@ -84,10 +85,10 @@ export default function HomeFaq() {
               stays beside the answers on a tall screen rather than scrolling
               away at the top. */}
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <span className="inline-flex items-center gap-3 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+            <Eyebrow>
               <span aria-hidden="true" className="h-px w-6 bg-gold/60" />
               Common questions
-            </span>
+            </Eyebrow>
             <h2 className="t-h2 mt-5 text-ink">The questions I get before the first call</h2>
             <p className="mt-5 text-lg leading-relaxed text-muted">
               Answered here so you do not have to book a call to find out. If yours is not

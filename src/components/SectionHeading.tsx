@@ -1,4 +1,5 @@
 import Reveal from "./Reveal";
+import Eyebrow from "@/components/Eyebrow";
 
 type SectionHeadingProps = {
   eyebrow?: string;
@@ -31,9 +32,9 @@ export default function SectionHeading({
     <Reveal className={`max-w-3xl ${isCenter ? "mx-auto text-center" : "text-left"}`}>
       <div>
         {eyebrow ? (
-          <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+          <Eyebrow>
             {eyebrow}
-          </span>
+          </Eyebrow>
         ) : null}
         <Heading
           className={

@@ -13,6 +13,7 @@ import CaseStudyGrid from "@/components/CaseStudyGrid";
 import Contact from "@/components/Contact";
 import { SITE_URL, breadcrumbNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
 import { disciplinesWithPages } from "@/data/disciplines";
+import Eyebrow from "@/components/Eyebrow";
 
 export const metadata: Metadata = {
   title: "Portfolio — Off-Plan Launches & App Work | Bilal Shafqat",
@@ -114,9 +115,9 @@ export default function PortfolioPage() {
         <section className="site-container pb-14">
           <Reveal>
             <div className="max-w-[68ch] border-l-2 border-gold/60 pl-6">
-              <p className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+              <Eyebrow as="p">
                 One decision, as an example
-              </p>
+              </Eyebrow>
               <p className="mt-3 text-lg leading-relaxed text-ink">
                 The entry price sits in the hero — from AED 1 million on Hadley
                 Heights — so someone outside the bracket leaves before filling in a
@@ -152,9 +153,9 @@ export default function PortfolioPage() {
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6 border-b border-border pb-6">
               <div>
-                <span className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                <Eyebrow>
                   Browse by discipline
-                </span>
+                </Eyebrow>
                 <h2 className="t-h2 mt-4 max-w-2xl text-ink">
                   Start with what you need built
                 </h2>
@@ -169,9 +170,9 @@ export default function PortfolioPage() {
             <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-8">
               {disciplineGroups.map((group) => (
                 <div key={group.name}>
-                  <span className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-muted/60">
+                  <Eyebrow size="sm" tone="muted">
                     {group.name}
-                  </span>
+                  </Eyebrow>
                   <ul className="mt-4 space-y-3">
                     {group.disciplines.map((d) => {
                       const count = disciplineCount(d);
@@ -196,9 +197,9 @@ export default function PortfolioPage() {
                                   {count}
                                 </span>
                               ) : (
-                                <span className="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-muted/45">
+                                <Eyebrow size="sm" tone="muted">
                                   Service
-                                </span>
+                                </Eyebrow>
                               )}
                               <ArrowRight
                                 size={15}

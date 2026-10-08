@@ -5,6 +5,7 @@ import { CheckCircle2 } from "lucide-react";
 import AppointmentBooking from "@/components/AppointmentBooking";
 import FaqSection from "@/components/FaqSection";
 import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
+import Eyebrow from "@/components/Eyebrow";
 
 export const metadata: Metadata = {
   title: "Book a Free 30-Minute Call — Bilal Shafqat, Dubai",
@@ -186,13 +187,13 @@ export default function AppointmentPage() {
                   dot. The pill shape was the inconsistency; the dot is the part
                   that carries meaning, because this says something live rather
                   than labelling a section. */}
-              <span className="inline-flex items-center gap-2.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+              <Eyebrow className="gap-2.5">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-60" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
                 </span>
                 Taking work now
-              </span>
+              </Eyebrow>
 
               {/* Heading first, then the paragraph. This page used to render
                   the intro above the h1, so its title was the third thing read

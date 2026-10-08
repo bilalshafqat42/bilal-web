@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { homeDisciplines } from "@/data/pillars";
 import CtaButton from "@/components/CtaButton";
+import Eyebrow from "@/components/Eyebrow";
 
 /**
  * The three disciplines, as a ledger of rows rather than a card deck.
@@ -35,9 +36,9 @@ export default function CapabilityLedger() {
             type but left the pill border and the muted colour, so it read as a
             different thing from the identical labels above every other section.
             Now the same flat gold eyebrow as everywhere else. */}
-        <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+        <Eyebrow>
           Capabilities
-        </span>
+        </Eyebrow>
 
         <div className="mt-7 grid grid-cols-1 gap-8 lg:grid-cols-[1.35fr_1fr] lg:items-start lg:gap-16">
           <h2 className="t-h2 text-ink">

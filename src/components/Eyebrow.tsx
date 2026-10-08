@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ElementType, ReactNode } from "react";
 
 /**
  * The small uppercase label that sits above a heading.
@@ -31,6 +31,11 @@ type Props = {
   /** A short gold rule before the text. Used where the eyebrow opens a major
    *  section rather than labelling a card. */
   rule?: boolean;
+  /** The element to render. A `<span>` by default, but the same label is a
+   *  `<p>` above a heading, a `<dt>` in a definition list and a `<figcaption>`
+   *  under a frame. Keeping the element correct is the difference between a
+   *  label and markup a screen reader can navigate. */
+  as?: ElementType;
   className?: string;
 };
 
@@ -49,14 +54,15 @@ export default function Eyebrow({
   size = "default",
   tone = "gold",
   rule = false,
+  as: Tag = "span",
   className = "",
 }: Props) {
   return (
-    <span
+    <Tag
       className={`inline-flex items-center gap-3 font-mono uppercase ${SIZES[size]} ${TONES[tone]} ${className}`}
     >
       {rule ? <span aria-hidden="true" className="h-px w-6 bg-gold/60" /> : null}
       {children}
-    </span>
+    </Tag>
   );
 }

@@ -15,6 +15,7 @@ import { clients, getClient } from "@/data/caseStudies";
 import CtaButton from "@/components/CtaButton";
 import DeviceFrame from "@/components/DeviceFrame";
 import { jsonLdSafe } from "@/lib/schema";
+import Eyebrow from "@/components/Eyebrow";
 
 const SITE = "https://bilalshafqat.com";
 
@@ -130,7 +131,7 @@ export default async function ClientCaseStudy({ params }: Props) {
         <section className="relative mt-20 sm:mt-28">
           <div className="site-container">
             <Reveal>
-              <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">The brief</span>
+              <Eyebrow>The brief</Eyebrow>
               <h2 className="t-h2 mt-4 text-ink">
                 Scope of work
               </h2>
@@ -153,7 +154,7 @@ export default async function ClientCaseStudy({ params }: Props) {
           <section className="relative mt-20 sm:mt-28">
             <div className="site-container">
               <Reveal>
-                <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Website</span>
+                <Eyebrow>Website</Eyebrow>
                 <h2 className="t-h2 mt-4 text-ink">
                   {c.website.heading}
                 </h2>
@@ -222,7 +223,7 @@ export default async function ClientCaseStudy({ params }: Props) {
 
                 <Reveal delay={0.1}>
                   <div>
-                    <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Mobile app</span>
+                    <Eyebrow>Mobile app</Eyebrow>
                     <h2 className="t-h2 mt-4 text-ink">
                       {c.mobileApp.heading}
                     </h2>
@@ -238,7 +239,7 @@ export default async function ClientCaseStudy({ params }: Props) {
           <section className="relative mt-20 sm:mt-28">
             <div className="site-container">
               <Reveal>
-                <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Brand and social</span>
+                <Eyebrow>Brand and social</Eyebrow>
                 <h2 className="t-h2 mt-4 text-ink">
                   {c.brandSocial.heading}
                 </h2>
@@ -258,7 +259,7 @@ export default async function ClientCaseStudy({ params }: Props) {
           <section id="projects" className="relative mt-20 scroll-mt-28 border-t border-border pt-20 sm:mt-28 sm:pt-24">
             <div className="site-container">
               <Reveal>
-                <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Campaigns</span>
+                <Eyebrow>Campaigns</Eyebrow>
                 <h2 className="t-h2 mt-4 text-ink">
                   {c.projects.length === 1 ? "Development campaign" : "Development campaigns"}
                 </h2>
@@ -341,7 +342,7 @@ export default async function ClientCaseStudy({ params }: Props) {
                   style={{ animationDelay: "-4s" }}
                 />
                 <div className="relative">
-                  <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">Next step</span>
+                  <Eyebrow>Next step</Eyebrow>
                   <h2 className="t-h2 mt-4 text-ink">
                     Launching a development? <span className="text-gradient">Let&apos;s talk.</span>
                   </h2>

@@ -8,6 +8,7 @@ import { SITE_URL, breadcrumbNode, ID, ref } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
 import BlogList from "@/components/BlogList";
 import { blogPageSlice, totalBlogPages } from "@/lib/blogPagination";
+import Eyebrow from "@/components/Eyebrow";
 
 export const metadata: Metadata = {
   title: "Writing — Notes on React, Front-End and Design",
@@ -117,9 +118,9 @@ export default function BlogIndexPage() {
                   style={{ animationDelay: "-4s" }}
                 />
                 <div className="relative">
-                  <span className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-gold">
+                  <Eyebrow>
                     Next step
-                  </span>
+                  </Eyebrow>
                   <h2 className="t-h2 mt-4 text-ink">
                     Rather have it <span className="text-gradient">built for you?</span>
                   </h2>
