@@ -92,7 +92,7 @@ export default function CapabilityLedger() {
                       <li key={tag.href + tag.label}>
                         <Link
                           href={tag.href}
-                          className="relative z-10 block rounded-md border border-border bg-surface/60 px-3 py-1.5 font-mono text-xs text-muted transition-colors hover:border-gold/50 hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                          className="relative z-10 block rounded-md surface-2 px-3 py-1.5 font-mono text-xs text-muted transition-colors hover:border-gold/50 hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                         >
                           {tag.label}
                         </Link>

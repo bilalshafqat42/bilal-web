@@ -52,7 +52,7 @@ export default function CookieConsent() {
       {/* `relative` so the mobile close button below positions against this
           card rather than against the fixed wrapper, where it landed a few
           pixels off (roadmap 213.35). */}
-      <div className="glass-nav pointer-events-auto relative mx-auto flex max-w-4xl flex-col gap-4 rounded-2xl border border-border p-5 shadow-2xl shadow-black/40 sm:flex-row sm:items-center sm:gap-6 sm:p-6">
+      <div className="glass-nav pointer-events-auto relative mx-auto flex max-w-4xl flex-col gap-4 r-card border border-border p-5 shadow-2xl shadow-black/40 sm:flex-row sm:items-center sm:gap-6 sm:p-6">
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold/15">
           <Cookie size={19} className="text-gold" />
         </span>

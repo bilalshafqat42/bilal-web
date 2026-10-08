@@ -158,7 +158,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                     <p className="mt-3 text-muted leading-relaxed">{resolved!.section.body}</p>
                     <ul className="mt-5 flex flex-wrap gap-2">
                       {resolved!.section.bullets.map((b) => (
-                        <li key={b} className="rounded-full border border-border bg-surface/60 px-3.5 py-1.5 text-xs text-muted">
+                        <li key={b} className="rounded-full surface-2 px-3.5 py-1.5 text-xs text-muted">
                           {b}
                         </li>
                       ))}
@@ -229,7 +229,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
               step, offered three ways because people differ on how they
               want to start a conversation. */}
           <Reveal>
-            <div className="mt-10 rounded-2xl border border-border panel p-6 sm:p-8">
+            <div className="mt-10 r-card surface-1 p-6 sm:p-8">
               <h3 className="t-h4 text-ink">
                 Still not sure if this is what you need?
               </h3>
@@ -246,12 +246,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
 
               <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-border pt-5">
                 <span className="text-sm text-muted">Prefer another way?</span>
-                <Link
-                  href="/appointment"
-                  className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-white/5"
-                >
-                  Book a call <ArrowRight size={14} />
-                </Link>
+                <SecondaryButton href="/appointment" size="sm">Book a call <ArrowRight size={14} /></SecondaryButton>
                 <WhatsAppLink
                   context={`service-page:${category.slug}`}
                   className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-white/5"
@@ -275,7 +270,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                 <Link
                   key={o.slug}
                   href={`/services/${o.slug}`}
-                  className="card-hover flex items-center justify-between gap-3 rounded-2xl border border-border panel px-5 py-4 text-sm font-medium text-ink"
+                  className="card-hover flex items-center justify-between gap-3 r-card surface-1 px-5 py-4 text-sm font-medium text-ink"
                 >
                   {o.title}
                   <ArrowRight size={15} className={accentClasses[o.accent].icon} />

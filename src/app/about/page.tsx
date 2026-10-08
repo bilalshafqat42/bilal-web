@@ -176,7 +176,7 @@ export default function AboutPage() {
                       // and 308s to the services hub, so linking the raw slug
                       // sent every visitor from this page through a redirect.
                       href={pillar.ledgerHref ?? `/services/${pillar.slug}`}
-                      className="card-hover group flex h-full flex-col rounded-2xl border border-border panel p-7"
+                      className="card-hover group flex h-full flex-col r-card surface-1 p-7"
                     >
                       <span
                         className={`inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${accent.bg}`}
@@ -272,7 +272,7 @@ export default function AboutPage() {
             <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
               {principles.map((p, i) => (
                 <Reveal key={p.title} delay={i * 0.08}>
-                  <div className="h-full rounded-2xl border border-border panel p-7">
+                  <div className="h-full r-card surface-1 p-7">
                     <h3 className="t-h5 text-ink">{p.title}</h3>
                     <p className="mt-3 text-sm text-muted leading-relaxed">{p.body}</p>
                   </div>
@@ -298,7 +298,7 @@ export default function AboutPage() {
             <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {stack.map((group, i) => (
                 <Reveal key={group.title} delay={i * 0.06}>
-                  <div className="h-full rounded-2xl border border-border panel p-6">
+                  <div className="h-full r-card surface-1 p-6">
                     <h3 className="text-sm font-semibold tracking-wide text-gold uppercase">
                       {group.title}
                     </h3>
@@ -324,7 +324,7 @@ export default function AboutPage() {
         <section className="relative mt-24 sm:mt-32">
           <div className="site-container">
             <Reveal>
-              <div className="relative overflow-hidden rounded-[2rem] border border-border glass-strong px-8 py-14 text-center sm:px-16">
+              <div className="relative overflow-hidden r-panel surface-3 px-8 py-14 text-center sm:px-16">
                 <div
                   className="blob pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet/50"
                   style={{ animationDelay: "-4s" }}

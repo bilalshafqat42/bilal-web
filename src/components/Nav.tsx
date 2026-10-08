@@ -204,7 +204,7 @@ function ServicesMenu({ onNavigate }: { onNavigate: () => void }) {
               hover. 32rem clears the tallest of the fifteen (Website & App
               Development) with the card reserving the room
               up front, so nothing reflows. */}
-          <div className="flex min-h-[32rem] rounded-2xl border border-border bg-surface/40 p-6">
+          <div className="flex min-h-[32rem] r-card surface-2 p-6">
             <ServiceRail slug={preview} />
           </div>
         </div>

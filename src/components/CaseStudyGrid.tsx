@@ -171,7 +171,7 @@ export default function CaseStudyGrid() {
               <Reveal>
                 <Link
                   href={card.href}
-                  className="card-hover group flex h-full flex-col overflow-hidden rounded-2xl border border-border panel"
+                  className="card-hover group flex h-full flex-col overflow-hidden r-card surface-1"
                 >
                   {/* Padded well rather than a bleed image. Captures on this site
                       range from 2403x1231 to a 1206x5807 phone screen; letting each

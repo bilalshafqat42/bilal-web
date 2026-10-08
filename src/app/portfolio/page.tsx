@@ -181,7 +181,7 @@ export default function PortfolioPage() {
                         <li key={d.slug}>
                           <Link
                             href={disciplineHref(d)}
-                            className="card-hover group flex items-start justify-between gap-4 rounded-2xl border border-border panel px-5 py-4"
+                            className="card-hover group flex items-start justify-between gap-4 r-card surface-1 px-5 py-4"
                           >
                             <span>
                               <span className="block text-sm font-semibold text-ink transition-colors group-hover:text-gold">

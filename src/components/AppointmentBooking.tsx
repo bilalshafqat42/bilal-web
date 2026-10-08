@@ -52,7 +52,7 @@ export default function AppointmentBooking() {
           id="topic"
           value={topic}
           onChange={(e) => setTopic(e.target.value)}
-          className="mt-2 w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 [color-scheme:dark]"
+          className="mt-2 w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 [color-scheme:dark]"
         >
           {SERVICES.map((t) => (
             <option key={t}>{t}</option>
@@ -70,7 +70,7 @@ export default function AppointmentBooking() {
           onChange={(e) => setBudget(e.target.value)}
           disabled={BUDGET_OPTIONS.length === 0}
           aria-describedby={BUDGET_OPTIONS.length === 0 ? "budget-note" : undefined}
-          className="mt-2 w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 disabled:cursor-not-allowed disabled:opacity-50 [color-scheme:dark]"
+          className="mt-2 w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 disabled:cursor-not-allowed disabled:opacity-50 [color-scheme:dark]"
         >
           {BUDGET_OPTIONS.length === 0 ? (
             <option value="">Not collected yet</option>
@@ -93,7 +93,7 @@ export default function AppointmentBooking() {
           id="timeline"
           value={timeline}
           onChange={(e) => setTimeline(e.target.value)}
-          className="mt-2 w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 [color-scheme:dark]"
+          className="mt-2 w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 [color-scheme:dark]"
         >
           {TIMELINE_OPTIONS.map((t) => (
             <option key={t}>{t}</option>
@@ -113,7 +113,7 @@ export default function AppointmentBooking() {
       .join("\n");
 
     return (
-      <div className="glass-strong rounded-2xl border border-border p-6 sm:p-8">
+      <div className="glass-strong r-card border border-border p-6 sm:p-8">
         <h2 className="t-h3 text-ink">
           Book your 30-minute clarity call
         </h2>
@@ -179,7 +179,7 @@ export default function AppointmentBooking() {
   // What stays is a real route to a conversation, so an unset variable
   // degrades to something honest rather than to a page that cannot book.
   return (
-    <div className="glass-strong rounded-2xl border border-border p-6 sm:p-8">
+    <div className="glass-strong r-card border border-border p-6 sm:p-8">
       <h2 className="t-h3 text-ink">
         Book your 30-minute clarity call
       </h2>

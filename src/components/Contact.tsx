@@ -3,13 +3,14 @@ import Reveal from "./Reveal";
 import SocialLinks from "./SocialLinks";
 import CtaButton from "@/components/CtaButton";
 import Eyebrow from "@/components/Eyebrow";
+import SecondaryButton from "@/components/SecondaryButton";
 
 export default function Contact() {
   return (
     <section id="contact" className="relative py-24 sm:py-32">
       <div className="site-container">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[2rem] border border-border glass-strong px-8 py-14 sm:px-16 sm:py-20 text-center">
+          <div className="relative overflow-hidden r-panel surface-3 px-8 py-14 sm:px-16 sm:py-20 text-center">
             <div
               className="blob pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet/50"
               style={{ animationDelay: "-4s" }}
@@ -30,12 +31,7 @@ export default function Contact() {
 
               <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
                 <CtaButton href="/appointment">Book a free consultation</CtaButton>
-                <a
-                  href="tel:+971529766006"
-                  className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
-                >
-                  Call / WhatsApp
-                </a>
+                <SecondaryButton href="tel:+971529766006">Call / WhatsApp</SecondaryButton>
               </div>
 
               <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted">

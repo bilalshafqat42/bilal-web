@@ -50,7 +50,7 @@ function ItemGrid({ items }: { items: Item[] }) {
             <RevealItem key={it.key}>
               <Link
                 href={it.href}
-                className="card-hover group block overflow-hidden rounded-2xl border border-border bg-surface/40"
+                className="card-hover group block overflow-hidden r-card surface-2"
               >
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <Image
@@ -83,7 +83,7 @@ function ItemGrid({ items }: { items: Item[] }) {
             <RevealItem key={it.key}>
               <Link
                 href={it.href}
-                className="card-hover group block overflow-hidden rounded-2xl border border-border bg-surface/40"
+                className="card-hover group block overflow-hidden r-card surface-2"
               >
                 <div className="relative aspect-[1206/2622] overflow-hidden">
                   <Image
@@ -110,7 +110,7 @@ function ItemGrid({ items }: { items: Item[] }) {
             <RevealItem key={it.key}>
               <Link
                 href={it.href}
-                className="card-hover group block overflow-hidden rounded-2xl border border-border bg-surface/40"
+                className="card-hover group block overflow-hidden r-card surface-2"
               >
                 <Image
                   src={it.src}
@@ -312,7 +312,7 @@ export default function DisciplinePage({ slug }: { slug: string }) {
                 <Link
                   key={s.slug}
                   href={disciplineHref(s)}
-                  className="card-hover group rounded-2xl border border-border panel p-6"
+                  className="card-hover group r-card surface-1 p-6"
                 >
                   <Eyebrow size="sm" tone="muted">
                     {disciplineCount(s)} pieces

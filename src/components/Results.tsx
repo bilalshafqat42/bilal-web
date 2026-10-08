@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Check, ArrowRight } from "lucide-react";
 import Reveal, { RevealStagger, RevealItem } from "./Reveal";
 import ClientLogoRow from "./ClientLogoRow";
@@ -6,6 +5,7 @@ import CtaButton from "@/components/CtaButton";
 import { caseStudyUrls } from "@/data/caseStudies";
 import { disciplinesWithPages } from "@/data/disciplines";
 import Eyebrow from "@/components/Eyebrow";
+import SecondaryButton from "@/components/SecondaryButton";
 
 /**
  * The proof wall — the single proof section on the homepage.
@@ -118,7 +118,7 @@ export default function Results() {
           </Reveal>
 
           <Reveal>
-            <div className="rounded-2xl border border-border panel p-6 sm:p-7">
+            <div className="r-card surface-1 p-6 sm:p-7">
               <p className="font-semibold text-ink">How these numbers are produced</p>
               <ul className="mt-4 space-y-3">
                 {METHOD.map((m) => (
@@ -142,7 +142,7 @@ export default function Results() {
         <RevealStagger className="mt-14 grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3">
           {stats.map((s) => (
             <RevealItem key={s.label} className="h-full">
-              <div className="flex h-full flex-col rounded-2xl border border-border panel p-6">
+              <div className="flex h-full flex-col r-card surface-1 p-6">
                 <p className="t-h2 text-gold">{s.verified ? s.value : `[${s.value}]`}</p>
                 <p className="mt-3 font-semibold leading-snug text-ink">{s.label}</p>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{s.detail}</p>
@@ -172,7 +172,7 @@ export default function Results() {
         {/* One handoff, at the end, where a reader who believed the numbers is
             looking for what to do next. */}
         <Reveal className="mt-14">
-          <div className="flex flex-col gap-6 rounded-2xl border border-border panel p-7 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-col gap-6 r-card surface-1 p-7 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <p className="font-semibold text-ink">Want the working behind these numbers?</p>
               <p className="mt-1.5 text-sm leading-relaxed text-muted">
@@ -180,16 +180,11 @@ export default function Results() {
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Link
-                href="/portfolio"
-                className="group inline-flex items-center justify-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold text-ink transition-colors hover:border-gold/40"
-              >
-                View case studies
+              <SecondaryButton href="/portfolio" className="group">View case studies
                 <ArrowRight
                   size={15}
                   className="shrink-0 transition-transform group-hover:translate-x-1"
-                />
-              </Link>
+                /></SecondaryButton>
               <CtaButton href="/appointment">Book a free consultation</CtaButton>
             </div>
           </div>

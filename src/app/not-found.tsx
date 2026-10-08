@@ -66,7 +66,7 @@ export default function NotFound() {
                   // services hub, so the raw slug sent a visitor who had
                   // already hit a 404 straight through a redirect (213.19).
                   href={pillar.ledgerHref ?? `/services/${pillar.slug}`}
-                  className="card-hover rounded-2xl border border-border panel px-5 py-4 text-sm font-medium text-ink"
+                  className="card-hover r-card surface-1 px-5 py-4 text-sm font-medium text-ink"
                 >
                   {pillar.label}
                 </Link>

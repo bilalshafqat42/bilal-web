@@ -16,6 +16,7 @@ import CtaButton from "@/components/CtaButton";
 import DeviceFrame from "@/components/DeviceFrame";
 import { jsonLdSafe } from "@/lib/schema";
 import Eyebrow from "@/components/Eyebrow";
+import SecondaryButton from "@/components/SecondaryButton";
 
 const SITE = "https://bilalshafqat.com";
 
@@ -140,7 +141,7 @@ export default async function ClientCaseStudy({ params }: Props) {
             <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
               {c.scope.map((s) => (
                 <Reveal key={s.heading}>
-                  <div className="h-full rounded-2xl border border-border panel p-7">
+                  <div className="h-full r-card surface-1 p-7">
                     <h3 className="t-h5 text-ink">{s.heading}</h3>
                     <p className="mt-3 text-sm text-muted leading-relaxed">{s.body}</p>
                   </div>
@@ -285,7 +286,7 @@ export default async function ClientCaseStudy({ params }: Props) {
                   <Reveal key={p.slug} delay={i * 0.08}>
                     <Link
                       href={`/portfolio/${c.slug}/${p.slug}`}
-                      className="card-hover group flex h-full flex-col overflow-hidden rounded-2xl border border-border panel"
+                      className="card-hover group flex h-full flex-col overflow-hidden r-card surface-1"
                     >
                       <Image
                         src={p.cardImage}
@@ -336,7 +337,7 @@ export default async function ClientCaseStudy({ params }: Props) {
         <section className="relative mt-20 sm:mt-28">
           <div className="site-container">
             <Reveal>
-              <div className="relative overflow-hidden rounded-[2rem] border border-border glass-strong px-8 py-14 text-center sm:px-16">
+              <div className="relative overflow-hidden r-panel surface-3 px-8 py-14 text-center sm:px-16">
                 <div
                   className="blob pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet/50"
                   style={{ animationDelay: "-4s" }}
@@ -348,9 +349,7 @@ export default async function ClientCaseStudy({ params }: Props) {
                   </h2>
                   <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
                     <CtaButton href="/appointment">Book a free consultation</CtaButton>
-                    <Link href="/portfolio" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors">
-                      See all work
-                    </Link>
+                    <SecondaryButton href="/portfolio">See all work</SecondaryButton>
                   </div>
                 </div>
               </div>

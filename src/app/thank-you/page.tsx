@@ -1,8 +1,8 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { Check, Clock, Mail } from "lucide-react";
 import WhatsAppLink from "@/components/WhatsAppLink";
 import CtaButton from "@/components/CtaButton";
+import SecondaryButton from "@/components/SecondaryButton";
 
 export const metadata: Metadata = {
   title: "Thank you — Bilal Shafqat",
@@ -62,7 +62,7 @@ export default async function ThankYouPage({ searchParams }: PageProps) {
             <p className="mx-auto mt-5 max-w-lg text-lg leading-relaxed text-muted">{copy.body}</p>
 
             {slot ? (
-              <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-5 py-2.5 text-sm text-ink">
+              <p className="mt-6 inline-flex items-center gap-2 rounded-full surface-2 px-5 py-2.5 text-sm text-ink">
                 <Clock size={15} className="text-gold" />
                 You asked for {slot}
               </p>
@@ -79,12 +79,7 @@ export default async function ThankYouPage({ searchParams }: PageProps) {
 
             <div className="mt-11 flex flex-wrap items-center justify-center gap-4">
               <CtaButton href="/portfolio">See my work while you wait</CtaButton>
-              <Link
-                href="/faq"
-                className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink transition-colors hover:bg-white/5"
-              >
-                Read the FAQ
-              </Link>
+              <SecondaryButton href="/faq">Read the FAQ</SecondaryButton>
             </div>
 
             <p className="mt-9 text-sm text-muted">

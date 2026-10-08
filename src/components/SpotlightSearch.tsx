@@ -166,7 +166,7 @@ export default function SpotlightSearch() {
 
       <div
         ref={panelRef}
-        className="glass-nav relative flex max-h-[70vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-border shadow-2xl shadow-black/50"
+        className="glass-nav relative flex max-h-[70vh] w-full max-w-2xl flex-col overflow-hidden r-card border border-border shadow-2xl shadow-black/50"
       >
         <div className="flex items-center gap-3 border-b border-border px-5 py-4">
           <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold">

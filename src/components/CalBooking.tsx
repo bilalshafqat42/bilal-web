@@ -164,7 +164,7 @@ export default function CalBooking({ link, prefill, onBooked }: Props) {
       // Capping the frame and scrolling inside it is what Cal's own booking
       // page does with its slot column, so the interaction is the one people
       // already know.
-      className="h-[620px] w-full overflow-y-auto overflow-x-hidden rounded-2xl border border-border bg-surface/40"
+      className="h-[620px] w-full overflow-y-auto overflow-x-hidden r-card surface-2"
     />
   );
 }

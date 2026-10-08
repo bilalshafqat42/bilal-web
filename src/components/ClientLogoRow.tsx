@@ -147,7 +147,7 @@ export default function ClientLogoRow({ variant = "wall", className = "" }: Prop
     <RevealStagger className={`grid grid-cols-2 gap-4 sm:grid-cols-3 ${className}`}>
       {logos.map((logo) => {
         const tile =
-          "flex h-28 items-center justify-center rounded-2xl border border-border bg-surface/40 px-6 transition";
+          "flex h-28 items-center justify-center r-card surface-2 px-6 transition";
         const imgClass = `${logo.heightClass} w-auto max-w-full object-contain`;
         const mark = <Mark logo={logo} imgClass={imgClass} />;
         return (

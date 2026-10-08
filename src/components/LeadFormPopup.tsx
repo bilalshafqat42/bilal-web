@@ -137,7 +137,7 @@ export default function LeadFormPopup() {
             onClick={closeAndReset}
           />
 
-          <div className="glass-strong relative w-full max-w-md rounded-2xl border border-border p-7 sm:p-8">
+          <div className="glass-strong relative w-full max-w-md r-card border border-border p-7 sm:p-8">
             <button
               type="button"
               onClick={closeAndReset}
@@ -190,7 +190,7 @@ export default function LeadFormPopup() {
                       name="name"
                       type="text"
                       required
-                      className="mt-1.5 w-full rounded-xl border border-border bg-surface/60 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-gold/50"
+                      className="mt-1.5 w-full rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-gold/50"
                       placeholder="Your name"
                     />
                   </div>
@@ -204,7 +204,7 @@ export default function LeadFormPopup() {
                       name="email"
                       type="email"
                       required
-                      className="mt-1.5 w-full rounded-xl border border-border bg-surface/60 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-gold/50"
+                      className="mt-1.5 w-full rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-gold/50"
                       placeholder="you@company.com"
                     />
                   </div>
@@ -217,7 +217,7 @@ export default function LeadFormPopup() {
                       id="lead-phone"
                       name="phone"
                       type="tel"
-                      className="mt-1.5 w-full rounded-xl border border-border bg-surface/60 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-gold/50"
+                      className="mt-1.5 w-full rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-gold/50"
                       placeholder="+971 5X XXX XXXX"
                     />
                   </div>
@@ -231,7 +231,7 @@ export default function LeadFormPopup() {
                       name="message"
                       required
                       rows={3}
-                      className="mt-1.5 w-full resize-none rounded-xl border border-border bg-surface/60 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-gold/50"
+                      className="mt-1.5 w-full resize-none rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-gold/50"
                       placeholder="Briefly describe your project or query"
                     />
                   </div>
@@ -274,7 +274,7 @@ export default function LeadFormPopup() {
                   <WhatsAppLink
                     context="quick-enquiry-popup"
                     message={POPUP_MESSAGE}
-                    className="mt-2.5 inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-gold/40 hover:text-gold"
+                    className="mt-2.5 inline-flex items-center gap-2 rounded-full surface-2 px-4 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-gold/40 hover:text-gold"
                   >
                     <MessageCircle size={15} className="text-gold" />
                     Continue on WhatsApp

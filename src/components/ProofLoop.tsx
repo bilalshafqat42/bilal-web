@@ -45,7 +45,7 @@ function DisciplineCards({ items }: { items: Discipline[] }) {
         <Link
           key={d.slug}
           href={`/portfolio/${d.slug}`}
-          className="card-hover group rounded-2xl border border-border panel p-6"
+          className="card-hover group r-card surface-1 p-6"
         >
           <Eyebrow size="sm" tone="muted">
             {disciplineItems(d).length} pieces

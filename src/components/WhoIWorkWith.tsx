@@ -62,7 +62,7 @@ function AudienceCard({ audience }: { audience: Audience }) {
   const detailsId = useId();
 
   return (
-    <div className="card-hover h-full rounded-2xl border border-border panel p-7 flex flex-col">
+    <div className="card-hover h-full r-card surface-1 p-7 flex flex-col">
       <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-gold/20 to-violet/20 border border-border text-gold">
         <audience.icon size={22} />
       </div>

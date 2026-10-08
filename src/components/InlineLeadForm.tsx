@@ -74,7 +74,7 @@ export default function InlineLeadForm({ service }: { service: string }) {
         onChange={(e) => setName(e.target.value)}
         placeholder="Your name"
         aria-label="Your name"
-        className="w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink outline-none placeholder:text-muted/60 focus:border-gold/50"
+        className="w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink outline-none placeholder:text-muted/60 focus:border-gold/50"
       />
       <input
         required
@@ -83,7 +83,7 @@ export default function InlineLeadForm({ service }: { service: string }) {
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Your email address"
         aria-label="Your email address"
-        className="w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink outline-none placeholder:text-muted/60 focus:border-gold/50"
+        className="w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink outline-none placeholder:text-muted/60 focus:border-gold/50"
       />
       <textarea
         rows={3}
@@ -91,7 +91,7 @@ export default function InlineLeadForm({ service }: { service: string }) {
         onChange={(e) => setMessage(e.target.value)}
         placeholder={`What do you need? (optional — I'll assume it's about ${service.toLowerCase()})`}
         aria-label="What do you need"
-        className="w-full resize-none rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink outline-none placeholder:text-muted/60 focus:border-gold/50 sm:col-span-2"
+        className="w-full resize-none rounded-xl surface-2 px-4 py-3 text-sm text-ink outline-none placeholder:text-muted/60 focus:border-gold/50 sm:col-span-2"
       />
 
       {/* Honeypot. Off-screen rather than display:none, which some bots skip. */}

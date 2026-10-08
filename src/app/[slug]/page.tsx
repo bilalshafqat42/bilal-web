@@ -15,6 +15,7 @@ import { blogPosts } from "@/data/blogPosts";
 import { BLOG_RECOVERED_ON } from "@/data/contentDates";
 import { serviceForArticle } from "@/data/articleServices";
 import Eyebrow from "@/components/Eyebrow";
+import SecondaryButton from "@/components/SecondaryButton";
 
 /**
  * The recovered articles, at the root of the domain.
@@ -152,7 +153,7 @@ export default async function ArticlePage({ params }: PageProps) {
         <section className="relative mt-20 sm:mt-24">
           <div className="site-container">
             <Reveal>
-              <div className="relative overflow-hidden rounded-[2rem] border border-border glass-strong px-8 py-14 text-center sm:px-16">
+              <div className="relative overflow-hidden r-panel surface-3 px-8 py-14 text-center sm:px-16">
                 <div
                   className="blob pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet/50"
                   style={{ animationDelay: "-4s" }}
@@ -178,13 +179,8 @@ export default async function ArticlePage({ params }: PageProps) {
                       pointed from them at a commercial page. */}
                   <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
                     <CtaButton href="/appointment">Book a free consultation</CtaButton>
-                    <Link
-                      href={service.href}
-                      className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink transition-colors hover:bg-white/5"
-                    >
-                      See {service.label}
-                      <ChevronRight size={15} />
-                    </Link>
+                    <SecondaryButton href={service.href}>See {service.label}
+                      <ChevronRight size={15} /></SecondaryButton>
                   </div>
                 </div>
               </div>
@@ -201,7 +197,7 @@ export default async function ArticlePage({ params }: PageProps) {
                   <li key={p.slug}>
                     <Link
                       href={`/${p.slug}`}
-                      className="group flex h-full flex-col rounded-2xl border border-border bg-surface/40 p-5 transition-colors hover:border-gold/35"
+                      className="group flex h-full flex-col r-card surface-2 p-5 transition-colors hover:border-gold/35"
                     >
                       <Eyebrow size="sm" tone="muted">
                         {readingMinutes(p)} min read

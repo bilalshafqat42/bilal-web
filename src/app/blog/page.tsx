@@ -112,7 +112,7 @@ export default function BlogIndexPage() {
         <section className="relative mt-20 sm:mt-24">
           <div className="site-container">
             <Reveal>
-              <div className="relative overflow-hidden rounded-[2rem] border border-border glass-strong px-8 py-14 text-center sm:px-16">
+              <div className="relative overflow-hidden r-panel surface-3 px-8 py-14 text-center sm:px-16">
                 <div
                   className="blob pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet/50"
                   style={{ animationDelay: "-4s" }}

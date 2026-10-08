@@ -14,8 +14,8 @@ export function CaptureFrame({
   const isPhone = variant === "phone";
   return (
     <div
-      className={`overflow-hidden border border-border panel ${
-        isPhone ? "rounded-[1.75rem]" : "rounded-2xl"
+      className={`overflow-hidden surface-1 ${
+        isPhone ? "rounded-[1.75rem]" : "r-card"
       }`}
     >
       <div className="flex items-center gap-2 border-b border-border px-4 py-3">
@@ -87,7 +87,7 @@ export function GalleryGrid({ gallery }: { gallery: Gallery }) {
     <div className="mt-7 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
       {gallery.items.map((item, i) => (
         <Reveal key={item.file} delay={(i % 3) * 0.08}>
-          <figure className="overflow-hidden rounded-2xl border border-border bg-surface/40">
+          <figure className="overflow-hidden r-card surface-2">
             <Image
               src={`${gallery.basePath}/${item.file}.avif`}
               alt={item.alt}

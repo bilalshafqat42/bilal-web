@@ -1,8 +1,8 @@
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import CtaButton from "@/components/CtaButton";
 import { processSteps } from "@/data/process";
 import Eyebrow from "@/components/Eyebrow";
+import SecondaryButton from "@/components/SecondaryButton";
 
 /**
  * The four delivery stages, as a timeline.
@@ -52,13 +52,8 @@ export default function ProcessCompact() {
             </p>
           </div>
 
-          <Link
-            href="/process"
-            className="group inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-full border border-border px-6 py-3 text-sm font-semibold text-ink transition-colors hover:border-gold/40 lg:self-auto"
-          >
-            See the full process
-            <ArrowRight size={15} className="shrink-0 transition-transform group-hover:translate-x-1" />
-          </Link>
+          <SecondaryButton href="/process" className="group shrink-0 self-start lg:self-auto">See the full process
+            <ArrowRight size={15} className="shrink-0 transition-transform group-hover:translate-x-1" /></SecondaryButton>
         </div>
 
         <ol className="mt-14 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4">
@@ -87,7 +82,7 @@ export default function ProcessCompact() {
               <div className="flex items-center gap-3">
                 <span className="font-mono text-xs font-semibold text-gold">{s.step}</span>
                 {s.timing ? (
-                  <span className="rounded-md border border-border bg-surface/60 px-2.5 py-1 text-xs text-muted">
+                  <span className="rounded-md surface-2 px-2.5 py-1 text-xs text-muted">
                     {s.timing.verified ? s.timing.label : `[${s.timing.label}]`}
                   </span>
                 ) : null}
@@ -117,7 +112,7 @@ export default function ProcessCompact() {
         </ol>
 
         {/* The client's own time cost, stated before they have to ask. */}
-        <div className="mt-16 flex flex-col gap-6 rounded-2xl border border-border panel p-7 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mt-16 flex flex-col gap-6 r-card surface-1 p-7 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
           {/* **No hour counts here, deliberately.** This shipped as "about [3]
               hours in week one" and "[30] minutes a month" — both invented, both
               live, both read as commitments. Nobody had timed either.

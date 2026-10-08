@@ -176,7 +176,7 @@ export default function PortfolioShowcase() {
                   width: open ? EXPANDED : COLLAPSED,
                   transition: "width 650ms cubic-bezier(0.22, 1, 0.36, 1)",
                 }}
-                className="group relative shrink-0 snap-start overflow-hidden rounded-2xl border border-border bg-bg"
+                className="group relative shrink-0 snap-start overflow-hidden r-card border border-border bg-bg"
               >
                 {s.portrait ? (
                   <div className="absolute inset-0 flex items-center justify-center bg-surface/40 p-6">
@@ -292,7 +292,7 @@ export default function PortfolioShowcase() {
             <Link
               key={s.label}
               href={s.href}
-              className="relative h-[420px] w-[82vw] shrink-0 snap-start overflow-hidden rounded-2xl border border-border bg-bg sm:w-[60vw]"
+              className="relative h-[420px] w-[82vw] shrink-0 snap-start overflow-hidden r-card border border-border bg-bg sm:w-[60vw]"
             >
               {s.portrait ? (
                 <div className="absolute inset-0 flex items-center justify-center bg-surface/40 p-6">

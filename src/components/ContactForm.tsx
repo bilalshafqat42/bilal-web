@@ -30,7 +30,7 @@ function prettyPath(path: string): string {
 }
 
 const fieldClass =
-  "w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-ink placeholder:text-muted/70 outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20";
+  "w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink placeholder:text-muted/70 outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20";
 
 /**
  * The page the visitor was reading before they came to /contact, captured by the
@@ -140,7 +140,7 @@ export default function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-2xl border border-border panel p-8 text-center" role="status">
+      <div className="r-card surface-1 p-8 text-center" role="status">
         <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gold/15">
           <Check size={22} className="text-gold" />
         </span>
@@ -160,7 +160,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="rounded-2xl border border-border panel p-7 sm:p-8">
+    <form onSubmit={onSubmit} className="r-card surface-1 p-7 sm:p-8">
       <Eyebrow>
         The form
       </Eyebrow>
@@ -178,7 +178,7 @@ export default function ContactForm() {
       </div>
 
       {pageContext ? (
-        <div className="mt-6 flex items-start gap-3 rounded-xl border border-border bg-surface/40 px-4 py-3">
+        <div className="mt-6 flex items-start gap-3 rounded-xl surface-2 px-4 py-3">
           <FileText size={15} className="mt-0.5 shrink-0 text-gold" />
           <div className="min-w-0">
             <p className="text-xs font-medium uppercase tracking-wide text-muted">
@@ -258,7 +258,7 @@ export default function ContactForm() {
         ) : null}
 
         {status === "error" ? (
-          <p className="mt-5 rounded-xl border border-border bg-surface/60 p-4 text-sm text-muted">
+          <p className="mt-5 rounded-xl surface-2 p-4 text-sm text-muted">
             {error}
           </p>
         ) : null}

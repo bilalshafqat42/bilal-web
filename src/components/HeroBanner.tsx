@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import CtaButton from "@/components/CtaButton";
 import PortraitReveal from "@/components/PortraitReveal";
 import Eyebrow from "@/components/Eyebrow";
+import SecondaryButton from "@/components/SecondaryButton";
 
 /**
  * Homepage banner: headline, portrait, proof bar, recent work.
@@ -146,12 +147,7 @@ export default function HeroBanner() {
             {/* Bordered pill on mobile, plain underlined link at desktop, as
                 designed: at phone width two stacked pills read as a pair of
                 equal choices, which is the right hierarchy on a small screen. */}
-            <Link
-              href="/portfolio"
-              className="tap-target justify-center rounded-full border border-border px-8 py-4 text-sm font-semibold text-ink transition-colors hover:bg-white/5 sm:rounded-none sm:border-0 sm:px-0 sm:py-0 sm:underline sm:decoration-1 sm:underline-offset-[6px] sm:hover:bg-transparent sm:hover:opacity-80"
-            >
-              See the work
-            </Link>
+            <SecondaryButton href="/portfolio" className="sm:rounded-none sm:border-0 sm:px-0 sm:py-0 sm:underline sm:decoration-1 sm:underline-offset-[6px] sm:hover:bg-transparent sm:hover:opacity-80">See the work</SecondaryButton>
           </div>
         </div>
 

@@ -42,7 +42,7 @@ export default function FurtherReading({ serviceSlug }: { serviceSlug: string })
             <li key={p.slug}>
               <Link
                 href={`/${p.slug}`}
-                className="group flex h-full flex-col rounded-2xl border border-border bg-surface/40 p-5 transition-colors hover:border-gold/35"
+                className="group flex h-full flex-col r-card surface-2 p-5 transition-colors hover:border-gold/35"
               >
                 <Eyebrow size="sm" tone="muted">
                   {readingMinutes(p)} min read

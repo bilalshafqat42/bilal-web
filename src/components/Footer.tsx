@@ -92,7 +92,7 @@ export default function Footer() {
         <div className="site-container grid gap-8 py-10 sm:grid-cols-2 lg:gap-16">
           {regions.map(({ icon: Icon, name, meta, line, actions }) => (
             <div key={name} className="flex gap-4">
-              <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-surface/60 text-gold">
+              <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl surface-2 text-gold">
                 <Icon size={19} strokeWidth={1.6} />
               </span>
               <div className="min-w-0">

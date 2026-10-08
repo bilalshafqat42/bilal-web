@@ -264,7 +264,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
             {/* Fact strip. Dividers are cell borders rather than a separate
                 element, so they cannot drift out of line with the grid. */}
             <Reveal delay={0.15}>
-              <dl className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border lg:grid-cols-4">
+              <dl className="mt-16 grid grid-cols-2 gap-px overflow-hidden r-card border border-border bg-border lg:grid-cols-4">
                 {facts.map((f) => (
                   <div key={f.label} className="bg-bg p-6">
                     <Eyebrow as="dt" size="sm" tone="muted">
@@ -460,7 +460,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                          image two full screens tall. One fixed 16:9 window
                          instead, so every mockup on the page is the same height
                          whichever way it was shot. */
-                      <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl">
+                      <div className="relative aspect-[16/9] w-full overflow-hidden r-card">
                         <Image
                           src={s.capture.src}
                           alt={s.capture.alt}
@@ -478,7 +478,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                          deliberate ground rather than in empty space. The panel
                          is warm rather than another near-black, so it reads as a
                          chosen surface instead of the page showing through. */
-                      <div className="screen-panel flex justify-center rounded-2xl px-6 py-12 sm:py-16">
+                      <div className="screen-panel flex justify-center r-card px-6 py-12 sm:py-16">
                         <Image
                           src={s.capture.src}
                           alt={s.capture.alt}
@@ -602,7 +602,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
               <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {outcomes.map((o) => (
                   <Reveal key={o.label}>
-                    <div className="h-full rounded-2xl border border-border panel p-7">
+                    <div className="h-full r-card surface-1 p-7">
                       <p className="text-4xl font-bold tracking-tight text-gold">{o.value}</p>
                       <p className="mt-3 font-semibold text-ink">{o.label}</p>
                       {o.note ? (
@@ -645,7 +645,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                   <Link
                     key={p.slug}
                     href={`/portfolio/${c.slug}/${p.slug}`}
-                    className={`card-hover group rounded-2xl border border-border panel p-7 ${
+                    className={`card-hover group r-card surface-1 p-7 ${
                       i === 1 ? "sm:text-right" : ""
                     }`}
                   >

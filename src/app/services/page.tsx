@@ -79,12 +79,12 @@ export default function ServicesPage() {
                   <Link
                     key={pillar.slug}
                     href={`/services/${pillar.slug}`}
-                    className="card-hover group relative flex flex-col rounded-2xl border border-border panel p-8 overflow-hidden"
+                    className="card-hover group relative flex flex-col r-card surface-1 p-8 overflow-hidden"
                   >
                     <div className={`absolute -top-12 -right-12 h-48 w-48 rounded-full blur-3xl ${accent.glow}`} />
 
                     <div
-                      className={`relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${accent.bg} border border-border`}
+                      className={`relative flex h-14 w-14 items-center justify-center r-card bg-gradient-to-br ${accent.bg} border border-border`}
                     >
                       <span className={`h-2.5 w-2.5 rounded-full ${accent.dot}`} />
                     </div>
@@ -98,7 +98,7 @@ export default function ServicesPage() {
                       {pillar.items.map((c) => (
                         <li
                           key={c.title}
-                          className="rounded-full border border-border bg-surface/60 px-3 py-1.5 text-xs text-muted"
+                          className="rounded-full surface-2 px-3 py-1.5 text-xs text-muted"
                         >
                           {c.title}
                         </li>

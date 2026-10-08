@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import PageOpener from "@/components/PageOpener";
 import Surface from "@/components/Surface";
@@ -10,6 +9,7 @@ import SocialLinks from "@/components/SocialLinks";
 import CtaButton from "@/components/CtaButton";
 import { SITE_URL, breadcrumbNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
 import Eyebrow from "@/components/Eyebrow";
+import SecondaryButton from "@/components/SecondaryButton";
 
 export const metadata: Metadata = {
   title: "Contact Bilal Shafqat — Digital Marketer & Developer, Dubai",
@@ -182,7 +182,7 @@ export default function ContactPage() {
                 );
 
                 const cardClass =
-                  "card-hover group flex h-full flex-col rounded-2xl border border-border panel p-7";
+                  "card-hover group flex h-full flex-col r-card surface-1 p-7";
                 const openAffordance = (
                   <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
                     Open{" "}
@@ -213,7 +213,7 @@ export default function ContactPage() {
                     ) : (
                       // No "Open" affordance either: a card that cannot be
                       // opened should not offer to open.
-                      <div className="flex h-full flex-col rounded-2xl border border-border panel p-7">
+                      <div className="flex h-full flex-col r-card surface-1 p-7">
                         {body}
                       </div>
                     )}
@@ -232,7 +232,7 @@ export default function ContactPage() {
               </Reveal>
 
               <Reveal delay={0.1}>
-                <div className="h-full rounded-2xl border border-border panel p-7">
+                <div className="h-full r-card surface-1 p-7">
                   <Eyebrow>Where to find me</Eyebrow>
                   <h2 className="t-h3 mt-3 text-ink">Where I am and when</h2>
                   <ul className="mt-5 space-y-4 text-sm text-muted">
@@ -315,7 +315,7 @@ export default function ContactPage() {
         <section className="relative mt-16 sm:mt-20">
           <div className="site-container">
             <Reveal>
-              <div className="relative overflow-hidden rounded-[2rem] border border-border glass-strong px-8 py-14 text-center sm:px-16">
+              <div className="relative overflow-hidden r-panel surface-3 px-8 py-14 text-center sm:px-16">
                 <div
                   className="blob pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet/50"
                   style={{ animationDelay: "-4s" }}
@@ -339,12 +339,7 @@ export default function ContactPage() {
                       other nine pages that use it. */}
                   <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
                     <CtaButton href="/appointment">Book a free consultation</CtaButton>
-                    <Link
-                      href="/services"
-                      className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
-                    >
-                      Browse services
-                    </Link>
+                    <SecondaryButton href="/services">Browse services</SecondaryButton>
                   </div>
                 </div>
               </div>

@@ -24,7 +24,7 @@ export default function ConsentReset({ className = "" }: { className?: string })
     <button
       type="button"
       onClick={clearConsent}
-      className={`inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-gold/40 hover:bg-white/5 ${className}`}
+      className={`inline-flex items-center gap-2 rounded-full surface-2 px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-gold/40 hover:bg-white/5 ${className}`}
     >
       <RotateCcw size={14} />
       {current === "granted" ? "Withdraw my consent" : "Change my choice"}

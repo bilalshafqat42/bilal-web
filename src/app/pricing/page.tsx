@@ -136,7 +136,7 @@ export default function PricingPage() {
             </Reveal>
             <div className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-2">
               <Reveal>
-                <div className="h-full rounded-2xl border border-border panel p-7">
+                <div className="h-full r-card surface-1 p-7">
                   <h3 className="t-h5 flex items-center gap-2 text-ink">
                     <Plus size={17} className="text-gold" /> Pushes cost up
                   </h3>
@@ -148,7 +148,7 @@ export default function PricingPage() {
                 </div>
               </Reveal>
               <Reveal delay={0.08}>
-                <div className="h-full rounded-2xl border border-border panel p-7">
+                <div className="h-full r-card surface-1 p-7">
                   <h3 className="t-h5 flex items-center gap-2 text-ink">
                     <Minus size={17} className="text-cyan" /> Brings cost down
                   </h3>
@@ -235,7 +235,7 @@ export default function PricingPage() {
         <section className="relative mt-20 sm:mt-24">
           <div className="site-container">
             <Reveal>
-              <div className="relative overflow-hidden rounded-[2rem] border border-border glass-strong px-8 py-14 text-center sm:px-16">
+              <div className="relative overflow-hidden r-panel surface-3 px-8 py-14 text-center sm:px-16">
                 <div
                   className="blob pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet/50"
                   style={{ animationDelay: "-4s" }}

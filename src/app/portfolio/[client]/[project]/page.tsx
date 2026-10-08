@@ -347,7 +347,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
                 </div>
               </Reveal>
               <Reveal>
-              <dl className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-3">
+              <dl className="grid grid-cols-1 gap-px overflow-hidden r-card border border-border bg-border sm:grid-cols-3">
                 {p.results
                   .filter((r) => r.value)
                   .map((r) => (
@@ -368,7 +368,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
         <section className="relative mt-16 sm:mt-20">
           <div className="site-container">
             <Reveal>
-              <div className="relative overflow-hidden rounded-[2rem] border border-border glass-strong px-8 py-14 text-center sm:px-16">
+              <div className="relative overflow-hidden r-panel surface-3 px-8 py-14 text-center sm:px-16">
                 <div
                   className="blob pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet/50"
                   style={{ animationDelay: "-4s" }}

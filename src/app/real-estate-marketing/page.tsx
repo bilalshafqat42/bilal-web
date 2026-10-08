@@ -220,7 +220,7 @@ export default function RealEstateMarketingPage() {
           <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
             {parts.map((p) => (
               <Reveal key={p.title}>
-                <div className="h-full rounded-2xl border border-border panel p-6 sm:p-7">
+                <div className="h-full r-card surface-1 p-6 sm:p-7">
                   <h3 className="t-h5 text-ink">{p.title}</h3>
                   <p className="mt-2.5 text-base leading-relaxed text-muted">{p.body}</p>
                 </div>
@@ -284,7 +284,7 @@ export default function RealEstateMarketingPage() {
                 <Reveal key={p.slug}>
                   <Link
                     href={`/portfolio/leos-developments/${p.slug}`}
-                    className="card-hover group flex h-full flex-col rounded-2xl border border-border panel p-6"
+                    className="card-hover group flex h-full flex-col r-card surface-1 p-6"
                   >
                     <span className="text-lg font-semibold text-ink">{p.name}</span>
                     <span className="mt-2 block max-w-[54ch] text-sm leading-relaxed text-muted">
