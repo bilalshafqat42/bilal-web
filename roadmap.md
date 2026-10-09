@@ -10313,3 +10313,25 @@ engineer, which is accurate but is the narrower half of "campaign to code". If
 the roles he wants are engineering roles, that is the right profile to have. If
 he also wants marketing roles surfaced, the headline there should say both, the
 way the site does.
+
+### 389. TODO (2026-10-09) — Apply to Toptal
+
+Bilal's request, same session as Turing (item 388) and the same two purposes:
+the profile link and the work.
+
+**It is not the same size of task as the others on the list.** Toptal screens in
+four stages — a language and personality interview, a timed technical test, a
+live technical screen, then a paid-style test project — and publishes a very low
+acceptance rate. Budget days rather than hours, and plan for the possibility of
+a no. That is not a reason to skip it: the rates are the highest of any
+marketplace in the plan and the profile carries real weight with clients who
+have heard of it.
+
+**One decision to make before applying: which track.** Toptal screens designers,
+developers, marketers, finance and project managers separately. The site sells
+"campaign to code" and leads with digital marketing, and the developer track is
+the most competitive of the five. If the marketing half is what he wants to
+sell, apply there.
+
+**On the backlink half**, as with every profile in weeks 1 to 6: the link is
+almost certainly `nofollow`. Real but modest.

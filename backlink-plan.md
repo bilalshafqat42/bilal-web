@@ -61,6 +61,7 @@ costs more to undo than these 65 days are worth.
 | 9 | Thu 15 Oct | X / Twitter profile | H | Bio link. Low value on its own, counts towards name consistency. |
 | 10 | Fri 16 Oct | Instagram business profile | H | Bio link plus the business category set correctly. |
 | 10b | Bilal's request, 2026-10-09 | Turing profile | H | **Two purposes, both his: the profile link and applying for roles.** The link is almost certainly `nofollow`, same as the rest of weeks 1-6. Budget more than an hour — Turing's vetting involves technical screens and timed tests. Make the headline there say marketing **and** engineering if he wants both kinds of role surfaced; the default framing there is engineer-only. |
+| 10c | Bilal's request, 2026-10-09 | Toptal application | H | Same two purposes as Turing: the profile link and the work. Toptal screens harder than anything else on this list — language and personality, a timed technical test, a live technical screen, then a test project — and publishes a very low acceptance rate. Budget days, not hours, and expect the possibility of a no. Worth it because the rates are the highest of any marketplace here and the profile carries real weight; not worth starting on a busy week. Apply as a **marketer or a designer** rather than a developer if the marketing half is what he wants to sell: Toptal screens those tracks separately and the developer track is the most competitive. |
 
 ## Directories
 
