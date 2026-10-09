@@ -1,0 +1,81 @@
+<!--
+  Email signature for bilal@bilalshafqat.com
+
+  Paste the block below into Titan: Settings → Signatures → the HTML button in
+  the toolbar. Paste it there, not into the visual editor, or the markup is
+  stripped.
+
+  WHY IT LOOKS LIKE 2004 HTML. Email clients are not browsers. Outlook renders
+  with Microsoft Word's engine, Gmail strips <style> blocks, and neither
+  supports flexbox or grid. Tables with inline styles are the only layout that
+  survives all of them. This is not old-fashioned markup; it is the only
+  markup that works.
+
+  THE PHOTO is Bilal's GitHub avatar, served at 128px by GitHub's own `&s=`
+  parameter rather than resized with CSS.
+
+  That choice is the difference between 3.4KB and 19KB. The original is
+  434x434; `&s=128` returns a real 128px file, and the width/height attributes
+  display it at 64. CSS alone would download the full 434px image and shrink it
+  in the client, which wastes the bytes and, in Outlook, often ignores the CSS
+  and renders it at full size anyway.
+
+  128 rather than 64 because it displays at 64: a retina screen needs two
+  device pixels per CSS pixel or the face looks soft.
+
+  Width and height are set as HTML *attributes*, not only in the style. Outlook
+  renders with Word's engine and reads the attributes; a style-only size is
+  ignored there.
+
+  The trade: the image lives on GitHub's CDN, so changing the GitHub avatar
+  changes every signature already sent. Acceptable — it is the same face, and
+  the alternative is remembering to update a file on the site.
+
+  Many clients block remote images by default, so everything still reads with
+  the photo missing. That is why the gold rule and the type do the work.
+
+  WHAT IS DELIBERATELY ABSENT:
+    - social icon rows. Eight coloured squares read as a newsletter footer
+    - a logo image as well as a photo. One image is a signature, two is a banner
+    - "Sent from my iPhone", quotes, legal disclaimers, "please consider the
+      environment". Nobody reads them and they make a short reply look long
+-->
+
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;">
+  <tr>
+    <td style="padding:0 16px 0 0;vertical-align:top;">
+      <img src="https://avatars.githubusercontent.com/u/36641808?v=4&amp;s=128"
+           width="64" height="64" alt="Bilal Shafqat"
+           style="display:block;width:64px;height:64px;border-radius:50%;border:0;outline:none;text-decoration:none;" />
+    </td>
+    <td style="vertical-align:top;border-left:2px solid #f2c94c;padding:0 0 0 16px;">
+
+      <div style="font-size:15px;line-height:20px;font-weight:bold;color:#14140f;">
+        Bilal Shafqat
+      </div>
+
+      <div style="font-size:13px;line-height:18px;color:#5c5c66;padding-top:2px;">
+        Digital marketer, developer and designer
+      </div>
+
+      <div style="font-size:13px;line-height:18px;color:#5c5c66;">
+        Dubai, UAE
+      </div>
+
+      <div style="font-size:13px;line-height:20px;padding-top:10px;">
+        <a href="https://bilalshafqat.com" style="color:#14140f;text-decoration:none;font-weight:bold;">bilalshafqat.com</a>
+        <span style="color:#c9c9d1;">&nbsp;|&nbsp;</span>
+        <a href="tel:+971529766006" style="color:#5c5c66;text-decoration:none;">+971 52 976 6006</a>
+      </div>
+
+      <div style="font-size:13px;line-height:20px;">
+        <a href="mailto:bilal@bilalshafqat.com" style="color:#5c5c66;text-decoration:none;">bilal@bilalshafqat.com</a>
+      </div>
+
+      <div style="font-size:12px;line-height:18px;padding-top:10px;">
+        <a href="https://bilalshafqat.com/appointment" style="color:#a8860b;text-decoration:none;font-weight:bold;">Book a free consultation &rarr;</a>
+      </div>
+
+    </td>
+  </tr>
+</table>
