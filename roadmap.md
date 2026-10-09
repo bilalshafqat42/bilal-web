@@ -10197,3 +10197,37 @@ address in the footer. Worth checking when convenient; not breaking anything.
 Settings: Free plan, Full (strict), Always Use HTTPS on, Rocket Loader off.
 Verified after: all pages 200 and `HIT`, `/api/lead` alive, MX records intact,
 and a real email delivered to the Titan inbox.
+
+### 386. CORRECTED (2026-10-09) — Cloudflare's email obfuscation was breaking React hydration
+
+Found during the Cloudflare move: `/` and `/services/*` threw **React error
+#418**, a hydration mismatch, through Cloudflare and were clean against the
+origin directly. Same code, same page; the only difference was Cloudflare in
+between.
+
+**Scrape Shield's Email Address Obfuscation rewrites the address in the HTML
+after the server has rendered it.** React boots, compares what it expected
+against what arrived, finds different text, and discards the entire
+server-rendered page to re-render it client-side.
+
+Two costs, and the second is the one that matters:
+
+1. It threw away the server render on every page — the opposite of what a CDN
+   is for, an hour after buying a 356ms TTFB improvement.
+2. It scrambled the address published that same day. Every HTML page served
+   `[email&#160;protected]` in place of `bilal@bilalshafqat.com`, so a crawler
+   or an assistant reading the page could not see it. The `ProfessionalService`
+   schema stayed intact, so Google still had it, but `llms.txt` and the visible
+   page are what AI assistants read.
+
+Turned off. Verified after: **zero console errors across `/`, `/contact`,
+`/services/web-design` and an article**, and zero obfuscated addresses on any
+page.
+
+**Worth keeping as a rule: a CDN that rewrites HTML will break a hydrating
+framework.** Rocket Loader is the famous one and was already off. This is the
+quieter sibling, on by default, and it does the same damage.
+
+Also left off, deliberately: Bot fight mode, which challenges crawlers and has a
+history of blocking Googlebot on free plans; Hotlink Protection, which breaks
+social share previews.
