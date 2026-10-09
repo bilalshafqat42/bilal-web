@@ -10149,3 +10149,51 @@ typed into a component.
 **Worth recording as a pattern, not a one-off.** Any layout change that splits
 one column into several will expose spacing that was hiding inside a child.
 Check the siblings, not just the thing that moved.
+
+### 385. DONE (2026-10-09) — Cloudflare free plan: TTFB 796ms to 440ms
+
+The cause was physical, not code. The origin is a Hostinger box in **Phoenix,
+Arizona** and the audience is in Dubai: 12,500km, and a TLS handshake is several
+round trips. Measured before: 255ms to connect, 520ms to complete TLS, 265ms of
+actual server time. No amount of optimisation shortens the distance.
+
+`next.config.ts` predicted this in September — its cache-header comment says two
+thirds of the TTFB is connect and TLS and that Cloudflare's free tier is the
+obvious next move. It was right.
+
+| | Before | After | Saved |
+| --- | ---: | ---: | ---: |
+| `/` | 783ms | 436ms | 347ms |
+| `/services/google-ads` | 801ms | 416ms | 385ms |
+| `/services/web-design` | 789ms | 445ms | 344ms |
+| `/top-react-design-patterns` | 796ms | 472ms | 324ms |
+| `/portfolio` | 848ms | 438ms | 410ms |
+| `/pricing` | 761ms | 436ms | 325ms |
+| **median TTFB** | **796ms** | **440ms** | **356ms** |
+
+Total page load fell further, 1,473-1,775ms to 589-706ms — **roughly a second
+off every page.** Both measurements saved in `.seo-snapshots/`.
+
+**The step that actually mattered was the Cache Rule, and it is the one nobody
+tells you about.** Out of the box Cloudflare caches static assets and *never*
+HTML, whatever `s-maxage` says. Measured right after activation: JS and CSS
+`HIT`, every page `DYNAMIC` — a DNS provider with an extra hop. A cache rule
+matching `URI Path does not start with /api/`, set to honour the cache-control
+header, flipped every page to `HIT`. `/api/lead` stays `DYNAMIC`, which is
+correct: a cached form endpoint is a broken form endpoint.
+
+**Two mistakes caught before deploying.** The operator defaulted to `starts
+with`, which would have cached only the API and nothing else — the exact
+inverse. And Browser TTL defaulted to `Bypass cache`. Both found by reading the
+Expression Preview rather than trusting the form.
+
+**One thing left unresolved.** Through Cloudflare the homepage throws React
+error #418, a hydration mismatch, which does not happen against the origin
+directly. React recovers and the menu works, but it means the server HTML is
+being discarded and re-rendered on the client. Rocket Loader is confirmed off,
+so the likely remaining cause is Email Address Obfuscation rewriting the Gmail
+address in the footer. Worth checking when convenient; not breaking anything.
+
+Settings: Free plan, Full (strict), Always Use HTTPS on, Rocket Loader off.
+Verified after: all pages 200 and `HIT`, `/api/lead` alive, MX records intact,
+and a real email delivered to the Titan inbox.
