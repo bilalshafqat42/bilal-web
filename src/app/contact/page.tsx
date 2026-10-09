@@ -26,7 +26,7 @@ const channels = [
   {
     icon: Mail,
     label: "Email",
-    value: "bilalshafqat42@gmail.com",
+    value: "bilal@bilalshafqat.com",
     // Deliberately no href. The card displayed an address and linked to
     // /appointment, so anyone clicking what looked like an email landed on the
     // booking page instead — the same label-versus-destination mismatch already
@@ -83,7 +83,7 @@ const contactSchema = graph([
       {
         "@type": "ContactPoint",
         contactType: "sales",
-        email: "bilalshafqat42@gmail.com",
+        email: "bilal@bilalshafqat.com",
         telephone: "+971529766006",
         availableLanguage: ["English"],
         areaServed: ["AE", "GB"],

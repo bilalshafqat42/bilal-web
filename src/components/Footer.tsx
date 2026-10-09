@@ -7,7 +7,7 @@ import SocialLinks from "./SocialLinks";
 import FooterWordmark from "./FooterWordmark";
 import Eyebrow from "@/components/Eyebrow";
 
-const EMAIL = "bilalshafqat42@gmail.com";
+const EMAIL = "bilal@bilalshafqat.com";
 
 /**
  * Real locations only. An earlier version listed UK and North America as

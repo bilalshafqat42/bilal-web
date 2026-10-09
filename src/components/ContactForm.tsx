@@ -9,7 +9,7 @@ import { trackLead, generateEventId } from "@/lib/analytics";
 import WhatsAppLink from "@/components/WhatsAppLink";
 import Eyebrow from "@/components/Eyebrow";
 
-const EMAIL = "bilalshafqat42@gmail.com";
+const EMAIL = "bilal@bilalshafqat.com";
 
 type Status = "idle" | "submitting" | "success" | "fallback" | "error";
 

@@ -131,7 +131,7 @@ export default function PrivacyPage() {
                 {/* Plain text rather than a mailto link on purpose: a legal
                     contact route should not depend on the visitor having a mail
                     client configured. Unchanged since item 179. */}
-                <span className="text-gold">bilalshafqat42@gmail.com</span> and say
+                <span className="text-gold">bilal@bilalshafqat.com</span> and say
                 which.
               </p>
 
