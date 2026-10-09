@@ -10436,3 +10436,47 @@ Result, per page and driven by what each project actually involved:
 
 Verified: five CI checks green, zero lint warnings, no page errors, chips at
 38px high against the 24px floor from roadmap 364.
+
+### 393. DONE (2026-10-09) — The last of the refactor, and what was left alone
+
+Swept the eight remaining hand-rolled pill classes and four eyebrow-like labels.
+**Two were genuine duplicates. Six were not, and forcing those into components
+would have been the failure this refactor existed to avoid.**
+
+**Fixed 1: the WhatsApp links were secondary buttons wearing a copy.**
+`WhatsAppLink` carried the full `SecondaryButton` class string by hand in two
+files, and on `/services/[slug]` it renders **directly beside a real
+`SecondaryButton`** — two buttons in one row, one of them a copy. It cannot be
+a `SecondaryButton` because it owns its own `href` and fires a tracking call, so
+`secondaryButtonClass()` is now exported and both call sites use it. Exporting a
+string is the smaller of two bad options; the alternative is a `render` prop
+bought for two call sites.
+
+**Fixed 2: the two tag chips had already drifted.**
+
+    CaseStudyGrid   px-3 py-1    text-[0.7rem]
+    PortfolioGrid   px-3 py-1.5  text-xs
+
+Different height and different type size for the same thing, on two grids a
+visitor sees in one session. `Tag` now holds it, with `as` because one is a
+`<span>` in a flex row and the other an `<li>` in a list. Measured after: both
+30px tall, 12px type, identical padding.
+
+Two uses rather than the three used as the threshold elsewhere — justified
+because **the drift had already happened**, which is the evidence the threshold
+is meant to predict.
+
+**Left alone, and each for its own reason:**
+
+| | Why it stays |
+| --- | --- |
+| `BlogList` pagination numbers | A 40px square-ish target, not a pill. Different control |
+| `ShareRow`'s copy and share buttons | Purpose-built 36px controls inside one component. One use |
+| `CookieConsent`'s Decline | A banner control, not page furniture. One use |
+| `[slug]` article meta row | A container `<div>` for date and tags, not a label |
+| `BlogList`'s `<time>` | `Eyebrow` does not forward `dateTime`, and adding prop spreading for one call site is worse than the duplicate |
+| `AboutSplit`'s two labels | One carries `data-reveal` for the scroll animation, the other `hidden lg:inline-flex`. Both would need escape hatches |
+
+**The honest count after the sweep: four pill-like classes and four
+eyebrow-like labels remain, and all eight should.** A component with an escape
+hatch for every caller is harder to change than the markup it replaced.

@@ -7,7 +7,7 @@ import { ServiceProof } from "@/components/ProofLoop";
 import Reveal from "@/components/Reveal";
 import FaqSection from "@/components/FaqSection";
 import PageOpener from "@/components/PageOpener";
-import SecondaryButton from "@/components/SecondaryButton";
+import SecondaryButton, { secondaryButtonClass } from "@/components/SecondaryButton";
 import FurtherReading from "@/components/FurtherReading";
 import {
   megaMenuGroups,
@@ -249,7 +249,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                 <SecondaryButton href="/appointment" size="sm">Book a call <ArrowRight size={14} /></SecondaryButton>
                 <WhatsAppLink
                   context={`service-page:${category.slug}`}
-                  className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-white/5"
+                  className={secondaryButtonClass("sm")}
                 >
                   WhatsApp
                 </WhatsAppLink>

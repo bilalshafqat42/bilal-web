@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { trackLead, generateEventId } from "@/lib/analytics";
 import WhatsAppLink from "@/components/WhatsAppLink";
 import Eyebrow from "@/components/Eyebrow";
+import { secondaryButtonClass } from "@/components/SecondaryButton";
 
 const EMAIL = "bilal@bilalshafqat.com";
 
@@ -151,7 +152,7 @@ export default function ContactForm() {
         </p>
         <WhatsAppLink
           context="contact-form-success"
-          className="mt-6 inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-ink hover:bg-white/5 transition-colors"
+          className={secondaryButtonClass("sm", "mt-6")}
         >
           <MessageCircle size={15} /> Message on WhatsApp
         </WhatsAppLink>

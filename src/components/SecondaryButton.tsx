@@ -39,6 +39,25 @@ type Props = Common &
 
 const isRoute = (href: string) => href.startsWith("/");
 
+const PAD = { lg: "px-6 py-3.5 text-sm", sm: "px-5 py-2.5 text-sm" } as const;
+
+/**
+ * The class string, for the few call sites that cannot use the component.
+ *
+ * `WhatsAppLink` is one: it owns its own `href` and fires a tracking call, so
+ * it cannot be a `SecondaryButton` without one wrapping the other. It was
+ * carrying a hand-copied duplicate of these classes in two files, and on
+ * `/services/[slug]` it renders **directly beside** a real `SecondaryButton` —
+ * two buttons in one row, one of them a copy.
+ *
+ * Exporting the string is the smaller of two bad options. The alternative is a
+ * `render` prop on `SecondaryButton`, which buys indirection for two call
+ * sites.
+ */
+export function secondaryButtonClass(size: "sm" | "lg" = "lg", extra = "") {
+  return `tap-target inline-flex items-center justify-center gap-2 rounded-full border border-border font-semibold text-ink transition-colors hover:border-gold/40 hover:bg-white/5 ${PAD[size]} ${extra}`;
+}
+
 export default function SecondaryButton({
   children,
   size = "lg",
@@ -48,8 +67,7 @@ export default function SecondaryButton({
   // `tap-target` is not decoration: the 24px floor from roadmap 364 applies to
   // every standalone control, and putting it here means a new call site cannot
   // reintroduce a 16px button.
-  const pad = size === "lg" ? "px-6 py-3.5 text-sm" : "px-5 py-2.5 text-sm";
-  const cls = `tap-target inline-flex items-center justify-center gap-2 rounded-full border border-border font-semibold text-ink transition-colors hover:border-gold/40 hover:bg-white/5 ${pad} ${className}`;
+  const cls = secondaryButtonClass(size, className);
 
   if ("onClick" in rest && rest.onClick) {
     return (

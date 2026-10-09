@@ -6,6 +6,7 @@ import { publishedClients } from "@/data/caseStudies";
 import { OG_IMAGE_URL } from "@/lib/ogImage";
 import { disciplinesInWork } from "@/data/disciplines";
 import Eyebrow from "@/components/Eyebrow";
+import Tag from "@/components/Tag";
 
 /**
  * Every case study on the site, as one grid of cards.
@@ -219,12 +220,7 @@ export default function CaseStudyGrid() {
                     {card.tags.length ? (
                       <span className="mt-5 flex flex-wrap gap-2">
                         {card.tags.map((t) => (
-                          <span
-                            key={t}
-                            className="rounded-full border border-border px-3 py-1 text-[0.7rem] text-muted"
-                          >
-                            {t}
-                          </span>
+                          <Tag key={t}>{t}</Tag>
                         ))}
                       </span>
                     ) : null}

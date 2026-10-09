@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import SectionHeading from "./SectionHeading";
 import CtaButton from "@/components/CtaButton";
+import Tag from "@/components/Tag";
 
 /**
  * "What I Actually Build" — the homepage work grid.
@@ -300,12 +301,13 @@ export default function PortfolioGrid() {
                     one string. */}
                 <ul className="mt-3 flex flex-wrap gap-2">
                   {card.tags.map((tag) => (
-                    <li
+                    <Tag
                       key={tag}
-                      className="rounded-full border border-border px-3 py-1.5 text-xs text-muted transition-colors group-hover:border-gold/30"
+                      as="li"
+                      className="transition-colors group-hover:border-gold/30"
                     >
                       {tag}
-                    </li>
+                    </Tag>
                   ))}
                 </ul>
               </Link>
