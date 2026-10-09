@@ -1,4 +1,5 @@
 import type { Faq } from "./pillars";
+import { megaMenuGroups } from "./pillars";
 import {
   allItems,
   itemsOfKind,
@@ -425,6 +426,62 @@ export function proofForService(serviceSlug: string): Discipline[] {
 /** Disciplines a given engagement actually contributed to, derived from that
  *  client's or project's own captures. Passing `projectSlug` narrows it to one
  *  development; omitting it covers the whole client. */
+/**
+ * The service pages behind a piece of work, deduplicated.
+ *
+ * **The gap this closes, measured on 2026-10-09.** Service pages carry 2 to 4
+ * links into the portfolio. The portfolio carried **zero** links back:
+ * `/portfolio/leos-developments` and every project page under it linked to no
+ * service at all. A case study is usually the page organic search delivers
+ * someone to, and the most persuasive one on the site — it has the
+ * photographs. It sent that interest nowhere commercial.
+ *
+ * Same shape as the article gap closed on 2026-10-07 (roadmap 366): traffic
+ * flowing one way and stopping.
+ *
+ * **No `hasPortfolioPage` filter here**, unlike `disciplinesInWork`. That
+ * function feeds the cards, which must link to a portfolio page that exists. A
+ * service link does not need one: a discipline with no gallery of its own still
+ * sells a service, and excluding it would drop the commercial link for the
+ * exact work that has least other evidence.
+ *
+ * Deduplicated on the path before the `#`, because several disciplines point at
+ * anchors on one service page — web-design and ui-ux-design both resolve to
+ * `/services/ui-ux-design`. Three links to one page reads as padding.
+ */
+export function servicesInWork(
+  clientSlug: string,
+  projectSlug?: string
+): { href: string; title: string }[] {
+  const mine = allItems().filter(
+    (i) => i.clientSlug === clientSlug && (!projectSlug || i.projectSlug === projectSlug)
+  );
+  const kinds = new Set(mine.map((i) => i.kind));
+  const seen = new Set<string>();
+  const out: { href: string; title: string }[] = [];
+  for (const d of disciplines) {
+    if (!d.kinds?.some((k) => kinds.has(k))) continue;
+    const base = d.serviceHref.split("#")[0];
+    if (seen.has(base)) continue;
+    seen.add(base);
+    // The **service page's** own title, not the discipline's.
+    //
+    // Caught by looking at the rendered page: the discipline cards directly
+    // above this row are labelled "Web Development" and "Social Media
+    // Marketing", and using `d.title` printed the same two words again
+    // underneath, pointing somewhere else. Two rows reading identically and
+    // going to different places is worse than one row.
+    //
+    // Read from `megaMenuGroups`, which is what the nav, the footer and
+    // /services already call these pages, so the chip says what the
+    // destination is called. Falls back to the discipline title if a
+    // `serviceHref` ever points somewhere that is not a service page.
+    const group = megaMenuGroups.find((g) => base === `/services/${g.slug}`);
+    out.push({ href: d.serviceHref, title: group?.title ?? d.title });
+  }
+  return out;
+}
+
 export function disciplinesInWork(clientSlug: string, projectSlug?: string): Discipline[] {
   const mine = allItems().filter(
     (i) => i.clientSlug === clientSlug && (!projectSlug || i.projectSlug === projectSlug)

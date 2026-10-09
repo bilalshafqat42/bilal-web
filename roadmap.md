@@ -10390,3 +10390,49 @@ problem, not bad luck, so the method is now written into the file.
 **Lab, not field.** Google scores Core Web Vitals on real visitor data over a
 rolling 28 days, so none of this reaches Search Console until early November.
 Worth knowing before reading anything into that report in the meantime.
+
+### 392. DONE (2026-10-09) — The portfolio linked to no service at all
+
+Measured while looking for work that did not need Bilal:
+
+    service pages  →  portfolio      2 to 4 links each
+    portfolio      →  service pages  0
+
+`/portfolio/leos-developments` and every project page under it carried **zero**
+links to a service. The case studies are the most persuasive pages on the site —
+they have the photographs — and a reader convinced by one had no route to the
+page that sells what they had just looked at.
+
+Same shape as the article gap closed two days earlier (roadmap 366): traffic
+flowing one way and stopping. Different direction, same fault.
+
+`servicesInWork()` in `disciplines.ts`, rendered as a row in `WorkProof`.
+Deduplicated on the path before the `#`, because several disciplines point at
+anchors on one service page and three links to one page reads as padding.
+
+**No `hasPortfolioPage` filter**, unlike `disciplinesInWork` beside it. That one
+feeds the cards, which must link to a portfolio page that exists. A service link
+does not need one, and filtering would drop the commercial link for exactly the
+work that has least other evidence.
+
+**Caught by looking at the render.** The first version labelled the chips with
+`d.title`, which printed "Web Development" and "Social Media Marketing" — the
+same two words as the discipline cards immediately above, pointing somewhere
+else. Two rows reading identically and going to different places is worse than
+one row. The chips now read the **service page's** own title from
+`megaMenuGroups`, so "Web Development" the discipline sits above "Website & App
+Development" the service. Where a discipline and a service genuinely share a
+name, as social media does, they still match — that is honest rather than a
+collision.
+
+Result, per page and driven by what each project actually involved:
+
+| Page | Was | Now |
+| --- | ---: | --- |
+| `/portfolio/leos-developments` | 0 | Website & App Development, Social Media Marketing, UI/UX Design |
+| `.../hadley-heights` | 0 | Website & App Development, Social Media Marketing |
+| `.../cavendish-square` | 0 | UI/UX Design, Website & App Development |
+| `.../mobile-app` | 0 | three |
+
+Verified: five CI checks green, zero lint warnings, no page errors, chips at
+38px high against the 24px floor from roadmap 364.

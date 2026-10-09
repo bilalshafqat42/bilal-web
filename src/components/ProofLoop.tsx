@@ -4,6 +4,7 @@ import Reveal from "@/components/Reveal";
 import {
   proofForService,
   disciplinesInWork,
+  servicesInWork,
   disciplineItems,
   type Discipline,
 } from "@/data/disciplines";
@@ -98,6 +99,7 @@ export function WorkProof({
   projectSlug?: string;
 }) {
   const used = disciplinesInWork(clientSlug, projectSlug);
+  const services = servicesInWork(clientSlug, projectSlug);
   if (used.length === 0) return null;
 
   return (
@@ -113,6 +115,34 @@ export function WorkProof({
         </div>
 
         <DisciplineCards items={used} />
+
+        {/* The services behind the work.
+            ----------------------------------------------------------------
+            Added 2026-10-09. The cards above link to other portfolio pages —
+            "more work like this" — and the row below links to pricing, process
+            and about. Neither offered the one thing a convinced reader wants
+            next: the page that sells what they just looked at.
+
+            Measured before this: service pages carried 2 to 4 links into the
+            portfolio, and `/portfolio/leos-developments` and every project
+            under it carried **zero** back. The most persuasive pages on the
+            site, and they dead-ended commercially. */}
+        {services.length ? (
+          <div className="mt-8 border-t border-border pt-6">
+            <Eyebrow size="sm" tone="muted">Services behind this work</Eyebrow>
+            <div className="mt-3 flex flex-wrap gap-2.5">
+              {services.map((s) => (
+                <Link
+                  key={s.href}
+                  href={s.href}
+                  className="tap-target r-chip border border-border px-4 py-2 text-sm text-muted transition-colors hover:border-gold/40 hover:text-ink"
+                >
+                  {s.title}
+                </Link>
+              ))}
+            </div>
+          </div>
+        ) : null}
 
         {/* The commercial exit. A case study is usually the page organic search
             delivers someone to, and until now it was a dead end: no route to
