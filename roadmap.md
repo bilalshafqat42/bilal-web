@@ -10364,3 +10364,29 @@ and worth more than all twenty together.
 Eleven referring domains going to thirty-one by signing up for things changes
 the count. Going to sixteen where five are real editorial links changes the
 rankings. Said once, in the plan, where he will read it when he gets there.
+
+### 391. DONE (2026-10-09) — Post-Cloudflare performance baseline recorded
+
+Six templates, two widths, five runs each, medians. Saved to
+`.seo-snapshots/cwv-baseline-2026-10-09.md`.
+
+| Metric | Median | Google "good" |
+| --- | ---: | ---: |
+| TTFB | 514ms | under 800ms |
+| LCP | 880ms | under 2,500ms |
+| CLS | **0.000** | under 0.1 |
+
+**CLS is exactly zero on every template at both widths.** Nothing moves while
+the page loads.
+
+**Five runs, not one, and that is the finding worth keeping.** The first pass at
+this measured single runs and produced homepage TTFB of 1,293ms and contact of
+2,340ms — numbers I nearly reported. Five runs put the same two pages at 493ms
+and 514ms. The variance on a contended connection is larger than the thing being
+measured. Earlier the same day I had already quoted a 2,340ms homepage LCP that
+turned out to be 1,540ms on a careful re-run. Twice in one day is a method
+problem, not bad luck, so the method is now written into the file.
+
+**Lab, not field.** Google scores Core Web Vitals on real visitor data over a
+rolling 28 days, so none of this reaches Search Console until early November.
+Worth knowing before reading anything into that report in the meantime.
