@@ -10295,23 +10295,21 @@ three.
 Bilal's request. Added to `backlink-plan.md` as item 10b alongside the other
 profile platforms.
 
-**Worth knowing before the hour goes in**, because it is not the same kind of
-task as Upwork or Fiverr:
+**Two purposes, both stated by him: the profile link, and applying for roles.**
+My first note framed it as a backlink task and judged it on that; he corrected
+it in the same turn. Recorded properly here.
 
-Turing is a vetted marketplace aimed at **full-time remote engineering roles for
-US companies**. The vetting is substantial — technical screens and timed tests —
-and the outcome is usually a long-term placement rather than project work.
+On the backlink half: the profile link will almost certainly be `nofollow`, like
+everything in weeks 1 to 6 of the plan. Real but modest, same as Upwork and
+Fiverr.
 
-Two things follow:
+On the jobs half: Turing is a vetted marketplace aimed at full-time remote
+engineering roles for US companies. The vetting is substantial — technical
+screens and timed tests — so the hour it costs is closer to four. That is the
+only thing worth planning around, and it is his call entirely.
 
-**It is a lead channel, not a backlink.** The profile link will almost certainly
-be `nofollow`, like everything in weeks 1 to 6 of the plan. Judge it on whether
-the roles are worth the vetting time, not on SEO.
-
-**It points at the developer half.** The site sells "campaign to code" and the
-homepage leads with digital marketing. A Turing profile positions him as an
-engineer, which is accurate but is the narrower half of the story and the one
-with more competition.
-
-Neither is a reason not to do it. They are the things to weigh when deciding how
-much of a day it deserves.
+One practical point, not a reservation: a Turing profile presents him as an
+engineer, which is accurate but is the narrower half of "campaign to code". If
+the roles he wants are engineering roles, that is the right profile to have. If
+he also wants marketing roles surfaced, the headline there should say both, the
+way the site does.

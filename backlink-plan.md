@@ -60,7 +60,7 @@ costs more to undo than these 65 days are worth.
 | 8 | Wed 14 Oct | Fiverr profile | P | Same. Seller profiles allow a website field. |
 | 9 | Thu 15 Oct | X / Twitter profile | H | Bio link. Low value on its own, counts towards name consistency. |
 | 10 | Fri 16 Oct | Instagram business profile | H | Bio link plus the business category set correctly. |
-| 10b | Bilal's request, 2026-10-09 | Turing profile | H | Added at his request. Worth knowing before the hour goes in: Turing is a vetted marketplace aimed at full-time remote engineering roles for US companies, and the profile link is almost certainly `nofollow`. It is a lead channel for development work rather than a backlink, and it points at the developer half of the positioning rather than the marketing half. Judge it on whether the leads are worth the vetting, not on SEO. |
+| 10b | Bilal's request, 2026-10-09 | Turing profile | H | **Two purposes, both his: the profile link and applying for roles.** The link is almost certainly `nofollow`, same as the rest of weeks 1-6. Budget more than an hour — Turing's vetting involves technical screens and timed tests. Make the headline there say marketing **and** engineering if he wants both kinds of role surfaced; the default framing there is engineer-only. |
 
 ## Directories
 
