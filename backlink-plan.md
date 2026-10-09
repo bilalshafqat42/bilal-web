@@ -150,6 +150,79 @@ costs more to undo than these 65 days are worth.
 
 ---
 
+## Twenty more profiles
+
+Added 2026-10-09 at Bilal's request. **Read the warning at the end of this
+section before deciding how many of these to do.**
+
+Grouped by why they are worth the time, because "it is a backlink" is not a
+reason for most of them.
+
+### Worth real time (6)
+
+These either send traffic, carry weight with a buyer, or both.
+
+| # | Platform | Link to | Why |
+| ---: | --- | :---: | --- |
+| 41 | Figma Community | B | He designs in Figma and the site says so. A published file or template is a real artefact, not a profile stub, and Figma's community pages are genuinely browsed. |
+| 42 | Stack Overflow | A | Developer profile with a website field. Nobody clicks it, but it is a name-consistency signal on a very high-authority domain, and it answers "is this person real" for a technical buyer. |
+| 43 | CodePen | B | Front-end work shown as live code rather than a screenshot. Pair it with the React articles. |
+| 44 | Quora | W | Profile with a bio link, plus answers. The only one here where the *content* can rank: a good answer to "how much does a website cost in Dubai" outlives any profile. |
+| 45 | Contra | P | Freelance platform with no commission and genuine SEO on profile pages. More relevant to his positioning than Upwork. |
+| 46 | PeoplePerHour | P | UK and Gulf freelance marketplace, real UAE client base. Lead channel more than link. |
+
+### Cheap, do in one batch (8)
+
+An evening. None of them individually matters; the consistency across them does.
+
+| # | Platform | Link to | Why |
+| ---: | --- | :---: | --- |
+| 47 | Gravatar | H | Feeds the avatar and profile on dozens of other sites automatically. Fill it once, it propagates. |
+| 48 | About.me | H | A single page that ranks for a name search. Cheap insurance on "bilal shafqat". |
+| 49 | Polywork | H | Profile aimed at people who do several things, which is his whole positioning. |
+| 50 | Freelancer.com | P | Profile and website field. Low-quality marketplace; do it for the profile, not the work. |
+| 51 | Guru.com | P | Same reasoning. |
+| 52 | Bluesky | H | Bio link, name consistency, and the domain-verification feature lets him prove `bilalshafqat.com` is his. |
+| 53 | Threads | H | Bio link. Tied to the Instagram profile already in the plan. |
+| 54 | Slideshare | W | Upload one deck — the pricing breakdown or the Dubai website cost piece. SlideShare pages index. |
+
+### Only if a specific thing is true (6)
+
+Do not do these on autopilot. Each has a condition.
+
+| # | Platform | Link to | Condition |
+| ---: | --- | :---: | --- |
+| 55 | Google Business Profile | H | **Blocked until the UAE trade licence arrives.** The listed address is still Pakistan (roadmap 354). A Dubai service business with a Pakistan address on its GBP is worse than no GBP. |
+| 56 | Trustpilot | H | Only once there are real clients willing to review. An empty Trustpilot page is worse than none. |
+| 57 | Mastodon | H | Only if he will actually post. The domain-verification link is genuinely `rel="me"`, but a dead account is a dead account. |
+| 58 | Notion public page | W | Only as a genuine artefact — a public project page or a resource list. Not a duplicate of the site. |
+| 59 | Speaker Deck | W | Only once a deck exists worth publishing. |
+| 60 | Medium publication | W | Separate from the republishing in items 25-26. Only if he commits to posting monthly. |
+
+### A warning, and it is the point of this section
+
+**Twenty profiles is about twenty hours and will not move a ranking.**
+
+Every one of these is `nofollow` or close to it. What they buy is name
+consistency, a handful of referral clicks, and profiles that exist before he
+needs them. That is worth something. It is not worth twenty hours.
+
+For comparison, from the existing plan:
+
+- **Items 41-60 combined**: twenty hours, no ranking movement expected
+- **One guest post on a UAE marketing or property site** (items 56-60 of the
+  original plan): two hours, one genuine `dofollow` link from a relevant domain,
+  worth more than all twenty of these together
+
+The domain has **eleven referring domains**. Going to thirty-one by signing up
+for things changes the count and not much else. Going to sixteen where five are
+real editorial links changes the rankings.
+
+**Do the six in the first table. Batch the eight in the second over one
+evening. Leave the third table until its condition is true.** Then spend the
+time saved on weeks 9 to 13, which is where the links that count live.
+
+
 ## Progress
 
 **2026-10-05, day 1.** Three directories started on day one instead of across

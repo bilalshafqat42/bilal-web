@@ -10335,3 +10335,32 @@ sell, apply there.
 
 **On the backlink half**, as with every profile in weeks 1 to 6: the link is
 almost certainly `nofollow`. Real but modest.
+
+### 390. DONE (2026-10-09) — Twenty more profile platforms, with a warning attached
+
+Bilal asked for twenty more platforms to create profiles on for backlinks. Added
+to `backlink-plan.md` as items 41-60, grouped by why they are worth the time
+rather than listed flat.
+
+**Six worth real time**: Figma Community, Stack Overflow, CodePen, Quora,
+Contra, PeoplePerHour. Each either sends traffic, carries weight with a buyer,
+or — in Quora's case — lets the *content* rank, which no profile stub does.
+
+**Eight cheap, batch them in one evening**: Gravatar, About.me, Polywork,
+Freelancer, Guru, Bluesky, Threads, SlideShare. None matters individually; the
+name consistency across them does.
+
+**Six conditional**, with the condition written down: Google Business Profile
+stays blocked until the UAE trade licence arrives, since the listed address is
+still Pakistan (roadmap 354) and a Dubai service business with a Pakistan GBP
+address is worse than no GBP. Trustpilot needs real clients first. Mastodon
+needs him to actually post.
+
+**The warning is the point of the section, and it is written into the plan.**
+Twenty profiles is roughly twenty hours and will not move a ranking. Every one
+is `nofollow` or close to it. One guest post on a relevant UAE site is two hours
+and worth more than all twenty together.
+
+Eleven referring domains going to thirty-one by signing up for things changes
+the count. Going to sixteen where five are real editorial links changes the
+rankings. Said once, in the plan, where he will read it when he gets there.
