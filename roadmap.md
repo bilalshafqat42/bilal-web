@@ -10231,3 +10231,61 @@ quieter sibling, on by default, and it does the same damage.
 Also left off, deliberately: Bot fight mode, which challenges crawlers and has a
 history of blocking Googlebot on free plans; Hotlink Protection, which breaks
 social share previews.
+
+### 387. PENDING (2026-10-09) — The sales application case study, waiting on six images
+
+Bilal supplied the content on 2026-10-09. The page is blocked on screenshots and
+nothing else.
+
+**What it is.** A sales presentation platform built for LEOS Developments and
+Tomorrow World Real Estate. Sales managers present to buyers on it: exteriors,
+interiors, amenities, live unit availability pulled from the CRM, 3D models that
+rotate and zoom, and a custom map showing the schools, hospitals and restaurants
+nearby. React, Node and MongoDB. Three to six months, across multiple
+developments, still growing.
+
+**The before, in his words:** *"it was like windows 98."* They had a tool; it was
+limited to what a sales manager could show and it looked its age.
+
+**The outcome, in his words:** *"they not only use it on the sales screen but
+also on the tablets and mobile phones and share the live sales offers to the
+customers."* **People using a tool beyond what it was built for is the clearest
+proof it works, and it is the strongest line in the whole brief.** No metric
+needed, and none invented.
+
+**Framing, his decision on 2026-10-09.** A marketer who built and designed the
+tool his sales team sells on. The page names **no engagement type** — not
+freelance, not employee. He considered pursuing written permission and chose not
+to, on the grounds that he has other work to show. Describe the work and the
+role, claim nothing about the contract. Recorded so it is not re-raised.
+
+**Refine is not named**, and that stands: roadmap 22 already requires written
+permission per brand, and he supplied Behance links for LEOS and Tomorrow World
+only.
+
+**The six images, and what each one is for.** Not decoration — four of the six
+evidence a specific claim the copy makes, which is why these six and not any six.
+
+| File | Behance source | Where it appears |
+| --- | --- | --- |
+| `1-projects.jpg` | LEOS DEVELOPMENTS PROJECTS LIST | Portfolio grid card, and the page hero |
+| `2-exterior.jpg` | HADLEY HEIGHTS EXTERIORS | Gallery |
+| `3-interior.jpg` | HADLEY HEIGHTS INTERIORS | Gallery |
+| `4-map.jpg` | CAVENDISH SQUARE MAP | Gallery, and it evidences the "schools, hospitals, restaurants" claim |
+| `5-units.jpg` | HADLEY HEIGHTS UNITS PROPERTIES | Gallery, and it evidences live CRM availability |
+| `6-3d.jpg` | LEOS DEVELOPMENTS 3D MODEL VIEW | Gallery, and it evidences the 3D tours |
+
+Destination: `public/portfolio/leos/sales-application/`. JPG or PNG; converted
+to AVIF on arrival.
+
+**Two optional extras, neither blocking.** `cover.jpg`, the thumbnail he is
+designing, which would replace `1-projects.jpg` as the grid card — a designed
+cover reads stronger in a grid than a screenshot. And `og.jpg` at 1200x630 for
+link previews; without it the page falls back to the generic LEOS card, which
+works but says nothing about this project.
+
+**Why it matters more than anything else outstanding.** `/services/website-app-development`
+claims "Custom Marketing Tools & Calculators" with nothing behind it. Every case
+study on the site is LEOS property marketing. And eight portfolio pages at 657 to
+772 words are the only finding the site audit still reports. One page closes all
+three.
