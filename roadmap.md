@@ -10289,3 +10289,29 @@ claims "Custom Marketing Tools & Calculators" with nothing behind it. Every case
 study on the site is LEOS property marketing. And eight portfolio pages at 657 to
 772 words are the only finding the site audit still reports. One page closes all
 three.
+
+### 388. TODO (2026-10-09) — Sign up on Turing
+
+Bilal's request. Added to `backlink-plan.md` as item 10b alongside the other
+profile platforms.
+
+**Worth knowing before the hour goes in**, because it is not the same kind of
+task as Upwork or Fiverr:
+
+Turing is a vetted marketplace aimed at **full-time remote engineering roles for
+US companies**. The vetting is substantial — technical screens and timed tests —
+and the outcome is usually a long-term placement rather than project work.
+
+Two things follow:
+
+**It is a lead channel, not a backlink.** The profile link will almost certainly
+be `nofollow`, like everything in weeks 1 to 6 of the plan. Judge it on whether
+the roles are worth the vetting time, not on SEO.
+
+**It points at the developer half.** The site sells "campaign to code" and the
+homepage leads with digital marketing. A Turing profile positions him as an
+engineer, which is accurate but is the narrower half of the story and the one
+with more competition.
+
+Neither is a reason not to do it. They are the things to weigh when deciding how
+much of a day it deserves.
