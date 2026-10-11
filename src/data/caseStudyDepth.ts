@@ -13,6 +13,42 @@
 export type DepthBlock = { heading: string; paragraphs: string[] };
 
 export const caseStudyDepth: Record<string, DepthBlock[]> = {
+  // The one entry here that is not a development launch.
+  //
+  // The Behance version of this project opens on Bilal's own line about the
+  // previous tooling looking like Windows 98. That lands as a hook, but this
+  // page names LEOS in the URL, the heading and the schema, and a public page
+  // that opens by disparaging a named company's old software is a different
+  // thing from a portfolio caption. The problem is described structurally
+  // instead — three systems, nothing shareable — which is both the stronger
+  // argument and the one a reader can check against the screens above.
+  "sales-app": [
+    {
+      heading: "What the sales presentation application replaced",
+      paragraphs: [
+        "An experience centre meeting has a shape. A buyer arrives interested in a development, not a unit. Over the next hour that narrows: which tower, then which floor, then which apartment, then what it costs and whether it is still available. The job of the room is to carry someone through that narrowing without losing them.",
+        "The tooling did not follow that shape. Renders and walkthroughs lived in one place, unit availability lived in the CRM, floor plans lived in PDFs, and the location story lived in a printed brochure. A sales manager moving a buyer from interest to a specific apartment was switching between systems in front of them, and the one question that closes the conversation — is this one still available — was the one that could not be answered on the spot with confidence.",
+        "Anything the buyer asked for afterwards had to be found and sent separately, which put a gap of hours or days between the meeting and the follow-up.",
+      ],
+    },
+    {
+      heading: "Building around the narrowing, not the content",
+      paragraphs: [
+        "The sales presentation application is organised the way the meeting runs rather than the way the content is filed. The main menu opens on developments. A development opens on its exteriors, with interiors, amenities, animation, walkthrough and the 3D model one tap away in a rail that never moves. From there the drill down goes building, floor, unit.",
+        "The 3D floor view is where the tool stops being a presentation. The model rotates, a floor selector runs down one side, and selecting a floor shows every unit on it with its current state. Tapping a unit opens the floor plan beside its specification: type, floor, balcony size, total area, availability. That availability reads from the CRM, the same system the team books against, so it is true at the moment it is shown rather than true as of the last export.",
+        "The location map was drawn rather than embedded. A generic map pin answers where the building is. A buyer in a meeting is asking something narrower: how far is this from the places I already use. The custom map marks the site against Dubai Marina, Palm Jumeirah, Mall of the Emirates, Downtown and the airport, which is the comparison a buyer is actually running.",
+        "Brochures and fact sheets are shareable from inside the application, so the follow-up leaves the room with the buyer instead of arriving two days later.",
+      ],
+    },
+    {
+      heading: "What changed, and why a marketer built it",
+      paragraphs: [
+        "It was built for one screen: the large touch display in the Dubai experience centre. The layout was made responsive regardless, on the assumption that nothing stays on the device it was designed for. The sales team began using it on tablets and phones outside the centre, and sending live project detail and availability to customers directly from it. A tool being used beyond its brief is the clearest signal it works that a project gets without a figure attached to it.",
+        "The reason this sits in a marketing portfolio rather than a development one is that the two sides share a data source. The availability that decides what a sales manager shows in a meeting is the same availability that should decide which units a campaign promotes. When those are owned separately they are reconciled by hand, late, and usually after a campaign has already sent traffic to an apartment that sold last week. Owning both meant the campaign work and the sales floor were reading from the same place.",
+        "No performance figures are claimed here. LEOS released none for publication, and a case study carrying an invented number is worth less than one carrying none.",
+      ],
+    },
+  ],
   "hadley-heights": [
     {
       heading: "The brief behind the page",

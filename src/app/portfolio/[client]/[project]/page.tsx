@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const found = getProject(client, project);
   if (!found) return {};
   const { client: c, project: p } = found;
-  const title = `${p.name} — ${c.name} Campaign Case Study`;
+  const title = p.metaTitle ?? `${p.name} — ${c.name} Campaign Case Study`;
   const url = `/portfolio/${c.slug}/${p.slug}`;
   const og = p.ogImage ?? c.ogImage ?? OG_IMAGE_URL;
   return {
@@ -376,7 +376,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
                 <div className="relative">
                   <Eyebrow>Next step</Eyebrow>
                   <h2 className="t-h2 mt-4 text-ink">
-                    Need this for your launch? <span className="text-gradient">Let&apos;s talk.</span>
+                    Need this for your {p.kind ?? "launch"}? <span className="text-gradient">Let&apos;s talk.</span>
                   </h2>
                   <CtaButton href="/appointment" className="mt-9">Book a free consultation</CtaButton>
                 </div>
@@ -388,7 +388,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
             here, and `FaqSection` is a straight extraction of it. */}
         <FaqSection
           eyebrow="Common questions"
-          title="About this launch"
+          title={`About this ${p.kind ?? "launch"}`}
           faqs={p.faqs ?? []}
           className="section-pad-tight"
         />

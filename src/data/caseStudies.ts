@@ -28,6 +28,25 @@ export type Gallery = {
   basePath: string;
   width: number;
   height: number;
+  /** Source file extension, without the dot. Defaults to `avif`.
+   *
+   *  The campaign carousels are AVIF exports we control end to end. The LEOS
+   *  sales application screens are designed JPEG boards Bilal exports from
+   *  Photoshop, and re-encoding them to AVIF on every revision is a step that
+   *  would get skipped. Reading the extension from the data is cheaper than
+   *  keeping two galleries. */
+  ext?: string;
+  /** How the tiles are laid out. Defaults to `tiles`.
+   *
+   *  `tiles` is the carousel case: four square crops per row, `object-cover`.
+   *  That is correct for 800x800 slides and wrong for anything else.
+   *
+   *  `screens` is for images that already carry their own title and caption in
+   *  the artwork. Cropping those to a square cuts the text off top and bottom,
+   *  which is exactly what the square grid did to the sales application boards
+   *  on the first pass. `screens` keeps the native ratio and drops to two
+   *  columns so the baked-in type stays readable. */
+  layout?: "tiles" | "screens";
   items: GalleryItem[];
 };
 
@@ -41,6 +60,27 @@ export type PlaceSchema = {
 export type Project = {
   slug: string;
   name: string;
+  /** Overrides the generated `<title>`.
+   *
+   *  The template builds `"{project} — {client} Campaign Case Study"`, which is
+   *  right for the four development launches and wrong for the sales
+   *  application: that is an internal tool, not a campaign. One optional field
+   *  beats either a wrong title on one page or a second template. */
+  metaTitle?: string;
+  /** What this project *is*, used where the template would otherwise say
+   *  "launch". Defaults to "launch".
+   *
+   *  Four of the five LEOS projects are off-plan launches, so the closing CTA
+   *  ("Need this for your launch?") and the FAQ heading ("About this launch")
+   *  read correctly. The sales application is an internal tool, where both
+   *  sentences are simply wrong. One noun beats a second template. */
+  kind?: string;
+  /** Overrides the card's alt text, which otherwise reads
+   *  "{name} campaign creative". Wrong for anything that is not a campaign. */
+  cardImageAlt?: string;
+  /** How `cardImage` sits in the 4:3 card well. Defaults to `cover`.
+   *  Use `contain` for a designed cover whose composition runs to its edges. */
+  cardImageFit?: "cover" | "contain";
   /** Per-project share card. Falls back to the client's `ogImage` when absent,
    *  which is what every project used to do — one generic LEOS card for every
    *  development, so a shared link never showed the development itself.
@@ -505,6 +545,116 @@ const cavendishSquare: Project = {
   ],
 };
 
+/** The one LEOS project that is not a development launch.
+ *
+ *  Every other project here is a tower: a landing page plus campaign creative,
+ *  carrying a `place` schema and a unit count. This is the internal tool the
+ *  sales team uses in the Dubai experience centre, so it has no `place`, no
+ *  landing page and no campaign results. It earns its spot because it is the
+ *  only piece of work on the site where the same person built the system and
+ *  ran the marketing it feeds.
+ *
+ *  Two deliberate omissions, both settled on 2026-10-09 (roadmap 387):
+ *
+ *  - **No engagement type.** The copy says what was built and what changed. It
+ *    does not say freelance, client or employee.
+ *  - **No results.** No conversion lift, no time saved, no percentage. LEOS
+ *    released no figures, and an invented one is worth less than none.
+ */
+const salesApp: Project = {
+  slug: "sales-app",
+  name: "Sales Application",
+  metaTitle: "Sales Presentation Application | LEOS Developments",
+  kind: "application",
+  ogImage: "/portfolio/leos/sales-app/thumbnail.jpg",
+  // A designed cover rather than a raw screen capture. In a grid of four cards
+  // a composed board reads at a glance where a screenshot reads as noise.
+  cardImage: "/portfolio/leos/sales-app/cover.jpg",
+  cardImageAlt:
+    "Cover for the LEOS sales presentation application, showing the showroom touch screen and a tablet running the same main menu",
+  cardImageFit: "contain",
+  // Doubles as the meta description, so it is measured in pixels rather than
+  // characters. The first draft rendered 1,052px against Google's ~920px
+  // budget and would have been cut mid-sentence in results.
+  cardBlurb:
+    "The sales presentation application the team uses in the Dubai experience centre: every development, live unit availability from the CRM, 3D floors.",
+  headline: "A sales presentation application for the experience centre floor",
+  summary:
+    "A sales presentation application built around what a sales manager actually does in a room with a buyer. Exteriors, interiors and amenities for every development, live unit availability pulled from the CRM, rotatable 3D floor plates and a custom location map, all on one showroom touch screen. It was built for that screen. The team started using it on tablets and phones as well.",
+  facts: [
+    { label: "Built for", value: "Experience centre sales team" },
+    { label: "Primary device", value: "Showroom touch screen" },
+    { label: "Also used on", value: "Tablets and mobile" },
+    { label: "Developments", value: "Hadley Heights, Weybridge Gardens, Cavendish Square" },
+  ],
+  gallery: {
+    heading: "The screens",
+    body: "Six screens from the application, in the order a sales manager moves through them: the main menu, the development's exteriors and interiors, the location map, then the drill down from building to floor to a single unit. That last step is the one that matters most in a meeting, because it is where a general conversation becomes a specific apartment.",
+    basePath: "/portfolio/leos/sales-app",
+    // Designed boards, not square crops. See the `layout` note on `Gallery`.
+    ext: "jpg",
+    layout: "screens",
+    width: 1600,
+    height: 1340,
+    items: [
+      {
+        file: "1-home",
+        alt: "Main menu of the LEOS sales presentation application on a showroom touch screen, showing four tiles for Projects, Experience Centre, Show Apartment and Intro Video",
+        caption: "Main menu — one tap to any development",
+      },
+      {
+        file: "2-exterior",
+        alt: "Exteriors screen of the LEOS sales application showing a dusk render of a Jumeirah Village Circle development, with a side rail for interiors, amenities, animation, walkthrough and 3D model",
+        caption: "Exteriors — with the full content rail alongside",
+      },
+      {
+        file: "4-interiors",
+        alt: "Interiors screen of the LEOS sales application showing a furnished living and dining room render",
+        caption: "Interiors — rooms a buyer can see before the building exists",
+      },
+      {
+        file: "6-floor",
+        alt: "Custom location map in the LEOS sales application showing the Hadley Heights site marked against Dubai Marina, Palm Jumeirah, Downtown Dubai and Dubai International Airport",
+        caption: "Location — a map drawn for the conversation",
+      },
+      {
+        file: "3-floor",
+        alt: "3D floor view in the LEOS sales presentation application showing a rotatable building model with a floor selector and a grid of units on the eighteenth floor",
+        caption: "3D floors — tap a floor, see what is left on it",
+      },
+      {
+        file: "5-units",
+        alt: "Single unit screen in the LEOS sales application showing a two bedroom floor plan alongside a specification panel with availability, floor, balcony size and total area",
+        caption: "Unit — the floor plan and its specification",
+      },
+    ],
+  },
+  faqs: [
+    {
+      question: "Where does the unit availability come from?",
+      answer:
+        "The CRM. The availability state on a unit is read from the same system the sales team books against, rather than a spreadsheet exported at the start of the month. That is the difference between a presentation and a tool: a sales manager can open it in front of a buyer without checking first whether it is still true.",
+    },
+    {
+      question: "Was this built for the showroom screen or for mobile?",
+      answer:
+        "The showroom screen. It was designed for a large touch display in the Dubai experience centre, which is where the meetings happen. The layout was built responsive anyway, and the team started using it on tablets and phones outside the centre, which was not the original brief.",
+    },
+    {
+      question: "Why does a marketer build a sales tool?",
+      answer:
+        "Because the unit data and the campaigns are the same data. The availability that drives what a sales manager shows in a meeting is the availability that should drive which units a campaign promotes. Building both sides meant they could speak to each other instead of being reconciled by hand.",
+    },
+  ],
+  keywords: [
+    "sales presentation application",
+    "real estate sales application Dubai",
+    "property showroom touch screen",
+    "CRM unit availability",
+    "experience centre sales tool",
+  ],
+};
+
 export const clients: Client[] = [
   // ------------------------------------------------------------------
   // Drafts. Not in the sitemap, not in the grid, `noindex` on the page.
@@ -912,7 +1062,7 @@ export const clients: Client[] = [
         ],
       },
     ],
-    projects: [cavendishSquare, hadleyHeights, weybridgeGardens, weybridgeGardens2],
+    projects: [cavendishSquare, hadleyHeights, salesApp, weybridgeGardens, weybridgeGardens2],
     keywords: [
       "real estate marketing",
       "off-plan property marketing",

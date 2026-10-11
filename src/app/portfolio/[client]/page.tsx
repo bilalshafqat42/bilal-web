@@ -65,6 +65,11 @@ export default async function ClientCaseStudy({ params }: Props) {
   // cannot silently swap which screen sits beside the website capture.
   const appHomeScreen = c.mobileApp?.screens.find((s) => s.key === "home");
 
+  // A project with a `kind` is something other than an off-plan launch, which
+  // changes what the projects section can honestly be called. See the comment
+  // on the heading below.
+  const hasNonCampaign = c.projects.some((p) => p.kind);
+
   const url = `${SITE}/portfolio/${c.slug}`;
 
   const schema = {
@@ -260,13 +265,27 @@ export default async function ClientCaseStudy({ params }: Props) {
           <section id="projects" className="relative mt-20 scroll-mt-28 border-t border-border pt-20 sm:mt-28 sm:pt-24">
             <div className="site-container">
               <Reveal>
-                <Eyebrow>Campaigns</Eyebrow>
+                {/* "Development campaigns" was right while every project here
+                    was an off-plan launch. The LEOS sales application is an
+                    internal tool, so on that page the heading and the standfirst
+                    both described five of six cards. A project carrying `kind`
+                    is by definition not a launch, so one `some()` keeps the
+                    wording true without a second template or a per-client
+                    override. */}
+                <Eyebrow>{hasNonCampaign ? "The work" : "Campaigns"}</Eyebrow>
                 <h2 className="t-h2 mt-4 text-ink">
-                  {c.projects.length === 1 ? "Development campaign" : "Development campaigns"}
+                  {hasNonCampaign
+                    ? "Campaigns and tools"
+                    : c.projects.length === 1
+                      ? "Development campaign"
+                      : "Development campaigns"}
                 </h2>
                 <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">
                   Each launch ran the same way: a landing page built to capture
                   qualified leads, and the campaign creative that fed it.
+                  {hasNonCampaign
+                    ? " Alongside them, the internal tools the sales team works with day to day."
+                    : ""}
                 </p>
                 {/* Contextual link to the vertical page. This is the most
                     relevant page on the site to send a property developer to,
@@ -288,21 +307,33 @@ export default async function ClientCaseStudy({ params }: Props) {
                       href={`/portfolio/${c.slug}/${p.slug}`}
                       className="card-hover group flex h-full flex-col overflow-hidden r-card surface-1"
                     >
+                      {/* `object-contain` for a designed cover, `object-cover`
+                          for a capture.
+                          
+                          The card well is 4:3. A campaign capture is a crop of a
+                          much taller page, so cropping it further costs nothing.
+                          A designed cover is composed to its own edges: the
+                          sales application cover is 16:10 with a tablet sitting
+                          at the right-hand edge, and `object-cover` cut the
+                          tablet in half. Letterboxing inside the same 4:3 well
+                          keeps every card the same height. */}
                       <Image
                         src={p.cardImage}
-                        alt={`${p.name} campaign creative`}
+                        alt={p.cardImageAlt ?? `${p.name} campaign creative`}
                         width={1400}
                         height={1400}
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        className={`aspect-[4/3] w-full object-cover ${
-                          p.cardImagePosition === "top" ? "object-top" : ""
+                        className={`aspect-[4/3] w-full ${
+                          p.cardImageFit === "contain"
+                            ? "bg-bg-soft/60 object-contain"
+                            : `object-cover ${p.cardImagePosition === "top" ? "object-top" : ""}`
                         }`}
                       />
                       <div className="flex flex-1 flex-col p-6">
                         <h3 className="t-h4 text-ink">{p.name}</h3>
                         <p className="mt-2.5 flex-1 text-sm text-muted leading-relaxed">{p.cardBlurb}</p>
                         <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
-                          View the campaign{" "}
+                          {p.kind ? `View the ${p.kind}` : "View the campaign"}{" "}
                           <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
                         </span>
                       </div>

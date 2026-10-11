@@ -83,13 +83,23 @@ export function GalleryGrid({ gallery }: { gallery: Gallery }) {
   // ~680 real pixels on a 2x phone, so mobile downloaded *more* image data than
   // desktop (where four tiles share the row and need ~580px each). Two columns
   // drops each tile to ~380px and roughly halves mobile image weight.
+  // `screens` boards carry their own title and caption inside the artwork, so a
+  // square crop would cut both off. Two columns at full ratio instead, and one
+  // column on phones because a 1600px-wide board halved is unreadable type.
+  const isScreens = gallery.layout === "screens";
+  const ext = gallery.ext ?? "avif";
+
   return (
-    <div className="mt-7 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+    <div
+      className={`mt-7 grid gap-3 sm:gap-5 ${
+        isScreens ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-2 lg:grid-cols-4"
+      }`}
+    >
       {gallery.items.map((item, i) => (
         <Reveal key={item.file} delay={(i % 3) * 0.08}>
           <figure className="overflow-hidden r-card surface-2">
             <Image
-              src={`${gallery.basePath}/${item.file}.avif`}
+              src={`${gallery.basePath}/${item.file}.${ext}`}
               alt={item.alt}
               width={gallery.width}
               height={gallery.height}
@@ -98,8 +108,8 @@ export function GalleryGrid({ gallery }: { gallery: Gallery }) {
               // inside max-w-7xl with padding and gaps, so a tile is ~293px fixed
               // on large screens, not 25% of a 1440px viewport (360px). That gap
               // alone made desktop fetch an 800px file instead of a 640px one.
-              sizes="(min-width: 1024px) 300px, 45vw"
-              className="aspect-square w-full object-cover"
+              sizes={isScreens ? "(min-width: 640px) 610px, 92vw" : "(min-width: 1024px) 300px, 45vw"}
+              className={isScreens ? "w-full" : "aspect-square w-full object-cover"}
             />
             <figcaption className="border-t border-border px-4 py-3 text-xs text-muted">
               {item.caption}

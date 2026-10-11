@@ -124,16 +124,24 @@ export default function GalleryLightbox({
             if (e.target === e.currentTarget) setOpen(null);
           }}
         >
-          {/* Capped at the source width. The sources are 800x800, so a wider
-              dialog only upscales — more screen, no more detail. */}
-          <div className="relative w-full max-w-[min(88vh,800px)]">
+          {/* Capped at the source width. The square carousel slides are 800x800,
+              so a wider dialog only upscales — more screen, no more detail. The
+              `screens` boards are 1600 wide and landscape, so they get the width
+              and a viewport-height cap instead. */}
+          <div
+            className={
+              gallery.layout === "screens"
+                ? "relative w-full max-w-[min(150vh,1400px)]"
+                : "relative w-full max-w-[min(88vh,800px)]"
+            }
+          >
             <Image
               key={item.file}
-              src={`${gallery.basePath}/${item.file}.avif`}
+              src={`${gallery.basePath}/${item.file}.${gallery.ext ?? "avif"}`}
               alt={item.alt}
               width={gallery.width}
               height={gallery.height}
-              sizes="(min-width: 900px) 800px, 92vw"
+              sizes={gallery.layout === "screens" ? "(min-width: 1500px) 1400px, 92vw" : "(min-width: 900px) 800px, 92vw"}
               priority
               className="w-full rounded-xl"
             />
