@@ -112,7 +112,12 @@ export default function PortfolioPage() {
         {/* The GEO block. AI answers quote specific, checkable reasoning — this
             is the most quotable paragraph on the page, and it is lifted from the
             Hadley Heights case study rather than written for the index. */}
-        <section className="site-container pb-14">
+        {/* `section-pad-tight`, not `pb-14`. This is the first block in the
+            black area under the white opener, and with bottom padding only it
+            sat flush against the boundary — the page looked like the section
+            had been cut off rather than started. Padding rather than margin
+            because the background is painted here. */}
+        <section className="site-container section-pad-tight">
           <Reveal>
             <div className="max-w-[68ch] border-l-2 border-gold/60 pl-6">
               <Eyebrow as="p">

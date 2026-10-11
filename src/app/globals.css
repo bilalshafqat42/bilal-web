@@ -426,9 +426,12 @@ nav[aria-label="Breadcrumb"] a,
 /* Full-viewport scrim behind the mega menu: blurs and dims the page so the
    translucent panel above it stays readable over any section. */
 .mega-backdrop {
-  background: rgba(6, 6, 9, 0.82);
-  -webkit-backdrop-filter: blur(18px) saturate(115%);
-  backdrop-filter: blur(18px) saturate(115%);
+  /* Raised from 0.82 with the panel going opaque: a near-solid panel over a
+     partly-visible page made the scrim the weak link, and the page still read
+     through either side of the menu. */
+  background: rgba(6, 6, 9, 0.94);
+  -webkit-backdrop-filter: blur(28px) saturate(115%);
+  backdrop-filter: blur(28px) saturate(115%);
 }
 
 .text-gradient {
@@ -905,14 +908,25 @@ nav[aria-label="Breadcrumb"] a,
  * pill reads as two unrelated objects. It therefore takes the pill's width and
  * radius, and drops the top border it only needed when it sat flush under a
  * full-width bar. */
+/* **The panel spans the viewport in both states (2026-10-11.)**
+   
+   It used to inherit the floating pill's width and radius, so scrolling turned
+   a full-width menu into a rounded 1180px card hanging under the bar. Two
+   problems with that. The menu is four columns of service links plus a preview
+   rail, and 1180px is not enough room for them, so the columns crushed. And a
+   rounded box floating over the page is a different object from the bar it
+   came out of, which is the opposite of what attaching it to the pill was for.
+   
+   Full width, square corners, opaque. The padding rules below are kept at 0 so
+   the inner panel reaches the edge rather than sitting in a gutter. */
 .nav-header.is-floating .mega-panel {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .nav-header.is-floating .mega-panel-inner {
-  max-width: calc(100% - 0rem);
-  margin-inline: auto;
+  max-width: none;
+  margin-inline: 0;
   border-top-width: 0;
   /* Matches the pill: no outline, blur and shadow doing the separating.
      
@@ -928,26 +942,26 @@ nav[aria-label="Breadcrumb"] a,
      needs it, and without it the panel there is a flat 92% plate with no blur
      at all. */
   border: 0;
-  border-radius: 1.25rem;
-  background: color-mix(in oklab, var(--color-bg) 96%, transparent);
+  border-radius: 0;
+  background: var(--color-bg);
   -webkit-backdrop-filter: blur(40px) saturate(150%);
   backdrop-filter: blur(40px) saturate(150%);
   box-shadow: 0 24px 60px -18px rgb(0 0 0 / 0.85);
 }
 
-@media (min-width: 1024px) {
-  .nav-header.is-floating .mega-panel {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-  .nav-header.is-floating .mega-panel-inner {
-    max-width: min(1180px, 100%);
-  }
-}
-
+/* **Opaque, not translucent (2026-10-11.)**
+   
+   The panel was 90% over a blur, which reads as frosted glass on a photograph
+   and as a legibility problem on a page of white cards: the portfolio grid
+   underneath stayed resolvable through the service links. A menu is a surface
+   you read, not a filter you look through, so the page behind it is hidden
+   outright and the blur is left in place only for the sliver of translucency
+   browsers round away. */
 .mega-panel-inner {
-  transition: max-width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    border-radius 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  max-width: none;
+  border-radius: 0;
+  background: var(--color-bg);
+  transition: background 0.2s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {

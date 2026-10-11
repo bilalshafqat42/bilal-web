@@ -91,13 +91,16 @@ function MegaPanel({
           : "invisible -translate-y-2 opacity-0 pointer-events-none"
       }`}
     >
-      {/* `mega-panel-inner` picks up the pill's width and radius while the
-          header is floating, so the dropdown stays visually attached to the bar
-          it came from instead of spanning the viewport under an inset pill. */}
+      {/* `mega-panel-inner` spans the viewport in both states. It used to take
+          the floating pill's width and radius, which crushed four columns into
+          1180px and turned the menu into a card hanging over the page rather
+          than a surface coming out of the bar. `glass-nav` is dropped here:
+          the pill stays translucent because it is six words over a background,
+          but the panel is a surface you read and is opaque. */}
       <div
         role="group"
         aria-label={label}
-        className="mega-panel-inner glass-nav border-t border-border shadow-2xl shadow-black/40"
+        className="mega-panel-inner border-t border-border shadow-2xl shadow-black/40"
       >
         <div className="px-10 py-10">{children}</div>
       </div>

@@ -243,6 +243,15 @@ export type Client = {
    *  No results in here and none to be added without Bilal's own figures. A
    *  case study with invented numbers is worth less than one with none. */
   depth?: { heading: string; paragraphs: string[] }[];
+  /** One project lifted out of the grid into its own section.
+   *
+   *  The sales application sat as the third card in a row headed "Development
+   *  campaigns", between two off-plan launches. It is not a campaign, it is the
+   *  tool the sales floor runs on, and a card in a grid of five says the
+   *  opposite: that it is one launch among several.
+   *
+   *  `projectSlug` is removed from the grid so it cannot appear twice. */
+  featured?: { projectSlug: string; eyebrow: string; heading: string; body: string };
   website?: { heading: string; body: string; capture: Capture };
   /** Phone screens, rendered in phone frames rather than a square gallery grid.
    *  Deliberately not a `Gallery`: GalleryGrid forces `aspect-square
@@ -301,7 +310,15 @@ export type Client = {
      *  component. */
     outcomes?: { value?: string; label: string; note?: string }[];
   };
+  /** Identity moments: announcements, the experience centre, a teaser. Posts
+   *  about the company rather than about a building. */
   brandSocial?: Gallery;
+  /** The creative sets: campaign and lifestyle artwork made as a series.
+   *
+   *  Split out of `brandSocial` on 2026-10-11. One grid headed "Brand social
+   *  creative" held an awards announcement next to a rooftop render next to a
+   *  lifestyle set, which are three different jobs shown as one. */
+  socialDesigns?: Gallery;
   projects: Project[];
   keywords: string[];
 };
@@ -872,6 +889,12 @@ export const clients: Client[] = [
     ],
     scopeIntro:
       "A two-year engagement covering both the development side and the campaign side, which is unusual for a single supplier: the same person built the website that campaigns pointed at, and made the creative that drove traffic to it.",
+    featured: {
+      projectSlug: "sales-app",
+      eyebrow: "Built for the sales floor",
+      heading: "A sales application designed and developed for LEOS",
+      body: "Not an off-the-shelf tool with a logo on it. The interface, the flow and the build are all custom to how the LEOS sales team actually works: every development in one place, live unit availability read from the CRM, rotatable 3D floor plates and a location map drawn for the conversation rather than embedded from Google. It runs on the touch screen in the Dubai experience centre, and the team took it onto tablets and phones without being asked to.",
+    },
     scope: [
       {
         heading: "Corporate website",
@@ -1076,45 +1099,61 @@ export const clients: Client[] = [
       ],
     },
     brandSocial: {
-      heading: "Brand social creative",
-      body: "Brand-level assets built to run across paid and organic social, kept consistent with the identity used on the website.",
+      heading: "Social media branding",
+      body: "Posts about the company rather than about a building: the Arabian Property Awards win, the Dubai experience centre opening, and the teaser that ran before a development was named. These set what the LEOS account looks like between launches, which is most of the year.",
       basePath: "/portfolio/leos/social-media",
       width: 800,
       height: 800,
       items: [
         {
           file: "1",
-          alt: "LEOS social creative announcing an Arabian Property Awards 2023-2024 win, over a residential high-rise exterior with the Dubai skyline behind it",
+          alt:
+            "LEOS social creative announcing an Arabian Property Awards 2023-2024 win, over a residential high-rise exterior with the Dubai skyline behind it",
           caption: "Arabian Property Awards 2023\u20132024 win announcement",
         },
         {
           file: "2",
-          alt: "LEOS experience centre interior creative captioned Excellence Through Design, showing the lounge and bar with a curved ceiling light feature",
+          alt:
+            "LEOS experience centre interior creative captioned Excellence Through Design, showing the lounge and bar with a curved ceiling light feature",
           caption: "Dubai experience centre",
         },
         {
+          file: "5",
+          alt:
+            "LEOS teaser creative captioned Coming Soon Stay Tuned, showing two people gardening on a planted terrace",
+          caption: "Pre-launch teaser",
+        },
+      ],
+    },
+    socialDesigns: {
+      heading: "Social media designs",
+      body: "The creative sets, made as series rather than as single posts. A development render and a lifestyle frame are built on the same grid and the same type, so a feed holding both reads as one account rather than as a brand and its campaigns competing.",
+      basePath: "/portfolio/leos/social-media",
+      width: 800,
+      height: 800,
+      items: [
+        {
           file: "3",
-          alt: "Weybridge Gardens campaign creative showing an aerial render of the rooftop pool deck with cabanas and landscaped terraces",
+          alt:
+            "Weybridge Gardens campaign creative showing an aerial render of the rooftop pool deck with cabanas and landscaped terraces",
           caption: "Weybridge Gardens \u2014 rooftop amenity render",
         },
         {
           file: "4",
-          alt: "Hadley Heights campaign creative showing poolside leisure beside turquoise water",
+          alt:
+            "Hadley Heights campaign creative showing poolside leisure beside turquoise water",
           caption: "Hadley Heights \u2014 campaign creative",
         },
         {
-          file: "5",
-          alt: "LEOS teaser creative captioned Coming Soon Stay Tuned, showing two people gardening on a planted terrace",
-          caption: "Pre-launch teaser",
-        },
-        {
           file: "6",
-          alt: "LEOS brand creative captioned Modern Living Awaits, showing a resident in a turquoise swimming pool",
+          alt:
+            "LEOS brand creative captioned Modern Living Awaits, showing a resident in a turquoise swimming pool",
           caption: "Brand campaign \u2014 amenity lifestyle",
         },
         {
           file: "7",
-          alt: "LEOS brand creative captioned Vibrant Spaces Are Emerging, showing a deep green interior with framed artwork, plants and lounge seating",
+          alt:
+            "LEOS brand creative captioned Vibrant Spaces Are Emerging, showing a deep green interior with framed artwork, plants and lounge seating",
           caption: "Brand campaign \u2014 interior lifestyle",
         },
       ],

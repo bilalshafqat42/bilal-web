@@ -97,7 +97,12 @@ export function GalleryGrid({ gallery }: { gallery: Gallery }) {
     >
       {gallery.items.map((item, i) => (
         <Reveal key={item.file} delay={(i % 3) * 0.08}>
-          <figure className="overflow-hidden r-card surface-2">
+          {/* No card chrome. `r-card surface-2` put a bordered, rounded panel
+              around artwork that already carries its own ground and framing,
+              which is a box around a box. Matching `CaseStudyStory`'s pair
+              block here is what makes every case study on the site read as one
+              design rather than two. */}
+          <figure className={isScreens ? "" : "overflow-hidden r-chip"}>
             <Image
               src={`${gallery.basePath}/${item.file}.${ext}`}
               alt={item.alt}
@@ -111,9 +116,7 @@ export function GalleryGrid({ gallery }: { gallery: Gallery }) {
               sizes={isScreens ? "(min-width: 640px) 610px, 92vw" : "(min-width: 1024px) 300px, 45vw"}
               className={isScreens ? "w-full" : "aspect-square w-full object-cover"}
             />
-            <figcaption className="border-t border-border px-4 py-3 text-xs text-muted">
-              {item.caption}
-            </figcaption>
+            <figcaption className="mt-3 text-xs text-muted">{item.caption}</figcaption>
           </figure>
         </Reveal>
       ))}

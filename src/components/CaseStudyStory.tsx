@@ -62,7 +62,12 @@ function PairImages({ images }: { images: [StoryImage, StoryImage] }) {
   return (
     <div className="section-tight site-container grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
       {images.map((image) => (
-        <figure key={image.src} className="overflow-hidden r-card surface-2">
+        // No card, no border, no radius. These boards already carry their own
+        // dark ground and their own framing, so wrapping them in a bordered
+        // rounded panel put a box around a box. The caption sits under the
+        // image as plain text, the same way the full-bleed one does, which is
+        // what makes the two block types read as one design.
+        <figure key={image.src}>
           <Image
             src={image.src}
             alt={image.alt}
@@ -72,9 +77,7 @@ function PairImages({ images }: { images: [StoryImage, StoryImage] }) {
             className="w-full"
           />
           {image.caption ? (
-            <figcaption className="border-t border-border px-4 py-3 text-xs text-muted">
-              {image.caption}
-            </figcaption>
+            <figcaption className="mt-3.5 text-sm text-muted">{image.caption}</figcaption>
           ) : null}
         </figure>
       ))}

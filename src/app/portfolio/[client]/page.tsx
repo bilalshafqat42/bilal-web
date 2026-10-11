@@ -68,7 +68,18 @@ export default async function ClientCaseStudy({ params }: Props) {
   // A project with a `kind` is something other than an off-plan launch, which
   // changes what the projects section can honestly be called. See the comment
   // on the heading below.
-  const hasNonCampaign = c.projects.some((p) => p.kind);
+  // The featured project renders in its own section and is removed from the
+  // grid, so it cannot appear twice on one page.
+  const featuredProject = c.featured
+    ? c.projects.find((p) => p.slug === c.featured!.projectSlug)
+    : undefined;
+  const gridProjects = featuredProject
+    ? c.projects.filter((p) => p.slug !== featuredProject.slug)
+    : c.projects;
+
+  // With the one non-campaign project lifted out, the grid is launches again
+  // and can go back to saying so.
+  const hasNonCampaign = gridProjects.some((p) => p.kind);
 
   const url = `${SITE}/portfolio/${c.slug}`;
 
@@ -155,6 +166,48 @@ export default async function ClientCaseStudy({ params }: Props) {
             </div>
           </div>
         </section>
+
+        {/* The featured project, above the website and everything else.
+            Order on this page is deliberate: the tool the sales floor runs on,
+            then the site it points at, then the app, then the creative. That is
+            closest-to-the-sale first, which is the order a developer reading
+            this cares about. */}
+        {featuredProject && c.featured ? (
+          <section className="relative section">
+            <div className="site-container">
+              <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-16">
+                <Reveal>
+                  <Link href={`/portfolio/${c.slug}/${featuredProject.slug}`} className="block">
+                    <Image
+                      src={featuredProject.cardImage}
+                      alt={featuredProject.cardImageAlt ?? featuredProject.name}
+                      width={1600}
+                      height={1000}
+                      sizes="(min-width: 1024px) 48vw, 92vw"
+                      className="w-full"
+                    />
+                  </Link>
+                </Reveal>
+                <Reveal>
+                  <div>
+                    <Eyebrow>{c.featured.eyebrow}</Eyebrow>
+                    <h2 className="t-h2 mt-4 text-ink">{c.featured.heading}</h2>
+                    <p className="mt-5 max-w-[60ch] text-lg leading-relaxed text-muted">
+                      {c.featured.body}
+                    </p>
+                    <Link
+                      href={`/portfolio/${c.slug}/${featuredProject.slug}`}
+                      className="tap-target mt-7 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+                    >
+                      See how it was built
+                      <ArrowRight size={15} />
+                    </Link>
+                  </div>
+                </Reveal>
+              </div>
+            </div>
+          </section>
+        ) : null}
 
         {c.website ? (
           <section className="relative section">
@@ -261,7 +314,27 @@ export default async function ClientCaseStudy({ params }: Props) {
           </section>
         ) : null}
 
-        {c.projects.length > 0 ? (
+        {c.socialDesigns ? (
+          <section className="relative section">
+            <div className="site-container">
+              <Reveal>
+                <Eyebrow>Campaign creative</Eyebrow>
+                <h2 className="t-h2 mt-4 text-ink">
+                  {c.socialDesigns.heading}
+                </h2>
+                <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">{c.socialDesigns.body}</p>
+              </Reveal>
+              {/* Same treatment as the campaign carousel: these tiles render
+                  at ~283px and the creative carries copy that cannot be read at
+                  that size. */}
+              <GalleryLightbox gallery={c.socialDesigns}>
+                <GalleryGrid gallery={c.socialDesigns} />
+              </GalleryLightbox>
+            </div>
+          </section>
+        ) : null}
+
+        {gridProjects.length > 0 ? (
           <section id="projects" className="relative mt-20 scroll-mt-28 border-t border-border pt-20 sm:mt-28 sm:pt-24">
             <div className="site-container">
               <Reveal>
@@ -276,7 +349,7 @@ export default async function ClientCaseStudy({ params }: Props) {
                 <h2 className="t-h2 mt-4 text-ink">
                   {hasNonCampaign
                     ? "Campaigns and tools"
-                    : c.projects.length === 1
+                    : gridProjects.length === 1
                       ? "Development campaign"
                       : "Development campaigns"}
                 </h2>
@@ -301,7 +374,7 @@ export default async function ClientCaseStudy({ params }: Props) {
               </Reveal>
 
               <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {c.projects.map((p, i) => (
+                {gridProjects.map((p, i) => (
                   <Reveal key={p.slug} delay={i * 0.08}>
                     <Link
                       href={`/portfolio/${c.slug}/${p.slug}`}

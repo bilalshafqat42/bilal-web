@@ -99,16 +99,20 @@ export function allItems(): Item[] {
       }
     }
 
-    if (c.brandSocial) {
-      for (const item of c.brandSocial.items) {
+    // Both social galleries feed the discipline pages. Splitting the one grid
+    // into branding and designs must not drop four pieces off /portfolio/
+    // social-media-marketing, which iterating only `brandSocial` would do.
+    for (const social of [c.brandSocial, c.socialDesigns]) {
+      if (!social) continue;
+      for (const item of social.items) {
         out.push({
-          key: `${c.brandSocial.basePath}/${item.file}`,
+          key: `${social.basePath}/${item.file}`,
           kind: "social",
           deliverable: "Brand creative",
           clientSlug: c.slug,
-          src: `${c.brandSocial.basePath}/${item.file}.avif`,
-          width: c.brandSocial.width,
-          height: c.brandSocial.height,
+          src: `${social.basePath}/${item.file}.avif`,
+          width: social.width,
+          height: social.height,
           alt: item.alt,
           label: `${c.name} — brand`,
           meta: item.caption,
