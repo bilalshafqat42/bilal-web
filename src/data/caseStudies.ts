@@ -50,6 +50,41 @@ export type Gallery = {
   items: GalleryItem[];
 };
 
+/** One image inside a `Story`. */
+export type StoryImage = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  /** Shown under the image. Captions are extractable text, so an uncaptioned
+   *  image is invisible to search and to an assistant reading the page. */
+  caption?: string;
+};
+
+/**
+ * The case study narrative, as an ordered list of blocks.
+ *
+ * Replaces the old `gallery` + `caseStudyDepth` pair, which put every image in
+ * one grid and every word in one wall underneath. A reader got the pictures or
+ * the reasoning, never the picture next to the reason for it.
+ *
+ * Three block types, deliberately. Every extra one is another way for two case
+ * studies to end up looking different:
+ *
+ *   full   one image, edge to edge
+ *   pair   two images side by side
+ *   text   a heading and its paragraphs, in a reading measure
+ *
+ * The intended rhythm is full, text, pair, text, full, text — a wide image to
+ * open a movement, the reasoning behind it, then detail. Nothing enforces that
+ * order, because a case study with four screens should not be padded to fit a
+ * pattern, but a new one should start there and deviate for a reason.
+ */
+export type StoryBlock =
+  | { type: "full"; image: StoryImage }
+  | { type: "pair"; images: [StoryImage, StoryImage] }
+  | { type: "text"; eyebrow?: string; heading: string; paragraphs: string[] };
+
 export type PlaceSchema = {
   units?: number;
   locality: string;
@@ -126,6 +161,11 @@ export type Project = {
     mobileCapture?: Capture;
   };
   gallery?: Gallery;
+  /** The narrative template. Takes precedence over `gallery` and over this
+   *  project's `caseStudyDepth` entry: a project either tells its story in
+   *  blocks or in the old grid-plus-wall, never both, or the page says
+   *  everything twice. */
+  story?: StoryBlock[];
   place?: PlaceSchema;
   /** Campaign outcomes.
    *
@@ -587,48 +627,103 @@ const salesApp: Project = {
     { label: "Also used on", value: "Tablets and mobile" },
     { label: "Developments", value: "Hadley Heights, Weybridge Gardens, Cavendish Square" },
   ],
-  gallery: {
-    heading: "The screens",
-    body: "Six screens from the application, in the order a sales manager moves through them: the main menu, the development's exteriors and interiors, the location map, then the drill down from building to floor to a single unit. That last step is the one that matters most in a meeting, because it is where a general conversation becomes a specific apartment.",
-    basePath: "/portfolio/leos/sales-app",
-    // Designed boards, not square crops. See the `layout` note on `Gallery`.
-    ext: "jpg",
-    layout: "screens",
-    width: 1600,
-    height: 1340,
-    items: [
-      {
-        file: "1-home",
-        alt: "Main menu of the LEOS sales presentation application on a showroom touch screen, showing four tiles for Projects, Experience Centre, Show Apartment and Intro Video",
-        caption: "Main menu — one tap to any development",
+  story: [
+    {
+      type: "full",
+      image: {
+        src: "/portfolio/leos/sales-app/1-home.jpg",
+        alt:
+          "Main menu of the LEOS sales presentation application on a showroom touch screen, showing four tiles for Projects, Experience Centre, Show Apartment and Intro Video",
+        width: 1600,
+        height: 1340,
+        caption: "The main menu. One tap to any development.",
       },
-      {
-        file: "2-exterior",
-        alt: "Exteriors screen of the LEOS sales application showing a dusk render of a Jumeirah Village Circle development, with a side rail for interiors, amenities, animation, walkthrough and 3D model",
-        caption: "Exteriors — with the full content rail alongside",
+    },
+    {
+      type: "text",
+      eyebrow: "The problem",
+      heading: "What the sales presentation application replaced",
+      paragraphs: [
+        "An experience centre meeting has a shape. A buyer arrives interested in a development, not a unit. Over the next hour that narrows: which tower, then which floor, then which apartment, then what it costs and whether it is still available. The job of the room is to carry someone through that narrowing without losing them.",
+        "The tooling did not follow that shape. Renders and walkthroughs lived in one place, unit availability lived in the CRM, floor plans lived in PDFs, and the location story lived in a printed brochure. A sales manager moving a buyer from interest to a specific apartment was switching between systems in front of them, and the one question that closes the conversation — is this one still available — was the one that could not be answered on the spot with confidence.",
+        "Anything the buyer asked for afterwards had to be found and sent separately, which put a gap of hours or days between the meeting and the follow-up.",
+      ],
+    },
+    {
+      type: "pair",
+      images: [
+        {
+          src: "/portfolio/leos/sales-app/2-exterior.jpg",
+          alt:
+            "Exteriors screen of the LEOS sales presentation application showing a dusk render of a Jumeirah Village Circle development, with a side rail for interiors, amenities, animation, walkthrough and 3D model",
+          width: 1600,
+          height: 1340,
+          caption: "Exteriors, with the full content rail alongside",
+        },
+        {
+          src: "/portfolio/leos/sales-app/4-interiors.jpg",
+          alt:
+            "Interiors screen of the LEOS sales presentation application showing a furnished living and dining room render",
+          width: 1600,
+          height: 1340,
+          caption: "Interiors, before the building exists",
+        },
+      ],
+    },
+    {
+      type: "text",
+      eyebrow: "How it was built",
+      heading: "Building around the narrowing, not the content",
+      paragraphs: [
+        "The sales presentation application is organised the way the meeting runs rather than the way the content is filed. The main menu opens on developments. A development opens on its exteriors, with interiors, amenities, animation, walkthrough and the 3D model one tap away in a rail that never moves. From there the drill down goes building, floor, unit.",
+        "The 3D floor view is where the tool stops being a presentation. The model rotates, a floor selector runs down one side, and selecting a floor shows every unit on it with its current state. Tapping a unit opens the floor plan beside its specification: type, floor, balcony size, total area, availability. That availability reads from the CRM, the same system the team books against, so it is true at the moment it is shown rather than true as of the last export.",
+        "The location map was drawn rather than embedded. A generic map pin answers where the building is. A buyer in a meeting is asking something narrower: how far is this from the places I already use. The custom map marks the site against Dubai Marina, Palm Jumeirah, Mall of the Emirates, Downtown and the airport, which is the comparison a buyer is actually running.",
+        "Brochures and fact sheets are shareable from inside the application, so the follow-up leaves the room with the buyer instead of arriving two days later.",
+      ],
+    },
+    {
+      type: "full",
+      image: {
+        src: "/portfolio/leos/sales-app/3-floor.jpg",
+        alt:
+          "3D floor view in the LEOS sales presentation application showing a rotatable building model with a floor selector and a grid of units on the eighteenth floor",
+        width: 1600,
+        height: 1340,
+        caption: "The 3D floor view. Tap a floor, see what is left on it.",
       },
-      {
-        file: "4-interiors",
-        alt: "Interiors screen of the LEOS sales application showing a furnished living and dining room render",
-        caption: "Interiors — rooms a buyer can see before the building exists",
-      },
-      {
-        file: "6-floor",
-        alt: "Custom location map in the LEOS sales application showing the Hadley Heights site marked against Dubai Marina, Palm Jumeirah, Downtown Dubai and Dubai International Airport",
-        caption: "Location — a map drawn for the conversation",
-      },
-      {
-        file: "3-floor",
-        alt: "3D floor view in the LEOS sales presentation application showing a rotatable building model with a floor selector and a grid of units on the eighteenth floor",
-        caption: "3D floors — tap a floor, see what is left on it",
-      },
-      {
-        file: "5-units",
-        alt: "Single unit screen in the LEOS sales application showing a two bedroom floor plan alongside a specification panel with availability, floor, balcony size and total area",
-        caption: "Unit — the floor plan and its specification",
-      },
-    ],
-  },
+    },
+    {
+      type: "pair",
+      images: [
+        {
+          src: "/portfolio/leos/sales-app/6-floor.jpg",
+          alt:
+            "Custom location map in the LEOS sales presentation application showing the Hadley Heights site marked against Dubai Marina, Palm Jumeirah, Downtown Dubai and Dubai International Airport",
+          width: 1600,
+          height: 1340,
+          caption: "A map drawn for the conversation",
+        },
+        {
+          src: "/portfolio/leos/sales-app/5-units.jpg",
+          alt:
+            "Single unit screen in the LEOS sales presentation application showing a two bedroom floor plan alongside a specification panel with availability, floor, balcony size and total area",
+          width: 1600,
+          height: 1340,
+          caption: "One unit, plan and specification together",
+        },
+      ],
+    },
+    {
+      type: "text",
+      eyebrow: "What changed",
+      heading: "What changed, and why a marketer built it",
+      paragraphs: [
+        "It was built for one screen: the large touch display in the Dubai experience centre. The layout was made responsive regardless, on the assumption that nothing stays on the device it was designed for. The sales team began using it on tablets and phones outside the centre, and sending live project detail and availability to customers directly from it. A tool being used beyond its brief is the clearest signal it works that a project gets without a figure attached to it.",
+        "The reason this sits in a marketing portfolio rather than a development one is that the two sides share a data source. The availability that decides what a sales manager shows in a meeting is the same availability that should decide which units a campaign promotes. When those are owned separately they are reconciled by hand, late, and usually after a campaign has already sent traffic to an apartment that sold last week. Owning both meant the campaign work and the sales floor were reading from the same place.",
+        "No performance figures are claimed here. LEOS released none for publication, and a case study carrying an invented number is worth less than one carrying none.",
+      ],
+    },
+  ],
   faqs: [
     {
       question: "Where does the unit availability come from?",

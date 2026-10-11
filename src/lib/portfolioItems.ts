@@ -158,7 +158,7 @@ export function allItems(): Item[] {
             deliverable: "Campaign creative",
             clientSlug: c.slug,
             projectSlug: p.slug,
-            src: `${p.gallery.basePath}/${item.file}.avif`,
+            src: `${p.gallery.basePath}/${item.file}.${p.gallery.ext ?? "avif"}`,
             width: p.gallery.width,
             height: p.gallery.height,
             alt: item.alt,
@@ -166,6 +166,32 @@ export function allItems(): Item[] {
             meta: item.caption,
             href: `/portfolio/${c.slug}/${p.slug}`,
           });
+        }
+      }
+      // Story images feed the discipline pages the same way gallery items do,
+      // but as `app-screen` rather than `social`. The gallery branch hardcodes
+      // "Campaign creative", which was already a stretch for a carousel slide
+      // and is simply wrong for a screen out of an application.
+      if (p.story) {
+        for (const block of p.story) {
+          const images =
+            block.type === "full" ? [block.image] : block.type === "pair" ? block.images : [];
+          for (const image of images) {
+            out.push({
+              key: image.src,
+              kind: "app-screen",
+              deliverable: "App screens",
+              clientSlug: c.slug,
+              projectSlug: p.slug,
+              src: image.src,
+              width: image.width,
+              height: image.height,
+              alt: image.alt,
+              label: p.name,
+              meta: image.caption ?? p.name,
+              href: `/portfolio/${c.slug}/${p.slug}`,
+            });
+          }
         }
       }
     }

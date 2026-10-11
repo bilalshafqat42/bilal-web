@@ -12,6 +12,7 @@ import Reveal from "@/components/Reveal";
 import Surface from "@/components/Surface";
 import PageOpener from "@/components/PageOpener";
 import FaqSection from "@/components/FaqSection";
+import CaseStudyStory from "@/components/CaseStudyStory";
 import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/CaseStudyParts";
 import { clients, getProject } from "@/data/caseStudies";
 import CtaButton from "@/components/CtaButton";
@@ -60,7 +61,13 @@ export default async function ProjectCaseStudy({ params }: Props) {
   const { client: c, project: p } = found;
 
   const url = `${SITE}/portfolio/${c.slug}/${p.slug}`;
-  const depth = caseStudyDepth[p.slug];
+  // A project tells its story one way or the other, never both. `story` is the
+  // template every new case study uses; `depth` + `gallery` is what the four
+  // LEOS launches still run on until their images are reshot wide enough for a
+  // full-bleed block. Reading it here rather than at each call site means the
+  // two can never both render.
+  const depth = p.story ? undefined : caseStudyDepth[p.slug];
+  const gallery = p.story ? undefined : p.gallery;
   const siblings = c.projects.filter((x) => x.slug !== p.slug);
 
   // Emitted only when the project carries questions, and built from the exact
@@ -205,6 +212,8 @@ export default async function ProjectCaseStudy({ params }: Props) {
           }
         />
 
+        {p.story ? <CaseStudyStory story={p.story} /> : null}
+
         {depth ? (
           <section className="relative section">
             <div className="site-container">
@@ -283,21 +292,21 @@ export default async function ProjectCaseStudy({ params }: Props) {
           </section>
         ) : null}
 
-        {p.gallery ? (
+        {gallery ? (
           <section className="relative section">
             <div className="site-container">
               <Reveal>
                 <Eyebrow>Creative</Eyebrow>
                 <h2 className="t-h2 mt-4 text-ink">
-                  {p.gallery.heading}
+                  {gallery.heading}
                 </h2>
-                <p className="mt-4 max-w-3xl text-lg text-muted leading-relaxed">{p.gallery.body}</p>
+                <p className="mt-4 max-w-3xl text-lg text-muted leading-relaxed">{gallery.body}</p>
               </Reveal>
               {/* Tiles stay server-rendered inside the island, so their
                   captions and alt text are in the initial HTML. Only the
                   overlay needs client state. */}
-              <GalleryLightbox gallery={p.gallery}>
-                <GalleryGrid gallery={p.gallery} />
+              <GalleryLightbox gallery={gallery}>
+                <GalleryGrid gallery={gallery} />
               </GalleryLightbox>
             </div>
           </section>
