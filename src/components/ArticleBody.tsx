@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 
 import type { Block } from "@/data/blogPosts";
@@ -17,6 +18,45 @@ import { headingIdMap } from "@/lib/headingIds";
  * derived from the heading text, which is stable across a rebuild in a way that
  * an index (`#section-4`) is not.
  */
+
+/**
+ * Inline internal links, written in body text as `[[label|/path]]`.
+ *
+ * Added 2026-10-11 for the daily post series (roadmap 394). Until then only a
+ * heading could carry a link, and only an external one, so an article's only
+ * routes onward were the service rail and the related list — both of which sit
+ * outside the argument. A link inside the sentence that earns it is worth more
+ * to a reader and to a crawler than three in a sidebar.
+ *
+ * Deliberately internal-only. External links keep going on headings, where the
+ * `target="_blank"` and the icon already live; letting arbitrary URLs into body
+ * text would reopen exactly the surface the block schema exists to close.
+ * Anything that is not an in-site path renders as plain text rather than as a
+ * link, so a typo degrades to prose instead of shipping a broken anchor.
+ */
+const INLINE = /\[\[([^\]|]+)\|(\/[^\]]*)\]\]/g;
+
+function withLinks(text: string) {
+  if (!text.includes("[[")) return text;
+  const out: (string | React.ReactElement)[] = [];
+  let last = 0;
+  for (const m of text.matchAll(INLINE)) {
+    const at = m.index ?? 0;
+    if (at > last) out.push(text.slice(last, at));
+    out.push(
+      <Link
+        key={`${at}-${m[2]}`}
+        href={m[2]}
+        className="text-ink underline decoration-gold/40 underline-offset-[6px] transition-colors hover:text-gold hover:decoration-gold"
+      >
+        {m[1]}
+      </Link>,
+    );
+    last = at + m[0].length;
+  }
+  if (last < text.length) out.push(text.slice(last));
+  return out;
+}
 
 export default function ArticleBody({ blocks }: { blocks: Block[] }) {
   // Ids come from `headingIdMap`, built by the same function the contents list
@@ -69,7 +109,7 @@ export default function ArticleBody({ blocks }: { blocks: Block[] }) {
         if (b.t === "p") {
           return (
             <p key={i} className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
-              {b.v}
+              {withLinks(b.v)}
             </p>
           );
         }
@@ -85,7 +125,7 @@ export default function ArticleBody({ blocks }: { blocks: Block[] }) {
             >
               {b.v.map((item, j) => (
                 <li key={j} className="pl-1.5">
-                  {item}
+                  {withLinks(item)}
                 </li>
               ))}
             </Tag>

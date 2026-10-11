@@ -18,7 +18,8 @@
     "onpage": "node scripts/onpage-check.mjs",
     "audit": "node scripts/site-audit.mjs",
     "serp": "node scripts/serp-preview.mjs",
-    "daily": "node scripts/daily.mjs"
+    "daily": "node scripts/daily.mjs",
+    "cards": "node scripts/post-cards.mjs && node scripts/render-cards.mjs"
   },
   "dependencies": {
     "gsap": "^3.15.0",

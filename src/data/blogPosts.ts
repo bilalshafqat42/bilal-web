@@ -84,6 +84,21 @@ export type BlogPost = {
   /** ISO date, from the original byline. */
   published: string;
   tags: string[];
+  /** A lead image for the article.
+   *
+   *  Added 2026-10-11 for the daily post series (roadmap 394). Every post in
+   *  that series ships with an Instagram carousel, and slide one is already a
+   *  designed 1200x630-ish board making the post's single claim — so the asset
+   *  exists either way and the alternative is 77 articles with no image at all.
+   *
+   *  It does three jobs: the article gets something above the body, the share
+   *  card stops being the site-wide default, and `alt` gives the page a piece
+   *  of descriptive text it currently has none of.
+   *
+   *  Optional, and absent on all 76 recovered articles. Their original images
+   *  did not survive the WordPress scrape, and inventing stock art for them
+   *  would be decoration rather than content. */
+  image?: { src: string; alt: string; width: number; height: number };
   /** Body words — paragraphs and list items, excluding headings and code. */
   words: number;
   blocks: Block[];

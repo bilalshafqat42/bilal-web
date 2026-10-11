@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ChevronRight, ArrowLeft } from "lucide-react";
+import Image from "next/image";
 import ArticleBody from "@/components/ArticleBody";
 import ShareRow from "@/components/ShareRow";
 import ArticleToc from "@/components/ArticleToc";
@@ -62,7 +63,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       publishedTime: post.published,
       authors: ["Bilal Shafqat"],
       tags: post.tags,
-      images: OG_IMAGES,
+      // The post's own lead image when it has one, otherwise the site-wide
+      // default. A share card showing the article's actual claim beats one
+      // showing the site logo for the 77th time.
+      images: post.image
+        ? [{ url: post.image.src, width: post.image.width, height: post.image.height, alt: post.image.alt }]
+        : OG_IMAGES,
     },
   };
 }
@@ -172,6 +178,17 @@ export default async function ArticlePage({ params }: PageProps) {
           </div>
 
           <article>
+            {post.image ? (
+              <Image
+                src={post.image.src}
+                alt={post.image.alt}
+                width={post.image.width}
+                height={post.image.height}
+                sizes="(min-width: 1024px) 720px, 92vw"
+                priority
+                className="mb-10 w-full"
+              />
+            ) : null}
             <ArticleBody blocks={post.blocks} />
             {/* Still here as well as in the rail. The rail is for somebody
                 reading; this is the closing argument for somebody who
