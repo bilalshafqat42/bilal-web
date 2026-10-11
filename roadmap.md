@@ -10480,3 +10480,121 @@ is meant to predict.
 **The honest count after the sweep: four pill-like classes and four
 eyebrow-like labels remain, and all eight should.** A component with an escape
 hatch for every caller is harder to change than the markup it replaced.
+
+---
+
+### 394. TODO — Seven daily posts: one social post and one blog post each
+
+Bilal's brief (2026-10-11): seven posts, one a day, each shipped as a social
+post for Instagram and LinkedIn **and** as a detailed blog post on the site.
+Weighting roughly **80% marketing** (digital, paid, performance) and **20%**
+across web development, web design, mobile app development and video editing.
+Purpose: be visible in more places.
+
+**The arithmetic, since 80% of seven is 5.6.** Week one runs **5 marketing + 2
+other**, which is 71/29. Week two runs **6 + 1**, which is 86/14. Across the two
+weeks that averages 79%, and week one gets to show two of the four secondary
+disciplines rather than one. Do not round to 6+1 in week one and call it 80%.
+
+#### Set the expectation before the first post goes out
+
+The site already carries **24 Dubai marketing posts**. In the 90 days to
+2026-10-11 the whole site took **2 clicks from 2,569 impressions**, top-3 share
+**0.5%**, weighted average position **45.9**. Six queries classified "ready to
+buy" sit at average position 82.
+
+Seven more posts on the same domain will not move that in a month. **These are
+distribution-first.** LinkedIn and Instagram reach does not depend on Google,
+and it arrives the day the post goes out. The blog post exists so the social
+post has somewhere to send people, so the claim is checkable, and so the page
+is accumulating age for later. Judge week one on reach, saves and profile
+visits. Judge the SEO effect in March, not in October.
+
+#### The rule that decides whether each post is worth writing
+
+**Every post must say something that is only true because Bilal owns both the
+ad and the page it lands on.** A post about Meta ad structure is a post an
+agency blog already has, written by someone with more authority than this
+domain. A post about what happens to cost per lead when the person buying the
+traffic can also change the form on a Tuesday is not.
+
+If a draft would still be true if written by a media buyer who has never
+touched a codebase, it is the wrong post.
+
+#### Week one
+
+Marketing, five:
+
+| # | Working title | The claim only he can make | Links to |
+| --- | --- | --- | --- |
+| 1 | Your cost per lead is fine. Your sales team is still unhappy. | Volume and quality are different jobs, and the page decides quality, not the targeting | `/services/paid-marketing`, LEOS sales app case study |
+| 2 | The landing page is part of the ad spend | A media buyer waits two weeks for a page change. Same person, same day | `/services/paid-marketing`, `/services/web-design` |
+| 3 | What a UAE business should actually track, and what to ignore | Platform-reported conversions versus what reached the CRM | `/services/crm-marketing-automation` |
+| 4 | Why your retargeting is burning budget | Audience built on a page that never segmented the traffic | `/services/facebook-ads` |
+| 5 | Qualifying traffic out on purpose | The entry price in the hero. Fewer clicks, better cost per qualified lead | `/real-estate-marketing`, Hadley Heights |
+
+Other, two:
+
+| # | Working title | Discipline | The bridge back to marketing |
+| --- | --- | --- | --- |
+| 6 | Your site speed is costing you ad clicks | Web development | Paid traffic lands on the slowest page you own. Real before/after from this site's own Cloudflare move |
+| 7 | Why nobody watches past three seconds | Video editing | The cut, not the content, decides the hook rate |
+
+Week two takes the remaining two secondary disciplines, **web design** and
+**mobile app development**, in the single 20% slot, one per week.
+
+#### Post 6 has real numbers and must use them
+
+This site's own Cloudflare migration is recorded in
+`.seo-snapshots/cloudflare-baseline.txt` and `cloudflare-after.txt`: median
+TTFB **796ms to 440ms**, page load roughly **1,600ms to 620ms**, CLS 0.000,
+LCP 880ms. Measured over five runs, medians reported, on this domain.
+
+That is the only post in the seven with figures behind it. **Use them, name the
+method, and do not let a figure from this post drift into any of the other
+six.** Nothing else here has a number and inventing one is worse than having
+none.
+
+#### Shape of each pair
+
+**Blog post.** 900 to 1,200 words, which is where this site's median sits
+(1,013 as of 2026-10-11). One `h1`, four or five `h2`s, every one of them a
+question or a claim rather than a label. At least three internal links from the
+table above. A FAQ block only where there are real questions, since it emits
+`FAQPage` schema and an invented question is a lie in structured data.
+
+**Social post.** Written for the platform, not pasted from the blog:
+
+- **LinkedIn** — the whole argument in the post body, 150 to 250 words, no link
+  in the first comment trick, link at the end. People read LinkedIn in the feed
+  and leave; a teaser earns nothing.
+- **Instagram** — carousel, 5 to 7 slides, one idea per slide, the claim on
+  slide one. Link in bio. Reuse the design system from the LEOS boards so the
+  grid reads as one account.
+
+**Do not publish the same text in all three places.** Google picks one page when
+text is duplicated, and it will not pick this domain over LinkedIn.
+
+#### Order of work
+
+1. Draft all seven blog posts first, then schedule. Writing one a day while
+   posting one a day means the seventh is written under deadline and it shows.
+2. Publish the blog post before the social post, so the link works on day one.
+3. Ping IndexNow on publish. Google does not use IndexNow and will crawl on its
+   own; this is for Bing, which feeds Copilot.
+
+#### Blocked on
+
+- **Keyword targets.** The titles above are working titles, not validated search
+  terms. Keyword work is still paused from item 381 because I was inventing
+  terms rather than reading them. The first honest Search Console read is
+  **14 October**. Titles can be tightened to real queries after that; the
+  arguments do not change.
+- **Post 7 needs an example.** A video edit of his own, or it is a post about
+  video written by someone showing no video.
+
+#### What this does not claim
+
+No engagement figures, no client results, no reach projections. Nothing here
+says how many followers seven posts produce, because nobody knows and a plan
+that opens with a made-up number is judged against it later.
