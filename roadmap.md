@@ -10707,3 +10707,43 @@ their numbers as a verdict on the series.
 - Threads profile link rejected on save, 5 attempts, no restriction showing in
   Account status. Retry after the account has a few days of history
 - An eight-year-old Key2code post sits on the Google Business Profile
+
+---
+
+### 396. TODO (2026-10-12) — Tonight's order, and the CV update
+
+Bilal's order, set 2026-10-12. Done from home, in this sequence:
+
+1. **Google Business Profile.** Description still says "developer and UI/UX
+   designer"; change to digital marketer, matching Instagram, X and Threads.
+   Delete the eight-year-old Key2code post.
+2. **Post 2 design and captions**, scheduled for 9am on 2026-10-13 on every
+   platform. Captions are in `docs/daily-posts.md`. Google Business Profile
+   probably has no scheduler and may need posting by hand at 9am.
+3. **Turing profile.** Fixes listed in chat on 2026-10-12: English level shows
+   Intermediate (raise it), add native language, nationality and expected
+   earnings, preferred role is Marketing (Turing is mostly software and AI
+   work), duplicate and wrong-year skills, add GitHub and Medium links, write
+   the profile summary.
+4. **Update the CV.** The current one (`bilal-performance.pdf`, three pages)
+   is what Turing parsed, and its gaps became the profile's gaps.
+
+#### What the CV update needs
+
+- **Two pages, not three.** The Key Expertise, Tools and Portfolio sidebar is
+  printed twice, on pages 2 and 3.
+- **A Languages section.** Without one, Turing guessed English at Intermediate.
+- **Missing skills:** Next.js and TypeScript (this site is built on them),
+  JavaScript named on its own, Tailwind CSS if used.
+- **The two big figures appear twice.** "5,000+ qualified leads" and "CPL down
+  35%" are in both the Key Achievements and the Tomorrow World project block.
+  Say them once. Be ready to explain how each was measured, since a Turing or
+  Toptal interviewer will ask.
+- **Vitalsouls location.** Listed as Dubai, UAE (2009 to 2014) while every
+  other software house is Lahore. Check it is right.
+- **Refine work.** The site's portfolio carries Refine projects
+  (`public/portfolio/refine/`). The CV does not mention them. Bilal to decide
+  whether they belong on it.
+- **Match the site's positioning.** The site sells "I run the campaign and
+  build the page it lands on". The CV headline says Performance Marketing
+  Manager, which fits, but that one line belongs in the About section too.
