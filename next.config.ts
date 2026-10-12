@@ -183,6 +183,21 @@ const nextConfig: NextConfig = {
       // surfaced the three Google happened to recrawl. Paginated archives
       // (/category/design/page/2/) are caught by the same rule.
       { source: "/category/:path*", destination: "/blog", permanent: true },
+      // **Tag archives, added 2026-10-12.** The note above says WordPress made
+      // an archive for every category *and tag*, but only `/category/` was ever
+      // wildcarded. Search Console's "Crawled - currently not indexed" list
+      // showed why that mattered: seven `/tag/` URLs in the 32, and each one
+      // resolved 308 to a trailing-slash-stripped URL that then 404'd.
+      //
+      // A redirect into a dead end is worse than a plain 404. It costs two
+      // crawls and teaches Google nothing.
+      //
+      // The feed rule sits first because order decides: a feed reader asking
+      // for `/tag/css/feed/` should get a feed, not an article index. The
+      // `/:slug/feed` rule below never caught these because it matches one
+      // segment and these carry two.
+      { source: "/tag/:path*/feed", destination: "/rss.xml", permanent: true },
+      { source: "/tag/:path*", destination: "/blog", permanent: true },
       // WordPress RSS endpoints. Search Console listed `/feed/`,
       // `/react-hooks-explained/feed/` and `/react-usememo-hook-explained/feed/`
       // under BOTH "Not found (404)" and "Page with redirect": the
@@ -195,11 +210,17 @@ const nextConfig: NextConfig = {
       { source: "/feed", destination: "/rss.xml", permanent: true },
       { source: "/:slug/feed", destination: "/rss.xml", permanent: true },
       { source: "/comments/feed", destination: "/rss.xml", permanent: true },
-      // Deliberately NOT redirecting /training or the course URLs. Bilal has
-      // stopped offering training, and pointing a tutorial-intent URL at a
-      // marketing page is a soft 404 — Google treats it as a poor match and it
-      // can hurt the destination. Letting them 404 lets those pages de-index
-      // cleanly, which is the honest outcome for content that no longer exists.
+      // **The course URLs still 404 deliberately.** Pointing a tutorial-intent
+      // URL at a marketing page is a soft 404 — Google treats it as a poor
+      // match and it can hurt the destination. Letting them de-index cleanly is
+      // the honest outcome for content that no longer exists.
+      //
+      // `/training` was in this group until 2026-10-12, when the first full
+      // Search Console export showed it holding **29 impressions at average
+      // position 19.76** over 90 days. That changed the question. The rule was
+      // right while the URL was dead; it is the wrong call for a URL Google is
+      // actively ranking and sending people to a 404. It now points at /blog,
+      // at the top of this array.
     ];
   },
   images: {
