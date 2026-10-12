@@ -10792,7 +10792,7 @@ handle (`bilalshafqat42` where available) on every platform.
 | Google Business Profile | **To fix** (item 396, step 1) | Description still says developer. Categories, services list, photos, weekly posts, review requests |
 | Instagram | Bio done 2026-10-11 | Category, highlights (Work, Results, About), link in bio, grid consistency |
 | Facebook | To check | Page category, About, services, CTA button, cover |
-| X | Bio done 2026-10-11 | Header image, pinned post |
+| X | **Bio not done** (still says developer and UI/UX designer, seen 2026-10-12) | Professional account on 2026-10-12: Business, category Digital Marketing Agency. New banner up but the profile photo covers its text; X wants 1500x500, so make a version for it. Birth date is public, set to Only you. Pinned post |
 | Threads | Bio done 2026-10-11 | Link still rejected on save, retry |
 | Pinterest | To check | Business account, claimed website, keyword-led board names and descriptions |
 | Medium | Started 2026-10-12 | Bio, profile link to site, consistent tags |

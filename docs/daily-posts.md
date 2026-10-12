@@ -210,6 +210,36 @@ on the site, link in bio."
 Full URL for every platform:
 `https://bilalshafqat.com/your-landing-page-is-part-of-your-ad-spend`
 
+### The card Bilal designed (2026-10-12)
+
+He designed post 2's card himself in a new light style: cream ground, faint
+grid, dark Montserrat type, the word "is" in gold, his photo and "Digital
+Marketer" at the foot. 1080x1350, used for Instagram, Facebook, LinkedIn, X
+and Threads. Pinterest needs a 1000x1500 version.
+
+His first draft reused post 1's bullets (price on the page, form fields,
+existing customers, qualified leads). Rewritten to post 2's own argument, the
+cost of a slow page change:
+
+```
+Your landing page is your ad spend.
+
+The ad buys the click. The page decides what it costs.
+
+Before you blame the campaign, check:
+• Price: can people see it without scrolling?
+• Form: four fields or fewer?
+• Button: does it say what happens, not just "Submit"?
+• Changes: live in two days, not two weeks?
+
+A two-week page fix means two weeks of ads on the wrong page.
+The delay costs more than the change.
+```
+
+Worth carrying to posts 3 to 7: **each card's bullets must come from its own
+post.** The same four checks on every card would make the series read as one
+post repeated.
+
 ### LinkedIn
 
 ```
