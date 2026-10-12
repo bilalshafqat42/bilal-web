@@ -10725,6 +10725,10 @@ Bilal's order, set 2026-10-12. Done from home, in this sequence:
    earnings, preferred role is Marketing (Turing is mostly software and AI
    work), duplicate and wrong-year skills, add GitHub and Medium links, write
    the profile summary.
+   **Done 2026-10-12.** Role Web Frontend, English Advanced, Urdu added,
+   skills cleaned and years made consistent, GitHub added, six publications
+   (five LEOS projects plus the Medium article). Expected earnings left blank.
+   Next: apply to roles and take the skill tests.
 4. **Update the CV.** The current one (`bilal-performance.pdf`, three pages)
    is what Turing parsed, and its gaps became the profile's gaps.
 
