@@ -10616,6 +10616,24 @@ distribution routine that came out of doing it rather than planning it.
 Post 1 went out on LinkedIn, X, Facebook, Instagram, Threads, Pinterest and
 Google Business Profile. All seven verified live.
 
+**Post 1 on Medium, 2026-10-12**, the first weekly Medium piece:
+https://medium.com/@bilalshafqat42/cost-per-lead-vs-lead-quality-f52b7b830c32
+Imported, not pasted. Its "Originally published" link resolves to the article
+on this domain, and that article's canonical points at itself. Medium title is
+"Cost Per Lead vs Lead Quality", deliberately different from the site title.
+
+Two things the import got wrong, worth checking on every future Medium post:
+
+- **Tables do not survive.** Medium has no table element, so the three-row
+  table flattened into nine loose lines. Rewritten by hand as three bold-label
+  lines. Any post with a table needs this before publishing.
+- **Blank paragraphs under every `h2`.** Two or three empty lines each, deleted
+  by hand.
+
+Note for anyone writing these instructions again: articles live at the root,
+`/<slug>`, not `/blog/<slug>`. The WordPress URLs were at the root and kept
+their address in the migration. `/blog/<slug>` is a 404.
+
 #### Two pieces of plumbing the series needed
 
 **Inline internal links in body text**, written `[[label|/path]]`. Before this a
@@ -10684,6 +10702,7 @@ their numbers as a verdict on the series.
 #### Still to do
 
 - Posts 3 to 7
+- Post 2 on Medium, not before 2026-10-19 (weekly cadence)
 - Google Business Profile description still says "developer and UI/UX designer"
 - Threads profile link rejected on save, 5 attempts, no restriction showing in
   Account status. Retry after the account has a few days of history
