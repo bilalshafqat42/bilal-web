@@ -51,6 +51,11 @@ export const CARDS = {
     lines: ["Your *cost per lead* is fine.", "Your sales team is *still unhappy*."],
     kicker: "Paid marketing",
   },
+  "landing-page-ad-spend": {
+    slug: "your-landing-page-is-part-of-your-ad-spend",
+    lines: ["Your landing page", "*is* your ad spend."],
+    kicker: "Paid ads tip",
+  },
 };
 
 const BRAND = {

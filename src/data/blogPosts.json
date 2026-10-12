@@ -1,5 +1,160 @@
 [
   {
+    "slug": "your-landing-page-is-part-of-your-ad-spend",
+    "title": "Your Landing Page Is Part of Your Ad Spend",
+    "metaTitle": "Landing Page vs Ad Spend",
+    "description": "An ad buys the click. The landing page decides what it costs you. Why a two-week page change costs more than it looks, and the fixes that matter.",
+    "published": "2026-10-13",
+    "tags": [
+      "Paid Ads",
+      "Digital Marketing",
+      "Dubai"
+    ],
+    "blocks": [
+      {
+        "t": "p",
+        "v": "Most businesses set an advertising budget and a website budget, and treat them as two different things. The ad budget is monthly and someone watches it. The website budget was spent once, eighteen months ago, and nobody has opened the file since."
+      },
+      {
+        "t": "p",
+        "v": "Then the campaign runs, and every dirham of it lands on a page that belongs to the second budget and is managed by nobody."
+      },
+      {
+        "t": "h2",
+        "v": "The landing page spends the money, the ad only moves it"
+      },
+      {
+        "t": "p",
+        "v": "An ad buys a click. That is the whole job. Everything that happens after the click is decided by the page: whether the person understands what is being sold, whether they believe the price is for them, whether the form is short enough to finish on a phone on a Thursday afternoon."
+      },
+      {
+        "t": "p",
+        "v": "Which means the page, not the campaign, decides what your advertising costs. Two campaigns with identical targeting and identical creative, pointing at two different pages, will report completely different costs per enquiry. The platform will show you the difference and tell you nothing about the cause."
+      },
+      {
+        "t": "h2",
+        "v": "What a two-week change actually costs"
+      },
+      {
+        "t": "p",
+        "v": "Here is the part that gets missed. When a page needs changing and the change takes two weeks, the campaign does not pause for two weeks. It keeps spending."
+      },
+      {
+        "t": "table",
+        "head": [
+          "",
+          "What happens"
+        ],
+        "rows": [
+          [
+            "Day 1",
+            "You spot the problem. The form is too long"
+          ],
+          [
+            "Day 1",
+            "Agency raises it with the developer"
+          ],
+          [
+            "Day 4",
+            "Developer schedules it"
+          ],
+          [
+            "Day 11",
+            "Change goes live"
+          ],
+          [
+            "All 11 days",
+            "The campaign is still running, at full spend, on the old page"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "v": "Eleven days of budget bought traffic for a page everybody already agreed was wrong. That is not a developer being slow. It is what a handoff costs, and it is invisible because it never appears as a line on any invoice."
+      },
+      {
+        "t": "h2",
+        "v": "The changes that matter are small"
+      },
+      {
+        "t": "p",
+        "v": "The frustrating part is that the fixes are rarely redesigns. Across the launches I have run, the changes that moved the number were these:"
+      },
+      {
+        "t": "list",
+        "ordered": false,
+        "v": [
+          "Moving the price above the fold rather than below it",
+          "Cutting a form from six fields to three",
+          "Changing one button from Submit to what it actually does",
+          "Adding a second, lower-commitment option for people who are interested but not ready to call",
+          "Giving existing customers a separate route so they stop landing in the new-enquiry list"
+        ]
+      },
+      {
+        "t": "p",
+        "v": "None of those is a week of work. Every one of them took longer to schedule than to do. That is the whole problem in a sentence. More on how the pages themselves get built in [[web design|/services/web-design]]."
+      },
+      {
+        "t": "h2",
+        "v": "Why the split exists at all"
+      },
+      {
+        "t": "p",
+        "v": "Nobody chose this deliberately. It is what happens when a business hires an agency for the campaign and a developer for the site, at different times, for different reasons, with no overlap written into either arrangement."
+      },
+      {
+        "t": "p",
+        "v": "It is also not in the agency's interest to fix. An agency is judged on cost per lead, and a page change that qualifies people out makes that number go up before it makes the business any money. Asking for it is asking to look worse on their own report."
+      },
+      {
+        "t": "p",
+        "v": "So the page sits. Not because anyone is incompetent, but because the structure has nobody whose job it is."
+      },
+      {
+        "t": "h2",
+        "v": "If you cannot change the page quickly, change the budget instead"
+      },
+      {
+        "t": "p",
+        "v": "Not everyone can collapse the handoff. If your page genuinely takes two weeks to change, the honest move is to stop treating the campaign as if it can be optimised weekly."
+      },
+      {
+        "t": "p",
+        "v": "Run less, and run it on the one page you trust. Spending across four landing pages you cannot edit is four times the exposure to the same problem. One page, one offer, lower daily budget, and put the saved money into getting that page right once."
+      },
+      {
+        "t": "p",
+        "v": "It feels like going backwards. It is cheaper than paying for eleven days of traffic to something you already know is wrong."
+      },
+      {
+        "t": "h2",
+        "v": "What to do this week"
+      },
+      {
+        "t": "list",
+        "ordered": true,
+        "v": [
+          "Open your live landing page on your phone, not your laptop. That is where the traffic is.",
+          "Count the fields in your form. If it is more than four, you are filtering people out by accident.",
+          "Find the price. If you have to scroll to see it, every unqualified visitor is costing you a click.",
+          "Ask whoever runs your campaign what they would change on that page if they could. They will have an answer immediately. Nobody has asked them before."
+        ]
+      },
+      {
+        "t": "p",
+        "v": "Then ask the second question, which is the one that matters: how long would that change take to go live. If the answer is more than two days, the delay is costing you more than the change is worth. I run the campaign and build the page it lands on for exactly this reason, which is what [[paid marketing|/services/paid-marketing]] covers in more detail."
+      }
+    ],
+    "words": 792,
+    "image": {
+      "src": "/blog/landing-page-ad-spend/card.jpg",
+      "alt": "Quote card reading: your landing page is your ad spend",
+      "width": 1200,
+      "height": 630
+    }
+  },
+  {
     "slug": "cost-per-lead-is-fine-sales-team-unhappy",
     "title": "Your Cost Per Lead Is Fine. Your Sales Team Is Still Unhappy.",
     "metaTitle": "Cost Per Lead vs Lead Quality",
