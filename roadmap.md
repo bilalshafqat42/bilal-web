@@ -10751,3 +10751,46 @@ Bilal's order, set 2026-10-12. Done from home, in this sequence:
 - **Match the site's positioning.** The site sells "I run the campaign and
   build the page it lands on". The CV headline says Performance Marketing
   Manager, which fits, but that one line belongs in the About section too.
+
+---
+
+### 397. TODO (2026-10-12) — SEO and optimisation of every social profile
+
+Bilal's request, 2026-10-12. Every profile should say the same thing in the
+same words, carry the keywords people search for, and send people to the
+right page on this site.
+
+**Why it matters.** Profiles rank in Google for a name search, and they are
+where people land after a post. Item 395 found three of them describing a
+developer under a paid-media post. A profile that disagrees with the post
+loses the visitor the post earned.
+
+#### One positioning, everywhere
+
+Use the line the site already uses: **"Digital marketer in Dubai. I run the
+campaign and build the page it lands on."** Same name, same photo, same
+handle (`bilalshafqat42` where available) on every platform.
+
+#### Per platform
+
+| Platform | Status | What to optimise |
+| --- | --- | --- |
+| LinkedIn | To check | Headline with keywords (digital marketing, paid ads, Dubai), About section, Featured section with posts and case studies, custom URL, banner |
+| Google Business Profile | **To fix** (item 396, step 1) | Description still says developer. Categories, services list, photos, weekly posts, review requests |
+| Instagram | Bio done 2026-10-11 | Category, highlights (Work, Results, About), link in bio, grid consistency |
+| Facebook | To check | Page category, About, services, CTA button, cover |
+| X | Bio done 2026-10-11 | Header image, pinned post |
+| Threads | Bio done 2026-10-11 | Link still rejected on save, retry |
+| Pinterest | To check | Business account, claimed website, keyword-led board names and descriptions |
+| Medium | Started 2026-10-12 | Bio, profile link to site, consistent tags |
+| Behance | To check | Headline, about, project tags, link to site |
+| GitHub | Bio good | Pinned repos, profile README linking the site |
+| Turing | Done 2026-10-12 | Role Web Frontend, skills cleaned |
+
+#### Rules
+
+- **Keywords in the headline and bio**, written for a person, not a list.
+- **One link per profile, to the right page.** Paid-ads posts go to
+  `/services/paid-marketing`, not the homepage.
+- **Check after every positioning change**, since the drift in item 395
+  happened because profiles were updated at different times.
