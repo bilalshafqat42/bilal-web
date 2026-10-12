@@ -107,6 +107,21 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
+      // **`/training` was the only genuine 404 in Search Console's list**, and
+      // it is not a dead URL: on 2026-10-12 it still held 29 impressions at
+      // average position 19.76 over 90 days. Google is showing a page that
+      // returns 404 to real people, which is the worst of both outcomes — the
+      // ranking exists and the click lands nowhere.
+      //
+      // It points at `/blog` rather than at a service page. The old WordPress
+      // page was educational, and sending "training" traffic to a sales page
+      // is the mismatch Google scores as a soft 404. If the queries behind
+      // those 29 impressions turn out to be commercial, change the target.
+      {
+        source: "/training",
+        destination: "/blog",
+        permanent: true,
+      },
       // **www to non-www, 301.** Every page was answering on both hostnames
       // with byte-identical content — verified on the live site: `/about`
       // returned 200 at `bilalshafqat.com` and at `www.bilalshafqat.com`.
