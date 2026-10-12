@@ -188,3 +188,128 @@ on the site, link in bio."
 - Design the carousel. Slide 1 at 1200x630 goes into the post's `image` field,
   which also replaces the default share card.
 - Decide the publish date. Currently set to 2026-10-12.
+
+---
+
+## Post 2
+
+**Blog:** `/your-landing-page-is-part-of-your-ad-spend`, live, dated
+2026-10-13. Social goes out on the 13th so the date on the article matches.
+
+**Cards** (in `.post-cards/`, gitignored, so only on the machine that ran
+`npm run cards`; the 1200x630 version is also in git at
+`public/blog/landing-page-ad-spend/card.jpg`):
+
+| Platform | File |
+| --- | --- |
+| LinkedIn, Facebook, Google Business Profile | `landing-page-ad-spend-link.png` |
+| Instagram feed, Facebook feed | `landing-page-ad-spend-feed.png` |
+| Pinterest | `landing-page-ad-spend-pin.png` |
+| Instagram and Facebook stories | `landing-page-ad-spend-story.png` |
+
+Full URL for every platform:
+`https://bilalshafqat.com/your-landing-page-is-part-of-your-ad-spend`
+
+### LinkedIn
+
+```
+Most businesses have an ad budget and a website budget, and treat them as two
+separate things.
+
+The ad budget is monthly and someone watches it. The website budget was spent
+once, a year and a half ago, and nobody has opened the file since.
+
+Then every dirham of the campaign lands on that page.
+
+An ad buys a click. The page decides what the click is worth: whether the price
+is clear, whether the form can be finished on a phone, whether the visitor knows
+in two seconds if this is for them.
+
+Here is what a small page change usually looks like:
+
+Day 1: someone spots that the form is too long.
+Day 4: the developer schedules it.
+Day 11: it goes live.
+
+For all eleven days the campaign keeps spending, at full budget, on a page
+everyone already agreed was wrong. That cost never appears on an invoice, so
+nobody counts it.
+
+The fixes are rarely redesigns. Price above the fold. Six form fields down to
+three. A button that says what it does instead of "Submit". Each one takes
+longer to schedule than to do.
+
+If your page takes two weeks to change, you are paying for those two weeks in
+ad spend.
+
+Full breakdown, with a four-step check you can do on your phone today:
+bilalshafqat.com/your-landing-page-is-part-of-your-ad-spend
+```
+
+### Instagram and Facebook
+
+Instagram: swap the bio link to the post URL before posting. Facebook: put the
+URL at the end instead of "link in bio".
+
+```
+An ad buys the click. Your landing page decides what that click costs.
+
+When a simple form change takes eleven days to go live, the campaign does not
+pause. It spends eleven days of budget on a page everyone already agreed was
+wrong.
+
+The fixes are small: price above the fold, fewer form fields, a button that says
+what it does. Each takes longer to schedule than to do.
+
+Full breakdown on the site, link in bio.
+
+#PaidAds #LandingPage #DubaiMarketing
+```
+
+### X
+
+```
+An ad buys the click. The landing page decides what it costs you.
+
+If a form change takes eleven days to go live, the campaign spends eleven days of budget on a page everyone agreed was wrong.
+
+bilalshafqat.com/your-landing-page-is-part-of-your-ad-spend
+```
+
+### Threads
+
+```
+An ad buys the click. The landing page decides what it costs you.
+
+If a form change takes eleven days to go live, the campaign spends eleven days of budget on a page everyone already agreed was wrong.
+
+The fixes are small. Price above the fold. Fewer form fields. A button that says what it does. Each takes longer to schedule than to do.
+
+bilalshafqat.com/your-landing-page-is-part-of-your-ad-spend
+```
+
+### Pinterest
+
+Board: **Paid Ads & PPC**. Image: the pin card. Link: the full URL.
+
+- **Title:** Landing Page vs Ad Spend: 5 Small Page Fixes That Matter
+- **Description:** An ad buys the click. Your landing page decides what that
+  click costs. Five small fixes that change your cost per enquiry: price above
+  the fold, a shorter form, a button that says what it does, a lower-commitment
+  option, and a separate route for existing customers. Practical paid ads advice
+  for UAE businesses.
+
+### Google Business Profile
+
+Add update, link card, button **Learn more** to the full URL.
+
+```
+Your landing page is part of your ad spend.
+
+An ad buys the click. The page decides what that click costs. When a simple page
+change takes two weeks, the campaign keeps spending on the old page the whole
+time.
+
+The fixes are usually small: price above the fold, a shorter form, a clearer
+button. Read the full breakdown and a four-step check you can do today.
+```
