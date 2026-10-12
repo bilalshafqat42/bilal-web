@@ -10717,6 +10717,19 @@ Bilal's order, set 2026-10-12. Done from home, in this sequence:
 1. **Google Business Profile.** Description still says "developer and UI/UX
    designer"; change to digital marketer, matching Instagram, X and Threads.
    Delete the eight-year-old Key2code post.
+   **Progress 2026-10-12.** Done: description (no URL, Google rejects one),
+   primary category now Internet marketing service, website on https,
+   LinkedIn added to social profiles, logo is his photo, new 1920x1080 cover
+   in the LinkedIn banner style, eight products with square 1200x1200 images
+   in his own grid design, seven services under the primary category.
+   **Left:** make +971 52 976 6006 the primary phone (a Pakistan number still
+   is), add `https://bilalshafqat.com/appointment` as the appointment link,
+   delete the Key2code post, delete the old blurry photos and the ">_" icon,
+   confirm the unrelated Software company services (big data, data centre and
+   so on) are deleted.
+   **Later:** ask 5 to 10 past clients for reviews; post each blog post to the
+   profile; move the address from Lahore to Dubai. The address change triggers
+   re-verification, so plan it rather than doing it in passing.
 2. **Post 2 design and captions**, scheduled for 9am on 2026-10-13 on every
    platform. Captions are in `docs/daily-posts.md`. Google Business Profile
    probably has no scheduler and may need posting by hand at 9am.
