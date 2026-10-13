@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import PageOpener from "@/components/PageOpener";
+import PageOpener from "@/components/layout/PageOpener";
 import { notFound } from "next/navigation";
-import JsonLd from "@/components/JsonLd";
-import BlogList from "@/components/BlogList";
+import JsonLd from "@/components/seo/JsonLd";
+import BlogList from "@/components/article/BlogList";
 import { SITE_URL, breadcrumbNode, ID, ref } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
 import { blogPageSlice, totalBlogPages, blogPagePath } from "@/lib/blogPagination";

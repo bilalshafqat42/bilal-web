@@ -43,22 +43,37 @@ export const contentDates: Record<string, string> = {
   "/real-estate-marketing": "2026-09-05",
 };
 
-/** Service category pages all read from `src/data/pillars.ts`. */
-export const SERVICES_CONTENT_DATE = "2026-09-03";
+/** Service category pages all read from `src/data/serviceCategories.ts`,
+ *  `pillars.ts` and `serviceDepth.ts`.
+ *
+ *  Moved from 2026-09-03 to 2026-10-07 on 2026-10-13: the last commit touching
+ *  `pillars.ts` or `serviceDepth.ts` is f09d121 on 10-07 (`git log -1
+ *  --format=%cs -- src/data/pillars.ts src/data/serviceDepth.ts`). Refresh it
+ *  when service copy changes. */
+export const SERVICES_CONTENT_DATE = "2026-10-07";
 
-/** Portfolio pages all read from `src/data/caseStudies.ts`. */
-export const PORTFOLIO_CONTENT_DATE = "2026-08-28";
+/** Portfolio pages all read from `src/data/caseStudies.ts` (and
+ *  `caseStudyDepth.ts`). Used for the sitemap and for `dateModified` in every
+ *  case study's CreativeWork schema, which until 2026-10-13 sent the build date.
+ *
+ *  Moved from 2026-08-28 to 2026-10-11 on 2026-10-13: the sales application
+ *  case study and the LEOS restructure landed on 10-11 (`git log -1 --format=%cs
+ *  src/data/caseStudies.ts`), so the older date understated a page that did
+ *  not exist on 08-28. Refresh it when case study copy changes. */
+export const PORTFOLIO_CONTENT_DATE = "2026-10-11";
 
 /** Discipline pages carry their own copy in `src/data/disciplines.ts` as well
  *  as the shared captures, so they date from when that copy was written rather
  *  than from the case study data. */
 export const DISCIPLINE_CONTENT_DATE = "2026-09-09";
 
-/** The eight WordPress articles restored on this date (roadmap 275). Their
- *  `published` dates are the original 2025 bylines and live in
- *  `src/data/blogPosts.json`; this is when they came back, which is what
- *  `dateModified` and the sitemap's `lastModified` should say. Dating the
- *  sitemap entries 2025 would tell Google these URLs have not changed since —
- *  when in fact they went from 404 to 200 today, which is the one thing we need
- *  it to notice. */
+/** The day the WordPress articles were restored (roadmap 275). Their
+ *  `published` dates are the original 2025 bylines.
+ *
+ *  Since 2026-10-13 `dateModified` and the sitemap's `lastModified` come from
+ *  each post's own `updatedAt` in `src/content/blog/<slug>.json`, not from
+ *  here. This date is now only the default `updatedAt` for a recovered post
+ *  untouched since it came back: dating those 2025 would tell Google the URLs
+ *  had not changed, when they went from 404 to 200 on this day. A post edited
+ *  or written later carries its own later date. */
 export const BLOG_RECOVERED_ON = "2026-09-30";

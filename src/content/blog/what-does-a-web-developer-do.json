@@ -1,0 +1,206 @@
+{
+  "slug": "what-does-a-web-developer-do",
+  "title": "What Does a Web Developer Actually Do?",
+  "description": "A plain explanation of the job for people hiring one rather than becoming one: what the work involves, what it does not, and which kind you need.",
+  "published": "2026-10-04",
+  "updatedAt": "2026-10-05",
+  "tags": [
+    "Web Development",
+    "Dubai"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "Most explanations of this job are written for people who want to become a web developer. This one is written for the person who needs to hire one and is not sure what they are buying."
+    },
+    {
+      "t": "p",
+      "v": "The confusion is reasonable. The title covers work that ranges from arranging text on a page to building the system that moves money between two banks. Two people can both call themselves web developers and share almost no skills."
+    },
+    {
+      "t": "h2",
+      "v": "The short version"
+    },
+    {
+      "t": "p",
+      "v": "A web developer writes the code that makes a website or web application work. A designer decides what it should look like and how it should behave. A developer makes that real, connects it to the things it needs to talk to, and keeps it running once people are using it."
+    },
+    {
+      "t": "p",
+      "v": "If the designer draws the building, the developer builds it, runs the plumbing and wiring, and is the person you call when the lift stops."
+    },
+    {
+      "t": "p",
+      "v": "Web development as a field covers both of those halves, and a third part nobody mentions at the quoting stage, which is keeping the thing alive after launch. All three are described below."
+    },
+    {
+      "t": "h2",
+      "v": "What the work actually involves"
+    },
+    {
+      "t": "h3",
+      "v": "Turning a design into a working page"
+    },
+    {
+      "t": "p",
+      "v": "A design is a picture. The developer rebuilds it in code so it works at every screen size, loads quickly, responds to a keyboard as well as a mouse, and still reads correctly for someone using a screen reader. This part looks like the whole job from the outside. It is usually the smaller half."
+    },
+    {
+      "t": "h3",
+      "v": "Making it do something"
+    },
+    {
+      "t": "p",
+      "v": "A page that displays information is one problem. A page that does something is a different one. Search with filters, a form that produces a real enquiry, a booking flow, a calculator, a login, a payment. Each of these has rules, edge cases and failure states that nobody draws in the design."
+    },
+    {
+      "t": "p",
+      "v": "This is where almost all project time and almost all cost actually goes."
+    },
+    {
+      "t": "h3",
+      "v": "Connecting it to everything else"
+    },
+    {
+      "t": "p",
+      "v": "Very few businesses want a website that stands alone. They want enquiries in their CRM, orders in their accounting system, listings pulled from a property feed, messages arriving on WhatsApp. Each connection depends on somebody else's system, their documentation and their uptime."
+    },
+    {
+      "t": "h3",
+      "v": "Keeping it working"
+    },
+    {
+      "t": "p",
+      "v": "Software decays. Browsers update, dependencies get security patches, the payment provider changes an endpoint, somebody uploads a 12MB photograph and the homepage takes nine seconds to load. A developer who disappears at launch has handed you a liability with a nice homepage."
+    },
+    {
+      "t": "h2",
+      "v": "What a web developer does not do"
+    },
+    {
+      "t": "p",
+      "v": "Worth knowing before you assume it is included:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Write your copy. Most developers will not, and the ones who offer to are often not the right person for it.",
+        "Decide what the site should say or who it is for. That is strategy, and it should be settled before anyone opens a code editor.",
+        "Design it, unless they specifically also design. Plenty do both. Plenty do not, and a developer-made layout usually looks like one.",
+        "Market it. Building a site and getting people to it are separate jobs with separate budgets.",
+        "Take the photographs. The single most common reason a finished build sits unlaunched is that nobody owns the images."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "The three kinds you will be offered"
+    },
+    {
+      "t": "p",
+      "v": "When someone says they are a web developer, they almost always mean one of these three."
+    },
+    {
+      "t": "table",
+      "head": [
+        "Kind",
+        "What they build",
+        "Hire when"
+      ],
+      "rows": [
+        [
+          "Front-end",
+          "Everything the user sees and touches: layout, interaction, responsiveness, performance in the browser",
+          "Your project is mostly presentation, or you already have a back-end"
+        ],
+        [
+          "Back-end",
+          "The part nobody sees: data, logic, accounts, payments, integrations, security",
+          "You need the site to store, calculate or exchange something"
+        ],
+        [
+          "Full stack",
+          "Both, usually with a stronger side",
+          "The project is small enough for one person, or you want one point of contact"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "v": "For a typical business website, full stack is the normal answer. For a product with real complexity on either side, two specialists beat one generalist."
+    },
+    {
+      "t": "h2",
+      "v": "Developer, engineer, programmer: does the word matter?"
+    },
+    {
+      "t": "p",
+      "v": "Not much, and anyone who tells you otherwise is describing a preference rather than a standard. There is no licensing body deciding who may use which title. Judge the work, not the noun."
+    },
+    {
+      "t": "p",
+      "v": "The one distinction worth noticing is that \"engineer\" is sometimes used to signal systems and scale rather than websites. If your project is a brochure site, that signal is not relevant to you."
+    },
+    {
+      "t": "h2",
+      "v": "What this means when you are hiring"
+    },
+    {
+      "t": "p",
+      "v": "Three things decide whether you get a working asset or an expensive problem, and none of them is the day rate:"
+    },
+    {
+      "t": "list",
+      "ordered": true,
+      "v": [
+        "Can they explain the part that is hard about your project? A developer who says everything is straightforward has not thought about it.",
+        "Will you speak to the person writing the code? In an agency you often will not, and a brief loses detail at every handover.",
+        "What happens in month three? Ask who fixes a bug after launch and what it costs. The answer tells you whether you are buying a project or a relationship."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "I have written a longer list of hiring questions separately, including the ownership questions most people forget to ask until it is too late to ask them."
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "Do I need a web developer or a web designer?"
+    },
+    {
+      "t": "p",
+      "v": "If you need it to look right, a designer. If you need it to work, a developer. Most real projects need both, which is why many businesses hire one person who does both or an agency that supplies two."
+    },
+    {
+      "t": "h3",
+      "v": "Can one person build my whole website?"
+    },
+    {
+      "t": "p",
+      "v": "For most business websites, yes. A full stack developer who also designs can take a brochure site or a small application from nothing to launch. Past a certain complexity, one person becomes the bottleneck and a small team is faster."
+    },
+    {
+      "t": "h3",
+      "v": "How do I tell a good developer from a convincing one?"
+    },
+    {
+      "t": "p",
+      "v": "Ask to see something live that is still running, and ask what it does for that business. A portfolio of designs proves someone can present. A working site with real traffic behind it proves someone can finish."
+    },
+    {
+      "t": "h3",
+      "v": "What does a web developer cost in Dubai?"
+    },
+    {
+      "t": "p",
+      "v": "It depends far more on what you are building than on who builds it. My own published project minimum is AED 31,500 and retainers start at AED 16,000 a month, stated so there is one real number here rather than a range with nobody behind it. Those are my rates, not a market survey."
+    },
+    {
+      "t": "p",
+      "v": "Published 4 October 2026 by a Dubai-based freelance developer. All AED figures are my own published rates."
+    }
+  ],
+  "words": 916
+}

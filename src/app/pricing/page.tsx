@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import PageOpener from "@/components/PageOpener";
+import Link from "next/link";
+import PageOpener from "@/components/layout/PageOpener";
 import { Minus, Plus } from "lucide-react";
-import Reveal from "@/components/Reveal";
-import FaqSection from "@/components/FaqSection";
-import CtaButton from "@/components/CtaButton";
-import Engagement from "@/components/Engagement";
-import JsonLd from "@/components/JsonLd";
+import Reveal from "@/components/ui/Reveal";
+import FaqSection from "@/components/ui/FaqSection";
+import CtaButton from "@/components/ui/CtaButton";
+import Engagement from "@/components/sections/Engagement";
+import JsonLd from "@/components/seo/JsonLd";
 import { SITE_URL, faqNode, breadcrumbNode } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
-import Eyebrow from "@/components/Eyebrow";
+import Eyebrow from "@/components/ui/Eyebrow";
 
 export const metadata: Metadata = {
   title: "What a Freelance Digital Marketer Costs in Dubai",
@@ -29,14 +30,14 @@ export const metadata: Metadata = {
 // what actually moves the number, in both directions.
 const drivers = {
   up: [
-    "Custom functionality rather than an established pattern — integrations, calculators, bespoke dashboards",
+    "Custom functionality rather than an established pattern: integrations, calculators, bespoke dashboards",
     "Multiple languages, or a design that must work across very different markets",
     "Compressed timelines that require reordering other work",
     "Content that has to be created from scratch rather than supplied",
     "Ongoing campaign management, which is time-based rather than deliverable-based",
   ],
   down: [
-    "A clear brief and a single decision-maker — most cost overruns are revision cycles, not build time",
+    "A clear brief and a single decision-maker, because most cost overruns are revision cycles rather than build time",
     "Existing brand assets, copy and photography ready to use",
     "Building on what you already have where it is sound, rather than starting over",
     "Phasing the work so the highest-value piece ships first and pays for the next",
@@ -48,9 +49,9 @@ export default function PricingPage() {
 
   const faqs = [
     {
-      question: "Why aren't prices listed on this page?",
+      question: "Why are these starting prices rather than fixed prices?",
       answer:
-        "Because a number without a scope is misleading. A landing page can be a two-day job or a three-week one depending on integrations, content and how many stakeholders review it. Rather than publish a figure that turns out to be wrong for you, this page explains what drives the cost so you can judge roughly where your project sits, and you get a real number after one short conversation.",
+        "Because a number without a scope is misleading. A landing page can be a two-day job or a three-week one depending on integrations, content and how many stakeholders review it. The figures above are real minimums, and this page explains what moves a project above them so you can judge roughly where yours sits. You get a fixed number after one short conversation.",
     },
     {
       question: "How quickly can I get an actual figure?",
@@ -65,7 +66,7 @@ export default function PricingPage() {
     {
       question: "What currency do you work in?",
       answer:
-        "AED for UAE clients. For clients outside the UAE, pricing can be quoted in your currency — mention it in your first message and it will be quoted that way from the start.",
+        "AED for UAE clients. For clients outside the UAE, pricing can be quoted in your currency. Mention it in your first message and it will be quoted that way from the start.",
     },
     {
       question: "Is the first conversation free?",
@@ -184,6 +185,18 @@ export default function PricingPage() {
                   So a figure on its own tells you very little. What tells you
                   something is what is excluded. Ad spend is almost never included in
                   any of them, and a quote that does not mention it is not complete.
+                </p>
+                <p className="mt-5 text-base leading-relaxed text-muted">
+                  Pricing a website or a developer specifically? Two guides go
+                  further than this page:{" "}
+                  <Link href="/how-much-does-a-website-cost-in-dubai" className="text-ink underline decoration-gold/40 underline-offset-[6px] hover:text-gold">
+                    how much a website costs in Dubai
+                  </Link>
+                  , and{" "}
+                  <Link href="/cost-to-hire-a-web-developer-in-dubai" className="text-ink underline decoration-gold/40 underline-offset-[6px] hover:text-gold">
+                    what it costs to hire a web developer in Dubai
+                  </Link>
+                  .
                 </p>
               </Reveal>
 

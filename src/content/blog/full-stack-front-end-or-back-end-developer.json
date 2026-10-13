@@ -1,0 +1,192 @@
+{
+  "slug": "full-stack-front-end-or-back-end-developer",
+  "title": "Full Stack, Front-End or Back-End: Which Developer Do You Need?",
+  "metaTitle": "Full Stack, Front-End or Back-End Developer?",
+  "description": "The three developer specialisms explained for people hiring rather than coding, with a straight answer on which one your project actually needs.",
+  "published": "2026-10-04",
+  "updatedAt": "2026-10-05",
+  "tags": [
+    "Web Development",
+    "Dubai"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "You have had three quotes and each one describes the person differently. One is front-end, one is full stack, one is a software engineer. You are trying to work out whether this changes anything for you."
+    },
+    {
+      "t": "p",
+      "v": "Usually it changes quite a lot. Here is what each actually means and how to pick."
+    },
+    {
+      "t": "p",
+      "v": "One more title to expect: application developer, which some people use for anyone building software and others reserve for apps rather than websites. It is not a fourth specialism. If a quote uses it, ask what they actually build rather than inferring it from the word."
+    },
+    {
+      "t": "h2",
+      "v": "The split, plainly"
+    },
+    {
+      "t": "p",
+      "v": "Every web project has two halves. The half that runs in your visitor's browser, and the half that runs on a server somewhere."
+    },
+    {
+      "t": "p",
+      "v": "Front-end is the first half. Back-end is the second. Full stack is somebody who works across both."
+    },
+    {
+      "t": "h3",
+      "v": "Front-end"
+    },
+    {
+      "t": "p",
+      "v": "Everything the visitor sees and touches. The layout, the typography as it actually renders, what happens when they tap something, how fast it appears, whether it works on a four-year-old Android phone on a weak connection."
+    },
+    {
+      "t": "p",
+      "v": "A strong front-end developer is the difference between a site that feels expensive and one that feels like a form."
+    },
+    {
+      "t": "h3",
+      "v": "Back-end"
+    },
+    {
+      "t": "p",
+      "v": "Everything the visitor never sees. Where the data lives, who is allowed to see what, how a payment is taken without losing it, what happens when the property feed sends malformed data at two in the morning."
+    },
+    {
+      "t": "p",
+      "v": "Back-end problems are the ones that cost real money when they go wrong, because they involve data, payments or access."
+    },
+    {
+      "t": "h3",
+      "v": "Full stack"
+    },
+    {
+      "t": "p",
+      "v": "Both, with one side usually stronger. This is not a compromise title. For most business projects it is the correct hire, because the project is not big enough to keep two specialists busy and every handover between them costs you clarity."
+    },
+    {
+      "t": "p",
+      "v": "Ask any full stack developer which half they are stronger in. Anyone who says they are equally expert in both is selling."
+    },
+    {
+      "t": "h2",
+      "v": "Which one does your project need?"
+    },
+    {
+      "t": "table",
+      "head": [
+        "Your project",
+        "Who you need"
+      ],
+      "rows": [
+        [
+          "Brochure site, no accounts, no payments",
+          "Front-end, or full stack"
+        ],
+        [
+          "Site plus enquiry forms going into a CRM",
+          "Full stack"
+        ],
+        [
+          "Booking, payments, user accounts or a portal",
+          "Full stack, with real back-end strength"
+        ],
+        [
+          "Property search pulling from a live feed",
+          "Full stack, with real back-end strength"
+        ],
+        [
+          "Redesigning an existing site that already works",
+          "Front-end"
+        ],
+        [
+          "Internal tool where nobody cares how it looks",
+          "Back-end"
+        ],
+        [
+          "Product with a team and a roadmap",
+          "Specialists, not a generalist"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "The question that sorts it in one minute"
+    },
+    {
+      "t": "p",
+      "v": "Does the site need to remember anything?"
+    },
+    {
+      "t": "p",
+      "v": "If the answer is no, it only displays information, you are mostly in front-end territory. If the answer is yes, it stores enquiries, accounts, orders, bookings, uploads, anything, you need back-end capability and you should not hire someone who treats it as an afterthought."
+    },
+    {
+      "t": "h2",
+      "v": "Why this matters more than the day rate"
+    },
+    {
+      "t": "p",
+      "v": "A front-end specialist taking on a back-end project will usually get it working. The problem arrives later: data modelled badly, no thought given to who can see what, secrets stored where they should not be, and no plan for what happens when something fails halfway through."
+    },
+    {
+      "t": "p",
+      "v": "None of that shows at launch. All of it shows in month six, and fixing it then means rebuilding rather than patching."
+    },
+    {
+      "t": "h2",
+      "v": "What about the frameworks in the quote?"
+    },
+    {
+      "t": "p",
+      "v": "React, Next.js, Node, Laravel, WordPress. These are tools, and the choice matters less than people pretend as long as the person is genuinely fluent in the one they picked."
+    },
+    {
+      "t": "p",
+      "v": "The one thing worth checking is whether the choice suits who will run the site afterwards. A custom build needs a developer for every change. A WordPress site lets your team edit pages themselves. That is a business decision rather than a technical one, and it should be yours."
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "Is full stack worse than hiring two specialists?"
+    },
+    {
+      "t": "p",
+      "v": "For a small or medium project, no, and it is usually better. One person holds the whole picture and nothing is lost in handover. Past the point where one person cannot keep up, specialists win clearly."
+    },
+    {
+      "t": "h3",
+      "v": "Do I need a DevOps person as well?"
+    },
+    {
+      "t": "p",
+      "v": "For a normal business website, no. Modern hosting handles deployment, certificates and scaling without a dedicated person. For a product with uptime commitments and real traffic, eventually yes."
+    },
+    {
+      "t": "h3",
+      "v": "How do I check someone's back-end claim without being technical?"
+    },
+    {
+      "t": "p",
+      "v": "Ask what happens when a payment succeeds but the confirmation email fails, or what they do when an integration goes down. Someone with real back-end experience answers immediately and in detail, because they have lived it. Someone without changes the subject to frameworks."
+    },
+    {
+      "t": "h3",
+      "v": "Does the title affect what I should pay?"
+    },
+    {
+      "t": "p",
+      "v": "Less than the complexity of your project does. My own published project minimum is AED 31,500 regardless of which half the work sits in, with retainers from AED 16,000 a month. Those are my rates rather than market data."
+    },
+    {
+      "t": "p",
+      "v": "Published 4 October 2026 by a Dubai-based freelance full stack developer."
+    }
+  ],
+  "words": 668
+}

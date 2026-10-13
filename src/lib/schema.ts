@@ -1,8 +1,11 @@
+import { SITE_URL } from "./site";
+import { SITE_EMAIL } from "./contact";
+
 /**
  * One source for every JSON-LD node on the site.
  *
  * Before this, `Person`, `Offer`, `Service` and `PostalAddress` were emitted
- * from the root layout on all 23 routes, and six page templates inlined their
+ * from the root layout on every route, and six page templates inlined their
  * own copies of Person and Organization. Nothing carried an `@id`, so search
  * engines saw a couple of dozen unlinked duplicates of the same entity rather
  * than one entity described from several angles.
@@ -35,9 +38,9 @@
  *
  * The risk is not theoretical in the way it first appears. The note this
  * replaced said the graph is built from typed objects and never from user
- * input — true of the code, not quite true of the data. `blogPosts.json` is a
- * scrape of a WordPress site and two recovered articles carry the literal
- * `</script>` in their body. Nothing puts an article body into the graph today,
+ * input — true of the code, not quite true of the data. The recovered posts in
+ * `src/content/blog/*.json` are a scrape of a WordPress site, and two of them
+ * carry the literal `</script>` in their body. Nothing puts an article body into the graph today,
  * so nothing was broken; but "safe because of which fields we happen to pass"
  * is a property one refactor removes, silently.
  *
@@ -50,7 +53,9 @@
  */
 export const jsonLdSafe = (value: unknown) => JSON.stringify(value).replace(/</g, "\\u003c");
 
-export const SITE_URL = "https://bilalshafqat.com";
+// Re-exported so the many `import { SITE_URL } from "@/lib/schema"` call sites
+// keep working. The value itself lives in `site.ts`.
+export { SITE_URL };
 
 /** Stable node identities. Referenced with `ref()` rather than repeated. */
 export const ID = {
@@ -181,12 +186,18 @@ export function personNode() {
     // in particular. Design and development are still described in full by
     // `knowsAbout` and by their own service pages; what changed is which one
     // leads.
+    //
+    // Description rewritten 2026-10-13 to the one positioning used everywhere
+    // (roadmap 397): a digital marketer who also builds what the campaign lands
+    // on. The previous text called him a "marketing, design and development
+    // specialist", three identities of equal weight, which is the drift this
+    // was meant to end.
     jobTitle: "Freelance Digital Marketer",
     description:
-      "Freelance digital marketing, design and development specialist in Dubai, working across paid marketing, web and app development, design and CRM automation as a single point of contact.",
+      "Freelance digital marketer in Dubai. Runs paid campaigns, SEO, social and email, and builds the landing pages, websites and CRM automation those campaigns land on.",
     url: SITE_URL,
     image: `${SITE_URL}/images/bilal-shafqat-coat.avif`,
-    email: "bilal@bilalshafqat.com",
+    email: SITE_EMAIL,
     address: ADDRESS,
     sameAs: SAME_AS,
     knowsAbout: KNOWS_ABOUT,
@@ -199,7 +210,7 @@ export function personNode() {
     // three would be figures not visible on any page, which this file forbids.
     hasOccupation: {
       "@type": "Occupation",
-      name: "Freelance Digital Marketer, Designer & Developer",
+      name: "Freelance Digital Marketer",
       occupationLocation: { "@type": "City", name: "Dubai" },
       skills: KNOWS_ABOUT.join(", "),
     },
@@ -214,7 +225,7 @@ export function businessNode() {
     name: "Bilal Shafqat",
     url: SITE_URL,
     image: `${SITE_URL}/images/bilal-shafqat-coat.avif`,
-    email: "bilal@bilalshafqat.com",
+    email: SITE_EMAIL,
     address: ADDRESS,
     // AE and GB only. These are the two markets with delivered work behind
     // them; the roadmap's US and Canada ambition has no shipped project yet,
@@ -289,10 +300,11 @@ export function faqNode(url: string, qa: { question: string; answer: string }[])
 
 /** A recovered WordPress article (roadmap 275).
  *
- *  `datePublished` is the original byline date and `dateModified` the day the
- *  post was brought back, which are genuinely different events — claiming the
- *  piece was written this year would misdate a year-old article to both readers
- *  and crawlers.
+ *  `datePublished` is the original byline date and `dateModified` the post's
+ *  own `updatedAt` (the last day its content changed: the recovery date for a
+ *  post untouched since, a later date for one edited or written after). They
+ *  are genuinely different events — claiming the piece was written this year
+ *  would misdate a year-old article to both readers and crawlers.
  *
  *  No `image`: the article artwork did not survive the migration, and pointing
  *  `image` at the site-wide OG card would describe a picture the article does

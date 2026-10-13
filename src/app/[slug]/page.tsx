@@ -3,23 +3,22 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ChevronRight, ArrowLeft } from "lucide-react";
 import Image from "next/image";
-import ArticleBody from "@/components/ArticleBody";
-import ShareRow from "@/components/ShareRow";
-import ArticleToc from "@/components/ArticleToc";
-import ArticleRail from "@/components/ArticleRail";
+import ArticleBody from "@/components/article/ArticleBody";
+import ShareRow from "@/components/article/ShareRow";
+import ArticleToc from "@/components/article/ArticleToc";
+import ArticleRail from "@/components/article/ArticleRail";
 import { tocOf } from "@/lib/headingIds";
-import PageOpener from "@/components/PageOpener";
-import CtaButton from "@/components/CtaButton";
-import Reveal from "@/components/Reveal";
-import JsonLd from "@/components/JsonLd";
+import PageOpener from "@/components/layout/PageOpener";
+import CtaButton from "@/components/ui/CtaButton";
+import Reveal from "@/components/ui/Reveal";
+import JsonLd from "@/components/seo/JsonLd";
 import { SITE_URL, articleNode, breadcrumbNode } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
 import { blogPost, readingMinutes, metaTitleOf, relatedPosts } from "@/data/blogPosts";
 import { blogPosts } from "@/data/blogPosts";
-import { BLOG_RECOVERED_ON } from "@/data/contentDates";
 import { serviceForArticle } from "@/data/articleServices";
-import Eyebrow from "@/components/Eyebrow";
-import SecondaryButton from "@/components/SecondaryButton";
+import Eyebrow from "@/components/ui/Eyebrow";
+import SecondaryButton from "@/components/ui/SecondaryButton";
 
 /**
  * The recovered articles, at the root of the domain.
@@ -27,11 +26,13 @@ import SecondaryButton from "@/components/SecondaryButton";
  * A dynamic segment at the root catches every path no static route claims, so
  * `dynamicParams = false` is doing real work here: without it this file would
  * answer for `/anything-at-all` and the site would lose its 404 entirely.
- * With it, Next renders only the eight slugs `generateStaticParams` returns and
- * treats the rest as not-found, which is the behaviour we had before.
+ * With it, Next renders only the slugs `generateStaticParams` returns (one per
+ * file in `src/content/blog/`) and treats the rest as not-found, which is the
+ * behaviour we had before.
  *
  * Static segments win over a dynamic one at the same level, so `/about`,
- * `/faq`, `/blog` and the rest are unaffected. See `src/data/blogPosts.ts` for
+ * `/faq`, `/blog` and the rest are unaffected, and a post whose slug matched
+ * one of them would never render: `npm run related-check` fails on that. See `src/data/blogPosts.ts` for
  * why the articles sit here rather than under `/blog/`.
  */
 export const dynamicParams = false;
@@ -61,6 +62,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: "article",
       url: `/${post.slug}`,
       publishedTime: post.published,
+      modifiedTime: post.updatedAt,
       authors: ["Bilal Shafqat"],
       tags: post.tags,
       // The post's own lead image when it has one, otherwise the site-wide
@@ -92,7 +94,7 @@ export default async function ArticlePage({ params }: PageProps) {
   const related = relatedPosts(post.slug);
   // The service this article is actually about, resolved from its tags. See
   // `articleServices.ts` for why the route off an article is topic-matched
-  // rather than the one block of copy all 52 used to share.
+  // rather than the one block of copy every article used to share.
   const service = serviceForArticle(post);
   const toc = tocOf(post.blocks);
 
@@ -107,7 +109,9 @@ export default async function ArticlePage({ params }: PageProps) {
       headline: post.title,
       description: post.description,
       datePublished: post.published,
-      dateModified: BLOG_RECOVERED_ON,
+      // The last day the article's words changed, per post. It used to be the
+      // recovery date for every article, new ones included.
+      dateModified: post.updatedAt,
       keywords: post.tags,
       wordCount: post.words,
     }),

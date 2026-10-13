@@ -14,15 +14,15 @@
  * Usage:  npm run schema-check
  *         BASE_URL=http://localhost:3020 npm run schema-check
  */
-import { readFileSync } from "node:fs";
+import { readdirSync } from "node:fs";
 
 const BASE = (process.env.BASE_URL || "http://localhost:3000").replace(/\/$/, "");
 
 /** Read rather than hard-coded, so this file cannot fall out of step with the
  *  posts that actually exist. */
-const BLOG_SLUGS = JSON.parse(
-  readFileSync(new URL("../src/data/blogPosts.json", import.meta.url), "utf8"),
-).map((p) => p.slug);
+const BLOG_SLUGS = readdirSync(new URL("../src/content/blog/", import.meta.url))
+  .filter((f) => f.endsWith(".json"))
+  .map((f) => f.slice(0, -5));
 
 /** Types that must never appear. There are no verified reviews, and inventing
  *  review or rating markup is a manual-action risk, not a ranking tactic. */

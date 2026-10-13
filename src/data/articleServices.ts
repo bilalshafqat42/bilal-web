@@ -46,6 +46,13 @@ const TAG_ROUTES: { service: string; tags: string[] }[] = [
     service: "digital-marketing",
     tags: ["Digital Marketing", "Seo"],
   },
+  // Ahead of UI/UX: a post about choosing or briefing a website's design
+  // belongs on the web design page, which until 2026-10-13 had no article
+  // pointing at it at all.
+  {
+    service: "web-design",
+    tags: ["Web Design"],
+  },
   {
     service: "ui-ux-design",
     tags: ["UI UX Design", "Figma", "Design"],
@@ -89,6 +96,13 @@ const PITCHES: Record<string, Pitch> = {
     accent: "spent better?",
     body:
       "I plan and run paid campaigns across Google, Meta, TikTok, Snapchat and LinkedIn, with the tracking built before the spend starts so the reporting is cost per enquiry rather than cost per click.",
+  },
+  "web-design": {
+    eyebrow: "Website work",
+    heading: "Want a site that",
+    accent: "brings enquiries?",
+    body:
+      "I design websites built around the campaigns that send people to them, so the page a visitor lands on is written and laid out to turn that visit into an enquiry. A first conversation costs nothing.",
   },
   "ui-ux-design": {
     eyebrow: "Design work",

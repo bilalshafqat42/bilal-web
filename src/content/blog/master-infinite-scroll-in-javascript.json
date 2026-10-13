@@ -1,0 +1,146 @@
+{
+  "slug": "master-infinite-scroll-in-javascript",
+  "title": "Master Infinite Scroll in JavaScript with Just a Few Lines of Code",
+  "description": "Learn how to implement master infinite scroll in javascript using just a few lines of code. Ideal for developers who want to boost UX without heavy libraries.",
+  "published": "2025-05-26",
+  "updatedAt": "2026-09-30",
+  "tags": [
+    "Javascript"
+  ],
+  "words": 287,
+  "blocks": [
+    {
+      "t": "h3",
+      "v": "Why Use Infinite Scroll?"
+    },
+    {
+      "t": "p",
+      "v": "Infinite scroll loads more content as the user reaches the bottom of the page, keeping the experience fluid. It’s great for blogs, social feeds, and product listings—where users love continuous browsing."
+    },
+    {
+      "t": "h3",
+      "v": "1. Detect When the User Reaches the Bottom"
+    },
+    {
+      "t": "p",
+      "v": "Goal: Trigger an action when the user scrolls to the end of the page."
+    },
+    {
+      "t": "code",
+      "v": "window.addEventListener('scroll', () => {\r\n  if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {\r\n    loadMoreContent();\r\n  }\r\n});"
+    },
+    {
+      "t": "p",
+      "v": "Explanation:This checks if the user’s scroll position is at the bottom and calls loadMoreContent()."
+    },
+    {
+      "t": "h3",
+      "v": "2. Mock Fetching More Data with Timeout"
+    },
+    {
+      "t": "p",
+      "v": "Goal: Simulate an API call or delay to mimic real-world data fetching."
+    },
+    {
+      "t": "code",
+      "v": "function fetchData() {\r\n  return new Promise((resolve) => {\r\n    setTimeout(() => {\r\n      const items = Array.from({ length: 10 }, (_, i) => `Item ${i + 1}`);\r\n      resolve(items);\r\n    }, 1000);\r\n  });\r\n}"
+    },
+    {
+      "t": "p",
+      "v": "Explanation:This mimics a network call and returns an array of dummy items after a delay."
+    },
+    {
+      "t": "h3",
+      "v": "3. Show a Loader While Fetching"
+    },
+    {
+      "t": "p",
+      "v": "Goal: Indicate that content is loading to enhance user experience."
+    },
+    {
+      "t": "code",
+      "v": "<div id=\"loader\" style=\"display:none;\">Loading...</div>"
+    },
+    {
+      "t": "code",
+      "v": "function showLoader(show) {\r\n  document.getElementById('loader').style.display = show ? 'block' : 'none';\r\n}"
+    },
+    {
+      "t": "p",
+      "v": "Explanation:A simple div acts as a loading indicator that shows/hides based on fetch state."
+    },
+    {
+      "t": "h3",
+      "v": "4. Render and Append New Items to the DOM"
+    },
+    {
+      "t": "p",
+      "v": "Goal: Add fetched items to the page without reloading."
+    },
+    {
+      "t": "code",
+      "v": "function appendItems(items) {\r\n  const container = document.getElementById('content');\r\n  items.forEach(item => {\r\n    const div = document.createElement('div');\r\n    div.textContent = item;\r\n    container.appendChild(div);\r\n  });\r\n}"
+    },
+    {
+      "t": "p",
+      "v": "Explanation:This dynamically adds each new item as a div into the content container."
+    },
+    {
+      "t": "h3",
+      "v": "5. Use Debounce to Improve Scroll Performance"
+    },
+    {
+      "t": "p",
+      "v": "Goal: Prevent multiple unnecessary function calls during rapid scrolling."
+    },
+    {
+      "t": "code",
+      "v": "function debounce(func, delay) {\r\n  let timeout;\r\n  return function (...args) {\r\n    clearTimeout(timeout);\r\n    timeout = setTimeout(() => func.apply(this, args), delay);\r\n  };\r\n}"
+    },
+    {
+      "t": "code",
+      "v": "window.addEventListener('scroll', debounce(() => {\r\n  if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {\r\n    loadMoreContent();\r\n  }\r\n}, 200));"
+    },
+    {
+      "t": "p",
+      "v": "Explanation:Debouncing avoids performance issues by delaying execution until scrolling stops for a set time."
+    },
+    {
+      "t": "h3",
+      "v": "Full Working Example"
+    },
+    {
+      "t": "code",
+      "v": "<body>\r\n  <div id=\"content\"></div>\r\n  <div id=\"loader\">Loading...</div>\r\n\r\n  <script>\r\n    let loading = false;\r\n\r\n    async function loadMoreContent() {\r\n      if (loading) return;\r\n      loading = true;\r\n      showLoader(true);\r\n\r\n      const items = await fetchData();\r\n      appendItems(items);\r\n\r\n      showLoader(false);\r\n      loading = false;\r\n    }\r\n\r\n    function fetchData() {\r\n      return new Promise((resolve) => {\r\n        setTimeout(() => {\r\n          const items = Array.from({ length: 10 }, (_, i) => `Item ${Date.now()} - ${i + 1}`);\r\n          resolve(items);\r\n        }, 1000);\r\n      });\r\n    }\r\n\r\n    function appendItems(items) {\r\n      const container = document.getElementById('content');\r\n      items.forEach(item => {\r\n        const div = document.createElement('div');\r\n        div.textContent = item;\r\n        container.appendChild(div);\r\n      });\r\n    }\r\n\r\n    function showLoader(show) {\r\n      document.getElementById('loader').style.display = show ? 'block' : 'none';\r\n    }\r\n\r\n    window.addEventListener('scroll', debounce(() => {\r\n      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {\r\n        loadMoreContent();\r\n      }\r\n    }, 200));\r\n\r\n    function debounce(func, delay) {\r\n      let timeout;\r\n      return function (...args) {\r\n        clearTimeout(timeout);\r\n        timeout = setTimeout(() => func.apply(this, args), delay);\r\n      };\r\n    }\r\n\r\n    // Load initial content\r\n    loadMoreContent();\r\n  </script>\r\n</body>"
+    },
+    {
+      "t": "h2",
+      "v": "FAQs"
+    },
+    {
+      "t": "p",
+      "v": "Q: Can I use this with real APIs?Yes! Replace fetchData() with a real fetch() call or API integration."
+    },
+    {
+      "t": "p",
+      "v": "Q: Is this better than pagination?It depends. Infinite scroll is ideal for mobile and social feeds. Pagination is better for SEO and precise navigation."
+    },
+    {
+      "t": "p",
+      "v": "Q: Can I use this in frameworks like React or Vue?Absolutely. The logic remains similar—you just manage state and DOM differently."
+    },
+    {
+      "t": "p",
+      "v": "Q: How do I stop loading after all items are fetched?You can use a flag like hasMoreData and conditionally skip fetching when false."
+    },
+    {
+      "t": "h2",
+      "v": "Conclusion"
+    },
+    {
+      "t": "p",
+      "v": "Infinite scroll is a powerful UX feature, and you don’t need big libraries to use it. With just a few lines of JavaScript, you can deliver seamless, app-like browsing. Whether you're building a blog, portfolio, or product listing—this technique keeps users engaged without ever clicking “Next”."
+    }
+  ],
+  "metaTitle": "Infinite Scroll in JavaScript in a Few Lines of Code"
+}

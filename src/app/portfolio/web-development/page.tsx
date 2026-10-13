@@ -1,4 +1,4 @@
-import DisciplinePage, { disciplineMetadata } from "@/components/DisciplinePage";
+import DisciplinePage, { disciplineMetadata } from "@/components/portfolio/DisciplinePage";
 
 const SLUG = "web-development";
 

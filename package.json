@@ -13,26 +13,29 @@
     "related-check": "npx --yes tsx scripts/related-check.mjs",
     "h1-check": "node scripts/h1-check.mjs",
     "schema-check": "node scripts/schema-check.mjs",
-    "lead-probe": "CRM_LEAD_API_URL=http://127.0.0.1:9/blackhole npx next start -p 3099 & for i in $(seq 1 40); do curl -sf -o /dev/null http://localhost:3099/ && break; sleep 1; done; CRM_LEAD_API_URL=http://127.0.0.1:9/blackhole BASE_URL=http://localhost:3099 node scripts/lead-probe.mjs; code=$?; kill %1 2>/dev/null; exit $code",
+    "lead-probe": "LEAD_BACKUP_DIR=$(mktemp -d) SMTP_HOST= SMTP_USER= SMTP_PASS= CRM_LEAD_API_URL=http://127.0.0.1:9/blackhole npx next start -p 3099 & for i in $(seq 1 40); do curl -sf -o /dev/null http://localhost:3099/ && break; sleep 1; done; CRM_LEAD_API_URL=http://127.0.0.1:9/blackhole BASE_URL=http://localhost:3099 node scripts/lead-probe.mjs; code=$?; kill %1 2>/dev/null; exit $code",
     "discipline-check": "node scripts/discipline-check.mjs",
     "onpage": "node scripts/onpage-check.mjs",
     "audit": "node scripts/site-audit.mjs",
     "serp": "node scripts/serp-preview.mjs",
     "daily": "node scripts/daily.mjs",
-    "cards": "node scripts/post-cards.mjs && node scripts/render-cards.mjs"
+    "cards": "node scripts/post-cards.mjs && node scripts/render-cards.mjs",
+    "replay-leads": "node scripts/replay-leads.mjs"
   },
   "dependencies": {
     "gsap": "^3.15.0",
-    "lucide-react": "^1.27.0",
+    "lucide-react": "1.49.0",
     "next": "16.3.8",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "nodemailer": "10.0.13",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/nodemailer": "^8.0.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
     "eslint": "^9",
     "eslint-config-next": "16.3.8",
     "tailwindcss": "^4",

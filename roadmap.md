@@ -86,7 +86,7 @@ Full-app audit run on 2026-08-18: build, lint, types, rendered HTML per route, s
      4. Optional backstop: a key event keyed on page path containing `/thank-you`, in case an event-based one is ever misconfigured.
    - Original problem, kept for context: this was the most awkward gap in the project, because Bilal *sells* conversion tracking and Conversions API setup as a service while running none of it on his own site.
 
-5. ~~**Verify the domain in Google Search Console and Bing Webmaster Tools**~~ **— both verified and made permanent 2026-08-27, see items 64 and 65.** Still open: submitting the sitemap in each console and requesting indexing for the new pages. and submit `sitemap.xml`. Already listed as an SEO target in this file but never confirmed done. Without it there is no keyword-position or impression data at all, so the tier list in item 40 stays guesswork rather than something that can be checked against reality.
+5. ~~**Verify the domain in Google Search Console and Bing Webmaster Tools**~~ **— both verified and made permanent 2026-08-27, see items 64 and 65.** Sitemap submitted 2026-09-30 (item 284). *(status corrected 2026-10-13, item 399)* Originally open: submitting the sitemap in each console and requesting indexing for the new pages. and submit `sitemap.xml`. Already listed as an SEO target in this file but never confirmed done. Without it there is no keyword-position or impression data at all, so the tier list in item 40 stays guesswork rather than something that can be checked against reality.
 
 ### Phase 2 — accessibility and reachability
 
@@ -99,7 +99,7 @@ Full-app audit run on 2026-08-18: build, lint, types, rendered HTML per route, s
 9. **8 tier-1 service pages**: `google-ads`, `meta-ads`, `website-development`, `mobile-app-development`, `ui-ux-design`, `graphic-design`, `crm-setup`, `server-side-tracking`. Content for all 8 already exists as sections inside `pillars.ts`, so this is a restructure, not new writing. This also completes the "round 2" granular sub-pages deferred in item 34 — they are the same job, not two.
 10. **`/real-estate-marketing`** — the vertical page for item 40's tier 3. Highest-value unplayed card, given real developer-side experience and that property is Dubai's largest ad-spend category.
 11. ~~**`/pricing`**~~ **built 2026-08-28, see item 69.** Prices themselves still pending from Bilal. `/pricing`** — "how much does X cost in Dubai" is a large query family that almost no Dubai freelancer answers publicly. Pair with suggestion-queue item 4 (AED with a USD equivalent) so it lands once, not twice.
-12. ~~**`/faq`**~~ **built 2026-08-28, see item 69.** Homepage FAQ block still to add. `/faq`** plus a 4-5 question homepage FAQ section. Write it around item 40's tier 4 question phrasings and the cross-border logistics in suggestion-queue item 1, since AI search matches questions rather than keywords.
+12. ~~**`/faq`**~~ **built 2026-08-28, see item 69.** Homepage FAQ added (item 273). *(status corrected 2026-10-13, item 399)* `/faq`** plus a 4-5 question homepage FAQ section. Write it around item 40's tier 4 question phrasings and the cross-border logistics in suggestion-queue item 1, since AI search matches questions rather than keywords.
 13. **New service offering: "Make your website WCAG 2.2 compliant."** Bilal's own idea, added 2026-08-26. Strong fit: accessibility work sits exactly where his development and design skills overlap, it bills as both a one-off audit and a recurring retest, and it is far less contested than any marketing keyword in item 40. WCAG 2.2 has been the current W3C Recommendation since October 2023, so 2.2 is the right version to name rather than 2.1.
     - **Where it belongs**: a section on the **Website & App Development** pillar, plus its own page in the item-9 batch, which makes that batch 9 pages rather than 8. **Not** a fifth pillar — it is a deliverable within development, and promoting it would repeat the overlap mistake corrected across items 36-39. It does touch Design (contrast, focus states, semantic structure), so cross-link there rather than duplicate the content.
     - **What the service actually is**, so the page can be specific instead of vague: an automated pass (axe, Lighthouse), then the manual testing automation cannot do — real keyboard-only traversal, screen reader checks with VoiceOver and NVDA, focus order, and reflow at 320px — then a prioritised remediation list, the fixes themselves, an accessibility statement, and a retest. The manual half is what most competitors skip and the part genuinely worth charging for, since automated tooling catches only a minority of WCAG failures.
@@ -1607,8 +1607,8 @@ Bilal asked for a running list of ideas to make the site read more professional 
 
     **MEDIUM**
 
-    - [ ] **180.6 — 1,286 lines of unreachable component code.** `WhatsAppButton.tsx` 456 (superseded by `LeadFormPopup.tsx`, which renders the Quick Enquiry button people actually see), `backdrops/index.tsx` 321, `AppShowcase.tsx` 217 (superseded by `DeviceFrame`), `HeroBackdrop.tsx` 162, `FooterWordmark.tsx` 75, `DashboardGraphic.tsx` 55. Plus **four preview routes still built and publicly reachable** — `/preview-backdrop`, `/preview-hero-alt`, `/preview-hero-wordmark`, `/preview-hero-yellow` — which are absent from the sitemap but **not blocked in `robots.txt`**, and absence from a sitemap does not stop a crawler that finds the URL another way.
-    - [ ] **180.7 — `/appointment` transfers 8,333KB.** `app.cal.com` **4,859KB**, first-party 2,727KB, `connect.facebook.net` 747KB. The embed loads in full whether or not anyone opens the calendar. **Fix:** defer behind a "Show available times" button or an intersection. **Trade-off Bilal must accept:** the calendar is no longer visible the instant the page loads.
+    - [x] **(done: dead components and preview routes removed in 213 and 255) *(status corrected 2026-10-13, item 399)* 180.6 — 1,286 lines of unreachable component code.** `WhatsAppButton.tsx` 456 (superseded by `LeadFormPopup.tsx`, which renders the Quick Enquiry button people actually see), `backdrops/index.tsx` 321, `AppShowcase.tsx` 217 (superseded by `DeviceFrame`), `HeroBackdrop.tsx` 162, `FooterWordmark.tsx` 75, `DashboardGraphic.tsx` 55. Plus **four preview routes still built and publicly reachable** — `/preview-backdrop`, `/preview-hero-alt`, `/preview-hero-wordmark`, `/preview-hero-yellow` — which are absent from the sitemap but **not blocked in `robots.txt`**, and absence from a sitemap does not stop a crawler that finds the URL another way.
+    - [x] **(done: Cal.com loads on request, 2bfcc44, 2026-09-16) *(status corrected 2026-10-13, item 399)* 180.7 — `/appointment` transfers 8,333KB.** `app.cal.com` **4,859KB**, first-party 2,727KB, `connect.facebook.net` 747KB. The embed loads in full whether or not anyone opens the calendar. **Fix:** defer behind a "Show available times" button or an intersection. **Trade-off Bilal must accept:** the calendar is no longer visible the instant the page loads.
     - [ ] **180.8 — 747KB of tracking script on all 28 routes.** GTM plus the Meta pixel, loaded once consent is given. More JavaScript than most of these pages need in total. **Worth auditing what is actually inside the GTM container**; if the Meta pixel is not driving a live campaign, removing it returns 411KB to every page.
     - [ ] **180.9 — Eight pages too thin to rank.** `/contact` 203 (**resolved in item 183 — a contact page is a conversion surface, 279 words is correct**), `/privacy` 245 (fine, legal), `/portfolio/web-development` 301, `/portfolio/mobile-app-development` 309, `/portfolio/social-media-marketing` 310, `/portfolio/ui-ux-design` 322, `/process` 330, `/appointment` 355. **The four discipline pages are the newest URLs on the site and the weakest.** `/process` is 330 words across 8 images — the pictures carry a page with almost nothing indexable in it. **Target: 600-800 words on each discipline page.**
 
@@ -6082,7 +6082,7 @@ good and none of them should be disturbed while fixing the above:
   arrives.
 - **PageSpeed 100/100/100/100**, LCP 466ms, CLS 0.000.
 
-### 279. OPEN — Two thirds of every page load is spent connecting, not serving
+### 279. DONE (closed by 385 and 391) — Two thirds of every page load is spent connecting, not serving
 
 **The finding.** Measured against the live site on 2026-09-30, three runs:
 
@@ -7198,7 +7198,7 @@ marketer. The version that serves both is AI and automation **for marketers**,
 which is the one subject where his channel, his services and his commercial
 goal point the same way.
 
-### 306. IN PROGRESS (2026-10-01) — YouTube rename not yet propagated; Facebook fixed
+### 306. DONE (closed by 312) — YouTube rename not yet propagated; Facebook fixed
 
 **Facebook: done.** The page now reads "Bilal Shafqat | Dubai". It read "Bilal
 Shaqat", missing the f, which is a brand-search problem on a profile the site
@@ -10232,7 +10232,7 @@ Also left off, deliberately: Bot fight mode, which challenges crawlers and has a
 history of blocking Googlebot on free plans; Hotlink Protection, which breaks
 social share previews.
 
-### 387. PENDING (2026-10-09) — The sales application case study, waiting on six images
+### 387. DONE (2026-10-11, 5599b13; images confirmed final by Bilal 2026-10-13) — The sales application case study, waiting on six images
 
 Bilal supplied the content on 2026-10-09. The page is blocked on screenshots and
 nothing else.
@@ -10290,7 +10290,7 @@ study on the site is LEOS property marketing. And eight portfolio pages at 657 t
 772 words are the only finding the site audit still reports. One page closes all
 three.
 
-### 388. TODO (2026-10-09) — Sign up on Turing
+### 388. PROFILE DONE (2026-10-12, item 396); applying for roles still open — Sign up on Turing
 
 Bilal's request. Added to `backlink-plan.md` as item 10b alongside the other
 profile platforms.
@@ -10807,3 +10807,243 @@ handle (`bilalshafqat42` where available) on every platform.
   `/services/paid-marketing`, not the homepage.
 - **Check after every positioning change**, since the drift in item 395
   happened because profiles were updated at different times.
+
+---
+
+### 398. STANDING PRACTICE (2026-10-13) — How the site stops being commercially invisible
+
+Bilal's request, 2026-10-13, after the full-site audit.
+
+**Where we stand.** Snapshot of 2026-10-13, last 90 days: 2,510 Google
+impressions, 2 clicks, top-3 share 0.6%, weighted average position 46.0.
+The 8 "ready to buy" queries average position 69. Almost every impression
+goes to old design and React articles; no `/services` page is in the top 15
+pages. Technically the site is clean (122 URLs, 0 broken, Lighthouse 100,
+service pages score 92 to 96 on-page). **So the gap is not on-page. It is
+trust (links, reviews, proof) and focus (one page per buyer query).** These
+practices are standing rules, not one-off tasks. Re-read them every Monday.
+
+#### 1. Every Monday: measure first (30 minutes)
+
+- Regenerate `SEO-SNAPSHOT.md` and run `npm run daily`.
+- Write three numbers in the weekly log below: top-3 share, clicks from
+  commercial queries ("ready to buy" + "comparing options"), and enquiries.
+- Look at "Closest to page one" (positions 4 to 15). Those are the week's
+  cheapest wins. Work them before writing anything new.
+- Judge AI reach only by answer fetches from real assistants, checked by
+  user agent. An even spread across every page, `/privacy` included, is a
+  bot sweep, not demand.
+
+#### 2. Point authority at the money pages
+
+- Every link we earn goes to a **marketing** hub, not the homepage:
+  `/services/digital-marketing`, `/services/paid-marketing`,
+  `/services/google-ads`, `/services/facebook-ads`, `/real-estate-marketing`.
+  `backlink-plan.md` still points hubs A, B and C at development and design
+  pages; re-point them before week 9.
+- Directory and profile links (weeks 1 to 8) are mostly `nofollow`. Do them,
+  but the links that move rankings are editorial: guest posts on UAE
+  marketing and real-estate sites, client and agency credits, podcast or
+  interview pages, and one original data piece (for example a cost-per-lead
+  benchmark built from anonymised, aggregated campaign data, with employer
+  and client permission).
+- **Never** buy links, use link networks or swap links in bulk. One bad
+  pattern can undo months.
+
+#### 3. Proof beats copy
+
+Buyers in Dubai hire on evidence. Each month, add at least one of:
+
+- A case study with a real number and how it was measured (lead volume,
+  CPL, conversion rate). Permission first; anonymise where needed.
+- A named testimonial (with written consent) or a logo, where allowed.
+- Two or more Google reviews. Ask 5 to 10 past clients now (item 396).
+
+#### 4. Win the local pack
+
+"Digital marketer Dubai" buyers see the Google map results before the blue
+links. The Google Business Profile is a ranking page of its own:
+
+- Post weekly (each new article or case study, with a link and photo).
+- Keep the +971 number primary and the appointment link set.
+- Plan the Lahore to Dubai address move deliberately (re-verification).
+- Reply to every review within 48 hours.
+
+#### 5. One buyer query, one page
+
+- Before writing anything, check the query isn't already owned by another
+  page (`npm run onpage` on the existing page first). If it is, improve that
+  page instead.
+- Every article links to **one** service page, with the service's keyword
+  as the anchor text, near the top.
+- Cost questions belong to `/pricing`; the two cost articles support it and
+  link to it. Same rule for the ads comparisons, UX vs UI and real-estate
+  clusters (map recorded in the 2026-10-13 cannibalisation pass).
+
+#### 6. Write for buyers, not learners
+
+- New articles must answer a question a buyer asks before hiring: cost,
+  timelines, which channel, what results look like, how to judge an agency.
+  Informational design and React posts may stay, but they don't get new
+  effort unless a query is at position 4 to 15.
+- Answer in the first two sentences, then explain. That is what Google
+  snippets and AI assistants quote.
+- Each post ends with a clear next step to one service page or `/appointment`.
+
+#### 7. One identity everywhere
+
+- The line is **"Digital marketer in Dubai. I run the campaign and build the
+  page it lands on."** Site, schema, `llms.txt`, LinkedIn, X, Instagram,
+  Google Business Profile, Medium, Behance, CVs: same words (item 397).
+- Development and design are capabilities, not the headline.
+- After any wording change, check every profile the same day.
+
+#### 8. Earn the click, not just the ranking
+
+- Run `npm run serp` on any changed title. Put the offer or the proof in the
+  title (Dubai, a number, a timeframe), not only the keyword.
+- At position 4 to 10, a better title and description often moves clicks
+  more than a new article does.
+
+#### 9. Be the source AI assistants quote
+
+- Keep `llms.txt` current, schema `sameAs` complete, and the Person entity
+  identical everywhere.
+- Bing feeds Copilot and already sends more impressions than Google (3,892
+  in 69 days). Submit new URLs through IndexNow on every publish.
+- Short, factual answer blocks and FAQs on service pages get quoted.
+
+#### 10. Optional: buy data while authority builds
+
+A small, capped Google Ads test on 5 to 10 commercial keywords tells us in
+weeks which queries convert, instead of waiting months for organic data.
+Budget is Bilal's call; set a hard monthly cap in AED before starting.
+
+#### Don'ts
+
+- No mass-produced location or "near me" pages. They read as doorway pages.
+- No new articles while a "closest to page one" query is waiting for work.
+- No claim on the site that isn't true on the day it ships (years,
+  numbers, client names).
+
+#### Success markers (goals, not forecasts)
+
+| By | Signal |
+| --- | --- |
+| 30 days | "bilal shafqat" in the top 3; Google Business Profile has 5+ reviews; every service page has at least 1 external link |
+| 60 days | At least 10 commercial queries in the top 20; first clicks from a service page |
+| 90 days | Top-3 share above 5%; enquiries from organic search every month |
+
+#### Weekly log
+
+| Week of | Top-3 share | Commercial clicks | Enquiries | Main action |
+| --- | --- | --- | --- | --- |
+| 2026-10-13 | 0.6% | 0 | 4 (90 days) | Full audit; fixes in item 399 |
+
+---
+
+### 399. DONE (2026-10-13), NOT YET DEPLOYED — Full-site audit, and every fix from it
+
+Bilal asked for the deepest possible audit (SEO, structure, components,
+templates, bugs, long-run risks) on 2026-10-13, then for all of it to be
+fixed. Practices for commercial visibility are item 398.
+
+#### Fixed
+
+**SEO**
+- `/web-design` now redirects to `/services/web-design` (was UI/UX).
+- Old WordPress URLs with a trailing slash reach their page in one hop.
+- One positioning everywhere: "Digital marketer in Dubai. I run the campaign
+  and build the page it lands on." About, Contact, FAQ, Appointment, schema,
+  `llms.txt`, `llms-full.txt`. Meta keywords tag (said "MERN stack
+  developer") removed.
+- 9 pages had the homepage's share title and no `og:url`; all now use
+  `pageMetadata()` in `src/lib/site.ts`, which also keeps the RSS link (it
+  was missing on those pages on the live site).
+- Each article has its own `updatedAt`; sitemap and Article schema use it.
+  New posts no longer look like 30 Sep.
+- Expanded: icon libraries (362 to 1,536 words), AI Figma plugins (616 to
+  1,001, keyword in title and H1), UX websites (H2s matching real queries).
+- Competing pages now support each other: cost, UX vs UI, ads and real
+  estate clusters cross-linked with one primary query each. `/pricing` FAQ
+  that contradicted the published prices rewritten.
+- Daily tracker keyword for graphic design corrected.
+
+**Leads**
+- Rate limit uses Cloudflare's real visitor IP, not a header the visitor
+  controls. Verified: rotating `X-Forwarded-For` no longer resets the limit.
+- Typos no longer count against the limit; a flood can't reset everyone.
+- Turnstile only enforces when both keys are set, and the forms render it.
+- **Performo down: lead is saved and alerted.** Written to
+  `~/lead-backup/failed-leads.jsonl` (outside the site, owner-only), emailed
+  to Bilal when SMTP is set, replayed with `npm run replay-leads`.
+  Verified with a blackholed CRM. Privacy page says so (PDPL).
+- The three forms share one hook (`src/lib/useLeadSubmit.ts`).
+
+**Structure**
+- Menu no longer ships every service page's copy to every visitor (Nav is
+  a server component; client gets about 4.7 KB of menu data).
+- `pillars.ts` split (1,312 to 473 lines); shared types in `src/data/types.ts`.
+- Blog: one file per post in `src/content/blog/`, verified identical to the
+  old JSON. `node scripts/new-post.mjs <slug>` scaffolds a post;
+  `related-check` now fails if a slug would be shadowed by a route.
+- Mobile-app template is generic; LEOS's copy lives in its data.
+- Components grouped into `layout/ forms/ portfolio/ article/ home/
+  sections/ seo/ ui/` (README inside).
+- Contact details and site URL come from `contact.ts` and `site.ts`.
+
+**Long-run risks**
+- "15 years" is computed from `CAREER_START_YEAR` (2011) everywhere.
+- Portfolio `dateModified` no longer changes on every deploy.
+- Meta Pixel fires only on bilalshafqat.com.
+- CSP added in report-only mode. Build warns if GA4/GTM IDs are missing.
+- `llms.txt`, `llms-full.txt`, `rss.xml` are static.
+- CI on Node 22 and runs `related-check`.
+- Raw Refine screenshots removed from `public/` (moved to `_incoming/`,
+  were publicly reachable). `_shot.mjs` and `undefined/` deleted.
+
+Verified: tsc, lint, build, discipline, related, search, h1 (122 routes),
+schema (122 routes), plus redirects, share tags, RSS, lead backup and rate
+limit on a local production build.
+
+**Second pass, same day**
+- Packages: React and React DOM 19.2.4 to 19.3.0, lucide-react 1.27.0 to
+  1.49.0 (two weeks old; 1.56.0 was released that morning). Next.js stays on
+  16.3.8 (latest patch; 16.4.0 was one week old). Majors skipped on purpose:
+  TypeScript 7, ESLint 10, @types/node 26 each need their own test pass.
+- `npm audit fix` cleared `source-map-js`. **Production dependencies: 0
+  vulnerabilities.** The 5 remaining "high" warnings are all `braces`, used
+  only by the lint tooling (`eslint-config-next`), with no patched version
+  published. Do NOT run `npm audit fix --force`: it downgrades
+  eslint-config-next to 14 and breaks lint. Recheck monthly.
+- `/ux-vs-ui-the-perfect-balance-for-a-winning` now 301s to
+  `/ux-designer-vs-ui-designer` (no impressions recorded for the old one).
+  Its JSON moved to `_incoming/`. 77 articles.
+- "Web Design" tag routes articles to `/services/web-design`; added to
+  `web-developer-vs-web-designer` and `8-best-websites-for-design-inspiration`.
+- `cost-per-lead-is-fine-sales-team-unhappy` published date set to 11 Oct.
+- `backlink-plan.md` hubs re-pointed: A = digital marketing, C = paid
+  marketing, new D = development. Guest-post topics and the data piece moved
+  to marketing. The LEOS review row marked dropped (340).
+- Stale statuses corrected: 279, 306, 387, 388, 180.6, 180.7, Phase 0 item 5,
+  Phase 3 item 12.
+- Unused parameter in `scripts/post-cards.mjs` removed; lint fully clean.
+
+Final verification: tsc, lint (0 warnings), build, discipline, related (77),
+search (45), h1 and schema (121 routes) all pass.
+
+#### Bilal to decide or do
+
+1. **Commit and deploy** (Bilal does the GitHub update).
+2. **Hostinger env vars:** mail is Titan, so `SMTP_HOST=smtp.titan.email`,
+   `SMTP_PORT=465`, `SMTP_USER=bilal@bilalshafqat.com`, `SMTP_PASS`. Optional:
+   `LEAD_BACKUP_DIR`, Turnstile keys.
+3. ~~Career start year~~ **Done 2026-10-13:** 2009, so the site says 17
+   years. Update any external profile or CV that still says 15 (item 397).
+4. **Git history is 656 MB** from build caches committed in July. Cleaning
+   it rewrites history and needs a force push. Decide before doing.
+5. **Cloudflare origin secret** (Hostinger has no origin firewall): set
+   `CF_ORIGIN_SECRET` on Hostinger, then a Cloudflare Transform Rule (Rules,
+   Transform Rules, Modify Request Header) that sets `x-origin-auth` to the
+   same value on all requests. Until both exist, behaviour is unchanged.
+6. **After a week of CSP reports**, switch it to enforcing.

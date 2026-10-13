@@ -1,26 +1,25 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import PageOpener from "@/components/PageOpener";
+import { pageMetadata } from "@/lib/site";
+import PageOpener from "@/components/layout/PageOpener";
 import { ArrowRight } from "lucide-react";
-import Contact from "@/components/Contact";
-import PortfolioShowcase from "@/components/PortfolioShowcase";
-import ClientLogoRow from "@/components/ClientLogoRow";
+import Contact from "@/components/sections/Contact";
+import PortfolioShowcase from "@/components/portfolio/PortfolioShowcase";
+import ClientLogoRow from "@/components/portfolio/ClientLogoRow";
 import { megaMenuGroups, accentClasses, spellCount } from "@/data/pillars";
 import { SITE_URL, breadcrumbNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
-import Eyebrow from "@/components/Eyebrow";
+import Eyebrow from "@/components/ui/Eyebrow";
 
 /** Read from the data, never typed as a word. See `spellCount` — the page said
  *  "eight" above nine cards for as long as the ninth category existed. */
 const count = spellCount(megaMenuGroups.length);
 const Count = count.charAt(0).toUpperCase() + count.slice(1);
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Services — Marketing, Development & Design | Bilal Shafqat",
   description: `Paid marketing, website and app development, UI/UX and brand design, and CRM automation. ${Count} categories, one senior partner.`,
-  alternates: {
-    canonical: "/services",
-  },
-};
+  path: "/services",
+});
 
 
 /**

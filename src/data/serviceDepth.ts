@@ -10,8 +10,12 @@
 // client names beyond LEOS Developments, which is public on his Behance and in
 // the case studies on this site.
 
+import type { Faq } from "./types";
+import { spellCount } from "./serviceCategories";
+import { yearsExperience } from "@/lib/site";
+
 export type DepthBlock = { heading: string; paragraphs: string[] };
-export type Faq = { question: string; answer: string };
+export type { Faq };
 
 type Depth = { blocks: DepthBlock[]; faqs: Faq[] };
 
@@ -79,7 +83,7 @@ export const serviceDepth: Record<string, Depth> = {
         heading: "What I will not promise",
         paragraphs: [
           "Number one on a term you name, by a date. Anyone offering that is either describing a search nobody uses or has not checked who they would have to displace. What I will give you before any money moves is an honest read on which of your terms are reachable, which need paid instead, and roughly how long the reachable ones take.",
-          "I am also one person rather than an agency, which is a real limit as well as a real advantage. You get the work done by someone with fifteen years behind it instead of by a junior under an account manager. You get one person's capacity. If you need six deliverables a week across several channels, an agency is genuinely the better answer and I will say so on the call.",
+          `I am also one person rather than an agency, which is a real limit as well as a real advantage. You get the work done by someone with ${spellCount(yearsExperience())} years behind it instead of by a junior under an account manager. You get one person's capacity. If you need six deliverables a week across several channels, an agency is genuinely the better answer and I will say so on the call.`,
         ],
       },
     ],

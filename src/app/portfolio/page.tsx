@@ -1,31 +1,30 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/site";
 import { ArrowRight } from "lucide-react";
-import Reveal from "@/components/Reveal";
-import PageOpener from "@/components/PageOpener";
+import Reveal from "@/components/ui/Reveal";
+import PageOpener from "@/components/layout/PageOpener";
 import {
   disciplineGroups,
   disciplineHref,
   disciplineCount,
   hasPortfolioPage,
 } from "@/data/disciplines";
-import CaseStudyGrid from "@/components/CaseStudyGrid";
-import Contact from "@/components/Contact";
+import CaseStudyGrid from "@/components/portfolio/CaseStudyGrid";
+import Contact from "@/components/sections/Contact";
 import { SITE_URL, breadcrumbNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
 import { disciplinesWithPages } from "@/data/disciplines";
-import Eyebrow from "@/components/Eyebrow";
+import Eyebrow from "@/components/ui/Eyebrow";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Portfolio — Off-Plan Launches & App Work | Bilal Shafqat",
   // The old description said "browse by discipline", which described the page
   // this one replaced — the discipline browser is now a footnote below the work,
   // not the page's purpose.
   description:
     "Four off-plan property launches, a corporate website and a cross-platform app for a Dubai and UK developer, with the decisions behind each.",
-  alternates: {
-    canonical: "/portfolio",
-  },
-};
+  path: "/portfolio",
+});
 
 
 /**

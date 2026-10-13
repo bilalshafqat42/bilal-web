@@ -1,4 +1,6 @@
-import { NextResponse } from "next/server";
+import { timingSafeEqual } from "node:crypto";
+import { NextResponse, after } from "next/server";
+import { saveToFile, sendAlert, type BackupRecord, type FailureReason } from "@/lib/leadBackup";
 import { megaMenuGroups } from "@/data/pillars";
 import {
   BUDGET_OPTIONS,
@@ -68,15 +70,45 @@ type LeadPayload = {
 // window, so this throttles obvious abuse rather than guaranteeing a global cap.
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_PER_WINDOW = 5;
+const MAX_TRACKED_IPS = 5000;
+// A Map iterates in insertion order. Re-inserting a key on every hit moves it
+// to the end, so the first key is always the least recently seen: LRU for free.
 const hits = new Map<string, number[]>();
 
-function rateLimited(ip: string): boolean {
+function recentHits(ip: string, now: number): number[] {
+  return (hits.get(ip) ?? []).filter((t) => now - t < WINDOW_MS);
+}
+
+/** True when this IP has already used its window. Records nothing, so it can
+ *  run first and turn away a known abuser before any parsing. */
+function overLimit(ip: string): boolean {
+  return recentHits(ip, Date.now()).length >= MAX_PER_WINDOW;
+}
+
+/**
+ * Counts one submission against the IP. Called only once a request has passed
+ * validation, or tripped the honeypot, so a visitor correcting a typo in their
+ * email is not locked out by their own mistakes.
+ *
+ * The bound used to be `hits.clear()` at 5,000 entries, which meant a flood from
+ * 5,000 spoofed addresses reset everyone's limit, including the abuser's.
+ * Eviction is now per key: expired entries first, then the least recently seen.
+ */
+function recordHit(ip: string): void {
   const now = Date.now();
-  const recent = (hits.get(ip) ?? []).filter((t) => now - t < WINDOW_MS);
+  const recent = recentHits(ip, now);
   recent.push(now);
+  hits.delete(ip);
   hits.set(ip, recent);
-  if (hits.size > 5000) hits.clear(); // crude bound; this is not a durable store
-  return recent.length > MAX_PER_WINDOW;
+  if (hits.size <= MAX_TRACKED_IPS) return;
+  for (const [key, times] of hits) {
+    if (hits.size <= MAX_TRACKED_IPS) return;
+    if (!times.some((t) => now - t < WINDOW_MS)) hits.delete(key);
+  }
+  for (const key of hits.keys()) {
+    if (hits.size <= MAX_TRACKED_IPS) return;
+    hits.delete(key);
+  }
 }
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -153,20 +185,69 @@ function logRejection(reason: string, ip: string, detail: Record<string, unknown
   );
 }
 
-function clientIp(request: Request): string {
-  return (
-    request.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
-    request.headers.get("x-real-ip") ||
-    "unknown"
-  );
+/**
+ * The visitor's IP, for rate limiting and logs.
+ *
+ * The first X-Forwarded-For entry used to be trusted, but that value is
+ * whatever the client sent: a bot could rotate it on every request and never
+ * be rate limited. Each proxy appends to the header rather than replacing it,
+ * so only the entries added by our own proxies mean anything.
+ *
+ *  1. `cf-connecting-ip`: the site is proxied by Cloudflare, which sets this
+ *     itself and overwrites any value the client sent.
+ *  2. `x-real-ip`: set by the origin proxy (LiteSpeed) when present.
+ *  3. The LAST X-Forwarded-For entry: appended by the nearest proxy, so it is
+ *     not client-controlled. Behind Cloudflare it is usually a Cloudflare edge
+ *     address shared by many visitors, which is why it is only the fallback.
+ *
+ * Caveat: if the Hostinger origin is reachable directly, bypassing Cloudflare,
+ * a client can send its own `cf-connecting-ip`. Hostinger's hosting gives no
+ * firewall to restrict the origin to Cloudflare's IP ranges, so instead a
+ * Cloudflare Transform Rule adds a secret `x-origin-auth` header to every
+ * request it forwards. With `CF_ORIGIN_SECRET` set, `cf-connecting-ip` is
+ * trusted only when that header matches; a direct hit falls through to the
+ * proxy-set addresses below, which the client cannot forge.
+ */
+function fromCloudflare(request: Request): boolean {
+  const secret = process.env.CF_ORIGIN_SECRET;
+  if (!secret) return true; // not configured yet: keep the previous behaviour
+  const sent = request.headers.get("x-origin-auth") ?? "";
+  const a = Buffer.from(sent);
+  const b = Buffer.from(secret);
+  return a.length === b.length && timingSafeEqual(a, b);
 }
 
-/** Cloudflare Turnstile, only when configured. Invisible to real visitors and
- *  skipped entirely when no secret is set, so the endpoint keeps working before
- *  the key exists rather than rejecting every submission. */
+function clientIp(request: Request): string {
+  const cf = fromCloudflare(request) ? request.headers.get("cf-connecting-ip")?.trim() : undefined;
+  if (cf) return cf;
+  const real = request.headers.get("x-real-ip")?.trim();
+  if (real) return real;
+  const chain = (request.headers.get("x-forwarded-for") ?? "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+  return chain[chain.length - 1] || "unknown";
+}
+
+/** CRM error bodies can echo the submitted lead back. At most 200 characters
+ *  reach the log, with anything that looks like an email or phone masked. */
+function safeDetail(text: string): string {
+  return text
+    .slice(0, 4000)
+    .replace(/[^\s@"'<>,;:]+@[^\s@"'<>,;:]+/g, "[email]")
+    .replace(/\+?\d[\d\s().-]{6,}\d/g, "[phone]")
+    .slice(0, 200);
+}
+
+/** Cloudflare Turnstile, only when fully configured. Invisible to real visitors.
+ *
+ *  Enforced only when BOTH keys are set. The forms render the widget, and so
+ *  send a token, only when NEXT_PUBLIC_TURNSTILE_SITE_KEY is in the build. With
+ *  the secret alone every submission arrived without a token and was refused,
+ *  so setting one variable on Hostinger would have silently blocked every lead. */
 async function turnstileOk(token: string | undefined, ip: string): Promise<boolean> {
   const secret = process.env.TURNSTILE_SECRET_KEY;
-  if (!secret) return true;
+  if (!secret || !process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY) return true;
   if (!token) return false;
   try {
     const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
@@ -189,8 +270,12 @@ export async function POST(request: Request) {
   // Order matters here, and it was wrong before: the body was parsed first and
   // the rate limit checked afterwards, so a flood of oversized payloads was
   // fully deserialised before anything said no. The cheapest checks now run
-  // first — count, then declared size, then read, then parse.
-  if (rateLimited(ip)) {
+  // first: limit, then declared size, then read, then parse.
+  //
+  // This check only reads the count. A hit is recorded further down, once the
+  // request has passed validation (or tripped the honeypot), so a person whose
+  // first attempts were rejected for a typo still gets through.
+  if (overLimit(ip)) {
     logRejection("rate_limited", ip);
     return NextResponse.json(
       { success: false, error: "Too many submissions. Please try again in a few minutes." },
@@ -248,17 +333,11 @@ export async function POST(request: Request) {
   // A bot sees `success: true` and learns nothing, which is the whole point of
   // the lie. The extra field only tells an honest client not to count it.
   if (body.botcheck) {
+    recordHit(ip);
     logRejection("honeypot", ip, { source: clean(body.source, LIMITS.generic) });
     return NextResponse.json({ success: true, counted: false });
   }
 
-  if (!(await turnstileOk(body.turnstileToken, ip))) {
-    logRejection("turnstile_failed", ip);
-    return NextResponse.json(
-      { success: false, error: "Could not verify that submission. Please try again." },
-      { status: 403 }
-    );
-  }
 
   const {
     meetingTime,
@@ -333,6 +412,22 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: false, error: "Unrecognised timeline." }, { status: 400 });
   }
 
+  // Turnstile runs after the cheap field checks, so a malformed request never
+  // costs a call to Cloudflare. A failure is counted against the limit: it is
+  // either a bot or a real visitor whose widget did not load, and the latter
+  // is offered WhatsApp and email by `fallback: true` rather than a dead end.
+  if (!(await turnstileOk(clean(body.turnstileToken, 4096), ip))) {
+    recordHit(ip);
+    logRejection("turnstile_failed", ip);
+    return NextResponse.json(
+      { success: false, fallback: true, error: "Could not verify that submission. Please try again." },
+      { status: 403 }
+    );
+  }
+
+  // Valid from here on, so it counts towards the limit whatever happens next.
+  recordHit(ip);
+
   const isChat = (source || "").includes("whatsapp");
 
   // The attribution object (from getAttribution()) wins when present — it's
@@ -404,16 +499,22 @@ export async function POST(request: Request) {
   // `fallback: true` tells the client the lead was NOT captured, so it can offer
   // WhatsApp/email instead. Silently returning success here would lose real leads,
   // which is exactly the defect this route shipped with.
+  //
+  // Every failure path below also hands the full lead to `backUp`, which keeps
+  // it on disk for `npm run replay-leads` and emails it, so a visitor who closes
+  // the tab instead of using WhatsApp is no longer lost.
   if (!crmUrl) {
     console.error("[LEAD NOT DELIVERED — CRM_LEAD_API_URL unset]", JSON.stringify(redactedLead(lead)));
+    await backUp(lead, "crm_unset");
     return NextResponse.json(
       { success: false, fallback: true, error: "Lead intake is not configured yet." },
       { status: 503 }
     );
   }
 
+  let crmResponse: Response;
   try {
-    const crmResponse = await fetch(crmUrl, {
+    crmResponse = await fetch(crmUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -424,22 +525,55 @@ export async function POST(request: Request) {
       body: JSON.stringify(lead),
       signal: AbortSignal.timeout(10_000),
     });
-
-    if (!crmResponse.ok) {
-      const detail = await crmResponse.text().catch(() => "");
-      console.error("[LEAD NOT DELIVERED — CRM rejected]", crmResponse.status, detail, JSON.stringify(redactedLead(lead)));
-      return NextResponse.json(
-        { success: false, fallback: true, error: "The lead system rejected this submission." },
-        { status: 502 }
-      );
-    }
-
-    return NextResponse.json({ success: true });
   } catch (err) {
-    console.error("[LEAD NOT DELIVERED — CRM unreachable]", err, JSON.stringify(redactedLead(lead)));
+    // Only the error's name and message: a fetch error does not carry the body,
+    // but the whole object can carry a `cause` with more than is needed here.
+    const e = err as Error;
+    console.error(
+      "[LEAD NOT DELIVERED — CRM unreachable]",
+      `${e?.name ?? "Error"}: ${safeDetail(String(e?.message ?? ""))}`,
+      JSON.stringify(redactedLead(lead))
+    );
+    await backUp(lead, "crm_unreachable");
     return NextResponse.json(
       { success: false, fallback: true, error: "Could not reach the lead system right now." },
       { status: 502 }
     );
+  }
+
+  if (!crmResponse.ok) {
+    // The CRM's error body can echo the lead back, so it is capped and masked.
+    const detail = safeDetail(await crmResponse.text().catch(() => ""));
+    console.error(
+      "[LEAD NOT DELIVERED — CRM rejected]",
+      crmResponse.status,
+      detail,
+      JSON.stringify(redactedLead(lead))
+    );
+    await backUp(lead, "crm_rejected", crmResponse.status);
+    return NextResponse.json(
+      { success: false, fallback: true, error: "The lead system rejected this submission." },
+      { status: 502 }
+    );
+  }
+
+  return NextResponse.json({ success: true });
+}
+
+/**
+ * Keeps an undelivered lead. The file write is awaited because it takes
+ * milliseconds and is the copy replay depends on. The email is sent after the
+ * response has gone, via `after()`, so a slow SMTP server (up to 8s) never
+ * delays the visitor's WhatsApp and email fallback.
+ */
+async function backUp(lead: Record<string, unknown>, reason: FailureReason, status?: number) {
+  const record: BackupRecord = { savedAt: new Date().toISOString(), reason, status, lead };
+  const saved = await saveToFile(record);
+  console.error(`[LEAD BACKUP] ${saved ? "saved to file" : "NOT saved to file"} (${reason})`);
+  try {
+    after(() => sendAlert(record));
+  } catch {
+    // Outside a request scope `after` throws; send inline rather than not at all.
+    void sendAlert(record);
   }
 }

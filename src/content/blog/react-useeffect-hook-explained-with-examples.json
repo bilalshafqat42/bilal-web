@@ -1,0 +1,289 @@
+{
+  "slug": "react-useeffect-hook-explained-with-examples",
+  "title": "React useEffect Hook Explained with Examples and Best Practices",
+  "description": "Master the useEffect hook in React with clear examples and real-world use cases. Learn how dependencies work, how to avoid infinite loops, and when to clean up.",
+  "published": "2025-06-18",
+  "updatedAt": "2026-09-30",
+  "tags": [
+    "React Js",
+    "React Hooks"
+  ],
+  "words": 461,
+  "blocks": [
+    {
+      "t": "h2",
+      "v": "Introduction: Why You Need useEffect() in React"
+    },
+    {
+      "t": "p",
+      "v": "If you’ve ever wondered how to fetch data, listen to scroll events, or update the DOM in a functional component — the answer is useEffect()."
+    },
+    {
+      "t": "p",
+      "v": "In React, components are declarative and reactive by design. But to handle side effects — like API calls, timers, or subscriptions — you need a special hook: useEffect()."
+    },
+    {
+      "t": "p",
+      "v": "It’s one of the most powerful but also most misunderstood hooks in the React ecosystem. This guide explains what useEffect() does, how it works, and how to use it correctly in 2025 and beyond."
+    },
+    {
+      "t": "h2",
+      "v": "What is useEffect()?"
+    },
+    {
+      "t": "p",
+      "v": "useEffect() is a built-in React hook that lets you run side effects in your functional components."
+    },
+    {
+      "t": "h3",
+      "v": "What’s a side effect?"
+    },
+    {
+      "t": "p",
+      "v": "A side effect is anything that:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Interacts with the outside world (APIs, localStorage)",
+        "Affects something outside the component scope (event listeners, timeouts)",
+        "Doesn’t happen as a result of just rendering JSX"
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "Basic Syntax:"
+    },
+    {
+      "t": "code",
+      "v": "useEffect(() => {\r\n  // Side effect logic\r\n}, [dependencies]);"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "The first argument is a function that runs your effect",
+        "The second argument is a dependency array that tells React when to run the effect"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Why is useEffect Important?"
+    },
+    {
+      "t": "p",
+      "v": "Before React 16.8, stateful logic and side effects were handled in class components using lifecycle methods like componentDidMount() and componentDidUpdate()."
+    },
+    {
+      "t": "p",
+      "v": "With hooks, useEffect() replaces these methods in function components — offering a more flexible and cleaner way to run side effects."
+    },
+    {
+      "t": "h3",
+      "v": "You use it for:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Fetching data",
+        "Setting up timers or intervals",
+        "Subscribing/unsubscribing to events",
+        "Performing animations",
+        "Updating document title or localStorage"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Example 1: Fetching Data on Component Mount"
+    },
+    {
+      "t": "code",
+      "v": "import { useEffect, useState } from 'react';\r\n\r\nfunction Users() {\r\n  const [users, setUsers] = useState([]);\r\n\r\n  useEffect(() => {\r\n    async function fetchData() {\r\n      const res = await fetch('https://api.example.com/users');\r\n      const data = await res.json();\r\n      setUsers(data);\r\n    }\r\n    fetchData();\r\n  }, []); // run once on mount\r\n\r\n  return (\r\n    <ul>\r\n      {users.map(user => <li key={user.id}>{user.name}</li>)}\r\n    </ul>\r\n  );\r\n}"
+    },
+    {
+      "t": "h2",
+      "v": "Dependency Array: The Most Important Part"
+    },
+    {
+      "t": "p",
+      "v": "The second argument to useEffect() is the dependency array, which determines when the effect runs."
+    },
+    {
+      "t": "p",
+      "v": "On mount and when count changes"
+    },
+    {
+      "t": "p",
+      "v": "On every render (not recommended)"
+    },
+    {
+      "t": "h3",
+      "v": "Example with dependencies:"
+    },
+    {
+      "t": "code",
+      "v": "useEffect(() => {\r\n  console.log(\"Count changed!\");\r\n}, [count]);"
+    },
+    {
+      "t": "h2",
+      "v": "Avoiding Infinite Loops"
+    },
+    {
+      "t": "p",
+      "v": "A common mistake in useEffect is causing infinite re-renders by:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Forgetting the dependency array",
+        "Updating state inside the effect that also triggers the same effect"
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "Bad:"
+    },
+    {
+      "t": "code",
+      "v": "useEffect(() => {\r\n  setCount(count + 1);\r\n});"
+    },
+    {
+      "t": "h3",
+      "v": "Fix:"
+    },
+    {
+      "t": "code",
+      "v": "useEffect(() => {\r\n  // safe logic here\r\n}, [count]);"
+    },
+    {
+      "t": "h3",
+      "v": "Or use functional updates:"
+    },
+    {
+      "t": "code",
+      "v": "setCount(prev => prev + 1);"
+    },
+    {
+      "t": "h2",
+      "v": "Cleanup Functions in useEffect"
+    },
+    {
+      "t": "p",
+      "v": "Some side effects — like event listeners or intervals — need cleanup to prevent memory leaks or unwanted behaviors."
+    },
+    {
+      "t": "h3",
+      "v": "Example: Timer cleanup"
+    },
+    {
+      "t": "code",
+      "v": "useEffect(() => {\r\n  const id = setInterval(() => {\r\n    console.log('Tick');\r\n  }, 1000);\r\n\r\n  return () => clearInterval(id);\r\n}, []);"
+    },
+    {
+      "t": "h2",
+      "v": "Avoiding Common useEffect Mistakes"
+    },
+    {
+      "t": "h3",
+      "v": "1. Forgetting to list all dependencies"
+    },
+    {
+      "t": "code",
+      "v": "useEffect(() => {\r\n  doSomething(message);\r\n}, [message]);"
+    },
+    {
+      "t": "h3",
+      "v": "2. Using async directly in useEffect"
+    },
+    {
+      "t": "p",
+      "v": "useEffect() cannot be marked async because it expects a synchronous return value."
+    },
+    {
+      "t": "code",
+      "v": "useEffect(() => {\r\n  async function fetchData() {\r\n    const res = await fetch('/data');\r\n    const result = await res.json();\r\n    setData(result);\r\n  }\r\n\r\n  fetchData();\r\n}, []);"
+    },
+    {
+      "t": "h3",
+      "v": "3. Using useEffect unnecessarily"
+    },
+    {
+      "t": "p",
+      "v": "If you can compute something directly in JSX or with useMemo(), do that instead."
+    },
+    {
+      "t": "h2",
+      "v": "Best Practices for useEffect (2025)"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Keep each useEffect focused on one task",
+        "Use multiple useEffects instead of combining logic",
+        "Always include all dependencies",
+        "Use named async functions inside effects",
+        "Clean up subscriptions and timers"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "When Not to Use useEffect"
+    },
+    {
+      "t": "p",
+      "v": "You don’t always need useEffect. You might be overusing it if:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "You’re setting state derived from props (compute it directly)",
+        "You’re using it to log state (use dev tools instead)",
+        "You’re using it instead of useMemo() or useCallback()"
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "Ask yourself:"
+    },
+    {
+      "t": "p",
+      "v": "“Am I doing something after render that affects the outside world?”"
+    },
+    {
+      "t": "p",
+      "v": "If yes — use it. If not — you might not need it."
+    },
+    {
+      "t": "h2",
+      "v": "Summary"
+    },
+    {
+      "t": "p",
+      "v": "useEffect() is the most versatile React hook for handling side effects in function components."
+    },
+    {
+      "t": "h3",
+      "v": "Key takeaways:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "It replaces lifecycle methods from class components",
+        "The dependency array controls when it runs",
+        "Cleanup functions prevent memory leaks",
+        "Common mistakes include missing dependencies and misusing async"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "Use it wisely, and your React apps will be cleaner, more predictable, and easier to maintain."
+    }
+  ],
+  "metaTitle": "React useEffect Hook Explained with Examples"
+}

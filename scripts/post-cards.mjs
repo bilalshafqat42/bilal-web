@@ -71,7 +71,7 @@ const BRAND = {
  *  and at 1920px tall without a per-size stylesheet. */
 const scale = (w, h) => Math.min(w, h) / 1000;
 
-function markup({ lines, kicker, slug }, { w, h }) {
+function markup({ lines, kicker }, { w, h }) {
   const s = scale(w, h);
   const quote = lines
     .map(

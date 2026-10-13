@@ -1,0 +1,355 @@
+{
+  "slug": "javascript-es6-features-a-comprehensive-guide",
+  "title": "JavaScript ES6 Features: A Comprehensive Guide",
+  "description": "The ES6 features that changed how JavaScript is written: let and const, arrow functions, destructuring, template literals, promises and modules.",
+  "published": "2025-03-03",
+  "updatedAt": "2026-10-05",
+  "tags": [
+    "Es6",
+    "Javascript"
+  ],
+  "words": 392,
+  "blocks": [
+    {
+      "t": "p",
+      "v": "JavaScript ES6 (ECMAScript 2015) introduced powerful features that enhance code readability, maintainability, and efficiency. Whether you’re a beginner or an experienced developer, understanding these features will significantly improve your JavaScript skills."
+    },
+    {
+      "t": "h2",
+      "v": "JavaScript ES6 Features"
+    },
+    {
+      "t": "p",
+      "v": "ES6, released as ECMAScript 2015, is the version that reshaped how JavaScript is written day to day. Everything below is supported in every current browser and in Node, so none of it needs a build step or a polyfill any more. The features are ordered roughly by how often they come up in real code rather than by how advanced they are."
+    },
+    {
+      "t": "h2",
+      "v": "1. Arrow Functions"
+    },
+    {
+      "t": "p",
+      "v": "Arrow functions simplify syntax and make code more concise. Unlike traditional functions, they inherit the this value from their lexical scope."
+    },
+    {
+      "t": "h3",
+      "v": "Syntax:"
+    },
+    {
+      "t": "code",
+      "v": "const add = (a, b) => a + b;\r\nconsole.log(add(5, 10)); // Output: 15"
+    },
+    {
+      "t": "h3",
+      "v": "Benefits:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Shorter syntax",
+        "No binding of this",
+        "Useful for callbacks and array methods"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "2. Template Literals"
+    },
+    {
+      "t": "p",
+      "v": "Template literals simplify string concatenation using backticks () and allow embedded expressions with ${}`."
+    },
+    {
+      "t": "h3",
+      "v": "Example:"
+    },
+    {
+      "t": "code",
+      "v": "const name = \"Bilal\";\r\nconsole.log(`Hello, ${name}!`); // Output: Hello, Bilal!"
+    },
+    {
+      "t": "h3",
+      "v": "Benefits:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Multi-line strings",
+        "String interpolation",
+        "Improved readability"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "3. Destructuring Assignment"
+    },
+    {
+      "t": "p",
+      "v": "Destructuring allows extracting values from arrays or objects in a cleaner way."
+    },
+    {
+      "t": "h3",
+      "v": "Array Destructuring:"
+    },
+    {
+      "t": "code",
+      "v": "const numbers = [1, 2, 3];\r\nconst [a, b, c] = numbers;\r\nconsole.log(a, b, c); // Output: 1 2 3"
+    },
+    {
+      "t": "h3",
+      "v": "Object Destructuring:"
+    },
+    {
+      "t": "code",
+      "v": "const user = { name: \"Ali\", age: 25 };\r\nconst { name, age } = user;\r\nconsole.log(name, age); // Output: Ali 25"
+    },
+    {
+      "t": "h2",
+      "v": "4. Spread Operator"
+    },
+    {
+      "t": "p",
+      "v": "The spread operator (...) allows expanding elements of an array or object."
+    },
+    {
+      "t": "h3",
+      "v": "Example:"
+    },
+    {
+      "t": "code",
+      "v": "const arr1 = [1, 2, 3];\r\nconst arr2 = [...arr1, 4, 5];\r\nconsole.log(arr2); // Output: [1, 2, 3, 4, 5]"
+    },
+    {
+      "t": "h3",
+      "v": "Benefits:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Cloning arrays or objects",
+        "Merging arrays or objects",
+        "Passing arguments dynamically"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "5. Rest Parameter"
+    },
+    {
+      "t": "p",
+      "v": "Rest parameters allow functions to accept an indefinite number of arguments as an array."
+    },
+    {
+      "t": "h3",
+      "v": "Example:"
+    },
+    {
+      "t": "code",
+      "v": "const sum = (...numbers) => numbers.reduce((acc, curr) => acc + curr, 0);\r\nconsole.log(sum(1, 2, 3, 4)); // Output: 10"
+    },
+    {
+      "t": "h3",
+      "v": "Benefits:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Handling dynamic arguments",
+        "Simplifies function arguments"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "6. Async/Await"
+    },
+    {
+      "t": "p",
+      "v": "Async/Await simplifies asynchronous operations, making them more readable and maintainable."
+    },
+    {
+      "t": "h3",
+      "v": "Example:"
+    },
+    {
+      "t": "code",
+      "v": "const fetchData = async () => {\r\n  let response = await fetch('https://api.example.com/data');\r\n  let data = await response.json();\r\n  console.log(data);\r\n};\r\nfetchData();"
+    },
+    {
+      "t": "h3",
+      "v": "Benefits:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Avoids callback hell",
+        "Improves readability",
+        "Easier error handling"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "7. Map & Set"
+    },
+    {
+      "t": "h3",
+      "v": "Map:"
+    },
+    {
+      "t": "p",
+      "v": "Maps store key-value pairs and maintain insertion order."
+    },
+    {
+      "t": "code",
+      "v": "const map = new Map();\r\nmap.set(\"name\", \"Bilal\");\r\nconsole.log(map.get(\"name\")); // Output: Bilal"
+    },
+    {
+      "t": "h3",
+      "v": "Set:"
+    },
+    {
+      "t": "code",
+      "v": "const set = new Set([1, 2, 3, 3]);\r\nconsole.log(set); // Output: Set { 1, 2, 3 }"
+    },
+    {
+      "t": "h2",
+      "v": "8. Default Parameters"
+    },
+    {
+      "t": "p",
+      "v": "Default parameters assign a default value if no argument is passed."
+    },
+    {
+      "t": "code",
+      "v": "const greet = (name = \"Guest\") => console.log(`Hello, ${name}!`);\r\ngreet(); // Output: Hello, Guest!"
+    },
+    {
+      "t": "h2",
+      "v": "9. Modules"
+    },
+    {
+      "t": "p",
+      "v": "ES6 introduced modules to split code into reusable components."
+    },
+    {
+      "t": "h3",
+      "v": "Export:"
+    },
+    {
+      "t": "code",
+      "v": "export const greet = () => console.log(\"Hello!\");"
+    },
+    {
+      "t": "h3",
+      "v": "Import:"
+    },
+    {
+      "t": "code",
+      "v": "import { greet } from './module.js';\r\ngreet();"
+    },
+    {
+      "t": "h2",
+      "v": "10. Map Method"
+    },
+    {
+      "t": "p",
+      "v": "The map() method creates a new array by applying a function to each element."
+    },
+    {
+      "t": "code",
+      "v": "const numbers = [1, 2, 3];\r\nconst doubled = numbers.map(num => num * 2);\r\nconsole.log(doubled); // Output: [2, 4, 6]"
+    },
+    {
+      "t": "h2",
+      "v": "11. Filter Method"
+    },
+    {
+      "t": "p",
+      "v": "The filter() method returns an array with elements that meet a condition."
+    },
+    {
+      "t": "code",
+      "v": "const numbers = [1, 2, 3, 4, 5];\r\nconst even = numbers.filter(num => num % 2 === 0);\r\nconsole.log(even); // Output: [2, 4]"
+    },
+    {
+      "t": "h2",
+      "v": "12. Reduce Method"
+    },
+    {
+      "t": "p",
+      "v": "The reduce() method executes a function on each array element and returns a single value."
+    },
+    {
+      "t": "code",
+      "v": "const numbers = [1, 2, 3, 4];\r\nconst sum = numbers.reduce((acc, curr) => acc + curr, 0);\r\nconsole.log(sum); // Output: 10"
+    },
+    {
+      "t": "h2",
+      "v": "FAQ (Frequently Asked Questions)"
+    },
+    {
+      "t": "h3",
+      "v": "1. What is the difference between var , let , and const in ES6?"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "var has function scope, while let and const have block scope.",
+        "const cannot be reassigned after declaration."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "2. How does the spread operator differ from the rest parameter?"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "The spread operator expands an array/object, while the rest parameter collects multiple arguments into an array."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "3. Why should I use arrow functions?"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Arrow functions provide a concise syntax and do not bind this , making them ideal for callbacks."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "4. What are ES6 modules?"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "ES6 modules allow code splitting using import and export , making code more modular and reusable."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "5. How does async/await improve asynchronous programming?"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "It makes asynchronous code look synchronous, improving readability and maintainability.",
+        "Structuring Your React App Like a Pro",
+        "React Tips and Tricks for Efficient Development",
+        "Optimizing React Applications",
+        "Top React Design Patterns",
+        "Structuring Your React App Like a Pro"
+      ]
+    }
+  ]
+}

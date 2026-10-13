@@ -1,0 +1,267 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { MessageSquarePlus, X, Loader2, CheckCircle2, AlertCircle, MessageCircle } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { SITE_EMAIL } from "@/lib/contact";
+import { useLeadSubmit, TURNSTILE_ENABLED } from "@/lib/useLeadSubmit";
+import WhatsAppLink from "@/components/ui/WhatsAppLink";
+import { useFocusTrap } from "@/lib/focusTrap";
+
+const POPUP_MESSAGE =
+  "Hi Bilal, I found you through bilalshafqat.com and wanted to ask about a project.";
+
+export default function LeadFormPopup() {
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const { status, setStatus, submit, turnstileRef } = useLeadSubmit({
+    source: "website-popup",
+    thankYouPath: "/thank-you?source=enquiry",
+    honeypotField: "botcheck",
+    markSuccess: true,
+    resetOnSuccess: true,
+    // The popup shows one generic error with the email address, never the
+    // server's text, so these are not displayed.
+    defaultError: "Something went wrong.",
+    networkError: "Something went wrong.",
+  });
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  // This dialog never moved focus into itself, so opening the enquiry form left
+  // a keyboard user on the trigger with no indication anything had happened,
+  // and Tab then walked the page behind it (roadmap 213.9).
+  useFocusTrap(dialogRef, open);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  // Dismiss once the navigation the submit started has actually landed.
+  //
+  // This component lives in the root layout, so a client-side route change does
+  // not unmount it and `open` survived a successful submission: the visitor
+  // arrived on /thank-you with the "Query sent" modal still covering it and
+  // `body.overflow` still `hidden`, needing a click to escape — at the moment
+  // immediately after converting (roadmap 213.11).
+  //
+  // Closing on the path change rather than before `router.push` keeps the
+  // success state visible while a slow navigation is in flight, which is the
+  // only feedback the visitor gets in that window, and still leaves nothing
+  // over the destination once it arrives.
+  //
+  // Adjusted during render rather than in an effect: derived state, and an
+  // effect here trips `react-hooks/set-state-in-effect`.
+  const [lastPath, setLastPath] = useState(pathname);
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
+    if (open) {
+      setOpen(false);
+      setStatus("idle");
+    }
+  }
+
+  const closeAndReset = () => {
+    setOpen(false);
+    setTimeout(() => setStatus("idle"), 300);
+  };
+
+  // No `service` in the popup, so `generate_lead` reports it as unspecified.
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) =>
+    submit(e, (data) => ({
+      fields: {
+        name: data.get("name"),
+        email: data.get("email"),
+        phone: data.get("phone"),
+        message: data.get("message"),
+      },
+    }));
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        // Stands down while the consent banner is up. Two competing calls to
+        // action at once is the wrong ask, and on a phone the banner covered
+        // this button outright (roadmap 213.35). It returns as soon as the
+        // visitor answers, either way.
+        className="btn-primary fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold shadow-lg shadow-black/30 transition-shadow hover:shadow-xl floating-enquiry"
+        aria-haspopup="dialog"
+      >
+        <MessageSquarePlus size={18} />
+        <span className="hidden sm:inline">Quick Enquiry</span>
+      </button>
+
+      {open ? (
+        <div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="lead-form-heading"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+        >
+          <div
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            onClick={closeAndReset}
+          />
+
+          <div className="glass-strong relative w-full max-w-md r-card border border-border p-7 sm:p-8">
+            <button
+              type="button"
+              onClick={closeAndReset}
+              aria-label="Close"
+              className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-lg text-muted hover:bg-white/5 hover:text-ink transition-colors"
+            >
+              <X size={18} />
+            </button>
+
+            {status === "success" ? (
+              <div className="py-6 text-center">
+                <CheckCircle2 size={40} className="mx-auto text-gold" />
+                <h3 className="t-h5 mt-4 text-ink">Query sent</h3>
+                <p className="mt-2 text-sm text-muted leading-relaxed">
+                  Thanks for reaching out. I&apos;ll get back to you shortly.
+                </p>
+                <button
+                  type="button"
+                  onClick={closeAndReset}
+                  className="mt-6 btn-primary inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold"
+                >
+                  Close
+                </button>
+              </div>
+            ) : (
+              <>
+                <h3 id="lead-form-heading" className="t-h5 text-ink">
+                  Send a quick query
+                </h3>
+                <p className="mt-1.5 text-sm text-muted leading-relaxed">
+                  Tell me a bit about what you need and I&apos;ll follow up directly.
+                </p>
+
+                <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
+                  <input
+                    type="checkbox"
+                    name="botcheck"
+                    className="hidden"
+                    style={{ display: "none" }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+
+                  <div>
+                    <label htmlFor="lead-name" className="text-xs font-medium text-muted">
+                      Name
+                    </label>
+                    <input
+                      id="lead-name"
+                      name="name"
+                      type="text"
+                      required
+                      className="mt-1.5 w-full rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-gold/50"
+                      placeholder="Your name"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="lead-email" className="text-xs font-medium text-muted">
+                      Email
+                    </label>
+                    <input
+                      id="lead-email"
+                      name="email"
+                      type="email"
+                      required
+                      className="mt-1.5 w-full rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-gold/50"
+                      placeholder="you@company.com"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="lead-phone" className="text-xs font-medium text-muted">
+                      Phone (optional)
+                    </label>
+                    <input
+                      id="lead-phone"
+                      name="phone"
+                      type="tel"
+                      className="mt-1.5 w-full rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-gold/50"
+                      placeholder="+971 5X XXX XXXX"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="lead-message" className="text-xs font-medium text-muted">
+                      What do you need help with?
+                    </label>
+                    <textarea
+                      id="lead-message"
+                      name="message"
+                      required
+                      rows={3}
+                      className="mt-1.5 w-full resize-none rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-gold/50"
+                      placeholder="Briefly describe your project or query"
+                    />
+                  </div>
+
+                  {TURNSTILE_ENABLED ? <div ref={turnstileRef} /> : null}
+
+                  {status === "error" ? (
+                    <div className="flex items-start gap-2 rounded-xl border border-red-500/20 bg-red-500/5 px-4 py-3 text-xs text-red-300">
+                      <AlertCircle size={14} className="mt-0.5 shrink-0" />
+                      <span>
+                        Something went wrong. Please email{" "}
+                        <span className="underline">{SITE_EMAIL}</span>{" "}
+                        directly instead.
+                      </span>
+                    </div>
+                  ) : null}
+
+                  <button
+                    type="submit"
+                    disabled={status === "submitting"}
+                    className="btn-primary mt-1 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold disabled:opacity-60"
+                  >
+                    {status === "submitting" ? (
+                      <>
+                        <Loader2 size={16} className="animate-spin" /> Sending...
+                      </>
+                    ) : (
+                      "Send query"
+                    )}
+                  </button>
+                </form>
+
+                {/* WhatsApp folded in here, replacing the separate floating
+                    bubble. That bubble was a third widget in the same corner
+                    and the only off-brand colour on the page — #25D366 against
+                    a gold-on-near-black palette. Same destination, brand
+                    tokens, one widget instead of three. */}
+                <div className="mt-5 border-t border-border pt-5">
+                  <p className="text-xs text-muted">Prefer to message?</p>
+                  <WhatsAppLink
+                    context="quick-enquiry-popup"
+                    message={POPUP_MESSAGE}
+                    className="mt-2.5 inline-flex items-center gap-2 rounded-full surface-2 px-4 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-gold/40 hover:text-gold"
+                  >
+                    <MessageCircle size={15} className="text-gold" />
+                    Continue on WhatsApp
+                  </WhatsAppLink>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      ) : null}
+    </>
+  );
+}

@@ -1,14 +1,15 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import PageOpener from "@/components/PageOpener";
+import { pageMetadata } from "@/lib/site";
+import PageOpener from "@/components/layout/PageOpener";
 import { ArrowRight } from "lucide-react";
-import Reveal from "@/components/Reveal";
-import CtaButton from "@/components/CtaButton";
-import FaqSection from "@/components/FaqSection";
-import Contact from "@/components/Contact";
+import Reveal from "@/components/ui/Reveal";
+import CtaButton from "@/components/ui/CtaButton";
+import FaqSection from "@/components/ui/FaqSection";
+import Contact from "@/components/sections/Contact";
 import { clients } from "@/data/caseStudies";
 import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
-import Eyebrow from "@/components/Eyebrow";
+import Eyebrow from "@/components/ui/Eyebrow";
 
 /**
  * The off-plan property vertical page.
@@ -39,13 +40,13 @@ import Eyebrow from "@/components/Eyebrow";
 const leos = clients.find((c) => c.slug === "leos-developments");
 const launches = leos?.projects ?? [];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   // 58 characters. The earlier version ran to 63 and Google would have cut it.
   title: "Off-Plan Real Estate Marketing, Dubai & UK — Bilal Shafqat",
   description:
     "Off-plan launch marketing for property developers in Dubai and the UK: landing pages, campaign creative and lead capture built as one system by one person.",
-  alternates: { canonical: "/real-estate-marketing" },
-};
+  path: "/real-estate-marketing",
+});
 
 /** What a launch is actually made of. Each item is something delivered across
  *  the four published launches, not a service list written from scratch. */
@@ -215,6 +216,23 @@ export default function RealEstateMarketingPage() {
             <p className="mt-4 max-w-[62ch] text-lg leading-relaxed text-muted">
               Usually bought as four separate things from four separate suppliers, which
               is where most of the leakage happens.
+            </p>
+            <p className="mt-3 max-w-[62ch] text-base leading-relaxed text-muted">
+              For the evidence behind this, read{" "}
+              <Link
+                href="/real-estate-marketing-dubai-what-generates-enquiries"
+                className="text-gold underline underline-offset-4 hover:text-ink"
+              >
+                what actually generates real estate enquiries in Dubai
+              </Link>{" "}
+              and{" "}
+              <Link
+                href="/google-ads-vs-meta-ads-dubai-real-estate"
+                className="text-gold underline underline-offset-4 hover:text-ink"
+              >
+                Google Ads vs Meta Ads for Dubai real estate
+              </Link>
+              .
             </p>
           </Reveal>
           <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">

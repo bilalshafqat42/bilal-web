@@ -32,9 +32,15 @@ assuming.
 **Point links at the hub pages, not the homepage.** Every external link this
 domain has ever earned points at the homepage. The hubs have none.
 
-- **A** = `/services/website-app-development`
+**Re-pointed 2026-10-13 (roadmap 398).** The site sells a digital marketer,
+so links that build authority go to the marketing pages. A and C changed;
+B stays because design audiences (Dribbble, Awwwards) only click a design
+page. Development links use D. Rows below already carry the new letters.
+
+- **A** = `/services/digital-marketing` (was website-app-development)
 - **B** = `/services/ui-ux-design`
-- **C** = `/services/mobile-app-development`
+- **C** = `/services/paid-marketing` (was mobile-app-development)
+- **D** = `/services/website-app-development` (developer audiences only)
 - **H** = `/ (homepage)`
 - **P** = `/portfolio`
 - **W** = `/blog`
@@ -68,11 +74,11 @@ costs more to undo than these 65 days are worth.
 | # | Date | Task | Link to | Note |
 | ---: | --- | --- | :---: | --- |
 | 11 | Mon 19 Oct | Clutch profile | H | Free listing. Takes about an hour to fill properly. Reviews matter more than the link. |
-| 12 | Tue 20 Oct | GoodFirms profile | A | Free listing. Choose Web Development as the primary category. |
+| 12 | Tue 20 Oct | GoodFirms profile | - | **Closed (roadmap 351):** GoodFirms does not list freelancers. |
 | 13 | Wed 21 Oct | DesignRush profile | B | Free tier exists. Check current terms before paying for anything. |
 | 14 | Thu 22 Oct | Bark | H | Lead platform with a profile page. The leads may be worth more than the link. |
 | 15 | Fri 23 Oct | Sortlist | H | Agency and freelancer directory with UAE coverage. |
-| 16 | Mon 26 Oct | The Manifest | A | Sister site to Clutch. Separate listing. |
+| 16 | Mon 26 Oct | The Manifest | A | Sister site to Clutch. Separate listing. Choose Digital Marketing as the primary category. |
 | 17 | Tue 27 Oct | Crunchbase | H | Person or company profile. Check you qualify under their rules before submitting. |
 | 18 | Wed 28 Oct | AngelList / Wellfound profile | H | Freelancer profile with a website field. |
 | 19 | Thu 29 Oct | Product Hunt profile | H | Set up the profile now so it exists before you ever launch anything. |
@@ -113,11 +119,11 @@ costs more to undo than these 65 days are worth.
 | # | Date | Task | Link to | Note |
 | ---: | --- | --- | :---: | --- |
 | 41 | Mon 30 Nov | Build a list of 20 UAE business blogs | - | Spreadsheet: site, editor name, what they publish, whether they take contributors. |
-| 42 | Tue 01 Dec | Pitch guest post 1 | A | Pitch a specific headline, not 'I would like to write for you'. Offer the piece on what a website actually costs here. |
-| 43 | Wed 02 Dec | Pitch guest post 2 | C | Different outlet. Topic: whether a Dubai business actually needs an app. |
+| 42 | Tue 01 Dec | Pitch guest post 1 | C | Pitch a specific headline, not 'I would like to write for you'. Offer the piece on what a Dubai business should expect to pay per lead, and why the cheapest lead is rarely the best. |
+| 43 | Wed 02 Dec | Pitch guest post 2 | A | Different outlet. Topic: freelance marketer or agency, how a Dubai business should decide. |
 | 44 | Thu 03 Dec | Pitch guest post 3 | B |  |
 | 45 | Fri 04 Dec | Follow up on pitch 1 | - | One follow-up after five working days. One. Not three. |
-| 46 | Mon 07 Dec | Pitch guest post 4 | A |  |
+| 46 | Mon 07 Dec | Pitch guest post 4 | D | A developer-audience outlet: what a website actually costs in Dubai. |
 | 47 | Tue 08 Dec | Pitch guest post 5 | W |  |
 | 48 | Wed 09 Dec | Write the first accepted guest post | A | Write it properly. A weak guest post costs you the relationship and the link. |
 | 49 | Thu 10 Dec | Follow up on pitches 2 and 3 | - |  |
@@ -127,7 +133,7 @@ costs more to undo than these 65 days are worth.
 
 | # | Date | Task | Link to | Note |
 | ---: | --- | --- | :---: | --- |
-| 51 | Mon 14 Dec | Decide the original data piece | H | Recommendation: what 40 Dubai web and app projects actually cost in 2026, from your own quoting records. Anonymised, aggregated, no client identifiable. |
+| 51 | Mon 14 Dec | Decide the original data piece | H | Recommendation (changed 2026-10-13 to match the marketing positioning): cost-per-lead and conversion ranges by channel for UAE campaigns, from your own campaign records. Anonymised, aggregated, no client or employer identifiable, and only with their permission. Fallback: the original web-project cost study. |
 | 52 | Tue 15 Dec | Pull and anonymise the data | H | Ranges and medians only. No client names, no identifiable project details. If a figure could identify a client, drop it. |
 | 53 | Wed 16 Dec | Write the data piece | A | Method stated plainly: this is my own quoting record, n is small, it is not a market survey. Honest limitations make it more citable, not less. |
 | 54 | Thu 17 Dec | Build the charts | A | One good chart gets screenshotted and linked. Make it readable at thumbnail size. |
@@ -142,7 +148,7 @@ costs more to undo than these 65 days are worth.
 
 | # | Date | Task | Link to | Note |
 | ---: | --- | --- | :---: | --- |
-| 61 | Mon 28 Dec | Ask LEOS for a Google review | H | Still the single highest-value outstanding action and it has been open for weeks. Not a backlink. Do it anyway. |
+| 61 | ~~Mon 28 Dec~~ | ~~Ask LEOS for a Google review~~ | - | **Dropped 2026-10-04 (roadmap 340).** Ask other past clients instead (roadmap 398, section 3). |
 | 62 | Tue 29 Dec | Answer one Qwoted or Featured request | - | Make this a weekly habit from here on. |
 | 63 | Wed 30 Dec | One more guest post pitch | - |  |
 | 64 | Thu 31 Dec | Audit: who links to you now | - | Compare against the start. Record the number in roadmap.md. |
@@ -269,7 +275,7 @@ Last day: Friday 01 January 2027.
 
 ## If you only do five of these
 
-1. Ask LEOS for a Google review. Still outstanding.
+1. ~~Ask LEOS for a Google review.~~ Dropped 2026-10-04 (roadmap 340); ask other past clients instead.
 2. Ask three past clients to credit you with a link.
 3. Republish to dev.to with the canonical tag set correctly.
 4. One accepted guest post.

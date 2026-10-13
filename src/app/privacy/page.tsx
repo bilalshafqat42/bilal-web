@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
-import PageOpener from "@/components/PageOpener";
-import ConsentReset from "@/components/ConsentReset";
+import { pageMetadata } from "@/lib/site";
+import PageOpener from "@/components/layout/PageOpener";
+import ConsentReset from "@/components/forms/ConsentReset";
 import { SITE_URL, breadcrumbNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
+import { SITE_EMAIL } from "@/lib/contact";
 
 export const metadata: Metadata = {
-  title: "Privacy & What This Site Stores — Bilal Shafqat, Dubai",
-  // Was 104 characters and left a third of the space Google gives you unused.
-  description:
-    "What this site stores: Google Analytics, the Meta Pixel, campaign tracking and enquiry details. What each is for, and how to decline or delete yours.",
-  alternates: { canonical: "/privacy" },
+  ...pageMetadata({
+    title: "Privacy & What This Site Stores — Bilal Shafqat, Dubai",
+    // Was 104 characters and left a third of the space Google gives you unused.
+    description:
+      "What this site stores: Google Analytics, the Meta Pixel, campaign tracking and enquiry details. What each is for, and how to decline or delete yours.",
+    path: "/privacy",
+  }),
   robots: { index: true, follow: true },
 };
 
@@ -50,7 +54,7 @@ const rows = [
   },
   {
     what: "Enquiry details you type (name, email, phone, service, message)",
-    where: "Sent to my lead system when you press send",
+    where: "Sent to my lead system when you press send. If that system is briefly unavailable, a copy is kept on this site's server and emailed to me so your enquiry is not lost, then deleted once it reaches the lead system",
     why: "So I can reply to you.",
     optional: "Yes — don't submit the form. Email or WhatsApp me instead.",
   },
@@ -131,7 +135,7 @@ export default function PrivacyPage() {
                 {/* Plain text rather than a mailto link on purpose: a legal
                     contact route should not depend on the visitor having a mail
                     client configured. Unchanged since item 179. */}
-                <span className="text-gold">bilal@bilalshafqat.com</span> and say
+                <span className="text-gold">{SITE_EMAIL}</span> and say
                 which.
               </p>
 

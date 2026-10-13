@@ -31,7 +31,7 @@ export const TRACKED = [
   ["/services/crm-marketing-automation", "crm consultant dubai"],
   ["/services/ui-ux-design", "ui ux designer dubai"],
   ["/services/web-design", "web designer dubai"],
-  ["/services/graphic-design-branding", "graphic design in dubai"],
+  ["/services/graphic-design-branding", "graphic designer in dubai"],
   ["/services/video-conversion", "video editor dubai"],
   ["/pricing", "freelance digital marketer costs in dubai"],
 ];

@@ -1,0 +1,253 @@
+{
+  "slug": "react-usereducer-hook-explained",
+  "title": "React useReducer Hook Explained with Real Examples and Best Practices",
+  "description": "Confused about when to use useReducer in React? Learn how this powerful hook helps manage complex state logic, with real examples and best practices for 2025.",
+  "published": "2025-06-30",
+  "updatedAt": "2026-10-01",
+  "tags": [
+    "React Hooks",
+    "React Js"
+  ],
+  "words": 398,
+  "blocks": [
+    {
+      "t": "h2",
+      "v": "Introduction"
+    },
+    {
+      "t": "p",
+      "v": "Managing state in React is easy — until it’s not. When your component’s state logic becomes complex, using multiple useState calls can quickly get messy and hard to maintain."
+    },
+    {
+      "t": "p",
+      "v": "This is where useReducer comes in. It gives you a structured way to manage state transitions, especially when those transitions depend on the previous state."
+    },
+    {
+      "t": "h3",
+      "v": "In this guide, you'll learn:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "What useReducer is",
+        "When to use it vs useState",
+        "How it compares to Redux",
+        "How to structure reducers",
+        "Real-world examples and best practices"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "What is useReducer?"
+    },
+    {
+      "t": "p",
+      "v": "useReducer is a React hook that’s an alternative to useState for managing more complex state."
+    },
+    {
+      "t": "p",
+      "v": "It works similarly to Redux by using a reducer function and a dispatch method:"
+    },
+    {
+      "t": "code",
+      "v": "const [state, dispatch] = useReducer(reducer, initialState);"
+    },
+    {
+      "t": "p",
+      "v": "This hook returns the current state and a dispatch function you can use to trigger state updates based on actions."
+    },
+    {
+      "t": "h2",
+      "v": "Why Use useReducer Instead of useState?"
+    },
+    {
+      "t": "p",
+      "v": "useReducer shines in components where:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "There are multiple pieces of state",
+        "State updates are conditional or depend on previous state",
+        "You want to centralize state logic in one function"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "useState is great for simple values like booleans, strings, and numbers — but when your state logic grows in complexity, useReducer helps keep it maintainable."
+    },
+    {
+      "t": "h2",
+      "v": "Basic Syntax of useReducer"
+    },
+    {
+      "t": "code",
+      "v": "function reducer(state, action) {\n  switch (action.type) {\n    case \"increment\":\n      return { count: state.count + 1 };\n    case \"decrement\":\n      return { count: state.count - 1 };\n    default:\n      return state;\n  }\n}\n\nconst [state, dispatch] = useReducer(reducer, { count: 0 });"
+    },
+    {
+      "t": "h3",
+      "v": "Usage:"
+    },
+    {
+      "t": "code",
+      "v": "<button onClick={() => dispatch({ type: \"increment\" })}>\n  {state.count}\n</button>"
+    },
+    {
+      "t": "h2",
+      "v": "useReducer vs useState"
+    },
+    {
+      "t": "table",
+      "head": [
+        "",
+        "useState",
+        "useReducer"
+      ],
+      "rows": [
+        [
+          "Best for",
+          "One or two independent values",
+          "Several values that change together"
+        ],
+        [
+          "Update logic",
+          "Lives in the component",
+          "Lives in one reducer function"
+        ],
+        [
+          "Next state depends on previous",
+          "Awkward, needs the callback form",
+          "Natural, the reducer receives it"
+        ],
+        [
+          "Testing",
+          "Needs the component",
+          "Reducer is a pure function, testable alone"
+        ],
+        [
+          "Boilerplate",
+          "Almost none",
+          "A reducer and action types"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "v": "The honest rule: reach for useReducer when you notice two or three useState calls that always change in the same event handler. Until then useState is not the wrong choice, it is the smaller one."
+    },
+    {
+      "t": "h2",
+      "v": "Example: Toggle & Counter Together"
+    },
+    {
+      "t": "code",
+      "v": "const initialState = { count: 0, show: true };\n\nfunction reducer(state, action) {\n  switch (action.type) {\n    case \"increment\":\n      return { ...state, count: state.count + 1 };\n    case \"toggle\":\n      return { ...state, show: !state.show };\n    default:\n      return state;\n  }\n}\n\nconst [state, dispatch] = useReducer(reducer, initialState);"
+    },
+    {
+      "t": "p",
+      "v": "Now both count and show are controlled in one predictable place."
+    },
+    {
+      "t": "h2",
+      "v": "useReducer + useContext for Global State"
+    },
+    {
+      "t": "p",
+      "v": "Want to manage shared state across multiple components without Redux?"
+    },
+    {
+      "t": "p",
+      "v": "Use useReducer inside a context provider:"
+    },
+    {
+      "t": "code",
+      "v": "const AuthContext = createContext();\n\nfunction AuthProvider({ children }) {\n  const [state, dispatch] = useReducer(authReducer, { isAuthenticated: false });\n\n  return (\n    <AuthContext.Provider value={{ state, dispatch }}>\n      {children}\n    </AuthContext.Provider>\n  );\n}"
+    },
+    {
+      "t": "h2",
+      "v": "Common Mistakes to Avoid"
+    },
+    {
+      "t": "h3",
+      "v": "1. Returning the old state instead of a new copy"
+    },
+    {
+      "t": "code",
+      "v": "// ❌ Mutating state\nstate.count++;\n\n// ✅ Correct\nreturn { ...state, count: state.count + 1 };"
+    },
+    {
+      "t": "h3",
+      "v": "2. Handling too many unrelated things in one reducer"
+    },
+    {
+      "t": "p",
+      "v": "Split reducers or use multiple reducers with combineReducers (in Redux) or custom logic in React."
+    },
+    {
+      "t": "h3",
+      "v": "3. Using it when useState would be simpler"
+    },
+    {
+      "t": "p",
+      "v": "If you just need to toggle a boolean or store a single input, stick with useState()."
+    },
+    {
+      "t": "h2",
+      "v": "When to Use useReducer (Best Scenarios)"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Complex forms with validation logic",
+        "Multi-step workflows (wizards, tabs)",
+        "State objects with multiple sub-properties",
+        "Redux-like global stores without external libraries",
+        "Reusable UI components with configurable state behavior"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Best Practices for useReducer (2025)"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Always return new state objects (avoid mutation)",
+        "Use constants for action types to reduce typos",
+        "Group related state into one reducer",
+        "Combine with useContext for lightweight global state",
+        "Use action creators for better readability"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Final Thoughts"
+    },
+    {
+      "t": "p",
+      "v": "useReducer() gives you better structure and flexibility than useState() when state logic becomes complex or when you need shared logic across multiple components."
+    },
+    {
+      "t": "h3",
+      "v": "Use it when:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "You have multiple values that change together",
+        "Your state transitions are based on conditions",
+        "You want to extract state logic for readability"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "Don’t replace useState in every case — but when you need it, useReducer makes your code scalable and maintainable."
+    }
+  ],
+  "metaTitle": "React useReducer Hook Explained with Examples"
+}

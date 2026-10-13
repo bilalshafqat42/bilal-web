@@ -1,0 +1,261 @@
+{
+  "slug": "react-usememo-hook-explained",
+  "title": "React useMemo Hook Explained with Real Examples and Best Practices",
+  "description": "Learn how to use the React useMemo hook to optimize performance, avoid unnecessary recalculations, and improve app speed. Includes real-world examples and",
+  "published": "2025-06-26",
+  "updatedAt": "2026-10-01",
+  "tags": [
+    "React Js",
+    "React Hooks"
+  ],
+  "words": 442,
+  "blocks": [
+    {
+      "t": "h2",
+      "v": "Introduction"
+    },
+    {
+      "t": "p",
+      "v": "In modern React applications, performance matters. While React efficiently manages re-renders, complex or expensive computations inside components can cause lags, dropped frames, or unnecessary reprocessing."
+    },
+    {
+      "t": "p",
+      "v": "This is where the useMemo hook becomes essential."
+    },
+    {
+      "t": "p",
+      "v": "useMemo() helps developers prevent unnecessary recalculations by memoizing the return value of a function. In short: it lets you cache expensive computations between renders — only recalculating when necessary."
+    },
+    {
+      "t": "h3",
+      "v": "In this guide, you’ll learn:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "What useMemo does",
+        "How to use it properly",
+        "When (and when not) to use it",
+        "Common use cases and real code examples",
+        "Performance tips and 2025 best practices"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "What is useMemo?"
+    },
+    {
+      "t": "p",
+      "v": "useMemo is a built-in React hook that returns a memoized value. It helps avoid recalculating a result unless the dependencies change."
+    },
+    {
+      "t": "h3",
+      "v": "Syntax:"
+    },
+    {
+      "t": "code",
+      "v": "const memoizedValue = useMemo(() => {\n  return computeExpensiveValue(input);\n}, [input]);"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "The function is only re-executed when one of the dependencies changes.",
+        "Otherwise, React reuses the cached result."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Why Use useMemo?"
+    },
+    {
+      "t": "p",
+      "v": "In React, any time a component re-renders, all the code inside its body re-runs — including function calls and computations."
+    },
+    {
+      "t": "p",
+      "v": "This is fine for most logic. But when you have expensive calculations (sorting, filtering, transformations), they can slow your app down."
+    },
+    {
+      "t": "p",
+      "v": "useMemo solves this by caching the result and skipping the recalculation unless needed."
+    },
+    {
+      "t": "h2",
+      "v": "Example: Sorting a List"
+    },
+    {
+      "t": "p",
+      "v": "Let’s say you’re sorting a large array on every render:"
+    },
+    {
+      "t": "code",
+      "v": "const sortedList = list.sort((a, b) => a - b);"
+    },
+    {
+      "t": "p",
+      "v": "This will run every time your component renders — even if list hasn’t changed."
+    },
+    {
+      "t": "h3",
+      "v": "Optimized with useMemo:"
+    },
+    {
+      "t": "code",
+      "v": "const sortedList = useMemo(() => {\n  return [...list].sort((a, b) => a - b);\n}, [list]);"
+    },
+    {
+      "t": "p",
+      "v": "Now, the sort only runs when list changes — improving performance."
+    },
+    {
+      "t": "h2",
+      "v": "When Should You Use useMemo?"
+    },
+    {
+      "t": "h3",
+      "v": "Use it when:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "You have expensive calculations",
+        "You want to memoize derived state",
+        "You're passing computed props to memoized child components",
+        "You want to optimize large data structures"
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "Avoid it when:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "The logic is lightweight or simple",
+        "You don’t gain noticeable performance benefits",
+        "Your dependencies change on every render"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "Remember: Memoization itself has overhead. Don’t use useMemo “just in case.” Profile first."
+    },
+    {
+      "t": "h2",
+      "v": "useMemo vs useCallback"
+    },
+    {
+      "t": "p",
+      "v": "Developers often confuse useMemo with useCallback. Here's the difference:"
+    },
+    {
+      "t": "h2",
+      "v": "Example: Filtering a List"
+    },
+    {
+      "t": "code",
+      "v": "const filteredItems = useMemo(() => {\n  return items.filter(item => item.active);\n}, [items]);"
+    },
+    {
+      "t": "p",
+      "v": "This will only re-run the filter if items changes."
+    },
+    {
+      "t": "h2",
+      "v": "Example: Avoiding Expensive Math"
+    },
+    {
+      "t": "code",
+      "v": "const heavyCalc = useMemo(() => {\n  let result = 0;\n  for (let i = 0; i < 1e7; i++) {\n    result += Math.random();\n  }\n  return result;\n}, []);"
+    },
+    {
+      "t": "p",
+      "v": "Without useMemo, this runs on every render. With it, it runs only once (because the dependency array is empty)."
+    },
+    {
+      "t": "h2",
+      "v": "Common useMemo Mistakes"
+    },
+    {
+      "t": "h3",
+      "v": "1. Using it for everything"
+    },
+    {
+      "t": "p",
+      "v": "If the function is fast and cheap — don’t memoize it."
+    },
+    {
+      "t": "h3",
+      "v": "2. Missing or incorrect dependencies"
+    },
+    {
+      "t": "p",
+      "v": "Always include all referenced variables in the dependency array. Otherwise, you'll get stale values."
+    },
+    {
+      "t": "h3",
+      "v": "3. Assuming useMemo always improves performance"
+    },
+    {
+      "t": "p",
+      "v": "Memoization has overhead. It only helps when the cost of recalculating is higher than the cost of caching."
+    },
+    {
+      "t": "h2",
+      "v": "Best Practices for useMemo in 2025"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Use for real performance gains — not just style",
+        "Wrap only expensive operations",
+        "Keep the dependency array accurate",
+        "Use React DevTools to inspect performance before optimizing",
+        "Pair with React.memo and useCallback for full optimization"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "When to Combine useMemo with React.memo"
+    },
+    {
+      "t": "p",
+      "v": "If you're passing computed props into a memoized child component (via React.memo), useMemo ensures the child doesn't re-render unless necessary."
+    },
+    {
+      "t": "h3",
+      "v": "Example:"
+    },
+    {
+      "t": "code",
+      "v": "const filtered = useMemo(() => {\n  return items.filter(i => i.active);\n}, [items]);\n\n<MemoizedList data={filtered} />"
+    },
+    {
+      "t": "h2",
+      "v": "Summary: useMemo Hook in React"
+    },
+    {
+      "t": "p",
+      "v": "React’s useMemo is a powerful optimization tool — when used correctly."
+    },
+    {
+      "t": "h3",
+      "v": "Key Takeaways:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "It memoizes return values — skipping re-computation unless needed",
+        "It helps improve performance for expensive logic",
+        "Don’t overuse it; memoization comes with a cost"
+      ]
+    }
+  ],
+  "metaTitle": "React useMemo Hook Explained with Examples"
+}

@@ -1,0 +1,328 @@
+{
+  "slug": "react-useref-hook-explained-with-real-examples",
+  "title": "React useRef Hook Explained with Real Examples and Best Practices",
+  "description": "Learn React useRef() hook does, when to use it, how it compares to useState(). Includes examples for DOM access, value tracking, performance optimizations.",
+  "published": "2025-06-24",
+  "updatedAt": "2026-10-01",
+  "tags": [
+    "React Js",
+    "React Hooks"
+  ],
+  "words": 513,
+  "blocks": [
+    {
+      "t": "p",
+      "v": "Learn what the React useRef() hook does, when to use it, and how it compares to useState(). Includes real-world examples for DOM access, value tracking, and performance optimizations."
+    },
+    {
+      "t": "h2",
+      "v": "Introduction: What is useRef in React?"
+    },
+    {
+      "t": "p",
+      "v": "If you're working with React functional components, you've probably used useState() and useEffect() — but what about useRef()?"
+    },
+    {
+      "t": "p",
+      "v": "React's useRef() hook is a powerful yet often underutilized tool. While it’s commonly associated with accessing DOM elements, it’s much more versatile than that."
+    },
+    {
+      "t": "h3",
+      "v": "In this guide, you’ll learn:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "What useRef() is",
+        "When and why to use it",
+        "How it differs from useState()",
+        "Real examples including DOM access, persisting values, and timers",
+        "Common mistakes to avoid",
+        "Best practices for 2025 and beyond"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "What is useRef?"
+    },
+    {
+      "t": "p",
+      "v": "useRef() is a built-in React hook that returns a mutable object with a .current property. Unlike state, updating this .current value does not trigger a re-render."
+    },
+    {
+      "t": "h3",
+      "v": "Syntax:"
+    },
+    {
+      "t": "code",
+      "v": "const ref = useRef(initialValue);"
+    },
+    {
+      "t": "h3",
+      "v": "What it returns:"
+    },
+    {
+      "t": "code",
+      "v": "{\r\n  current: initialValue\r\n}"
+    },
+    {
+      "t": "p",
+      "v": "This ref object persists for the entire lifetime of the component."
+    },
+    {
+      "t": "h2",
+      "v": "When to Use useRef()"
+    },
+    {
+      "t": "h3",
+      "v": "1. Accessing DOM Elements"
+    },
+    {
+      "t": "p",
+      "v": "This is the most well-known use case — directly referencing a DOM node for actions like focusing an input or scrolling."
+    },
+    {
+      "t": "h3",
+      "v": "2. Persisting Values Across Renders"
+    },
+    {
+      "t": "p",
+      "v": "You can store a value in a ref that will survive re-renders without causing the component to update."
+    },
+    {
+      "t": "h3",
+      "v": "3. Storing Previous Props or State"
+    },
+    {
+      "t": "p",
+      "v": "Refs are perfect for tracking what a value was during the previous render — without triggering another render."
+    },
+    {
+      "t": "h3",
+      "v": "4. Timer IDs or Animation References"
+    },
+    {
+      "t": "p",
+      "v": "If you're using setTimeout, setInterval, or animations, useRef() lets you store IDs cleanly."
+    },
+    {
+      "t": "h2",
+      "v": "Example 1: Focus an Input Field"
+    },
+    {
+      "t": "code",
+      "v": "import { useRef } from 'react';\r\n\r\nfunction FocusInput() {\r\n  const inputRef = useRef();\r\n\r\n  return (\r\n    <>\r\n      <input ref={inputRef} />\r\n      <button onClick={() => inputRef.current.focus()}>\r\n        Focus Input\r\n      </button>\r\n    </>\r\n  );\r\n}"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "useRef() creates a reference object.",
+        "React assigns that object to the ref attribute.",
+        "On button click, you call .focus() on the DOM node."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Example 2: Tracking Previous State"
+    },
+    {
+      "t": "code",
+      "v": "import { useEffect, useRef, useState } from 'react';\r\n\r\nfunction Counter() {\r\n  const [count, setCount] = useState(0);\r\n  const prevCount = useRef();\r\n\r\n  useEffect(() => {\r\n    prevCount.current = count;\r\n  }, [count]);\r\n\r\n  return (\r\n    <>\r\n      <p>Current: {count}</p>\r\n      <p>Previous: {prevCount.current}</p>\r\n      <button onClick={() => setCount(count + 1)}>Increment</button>\r\n    </>\r\n  );\r\n}"
+    },
+    {
+      "t": "p",
+      "v": "This setup tracks the previous count value without triggering any extra renders."
+    },
+    {
+      "t": "h2",
+      "v": "useRef vs useState: What's the Difference?"
+    },
+    {
+      "t": "table",
+      "head": [
+        "",
+        "useState",
+        "useRef"
+      ],
+      "rows": [
+        [
+          "Triggers a re-render",
+          "Yes",
+          "No"
+        ],
+        [
+          "Value survives re-renders",
+          "Yes",
+          "Yes"
+        ],
+        [
+          "Read the latest value synchronously",
+          "No, it is captured per render",
+          "Yes, through .current"
+        ],
+        [
+          "Typical use",
+          "Anything the user sees",
+          "DOM nodes, timers, previous values, mutable flags"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "v": "The distinction that matters: changing a ref does not tell React anything happened. If the screen needs to change, it is state. If you only need to remember something between renders, it is a ref."
+    },
+    {
+      "t": "h2",
+      "v": "Common Mistakes to Avoid with useRef"
+    },
+    {
+      "t": "h3",
+      "v": "Mistake 1: Using ref for data that should trigger a re-render"
+    },
+    {
+      "t": "p",
+      "v": "If your UI depends on a value, it should be stored in state — not ref."
+    },
+    {
+      "t": "code",
+      "v": "const countRef = useRef(0);\r\ncountRef.current += 1;"
+    },
+    {
+      "t": "code",
+      "v": "const [count, setCount] = useState(0);\r\nsetCount(count + 1);"
+    },
+    {
+      "t": "h3",
+      "v": "Mistake 2: Forgetting that useRef doesn’t cause a re-render"
+    },
+    {
+      "t": "p",
+      "v": "Changing .current won’t make the component update. This is both a feature and a gotcha."
+    },
+    {
+      "t": "h3",
+      "v": "Mistake 3: Assuming useRef is only for DOM"
+    },
+    {
+      "t": "p",
+      "v": "Refs can hold anything — not just DOM elements. Think of it as a safe, persistent container."
+    },
+    {
+      "t": "h2",
+      "v": "Best Practices for useRef in 2025"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Use it to hold mutable values you don’t want to trigger a render",
+        "Use it to reference DOM nodes for animations or focus behavior",
+        "Combine with useEffect() to track previous props or state",
+        "Use it to store timers or animation frame IDs",
+        "Avoid overusing it where useState() or useReducer() are better fits"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Real-World Use Cases"
+    },
+    {
+      "t": "h3",
+      "v": "Accessing a scrollable container:"
+    },
+    {
+      "t": "code",
+      "v": "const scrollRef = useRef();\r\nscrollRef.current.scrollTop = 0;"
+    },
+    {
+      "t": "h3",
+      "v": "Controlling a video player:"
+    },
+    {
+      "t": "code",
+      "v": "videoRef.current.play();"
+    },
+    {
+      "t": "h3",
+      "v": "Tracking if component is mounted:"
+    },
+    {
+      "t": "code",
+      "v": "const isMounted = useRef(false);\r\n\r\nuseEffect(() => {\r\n  isMounted.current = true;\r\n  return () => {\r\n    isMounted.current = false;\r\n  };\r\n}, []);"
+    },
+    {
+      "t": "h2",
+      "v": "Should I Use useRef or useMemo?"
+    },
+    {
+      "t": "p",
+      "v": "useRef() is for storing mutable values, like DOM nodes or internal variables."
+    },
+    {
+      "t": "p",
+      "v": "useMemo() is for memoizing computed values to prevent unnecessary recalculations."
+    },
+    {
+      "t": "h3",
+      "v": "Use useRef when:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "You need to store a DOM node",
+        "You need a stable reference that persists between renders",
+        "You’re tracking internal mutable state that doesn’t affect UI"
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "Use useMemo when:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "You're calculating a value that should be cached",
+        "You want to optimize expensive logic that runs every render"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Summary: useRef() in React"
+    },
+    {
+      "t": "p",
+      "v": "useRef() is a flexible, persistent container inside your component. It’s ideal for:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Managing focus and scrolling",
+        "Tracking previous values",
+        "Holding timers or animation IDs",
+        "Avoiding unnecessary re-renders"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "Just remember: useRef() is not reactive — changing .current does not trigger re-renders."
+    },
+    {
+      "t": "p",
+      "v": "Use it for logic and side effects, not for data that needs to appear in the UI."
+    },
+    {
+      "t": "h2",
+      "v": "Learn More"
+    },
+    {
+      "t": "p",
+      "v": "Want to dive deeper into hooks like useState, useEffect, and useContext?"
+    }
+  ],
+  "metaTitle": "React useRef Hook Explained with Examples"
+}

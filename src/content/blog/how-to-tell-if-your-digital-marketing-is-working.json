@@ -1,0 +1,187 @@
+{
+  "slug": "how-to-tell-if-your-digital-marketing-is-working",
+  "title": "How to Tell If Your Digital Marketing Is Working",
+  "metaTitle": "Is Your Digital Marketing Actually Working?",
+  "description": "The four numbers that tell you whether marketing is working, the vanity metrics that look like progress, and the test that settles it in one question.",
+  "published": "2026-10-06",
+  "updatedAt": "2026-10-06",
+  "tags": [
+    "Digital Marketing",
+    "Dubai"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "Most marketing reports answer a question nobody asked. Impressions went up, reach grew, engagement improved, the follower count is climbing. None of that tells you whether the money worked."
+    },
+    {
+      "t": "p",
+      "v": "Here are the four numbers that do, and the single question that settles it faster than any dashboard."
+    },
+    {
+      "t": "h2",
+      "v": "The one question"
+    },
+    {
+      "t": "p",
+      "v": "If you doubled the budget tomorrow, would you expect roughly twice the enquiries?"
+    },
+    {
+      "t": "p",
+      "v": "If you can answer that with confidence, your marketing is working and you understand it. If you cannot, the problem is not the campaign, it is that nothing is measured well enough to answer. That is the thing to fix first, and it is cheaper than more budget."
+    },
+    {
+      "t": "h2",
+      "v": "The four numbers"
+    },
+    {
+      "t": "table",
+      "head": [
+        "Number",
+        "What it tells you"
+      ],
+      "rows": [
+        [
+          "Qualified enquiries",
+          "Whether anything real is happening"
+        ],
+        [
+          "Cost per qualified enquiry",
+          "Whether it is affordable"
+        ],
+        [
+          "Qualified share of total enquiries",
+          "Whether it is improving or just louder"
+        ],
+        [
+          "Enquiry to customer rate",
+          "Whether the problem is marketing or sales"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "v": "The fourth is the one that prevents the most expensive mistake in this business. If enquiries are plentiful and customers are not, more marketing will not help, and the usual response is to buy more marketing."
+    },
+    {
+      "t": "h2",
+      "v": "What to stop reporting"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Impressions and reach. They measure how much you spent, not what happened.",
+        "Click-through rate on its own. A high rate on an ad that attracts the wrong people is worse than a low one.",
+        "Follower growth. Unless followers are your product, this correlates with nothing you can bank.",
+        "Website sessions. Useful as a diagnostic, meaningless as a goal. Traffic without enquiries is a cost."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "None of these are lies. They are inputs reported as outcomes, which is how a dashboard can be entirely accurate and entirely useless."
+    },
+    {
+      "t": "h2",
+      "v": "Why the numbers usually cannot be trusted"
+    },
+    {
+      "t": "p",
+      "v": "In most of the accounts I look at, the reason nobody can answer the one question is the same: a conversion was defined as something that is not an enquiry. A page view on the contact page. A click on the WhatsApp button rather than a message actually sent. A form submit that includes the test submissions and the spam."
+    },
+    {
+      "t": "p",
+      "v": "The platform then optimises hard towards that definition, and it is very good at it. You end up buying thousands of things that look like conversions and are not. Fixing the definition usually changes the reported numbers for the worse and the real numbers for the better."
+    },
+    {
+      "t": "h2",
+      "v": "A baseline, which almost nobody has"
+    },
+    {
+      "t": "p",
+      "v": "You cannot tell whether something improved if you did not write down where it started. Before any change, record the four numbers for the previous ninety days. It takes an afternoon and it is the difference between knowing and believing."
+    },
+    {
+      "t": "p",
+      "v": "The same applies to a new supplier. A report that starts on the day they started has no comparison in it, which is convenient for them and useless to you."
+    },
+    {
+      "t": "h2",
+      "v": "How long before you judge it"
+    },
+    {
+      "t": "table",
+      "head": [
+        "Channel",
+        "Signal",
+        "Trustworthy"
+      ],
+      "rows": [
+        [
+          "Paid advertising",
+          "4 to 6 weeks",
+          "3 months"
+        ],
+        [
+          "Email and WhatsApp",
+          "2 to 4 weeks",
+          "2 months"
+        ],
+        [
+          "Search and content",
+          "3 to 4 months",
+          "6 to 12 months"
+        ],
+        [
+          "Brand and social",
+          "Hard to isolate",
+          "Judge on assisted conversions"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "v": "Judging search at six weeks and paid at six months are both mistakes, and the second is more expensive."
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "What should be in a monthly report?"
+    },
+    {
+      "t": "p",
+      "v": "The four numbers, what changed since last month, what was done, and what will be done next. One page. If your report is twelve slides of charts and you cannot find the cost per enquiry on any of them, ask for a different report."
+    },
+    {
+      "t": "h3",
+      "v": "My traffic is up but enquiries are not. What is wrong?"
+    },
+    {
+      "t": "p",
+      "v": "Usually one of three things: the traffic is the wrong people, the page is not asking clearly enough, or the enquiries are arriving and nobody is answering them fast. Check the third first, because it is free to fix and it is more often the answer than anyone expects."
+    },
+    {
+      "t": "h3",
+      "v": "How do I know if my agency is doing anything?"
+    },
+    {
+      "t": "p",
+      "v": "Ask for the four numbers with a comparison to before they started. Any supplier doing good work has them to hand. The quality of that answer tells you more than the quality of the work they show you."
+    },
+    {
+      "t": "h3",
+      "v": "Is it worth paying for attribution tools?"
+    },
+    {
+      "t": "p",
+      "v": "Rarely, for a business this size. Get conversions defined correctly in the ad platforms and connected to your CRM, and you will have ninety per cent of the value for none of the licence cost. Tools do not fix a bad conversion definition, they report it more precisely."
+    },
+    {
+      "t": "p",
+      "v": "Published 6 October 2026 by a Dubai-based freelance digital marketer."
+    }
+  ],
+  "words": 616
+}

@@ -21,7 +21,9 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          # 22, not 20: Node 20 reaches end of life in April 2026, and Next 16
+          # requires 20.9 or later, so the floor would arrive with no warning.
+          node-version: 22
           cache: npm
 
       - run: npm ci
@@ -37,6 +39,12 @@ jobs:
       # that out.
       - name: Discipline routes match the data
         run: npm run discipline-check
+
+      # The recovered articles: no orphans, related reading on topic, stored
+      # word counts matching the prose, no empty headings. Reads the data only,
+      # so it runs before the build too.
+      - name: Article data integrity
+        run: npm run related-check
 
       - name: Build
         run: npm run build

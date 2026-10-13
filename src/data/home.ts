@@ -29,6 +29,7 @@
 import { Building2, Home, Network, Users, type LucideIcon } from "lucide-react";
 import { caseStudyUrls } from "@/data/caseStudies";
 import { disciplinesWithPages } from "@/data/disciplines";
+import { yearsExperience } from "@/lib/site";
 
 export type Audience = {
   icon: LucideIcon;
@@ -85,7 +86,7 @@ export type Cell = string | { items: (string | { text: string; muted: true })[] 
  *  publication, and inventing one is not an option. To restore it, add a fourth
  *  entry here and change the grid below back to `lg:grid-cols-4`. */
 export const heroStats = [
-  { value: "15", label: "Years across marketing, design and development" },
+  { value: String(yearsExperience()), label: "Years across marketing, design and development" },
   { value: "4", label: "Disciplines, one person, not four suppliers" },
   { value: "UK + UAE", label: "Property developers in the UK and UAE" },
 ];
@@ -133,7 +134,7 @@ export const audiences: Audience[] = [
 /** Measured outcomes. Every one traceable to a published case study. */
 export const resultStats: Stat[] = [
   {
-    value: "15+",
+    value: `${yearsExperience()}+`,
     label: "Years, one point of contact",
     detail: "Strategy, design and build without a handoff layer",
     meta: "Based in Dubai, UAE",
@@ -172,7 +173,7 @@ export const resultMethod = [
 
 /** The three facts beside the portrait. */
 export const aboutFacts = [
-  { value: "15", label: "Years across marketing, design and development" },
+  { value: String(yearsExperience()), label: "Years across marketing, design and development" },
   { value: "1", label: "Point of contact, from the brief to the launch" },
   { value: "UK + UAE", label: "Clients, working on Dubai hours" },
 ] as const;

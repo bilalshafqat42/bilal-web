@@ -1,0 +1,154 @@
+{
+  "slug": "cost-per-lead-is-fine-sales-team-unhappy",
+  "title": "Your Cost Per Lead Is Fine. Your Sales Team Is Still Unhappy.",
+  "metaTitle": "Cost Per Lead vs Lead Quality",
+  "description": "Cost per lead is set by the campaign. Lead quality is set by the page. Why the two reports disagree, and the one reporting change that fixes it.",
+  "published": "2026-10-11",
+  "updatedAt": "2026-10-13",
+  "tags": [
+    "Paid Ads",
+    "Digital Marketing",
+    "Dubai"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "Two reports land on the same desk every month. The media buyer's report says cost per lead is down. The sales manager says the leads are rubbish. Both are telling the truth, and that is the whole problem."
+    },
+    {
+      "t": "p",
+      "v": "Cost per lead and lead quality are not two readings of the same thing. They are two different jobs, measured by two different people, and only one of them is usually anybody's target."
+    },
+    {
+      "t": "h2",
+      "v": "Why cost per lead and lead quality never meet"
+    },
+    {
+      "t": "p",
+      "v": "Cost per lead is set almost entirely by the campaign: the audience, the bid, the creative, the platform. A media buyer can move it this week without speaking to anyone."
+    },
+    {
+      "t": "p",
+      "v": "Lead quality is set almost entirely by the page. What it says the thing costs. What it asks for. Whether somebody who is never going to buy finds that out in two seconds or after filling in a form and taking a call."
+    },
+    {
+      "t": "p",
+      "v": "So when a campaign is judged on that number alone, the cheapest way to win is to make the page ask for less and promise more. Both of those raise volume and lower quality. The report improves. The sales floor gets worse. Nobody has done anything wrong."
+    },
+    {
+      "t": "h2",
+      "v": "What the page is actually doing to your lead quality"
+    },
+    {
+      "t": "p",
+      "v": "Three things on a landing page decide who bothers to fill in the form, and none of them are targeting settings."
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Whether the price is on it. A page that hides the number converts more people, and a predictable share of them cannot afford it.",
+        "What the form asks. Name, email, phone gets you volume. One qualifying question gets you fewer enquiries and a sales call that starts halfway through.",
+        "Whether existing customers have somewhere else to go. Without a separate route, people asking about something they already bought land in the new-enquiry list and get called as prospects."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "All three are page decisions. All three show up in the sales manager's report and none of them show up in the media buyer's."
+    },
+    {
+      "t": "h2",
+      "v": "Qualifying people out is a real strategy"
+    },
+    {
+      "t": "p",
+      "v": "On a Dubai property launch I put the entry price in the hero. From AED 1 million, before anything else on the page. Somebody whose budget is a third of that finds out in two seconds instead of after a sales call."
+    },
+    {
+      "t": "p",
+      "v": "That costs clicks, and it looks worse on a traffic report. It produces a better cost per qualified lead, which is the number that actually decides whether the campaign paid for itself. You can read the reasoning in full on the [[real estate marketing page|/real-estate-marketing]]."
+    },
+    {
+      "t": "p",
+      "v": "It is only a trade worth making when somebody is willing to watch a headline number go down. That is a harder conversation than changing an audience, which is why it rarely gets had."
+    },
+    {
+      "t": "h2",
+      "v": "Measure cost per qualified lead instead"
+    },
+    {
+      "t": "p",
+      "v": "One change to the reporting fixes most of this. Stop reporting every lead and start reporting the ones the sales team would call again."
+    },
+    {
+      "t": "table",
+      "head": [
+        "",
+        "What it tells you",
+        "Who controls it"
+      ],
+      "rows": [
+        [
+          "Cost per lead",
+          "How efficiently you bought attention",
+          "The campaign"
+        ],
+        [
+          "Lead to qualified",
+          "Whether the page filtered anyone",
+          "The page"
+        ],
+        [
+          "Cost per qualified lead",
+          "Whether the spend was worth it",
+          "Both"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "v": "The third row is the only one worth putting in front of a business owner. It needs the sales team to mark leads as qualified or not, which takes somebody thirty seconds a day and is the single cheapest reporting change most UAE businesses can make. If the leads live in a CRM, the field already exists. See [[CRM and marketing automation|/services/crm-marketing-automation]]."
+    },
+    {
+      "t": "h2",
+      "v": "Why this is hard to fix across two suppliers"
+    },
+    {
+      "t": "p",
+      "v": "The usual setup is an agency buying the traffic and somebody else owning the website. The agency sees it go up when the page qualifies people out, and it is what they are judged on. They are not going to ask for that change."
+    },
+    {
+      "t": "p",
+      "v": "Even when everyone agrees, the fix is a ticket. The agency raises it, the developer schedules it, and a two-line change to a form lands a fortnight later. By then the campaign has already spent the fortnight."
+    },
+    {
+      "t": "p",
+      "v": "When the same person owns the campaign and the page, the change happens on a Tuesday and the next week's numbers show whether it worked. That is the only real argument for one supplier across both, and it is worth more than any individual tactic either side brings. More on how I run that in [[paid marketing|/services/paid-marketing]]."
+    },
+    {
+      "t": "h2",
+      "v": "What to do this week"
+    },
+    {
+      "t": "list",
+      "ordered": true,
+      "v": [
+        "Take the last twenty leads and mark each one qualified or not. Do it from memory if you have to.",
+        "Divide your spend for that period by the qualified count. That is your real number.",
+        "Look at your landing page and find the first point where an unqualified person could have left and did not.",
+        "Change that one thing. Leave everything else alone so you can tell what moved."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "If the qualified number is close to the total, your page is already filtering and the problem is somewhere else. If it is a third of it, you have been paying for three leads to get one, and the ads were never the reason."
+    }
+  ],
+  "words": 772,
+  "image": {
+    "src": "/blog/cost-per-lead/card.jpg",
+    "alt": "Quote card reading: your cost per lead is fine, your sales team is still unhappy",
+    "width": 1200,
+    "height": 630
+  }
+}

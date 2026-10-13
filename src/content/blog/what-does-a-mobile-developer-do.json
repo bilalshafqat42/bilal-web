@@ -1,0 +1,186 @@
+{
+  "slug": "what-does-a-mobile-developer-do",
+  "title": "What Does a Mobile Developer Do?",
+  "description": "The job explained for people hiring one: what mobile work involves that web work does not, the two specialisms, and how to tell a real one from a good talker.",
+  "published": "2026-10-04",
+  "updatedAt": "2026-10-05",
+  "tags": [
+    "Mobile Apps",
+    "Web Development",
+    "Dubai"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "A mobile developer builds the software that runs on a phone. That sentence is accurate and tells you nothing useful, so here is the version that helps if you are about to hire one."
+    },
+    {
+      "t": "p",
+      "v": "Mobile development differs from web development in ways that are not obvious until a project is underway, and those differences are where the extra cost and the extra time come from."
+    },
+    {
+      "t": "h2",
+      "v": "What makes mobile different from web"
+    },
+    {
+      "t": "p",
+      "v": "People assume an app is a website in a smaller window. The differences are the reason app projects cost more and take longer."
+    },
+    {
+      "t": "h3",
+      "v": "You cannot fix it instantly"
+    },
+    {
+      "t": "p",
+      "v": "A broken website is fixed and live in minutes. A broken app has to be rebuilt, submitted, reviewed by Apple or Google, approved, and then actually installed by your users. Some of them will not update for months."
+    },
+    {
+      "t": "p",
+      "v": "This single difference changes how the work is done. Mobile developers test harder before release because the cost of being wrong is much higher."
+    },
+    {
+      "t": "h3",
+      "v": "The device is not reliable"
+    },
+    {
+      "t": "p",
+      "v": "A phone loses signal in a lift, runs out of storage, denies a permission, kills your app to save battery, or rotates mid-task. Every one of those is a state somebody has to handle."
+    },
+    {
+      "t": "h3",
+      "v": "Two platforms with real opinions"
+    },
+    {
+      "t": "p",
+      "v": "iOS and Android differ in navigation, permissions, notifications, background behaviour and what each store will allow. Even with one shared codebase, both have to be understood."
+    },
+    {
+      "t": "h3",
+      "v": "Somebody else can refuse to publish you"
+    },
+    {
+      "t": "p",
+      "v": "Apple and Google review every submission against rules that change. A mobile developer who has shipped apps knows the common rejection reasons and designs around them. One who has not will discover them with your deadline in the way."
+    },
+    {
+      "t": "h2",
+      "v": "The two kinds"
+    },
+    {
+      "t": "table",
+      "head": [
+        "Kind",
+        "Works in",
+        "Means"
+      ],
+      "rows": [
+        [
+          "Native",
+          "Swift for iOS, Kotlin for Android",
+          "Usually specialised in one platform, so two people for two platforms"
+        ],
+        [
+          "Cross-platform",
+          "React Native or Flutter",
+          "One person, one codebase, both platforms"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "v": "A cross-platform developer is not a lesser native developer. It is a different approach with its own trade-offs, which I have written about separately."
+    },
+    {
+      "t": "h2",
+      "v": "What the job involves beyond writing the app"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Connecting to a back-end, and handling the many ways that connection fails",
+        "Storing data on the device so the app is useful on a weak connection",
+        "Push notifications, which involve both platforms, your server and a user who may have said no",
+        "Permissions: asking at the right moment and behaving sensibly when refused",
+        "Store submission, screenshots, privacy declarations, age ratings and the review cycle",
+        "Releases: staged rollouts, forcing an update when a version is unsafe, and supporting old versions still in the wild",
+        "Crash reporting and analytics, so you find out about problems before your customers tell you"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "The last four are the ones people do not know to ask about and the ones that separate somebody who has shipped from somebody who has built."
+    },
+    {
+      "t": "h2",
+      "v": "What they usually do not do"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Design the app, unless they specifically also design",
+        "Build the back-end, unless they are full stack. Many mobile developers are not, and this is the most common gap in an app project team",
+        "Write your store listing or take the screenshots",
+        "Market the app. Getting downloads is a separate job with a separate budget, and it is usually larger than people expect"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "How to tell a real one"
+    },
+    {
+      "t": "p",
+      "v": "Four questions. The answers are easy to judge even if you are not technical, because experience shows immediately."
+    },
+    {
+      "t": "list",
+      "ordered": true,
+      "v": [
+        "Which apps of yours are live right now, and can I download one? Live and current beats an impressive case study. Anyone who has shipped has links.",
+        "Tell me about a rejection you have had. Everyone who has shipped more than a couple of apps has one. A specific story is proof. Vagueness is an answer.",
+        "What happens in my app when the connection drops halfway through something? Somebody experienced will tell you what they usually do and what it costs. Somebody who has not will say it will be handled.",
+        "Who builds the back-end? If the answer is anything other than a clear name, you have found a gap in the plan."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "Can a web developer build my app?"
+    },
+    {
+      "t": "p",
+      "v": "A React developer can learn React Native quickly and much of their knowledge transfers. What does not transfer is everything in the list above: releases, permissions, store review, offline behaviour. Ask specifically about those, not about the language."
+    },
+    {
+      "t": "h3",
+      "v": "Do I need one developer or two?"
+    },
+    {
+      "t": "p",
+      "v": "Cross-platform, usually one. Native, usually two, one per platform. Either way you also need a back-end, so check whether your developer covers it or whether that is a second hire."
+    },
+    {
+      "t": "h3",
+      "v": "What happens after launch?"
+    },
+    {
+      "t": "p",
+      "v": "Operating systems update twice a year and can break things, store rules change, certificates expire and dependencies need security patches. An app nobody maintains stops working, usually inside about eighteen months. Agree what maintenance looks like before you start, not after."
+    },
+    {
+      "t": "h3",
+      "v": "What does a mobile developer cost in Dubai?"
+    },
+    {
+      "t": "p",
+      "v": "My own published project minimum is AED 31,500 with retainers from AED 16,000 a month, and app projects usually sit well above that minimum because of the back-end and the two platforms. Those are my rates and not a market survey."
+    },
+    {
+      "t": "p",
+      "v": "Published 4 October 2026 by a Dubai-based React Native developer. All AED figures are my own published rates."
+    }
+  ],
+  "words": 759
+}

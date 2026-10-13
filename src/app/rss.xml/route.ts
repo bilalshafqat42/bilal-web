@@ -1,4 +1,5 @@
 import { blogPosts } from "@/data/blogPosts";
+import { SITE_URL as SITE } from "@/lib/site";
 
 /**
  * RSS 2.0 feed for the writing.
@@ -20,7 +21,8 @@ import { blogPosts } from "@/data/blogPosts";
  * pages because somebody had to remember.
  */
 
-const SITE = "https://bilalshafqat.com";
+// Static: built from `blogPosts` at build time and independent of the request.
+export const dynamic = "force-static";
 
 /** XML has five characters that cannot appear raw in text or an attribute.
  *  Missing one produces a feed that parses in a browser and fails in a reader,

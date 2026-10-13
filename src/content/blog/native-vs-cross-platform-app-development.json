@@ -1,0 +1,242 @@
+{
+  "slug": "native-vs-cross-platform-app-development",
+  "title": "Native vs Cross-Platform: Which Should You Build?",
+  "metaTitle": "Native vs Cross-Platform App Development",
+  "description": "The biggest technical decision in an app project, explained without the religious argument: what each approach costs, what it rules out, and how to choose.",
+  "published": "2026-10-04",
+  "updatedAt": "2026-10-04",
+  "tags": [
+    "Mobile Apps",
+    "React Js",
+    "Dubai"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "Every app project arrives at this question, usually in the first week, and usually with two suppliers giving opposite answers with equal confidence."
+    },
+    {
+      "t": "p",
+      "v": "I build cross-platform, in React Native. I have tried to write this so you could use it to argue against me."
+    },
+    {
+      "t": "h2",
+      "v": "The two options"
+    },
+    {
+      "t": "h3",
+      "v": "Native"
+    },
+    {
+      "t": "p",
+      "v": "Build the app twice. Once for iOS in Swift, once for Android in Kotlin. Two codebases, often two developers, two sets of everything."
+    },
+    {
+      "t": "p",
+      "v": "You get the best possible performance, immediate access to anything a new operating system introduces, and an app that follows each platform's conventions exactly because it was built in them."
+    },
+    {
+      "t": "h3",
+      "v": "Cross-platform"
+    },
+    {
+      "t": "p",
+      "v": "Build once, ship to both. React Native and Flutter are the two serious options. One codebase, one team, most of the code shared."
+    },
+    {
+      "t": "p",
+      "v": "You get a meaningfully faster and lower-cost build, one place to fix a bug, and both platforms staying in step automatically. You give up some performance headroom and you occasionally wait for support for something brand new."
+    },
+    {
+      "t": "h2",
+      "v": "Side by side"
+    },
+    {
+      "t": "table",
+      "head": [
+        "",
+        "Native",
+        "Cross-platform"
+      ],
+      "rows": [
+        [
+          "Codebases",
+          "Two",
+          "One"
+        ],
+        [
+          "Build cost",
+          "Higher",
+          "Lower"
+        ],
+        [
+          "Ongoing cost",
+          "Two to maintain",
+          "One to maintain"
+        ],
+        [
+          "Performance ceiling",
+          "Highest",
+          "High, enough for most apps"
+        ],
+        [
+          "New OS features",
+          "Available immediately",
+          "Usually a short wait"
+        ],
+        [
+          "Platform feel",
+          "Exact",
+          "Very close, with care"
+        ],
+        [
+          "Hiring",
+          "Two specialisms",
+          "One, and React developers transfer across"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "When native is genuinely the right answer"
+    },
+    {
+      "t": "p",
+      "v": "Four situations, and they are narrower than native advocates suggest:"
+    },
+    {
+      "t": "list",
+      "ordered": true,
+      "v": [
+        "Heavy graphics. Games, 3D, real-time video processing, augmented reality. If the screen is redrawing constantly, build native.",
+        "Deep hardware work. Custom camera pipelines, Bluetooth peripherals, health sensors, anything unusual at the device level.",
+        "Day-one adoption of new platform features. If your product depends on using something Apple announced last month, native gets there first.",
+        "You already have native teams. The best technology is often the one your people already know."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "When cross-platform is the right answer"
+    },
+    {
+      "t": "p",
+      "v": "Most business apps, honestly. Specifically:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "The app is mostly screens, forms, lists, search and content. This covers the large majority of commercial apps.",
+        "You need both platforms and the budget is finite. Building once rather than twice is the single largest saving available in an app project.",
+        "You want to move quickly and change things after launch based on what you learn.",
+        "Your team already works in React. The skills transfer directly, which matters more over three years than any technical comparison."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "The myths worth clearing up"
+    },
+    {
+      "t": "h3",
+      "v": "\"Cross-platform apps feel wrong\""
+    },
+    {
+      "t": "p",
+      "v": "They did, several years ago. Done carelessly they still can, usually because someone shipped one identical design to both platforms and ignored the conventions of each."
+    },
+    {
+      "t": "p",
+      "v": "That is a design failure rather than a technology one. Plenty of apps you use regularly are cross-platform and you have never noticed."
+    },
+    {
+      "t": "h3",
+      "v": "\"You will have to rebuild natively later\""
+    },
+    {
+      "t": "p",
+      "v": "Some products have. Usually because they outgrew the approach in a specific way, which is worth reading about, rather than because cross-platform collapses at scale."
+    },
+    {
+      "t": "p",
+      "v": "If you are weighing a rebuild in three years against shipping twice as slowly now, shipping now is almost always the better bet. You may not be in business in three years if you do not."
+    },
+    {
+      "t": "h3",
+      "v": "\"Cross-platform is half the price\""
+    },
+    {
+      "t": "p",
+      "v": "The saving is real and it is not fifty per cent. There is still platform-specific work, separate testing on both, two store submissions and two sets of compliance. Expect a meaningful saving rather than a halving."
+    },
+    {
+      "t": "h2",
+      "v": "React Native or Flutter?"
+    },
+    {
+      "t": "p",
+      "v": "Both are mature and both are fine choices. The deciding factor is usually not technical."
+    },
+    {
+      "t": "p",
+      "v": "React Native uses JavaScript and React, so your web developers can contribute and hiring is easier. Flutter uses Dart, which almost nobody knows before they start, and in exchange gives tighter control of rendering."
+    },
+    {
+      "t": "p",
+      "v": "If you have or want a web presence built in React, React Native shares skills, patterns and sometimes code. That is why I work in it."
+    },
+    {
+      "t": "h2",
+      "v": "How to decide in one conversation"
+    },
+    {
+      "t": "list",
+      "ordered": true,
+      "v": [
+        "Is the app graphics-heavy or doing unusual things with hardware? If yes, native. Stop here.",
+        "Do you need both platforms? If only one, native is less obviously wasteful.",
+        "Is budget or speed a real constraint? If yes, cross-platform.",
+        "What does your existing team know? Weight this heavily. It decides the next three years."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "Will Apple or Google reject a cross-platform app?"
+    },
+    {
+      "t": "p",
+      "v": "No. Both stores are full of them. Rejections come from privacy, permissions, payments and content rules, which apply the same either way."
+    },
+    {
+      "t": "h3",
+      "v": "Can I mix the two?"
+    },
+    {
+      "t": "p",
+      "v": "Yes, and it is common. A cross-platform app can call native code for one demanding feature. You get the shared codebase everywhere else and native performance where it actually matters."
+    },
+    {
+      "t": "h3",
+      "v": "What about a progressive web app instead?"
+    },
+    {
+      "t": "p",
+      "v": "Worth considering if you do not genuinely need to be in the stores. No download, no review process, no store fees. You give up reliable push notifications on iOS and a presence where people look for apps."
+    },
+    {
+      "t": "h3",
+      "v": "Which costs less to maintain?"
+    },
+    {
+      "t": "p",
+      "v": "Cross-platform, clearly, and this is where the saving compounds. One bug fixed once rather than twice, every time, for the life of the product."
+    },
+    {
+      "t": "p",
+      "v": "Published 4 October 2026 by a Dubai-based React Native developer."
+    }
+  ],
+  "words": 716
+}

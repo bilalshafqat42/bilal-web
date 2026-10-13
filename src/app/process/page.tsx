@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/site";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import SectionHeading from "@/components/SectionHeading";
-import Process from "@/components/Process";
-import Contact from "@/components/Contact";
-import FaqSection from "@/components/FaqSection";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Process from "@/components/sections/Process";
+import Contact from "@/components/sections/Contact";
+import FaqSection from "@/components/ui/FaqSection";
 import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
 import { processSteps } from "@/data/process";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "My Process — From Brief To Shipped Work | Bilal Shafqat",
   description:
     "Four stages from brief to shipped work: discovery, planning and design, build and launch, then measurement and iteration.",
-  alternates: { canonical: "/process" },
-};
+  path: "/process",
+});
 
 /**
  * The full delivery process.

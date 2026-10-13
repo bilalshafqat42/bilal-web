@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import PageOpener from "@/components/PageOpener";
+import PageOpener from "@/components/layout/PageOpener";
 
-import Reveal from "@/components/Reveal";
-import CtaButton from "@/components/CtaButton";
-import JsonLd from "@/components/JsonLd";
+import Reveal from "@/components/ui/Reveal";
+import CtaButton from "@/components/ui/CtaButton";
+import JsonLd from "@/components/seo/JsonLd";
 import { SITE_URL, breadcrumbNode, ID, ref } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
-import BlogList from "@/components/BlogList";
+import BlogList from "@/components/article/BlogList";
 import { blogPageSlice, totalBlogPages } from "@/lib/blogPagination";
-import Eyebrow from "@/components/Eyebrow";
+import Eyebrow from "@/components/ui/Eyebrow";
 
 export const metadata: Metadata = {
   title: "Writing — Notes on React, Front-End and Design",

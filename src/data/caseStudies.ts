@@ -8,9 +8,11 @@
 // To add a project: append to that client's `projects` array. Routes, sitemap
 // entries, cards, and structured data are all generated from this file.
 
+import type { Faq } from "./types";
+
 export type Fact = { label: string; value: string };
 
-export type Faq = { question: string; answer: string };
+export type { Faq };
 
 export type Capture = {
   src: string;
@@ -309,6 +311,39 @@ export type Client = {
     /** Outcomes. Only entries with a `value` render — see the note in the
      *  component. */
     outcomes?: { value?: string; label: string; note?: string }[];
+    /** Copy for this app's own page, `/portfolio/{client}/mobile-app`.
+     *
+     *  Moved here from the page template on 2026-10-13. The template hard-coded
+     *  LEOS's FAQs, share card, stack and section intros, so a second client
+     *  with an app would have published LEOS's answers under its own name.
+     *  Required fields are the ones the page cannot open without; anything
+     *  optional is a section the template leaves out when it is absent. */
+    page: {
+      /** The framework, as named in the title and schema: "React Native". */
+      stack: string;
+      /** Platforms, as the screens heading's subline reads: "iOS and Android". */
+      platforms: string;
+      eyebrow: string;
+      /** The hero h1. */
+      title: string;
+      metaDescription: string;
+      /** Shorter than `metaDescription`: a share card shows less. */
+      ogDescription: string;
+      /** A 1200x630 JPEG. Not AVIF: WhatsApp and Facebook's link-preview
+       *  crawler fetches an AVIF og:image and then shows no picture. Falls back
+       *  to the site-wide card when absent. */
+      ogImage?: { src: string; alt: string };
+      /** The fact strip. The template appends "Screens shown" itself, counted
+       *  from `screens`, so it cannot disagree with the page. */
+      facts: { label: string; value: string; note: string }[];
+      /** Lines under "The problem", "Key challenges" and "The approach". */
+      constraintsIntro?: string;
+      challengesIntro?: string;
+      scopeIntro?: string;
+      /** Questions about this app specifically. The FAQ section and its
+       *  FAQPage schema are omitted when absent. */
+      faqs?: Faq[];
+    };
   };
   /** Identity moments: announcements, the experience centre, a teaser. Posts
    *  about the company rather than about a building. */
@@ -992,6 +1027,72 @@ export const clients: Client[] = [
         { label: "Enquiries per month from the app" },
         { label: "Time to first response" },
       ],
+      page: {
+        stack: "React Native",
+        platforms: "iOS and Android",
+        eyebrow: "Case study · Property & real estate",
+        title: "A cross-platform app, from one codebase.",
+        // The client name is in these, so the limit has to hold for it. "LEOS
+        // Developments" took an older title to 70 characters.
+        metaDescription:
+          "A cross-platform iOS and Android app for LEOS Developments, built in React Native from a single codebase and walked through screen by screen.",
+        ogDescription:
+          "A cross-platform iOS and Android app for LEOS Developments, built in React Native from a single codebase.",
+        // Supplied by Bilal at exactly 1200x630, the size every platform crops
+        // to. JPEG rather than AVIF: Bilal named WhatsApp specifically.
+        ogImage: {
+          src: "/portfolio/leos/mobile-app/og-leos-mobile.jpg",
+          alt: "The LEOS Developments app sign-in screen shown on an iPhone",
+        },
+        facts: [
+          { label: "Platforms", value: "iOS & Android", note: "From one build" },
+          { label: "Framework", value: "React Native", note: "One shared codebase" },
+          { label: "My role", value: "Design & build", note: "Interface through to delivery" },
+        ],
+        constraintsIntro:
+          "Three things constrained this build before a single screen was designed:",
+        challengesIntro:
+          "The app had to be operable in one hand by someone who may never have seen the website. That required:",
+        scopeIntro: "Design and build were the same job here, done in this order:",
+        // Deliberately NOT the two mobile questions already on
+        // `/portfolio/mobile-app-development` ("native or cross-platform", "App
+        // Store and Play Store submission"): repeating them would put the same
+        // answer on two indexable pages competing with each other.
+        //
+        // Every answer restates something already on this page or already
+        // published in `disciplines.ts`. Deliberately NOT here: whether the app
+        // is published and downloadable, and any usage or download figure. The
+        // `outcomes` above sit without values for exactly that reason, and
+        // `disciplines.ts` states that a published listing is "the client's to
+        // announce".
+        faqs: [
+          {
+            question: "Why one codebase instead of separate iOS and Android apps?",
+            answer:
+              "Economics. Two native codebases means writing, testing and maintaining every screen twice, which for a business app of this kind buys very little a buyer would notice. React Native gives both stores from one build. Where an app genuinely needs platform-specific native work I say so rather than take the project.",
+          },
+          {
+            question: "Who designed the screens, and who built them?",
+            answer:
+              "The same person, which is the point. The interface was designed and then built by me, so the reasoning behind a screen and its implementation match instead of one having been handed across to the other and interpreted.",
+          },
+          {
+            question: "Are these real screens or concepts?",
+            answer:
+              "Real. Every capture on this page is from the built app rather than a mockup, which is why the walkthrough talks about decisions that had to survive contact with real content — long development names, missing photography, and units that change availability.",
+          },
+          {
+            question: "Why does the app repeat what the website already does?",
+            answer:
+              "It does not repeat it, it continues it. The app carries the same developments, the same photography and the same enquiry routes as the launch pages, so a buyer who first saw a campaign on their laptop finds the same thing on their phone rather than a second, thinner version of it.",
+          },
+          {
+            question: "Can you take an app like this through App Store review?",
+            answer:
+              "Submission is a step I can run with you, and it is worth planning early because store review is the part of a launch date nobody controls. No published listing is claimed for this app here, because that announcement belongs to the client.",
+          },
+        ],
+      },
       screens: [
         {
           key: "sign-in",

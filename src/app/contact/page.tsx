@@ -1,32 +1,33 @@
 import type { Metadata } from "next";
-import PageOpener from "@/components/PageOpener";
-import Surface from "@/components/Surface";
+import { pageMetadata } from "@/lib/site";
+import PageOpener from "@/components/layout/PageOpener";
+import Surface from "@/components/ui/Surface";
 import { ArrowUpRight, Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
-import Reveal from "@/components/Reveal";
-import ContactForm from "@/components/ContactForm";
-import WhatsAppLink from "@/components/WhatsAppLink";
-import SocialLinks from "@/components/SocialLinks";
-import CtaButton from "@/components/CtaButton";
+import Reveal from "@/components/ui/Reveal";
+import ContactForm from "@/components/forms/ContactForm";
+import { pillars } from "@/data/pillars";
+import WhatsAppLink from "@/components/ui/WhatsAppLink";
+import SocialLinks from "@/components/ui/SocialLinks";
+import CtaButton from "@/components/ui/CtaButton";
 import { SITE_URL, breadcrumbNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
-import Eyebrow from "@/components/Eyebrow";
-import SecondaryButton from "@/components/SecondaryButton";
+import Eyebrow from "@/components/ui/Eyebrow";
+import SecondaryButton from "@/components/ui/SecondaryButton";
+import { SITE_EMAIL, SITE_PHONE, SITE_PHONE_HREF, SITE_PHONE_ALT, SITE_PHONE_ALT_HREF } from "@/lib/contact";
 
-export const metadata: Metadata = {
-  title: "Contact Bilal Shafqat — Digital Marketer & Developer, Dubai",
+export const metadata: Metadata = pageMetadata({
+  // "Digital Marketer & Developer" until 2026-10-13: two identities of equal
+  // weight. Marketing leads now, as on every other page (roadmap 397).
+  title: "Contact Bilal Shafqat | Digital Marketer in Dubai",
   description:
-    // 186 characters before this. Google cuts around 160, so the last clause
-    // was being truncated in the result.
-    "Get in touch with Bilal Shafqat, a Dubai freelance digital marketer, developer and designer. Email, phone or WhatsApp, reply within one business day.",
-  alternates: {
-    canonical: "/contact",
-  },
-};
+    "Contact Bilal Shafqat, a freelance digital marketer in Dubai who runs the campaign and builds the page it lands on. Email, phone or WhatsApp, reply in a day.",
+  path: "/contact",
+});
 
 const channels = [
   {
     icon: Mail,
     label: "Email",
-    value: "bilal@bilalshafqat.com",
+    value: SITE_EMAIL,
     // Deliberately no href. The card displayed an address and linked to
     // /appointment, so anyone clicking what looked like an email landed on the
     // booking page instead — the same label-versus-destination mismatch already
@@ -39,7 +40,7 @@ const channels = [
   {
     icon: MessageCircle,
     label: "WhatsApp",
-    value: "+971 52 976 6006",
+    value: SITE_PHONE,
     // Rendered by WhatsAppLink rather than as a plain href, so this card
     // reports `whatsapp_click` like every other WhatsApp route on the site.
     // It did not, and it is the most prominent one on the contact page.
@@ -50,9 +51,9 @@ const channels = [
   {
     icon: Phone,
     label: "Call",
-    value: "+971 52 976 6006",
-    href: "tel:+971529766006",
-    note: "Alternate line: +971 56 604 7396.",
+    value: SITE_PHONE,
+    href: `tel:${SITE_PHONE_HREF}`,
+    note: `Alternate line: ${SITE_PHONE_ALT}.`,
   },
 ];
 
@@ -83,15 +84,15 @@ const contactSchema = graph([
       {
         "@type": "ContactPoint",
         contactType: "sales",
-        email: "bilal@bilalshafqat.com",
-        telephone: "+971529766006",
+        email: SITE_EMAIL,
+        telephone: SITE_PHONE_HREF,
         availableLanguage: ["English"],
         areaServed: ["AE", "GB"],
       },
       {
         "@type": "ContactPoint",
         contactType: "sales",
-        telephone: "+971566047396",
+        telephone: SITE_PHONE_ALT_HREF,
         availableLanguage: ["English"],
         areaServed: ["AE", "GB"],
       },
@@ -228,7 +229,7 @@ export default function ContactPage() {
           <div className="site-container">
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.35fr_0.65fr]">
               <Reveal>
-                <ContactForm />
+                <ContactForm serviceOptions={pillars.map(({ slug, label }) => ({ slug, label }))} />
               </Reveal>
 
               <Reveal delay={0.1}>

@@ -1,0 +1,175 @@
+{
+  "slug": "what-is-a-product-designer",
+  "title": "What Is a Product Designer, and When Do You Need One?",
+  "metaTitle": "What Is a Product Designer?",
+  "description": "The role explained without the jargon: what a product designer owns beyond screens, how it differs from UX and UI, and the point at which you actually need one.",
+  "published": "2026-10-04",
+  "updatedAt": "2026-10-04",
+  "tags": [
+    "UI UX Design",
+    "Design",
+    "Dubai"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "Product designer is the newest of the design titles and the most inconsistently used. At one company it means a UX designer with a broader remit. At another it means a UI designer with a nicer title. At a third it means someone who sits in roadmap meetings and argues about what to build."
+    },
+    {
+      "t": "p",
+      "v": "Here is what the role means when it is used properly, and whether your business needs one."
+    },
+    {
+      "t": "h2",
+      "v": "The definition worth using"
+    },
+    {
+      "t": "p",
+      "v": "A product designer is responsible for whether the thing being built is worth building, not only for how it looks and flows."
+    },
+    {
+      "t": "p",
+      "v": "That is the whole distinction. A UX designer is handed a problem and designs a solution. A product designer is involved in deciding which problem gets solved, pushes back when the answer is a feature nobody asked for, and owns the outcome afterwards."
+    },
+    {
+      "t": "h2",
+      "v": "What the job covers"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Understanding the problem. Talking to customers, reading support tickets, watching what people actually do rather than what they say.",
+        "Deciding what to build. Including arguing that something should not be built, which is the most valuable and least popular part of the job.",
+        "Designing it. Structure and flow first, then the interface, usually inside a design system rather than from scratch each time.",
+        "Specifying the edges. Empty states, error states, what happens on a slow connection, what happens to someone who already has data.",
+        "Working with engineering. Not handing over a file and leaving, which is where most design value is lost.",
+        "Measuring. Did the change do what it was supposed to? If nobody checks, nobody learns."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Product designer, UX designer, UI designer"
+    },
+    {
+      "t": "table",
+      "head": [
+        "",
+        "Scope",
+        "Typically owns"
+      ],
+      "rows": [
+        [
+          "UI designer",
+          "The surface",
+          "Visual system, screens, components"
+        ],
+        [
+          "UX designer",
+          "Structure and flow",
+          "Research, wireframes, journeys"
+        ],
+        [
+          "Product designer",
+          "Problem through to outcome",
+          "All of the above, plus what gets built and whether it worked"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "v": "The scopes overlap heavily and the titles are not protected. Treat the table as a guide to what to ask about rather than a set of fixed definitions."
+    },
+    {
+      "t": "h2",
+      "v": "When you actually need one"
+    },
+    {
+      "t": "p",
+      "v": "You need a product designer when you have a product rather than a website. Specifically, when all three of these are true:"
+    },
+    {
+      "t": "list",
+      "ordered": true,
+      "v": [
+        "Your software is the thing customers use repeatedly, not a brochure they read once.",
+        "You have more ideas than capacity, so somebody has to decide what is worth building.",
+        "You can measure what happens after a release, so decisions can be judged rather than defended."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "If you run a business website, a property listing site or a campaign landing page, you do not need a product designer. You need a designer and a developer. Hiring a product designer for brochure work means paying for judgement you have no decisions to apply it to."
+    },
+    {
+      "t": "h2",
+      "v": "Signs you have outgrown ad-hoc design"
+    },
+    {
+      "t": "list",
+      "v": [
+        "The same screen has been redesigned three times because nobody agreed what it was for",
+        "Every new feature looks slightly different from the last one",
+        "Developers are making design decisions in the dark because nothing specified the edge cases",
+        "Nobody can say whether the last release improved anything",
+        "Support answers the same question every week and nothing changes"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "The last one is the clearest signal. A recurring support question is a design problem that has been converted into a staffing cost."
+    },
+    {
+      "t": "h2",
+      "v": "Hiring one"
+    },
+    {
+      "t": "p",
+      "v": "Ask about decisions rather than screens. Specifically, ask about something they argued against and lost, and what happened. Anyone who has genuinely held this role has that story and usually tells it well."
+    },
+    {
+      "t": "p",
+      "v": "Then ask what they measured. A product designer who cannot name a single number from their last role was doing UI design under a different title, which may be fine for your needs but is worth knowing before you pay for the wider remit."
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "Is product designer just a trendier title for UX designer?"
+    },
+    {
+      "t": "p",
+      "v": "Often, yes. The honest answer is that it depends on the company. The way to find out is to ask who decides what gets built there, and whether the designer is in that conversation."
+    },
+    {
+      "t": "h3",
+      "v": "Can a freelancer do product design?"
+    },
+    {
+      "t": "p",
+      "v": "Partly. The design and specification work transfers well. The parts that need continuity, being in the room when priorities change, following a release through to its numbers, work less well on short engagements. A long retainer gets closer than a project does."
+    },
+    {
+      "t": "h3",
+      "v": "Do I need one before I have customers?"
+    },
+    {
+      "t": "p",
+      "v": "No. Before customers, you need to build the smallest honest version of the idea and put it in front of people. Product design becomes valuable once you have real usage to learn from, because that is the raw material the role works with."
+    },
+    {
+      "t": "h3",
+      "v": "What does it cost in Dubai?"
+    },
+    {
+      "t": "p",
+      "v": "For project work, my own published minimum is AED 31,500 and retainers start at AED 16,000 a month. Those are my rates rather than a market survey. For a permanent hire, salaries vary widely with seniority and I would not put a figure on it without data I do not have."
+    },
+    {
+      "t": "p",
+      "v": "Published 4 October 2026 by a Dubai-based designer and developer."
+    }
+  ],
+  "words": 734
+}

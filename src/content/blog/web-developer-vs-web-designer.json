@@ -1,0 +1,193 @@
+{
+  "slug": "web-developer-vs-web-designer",
+  "title": "Web Developer vs Web Designer: What Is the Difference?",
+  "metaTitle": "Web Developer vs Web Designer: The Difference",
+  "description": "Two different jobs that get used as one word. What each actually produces, which one your project needs first, and what goes wrong when you hire the wrong one.",
+  "published": "2026-10-04",
+  "updatedAt": "2026-10-13",
+  "tags": [
+    "Web Design",
+    "Web Development",
+    "Dubai"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "These two titles get used as though they are interchangeable, including by people selling both. They are not. Hiring the wrong one is one of the more expensive mistakes available to a business owner, because you usually do not find out until the project is half finished."
+    },
+    {
+      "t": "h2",
+      "v": "The difference in one line"
+    },
+    {
+      "t": "p",
+      "v": "A [[web designer|/services/web-design]] decides what the site looks like and how it should behave. A [[web developer|/services/website-app-development]] makes that real in code."
+    },
+    {
+      "t": "p",
+      "v": "Design produces a picture and a set of decisions. Development produces something you can actually click."
+    },
+    {
+      "t": "h2",
+      "v": "Side by side"
+    },
+    {
+      "t": "table",
+      "head": [
+        "",
+        "Web designer",
+        "Web developer"
+      ],
+      "rows": [
+        [
+          "Produces",
+          "Layouts, a visual system, prototypes",
+          "Working pages, logic, integrations"
+        ],
+        [
+          "Works in",
+          "Figma, and increasingly in the browser",
+          "Code, in a browser and on a server"
+        ],
+        [
+          "Decides",
+          "Hierarchy, type, colour, flow, what goes where",
+          "How it is built, what it connects to, how it performs"
+        ],
+        [
+          "Measured by",
+          "Whether people understand and act",
+          "Whether it works, loads and keeps working"
+        ],
+        [
+          "Fails by",
+          "A design that cannot be built or maintained",
+          "A build that works and looks assembled"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Where the line genuinely blurs"
+    },
+    {
+      "t": "p",
+      "v": "Three areas sit in between, and whoever you hire should say clearly which of them they cover:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Responsive behaviour. A design shows two or three screen widths. Real screens are a continuous range, and somebody has to decide what happens in between.",
+        "Interaction and motion. How a menu opens, what a button does while it is loading, what a form says when it is wrong. Designers often specify this. Developers often end up deciding it.",
+        "Performance. A design can be technically buildable and still make a site slow, usually through imagery. The decision is made in design and paid for in development."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "When these fall between two suppliers, they are nobody's job and they get decided by accident."
+    },
+    {
+      "t": "h2",
+      "v": "Which do you need first?"
+    },
+    {
+      "t": "p",
+      "v": "Design first, almost always. Building before the layout is settled means building it twice, and the second build is usually a patch on the first rather than a clean start."
+    },
+    {
+      "t": "p",
+      "v": "The exception is a project where the hard part is the logic rather than the presentation. An internal tool, a calculator, a system talking to three other systems. There, get the thing working and make it presentable afterwards."
+    },
+    {
+      "t": "h2",
+      "v": "What goes wrong when you hire only one"
+    },
+    {
+      "t": "h3",
+      "v": "Only a designer"
+    },
+    {
+      "t": "p",
+      "v": "You end up with a beautiful file and no website. Then you hire a developer who tells you parts of it cannot be built as drawn, or can be but will be slow, and you are renegotiating a design you have already paid for and already approved."
+    },
+    {
+      "t": "h3",
+      "v": "Only a developer"
+    },
+    {
+      "t": "p",
+      "v": "You get a site that works and looks like software. Typically: inconsistent spacing, too many typefaces, a layout that is really a stack of boxes, and no sense of what the visitor should do first. It will function perfectly and convert badly."
+    },
+    {
+      "t": "h2",
+      "v": "The case for one person doing both"
+    },
+    {
+      "t": "p",
+      "v": "I do both, so treat this as an interested opinion rather than a neutral one."
+    },
+    {
+      "t": "p",
+      "v": "The argument for it is that the three blurry areas above stop being handover problems. The person drawing the layout knows what it costs to build, so the design is already feasible, and the person building it knows what the design was for, so the compromises are the right ones."
+    },
+    {
+      "t": "p",
+      "v": "The argument against it is capacity and range. One person is a bottleneck, and very few people are genuinely excellent at both. On a large project with real design ambition, two specialists who communicate well will beat one generalist."
+    },
+    {
+      "t": "h2",
+      "v": "What to ask before you hire either"
+    },
+    {
+      "t": "list",
+      "ordered": true,
+      "v": [
+        "Which of these two jobs are you doing, and who is doing the other one?",
+        "Who decides responsive behaviour, interaction states and performance budgets?",
+        "Will I get the design files as well as the code, and in a form another person can continue from?",
+        "Show me a live site you took from design through to launch."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "Is a web designer cheaper than a web developer?"
+    },
+    {
+      "t": "p",
+      "v": "Not reliably, and the comparison is not useful anyway because they produce different things. What you can compare is two quotes for the same complete outcome, design and build together, with the exclusions written down."
+    },
+    {
+      "t": "h3",
+      "v": "What about a UX designer, is that a third job?"
+    },
+    {
+      "t": "p",
+      "v": "Effectively yes. A UX designer works on structure, flow and whether people can accomplish what they came for. A web designer in common usage leans more towards the visual outcome. On small projects one person does both; on products they are usually different people. [[UX designer vs UI designer|/ux-designer-vs-ui-designer]] explains that split."
+    },
+    {
+      "t": "h3",
+      "v": "Can I use a template and skip the designer?"
+    },
+    {
+      "t": "p",
+      "v": "You can, and for a business that needs a presence rather than a pipeline it is often the right call. Spend what you saved on photography and writing. A well-chosen template with real content beats a custom design with placeholder copy."
+    },
+    {
+      "t": "h3",
+      "v": "Who owns the design files at the end?"
+    },
+    {
+      "t": "p",
+      "v": "You should, and you should get this in writing before you pay anything. A handover that is a folder of flattened images is not a handover, because no other designer can continue from it."
+    },
+    {
+      "t": "p",
+      "v": "Published 4 October 2026 by a Dubai-based freelance designer and developer."
+    }
+  ],
+  "words": 693
+}

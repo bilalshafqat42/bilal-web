@@ -1,0 +1,129 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { homeDisciplines } from "@/data/pillars";
+import CtaButton from "@/components/ui/CtaButton";
+import Eyebrow from "@/components/ui/Eyebrow";
+
+/**
+ * The three disciplines, as a ledger of rows rather than a card deck.
+ *
+ * Replaces the previous hover-to-reveal version, which showed one pillar at a
+ * time in a card and hid the other three behind a hover. That cost more than it
+ * looked: three quarters of the section was invisible on arrival, the reveal
+ * did not exist at all on touch, and the whole thing needed `useState` plus
+ * framer-motion to run. A visitor deciding whether one person can cover all
+ * three disciplines needs to see all three at once — that is the entire argument
+ * the section is making.
+ *
+ * Server component by design. Every row is present in the HTML, so it costs no
+ * client JavaScript, needs no hydration, and is fully readable to a crawler.
+ *
+ * Reuses `.site-container` and `.btn-primary` rather than introducing a new
+ * max-width or button style, and the existing `pillars` data rather than a
+ * parallel content file.
+ *
+ * Deliberately not using `SectionHeading`: it wraps its output in `Reveal`,
+ * which is a client component, and its centred single-line layout does not fit
+ * a left-aligned headline sitting beside an intro paragraph. The heading markup
+ * is inline here rather than in a new shared component, since nothing else on
+ * the site needs this shape.
+ */
+export default function CapabilityLedger() {
+  return (
+    <section id="services" className="relative section-pad">
+      <div className="site-container">
+        {/* Was the last pill-shaped label on the site: item 189 gave it the mono
+            type but left the pill border and the muted colour, so it read as a
+            different thing from the identical labels above every other section.
+            Now the same flat gold eyebrow as everywhere else. */}
+        <Eyebrow>
+          Capabilities
+        </Eyebrow>
+
+        <div className="mt-7 grid grid-cols-1 gap-8 lg:grid-cols-[1.35fr_1fr] lg:items-start lg:gap-16">
+          <h2 className="t-h2 text-ink">
+            Three disciplines.{" "}
+            <br />
+            One{" "}
+            <span className="bg-gradient-to-r from-[#f8dd8f] via-gold to-gold-2 bg-clip-text text-transparent">
+              point of contact.
+            </span>
+          </h2>
+
+          {/* The rule sits on the paragraph rather than between the columns, so
+              it stays attached to the text when the grid collapses to one
+              column instead of becoming a stray horizontal line. */}
+          <p className="border-l-2 border-gold/70 pl-5 text-base leading-relaxed text-muted lg:mt-2">
+            Most businesses stitch this together from an agency, a developer and a freelancer, then
+            spend their week translating between them.{" "}
+            <strong className="font-semibold text-ink">
+              I do all three, so the strategy and the build never disagree.
+            </strong>
+          </p>
+        </div>
+
+        <ul className="mt-14 border-t border-border">
+          {homeDisciplines.map((pillar, i) => (
+            <li
+              key={pillar.label}
+              // `group` and `relative` carry the stretched link below: the whole
+              // row is clickable, while the accessible name stays just the
+              // title rather than the title plus summary plus three tags.
+              className="group relative border-b border-border transition-colors hover:bg-surface/40"
+            >
+              <div className="grid grid-cols-1 items-start gap-x-8 gap-y-4 px-2 py-9 sm:px-4 lg:grid-cols-[auto_minmax(0,0.7fr)_minmax(0,1.3fr)_auto] lg:gap-x-10">
+                <span className="font-mono text-xs text-muted/70 lg:pt-2">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+
+                <h3 className="t-h4 text-ink">
+                  <Link
+                    href={pillar.href}
+                    className="outline-none after:absolute after:inset-0 focus-visible:underline focus-visible:decoration-gold focus-visible:underline-offset-4"
+                  >
+                    {pillar.label}
+                  </Link>
+                </h3>
+
+                <div>
+                  <p className="text-base leading-relaxed text-muted">{pillar.summary}</p>
+                  <ul className="mt-4 flex flex-wrap gap-2">
+                    {pillar.tags.map((tag) => (
+                      <li key={tag.href + tag.label}>
+                        <Link
+                          href={tag.href}
+                          className="relative z-10 block rounded-md surface-2 px-3 py-1.5 font-mono text-xs text-muted transition-colors hover:border-gold/50 hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                        >
+                          {tag.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Decorative: the row is already a link via the title above, so
+                    exposing this too would ship four duplicate links per row. */}
+                <span
+                  aria-hidden="true"
+                  className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border text-muted transition-colors group-hover:border-gold/50 group-hover:text-gold lg:flex lg:mt-1"
+                >
+                  <ArrowRight size={15} />
+                </span>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-6">
+          <CtaButton href="/appointment">Book a free consultation</CtaButton>
+          <Link
+            href="/portfolio"
+            className="tap-target inline-flex items-center gap-2 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+          >
+            See work across these services <ArrowRight size={15} />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}

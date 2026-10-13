@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
-import LeadFormPopup from "@/components/LeadFormPopup";
-import CookieConsent from "@/components/CookieConsent";
-import SpotlightSearch from "@/components/SpotlightSearch";
-import Analytics from "@/components/Analytics";
-import MetaPixel from "@/components/MetaPixel";
+import Nav from "@/components/layout/Nav";
+import Footer from "@/components/layout/Footer";
+import LeadFormPopup from "@/components/forms/LeadFormPopup";
+import CookieConsent from "@/components/layout/CookieConsent";
+import SpotlightSearch from "@/components/layout/SpotlightSearch";
+import Analytics from "@/components/seo/Analytics";
+import MetaPixel from "@/components/seo/MetaPixel";
+import { SITE_URL, OG_IMAGES, OG_IMAGE_URL, HOME_TITLE, HOME_DESCRIPTION as SITE_DESCRIPTION } from "@/lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bilalshafqat.com"),
+  metadataBase: new URL(SITE_URL),
   // Reordered 2026-10-02. "Freelance" is back, and this time it costs nothing:
   // at 457px this is *narrower* than the 461px it replaces, because moving the
   // name to the end removes a dash and its spacing. The 2026-09-23 note below
@@ -23,38 +24,32 @@ export const metadata: Metadata = {
   // Keyword first, name second, which is what every competing freelance site in
   // Dubai does and what this one did not (roadmap 319). The brand ranking is
   // safe: the name is still in the title and the domain is the name.
-  title: "Freelance Digital Marketer in Dubai — Bilal Shafqat",
+  title: HOME_TITLE,
   // 233 characters before this, the longest on the site — Google cuts around
   // 160, so roughly the last third was being dropped mid-sentence.
-  description:
-    "Freelance digital marketer in Dubai. Paid ads, SEO, social and email, plus the websites and apps behind them. One senior partner, not an agency.",
+  //
+  // Reworded 2026-10-13 to carry the positioning line used everywhere else
+  // (roadmap 397): marketing leads, building is how it gets delivered.
+  description: SITE_DESCRIPTION,
   alternates: {
     canonical: "/",
     // Site-wide, so a reader's "subscribe" button finds the feed from any page
-    // rather than only from /blog. Per-page `alternates` on the service and
-    // article routes override `canonical` and inherit this.
+    // rather than only from /blog. Next replaces `alternates` whole, so a page
+    // that sets its own canonical drops this; `pageMetadata()` in lib/site.ts
+    // repeats it. Pages building `alternates` by hand need the same.
     types: { "application/rss+xml": [{ url: "/rss.xml", title: "Bilal Shafqat — Writing" }] },
   },
-  keywords: [
-    "paid marketing Dubai",
-    "lead generation UAE",
-    "MERN stack developer",
-    "web design and development",
-    "mobile app development Dubai",
-    "CRM setup Dubai",
-    "HubSpot Zoho Salesforce freelancer",
-    "marketing automation UAE",
-    "graphic design freelancer",
-    "social media management UAE",
-  ],
+  // No `keywords`, removed 2026-10-13. Google has said publicly that it ignores
+  // the meta keywords tag, so it bought nothing, and the list still said "MERN
+  // stack developer": the old positioning, in the source of every page.
   openGraph: {
-    title: "Freelance Digital Marketer in Dubai — Bilal Shafqat",
+    title: HOME_TITLE,
     description:
       // Was a different sentence from the meta description: a list of four
       // services ending "one senior partner, four pillars". A share card is
       // read in a chat window in under a second, so it gets the same clear
       // sentence the search result does.
-      "Freelance digital marketer in Dubai. Paid ads, SEO, social and email, plus the websites and apps behind them. One senior partner, not an agency.",
+      SITE_DESCRIPTION,
     type: "website",
     // **The site-wide share card, and it did not exist before 2026-09-25.**
     //
@@ -75,14 +70,7 @@ export const metadata: Metadata = {
     //
     // 1200x630 is the size both Facebook and LinkedIn crop to. An absolute URL
     // because several crawlers will not resolve a relative one.
-    images: [
-      {
-        url: "https://bilalshafqat.com/images/og-default.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Bilal Shafqat — paid marketing, web and app development, design and CRM automation, Dubai",
-      },
-    ],
+    images: OG_IMAGES,
   },
   // `summary_large_image`, not the default `summary`.
   //
@@ -92,10 +80,9 @@ export const metadata: Metadata = {
   // other client that reads Twitter card tags, honours this.
   twitter: {
     card: "summary_large_image",
-    title: "Freelance Digital Marketer in Dubai — Bilal Shafqat",
-    description:
-      "Freelance digital marketer in Dubai. Paid ads, SEO, social and email, plus the websites and apps behind them. One senior partner, not an agency.",
-    images: ["https://bilalshafqat.com/images/og-default.jpg"],
+    title: HOME_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [OG_IMAGE_URL],
   },
   icons: {
     icon: "/logo/bs.svg",

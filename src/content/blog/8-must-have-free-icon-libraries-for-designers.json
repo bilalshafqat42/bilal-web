@@ -1,0 +1,303 @@
+{
+  "slug": "8-must-have-free-icon-libraries-for-designers",
+  "title": "8 Must-Have Free Icon Libraries for Designers",
+  "description": "Eight free icon libraries for UI design, compared on style, file format and licence, plus how to choose an icon library that fits your project.",
+  "published": "2025-01-13",
+  "updatedAt": "2026-10-13",
+  "tags": [
+    "UI UX Design"
+  ],
+  "words": 1536,
+  "blocks": [
+    {
+      "t": "p",
+      "v": "An icon library is a set of icons drawn in one shared style, so every symbol in your interface looks like part of the same family. A good free icon library saves days of drawing and, more importantly, keeps an interface consistent as it grows. As a UI/UX designer, I’ve found that the right one makes a noticeable difference to both the speed and the quality of a project."
+    },
+    {
+      "t": "p",
+      "v": "Premium sets have their place, but plenty of free options match them on quality. Below are eight free icon libraries worth knowing, followed by what actually matters when you choose one: style, coverage, file format and, the part most people skip, the licence."
+    },
+    {
+      "t": "h2",
+      "v": "1. Iconsax",
+      "href": "https://iconsax.io/"
+    },
+    {
+      "t": "p",
+      "v": "Iconsax offers over 1000 premium-quality icons across different styles, including linear, bold, and two-tone. This versatile library is ideal for web and app projects, as it allows for easy customization to fit seamlessly into your designs."
+    },
+    {
+      "t": "p",
+      "v": "It is a strong choice when you want one family that can change weight, for example linear icons in navigation and bold ones for an active state, without the two looking unrelated."
+    },
+    {
+      "t": "h2",
+      "v": "2. Heroicons",
+      "href": "https://heroicons.com/"
+    },
+    {
+      "t": "p",
+      "v": "Heroicons is a carefully drawn icon set from the makers of Tailwind CSS, released under the MIT licence. It comes in outline and solid styles, plus smaller sizes drawn specifically for compact interfaces, and adapts easily to anything from minimal to bold designs."
+    },
+    {
+      "t": "p",
+      "v": "It ships as plain SVG and as official React and Vue packages, so developers can import exactly the icons a design uses. If your project already runs on Tailwind, it is the natural default."
+    },
+    {
+      "t": "h2",
+      "v": "3. Flaticon",
+      "href": "https://www.flaticon.com/"
+    },
+    {
+      "t": "p",
+      "v": "One of the largest and most popular libraries, Flaticon boasts millions of vector icons in multiple formats, including SVG, PNG, and EPS. Its customizable sets make it a go-to resource for designers who value flexibility and speed."
+    },
+    {
+      "t": "p",
+      "v": "The catch is the licence. Icons on the free plan require attribution to the author, and because Flaticon is a marketplace of many illustrators, icons from different packs rarely match. Pick one pack and stay inside it."
+    },
+    {
+      "t": "h2",
+      "v": "4. Noun Project",
+      "href": "https://thenounproject.com/"
+    },
+    {
+      "t": "p",
+      "v": "With over 3 million unique icons contributed by creators worldwide, the Noun Project provides an unmatched diversity of styles. While free icons require attribution, the library is a treasure trove for unique and creative designs."
+    },
+    {
+      "t": "p",
+      "v": "Its real strength is coverage. If you need an icon for something unusual, such as a specific tool, an industry process or a local reference, it is often the only place you will find one. Styles vary from creator to creator, so it suits one-off needs better than a full interface set."
+    },
+    {
+      "t": "h2",
+      "v": "5. Feather Icons",
+      "href": "https://feathericons.com/"
+    },
+    {
+      "t": "p",
+      "v": "Feather Icons is an open-source library known for its simplicity and minimalism. Featuring lightweight designs with clean lines, this library is perfect for modern, fast-loading interfaces."
+    },
+    {
+      "t": "p",
+      "v": "It is released under the MIT licence and drawn on a 24 by 24 grid with a consistent stroke, which is why the set feels so even. Feather itself has not grown much in recent years. Its community fork, Lucide, has carried the idea forward with a much larger set and packages for most front-end frameworks. The icons on this site are Lucide."
+    },
+    {
+      "t": "h2",
+      "v": "6. Atlas Icons"
+    },
+    {
+      "t": "p",
+      "v": "Atlas Icons offers over 800 meticulously designed icons for professional-grade projects. Fully customizable, these icons are perfect for both web and mobile interfaces."
+    },
+    {
+      "t": "h2",
+      "v": "7. Material Symbols",
+      "href": "https://fonts.google.com/icons"
+    },
+    {
+      "t": "p",
+      "v": "Material Symbols is Google’s icon set, built to follow Material Design and released under the Apache 2.0 licence. It comes in three styles, Outlined, Rounded and Sharp, and works across Android apps, websites and more."
+    },
+    {
+      "t": "p",
+      "v": "It is delivered as a variable font, so fill, weight, grade and optical size can be adjusted rather than chosen from separate files, and individual icons can also be downloaded as SVG. The range is very wide, which makes it a safe choice for dashboards and admin tools that need hundreds of icons."
+    },
+    {
+      "t": "h2",
+      "v": "8. Lordicon",
+      "href": "https://lordicon.com/"
+    },
+    {
+      "t": "p",
+      "v": "Lordicon adds a dynamic twist to iconography with its collection of animated icons. Available in SVG and Lottie formats, these icons are perfect for creating interactive and engaging user experiences."
+    },
+    {
+      "t": "p",
+      "v": "Animated icons earn their place in small doses: a confirmation tick, an empty state, a short loading moment. Used everywhere, they compete with the content. Read the current terms of the free tier before using them in a commercial project."
+    },
+    {
+      "t": "h2",
+      "v": "How to choose a free icon library"
+    },
+    {
+      "t": "p",
+      "v": "The list above is a starting point. The right icon library for a project depends on five things, roughly in this order."
+    },
+    {
+      "t": "list",
+      "v": [
+        "Style match. Look at stroke width, corner radius and whether the icons are outlined or filled. They should sit comfortably next to your typeface. A thin, rounded icon beside a heavy geometric font looks borrowed.",
+        "Coverage. Before you commit, list the twenty or thirty icons your product actually needs and search for each one. A library missing five of them means drawing five yourself, in someone else’s style.",
+        "One family, not several. Mixing libraries is the most common reason an interface looks slightly off without anyone being able to say why. If your library lacks an icon, draw one to match rather than borrowing from another set.",
+        "Format and tooling. Check whether it offers SVG, a Figma file or plugin, and a package for the framework your developers use. That decides how easily design and code stay in step.",
+        "Licence. Free to download is not the same as free to use without conditions, which is the next section."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Free icon library licences: what free actually means"
+    },
+    {
+      "t": "p",
+      "v": "Free icon libraries fall into two groups, and the difference matters once a project goes live."
+    },
+    {
+      "t": "p",
+      "v": "Open-source sets such as Heroicons, Feather, Lucide and Material Symbols use permissive licences like MIT, ISC or Apache 2.0. You can use them in commercial work without crediting the author on screen. The usual condition is that the licence notice is kept with copies of the files."
+    },
+    {
+      "t": "p",
+      "v": "Marketplaces such as Flaticon and the Noun Project work differently. Their free icons generally require attribution to the creator, and a paid plan removes that requirement. Attribution inside an app or a client’s website is often impractical, so for commercial work either budget for the subscription or stick to an open-source set."
+    },
+    {
+      "t": "p",
+      "v": "Licences change, so read the current terms on the library’s own site before a project ships. This is a designer’s summary, not legal advice."
+    },
+    {
+      "t": "h2",
+      "v": "SVG or icon font?"
+    },
+    {
+      "t": "p",
+      "v": "Most libraries offer icons in more than one format. For web and app interfaces today, SVG is usually the better choice."
+    },
+    {
+      "t": "list",
+      "v": [
+        "SVG icons stay sharp at any size, can be styled with CSS, and can inherit the text colour around them. Imported one at a time as components, they let you ship only the icons you actually use.",
+        "Icon fonts were the standard approach for years and are still convenient: one file, and icons behave like text. The downsides are that each icon is limited to one colour, a font that fails to load leaves empty boxes or stray characters, and screen readers can misread the icons unless they are hidden properly.",
+        "PNG is fine for presentations and documents but best avoided in interfaces. It blurs when scaled and needs a separate file for each size and colour.",
+        "Lottie, which Lordicon uses, is an animation format. Treat it as a separate tool for specific moments rather than the base of your icon system."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "Material Symbols is the notable case on the font side. As a variable font it gives you control over weight and fill that a static set cannot, which can justify the trade-offs on a large product."
+    },
+    {
+      "t": "h2",
+      "v": "Free icon libraries compared"
+    },
+    {
+      "t": "table",
+      "head": [
+        "Library",
+        "Type",
+        "Licence",
+        "Credit needed on free use"
+      ],
+      "rows": [
+        [
+          "Iconsax",
+          "UI set, several styles",
+          "Check the current terms",
+          "Check the site"
+        ],
+        [
+          "Heroicons",
+          "UI set, outline and solid",
+          "MIT",
+          "No"
+        ],
+        [
+          "Flaticon",
+          "Marketplace, many artists",
+          "Flaticon’s own licence",
+          "Yes, on the free plan"
+        ],
+        [
+          "Noun Project",
+          "Marketplace, many artists",
+          "Creative Commons on free icons",
+          "Yes, on the free plan"
+        ],
+        [
+          "Feather",
+          "UI set, stroke only",
+          "MIT",
+          "No"
+        ],
+        [
+          "Atlas Icons",
+          "UI set",
+          "Check the current terms",
+          "Check the site"
+        ],
+        [
+          "Material Symbols",
+          "Variable font and SVG",
+          "Apache 2.0",
+          "No"
+        ],
+        [
+          "Lordicon",
+          "Animated icons",
+          "Check the current terms",
+          "Check the site"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Using icons well"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Pair icons with text labels wherever space allows. Only a handful, such as search and close, are understood almost everywhere. The rest are a guess for anyone new to your product.",
+        "Keep sizes on a scale, such as 16, 20 and 24 pixels, and keep stroke widths consistent between sizes.",
+        "Give every icon-only button an accessible name, and hide purely decorative icons from screen readers.",
+        "Check contrast. An icon that carries meaning needs to be as readable as text, which thin outline styles on light backgrounds often are not."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "What is the best free icon library?"
+    },
+    {
+      "t": "p",
+      "v": "There is no single best one. For a web product built with Tailwind, Heroicons. For a large dashboard that needs hundreds of icons, Material Symbols. For a clean, minimal interface, Feather or Lucide. For an unusual one-off icon, the Noun Project. Choose on style and coverage first, then confirm the licence."
+    },
+    {
+      "t": "h3",
+      "v": "Can I use free icons in commercial projects?"
+    },
+    {
+      "t": "p",
+      "v": "Usually, but the conditions differ. Open-source sets like Heroicons and Material Symbols can be used commercially without on-screen credit. Marketplace icons on a free plan generally need attribution. Check the licence of the specific library, and take proper advice if a project depends on it."
+    },
+    {
+      "t": "h3",
+      "v": "Is it a problem to mix icon libraries?"
+    },
+    {
+      "t": "p",
+      "v": "Visually, yes. Libraries use different grids, stroke widths and corner styles, and the mismatch shows even when people cannot name it. Choose one main library and draw any missing icons to match."
+    },
+    {
+      "t": "h3",
+      "v": "Can I use these icon libraries in Figma?"
+    },
+    {
+      "t": "p",
+      "v": "Most of them, either through a Figma Community file, a plugin or by importing the SVGs. Prefer the version published by the library’s own team. For plugins that speed up the rest of the work, see [[the best AI Figma plugins|/6-best-ai-powered-figma-plugins]]."
+    },
+    {
+      "t": "h2",
+      "v": "Conclusion"
+    },
+    {
+      "t": "p",
+      "v": "A good icon library is one of the cheapest upgrades an interface can get. Pick one that matches your type, covers what you need and has a licence you can live with, then stick to it. Whether you’re a seasoned designer or just starting, these free icon libraries give you professional-grade quality without spending a dirham."
+    },
+    {
+      "t": "p",
+      "v": "If you are collecting more free assets, [[these free design resources|/high-quality-free-design-resources]] cover fonts, images and mockups."
+    }
+  ]
+}

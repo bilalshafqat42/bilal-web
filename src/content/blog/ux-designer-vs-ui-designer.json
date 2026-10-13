@@ -1,0 +1,201 @@
+{
+  "slug": "ux-designer-vs-ui-designer",
+  "title": "UX Designer vs UI Designer: The Difference, Explained",
+  "metaTitle": "UX Designer vs UI Designer: The Difference",
+  "description": "Two roles that get written as one word. What each produces, why the order matters, and which one your project needs if you can only afford one.",
+  "published": "2026-10-04",
+  "updatedAt": "2026-10-13",
+  "tags": [
+    "UI UX Design",
+    "Design",
+    "Dubai"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "The two get written together so often that most people assume they are one job. In a small team they frequently are one person. They are not one skill."
+    },
+    {
+      "t": "p",
+      "v": "Job adverts compound it by asking for a UI/UX designer as though it were one qualification. In a small team it usually is one person. It is still two skills, and most people are genuinely strong at one of them."
+    },
+    {
+      "t": "p",
+      "v": "The short version: UX decides what should happen. UI decides how it looks and feels when it does."
+    },
+    {
+      "t": "h2",
+      "v": "UX design: does this work?"
+    },
+    {
+      "t": "p",
+      "v": "User experience design is about structure and flow. What a person came here to do, how many steps stand between them and doing it, what they see when they get it wrong, and whether they understand where they are."
+    },
+    {
+      "t": "p",
+      "v": "A UX designer produces things that are mostly not beautiful: flows, wireframes, a site structure, a list of states nobody thought about. The output is decisions."
+    },
+    {
+      "t": "p",
+      "v": "When UX is bad, people do not say the design is ugly. They say the site is confusing, or they say nothing and leave."
+    },
+    {
+      "t": "h2",
+      "v": "UI design: does this feel right?"
+    },
+    {
+      "t": "p",
+      "v": "User interface design is the surface. Typography, colour, spacing, hierarchy, iconography, the way a button changes under your finger, how a loading state behaves so a two-second wait does not feel like a failure."
+    },
+    {
+      "t": "p",
+      "v": "A UI designer produces the thing people recognise as design: a visual system that applies consistently across every screen, including the ones nobody drew."
+    },
+    {
+      "t": "p",
+      "v": "When UI is bad, the product feels unfinished or untrustworthy even when every flow is logically correct."
+    },
+    {
+      "t": "h2",
+      "v": "Side by side"
+    },
+    {
+      "t": "table",
+      "head": [
+        "",
+        "UX designer",
+        "UI designer"
+      ],
+      "rows": [
+        [
+          "Question",
+          "Can people do what they came for?",
+          "Does this look and feel right?"
+        ],
+        [
+          "Produces",
+          "Flows, wireframes, structure, states",
+          "Visual system, screens, components"
+        ],
+        [
+          "Works from",
+          "Research, analytics, support tickets, interviews",
+          "Brand, the UX structure, an existing system"
+        ],
+        [
+          "Measured by",
+          "Completion, drop-off, support volume",
+          "Consistency, clarity, perceived quality"
+        ],
+        [
+          "Failure looks like",
+          "Confusion, abandonment, repeated questions",
+          "Cheap, dated, or inconsistent"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Why the order matters"
+    },
+    {
+      "t": "p",
+      "v": "UX comes first. Styling a flow that is wrong produces an attractive version of the wrong thing, and you will have paid twice: once for the design and once for the rebuild after it underperforms."
+    },
+    {
+      "t": "p",
+      "v": "This is the single most common sequencing mistake I see. Someone commissions visuals because visuals are what they can picture, approves them because they look good, and only discovers the structural problem once real people are using it."
+    },
+    {
+      "t": "h2",
+      "v": "If you can only afford one"
+    },
+    {
+      "t": "p",
+      "v": "Depends entirely on the project."
+    },
+    {
+      "t": "list",
+      "v": [
+        "A brochure website, straightforward structure, few pages: UI. The flow is already a solved problem and what you need is for it to look credible.",
+        "An application, a booking flow, a dashboard, anything with steps: UX. Attractive and confusing is worse than plain and obvious.",
+        "An existing site that gets traffic but few enquiries: UX. The visitors are arriving. Something between arriving and converting is broken, and it is rarely the colour.",
+        "A redesign where the current version works but looks dated: UI. Do not restructure something that is already performing."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "What about everyone else in the list?"
+    },
+    {
+      "t": "p",
+      "v": "You will also see product designer, interaction designer, visual designer and service designer. Titles vary by company more than by discipline, and there is no body deciding who may use which."
+    },
+    {
+      "t": "p",
+      "v": "Broadly: a product designer covers UX and UI plus responsibility for what gets built and why. An interaction designer sits close to UX with a focus on behaviour and motion. A visual designer is UI without the structural half. Judge the portfolio, not the noun. For the day-to-day of the first role, see [[what a UX designer actually does|/what-a-ux-designer-actually-does]]."
+    },
+    {
+      "t": "h2",
+      "v": "How to read a portfolio properly"
+    },
+    {
+      "t": "p",
+      "v": "Almost every design portfolio is a UI portfolio, because screens photograph well and flows do not. That tells you very little about UX ability."
+    },
+    {
+      "t": "p",
+      "v": "Three questions that separate them:"
+    },
+    {
+      "t": "list",
+      "ordered": true,
+      "v": [
+        "What was broken before you started, and how did you know? A UX answer cites evidence. A UI answer says the client wanted a refresh.",
+        "Show me something you removed. Good UX work usually deletes steps. Portfolios full of additions are visual work described as experience work.",
+        "What happened after it launched? Anyone who has done real UX knows at least one number. Anyone who does not will talk about how the client felt."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "Can one person do both well?"
+    },
+    {
+      "t": "p",
+      "v": "Yes, and on small and medium projects it is usually the better arrangement because the structure and the surface stay in one head. It is how I take on [[UI/UX design|/services/ui-ux-design]] work. On a large product with a team, they separate for good reasons: the work is simply too much for one person."
+    },
+    {
+      "t": "h3",
+      "v": "Is UX research essential or a luxury?"
+    },
+    {
+      "t": "p",
+      "v": "On a brochure site, mostly a luxury. On anything with a flow, essential, but it does not have to be expensive. Five conversations with real customers and a look at your own analytics will tell you more than most formal studies."
+    },
+    {
+      "t": "h3",
+      "v": "Where does a developer fit?"
+    },
+    {
+      "t": "p",
+      "v": "After both, and ideally in conversation with both. Many design decisions are only expensive once someone tries to build them, and a designer who has never shipped working software tends to specify things that are costly for no visible gain."
+    },
+    {
+      "t": "h3",
+      "v": "Do I need this if I am using a template?"
+    },
+    {
+      "t": "p",
+      "v": "You still need the UX decisions, you just make them yourself. What goes on the homepage, what the single most important action is, what order the sections run in. A template gives you the UI and leaves the thinking to you."
+    },
+    {
+      "t": "p",
+      "v": "Published 4 October 2026 by a Dubai-based designer and developer."
+    }
+  ],
+  "words": 798
+}

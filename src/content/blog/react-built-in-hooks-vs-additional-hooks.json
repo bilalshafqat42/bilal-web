@@ -1,0 +1,316 @@
+{
+  "slug": "react-built-in-hooks-vs-additional-hooks",
+  "title": "React Built-in Hooks vs Additional Hooks: What’s the Difference?",
+  "description": "Confused about the difference between React Built-in Hooks vs Additional Hooks? Learn what they are, when to use them, and how to write better code.",
+  "published": "2025-06-20",
+  "updatedAt": "2026-10-01",
+  "tags": [
+    "React Hooks",
+    "React Js"
+  ],
+  "words": 510,
+  "blocks": [
+    {
+      "t": "h2",
+      "v": "Introduction"
+    },
+    {
+      "t": "p",
+      "v": "React hooks revolutionized how we write components by enabling function components to manage state, side effects, refs, and more — without classes."
+    },
+    {
+      "t": "p",
+      "v": "If you’ve used useState or useEffect, you’ve already seen the power of hooks. But React offers more than just these basic tools. There’s a distinction between built-in hooks (used daily) and additional or advanced hooks (used for performance, dev tools, or fine control)."
+    },
+    {
+      "t": "p",
+      "v": "Understanding the difference is key to writing clean, optimized, and scalable React code — especially in 2025 and beyond."
+    },
+    {
+      "t": "h3",
+      "v": "In this article, you’ll learn:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "What built-in hooks are",
+        "What advanced (or “additional”) hooks are",
+        "When to use each",
+        "Real-world examples",
+        "Common mistakes to avoid",
+        "Best practices for choosing the right hook"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "What Are React Hooks?"
+    },
+    {
+      "t": "p",
+      "v": "React hooks are special functions that let you hook into React features (like state and lifecycle methods) from function components. They start with use, and they only work inside function components or custom hooks."
+    },
+    {
+      "t": "h2",
+      "v": "What Are Built-in React Hooks?"
+    },
+    {
+      "t": "p",
+      "v": "Built-in hooks are the essential hooks every React developer uses regularly. They ship with React and are used to manage common needs like state, side effects, and performance."
+    },
+    {
+      "t": "h3",
+      "v": "Common Built-in Hooks:"
+    },
+    {
+      "t": "p",
+      "v": "Perform side effects (data fetching, etc.)"
+    },
+    {
+      "t": "p",
+      "v": "Reference DOM elements or persist values"
+    },
+    {
+      "t": "p",
+      "v": "Manage complex state with reducers"
+    },
+    {
+      "t": "h3",
+      "v": "Why They Matter:"
+    },
+    {
+      "t": "p",
+      "v": "These hooks cover the core use cases in React:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Updating UI when state changes",
+        "Interacting with external systems (e.g. APIs, storage)",
+        "Preventing unnecessary re-renders",
+        "Structuring complex logic"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "What Are Additional (Advanced) React Hooks?"
+    },
+    {
+      "t": "p",
+      "v": "React also provides a few less commonly used hooks that are considered \"advanced\" or \"additional.\" These are designed for more complex scenarios — like fine-tuning performance, working with layout or animations, or customizing how refs behave."
+    },
+    {
+      "t": "h3",
+      "v": "List of Additional React Hooks:"
+    },
+    {
+      "t": "p",
+      "v": "Runs synchronously before paint (layout-sensitive effects)"
+    },
+    {
+      "t": "p",
+      "v": "Shows custom labels in React DevTools"
+    },
+    {
+      "t": "p",
+      "v": "Exposes custom instance values for ref"
+    },
+    {
+      "t": "p",
+      "v": "Defers updating a value for better responsiveness"
+    },
+    {
+      "t": "p",
+      "v": "Generates unique IDs for accessibility and hydration"
+    },
+    {
+      "t": "p",
+      "v": "Injects styles before DOM mutations (advanced use case)"
+    },
+    {
+      "t": "h3",
+      "v": "When to Use Them:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Building custom components or libraries",
+        "Optimizing responsiveness or layout behavior",
+        "Needing developer tooling or ref control"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Built-in Hooks: Real Examples"
+    },
+    {
+      "t": "h3",
+      "v": "1. useState"
+    },
+    {
+      "t": "code",
+      "v": "const [count, setCount] = useState(0);"
+    },
+    {
+      "t": "h3",
+      "v": "2. useEffect"
+    },
+    {
+      "t": "code",
+      "v": "useEffect(() => {\r\n  fetchData();\r\n}, []);"
+    },
+    {
+      "t": "h3",
+      "v": "3. useContext"
+    },
+    {
+      "t": "code",
+      "v": "const user = useContext(UserContext);"
+    },
+    {
+      "t": "h2",
+      "v": "Additional Hooks: Real Examples"
+    },
+    {
+      "t": "h3",
+      "v": "1. useLayoutEffect"
+    },
+    {
+      "t": "code",
+      "v": "useLayoutEffect(() => {\r\n  measureDOM();\r\n}, []);"
+    },
+    {
+      "t": "h3",
+      "v": "2. useImperativeHandle"
+    },
+    {
+      "t": "code",
+      "v": "useImperativeHandle(ref, () => ({\r\n  scrollToTop() {\r\n    divRef.current.scrollTop = 0;\r\n  }\r\n}));"
+    },
+    {
+      "t": "h3",
+      "v": "3. useDeferredValue"
+    },
+    {
+      "t": "code",
+      "v": "const deferredQuery = useDeferredValue(searchInput);"
+    },
+    {
+      "t": "h2",
+      "v": "When to Use Built-in vs Additional Hooks"
+    },
+    {
+      "t": "table",
+      "head": [
+        "",
+        "Built-in hooks",
+        "Additional hooks"
+      ],
+      "rows": [
+        [
+          "Examples",
+          "useState, useEffect, useContext",
+          "useMemo, useCallback, useRef, useReducer, useImperativeHandle"
+        ],
+        [
+          "How often you need them",
+          "Nearly every component",
+          "When a specific problem appears"
+        ],
+        [
+          "Reach for them",
+          "By default",
+          "After you have measured, or when the pattern genuinely fits"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "v": "The common mistake is treating the second column as a sign of seniority and wrapping everything in useMemo and useCallback. Both have a cost of their own, and applied everywhere they usually make a component slower and always make it harder to read."
+    },
+    {
+      "t": "h2",
+      "v": "Common Mistakes to Avoid"
+    },
+    {
+      "t": "h3",
+      "v": "1. Overusing Advanced Hooks"
+    },
+    {
+      "t": "p",
+      "v": "Don't reach for useLayoutEffect or useImperativeHandle unless necessary. They add complexity and are harder to maintain."
+    },
+    {
+      "t": "h3",
+      "v": "2. Using useContext for Rapid Updates"
+    },
+    {
+      "t": "p",
+      "v": "useContext is great for low-frequency global state (like theme or auth), but not for fast-updating values like typing or animations."
+    },
+    {
+      "t": "h3",
+      "v": "3. Ignoring Memoization with useMemo/useCallback"
+    },
+    {
+      "t": "p",
+      "v": "Failing to memoize can cause unnecessary re-renders in performance-sensitive areas."
+    },
+    {
+      "t": "h2",
+      "v": "Best Practices for Using React Hooks (2025)"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Use built-in hooks for 90% of your needs",
+        "Use additional hooks only when performance or layout control is needed",
+        "Write custom hooks to encapsulate logic and avoid repetition",
+        "Memoize functions/values when props are passed deeply",
+        "Keep each hook focused on a single concern"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Summary: Know Which Hook to Reach For"
+    },
+    {
+      "t": "p",
+      "v": "React hooks are powerful tools — but knowing when and which one to use makes the difference between code that just works and code that scales."
+    },
+    {
+      "t": "h3",
+      "v": "Use Built-in Hooks For:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Everyday UI state and behavior",
+        "Lifecycle effects",
+        "Accessing DOM or context"
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "Use Additional Hooks For:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Performance tuning",
+        "Dev tool integration",
+        "Component libraries or custom APIs"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "You don’t need to memorize all the hooks — just understand their purpose and use them when the problem calls for it."
+    }
+  ],
+  "metaTitle": "React Built-in Hooks vs Additional Hooks"
+}

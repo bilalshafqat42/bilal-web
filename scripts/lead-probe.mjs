@@ -17,6 +17,11 @@
  * That script sets the blackhole URL for the server and for this check from a
  * single value, so the two cannot disagree — which is the failure that created
  * the unwanted records in the first place.
+ *
+ * Every accepted probe uses an `@example.invalid` address. With the CRM
+ * unreachable, the route now writes each one to the lead backup file (and
+ * emails it if SMTP is set); `npm run replay-leads` discards `.invalid`
+ * addresses, so none of them can reach Performo later.
  */
 const BASE = (process.env.BASE_URL || "http://localhost:3000").replace(/\/$/, "");
 const API = `${BASE}/api/lead`;
@@ -74,21 +79,21 @@ const LF = String.fromCharCode(10);
 const NUL = String.fromCharCode(0);
 
 const cases = [
-  ["oversized body", 413, { name: "A", email: "a@b.co", message: "x".repeat(40000) }],
-  ["unknown service", 400, { name: "A", email: "a@b.co", service: "Bitcoin Mining" }],
-  ["unknown budget", 400, { name: "A", email: "a@b.co", budget: "AED 9,999,999" }],
-  ["unknown timeline", 400, { name: "A", email: "a@b.co", timeline: "yesterday" }],
+  ["oversized body", 413, { name: "A", email: "a@example.invalid", message: "x".repeat(40000) }],
+  ["unknown service", 400, { name: "A", email: "a@example.invalid", service: "Bitcoin Mining" }],
+  ["unknown budget", 400, { name: "A", email: "a@example.invalid", budget: "AED 9,999,999" }],
+  ["unknown timeline", 400, { name: "A", email: "a@example.invalid", timeline: "yesterday" }],
   ["missing name/email", 400, { message: "hi" }],
   ["bad email format", 400, { name: "A", email: "not-an-email" }],
   ["array body", 400, "[1,2,3]"],
   ["malformed JSON", 400, "{oops"],
-  ["honeypot filled", 200, { name: "A", email: "a@b.co", botcheck: "x" }],
+  ["honeypot filled", 200, { name: "A", email: "a@example.invalid", botcheck: "x" }],
   [
     "CRLF injection",
     502,
     {
       name: `Real${CR}${LF}Bcc: attacker@evil.test`,
-      email: "a@b.co",
+      email: "a@example.invalid",
       message: `line1${CR}${LF}line2${NUL}  spaced`,
     },
   ],
@@ -102,6 +107,17 @@ for (const [label, want, body] of cases) {
   const ok = res.status === want;
   if (!ok) failed++;
   console.log(`  ${ok ? "pass" : "FAIL"}  ${label.padEnd(20)} want ${want}, got ${res.status}`);
+}
+
+// Rejected submissions must not use up the window: a person fixing a typo in
+// their email should not be locked out by their own mistakes.
+{
+  const ip = "203.0.113.77";
+  for (let i = 0; i < 6; i++) await post({ name: "T", email: "not-an-email" }, ip);
+  const after = (await post({ name: "T", email: "t@example.invalid" }, ip)).status;
+  const ok = after !== 429;
+  if (!ok) failed++;
+  console.log(`  ${ok ? "pass" : "FAIL"}  ${"typos not counted".padEnd(20)} valid after 6 rejected: ${after}`);
 }
 
 // The rate limiter, from one IP so the window actually fills.
@@ -118,4 +134,4 @@ if (failed) {
   console.error(`\n${failed} guard(s) failed.\n`);
   process.exit(1);
 }
-console.log(`\nAll ${cases.length + 1} guards on /api/lead behave as expected.`);
+console.log(`\nAll ${cases.length + 2} guards on /api/lead behave as expected.`);

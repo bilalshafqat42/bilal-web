@@ -28,14 +28,9 @@
  * the name, the one-line service summary and the domain, on the site's ground.
  * Replacing `public/images/og-default.jpg` with a designed 1200x630 JPEG at the
  * same path changes every one of the 30 cards and needs no code change.
+ *
+ * The values themselves now live in `site.ts`, beside `SITE_URL` and the
+ * `pageMetadata` helper that uses them. Re-exported here so existing imports
+ * keep working.
  */
-export const OG_IMAGE_URL = "https://bilalshafqat.com/images/og-default.jpg";
-
-export const OG_IMAGES = [
-  {
-    url: OG_IMAGE_URL,
-    width: 1200,
-    height: 630,
-    alt: "Bilal Shafqat — paid marketing, web and app development, design and CRM automation, Dubai",
-  },
-];
+export { OG_IMAGE_URL, OG_IMAGES } from "./site";

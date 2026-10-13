@@ -1,29 +1,23 @@
 import type { Metadata } from "next";
-import Reveal from "@/components/Reveal";
-import FaqSection from "@/components/FaqSection";
-import PageOpener from "@/components/PageOpener";
+import { pageMetadata } from "@/lib/site";
+import Reveal from "@/components/ui/Reveal";
+import FaqSection from "@/components/ui/FaqSection";
+import PageOpener from "@/components/layout/PageOpener";
 import { faqGroups, allFaqs } from "@/data/faqs";
-import CtaButton from "@/components/CtaButton";
-import JsonLd from "@/components/JsonLd";
+import CtaButton from "@/components/ui/CtaButton";
+import JsonLd from "@/components/seo/JsonLd";
 import { SITE_URL, faqNode, breadcrumbNode } from "@/lib/schema";
-import { OG_IMAGES } from "@/lib/ogImage";
-import Eyebrow from "@/components/Eyebrow";
+import Eyebrow from "@/components/ui/Eyebrow";
 
 
-export const metadata: Metadata = {
-  title: "FAQ — Working With a Freelance Marketer & Developer",
+export const metadata: Metadata = pageMetadata({
+  // "Freelance Marketer & Developer" until 2026-10-13. Same positioning change
+  // as /about and /contact (roadmap 397).
+  title: "FAQ | Hiring a Freelance Digital Marketer in Dubai",
   description:
-    "Straight answers on hiring a freelancer versus an agency, working across timezones from Dubai, how projects start, and how results are measured.",
-  alternates: { canonical: "/faq" },
-  openGraph: {
-    title: "FAQ — Working With a Freelance Marketer & Developer",
-    description:
-      "Straight answers on freelancer versus agency, timezones, how projects start, and how results are measured.",
-    type: "website",
-    url: "/faq",
-    images: OG_IMAGES,
-  },
-};
+    "Straight answers on hiring a freelance digital marketer instead of an agency: how projects start, working across timezones from Dubai, and measuring results.",
+  path: "/faq",
+});
 
 export default function FaqPage() {
   // One FAQPage covering every question, so search engines and AI assistants can

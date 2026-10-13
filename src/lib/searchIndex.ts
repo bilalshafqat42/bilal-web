@@ -15,6 +15,7 @@ import { disciplinesWithPages, disciplineItems } from "@/data/disciplines";
 export type { Chunk } from "./searchRank";
 import type { Chunk } from "./searchRank";
 import { blogPosts, type Block } from "@/data/blogPosts";
+import { SITE_EMAIL, SITE_PHONE } from "./contact";
 
 export function buildIndex(): Chunk[] {
   const chunks: Chunk[] = [];
@@ -126,7 +127,7 @@ export function buildIndex(): Chunk[] {
 
   chunks.push({
     title: "Pricing and how projects are costed",
-    body: "No published price list. Four engagement models: project-based with a fixed scope and price, monthly retainer, ongoing partner embedded with your team, and consulting and advisory. Cost is driven by custom functionality, timelines and whether content already exists. Priced by project wherever the scope can be defined, so the estimating risk sits with Bilal rather than the client; retainers are priced monthly; hourly is used only for advisory work. A real figure usually comes within a business day. The first conversation is free. AED for UAE clients, other currencies on request.",
+    body: "Published figures: project work from AED 31,500, monthly retainers from AED 16,000, a one-off review session at AED 3,500. Four engagement models: project-based with a fixed scope and price, monthly retainer, ongoing partner embedded with your team, and consulting and advisory. Cost is driven by custom functionality, timelines and whether content already exists. Priced by project wherever the scope can be defined, so the estimating risk sits with Bilal rather than the client; retainers are priced monthly; hourly is used only for advisory work. A real figure usually comes within a business day. The first conversation is free. AED for UAE clients, other currencies on request.",
     url: "/pricing",
     kind: "info",
   });
@@ -142,7 +143,7 @@ export function buildIndex(): Chunk[] {
   });
   chunks.push({
     title: "Getting in touch",
-    body: "Email bilal@bilalshafqat.com or WhatsApp +971 52 976 6006. Based in Dubai, Gulf Standard Time UTC+4, Monday to Friday. Replies usually within one business day, same day on WhatsApp. Works with clients across the UAE and internationally.",
+    body: `Email ${SITE_EMAIL} or WhatsApp ${SITE_PHONE}. Based in Dubai, Gulf Standard Time UTC+4, Monday to Friday. Replies usually within one business day, same day on WhatsApp. Works with clients across the UAE and internationally.`,
     url: "/contact",
     kind: "info",
   });

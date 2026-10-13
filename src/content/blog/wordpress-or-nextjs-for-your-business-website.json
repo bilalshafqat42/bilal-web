@@ -1,0 +1,210 @@
+{
+  "slug": "wordpress-or-nextjs-for-your-business-website",
+  "title": "WordPress or Next.js: Which Should Your Business Website Use?",
+  "metaTitle": "WordPress or Next.js for a Business Website",
+  "description": "An honest comparison from someone who builds both, including the cases where WordPress is clearly the right answer and Next.js would be a mistake.",
+  "published": "2026-10-01",
+  "updatedAt": "2026-10-01",
+  "tags": [
+    "Dubai",
+    "Web Development",
+    "Pricing"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "I build in both, which is the only reason this comparison is worth reading. Most articles on this question are written by agencies who only sell one of them."
+    },
+    {
+      "t": "p",
+      "v": "The short answer: if your team needs to change the site themselves every week without calling anyone, WordPress. If the site is a product rather than a brochure, or performance is a business requirement rather than a preference, Next.js. Most Dubai businesses asking me this question should use WordPress, and I say that as someone whose own site is built in Next.js."
+    },
+    {
+      "t": "h2",
+      "v": "The comparison"
+    },
+    {
+      "t": "table",
+      "head": [
+        "",
+        "WordPress",
+        "Next.js"
+      ],
+      "rows": [
+        [
+          "Who can edit content",
+          "Anyone, through an admin panel",
+          "A developer, unless you add a CMS"
+        ],
+        [
+          "Time to launch",
+          "Fast, especially with a theme",
+          "Slower, everything is built"
+        ],
+        [
+          "Performance out of the box",
+          "Depends entirely on hosting and plugins",
+          "Very fast by default"
+        ],
+        [
+          "Plugins for common needs",
+          "Enormous ecosystem",
+          "You build it or integrate it"
+        ],
+        [
+          "Security maintenance",
+          "Ongoing, plugins are the usual way in",
+          "Much smaller surface"
+        ],
+        [
+          "Running cost",
+          "Hosting plus plugin licences",
+          "Hosting, often less"
+        ],
+        [
+          "Finding someone else to maintain it",
+          "Easy anywhere",
+          "Harder, more expensive"
+        ],
+        [
+          "Right for",
+          "Brochure sites, blogs, most SMEs",
+          "Products, apps, high-traffic or custom builds"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "The case for WordPress"
+    },
+    {
+      "t": "p",
+      "v": "It runs a very large share of the web for a reason, and dismissing it is a developer habit rather than a business judgement."
+    },
+    {
+      "t": "p",
+      "v": "The decisive advantage is independence. Your marketing person can add a page, change a price, publish a post and swap a photograph without a developer, a deployment or a wait. For most businesses that is worth more than any performance benchmark, because the alternative is that the site slowly goes out of date while everyone waits for someone technical to have time."
+    },
+    {
+      "t": "p",
+      "v": "The second advantage is the ecosystem. Bookings, multilingual, e-commerce, forms, memberships: all of it exists, most of it is cheap, and none of it has to be built. If your requirement is a solved problem, paying to solve it again is hard to justify."
+    },
+    {
+      "t": "p",
+      "v": "The third is replaceability. If you and I stop working together, you can find someone to maintain a WordPress site in an afternoon, in Dubai or anywhere else. That is a genuine risk reduction and it should be part of the decision."
+    },
+    {
+      "t": "h2",
+      "v": "The case for Next.js"
+    },
+    {
+      "t": "p",
+      "v": "Next.js wins when the site has to do something rather than say something."
+    },
+    {
+      "t": "list",
+      "v": [
+        "Performance is a requirement, not an aspiration. A fast site by default rather than a slow one you optimise.",
+        "The interface is custom. Calculators, configurators, dashboards, filtered search over real data.",
+        "It shares code with an app. One language across web, mobile and backend is a real saving.",
+        "Traffic is large enough that hosting efficiency matters financially.",
+        "Security posture is a concern. There is no plugin layer, which is how most WordPress sites are actually compromised."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "On that last point, to be fair to WordPress: the software itself is not the usual problem. Abandoned plugins and skipped updates are. A maintained WordPress site is not insecure. An unmaintained one is, and most are unmaintained."
+    },
+    {
+      "t": "h2",
+      "v": "The honest middle: Next.js with a CMS"
+    },
+    {
+      "t": "p",
+      "v": "The objection to Next.js is almost always editing, and it is solvable. Pair it with a headless CMS and your team gets an admin panel while the site keeps the performance."
+    },
+    {
+      "t": "p",
+      "v": "What this costs you is not the licence fee. It is a second system to configure, a second thing to keep current, and a setup where changing the shape of a page still needs a developer even though changing its words does not. That is a reasonable trade for a content-heavy site that must also be fast. It is over-engineering for a nine-page brochure site."
+    },
+    {
+      "t": "h2",
+      "v": "How to choose, in four questions"
+    },
+    {
+      "t": "list",
+      "ordered": true,
+      "v": [
+        "Will someone non-technical need to change content weekly? If yes, WordPress, or Next.js with a CMS.",
+        "Is the site mostly pages, or mostly features? Pages means WordPress. Features means Next.js.",
+        "Would a one-second improvement in load time change your revenue? If you can answer yes with a number, Next.js earns its cost.",
+        "What happens if your developer disappears? If that worries you, WordPress is the safer answer and that is a legitimate reason to pick it."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "What this does not depend on"
+    },
+    {
+      "t": "p",
+      "v": "Two things people expect to matter here and which mostly do not."
+    },
+    {
+      "t": "p",
+      "v": "SEO is not a reason to pick either. Both can rank extremely well and both can rank badly. Google reads the rendered page, and a well-built WordPress site beats a badly built Next.js one every time. Anyone telling you a framework will fix your rankings is selling a rebuild."
+    },
+    {
+      "t": "p",
+      "v": "Cost is closer than it is usually presented. WordPress is cheaper to start and carries ongoing plugin licences and maintenance. Next.js costs more upfront and often less to run. Over three years the gap is smaller than the first invoice suggests, in both directions."
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "Is WordPress slow?"
+    },
+    {
+      "t": "p",
+      "v": "It can be very fast. Most slow WordPress sites are slow because of a heavy theme, a dozen plugins and cheap shared hosting, not because of WordPress. Fix those three and the difference from a custom build narrows a long way."
+    },
+    {
+      "t": "h3",
+      "v": "Can I move from WordPress to Next.js later?"
+    },
+    {
+      "t": "p",
+      "v": "Yes, and it is a rebuild, not a migration. Content transfers; design, functionality and integrations get rebuilt. The important part is keeping your URLs, because that is what carries your search rankings. A move that changes every URL without redirects will cost you traffic, which is the mistake this site itself made and had to repair."
+    },
+    {
+      "t": "h3",
+      "v": "What about Wix or Squarespace?"
+    },
+    {
+      "t": "p",
+      "v": "Genuinely fine for a small brochure site, and better than a bad custom build. The limits arrive when you need something the platform does not offer, and you cannot extend your way past them. You are also renting rather than owning, which matters more to some businesses than others."
+    },
+    {
+      "t": "h3",
+      "v": "Which is better for an e-commerce site in the UAE?"
+    },
+    {
+      "t": "p",
+      "v": "If it is a straightforward catalogue, a hosted platform or WooCommerce will get you selling faster and cheaper. Custom builds earn their cost when the buying experience is itself unusual. Either way the real work is payment gateways, delivery and VAT handling, none of which is a framework decision."
+    },
+    {
+      "t": "h3",
+      "v": "What do you build in?"
+    },
+    {
+      "t": "p",
+      "v": "Both, and I will tell you which one your project needs rather than which one I would prefer to build. This site is Next.js. Several client sites are WordPress, deliberately, because the client needed to run them without me."
+    },
+    {
+      "t": "p",
+      "v": "Last updated 1 October 2026."
+    }
+  ],
+  "words": 906
+}

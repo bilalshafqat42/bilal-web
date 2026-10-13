@@ -1,0 +1,171 @@
+{
+  "slug": "redux-made-easy-beginners-guide-to-state-management-in-react-js",
+  "title": "Redux Made Easy: Beginner's Guide to State Management in React JS",
+  "description": "A beginner's guide to Redux in React. Build a counter app and understand actions, reducers and the store by using them rather than reading about them.",
+  "published": "2024-09-17",
+  "updatedAt": "2026-10-07",
+  "tags": [
+    "React Js",
+    "Redux"
+  ],
+  "words": 349,
+  "blocks": [
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "React Js",
+        "Redux"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Redux made easy: Beginer's guide to state management in React JS"
+    },
+    {
+      "t": "p",
+      "v": "Redux is a powerful state management library often used in React applications. To help you get started with Redux, we'll walk through the process of creating a simple counter application. By the end of this guide, you'll have a solid understanding of Redux concepts like actions, reducers, and the store."
+    },
+    {
+      "t": "h3",
+      "v": "Step 1: Setting Up the Project"
+    },
+    {
+      "t": "p",
+      "v": "Before we dive into Redux, let's set up a basic React project."
+    },
+    {
+      "t": "p",
+      "v": "1. Initialize a New React Project:"
+    },
+    {
+      "t": "code",
+      "v": "npx create-react-app redux-counter\ncd redux-counter"
+    },
+    {
+      "t": "p",
+      "v": "2. Install Redux and React-Redux:"
+    },
+    {
+      "t": "code",
+      "v": "npm install redux react-redux"
+    },
+    {
+      "t": "h3",
+      "v": "Step 2: Understanding Redux Concepts"
+    },
+    {
+      "t": "p",
+      "v": "Before implementing the counter, let's briefly discuss key Redux concepts."
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Store : The store holds the entire state of the application.",
+        "Actions : Actions are plain JavaScript objects that describe a type and any payload needed to change the state",
+        "Reducers : Reducers are pure functions that take the current state and an action and return a new state."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "Step 3: Creating the Redux Store"
+    },
+    {
+      "t": "p",
+      "v": "First, create a directory for your Redux-related files:"
+    },
+    {
+      "t": "code",
+      "v": "mkdir src/redux"
+    },
+    {
+      "t": "p",
+      "v": "Inside the src/redux folder, create a file called store.js:"
+    },
+    {
+      "t": "code",
+      "v": "import { createStore } from 'redux';\r\n\r\n// Initial state\r\nconst initialState = {\r\n  count: 0,\r\n};\r\n\r\n// Reducer function\r\nfunction counterReducer(state = initialState, action) {\r\n  switch (action.type) {\r\n    case 'INCREMENT':\r\n      return { count: state.count + 1 };\r\n    case 'DECREMENT':\r\n      return { count: state.count - 1 };\r\n    default:\r\n      return state;\r\n  }\r\n}\r\n\r\n// Create Redux store\r\nconst store = createStore(counterReducer);\r\n\r\nexport default store;"
+    },
+    {
+      "t": "p",
+      "v": "Here, we define our initial state with a count of 0. The counterReducer function handles two actions: INCREMENT and DECREMENT, which update the count accordingly."
+    },
+    {
+      "t": "h3",
+      "v": "Step 4: Connecting Redux to React"
+    },
+    {
+      "t": "p",
+      "v": "Next, integrate Redux with your React app. Open src/index.js and wrap the root component with the Provider component from react-redux:"
+    },
+    {
+      "t": "code",
+      "v": "import React from 'react';\r\nimport ReactDOM from 'react-dom';\r\nimport { Provider } from 'react-redux';\r\nimport App from './App';\r\nimport store from './redux/store';\r\n\r\nReactDOM.render(\r\n  \r\n    \r\n  ,\r\n  document.getElementById('root')\r\n);"
+    },
+    {
+      "t": "p",
+      "v": "The Provider component makes the Redux store available to the entire app."
+    },
+    {
+      "t": "h3",
+      "v": "Step 5: Creating the Counter Component"
+    },
+    {
+      "t": "p",
+      "v": "Now, let's create the counter component. Open src/App.js and add the following code:"
+    },
+    {
+      "t": "code",
+      "v": "import React from 'react';\r\nimport { useSelector, useDispatch } from 'react-redux';\r\n\r\nfunction App() {\r\n  // Access state and dispatch from Redux\r\n  const count = useSelector((state) => state.count);\r\n  const dispatch = useDispatch();\r\n\r\n  return (\r\n    \r\n      Redux Counter\r\n      {count}\r\n       dispatch({ type: 'INCREMENT' })}>Increment\r\n       dispatch({ type: 'DECREMENT' })}>Decrement\r\n    \r\n  );\r\n}\r\n\r\nexport default App;"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "useSelector is used to select the count from the Redux state.",
+        "useDispatch is used to dispatch actions to the Redux store."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "Step 6: Running the Application"
+    },
+    {
+      "t": "p",
+      "v": "Run the application using the following command:"
+    },
+    {
+      "t": "code",
+      "v": "npm start"
+    },
+    {
+      "t": "p",
+      "v": "Your browser will open with the counter application. You should be able to increment and decrement the counter using the buttons."
+    },
+    {
+      "t": "h3",
+      "v": "Conclusion"
+    },
+    {
+      "t": "p",
+      "v": "By building this simple counter application, you've covered the essential concepts of Redux, including actions, reducers, and the store. Redux may seem complex at first, but with practice, it becomes an invaluable tool for managing state in larger applications. Happy coding!"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "September 17, 2024 React JS State Management for Beginners | Easy Guide Read more"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "To get started with moderating, editing, and deleting comments, please visit the Comments screen in the dashboard."
+    },
+    {
+      "t": "p",
+      "v": "Commenter avatars come from Gravatar ."
+    }
+  ],
+  "metaTitle": "Redux Made Easy: State Management in React"
+}

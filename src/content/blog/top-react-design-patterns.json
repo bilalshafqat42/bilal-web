@@ -1,0 +1,271 @@
+{
+  "slug": "top-react-design-patterns",
+  "title": "Top React Design Patterns Every Frontend Developer Should Know",
+  "description": "In this article, we’ll explore the top React design patterns every frontend developer should know, complete with examples, pros, and cons.",
+  "published": "2025-02-05",
+  "updatedAt": "2026-09-30",
+  "tags": [
+    "React Js"
+  ],
+  "words": 365,
+  "blocks": [
+    {
+      "t": "p",
+      "v": "React is one of the most popular JavaScript libraries for building modern, interactive user interfaces. However, as applications grow in complexity, maintaining a clean and scalable architecture becomes crucial. To address this, developers rely on well-established design patterns to enhance code reusability, maintainability, and scalability."
+    },
+    {
+      "t": "p",
+      "v": "In this article, we’ll explore the top React design patterns every frontend developer should know, complete with examples, pros, and cons."
+    },
+    {
+      "t": "h2",
+      "v": "1. Container-Presenter Pattern"
+    },
+    {
+      "t": "p",
+      "v": "The Container-Presenter pattern (also known as the Smart-Dumb pattern) separates logic from UI components, making applications easier to maintain and test."
+    },
+    {
+      "t": "h3",
+      "v": "Example:"
+    },
+    {
+      "t": "code",
+      "v": "// Container Component (Handles logic)\r\nimport React, { useState, useEffect } from 'react';\r\nimport UserList from './UserList';\r\n\r\nconst UserContainer = () => {\r\n    const [users, setUsers] = useState([]);\r\n\r\n    useEffect(() => {\r\n        fetch(\"https://jsonplaceholder.typicode.com/users\")\r\n            .then(response => response.json())\r\n            .then(data => setUsers(data));\r\n    }, []);\r\n\r\n    return <UserList users={users} />;\r\n};\r\n\r\nexport default UserContainer;"
+    },
+    {
+      "t": "code",
+      "v": "// Presenter Component (Handles UI)\r\nconst UserList = ({ users }) => {\r\n    return (\r\n        <ul>\r\n            {users.map(user => (\r\n                <li key={user.id}>{user.name}</li>\r\n            ))}\r\n        </ul>\r\n    );\r\n};\r\n\r\nexport default UserList;"
+    },
+    {
+      "t": "h3",
+      "v": "Pros:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Enhances code separation and reusability.",
+        "Improves testing as logic and UI are separate.",
+        "Makes components more readable and maintainable."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "Cons:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Increases the number of components.",
+        "Can introduce boilerplate code."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "2. Higher-Order Components (HOC)"
+    },
+    {
+      "t": "p",
+      "v": "HOCs are functions that wrap a component to add extra functionality without modifying the original component."
+    },
+    {
+      "t": "h3",
+      "v": "Example:"
+    },
+    {
+      "t": "code",
+      "v": "const withLoading = (WrappedComponent) => {\r\n    return ({ isLoading, ...props }) => {\r\n        if (isLoading) return <p>Loading...</p>;\r\n        return <WrappedComponent {...props} />;\r\n    };\r\n};\r\n\r\nconst UserList = ({ users }) => (\r\n    <ul>\r\n        {users.map(user => (\r\n            <li key={user.id}>{user.name}</li>\r\n        ))}\r\n    </ul>\r\n);\r\n\r\nexport default withLoading(UserList);"
+    },
+    {
+      "t": "h3",
+      "v": "Pros:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Promotes code reuse across multiple components.",
+        "Keeps components pure and clean ."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "Cons:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Debugging can be complex due to multiple layers of abstraction.",
+        "Naming conflicts with props are possible."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "3. Render Props"
+    },
+    {
+      "t": "p",
+      "v": "Render props allow components to share code logic using a function passed as a prop."
+    },
+    {
+      "t": "h3",
+      "v": "Example:"
+    },
+    {
+      "t": "code",
+      "v": "const MouseTracker = ({ render }) => {\r\n    const [position, setPosition] = useState({ x: 0, y: 0 });\r\n\r\n    const handleMouseMove = (event) => {\r\n        setPosition({ x: event.clientX, y: event.clientY });\r\n    };\r\n\r\n    return <div onMouseMove={handleMouseMove}>{render(position)}</div>;\r\n};\r\n\r\nconst App = () => (\r\n    <MouseTracker render={({ x, y }) => (\r\n        <p>Mouse position: {x}, {y}</p>\r\n    )} />\r\n);"
+    },
+    {
+      "t": "h3",
+      "v": "Pros:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Allows dynamic logic sharing .",
+        "Provides more control than HOCs."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "Cons:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Can cause deep nesting (callback hell).",
+        "Less readable compared to other patterns."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "4. Compound Components"
+    },
+    {
+      "t": "p",
+      "v": "The Compound Component pattern allows components to communicate without relying on props."
+    },
+    {
+      "t": "h3",
+      "v": "Example:"
+    },
+    {
+      "t": "code",
+      "v": "const Tabs = ({ children }) => {\r\n    const [activeIndex, setActiveIndex] = useState(0);\r\n    return React.Children.map(children, (child, index) =>\r\n        React.cloneElement(child, { activeIndex, setActiveIndex, index })\r\n    );\r\n};\r\n\r\nconst Tab = ({ children, activeIndex, setActiveIndex, index }) => (\r\n    <button onClick={() => setActiveIndex(index)}\r\n            style={{ fontWeight: activeIndex === index ? 'bold' : 'normal' }}>\r\n        {children}\r\n    </button>\r\n);\r\n\r\nconst Content = ({ children, activeIndex, index }) => {\r\n    return activeIndex === index ? <div>{children}</div> : null;\r\n};\r\n\r\nconst App = () => (\r\n    <Tabs>\r\n        <Tab>Tab 1</Tab>\r\n        <Content>Content for Tab 1</Content>\r\n        <Tab>Tab 2</Tab>\r\n        <Content>Content for Tab 2</Content>\r\n    </Tabs>\r\n);"
+    },
+    {
+      "t": "h3",
+      "v": "Pros:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Provides a clean API for building reusable UI components.",
+        "Avoids prop drilling ."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "Cons:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Can be harder to implement correctly.",
+        "Requires more understanding of React internals."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "5. Custom Hooks"
+    },
+    {
+      "t": "p",
+      "v": "Custom hooks encapsulate reusable logic and allow better separation of concerns."
+    },
+    {
+      "t": "h3",
+      "v": "Example:"
+    },
+    {
+      "t": "code",
+      "v": "const useFetch = (url) => {\r\n    const [data, setData] = useState(null);\r\n    const [loading, setLoading] = useState(true);\r\n\r\n    useEffect(() => {\r\n        fetch(url)\r\n            .then(response => response.json())\r\n            .then(data => {\r\n                setData(data);\r\n                setLoading(false);\r\n            });\r\n    }, [url]);\r\n\r\n    return { data, loading };\r\n};\r\n\r\nconst Users = () => {\r\n    const { data: users, loading } = useFetch('https://jsonplaceholder.typicode.com/users');\r\n    return loading ? <p>Loading...</p> : <ul>{users.map(user => <li key={user.id}>{user.name}</li>)}</ul>;\r\n};"
+    },
+    {
+      "t": "h3",
+      "v": "Pros:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Promotes code reuse and modularity.",
+        "Keeps components clean and focused ."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "Cons:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Requires understanding of React hooks .",
+        "Overuse can lead to too many custom hooks ."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Frequently Asked Questions (FAQ)"
+    },
+    {
+      "t": "h3",
+      "v": "1. What is the best design pattern for a React project?"
+    },
+    {
+      "t": "p",
+      "v": "The best pattern depends on the project's complexity. For scalable apps, Container-Presenter and Custom Hooks are great choices."
+    },
+    {
+      "t": "h3",
+      "v": "2. Are HOCs still relevant in React?"
+    },
+    {
+      "t": "p",
+      "v": "While HOCs are still used, Render Props and Custom Hooks are often preferred due to better readability and maintainability."
+    },
+    {
+      "t": "h3",
+      "v": "3. When should I use Compound Components?"
+    },
+    {
+      "t": "p",
+      "v": "Use Compound Components when building UI components that need internal state management without excessive props drilling, such as Tabs or Dropdowns."
+    },
+    {
+      "t": "h3",
+      "v": "4. How do I choose between Custom Hooks and Render Props?"
+    },
+    {
+      "t": "p",
+      "v": "Use Custom Hooks when handling stateful logic and Render Props for dynamic UI rendering."
+    },
+    {
+      "t": "h2",
+      "v": "Conclusion"
+    },
+    {
+      "t": "p",
+      "v": "React design patterns help in writing clean, maintainable, and scalable applications. By mastering these patterns, you can improve your codebase and development workflow."
+    }
+  ],
+  "metaTitle": "Top React Design Patterns for Frontend Developers"
+}

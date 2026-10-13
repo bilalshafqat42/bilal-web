@@ -1,0 +1,339 @@
+import Link from "next/link";
+import Image from "next/image";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import Reveal, { RevealStagger, RevealItem } from "@/components/ui/Reveal";
+import FaqSection from "@/components/ui/FaqSection";
+import PageOpener from "@/components/layout/PageOpener";
+import CtaButton from "@/components/ui/CtaButton";
+import {
+  disciplines,
+  getDiscipline,
+  disciplineItems,
+  hasPortfolioPage,
+  disciplineHref,
+  disciplineCount,
+} from "@/data/disciplines";
+import { groupByDeliverable, deliverableAnchor, type Item } from "@/lib/portfolioItems";
+import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
+import { OG_IMAGES, OG_IMAGE_URL } from "@/lib/ogImage";
+import Eyebrow from "@/components/ui/Eyebrow";
+
+/**
+ * One component behind every `/portfolio/{discipline}` page.
+ *
+ * The routes are explicit folders rather than a `[discipline]` dynamic segment
+ * because `/portfolio/[client]` already occupies that slot, and Next.js does
+ * not allow two dynamic segments as siblings. Explicit folders also resolve
+ * before the dynamic one, so there is no chance of a client slug and a
+ * discipline slug fighting over the same URL. `scripts/discipline-check.mjs`
+ * asserts the folders and the data stay in step.
+ *
+ * `notFound()` rather than a rendered empty state when a discipline has no
+ * work: an indexed page listing nothing is worse for the site than a 404.
+ */
+
+/** The three shapes an artefact comes in. A single grid cannot serve all of
+ *  them — a 1:5 page capture in a square cell is a meaningless middle slice,
+ *  and a 1:2.17 phone screen in a 16:10 cell is two thin bars of background. */
+function ItemGrid({ items }: { items: Item[] }) {
+  const wide = items.filter((i) => i.kind === "site-desktop");
+  const tall = items.filter((i) => i.kind === "site-mobile" || i.kind === "app-screen");
+  const square = items.filter((i) => i.kind === "social");
+
+  return (
+    <>
+      {wide.length > 0 ? (
+        <RevealStagger className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          {wide.map((it) => (
+            <RevealItem key={it.key}>
+              <Link
+                href={it.href}
+                className="card-hover group block overflow-hidden r-card surface-2"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <Image
+                    src={it.src}
+                    alt={it.alt}
+                    fill
+                    sizes="(min-width: 640px) 45vw, 92vw"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+                <div className="flex items-start justify-between gap-3 border-t border-border px-5 py-4">
+                  <span>
+                    <span className="block text-sm font-semibold text-ink">{it.label}</span>
+                    <span className="mt-0.5 block text-xs text-muted">{it.meta}</span>
+                  </span>
+                  <ArrowUpRight
+                    size={15}
+                    className="mt-0.5 shrink-0 text-muted transition-colors group-hover:text-gold"
+                  />
+                </div>
+              </Link>
+            </RevealItem>
+          ))}
+        </RevealStagger>
+      ) : null}
+
+      {tall.length > 0 ? (
+        <RevealStagger className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+          {tall.map((it) => (
+            <RevealItem key={it.key}>
+              <Link
+                href={it.href}
+                className="card-hover group block overflow-hidden r-card surface-2"
+              >
+                <div className="relative aspect-[1206/2622] overflow-hidden">
+                  <Image
+                    src={it.src}
+                    alt={it.alt}
+                    fill
+                    sizes="(min-width: 1024px) 18vw, 45vw"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+                <div className="border-t border-border px-4 py-3">
+                  <span className="block text-xs font-semibold text-ink">{it.label}</span>
+                  <span className="mt-0.5 block text-[0.7rem] leading-relaxed text-muted">{it.meta}</span>
+                </div>
+              </Link>
+            </RevealItem>
+          ))}
+        </RevealStagger>
+      ) : null}
+
+      {square.length > 0 ? (
+        <RevealStagger className="mt-5 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+          {square.map((it) => (
+            <RevealItem key={it.key}>
+              <Link
+                href={it.href}
+                className="card-hover group block overflow-hidden r-card surface-2"
+              >
+                <Image
+                  src={it.src}
+                  alt={it.alt}
+                  width={it.width}
+                  height={it.height}
+                  sizes="(min-width: 1024px) 300px, 45vw"
+                  className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+                <p className="border-t border-border px-4 py-3 text-xs leading-relaxed text-muted">
+                  {it.meta}
+                </p>
+              </Link>
+            </RevealItem>
+          ))}
+        </RevealStagger>
+      ) : null}
+    </>
+  );
+}
+
+export function disciplineMetadata(slug: string): Metadata {
+  const d = getDiscipline(slug);
+  if (!d?.page) return {};
+  return {
+    title: d.page.metaTitle,
+    description: d.page.metaDescription,
+    alternates: { canonical: `/portfolio/${d.slug}` },
+    openGraph: {
+      title: d.page.metaTitle,
+      description: d.page.metaDescription,
+      type: "website",
+      url: `/portfolio/${d.slug}`,
+      // Declaring `openGraph` here replaces the root layout's wholesale rather
+      // than merging into it, so without this line these four pages share with
+      // no picture at all. See `src/lib/ogImage.ts`.
+      images: OG_IMAGES,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: d.page.metaTitle,
+      description: d.page.metaDescription,
+      // `summary_large_image` with no image is just a text card with extra
+      // steps: the card type sets the shape, the image fills it.
+      images: [OG_IMAGE_URL],
+    },
+  };
+}
+
+export default function DisciplinePage({ slug }: { slug: string }) {
+  const d = getDiscipline(slug);
+  if (!d?.page || !hasPortfolioPage(d)) notFound();
+
+  const items = disciplineItems(d);
+  const url = `${SITE_URL}/portfolio/${d.slug}`;
+
+  // Siblings that have their own page, so a visitor who arrived on the wrong
+  // cut of the same work can get to the right one in a click. Every internal
+  // link on this page resolves to a page with content — nothing points at an
+  // empty discipline.
+  const siblings = disciplines.filter((x) => x.slug !== d.slug && hasPortfolioPage(x));
+
+  const schema = graph([
+    {
+      "@type": "CollectionPage",
+      "@id": `${url}#page`,
+      url,
+      name: d.page.metaTitle,
+      description: d.page.metaDescription,
+      inLanguage: "en",
+      isPartOf: ref(ID.website, "WebSite"),
+      about: ref(ID.business, "ProfessionalService"),
+      author: ref(ID.person, "Person"),
+      // Only the artefacts actually rendered above, and only their real alt
+      // text. A count or a caption here that a visitor cannot see on the page
+      // is the mismatch that earns a manual action.
+      mainEntity: {
+        "@type": "ItemList",
+        numberOfItems: items.length,
+        itemListElement: items.map((it, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: `${it.label} — ${it.meta}`,
+          url: `${SITE_URL}${it.href.split("#")[0]}`,
+        })),
+      },
+    },
+    breadcrumbNode(url, [
+      { name: "Home", item: SITE_URL },
+      { name: "Portfolio", item: `${SITE_URL}/portfolio` },
+      { name: d.title, item: url },
+    ]),
+    faqNode(url, d.page.faqs),
+  ]);
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(schema) }} />
+      <main id="main" tabIndex={-1} className="flex-1">
+        <PageOpener
+          crumbs={[
+            { label: "Home", href: "/" },
+            { label: "Portfolio", href: "/portfolio" },
+            { label: d.title },
+          ]}
+          eyebrow={`${d.title} · ${items.length} ${items.length === 1 ? "piece" : "pieces"}`}
+          title={d.page.headline}
+          standfirst={
+            <>
+              <p>{d.page.intro}</p>
+              {/* Why this page exists next to its siblings. Several of these
+                  cuts draw on overlapping captures, and saying so is better than
+                  letting a reader wonder whether they have looped. */}
+              <p className="border-l-2 border-gold/60 pl-5 text-sm leading-relaxed text-muted/85">
+                {d.page.lens}
+              </p>
+            </>
+          }
+        />
+        <section className="site-container">
+          <Reveal>
+
+            <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <CtaButton href="/appointment">Book a free consultation</CtaButton>
+              <Link
+                href={d.serviceHref}
+                className="tap-target text-sm font-semibold text-ink underline decoration-gold/50 decoration-2 underline-offset-4 transition-colors hover:text-gold"
+              >
+                What this service includes
+              </Link>
+            </div>
+          </Reveal>
+        </section>
+
+        {/* Grouped by deliverable, with an anchor per group, because that is
+            what the mega menu's sub-links point at. `#design` is kept on the
+            wrapper so the "Web Designing" label in the menu still lands here.
+
+            Deliverable is the generic axis on purpose. Grouping by client would
+            put one client's name over every group while there is one client in
+            the data, which is what made the menu look like a real-estate-only
+            portfolio in the first place. */}
+        <section id="design" className="site-container scroll-mt-28 pt-16 sm:pt-20">
+          {groupByDeliverable(items).map((g, gi) => (
+            <div
+              key={g.deliverable}
+              id={deliverableAnchor(g.deliverable)}
+              className={`scroll-mt-28 ${gi > 0 ? "pt-16" : ""}`}
+            >
+              <Reveal>
+                <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-border pb-4">
+                  <h2 className="t-h3 text-ink">{g.deliverable}</h2>
+                  <span className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
+                    {g.items.length} {g.items.length === 1 ? "capture" : "captures"}
+                  </span>
+                </div>
+              </Reveal>
+              <ItemGrid items={g.items} />
+            </div>
+          ))}
+        </section>
+
+        {/* The long-form sections, under the grid rather than over it: the
+            captures are what a visitor came for and the reasoning is what they
+            read once something has caught their eye. */}
+        {d.page.depth && (
+          <section className="site-container pt-20 sm:pt-24">
+            <div className="max-w-3xl">
+              {d.page.depth.map((block, i) => (
+                <Reveal key={block.heading}>
+                  <div className={i > 0 ? "mt-12" : ""}>
+                    <h2 className="t-h3 text-ink">{block.heading}</h2>
+                    {block.paragraphs.map((para) => (
+                      <p key={para.slice(0, 40)} className="mt-5 text-base leading-relaxed text-muted">
+                        {para}
+                      </p>
+                    ))}
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Was a bare definition list under a card-sized h2, which meant these
+            pages had no section headings at all. Now the site-wide layout. */}
+        <FaqSection
+          eyebrow="Common questions"
+          title={`${d.title} questions`}
+          faqs={d.page.faqs}
+          className="pt-20 sm:pt-24"
+        />
+
+        <section className="site-container section-pad">
+          <Reveal>
+            <h2 className="t-h3 text-ink">Browse another discipline</h2>
+            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {siblings.map((s) => (
+                <Link
+                  key={s.slug}
+                  href={disciplineHref(s)}
+                  className="card-hover group r-card surface-1 p-6"
+                >
+                  <Eyebrow size="sm" tone="muted">
+                    {disciplineCount(s)} pieces
+                  </Eyebrow>
+                  <span className="mt-2.5 flex items-center justify-between gap-3 text-base font-semibold text-ink">
+                    {s.title}
+                    <ArrowRight size={16} className="shrink-0 text-muted transition-colors group-hover:text-gold" />
+                  </span>
+                  <span className="mt-2 block text-sm leading-relaxed text-muted">{s.blurb}</span>
+                </Link>
+              ))}
+            </div>
+            <Link
+              href="/portfolio"
+              className="tap-target mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
+            >
+              The full portfolio <ArrowRight size={15} />
+            </Link>
+          </Reveal>
+        </section>
+      </main>
+    </>
+  );
+}

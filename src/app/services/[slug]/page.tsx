@@ -2,30 +2,26 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
-import Contact from "@/components/Contact";
-import { ServiceProof } from "@/components/ProofLoop";
-import Reveal from "@/components/Reveal";
-import FaqSection from "@/components/FaqSection";
-import PageOpener from "@/components/PageOpener";
-import SecondaryButton, { secondaryButtonClass } from "@/components/SecondaryButton";
-import FurtherReading from "@/components/FurtherReading";
-import {
-  megaMenuGroups,
-  accentClasses,
-  getCategoryBySlug,
-  resolveItem,
-  slugify,
-} from "@/data/pillars";
+import Contact from "@/components/sections/Contact";
+import { ServiceProof } from "@/components/portfolio/ProofLoop";
+import Reveal from "@/components/ui/Reveal";
+import FaqSection from "@/components/ui/FaqSection";
+import PageOpener from "@/components/layout/PageOpener";
+import SecondaryButton, { secondaryButtonClass } from "@/components/ui/SecondaryButton";
+import FurtherReading from "@/components/article/FurtherReading";
+import { megaMenuGroups, getCategoryBySlug } from "@/data/serviceCategories";
+import { accentClasses } from "@/data/menu";
+import { resolveItem, slugify } from "@/data/pillars";
 import { serviceDepth } from "@/data/serviceDepth";
-import TrackView from "@/components/TrackView";
-import InlineLeadForm from "@/components/InlineLeadForm";
-import WhatsAppLink from "@/components/WhatsAppLink";
-import CtaButton from "@/components/CtaButton";
-import ClientLogoRow from "@/components/ClientLogoRow";
-import JsonLd from "@/components/JsonLd";
+import TrackView from "@/components/seo/TrackView";
+import InlineLeadForm from "@/components/forms/InlineLeadForm";
+import WhatsAppLink from "@/components/ui/WhatsAppLink";
+import CtaButton from "@/components/ui/CtaButton";
+import ClientLogoRow from "@/components/portfolio/ClientLogoRow";
+import JsonLd from "@/components/seo/JsonLd";
 import { SITE_URL, serviceNode, faqNode, breadcrumbNode } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
-import Eyebrow from "@/components/Eyebrow";
+import Eyebrow from "@/components/ui/Eyebrow";
 
 
 type PageProps = { params: Promise<{ slug: string }> };

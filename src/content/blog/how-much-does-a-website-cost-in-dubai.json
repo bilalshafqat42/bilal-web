@@ -1,0 +1,246 @@
+{
+  "slug": "how-much-does-a-website-cost-in-dubai",
+  "title": "How Much Does a Website Cost in Dubai? An Honest Breakdown",
+  "metaTitle": "How Much Does a Website Cost in Dubai? (2026)",
+  "description": "What a website actually costs in Dubai in 2026, what moves the price, and what the quote usually leaves out. Written by a Dubai-based freelance developer.",
+  "published": "2026-10-01",
+  "updatedAt": "2026-10-13",
+  "tags": [
+    "Dubai",
+    "Web Development",
+    "Pricing"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "A business website in Dubai typically costs somewhere between AED 5,000 and AED 150,000. That range is so wide it is almost useless, which is why every article on this question gives it and then stops."
+    },
+    {
+      "t": "p",
+      "v": "This one explains what decides where in that range your project lands, what the quote usually leaves out, and what you should be asking before you sign anything. I am a Dubai-based freelance developer and designer, so the figures here are the ones I quote and the ones I see quoted around me. They are not survey data and I am not presenting them as such."
+    },
+    {
+      "t": "h2",
+      "v": "The short answer"
+    },
+    {
+      "t": "p",
+      "v": "Four things decide the price, in this order of impact:"
+    },
+    {
+      "t": "list",
+      "ordered": true,
+      "v": [
+        "Who builds it. A freelancer, a Dubai agency, an offshore team and a template service are four different cost structures, not four prices for the same thing.",
+        "Whether the functionality already exists. A brochure site is an established pattern. A booking system, a calculator, a portal or a CRM integration is custom work, and custom work is where budgets move by multiples rather than percentages.",
+        "How many languages. Arabic is not a translation job. It is a right-to-left layout, a second set of design decisions and a second round of testing.",
+        "Your timeline. Compressed deadlines cost more everywhere, and Dubai is no exception."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "What each route actually costs"
+    },
+    {
+      "t": "h3",
+      "v": "Template services and DIY builders"
+    },
+    {
+      "t": "p",
+      "v": "Wix, Squarespace and the WordPress theme market. You are paying for software rather than for a person. The subscription itself is modest, usually a few hundred dirhams a year, and the real cost is your own time plus whatever you pay someone to make it look like it was not assembled from a template."
+    },
+    {
+      "t": "p",
+      "v": "Reasonable for a business that needs a presence rather than a pipeline. Genuinely not worth dismissing: a well-made Squarespace site beats a badly-made custom one every time."
+    },
+    {
+      "t": "h3",
+      "v": "Freelancers"
+    },
+    {
+      "t": "p",
+      "v": "The range is enormous because the word covers a student with a laptop and a senior practitioner with fifteen years behind them. A straightforward business website from an experienced Dubai freelancer generally starts in the tens of thousands of dirhams rather than the thousands."
+    },
+    {
+      "t": "p",
+      "v": "For transparency, my own project minimum is AED 31,500, retainers run from AED 16,000 a month, and a one-off review session is AED 3,500. Those are my [[published prices|/pricing]] rather than a market average, and I am stating them so you have at least one real number to calibrate against rather than a range with nobody behind it."
+    },
+    {
+      "t": "p",
+      "v": "If you are weighing up hiring a person rather than commissioning a project, [[what it costs to hire a web developer in Dubai|/cost-to-hire-a-web-developer-in-dubai]] compares freelancers, agencies, in-house and offshore side by side."
+    },
+    {
+      "t": "h3",
+      "v": "Dubai agencies"
+    },
+    {
+      "t": "p",
+      "v": "An agency carries an office, a sales team, account management and a project manager, and those costs are in your quote whether or not they add anything to your particular project. In exchange you get continuity, capacity and somebody to call when your contact leaves."
+    },
+    {
+      "t": "p",
+      "v": "Agency pricing for a business website commonly starts around the middle of the freelance range and goes up steeply from there. For a large multi-stakeholder project, that structure earns its money. For a ten-page site, you are mostly paying for the layer between you and the person doing the work."
+    },
+    {
+      "t": "h3",
+      "v": "Offshore teams"
+    },
+    {
+      "t": "p",
+      "v": "The cheapest headline number and the most variable outcome. The saving is real. So is the cost of time-zone gaps, a brief that has to be perfect because clarification is slow, and nobody who can meet you. I have rescued enough of these projects to say the ones that work tend to be run by somebody technical on the client side who can specify properly and review critically."
+    },
+    {
+      "t": "p",
+      "v": "One more distinction worth making before you compare quotes: design and build are separate skills, even when one person does both. [[Web design|/services/web-design]] decides what the site says and how it leads a visitor to an enquiry. [[Website development|/services/website-app-development]] makes it work. Ask any supplier which of the two they are actually doing."
+    },
+    {
+      "t": "h2",
+      "v": "What moves the number most"
+    },
+    {
+      "t": "p",
+      "v": "Two projects described with the same words can differ several times over in cost. These are the factors that decide which one yours is."
+    },
+    {
+      "t": "h3",
+      "v": "Custom functionality"
+    },
+    {
+      "t": "p",
+      "v": "This is the big one. A page that displays information is solved. A page that does something is not. Booking engines, mortgage or ROI calculators, property search with filters, client portals, payment flows, anything that writes to a database or talks to another system: each of these is a project inside the project."
+    },
+    {
+      "t": "h3",
+      "v": "Arabic, and other languages"
+    },
+    {
+      "t": "p",
+      "v": "In the UAE this comes up constantly and is consistently underestimated. Right-to-left means the layout mirrors, not just the text. Navigation, icons, form fields, charts and any asymmetric design all need a second decision. Budget for it as a meaningful percentage of the build, not as a line item."
+    },
+    {
+      "t": "h3",
+      "v": "Integrations"
+    },
+    {
+      "t": "p",
+      "v": "CRM, property feeds, payment gateways, WhatsApp, accounting. Every integration is a dependency on somebody else's system, their documentation and their uptime. They are rarely difficult individually and they add up quickly."
+    },
+    {
+      "t": "h3",
+      "v": "Content"
+    },
+    {
+      "t": "p",
+      "v": "The most commonly forgotten cost. Who writes the copy, who takes the photographs, who sources the imagery. A build can be finished and unlaunchable because nobody owns the words. If you are not writing it yourself, it belongs in the budget."
+    },
+    {
+      "t": "h2",
+      "v": "What the quote usually leaves out"
+    },
+    {
+      "t": "p",
+      "v": "Ask about every one of these before you compare two quotes, because a cheaper quote that excludes them is not cheaper."
+    },
+    {
+      "t": "list",
+      "v": [
+        "Hosting and domain, annually, and who holds the accounts",
+        "SSL certificate, usually free now but worth confirming",
+        "Analytics and conversion tracking set up before launch rather than bolted on after",
+        "Who owns the code and the design files when the project ends",
+        "What happens when something breaks in month three",
+        "Content and photography",
+        "Any stock imagery, fonts or plugin licences",
+        "Ad spend, which is never included in a marketing quote and is often assumed to be"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Questions worth asking before you sign"
+    },
+    {
+      "t": "p",
+      "v": "In rough order of how much trouble they save you."
+    },
+    {
+      "t": "list",
+      "ordered": true,
+      "v": [
+        "Who specifically will build this, and will I speak to them directly?",
+        "Do I own the code and the design files at the end?",
+        "Is tracking set up before launch, so we can tell whether this worked?",
+        "What is explicitly excluded from this price?",
+        "Show me something you built that is still live, and tell me what it does for the business.",
+        "What happens if I want a change in month two?"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "The second and third questions are the ones that separate a professional from a salesperson. Plenty of Dubai businesses discover a year in that they cannot move their own website because somebody else owns it, or that they have no idea whether it ever produced an enquiry because nothing was measured."
+    },
+    {
+      "t": "h2",
+      "v": "Signs a quote is too good"
+    },
+    {
+      "t": "list",
+      "v": [
+        "A fixed price given before anyone has asked what the site needs to do",
+        "No written scope, only a number",
+        "A price per page, which prices the thing nobody cares about",
+        "Hosting held in the builder's own account with no transfer path",
+        "No mention of analytics anywhere",
+        "A portfolio of designs rather than live, working sites"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "What is the cheapest realistic way to get a business website in Dubai?"
+    },
+    {
+      "t": "p",
+      "v": "A well-chosen template on Squarespace or a good WordPress theme, with your own copy and real photographs. Honestly done, that beats a cheap custom build. The money is better spent on photography and writing than on bespoke code you do not need yet."
+    },
+    {
+      "t": "h3",
+      "v": "Why do quotes for the same brief vary so much?"
+    },
+    {
+      "t": "p",
+      "v": "Usually because they are not the same brief. One includes content, tracking, Arabic and three months of support; the other includes a design and a handover. Put the exclusions side by side and most of the gap explains itself."
+    },
+    {
+      "t": "h3",
+      "v": "Should I pay monthly or a one-off project fee?"
+    },
+    {
+      "t": "p",
+      "v": "A one-off fee suits a defined project with an end. A monthly retainer suits continuous work, where the site keeps changing because the business keeps changing. Be careful with monthly pricing that is really a one-off build spread over twelve months, because at the end of it you may own nothing."
+    },
+    {
+      "t": "h3",
+      "v": "Do I need a trade licence to hire a freelancer in the UAE?"
+    },
+    {
+      "t": "p",
+      "v": "You do not, but the person invoicing you generally needs to be licensed to do so legally. Ask for a trade licence or freelance permit before you pay anything, and take proper advice on your own obligations from a qualified professional. I am a developer and not your lawyer or your accountant."
+    },
+    {
+      "t": "h3",
+      "v": "How long does a business website take?"
+    },
+    {
+      "t": "p",
+      "v": "A straightforward brochure site is usually a few weeks once content exists. The delay is almost never the build. It is waiting for copy, photographs and decisions, which is why the question of who owns the content matters so much at the quoting stage."
+    },
+    {
+      "t": "p",
+      "v": "Last updated 1 October 2026. All AED figures are my own published rates, stated so there is at least one verifiable number on this page. They are not a market survey."
+    }
+  ],
+  "words": 1390
+}

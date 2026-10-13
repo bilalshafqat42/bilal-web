@@ -21,3 +21,10 @@ export const SITE_PHONE = "+971 52 976 6006";
 
 /** `tel:` form, no spaces. */
 export const SITE_PHONE_HREF = "+971529766006";
+
+/** Second line, shown beside the primary on the contact page and in the
+ *  footer. Not a WhatsApp number. */
+export const SITE_PHONE_ALT = "+971 56 604 7396";
+
+/** `tel:` form of the second line. */
+export const SITE_PHONE_ALT_HREF = "+971566047396";

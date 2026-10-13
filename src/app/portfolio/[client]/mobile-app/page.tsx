@@ -3,15 +3,17 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
-import { WorkProof } from "@/components/ProofLoop";
-import Contact from "@/components/Contact";
-import Reveal from "@/components/Reveal";
-import FaqSection from "@/components/FaqSection";
-import CtaButton from "@/components/CtaButton";
-import PageOpener from "@/components/PageOpener";
+import { WorkProof } from "@/components/portfolio/ProofLoop";
+import Contact from "@/components/sections/Contact";
+import Reveal from "@/components/ui/Reveal";
+import FaqSection from "@/components/ui/FaqSection";
+import CtaButton from "@/components/ui/CtaButton";
+import PageOpener from "@/components/layout/PageOpener";
 import { clients, getClient } from "@/data/caseStudies";
 import { SITE_URL as SITE, jsonLdSafe } from "@/lib/schema";
-import Eyebrow from "@/components/Eyebrow";
+import { OG_IMAGES } from "@/lib/ogImage";
+import { PORTFOLIO_CONTENT_DATE } from "@/data/contentDates";
+import Eyebrow from "@/components/ui/Eyebrow";
 
 /**
  * The mobile app case study.
@@ -43,53 +45,12 @@ import Eyebrow from "@/components/Eyebrow";
  * gone.
  */
 /**
- * Questions about this app specifically.
- *
- * Deliberately NOT the two mobile questions already on
- * `/portfolio/mobile-app-development` — "Do you build native or cross-platform"
- * and "Do you handle App Store and Play Store submission" live there, and
- * repeating them would put the same answer on two indexable pages competing
- * with each other.
- *
- * Every answer restates something already on this page or already published in
- * `disciplines.ts`: the fact strip's "React Native / one shared codebase" and
- * "Design & build", the body copy's point about the app carrying the same
- * developments as the website, and the discipline page's own answers on
- * cross-platform economics and store submission.
- *
- * Deliberately NOT here: whether the app is published and downloadable, and any
- * usage or download figure. The page's `outcomes` already sit in the data
- * without values for exactly that reason, and `disciplines.ts` states plainly
- * that a published listing is "the client's to announce".
+ * Everything client-specific (FAQs, share card, stack, section intros) lives on
+ * the client's `mobileApp.page` in `caseStudies.ts`, not here. Until 2026-10-13
+ * this file carried LEOS's FAQs and share card directly, so a second client
+ * with an app would have published LEOS's answers under its own name. Optional
+ * copy that is missing removes its section rather than falling back to LEOS's.
  */
-const faqs = [
-  {
-    question: "Why one codebase instead of separate iOS and Android apps?",
-    answer:
-      "Economics. Two native codebases means writing, testing and maintaining every screen twice, which for a business app of this kind buys very little a buyer would notice. React Native gives both stores from one build. Where an app genuinely needs platform-specific native work I say so rather than take the project.",
-  },
-  {
-    question: "Who designed the screens, and who built them?",
-    answer:
-      "The same person, which is the point. The interface was designed and then built by me, so the reasoning behind a screen and its implementation match instead of one having been handed across to the other and interpreted.",
-  },
-  {
-    question: "Are these real screens or concepts?",
-    answer:
-      "Real. Every capture on this page is from the built app rather than a mockup, which is why the walkthrough talks about decisions that had to survive contact with real content — long development names, missing photography, and units that change availability.",
-  },
-  {
-    question: "Why does the app repeat what the website already does?",
-    answer:
-      "It does not repeat it, it continues it. The app carries the same developments, the same photography and the same enquiry routes as the launch pages, so a buyer who first saw a campaign on their laptop finds the same thing on their phone rather than a second, thinner version of it.",
-  },
-  {
-    question: "Can you take an app like this through App Store review?",
-    answer:
-      "Submission is a step I can run with you, and it is worth planning early because store review is the part of a launch date nobody controls. No published listing is claimed for this app here, because that announcement belongs to the client.",
-  },
-];
-
 type Props = { params: Promise<{ client: string }> };
 
 export function generateStaticParams() {
@@ -100,36 +61,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { client } = await params;
   const c = getClient(client);
   if (!c?.mobileApp) return {};
+  const page = c.mobileApp.page;
+  const title = `${c.name} App — ${page.stack} Case Study`;
+  const og = page.ogImage
+    ? [{ url: `${SITE}${page.ogImage.src}`, width: 1200, height: 630, alt: page.ogImage.alt }]
+    : OG_IMAGES;
   return {
     // Client name is interpolated, so the limit has to hold for the longest
     // one. "LEOS Developments" took the old title to 70 characters.
-    title: `${c.name} App — React Native Case Study`,
-    description: `A cross-platform iOS and Android app for ${c.name}, built in React Native from a single codebase and walked through screen by screen.`,
+    title,
+    description: page.metaDescription,
     alternates: { canonical: `/portfolio/${c.slug}/mobile-app` },
-    // Its own card rather than inheriting the site default. Supplied by Bilal at
-    // exactly 1200x630, which is the size every platform crops to.
-    //
-    // JPEG, not the AVIF original. WhatsApp and Facebook share one link-preview
-    // crawler, and its supported formats are JPEG, PNG, GIF and WebP — an AVIF
-    // og:image is fetched and then not rendered, so the link shares with no
-    // picture at all. Bilal named WhatsApp specifically. The site's two other OG
-    // images are already JPEG; this one was the odd case.
+    // The share card is the client's own when supplied (see `ogImage` on the
+    // type for why it is JPEG), and the site default otherwise.
     openGraph: {
-      title: `${c.name} App — React Native Case Study`,
-      description: `A cross-platform iOS and Android app for ${c.name}, built in React Native from a single codebase.`,
+      title,
+      description: page.ogDescription,
       url: `${SITE}/portfolio/${c.slug}/mobile-app`,
-      images: [
-        {
-          url: `${SITE}/portfolio/leos/mobile-app/og-leos-mobile.jpg`,
-          width: 1200,
-          height: 630,
-          alt: `The ${c.name} app sign-in screen shown on an iPhone`,
-        },
-      ],
+      images: og,
     },
     twitter: {
       card: "summary_large_image",
-      images: [`${SITE}/portfolio/leos/mobile-app/og-leos-mobile.jpg`],
+      images: og.map((img) => img.url),
     },
   };
 }
@@ -140,6 +93,8 @@ export default async function MobileAppCaseStudy({ params }: Props) {
   if (!c?.mobileApp) notFound();
 
   const app = c.mobileApp;
+  const page = app.page;
+  const faqs = page.faqs ?? [];
   const url = `${SITE}/portfolio/${c.slug}/mobile-app`;
   const total = app.screens.length;
   const outcomes = app.outcomes?.filter((o) => o.value) ?? [];
@@ -153,12 +108,14 @@ export default async function MobileAppCaseStudy({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     "@id": `${url}#work`,
-    name: `${c.name} mobile app — React Native case study`,
+    name: `${c.name} mobile app — ${page.stack} case study`,
     headline: app.heading,
     description: app.body,
     url,
     inLanguage: "en",
-    dateModified: new Date().toISOString().split("T")[0],
+    // The date the case study data last changed, not the build date: `new
+    // Date()` here told search engines every case study changed on every deploy.
+    dateModified: PORTFOLIO_CONTENT_DATE,
     genre: "Mobile application case study",
     // `lead` is optional on the type, so the property is omitted rather than
     // asserted — an `image` key pointing at undefined is worse than no key.
@@ -170,7 +127,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
 
   // Built from the exact array the page renders, so the markup cannot describe
   // an answer a visitor cannot read.
-  const faqSchema = {
+  const faqSchema = faqs.length === 0 ? null : {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "@id": `${url}#faq`,
@@ -193,9 +150,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
   };
 
   const facts = [
-    { label: "Platforms", value: "iOS & Android", note: "From one build" },
-    { label: "Framework", value: "React Native", note: "One shared codebase" },
-    { label: "My role", value: "Design & build", note: "Interface through to delivery" },
+    ...page.facts,
     { label: "Screens shown", value: `${total}`, note: "Walked through below" },
   ];
 
@@ -205,10 +160,12 @@ export default async function MobileAppCaseStudy({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(work) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdSafe(faqSchema) }}
-      />
+      {faqSchema ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdSafe(faqSchema) }}
+        />
+      ) : null}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }}
@@ -222,8 +179,8 @@ export default async function MobileAppCaseStudy({ params }: Props) {
             { label: c.name, href: `/portfolio/${c.slug}` },
             { label: "Mobile app" },
           ]}
-          eyebrow="Case study · Property &amp; real estate"
-          title="A cross-platform app, from one codebase."
+          eyebrow={page.eyebrow}
+          title={page.title}
           standfirst={app.body}
           actions={
             <div className="w-full">
@@ -312,12 +269,13 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                     The problem
                   </h2>
                 </Reveal>
-                <Reveal>
-                  <p className="mt-5 max-w-[62ch] text-lg leading-relaxed text-muted">
-                    Three things constrained this build before a single screen was
-                    designed:
-                  </p>
-                </Reveal>
+                {page.constraintsIntro ? (
+                  <Reveal>
+                    <p className="mt-5 max-w-[62ch] text-lg leading-relaxed text-muted">
+                      {page.constraintsIntro}
+                    </p>
+                  </Reveal>
+                ) : null}
                 <ol className="mt-12 grid grid-cols-1 gap-x-12 gap-y-10 lg:grid-cols-3">
                   {app.constraints.points.map((pt, i) => (
                     <Reveal key={pt.title} delay={i * 0.08}>
@@ -367,10 +325,11 @@ export default async function MobileAppCaseStudy({ params }: Props) {
               <h2 className="t-h2 mt-4 text-ink">
                 Key challenges
               </h2>
-              <p className="mt-5 max-w-[62ch] text-lg leading-relaxed text-muted">
-                The app had to be operable in one hand by someone who may never have
-                seen the website. That required:
-              </p>
+              {page.challengesIntro ? (
+                <p className="mt-5 max-w-[62ch] text-lg leading-relaxed text-muted">
+                  {page.challengesIntro}
+                </p>
+              ) : null}
             </Reveal>
             <ul className="mt-10 grid grid-cols-1 gap-x-12 gap-y-4 sm:grid-cols-2">
               {app.screens.map((s, i) => (
@@ -415,7 +374,9 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                 </div>
                 <div className="text-sm leading-relaxed text-muted/70 sm:text-right">
                   <p>{total} screens</p>
-                  <p>React Native, iOS and Android</p>
+                  <p>
+                    {page.stack}, {page.platforms}
+                  </p>
                 </div>
               </div>
             </Reveal>
@@ -551,9 +512,11 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                   <h2 className="t-h2 mt-4 text-ink">
                     The approach
                   </h2>
-                  <p className="mt-5 max-w-[62ch] text-lg leading-relaxed text-muted">
-                    Design and build were the same job here, done in this order:
-                  </p>
+                  {page.scopeIntro ? (
+                    <p className="mt-5 max-w-[62ch] text-lg leading-relaxed text-muted">
+                      {page.scopeIntro}
+                    </p>
+                  ) : null}
                 </div>
               </Reveal>
               <div className="mt-12 grid grid-cols-1 gap-10 border-t border-border pt-10 sm:grid-cols-3 sm:gap-8">
@@ -655,12 +618,14 @@ export default async function MobileAppCaseStudy({ params }: Props) {
           </section>
         ) : null}
 
-        <FaqSection
-          eyebrow="Common questions"
-          title="About this app"
-          faqs={faqs}
-          className="section-pad-tight"
-        />
+        {faqs.length > 0 ? (
+          <FaqSection
+            eyebrow="Common questions"
+            title="About this app"
+            faqs={faqs}
+            className="section-pad-tight"
+          />
+        ) : null}
 
         <WorkProof clientSlug={c.slug} />
 

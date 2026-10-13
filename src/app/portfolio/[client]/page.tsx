@@ -1,22 +1,23 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import Image from "next/image";
-import ClientWordmark from "@/components/ClientWordmark";
-import PageOpener from "@/components/PageOpener";
+import ClientWordmark from "@/components/portfolio/ClientWordmark";
+import PageOpener from "@/components/layout/PageOpener";
 import { OG_IMAGES, OG_IMAGE_URL } from "@/lib/ogImage";
 import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
-import TrackView from "@/components/TrackView";
-import { WorkProof } from "@/components/ProofLoop";
-import GalleryLightbox from "@/components/GalleryLightbox";
-import Reveal from "@/components/Reveal";
-import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/CaseStudyParts";
+import TrackView from "@/components/seo/TrackView";
+import { WorkProof } from "@/components/portfolio/ProofLoop";
+import GalleryLightbox from "@/components/portfolio/GalleryLightbox";
+import Reveal from "@/components/ui/Reveal";
+import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/portfolio/CaseStudyParts";
 import { clients, getClient } from "@/data/caseStudies";
-import CtaButton from "@/components/CtaButton";
-import DeviceFrame from "@/components/DeviceFrame";
+import { PORTFOLIO_CONTENT_DATE } from "@/data/contentDates";
+import CtaButton from "@/components/ui/CtaButton";
+import DeviceFrame from "@/components/portfolio/DeviceFrame";
 import { jsonLdSafe } from "@/lib/schema";
-import Eyebrow from "@/components/Eyebrow";
-import SecondaryButton from "@/components/SecondaryButton";
+import Eyebrow from "@/components/ui/Eyebrow";
+import SecondaryButton from "@/components/ui/SecondaryButton";
 
 const SITE = "https://bilalshafqat.com";
 
@@ -91,7 +92,9 @@ export default async function ClientCaseStudy({ params }: Props) {
     description: c.description,
     url,
     inLanguage: "en",
-    dateModified: new Date().toISOString().split("T")[0],
+    // When the case study data last changed, not the build date. `new Date()`
+    // told search engines every case study changed on every deploy.
+    dateModified: PORTFOLIO_CONTENT_DATE,
     genre: "Real estate marketing case study",
     image: c.ogImage ? `${SITE}${c.ogImage}` : OG_IMAGE_URL,
     creator: { "@id": `${SITE}/#person`, "@type": "Person" },

@@ -1,5 +1,90 @@
 import type { NextConfig } from "next";
 
+/**
+ * Content-Security-Policy, in **report-only** mode.
+ *
+ * Report-only means the browser enforces nothing: it logs every request the
+ * policy would have blocked to the console (and to a `report-uri`, once one
+ * exists) and lets it through. That is the only safe way to introduce a CSP on
+ * a site with GA4, the Meta Pixel, the Cal.com embed and Turnstile, because a
+ * single missing origin in an enforcing policy silently breaks bookings or lead
+ * capture with nothing in the logs to say why.
+ *
+ * **Switch to enforcing after a week of clean reports**: rename the header to
+ * `Content-Security-Policy`. Before that, check the console on /, /appointment
+ * (Cal.com), /contact (form, Turnstile) and one page after accepting cookies
+ * (GA4 and the pixel only load then).
+ *
+ * The allowances, and what each is for:
+ *
+ *   'unsafe-inline' scripts   Next's own inline bootstrap, the JSON-LD blocks,
+ *                             the consent-default and GA4 init snippets. Fine
+ *                             for report-only; moving to nonces is the step
+ *                             after enforcing, and needs dynamic rendering.
+ *   'unsafe-eval'             development only (React Refresh). Never in prod.
+ *   googletagmanager.com      gtag.js / gtm.js, and GTM's preview iframe.
+ *   google-analytics.com,     GA4 collection endpoints (region1.* etc.).
+ *   analytics.google.com
+ *   connect.facebook.net      the Meta Pixel loader, fbevents.js.
+ *   www.facebook.com          the pixel's /tr beacon (image and fetch).
+ *   app.cal.com, cal.com      the booking embed: script, iframe and its API.
+ *   challenges.cloudflare.com Turnstile's script and iframe, if the forms load it.
+ *   cloudflareinsights.com    Cloudflare Web Analytics, which Cloudflare injects
+ *                             itself if it is ever put in front of the site.
+ *   data: blob: images        Next's blur placeholders and inline SVG.
+ */
+const isDev = process.env.NODE_ENV !== "production";
+const csp = [
+  "default-src 'self'",
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://connect.facebook.net https://app.cal.com https://challenges.cloudflare.com https://static.cloudflareinsights.com`,
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://www.facebook.com https://*.cal.com",
+  "font-src 'self' data:",
+  "connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://www.facebook.com https://connect.facebook.net https://app.cal.com https://*.cal.com https://challenges.cloudflare.com https://cloudflareinsights.com",
+  "frame-src https://app.cal.com https://cal.com https://challenges.cloudflare.com https://www.googletagmanager.com",
+  "frame-ancestors 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "object-src 'none'",
+].join("; ");
+
+/**
+ * Warn, never fail, when a production build has no analytics ID.
+ *
+ * `Analytics.tsx` renders nothing without `NEXT_PUBLIC_GA4_ID` or
+ * `NEXT_PUBLIC_GTM_ID`, which is right for local work and silent in production:
+ * a deploy with the variable missing ships a site that measures nothing, and
+ * the first sign is an empty GA4 report a week later. The same happened to the
+ * Bing verification tag (roadmap 343). A warning in the build log is the
+ * cheapest place to catch it. Not an error, because a build without analytics
+ * is still a working site.
+ */
+if (
+  process.env.NODE_ENV === "production" &&
+  !process.env.NEXT_PUBLIC_GA4_ID &&
+  !process.env.NEXT_PUBLIC_GTM_ID
+) {
+  console.warn(
+    "\n[analytics] Neither NEXT_PUBLIC_GA4_ID nor NEXT_PUBLIC_GTM_ID is set. " +
+      "This production build will load no analytics. Set one in the deploy environment.\n"
+  );
+}
+
+/**
+ * Twin every legacy redirect with its trailing-slash form.
+ *
+ * WordPress URLs end in a slash, and that is how Search Console and old links
+ * hold them. Next's built-in slash stripping runs *before* custom redirects, so
+ * `/about-me/` went `/about-me/` -> `/about-me` -> `/about`: two hops, two
+ * crawls, and a redirect chain in every audit tool. With the built-in turned off
+ * (`skipTrailingSlashRedirect` below) and each source listed in both forms, an
+ * old URL reaches its final page in one hop. Wildcards are twinned too:
+ * `/category/:path*` is matched strictly and does not match `/category/design/`.
+ */
+type Redirect = { source: string; destination: string; permanent: boolean };
+const withTrailingSlash = (rules: Redirect[]): Redirect[] =>
+  rules.flatMap((r) => [r, { ...r, source: `${r.source}/` }]);
+
 const nextConfig: NextConfig = {
   /**
    * Cache-Control for HTML pages.
@@ -37,6 +122,19 @@ const nextConfig: NextConfig = {
    *  It tells an attacker which framework and therefore which advisories to try,
    *  and buys nothing. Off. */
   poweredByHeader: false,
+
+  // The built-in `/:path+/` -> `/:path+` redirect runs before custom redirects,
+  // which is what made every legacy WordPress URL a two-hop chain. Turned off so
+  // the redirects below can match the slash form directly; the same stripping
+  // is restored as the *last* redirect, so every other URL behaves as before.
+  skipTrailingSlashRedirect: true,
+
+  // Inlined into server and client bundles alike, so `yearsExperience()` in
+  // `src/lib/site.ts` gives the same number in a server render and in the
+  // hydrating client component, even across a new year.
+  env: {
+    NEXT_PUBLIC_BUILD_YEAR: String(new Date().getFullYear()),
+  },
 
   async headers() {
     return [
@@ -85,6 +183,12 @@ const nextConfig: NextConfig = {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
           },
+          {
+            // Report-only: logs, never blocks. See `csp` at the top of this
+            // file for every allowance and for when to switch it to enforcing.
+            key: "Content-Security-Policy-Report-Only",
+            value: csp,
+          },
         ],
       },
       {
@@ -107,21 +211,23 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
-      // **`/training` was the only genuine 404 in Search Console's list**, and
-      // it is not a dead URL: on 2026-10-12 it still held 29 impressions at
-      // average position 19.76 over 90 days. Google is showing a page that
-      // returns 404 to real people, which is the worst of both outcomes — the
-      // ranking exists and the click lands nowhere.
-      //
-      // It points at `/blog` rather than at a service page. The old WordPress
-      // page was educational, and sending "training" traffic to a sales page
-      // is the mismatch Google scores as a soft 404. If the queries behind
-      // those 29 impressions turn out to be commercial, change the target.
-      {
-        source: "/training",
-        destination: "/blog",
-        permanent: true,
-      },
+      ...withTrailingSlash([
+        // **`/training` was the only genuine 404 in Search Console's list**, and
+        // it is not a dead URL: on 2026-10-12 it still held 29 impressions at
+        // average position 19.76 over 90 days. Google is showing a page that
+        // returns 404 to real people, which is the worst of both outcomes — the
+        // ranking exists and the click lands nowhere.
+        //
+        // It points at `/blog` rather than at a service page. The old WordPress
+        // page was educational, and sending "training" traffic to a sales page
+        // is the mismatch Google scores as a soft 404. If the queries behind
+        // those 29 impressions turn out to be commercial, change the target.
+        {
+          source: "/training",
+          destination: "/blog",
+          permanent: true,
+        },
+      ]),
       // **www to non-www, 301.** Every page was answering on both hostnames
       // with byte-identical content — verified on the live site: `/about`
       // returned 200 at `bilalshafqat.com` and at `www.bilalshafqat.com`.
@@ -143,84 +249,96 @@ const nextConfig: NextConfig = {
         destination: "https://bilalshafqat.com/:path*",
         permanent: true,
       },
-      // /about-me was a real WordPress URL with existing links and ranking
-      // history, so it is redirected rather than left to 404. 308 is permanent,
-      // which is what passes the old page's equity to the new one.
-      { source: "/about-me", destination: "/about", permanent: true },
-      // Retired 2026-08-28: this pillar's content split across four narrower
-      // category pages (UI/UX, Graphic Design, Video & Conversion, Social Media),
-      // so there is no single successor. The hub lists all four, which makes it a
-      // genuine destination rather than a soft 404.
-      { source: "/services/design-content-conversion", destination: "/services", permanent: true },
-      // WordPress service URLs with an exact successor. These carry commercial
-      // intent and a direct equivalent exists, so a 308 sends both the searcher
-      // and the ranking history somewhere genuinely relevant.
-      { source: "/contact-us", destination: "/contact", permanent: true },
-      // WordPress served the homepage at /home as well as /, and Search
-      // Console still lists /home/ among the 404s (last crawled 9 Sep 2026).
-      // It is the same page, so this is a genuine duplicate being pointed at
-      // its canonical address — not a dead tutorial URL being swept into a
-      // marketing page, which is the thing the note above forbids.
-      { source: "/home", destination: "/", permanent: true },
-      { source: "/web-application-development", destination: "/services/website-app-development", permanent: true },
-      { source: "/ui-ux-design", destination: "/services/ui-ux-design", permanent: true },
-      // "Web design" intent is covered by the UI/UX page, which includes web and
-      // mobile interface work.
-      { source: "/web-design", destination: "/services/ui-ux-design", permanent: true },
-      // WordPress category archives. Search Console lists /category/ai/,
-      // /category/ui-ux-design/ and /category/design/ among the 404s.
-      //
-      // These redirect where the course URLs deliberately do not, and the
-      // difference is whether a genuine successor exists. A category archive
-      // listed the articles filed under one topic; /blog lists all 52 of them,
-      // including every article those three archives held. The visitor who
-      // clicked a category link wanted a list of writing and gets a list of
-      // writing, which is what separates this from the soft 404 the note below
-      // describes — a tutorial URL swept into a marketing page.
-      //
-      // Wildcarded rather than enumerated: WordPress generated an archive for
-      // every category and tag it ever had, and Search Console has only
-      // surfaced the three Google happened to recrawl. Paginated archives
-      // (/category/design/page/2/) are caught by the same rule.
-      { source: "/category/:path*", destination: "/blog", permanent: true },
-      // **Tag archives, added 2026-10-12.** The note above says WordPress made
-      // an archive for every category *and tag*, but only `/category/` was ever
-      // wildcarded. Search Console's "Crawled - currently not indexed" list
-      // showed why that mattered: seven `/tag/` URLs in the 32, and each one
-      // resolved 308 to a trailing-slash-stripped URL that then 404'd.
-      //
-      // A redirect into a dead end is worse than a plain 404. It costs two
-      // crawls and teaches Google nothing.
-      //
-      // The feed rule sits first because order decides: a feed reader asking
-      // for `/tag/css/feed/` should get a feed, not an article index. The
-      // `/:slug/feed` rule below never caught these because it matches one
-      // segment and these carry two.
-      { source: "/tag/:path*/feed", destination: "/rss.xml", permanent: true },
-      { source: "/tag/:path*", destination: "/blog", permanent: true },
-      // WordPress RSS endpoints. Search Console listed `/feed/`,
-      // `/react-hooks-explained/feed/` and `/react-usememo-hook-explained/feed/`
-      // under BOTH "Not found (404)" and "Page with redirect": the
-      // trailing-slash rule sent them to `/feed`, which then 404'd. A redirect
-      // into a dead end costs two crawls and teaches Google nothing.
-      //
-      // These have a genuine successor now that `/rss.xml` exists, which is the
-      // test the course URLs below fail — a feed reader asking for a feed gets
-      // a feed, rather than a tutorial URL being swept into a marketing page.
-      { source: "/feed", destination: "/rss.xml", permanent: true },
-      { source: "/:slug/feed", destination: "/rss.xml", permanent: true },
-      { source: "/comments/feed", destination: "/rss.xml", permanent: true },
-      // **The course URLs still 404 deliberately.** Pointing a tutorial-intent
-      // URL at a marketing page is a soft 404 — Google treats it as a poor
-      // match and it can hurt the destination. Letting them de-index cleanly is
-      // the honest outcome for content that no longer exists.
-      //
-      // `/training` was in this group until 2026-10-12, when the first full
-      // Search Console export showed it holding **29 impressions at average
-      // position 19.76** over 90 days. That changed the question. The rule was
-      // right while the URL was dead; it is the wrong call for a URL Google is
-      // actively ranking and sending people to a 404. It now points at /blog,
-      // at the top of this array.
+      ...withTrailingSlash([
+        // /about-me was a real WordPress URL with existing links and ranking
+        // history, so it is redirected rather than left to 404. 308 is permanent,
+        // which is what passes the old page's equity to the new one.
+        { source: "/about-me", destination: "/about", permanent: true },
+        // Retired 2026-08-28: this pillar's content split across four narrower
+        // category pages (UI/UX, Graphic Design, Video & Conversion, Social Media),
+        // so there is no single successor. The hub lists all four, which makes it a
+        // genuine destination rather than a soft 404.
+        { source: "/services/design-content-conversion", destination: "/services", permanent: true },
+        // WordPress service URLs with an exact successor. These carry commercial
+        // intent and a direct equivalent exists, so a 308 sends both the searcher
+        // and the ranking history somewhere genuinely relevant.
+        { source: "/contact-us", destination: "/contact", permanent: true },
+        // WordPress served the homepage at /home as well as /, and Search
+        // Console still lists /home/ among the 404s (last crawled 9 Sep 2026).
+        // It is the same page, so this is a genuine duplicate being pointed at
+        // its canonical address — not a dead tutorial URL being swept into a
+        // marketing page, which is the thing the note above forbids.
+        { source: "/home", destination: "/", permanent: true },
+        { source: "/web-application-development", destination: "/services/website-app-development", permanent: true },
+        { source: "/ui-ux-design", destination: "/services/ui-ux-design", permanent: true },
+        // Pointed at the UI/UX page until 2026-10-13, when web design had no page
+        // of its own. `/services/web-design` now exists and targets exactly this
+        // intent, so the old URL goes to the exact successor.
+        { source: "/web-design", destination: "/services/web-design", permanent: true },
+        // Two articles answered "UX vs UI". The 2025 WordPress one was thinner
+        // and had no recorded impressions (snapshot of 2026-10-13); the newer
+        // one is the keeper, so the old URL passes whatever it has to it.
+        { source: "/ux-vs-ui-the-perfect-balance-for-a-winning", destination: "/ux-designer-vs-ui-designer", permanent: true },
+        // WordPress category archives. Search Console lists /category/ai/,
+        // /category/ui-ux-design/ and /category/design/ among the 404s.
+        //
+        // These redirect where the course URLs deliberately do not, and the
+        // difference is whether a genuine successor exists. A category archive
+        // listed the articles filed under one topic; /blog lists all 52 of them,
+        // including every article those three archives held. The visitor who
+        // clicked a category link wanted a list of writing and gets a list of
+        // writing, which is what separates this from the soft 404 the note below
+        // describes — a tutorial URL swept into a marketing page.
+        //
+        // Wildcarded rather than enumerated: WordPress generated an archive for
+        // every category and tag it ever had, and Search Console has only
+        // surfaced the three Google happened to recrawl. Paginated archives
+        // (/category/design/page/2/) are caught by the same rule.
+        { source: "/category/:path*", destination: "/blog", permanent: true },
+        // **Tag archives, added 2026-10-12.** The note above says WordPress made
+        // an archive for every category *and tag*, but only `/category/` was ever
+        // wildcarded. Search Console's "Crawled - currently not indexed" list
+        // showed why that mattered: seven `/tag/` URLs in the 32, and each one
+        // resolved 308 to a trailing-slash-stripped URL that then 404'd.
+        //
+        // A redirect into a dead end is worse than a plain 404. It costs two
+        // crawls and teaches Google nothing.
+        //
+        // The feed rule sits first because order decides: a feed reader asking
+        // for `/tag/css/feed/` should get a feed, not an article index. The
+        // `/:slug/feed` rule below never caught these because it matches one
+        // segment and these carry two.
+        { source: "/tag/:path*/feed", destination: "/rss.xml", permanent: true },
+        { source: "/tag/:path*", destination: "/blog", permanent: true },
+        // WordPress RSS endpoints. Search Console listed `/feed/`,
+        // `/react-hooks-explained/feed/` and `/react-usememo-hook-explained/feed/`
+        // under BOTH "Not found (404)" and "Page with redirect": the
+        // trailing-slash rule sent them to `/feed`, which then 404'd. A redirect
+        // into a dead end costs two crawls and teaches Google nothing.
+        //
+        // These have a genuine successor now that `/rss.xml` exists, which is the
+        // test the course URLs below fail — a feed reader asking for a feed gets
+        // a feed, rather than a tutorial URL being swept into a marketing page.
+        { source: "/feed", destination: "/rss.xml", permanent: true },
+        { source: "/:slug/feed", destination: "/rss.xml", permanent: true },
+        { source: "/comments/feed", destination: "/rss.xml", permanent: true },
+        // **The course URLs still 404 deliberately.** Pointing a tutorial-intent
+        // URL at a marketing page is a soft 404 — Google treats it as a poor
+        // match and it can hurt the destination. Letting them de-index cleanly is
+        // the honest outcome for content that no longer exists.
+        //
+        // `/training` was in this group until 2026-10-12, when the first full
+        // Search Console export showed it holding **29 impressions at average
+        // position 19.76** over 90 days. That changed the question. The rule was
+        // right while the URL was dead; it is the wrong call for a URL Google is
+        // actively ranking and sending people to a 404. It now points at /blog,
+        // at the top of this array.
+      ]),
+      // **Trailing-slash stripping, restored by hand and deliberately last.**
+      // This is the rule Next adds itself, switched off above so the legacy
+      // URLs could be matched first. Anything not caught above, `/about/`
+      // included, still gets one 308 to its slashless form.
+      { source: "/:path+/", destination: "/:path+", permanent: true },
     ];
   },
   images: {

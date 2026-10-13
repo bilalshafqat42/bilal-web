@@ -4,21 +4,22 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { OG_IMAGE_URL } from "@/lib/ogImage";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import TrackView from "@/components/TrackView";
+import TrackView from "@/components/seo/TrackView";
 import { caseStudyDepth } from "@/data/caseStudyDepth";
-import { WorkProof } from "@/components/ProofLoop";
-import GalleryLightbox from "@/components/GalleryLightbox";
-import Reveal from "@/components/Reveal";
-import Surface from "@/components/Surface";
-import PageOpener from "@/components/PageOpener";
-import FaqSection from "@/components/FaqSection";
-import CaseStudyStory from "@/components/CaseStudyStory";
-import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/CaseStudyParts";
+import { WorkProof } from "@/components/portfolio/ProofLoop";
+import GalleryLightbox from "@/components/portfolio/GalleryLightbox";
+import Reveal from "@/components/ui/Reveal";
+import Surface from "@/components/ui/Surface";
+import PageOpener from "@/components/layout/PageOpener";
+import FaqSection from "@/components/ui/FaqSection";
+import CaseStudyStory from "@/components/portfolio/CaseStudyStory";
+import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/portfolio/CaseStudyParts";
 import { clients, getProject } from "@/data/caseStudies";
-import CtaButton from "@/components/CtaButton";
-import DeviceFrame from "@/components/DeviceFrame";
+import { PORTFOLIO_CONTENT_DATE } from "@/data/contentDates";
+import CtaButton from "@/components/ui/CtaButton";
+import DeviceFrame from "@/components/portfolio/DeviceFrame";
 import { jsonLdSafe } from "@/lib/schema";
-import Eyebrow from "@/components/Eyebrow";
+import Eyebrow from "@/components/ui/Eyebrow";
 
 const SITE = "https://bilalshafqat.com";
 
@@ -94,7 +95,9 @@ export default async function ProjectCaseStudy({ params }: Props) {
     description: p.summary,
     url,
     inLanguage: "en",
-    dateModified: new Date().toISOString().split("T")[0],
+    // When the case study data last changed, not the build date. `new Date()`
+    // told search engines every case study changed on every deploy.
+    dateModified: PORTFOLIO_CONTENT_DATE,
     genre: "Real estate marketing case study",
     image: `${SITE}${p.cardImage}`,
     creator: { "@id": `${SITE}/#person`, "@type": "Person" },

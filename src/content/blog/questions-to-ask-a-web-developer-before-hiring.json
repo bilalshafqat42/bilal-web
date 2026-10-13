@@ -1,0 +1,192 @@
+{
+  "slug": "questions-to-ask-a-web-developer-before-hiring",
+  "title": "Questions to Ask a Web Developer Before You Hire Them",
+  "metaTitle": "Questions to Ask a Web Developer Before Hiring",
+  "description": "Twelve questions that separate a developer who will leave you with a working asset from one who leaves you dependent, with the answers to listen for.",
+  "published": "2026-10-04",
+  "updatedAt": "2026-10-04",
+  "tags": [
+    "Dubai",
+    "Web Development",
+    "Pricing"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "Most people hiring a developer ask about price and timeline, get two numbers, and pick the better pair. Both numbers are usually wrong, and neither tells you the thing that actually matters: whether you will end up owning a working asset or renting one from somebody you cannot leave."
+    },
+    {
+      "t": "p",
+      "v": "These are the questions worth asking instead. I have put the answer to listen for under each, including where the honest answer is not the one that wins the pitch."
+    },
+    {
+      "t": "h2",
+      "v": "Ownership, and this is the one people skip"
+    },
+    {
+      "t": "h3",
+      "v": "1. Who owns the code when we are finished?"
+    },
+    {
+      "t": "p",
+      "v": "You should. Get it in writing. A surprising number of arrangements leave the code with the developer and the client with a licence to use it, which means every future change has to go through the same person at whatever price they name."
+    },
+    {
+      "t": "h3",
+      "v": "2. Whose account is the hosting in, and whose is the domain?"
+    },
+    {
+      "t": "p",
+      "v": "Yours, both of them. This is the single most common way businesses get trapped. If your domain is registered to an agency and the relationship ends badly, recovering it ranges from tedious to impossible. Register it yourself, today, before the project starts."
+    },
+    {
+      "t": "h3",
+      "v": "3. Will I have the design files?"
+    },
+    {
+      "t": "p",
+      "v": "Yes, and they should be organised enough for another designer to continue from. A handover that is a folder of flattened images is not a handover."
+    },
+    {
+      "t": "h2",
+      "v": "How you will know it worked"
+    },
+    {
+      "t": "h3",
+      "v": "4. Will analytics and conversion tracking be set up before launch?"
+    },
+    {
+      "t": "p",
+      "v": "If the answer is \"we can add that later\", you are being told it is not part of the quote. Later means after you have spent money driving traffic you cannot measure. Tracking belongs in the build."
+    },
+    {
+      "t": "h3",
+      "v": "5. What counts as a conversion, and how will it be recorded?"
+    },
+    {
+      "t": "p",
+      "v": "A real enquiry, not a page view and not a button click. A developer who has thought about this will ask you what a lead is worth and where it goes afterwards. One who has not will talk about traffic."
+    },
+    {
+      "t": "h3",
+      "v": "6. What will the site score on Core Web Vitals?"
+    },
+    {
+      "t": "p",
+      "v": "A good answer names the metrics and says what the target is. A vague one about it being \"fast and responsive\" means nobody is measuring. Anyone can check the result afterwards in about thirty seconds, so an evasive answer here is telling."
+    },
+    {
+      "t": "h2",
+      "v": "What happens when it goes wrong"
+    },
+    {
+      "t": "h3",
+      "v": "7. What happens if something breaks in month three?"
+    },
+    {
+      "t": "p",
+      "v": "You want a named arrangement: a warranty period, a retainer, or an hourly rate agreed in advance. \"We will look after you\" is not an arrangement, and the moment you need it is the moment you discover that."
+    },
+    {
+      "t": "h3",
+      "v": "8. Who maintains it, and what does that cost?"
+    },
+    {
+      "t": "p",
+      "v": "Websites are not finished when they launch. Platforms update, plugins break, certificates expire. Ask for the number. A developer who says maintenance is not needed has either not maintained a site for long or is not telling you about the cost."
+    },
+    {
+      "t": "h3",
+      "v": "9. What is the notice period, and what happens to my accounts?"
+    },
+    {
+      "t": "p",
+      "v": "Ask this at the start, when nobody is annoyed. The answer tells you how the relationship is designed to end, and that tells you a great deal about how it is designed to run."
+    },
+    {
+      "t": "h2",
+      "v": "Scope, and the honest answers"
+    },
+    {
+      "t": "h3",
+      "v": "10. What is explicitly not included?"
+    },
+    {
+      "t": "p",
+      "v": "The most useful question on this list. Content, photography, stock imagery, plugin licences, hosting, maintenance, training and tracking are the usual exclusions, and the gap between two quotes is often entirely explained by which of these each one assumed."
+    },
+    {
+      "t": "h3",
+      "v": "11. Who writes the content?"
+    },
+    {
+      "t": "p",
+      "v": "Whoever it is, it is on the critical path. More builds are delayed by missing copy than by code. If it is you, start before the design does."
+    },
+    {
+      "t": "h3",
+      "v": "12. Show me something you built that is still live, and tell me what it does for the business."
+    },
+    {
+      "t": "p",
+      "v": "Not a portfolio of designs, a working site. Then listen to whether they talk about the visual work or about what the site was for. Both matter; only one of them is usually mentioned."
+    },
+    {
+      "t": "h2",
+      "v": "Answers that should worry you"
+    },
+    {
+      "t": "list",
+      "v": [
+        "A fixed price given before anyone asked what the site needs to do",
+        "A price per page, which prices the thing nobody cares about",
+        "\"SEO included\" with no detail about what that means",
+        "Hosting that must be theirs, with no transfer path",
+        "A portfolio of designs rather than live, working sites",
+        "No mention of analytics anywhere in the proposal",
+        "Discomfort at the ownership questions"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "Is the cheapest quote ever the right one?"
+    },
+    {
+      "t": "p",
+      "v": "Sometimes, and you can usually tell by putting the exclusions side by side. A cheaper quote that excludes content, tracking and maintenance is not cheaper, it is smaller. Compare what you end up owning, not what you pay on day one."
+    },
+    {
+      "t": "h3",
+      "v": "Should I use a freelancer or an agency?"
+    },
+    {
+      "t": "p",
+      "v": "Covered properly in a separate article on this site. Briefly: a freelancer if your constraint is expertise on a focused problem, an agency if it is volume across several channels every week."
+    },
+    {
+      "t": "h3",
+      "v": "What if I do not understand the technical answers?"
+    },
+    {
+      "t": "p",
+      "v": "Say so and ask them to explain it again in plain terms. How someone handles that question is itself information. A developer who cannot explain their work to the person paying for it will be hard to work with for the whole project."
+    },
+    {
+      "t": "h3",
+      "v": "How many quotes should I get?"
+    },
+    {
+      "t": "p",
+      "v": "Three is plenty, and they are only comparable once you have asked all twelve questions above of each. Two quotes with the same number and different exclusions are not the same price."
+    },
+    {
+      "t": "p",
+      "v": "Last updated 4 October 2026."
+    }
+  ],
+  "words": 740
+}

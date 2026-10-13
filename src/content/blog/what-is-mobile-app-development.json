@@ -1,0 +1,242 @@
+{
+  "slug": "what-is-mobile-app-development",
+  "title": "What Is Mobile App Development? A Guide for Non-Technical Founders",
+  "metaTitle": "What Is Mobile App Development?",
+  "description": "What happens when an app gets built, what each stage costs in time and money, and the decisions you will be asked to make before anyone writes code.",
+  "published": "2026-10-04",
+  "updatedAt": "2026-10-05",
+  "tags": [
+    "Mobile Apps",
+    "Web Development",
+    "Dubai"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "If you are about to commission an app and have never done it before, the gap between what you imagine and what actually happens is wide. This is written to close it."
+    },
+    {
+      "t": "p",
+      "v": "No code in here. Just what the work is, what the decisions are, and where the money goes."
+    },
+    {
+      "t": "h2",
+      "v": "What an app actually is"
+    },
+    {
+      "t": "p",
+      "v": "Three separate things, and people quoting you often only price the first."
+    },
+    {
+      "t": "list",
+      "ordered": true,
+      "v": [
+        "The app itself. What someone downloads and taps. It lives on their phone.",
+        "The back-end. A server holding your data, deciding who may see what, and talking to anything else you use. Almost every app needs one. An app with no back-end is a brochure that happens to be installable.",
+        "The admin side. How you add content, see orders, answer messages, read numbers. If nobody builds this, you will be asking a developer to change things for you forever."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "When a quote looks surprisingly low, check which of these three it covers."
+    },
+    {
+      "t": "h2",
+      "v": "The decisions you will be asked to make"
+    },
+    {
+      "t": "h3",
+      "v": "iOS, Android, or both"
+    },
+    {
+      "t": "p",
+      "v": "Both, eventually, in most cases. The question is what comes first, and it should be settled by where your customers are rather than by which phone you personally own."
+    },
+    {
+      "t": "h3",
+      "v": "Native or cross-platform"
+    },
+    {
+      "t": "p",
+      "v": "Native means building twice, once for each platform, in each platform's own language. Cross-platform means building once in something like React Native and shipping to both."
+    },
+    {
+      "t": "p",
+      "v": "This is the biggest technical decision in the project and it deserves its own conversation. I have written about the trade-off separately."
+    },
+    {
+      "t": "h3",
+      "v": "What is in version one"
+    },
+    {
+      "t": "p",
+      "v": "The most important decision and the one founders find hardest. Every feature you add before launch delays the day you learn whether anyone wants this."
+    },
+    {
+      "t": "p",
+      "v": "The useful test: if this feature did not exist, would the app still solve the problem? If yes, it is version two."
+    },
+    {
+      "t": "h2",
+      "v": "How a build actually runs"
+    },
+    {
+      "t": "h3",
+      "v": "Working out what it is"
+    },
+    {
+      "t": "p",
+      "v": "Who it is for, what it has to do, what success looks like. Usually a week or two of conversation, and the most valuable thing that happens in it is features being removed."
+    },
+    {
+      "t": "h3",
+      "v": "Design"
+    },
+    {
+      "t": "p",
+      "v": "Structure and flow first, then the interface. App design is not web design shrunk down. The patterns differ, iOS and Android have their own conventions, and the amount of screen you are designing for is small enough that every decision shows."
+    },
+    {
+      "t": "h3",
+      "v": "Building"
+    },
+    {
+      "t": "p",
+      "v": "The longest stage. Usually the back-end and the app progress in parallel, and you should expect to see something working, in your hands, every two weeks or so. If you are not seeing it, ask why."
+    },
+    {
+      "t": "h3",
+      "v": "Testing"
+    },
+    {
+      "t": "p",
+      "v": "On real devices, not only on a simulator. Old phones, weak connections, small screens, and the states that are not the happy path: no internet, permission denied, session expired."
+    },
+    {
+      "t": "h3",
+      "v": "Getting into the stores"
+    },
+    {
+      "t": "p",
+      "v": "Consistently underestimated. Apple and Google both review submissions, both have rules, and both can reject you for things that have nothing to do with whether the app works. Screenshots, a description, a privacy policy and age ratings all have to exist."
+    },
+    {
+      "t": "p",
+      "v": "Build in time for at least one rejection. It is normal."
+    },
+    {
+      "t": "h3",
+      "v": "After launch"
+    },
+    {
+      "t": "p",
+      "v": "This is not optional maintenance, it is the cost of having an app. Operating systems update twice a year and can break things. Store rules change. Certificates expire. Dependencies need security patches."
+    },
+    {
+      "t": "p",
+      "v": "An app nobody maintains stops working, usually within about eighteen months. Budget for it from the start."
+    },
+    {
+      "t": "h2",
+      "v": "Where the money goes"
+    },
+    {
+      "t": "p",
+      "v": "Roughly in this order, largest first:"
+    },
+    {
+      "t": "table",
+      "head": [
+        "What",
+        "Why it costs"
+      ],
+      "rows": [
+        [
+          "Custom functionality",
+          "Anything that is not a standard pattern: payments, live tracking, chat, offline use, complex search"
+        ],
+        [
+          "The back-end",
+          "Data, accounts, permissions, and every integration with somebody else's system"
+        ],
+        [
+          "Two platforms",
+          "Even cross-platform, there is platform-specific work and testing"
+        ],
+        [
+          "Design",
+          "More screens than people expect, because every state is a screen"
+        ],
+        [
+          "Store compliance",
+          "Privacy, permissions, account deletion and the review cycle"
+        ],
+        [
+          "Maintenance",
+          "Ongoing, forever, and the thing most commonly left out of a budget"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "v": "For reference, my own published project minimum is AED 31,500 and retainers start at AED 16,000 a month. App projects normally sit well above that minimum. Those are my rates rather than market data."
+    },
+    {
+      "t": "h2",
+      "v": "Do you actually need an app?"
+    },
+    {
+      "t": "p",
+      "v": "A fair question and I will give the honest answer: often not."
+    },
+    {
+      "t": "p",
+      "v": "An app earns its cost when people use it repeatedly, when it needs something only a phone has, like location, camera or notifications, or when it has to work without a connection. A booking tool, a delivery app, a field service tool, a loyalty programme."
+    },
+    {
+      "t": "p",
+      "v": "If people will use it once, a website does the same job for less money and nobody has to install anything. Getting someone to download an app is far harder than getting them to open a link, and that cost does not appear in any development quote."
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "How long does an app take to build?"
+    },
+    {
+      "t": "p",
+      "v": "A focused first version is commonly a few months. The things that stretch it are scope added during the build, integrations with systems you do not control, and waiting for content and decisions."
+    },
+    {
+      "t": "h3",
+      "v": "Do I own the app at the end?"
+    },
+    {
+      "t": "p",
+      "v": "You should, and the store accounts should be in your company's name rather than your developer's. Get this in writing before you pay anything. Apps have been lost this way."
+    },
+    {
+      "t": "h3",
+      "v": "What ongoing costs should I expect?"
+    },
+    {
+      "t": "p",
+      "v": "Apple and Google both charge annual developer fees. Then hosting for your back-end, any third-party services you use, and maintenance time. The fees change, so check the current figures with each store directly rather than relying on an article."
+    },
+    {
+      "t": "h3",
+      "v": "Can I start with a website and add an app later?"
+    },
+    {
+      "t": "p",
+      "v": "Usually the best plan. Prove people want the thing first, with something that costs less and ships sooner. If the back-end is built sensibly, the app can use the same one later rather than starting over."
+    },
+    {
+      "t": "p",
+      "v": "Published 4 October 2026 by a Dubai-based developer. All AED figures are my own published rates."
+    }
+  ],
+  "words": 816
+}

@@ -4,8 +4,9 @@ import { blogPosts } from "@/data/blogPosts";
  * Paging for the writing index.
  *
  * The index listed all of them on one page, which was fine at thirteen posts
- * and is not at fifty-seven: the page is long enough that nobody reaches the
- * bottom, and every post competes with every other for the same attention.
+ * and was not at fifty-seven, the count when paging was added: the page is
+ * long enough that nobody reaches the bottom, and every post competes with
+ * every other for the same attention.
  *
  * **Page one stays at `/blog`.** It is the URL that is indexed, linked from the
  * nav and referenced from every article's breadcrumb, so it keeps its address.
@@ -13,6 +14,9 @@ import { blogPosts } from "@/data/blogPosts";
  * `/blog` to `/blog/page/1`, would move an established URL for a cosmetic gain.
  */
 export const POSTS_PER_PAGE = 12;
+
+// Order comes from `src/content/blog/index.ts` (newest first), never a sort, so
+// adding a post pushes the oldest one on each page onto the next.
 
 export const totalBlogPages = () => Math.max(1, Math.ceil(blogPosts.length / POSTS_PER_PAGE));
 

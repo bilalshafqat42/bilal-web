@@ -11,18 +11,24 @@ import { serviceDepth } from "@/data/serviceDepth";
 import { clients } from "@/data/caseStudies";
 import { disciplinesWithPages, disciplineItems } from "@/data/disciplines";
 import { blogPosts, type Block } from "@/data/blogPosts";
+import { POSITIONING, yearsExperience } from "./site";
+import { SITE_EMAIL, SITE_PHONE } from "./contact";
 
 export function buildSiteContent(): string {
   const parts: string[] = [];
 
   parts.push(`# About Bilal Shafqat
 
-A Dubai-based freelance digital marketer, developer and designer with 15 years of
-experience. Works directly with clients — no account managers, no junior staff, no
-handoffs between departments. Based in Dubai (Gulf Standard Time, UTC+4), Monday to
-Friday, working with clients across the UAE and internationally.
+${POSITIONING}
 
-Contact: bilal@bilalshafqat.com, +971 52 976 6006 (also WhatsApp).
+A freelance digital marketer with ${yearsExperience()} years of experience: paid media,
+SEO, social and email, plus the landing pages, websites, apps and CRM automation the
+campaigns land on, built by the same person. Works directly with clients, with no
+account managers, no junior staff and no handoffs between departments. Based in Dubai
+(Gulf Standard Time, UTC+4), Monday to Friday, working with clients across the UAE and
+internationally.
+
+Contact: ${SITE_EMAIL}, ${SITE_PHONE} (also WhatsApp).
 Contact page: /contact  ·  Pricing: /pricing  ·  FAQ: /faq`);
 
   parts.push(`# Services\n`);
@@ -100,7 +106,8 @@ Published ${post.published}. Covers: ${headings}.`);
 
   parts.push(`# Pricing
 
-No published price list. Four engagement models: Project-Based (fixed scope, timeline
+Published figures: project work from AED 31,500, monthly retainers from AED 16,000,
+and a one-off review session at AED 3,500. Four engagement models: Project-Based (fixed scope, timeline
 and price), Monthly Retainer, Ongoing Partner (embedded alongside an existing team),
 and Consulting & Advisory (review and direction without implementation).
 

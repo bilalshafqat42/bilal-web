@@ -1,0 +1,196 @@
+{
+  "slug": "what-a-ux-designer-actually-does",
+  "title": "What a UX Designer Actually Does on a Project",
+  "metaTitle": "What a UX Designer Actually Does",
+  "description": "A real UX engagement from first conversation to launch, written for people about to commission one who want to know what they are paying for.",
+  "published": "2026-10-04",
+  "updatedAt": "2026-10-05",
+  "tags": [
+    "UI UX Design",
+    "Design",
+    "Dubai"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "Descriptions of UX work tend to be either a list of deliverables or a diagram with five circles in it. Neither tells you what the person is doing on a Tuesday or why it is worth paying for."
+    },
+    {
+      "t": "p",
+      "v": "This is the shape of a real engagement, in the order it usually happens."
+    },
+    {
+      "t": "h2",
+      "v": "Before anything is drawn"
+    },
+    {
+      "t": "h3",
+      "v": "Finding out what the thing is for"
+    },
+    {
+      "t": "p",
+      "v": "The first conversation is not about the website. It is about the business. What does a good month look like, where do enquiries come from now, what happens to one after it arrives, and which part of that chain is the bottleneck."
+    },
+    {
+      "t": "p",
+      "v": "Half the time this conversation changes the brief. A client asks for a redesign and the actual problem is that enquiries arrive in an inbox nobody checks on Fridays."
+    },
+    {
+      "t": "h3",
+      "v": "Looking at what already happens"
+    },
+    {
+      "t": "p",
+      "v": "Analytics, if there are any worth reading. Which pages people land on, where they leave, what they search for on the site, which forms get started and abandoned."
+    },
+    {
+      "t": "p",
+      "v": "Then the sources nobody thinks of as research: the questions sales answers repeatedly, the complaints support handles weekly, the reasons people give for not buying. Those are a free, continuous study of where the current experience fails."
+    },
+    {
+      "t": "h3",
+      "v": "Talking to a few actual people"
+    },
+    {
+      "t": "p",
+      "v": "Five conversations with real customers beats a large survey for this kind of work. Not asking what they want, which produces polite fiction, but watching them try to do something and noticing where they hesitate."
+    },
+    {
+      "t": "h2",
+      "v": "Structure, before surface"
+    },
+    {
+      "t": "h3",
+      "v": "Deciding what goes where"
+    },
+    {
+      "t": "p",
+      "v": "What the site contains, how it is grouped, what the navigation says. This sounds trivial and is responsible for a large share of whether people find anything. Most businesses organise their site around their internal structure rather than around what a visitor is trying to do."
+    },
+    {
+      "t": "h3",
+      "v": "Mapping the journeys that matter"
+    },
+    {
+      "t": "p",
+      "v": "Usually two or three. The person ready to enquire. The person comparing options. The existing customer who needs something and should not be funnelled into the new-enquiry flow."
+    },
+    {
+      "t": "p",
+      "v": "Each one gets walked through step by step, and every step is a question: is this needed, can it be removed, what happens if it goes wrong."
+    },
+    {
+      "t": "h3",
+      "v": "Wireframes"
+    },
+    {
+      "t": "p",
+      "v": "Deliberately plain layouts with no styling, so the conversation stays on hierarchy and content rather than on colour. Clients often dislike this stage because it looks unfinished. It is the stage where changes are nearly free."
+    },
+    {
+      "t": "h2",
+      "v": "The part that gets skipped"
+    },
+    {
+      "t": "p",
+      "v": "Specifying every state, not just the one where everything works:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Empty. A dashboard with no data yet, a search with no results, a list before the first entry.",
+        "Loading. What is on screen during the two seconds the server is thinking.",
+        "Error. What the form says when it is wrong, and whether that tells the person how to fix it.",
+        "Too much. What happens when a name is sixty characters or a list has four hundred items.",
+        "Returning. What someone sees on their second visit, which is almost never the same as the first."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "When these are not specified, the developer decides them under time pressure, and they become the parts of the product people complain about."
+    },
+    {
+      "t": "h2",
+      "v": "Working with the build"
+    },
+    {
+      "t": "p",
+      "v": "The handover is not a file and a farewell. Questions come up during the build that the design did not answer, and the answer either comes from the designer or gets improvised."
+    },
+    {
+      "t": "p",
+      "v": "A designer who has shipped working software specifies fewer expensive things, because they know which requests cost a day and which cost a fortnight for no visible gain."
+    },
+    {
+      "t": "h2",
+      "v": "After launch"
+    },
+    {
+      "t": "p",
+      "v": "The work is not finished at launch, it is finished when somebody checks whether it did what it was meant to do. Enquiries, completion rates, drop-off at the step that was redesigned, support volume on the question that prompted the project."
+    },
+    {
+      "t": "p",
+      "v": "This is also the part most commonly cut from a budget, which is why so many redesigns are followed by an argument about whether they worked."
+    },
+    {
+      "t": "h2",
+      "v": "What you should receive"
+    },
+    {
+      "t": "list",
+      "v": [
+        "The structure: what the site contains and how it is grouped",
+        "The journeys, step by step, for the flows that matter",
+        "Wireframes or designs covering every state, not only the ideal one",
+        "Source files organised well enough that another designer could continue",
+        "A short written record of what was decided and why"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "That last one is worth asking for explicitly. A year later, nobody remembers why the form has three fields instead of seven, and without a record somebody adds four back."
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "How long does this take?"
+    },
+    {
+      "t": "p",
+      "v": "For a business website, the structural work is usually a couple of weeks and the delay is almost never the design. It is waiting for content, photographs and decisions from the client side."
+    },
+    {
+      "t": "h3",
+      "v": "Can I skip research if I know my customers?"
+    },
+    {
+      "t": "p",
+      "v": "You can skip formal research. Do not skip looking at your own analytics and asking your sales and support people what they get asked. That costs an afternoon and is the highest-value hour in the project."
+    },
+    {
+      "t": "h3",
+      "v": "What if I cannot afford the full process?"
+    },
+    {
+      "t": "p",
+      "v": "Keep two parts and drop the rest: the first conversation about what the site is for, and specifying the states. Those two carry most of the value. A one-off review session at AED 3,500 is how I usually handle a budget that will not stretch to a full engagement."
+    },
+    {
+      "t": "h3",
+      "v": "Who owns the files at the end?"
+    },
+    {
+      "t": "p",
+      "v": "You should, and in a form another designer can work from. Get it in writing before you pay anything. A folder of flattened images is not a handover."
+    },
+    {
+      "t": "p",
+      "v": "Published 4 October 2026 by a Dubai-based designer and developer. The AED figure is my own published rate."
+    }
+  ],
+  "words": 850
+}

@@ -1,0 +1,57 @@
+import { Mail, MapPin, Phone } from "lucide-react";
+import Reveal from "@/components/ui/Reveal";
+import SocialLinks from "@/components/ui/SocialLinks";
+import CtaButton from "@/components/ui/CtaButton";
+import Eyebrow from "@/components/ui/Eyebrow";
+import SecondaryButton from "@/components/ui/SecondaryButton";
+import { SITE_EMAIL, SITE_PHONE, SITE_PHONE_HREF } from "@/lib/contact";
+
+export default function Contact() {
+  return (
+    <section id="contact" className="relative section-pad">
+      <div className="site-container">
+        <Reveal>
+          <div className="relative overflow-hidden r-panel surface-3 px-8 py-14 sm:px-16 sm:py-20 text-center">
+            <div
+              className="blob pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet/50"
+              style={{ animationDelay: "-4s" }}
+            />
+
+            <div className="relative">
+              <Eyebrow>
+                Book A Consultation
+              </Eyebrow>
+              <h2 className="t-h2 mt-4 text-ink">
+                Have a project in mind? <span className="text-gradient">Let&apos;s start it.</span>
+              </h2>
+              <p className="mt-4 max-w-xl mx-auto text-muted leading-relaxed">
+                Whether it&apos;s a paid campaign, a website or app, or ongoing design and
+                social support — tell me what you need and I&apos;ll get back to you with
+                next steps.
+              </p>
+
+              <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+                <CtaButton href="/appointment">Book a free consultation</CtaButton>
+                <SecondaryButton href={`tel:${SITE_PHONE_HREF}`}>Call / WhatsApp</SecondaryButton>
+              </div>
+
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted">
+                <span className="flex items-center gap-2">
+                  <Mail size={15} className="text-gold" /> {SITE_EMAIL}
+                </span>
+                <span className="flex items-center gap-2">
+                  <Phone size={15} className="text-gold" /> {SITE_PHONE}
+                </span>
+                <span className="flex items-center gap-2">
+                  <MapPin size={15} className="text-gold" /> Dubai, UAE
+                </span>
+              </div>
+
+              <SocialLinks className="mt-8 justify-center" />
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}

@@ -1,5 +1,5 @@
-import type { Faq } from "./pillars";
-import { megaMenuGroups } from "./pillars";
+import type { Faq } from "./types";
+import { megaMenuGroups } from "./serviceCategories";
 import {
   allItems,
   itemsOfKind,

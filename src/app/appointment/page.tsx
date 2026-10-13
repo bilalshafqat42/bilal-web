@@ -1,20 +1,23 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/site";
 import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
-import AppointmentBooking from "@/components/AppointmentBooking";
-import FaqSection from "@/components/FaqSection";
+import AppointmentBooking from "@/components/forms/AppointmentBooking";
+import { megaMenuGroups } from "@/data/pillars";
+import FaqSection from "@/components/ui/FaqSection";
 import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
-import Eyebrow from "@/components/Eyebrow";
+import Eyebrow from "@/components/ui/Eyebrow";
+import { SITE_PHONE_HREF } from "@/lib/contact";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Book a Free 30-Minute Call — Bilal Shafqat, Dubai",
-  // Trimmed to 155 characters. The previous version ran to 166 and Google was
-  // cutting it mid-sentence, which wastes the one line it gives you.
+  // 144 characters. "Marketer, developer and designer" became "digital
+  // marketer" on 2026-10-13, matching the positioning on every other page.
   description:
-    "Book a free 30-minute call with Bilal Shafqat, a Dubai freelance marketer, developer and designer. Monday to Friday, 9am to 6pm GST. No pitch, no obligation.",
-  alternates: { canonical: "/appointment" },
-};
+    "Book a free 30-minute call with Bilal Shafqat, a freelance digital marketer in Dubai. Monday to Friday, 9am to 6pm GST. No pitch, no obligation.",
+  path: "/appointment",
+});
 
 /**
  * Questions someone asks before giving up half an hour.
@@ -85,7 +88,7 @@ const schema = graph([
     url,
     name: "Book a call with Bilal Shafqat",
     description:
-      "Book a free 30-minute consultation with Bilal Shafqat, a Dubai-based freelance digital marketer, developer and designer.",
+      "Book a free 30-minute consultation with Bilal Shafqat, a freelance digital marketer in Dubai who runs the campaign and builds the page it lands on.",
     inLanguage: "en",
     isPartOf: ref(ID.website, "WebSite"),
     about: ref(ID.business, "ProfessionalService"),
@@ -116,7 +119,7 @@ const schema = graph([
       serviceUrl: url,
       availableLanguage: { "@type": "Language", name: "English" },
       // Matches the hours stated in the footer and in this page's description.
-      servicePhone: { "@type": "ContactPoint", contactType: "sales", telephone: "+971529766006" },
+      servicePhone: { "@type": "ContactPoint", contactType: "sales", telephone: SITE_PHONE_HREF },
     },
   },
   breadcrumbNode(url, [
@@ -276,7 +279,7 @@ export default function AppointmentPage() {
                 Not sticky below `lg`, where the panel is full width and there
                 is nothing beside it to scroll. */}
             <div className="lg:sticky lg:top-28">
-              <AppointmentBooking />
+              <AppointmentBooking services={megaMenuGroups.map((g) => g.title)} />
             </div>
           </div>
         </section>

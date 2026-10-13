@@ -1,0 +1,232 @@
+{
+  "slug": "google-ads-vs-meta-ads-dubai-real-estate",
+  "title": "Google Ads vs Meta Ads for Dubai Real Estate: Which Actually Works?",
+  "metaTitle": "Google Ads vs Meta Ads for Dubai Real Estate",
+  "description": "Which platform produces real property enquiries in Dubai, how lead quality differs, and why most developers should run both but not in the same month.",
+  "published": "2026-10-01",
+  "updatedAt": "2026-10-13",
+  "tags": [
+    "Dubai",
+    "Paid Ads",
+    "Real Estate"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "The honest answer is that they do different jobs, and the question is usually asked in a way that cannot be answered well. Google Ads captures people already looking. Meta Ads creates people who were not looking yet. In Dubai real estate you need both, and the mistake most teams make is running them against the same target and judging them by the same number."
+    },
+    {
+      "t": "p",
+      "v": "Here is how they actually differ in this market, and how to decide which one gets your budget first."
+    },
+    {
+      "t": "h2",
+      "v": "The short version"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Google Ads reaches intent. Somebody typed \"2 bedroom apartment Dubai Marina\". They are in the market. The lead is more expensive and closer to buying.",
+        "Meta Ads reaches interest. Nobody opened Instagram to buy property. You interrupt them with something worth stopping for. The lead is cheaper and much further from a decision.",
+        "Judge Google on cost per qualified enquiry. Judge Meta on cost per qualified enquiry too, but expect a different ratio and a longer path to it.",
+        "If your budget only supports one platform properly, start with Google. Capturing existing demand is a shorter route to a first sale than creating new demand."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Where Google Ads wins"
+    },
+    {
+      "t": "h3",
+      "v": "The person is already looking"
+    },
+    {
+      "t": "p",
+      "v": "This is the whole argument. Search intent is the most valuable signal in advertising, and nothing on Meta replicates it. Somebody searching \"off plan Dubai Creek Harbour\" has told you the location, the product type and the stage they are at, in four words."
+    },
+    {
+      "t": "h3",
+      "v": "You can be very specific"
+    },
+    {
+      "t": "p",
+      "v": "Dubai property search is unusually granular. People search by community, by developer, by project name, by handover year. You can build campaigns around that specificity in a way that broad audience targeting cannot match."
+    },
+    {
+      "t": "h3",
+      "v": "Where it hurts"
+    },
+    {
+      "t": "p",
+      "v": "Dubai property keywords are among the most expensive in the region, because every portal, every brokerage and every developer is bidding on the same terms. You are competing against companies with far larger budgets, and the portals usually outrank everyone. Expect a high cost per click and plan for it rather than being surprised by it."
+    },
+    {
+      "t": "p",
+      "v": "The other issue is that a lot of that search volume is brokers researching, competitors checking, and people who will never transact. Negative keywords are not optional here. They are most of the job."
+    },
+    {
+      "t": "h2",
+      "v": "Where Meta Ads wins"
+    },
+    {
+      "t": "h3",
+      "v": "Reach and cost"
+    },
+    {
+      "t": "p",
+      "v": "You will get far more impressions and far cheaper clicks than on Google. For a launch, a new phase or anything where awareness is the goal, nothing else gets in front of that many relevant people for the money."
+    },
+    {
+      "t": "h3",
+      "v": "The creative does the targeting"
+    },
+    {
+      "t": "p",
+      "v": "On Meta the image or video decides who engages more than the audience settings do. A well-shot walkthrough of a specific unit will find the people interested in that kind of unit. This is good news for property, which is an inherently visual product with plenty of footage already sitting on a hard drive."
+    },
+    {
+      "t": "h3",
+      "v": "Where it hurts"
+    },
+    {
+      "t": "p",
+      "v": "Lead quality. Instant forms produce a lot of leads and a meaningful share of them are not real prospects: wrong numbers, people who tapped by accident, people who wanted the brochure and nothing else. A cheap cost per lead on a Meta report can be a very expensive cost per meeting once the calls are made."
+    },
+    {
+      "t": "p",
+      "v": "This is the single most common way a Dubai property campaign looks successful and is not."
+    },
+    {
+      "t": "h2",
+      "v": "The comparison that matters"
+    },
+    {
+      "t": "p",
+      "v": "Most teams compare cost per lead. That is the wrong number, and comparing it across these two platforms is close to meaningless, because the two platforms produce leads at different stages of the same journey."
+    },
+    {
+      "t": "p",
+      "v": "The numbers worth tracking, in order:"
+    },
+    {
+      "t": "list",
+      "ordered": true,
+      "v": [
+        "Cost per qualified enquiry, where qualified means somebody your sales team agrees is worth calling twice",
+        "Cost per viewing or meeting booked",
+        "Cost per deal, if your sales cycle is short enough to attribute honestly",
+        "Cost per lead, last, as a diagnostic rather than a target"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "If you cannot produce the first of those, that is the problem to fix before you argue about platforms. Which brings us to the real issue."
+    },
+    {
+      "t": "h2",
+      "v": "The thing that decides this more than the platform does"
+    },
+    {
+      "t": "p",
+      "v": "Tracking. Most Dubai property advertisers cannot tell you which campaign produced a signed deal, which means the platform debate is being conducted on vibes."
+    },
+    {
+      "t": "p",
+      "v": "What needs to be in place before the budget question is even interesting:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Leads landing in a CRM with the campaign, ad set and creative attached, automatically",
+        "A qualification status the sales team actually updates",
+        "Server-side tracking, so the measurement survives browser restrictions and ad blockers",
+        "Offline conversions fed back to Google and Meta, so the platforms optimise towards deals rather than towards form fills"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "That last point is the one that changes results most and gets done least. Both platforms optimise towards whatever you tell them success looks like. Tell them success is a form submission and they will find you people who love filling in forms. Tell them success is a qualified enquiry and the targeting changes underneath you."
+    },
+    {
+      "t": "h2",
+      "v": "How to split a budget"
+    },
+    {
+      "t": "p",
+      "v": "There is no correct ratio, and anyone who gives you one without seeing your sales cycle is guessing. What follows is a starting structure, not a rule."
+    },
+    {
+      "t": "h3",
+      "v": "If you are selling a specific project with a deadline"
+    },
+    {
+      "t": "p",
+      "v": "Weight towards Meta. You need volume and awareness quickly, the product is visual, and the window is short. Keep a Google budget on your own project name and brand terms so you are not paying a portal to intercept people looking for you."
+    },
+    {
+      "t": "h3",
+      "v": "If you are a brokerage selling across communities"
+    },
+    {
+      "t": "p",
+      "v": "Weight towards Google. Your advantage is being present at the moment of intent across many searches. Use Meta for retargeting rather than for cold reach."
+    },
+    {
+      "t": "h3",
+      "v": "If you have never run either properly"
+    },
+    {
+      "t": "p",
+      "v": "Start with Google, on your own brand and on tightly defined searches, with the tracking built first. Prove the path from click to enquiry to meeting on a small budget before you spend on reach."
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "Which platform is cheaper for Dubai real estate?"
+    },
+    {
+      "t": "p",
+      "v": "Meta, per click and per lead, by a wide margin. Not necessarily per deal, which is the number that pays your salary. The gap between those two statements is where most property advertising budgets are lost."
+    },
+    {
+      "t": "h3",
+      "v": "Are Meta instant forms worth using?"
+    },
+    {
+      "t": "p",
+      "v": "They raise volume and lower quality. They are worth using when your follow-up is fast, because the value decays quickly, and when the form asks at least one question that someone tapping idly will not bother to answer. A form with a single qualifying question will produce fewer and better leads."
+    },
+    {
+      "t": "h3",
+      "v": "What about TikTok, Snapchat and LinkedIn?"
+    },
+    {
+      "t": "p",
+      "v": "Snapchat and TikTok have real reach in this market and can work for awareness on the right product with the right creative. LinkedIn matters for commercial property and for investor audiences, and is expensive for residential. None of them is where you start. For how all five compare outside property, see [[Google Ads vs Meta vs TikTok in the UAE|/google-ads-vs-meta-vs-tiktok-where-to-start-uae]]."
+    },
+    {
+      "t": "h3",
+      "v": "How long before I can judge a campaign?"
+    },
+    {
+      "t": "p",
+      "v": "Long enough for leads to move through your actual sales cycle, which in Dubai property is usually weeks rather than days. Judging in week one tells you about form fills, not about deals. Set the review date when you set the budget."
+    },
+    {
+      "t": "h3",
+      "v": "Do I need separate landing pages?"
+    },
+    {
+      "t": "p",
+      "v": "Yes, and this is cheap compared to the media spend it protects. Sending paid traffic to a homepage wastes a meaningful share of what you paid for. A page that matches the ad, loads fast on a phone and asks for the minimum will usually outperform a better-targeted campaign pointed somewhere generic. The launch pages on [[off-plan real estate marketing|/real-estate-marketing]] are built on that principle."
+    },
+    {
+      "t": "p",
+      "v": "Last updated 1 October 2026."
+    }
+  ],
+  "words": 1169
+}

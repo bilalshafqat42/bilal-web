@@ -1,25 +1,26 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
+import { pageMetadata, yearsExperience } from "@/lib/site";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import Reveal from "@/components/Reveal";
-import SocialLinks from "@/components/SocialLinks";
+import Reveal from "@/components/ui/Reveal";
+import SocialLinks from "@/components/ui/SocialLinks";
 import { pillars, accentClasses } from "@/data/pillars";
-import CtaButton from "@/components/CtaButton";
-import SecondaryButton from "@/components/SecondaryButton";
-import PageOpener from "@/components/PageOpener";
-import WhoIWorkWith from "@/components/WhoIWorkWith";
+import CtaButton from "@/components/ui/CtaButton";
+import SecondaryButton from "@/components/ui/SecondaryButton";
+import PageOpener from "@/components/layout/PageOpener";
+import WhoIWorkWith from "@/components/sections/WhoIWorkWith";
 import { SITE_URL, breadcrumbNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
-import Eyebrow from "@/components/Eyebrow";
+import Eyebrow from "@/components/ui/Eyebrow";
 
-export const metadata: Metadata = {
-  title: "About Bilal Shafqat — Freelance Marketer & Developer, Dubai",
-  description:
-    "Fifteen years across paid marketing, web and app development, design and CRM automation. One senior partner in Dubai, not an agency.",
-  alternates: {
-    canonical: "/about",
-  },
-};
+export const metadata: Metadata = pageMetadata({
+  // Led with "Freelance Marketer & Developer" until 2026-10-13. The site sells
+  // one identity, a digital marketer who also builds what the campaign lands on
+  // (roadmap 397), and the About page is where a name search lands.
+  title: "About Bilal Shafqat | Freelance Digital Marketer in Dubai",
+  description: `Freelance digital marketer in Dubai with ${yearsExperience()} years in paid media, SEO and social. I run the campaign and build the page it lands on, as one senior partner.`,
+  path: "/about",
+});
 
 const stack = [
   {
@@ -74,8 +75,7 @@ const schema = graph([
     "@id": `${pageUrl}#page`,
     url: pageUrl,
     name: "About Bilal Shafqat",
-    description:
-      "Fifteen years across paid marketing, web and app development, design and CRM automation, working as one senior partner rather than an agency.",
+    description: `Freelance digital marketer in Dubai with ${yearsExperience()} years across paid marketing, SEO and social, who also builds the landing pages, websites and CRM automation the campaigns land on.`,
     inLanguage: "en",
     isPartOf: ref(ID.website, "WebSite"),
     // `mainEntity`, not a second Person node. The Person is defined once on the
@@ -103,7 +103,7 @@ export default function AboutPage() {
              tag and the paragraph below did (roadmap 276). */
           title={
             <>
-              Bilal Shafqat. 15 years of marketing, design and development, in{" "}
+              Bilal Shafqat. {yearsExperience()} years of marketing, design and development, in{" "}
               <span className="underline decoration-gold decoration-4 underline-offset-4">
                 one senior partner
               </span>
@@ -111,8 +111,8 @@ export default function AboutPage() {
           }
           standfirst={
             <>
-              I&apos;m Bilal Shafqat, a Dubai-based freelance digital marketer,
-              developer, and designer. Companies usually hire an agency for
+              I&apos;m Bilal Shafqat, a freelance digital marketer in Dubai. I
+              run the campaign and build the page it lands on. Companies usually hire an agency for
               marketing, a developer for the website, and a freelancer for
               design, then spend their own time managing the handoffs between
               them. I do all of it myself, which means one brief, one point of
@@ -213,7 +213,7 @@ export default function AboutPage() {
                   enquiry landed somewhere nobody was watching.
                 </p>
                 <p className="mt-5 text-base leading-relaxed text-muted">
-                  Fixing that meant learning the other half. Fifteen years later the two
+                  Fixing that meant learning the other half. {yearsExperience()} years later the two
                   halves are one job, and the thing clients actually buy is the absence of
                   a handover. Most marketers cannot build the thing they are marketing and
                   most developers have never run a campaign, so the gap between them is

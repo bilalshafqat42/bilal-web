@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Check, Clock, Mail } from "lucide-react";
-import WhatsAppLink from "@/components/WhatsAppLink";
-import CtaButton from "@/components/CtaButton";
-import SecondaryButton from "@/components/SecondaryButton";
+import WhatsAppLink from "@/components/ui/WhatsAppLink";
+import CtaButton from "@/components/ui/CtaButton";
+import SecondaryButton from "@/components/ui/SecondaryButton";
+import { SITE_PHONE, SITE_PHONE_HREF } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "Thank you — Bilal Shafqat",
@@ -98,8 +99,8 @@ export default async function ThankYouPage({ searchParams }: PageProps) {
                 WhatsApp me
               </WhatsAppLink>{" "}
               or call{" "}
-              <a href="tel:+971529766006" className="text-gold underline underline-offset-4 hover:opacity-80">
-                +971 52 976 6006
+              <a href={`tel:${SITE_PHONE_HREF}`} className="text-gold underline underline-offset-4 hover:opacity-80">
+                {SITE_PHONE}
               </a>
               .
             </p>

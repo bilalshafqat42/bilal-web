@@ -1,0 +1,231 @@
+{
+  "slug": "cost-to-hire-a-web-developer-in-dubai",
+  "title": "What It Costs to Hire a Web Developer in Dubai",
+  "metaTitle": "Cost to Hire a Web Developer in Dubai",
+  "description": "The four ways to hire a developer in Dubai, what each really costs once you include the parts nobody quotes, and how to compare them honestly.",
+  "published": "2026-10-04",
+  "updatedAt": "2026-10-13",
+  "tags": [
+    "Web Development",
+    "Pricing",
+    "Dubai"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "This is a different question from [[what a website costs in Dubai|/how-much-does-a-website-cost-in-dubai]]. That one is about a project. This one is about a person, and the right answer depends on whether you need somebody for six weeks or for the next three years."
+    },
+    {
+      "t": "p",
+      "v": "I am a Dubai-based freelance developer, so the figures here are my own published rates and what I see quoted around me. They are not survey data and I am not presenting them as such."
+    },
+    {
+      "t": "h2",
+      "v": "Four ways to hire, and what each really costs"
+    },
+    {
+      "t": "h3",
+      "v": "A freelancer"
+    },
+    {
+      "t": "p",
+      "v": "You pay for output rather than for time in a seat. No visa, no end of service, no desk, no quiet months. You also get no guaranteed availability, and if they are unavailable in a crisis you have no bench."
+    },
+    {
+      "t": "p",
+      "v": "My own [[published freelance rates|/pricing]], so there is at least one verifiable number on this page: project minimum AED 31,500, retainers from AED 16,000 a month, and a one-off review session at AED 3,500. Experienced Dubai freelancers generally sit in the tens of thousands of dirhams for a straightforward business website rather than the thousands."
+    },
+    {
+      "t": "h3",
+      "v": "A Dubai agency"
+    },
+    {
+      "t": "p",
+      "v": "You are buying continuity and capacity. An office, account management, a project manager and a bench of people, which means the work continues when somebody leaves. All of that sits in your quote whether or not your particular project benefits from it."
+    },
+    {
+      "t": "p",
+      "v": "Agency pricing for a business website commonly starts around the middle of the freelance range and climbs steeply. For a large project with many stakeholders, that structure earns its money. For a ten-page site, most of what you are paying for is the layer between you and the person doing the work."
+    },
+    {
+      "t": "h3",
+      "v": "An in-house hire"
+    },
+    {
+      "t": "p",
+      "v": "The salary is the part people quote and the smaller part of the real number. Budget also for visa and sponsorship costs, medical insurance, end of service gratuity, recruitment fees, equipment and software, and the time your own team spends managing them."
+    },
+    {
+      "t": "p",
+      "v": "Employment and visa costs in the UAE change, and they depend on your licence, your free zone and the role. Get the current figures from a qualified PRO or your corporate services provider rather than from an article. I am a developer, not your adviser on employment matters."
+    },
+    {
+      "t": "p",
+      "v": "The real question is whether you have enough work. A developer with nothing to build is the most expensive thing on this page."
+    },
+    {
+      "t": "h3",
+      "v": "An offshore team"
+    },
+    {
+      "t": "p",
+      "v": "The lowest headline number and the widest range of outcomes. The saving is genuine. So is the cost of time-zone gaps, a brief that has to be perfect because clarification takes a day, and nobody who can sit in a room with you."
+    },
+    {
+      "t": "p",
+      "v": "The offshore projects I have seen work well all had one thing in common: somebody technical on the client side who could specify properly and review critically. Without that, you are paying for exactly what you asked for, which is rarely what you meant."
+    },
+    {
+      "t": "h2",
+      "v": "Comparing them honestly"
+    },
+    {
+      "t": "table",
+      "head": [
+        "",
+        "Freelancer",
+        "Agency",
+        "In-house",
+        "Offshore"
+      ],
+      "rows": [
+        [
+          "Pay for",
+          "Output",
+          "Capacity",
+          "Availability",
+          "Hours"
+        ],
+        [
+          "Speed to start",
+          "Days",
+          "Weeks",
+          "Months",
+          "Weeks"
+        ],
+        [
+          "Access to the builder",
+          "Direct",
+          "Through an account manager",
+          "Direct",
+          "Through a manager"
+        ],
+        [
+          "Cost when work is quiet",
+          "Nothing",
+          "Retainer",
+          "Full salary",
+          "Low"
+        ],
+        [
+          "Risk",
+          "One person",
+          "Staff turnover",
+          "Hiring the wrong person",
+          "Specification and distance"
+        ],
+        [
+          "Best for",
+          "Defined projects, ongoing partner",
+          "Large multi-stakeholder work",
+          "Continuous internal demand",
+          "High volume, clear specs"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "What moves the number most"
+    },
+    {
+      "t": "p",
+      "v": "Not the hiring model. These, in order:"
+    },
+    {
+      "t": "list",
+      "ordered": true,
+      "v": [
+        "Custom functionality. A page that displays information is solved. A page that does something is a project inside the project. Booking, payments, calculators, portals, search with filters.",
+        "Integrations. Every connection to a CRM, a feed, a gateway or an accounting system is a dependency on somebody else's documentation and uptime. Individually easy, collectively expensive.",
+        "Arabic. Right to left mirrors the layout, not just the text. Navigation, icons, forms, charts and any asymmetric design all need a second decision. Budget it as a percentage of the build, not a line item.",
+        "Content. The most commonly forgotten cost and the most common reason a finished build sits unlaunched. Copy and photography belong in the budget unless you are personally writing and shooting them."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "What is usually missing from the quote"
+    },
+    {
+      "t": "p",
+      "v": "Ask about every one of these before you compare two numbers, because a lower quote that excludes them is not lower:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Hosting and domain, annually, and whose account they sit in",
+        "Analytics and conversion tracking, set up before launch rather than bolted on after",
+        "Who owns the code and the design files when the engagement ends",
+        "What happens when something breaks in month three, and what it costs",
+        "Content, photography and any stock imagery, font or plugin licences",
+        "Training, so your team can run the thing without calling someone"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Hourly, project or retainer?"
+    },
+    {
+      "t": "p",
+      "v": "Project pricing suits defined work with an end. The estimating risk sits with the developer rather than with you, which is why I price this way wherever the scope can be pinned down."
+    },
+    {
+      "t": "p",
+      "v": "A retainer suits continuous work, where the site keeps changing because the business keeps changing. Be careful with monthly pricing that is really a one-off build spread over twelve months, because at the end of it you may own nothing."
+    },
+    {
+      "t": "p",
+      "v": "Hourly is honest for advisory work and poor for building, because it pays for time rather than outcome and nobody is incentivised to finish."
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "Do I need a trade licence to hire a freelancer in the UAE?"
+    },
+    {
+      "t": "p",
+      "v": "You do not, but the person invoicing you generally needs to be licensed to do so legally. Ask for a trade licence or freelance permit before you pay anything, and take proper advice on your own obligations from a qualified professional. I am a developer and not your lawyer or accountant."
+    },
+    {
+      "t": "h3",
+      "v": "Is an offshore developer a false economy?"
+    },
+    {
+      "t": "p",
+      "v": "Not inherently. It becomes one when nobody on your side can write a precise brief or review the result critically. The saving is real and it is spent on management you may not have."
+    },
+    {
+      "t": "h3",
+      "v": "How do I compare two quotes that are far apart?"
+    },
+    {
+      "t": "p",
+      "v": "Put the exclusions side by side rather than the prices. One quote usually includes content, tracking, Arabic and three months of support, and the other includes a design and a handover. Most of the gap explains itself."
+    },
+    {
+      "t": "h3",
+      "v": "What is the lowest realistic way to get a business website here?"
+    },
+    {
+      "t": "p",
+      "v": "A well-chosen template with your own copy and real photographs. Honestly done, that beats a low-cost custom build. Spend the difference on writing and images, which is where the return actually is."
+    },
+    {
+      "t": "p",
+      "v": "Published 4 October 2026. All AED figures are my own published rates, stated so there is at least one verifiable number here. They are not a market survey."
+    }
+  ],
+  "words": 963
+}

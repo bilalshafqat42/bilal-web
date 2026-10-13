@@ -1,0 +1,111 @@
+import type { ReactNode } from "react";
+import Breadcrumb, { type Crumb } from "@/components/layout/Breadcrumb";
+import Eyebrow from "@/components/ui/Eyebrow";
+
+/**
+ * The band every page opens with: white ground, breadcrumb, eyebrow, h1,
+ * standfirst.
+ *
+ * **Was copied into sixteen files, character for character.**
+ *
+ *     <section className="page-opener relative overflow-hidden pt-32 sm:pt-40">
+ *       <div className="pointer-events-none absolute inset-0 grid-fade" />
+ *       <div className="site-container relative">
+ *
+ * Sixteen copies is sixteen chances for one to drift, and four more pages
+ * skipped the band entirely: `/portfolio` and `/portfolio/[discipline]` opened
+ * with no padding and no band at all, `/process` with a translucent dark one.
+ * Measured on 2026-10-07: 160px of top padding on eleven pages, 128px on one,
+ * 0px on two.
+ *
+ * The homepage is the one deliberate exception and does not use this. It opens
+ * with a hero, not a page header, and `HomeParallax` is a different thing
+ * wearing the same position.
+ *
+ * **`aside` is where a page puts something beside the heading** — the portrait
+ * on `/about`, the availability card on `/appointment`. Passing it here rather
+ * than letting each page build its own two-column grid is what stopped those
+ * pages drifting in the first place.
+ */
+
+type Props = {
+  /** Rendered as the h1. Every page has exactly one, which `h1-check` enforces. */
+  title: ReactNode;
+  /** The small gold label above the title. */
+  eyebrow?: string;
+  /** One or two sentences under the title. */
+  standfirst?: ReactNode;
+  /** Omit on a top-level page, where a trail of one crumb says nothing. */
+  crumbs?: Crumb[];
+  /** Buttons under the standfirst. */
+  actions?: ReactNode;
+  /** Between the breadcrumb and the heading. The client logo on a portfolio
+   *  page, where the mark identifies the work before the headline does. */
+  above?: ReactNode;
+  /** Content beside the heading, on `lg` and up. Stacks under it below that. */
+  aside?: ReactNode;
+  /** Content that bleeds to the viewport edge rather than stopping at the
+   *  container gutter: the portrait on `/about`.
+   *
+   *  A sibling of `.site-container`, not a cell inside it, because the
+   *  container is a centred 83.33% column — `right-0` against that stops at the
+   *  gutter, and the bleed is the whole point. The heading column is capped so
+   *  the copy never runs under the image. */
+  bleed?: ReactNode;
+  /** `h2` renders the h1 element at the h2 size.
+   *
+   *  The article template needs it. The scale is tuned for landing-page heroes
+   *  of three or four words; article headlines run to 78 characters, and at
+   *  `t-h1` the title alone filled a 1440x900 viewport, so the reader reached
+   *  the article by scrolling past its own name. Measured, not assumed. The
+   *  element stays the page's only `h1`, which `h1-check` enforces. */
+  titleSize?: "h1" | "h2";
+  className?: string;
+};
+
+export default function PageOpener({
+  title,
+  eyebrow,
+  standfirst,
+  crumbs,
+  actions,
+  above,
+  aside,
+  bleed,
+  titleSize = "h1",
+  className = "",
+}: Props) {
+  const heading = (
+    <div className={bleed ? "lg:max-w-[56%]" : undefined}>
+      {crumbs?.length ? <Breadcrumb items={crumbs} className="mb-8" /> : null}
+      {above ? <div className="mb-7">{above}</div> : null}
+      {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
+      <h1 className={`t-${titleSize} text-balance text-ink ${eyebrow ? "mt-4" : ""}`}>{title}</h1>
+      {standfirst ? (
+        <div className="mt-6 max-w-2xl space-y-4 text-lg leading-relaxed text-muted">
+          {standfirst}
+        </div>
+      ) : null}
+      {actions ? <div className="mt-9 flex flex-wrap items-center gap-3">{actions}</div> : null}
+    </div>
+  );
+
+  return (
+    <section className={`page-opener relative overflow-hidden pt-32 sm:pt-40 ${className}`}>
+      {/* Decorative. `pointer-events-none` so it never eats a click on the
+          breadcrumb sitting over it. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 grid-fade" />
+      <div className="site-container relative">
+        {aside ? (
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+            {heading}
+            {aside}
+          </div>
+        ) : (
+          heading
+        )}
+      </div>
+      {bleed}
+    </section>
+  );
+}

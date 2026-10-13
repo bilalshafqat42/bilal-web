@@ -1,15 +1,17 @@
-import StructuredData from "@/components/StructuredData";
-import HeroBanner from "@/components/HeroBanner";
-import DisciplineStatement from "@/components/DisciplineStatement";
-import HomeParallax from "@/components/HomeParallax";
-import AboutSplit from "@/components/AboutSplit";
-import CapabilityLedger from "@/components/CapabilityLedger";
-import PortfolioGrid from "@/components/PortfolioGrid";
-import Results from "@/components/Results";
-import ProcessCompact from "@/components/ProcessCompact";
-import Engagement from "@/components/Engagement";
-import HomeFaq from "@/components/HomeFaq";
-import Contact from "@/components/Contact";
+import type { Metadata } from "next";
+import StructuredData from "@/components/seo/StructuredData";
+import { HOME_DESCRIPTION, HOME_TITLE, pageMetadata } from "@/lib/site";
+import HeroBanner from "@/components/home/HeroBanner";
+import DisciplineStatement from "@/components/home/DisciplineStatement";
+import HomeParallax from "@/components/home/HomeParallax";
+import AboutSplit from "@/components/home/AboutSplit";
+import CapabilityLedger from "@/components/home/CapabilityLedger";
+import PortfolioGrid from "@/components/portfolio/PortfolioGrid";
+import Results from "@/components/home/Results";
+import ProcessCompact from "@/components/home/ProcessCompact";
+import Engagement from "@/components/sections/Engagement";
+import HomeFaq from "@/components/home/HomeFaq";
+import Contact from "@/components/sections/Contact";
 
 /**
  * Homepage: eight sections, down from eleven.
@@ -31,6 +33,23 @@ import Contact from "@/components/Contact";
  * their own right, which is deliberate — the boundary stays at the leaf, never
  * on this file.
  */
+/**
+ * Title and description are the layout's, restated so the share card can carry
+ * an `og:url`. It is set here and not in the layout because Next inherits a
+ * parent's `openGraph` whole: an `og:url` of "/" in the layout would be claimed
+ * by every page that does not declare its own card.
+ *
+ * `alternates` is dropped so the layout's, with the RSS link, still applies.
+ */
+const { alternates: _alternates, ...homeMetadata } = pageMetadata({
+  title: HOME_TITLE,
+  description: HOME_DESCRIPTION,
+  path: "/",
+});
+void _alternates;
+
+export const metadata: Metadata = homeMetadata;
+
 export default function Home() {
   return (
     <>

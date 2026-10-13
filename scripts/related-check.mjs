@@ -12,7 +12,7 @@
  *    (roadmap 280) — `slice(0, 3)` handed every post the same three.
  *
  * 2. **Off-topic pairing.** Index rotation guarantees no orphans but pairs a
- *    React hooks article with whatever happens to sit beside it in the JSON.
+ *    React hooks article with whatever happens to sit beside it in the list.
  *    The links exist and say nothing about the subject, which is the part a
  *    search engine reads.
  *
@@ -43,8 +43,23 @@
  *    A table row with the wrong number of cells is the same class of problem
  *    one layer down: it renders as a ragged row rather than as an error.
  *
+ *
+ * ---------------------------------------------------------------------------
+ * 4. **Storage and routing.** Each post is `src/content/blog/<slug>.json`,
+ *    listed in `src/content/blog/index.ts`. Checked here:
+ *
+ *    - every JSON file in that folder is in the index (a file that is not
+ *      would simply never appear, with no error), and its name is its slug;
+ *    - no slug is used twice;
+ *    - no slug equals a top-level folder in `src/app`. Articles live at the
+ *      root, and a static route beats the `[slug]` route, so a post called
+ *      `pricing` would build and never be served;
+ *    - `published` and `updatedAt` are ISO dates and `updatedAt` is not
+ *      earlier than `published`.
+ *
  * Usage:  npm run related-check
  */
+import { readdirSync } from "node:fs";
 import { blogPosts, relatedPosts } from "../src/data/blogPosts.ts";
 
 let failed = 0;
@@ -130,6 +145,39 @@ for (const post of blogPosts) {
   });
 }
 
+// 4. Storage and routing.
+const contentDir = new URL("../src/content/blog/", import.meta.url);
+const indexed = new Set(blogPosts.map((p) => p.slug));
+if (indexed.size !== blogPosts.length) fail("a slug appears twice in src/content/blog/index.ts");
+for (const file of readdirSync(contentDir).filter((f) => f.endsWith(".json"))) {
+  const slug = file.slice(0, -".json".length);
+  if (!indexed.has(slug)) fail(`src/content/blog/${file} is not listed in src/content/blog/index.ts (or its slug field differs from its file name)`);
+}
+
+/** Top-level route segments. `(group)` folders add no segment, so their
+ *  children count as top level; `[dynamic]`, `_private` and `@slot` folders
+ *  claim no fixed name. */
+const appDir = new URL("../src/app/", import.meta.url);
+const routeNames = (dir) =>
+  readdirSync(dir, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .flatMap((d) => {
+      if (/^\(.*\)$/.test(d.name)) return routeNames(new URL(`${d.name}/`, dir));
+      if (/^[[_@]/.test(d.name)) return [];
+      return [d.name];
+    });
+const routes = new Set(routeNames(appDir));
+for (const post of blogPosts) {
+  if (routes.has(post.slug)) fail(`${post.slug} matches the static route src/app/${post.slug}, which would shadow the article`);
+}
+
+const ISO = /^\d{4}-\d{2}-\d{2}$/;
+for (const post of blogPosts) {
+  if (!ISO.test(post.published ?? "")) fail(`${post.slug} has no ISO \`published\` date`);
+  if (!ISO.test(post.updatedAt ?? "")) fail(`${post.slug} has no ISO \`updatedAt\` date`);
+  else if (post.updatedAt < post.published) fail(`${post.slug} updatedAt ${post.updatedAt} is before published ${post.published}`);
+}
+
 const orphans = [...inbound].filter(([, n]) => n === 0).map(([s]) => s);
 for (const slug of orphans) fail(`${slug} is never offered as related reading by any article`);
 
@@ -140,7 +188,8 @@ if (failed) {
 
 const counts = [...inbound.values()];
 console.log(
-  `All ${blogPosts.length} articles linked, word counts correct, no empty headings. ` +
+  `All ${blogPosts.length} articles linked, word counts correct, no empty headings, ` +
+    `every file indexed, no slug shadowed by any of ${routes.size} top-level routes, dates valid. ` +
     `Inbound related links: ` +
     `min ${Math.min(...counts)}, max ${Math.max(...counts)}. ` +
     `${tagged} articles had a same-tag pool and all three links stayed on topic ` +

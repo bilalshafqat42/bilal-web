@@ -1,0 +1,287 @@
+{
+  "slug": "react-usecontext-hook-explained",
+  "title": "React useContext Hook Explained (With Real Examples and Best Practices)",
+  "description": "Learn how the react useContext hook works in React with examples and best practices. Simplify global state without prop drilling. Ideal for beginners.",
+  "published": "2025-06-20",
+  "updatedAt": "2026-10-01",
+  "tags": [
+    "React Hooks",
+    "React Js"
+  ],
+  "words": 432,
+  "blocks": [
+    {
+      "t": "h2",
+      "v": "Introduction: What is useContext()?"
+    },
+    {
+      "t": "p",
+      "v": "One of the most common challenges in React development is sharing state across deeply nested components without passing props through every level. That’s where React’s Context API and the useContext() hook come in."
+    },
+    {
+      "t": "p",
+      "v": "useContext() is a built-in hook introduced in React 16.8 that allows you to read context values directly in function components. When used correctly, it eliminates the need for prop drilling and makes your code more maintainable and scalable."
+    },
+    {
+      "t": "h3",
+      "v": "In this guide, you’ll learn:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "What useContext is",
+        "How it works with the Context API",
+        "When to use it (and when not to)",
+        "Real code examples",
+        "Best practices for 2025"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "What Is the React Context API?"
+    },
+    {
+      "t": "p",
+      "v": "The React Context API allows you to create global variables (context) that can be passed throughout your component tree — without needing to pass props manually at every level."
+    },
+    {
+      "t": "p",
+      "v": "It’s ideal for values that many components need access to, like:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Theme (light/dark)",
+        "Auth status",
+        "Language settings",
+        "Layout direction"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Why useContext()?"
+    },
+    {
+      "t": "p",
+      "v": "The useContext() hook simplifies the consumption of context in function components. Before hooks, developers had to use <Consumer> components or static context types in class components — both verbose and harder to read."
+    },
+    {
+      "t": "h3",
+      "v": "Syntax:"
+    },
+    {
+      "t": "code",
+      "v": "const value = useContext(MyContext);"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "MyContext is the context object created via React.createContext()",
+        "value is whatever you passed into the <Provider> component"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "How to Use useContext in React"
+    },
+    {
+      "t": "p",
+      "v": "Let’s walk through a real-world example of using useContext() to manage a global theme."
+    },
+    {
+      "t": "h3",
+      "v": "Step 1: Create a Context"
+    },
+    {
+      "t": "code",
+      "v": "import { createContext } from 'react';\n\nconst ThemeContext = createContext('light');"
+    },
+    {
+      "t": "h3",
+      "v": "Step 2: Wrap Your App in a Provider"
+    },
+    {
+      "t": "code",
+      "v": "<ThemeContext.Provider value=\"dark\">\n  <App />\n</ThemeContext.Provider>"
+    },
+    {
+      "t": "h3",
+      "v": "Step 3: Access the Context with useContext()"
+    },
+    {
+      "t": "code",
+      "v": "import { useContext } from 'react';\n\nfunction Navbar() {\n  const theme = useContext(ThemeContext);\n  return <div className={theme}>Navbar</div>;\n}"
+    },
+    {
+      "t": "h2",
+      "v": "Real-World Example: Auth Context"
+    },
+    {
+      "t": "h3",
+      "v": "AuthContext.js"
+    },
+    {
+      "t": "code",
+      "v": "import { createContext } from 'react';\nexport const AuthContext = createContext(null);"
+    },
+    {
+      "t": "h3",
+      "v": "App.js"
+    },
+    {
+      "t": "code",
+      "v": "import { AuthContext } from './AuthContext';\n\nfunction App() {\n  const user = { name: \"Jane\", role: \"admin\" };\n\n  return (\n    <AuthContext.Provider value={user}>\n      <Dashboard />\n    </AuthContext.Provider>\n  );\n}"
+    },
+    {
+      "t": "h3",
+      "v": "Any Nested Component:"
+    },
+    {
+      "t": "code",
+      "v": "import { useContext } from 'react';\nimport { AuthContext } from './AuthContext';\n\nfunction Sidebar() {\n  const user = useContext(AuthContext);\n  return <p>Welcome, {user.name}</p>;\n}"
+    },
+    {
+      "t": "h2",
+      "v": "useContext() vs Prop Drilling"
+    },
+    {
+      "t": "table",
+      "head": [
+        "",
+        "Prop drilling",
+        "useContext"
+      ],
+      "rows": [
+        [
+          "Where the value lives",
+          "Passed down through every level",
+          "Read directly by whoever needs it"
+        ],
+        [
+          "Components in between",
+          "Must accept and forward props they never use",
+          "Untouched"
+        ],
+        [
+          "Re-renders",
+          "Only the components on the path",
+          "Every consumer when the value changes"
+        ],
+        [
+          "Best for",
+          "Two or three levels",
+          "Theme, auth, locale, anything genuinely global"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "v": "Context is not a performance optimisation and it is not a state manager. It solves one problem, which is getting a value to a distant component without threading it through everything in between. Used for data that changes often, it re-renders every consumer and costs more than the drilling did."
+    },
+    {
+      "t": "h2",
+      "v": "useContext + useState or useReducer"
+    },
+    {
+      "t": "p",
+      "v": "useContext() is often combined with useState() or useReducer() to manage and distribute dynamic state."
+    },
+    {
+      "t": "h3",
+      "v": "Example:"
+    },
+    {
+      "t": "code",
+      "v": "const AuthContext = createContext();\n\nfunction AuthProvider({ children }) {\n  const [user, setUser] = useState(null);\n\n  return (\n    <AuthContext.Provider value={{ user, setUser }}>\n      {children}\n    </AuthContext.Provider>\n  );\n}"
+    },
+    {
+      "t": "p",
+      "v": "Now, child components can access both user and setUser using useContext()."
+    },
+    {
+      "t": "h2",
+      "v": "Best Practices for useContext (2025)"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Use it for global, shared, low-frequency state",
+        "Combine with useState or useReducer for dynamic updates",
+        "Split context by domain — theme, auth, cart, etc.",
+        "Wrap your app in centralized providers for cleaner structure"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Common Mistakes to Avoid"
+    },
+    {
+      "t": "h3",
+      "v": "1. Forgetting to wrap components with the Provider"
+    },
+    {
+      "t": "p",
+      "v": "You’ll get undefined or default values."
+    },
+    {
+      "t": "h3",
+      "v": "2. Putting fast-updating state in context"
+    },
+    {
+      "t": "p",
+      "v": "Don't use context for values like form fields or animations — it causes unnecessary re-renders."
+    },
+    {
+      "t": "h3",
+      "v": "3. Using useContext when props would be simpler"
+    },
+    {
+      "t": "p",
+      "v": "If you’re only passing a prop down 1–2 levels, use props instead of context."
+    },
+    {
+      "t": "h2",
+      "v": "When Not to Use useContext"
+    },
+    {
+      "t": "p",
+      "v": "Context is not a replacement for libraries like Redux or Zustand. It’s best used for:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Static values",
+        "Low-frequency updates",
+        "Global settings (theme, language, auth)"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Summary: useContext in React — Simplified"
+    },
+    {
+      "t": "p",
+      "v": "useContext() makes accessing shared state in React easy, readable, and maintainable. It eliminates the need to pass props through every component, helping you write cleaner and more scalable applications."
+    },
+    {
+      "t": "h3",
+      "v": "Key takeaways:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Great for static or global data",
+        "Works with createContext() and <Provider>",
+        "Use with useState() or useReducer() for dynamic updates",
+        "Not ideal for high-frequency updates or large state trees"
+      ]
+    }
+  ],
+  "metaTitle": "React useContext Hook Explained with Examples"
+}

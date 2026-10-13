@@ -11,7 +11,8 @@ Post 1 below is the worked example. Posts 2 to 7 follow the same shape.
 
 ### Blog post
 
-Lives in `src/data/blogPosts.json`. Shape:
+Lives in `src/content/blog/<slug>.json`, one file per post. Create it with
+`node scripts/new-post.mjs <slug>` (see `docs/adding-a-blog-post.md`). Shape:
 
 | Field | Rule |
 | --- | --- |
@@ -19,6 +20,7 @@ Lives in `src/data/blogPosts.json`. Shape:
 | `metaTitle` | The search version, under 60 characters, keyword at the front |
 | `description` | 120-160 characters **and** under 920px. Run `npm run serp` |
 | `published` | One per day, in order |
+| `updatedAt` | Same as `published` at first; bump it when the words change |
 | `tags` | From the existing set. `Paid Ads`, `Digital Marketing`, `Dubai` etc |
 | `image` | Slide 1 of the Instagram carousel, 1200x630 |
 | `blocks` | 5-6 `h2`, every one a claim or a question. Never a label |

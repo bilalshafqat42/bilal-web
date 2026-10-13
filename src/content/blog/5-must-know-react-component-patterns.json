@@ -1,0 +1,202 @@
+{
+  "slug": "5-must-know-react-component-patterns",
+  "title": "5 Must-Know React Component Patterns for Scalable Code",
+  "description": "Discover 5 essential React component patterns that help you write clean, reusable, and scalable code. Perfect for beginners and advanced React developers alike.",
+  "published": "2025-06-08",
+  "updatedAt": "2026-09-30",
+  "tags": [
+    "Javascript",
+    "Es6",
+    "React Js"
+  ],
+  "words": 421,
+  "blocks": [
+    {
+      "t": "p",
+      "v": "When working with React, especially on larger or long-term projects, it's easy to end up with messy, repetitive, or hard-to-maintain code. But React gives us patterns — simple structures and ideas — that make our code easier to read, reuse, and scale."
+    },
+    {
+      "t": "p",
+      "v": "In this article, we’ll explore 5 React component patterns every developer should know. These aren’t frameworks or libraries — they’re smart ways of organizing your code that work beautifully with React’s component-based structure."
+    },
+    {
+      "t": "h2",
+      "v": "1. Presentational vs Container Components"
+    },
+    {
+      "t": "p",
+      "v": "One of the easiest and most powerful ideas to start with is splitting your components into two types:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Presentational Components : Focus on how things look (UI), are stateless, and receive data via props.",
+        "Container Components : Handle state, logic, and data. Focus on how things work ."
+      ]
+    },
+    {
+      "t": "code",
+      "v": "// Presentational Component\r\nconst UserCard = ({ name, onClick }) => (\r\n  <div onClick={onClick}>\r\n    <h2>{name}</h2>\r\n  </div>\r\n);\r\n\r\n// Container Component\r\nconst UserContainer = () => {\r\n  const name = \"Ali\";\r\n\r\n  const handleClick = () => alert(`Hi, ${name}`);\r\n\r\n  return <UserCard name={name} onClick={handleClick} />;\r\n};"
+    },
+    {
+      "t": "p",
+      "v": "This pattern helps you reuse UI components and keep your code clean and testable."
+    },
+    {
+      "t": "h2",
+      "v": "2. Higher-Order Components (HOC)"
+    },
+    {
+      "t": "p",
+      "v": "A Higher-Order Component is a function that takes a component and returns a new one — with extra features or props."
+    },
+    {
+      "t": "p",
+      "v": "Commonly used in libraries like React Redux and React Router."
+    },
+    {
+      "t": "code",
+      "v": "const withLoading = (Component) => {\r\n  return function WithLoadingComponent({ loading, ...props }) {\r\n    if (loading) return <p>Loading...</p>;\r\n    return <Component {...props} />;\r\n  };\r\n};\r\n\r\n// Usage\r\nconst UserList = ({ users }) => (\r\n  <ul>{users.map((u) => <li key={u.id}>{u.name}</li>)}</ul>\r\n);\r\n\r\nconst UserListWithLoading = withLoading(UserList);"
+    },
+    {
+      "t": "h2",
+      "v": "3. Render Props"
+    },
+    {
+      "t": "p",
+      "v": "A Render Prop is a function prop that a component uses to know what to render."
+    },
+    {
+      "t": "code",
+      "v": "const MouseTracker = ({ render }) => {\r\n  const [pos, setPos] = React.useState({ x: 0, y: 0 });\r\n\r\n  const handleMove = (e) => setPos({ x: e.clientX, y: e.clientY });\r\n\r\n  return <div onMouseMove={handleMove}>{render(pos)}</div>;\r\n};\r\n\r\n// Usage\r\n<MouseTracker render={(pos) => <p>Mouse at {pos.x}, {pos.y}</p>} />;"
+    },
+    {
+      "t": "p",
+      "v": "This gives full flexibility over how the component displays data."
+    },
+    {
+      "t": "h2",
+      "v": "4. Compound Components"
+    },
+    {
+      "t": "p",
+      "v": "Compound components allow you to build related components that work together and share internal state."
+    },
+    {
+      "t": "code",
+      "v": "const Tabs = ({ children }) => {\r\n  const [activeIndex, setActiveIndex] = React.useState(0);\r\n\r\n  return React.Children.map(children, (child, index) =>\r\n    React.cloneElement(child, {\r\n      isActive: index === activeIndex,\r\n      onClick: () => setActiveIndex(index),\r\n    })\r\n  );\r\n};\r\n\r\nconst Tab = ({ label, isActive, onClick }) => (\r\n  <button onClick={onClick} style={{ fontWeight: isActive ? \"bold\" : \"normal\" }}>\r\n    {label}\r\n  </button>\r\n);\r\n\r\n// Usage\r\n<Tabs>\r\n  <Tab label=\"Tab 1\" />\r\n  <Tab label=\"Tab 2\" />\r\n</Tabs>"
+    },
+    {
+      "t": "p",
+      "v": "This is perfect for things like tabs, modals, or dropdown menus."
+    },
+    {
+      "t": "h2",
+      "v": "5. Custom Hooks"
+    },
+    {
+      "t": "p",
+      "v": "Custom hooks let you extract logic into reusable functions using useState, useEffect, etc."
+    },
+    {
+      "t": "code",
+      "v": "function useToggle(initial = false) {\r\n  const [value, setValue] = React.useState(initial);\r\n  const toggle = () => setValue((v) => !v);\r\n  return [value, toggle];\r\n}\r\n\r\n// Usage\r\nconst Switch = () => {\r\n  const [isOn, toggle] = useToggle();\r\n  return <button onClick={toggle}>{isOn ? \"ON\" : \"OFF\"}</button>;\r\n};"
+    },
+    {
+      "t": "p",
+      "v": "This keeps components clean and promotes DRY code."
+    },
+    {
+      "t": "h2",
+      "v": "Why These Patterns Matter"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Scalable architecture",
+        "Reusable logic and components",
+        "Cleaner, testable code",
+        "Easier team collaboration"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "These patterns make a real difference when working on real-world projects — from solo builds to large enterprise apps."
+    },
+    {
+      "t": "h2",
+      "v": "Related Post"
+    },
+    {
+      "t": "p",
+      "v": "New to React? Make sure you've mastered the basics: 7 JavaScript Concepts to Learn Before React"
+    },
+    {
+      "t": "h2",
+      "v": "FAQs"
+    },
+    {
+      "t": "p",
+      "v": "Q1: Are these official React patterns?"
+    },
+    {
+      "t": "p",
+      "v": "No, but they’re widely accepted best practices in the React community."
+    },
+    {
+      "t": "p",
+      "v": "Q2: Should I use all these patterns in one project?"
+    },
+    {
+      "t": "p",
+      "v": "Use the ones that fit your app’s needs. The goal is clarity and reusability."
+    },
+    {
+      "t": "p",
+      "v": "Q3: Are hooks better than HOCs or render props?"
+    },
+    {
+      "t": "p",
+      "v": "Hooks simplify a lot of things, but each pattern has its use case."
+    },
+    {
+      "t": "p",
+      "v": "Q4: What’s the easiest pattern to start with?"
+    },
+    {
+      "t": "p",
+      "v": "Start with Presentational vs Container — it’s simple and effective."
+    },
+    {
+      "t": "h2",
+      "v": "Conclusion"
+    },
+    {
+      "t": "p",
+      "v": "React is powerful — but using the right patterns can make it even better."
+    },
+    {
+      "t": "p",
+      "v": "By applying these 5 component patterns, you’ll write code that’s:"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Smarter",
+        "Easier to test",
+        "Ready to scale"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "👉 Save this post. Bookmark it. And share it with your dev friends!"
+    },
+    {
+      "t": "p",
+      "v": "📖 Want more? Browse more tutorials at bilalshafqat.com"
+    }
+  ]
+}

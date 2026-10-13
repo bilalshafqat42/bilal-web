@@ -1,0 +1,547 @@
+{
+  "slug": "the-ultimate-css-cheat-sheet",
+  "title": "The Ultimate CSS Cheat Sheet – Boost Your Styling Skills!",
+  "description": "CSS is an essential part of modern web design, allowing developers to create visually stunning and responsive websites. Whether you're a beginner or a",
+  "published": "2025-02-06",
+  "updatedAt": "2026-09-30",
+  "tags": [
+    "CSS"
+  ],
+  "words": 372,
+  "blocks": [
+    {
+      "t": "h2",
+      "v": "1. CSS Functions"
+    },
+    {
+      "t": "p",
+      "v": "CSS functions are used to dynamically compute property values, making styling more flexible and scalable."
+    },
+    {
+      "t": "h3",
+      "v": "attr()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Retrieves an attribute value from an HTML element and inserts it into the stylesheet.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "a::after {\r\n  content: \" (\" attr(href) \")\";\r\n}"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Useful for adding dynamic content from HTML attributes."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "calc()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Performs calculations directly in CSS.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "width: calc(100% - 50px);"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Helps create responsive designs with precise measurements."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "clamp()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Defines a value between a minimum, preferred, and maximum range.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "font-size: clamp(1rem, 2vw, 3rem);"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Ensures text remains readable across different screen sizes."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "max() & min()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Returns the maximum or minimum value among given values.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "width: max(300px, 50%);"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Useful for setting adaptive layouts."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "var()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Used to declare and use CSS variables.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": ":root {\r\n  --primary-color: #ff6600;\r\n}\r\nbody {\r\n  background-color: var(--primary-color);\r\n}"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Enables theming and reuse of values."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "2. CSS Color Manipulation"
+    },
+    {
+      "t": "p",
+      "v": "CSS provides several functions to manipulate colors dynamically."
+    },
+    {
+      "t": "h3",
+      "v": "hsl()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Defines colors using Hue, Saturation, and Lightness.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "color: hsl(200, 50%, 50%);"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Makes color adjustments more intuitive."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "rgba()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Defines colors with an alpha (transparency) value.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "background-color: rgba(255, 0, 0, 0.5);"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Allows fine-tuned opacity control."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "invert()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Inverts colors for a negative effect.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "filter: invert(100%);"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Useful for dark mode toggles."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "saturate()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Adjusts the color saturation.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "filter: saturate(200%);"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Enhances or dulls colors dynamically."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "contrast()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Adjusts the contrast of an element.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "filter: contrast(150%);"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Improves readability of text over images."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "3. CSS Filters & Effects"
+    },
+    {
+      "t": "p",
+      "v": "These properties help create visual effects without using images."
+    },
+    {
+      "t": "h3",
+      "v": "blur()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Applies a blur effect to an element.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "filter: blur(5px);"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Useful for background overlays."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "brightness()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Adjusts the brightness of an element.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "filter: brightness(120%);"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Enhances visibility under different conditions."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "grayscale()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Converts an element to grayscale.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "filter: grayscale(100%);"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Often used for hover effects or image styling."
+      ]
+    },
+    {
+      "t": "h3",
+      "v": "opacity()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Controls the transparency of an element.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "opacity: 0.5;"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Ideal for creating overlay effects."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "4. CSS Transformations"
+    },
+    {
+      "t": "p",
+      "v": "CSS transform functions allow elements to be rotated, scaled, or moved."
+    },
+    {
+      "t": "h3",
+      "v": "rotate()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Rotates an element by a specified angle.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "transform: rotate(45deg);"
+    },
+    {
+      "t": "h3",
+      "v": "scale()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Resizes an element.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "transform: scale(1.5);"
+    },
+    {
+      "t": "h3",
+      "v": "translate()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Moves an element along the X or Y axis.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "transform: translate(50px, 100px);"
+    },
+    {
+      "t": "h3",
+      "v": "skew()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Skews an element.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "transform: skew(10deg, 5deg);"
+    },
+    {
+      "t": "h3",
+      "v": "perspective()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Creates a 3D perspective effect.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "perspective: 500px;"
+    },
+    {
+      "t": "h3",
+      "v": "matrix()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Combines multiple transformations in one.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "transform: matrix(1, 0.5, -0.5, 1, 50, 100);"
+    },
+    {
+      "t": "h2",
+      "v": "5. CSS Transitions & Animations"
+    },
+    {
+      "t": "p",
+      "v": "Transitions and animations add smooth effects to web elements."
+    },
+    {
+      "t": "h3",
+      "v": "cubic-bezier()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Defines custom easing for transitions.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1);"
+    },
+    {
+      "t": "h3",
+      "v": "steps()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Creates a stepped animation effect.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "animation-timing-function: steps(5, end);"
+    },
+    {
+      "t": "h3",
+      "v": "url()"
+    },
+    {
+      "t": "list",
+      "ordered": false,
+      "v": [
+        "Defines a background image.",
+        "Example:"
+      ]
+    },
+    {
+      "t": "code",
+      "v": "background-image: url('image.jpg');"
+    },
+    {
+      "t": "h2",
+      "v": "FAQs"
+    },
+    {
+      "t": "h3",
+      "v": "1. How do CSS filters work?"
+    },
+    {
+      "t": "p",
+      "v": "CSS filters apply effects like blur, brightness, and contrast to elements. They are commonly used on images but can be applied to any HTML element."
+    },
+    {
+      "t": "h3",
+      "v": "2. What is the difference between rgba() and hsl()?"
+    },
+    {
+      "t": "p",
+      "v": "rgba() defines colors using red, green, blue, and alpha (opacity). hsl() uses hue, saturation, and lightness, making it easier to create color variations."
+    },
+    {
+      "t": "h3",
+      "v": "3. When should I use calc() in CSS?"
+    },
+    {
+      "t": "p",
+      "v": "Use calc() when you need to dynamically calculate CSS values, such as setting flexible margins or padding that adjusts based on viewport size."
+    }
+  ]
+}

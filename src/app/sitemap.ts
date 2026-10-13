@@ -5,14 +5,13 @@ import {
   SERVICES_CONTENT_DATE,
   PORTFOLIO_CONTENT_DATE,
   DISCIPLINE_CONTENT_DATE,
-  BLOG_RECOVERED_ON,
 } from "@/data/contentDates";
 
 /** Falls back to the build date only for a route with no recorded entry, so a
  *  new page is never worse off than it was before this change. */
 const dateFor = (path: string) => new Date(contentDates[path] ?? Date.now());
 import { caseStudyUrls } from "@/data/caseStudies";
-import { blogPosts } from "@/data/blogPosts";
+import { blogPosts, BLOG_UPDATED_DATE } from "@/data/blogPosts";
 import { totalBlogPages, blogPagePath } from "@/lib/blogPagination";
 import { disciplinesWithPages } from "@/data/disciplines";
 
@@ -94,7 +93,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified: new Date(BLOG_RECOVERED_ON),
+      // The newest change to any article: a new post or an edited description
+      // changes what the index shows.
+      lastModified: new Date(BLOG_UPDATED_DATE),
       changeFrequency: "monthly",
       priority: 0.6,
     },
@@ -106,20 +107,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // article that spills onto a new page adds that page here with no edit.
     ...Array.from({ length: totalBlogPages() - 1 }, (_, i) => ({
       url: `${baseUrl}${blogPagePath(i + 2)}`,
-      lastModified: new Date(BLOG_RECOVERED_ON),
+      // A new post shifts every page by one, so they all change together.
+      lastModified: new Date(BLOG_UPDATED_DATE),
       changeFrequency: "monthly" as const,
       // Below /blog itself: these are navigation, not destinations.
       priority: 0.4,
     })),
-    // The recovered articles, at the root of the domain rather than under
-    // /blog — these are the URLs Google already has, and the whole point of
-    // restoring them is that those URLs stop returning 404 (roadmap 275).
+    // The articles, at the root of the domain rather than under /blog — for
+    // the recovered ones these are the URLs Google already has (roadmap 275).
     //
-    // `lastModified` is the recovery date, not the 2025 byline: what changed is
-    // that the page exists again, and that is the change we want recrawled.
+    // `lastModified` is each post's own `updatedAt`: the recovery date (30 Sep)
+    // for a recovered post untouched since, never the 2025 byline, and the
+    // real date for anything written or edited here. Until 2026-10-13 every
+    // article claimed 30 Sep, so posts written in October looked older than
+    // they were.
     ...blogPosts.map((p) => ({
       url: `${baseUrl}/${p.slug}`,
-      lastModified: new Date(BLOG_RECOVERED_ON),
+      lastModified: new Date(p.updatedAt),
       changeFrequency: "yearly" as const,
       // Below the service and portfolio pages: these bring reach, but the
       // pages that convert are the ones that should be crawled first.

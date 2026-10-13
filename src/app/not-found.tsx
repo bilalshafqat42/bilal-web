@@ -1,9 +1,9 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { pillars } from "@/data/pillars";
-import CtaButton from "@/components/CtaButton";
-import PageOpener from "@/components/PageOpener";
-import SecondaryButton from "@/components/SecondaryButton";
+import CtaButton from "@/components/ui/CtaButton";
+import PageOpener from "@/components/layout/PageOpener";
+import SecondaryButton from "@/components/ui/SecondaryButton";
 
 export const metadata: Metadata = {
   title: "Page not found — Bilal Shafqat",
