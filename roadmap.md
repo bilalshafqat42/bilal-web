@@ -10630,6 +10630,20 @@ Two things the import got wrong, worth checking on every future Medium post:
 - **Blank paragraphs under every `h2`.** Two or three empty lines each, deleted
   by hand.
 
+**Post 2 on Medium, 2026-10-14**, ahead of the planned 19 Oct (the date was
+only the one-a-week rhythm; import sets the canonical, so timing does not
+affect ranking):
+https://medium.com/@bilalshafqat42/landing-page-vs-ad-spend-the-cost-nobody-invoices-82693a07d709
+Medium title "Landing Page vs Ad Spend: The Cost Nobody Invoices"; tags
+Digital Marketing, Paid Advertising, Landing Pages, Conversion Optimization,
+Marketing Strategy. Medium returns 403 to scripts, so the "Originally
+published" line was checked by eye, not by script.
+
+**Post 2 is out on every platform** (2026-10-13 and 14): LinkedIn, Google
+Business Profile, Pinterest, Facebook, Instagram and Threads (one post from
+Meta Business Suite, Threads via "Share to"), X, Medium. From post 3, X gets
+two hashtags; post 2 went without.
+
 Note for anyone writing these instructions again: articles live at the root,
 `/<slug>`, not `/blog/<slug>`. The WordPress URLs were at the root and kept
 their address in the migration. `/blog/<slug>` is a 404.
