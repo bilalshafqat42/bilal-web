@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import LeadFormPopup from "@/components/forms/LeadFormPopup";
+import WhatsAppFloat from "@/components/ui/WhatsAppFloat";
 import CookieConsent from "@/components/layout/CookieConsent";
 import SpotlightSearch from "@/components/layout/SpotlightSearch";
 import Analytics from "@/components/seo/Analytics";
@@ -166,6 +167,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <SpotlightSearch />
+        <WhatsAppFloat />
         <LeadFormPopup />
         <CookieConsent />
       </body>
