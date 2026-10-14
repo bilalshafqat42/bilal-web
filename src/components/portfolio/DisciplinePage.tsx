@@ -193,7 +193,7 @@ export default function DisciplinePage({ slug }: { slug: string }) {
         itemListElement: items.map((it, i) => ({
           "@type": "ListItem",
           position: i + 1,
-          name: `${it.label} — ${it.meta}`,
+          name: `${it.label}: ${it.meta}`,
           url: `${SITE_URL}${it.href.split("#")[0]}`,
         })),
       },

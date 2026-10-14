@@ -105,7 +105,7 @@ export const caseStudyDepth: Record<string, DepthBlock[]> = {
     {
       heading: "The brief behind the page",
       paragraphs: [
-        "Cavendish Square is 138 homes in Jumeirah Village Triangle, and the unit mix decides everything about how it has to be sold: 114 studios and 24 one-bedroom apartments, from 428 to 1,209 square feet, with estimated completion in Q4 2025. That is an investor and first-purchase audience rather than a family one, and they buy on different evidence.",
+        "Cavendish Square is 138 homes in Jumeirah Village Triangle, and the unit mix decides everything about how it has to be sold: 114 studios and 24 one-bedroom apartments, from 428 to 1,209 square feet. That is an investor and first-purchase audience rather than a family one, and they buy on different evidence.",
         "At this size the shared space is the product. A 428 square foot studio is not sold on the floor plan, because every 428 square foot studio has broadly the same floor plan. It is sold on the rooftop garden, the outdoor cinema, the pool and the gym, and on the address. So the page leads with those rather than with interiors.",
       ],
     },

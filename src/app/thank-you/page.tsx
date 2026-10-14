@@ -6,7 +6,7 @@ import SecondaryButton from "@/components/ui/SecondaryButton";
 import { SITE_PHONE, SITE_PHONE_HREF } from "@/lib/contact";
 
 export const metadata: Metadata = {
-  title: "Thank you — Bilal Shafqat",
+  title: "Thank you | Bilal Shafqat",
   description: "Your message has been received. I reply personally, usually within one working day.",
   // A conversion page has no business in search results: it would rank for
   // nothing useful and would let people arrive here without converting, which
@@ -40,9 +40,25 @@ const next = [
   { icon: Mail, text: "Check your spam folder if nothing arrives, then email me directly." },
 ];
 
+/** `?slot=` is printed on the page, and anyone can link here with any value.
+ *  React escapes it, so it cannot inject markup, but unchecked it could still
+ *  put a sentence of someone else's choosing on this site ("You asked for a
+ *  refund, call +1..."). Only what a time slot looks like is shown: letters,
+ *  digits, spaces and `: , . - / ( ) +`, at most 60 characters. Anything else
+ *  is dropped rather than trimmed, since a trimmed message is still theirs. */
+const SLOT_FORMAT = /^[A-Za-z0-9 :,.\-/()+]{1,60}$/;
+
+function safeSlot(value: unknown): string | undefined {
+  if (typeof value !== "string") return undefined;
+  const slot = value.trim().replace(/\s+/g, " ");
+  return SLOT_FORMAT.test(slot) ? slot : undefined;
+}
+
 export default async function ThankYouPage({ searchParams }: PageProps) {
-  const { source, slot } = await searchParams;
-  const copy = (source && COPY[source]) || {
+  const params = await searchParams;
+  const source = typeof params.source === "string" ? params.source : undefined;
+  const slot = safeSlot(params.slot);
+  const copy = (source && Object.hasOwn(COPY, source) && COPY[source]) || {
     heading: "Thank you",
     body: "Your message has reached me directly, not an assistant or a shared inbox.",
   };

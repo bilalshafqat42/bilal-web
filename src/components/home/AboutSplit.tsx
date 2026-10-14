@@ -46,10 +46,10 @@ import { yearsExperience } from "@/lib/site";
  *
  * **Why the columns do not share classes.** `text-ink` and `text-muted` are
  * tuned for the dark ground and are close to invisible on white, so the left
- * column names its colours outright: `#14140f` for the heading and `#9a7b18`
+ * column names its colours outright: `#14140f` for the heading and `#8a6a05`
  * for the eyebrow. The site gold drops to roughly 1.8:1 on white and fails
  * WCAG 1.4.3 at eyebrow size; the darker gold holds the same hue at about
- * 4.7:1.
+ * 5.1:1 (#8a6a05, the same gold `.page-opener` uses; the earlier #9a7b18 measured 4.02:1).
  *
  * **The copy is a rewrite, not a copy-paste.** The /about page makes the same
  * argument at length. Repeating its paragraphs verbatim would put two URLs on
@@ -292,7 +292,7 @@ export default function AboutSplit() {
           >
             <span
               data-reveal
-              className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-[#9a7b18]"
+              className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-[#8a6a05]"
             >
               About me
             </span>

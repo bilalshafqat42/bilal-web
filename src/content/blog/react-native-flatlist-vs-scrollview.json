@@ -3,24 +3,24 @@
   "title": "React Native FlatList vs ScrollView: What to Use and When",
   "description": "When to use FlatList and when ScrollView in React Native, the props that fix a slow list, and why nesting them is usually the wrong question.",
   "published": "2025-06-13",
-  "updatedAt": "2026-10-04",
+  "updatedAt": "2026-10-14",
   "tags": [
     "Mobile Apps",
     "React Js"
   ],
-  "words": 1082,
+  "words": 1075,
   "blocks": [
     {
       "t": "h2",
-      "v": "Introduction: FlatList vs ScrollView — A Common Developer Dilemma"
+      "v": "Introduction: FlatList vs ScrollView, a Common Developer Dilemma"
     },
     {
       "t": "p",
-      "v": "If you’ve spent any time building mobile apps in React Native, you’ve probably used ScrollView and FlatList. And if you’re like most developers, you may have even used them interchangeably — especially for rendering vertical lists of content."
+      "v": "If you’ve spent any time building mobile apps in React Native, you’ve probably used ScrollView and FlatList. And if you’re like most developers, you may have even used them interchangeably, especially for rendering vertical lists of content."
     },
     {
       "t": "p",
-      "v": "At first glance, they look similar. Both allow you to display scrollable views. But under the hood, they work very differently — and choosing the wrong one can lead to performance issues, memory overuse, and a poor user experience."
+      "v": "At first glance, they look similar. Both allow you to display scrollable views. But under the hood, they work very differently, and choosing the wrong one can lead to performance issues, memory overuse, and a poor user experience."
     },
     {
       "t": "p",
@@ -38,7 +38,7 @@
     },
     {
       "t": "p",
-      "v": "By the end, you’ll know exactly which to use — and why."
+      "v": "By the end, you’ll know exactly which to use, and why."
     },
     {
       "t": "h2",
@@ -54,7 +54,7 @@
     },
     {
       "t": "p",
-      "v": "ScrollView renders all of its child components at once. That means if you pass it 1000 items, it will try to render all of them when the component mounts — regardless of whether they’re visible or not."
+      "v": "ScrollView renders all of its child components at once. That means if you pass it 1000 items, it will try to render all of them when the component mounts, regardless of whether they’re visible or not."
     },
     {
       "t": "h3",
@@ -165,7 +165,7 @@
     },
     {
       "t": "p",
-      "v": "This is the most frequent issue. Developers use ScrollView for a long list of items — which leads to performance problems like:"
+      "v": "This is the most frequent issue. Developers use ScrollView for a long list of items, which leads to performance problems like:"
     },
     {
       "t": "list",
@@ -442,11 +442,11 @@
     },
     {
       "t": "p",
-      "v": "Choosing between FlatList and ScrollView in React Native isn’t just about syntax — it’s about performance, user experience, and scalability."
+      "v": "Choosing between FlatList and ScrollView in React Native isn’t just about syntax. It’s about performance, user experience, and scalability."
     },
     {
       "t": "p",
-      "v": "Use ScrollView when the content is short and simple. Use FlatList when you're dealing with data — especially when the list might grow."
+      "v": "Use ScrollView when the content is short and simple. Use FlatList when you're dealing with data, especially when the list might grow."
     },
     {
       "t": "p",

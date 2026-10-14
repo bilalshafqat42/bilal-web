@@ -130,7 +130,7 @@ function PagerLink({
 
   if (!href) {
     return (
-      <span aria-hidden="true" className={`${base} border-border/50 text-muted/40`}>
+      <span aria-hidden="true" className={`${base} border-border/50 text-faint`}>
         {inner}
       </span>
     );

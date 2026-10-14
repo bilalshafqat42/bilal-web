@@ -62,7 +62,9 @@ function AudienceCard({ audience }: { audience: Audience }) {
                 privacy note and a data-use note, where it is correct. */}
             {audience.bullets.map((b) => (
               <li key={b} className="flex gap-2 text-sm text-muted">
-                <span className="text-gold">—</span>
+                {/* A drawn rule rather than an em dash glyph: same gold dash,
+                    but decoration, so it is hidden from screen readers. */}
+                <span aria-hidden="true" className="mt-[0.7em] h-px w-3.5 shrink-0 bg-gold" />
                 {b}
               </li>
             ))}

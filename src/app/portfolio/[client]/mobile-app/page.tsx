@@ -62,7 +62,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const c = getClient(client);
   if (!c?.mobileApp) return {};
   const page = c.mobileApp.page;
-  const title = `${c.name} App — ${page.stack} Case Study`;
+  const title = `${c.name} App: ${page.stack} Case Study`;
   const og = page.ogImage
     ? [{ url: `${SITE}${page.ogImage.src}`, width: 1200, height: 630, alt: page.ogImage.alt }]
     : OG_IMAGES;
@@ -108,7 +108,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     "@id": `${url}#work`,
-    name: `${c.name} mobile app — ${page.stack} case study`,
+    name: `${c.name} mobile app: ${page.stack} case study`,
     headline: app.heading,
     description: app.body,
     url,
@@ -372,7 +372,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                     The screens
                   </h2>
                 </div>
-                <div className="text-sm leading-relaxed text-muted/70 sm:text-right">
+                <div className="text-sm leading-relaxed text-faint sm:text-right">
                   <p>{total} screens</p>
                   <p>
                     {page.stack}, {page.platforms}
@@ -454,7 +454,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                       remain in `caseStudies.ts` if they are ever wanted back. */}
                   <Reveal>
                     <div className="mt-5 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                      <span className="font-mono text-xs tabular-nums text-muted/70">
+                      <span className="font-mono text-xs tabular-nums text-faint">
                         {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
                       </span>
                       <Eyebrow>
@@ -568,7 +568,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
               </div>
               {pending.length > 0 ? (
                 <Reveal>
-                  <p className="mt-8 max-w-2xl text-sm leading-relaxed text-muted/70">
+                  <p className="mt-8 max-w-2xl text-sm leading-relaxed text-faint">
                     {pending.map((o) => o.label).join(" and ")}{" "}
                     {pending.length > 1 ? "are" : "is"} deliberately absent. One figure a client can
                     verify is worth more than three they cannot, so nothing goes here until the

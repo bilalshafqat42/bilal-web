@@ -10,12 +10,13 @@ import {
 /** Falls back to the build date only for a route with no recorded entry, so a
  *  new page is never worse off than it was before this change. */
 const dateFor = (path: string) => new Date(contentDates[path] ?? Date.now());
-import { caseStudyUrls } from "@/data/caseStudies";
+import { caseStudyUrls } from "@/data/caseStudyUrls";
 import { blogPosts, BLOG_UPDATED_DATE } from "@/data/blogPosts";
 import { totalBlogPages, blogPagePath } from "@/lib/blogPagination";
 import { disciplinesWithPages } from "@/data/disciplines";
+import { SITE_URL } from "@/lib/site";
 
-const baseUrl = "https://bilalshafqat.com";
+const baseUrl = SITE_URL;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

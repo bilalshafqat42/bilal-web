@@ -10993,7 +10993,7 @@ fixed. Practices for commercial visibility are item 398.
 - Contact details and site URL come from `contact.ts` and `site.ts`.
 
 **Long-run risks**
-- "15 years" is computed from `CAREER_START_YEAR` (2011) everywhere.
+- The years-of-experience count (17 in 2026) is computed from `CAREER_START_YEAR` (2009) everywhere.
 - Portfolio `dateModified` no longer changes on every deploy.
 - Meta Pixel fires only on bilalshafqat.com.
 - CSP added in report-only mode. Build warns if GA4/GTM IDs are missing.
@@ -11047,3 +11047,73 @@ search (45), h1 and schema (121 routes) all pass.
    Transform Rules, Modify Request Header) that sets `x-origin-auth` to the
    same value on all requests. Until both exist, behaviour is unchanged.
 6. **After a week of CSP reports**, switch it to enforcing.
+
+---
+
+### 400. DONE (2026-10-14) — Second full audit, on the live site, and its fixes
+
+Four read-only checks on the live site after 0ed36bc (SEO, security, a
+review of the refactor, speed and accessibility), then the fixes.
+
+#### The finding that mattered: /contact was losing enquiries
+
+The /contact dropdown sent the four pillar labels plus "Something else";
+`/api/lead` accepted only the fifteen service titles. **Four of its five
+choices returned 400**, with no WhatsApp or email fallback and no backup, so
+the enquiry was simply lost. Older than the refactor (it predates 0ed36bc).
+Fixed: one allow-list in `src/data/leadAllowList.ts` used by the route, and
+`npm run lead-options-check` (in CI) fails if any option a form renders is
+not accepted. **Hostinger logs from before 2026-10-14 may show
+`unknown_service` rejections: those were real people.**
+
+#### Also fixed
+
+- "Fifteen years" left on the homepage and /blog (spelled out, so the
+  2026-10-13 grep missed it). Site-wide now 17, computed.
+- Static page lastmod dates bumped; "freelance developer" self-descriptions
+  in three articles reworded; /blog and its pages repositioned and unique;
+  /pricing H2; portfolio cover alt text; AI Figma article density.
+- Lead route: non-string fields 400 not 500; JSON-only (415); foreign
+  Origin 403; Turnstile enforced only if the site key was present at build;
+  CF secret fallback trusts only the last XFF hop.
+- CSP: cal.com and Google Ads origins added; reports now go to
+  `/api/csp-report` (one log line each, in Hostinger logs). Still report-only.
+- www + old URL redirects in one hop. Logos and portfolio files cached a day.
+- Lead backup: shared folder logic, permissions re-applied, 5 MB warning,
+  alert emails throttled to one per 10 minutes; replay claims the file first
+  so nothing appended mid-run is lost.
+- Accessibility: contrast token `--color-faint` (5.26:1, was 2.54-3.96:1);
+  darker gold on white; mobile Quick Enquiry button named; focus rings on
+  every form field; cookie close button 40x40; gallery images are real
+  buttons; social and share names match visible text; heading skips fixed.
+- Copy: 282 em dashes removed from visible text (0 left on key pages);
+  "2025 as this year" removed from 13 evergreen posts; Cavendish Square
+  "estimated Q4 2025" removed (see below).
+- Case-study data no longer ships to the browser via `home.ts`.
+- ChatGPT vs DeepSeek article rewritten (554 to 1,024 words, unsourced speed
+  figures removed). `.gitignore` covers `.env*`; tsx pinned; Node >= 22.
+
+Verified: tsc, lint, build, lead-options (32 values), discipline, related
+(77), search (45), lead-probe (22 guards), h1 and schema (121 routes), all
+five contact choices accepted on a local production build.
+
+#### Bilal to do
+
+1. **Cavendish Square's real status** (completed, or a new date). The old
+   "Q4 2025" estimate was removed rather than guessed.
+2. **Cloudflare: bypass cache for `/_next/image`** (Caching, Cache Rules, URI
+   path starts with `/_next/image`, Bypass cache). Cloudflare ignores
+   `Vary: Accept` and served JPEG (87 KB) to browsers that take AVIF (37 KB).
+3. Optional: strip `platform`, `panel` and `x-turbo-charged-by` response
+   headers with a Cloudflare response-header Transform Rule.
+4. Still open from 399: SMTP vars, CF origin secret, CSP enforcing after a
+   week of `/api/csp-report` log lines.
+
+#### Not done, on purpose
+
+- LCP render delay: no hidden-until-JS text found; the likely cause is the
+  90 KB render-blocking CSS under Lighthouse throttling. `inlineCss` is
+  experimental in Next 16; re-measure with PageSpeed (quota was exhausted on
+  2026-10-14) before changing anything.
+- gtag.js (176 KB) is the largest file on every page. It is Google's; the
+  only lever is loading GA through GTM alone. Decide later.

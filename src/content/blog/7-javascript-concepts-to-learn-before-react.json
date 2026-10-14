@@ -1,14 +1,14 @@
 {
   "slug": "7-javascript-concepts-to-learn-before-react",
   "title": "7 JavaScript Concepts to Learn Before React",
-  "description": "Learn the 7 essential JavaScript concepts every beginner must know before learning React — with simple examples, tips, and code snippets.",
+  "description": "Learn the 7 essential JavaScript concepts every beginner must know before learning React, with simple examples, tips, and code snippets.",
   "published": "2025-06-04",
-  "updatedAt": "2026-09-30",
+  "updatedAt": "2026-10-14",
   "tags": [
     "Javascript",
     "Es6"
   ],
-  "words": 471,
+  "words": 468,
   "blocks": [
     {
       "t": "p",
@@ -196,7 +196,7 @@
     },
     {
       "t": "p",
-      "v": "Learning React is much easier when you have a strong foundation in JavaScript. By mastering these 7 core JavaScript concepts — arrow functions, array methods, destructuring, and promises — you’ll be able to understand and write cleaner, more effective React code."
+      "v": "Learning React is much easier when you have a strong foundation in JavaScript. By mastering these 7 core JavaScript concepts (arrow functions, array methods, destructuring, and promises), you’ll be able to understand and write cleaner, more effective React code."
     },
     {
       "t": "h2",
@@ -220,7 +220,7 @@
     },
     {
       "t": "p",
-      "v": "Q5. What’s next after learning these concepts?Start learning JSX, components, props, and state — the building blocks of React."
+      "v": "Q5. What’s next after learning these concepts?Start learning JSX, components, props, and state: the building blocks of React."
     }
   ]
 }

@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     // rather than only from /blog. Next replaces `alternates` whole, so a page
     // that sets its own canonical drops this; `pageMetadata()` in lib/site.ts
     // repeats it. Pages building `alternates` by hand need the same.
-    types: { "application/rss+xml": [{ url: "/rss.xml", title: "Bilal Shafqat — Writing" }] },
+    types: { "application/rss+xml": [{ url: "/rss.xml", title: "Bilal Shafqat: Writing" }] },
   },
   // No `keywords`, removed 2026-10-13. Google has said publicly that it ignores
   // the meta keywords tag, so it bought nothing, and the list still said "MERN

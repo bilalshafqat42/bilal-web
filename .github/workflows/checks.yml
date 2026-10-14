@@ -46,6 +46,12 @@ jobs:
       - name: Article data integrity
         run: npm run related-check
 
+      # Every option a lead form renders must be accepted by /api/lead's
+      # allow-lists. Three /contact choices were silently refused until
+      # 2026-10-14. Data only, so before the build.
+      - name: Lead form options accepted by the route
+        run: npm run lead-options-check
+
       - name: Build
         run: npm run build
 

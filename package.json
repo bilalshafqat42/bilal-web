@@ -2,6 +2,9 @@
   "name": "portfolio-site",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
@@ -9,11 +12,12 @@
     "lint": "eslint",
     "warm": "node scripts/warm-images.mjs",
     "indexnow": "node scripts/indexnow.mjs",
-    "search-check": "npx --yes tsx scripts/search-check.mjs",
-    "related-check": "npx --yes tsx scripts/related-check.mjs",
+    "search-check": "tsx scripts/search-check.mjs",
+    "related-check": "tsx scripts/related-check.mjs",
+    "lead-options-check": "tsx scripts/lead-options-check.mjs",
     "h1-check": "node scripts/h1-check.mjs",
     "schema-check": "node scripts/schema-check.mjs",
-    "lead-probe": "LEAD_BACKUP_DIR=$(mktemp -d) SMTP_HOST= SMTP_USER= SMTP_PASS= CRM_LEAD_API_URL=http://127.0.0.1:9/blackhole npx next start -p 3099 & for i in $(seq 1 40); do curl -sf -o /dev/null http://localhost:3099/ && break; sleep 1; done; CRM_LEAD_API_URL=http://127.0.0.1:9/blackhole BASE_URL=http://localhost:3099 node scripts/lead-probe.mjs; code=$?; kill %1 2>/dev/null; exit $code",
+    "lead-probe": "if curl -s -o /dev/null http://localhost:3099/; then echo 'Port 3099 is already serving; stop that server first.'; exit 1; fi; export LEAD_BACKUP_DIR=$(mktemp -d) SMTP_HOST= SMTP_USER= SMTP_PASS= CRM_LEAD_API_URL=http://127.0.0.1:9/blackhole; next start -p 3099 & pid=$!; trap 'pkill -P $pid 2>/dev/null; kill $pid 2>/dev/null' EXIT; for i in $(seq 1 40); do curl -sf -o /dev/null http://localhost:3099/ && break; sleep 1; done; BASE_URL=http://localhost:3099 node scripts/lead-probe.mjs",
     "discipline-check": "node scripts/discipline-check.mjs",
     "onpage": "node scripts/onpage-check.mjs",
     "audit": "node scripts/site-audit.mjs",
@@ -39,6 +43,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.3.8",
     "tailwindcss": "^4",
+    "tsx": "4.23.15",
     "typescript": "^5"
   },
   "browserslist": [

@@ -9,9 +9,15 @@ import type { NextFetchEvent, NextRequest } from "next/server";
 // Only run against real page requests — static assets, Next's own internals,
 // and known file extensions never need bot detection and would just add
 // noise (and cost) to every image/script/font request on the site.
+//
+// One exception: `/llms.txt` and `/llms-full.txt`. They exist for AI
+// assistants, so an answer engine fetching them is exactly the visit this file
+// is here to count, and the blanket `.txt` exclusion hid every one of them.
+// The inner `(?!llms(?:-full)?\.txt$)` lets those two through while
+// robots.txt, the IndexNow key and every other static file stay excluded.
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon\\.ico|images/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|avif|ico|css|js|mjs|txt|xml|json|woff|woff2)$).*)",
+    "/((?!_next/static|_next/image|favicon\\.ico|images/|(?!llms(?:-full)?\\.txt$).*\\.(?:svg|png|jpg|jpeg|gif|webp|avif|ico|css|js|mjs|txt|xml|json|woff|woff2)$).*)",
   ],
 };
 

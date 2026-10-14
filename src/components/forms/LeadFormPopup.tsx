@@ -96,8 +96,11 @@ export default function LeadFormPopup() {
         // visitor answers, either way.
         className="btn-primary fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold shadow-lg shadow-black/30 transition-shadow hover:shadow-xl floating-enquiry"
         aria-haspopup="dialog"
+        // The visible label is hidden below 640px, which left the button with
+        // no accessible name on phones (audit 2026-10-14).
+        aria-label="Quick Enquiry"
       >
-        <MessageSquarePlus size={18} />
+        <MessageSquarePlus size={18} aria-hidden />
         <span className="hidden sm:inline">Quick Enquiry</span>
       </button>
 
@@ -167,7 +170,7 @@ export default function LeadFormPopup() {
                       name="name"
                       type="text"
                       required
-                      className="mt-1.5 w-full rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-gold/50"
+                      className="mt-1.5 w-full rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-faint outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20"
                       placeholder="Your name"
                     />
                   </div>
@@ -181,7 +184,7 @@ export default function LeadFormPopup() {
                       name="email"
                       type="email"
                       required
-                      className="mt-1.5 w-full rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-gold/50"
+                      className="mt-1.5 w-full rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-faint outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20"
                       placeholder="you@company.com"
                     />
                   </div>
@@ -194,7 +197,7 @@ export default function LeadFormPopup() {
                       id="lead-phone"
                       name="phone"
                       type="tel"
-                      className="mt-1.5 w-full rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-gold/50"
+                      className="mt-1.5 w-full rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-faint outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20"
                       placeholder="+971 5X XXX XXXX"
                     />
                   </div>
@@ -208,7 +211,7 @@ export default function LeadFormPopup() {
                       name="message"
                       required
                       rows={3}
-                      className="mt-1.5 w-full resize-none rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-gold/50"
+                      className="mt-1.5 w-full resize-none rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-faint outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20"
                       placeholder="Briefly describe your project or query"
                     />
                   </div>

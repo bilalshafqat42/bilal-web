@@ -52,7 +52,7 @@ export default function AppointmentBooking({ services }: { services: string[] })
           id="topic"
           value={topic}
           onChange={(e) => setTopic(e.target.value)}
-          className="mt-2 w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 [color-scheme:dark]"
+          className="mt-2 w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20 [color-scheme:dark]"
         >
           {services.map((t) => (
             <option key={t}>{t}</option>
@@ -70,7 +70,7 @@ export default function AppointmentBooking({ services }: { services: string[] })
           onChange={(e) => setBudget(e.target.value)}
           disabled={BUDGET_OPTIONS.length === 0}
           aria-describedby={BUDGET_OPTIONS.length === 0 ? "budget-note" : undefined}
-          className="mt-2 w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 disabled:cursor-not-allowed disabled:opacity-50 [color-scheme:dark]"
+          className="mt-2 w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20 disabled:cursor-not-allowed disabled:opacity-50 [color-scheme:dark]"
         >
           {BUDGET_OPTIONS.length === 0 ? (
             <option value="">Not collected yet</option>
@@ -79,7 +79,7 @@ export default function AppointmentBooking({ services }: { services: string[] })
           )}
         </select>
         {BUDGET_OPTIONS.length === 0 ? (
-          <p id="budget-note" className="mt-1.5 text-xs text-muted/70">
+          <p id="budget-note" className="mt-1.5 text-xs text-faint">
             We&apos;ll cover this on the call.
           </p>
         ) : null}
@@ -93,7 +93,7 @@ export default function AppointmentBooking({ services }: { services: string[] })
           id="timeline"
           value={timeline}
           onChange={(e) => setTimeline(e.target.value)}
-          className="mt-2 w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink outline-none focus:border-gold/50 [color-scheme:dark]"
+          className="mt-2 w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20 [color-scheme:dark]"
         >
           {TIMELINE_OPTIONS.map((t) => (
             <option key={t}>{t}</option>

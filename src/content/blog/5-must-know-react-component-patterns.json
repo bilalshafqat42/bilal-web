@@ -3,21 +3,21 @@
   "title": "5 Must-Know React Component Patterns for Scalable Code",
   "description": "Discover 5 essential React component patterns that help you write clean, reusable, and scalable code. Perfect for beginners and advanced React developers alike.",
   "published": "2025-06-08",
-  "updatedAt": "2026-09-30",
+  "updatedAt": "2026-10-14",
   "tags": [
     "Javascript",
     "Es6",
     "React Js"
   ],
-  "words": 421,
+  "words": 414,
   "blocks": [
     {
       "t": "p",
-      "v": "When working with React, especially on larger or long-term projects, it's easy to end up with messy, repetitive, or hard-to-maintain code. But React gives us patterns — simple structures and ideas — that make our code easier to read, reuse, and scale."
+      "v": "When working with React, especially on larger or long-term projects, it's easy to end up with messy, repetitive, or hard-to-maintain code. But React gives us patterns (simple structures and ideas) that make our code easier to read, reuse, and scale."
     },
     {
       "t": "p",
-      "v": "In this article, we’ll explore 5 React component patterns every developer should know. These aren’t frameworks or libraries — they’re smart ways of organizing your code that work beautifully with React’s component-based structure."
+      "v": "In this article, we’ll explore 5 React component patterns every developer should know. These aren’t frameworks or libraries. They’re smart ways of organizing your code that work beautifully with React’s component-based structure."
     },
     {
       "t": "h2",
@@ -49,7 +49,7 @@
     },
     {
       "t": "p",
-      "v": "A Higher-Order Component is a function that takes a component and returns a new one — with extra features or props."
+      "v": "A Higher-Order Component is a function that takes a component and returns a new one, with extra features or props."
     },
     {
       "t": "p",
@@ -123,7 +123,7 @@
     },
     {
       "t": "p",
-      "v": "These patterns make a real difference when working on real-world projects — from solo builds to large enterprise apps."
+      "v": "These patterns make a real difference when working on real-world projects, from solo builds to large enterprise apps."
     },
     {
       "t": "h2",
@@ -167,7 +167,7 @@
     },
     {
       "t": "p",
-      "v": "Start with Presentational vs Container — it’s simple and effective."
+      "v": "Start with Presentational vs Container: it’s simple and effective."
     },
     {
       "t": "h2",
@@ -175,7 +175,7 @@
     },
     {
       "t": "p",
-      "v": "React is powerful — but using the right patterns can make it even better."
+      "v": "React is powerful, but using the right patterns can make it even better."
     },
     {
       "t": "p",

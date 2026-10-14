@@ -7,18 +7,18 @@ import JsonLd from "@/components/seo/JsonLd";
 import { SITE_URL, breadcrumbNode, ID, ref } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
 import BlogList from "@/components/article/BlogList";
+import { blogPosts } from "@/data/blogPosts";
 import { blogPageSlice, totalBlogPages } from "@/lib/blogPagination";
 import Eyebrow from "@/components/ui/Eyebrow";
+import { yearsExperience, BLOG_TITLE, BLOG_DESCRIPTION } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Writing — Notes on React, Front-End and Design",
-  description:
-    "Practical notes on React hooks, React Native and design practice, written from client work rather than from the documentation.",
+  title: BLOG_TITLE,
+  description: BLOG_DESCRIPTION,
   alternates: { canonical: "/blog" },
   openGraph: {
-    title: "Writing — Notes on React, Front-End and Design",
-    description:
-      "Practical notes on React hooks, React Native and design practice, written from client work.",
+    title: BLOG_TITLE,
+    description: BLOG_DESCRIPTION,
     type: "website",
     url: "/blog",
     images: OG_IMAGES,
@@ -42,8 +42,7 @@ export default function BlogIndexPage() {
       "@type": "Blog",
       "@id": `${url}#blog`,
       name: "Writing by Bilal Shafqat",
-      description:
-        "Practical notes on React hooks, React Native and design practice, written from client work.",
+      description: BLOG_DESCRIPTION,
       url,
       inLanguage: "en",
       author: ref(ID.person, "Person"),
@@ -81,23 +80,27 @@ export default function BlogIndexPage() {
                 the right article, and filler added to satisfy a word count
                 makes it worse at that. What was missing was a straight
                 description of what is here and who it is for. */}
+              {/* Rewritten 2026-10-14 to lead with marketing, which is what the
+                  site sells and what the newest articles cover. The count is
+                  read from the data: the hand-written "Fifty-seven" had gone
+                  stale. */}
               <p>
-                Notes on the things I hit in client work — React hooks that look simple until
-                they cost you a render, and the design references I keep going back to.
+                Most of what is new here is for Dubai businesses deciding where their marketing
+                money goes: how much to spend, whether to start with Google Ads or SEO, Google
+                versus Meta for real estate, why leads stop converting, and how a freelancer
+                compares with an agency.
               </p>
               <p>
-                Fifty-seven pieces, written across two broad halves. The technical half covers
-                React and React Native, the hooks in detail, state management, CSS and Node, and
-                it is written from problems that turned up on real builds rather than from the
-                documentation. The design half is mostly references: the sites worth returning
-                to, the tools that earn their place, and what has actually changed rather than
-                what is being announced.
+                {blogPosts.length} pieces in all. The larger, older part is technical and design
+                notes from client builds: React and React Native, the hooks in detail, state
+                management, CSS and Node, and the design references and tools that earn their
+                place.
               </p>
               <p>
-                More recently there is a third strand, for people hiring rather than building:
-                what a website costs in Dubai, whether to start with Google Ads or SEO, and how
-                a freelancer compares with an agency. Every link in every list has been opened
-                and checked, with the date on the page.
+                There is also a strand for people hiring someone to build: what a website costs
+                in Dubai, what to ask a developer before you sign, and which kind of developer you
+                actually need. Every link in every list has been opened and checked, with the date
+                on the page.
               </p>
             </>
           }
@@ -125,7 +128,7 @@ export default function BlogIndexPage() {
                     Rather have it <span className="text-gradient">built for you?</span>
                   </h2>
                   <p className="mx-auto mt-4 max-w-xl leading-relaxed text-muted">
-                    Fifteen years across marketing, design and development, as one point of contact.
+                    {yearsExperience()} years across marketing, design and development, as one point of contact.
                   </p>
                   <CtaButton href="/appointment" className="mt-9">Book a free consultation</CtaButton>
                 </div>

@@ -5,10 +5,13 @@
 // deliverables. Client pages consolidate the "several launches for one developer"
 // story; project pages carry the detail and target the development's own name.
 //
-// To add a project: append to that client's `projects` array. Routes, sitemap
-// entries, cards, and structured data are all generated from this file.
+// To add a project: append to that client's `projects` array, and add its slug
+// to `caseStudyUrls.ts` (the build fails until you do). Routes, cards and
+// structured data are generated from this file; the sitemap and the homepage
+// count read that small manifest.
 
 import type { Faq } from "./types";
+import { caseStudyUrls } from "./caseStudyUrls";
 
 export type Fact = { label: string; value: string };
 
@@ -112,8 +115,10 @@ export type Project = {
    *  read correctly. The sales application is an internal tool, where both
    *  sentences are simply wrong. One noun beats a second template. */
   kind?: string;
-  /** Overrides the card's alt text, which otherwise reads
-   *  "{name} campaign creative". Wrong for anything that is not a campaign. */
+  /** The card image's alt text, describing what the image shows. Falls back
+   *  to "{name} campaign creative", which is wrong for anything that is not a
+   *  campaign. Every published project sets it since 2026-10-14, when the
+   *  /portfolio grid stopped rendering its covers with `alt=""`. */
   cardImageAlt?: string;
   /** How `cardImage` sits in the 4:3 card well. Defaults to `cover`.
    *  Use `contain` for a designed cover whose composition runs to its edges. */
@@ -370,9 +375,11 @@ const hadleyHeights: Project = {
   logoWidth: 900,
   logoHeight: 1983,
   cardImage: "/portfolio/leos/hadley-heights/social-media/1.avif",
+  cardImageAlt:
+    "Hadley Heights campaign carousel slide showing the branded building signage and club house entrance in Jumeirah Village Circle",
   cardBlurb:
     "Off-plan launch for a 216-apartment development in Jumeirah Village Circle. Lead capture landing page plus a five-slide campaign carousel.",
-  headline: "Hadley Heights — off-plan launch in Jumeirah Village Circle",
+  headline: "Hadley Heights: off-plan launch in Jumeirah Village Circle",
   summary:
     "A 216-apartment residential development in JVC, designed and developed in the UK by British architects and interior designers. The campaign needed to convert interest into qualified, contactable investor leads rather than simply build awareness, so the landing page and the creative were built as one system.",
   facts: [
@@ -389,13 +396,13 @@ const hadleyHeights: Project = {
       width: 1600,
       height: 5568,
       alt: "Full-page view of the Hadley Heights lead capture landing page, showing the hero with a request-a-callback form and a free brochure registration section",
-      label: "Hadley Heights — campaign landing page",
+      label: "Hadley Heights, campaign landing page",
     },
     heroCrop: { src: "/portfolio/leos/hadley-heights/landing-page/hadley-heights-landing-page-hero.avif", width: 1400, height: 963 },
   },
   gallery: {
     heading: "Campaign carousel",
-    body: "A five-slide carousel that front-loads the visual and holds the detail — location, scale, unit sizes, interiors — for later slides, so a scroller gets the hook and a genuinely interested buyer gets the specification. Deliberately built on a light, editorial template distinct from the darker LEOS brand system, so development campaigns read as their own product without leaving the parent identity.",
+    body: "A five-slide carousel that front-loads the visual and holds the detail (location, scale, unit sizes, interiors) for later slides, so a scroller gets the hook and a genuinely interested buyer gets the specification. Deliberately built on a light, editorial template distinct from the darker LEOS brand system, so development campaigns read as their own product without leaving the parent identity.",
     basePath: "/portfolio/leos/hadley-heights/social-media",
     width: 800,
     height: 800,
@@ -403,27 +410,27 @@ const hadleyHeights: Project = {
       {
         file: "1",
         alt: "Hadley Heights carousel slide showing the branded building signage and club house entrance, with copy describing 216 apartments and retail outlets in Jumeirah Village Circle",
-        caption: "Slide 1 — the development",
+        caption: "Slide 1: the development",
       },
       {
         file: "2",
         alt: "Hadley Heights carousel slide showing the tower exterior CGI alongside copy about open-plan living areas and contemporary kitchens",
-        caption: "Slide 2 — open-plan living",
+        caption: "Slide 2: open-plan living",
       },
       {
         file: "3",
         alt: "Hadley Heights carousel slide listing apartment sizes, with a balcony CGI at dusk and copy noting the development was designed by British architects and interior designers",
-        caption: "Slide 3 — sizes and specification",
+        caption: "Slide 3: sizes and specification",
       },
       {
         file: "4",
         alt: "Hadley Heights carousel slide showing interior CGIs of the kitchen and living room",
-        caption: "Slide 4 — interiors",
+        caption: "Slide 4: interiors",
       },
       {
         file: "5",
         alt: "Hadley Heights carousel slide showing bedroom and bathroom interior CGIs",
-        caption: "Slide 5 — bedroom and bathroom",
+        caption: "Slide 5: bedroom and bathroom",
       },
     ],
   },
@@ -491,9 +498,11 @@ const weybridgeGardens: Project = {
   // This creative carries the original WG wordmark, so it belongs to phase one
   // rather than the Provence Edition.
   cardImage: "/portfolio/leos/social-media/3.avif",
+  cardImageAlt:
+    "Weybridge Gardens campaign creative showing an aerial render of the rooftop pool deck with cabanas and landscaped terraces",
   cardBlurb:
-    "Launch campaign for the first Weybridge Gardens in Dubailand — studios and one-bed apartments, sold on design rather than discount.",
-  headline: "Weybridge Gardens — the Dubailand launch",
+    "Launch campaign for the first Weybridge Gardens in Dubailand: studios and one-bed apartments, sold on design rather than discount.",
+  headline: "Weybridge Gardens: the Dubailand launch",
   summary:
     "The first Weybridge Gardens: a UK-designed residential community in Dubailand built around brutalist architecture softened by contemporary interiors. A studio and one-bed product competes on a crowded price shelf, so the page leads on design credibility rather than square footage.",
   facts: [
@@ -504,13 +513,13 @@ const weybridgeGardens: Project = {
   ],
   landingPage: {
     heading: "Landing page",
-    body: "A single conversion goal, Register Your Interest, with the button placed inside the hero so it is visible before any scrolling. The copy leads with design language — brutalist architecture, bespoke contemporary design, an urban oasis — because at the studio and one-bed end of the market the differentiator is character, not price. Scroll inside the frame to view the full page.",
+    body: "A single conversion goal, Register Your Interest, with the button placed inside the hero so it is visible before any scrolling. The copy leads with design language (brutalist architecture, bespoke contemporary design, an urban oasis) because at the studio and one-bed end of the market the differentiator is character, not price. Scroll inside the frame to view the full page.",
     capture: {
       src: "/portfolio/leos/weybridge-gardens/landing-page/weybridge-gardens-landing-page.avif",
       width: 1600,
       height: 6644,
       alt: "Full-page view of the Weybridge Gardens landing page, showing the balcony hero with the register-your-interest call to action and the bespoke contemporary design section",
-      label: "Weybridge Gardens — desktop",
+      label: "Weybridge Gardens, desktop",
     },
     heroCrop: { src: "/portfolio/leos/weybridge-gardens/landing-page/weybridge-gardens-landing-page-hero.avif", width: 1400, height: 963 },
   },
@@ -536,10 +545,12 @@ const weybridgeGardens2: Project = {
   logoWidth: 1000,
   logoHeight: 1314,
   cardImage: "/portfolio/leos/weybridge-gardens-2/landing-page/weybridge-landing-page.avif",
+  cardImageAlt:
+    "Weybridge Gardens 2 landing page, showing the Provence Edition hero and the register-your-interest call to action",
   cardImagePosition: "top",
   cardBlurb:
     "French-inspired follow-up: 288 homes in Dubailand, from AED 600K. Desktop and mobile landing pages built for registration capture.",
-  headline: "Weybridge Gardens 2 — the Provence Edition launch",
+  headline: "Weybridge Gardens 2: the Provence Edition launch",
   summary:
     "The second phase took the same Dubailand location in a completely different direction: Provence, French-inspired living, 288 homes from AED 600,000. A themed launch only works if the theme survives contact with the conversion path, so the page had to carry it while still turning interest into registered, contactable buyers.",
   facts: [
@@ -556,7 +567,7 @@ const weybridgeGardens2: Project = {
       width: 1041,
       height: 4534,
       alt: "Full-page view of the Weybridge Gardens 2 desktop landing page, showing the Provence Edition hero, the register-your-interest call to action and the pricing section",
-      label: "Weybridge Gardens 2 — desktop",
+      label: "Weybridge Gardens 2, desktop",
     },
     heroCrop: { src: "/portfolio/leos/weybridge-gardens-2/landing-page/weybridge-landing-page-hero.avif", width: 1041, height: 716 },
     mobileCapture: {
@@ -564,7 +575,7 @@ const weybridgeGardens2: Project = {
       width: 366,
       height: 4549,
       alt: "Full-page view of the Weybridge Gardens 2 mobile landing page, showing the cropped hero, development name and register-your-interest button above the fold",
-      label: "Weybridge Gardens 2 — mobile",
+      label: "Weybridge Gardens 2, mobile",
     },
   },
   place: {
@@ -590,27 +601,28 @@ const cavendishSquare: Project = {
   logoWidth: 1000,
   logoHeight: 1828,
   cardImage: "/portfolio/leos/cavendish/landing-page/cavendish-web.avif",
+  cardImageAlt:
+    "Cavendish Square landing page, showing the Elevated Living in JVT hero and the register-your-interest call to action",
   cardImagePosition: "top",
   cardBlurb:
     "138 studios and one-bedroom homes in Jumeirah Village Triangle. Desktop and mobile landing pages built around registration capture.",
-  headline: "Cavendish Square — a compact-unit launch in Jumeirah Village Triangle",
+  headline: "Cavendish Square: a compact-unit launch in Jumeirah Village Triangle",
   summary:
-    "Cavendish Square is 138 homes in Jumeirah Village Triangle, and the unit mix shapes everything about how it has to be sold: 114 studios and 24 one-bedroom apartments, from 428 to 1,209 sq ft. That is an investor and first-purchase audience rather than a family one, so the page leads with the address and the amenity set — rooftop garden, outdoor cinema, pool, gym — because at this size the shared space is the product. Estimated completion Q4 2025.",
+    "Cavendish Square is 138 homes in Jumeirah Village Triangle, and the unit mix shapes everything about how it has to be sold: 114 studios and 24 one-bedroom apartments, from 428 to 1,209 sq ft. That is an investor and first-purchase audience rather than a family one, so the page leads with the address and the amenity set (rooftop garden, outdoor cinema, pool, gym) because at this size the shared space is the product.",
   facts: [
     { label: "Location", value: "Jumeirah Village Triangle, Dubai" },
     { label: "Scale", value: "138 homes" },
     { label: "Unit mix", value: "114 studios, 24 one-bedroom" },
-    { label: "Completion", value: "Estimated Q4 2025" },
   ],
   landingPage: {
     heading: "Landing page, desktop and mobile",
-    body: "One primary conversion goal, Register Your Interest, sits in the hero with Check Construction Progress beneath it. Splitting the two matters here: buyers who have already committed have somewhere to go that does not compete with the registration form, which keeps the primary call to action clean for new traffic. The body copy answers the questions a compact-unit buyer actually asks — where it is, how many homes, what sizes, when it completes — in that order, rather than opening with lifestyle language. The mobile build is a genuine rebuild rather than a compressed desktop layout: the hero crops to hold the building and the development name at 367px, and both calls to action sit above the fold within thumb reach.",
+    body: "One primary conversion goal, Register Your Interest, sits in the hero with Check Construction Progress beneath it. Splitting the two matters here: buyers who have already committed have somewhere to go that does not compete with the registration form, which keeps the primary call to action clean for new traffic. The body copy answers the questions a compact-unit buyer actually asks (where it is, how many homes, what sizes, when it completes) in that order, rather than opening with lifestyle language. The mobile build is a genuine rebuild rather than a compressed desktop layout: the hero crops to hold the building and the development name at 367px, and both calls to action sit above the fold within thumb reach.",
     capture: {
       src: "/portfolio/leos/cavendish/landing-page/cavendish-web.avif",
       width: 1041,
       height: 5302,
       alt: "Full-page view of the Cavendish Square desktop landing page, showing the Elevated Living in JVT hero, register-your-interest call to action, amenity sections and the property features breakdown",
-      label: "Cavendish Square — desktop",
+      label: "Cavendish Square, desktop",
     },
     heroCrop: { src: "/portfolio/leos/cavendish/landing-page/cavendish-web-hero.avif", width: 1041, height: 716 },
     mobileCapture: {
@@ -618,7 +630,7 @@ const cavendishSquare: Project = {
       width: 367,
       height: 5317,
       alt: "Full-page view of the Cavendish Square mobile landing page, showing the cropped hero, development name and both calls to action above the fold",
-      label: "Cavendish Square — mobile",
+      label: "Cavendish Square, mobile",
     },
   },
   place: {
@@ -697,7 +709,7 @@ const salesApp: Project = {
       heading: "What the sales presentation application replaced",
       paragraphs: [
         "An experience centre meeting has a shape. A buyer arrives interested in a development, not a unit. Over the next hour that narrows: which tower, then which floor, then which apartment, then what it costs and whether it is still available. The job of the room is to carry someone through that narrowing without losing them.",
-        "The tooling did not follow that shape. Renders and walkthroughs lived in one place, unit availability lived in the CRM, floor plans lived in PDFs, and the location story lived in a printed brochure. A sales manager moving a buyer from interest to a specific apartment was switching between systems in front of them, and the one question that closes the conversation — is this one still available — was the one that could not be answered on the spot with confidence.",
+        "The tooling did not follow that shape. Renders and walkthroughs lived in one place, unit availability lived in the CRM, floor plans lived in PDFs, and the location story lived in a printed brochure. A sales manager moving a buyer from interest to a specific apartment was switching between systems in front of them, and the one question that closes the conversation, \"is this one still available?\", was the one that could not be answered on the spot with confidence.",
         "Anything the buyer asked for afterwards had to be found and sent separately, which put a gap of hours or days between the meeting and the follow-up.",
       ],
     },
@@ -821,7 +833,7 @@ export const clients: Client[] = [
     name: "PSI",
     industry: "Real Estate & Property",
     draft: true,
-    title: "PSI — DRAFT, not published",
+    title: "PSI: DRAFT, not published",
     description: "DRAFT placeholder. Awaiting screenshots, write-up and permission.",
     headline: "DRAFT: one line on what the work achieved",
     intro:
@@ -846,7 +858,7 @@ export const clients: Client[] = [
     name: "Choppershoot",
     industry: "Media & Production",
     draft: true,
-    title: "Choppershoot — DRAFT, not published",
+    title: "Choppershoot: DRAFT, not published",
     description: "DRAFT placeholder. Work not yet delivered. Awaiting the build, the write-up and permission.",
     headline: "DRAFT: one line on what the work achieved",
     intro:
@@ -867,7 +879,7 @@ export const clients: Client[] = [
     name: "Texdale",
     industry: "Manufacturing & Industrial",
     draft: true,
-    title: "Texdale — DRAFT, not published",
+    title: "Texdale: DRAFT, not published",
     description: "DRAFT placeholder. Awaiting screenshots, write-up and permission.",
     headline: "DRAFT: one line on what the work achieved",
     intro:
@@ -888,7 +900,7 @@ export const clients: Client[] = [
     name: "PetsMarket",
     industry: "E-commerce & Retail",
     draft: true,
-    title: "PetsMarket — DRAFT, not published",
+    title: "PetsMarket: DRAFT, not published",
     description: "DRAFT placeholder. Awaiting screenshots, write-up and permission.",
     headline: "DRAFT: one line on what the work achieved",
     intro:
@@ -910,7 +922,7 @@ export const clients: Client[] = [
     industry: "Real Estate & Property",
     logo: "/portfolio/leos/logo/leos-white.svg",
     ogImage: "/portfolio/leos/og-leos.jpg",
-    title: "LEOS Developments — Website, App & Launch Campaigns",
+    title: "LEOS Developments: Website, App & Launch Campaigns",
     description:
       "Two years with LEOS Developments: corporate website, a React Native app for iOS and Android, brand social, and off-plan launch campaigns.",
     headline: "Corporate website and launch campaigns for a UK and Dubai developer",
@@ -956,7 +968,7 @@ export const clients: Client[] = [
         width: 1928,
         height: 6555,
         alt: "Full-page view of the LEOS Developments corporate website",
-        label: "LEOS Developments — corporate website",
+        label: "LEOS Developments, corporate website",
       },
     },
     mobileApp: {
@@ -974,7 +986,7 @@ export const clients: Client[] = [
         alt: "The LEOS app open on the Hadley Heights development, shown on an iPhone resting on a brushed gold surface",
       },
       body:
-        "A cross-platform app for iOS and Android, built in React Native from a single codebase. It carries the same developments as the website — Hadley Heights, Weybridge Gardens and Cavendish Square — so a buyer who first saw a launch page finds the same units, the same photography and the same enquiry routes on their phone rather than a thinner version of the site.",
+        "A cross-platform app for iOS and Android, built in React Native from a single codebase. It carries the same developments as the website (Hadley Heights, Weybridge Gardens and Cavendish Square), so a buyer who first saw a launch page finds the same units, the same photography and the same enquiry routes on their phone rather than a thinner version of the site.",
       constraints: {
         pull:
           "The website already sold well. The app had to carry that restraint into something people operate rather than read.",
@@ -1079,7 +1091,7 @@ export const clients: Client[] = [
           {
             question: "Are these real screens or concepts?",
             answer:
-              "Real. Every capture on this page is from the built app rather than a mockup, which is why the walkthrough talks about decisions that had to survive contact with real content — long development names, missing photography, and units that change availability.",
+              "Real. Every capture on this page is from the built app rather than a mockup, which is why the walkthrough talks about decisions that had to survive contact with real content: long development names, missing photography, and units that change availability.",
           },
           {
             question: "Why does the app repeat what the website already does?",
@@ -1105,7 +1117,7 @@ export const clients: Client[] = [
           tag: "Guest browsing by default",
           label: "Sign in",
           journey:
-            "The first decision is whether to make anyone sign in at all. Most first visits to a property app are browsing, not buying, so a wall in front of the developments loses the people it is meant to qualify. Continue as guest sits directly under the login button, at the same weight — an account is offered, not demanded.",
+            "The first decision is whether to make anyone sign in at all. Most first visits to a property app are browsing, not buying, so a wall in front of the developments loses the people it is meant to qualify. Continue as guest sits directly under the login button, at the same weight: an account is offered, not demanded.",
           mockup: true,
           capture: {
             src: "/portfolio/leos/mobile-app/leos-login-mobile.avif",
@@ -1126,7 +1138,7 @@ export const clients: Client[] = [
           tag: "Actions sit with the content",
           label: "Home",
           journey:
-            "A single featured development leads, not a grid. One building with its location, unit mix and size range answers more than six thumbnails do, and Enquire Now and Call Us Now sit on the card itself rather than behind a menu — the two actions a serious buyer wants are never more than one tap from what they are looking at.",
+            "A single featured development leads, not a grid. One building with its location, unit mix and size range answers more than six thumbnails do, and Enquire Now and Call Us Now sit on the card itself rather than behind a menu, so the two actions a serious buyer wants are never more than one tap from what they are looking at.",
           capture: {
             src: "/portfolio/leos/mobile-app/home-screen.avif",
             width: 1206,
@@ -1166,7 +1178,7 @@ export const clients: Client[] = [
           tag: "Weighted, not evenly split",
           label: "Menu",
           journey:
-            "Developments, investments, the LEOS Hub and news, as a slide-over rather than a tab bar — five destinations of uneven importance do not divide well into equal tabs. Log out sits at the bottom in the accent colour, visible rather than buried in a settings screen two levels down.",
+            "Developments, investments, the LEOS Hub and news, as a slide-over rather than a tab bar, because five destinations of uneven importance do not divide well into equal tabs. Log out sits at the bottom in the accent colour, visible rather than buried in a settings screen two levels down.",
           mockup: true,
           capture: {
             src: "/portfolio/leos/mobile-app/leos-mobile-menu.avif",
@@ -1237,25 +1249,25 @@ export const clients: Client[] = [
           file: "3",
           alt:
             "Weybridge Gardens campaign creative showing an aerial render of the rooftop pool deck with cabanas and landscaped terraces",
-          caption: "Weybridge Gardens \u2014 rooftop amenity render",
+          caption: "Weybridge Gardens: rooftop amenity render",
         },
         {
           file: "4",
           alt:
             "Hadley Heights campaign creative showing poolside leisure beside turquoise water",
-          caption: "Hadley Heights \u2014 campaign creative",
+          caption: "Hadley Heights: campaign creative",
         },
         {
           file: "6",
           alt:
             "LEOS brand creative captioned Modern Living Awaits, showing a resident in a turquoise swimming pool",
-          caption: "Brand campaign \u2014 amenity lifestyle",
+          caption: "Brand campaign: amenity lifestyle",
         },
         {
           file: "7",
           alt:
             "LEOS brand creative captioned Vibrant Spaces Are Emerging, showing a deep green interior with framed artwork, plants and lounge seating",
-          caption: "Brand campaign \u2014 interior lifestyle",
+          caption: "Brand campaign: interior lifestyle",
         },
       ],
     },
@@ -1326,11 +1338,26 @@ export function getProject(clientSlug: string, projectSlug: string) {
   return project && client ? { client, project } : undefined;
 }
 
-/** Every case-study URL, for the sitemap. */
-export function caseStudyUrls(): string[] {
-  return publishedClients().flatMap((c) => [
+/** Every case-study URL lives in `caseStudyUrls.ts`, a small module the
+ *  homepage can import without pulling this file into the browser bundle.
+ *  Re-exported here so server code can keep importing it from either place. */
+export { caseStudyUrls };
+
+// The manifest and this data must agree. Computed from the data exactly as the
+// sitemap used to be, and compared when this module loads, so a client
+// published, a project added or a slug renamed here without updating
+// `caseStudyUrls.ts` fails the build instead of shipping a stale sitemap.
+{
+  const fromData = publishedClients().flatMap((c) => [
     `/portfolio/${c.slug}`,
     ...(c.mobileApp ? [`/portfolio/${c.slug}/mobile-app`] : []),
     ...c.projects.map((p) => `/portfolio/${c.slug}/${p.slug}`),
   ]);
+  const fromManifest = caseStudyUrls();
+  if (fromData.join("\n") !== fromManifest.join("\n")) {
+    throw new Error(
+      `caseStudyUrls.ts is out of step with caseStudies.ts.\n` +
+        `Data:     ${fromData.join(", ")}\nManifest: ${fromManifest.join(", ")}`,
+    );
+  }
 }

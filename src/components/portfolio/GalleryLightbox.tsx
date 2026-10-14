@@ -44,39 +44,20 @@ export default function GalleryLightbox({
   useEffect(() => {
     const host = hostRef.current;
     if (!host) return;
+    // The tiles are real <button>s (see `GalleryGrid`), so Enter and Space
+    // already arrive here as clicks and no keydown handler is needed.
     const onClick = (e: MouseEvent) => {
-      const fig = (e.target as HTMLElement).closest("figure");
-      if (!fig) return;
-      const all = [...host.querySelectorAll("figure")];
-      const i = all.indexOf(fig as HTMLElement);
+      const trigger = (e.target as HTMLElement).closest<HTMLElement>("[data-lightbox-trigger]");
+      if (!trigger) return;
+      const all = [...host.querySelectorAll<HTMLElement>("[data-lightbox-trigger]")];
+      const i = all.indexOf(trigger);
       if (i < 0) return;
-      lastTrigger.current = fig as HTMLElement;
+      lastTrigger.current = trigger;
       setOpen(i);
     };
-    // Enter/Space on a focused tile, so this is not pointer-only.
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key !== "Enter" && e.key !== " ") return;
-      const fig = (e.target as HTMLElement).closest("figure");
-      if (!fig) return;
-      e.preventDefault();
-      const i = [...host.querySelectorAll("figure")].indexOf(fig as HTMLElement);
-      if (i >= 0) {
-        lastTrigger.current = fig as HTMLElement;
-        setOpen(i);
-      }
-    };
     host.addEventListener("click", onClick);
-    host.addEventListener("keydown", onKey);
-    // Tiles are not links, so they need to be reachable and announced.
-    for (const fig of host.querySelectorAll("figure")) {
-      fig.setAttribute("tabindex", "0");
-      fig.setAttribute("role", "button");
-      fig.setAttribute("aria-haspopup", "dialog");
-      (fig as HTMLElement).style.cursor = "zoom-in";
-    }
     return () => {
       host.removeEventListener("click", onClick);
-      host.removeEventListener("keydown", onKey);
     };
   }, []);
 
@@ -147,7 +128,7 @@ export default function GalleryLightbox({
             />
             <p className="mt-3 text-center text-sm text-white/70">
               {item.caption}
-              <span className="ml-3 font-mono text-xs text-white/40">
+              <span className="ml-3 font-mono text-xs text-white/60">
                 {open! + 1} / {count}
               </span>
             </p>

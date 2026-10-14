@@ -138,12 +138,6 @@ export function blogPost(slug: string): BlogPost | undefined {
   return blogPosts.find((p) => p.slug === slug);
 }
 
-/** The most recent publication date. */
-export const BLOG_CONTENT_DATE = blogPosts
-  .map((p) => p.published)
-  .sort()
-  .at(-1)!;
-
 /** The most recent change to any article, for the `/blog` index pages'
  *  sitemap entries: a new post or an edited description changes what they
  *  list. */

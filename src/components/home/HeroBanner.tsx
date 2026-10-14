@@ -207,7 +207,7 @@ export default function HeroBanner() {
               {RECENT.map((w, i) => (
                 <li key={w.href} className="lg:flex lg:items-center lg:gap-4">
                   {i > 0 ? (
-                    <span aria-hidden="true" className="hidden text-muted/50 lg:inline">
+                    <span aria-hidden="true" className="hidden text-faint lg:inline">
                       /
                     </span>
                   ) : null}

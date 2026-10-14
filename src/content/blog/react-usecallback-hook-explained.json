@@ -3,12 +3,12 @@
   "title": "React useCallback Hook Explained with Real Examples and Best Practices",
   "description": "Learn what React useCallback hook does, when to use it, and how it helps prevent unnecessary re-renders in your components. Includes real examples.",
   "published": "2025-06-25",
-  "updatedAt": "2026-10-01",
+  "updatedAt": "2026-10-14",
   "tags": [
     "React Hooks",
     "React Js"
   ],
-  "words": 484,
+  "words": 472,
   "blocks": [
     {
       "t": "h2",
@@ -16,7 +16,7 @@
     },
     {
       "t": "p",
-      "v": "React's useCallback is one of those hooks that seems confusing at first — until you start dealing with unnecessary re-renders or memoized components."
+      "v": "React's useCallback is one of those hooks that seems confusing at first, until you start dealing with unnecessary re-renders or memoized components."
     },
     {
       "t": "p",
@@ -37,7 +37,7 @@
         "What useCallback is",
         "How it works and why it exists",
         "How it compares to useMemo and inline functions",
-        "When to use it — and when not to",
+        "When to use it, and when not to",
         "Real-world use cases with code examples"
       ]
     },
@@ -47,7 +47,7 @@
     },
     {
       "t": "p",
-      "v": "useCallback is a built-in React hook that lets you memoize a function — meaning it returns the same function reference between renders unless one of its dependencies has changed."
+      "v": "useCallback is a built-in React hook that lets you memoize a function, meaning it returns the same function reference between renders unless one of its dependencies has changed."
     },
     {
       "t": "h3",
@@ -59,7 +59,7 @@
     },
     {
       "t": "p",
-      "v": "If none of the dependencies change, React will return the exact same function — avoiding unnecessary function recreation and preventing extra renders in child components."
+      "v": "If none of the dependencies change, React will return the exact same function, avoiding unnecessary function recreation and preventing extra renders in child components."
     },
     {
       "t": "h2",
@@ -67,7 +67,7 @@
     },
     {
       "t": "p",
-      "v": "When you pass a function as a prop to a memoized child component (e.g., using React.memo), even a new function reference — with identical logic — can cause that component to re-render."
+      "v": "When you pass a function as a prop to a memoized child component (e.g., using React.memo), even a new function reference (with identical logic) can cause that component to re-render."
     },
     {
       "t": "p",
@@ -91,7 +91,7 @@
     },
     {
       "t": "p",
-      "v": "Both useCallback and useMemo help with memoization — but they do different things."
+      "v": "Both useCallback and useMemo help with memoization, but they do different things."
     },
     {
       "t": "h2",
@@ -107,7 +107,7 @@
     },
     {
       "t": "p",
-      "v": "In the first case, a new function is created every render. In the second case, handleClick stays the same between renders — avoiding unnecessary re-renders of Button."
+      "v": "In the first case, a new function is created every render. In the second case, handleClick stays the same between renders, avoiding unnecessary re-renders of Button."
     },
     {
       "t": "h2",
@@ -119,7 +119,7 @@
     },
     {
       "t": "p",
-      "v": "Here, Child will NOT re-render unless handleClick changes — which it won’t, thanks to useCallback()."
+      "v": "Here, Child will NOT re-render unless handleClick changes, which it won’t, thanks to useCallback()."
     },
     {
       "t": "h2",
@@ -182,7 +182,7 @@
     },
     {
       "t": "h2",
-      "v": "Best Practices for useCallback (2025)"
+      "v": "Best Practices for useCallback"
     },
     {
       "t": "list",
@@ -201,7 +201,7 @@
     },
     {
       "t": "p",
-      "v": "useCallback is not just a \"nice to have\" — it’s essential when building performant React apps with lots of components or heavy rendering logic."
+      "v": "useCallback is not just a \"nice to have\". It’s essential when building performant React apps with lots of components or heavy rendering logic."
     },
     {
       "t": "h3",
@@ -213,12 +213,12 @@
       "v": [
         "It returns a memoized version of your function",
         "It helps avoid unnecessary re-renders",
-        "It should be used selectively — not everywhere"
+        "It should be used selectively, not everywhere"
       ]
     },
     {
       "t": "p",
-      "v": "If you work with React.memo, nested components, or reusable hooks — useCallback is your best friend."
+      "v": "If you work with React.memo, nested components, or reusable hooks, useCallback is your best friend."
     }
   ],
   "metaTitle": "React useCallback Hook Explained with Examples"

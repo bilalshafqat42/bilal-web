@@ -9,8 +9,9 @@
  * Two ways to do the same job on one site.
  *
  * **This buys editing, not reuse, and the distinction is worth being honest
- * about.** The service template renders fifteen pages from `pillars.ts`; that
- * is reuse. Every block below is rendered exactly once. What it buys is that
+ * about.** The service template renders fifteen pages from
+ * `serviceCategories.ts` (split out of `pillars.ts` on 2026-10-13); that is
+ * reuse. Every block below is rendered exactly once. What it buys is that
  * all forty-odd strings on the most important page of the site sit together,
  * readable end to end, editable without touching a component.
  *
@@ -23,12 +24,12 @@
  * Three sections are not here because their content already belongs to data
  * files shared with other pages, and copying it would create a second source of
  * truth: the disciplines come from `pillars.ts` (`homeDisciplines`), the process
- * stages from `process.ts`, and the portfolio grid from `caseStudies.ts`.
+ * stages from `process.ts`, and the portfolio grid from `caseStudies.ts` (the
+ * case-study count from its small manifest, `caseStudyUrls.ts`).
  */
 
 import { Building2, Home, Network, Users, type LucideIcon } from "lucide-react";
-import { caseStudyUrls } from "@/data/caseStudies";
-import { disciplinesWithPages } from "@/data/disciplines";
+import { caseStudyCount } from "@/data/caseStudyUrls";
 import { yearsExperience } from "@/lib/site";
 
 export type Audience = {
@@ -131,8 +132,14 @@ export const audiences: Audience[] = [
   },
 ];
 
-/** Measured outcomes. Every one traceable to a published case study. */
-export const resultStats: Stat[] = [
+/** Measured outcomes. Every one traceable to a published case study.
+ *
+ *  A function taking the discipline count rather than a constant that computes
+ *  it. Counting disciplines means importing `disciplines.ts`, which imports the
+ *  service and case-study data, and this file reaches the browser through
+ *  client components (`AboutSplit`, `WhoIWorkWith`). `Results`, a server
+ *  component, passes the count in, so that data stays on the server. */
+export const resultStatsFor = (disciplineCount: number): Stat[] => [
   {
     value: `${yearsExperience()}+`,
     label: "Years, one point of contact",
@@ -141,8 +148,10 @@ export const resultStats: Stat[] = [
     verified: true,
   },
   {
-    // Counted from `caseStudies`, not typed, so it cannot go stale.
-    value: `${caseStudyUrls().filter((u) => u.split("/").length > 3).length}`,
+    // Counted from the published case-study manifest, not typed, so it cannot
+    // go stale. From `caseStudyUrls.ts` rather than `caseStudies.ts`, because
+    // this file reaches the browser through client components.
+    value: `${caseStudyCount()}`,
     label: "Case studies published",
     detail: "Each with the brief, the decisions and what shipped",
     meta: "Brief · Build · Outcome",
@@ -150,8 +159,8 @@ export const resultStats: Stat[] = [
   },
   {
     // The same four the capability ledger names, counted from the data behind
-    // it rather than asserted twice.
-    value: `${disciplinesWithPages().length}`,
+    // it (by the caller) rather than asserted twice.
+    value: `${disciplineCount}`,
     label: "Disciplines, one contract",
     detail: "Marketing, design, web and mobile under one agreement",
     meta: "No subcontractors",
@@ -265,7 +274,7 @@ export const homeFaqs = [
     // From the website-app-development FAQ, kept whole. The second half is the
     // part worth keeping: telling someone they do not need an app is the
     // answer that earns trust.
-    a: "Yes, with React Native so one codebase serves iOS and Android. I will also tell you when you do not need an app — for a lot of businesses a fast mobile website does the same job without app store approval and two platforms to maintain.",
+    a: "Yes, with React Native so one codebase serves iOS and Android. I will also tell you when you do not need an app. For a lot of businesses a fast mobile website does the same job without app store approval and two platforms to maintain.",
   },
   {
     q: "How much does a landing page cost?",

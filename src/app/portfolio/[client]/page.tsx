@@ -16,10 +16,11 @@ import { PORTFOLIO_CONTENT_DATE } from "@/data/contentDates";
 import CtaButton from "@/components/ui/CtaButton";
 import DeviceFrame from "@/components/portfolio/DeviceFrame";
 import { jsonLdSafe } from "@/lib/schema";
+import { SITE_URL } from "@/lib/site";
 import Eyebrow from "@/components/ui/Eyebrow";
 import SecondaryButton from "@/components/ui/SecondaryButton";
 
-const SITE = "https://bilalshafqat.com";
+const SITE = SITE_URL;
 
 type Props = { params: Promise<{ client: string }> };
 
@@ -87,7 +88,7 @@ export default async function ClientCaseStudy({ params }: Props) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
-    name: `${c.name} — ${c.headline}`,
+    name: `${c.name}: ${c.headline}`,
     headline: c.title,
     description: c.description,
     url,

@@ -16,7 +16,7 @@ const count = spellCount(megaMenuGroups.length);
 const Count = count.charAt(0).toUpperCase() + count.slice(1);
 
 export const metadata: Metadata = pageMetadata({
-  title: "Services — Marketing, Development & Design | Bilal Shafqat",
+  title: "Services: Marketing, Development & Design | Bilal Shafqat",
   description: `Paid marketing, website and app development, UI/UX and brand design, and CRM automation. ${Count} categories, one senior partner.`,
   path: "/services",
 });

@@ -45,7 +45,7 @@ export function CaptureFrame({
       <div
         tabIndex={0}
         role="region"
-        aria-label={`${capture.label} — scrollable full-page capture`}
+        aria-label={`${capture.label}, scrollable full-page capture`}
         className="max-h-[70vh] overflow-y-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-gold"
       >
         <Image
@@ -66,7 +66,7 @@ export function CaptureFrame({
       ) : (
         // Discoverability, not decoration. Nothing told a visitor the frame
         // scrolled, so most never saw past the top 70vh of a 6,000px capture.
-        <p className="border-t border-border px-4 py-2.5 text-center text-xs text-muted/70">
+        <p className="border-t border-border px-4 py-2.5 text-center text-xs text-faint">
           Scroll inside the frame to read the full page
         </p>
       )}
@@ -102,20 +102,34 @@ export function GalleryGrid({ gallery }: { gallery: Gallery }) {
               which is a box around a box. Matching `CaseStudyStory`'s pair
               block here is what makes every case study on the site read as one
               design rather than two. */}
-          <figure className={isScreens ? "" : "overflow-hidden r-chip"}>
-            <Image
-              src={`${gallery.basePath}/${item.file}.${ext}`}
-              alt={item.alt}
-              width={gallery.width}
-              height={gallery.height}
-              // Accurate `sizes` matters more than any other image setting: it is
-              // what Next uses to pick a variant. "25vw" was wrong — the grid sits
-              // inside max-w-7xl with padding and gaps, so a tile is ~293px fixed
-              // on large screens, not 25% of a 1440px viewport (360px). That gap
-              // alone made desktop fetch an 800px file instead of a 640px one.
-              sizes={isScreens ? "(min-width: 640px) 610px, 92vw" : "(min-width: 1024px) 300px, 45vw"}
-              className={isScreens ? "w-full" : "aspect-square w-full object-cover"}
-            />
+          <figure>
+            {/* A real <button> around the image, not `role="button"` on the
+                figure: it is focusable, fires on Enter and Space, and is
+                announced as a button without any script. Its name comes from
+                the image's alt text. `GalleryLightbox` listens for clicks on
+                `[data-lightbox-trigger]` and opens the matching slide. */}
+            <button
+              type="button"
+              data-lightbox-trigger=""
+              aria-haspopup="dialog"
+              className={`block w-full cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold ${
+                isScreens ? "" : "overflow-hidden r-chip"
+              }`}
+            >
+              <Image
+                src={`${gallery.basePath}/${item.file}.${ext}`}
+                alt={item.alt}
+                width={gallery.width}
+                height={gallery.height}
+                // Accurate `sizes` matters more than any other image setting: it is
+                // what Next uses to pick a variant. "25vw" was wrong — the grid sits
+                // inside max-w-7xl with padding and gaps, so a tile is ~293px fixed
+                // on large screens, not 25% of a 1440px viewport (360px). That gap
+                // alone made desktop fetch an 800px file instead of a 640px one.
+                sizes={isScreens ? "(min-width: 640px) 610px, 92vw" : "(min-width: 1024px) 300px, 45vw"}
+                className={isScreens ? "w-full" : "aspect-square w-full object-cover"}
+              />
+            </button>
             <figcaption className="mt-3 text-xs text-muted">{item.caption}</figcaption>
           </figure>
         </Reveal>

@@ -89,10 +89,10 @@ export const disciplines: Discipline[] = [
       headline: "Interface design, judged on the decision behind each screen",
       intro:
         "Every screen here is shipped work, not a concept. What is worth looking at is not the surface but the decision underneath it: whether to force a sign-in, whether actions belong on the card or behind a menu, how many fields an enquiry form can carry before it starts costing completions. Each piece links through to the reasoning.",
-      metaTitle: "UI/UX Design Portfolio — App & Mobile | Bilal Shafqat",
+      metaTitle: "UI/UX Design Portfolio: App & Mobile | Bilal Shafqat",
       metaDescription:
         "Shipped React Native app screens and mobile web layouts. Every screen is live work, not a concept, and each links through to the decision behind it.",
-      lens: "This page is the interface cut. It gathers the app screens and the mobile web layouts in one place because they answer the same question — what does a buyer do on a small screen — and it is the only page where they sit together with the design reasoning attached.",
+      lens: "This page is the interface cut. It gathers the app screens and the mobile web layouts in one place because they answer the same question (what does a buyer do on a small screen?) and it is the only page where they sit together with the design reasoning attached.",
       depth: [
         {
           heading: "The decisions that do not show in a screenshot",
@@ -156,7 +156,7 @@ export const disciplines: Discipline[] = [
     page: {
       headline: "Websites and launch pages, designed and built to convert",
       intro:
-        "Corporate websites and campaign landing pages, grouped below by what each one is rather than by who it was for. The published set is property — a corporate site and four off-plan launches, all built to carry high-resolution renders without the load time that usually comes with them — and the same build applies to any sector where a page has to load fast and produce an enquiry. Follow any capture through to the case study for the stack and the structure.",
+        "Corporate websites and campaign landing pages, grouped below by what each one is rather than by who it was for. The published set is property: a corporate site and four off-plan launches, all built to carry high-resolution renders without the load time that usually comes with them, and the same build applies to any sector where a page has to load fast and produce an enquiry. Follow any capture through to the case study for the stack and the structure.",
       metaTitle: "Web Design & Development Portfolio | Bilal Shafqat",
       metaDescription:
         "Corporate websites and campaign landing pages built for speed, mobile and one clear enquiry action. The published set is property: a site and four launches.",
@@ -215,8 +215,8 @@ export const disciplines: Discipline[] = [
     page: {
       headline: "A cross-platform property app, from a single codebase",
       intro:
-        "Cross-platform apps in React Native, one codebase serving both stores. The app below carries the same inventory as the client's website, so someone who first saw a landing page finds the same items, the same photography and the same enquiry routes on their phone — the pattern applies to any catalogue a business already publishes on the web. Every screen is from the shipped build, and each links to the decision behind it.",
-      metaTitle: "Mobile App Portfolio — React Native | Bilal Shafqat",
+        "Cross-platform apps in React Native, one codebase serving both stores. The app below carries the same inventory as the client's website, so someone who first saw a landing page finds the same items, the same photography and the same enquiry routes on their phone. The pattern applies to any catalogue a business already publishes on the web. Every screen is from the shipped build, and each links to the decision behind it.",
+      metaTitle: "Mobile App Portfolio: React Native | Bilal Shafqat",
       metaDescription:
         "Mobile app development portfolio: cross-platform React Native apps for iOS and Android from a single codebase, with each screen decision explained.",
       lens: "These screens also appear on the UI/UX Design page, where the subject is the interface decision. Here it is the app as a delivered product: one codebase, two platforms, and the same inventory as the website it sits alongside.",
@@ -277,7 +277,7 @@ export const disciplines: Discipline[] = [
       headline: "Social creative built as a set, not as one-off posts",
       intro:
         "Brand creative and campaign creative, split below because they are different jobs: one holds a feed together between campaigns, the other sells a specific launch. Both are designed as a run rather than as individual posts, so a feed reads as one brand instead of as a series of unrelated announcements. The published set is property; the approach is the same for any business running campaigns off a single brand.",
-      metaTitle: "Social Media Portfolio — Brand & Campaign | Bilal Shafqat",
+      metaTitle: "Social Media Portfolio: Brand & Campaign | Bilal Shafqat",
       metaDescription:
         "Brand and campaign creative designed as runs rather than one-off posts, so a feed reads as one brand instead of unrelated announcements.",
       lens: "This is the only page for the social work, and it is the full set rather than a selection. A portfolio of creative is more useful complete, because consistency across a run is the thing a client is actually buying.",

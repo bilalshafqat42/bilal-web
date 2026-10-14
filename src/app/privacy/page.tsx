@@ -7,7 +7,7 @@ import { SITE_EMAIL } from "@/lib/contact";
 
 export const metadata: Metadata = {
   ...pageMetadata({
-    title: "Privacy & What This Site Stores — Bilal Shafqat, Dubai",
+    title: "Privacy & What This Site Stores | Bilal Shafqat, Dubai",
     // Was 104 characters and left a third of the space Google gives you unused.
     description:
       "What this site stores: Google Analytics, the Meta Pixel, campaign tracking and enquiry details. What each is for, and how to decline or delete yours.",
@@ -25,16 +25,16 @@ const rows = [
     what: "Your consent choice",
     where: "Browser local storage",
     why: "So the cookie banner doesn't ask again on every visit.",
-    optional: "No — without it the banner cannot remember your answer.",
+    optional: "No. Without it the banner cannot remember your answer.",
   },
   {
     what: "Campaign source (utm_source, utm_medium, utm_campaign, and ad click IDs such as gclid or fbclid)",
     where: "Browser session storage, cleared when you close the tab",
     why: "So that if you send an enquiry, I can tell which campaign or search brought you here.",
-    optional: "Yes — decline on the banner and nothing is stored.",
+    optional: "Yes. Decline on the banner and nothing is stored.",
   },
   {
-    what: "Google Analytics (GA4) — pages you visit, roughly where you are, and what kind of device you use",
+    what: "Google Analytics (GA4): pages you visit, roughly where you are, and what kind of device you use",
     where: "Sent to Google, which may transfer it outside the UAE",
     why: "So I can see which pages people actually read and which ones are not working.",
     optional:
@@ -44,19 +44,19 @@ const rows = [
     what: "Booking details when you open the calendar (name, email, and the answers you picked)",
     where: "Sent to Cal.com, which handles the scheduling",
     why: "So the call lands in both our calendars and you get a confirmation you can reschedule from.",
-    optional: "Yes — the calendar only loads if you press \u201cShow available times\u201d, and nothing is sent unless you book.",
+    optional: "Yes. The calendar only loads if you press \u201cShow available times\u201d, and nothing is sent unless you book.",
   },
   {
-    what: "Meta (Facebook) Pixel — page views, and an `_fbp` cookie identifying your browser",
+    what: "Meta (Facebook) Pixel: page views, and an `_fbp` cookie identifying your browser",
     where: "Sent to Meta Platforms Ireland, which may transfer it outside the UAE",
     why: "So I can measure and retarget advertising. It loads only after you accept.",
-    optional: "Yes — decline on the banner and the pixel never loads at all.",
+    optional: "Yes. Decline on the banner and the pixel never loads at all.",
   },
   {
     what: "Enquiry details you type (name, email, phone, service, message)",
     where: "Sent to my lead system when you press send. If that system is briefly unavailable, a copy is kept on this site's server and emailed to me so your enquiry is not lost, then deleted once it reaches the lead system",
     why: "So I can reply to you.",
-    optional: "Yes — don't submit the form. Email or WhatsApp me instead.",
+    optional: "Yes. Don't submit the form. Email or WhatsApp me instead.",
   },
 ];
 

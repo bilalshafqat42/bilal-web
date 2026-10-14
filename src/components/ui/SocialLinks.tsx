@@ -27,7 +27,14 @@ export function LinkedinIcon() {
 }
 
 function BehanceMonogram() {
-  return <span className="text-[11px] font-bold tracking-tight">Be</span>;
+  // Hidden from assistive tech: the link's name comes from the visually
+  // hidden full label in `SocialLinks`, and an aria-label that does not
+  // contain the visible "Be" fails WCAG 2.5.3 (label in name).
+  return (
+    <span aria-hidden="true" className="text-[11px] font-bold tracking-tight">
+      Be
+    </span>
+  );
 }
 
 /** Not in the footer `socials` list — there is no public WhatsApp channel to
@@ -118,10 +125,10 @@ export default function SocialLinks({ className = "" }: { className?: string }) 
           href={s.href}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={s.name}
           className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted hover:text-gold hover:border-gold/40 transition-colors"
         >
           <s.icon />
+          <span className="sr-only">{s.name}</span>
         </a>
       ))}
     </div>

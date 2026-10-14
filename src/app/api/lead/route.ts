@@ -1,12 +1,7 @@
 import { timingSafeEqual } from "node:crypto";
 import { NextResponse, after } from "next/server";
 import { saveToFile, sendAlert, type BackupRecord, type FailureReason } from "@/lib/leadBackup";
-import { megaMenuGroups } from "@/data/pillars";
-import {
-  BUDGET_OPTIONS,
-  TIMELINE_OPTIONS,
-  SERVICE_EXTRA_OPTIONS,
-} from "@/data/leadOptions";
+import { ALLOWED_SERVICES, ALLOWED_BUDGETS, ALLOWED_TIMELINES } from "@/data/leadAllowList";
 
 // Mirrors the Attribution type in src/lib/attribution.ts — kept as an
 // inline shape here rather than imported, since this is a server route and
@@ -65,6 +60,13 @@ type LeadPayload = {
   /** Cloudflare Turnstile response, verified server-side when a secret is set. */
   turnstileToken?: string;
 };
+
+/** The LeadPayload fields that must be strings when present. */
+const STRING_FIELDS = [
+  "name", "email", "phone", "message", "service", "meetingTime", "source", "pageUrl",
+  "utmSource", "utmMedium", "utmCampaign", "utmContent", "utmTerm", "eventId", "fbp", "fbc",
+  "serviceInterest", "budget", "timeline", "turnstileToken",
+] as const satisfies readonly (keyof LeadPayload)[];
 
 // Best-effort in-process rate limit. On serverless each instance keeps its own
 // window, so this throttles obvious abuse rather than guaranteeing a global cap.
@@ -217,16 +219,41 @@ function fromCloudflare(request: Request): boolean {
   return a.length === b.length && timingSafeEqual(a, b);
 }
 
-function clientIp(request: Request): string {
-  const cf = fromCloudflare(request) ? request.headers.get("cf-connecting-ip")?.trim() : undefined;
-  if (cf) return cf;
-  const real = request.headers.get("x-real-ip")?.trim();
-  if (real) return real;
+function lastForwardedFor(request: Request): string {
   const chain = (request.headers.get("x-forwarded-for") ?? "")
     .split(",")
     .map((s) => s.trim())
     .filter(Boolean);
   return chain[chain.length - 1] || "unknown";
+}
+
+function clientIp(request: Request): string {
+  // With CF_ORIGIN_SECRET set and the header wrong, the request did not come
+  // through Cloudflare, so the client wrote every header it sent, including
+  // `x-real-ip` if the origin proxy passes a client value through. Only the
+  // last X-Forwarded-For entry, appended by our own proxy, is used then.
+  // Unset secret: unchanged, so nothing moves until the Transform Rule exists.
+  if (process.env.CF_ORIGIN_SECRET && !fromCloudflare(request)) {
+    return lastForwardedFor(request);
+  }
+  const cf = request.headers.get("cf-connecting-ip")?.trim();
+  if (cf) return cf;
+  const real = request.headers.get("x-real-ip")?.trim();
+  if (real) return real;
+  return lastForwardedFor(request);
+}
+
+/** Origins allowed to post a lead. A browser always sends `Origin` on a
+ *  cross-site POST, so a page elsewhere cannot submit through a visitor's
+ *  browser. No `Origin` at all is let through: server-side callers and the
+ *  lead-probe script send none, and those are not a browser-borne attack. */
+const ALLOWED_ORIGINS = new Set(["https://bilalshafqat.com", "https://www.bilalshafqat.com"]);
+const LOCAL_ORIGIN = /^http:\/\/(localhost|127\.0\.0\.1)(:\d{1,5})?$/;
+
+function originAllowed(origin: string | null): boolean {
+  if (origin === null) return true;
+  if (ALLOWED_ORIGINS.has(origin)) return true;
+  return process.env.NODE_ENV !== "production" && LOCAL_ORIGIN.test(origin);
 }
 
 /** CRM error bodies can echo the submitted lead back. At most 200 characters
@@ -241,13 +268,20 @@ function safeDetail(text: string): string {
 
 /** Cloudflare Turnstile, only when fully configured. Invisible to real visitors.
  *
- *  Enforced only when BOTH keys are set. The forms render the widget, and so
- *  send a token, only when NEXT_PUBLIC_TURNSTILE_SITE_KEY is in the build. With
- *  the secret alone every submission arrived without a token and was refused,
- *  so setting one variable on Hostinger would have silently blocked every lead. */
+ *  Enforced only when the forms were BUILT with a site key AND the server has
+ *  the secret at runtime.
+ *
+ *  The forms render the widget, and so send a token, only when
+ *  NEXT_PUBLIC_TURNSTILE_SITE_KEY was in the environment at `next build`: it is
+ *  inlined into the client bundle then. This check used to read that variable
+ *  at runtime instead, so setting both keys on Hostinger and restarting
+ *  without rebuilding left forms with no widget talking to a route demanding a
+ *  token, and every lead was refused (reproduced 2026-10-14).
+ *  `TURNSTILE_ENABLED_AT_BUILD` is set in next.config.ts from the same build
+ *  environment the forms saw, so the two cannot disagree. */
 async function turnstileOk(token: string | undefined, ip: string): Promise<boolean> {
   const secret = process.env.TURNSTILE_SECRET_KEY;
-  if (!secret || !process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY) return true;
+  if (!secret || process.env.TURNSTILE_ENABLED_AT_BUILD !== "1") return true;
   if (!token) return false;
   try {
     const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
@@ -281,6 +315,24 @@ export async function POST(request: Request) {
       { success: false, error: "Too many submissions. Please try again in a few minutes." },
       { status: 429 }
     );
+  }
+
+  // A cross-site page can POST text/plain or a form without a preflight;
+  // only same-origin script (or a preflighted request, which CORS then
+  // refuses) can send application/json. Requiring it, plus a known Origin,
+  // closes that door. The site's only caller, useLeadSubmit, sends JSON.
+  const contentType = (request.headers.get("content-type") ?? "").split(";")[0].trim().toLowerCase();
+  if (contentType !== "application/json") {
+    logRejection("unsupported_content_type", ip, { contentType: contentType.slice(0, 60) });
+    return NextResponse.json(
+      { success: false, error: "Send the form as application/json." },
+      { status: 415 }
+    );
+  }
+  const origin = request.headers.get("origin");
+  if (!originAllowed(origin)) {
+    logRejection("foreign_origin", ip, { origin: (origin ?? "").slice(0, 100) });
+    return NextResponse.json({ success: false, error: "Forbidden." }, { status: 403 });
   }
 
   const declared = Number(request.headers.get("content-length") ?? "0");
@@ -339,11 +391,25 @@ export async function POST(request: Request) {
   }
 
 
+  // Every field the payload type declares as a string must be a string (or
+  // absent/null). A number or object there is not a browser filling in a form,
+  // so it is refused with a 400 rather than half-processed.
+  const wrongType = STRING_FIELDS.find((k) => body[k] != null && typeof body[k] !== "string");
+  const badAttribution =
+    body.attribution != null && (typeof body.attribution !== "object" || Array.isArray(body.attribution));
+  if (wrongType || badAttribution) {
+    logRejection("invalid_field_type", ip, { field: wrongType ?? "attribution" });
+    return NextResponse.json({ success: false, error: "Invalid request body." }, { status: 400 });
+  }
+
+  // Nothing in `body` is typed by the time it arrives: a field declared as a
+  // string can be a number, an array or an object. Every string is read via
+  // `clean()`, which returns undefined for anything that is not a string, and
+  // `attribution` is used only if it is a plain object. `source` was the one
+  // field used raw (`.includes()`), so `"source": 123` threw a 500.
   const {
     meetingTime,
-    source,
     pageUrl,
-    attribution,
     utmSource,
     utmMedium,
     utmCampaign,
@@ -353,6 +419,11 @@ export async function POST(request: Request) {
     fbp,
     fbc,
   } = body;
+  const source = clean(body.source, LIMITS.generic);
+  const attribution: Attribution | undefined =
+    body.attribution && typeof body.attribution === "object" && !Array.isArray(body.attribution)
+      ? body.attribution
+      : undefined;
   // Every free-text field is trimmed, length-capped and stripped of control
   // characters before it goes anywhere. Nothing below is used as received.
   const name = clean(body.name, LIMITS.name);
@@ -378,10 +449,14 @@ export async function POST(request: Request) {
   // Whitelisted against the same lists the form renders from. A select
   // constrains an honest visitor and nobody else, so an unrecognised value is
   // rejected rather than passed through to the CRM.
-  const allowedServices = new Set<string>([
-    ...megaMenuGroups.map((g) => g.title),
-    ...SERVICE_EXTRA_OPTIONS,
-  ]);
+  //
+  // The /contact dropdown lists the four pillar labels, not the fifteen
+  // service titles. Until 2026-10-14 only the titles were allowed here, so
+  // three of the four contact-page choices were rejected with a 400 and the
+  // enquiry was lost without a fallback. Both lists are accepted now, from
+  // `src/data/leadAllowList.ts`, which `npm run lead-options-check` tests
+  // against every list the forms render.
+  const allowedServices = ALLOWED_SERVICES;
   const service = clean(body.service, LIMITS.generic);
   if (service && !allowedServices.has(service)) {
     logRejection("unknown_service", ip, { service });
@@ -401,13 +476,13 @@ export async function POST(request: Request) {
   }
 
   const budget = clean(body.budget, LIMITS.generic);
-  if (budget && !BUDGET_OPTIONS.includes(budget)) {
+  if (budget && !ALLOWED_BUDGETS.has(budget)) {
     logRejection("unknown_budget", ip, { budget });
     return NextResponse.json({ success: false, error: "Unrecognised budget." }, { status: 400 });
   }
 
   const timeline = clean(body.timeline, LIMITS.generic);
-  if (timeline && !TIMELINE_OPTIONS.includes(timeline)) {
+  if (timeline && !ALLOWED_TIMELINES.has(timeline)) {
     logRejection("unknown_timeline", ip, { timeline });
     return NextResponse.json({ success: false, error: "Unrecognised timeline." }, { status: 400 });
   }
@@ -428,7 +503,7 @@ export async function POST(request: Request) {
   // Valid from here on, so it counts towards the limit whatever happens next.
   recordHit(ip);
 
-  const isChat = (source || "").includes("whatsapp");
+  const isChat = (source ?? "").includes("whatsapp");
 
   // The attribution object (from getAttribution()) wins when present — it's
   // first-touch data persisted across the visit, more reliable than reading

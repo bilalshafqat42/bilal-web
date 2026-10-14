@@ -14,9 +14,32 @@
  */
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 
+// Walked in order so the value after `--date` is never taken for the slug:
+// `--date 2026-10-20 my-slug` used to scaffold a post called "2026-10-20".
+// `--date=2026-10-20` works too.
 const args = process.argv.slice(2);
-const slug = args.find((a) => !a.startsWith("--"));
-const dateArg = args.includes("--date") ? args[args.indexOf("--date") + 1] : undefined;
+let slug;
+let dateArg;
+for (let i = 0; i < args.length; i++) {
+  const a = args[i];
+  if (a === "--date") {
+    dateArg = args[++i];
+    if (dateArg === undefined) {
+      console.error("--date needs a value: --date YYYY-MM-DD");
+      process.exit(1);
+    }
+  } else if (a.startsWith("--date=")) {
+    dateArg = a.slice("--date=".length);
+  } else if (a.startsWith("--")) {
+    console.error(`Unknown option ${a}.`);
+    process.exit(1);
+  } else if (slug === undefined) {
+    slug = a;
+  } else {
+    console.error(`Unexpected extra argument "${a}". Usage: node scripts/new-post.mjs <slug> [--date YYYY-MM-DD]`);
+    process.exit(1);
+  }
+}
 
 const die = (msg) => {
   console.error(msg);

@@ -72,7 +72,7 @@ export default function CapabilityLedger() {
               className="group relative border-b border-border transition-colors hover:bg-surface/40"
             >
               <div className="grid grid-cols-1 items-start gap-x-8 gap-y-4 px-2 py-9 sm:px-4 lg:grid-cols-[auto_minmax(0,0.7fr)_minmax(0,1.3fr)_auto] lg:gap-x-10">
-                <span className="font-mono text-xs text-muted/70 lg:pt-2">
+                <span className="font-mono text-xs text-faint lg:pt-2">
                   {String(i + 1).padStart(2, "0")}
                 </span>
 

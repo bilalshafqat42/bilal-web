@@ -86,12 +86,15 @@ export default function CookieConsent() {
           </button>
         </div>
 
+        {/* 40x40 hit area around the 16px icon. Offset 4px from the corner so
+            the glyph itself sits exactly where it did at `right-4 top-4`. */}
         <button
+          type="button"
           onClick={() => choose("denied")}
           aria-label="Close and decline"
-          className="absolute right-4 top-4 text-muted hover:text-ink transition-colors sm:hidden"
+          className="absolute right-1 top-1 inline-flex h-10 w-10 items-center justify-center rounded-full text-muted transition-colors hover:text-ink sm:hidden"
         >
-          <X size={16} />
+          <X size={16} aria-hidden="true" />
         </button>
       </div>
     </div>

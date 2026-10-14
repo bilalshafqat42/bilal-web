@@ -70,7 +70,7 @@ export function allItems(): Item[] {
         width: c.website.capture.width,
         height: c.website.capture.height,
         alt: c.website.capture.alt,
-        label: `${c.name} — corporate website`,
+        label: `${c.name}: corporate website`,
         meta: "Corporate website",
         href: `/portfolio/${c.slug}`,
       });
@@ -93,7 +93,7 @@ export function allItems(): Item[] {
           // there, that link read "LEOS Developments app — Sign in" and looked
           // like it went to one screen rather than to the app.
           label: `${c.name} app`,
-          meta: `${s.label} — ${s.tag}`,
+          meta: `${s.label}: ${s.tag}`,
           href: `/portfolio/${c.slug}/mobile-app#screens`,
         });
       }
@@ -114,7 +114,7 @@ export function allItems(): Item[] {
           width: social.width,
           height: social.height,
           alt: item.alt,
-          label: `${c.name} — brand`,
+          label: `${c.name}: brand`,
           meta: item.caption,
           href: `/portfolio/${c.slug}`,
         });

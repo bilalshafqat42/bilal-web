@@ -10,7 +10,7 @@ import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID, jsonLdSafe } from "@
 import { processSteps } from "@/data/process";
 
 export const metadata: Metadata = pageMetadata({
-  title: "My Process — From Brief To Shipped Work | Bilal Shafqat",
+  title: "My Process: From Brief To Shipped Work | Bilal Shafqat",
   description:
     "Four stages from brief to shipped work: discovery, planning and design, build and launch, then measurement and iteration.",
   path: "/process",
@@ -69,7 +69,7 @@ const faqs = [
   {
     question: "Is the process the same for a campaign as it is for a website?",
     answer:
-      "The four stages are the same. What happens inside them is not. Stage three means campaign setup and launch for paid work, development and deployment for a build, and design production for creative — which is why each stage lists all three rather than pretending one description covers everything.",
+      "The four stages are the same. What happens inside them is not. Stage three means campaign setup and launch for paid work, development and deployment for a build, and design production for creative, which is why each stage lists all three rather than pretending one description covers everything.",
   },
   {
     question: "Who runs each stage?",
@@ -84,7 +84,7 @@ const faqs = [
   {
     question: "At what point do I find out what it costs?",
     answer:
-      "Early, and in the first conversation rather than after a discovery phase you have paid for. You get a rough figure once I understand the scope, and an honest view of what is worth doing — which often includes telling you a smaller piece of work would solve the problem. What actually moves the number is set out on the pricing page.",
+      "Early, and in the first conversation rather than after a discovery phase you have paid for. You get a rough figure once I understand the scope, and an honest view of what is worth doing, which often includes telling you a smaller piece of work would solve the problem. What actually moves the number is set out on the pricing page.",
   },
 ];
 

@@ -96,6 +96,9 @@ export function useLeadSubmit(opts: Options) {
 
   const tokenRef = useRef("");
   const widgetRef = useRef<string | null>(null);
+  /** True once Cloudflare's script has failed to load (blocked or offline).
+   *  No token can ever arrive then, so a submit should not wait for one. */
+  const turnstileFailedRef = useRef(false);
 
   /** Attach to an empty <div> inside the form when TURNSTILE_ENABLED. Renders
    *  the managed widget, which stays invisible unless Cloudflare needs the
@@ -105,6 +108,7 @@ export function useLeadSubmit(opts: Options) {
     (el: HTMLDivElement | null) => {
       if (!el || !TURNSTILE_ENABLED) return;
       let cancelled = false;
+      turnstileFailedRef.current = false;
       loadTurnstile()
         .then((ts) => {
           if (cancelled) return;
@@ -121,6 +125,7 @@ export function useLeadSubmit(opts: Options) {
         .catch(() => {
           // Blocked or offline. The route answers 403 with `fallback: true`,
           // so the visitor is still offered WhatsApp and email.
+          if (!cancelled) turnstileFailedRef.current = true;
         });
       return () => {
         cancelled = true;
@@ -136,10 +141,14 @@ export function useLeadSubmit(opts: Options) {
     [source]
   );
 
-  /** The token, waiting up to 5s for a challenge still in progress. */
+  /** The token, waiting up to 5s for a challenge still in progress. When the
+   *  script never loaded there is no challenge to wait for: the submit goes
+   *  straight out without a token, and the route's 403 `fallback: true` puts
+   *  the form in its WhatsApp/email state at once instead of after 5s of a
+   *  spinner. If the route is not enforcing Turnstile, the lead is delivered. */
   async function turnstileToken(): Promise<string | undefined> {
     if (!TURNSTILE_ENABLED) return undefined;
-    for (let waited = 0; !tokenRef.current && waited < 5000; waited += 250) {
+    for (let waited = 0; !tokenRef.current && !turnstileFailedRef.current && waited < 5000; waited += 250) {
       await new Promise((r) => setTimeout(r, 250));
     }
     return tokenRef.current || undefined;

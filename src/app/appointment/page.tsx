@@ -11,7 +11,7 @@ import Eyebrow from "@/components/ui/Eyebrow";
 import { SITE_PHONE_HREF } from "@/lib/contact";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Book a Free 30-Minute Call — Bilal Shafqat, Dubai",
+  title: "Book a Free 30-Minute Call | Bilal Shafqat, Dubai",
   // 144 characters. "Marketer, developer and designer" became "digital
   // marketer" on 2026-10-13, matching the positioning on every other page.
   description:

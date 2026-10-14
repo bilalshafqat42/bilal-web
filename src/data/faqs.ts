@@ -29,7 +29,7 @@ export const faqGroups: FaqGroup[] = [
       {
         question: "What if I only need one thing, not everything?",
         answer:
-          "That is normal and completely fine. Most engagements start with one piece — a landing page, a campaign audit, a CRM fix — and grow only if it makes sense. There is no requirement to buy a bundle.",
+          "That is normal and completely fine. Most engagements start with one piece (a landing page, a campaign audit, a CRM fix) and grow only if it makes sense. There is no requirement to buy a bundle.",
       },
       {
         question: "Can you work with our existing agency or in-house team?",
@@ -76,7 +76,7 @@ export const faqGroups: FaqGroup[] = [
       {
         question: "What do you need from me to get started?",
         answer:
-          "The goal in your own words, any deadline, and access to what already exists — your website, ad accounts or CRM. Nothing else is required for a first conversation.",
+          "The goal in your own words, any deadline, and access to what already exists: your website, ad accounts or CRM. Nothing else is required for a first conversation.",
       },
       {
         question: "Do you work with any particular industry?",

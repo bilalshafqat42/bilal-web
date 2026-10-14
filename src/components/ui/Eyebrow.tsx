@@ -46,7 +46,7 @@ const SIZES = {
 
 const TONES = {
   gold: "text-gold",
-  muted: "text-muted/70",
+  muted: "text-faint",
 } as const;
 
 export default function Eyebrow({

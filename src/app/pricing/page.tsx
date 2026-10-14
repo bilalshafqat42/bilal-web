@@ -168,8 +168,12 @@ export default function PricingPage() {
           <div className="site-container">
             <div className="max-w-3xl">
               <Reveal>
+                {/* Retitled 2026-10-14 so a subheading carries the page's
+                    keyword, "freelance digital marketer costs in Dubai", in the
+                    order people search it. The section already compared the
+                    four options; only the heading changed. */}
                 <h2 className="t-h2 text-ink">
-                  Why a freelance digital marketer in Dubai costs what it costs
+                  What a freelance digital marketer costs in Dubai, against the alternatives
                 </h2>
                 <p className="mt-6 text-base leading-relaxed text-muted">
                   The market splits four ways and the prices are not comparable,

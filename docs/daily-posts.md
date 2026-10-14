@@ -345,3 +345,162 @@ time.
 The fixes are usually small: price above the fold, a shorter form, a clearer
 button. Read the full breakdown and a four-step check you can do today.
 ```
+
+---
+
+## AI explainer series (drafted 2026-10-14)
+
+Bilal's request, 2026-10-14: people are hungry to learn AI, so a visual
+"X vs Y vs Z" explainer series, in the style of the RAG vs CAG vs KAG posts
+doing well on LinkedIn. **Written from scratch, not adapted from anyone's
+post.** Each topic sits where AI meets marketing, so the audience it builds
+is the one that hires a digital marketer.
+
+**Format.** One card (three columns, one line each) plus the text below.
+Hook line, one paragraph per concept, a three-line summary, one question.
+No statistics unless they are ours and checked.
+
+**Avoid Unicode "bold" letters** (𝗟𝗶𝗸𝗲 𝘁𝗵𝗶𝘀) in the hook: screen readers
+spell them out letter by letter and LinkedIn search can't read them. Plain
+capitals or the card itself do the job.
+
+### Why AI, and the angle that makes it ours
+
+AI is the most discussed topic online, so posts about it travel. But generic
+AI explainers are everywhere, and they attract people who want to learn AI,
+not people who hire a marketer. **Every post is AI explained through
+marketing and business:** what it means for getting found, getting leads and
+spending ad budget. That keeps the reach and points it at buyers.
+
+### Daily rhythm (Monday to Friday, UAE week)
+
+| Day | Format | Card |
+| --- | --- | --- |
+| Mon | **X vs Y vs Z** explainer | Three columns, one line each |
+| Tue | **Myth vs fact** | "Myth:" line, "Fact:" line, one proof point |
+| Wed | **Workflow** (a prompt or process you can copy) | Numbered steps |
+| Thu | **Marketing lesson** (the core series: ads, landing pages, leads) | Light card, checklist (like post 2) |
+| Fri | **AI search for business** (how AI finds and recommends businesses) | Three columns or checklist |
+
+Thursday keeps the paid-ads and landing-page series alive, so the profile
+doesn't turn into an AI page. Weekends off.
+
+### Rules
+
+- **No invented numbers.** A statistic goes in only if it is ours and
+  checked, or from a named source we can link.
+- **No AI news we can't verify.** If a post depends on a new product or
+  feature, check the maker's own announcement on the day.
+- **One idea per post.** If it needs two cards, it is two posts.
+- Every post ends with a question, and the link goes in the first comment.
+- Card titles in plain text, never Unicode "bold" letters.
+
+### First four weeks
+
+| # | Day | Topic | Card summary |
+| --- | --- | --- | --- |
+| A1 | Mon | SEO vs AEO vs GEO | Rank it / Answer it / Get cited |
+| A2 | Tue | Myth: "Google penalises AI content" | Fact: Google judges helpfulness, not who typed it; mass-produced filler is what gets hit |
+| A3 | Wed | The 3-prompt ad brief | Paste the call notes / ask for the audience and objection / ask for 5 headlines |
+| A4 | Thu | (marketing post 3) | |
+| A5 | Fri | Why ChatGPT recommends your competitor | Consistent name / mentions elsewhere / pages it can read |
+| A6 | Mon | Prompting vs RAG vs fine-tuning | Ask it / Give it your files / Retrain it |
+| A7 | Tue | Myth: "AI will replace marketers" | Fact: it replaces tasks, not judgement about what to say and to whom |
+| A8 | Wed | Turn one blog post into a week of posts | Summarise / reframe per platform / check every claim |
+| A9 | Thu | (marketing post 4) | |
+| A10 | Fri | AI Overviews vs ChatGPT search vs Perplexity | Where each one finds its answer |
+| A11 | Mon | Chatbot vs AI assistant vs AI agent | Answers / Helps / Acts |
+| A12 | Tue | Myth: "Longer prompts get better answers" | Fact: clearer prompts do; give context, an example and the format |
+| A13 | Wed | A lead-reply assistant that doesn't embarrass you | Your FAQs in / tone rules / a human checks pricing |
+| A14 | Thu | (marketing post 5) | |
+| A15 | Fri | Schema vs llms.txt vs robots.txt | Explain it / Summarise it / Allow it (llms.txt is a proposal, say so) |
+| A16 | Mon | Tokens vs context window vs memory | Why AI "forgets" your brief halfway through |
+| A17 | Tue | Myth: "AI knows today's prices" | Fact: only what it was trained on or can look up |
+| A18 | Wed | Three checks before you publish AI-written copy | Facts / numbers / claims you can't back |
+| A19 | Thu | (marketing post 6) | |
+| A20 | Fri | Smart bidding vs Performance Max vs Advantage+ | What the ad platforms' AI actually decides for you |
+
+After four weeks, keep the topics whose posts got comments and saves, and
+drop the rest. Comments and saves matter more than likes.
+
+### Post A1: SEO vs AEO vs GEO
+
+**Card:** three columns.
+SEO: "Rank it" / the page wins the click.
+AEO: "Answer it" / the page becomes the answer.
+GEO: "Cite it" / the brand gets named by AI.
+Footer: bilalshafqat.com
+
+**LinkedIn text:**
+
+```
+SEO vs AEO vs GEO
+
+Every search strategy now answers one question: when someone asks, does your business show up, get quoted, or get named?
+
+SEO treats search as a list to rank in. Google reads your pages, judges how relevant and trusted they are, and places them among the results. The prize is the click. It still drives most website visits, but a ranking only pays off when someone chooses your link over the nine around it.
+
+AEO treats search as a question to answer. More results now end before the click: a featured snippet, a voice assistant, an AI Overview at the top of Google. AEO is writing so your page becomes that answer: the question as a heading, a clear answer in the first two sentences, then the detail. The prize is being the answer, even when nobody clicks.
+
+GEO treats search as a conversation to be part of. When someone asks ChatGPT, Gemini, Perplexity or Copilot "who should I hire for this in Dubai?", the assistant builds one answer from many sources and names a few businesses. GEO is making sure yours is one of them: pages AI crawlers can read, the same name and description everywhere, and other sites that mention you. The prize is being recommended.
+
+Three approaches, three ways of being found:
+Rank it → SEO
+Answer it → AEO
+Get cited → GEO
+
+They are not three separate projects. They are three layers on the same foundation: clear pages, honest facts and a brand people talk about. Skip the first and the other two have nothing to stand on.
+
+Which one is your business set up for today?
+
+#SEO #AISearch #GEO #DigitalMarketing #Dubai
+```
+
+**Checks before posting.** Link in the first comment, not the post, to
+`/services/seo` (the AEO and GEO work lives there). Run the text through
+the em dash rule: none.
+
+### Post A6: Prompting vs RAG vs fine-tuning
+
+**Card:** three columns.
+Prompting: "Ask it" / instructions in the message.
+RAG: "Give it your files" / it looks things up first.
+Fine-tuning: "Retrain it" / it learns a new habit.
+Footer: bilalshafqat.com
+
+**LinkedIn text:**
+
+```
+Prompting vs RAG vs fine-tuning
+
+Every business using AI hits the same question: how do I make it answer like it knows my business?
+
+Prompting is asking better. You put the instructions, the context and an example of a good answer into the message itself. Nothing to set up, nothing to pay for, and it solves most problems. The limit is that the AI only knows what it was trained on plus what you paste in.
+
+RAG gives it your files. RAG stands for retrieval-augmented generation: the AI is connected to your documents, searches them when a question comes in, and answers from what it finds. Your price list, your FAQs, your policies. Update a document and the next answer changes. The limit: the answer is only as good as the documents and the search.
+
+Fine-tuning retrains it. You show the model hundreds or thousands of examples until it picks up a habit: a tone, a format, a specialised task. It changes how the AI behaves, not what it knows today, so it is the wrong tool for prices or stock that change every week.
+
+Three approaches, three different jobs:
+Ask it → prompting
+Give it your files → RAG
+Retrain it → fine-tuning
+
+For most businesses the order is simple. Start with better prompts. Add RAG when the AI needs your own facts. Fine-tune only when you have tried both and have the examples to prove you need it.
+
+Which one is your team using today?
+
+#AI #GenerativeAI #DigitalMarketing #Dubai
+```
+
+**Instagram caption:**
+
+```
+Prompting, RAG or fine-tuning? Three ways to make AI answer like it knows your business.
+
+Ask it better. Give it your files. Retrain it.
+
+Most businesses only ever need the first two. Swipe for the difference.
+
+#AI #ChatGPT #DigitalMarketing #DubaiBusiness
+```

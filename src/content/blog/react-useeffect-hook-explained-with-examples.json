@@ -3,12 +3,12 @@
   "title": "React useEffect Hook Explained with Examples and Best Practices",
   "description": "Master the useEffect hook in React with clear examples and real-world use cases. Learn how dependencies work, how to avoid infinite loops, and when to clean up.",
   "published": "2025-06-18",
-  "updatedAt": "2026-09-30",
+  "updatedAt": "2026-10-14",
   "tags": [
     "React Js",
     "React Hooks"
   ],
-  "words": 461,
+  "words": 449,
   "blocks": [
     {
       "t": "h2",
@@ -16,15 +16,15 @@
     },
     {
       "t": "p",
-      "v": "If you’ve ever wondered how to fetch data, listen to scroll events, or update the DOM in a functional component — the answer is useEffect()."
+      "v": "If you’ve ever wondered how to fetch data, listen to scroll events, or update the DOM in a functional component, the answer is useEffect()."
     },
     {
       "t": "p",
-      "v": "In React, components are declarative and reactive by design. But to handle side effects — like API calls, timers, or subscriptions — you need a special hook: useEffect()."
+      "v": "In React, components are declarative and reactive by design. But to handle side effects (like API calls, timers, or subscriptions), you need a special hook: useEffect()."
     },
     {
       "t": "p",
-      "v": "It’s one of the most powerful but also most misunderstood hooks in the React ecosystem. This guide explains what useEffect() does, how it works, and how to use it correctly in 2025 and beyond."
+      "v": "It’s one of the most powerful but also most misunderstood hooks in the React ecosystem. This guide explains what useEffect() does, how it works, and how to use it correctly."
     },
     {
       "t": "h2",
@@ -77,7 +77,7 @@
     },
     {
       "t": "p",
-      "v": "With hooks, useEffect() replaces these methods in function components — offering a more flexible and cleaner way to run side effects."
+      "v": "With hooks, useEffect() replaces these methods in function components, offering a more flexible and cleaner way to run side effects."
     },
     {
       "t": "h3",
@@ -172,7 +172,7 @@
     },
     {
       "t": "p",
-      "v": "Some side effects — like event listeners or intervals — need cleanup to prevent memory leaks or unwanted behaviors."
+      "v": "Some side effects, like event listeners or intervals, need cleanup to prevent memory leaks or unwanted behaviors."
     },
     {
       "t": "h3",
@@ -216,7 +216,7 @@
     },
     {
       "t": "h2",
-      "v": "Best Practices for useEffect (2025)"
+      "v": "Best Practices for useEffect"
     },
     {
       "t": "list",
@@ -256,7 +256,7 @@
     },
     {
       "t": "p",
-      "v": "If yes — use it. If not — you might not need it."
+      "v": "If yes, use it. If not, you might not need it."
     },
     {
       "t": "h2",

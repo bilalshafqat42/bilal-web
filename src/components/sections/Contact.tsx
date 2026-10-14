@@ -26,7 +26,7 @@ export default function Contact() {
               </h2>
               <p className="mt-4 max-w-xl mx-auto text-muted leading-relaxed">
                 Whether it&apos;s a paid campaign, a website or app, or ongoing design and
-                social support — tell me what you need and I&apos;ll get back to you with
+                social support, tell me what you need and I&apos;ll get back to you with
                 next steps.
               </p>
 

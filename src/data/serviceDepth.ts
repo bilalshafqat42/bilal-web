@@ -1092,7 +1092,8 @@ export const serviceDepth: Record<string, Depth> = {
     ],
   },
 
-  /** Method, not results — see the note on the category in `pillars.ts`. Every
+  /** Method, not results: see the note on the category in
+   *  `serviceCategories.ts`. Every
    *  paragraph below describes how the work is done rather than what it
    *  achieved, because no email campaign is published on this site to point at. */
   "email-marketing": {
@@ -1101,20 +1102,20 @@ export const serviceDepth: Record<string, Depth> = {
         heading: "Email marketing in Dubai fails at the list, not at the writing",
         paragraphs: [
           "A nurture sequence sent to one undifferentiated list is a broadcast wearing a costume. The person who downloaded a floor plan last week and the person who enquired eighteen months ago and went quiet need different messages, and if the list cannot tell them apart then neither can the sequence. Segmentation is not an advanced feature you add later; it is the thing that decides whether any of it works.",
-          "That segmentation has to come from data the forms actually capture. If the enquiry form collects a name and an email and nothing else, there is nothing to segment on, and no amount of writing fixes it. This is why the email work and the CRM work are the same job — I would rather change the form than write cleverer copy around a field that was never collected.",
+          "That segmentation has to come from data the forms actually capture. If the enquiry form collects a name and an email and nothing else, there is nothing to segment on, and no amount of writing fixes it. This is why the email work and the CRM work are the same job. I would rather change the form than write cleverer copy around a field that was never collected.",
         ],
       },
       {
         heading: "Sequences end, campaigns do not",
         paragraphs: [
-          "A welcome sequence has a job and a finish line: take someone who just raised a hand, tell them what they need to decide, and hand them to a human or stop. Sequences that never end are how a list burns out, and an unsubscribe is the polite version of what actually happens — most people just stop opening, and the damage is invisible until a send that matters lands in a promotions tab.",
-          "Campaigns are the other half: a launch, a price change, a construction update. They go to a segment rather than the whole list, and they are worth sending precisely because they are not automatic. Getting the split right is most of the work — automate the predictable, write the rest.",
+          "A welcome sequence has a job and a finish line: take someone who just raised a hand, tell them what they need to decide, and hand them to a human or stop. Sequences that never end are how a list burns out, and an unsubscribe is the polite version of what actually happens: most people just stop opening, and the damage is invisible until a send that matters lands in a promotions tab.",
+          "Campaigns are the other half: a launch, a price change, a construction update. They go to a segment rather than the whole list, and they are worth sending precisely because they are not automatic. Getting the split right is most of the work: automate the predictable, write the rest.",
         ],
       },
       {
         heading: "Where email sits in a UAE setup",
         paragraphs: [
-          "WhatsApp is the default business channel here, and pretending otherwise produces an email programme nobody reads. But WhatsApp is the wrong tool for the long middle of a buying decision — a fourteen-message nurture on WhatsApp is an intrusion, and most people will block rather than unsubscribe. Email carries the contacts who are months from deciding; WhatsApp carries the ones who are minutes from it.",
+          "WhatsApp is the default business channel here, and pretending otherwise produces an email programme nobody reads. But WhatsApp is the wrong tool for the long middle of a buying decision. A fourteen-message nurture on WhatsApp is an intrusion, and most people will block rather than unsubscribe. Email carries the contacts who are months from deciding; WhatsApp carries the ones who are minutes from it.",
           "The CRM is what decides which channel a contact is on, and when they move between them. That is a configuration decision rather than a writing one, which is why this page keeps returning to the plumbing rather than the prose.",
         ],
       },
@@ -1130,7 +1131,7 @@ export const serviceDepth: Record<string, Depth> = {
       {
         question: "What do you need from me to start?",
         answer:
-          "Access to whatever list exists, the CRM if there is one, and the sending domain's DNS. If any of the three is missing that is fine — it just changes the first task from writing to setting up.",
+          "Access to whatever list exists, the CRM if there is one, and the sending domain's DNS. If any of the three is missing that is fine; it just changes the first task from writing to setting up.",
       },
       {
         question: "Will you migrate an existing list?",

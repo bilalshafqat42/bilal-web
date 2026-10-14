@@ -4,7 +4,7 @@ import type { Metadata } from "next";
  * Site-wide constants, and the one helper every page uses for its metadata.
  *
  * **Why this exists.** The site URL was written out by hand in ten files, and
- * "15 years" in five. The first is the same problem `contact.ts` solved for the
+ * a hard-coded count of years in five. The first is the same problem `contact.ts` solved for the
  * email address. The second is worse: a hand-written count of years goes wrong
  * by itself every January, and nobody notices until a prospect does the sum.
  */
@@ -34,7 +34,7 @@ export const OG_IMAGES = [
  * The year the years-of-experience count starts from.
  *
  * 2009, the first role on the CV (Vitalsouls). Confirmed by Bilal on
- * 2026-10-13; until then the site said 15 years. Every page reads this.
+ * 2026-10-13; until then the site carried a hand-written, lower count. Every page reads this.
  */
 export const CAREER_START_YEAR = 2009;
 
@@ -66,9 +66,21 @@ export const POSITIONING =
 
 /** The homepage's title and description. The layout uses them as the default
  *  for every route, and the homepage restates them with its own `og:url`. */
-export const HOME_TITLE = "Freelance Digital Marketer in Dubai — Bilal Shafqat";
+export const HOME_TITLE = "Freelance Digital Marketer in Dubai | Bilal Shafqat";
 export const HOME_DESCRIPTION =
   "Freelance digital marketer in Dubai. I run your paid ads, SEO and social, and build the page each campaign lands on. One senior partner, not an agency.";
+
+/** The /blog index's title and description, shared with the paginated pages
+ *  so the two cannot drift. Rewritten 2026-10-14: the old line led with React
+ *  hooks, which no longer describes a blog that opens with Dubai marketing
+ *  articles. Pages 2 onward add their number to both, so no two match. */
+export const BLOG_TITLE = "Writing: Digital Marketing in Dubai, Design and Development";
+export const BLOG_DESCRIPTION =
+  "Digital marketing notes for Dubai businesses: ad budgets, Google versus Meta, SEO and lead quality, plus older notes on design and web development.";
+export const blogPagedTitle = (page: number) =>
+  `Writing on Digital Marketing in Dubai, Page ${page}`;
+export const blogPagedDescription = (page: number) =>
+  `Page ${page} of the archive. Digital marketing notes for Dubai businesses, plus older notes on design, React and web development, written from client work.`;
 
 /**
  * Title, description, canonical, Open Graph and Twitter card for one page.
@@ -104,7 +116,7 @@ export function pageMetadata(opts: {
     // loses the layout's RSS link unless it is repeated here.
     alternates: {
       canonical: opts.path,
-      types: { "application/rss+xml": [{ url: "/rss.xml", title: `${SITE_NAME} — Writing` }] },
+      types: { "application/rss+xml": [{ url: "/rss.xml", title: `${SITE_NAME}: Writing` }] },
     },
     openGraph: {
       title: ogTitle,

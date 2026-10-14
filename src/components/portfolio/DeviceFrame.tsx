@@ -84,7 +84,7 @@ export default function DeviceFrame({
           <div
             tabIndex={0}
             role="region"
-            aria-label={`${capture.label} — scrollable app screen`}
+            aria-label={`${capture.label}, scrollable app screen`}
             className={`no-scrollbar overflow-y-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-gold ${
               isIos ? "aspect-[1206/2622]" : "aspect-[1440/3120]"
             }`}

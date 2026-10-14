@@ -9,8 +9,8 @@ import { buildServiceMenu } from "@/data/serviceCategories";
  * titles and an optional timeline. The full category data (headlines, meta,
  * FAQs, every section) stays out of the client bundle.
  *
- * Kept at this path, with this default export, so the root layout's
- * `<Nav />` did not need to change. The bar itself is `NavBar.tsx`.
+ * The root layout renders `<Nav />`, this server component. The interactive
+ * client bar it hands the menu to is `NavBar.tsx`.
  */
 export default function Nav() {
   return <NavBar menu={buildServiceMenu()} />;

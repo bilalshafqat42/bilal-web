@@ -1,14 +1,14 @@
 {
   "slug": "react-usereducer-hook-explained",
   "title": "React useReducer Hook Explained with Real Examples and Best Practices",
-  "description": "Confused about when to use useReducer in React? Learn how this powerful hook helps manage complex state logic, with real examples and best practices for 2025.",
+  "description": "Confused about when to use useReducer in React? Learn how this powerful hook helps manage complex state logic, with real examples and best practices.",
   "published": "2025-06-30",
-  "updatedAt": "2026-10-01",
+  "updatedAt": "2026-10-14",
   "tags": [
     "React Hooks",
     "React Js"
   ],
-  "words": 398,
+  "words": 395,
   "blocks": [
     {
       "t": "h2",
@@ -16,7 +16,7 @@
     },
     {
       "t": "p",
-      "v": "Managing state in React is easy — until it’s not. When your component’s state logic becomes complex, using multiple useState calls can quickly get messy and hard to maintain."
+      "v": "Managing state in React is easy, until it’s not. When your component’s state logic becomes complex, using multiple useState calls can quickly get messy and hard to maintain."
     },
     {
       "t": "p",
@@ -76,7 +76,7 @@
     },
     {
       "t": "p",
-      "v": "useState is great for simple values like booleans, strings, and numbers — but when your state logic grows in complexity, useReducer helps keep it maintainable."
+      "v": "useState is great for simple values like booleans, strings, and numbers, but when your state logic grows in complexity, useReducer helps keep it maintainable."
     },
     {
       "t": "h2",
@@ -210,7 +210,7 @@
     },
     {
       "t": "h2",
-      "v": "Best Practices for useReducer (2025)"
+      "v": "Best Practices for useReducer"
     },
     {
       "t": "list",
@@ -246,7 +246,7 @@
     },
     {
       "t": "p",
-      "v": "Don’t replace useState in every case — but when you need it, useReducer makes your code scalable and maintainable."
+      "v": "Don’t replace useState in every case, but when you need it, useReducer makes your code scalable and maintainable."
     }
   ],
   "metaTitle": "React useReducer Hook Explained with Examples"

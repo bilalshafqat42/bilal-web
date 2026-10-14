@@ -17,7 +17,7 @@ import { disciplinesWithPages } from "@/data/disciplines";
 import Eyebrow from "@/components/ui/Eyebrow";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Portfolio — Off-Plan Launches & App Work | Bilal Shafqat",
+  title: "Portfolio: Off-Plan Launches & App Work | Bilal Shafqat",
   // The old description said "browse by discipline", which described the page
   // this one replaced — the discipline browser is now a footnote below the work,
   // not the page's purpose.
@@ -123,8 +123,8 @@ export default function PortfolioPage() {
                 One decision, as an example
               </Eyebrow>
               <p className="mt-3 text-lg leading-relaxed text-ink">
-                The entry price sits in the hero — from AED 1 million on Hadley
-                Heights — so someone outside the bracket leaves before filling in a
+                The entry price sits in the hero (from AED 1 million on Hadley
+                Heights), so someone outside the bracket leaves before filling in a
                 form.
               </p>
               <p className="mt-3 text-base leading-relaxed text-muted">
@@ -164,7 +164,7 @@ export default function PortfolioPage() {
                   Start with what you need built
                 </h2>
               </div>
-              <p className="max-w-xs text-sm leading-relaxed text-muted/75 sm:text-right">
+              <p className="max-w-xs text-sm leading-relaxed text-faint sm:text-right">
                 Counts are the pieces actually shown on each page. A discipline
                 marked <span className="text-muted">Service</span> has no case
                 study published yet.

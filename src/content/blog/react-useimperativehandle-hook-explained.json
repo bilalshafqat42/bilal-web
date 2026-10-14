@@ -1,14 +1,14 @@
 {
   "slug": "react-useimperativehandle-hook-explained",
   "title": "React useImperativeHandle Hook Explained with Real Examples and Best Practices",
-  "description": "Ever needed to call a function inside a child component — from the parent? React’s useImperativeHandle hook makes that possible.",
+  "description": "Ever needed to call a function inside a child component from the parent? React’s useImperativeHandle hook makes that possible.",
   "published": "2025-07-01",
-  "updatedAt": "2026-10-01",
+  "updatedAt": "2026-10-14",
   "tags": [
     "React Hooks",
     "React Js"
   ],
-  "words": 525,
+  "words": 514,
   "blocks": [
     {
       "t": "h2",
@@ -20,7 +20,7 @@
     },
     {
       "t": "p",
-      "v": "That’s where useImperativeHandle() comes in. It lets you define exactly what a parent can do with a ref passed to a child component. Combined with forwardRef(), this hook gives you a controlled way to expose internal functionality of a component — without breaking encapsulation."
+      "v": "That’s where useImperativeHandle() comes in. It lets you define exactly what a parent can do with a ref passed to a child component. Combined with forwardRef(), this hook gives you a controlled way to expose internal functionality of a component, without breaking encapsulation."
     },
     {
       "t": "h3",
@@ -135,7 +135,7 @@
     },
     {
       "t": "p",
-      "v": "useImperativeHandle is for special cases — not general data flow. If used incorrectly, it can break unidirectional React data patterns."
+      "v": "useImperativeHandle is for special cases, not general data flow. If used incorrectly, it can break unidirectional React data patterns."
     },
     {
       "t": "h2",
@@ -188,7 +188,7 @@
     },
     {
       "t": "p",
-      "v": "This allows the parent to reset the form input — without needing to lift state or re-render the entire component tree."
+      "v": "This allows the parent to reset the form input without needing to lift state or re-render the entire component tree."
     },
     {
       "t": "h2",
@@ -208,7 +208,7 @@
     },
     {
       "t": "p",
-      "v": "Don’t treat useImperativeHandle like a dumping ground. Keep the API minimal — only expose what's necessary."
+      "v": "Don’t treat useImperativeHandle like a dumping ground. Keep the API minimal: only expose what's necessary."
     },
     {
       "t": "h3",
@@ -216,11 +216,11 @@
     },
     {
       "t": "p",
-      "v": "useImperativeHandle is about triggering effects — not managing shared state. Don’t pass values through it that can be handled with props."
+      "v": "useImperativeHandle is about triggering effects, not managing shared state. Don’t pass values through it that can be handled with props."
     },
     {
       "t": "h2",
-      "v": "Best Practices for useImperativeHandle in 2025"
+      "v": "Best Practices for useImperativeHandle"
     },
     {
       "t": "list",
@@ -230,7 +230,7 @@
         "Expose the minimal, focused API possible",
         "Use useRef() in the parent to control behavior",
         "Document clearly in reusable components (e.g., form libraries)",
-        "Avoid side effects in imperative methods — keep them controlled"
+        "Avoid side effects in imperative methods; keep them controlled"
       ]
     },
     {
@@ -269,7 +269,7 @@
     },
     {
       "t": "p",
-      "v": "Mastering useImperativeHandle helps you write more modular, reusable, and expressive React components — especially for advanced use cases in 2025 and beyond."
+      "v": "Mastering useImperativeHandle helps you write more modular, reusable, and expressive React components, especially for advanced use cases."
     }
   ],
   "metaTitle": "React useImperativeHandle Hook Explained with Examples"

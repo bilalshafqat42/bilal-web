@@ -5,6 +5,7 @@ import { ArrowRight, Check, FileText, Loader2, MessageCircle } from "lucide-reac
 import { getAttribution } from "@/lib/attribution";
 import { SITE_EMAIL } from "@/lib/contact";
 import { useLeadSubmit, TURNSTILE_ENABLED } from "@/lib/useLeadSubmit";
+import { CONTACT_OTHER_OPTION } from "@/data/leadOptions";
 import WhatsAppLink from "@/components/ui/WhatsAppLink";
 import Eyebrow from "@/components/ui/Eyebrow";
 import { secondaryButtonClass } from "@/components/ui/SecondaryButton";
@@ -26,7 +27,7 @@ function prettyPath(path: string): string {
 }
 
 const fieldClass =
-  "w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink placeholder:text-muted/70 outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20";
+  "w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink placeholder:text-faint outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20";
 
 /**
  * The page the visitor was reading before they came to /contact, captured by the
@@ -186,7 +187,7 @@ export default function ContactForm({ serviceOptions }: { serviceOptions: Servic
                 {p.label}
               </option>
             ))}
-            <option value="Something else">Something else</option>
+            <option value={CONTACT_OTHER_OPTION}>{CONTACT_OTHER_OPTION}</option>
           </select>
         </div>
       </div>
@@ -205,11 +206,11 @@ export default function ContactForm({ serviceOptions }: { serviceOptions: Servic
           <div className="mt-5 rounded-xl border border-gold/30 bg-gold/5 p-4">
             <p className="text-sm font-medium text-ink">That didn&apos;t send.</p>
             <p className="mt-1.5 text-sm text-muted leading-relaxed">
-              Rather than lose your message, send it to me directly — everything you
+              Rather than lose your message, send it to me directly. Everything you
               typed is already filled in.
             </p>
             <p className="mt-2 text-sm text-muted">
-              Or email <span className="text-ink">{SITE_EMAIL}</span> — your message is still in the
+              Or email <span className="text-ink">{SITE_EMAIL}</span>. Your message is still in the
               form above.
             </p>
             <div className="mt-4 flex flex-wrap gap-3">

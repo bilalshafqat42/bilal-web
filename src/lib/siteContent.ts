@@ -65,7 +65,7 @@ Includes: ${group.items.map((i) => i.title).join(", ")}.`);
   for (const d of disciplinesWithPages()) {
     if (!d.page) continue;
     parts.push(
-      `## ${d.title} — /portfolio/${d.slug}\n${d.page.intro}\n${d.page.lens}\nPieces shown: ${disciplineItems(d).length}.`
+      `## ${d.title}: /portfolio/${d.slug}\n${d.page.intro}\n${d.page.lens}\nPieces shown: ${disciplineItems(d).length}.`
     );
   }
 
@@ -73,7 +73,7 @@ Includes: ${group.items.map((i) => i.title).join(", ")}.`);
   for (const client of clients) {
     parts.push(`## ${client.name}  (page: /portfolio/${client.slug})
 ${client.intro}
-Scope: ${client.scope.map((s) => `${s.heading} — ${s.body}`).join(" ")}`);
+Scope: ${client.scope.map((s) => `${s.heading}: ${s.body}`).join(" ")}`);
     for (const p of client.projects) {
       parts.push(`### ${p.name}  (page: /portfolio/${client.slug}/${p.slug})
 ${p.summary}

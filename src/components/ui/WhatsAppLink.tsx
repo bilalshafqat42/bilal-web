@@ -1,6 +1,7 @@
 "use client";
 
 import { trackWhatsApp } from "@/lib/analytics";
+import { SITE_PHONE_HREF } from "@/lib/contact";
 
 /**
  * Every outbound WhatsApp link on the site.
@@ -21,8 +22,9 @@ import { trackWhatsApp } from "@/lib/analytics";
  * and owns the phone number so it is not repeated as a literal in five files.
  */
 
-/** The single source for the number. Digits only — `wa.me` takes no `+`. */
-export const WHATSAPP_NUMBER = "971529766006";
+/** Digits only, because `wa.me` takes no `+`. Derived from `SITE_PHONE_HREF`,
+ *  the one place the number lives, so a change there reaches WhatsApp too. */
+export const WHATSAPP_NUMBER = SITE_PHONE_HREF.replace(/\D/g, "");
 
 type Props = {
   /**

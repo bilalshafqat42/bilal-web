@@ -6,6 +6,7 @@ import BlogList from "@/components/article/BlogList";
 import { SITE_URL, breadcrumbNode, ID, ref } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
 import { blogPageSlice, totalBlogPages, blogPagePath } from "@/lib/blogPagination";
+import { blogPagedTitle, blogPagedDescription } from "@/lib/site";
 
 /**
  * Writing, page two onward.
@@ -31,16 +32,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { n } = await params;
   const page = pageNumber(n);
   if (!Number.isInteger(page) || page < 2 || page > totalBlogPages()) return {};
-  const title = `Writing — Page ${page}`;
+  const title = blogPagedTitle(page);
+  const description = blogPagedDescription(page);
   return {
     title,
-    description:
-      "Practical notes on React hooks, React Native and design practice, written from client work rather than from the documentation.",
+    description,
     // Self-canonical, not a canonical back to /blog. Pointing every page at
     // page one tells Google the other pages are duplicates of it, and the
     // articles listed only on page four then have one fewer route in.
     alternates: { canonical: blogPagePath(page) },
-    openGraph: { title, type: "website", url: blogPagePath(page), images: OG_IMAGES },
+    openGraph: { title, description, type: "website", url: blogPagePath(page), images: OG_IMAGES },
   };
 }
 
@@ -63,8 +64,7 @@ export default async function BlogPagedPage({ params }: Props) {
       "@type": "Blog",
       "@id": `${url}#blog`,
       name: "Writing by Bilal Shafqat",
-      description:
-        "Practical notes on React hooks, React Native and design practice, written from client work.",
+      description: blogPagedDescription(page),
       url,
       inLanguage: "en",
       author: ref(ID.person, "Person"),

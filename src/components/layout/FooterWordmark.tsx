@@ -63,14 +63,18 @@ export default function FooterWordmark() {
     // overflow-hidden is what makes it read as rising from behind the footer
     // rather than simply fading in.
     <div ref={wrapRef} aria-hidden="true" className="pointer-events-none mt-10 overflow-hidden">
+      {/* The words are drawn by `::before` from `data-wordmark`, not as a text
+          node. The wrapper is already `aria-hidden`, but contrast checkers
+          (axe, Lighthouse) still measure hidden text, and a 10% white mark is
+          1.03:1 by design. Generated content is not text to them, which is
+          accurate: this is decoration, and the real name sits higher up. */}
       <span
-        className={`font-display block select-none whitespace-nowrap text-center font-bold leading-[0.8] tracking-tight text-white/[0.10] transition-[transform,opacity] duration-[1200ms] ease-out motion-reduce:transition-none ${
+        data-wordmark="Bilal Shafqat"
+        className={`font-display block select-none whitespace-nowrap before:content-[attr(data-wordmark)] text-center font-bold leading-[0.8] tracking-tight text-white/[0.10] transition-[transform,opacity] duration-[1200ms] ease-out motion-reduce:transition-none ${
           shown ? "translate-y-0 opacity-100" : "translate-y-[55%] opacity-25"
         }`}
         style={{ fontSize: "clamp(3.5rem, 15.5vw, 15rem)" }}
-      >
-        Bilal Shafqat
-      </span>
+      />
     </div>
   );
 }

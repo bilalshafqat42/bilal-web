@@ -393,7 +393,7 @@ export default function NavBar({ menu }: { menu: MenuColumn[] }) {
       } ${light ? "is-light" : ""}`}
     >
       <div className="nav-shell mx-auto flex w-full items-center justify-between px-6 lg:px-10">
-        <Link href="/" className="shrink-0" aria-label="Bilal Shafqat — home">
+        <Link href="/" className="shrink-0" aria-label="Bilal Shafqat, home">
           {/* The wordmark is white, so it needs a dark cut for the light bar.
               Same file with the 15 white fills swapped; the gold badge is
               untouched in both. */}

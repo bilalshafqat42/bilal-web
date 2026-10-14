@@ -117,7 +117,7 @@ export function buildIndex(): Chunk[] {
     });
     for (const p of client.projects) {
       chunks.push({
-        title: `${p.name} — ${client.name}`,
+        title: `${p.name}, ${client.name}`,
         body: `${p.summary} ${p.facts.map((f) => `${f.label}: ${f.value}`).join(". ")}. ${p.keywords.join(". ")}.`,
         url: `/portfolio/${client.slug}/${p.slug}`,
         kind: "work",

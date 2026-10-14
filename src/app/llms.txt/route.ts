@@ -40,12 +40,12 @@ Full content for machine reading: ${SITE}/llms-full.txt
 - [About](${SITE}/about): background, working principles, tools and platforms
 - [Services](${SITE}/services): all ${megaMenuGroups.length} service categories
 - [Portfolio](${SITE}/portfolio): all work, browsable by discipline and by client
-- [LEOS mobile app](${SITE}/portfolio/leos-developments/mobile-app): React Native case study — cross-platform iOS and Android from one codebase, screen by screen
-- [Process](${SITE}/process): the four delivery stages — brief and discovery, planning and design, build and launch, then measurement and iteration, with worked examples
+- [LEOS mobile app](${SITE}/portfolio/leos-developments/mobile-app): React Native case study: cross-platform iOS and Android from one codebase, screen by screen
+- [Process](${SITE}/process): the four delivery stages: brief and discovery, planning and design, build and launch, then measurement and iteration, with worked examples
 - [Pricing](${SITE}/pricing): published figures (projects from AED 31,500, retainers from AED 16,000 a month, a review session at AED 3,500), engagement models and what drives cost
 - [FAQ](${SITE}/faq): freelancer vs agency, timezones, process, measurement
-- [Book a consultation](${SITE}/appointment): the booking page every primary CTA points at — pick a slot for a free call
-- [Real estate marketing](${SITE}/real-estate-marketing): off-plan and property developer work — campaigns, launch sites and CRM, as one vertical
+- [Book a consultation](${SITE}/appointment): the booking page every primary CTA points at; pick a slot for a free call
+- [Real estate marketing](${SITE}/real-estate-marketing): off-plan and property developer work: campaigns, launch sites and CRM, as one vertical
 - [Contact](${SITE}/contact): enquiry form, email, WhatsApp
 - [Writing](${SITE}/blog): ${blogPosts.length} technical articles on React hooks, React Native and design practice
 - [Privacy](${SITE}/privacy): what the site stores`);
@@ -87,7 +87,7 @@ Full content for machine reading: ${SITE}/llms-full.txt
   lines.push(`\n## Answers to common questions\n`);
   for (const group of faqGroups) {
     for (const item of group.items) {
-      lines.push(`- ${item.question} — ${item.answer}`);
+      lines.push(`- ${item.question} ${item.answer}`);
     }
   }
 

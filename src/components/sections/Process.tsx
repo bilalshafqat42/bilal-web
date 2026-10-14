@@ -72,7 +72,7 @@ export default function Process() {
           eyebrow="How I Work"
           title="A Structured Path From"
           highlight="Brief To Shipped Work"
-          description="Whether it's a paid campaign, a website, or a custom application, every project follows the same clear process — from brief to launch to optimisation."
+          description="Whether it's a paid campaign, a website, or a custom application, every project follows the same clear process, from brief to launch to optimisation."
           align="left"
         />
 
@@ -98,7 +98,7 @@ export default function Process() {
                     >
                       <span
                         className={`font-mono text-[0.7rem] tabular-nums transition-colors ${
-                          on ? "text-gold" : "text-muted/60"
+                          on ? "text-gold" : "text-faint"
                         }`}
                       >
                         {s.step}

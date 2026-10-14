@@ -3,12 +3,12 @@
   "title": "React useMemo Hook Explained with Real Examples and Best Practices",
   "description": "Learn how to use the React useMemo hook to optimize performance, avoid unnecessary recalculations, and improve app speed. Includes real-world examples and",
   "published": "2025-06-26",
-  "updatedAt": "2026-10-01",
+  "updatedAt": "2026-10-14",
   "tags": [
     "React Js",
     "React Hooks"
   ],
-  "words": 442,
+  "words": 433,
   "blocks": [
     {
       "t": "h2",
@@ -24,7 +24,7 @@
     },
     {
       "t": "p",
-      "v": "useMemo() helps developers prevent unnecessary recalculations by memoizing the return value of a function. In short: it lets you cache expensive computations between renders — only recalculating when necessary."
+      "v": "useMemo() helps developers prevent unnecessary recalculations by memoizing the return value of a function. In short: it lets you cache expensive computations between renders, only recalculating when necessary."
     },
     {
       "t": "h3",
@@ -38,7 +38,7 @@
         "How to use it properly",
         "When (and when not) to use it",
         "Common use cases and real code examples",
-        "Performance tips and 2025 best practices"
+        "Performance tips and best practices"
       ]
     },
     {
@@ -71,7 +71,7 @@
     },
     {
       "t": "p",
-      "v": "In React, any time a component re-renders, all the code inside its body re-runs — including function calls and computations."
+      "v": "In React, any time a component re-renders, all the code inside its body re-runs, including function calls and computations."
     },
     {
       "t": "p",
@@ -95,7 +95,7 @@
     },
     {
       "t": "p",
-      "v": "This will run every time your component renders — even if list hasn’t changed."
+      "v": "This will run every time your component renders, even if list hasn’t changed."
     },
     {
       "t": "h3",
@@ -107,7 +107,7 @@
     },
     {
       "t": "p",
-      "v": "Now, the sort only runs when list changes — improving performance."
+      "v": "Now, the sort only runs when list changes, improving performance."
     },
     {
       "t": "h2",
@@ -186,7 +186,7 @@
     },
     {
       "t": "p",
-      "v": "If the function is fast and cheap — don’t memoize it."
+      "v": "If the function is fast and cheap, don’t memoize it."
     },
     {
       "t": "h3",
@@ -206,13 +206,13 @@
     },
     {
       "t": "h2",
-      "v": "Best Practices for useMemo in 2025"
+      "v": "Best Practices for useMemo"
     },
     {
       "t": "list",
       "ordered": false,
       "v": [
-        "Use for real performance gains — not just style",
+        "Use for real performance gains, not just style",
         "Wrap only expensive operations",
         "Keep the dependency array accurate",
         "Use React DevTools to inspect performance before optimizing",
@@ -241,7 +241,7 @@
     },
     {
       "t": "p",
-      "v": "React’s useMemo is a powerful optimization tool — when used correctly."
+      "v": "React’s useMemo is a powerful optimization tool, when used correctly."
     },
     {
       "t": "h3",
@@ -251,7 +251,7 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "It memoizes return values — skipping re-computation unless needed",
+        "It memoizes return values, skipping re-computation unless needed",
         "It helps improve performance for expensive logic",
         "Don’t overuse it; memoization comes with a cost"
       ]

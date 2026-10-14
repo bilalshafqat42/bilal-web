@@ -3,7 +3,7 @@
   "title": "What Are EM and REM Units?",
   "description": "CSS uses various units to define lengths, such as px (pixels), % (percentages), and relative units like em and rem. Unlike absolute units like pixels, EM and",
   "published": "2025-01-24",
-  "updatedAt": "2026-10-02",
+  "updatedAt": "2026-10-14",
   "tags": [
     "CSS"
   ],
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "t": "h3",
+      "t": "h2",
       "v": "Key Differences Between EM and REM"
     },
     {
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "t": "h3",
+      "t": "h2",
       "v": "Why Use Relative Units Instead of Pixels?"
     },
     {
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "t": "h3",
+      "t": "h2",
       "v": "Practical Examples"
     },
     {
@@ -117,7 +117,7 @@
       "v": "This approach ensures predictable typography while allowing component-specific adjustments."
     },
     {
-      "t": "h3",
+      "t": "h2",
       "v": "Common Pitfalls to Avoid"
     },
     {
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "t": "h3",
+      "t": "h2",
       "v": "When to Use EM vs. REM"
     },
     {
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "t": "h3",
+      "t": "h2",
       "v": "Tips for Mastering EM and REM"
     },
     {
@@ -177,7 +177,7 @@
       ]
     },
     {
-      "t": "h3",
+      "t": "h2",
       "v": "Conclusion"
     },
     {

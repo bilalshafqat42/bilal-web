@@ -2,11 +2,12 @@ import { Check, ArrowRight } from "lucide-react";
 import Reveal, { RevealStagger, RevealItem } from "@/components/ui/Reveal";
 import ClientLogoRow from "@/components/portfolio/ClientLogoRow";
 import CtaButton from "@/components/ui/CtaButton";
-import { caseStudyUrls } from "@/data/caseStudies";
+import { caseStudyCount } from "@/data/caseStudyUrls";
 
 import Eyebrow from "@/components/ui/Eyebrow";
 import SecondaryButton from "@/components/ui/SecondaryButton";
-import { resultStats as stats, resultMethod as METHOD } from "@/data/home";
+import { resultStatsFor, resultMethod as METHOD } from "@/data/home";
+import { disciplinesWithPages } from "@/data/disciplines";
 
 /**
  * The proof wall — the single proof section on the homepage.
@@ -39,7 +40,8 @@ export default function Results() {
   // Derived, never hard-coded. The design's caption said "Five case studies";
   // the real number is whatever is in the data, and a hand-typed count is a
   // claim that goes stale the moment a project is added or removed.
-  const studies = caseStudyUrls().filter((u) => u.split("/").length > 3).length;
+  const studies = caseStudyCount();
+  const stats = resultStatsFor(disciplinesWithPages().length);
 
   return (
     <section className="relative section-pad">

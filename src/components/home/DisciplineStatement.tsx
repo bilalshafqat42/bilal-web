@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ArrowRight, Pause, Play } from "lucide-react";
 import RotatingDiscipline from "@/components/home/RotatingDiscipline";
+import { yearsExperience } from "@/lib/site";
 
 /**
  * The breadth statement that opens the homepage, in tentwenty's shape.
@@ -69,7 +70,10 @@ export default function DisciplineStatement() {
             // 60/10/30 of the time. The column sets the measure instead, and the
             // explicit `<br />` below still puts the gold block on its own line.
             className="t-display max-w-[17ch] sm:max-w-none lg:text-[min(4.75rem,5.4vw)]!">
-            Fifteen years of experience
+            {/* Computed, not written: a numeral, as every other page shows it.
+                `spellCount` lives in `serviceCategories.ts`, and importing it
+                here would ship the service data to the browser. */}
+            {yearsExperience()} years of experience
             <br />
             in&nbsp;<RotatingDiscipline paused={paused} />
           </p>

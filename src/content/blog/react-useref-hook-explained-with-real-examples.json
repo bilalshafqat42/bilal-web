@@ -3,12 +3,12 @@
   "title": "React useRef Hook Explained with Real Examples and Best Practices",
   "description": "Learn React useRef() hook does, when to use it, how it compares to useState(). Includes examples for DOM access, value tracking, performance optimizations.",
   "published": "2025-06-24",
-  "updatedAt": "2026-10-01",
+  "updatedAt": "2026-10-14",
   "tags": [
     "React Js",
     "React Hooks"
   ],
-  "words": 513,
+  "words": 503,
   "blocks": [
     {
       "t": "p",
@@ -20,7 +20,7 @@
     },
     {
       "t": "p",
-      "v": "If you're working with React functional components, you've probably used useState() and useEffect() — but what about useRef()?"
+      "v": "If you're working with React functional components, you've probably used useState() and useEffect(), but what about useRef()?"
     },
     {
       "t": "p",
@@ -39,7 +39,7 @@
         "How it differs from useState()",
         "Real examples including DOM access, persisting values, and timers",
         "Common mistakes to avoid",
-        "Best practices for 2025 and beyond"
+        "Best practices"
       ]
     },
     {
@@ -80,7 +80,7 @@
     },
     {
       "t": "p",
-      "v": "This is the most well-known use case — directly referencing a DOM node for actions like focusing an input or scrolling."
+      "v": "This is the most well-known use case: directly referencing a DOM node for actions like focusing an input or scrolling."
     },
     {
       "t": "h3",
@@ -96,7 +96,7 @@
     },
     {
       "t": "p",
-      "v": "Refs are perfect for tracking what a value was during the previous render — without triggering another render."
+      "v": "Refs are perfect for tracking what a value was during the previous render, without triggering another render."
     },
     {
       "t": "h3",
@@ -183,7 +183,7 @@
     },
     {
       "t": "p",
-      "v": "If your UI depends on a value, it should be stored in state — not ref."
+      "v": "If your UI depends on a value, it should be stored in state, not ref."
     },
     {
       "t": "code",
@@ -207,11 +207,11 @@
     },
     {
       "t": "p",
-      "v": "Refs can hold anything — not just DOM elements. Think of it as a safe, persistent container."
+      "v": "Refs can hold anything, not just DOM elements. Think of it as a safe, persistent container."
     },
     {
       "t": "h2",
-      "v": "Best Practices for useRef in 2025"
+      "v": "Best Practices for useRef"
     },
     {
       "t": "list",
@@ -309,7 +309,7 @@
     },
     {
       "t": "p",
-      "v": "Just remember: useRef() is not reactive — changing .current does not trigger re-renders."
+      "v": "Just remember: useRef() is not reactive: changing .current does not trigger re-renders."
     },
     {
       "t": "p",

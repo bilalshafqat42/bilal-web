@@ -45,6 +45,10 @@ const token = (t: string) => t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace
 type Card = {
   href: string;
   image: string;
+  /** Read from the data the image came from, so it describes the actual
+   *  capture. Was `alt=""` until 2026-10-14: seven covers on /portfolio with
+   *  nothing for a screen reader or an image search to go on. */
+  alt: string;
   position: "top" | "center";
   /** Full width on desktop. Used for the client overview, which is the entry
    *  point to everything under it. */
@@ -62,6 +66,7 @@ function buildCards(): Card[] {
     out.push({
       href: `/portfolio/${c.slug}`,
       image: c.website?.capture.src ?? c.ogImage ?? OG_IMAGE_URL,
+      alt: c.website?.capture.alt ?? `${c.name} case study cover`,
       position: "top",
       wide: true,
       eyebrow: c.industry,
@@ -74,6 +79,7 @@ function buildCards(): Card[] {
       out.push({
         href: `/portfolio/${c.slug}/mobile-app`,
         image: c.mobileApp.lead.src,
+        alt: c.mobileApp.lead.alt,
         position: "center",
         eyebrow: "Mobile app",
         name: `${c.name} app`,
@@ -86,6 +92,7 @@ function buildCards(): Card[] {
       out.push({
         href: `/portfolio/${c.slug}/${p.slug}`,
         image: p.cardImage,
+        alt: p.cardImageAlt ?? `${p.name} campaign creative`,
         position: p.cardImagePosition ?? "top",
         eyebrow: "Launch campaign",
         name: p.name,
@@ -120,7 +127,7 @@ export default function CaseStudyGrid() {
         </h2>
         <p className="mt-4 max-w-[62ch] text-lg leading-relaxed text-muted">
           Each one opens into what the brief was, the decisions behind it and what
-          shipped — not a gallery of screens with nothing said about them.
+          shipped, not a gallery of screens with nothing said about them.
         </p>
       </Reveal>
 
@@ -186,7 +193,7 @@ export default function CaseStudyGrid() {
                     >
                       <Image
                         src={card.image}
-                        alt=""
+                        alt={card.alt}
                         fill
                         sizes={card.wide ? "(min-width:1024px) 1100px, 100vw" : "(min-width:1024px) 540px, 100vw"}
                         className={`object-cover transition-transform duration-500 group-hover:scale-[1.02] ${

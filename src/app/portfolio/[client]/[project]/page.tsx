@@ -19,9 +19,10 @@ import { PORTFOLIO_CONTENT_DATE } from "@/data/contentDates";
 import CtaButton from "@/components/ui/CtaButton";
 import DeviceFrame from "@/components/portfolio/DeviceFrame";
 import { jsonLdSafe } from "@/lib/schema";
+import { SITE_URL } from "@/lib/site";
 import Eyebrow from "@/components/ui/Eyebrow";
 
-const SITE = "https://bilalshafqat.com";
+const SITE = SITE_URL;
 
 type Props = { params: Promise<{ client: string; project: string }> };
 
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const found = getProject(client, project);
   if (!found) return {};
   const { client: c, project: p } = found;
-  const title = p.metaTitle ?? `${p.name} — ${c.name} Campaign Case Study`;
+  const title = p.metaTitle ?? `${p.name}: ${c.name} Campaign Case Study`;
   const url = `/portfolio/${c.slug}/${p.slug}`;
   const og = p.ogImage ?? c.ogImage ?? OG_IMAGE_URL;
   return {
@@ -49,7 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       // Per-project card where one exists, the client's generic card otherwise.
       // Every project used to share one LEOS image, so a link posted anywhere
       // showed the same unbranded card whichever development it pointed at.
-      images: [{ url: og, width: 1200, height: 630, alt: `${p.name} — campaign landing page` }],
+      images: [{ url: og, width: 1200, height: 630, alt: `${p.name}, campaign landing page` }],
     },
     twitter: { card: "summary_large_image", title, description: p.cardBlurb, images: [og] },
   };
@@ -90,7 +91,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
-    name: `${p.name} — campaign case study`,
+    name: `${p.name}: campaign case study`,
     headline: p.headline,
     description: p.summary,
     url,
@@ -367,7 +368,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
                       <dt className="text-3xl font-bold tracking-tight text-ink">{r.value}</dt>
                       <dd className="mt-2 text-sm leading-relaxed text-muted">{r.label}</dd>
                       {r.note ? (
-                        <dd className="mt-1.5 text-xs leading-relaxed text-muted/65">{r.note}</dd>
+                        <dd className="mt-1.5 text-xs leading-relaxed text-faint">{r.note}</dd>
                       ) : null}
                     </div>
                   ))}

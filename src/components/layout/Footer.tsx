@@ -208,7 +208,7 @@ export default function Footer() {
                     className="flex items-baseline gap-2 text-sm text-muted transition-colors hover:text-gold"
                   >
                     {d.title}
-                    <span className="font-mono text-[0.65rem] text-muted/50">
+                    <span className="font-mono text-[0.65rem] text-faint">
                       {disciplineItems(d).length}
                     </span>
                   </Link>

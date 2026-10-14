@@ -102,7 +102,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     // ampersand problem fixed on the designer and developer pages in Phase 2.
     // This is now the hub: the platform sections live here, Google Ads has the
     // volume and therefore its own page.
-    metaTitle: "Freelance Paid Marketing in Dubai — Bilal Shafqat",
+    metaTitle: "Freelance Paid Marketing in Dubai | Bilal Shafqat",
     metaDescription:
       "Freelance paid marketing in Dubai across Google, Meta, TikTok and LinkedIn, with conversion tracking from day one and reporting in cost per lead.",
     // Condensed from "How long before the numbers mean anything?"
@@ -156,7 +156,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "Google Ads in Dubai: the one channel where people type what they want",
     intro:
       "Everywhere else you interrupt someone. On search they have typed the thing they are looking for, in their own words, which makes Google Ads in Dubai the shortest route from a budget to an enquiry and usually the place to start. It is also the easiest place to waste money, because the default settings are built to spend it.",
-    metaTitle: "Freelance Google Ads in Dubai — Bilal Shafqat",
+    metaTitle: "Freelance Google Ads in Dubai | Bilal Shafqat",
     metaDescription:
       "Google Ads in Dubai planned and managed by a freelancer, with tracking built before the spend starts and reporting in enquiries rather than clicks.",
     // Condensed from "How soon will I see results?"
@@ -214,7 +214,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "Facebook ads in Dubai: the creative targets, the form decides what you get",
     intro:
       "Nobody opens Facebook or Instagram to buy something, so Facebook ads in Dubai have to earn attention rather than capture it. That makes the creative the real targeting mechanism, and it makes the lead form the place where most budgets quietly go wrong.",
-    metaTitle: "Freelance Facebook Ads in Dubai — Bilal Shafqat",
+    metaTitle: "Freelance Facebook Ads in Dubai | Bilal Shafqat",
     metaDescription:
       "Facebook ads in Dubai across Facebook and Instagram, measured on qualified enquiries rather than the cheap leads instant forms tend to produce.",
     faqs: [
@@ -266,7 +266,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "LinkedIn marketing in Dubai, the one place you can target a job title",
     intro:
       "LinkedIn marketing in Dubai costs several times what the other platforms do per click, and for a narrow commercial audience it is still the cheapest way to reach them. Targeting by job title, company size and seniority is something no other channel does properly, which makes it right for B2B and commercial property and wrong for most residential.",
-    metaTitle: "Freelance LinkedIn Marketing in Dubai — Bilal Shafqat",
+    metaTitle: "Freelance LinkedIn Marketing in Dubai | Bilal Shafqat",
     metaDescription:
       "LinkedIn marketing in Dubai for B2B and commercial property, targeted by job title and company rather than by interest, and wired into your CRM.",
     faqs: [
@@ -303,7 +303,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "Social media marketing in Dubai, handled end to end rather than handed over",
     intro:
       "Most social media marketing in Dubai stops at delivering assets. This covers the whole thing: the strategy, the content calendar, the creative itself, and the actual posting and engagement. Because the same person also runs the paid campaigns, organic and paid reinforce each other instead of running as separate projects.",
-    metaTitle: "Social Media Marketing in Dubai — Bilal Shafqat",
+    metaTitle: "Social Media Marketing in Dubai | Bilal Shafqat",
     metaDescription:
       "Social media marketing in Dubai: strategy, content, posting and community, run by the same freelancer handling the paid campaigns beside it.",
     faqs: [
@@ -335,7 +335,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     // "Digital Marketing & Outreach", but the title said neither — it opened on
     // "Lead Generation", so the page Bilal wants found for "digital marketing"
     // never used the phrase in the one field that matters most.
-    metaTitle: "Digital Marketing in Dubai — Bilal Shafqat",
+    metaTitle: "Digital Marketing in Dubai | Bilal Shafqat",
     metaDescription:
       "Digital marketing in Dubai from one freelance specialist: paid ads, search, email and WhatsApp, run as one sequence rather than four projects.",
     faqs: [
@@ -368,7 +368,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     // "Web & App Developer" carried both and so was aimed at neither, which is
     // the mistake this whole phase exists to undo. Mobile searches now land on
     // the mobile page; this one is for "web developer Dubai".
-    metaTitle: "Freelance Web Developer in Dubai — Bilal Shafqat",
+    metaTitle: "Freelance Web Developer in Dubai | Bilal Shafqat",
     metaDescription:
       "Freelance web developer in Dubai building Next.js and WordPress sites, landing pages and custom tools, for someone who runs the campaigns.",
     // Condensed from "How long does a website take?"
@@ -426,7 +426,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     // keeps "Mobile App Developer in Dubai" intact as a phrase, so the match for
     // the measured term is unaffected. The word is also the one that makes these
     // terms winnable at all — agencies will not use it (roadmap 319).
-    metaTitle: "Mobile App Development in Dubai — Bilal Shafqat",
+    metaTitle: "Mobile App Development in Dubai | Bilal Shafqat",
     metaDescription:
       "Mobile app development in Dubai: React Native for iOS and Android, with the back end, analytics and launch campaign built in. Shipped work.",
     // Condensed from "How long does an app take?"
@@ -476,7 +476,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     // split out in the category above. Web design now has its own page; this
     // one keeps UI/UX and product work, which is a different search and a
     // different buyer.
-    metaTitle: "Freelance UI/UX Designer in Dubai — Bilal Shafqat",
+    metaTitle: "Freelance UI/UX Designer in Dubai | Bilal Shafqat",
     metaDescription:
       "Freelance UI/UX designer in Dubai: wireframing, prototyping, web and mobile interface design and design systems, from someone who builds them.",
     faqs: [
@@ -531,7 +531,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     // check. "Freelance" is the word that makes these terms winnable at all,
     // since agencies will not use it (roadmap 319), and Bilal asked for it on
     // all twelve titles. Four points is the right price for that.
-    metaTitle: "Freelance Web Designer in Dubai — Bilal Shafqat",
+    metaTitle: "Freelance Web Designer in Dubai | Bilal Shafqat",
     metaDescription:
       "Freelance web designer in Dubai, designing websites and landing pages around enquiries rather than a template, by the person who builds them.",
     faqs: [
@@ -548,7 +548,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       {
         question: "What about WordPress or Wix?",
         answer:
-          "Both are fine, and for a lot of businesses they are the right answer — you can run the site yourself without calling anyone. The design work does not change much; what changes is how much of it survives the platform. I will say early if what you want is going to fight the tool you have chosen.",
+          "Both are fine, and for a lot of businesses they are the right answer: you can run the site yourself without calling anyone. The design work does not change much; what changes is how much of it survives the platform. I will say early if what you want is going to fight the tool you have chosen.",
       },
       {
         question: "How is this different from a design agency?",
@@ -558,7 +558,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       {
         question: "Do you do the copy as well?",
         answer:
-          "I write the structure and the working copy, because layout and words are the same decision — you cannot design a page around content that does not exist yet. If you have a writer or a brand voice, I design to it and say where the structure is fighting the words.",
+          "I write the structure and the working copy, because layout and words are the same decision. You cannot design a page around content that does not exist yet. If you have a writer or a brand voice, I design to it and say where the structure is fighting the words.",
       },
     ],
     items: [
@@ -573,7 +573,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "A graphic designer in Dubai for identity that holds up beyond the logo file",
     intro:
       "A logo is the easy part, and it is the smallest thing a graphic designer in Dubai is actually asked for. What matters is whether the identity still works on a website, an ad, a brochure and a pitch deck once other people are applying it. Graphic design in Dubai covers far more than the mark: logo, colour and typography systems, documented brand guidelines so anyone can apply them consistently, and the company profile and pitch materials that carry the brand into a room.",
-    metaTitle: "Freelance Graphic Designer in Dubai — Bilal Shafqat",
+    metaTitle: "Freelance Graphic Designer in Dubai | Bilal Shafqat",
     metaDescription:
       "Freelance graphic designer in Dubai: logo design, colour and typography systems, documented brand guidelines, company profiles and pitch decks.",
     // Condensed from "How long does a brand project take?"
@@ -603,7 +603,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "A CRM consultant in Dubai for the layer where leads get lost",
     intro:
       "Most leads a business loses were not lost to bad marketing, which is why a CRM consultant in Dubai is usually called in after the ads are already working. They were lost to a follow-up that never happened, because nothing was tracking them properly. This connects campaigns, website and CRM into one system: HubSpot, Zoho or Salesforce configured around how your team actually sells, server-side tracking so conversion data survives browser restrictions, and automation so a new enquiry gets a response in minutes.",
-    metaTitle: "Freelance CRM Consultant in Dubai — Bilal Shafqat",
+    metaTitle: "Freelance CRM Consultant in Dubai | Bilal Shafqat",
     metaDescription:
       "Freelance CRM consultant in Dubai: HubSpot, Zoho and Salesforce setup, server-side tracking, Conversions API and automation workflows.",
     faqs: [
@@ -651,7 +651,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "What an SEO consultant in Dubai is actually hired to fix",
     intro:
       "Two things have to be true for search to bring you work. The pages have to be readable by a crawler and aimed at what someone actually types, and the result has to be worth clicking when it appears. Most sites fail the second long before the first, and most of what an SEO consultant in Dubai gets hired for sits there: pages that rank for the company name, which only people who already know you ever search.",
-    metaTitle: "Freelance SEO Consultant in Dubai — Bilal Shafqat",
+    metaTitle: "Freelance SEO Consultant in Dubai | Bilal Shafqat",
     metaDescription:
       "Freelance SEO consultant in Dubai covering technical SEO, local search and AI visibility, measured against enquiries rather than rankings.",
     // Condensed from "How long does SEO take in Dubai?"
@@ -675,7 +675,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       {
         question: "What is GEO and do I need it?",
         answer:
-          "Generative Engine Optimisation: being quoted inside ChatGPT, Gemini and Google's AI Overviews rather than ranking below them. It is early, the search volume for the term itself is near zero, and it is already affecting results — this site gets AI assistants opening its pages because someone asked a question. The work overlaps with good SEO but is not identical: it rewards structured data and clear, checkable claims over keyword placement.",
+          "Generative Engine Optimisation: being quoted inside ChatGPT, Gemini and Google's AI Overviews rather than ranking below them. It is early, the search volume for the term itself is near zero, and it is already affecting results: this site gets AI assistants opening its pages because someone asked a question. The work overlaps with good SEO but is not identical: it rewards structured data and clear, checkable claims over keyword placement.",
       },
       {
         question: "How will I know it worked?",
@@ -703,8 +703,8 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     accent: "gold",
     headline: "Email marketing in Dubai is only as good as the CRM behind it",
     intro:
-      "Most email marketing in Dubai fails for reasons that are not writing problems. The sequence fires from a list nobody segmented, to contacts a form dropped in with no source attached, about an offer that stopped running. Email is the last step of a chain, and it fails where the chain does — which is usually two steps earlier, in the form or the CRM.",
-    metaTitle: "Freelance Email Marketing in Dubai — Bilal Shafqat",
+      "Most email marketing in Dubai fails for reasons that are not writing problems. The sequence fires from a list nobody segmented, to contacts a form dropped in with no source attached, about an offer that stopped running. Email is the last step of a chain, and it fails where the chain does, which is usually two steps earlier, in the form or the CRM.",
+    metaTitle: "Freelance Email Marketing in Dubai | Bilal Shafqat",
     metaDescription:
       "Email marketing in Dubai: welcome and nurture sequences, list segmentation and campaign design, wired into the CRM that actually feeds them.",
     faqs: [
@@ -716,7 +716,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       {
         question: "Is email still worth it in the UAE when everyone uses WhatsApp?",
         answer:
-          "They do different jobs. WhatsApp is immediate and personal, which makes it right for a hot lead and wrong for a fourteen-message nurture sequence nobody asked for. Email carries the long middle — the buyer six months out who is not ready to talk. Most setups here need both, with the CRM deciding which channel a contact is on.",
+          "They do different jobs. WhatsApp is immediate and personal, which makes it right for a hot lead and wrong for a fourteen-message nurture sequence nobody asked for. Email carries the long middle: the buyer six months out who is not ready to talk. Most setups here need both, with the CRM deciding which channel a contact is on.",
       },
       {
         question: "Which platform do you work in?",
@@ -726,7 +726,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       {
         question: "Do you write the emails or just build the sequence?",
         answer:
-          "Both, and they are hard to separate usefully — the sequence structure is a writing decision. If you have a brand voice or an in-house writer, I will build to it and say where the structure is fighting the copy.",
+          "Both, and they are hard to separate usefully, because the sequence structure is a writing decision. If you have a brand voice or an in-house writer, I will build to it and say where the structure is fighting the copy.",
       },
     ],
     items: [
@@ -741,7 +741,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     headline: "A video editor in Dubai, plus the pages that convert what the video sends",
     intro:
       "Hiring a video editor in Dubai and a conversion specialist separately is how the two stop talking: one drives attention, the other decides whether that attention turns into an enquiry. This covers video editing for how high-consideration audiences actually watch, alongside conversion rate work on the pages that traffic lands on, tested against real behaviour rather than opinion.",
-    metaTitle: "Freelance Video Editor in Dubai — Bilal Shafqat",
+    metaTitle: "Freelance Video Editor in Dubai | Bilal Shafqat",
     metaDescription:
       "Freelance video editor in Dubai, plus conversion rate optimisation, landing page audits and A/B testing on the pages that video sends traffic to.",
     // Condensed from "How long does a video take?"

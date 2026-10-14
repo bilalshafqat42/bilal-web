@@ -42,7 +42,7 @@ const launches = leos?.projects ?? [];
 
 export const metadata: Metadata = pageMetadata({
   // 58 characters. The earlier version ran to 63 and Google would have cut it.
-  title: "Off-Plan Real Estate Marketing, Dubai & UK — Bilal Shafqat",
+  title: "Off-Plan Real Estate Marketing, Dubai & UK | Bilal Shafqat",
   description:
     "Off-plan launch marketing for property developers in Dubai and the UK: landing pages, campaign creative and lead capture built as one system by one person.",
   path: "/real-estate-marketing",
@@ -69,7 +69,7 @@ const parts = [
   {
     title: "The campaign behind it",
     body:
-      "Paid social pointed at the page, with the creative and the page written together. When the same person owns both, the page can be allowed to lose clicks on purpose in exchange for better leads — a trade nobody makes when the two sides are bought separately.",
+      "Paid social pointed at the page, with the creative and the page written together. When the same person owns both, the page can be allowed to lose clicks on purpose in exchange for better leads: a trade nobody makes when the two sides are bought separately.",
   },
 ];
 
@@ -80,7 +80,7 @@ const decisions = [
     n: "01",
     title: "Put the price where it filters",
     body:
-      "The entry price sits in the hero — from AED 1 million on Hadley Heights, from AED 600K on Weybridge Gardens 2 — so someone outside the bracket leaves before filling in a form. It costs clicks and it looks worse on a traffic report. It produces a better cost per qualified lead, which is the number that matters.",
+      "The entry price sits in the hero (from AED 1 million on Hadley Heights, from AED 600K on Weybridge Gardens 2), so someone outside the bracket leaves before filling in a form. It costs clicks and it looks worse on a traffic report. It produces a better cost per qualified lead, which is the number that matters.",
     href: "/portfolio/leos-developments/hadley-heights",
     label: "See it on Hadley Heights",
   },
@@ -88,7 +88,7 @@ const decisions = [
     n: "02",
     title: "One action, and one route for everyone else",
     body:
-      "A single primary call to action, short enough to finish on a phone. Qualification happens on the call rather than in the form, because every extra field costs completions. Existing buyers get their own route — Check Construction Progress — so they stop arriving in the new-enquiry list and distorting it.",
+      "A single primary call to action, short enough to finish on a phone. Qualification happens on the call rather than in the form, because every extra field costs completions. Existing buyers get their own route, Check Construction Progress, so they stop arriving in the new-enquiry list and distorting it.",
     href: "/portfolio/leos-developments/weybridge-gardens-2",
     label: "See it on Weybridge Gardens 2",
   },
@@ -128,7 +128,7 @@ const faqs = [
   {
     question: "Why does each launch need its own page instead of a section on the corporate site?",
     answer:
-      "Because they are answering different questions. A corporate site has to carry the developer's whole story and every development at once. A launch page has one job — turn campaign traffic into a contactable buyer for one building — and the moment it also has to serve navigation, the other developments and an About section, it stops doing that job well.",
+      "Because they are answering different questions. A corporate site has to carry the developer's whole story and every development at once. A launch page has one job: turn campaign traffic into a contactable buyer for one building. The moment it also has to serve navigation, the other developments and an About section, it stops doing that job well.",
   },
   {
     question: "What happens to people who have already bought?",

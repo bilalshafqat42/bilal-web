@@ -26,10 +26,10 @@
 const BASE = (process.env.BASE_URL || "http://localhost:3000").replace(/\/$/, "");
 const API = `${BASE}/api/lead`;
 
-const post = (body, ip = "203.0.113.1") =>
+const post = (body, ip = "203.0.113.1", headers = {}) =>
   fetch(API, {
     method: "POST",
-    headers: { "Content-Type": "application/json", "X-Forwarded-For": ip },
+    headers: { "Content-Type": "application/json", "X-Forwarded-For": ip, ...headers },
     body: typeof body === "string" ? body : JSON.stringify(body),
   });
 
@@ -88,6 +88,21 @@ const cases = [
   ["array body", 400, "[1,2,3]"],
   ["malformed JSON", 400, "{oops"],
   ["honeypot filled", 200, { name: "A", email: "a@example.invalid", botcheck: "x" }],
+  // A non-string where a string belongs used to reach `.includes()` and 500.
+  ["source as a number", 400, { name: "A", email: "a@example.invalid", source: 123 }],
+  ["attribution as text", 400, { name: "A", email: "a@example.invalid", attribution: "x" }],
+  ["text/plain body", 415, { name: "A", email: "a@example.invalid" }, { "Content-Type": "text/plain" }],
+  ["foreign Origin", 403, { name: "A", email: "a@example.invalid" }, { Origin: "https://evil.example" }],
+  ["site Origin", 502, { name: "A", email: "a@example.invalid" }, { Origin: "https://bilalshafqat.com" }],
+  // Every /contact dropdown value must be accepted (502 = valid, CRM
+  // blackholed), not refused. Three of these were 400s until 2026-10-14.
+  ...[
+    "Paid Marketing & Lead Generation",
+    "Website & App Development",
+    "Design, Content & Conversion",
+    "CRM & Marketing Automation",
+    "Something else",
+  ].map((service) => [`contact: ${service.slice(0, 12)}`, 502, { name: "A", email: "a@example.invalid", service }]),
   [
     "CRLF injection",
     502,
@@ -100,10 +115,10 @@ const cases = [
 ];
 
 let failed = 0;
-for (const [label, want, body] of cases) {
+for (const [i, [label, want, body, headers]] of cases.entries()) {
   // A fresh IP per case, so the rate limiter does not mask the check.
-  const ip = `198.51.100.${Math.floor(Math.random() * 250) + 1}`;
-  const res = await post(body, ip);
+  const ip = `198.51.100.${i + 1}`;
+  const res = await post(body, ip, headers);
   const ok = res.status === want;
   if (!ok) failed++;
   console.log(`  ${ok ? "pass" : "FAIL"}  ${label.padEnd(20)} want ${want}, got ${res.status}`);

@@ -141,7 +141,7 @@ export default function ContactPage() {
                 <dd className="mt-3 text-sm leading-relaxed text-muted">
                   What you are trying to achieve, any deadline you are working
                   to, and whether you already have a site, a CRM or an ad account
-                  running. Three lines is plenty &mdash; the detail comes later.
+                  running. Three lines is plenty; the detail comes later.
                 </dd>
               </Surface>
               <Surface as="div" radius="card">

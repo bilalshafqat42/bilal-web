@@ -26,10 +26,18 @@ export const TIMELINE_OPTIONS: readonly string[] = [
   "Just exploring for now",
 ];
 
-/** Free-text values the route accepts for `service` beyond the eight category
- *  titles: the labels other forms on the site legitimately send. Anything not
- *  in this set or in the category list is rejected rather than forwarded. */
+/** The last option in the /contact dropdown, after the pillar labels. Shared
+ *  so the form renders exactly the value the route accepts: until 2026-10-14
+ *  it was typed into ContactForm and missing here, so choosing it lost the
+ *  enquiry to a 400. */
+export const CONTACT_OTHER_OPTION = "Something else";
+
+/** Free-text values the route accepts for `service` beyond the category titles
+ *  and pillar labels: the labels other forms on the site legitimately send.
+ *  Anything not in this set or in those lists is rejected rather than
+ *  forwarded. See `src/data/leadAllowList.ts`. */
 export const SERVICE_EXTRA_OPTIONS: readonly string[] = [
   "Appointment request",
   "General enquiry",
+  CONTACT_OTHER_OPTION,
 ];

@@ -180,9 +180,9 @@ export default function SpotlightSearch() {
             // "Ask anything" promises a conversational answer. This returns
             // matching pages, which is a different thing and the same
             // over-promise that was corrected on the homepage in item 257.
-            placeholder="Search the site — services, work, pricing…"
+            placeholder="Search the site: services, work, pricing…"
             aria-label="Search this site"
-            className="min-w-0 flex-1 bg-transparent text-base text-ink placeholder:text-muted/70 outline-none"
+            className="min-w-0 flex-1 bg-transparent text-base text-ink placeholder:text-faint outline-none"
           />
           <button onClick={close} aria-label="Close" className="shrink-0 text-muted hover:text-ink">
             <X size={17} />
@@ -267,7 +267,7 @@ export default function SpotlightSearch() {
             <span>↵ to open</span>
             <span>esc to close</span>
           </span>
-          <span className="hidden items-center gap-1.5 text-muted/70 sm:flex">
+          <span className="hidden items-center gap-1.5 text-faint sm:flex">
             <Sparkles size={11} className="text-gold/70" />
             Searches this site only
           </span>

@@ -6,10 +6,12 @@ import PageOpener from "@/components/layout/PageOpener";
 import SecondaryButton from "@/components/ui/SecondaryButton";
 
 export const metadata: Metadata = {
-  title: "Page not found — Bilal Shafqat",
-  // Keep 404s out of the index; the status code already says so, but this
-  // removes any ambiguity for crawlers that soft-index error pages.
-  robots: { index: false, follow: true },
+  title: "Page not found | Bilal Shafqat",
+  // No `robots` here. Next.js already writes <meta name="robots"
+  // content="noindex"> on every 404 response (app-render `NonIndex`), and it
+  // cannot be switched off, so declaring our own produced a second, different
+  // robots tag. One "noindex" is enough: "follow" is the default when nofollow
+  // is absent, so links on this page are still followed.
 };
 
 export default function NotFound() {

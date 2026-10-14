@@ -18,39 +18,38 @@
  * being touched, so seeding purely from that one file understates it.
  */
 export const contentDates: Record<string, string> = {
-  // 2026-09-30: the search box became an FAQ section, five questions of new
-  // copy. On 2026-09-29 the results section became the proof wall and the
-  // process section the four-stage timeline. All new
-  // heading, new body copy, a new "how these numbers are produced" panel and a
-  // new handoff bar. On 2026-09-25 it was the "About me" band and the rotating
-  // opener. Both are new copy rather than a restyle, which is what this date is
-  // for.
-  "/": "2026-09-30",
-  "/about": "2026-09-05",
-  "/services": "2026-09-04",
-  "/portfolio": "2026-09-04",
-  "/pricing": "2026-09-05",
-  "/faq": "2026-09-05",
-  "/contact": "2026-09-05",
-  "/appointment": "2026-09-05",
-  "/process": "2026-09-05",
-  "/privacy": "2026-09-05",
+  // 2026-10-14: the opening statement's year count is now computed rather
+  // than written by hand. 2026-10-13: hero, about band and FAQ copy
+  // rewritten in the full-site audit (0ed36bc). Earlier: the FAQ section
+  // (09-30), the proof wall and timeline (09-29), the about band (09-25).
+  "/": "2026-10-14",
+  // Every route below had its copy changed on 2026-10-13 in 0ed36bc, the
+  // full-site audit (roadmap 399). /pricing gained a cost heading and
+  // /portfolio descriptive cover alt text on 2026-10-14.
+  "/about": "2026-10-13",
+  "/services": "2026-10-13",
+  "/portfolio": "2026-10-14",
+  "/pricing": "2026-10-14",
+  "/faq": "2026-10-13",
+  "/contact": "2026-10-13",
+  "/appointment": "2026-10-13",
+  "/process": "2026-10-13",
+  "/privacy": "2026-10-13",
   // Was missing entirely until 2026-09-29, so `dateFor` fell back to
   // `Date.now()` and this page told Google it had changed **on every single
-  // deploy** — the exact signal this file exists to stop sending. Caught by
+  // deploy**, the exact signal this file exists to stop sending. Caught by
   // reading the rendered sitemap rather than the source: the route was dated
   // today while nothing about it had been touched.
-  "/real-estate-marketing": "2026-09-05",
+  "/real-estate-marketing": "2026-10-13",
 };
 
 /** Service category pages all read from `src/data/serviceCategories.ts`,
  *  `pillars.ts` and `serviceDepth.ts`.
  *
- *  Moved from 2026-09-03 to 2026-10-07 on 2026-10-13: the last commit touching
- *  `pillars.ts` or `serviceDepth.ts` is f09d121 on 10-07 (`git log -1
- *  --format=%cs -- src/data/pillars.ts src/data/serviceDepth.ts`). Refresh it
- *  when service copy changes. */
-export const SERVICES_CONTENT_DATE = "2026-10-07";
+ *  2026-10-13: the service FAQ copy was rewritten in the full-site audit
+ *  (0ed36bc, roadmap 399), and the data moved from `pillars.ts` into
+ *  `serviceCategories.ts`. Refresh it when service copy changes. */
+export const SERVICES_CONTENT_DATE = "2026-10-13";
 
 /** Portfolio pages all read from `src/data/caseStudies.ts` (and
  *  `caseStudyDepth.ts`). Used for the sitemap and for `dateModified` in every
@@ -59,21 +58,15 @@ export const SERVICES_CONTENT_DATE = "2026-10-07";
  *  Moved from 2026-08-28 to 2026-10-11 on 2026-10-13: the sales application
  *  case study and the LEOS restructure landed on 10-11 (`git log -1 --format=%cs
  *  src/data/caseStudies.ts`), so the older date understated a page that did
- *  not exist on 08-28. Refresh it when case study copy changes. */
-export const PORTFOLIO_CONTENT_DATE = "2026-10-11";
+ *  not exist on 08-28. 2026-10-14: every project card now carries descriptive
+ *  alt text. Refresh it when case study copy changes. */
+export const PORTFOLIO_CONTENT_DATE = "2026-10-14";
 
 /** Discipline pages carry their own copy in `src/data/disciplines.ts` as well
  *  as the shared captures, so they date from when that copy was written rather
  *  than from the case study data. */
 export const DISCIPLINE_CONTENT_DATE = "2026-09-09";
 
-/** The day the WordPress articles were restored (roadmap 275). Their
- *  `published` dates are the original 2025 bylines.
- *
- *  Since 2026-10-13 `dateModified` and the sitemap's `lastModified` come from
- *  each post's own `updatedAt` in `src/content/blog/<slug>.json`, not from
- *  here. This date is now only the default `updatedAt` for a recovered post
- *  untouched since it came back: dating those 2025 would tell Google the URLs
- *  had not changed, when they went from 404 to 200 on this day. A post edited
- *  or written later carries its own later date. */
-export const BLOG_RECOVERED_ON = "2026-09-30";
+// Blog dates are not kept here. Each article's `dateModified` and sitemap
+// `lastModified` come from its own `updatedAt` in `src/content/blog/<slug>.json`,
+// and the /blog index pages use `BLOG_UPDATED_DATE` in `blogPosts.ts`.

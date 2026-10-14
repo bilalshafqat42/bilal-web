@@ -33,8 +33,8 @@ import { useEffect, useRef, useState } from "react";
  * character counts in `globals.css` with a warning to update them by hand.
  */
 
-/** Every phrase has to read as a complete sentence after the stem, **"Fifteen
- *  years of experience in ..."**.
+/** Every phrase has to read as a complete sentence after the stem, **"17
+ *  years of experience in ..."** (the count is computed, see `yearsExperience`).
  *
  *  Two things that look like style and are not:
  *

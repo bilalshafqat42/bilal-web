@@ -122,7 +122,7 @@ export default function Engagement({
                   <tr key={row.label} className="align-top">
                     <th
                       scope="row"
-                      className="border-t border-border py-5 pr-6 font-mono text-[0.65rem] font-normal uppercase tracking-[0.16em] text-muted/70"
+                      className="border-t border-border py-5 pr-6 font-mono text-[0.65rem] font-normal uppercase tracking-[0.16em] text-faint"
                     >
                       {row.label}
                     </th>
@@ -139,7 +139,7 @@ export default function Engagement({
                               const text = typeof it === "string" ? it : it.text;
                               const muted = typeof it !== "string";
                               return (
-                                <li key={text} className={muted ? "text-muted/60" : undefined}>
+                                <li key={text} className={muted ? "text-faint" : undefined}>
                                   {text}
                                 </li>
                               );
@@ -177,7 +177,7 @@ export default function Engagement({
         </Reveal>
 
         <p className="mt-10 flex max-w-[68ch] gap-3 text-sm leading-relaxed text-muted">
-          <Info size={16} className="mt-0.5 shrink-0 text-muted/60" aria-hidden="true" />
+          <Info size={16} className="mt-0.5 shrink-0 text-faint" aria-hidden="true" />
           Prices exclude ad spend and third-party licences. Every model starts with the
           same free consultation, and you get a written scope before anything is invoiced.
         </p>

@@ -112,10 +112,16 @@ export default function ShareRow({ url, title, compact = false }: Props) {
         <button
           type="button"
           onClick={copy}
-          aria-label={copied ? "Link copied" : "Copy link"}
+          // No aria-label: the visible text is the name, so what a speech
+          // input user reads on screen is what they can say (WCAG 2.5.3).
+          aria-live="polite"
           className="inline-flex h-9 items-center gap-2 rounded-full border border-border px-4 text-sm text-muted transition-colors hover:border-gold/40 hover:text-ink"
         >
-          {copied ? <Check size={15} className="text-gold" /> : <Link2 size={15} />}
+          {copied ? (
+            <Check size={15} className="text-gold" aria-hidden="true" />
+          ) : (
+            <Link2 size={15} aria-hidden="true" />
+          )}
           {copied ? "Copied" : "Copy link"}
         </button>
 
@@ -123,10 +129,12 @@ export default function ShareRow({ url, title, compact = false }: Props) {
           <button
             type="button"
             onClick={() => navigator.share({ title, url }).catch(() => {})}
-            aria-label="Share"
             className="inline-flex h-9 items-center gap-2 rounded-full border border-border px-4 text-sm text-muted transition-colors hover:border-gold/40 hover:text-ink"
           >
-            <Share2 size={15} /> More
+            {/* Name is "More share options": it starts with the visible word,
+                which is what WCAG 2.5.3 asks for. */}
+            <Share2 size={15} aria-hidden="true" /> More
+            <span className="sr-only"> share options</span>
           </button>
         ) : null}
       </div>
