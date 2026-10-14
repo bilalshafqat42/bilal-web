@@ -239,19 +239,12 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      {
-        // Logos and portfolio files served straight from /public had no
-        // Cache-Control at all (audit 2026-10-14). They are not content-hashed,
-        // so a day in the browser rather than a year: a replaced logo shows
-        // within a day without renaming the file.
-        source: "/:dir(logo|portfolio)/:file*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=86400, stale-while-revalidate=604800",
-          },
-        ],
-      },
+      // Logos and portfolio image files get a one-day browser TTL from a
+      // Cloudflare Cache Rule ("Logos and portfolio files"), not from here:
+      // Hostinger serves /public straight from LiteSpeed, so a header set here
+      // never reached them, and the path pattern tried here also matched the
+      // /portfolio case-study PAGES, giving HTML a one-day browser cache
+      // (caught and removed 2026-10-14). Roadmap 401.
     ];
   },
 
