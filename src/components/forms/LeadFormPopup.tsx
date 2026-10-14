@@ -122,7 +122,7 @@ export default function LeadFormPopup() {
               type="button"
               onClick={closeAndReset}
               aria-label="Close"
-              className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-lg text-muted hover:bg-white/5 hover:text-ink transition-colors"
+              className="absolute right-2.5 top-2.5 flex h-11 w-11 items-center justify-center rounded-lg text-muted hover:bg-white/5 hover:text-ink transition-colors"
             >
               <X size={18} />
             </button>

@@ -146,6 +146,9 @@ export default function AboutPage() {
                 sizes="(min-width: 1024px) 46vw, 100vw"
                 className="hero-portrait object-cover object-[50%_15%] brightness-[1.04] contrast-[1.12] grayscale lg:origin-top lg:scale-[1.035]"
                 priority
+                // The LCP element on a phone. See the appointment page:
+                // `priority` no longer sets this by itself.
+                fetchPriority="high"
               />
             </div>
           }
@@ -213,7 +216,7 @@ export default function AboutPage() {
                   enquiry landed somewhere nobody was watching.
                 </p>
                 <p className="mt-5 text-base leading-relaxed text-muted">
-                  Fixing that meant learning the other half. {yearsExperience()} years later the two
+                  Fixing that meant learning the other half. Now, {yearsExperience()} years in, the two
                   halves are one job, and the thing clients actually buy is the absence of
                   a handover. Most marketers cannot build the thing they are marketing and
                   most developers have never run a campaign, so the gap between them is

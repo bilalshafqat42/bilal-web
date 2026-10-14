@@ -3,11 +3,11 @@
   "title": "React Tips and Tricks for Efficient Development",
   "description": "React tips for writing clean, efficient components: avoiding wrapper elements, using useCallback, and simplifying conditional rendering.",
   "published": "2025-02-13",
-  "updatedAt": "2026-10-01",
+  "updatedAt": "2026-10-14",
   "tags": [
     "React Js"
   ],
-  "words": 517,
+  "words": 508,
   "blocks": [
     {
       "t": "h2",
@@ -267,8 +267,13 @@
       "v": "6. Why is using unique keys in lists important for performance?Unique keys help React identify which items have changed, improving rendering efficiency and preventing layout issues."
     },
     {
+      "t": "h2",
+      "v": "Watch these React tips on YouTube",
+      "href": "https://www.youtube.com/watch?v=okc1xNLYjRM"
+    },
+    {
       "t": "p",
-      "v": "<iframe width=\"684 height=\"1216 src=\"https://www.youtube.com/embed/okc1xNLYjRM\" title=\"React Tips &amp; Tricks: Write Cleaner, Faster Code in 2025 frameborder=\"0 allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>"
+      "v": "A short video walkthrough of the same tips, if you would rather watch than read."
     }
   ]
 }

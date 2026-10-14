@@ -4,8 +4,8 @@ import type { NextConfig } from "next";
  * Content-Security-Policy, in **report-only** mode.
  *
  * Report-only means the browser enforces nothing: it logs every request the
- * policy would have blocked to the console (and to a `report-uri`, once one
- * exists) and lets it through. That is the only safe way to introduce a CSP on
+ * policy would have blocked to the console and to `/api/csp-report` (see
+ * **Reports** below) and lets it through. That is the only safe way to introduce a CSP on
  * a site with GA4, the Meta Pixel, the Cal.com embed and Turnstile, because a
  * single missing origin in an enforcing policy silently breaks bookings or lead
  * capture with nothing in the logs to say why.

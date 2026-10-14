@@ -24,6 +24,13 @@ export const metadata: Metadata = {
     url: "/pricing",
     images: OG_IMAGES,
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "What a Freelance Digital Marketer Costs in Dubai",
+    description:
+      "The four engagement models, what pushes cost up or down, and how to get a real figure quickly.",
+    images: OG_IMAGES.map((i) => i.url),
+  },
 };
 
 // The genuinely useful part of a pricing page for anyone who cannot yet be quoted:

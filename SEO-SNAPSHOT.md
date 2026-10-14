@@ -129,8 +129,8 @@ Sessions come from Analytics and enquiries from Performo — two separate system
 
 ## AI assistants
 
-- **1682 live answer fetches** — an assistant opened a page because someone asked it a question
-- 2084 training crawls, which say nothing about visibility
+- **1687 live answer fetches** — an assistant opened a page because someone asked it a question
+- 2099 training crawls, which say nothing about visibility
 
 Pages assistants actually pull:
 

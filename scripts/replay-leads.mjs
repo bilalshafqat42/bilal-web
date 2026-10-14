@@ -8,8 +8,12 @@
  *   npm run replay-leads -- --dry-run   show what would be sent, send nothing
  *   npm run replay-leads                send them
  *
- * Each delivered lead moves to `failed-leads.replayed.jsonl`; anything that
- * still fails goes back into `failed-leads.jsonl` for the next run.
+ * Each delivered lead leaves a receipt in `failed-leads.replayed.jsonl`:
+ * eventId, savedAt, replayedAt and the email domain, nothing else. The full
+ * lead is in Performo by then, so keeping a second copy of the name, email,
+ * phone and message on the server would only be PII held for no purpose
+ * (UAE PDPL). Anything that still fails goes back into `failed-leads.jsonl`
+ * for the next run.
  *
  * **Claim first, so nothing is lost.** The pending file is renamed to
  * `failed-leads.processing-<timestamp>.jsonl` before anything is sent. The
@@ -24,8 +28,9 @@
  * The directory comes from src/lib/leadBackupDir.mjs, the same function the
  * route uses, so a LEAD_BACKUP_DIR inside the app is refused here too.
  *
- * Both files hold personal data (UAE PDPL). Once the leads are confirmed in
- * Performo, delete `failed-leads.replayed.jsonl`.
+ * `failed-leads.jsonl` and any processing file hold personal data in full
+ * (UAE PDPL). The replayed receipts do not, and can be deleted whenever the
+ * leads are confirmed in Performo.
  *
  * Reads CRM_LEAD_API_URL, CRM_LEAD_API_KEY and LEAD_BACKUP_DIR from the
  * environment, falling back to .env.local only for values not already set.
@@ -79,6 +84,12 @@ if (dryRun) {
   try {
     await fs.rename(pending, claimed);
     files.push(claimed);
+    // The route may have opened the pending file for an append just before
+    // the rename. The rename does not interrupt it: the write lands in the
+    // renamed file. One second is ample for a single JSON line to finish, and
+    // reading earlier could miss that last lead until the next run's crash
+    // recovery picked it up.
+    await new Promise((resolve) => setTimeout(resolve, 1000));
   } catch (err) {
     if (err.code !== "ENOENT") throw err;
   }
@@ -140,7 +151,16 @@ for (const file of files) {
       });
       if (res.ok) {
         console.log(`  sent ${label}`);
-        done.push(JSON.stringify({ ...record, replayedAt: new Date().toISOString() }));
+        // A receipt, not the lead: see the note at the top of this file.
+        const email = typeof lead.email === "string" ? lead.email.trim() : "";
+        done.push(
+          JSON.stringify({
+            eventId: lead.eventId ?? record.eventId ?? null,
+            savedAt: record.savedAt ?? null,
+            replayedAt: new Date().toISOString(),
+            emailDomain: email.includes("@") ? email.slice(email.lastIndexOf("@") + 1).toLowerCase() : null,
+          }),
+        );
       } else {
         console.warn(`  ${label}: CRM answered ${res.status}, kept`);
         keep.push(line);
@@ -174,6 +194,6 @@ for (const file of files) await fs.unlink(file);
 
 console.log(`\n${done.length} sent, ${keep.length} put back in ${PENDING_FILE}.`);
 if (done.length) {
-  console.log(`Delivered leads moved to ${replayed}. Delete it once they are confirmed in Performo (PDPL).`);
+  console.log(`Receipts for delivered leads (no personal data) added to ${replayed}.`);
 }
 process.exit(keep.length ? 2 : 0);

@@ -126,7 +126,13 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="site-container pb-6 pt-12">
+      {/* The bottom padding clears the floating WhatsApp and Quick Enquiry
+          buttons, fixed to the bottom right. Without it they sat over the
+          last row (Contact, Pinterest, YouTube, Behance, Dribbble) once a
+          visitor scrolled to the very end. Mobile clears both buttons
+          (10rem); from `sm` it clears Quick Enquiry, and the last row's right
+          padding below keeps it clear of WhatsApp. */}
+      <div className="site-container pb-40 pt-12 sm:pb-[5.5rem]">
         {/* The oversized mark now opens the footer instead of closing it. */}
         <FooterWordmark />
 
@@ -246,7 +252,10 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 text-xs text-muted sm:flex-row">
+        {/* `sm:pr-14` keeps the right end of this row (the social icons) out
+            from under the WhatsApp button, which sits 92px to 148px above the
+            bottom edge. Bottom padding alone would need about 9.5rem here. */}
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 text-xs text-muted sm:flex-row sm:pr-14">
           {/* The build year, not the visitor's: the footer is a server
               component on prerendered pages, so this is fixed when the site is
               built. The site deploys several times a week, so it is wrong for

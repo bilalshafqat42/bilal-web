@@ -45,6 +45,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       url: `/services/${c.slug}`,
       images: OG_IMAGES,
     },
+    twitter: {
+      card: "summary_large_image",
+      title: c.metaTitle,
+      description: c.metaDescription,
+      images: OG_IMAGES.map((i) => i.url),
+    },
   };
 }
 

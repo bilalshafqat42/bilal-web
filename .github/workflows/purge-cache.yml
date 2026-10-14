@@ -1,0 +1,82 @@
+name: Purge Cloudflare after deploy
+
+# Hostinger rebuilds the site on every push to main and deletes the previous
+# build's /_next/static files. Cloudflare can keep serving HTML from the old
+# build (s-maxage plus stale-while-revalidate), which then asks for scripts
+# that no longer exist: the page renders but nothing on it responds. Seen on
+# 2026-10-14 (roadmap 401). This job waits until the origin serves the new
+# build, then purges Cloudflare so every visitor gets matching HTML and JS.
+#
+# Needs two repository secrets (Settings, Secrets and variables, Actions):
+#   CLOUDFLARE_API_TOKEN  a token with only Zone > Cache Purge > Purge, for
+#                         bilalshafqat.com
+#   CLOUDFLARE_ZONE_ID    the Zone ID from the domain's Overview page
+# Without them the job logs a notice and exits successfully.
+
+on:
+  push:
+    branches: [main]
+    # Notes-only pushes rebuild to identical chunk files, so old HTML still
+    # works; no purge needed, and no Actions minutes spent waiting.
+    paths-ignore:
+      - "roadmap.md"
+      - "backlink-plan.md"
+      - "SEO-SNAPSHOT.md"
+      - "docs/**"
+  workflow_dispatch:
+
+concurrency:
+  group: purge-cache
+  cancel-in-progress: true
+
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Wait for the new build, then purge
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ZONE: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          SITE: https://bilalshafqat.com
+        run: |
+          if [ -z "$CF_TOKEN" ] || [ -z "$CF_ZONE" ]; then
+            echo "::notice::Cloudflare secrets not set; skipping purge."
+            exit 0
+          fi
+
+          # The set of /_next/static files the homepage references is a
+          # fingerprint of the build. A unique query string bypasses the
+          # Cloudflare cache, so this reads the origin directly.
+          fingerprint() {
+            curl -fsS "$SITE/?purge-check=$(date +%s%N)" \
+              | grep -o '/_next/static/[^"]*' | sort -u | sha256sum | cut -c1-16
+          }
+
+          before=$(fingerprint || echo none)
+          echo "Build fingerprint at start: $before"
+
+          # Hostinger usually finishes in about 2 minutes. Poll for up to 8.
+          for i in $(seq 1 24); do
+            sleep 20
+            now=$(fingerprint || echo none)
+            if [ "$now" != "none" ] && [ "$now" != "$before" ]; then
+              echo "New build live after ~$((i * 20))s ($now)."
+              break
+            fi
+          done
+
+          if [ "$now" = "$before" ]; then
+            # Content-only pushes (roadmap, docs) can produce the same build.
+            # Purging is still harmless, so do it rather than guess.
+            echo "Fingerprint unchanged after 8 minutes; purging anyway."
+          fi
+
+          curl -fsS -X POST \
+            "https://api.cloudflare.com/client/v4/zones/$CF_ZONE/purge_cache" \
+            -H "Authorization: Bearer $CF_TOKEN" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}' \
+            | grep -q '"success":true' \
+            && echo "Cloudflare cache purged." \
+            || { echo "::error::Cloudflare purge failed."; exit 1; }

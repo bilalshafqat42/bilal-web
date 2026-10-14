@@ -11162,3 +11162,37 @@ Bilal's request, 2026-10-14: everything still waiting, in one place.
 | 8 | When GA has data | GA4 "Benchmarking data not available" | Only a notice: too little traffic for peer comparison yet. Nothing to do. |
 | 9 | Ongoing | Daily posts | Marketing posts on Thursdays; AI series from Mon 2026-10-19 (`docs/daily-posts.md`). X gets two hashtags. Medium once a week. |
 | 10 | Ongoing | Item 398 practices | Google reviews from 5 to 10 past clients; GBP fixes (+971 primary, appointment link, old posts and photos); CV and profiles to 17 years. |
+
+---
+
+### 402. DONE (2026-10-14) — Third audit, its fixes, and purge-after-deploy
+
+Third live audit of the day. Every item-400 fix verified live, no regressions;
+accessibility 100 on 27 of 28 Lighthouse runs (contrast failures 0, from 8-23
+per page). Fixed:
+
+- **X/Twitter cards** showed the homepage title on 100 of 121 pages (routes set
+  `openGraph` but no `twitter`). Now 121/121 match og.
+- **Floating buttons covered footer icons**: footer bottom padding (`pb-40`,
+  `sm:pb-[5.5rem]`) and `sm:pr-14` on the last row. Checked on a production build.
+- Raw YouTube iframe text in `react-tips-and-tricks-...` replaced with a linked
+  heading; CTR article example headlines no longer say 2025; ChatGPT vs
+  DeepSeek has its keyword in the description and an H2.
+- Enquiry dialog close button 44x44; WhatsApp button respects reduced motion.
+- `public/.htaccess` serves `.avif` as `image/avif` (LiteSpeed sent text/plain).
+- `fetchPriority="high"` on the /appointment and /about hero images (`priority`
+  alone adds a preload but not high fetch priority in Next 16).
+- Shared `src/lib/clientIp.ts`: the CSP report rate limit now honours the
+  Cloudflare origin secret like the lead route.
+- Replay keeps no PII after a successful replay; waits 1s after claiming.
+
+**Stale Cloudflare HTML after a deploy** broke Hadley Heights (7 of 20 requests
+served a copy pointing at deleted scripts, so no JS ran). Purged by hand on
+2026-10-14. Permanent fix: `.github/workflows/purge-cache.yml` waits for the
+new build on the origin, then purges Cloudflare. **Inactive until Bilal adds
+repository secrets `CLOUDFLARE_API_TOKEN` (Zone, Cache Purge, Purge only) and
+`CLOUDFLARE_ZONE_ID`.** Until then, purge by hand after each deploy.
+
+`next dev` appends a "nextjs-agent-rules" block to CLAUDE.md; it was not
+committed. Discard it if it reappears.
+

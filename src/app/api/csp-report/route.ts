@@ -21,11 +21,14 @@
  * what was parsed.
  */
 import { NextResponse } from "next/server";
+import { clientIp } from "@/lib/clientIp";
 
 const MAX_BODY_BYTES = 8 * 1024;
 const MAX_LINES_PER_REQUEST = 10;
 
-// Light, per-IP, in-process limit. One page with a missing origin can produce a
+// Light, per-IP, in-process limit, keyed by the same `clientIp` as the lead
+// route, so a direct hit on the origin cannot pick its own key once
+// CF_ORIGIN_SECRET is set. The IP is never logged. One page with a missing origin can produce a
 // burst of reports, so the cap is generous; it exists to stop one source from
 // filling the log, not to count precisely.
 const WINDOW_MS = 60 * 1000;
@@ -47,15 +50,6 @@ function limited(ip: string): boolean {
   }
   entry.count++;
   return entry.count > MAX_PER_WINDOW;
-}
-
-/** Cloudflare's header when present, else the last X-Forwarded-For entry.
- *  Only used to key the rate limit, never logged. */
-function clientIp(request: Request): string {
-  const cf = request.headers.get("cf-connecting-ip")?.trim();
-  if (cf) return cf;
-  const chain = (request.headers.get("x-forwarded-for") ?? "").split(",").map((s) => s.trim()).filter(Boolean);
-  return chain[chain.length - 1] || "unknown";
 }
 
 /** Short, printable, single-line. Report fields are attacker-controlled. */

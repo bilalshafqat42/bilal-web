@@ -23,6 +23,12 @@ export const metadata: Metadata = {
     url: "/blog",
     images: OG_IMAGES,
   },
+  twitter: {
+    card: "summary_large_image",
+    title: BLOG_TITLE,
+    description: BLOG_DESCRIPTION,
+    images: OG_IMAGES.map((i) => i.url),
+  },
 };
 
 export default function BlogIndexPage() {

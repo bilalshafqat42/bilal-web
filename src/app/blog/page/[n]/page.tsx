@@ -42,6 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // articles listed only on page four then have one fewer route in.
     alternates: { canonical: blogPagePath(page) },
     openGraph: { title, description, type: "website", url: blogPagePath(page), images: OG_IMAGES },
+    twitter: { card: "summary_large_image", title, description, images: OG_IMAGES.map((i) => i.url) },
   };
 }
 
