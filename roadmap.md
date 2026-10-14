@@ -11143,3 +11143,22 @@ five contact choices accepted on a local production build.
   2026-10-14) before changing anything.
 - gtag.js (176 KB) is the largest file on every page. It is Google's; the
   only lever is loading GA through GTM alone. Decide later.
+
+---
+
+### 401. TODO (2026-10-14) — Follow-ups to check later
+
+Bilal's request, 2026-10-14: everything still waiting, in one place.
+
+| # | When | What | Notes |
+| --- | --- | --- | --- |
+| 1 | Now | **GA4 key events** | GA4 home shows "Key events: 0". Admin, Events: mark `generate_lead` and `schedule_call` as key events. An event appears in the list only after it first fires. |
+| 2 | Now | Cloudflare Rule C (logos, optional) | Cache Rules, URI Path starts with `/logo/` or `/portfolio/`, eligible, Browser TTL 1 day. Hostinger serves `/public` files straight from LiteSpeed, so the `next.config` header for them never applies. Free plan. |
+| 3 | ~2026-10-21 | **CSP to enforcing** | Read Hostinger runtime logs for `[CSP]` lines from `/api/csp-report`. None that matter: switch `Content-Security-Policy-Report-Only` to `Content-Security-Policy` in `next.config.ts`. |
+| 4 | Early Nov | Search Console "Page with redirect" validation | Started 2026-10-14 on 23 URLs. All 23 checked the same day: each is an old WordPress address that 308s in one hop to a live page. **Expect "Validation failed" and ignore it**: they redirect on purpose. Not an error. |
+| 5 | When known | Cavendish Square status | The "estimated Q4 2025" line was removed on 2026-10-14. Add the real status (completed, or a new date) to `src/data/caseStudies.ts`. |
+| 6 | First Performo outage | Confirm the alert email arrives | SMTP (Titan) is set but untested: it only sends when the CRM fails. Check the inbox and the `[LEAD BACKUP]` log line the first time it happens. |
+| 7 | Monthly | `npm outdated` and `npm audit --omit=dev` | The 5 `braces` warnings are lint tooling only; never run `npm audit fix --force` (it breaks eslint-config-next). Next.js 16.4.x once it is a few weeks old. |
+| 8 | When GA has data | GA4 "Benchmarking data not available" | Only a notice: too little traffic for peer comparison yet. Nothing to do. |
+| 9 | Ongoing | Daily posts | Marketing posts on Thursdays; AI series from Mon 2026-10-19 (`docs/daily-posts.md`). X gets two hashtags. Medium once a week. |
+| 10 | Ongoing | Item 398 practices | Google reviews from 5 to 10 past clients; GBP fixes (+971 primary, appointment link, old posts and photos); CV and profiles to 17 years. |
