@@ -11120,8 +11120,20 @@ five contact choices accepted on a local production build.
    `Vary: Accept` and served JPEG (87 KB) to browsers that take AVIF (37 KB).
 3. Optional: strip `platform`, `panel` and `x-turbo-charged-by` response
    headers with a Cloudflare response-header Transform Rule.
-4. Still open from 399: SMTP vars, CF origin secret, CSP enforcing after a
-   week of `/api/csp-report` log lines.
+4. ~~SMTP vars and CF origin secret~~ **Done 2026-10-14.** Five variables
+   added in hPanel (SMTP_HOST smtp.titan.email, SMTP_PORT 465, SMTP_USER,
+   SMTP_PASS, CF_ORIGIN_SECRET) and redeployed at 11:37. Cloudflare Request
+   Header Transform Rule "Origin secret" sets `x-origin-auth` on all
+   requests (free plan). **Verified:** a honeypot POST at 11:44 logged
+   `"ip":"2.50.49.30"`, the caller's real address, not a Cloudflare edge.
+   SMTP is set but not yet exercised: it only sends when Performo fails.
+   Still open: CSP enforcing after a week of `/api/csp-report` log lines.
+
+   **Reading the Hostinger runtime log:** brown lines are warnings (a
+   rejected bot or a CSP report), red is an error. `[LEAD NOT DELIVERED` or
+   `[LEAD BACKUP]` means Performo was down: the lead is on disk and emailed.
+   One red "Server is not running" during a redeploy is the old process
+   closing, not a fault.
 
 #### Not done, on purpose
 
