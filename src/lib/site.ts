@@ -68,7 +68,7 @@ export const POSITIONING =
  *  for every route, and the homepage restates them with its own `og:url`. */
 export const HOME_TITLE = "Freelance Digital Marketer in Dubai | Bilal Shafqat";
 export const HOME_DESCRIPTION =
-  "Freelance digital marketer in Dubai. I run your paid ads, SEO and social, and build the page each campaign lands on. One senior partner, not an agency.";
+  "Freelance digital marketer in Dubai. I run your paid ads, SEO and social, and build the page each campaign lands on, as one senior partner.";
 
 /** The /blog index's title and description, shared with the paginated pages
  *  so the two cannot drift. Rewritten 2026-10-14: the old line led with React
@@ -76,7 +76,7 @@ export const HOME_DESCRIPTION =
  *  articles. Pages 2 onward add their number to both, so no two match. */
 export const BLOG_TITLE = "Writing: Digital Marketing in Dubai, Design and Development";
 export const BLOG_DESCRIPTION =
-  "Digital marketing notes for Dubai businesses: ad budgets, Google versus Meta, SEO and lead quality, plus older notes on design and web development.";
+  "Digital marketing notes for Dubai businesses: ad budgets, Google versus Meta, SEO and lead quality, plus older design and development notes.";
 export const blogPagedTitle = (page: number) =>
   `Writing on Digital Marketing in Dubai, Page ${page}`;
 export const blogPagedDescription = (page: number) =>
