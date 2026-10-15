@@ -11318,6 +11318,14 @@ Then: link each from at least one strong page (the two Dubai articles from
 `/services/digital-marketing` and `/pricing`; Weybridge 2 from Weybridge 1).
 Do NOT request indexing for `/blog/page/N`; Google finds those on its own.
 
+**Done 2026-10-15:** Bilal requested indexing for all five. Internal-link
+check: each already had 6-19 in-content links, but the two Dubai articles were
+linked only from other articles. Cause: service pages showed the 3 newest
+articles, and "Google Ads or SEO first" was 6th of 6 on paid marketing,
+"WordPress or Next.js" 5th of 42 on website and app development.
+`FurtherReading` now shows 6, which puts both (and the website-cost, Dubai
+budget and CRM articles) back on their service pages.
+
 #### Phase 3 — Next 2-4 weeks: "Crawled, not indexed" old articles
 Google read these and chose not to index them: typically thin, dated or
 overlapping. For each of the ~15 live React/JS/CSS posts, decide one of:

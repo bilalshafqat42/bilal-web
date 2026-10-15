@@ -23,7 +23,11 @@ import Eyebrow from "@/components/ui/Eyebrow";
  * nothing.
  */
 export default function FurtherReading({ serviceSlug }: { serviceSlug: string }) {
-  const posts = articlesForService(serviceSlug);
+  // Six, not three (2026-10-15, roadmap 405). With three, older buyer articles
+  // fell off their service page as soon as three newer ones shipped:
+  // "Google Ads or SEO first" sat 6th of 6 on paid marketing and Search
+  // Console listed it "Discovered, currently not indexed". Two rows of three.
+  const posts = articlesForService(serviceSlug, 6);
   if (!posts.length) return null;
 
   return (
