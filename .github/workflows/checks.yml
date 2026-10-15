@@ -17,9 +17,15 @@ jobs:
   checks:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      # v7 (7.0.1, July 2026). v4 ran on Node 20, which GitHub deprecated for
+      # actions, so every run logged a warning. Majors chosen once they were at
+      # least two weeks old.
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      # Pinned to v7.0.0 (July 2026) rather than the floating @v7 tag, which
+      # already points at 7.1.0 (2026-10-08) and was under two weeks old when
+      # this was updated. Move to @v7 once 7.1 has settled.
+      - uses: actions/setup-node@v7.0.0
         with:
           # 22, not 20: Node 20 reaches end of life in April 2026, and Next 16
           # requires 20.9 or later, so the floor would arrive with no warning.

@@ -1,0 +1,12 @@
+# Applies to /images only. LiteSpeed serves these files directly, without
+# next.config.ts, and they went out with no Cache-Control at all, so browsers
+# re-checked every image on every visit.
+#
+# Images only: HTML, text and anything else in this folder keep the server's
+# default. A day, not a year, because these filenames are not hashed: a
+# replaced image must show within a day without renaming it.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(avif|webp|png|jpe?g|svg|gif|ico)$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+</IfModule>

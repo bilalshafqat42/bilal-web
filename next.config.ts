@@ -26,7 +26,10 @@ import type { NextConfig } from "next";
  *   google-analytics.com,     GA4 collection endpoints (region1.* etc.).
  *   analytics.google.com
  *   connect.facebook.net      the Meta Pixel loader, fbevents.js.
- *   www.facebook.com          the pixel's /tr beacon (image and fetch).
+ *   www.facebook.com          the pixel's /tr beacon (image and fetch), and
+ *                             also form-action and frame-src: fbevents.js
+ *                             falls back to posting a hidden form to /tr/
+ *                             through a hidden iframe on some events.
  *   app.cal.com, cal.com      the booking embed: script, iframe and its API.
  *                             CalBooking.tsx loads the embed from the apex
  *                             `https://cal.com` origin, which `*.cal.com`
@@ -56,10 +59,10 @@ const csp = [
   `img-src 'self' data: blob: https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://www.facebook.com https://cal.com https://*.cal.com ${GOOGLE_ADS}`,
   "font-src 'self' data:",
   `connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://www.facebook.com https://connect.facebook.net https://app.cal.com https://cal.com https://*.cal.com https://challenges.cloudflare.com https://cloudflareinsights.com ${GOOGLE_ADS}`,
-  "frame-src https://app.cal.com https://cal.com https://challenges.cloudflare.com https://www.googletagmanager.com https://*.doubleclick.net https://www.googleadservices.com",
+  "frame-src https://www.facebook.com https://app.cal.com https://cal.com https://challenges.cloudflare.com https://www.googletagmanager.com https://*.doubleclick.net https://www.googleadservices.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
-  "form-action 'self'",
+  "form-action 'self' https://www.facebook.com",
   "object-src 'none'",
   `report-uri ${CSP_REPORT_PATH}`,
   "report-to csp-endpoint",

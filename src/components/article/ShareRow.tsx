@@ -92,7 +92,14 @@ export default function ShareRow({ url, title, compact = false }: Props) {
         Share this
       </Eyebrow>
 
-      <div className="flex flex-wrap items-center gap-2">
+      {/* Compact (the article rail): capped at 9.5rem so Copy link and More
+          wrap onto rows of their own at the left of the column. The floating
+          Quick Enquiry and WhatsApp buttons cover the right-hand ~150px of the
+          rail at the bottom of the screen, and while the rail scrolls into its
+          sticky position every control passes through that band. On one row,
+          Copy link sat under Quick Enquiry at 1280-1440 wide (audit, 2026-10-15).
+          Kept to the left 152px, no control's centre is ever under them. */}
+      <div className={compact ? "flex max-w-[9.5rem] flex-wrap items-center gap-2" : "flex flex-wrap items-center gap-2"}>
         {links.map(({ name, href, Icon }) => (
           <a
             key={name}

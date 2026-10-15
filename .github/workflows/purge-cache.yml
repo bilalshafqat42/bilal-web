@@ -11,7 +11,8 @@ name: Purge Cloudflare after deploy
 #   CLOUDFLARE_API_TOKEN  a token with only Zone > Cache Purge > Purge, for
 #                         bilalshafqat.com
 #   CLOUDFLARE_ZONE_ID    the Zone ID from the domain's Overview page
-# Without them the job logs a notice and exits successfully.
+# Without them the job logs a warning (visible on the run summary, so a skipped
+# purge is not missed) and exits successfully.
 
 on:
   push:
@@ -41,7 +42,7 @@ jobs:
           SITE: https://bilalshafqat.com
         run: |
           if [ -z "$CF_TOKEN" ] || [ -z "$CF_ZONE" ]; then
-            echo "::notice::Cloudflare secrets not set; skipping purge."
+            echo "::warning::Cloudflare secrets not set; skipping purge. Purge Cloudflare by hand after this deploy."
             exit 0
           fi
 

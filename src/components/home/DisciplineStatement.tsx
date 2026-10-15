@@ -75,7 +75,19 @@ export default function DisciplineStatement() {
                 here would ship the service data to the browser. */}
             {yearsExperience()} years of experience
             <br />
-            in&nbsp;<RotatingDiscipline paused={paused} />
+            {/* The second line shrinks on narrow screens so it never scrolls
+                sideways. The gold block cannot wrap (it is one phrase on one
+                gold bar), and "in web development" at the phone display size
+                measured 407px against a 320px column at 360 wide, so the page
+                was 413-440px wide on every phone. The line needs about 9.25em;
+                `(100vw - 2.5rem) / 10` leaves room for the gutters plus a
+                margin for wider Android faces. `min(1em, ...)` means it only
+                ever shrinks, so from ~520px up, and at desktop, nothing changes.
+                A size per viewport rather than wrapping, so every phrase is the
+                same height and the rotation never moves the page (no CLS). */}
+            <span style={{ fontSize: "min(1em, calc((100vw - 2.5rem) / 10))" }}>
+              in&nbsp;<RotatingDiscipline paused={paused} />
+            </span>
           </p>
 
           <div className="lg:pb-4">

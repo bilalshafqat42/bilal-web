@@ -11196,3 +11196,31 @@ repository secrets `CLOUDFLARE_API_TOKEN` (Zone, Cache Purge, Purge only) and
 `next dev` appends a "nextjs-agent-rules" block to CLAUDE.md; it was not
 committed. Discard it if it reappears.
 
+
+---
+
+### 403. DONE (2026-10-15) — Fourth audit and its fixes
+
+Live audit on 2026-10-15: 121/121 pages clean, accessibility, best practices
+and SEO 100 on 32/32 Lighthouse runs, first lead since the /contact fix
+(5 total). Fixed:
+
+- **Homepage scrolled sideways on phones** (427-440px wide at 360-414px): the
+  rotating gold phrase is `whitespace-nowrap`. The "in [phrase]" line now
+  scales with `min(1em, (100vw - 2.5rem) / 10)`; no overflow at 360-768px,
+  fixed height (no CLS), desktop byte-identical.
+- **CSP would block the Meta Pixel when enforced**: `https://www.facebook.com`
+  added to `form-action` and `frame-src`. Live pages with the new policy: 0
+  violations on /, /contact, /appointment (Cal.com loaded) and an article.
+- **Quick Enquiry covered the article sidebar's Copy link** at 1280-1536px:
+  `lg:pb-36` on the sticky rail and the rail's share buttons stack in a 9.5rem
+  column. 0 of 127 checks covered.
+- `public/.htaccess`: nosniff and HSTS on static files; `public/images/.htaccess`:
+  one-day Cache-Control for images only.
+- GitHub Actions: checkout v7, setup-node v7.0.0; a skipped purge is now a
+  warning, not a silent pass.
+
+**Still open (Bilal):** Cloudflare token and zone ID as repository secrets
+(purge-after-deploy has never run: every deploy so far needed a manual purge);
+DMARC TXT record (`_dmarc`, none exists; SPF and DKIM are fine); optional
+Cloudflare redirect so `http://www` reaches the apex in one hop.

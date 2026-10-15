@@ -35,7 +35,12 @@ export default function ArticleRail({
   title: string;
 }) {
   return (
-    <aside className="lg:sticky lg:top-28">
+    // `pb-36` (9rem): when the article ends, the sticky rail stops at the
+    // bottom of its column. The padding keeps its controls at least 9rem above
+    // that point, so they never come to rest under the floating Quick Enquiry
+    // and WhatsApp buttons in the bottom-right corner. ShareRow's compact
+    // layout covers the scroll on the way in.
+    <aside className="lg:sticky lg:top-28 lg:pb-36">
       <Surface pad="md" radius="card">
         {/* Heading and links only. The pitch *body* stays at the foot of the
             article and is deliberately not repeated here: the same forty words

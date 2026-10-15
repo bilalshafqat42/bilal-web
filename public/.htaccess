@@ -1,2 +1,20 @@
+# Served by LiteSpeed straight from public_html. Files here never pass through
+# Next.js, so the headers in next.config.ts do not reach them.
+
+# LiteSpeed sent .avif as text/plain until these were added (roadmap 402).
 AddType image/avif .avif
 AddType image/webp .webp
+
+<IfModule mod_headers.c>
+  # Stops a browser guessing a file's type from its content, so an uploaded
+  # file can never be run as a script or page. Next sets this on its own
+  # responses; this covers the static files.
+  Header always set X-Content-Type-Options "nosniff"
+
+  # HTTPS only for a year, subdomains included. The same value Next sends on
+  # pages, so a static file is never the one response without it.
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# Image caching lives in images/.htaccess so it applies to /images only and
+# never to Next's own files or to non-image files.
