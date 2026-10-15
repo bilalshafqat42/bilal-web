@@ -11227,10 +11227,22 @@ and the zone ID are repository secrets; a manual run purged successfully
 longer needed. Cloudflare needed the account email verified before it would
 create a token.
 
-**CF_ORIGIN_SECRET to rotate (2026-10-15):** its value appeared in a shared
-screenshot of the terminal. New value in Hostinger env + the Cloudflare
-"Origin secret" transform rule, redeploy, re-test with a honeypot POST.
+**CF_ORIGIN_SECRET rotated (2026-10-15), twice:** the value showed in two
+shared terminal screenshots. Third value set in Hostinger and the Cloudflare
+"Origin secret" rule; verified with a honeypot POST at 13:09 logging the
+caller's real IP (2.50.49.30). Rule for next time: `clear` the terminal before
+any screenshot. Note when testing: a Hostinger env change only applies after
+the restart, so a test sent before it shows the old pairing.
+
+**DMARC live (2026-10-15):** `_dmarc` TXT `v=DMARC1; p=none;
+rua=mailto:bilal@bilalshafqat.com`, visible on 1.1.1.1 and 8.8.8.8. Move to
+`p=quarantine` after a few weeks of clean reports.
+
+**Runtime log line `Error: Internal: NoFallbackError`** is Next.js logging a
+request for a page that does not exist (`dynamicParams = false`). Checked:
+unknown article, blog page, client, service and project URLs all return the
+404 page. Harmless.
 
 **Still open (Bilal):**
-DMARC TXT record (`_dmarc`, none exists; SPF and DKIM are fine); optional
+optional
 Cloudflare redirect so `http://www` reaches the apex in one hop.
