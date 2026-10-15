@@ -295,6 +295,11 @@ const nextConfig: NextConfig = {
         // src/proxy.ts: these rules match case-insensitively, so a "/About"
         // source here also caught "/about" and looped.)
         { source: "/portfolio/leos/hadley-heights/social-media", destination: "/portfolio/leos-developments/hadley-heights", permanent: true },
+        // From the "Blocked by robots.txt" and "Crawled, not indexed" exports
+        // of the same day: the old WordPress web development page, and the
+        // long first slug of the string-methods article, which kept the short one.
+        { source: "/web-development", destination: "/services/website-app-development", permanent: true },
+        { source: "/master-javascript-string-methods-the-essential-guide-for-developers", destination: "/master-javascript-string-methods", permanent: true },
       { source: "/web-application-development", destination: "/services/website-app-development", permanent: true },
       { source: "/ui-ux-design", destination: "/services/ui-ux-design", permanent: true },
       // Pointed at the UI/UX page until 2026-10-13, when web design had no page

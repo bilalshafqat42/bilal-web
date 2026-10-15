@@ -11275,3 +11275,64 @@ Result on a production build: 24 of 38 reach a live page, 14 return 410.
 The "Validate fix" Bilal started on 2026-10-14 will confirm them over the
 next weeks. A new 404 in that report: redirect if it has a real successor,
 otherwise add it to the 410 list.
+
+---
+
+### 405. PLAN (2026-10-15) — Every Search Console "Why pages aren't indexed" report
+
+Bilal exported all eight reasons on 2026-10-15 (139 not indexed, 112 indexed).
+Every URL in the screenshots was tested live the same day. **Most reports are
+stale:** Search Console last updated on 2026-10-09 and many URLs were last
+crawled in May to September, under the old WordPress site. What remains is
+mostly waiting for Google to re-crawl, plus content quality.
+
+#### Status of each report
+
+| Report | Pages | Tested 2026-10-15 | Verdict |
+| --- | ---: | --- | --- |
+| Not found (404) | 38 | 24 reach a live page, 14 return 410 (item 404) | **Fixed.** Validation running since 10-14 |
+| Page with redirect | 23 | All one 308 hop to a live page | **Correct.** Not an error. Expect "validation failed"; ignore |
+| Blocked by robots.txt | 21 | Crawled May 2026 under the old WordPress robots.txt. Current robots.txt blocks only `/api/`. 18 now load; `/web-development/` and one old string-methods slug redirected today; `wp-login.php` returns 410 | **Fixed.** Clears on re-crawl |
+| Excluded by noindex | 15 | Old WordPress `/tag/*` (now redirect to `/blog`) and `/?s={search_term_string}` (homepage, canonical to `/`) | **Correct.** Clears on re-crawl |
+| Crawled, currently not indexed | 32 | 4 are image files (`.avif`) crawled as URLs: normal, ignore. ~10 are `/tag`, `/category`, `/feed` (now redirect). ~15 are live old React/JS/CSS articles | **Content quality** (see phase 3) |
+| Discovered, currently not indexed | 8 | All 200 and in the sitemap: `/services/crm-marketing-automation`, `/google-ads-or-seo-which-first-dubai`, `/wordpress-or-nextjs-for-your-business-website`, Weybridge Gardens 2, `/portfolio/web-development`, `/blog/page/2-4` | **Google has not crawled them yet.** Needs links and requests (phase 2) |
+| Duplicate, Google chose different canonical | 1 | `/react-usememo-hook-explained/` now redirects to the slash-less canonical | **Fixed.** Clears on re-crawl |
+| Alternate page with proper canonical | 1 | `/?ref=peerlist`, canonical `/` | **Correct.** The Peerlist tracking link; never "fix" |
+
+#### Phase 1 — Done 2026-10-15
+- 404 report handled (item 404): 2 redirects + `/About` in the proxy, 14 URLs 410.
+- `/web-development` to `/services/website-app-development`;
+  `/master-javascript-string-methods-the-essential-guide-for-developers` to
+  `/master-javascript-string-methods`.
+- Homepage re-indexing requested in Search Console.
+
+#### Phase 2 — This week (Bilal, about 10 minutes)
+Search Console, URL inspection, **Request indexing** for the money pages in
+"Discovered, not indexed" (Google limits requests to roughly 10 a day):
+1. `/services/crm-marketing-automation`
+2. `/google-ads-or-seo-which-first-dubai`
+3. `/wordpress-or-nextjs-for-your-business-website`
+4. `/portfolio/leos-developments/weybridge-gardens-2`
+5. `/portfolio/web-development`
+Then: link each from at least one strong page (the two Dubai articles from
+`/services/digital-marketing` and `/pricing`; Weybridge 2 from Weybridge 1).
+Do NOT request indexing for `/blog/page/N`; Google finds those on its own.
+
+#### Phase 3 — Next 2-4 weeks: "Crawled, not indexed" old articles
+Google read these and chose not to index them: typically thin, dated or
+overlapping. For each of the ~15 live React/JS/CSS posts, decide one of:
+- **Improve** (only if it has impressions in the snapshot): expand, update,
+  add an internal link to the right service page.
+- **Merge** into a stronger overlapping post and 301 it (e.g. several React
+  hooks posts, two Figma plugin posts).
+- **Leave** if it has no impressions and no business value: no harm in it
+  staying unindexed.
+Per item 398, buyer content comes first; do not spend a week on learner posts.
+
+#### Phase 4 — Monitor (monthly, item 398 Monday routine)
+- Indexed count up from 112, not-indexed down from 139.
+- "Validation failed" on "Page with redirect", "noindex", "Alternate canonical":
+  expected, ignore.
+- Any **new** 404: redirect if a real successor exists, otherwise add to
+  `GONE_PATHS` in `src/proxy.ts`.
+- Removals tool: emergencies only (leaked private data). Never for clean-up.
