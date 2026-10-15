@@ -11249,3 +11249,29 @@ unknown article, blog page, client, service and project URLs all return the
 **Still open (Bilal):**
 optional
 Cloudflare redirect so `http://www` reaches the apex in one hop.
+
+---
+
+### 404. DONE (2026-10-15) — Search Console's 38 "Not found (404)" URLs
+
+Bilal asked whether to bulk-remove them with Search Console Removals. No:
+Removals hides a URL for about six months, one at a time, and is for urgent
+cases. Live test of the 38 on 2026-10-15: **23 already resolved** (restored
+articles, `/category/*` and `/training` to `/blog`, `/*/feed/` to `/rss.xml`);
+Google had not re-crawled them yet. The other 15:
+
+- **Redirected:** `/portfolio/leos/hadley-heights/social-media` to the Hadley
+  Heights case study (next.config.ts); `/About` to `/about` in `src/proxy.ts`,
+  because next.config redirects match case-insensitively and a `/About` source
+  also caught `/about` and looped (caught in the local test, never shipped).
+- **410 Gone** (`src/proxy.ts`, `GONE_PATHS` / `GONE_PREFIXES`): component
+  names Google lifted from React code samples (`/ThemeContext`, `/AuthContext`,
+  `/Header`, `/UserList`, `/LargeImage`, `/data`, `/redux/store`), the two
+  course pages (no successor, as decided in next.config), and `/wp-admin`,
+  `/wp-json`, `/wp-login.php`, `/xmlrpc.php`, `/search/` (WordPress leftovers
+  and bots).
+
+Result on a production build: 24 of 38 reach a live page, 14 return 410.
+The "Validate fix" Bilal started on 2026-10-14 will confirm them over the
+next weeks. A new 404 in that report: redirect if it has a real successor,
+otherwise add it to the 410 list.

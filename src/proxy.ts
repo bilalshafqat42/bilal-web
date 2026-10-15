@@ -88,12 +88,65 @@ function reportBotHit(botName: string, userAgent: string, path: string, event: N
   );
 }
 
+/**
+ * URLs that are gone for good, answered with 410 rather than 404.
+ *
+ * From the Search Console "Not found (404)" export of 2026-10-15. A 404 says
+ * "not here right now" and Google keeps re-checking; 410 says "removed on
+ * purpose" and it drops out faster. Search Console's Removals tool is not the
+ * fix for these: it hides a URL for about six months and takes one at a time.
+ *
+ * - Component and variable names (ThemeContext, AuthContext, Header, ...)
+ *   that Google lifted from code samples in the React articles.
+ * - The two WordPress course pages: no successor, and pointing them at a
+ *   marketing page would be a soft 404 (see the note in next.config.ts).
+ * - WordPress admin, REST API and search-template URLs, requested by bots.
+ *
+ * Anything with a real successor belongs in next.config.ts redirects instead.
+ */
+const GONE_PATHS = new Set([
+  "/ThemeContext",
+  "/AuthContext",
+  "/Header",
+  "/UserList",
+  "/LargeImage",
+  "/data",
+  "/redux/store",
+  "/graphic-designing-course",
+  "/frontend-development-course",
+]);
+const GONE_PREFIXES = ["/wp-admin", "/wp-json", "/wp-login.php", "/xmlrpc.php", "/search/"];
+
+function isGone(pathname: string): boolean {
+  const path = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+  if (GONE_PATHS.has(path)) return true;
+  return GONE_PREFIXES.some((p) => pathname === p || pathname.startsWith(p.endsWith("/") ? p : `${p}/`) || pathname === `${p}/`);
+}
+
 export function proxy(request: NextRequest, event: NextFetchEvent) {
   const userAgent = request.headers.get("user-agent") || "";
   const botName = detectBot(userAgent);
 
   if (botName) {
     reportBotHit(botName, userAgent, request.nextUrl.pathname, event);
+  }
+
+  // Case-sensitive on purpose. A next.config redirect cannot tell "/About"
+  // from "/about" (it looped), and the capitalised form is in the 2026-10-15
+  // Search Console 404 export.
+  if (request.nextUrl.pathname === "/About" || request.nextUrl.pathname === "/About/") {
+    return NextResponse.redirect(new URL("/about", request.url), 308);
+  }
+
+  if (isGone(request.nextUrl.pathname)) {
+    return new NextResponse("Gone", {
+      status: 410,
+      headers: {
+        "Content-Type": "text/plain; charset=utf-8",
+        "X-Robots-Tag": "noindex",
+        "Cache-Control": "public, max-age=86400",
+      },
+    });
   }
 
   return NextResponse.next();

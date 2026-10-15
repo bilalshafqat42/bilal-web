@@ -289,6 +289,12 @@ const nextConfig: NextConfig = {
       // its canonical address — not a dead tutorial URL being swept into a
       // marketing page, which is the thing the note above forbids.
       { source: "/home", destination: "/", permanent: true },
+        // From the Search Console 404 export of 2026-10-15: a portfolio path
+        // from the old /portfolio/leos/ structure, with an exact successor.
+        // (The capitalised /About from the same export is handled in
+        // src/proxy.ts: these rules match case-insensitively, so a "/About"
+        // source here also caught "/about" and looped.)
+        { source: "/portfolio/leos/hadley-heights/social-media", destination: "/portfolio/leos-developments/hadley-heights", permanent: true },
       { source: "/web-application-development", destination: "/services/website-app-development", permanent: true },
       { source: "/ui-ux-design", destination: "/services/ui-ux-design", permanent: true },
       // Pointed at the UI/UX page until 2026-10-13, when web design had no page
