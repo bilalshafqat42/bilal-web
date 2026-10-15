@@ -11152,7 +11152,7 @@ Bilal's request, 2026-10-14: everything still waiting, in one place.
 
 | # | When | What | Notes |
 | --- | --- | --- | --- |
-| 1 | **Done 2026-10-14** (two left to star later) | **GA4 setup** | `whatsapp_click` starred as a key event (Admin, Data display, Events, Recent events, star). **Verified in Realtime:** two taps on the floating WhatsApp button showed as 2 events and 2 key events. Custom dimensions created (event scope): Lead source `lead_source`, Lead service `lead_service`, Call topic `call_topic`, WhatsApp context `whatsapp_context`. Old "WordPress Post Type" (Site Kit) archived. Event and user data retention both 14 months. **Still to do:** star `generate_lead` and `schedule_call` once they first appear in Recent events (only listed after they fire). Never star `click`, `page_view`, `scroll` or other automatic events. GA4 shows realtime events only for visitors who accepted cookies. |
+| 1 | **Done 2026-10-14**; `generate_lead` and `schedule_call` listed 2026-10-15, star them | **GA4 setup** | `whatsapp_click` starred as a key event (Admin, Data display, Events, Recent events, star). **Verified in Realtime:** two taps on the floating WhatsApp button showed as 2 events and 2 key events. Custom dimensions created (event scope): Lead source `lead_source`, Lead service `lead_service`, Call topic `call_topic`, WhatsApp context `whatsapp_context`. Old "WordPress Post Type" (Site Kit) archived. Event and user data retention both 14 months. **Still to do:** star `generate_lead` and `schedule_call` once they first appear in Recent events (only listed after they fire). Never star `click`, `page_view`, `scroll` or other automatic events. GA4 shows realtime events only for visitors who accepted cookies. |
 | 2 | ~~Now~~ **Done 2026-10-14** | Cloudflare Rule C "Logos and portfolio files" | Expression: `/logo/` or (`/portfolio/` and extension in avif/png/jpg/jpeg/webp/svg), so case-study pages are not matched. Verified: logo and `og-leos.jpg` return `max-age=86400`. Rules A (origin secret) and B (`/_next/image` bypass, AVIF to modern browsers, JPEG to old) also verified. All free plan. The `next.config` header that tried the same job was removed: it never reached `/public` files on Hostinger and it gave `/portfolio` pages a one-day browser cache. |
 | 3 | ~2026-10-21 | **CSP to enforcing** | Read Hostinger runtime logs for `[CSP]` lines from `/api/csp-report`. None that matter: switch `Content-Security-Policy-Report-Only` to `Content-Security-Policy` in `next.config.ts`. |
 | 4 | Early Nov | Search Console "Page with redirect" validation | Started 2026-10-14 on 23 URLs. All 23 checked the same day: each is an old WordPress address that 308s in one hop to a live page. **Expect "Validation failed" and ignore it**: they redirect on purpose. Not an error. |
@@ -11231,7 +11231,10 @@ create a token.
 shared terminal screenshots. Third value set in Hostinger and the Cloudflare
 "Origin secret" rule; verified with a honeypot POST at 13:09 logging the
 caller's real IP (2.50.49.30). Rule for next time: `clear` the terminal before
-any screenshot. Note when testing: a Hostinger env change only applies after
+any screenshot. **The third value then also showed in a screenshot (13:17):
+rotate once more, end of 2026-10-15,** generating it with
+`openssl rand -hex 32 | pbcopy` so it never prints, then Hostinger (redeploy)
+and the Cloudflare rule, then a honeypot test. Note when testing: a Hostinger env change only applies after
 the restart, so a test sent before it shows the old pairing.
 
 **DMARC live (2026-10-15):** `_dmarc` TXT `v=DMARC1; p=none;
