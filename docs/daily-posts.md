@@ -504,3 +504,120 @@ Most businesses only ever need the first two. Swipe for the difference.
 
 #AI #ChatGPT #DigitalMarketing #DubaiBusiness
 ```
+
+---
+
+## Post 3 (2026-10-15)
+
+**Blog:** `/what-to-track-in-marketing-uae`, 888 words, on-page 86/100 for
+"marketing metrics to track" (only the hook H1 misses, by design). Links to
+`/services/crm-marketing-automation`, post 2 and post 1. Tags Digital
+Marketing, Dubai (routes to the digital marketing service page).
+Site card: `public/blog/what-to-track/card.jpg` ("Your CRM is the *only
+honest* lead count."); feed, pin and story sizes in `.post-cards/what-to-track-*`.
+
+Full URL: `https://bilalshafqat.com/what-to-track-in-marketing-uae`
+
+### Card text (for Bilal's light-style design, 1080x1350)
+
+```
+Your CRM is the only honest lead count.
+
+Ad platforms count clicks. Your CRM counts customers.
+
+Before you trust the dashboard, check:
+• Source: does every lead say which campaign it came from?
+• Count: CRM total next to Meta + Google, side by side?
+• Quality: is each lead marked qualified or not?
+• Speed: was it answered within the hour?
+
+Meta and Google can both claim the same lead.
+Your CRM can't.
+```
+
+Alt text: Card reading "Your CRM is the only honest lead count." Four checks
+before trusting the ad dashboard: lead source, CRM count against Meta and
+Google, qualified or not, reply speed. By Bilal Shafqat, Digital Marketer.
+
+### LinkedIn
+
+```
+Meta says 48 leads this month. Google says 31.
+
+Add them up and it sounds like a good month. Then ask the sales team how many enquiries they actually spoke to.
+
+The number is smaller. Sometimes much smaller.
+
+Nobody is lying. Each platform counts a conversion by its own rules, and both are generous. Someone sees your Instagram ad on Monday and searches your name on Wednesday: Meta and Google can each claim that one enquiry. Add the dashboards together and you have counted one person twice.
+
+A WhatsApp tap gets counted too. That is someone opening a chat, not someone starting a conversation.
+
+The only count that cannot be double-claimed is the one in your CRM. So that is the one to run the business on:
+
+Enquiries that reached the CRM, by source
+Qualified enquiries
+Cost per qualified enquiry
+Time to first reply
+Won deals, traced back to the campaign
+
+This week, export last month's leads, put the number next to what Meta and Google reported, and divide your spend by the qualified ones. That is your real cost.
+
+Full breakdown:
+bilalshafqat.com/what-to-track-in-marketing-uae
+
+#DigitalMarketing #CRM #Dubai
+```
+
+### Meta (Facebook, Instagram, Threads in one post; under 500 characters)
+
+```
+Meta says 48 leads. Google says 31. Your sales team spoke to far fewer.
+
+Both platforms can claim the same enquiry, and a WhatsApp tap is not a conversation. The only count that can't be double-claimed is your CRM.
+
+Track leads by source, qualified leads, cost per qualified lead and reply time.
+
+Full breakdown: bilalshafqat.com/what-to-track-in-marketing-uae
+
+#DigitalMarketing #CRM #DubaiBusiness #MarketingTips
+```
+
+Instagram: put the link in the bio. Facebook: button "Learn more" to the full URL.
+
+### X
+
+```
+Meta and Google can both claim the same lead. Add the dashboards and you count one person twice.
+
+Run the business on the number in your CRM.
+
+bilalshafqat.com/what-to-track-in-marketing-uae
+
+#DigitalMarketing #CRM
+```
+
+### Pinterest
+
+Board: **Digital Marketing**. Image: the pin size (1000x1500).
+- **Title:** Marketing Metrics to Track: Why Your CRM Beats the Ad Dashboard
+- **Description:** Meta and Google count conversions by their own rules and
+  often claim the same lead. The five marketing metrics a UAE business should
+  track instead: leads by source, qualified leads, cost per qualified lead,
+  reply time and won deals.
+
+### Google Business Profile
+
+Add update, button **Learn more** to the full URL.
+
+```
+Your CRM is the only honest lead count.
+
+Meta and Google each count conversions by their own rules, and both can claim the same enquiry. Track leads by source, qualified leads, cost per qualified lead and reply time instead. Read the full breakdown.
+```
+
+### Medium
+
+Weekly rhythm: not before 2026-10-21. Import from the URL. Title "Marketing
+Metrics to Track: Your CRM Beats the Dashboard"; tags Digital Marketing,
+Marketing Analytics, CRM, Lead Generation, Marketing Strategy. Rewrite the one
+table as bold-label lines after import.

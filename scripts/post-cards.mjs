@@ -56,6 +56,11 @@ export const CARDS = {
     lines: ["Your landing page", "*is* your ad spend."],
     kicker: "Paid ads tip",
   },
+  "what-to-track": {
+    slug: "what-to-track-in-marketing-uae",
+    lines: ["Your CRM is the", "*only honest* lead count."],
+    kicker: "Marketing tip",
+  },
 };
 
 const BRAND = {

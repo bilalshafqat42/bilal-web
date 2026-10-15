@@ -11344,3 +11344,60 @@ Per item 398, buyer content comes first; do not spend a week on learner posts.
 - Any **new** 404: redirect if a real successor exists, otherwise add to
   `GONE_PATHS` in `src/proxy.ts`.
 - Removals tool: emergencies only (leaked private data). Never for clean-up.
+
+---
+
+### 406. IN PROGRESS (2026-10-15) — New profiles: Wellfound, Crunchbase, and the weekend list
+
+Bilal's request, 2026-10-15: build "entrepreneur" profiles (founder / business
+networks) from the office, same identity as roadmap 398 §7.
+
+#### Wellfound (wellfound.com) — created 2026-10-15
+
+Done:
+- Location Dubai; role Digital Marketing Manager; 10+ years.
+- Bio (160-char limit): "Digital marketer in Dubai. I run the campaign and
+  build the page it lands on. 17 years in paid media, SEO, web and CRM for UAE
+  and UK businesses."
+- Experience: Founder & Digital Marketer, Bilal Shafqat (company).
+- Links: site, LinkedIn, GitHub, X. Photo uploaded.
+- Skills incl. SEO, Google Ads, Meta, TikTok Ads, landing pages, Salesforce,
+  HubSpot, Zoho, Marketing Automation, Next.js, Google Analytics.
+- Achievements (no invented numbers): campaign plus landing page ownership;
+  LEOS case studies; own site with CRM-confirmed GA4 key events.
+- Preferences: Open to offers; Contractor; remote; US work authorisation No /
+  sponsorship No (remote contract work from Dubai needs neither). Salary field
+  in USD a year; reference minimum about USD 52,000 = AED 16,000/month retainer
+  x 12 at 3.6725. Bilal sets the real figure.
+- Culture: wears many hats; say in the work + challenging problems; remote very
+  important; looking-for text (269/300 chars).
+
+Left:
+1. **Education** (required): Bilal's real degree. Clears "can't be found by
+   recruiters".
+2. **Resume/CV:** upload once the CV is updated (roadmap 396: 2 pages,
+   Languages section, 17 years, digital marketer positioning).
+3. **AI Interview (weekend, Bilal asked to do it then):** optional ~15-minute
+   recorded video; profiles with one are shown first. Needs a quiet room,
+   camera and mic. Prepare 4-5 short answers first from real work (LEOS
+   launches, landing-page-plus-campaign ownership, CRM tracking), no numbers
+   that cannot be explained. Video is stored by Wellfound and shared only with
+   companies he applies to.
+4. Culture tab: markets most interested in (Marketing/Advertising, Real
+   Estate), optional.
+5. Do not apply to jobs until 1-2 are done.
+
+#### Crunchbase — existing profile, access to recover
+
+Profile exists from years ago with the old positioning: "Top Rated Full Stack
+Developer & UI/UX Designer", Lahore, 11-50 employees, Lahore competitors.
+Bilal is checking an older email for the login. Once in, change to: short
+description "Digital marketer in Dubai. I run the campaign and build the page
+it lands on."; location Dubai; employees 1-10; categories Digital Marketing,
+Advertising, SEO, Web Development; email bilal@bilalshafqat.com. If no access,
+sign up with bilal@bilalshafqat.com (domain match) and claim/edit. Do not
+create a second profile.
+
+#### Next profiles (from backlink-plan.md, can be done early)
+- Clutch (about 1 hour, highest value for Dubai buyers; planned Mon 19 Oct).
+- Product Hunt (5-10 minutes).
