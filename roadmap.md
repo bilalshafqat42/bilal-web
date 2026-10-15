@@ -11220,7 +11220,17 @@ and SEO 100 on 32/32 Lighthouse runs, first lead since the /contact fix
 - GitHub Actions: checkout v7, setup-node v7.0.0; a skipped purge is now a
   warning, not a silent pass.
 
-**Still open (Bilal):** Cloudflare token and zone ID as repository secrets
-(purge-after-deploy has never run: every deploy so far needed a manual purge);
+**Purge-after-deploy is live (2026-10-15).** Cloudflare token "GitHub purge
+after deploy" (Zone, Cache Purge, Purge, bilalshafqat.com only, no expiry)
+and the zone ID are repository secrets; a manual run purged successfully
+(8m, the fingerprint-unchanged path). Manual purges after deploy are no
+longer needed. Cloudflare needed the account email verified before it would
+create a token.
+
+**CF_ORIGIN_SECRET to rotate (2026-10-15):** its value appeared in a shared
+screenshot of the terminal. New value in Hostinger env + the Cloudflare
+"Origin secret" transform rule, redeploy, re-test with a honeypot POST.
+
+**Still open (Bilal):**
 DMARC TXT record (`_dmarc`, none exists; SPF and DKIM are fine); optional
 Cloudflare redirect so `http://www` reaches the apex in one hop.
