@@ -11593,3 +11593,42 @@ in ___") keeps changing the largest text on screen, so each new state can be
 reported as a later LCP. Test before changing anything: Lighthouse with the
 phrase rendered static on first paint (typing starting only after load), on a
 local build, then compare. Only ship it if mobile LCP improves.
+
+---
+
+### 411. IDEAS (2026-10-16) — Future products to plan
+
+Bilal agreed on 2026-10-16 to record two product ideas. Neither is ready to
+launch; both need ownership checks and validation first.
+
+#### A. Property Sales Presentation App (white-label)
+The pattern already built several times: LEOS (Hadley Heights, Weybridge
+Gardens, Cavendish Square sales app) and Tomorrow World (Tomorrow 166,
+Tomorrow Commercial). Units and availability, floor plans, 3D elevations,
+amenities, location maps, walkthrough videos, for sales centres on tablets
+and large touchscreens.
+
+- **Ownership first:** the existing builds belong to their clients (branding,
+  assets and likely the code under the contracts). Check each contract and,
+  for anything built while employed, the employment contract. Build the
+  product as a **new, generic codebase**, not a copy of client work.
+- **Demo:** an invented project with stock or AI imagery and no client names.
+- **Validate before building much:** show a clickable demo to 3-5 Dubai
+  developers or brokerages; ask what they would pay and how they buy.
+- **Then:** name, landing page on this site, 60-90 second demo video, pricing
+  (setup fee plus per-project licence is the obvious model to test).
+- **Channels:** buyers are reached through LinkedIn, direct outreach and
+  property events (Cityscape and similar). Product Hunt is for visibility and a
+  launch page, not for these buyers.
+- Links to `/real-estate-marketing` and the LEOS case studies.
+
+#### B. Performo (CRM and reporting) public launch
+Bilal's own CRM and reporting app (separate repo). Already has lead intake,
+attribution, ad platform syncs and reporting. Before any public launch: a
+public website, onboarding, screenshots, a demo, pricing, terms and privacy
+(PDPL), and checking the Google Ads API version it uses (roadmap 401 notes it
+may be on a retired version). Product Hunt is a natural launch venue; prepare
+the launch page and a supporter list in advance, since a launch happens once.
+
+Order: neither before the CV (407), the freelance profiles (409) and the
+Google Business Profile move (398). Revisit monthly.
