@@ -11419,6 +11419,20 @@ settings on the roadmap. Audit the same morning: site healthy, 121/121 pages,
 0 errors, all descriptions fit, "bilal shafqat" at position 3.9.
 
 #### Resume / CV (blocks Wellfound, Turing, Toptal, Clutch)
+
+**Drafted 2026-10-16** as a Claude doc: "Bilal Shafqat CV (UAE, 2026)",
+https://claude.ai/code/artifact/4c249741-bd71-479e-9be2-8388ddb8900c
+Refine (May 2026 to present: Meta Ads, Salesforce Marketing Cloud EDMs and
+CloudPages, websites and SEO for Movenpick, Oceara, Stax, broker portal, sales
+app) added; Tomorrow World Sept 2025 to April 2026; Vitalsouls corrected to
+Lahore; languages English, Urdu, Hindi; employment visa, 30-day notice, UAE
+licence; three development certificates (Microsoft 4Afrika SkillsLab 2020,
+PUCIT Web Engineering with PHP 2015, PVTC Web and Graphics Designing 2014; no
+ID numbers on the CV). The 5,000+ leads and CPL-35% figures were removed: no
+access to the ad accounts to verify them. Freelance work left off while
+employed. Bilal finishes it at home: delete the notes section, export PDF.
+Next: Google Skillshop (Ads Search, Analytics, Measurement) and HubSpot Email
+Marketing certificates, free, added as completed.
 Detail in roadmap 396 ("What the CV update needs"). In short:
 - Two pages, not three (the sidebar repeats on pages 2 and 3).
 - **17 years** (career start 2009, Vitalsouls). Headline and About:
