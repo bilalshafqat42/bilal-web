@@ -11796,3 +11796,35 @@ once (no repeat while unread); manual Sync Now shows the error. No "last
 synced" timestamp is stored. Plan: upgrade versions, test Sync Now on one
 company, add last-synced/last-error per platform, reminder for Feb 2027.
 Not started: separate repo and deploy; needs Bilal's go-ahead.
+
+---
+
+### 414. DONE (2026-10-16) — Ubersuggest Next Actions, worked through
+
+Bilal shared all 45 Ubersuggest "Next Actions" (42 competitor gaps, 2
+quick-wins, 1 SEO issue). Most "create new content" suggestions already had an
+owning page: Ubersuggest flags a gap when the site doesn't rank yet, not when
+a page is missing. A new article for those would cannibalise the owner.
+
+Done and live:
+1. Three short titles lengthened (landing page, product designer, cost per lead).
+2. New article `/how-to-choose-a-mobile-app-developer-in-dubai` for "mobile
+   app developer dubai" (720/month, difficulty 12), the one real gap.
+   Generated in Ubersuggest (100 credits; 3 generations left on the plan),
+   rewritten: 17 years, invented prices and percentages removed, React
+   Native stated, no store claims. Onpage 96; the mobile hub keeps 96 on its
+   own keyword. Captions in docs/daily-posts.md.
+3. Gap phrases added to owning pages without changing titles: digital
+   marketing (strategy, strategist, specialist, expert in Dubai), Google Ads
+   (freelancer vs agency FAQ), web design (freelance web designer,
+   responsive), social media (freelance social media manager), video
+   (freelance video editor).
+4. Quick-win "digital marketing dubai" (#30 on the freelancer-vs-agency
+   article): not optimised there; a link from the article to the owning
+   service page instead.
+
+Ignored on purpose: "cavendish square" (property-name searches), "freelance
+developer" and "application developer" (generic, off positioning).
+Bilal to mark covered keywords Done in Ubersuggest. Rule for the future: for
+each Ubersuggest gap, first ask "which page already owns this?"; a new page
+only when none does. Keep the 3 remaining article generations for real gaps.

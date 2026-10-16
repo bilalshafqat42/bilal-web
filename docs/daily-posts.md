@@ -823,3 +823,90 @@ Not people who showed up.
 
 Captions (LinkedIn, Meta, X, Pinterest, GBP) to write once the article is
 approved and live.
+
+---
+
+## Article: How to choose a mobile app developer in Dubai (live 2026-10-16)
+
+URL: `https://bilalshafqat.com/how-to-choose-a-mobile-app-developer-in-dubai`
+Card: `public/blog/app-developer/card.jpg` ("Choose the developer *before the
+features.*"); other sizes in `.post-cards/app-developer-*`. Ubersuggest
+draft, rewritten (roadmap 412). Onpage 96 for "mobile app developer dubai".
+
+### Card text (light style, 1080x1350)
+
+```
+Choose the developer before the features.
+
+Most apps fail at the hiring decision, not the build.
+
+Before you sign, check:
+• Outcome: what must the app do for the business?
+• Proof: a working app you can install, not only mock-ups
+• Ownership: code, developer accounts and keys in your name
+• CRM: how a lead in the app reaches your sales team
+
+An app that doesn't feed your CRM
+is a marketing dead end.
+```
+
+### LinkedIn
+
+```
+Most Dubai founders and property developers don't fail at building an app. They fail at choosing who builds it.
+
+The wrong choice doesn't just cost money. It costs months of rebuild time, broken lead pipelines and an app that does nothing for the business.
+
+Four checks before you sign with any mobile app developer:
+
+Outcome first. Leads, qualified buyers, follow-up? An app without a commercial goal is an expense.
+
+Working proof. A test build you can install on your own phone tells you more than any mock-up.
+
+Ownership in writing. Source code, Apple and Google developer accounts, signing keys. All yours once you've paid.
+
+CRM from day one. Every enquiry in the app should land in Zoho, HubSpot or Salesforce with its source attached.
+
+And a small paid scoping task before the full build. It surfaces most problems while they're still cheap.
+
+Full guide, with the costs that rarely appear in the first quote:
+bilalshafqat.com/how-to-choose-a-mobile-app-developer-in-dubai
+
+#MobileApps #Dubai #DigitalMarketing
+```
+
+### Meta (Facebook, Instagram, Threads; under 500 characters)
+
+```
+Most apps don't fail at the build. They fail at the hiring decision.
+
+Before you sign with a mobile app developer in Dubai: define the business outcome, test a working build yourself, get the code and developer accounts in your name, and make sure every lead reaches your CRM.
+
+Full guide: bilalshafqat.com/how-to-choose-a-mobile-app-developer-in-dubai
+
+#MobileApps #DubaiBusiness #AppDevelopment #DigitalMarketing
+```
+
+### X
+
+```
+Most apps fail at the hiring decision, not the build.
+
+Before you sign: outcome first, a working build you can install, code and accounts in your name, CRM from day one.
+
+bilalshafqat.com/how-to-choose-a-mobile-app-developer-in-dubai
+
+#MobileApps #Dubai
+```
+
+### Pinterest
+- **Title:** How to Choose a Mobile App Developer in Dubai: 5 Checks
+- **Description:** The brief, tech stack, hidden costs, UAE data rules, CRM
+  integration and the red flags that tell you to walk away before signing with
+  a mobile app developer in Dubai.
+
+### Google Business Profile
+
+```
+Choosing a mobile app developer in Dubai? Check the business outcome, test a working build, get the code and developer accounts in your name, and make sure every lead reaches your CRM. Read the full guide.
+```
