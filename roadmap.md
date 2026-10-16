@@ -11448,3 +11448,80 @@ Detail in roadmap 396 ("What the CV update needs"). In short:
 - Google reviews; Google Business Profile move to Dubai (398, 396).
 - Old git stash `stash@{0}` "WIP before full revert of 2026-08-13 migration
   work" is still kept. Not needed by the current site; Bilal may drop it.
+
+---
+
+### 408. LEARNING (2026-10-16) — Google Trends and Ubersuggest, used properly
+
+Bilal's request, 2026-10-16: learn to use Google Trends and his paid
+Ubersuggest plan (including its AI credits) as a digital marketer, starting
+after the Product Hunt profile. Practise on this site first, then use the same
+routine for clients.
+
+#### The rule that ties the three tools together
+
+| Tool | What it is good for | Trust level |
+| --- | --- | --- |
+| **Search Console** (and `SEO-SNAPSHOT.md`) | What people actually searched before seeing *this* site, and where it ranks | **Real data.** Final word |
+| **Ubersuggest** | Estimated volume, difficulty and competitors for keywords the site does not rank for yet | **Estimates.** Good for direction, not for promises. Two Ubersuggest reports gave this site difficulty 7 and 20 for the same term (2026-10-02) |
+| **Google Trends** | Whether interest is rising or falling, and when in the year it peaks, relative only (0-100) | **Relative, not volume.** "100" is the peak of *that* chart, not a number of searches |
+
+Never quote an Ubersuggest volume or a Trends index to a client as a fact.
+Say "estimated" or show the chart.
+
+#### Google Trends (free, trends.google.com) — 20 minutes to learn
+
+1. Explore, type a term, then set **location United Arab Emirates** and
+   **past 5 years** (seasonality) or **past 12 months** (recent change).
+2. **Compare** up to five terms side by side, for example:
+   "digital marketing agency dubai" vs "freelance digital marketer" vs
+   "seo dubai". The lines show which is gaining, not how big each is.
+3. Read **Related queries, Rising**: new phrasing people have started using.
+   Good topics for posts and articles before competitors notice.
+4. Switch the search type to **YouTube search** or **Google Shopping** when a
+   client sells on those.
+5. UAE seasonality to check for each client: Ramadan, summer slowdown
+   (July-August), Q4, and property launch seasons. Plan budgets and content
+   one month before the curve rises.
+
+Exercise: compare "digital marketing" vs "performance marketing" vs "SEO" in
+the UAE over 5 years. Write one sentence on what changed. Use it in a post.
+
+#### Ubersuggest (paid plan) — the features worth the money
+
+Check the plan first: Ubersuggest, account menu, **Plan / Billing**: the limits
+per day or month (searches, projects, tracked keywords, AI credits) and the
+renewal date. **The AI credit allowance and how it renews depend on the plan;
+read it there rather than assuming.**
+
+| Feature | Use it for | How often |
+| --- | --- | --- |
+| **Dashboard / Project** for bilalshafqat.com | One home for the site's rankings and audit | Weekly |
+| **Rank Tracking** | Track the 15-20 money keywords (service pages, pricing, "freelance digital marketer in dubai"). Compare its positions with Search Console; trust Search Console | Weekly, Monday routine (398 §1) |
+| **Keyword Ideas** | New article topics: type a service keyword, filter by **Questions**, keep the ones with buyer intent | Before each article |
+| **Keyword Overview** | Check one term's estimated volume and difficulty before writing for it | Before each article |
+| **Traffic Analyzer** on competitors | See which pages bring a competitor traffic (use the Dubai freelancers from the map results) | Monthly |
+| **Backlinks** on competitors | Find sites that link to competitors and could link to you (directories, guest posts): feeds `backlink-plan.md` | Monthly |
+| **Site Audit** | Second opinion only. This site's own `npm run audit` reads the rendered page and is more accurate (318, 324: Ubersuggest flagged things that were not problems) | Monthly |
+| **Chrome extension** | Volume and difficulty beside Google results (already installed: seen in screenshots) | While searching |
+
+#### Using the AI credits well
+
+- Spend them on **first drafts and outlines**, never on publishing as-is:
+  article outlines from a keyword, title and meta description ideas, content
+  ideas for a cluster.
+- Every AI draft passes the site's rules before use: no invented statistics,
+  no em dashes, British spelling, one buyer query per page (398 §5), then
+  `npm run onpage` and `npm run serp`.
+- If credits reset monthly and are not carried over, use them before the
+  renewal date rather than letting them lapse.
+
+#### A weekly 30-minute practice routine
+1. Monday: regenerate `SEO-SNAPSHOT.md`, note top-3 share and commercial
+   clicks (398 §1).
+2. Ubersuggest Rank Tracking: write down 3 keywords that moved.
+3. Google Trends: one comparison for next week's post topic.
+4. Ubersuggest Keyword Ideas: 3 buyer questions for the next article.
+5. Write the post using item 394 and the AI series plan in `docs/daily-posts.md`.
+
+Ask Claude for a walkthrough of any of these screen by screen.
