@@ -11533,3 +11533,63 @@ read it there rather than assuming.**
 5. Write the post using item 394 and the AI series plan in `docs/daily-posts.md`.
 
 Ask Claude for a walkthrough of any of these screen by screen.
+
+---
+
+### 409. TODO (2026-10-16) — Optimise the freelance marketplace profiles
+
+Bilal's request, 2026-10-16: optimise his freelance profiles on Upwork,
+PeoplePerHour and Fiverr, and create Toptal (not created yet). These are
+lead sources first and backlinks a distant second.
+
+#### Rules for all four
+- **One identity** (398 §7): photo, "Digital marketer in Dubai. I run the
+  campaign and build the page it lands on.", 17 years, Dubai.
+- **Lead with marketing**, not development: paid ads, SEO, landing pages, CRM.
+  Development is how the work gets done (as on the site).
+- **Proof over claims:** portfolio items from published case studies only
+  (LEOS: Hadley Heights, Weybridge Gardens 1-2, Cavendish Square, sales app,
+  mobile app), with client permission. No invented numbers; any figure must
+  have an answer for how it was measured.
+- **Platform rules on contact details:** these marketplaces generally restrict
+  sharing outside contact details or links before a contract. Check each
+  platform's current policy before adding the website anywhere; a violation
+  can suspend the account. Do not count them as backlinks.
+- **Rates in line with `/pricing`** (retainers from AED 16,000/month, projects
+  from AED 31,500, review session AED 3,500), converted to USD at 3.6725 where
+  the platform needs it. Do not undercut the site's published prices.
+- UAE side (not legal advice): freelancing needs a valid freelance permit or
+  trade licence, and the employment contract may need an NOC. Confirm with a
+  UAE business setup consultant.
+
+#### Per platform
+
+| Platform | Status | What to optimise |
+| --- | --- | --- |
+| **Upwork** | Live (US clients already) | Title (e.g. "Performance Marketer: Google & Meta Ads, Landing Pages, CRM"); overview opening with the buyer's problem in the first two lines (the part shown in search); Specialized Profiles per service (paid ads, SEO, landing pages); portfolio from LEOS case studies; skills tags; Project Catalog fixed-price offers; certifications (Google Ads, GA4) if held; 17 years; availability and response time. Check Job Success Score and ask past Upwork clients for feedback |
+| **PeoplePerHour** | Exists, to review | Same title and overview; Hourlies (fixed-price offers) mirroring the `/pricing` entry points; portfolio; UK-friendly wording (PPH is UK-heavy, which suits the UK property work) |
+| **Fiverr** | Exists, to review | Gigs per service, each with 3 packages (basic, standard, premium); gig titles with the buyer's search phrase; gig images from the post-card style; FAQs; no contact details or links in gigs (Fiverr policy) |
+| **Toptal** | **Not created** | Strict screening (language and personality, timed test, live screen, test project). Apply in the **marketing** track, not developer (backlink-plan 10c). Needs the updated CV (407) first. Budget days, not hours; start on a quiet week |
+
+#### Order
+1. Update the CV (407): every platform reads it or asks the same questions.
+2. Upwork (live, already earning): biggest return.
+3. Fiverr and PeoplePerHour.
+4. Toptal application after the CV and Wellfound AI interview practice.
+
+Ask Claude to go through each profile screen by screen with a screenshot of
+the current version.
+
+---
+
+### 410. TO TEST (2026-10-16) — Mobile performance 74: the typing headline
+
+PageSpeed, 2026-10-16 11:09: mobile 74, desktop 98; accessibility, best
+practices and SEO 100 on both; no field data yet. Three audits measured the
+homepage LCP as the hero `<h1>` with a long render delay while TTFB was fast.
+**Hypothesis:** the typing animation in the gold phrase
+(`src/components/home/RotatingDiscipline.tsx`, inside "17 years of experience
+in ___") keeps changing the largest text on screen, so each new state can be
+reported as a later LCP. Test before changing anything: Lighthouse with the
+phrase rendered static on first paint (typing starting only after load), on a
+local build, then compare. Only ship it if mobile LCP improves.
