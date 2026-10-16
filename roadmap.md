@@ -11401,3 +11401,50 @@ create a second profile.
 #### Next profiles (from backlink-plan.md, can be done early)
 - Clutch (about 1 hour, highest value for Dubai buyers; planned Mon 19 Oct).
 - Product Hunt (5-10 minutes).
+
+---
+
+### 407. OPEN LIST (2026-10-16) — Everything waiting, in one place
+
+Bilal's request, 2026-10-16: keep the resume and the remaining Wellfound
+settings on the roadmap. Audit the same morning: site healthy, 121/121 pages,
+0 errors, all descriptions fit, "bilal shafqat" at position 3.9.
+
+#### Resume / CV (blocks Wellfound, Turing, Toptal, Clutch)
+Detail in roadmap 396 ("What the CV update needs"). In short:
+- Two pages, not three (the sidebar repeats on pages 2 and 3).
+- **17 years** (career start 2009, Vitalsouls). Headline and About:
+  "Digital marketer in Dubai. I run the campaign and build the page it lands on."
+- Add a **Languages** section (Turing guessed English at Intermediate without it).
+- Add Next.js, TypeScript, JavaScript; SEO, Google Analytics.
+- State the two big figures (5,000+ qualified leads, CPL down 35%) once, and
+  only with an answer ready for how each was measured.
+- Check the Vitalsouls location (listed Dubai; other early roles Lahore).
+- Decide whether Refine work appears (employer confidentiality first).
+- Export as PDF; upload to Wellfound, Turing, LinkedIn.
+
+#### Wellfound, remaining settings (roadmap 406)
+1. **Education** (required): real college, year, degree. Makes the profile
+   visible to recruiters.
+2. **Resume** upload once the CV above is done.
+3. **AI interview: weekend.** Prepare 4-5 answers from real work first.
+4. Culture tab: markets most interested in (Marketing/Advertising, Real
+   Estate), optional.
+5. Remote preference dropdown (Preferences tab) if still empty.
+6. After it is public: send the public profile URL; check the website link
+   and whether it is nofollow.
+7. Do not apply to roles until 1-2 are done.
+
+#### Also waiting
+- **Post 3** (`/what-to-track-in-marketing-uae`): written, on Bilal's laptop
+  only, not committed. Card text and captions in `docs/daily-posts.md`.
+  Publish on Bilal's word: commit the JSON, `index.ts` line and
+  `public/blog/what-to-track/card.jpg` together, then `npm run indexnow`.
+- **CF_ORIGIN_SECRET**: rotate once more with `openssl rand -hex 32 | pbcopy`
+  (Hostinger + redeploy, Cloudflare rule, honeypot test).
+- **PageSpeed**: the API quota is exhausted from this machine; Bilal to run
+  pagespeed.web.dev on the homepage and send the screenshot.
+- Crunchbase login recovery; Product Hunt and Clutch profiles (406).
+- Google reviews; Google Business Profile move to Dubai (398, 396).
+- Old git stash `stash@{0}` "WIP before full revert of 2026-08-13 migration
+  work" is still kept. Not needed by the current site; Bilal may drop it.
