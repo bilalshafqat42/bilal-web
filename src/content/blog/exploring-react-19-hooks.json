@@ -1,51 +1,63 @@
 {
   "slug": "exploring-react-19-hooks",
   "title": "Exploring React 19 Hooks",
-  "description": "React 19 introduced some exciting hooks that streamline state management and interactivity for modern web applications. In this article, we’ll explore",
+  "description": "The React 19 hooks useFormStatus, useActionState, useOptimistic and use, explained with correct, current code examples and the mistakes to avoid.",
   "published": "2025-01-16",
-  "updatedAt": "2026-10-02",
+  "updatedAt": "2026-10-16",
   "tags": [
     "React Js"
   ],
-  "words": 676,
+  "words": 905,
   "blocks": [
+    {
+      "t": "p",
+      "v": "React 19 has been stable since 5 December 2024, and it added a small set of hooks built around Actions: functions that run during a form submission or a transition, with React tracking whether they are still pending. This article covers the four you are most likely to use, useFormStatus, useActionState, useOptimistic and use, with examples that match the official React documentation."
+    },
     {
       "t": "h2",
       "v": "1. useFormStatus"
     },
     {
       "t": "p",
-      "v": "The useFormStatus hook simplifies the process of tracking the submission status of a form. It allows you to provide feedback to users while forms are being processed."
+      "v": "useFormStatus tells a component whether the form it sits inside is being submitted. It lives in react-dom, not react, because it is about DOM forms."
     },
     {
       "t": "code",
-      "v": "import { useFormStatus } from \"react\";  // Import the useFormStatus hook from React.\r\n\r\nfunction MyFormComponent() {\r\n  // Destructure the properties from useFormStatus hook.\r\n  // - `pending`: Tracks if the form is in the process of being submitted.\r\n  // - `error`: Contains any error that occurred during submission.\r\n  // - `success`: Indicates if the form was submitted successfully.\r\n  const { pending, error, success } = useFormStatus();\r\n\r\n  return (\r\n    <form>\r\n      {/* If form is pending submission, display a message */}\r\n      {pending && <p>Submitting....</p>}\r\n\r\n      {/* If an error occurred during submission, display the error message */}\r\n      {error && <p>Error: {error.message}</p>}\r\n\r\n      {/* If form submission is successful, display success message */}\r\n      {success && <p>Form submitted successfully!</p>}\r\n    </form>\r\n  );\r\n}"
+      "v": "import { useFormStatus } from \"react-dom\";\n\nfunction SubmitButton() {\n  const { pending } = useFormStatus();\n\n  return (\n    <button type=\"submit\" disabled={pending}>\n      {pending ? \"Submitting...\" : \"Submit\"}\n    </button>\n  );\n}\n\nexport default function ContactForm({ sendMessage }) {\n  return (\n    <form action={sendMessage}>\n      <input name=\"email\" type=\"email\" required />\n      <SubmitButton />\n    </form>\n  );\n}"
     },
     {
       "t": "h3",
-      "v": "Code Explanation:"
+      "v": "What it returns"
+    },
+    {
+      "t": "p",
+      "v": "useFormStatus takes no arguments and returns an object with four fields:"
     },
     {
       "t": "list",
       "ordered": false,
       "v": [
-        "import { useFormStatus } : This is importing the useFormStatus hook from React (assuming it's part of future React features).",
-        "const { pending, error, success } = useFormStatus(); : The useFormStatus hook is used to track the state of the form submission, including whether it’s pending, has encountered an error, or was successful.",
-        "{pending && <p>Submitting....</p>} : If the form submission is in progress, a \"Submitting\" message is displayed.",
-        "{error && <p>Error: {error.message}</p>} : If there was an error during the submission, an error message is shown with the details from error.message .",
-        "{success && <p>Form submitted successfully!</p>} : If the form was submitted successfully, a success message is displayed."
+        "pending: true while the parent form is submitting, otherwise false.",
+        "data: a FormData object with the data being submitted, or null when nothing is being submitted.",
+        "method: the HTTP method of the form, either 'get' or 'post'.",
+        "action: a reference to the function passed to the form's action prop, or null if there is no parent form or the action is a URL."
       ]
     },
     {
+      "t": "p",
+      "v": "There are no error or success fields. If you need to show the result of a submission, use useActionState below."
+    },
+    {
       "t": "h3",
-      "v": "Key Points:"
+      "v": "Key points"
     },
     {
       "t": "list",
       "ordered": false,
       "v": [
-        "pending tells if the form submission is in progress.",
-        "You can use it to disable the submit button or show a loading state."
+        "It must be called from a component rendered inside a form. In the example, SubmitButton is a child of the form.",
+        "It only reports on a parent form. Calling it in the same component that renders the form will always give pending as false.",
+        "The usual use is disabling the submit button or showing a loading state while the request runs."
       ]
     },
     {
@@ -54,48 +66,37 @@
     },
     {
       "t": "p",
-      "v": "useActionState is helpful for tracking the state of an ongoing action, such as button clicks triggering async operations."
+      "v": "useActionState holds state that is updated by an Action, typically a form submission, and tells you whether that Action is still running. You pass it a function and an initial state, and it returns three values."
     },
     {
       "t": "code",
-      "v": "import { useActionState } from \"react\";  // Import the useActionState hook from React.\r\n\r\nfunction MyActionComponent() {\r\n  // Destructure the properties from useActionState hook.\r\n  // - `pending`: Indicates if the action is currently in progress.\r\n  // - `error`: Contains any error that occurred during the action.\r\n  // - `success`: Indicates if the action was completed successfully.\r\n  // We pass a unique name (e.g., \"myActionName\") to track the specific action.\r\n  const { pending, error, success } = useActionState(\"myActionName\");\r\n\r\n  return (\r\n    <div>\r\n      {/* If the action is in progress, display a \"pending\" message */}\r\n      {pending && <p>Action in progress</p>}\r\n\r\n      {/* If an error occurred during the action, display the error message */}\r\n      {error && <p>Error: {error.message}</p>}\r\n\r\n      {/* If the action was completed successfully, display a success message */}\r\n      {success && <p>Action completed successfully</p>}\r\n    </div>\r\n  );\r\n}"
+      "v": "import { useActionState } from \"react\";\n\nasync function subscribe(previousState, formData) {\n  const email = formData.get(\"email\");\n  const res = await fetch(\"/api/subscribe\", {\n    method: \"POST\",\n    headers: { \"Content-Type\": \"application/json\" },\n    body: JSON.stringify({ email }),\n  });\n\n  if (!res.ok) {\n    return { error: \"Could not subscribe. Please try again.\", done: false };\n  }\n  return { error: null, done: true };\n}\n\nexport default function Newsletter() {\n  const [state, formAction, isPending] = useActionState(subscribe, {\n    error: null,\n    done: false,\n  });\n\n  return (\n    <form action={formAction}>\n      <input name=\"email\" type=\"email\" required />\n      <button type=\"submit\" disabled={isPending}>\n        {isPending ? \"Subscribing...\" : \"Subscribe\"}\n      </button>\n      {state.error && <p role=\"alert\">{state.error}</p>}\n      {state.done && <p>Thanks, you are subscribed.</p>}\n    </form>\n  );\n}"
     },
     {
       "t": "h3",
-      "v": "Code Explanation:"
+      "v": "How it works"
     },
     {
       "t": "list",
       "ordered": false,
       "v": [
-        "import { useActionState } : This line imports the useActionState hook from React (or a library if it's part of a third-party package). This hook is used to manage the state of an action, such as a network request or a state-changing operation.",
-        "const { pending, error, success } = useActionState(\"myActionName\"); :"
-      ]
-    },
-    {
-      "t": "p",
-      "v": "The useActionState hook tracks the state of an action based on the name you provide ( \"myActionName\" )."
-    },
-    {
-      "t": "list",
-      "ordered": false,
-      "v": [
-        "The hook returns three properties: pending , error , and success , which are used to display the state of the action.",
-        "{pending && <p>Action in progress</p>} : Displays a message if the action is currently in progress (e.g., an API request or background task).",
-        "{error && <p>Error: {error.message}</p>} : Displays an error message if there was an issue with the action, such as a network failure or invalid data.",
-        "{success && <p>Action completed successfully</p>} : Displays a success message when the action has been completed without errors."
+        "The call is useActionState(action, initialState), with an optional third argument, permalink, used with Server Components for progressive enhancement.",
+        "It returns [state, dispatchAction, isPending]: the current state, a function to trigger the Action, and a flag that is true while it runs.",
+        "Your action function receives the previous state as its first argument and the payload as its second. When used as a form action, the payload is the form's FormData. This is the most common mistake: formData is the second argument, not the first.",
+        "Whatever the action returns becomes the new state, which is how you report errors and success."
       ]
     },
     {
       "t": "h3",
-      "v": "Key Points:"
+      "v": "Key points"
     },
     {
       "t": "list",
       "ordered": false,
       "v": [
-        "useActionState monitors a specific action by name (e.g., 'save-data' ).",
-        "Use it to manage UI feedback like disabling buttons or showing a spinner."
+        "Passing dispatchAction to a form's action prop wraps the submission in a transition for you. If you call it yourself, do it inside startTransition, or React logs an error in development.",
+        "Multiple calls are queued and run in order, and each one receives the result of the previous call.",
+        "It is a hook, so call it at the top level of a component, not inside conditions or loops."
       ]
     },
     {
@@ -104,49 +105,36 @@
     },
     {
       "t": "p",
-      "v": "useOptimistic enables optimistic updates, allowing your UI to update immediately before waiting for server confirmation. It’s useful for enhancing user experience by minimizing delays."
+      "v": "useOptimistic shows a temporary value while an Action is running, so the interface responds immediately instead of waiting for the server. When the Action finishes, React goes back to rendering the real value."
     },
     {
       "t": "code",
-      "v": "import { useOptimistic } from \"react\";  // Import the useOptimistic hook from React.\r\n\r\nfunction MyOptimisticComponent() {\r\n  // useOptimistic hook is used to optimistically update the state while the action is in progress.\r\n  // - The first argument is the initial state ({ count: 0 }).\r\n  // - The second argument is a function that describes how to update the state.\r\n  //   It takes two arguments: `currentState` (the previous state) and `newUpdate` (the change to apply).\r\n  const [optimisticState, setOptimisticState] = useOptimistic(\r\n    { count: 0 },  // Initial state: the count starts at 0\r\n    (currentState, newUpdate) => ({ count: currentState.count + newUpdate })  // State update function: increments count\r\n  );\r\n\r\n  return (\r\n    <div>\r\n      {/* Display the current count */}\r\n      <p>Count: {optimisticState.count}</p>\r\n\r\n      {/* When the button is clicked, optimistically update the state by incrementing the count */}\r\n      <button onClick={() => setOptimisticState(1)}>Increment</button>\r\n    </div>\r\n  );\r\n}"
+      "v": "import { useOptimistic, startTransition } from \"react\";\n\nfunction LikeButton({ likes, saveLike }) {\n  const [optimisticLikes, addOptimisticLike] = useOptimistic(\n    likes,\n    (currentLikes, amount) => currentLikes + amount\n  );\n\n  function handleClick() {\n    startTransition(async () => {\n      addOptimisticLike(1);\n      // saveLike sends the request and updates `likes` in the parent.\n      await saveLike();\n    });\n  }\n\n  return <button onClick={handleClick}>Like ({optimisticLikes})</button>;\n}"
     },
     {
       "t": "h3",
-      "v": "Code Explanation:"
+      "v": "How it works"
     },
     {
       "t": "list",
       "ordered": false,
       "v": [
-        "import { useOptimistic } : This line imports the useOptimistic hook. This hook is used to optimistically update a piece of state, providing a temporary value until the action completes.",
-        "const [optimisticState, setOptimisticState] = useOptimistic(...) :"
-      ]
-    },
-    {
-      "t": "p",
-      "v": "The useOptimistic hook returns an array containing the current state ( optimisticState ) and a setter function ( setOptimisticState )."
-    },
-    {
-      "t": "list",
-      "ordered": false,
-      "v": [
-        "First argument : { count: 0 } is the initial state, setting the count to 0 when the component first renders.",
-        "Second argument : A function that receives the currentState and newUpdate as arguments and returns the updated state. In this case, it increments the count by the value of newUpdate (which is 1 when the button is clicked).",
-        "<p>Count: {optimisticState.count}</p> : Displays the current count from the optimisticState . This value will immediately update in the UI when setOptimisticState is called.",
-        "<button onClick={() => setOptimisticState(1)}>Increment</button> : When the button is clicked, it calls setOptimisticState(1) , which updates the state optimistically by incrementing the count by 1."
+        "The call is useOptimistic(value, reducer?). value is the real state, here the likes count passed from the parent.",
+        "The optional reducer receives the current state and whatever you pass to the setter, and must return the next optimistic state. It must be pure.",
+        "It returns [optimisticState, setOptimistic]. While an Action is pending, optimisticState shows the reducer's result. Otherwise it is simply value."
       ]
     },
     {
       "t": "h3",
-      "v": "Key Points:"
+      "v": "Key points"
     },
     {
       "t": "list",
       "ordered": false,
       "v": [
-        "useOptimistic takes the initial state and an updater function.",
-        "Updates are immediately reflected in the UI, enhancing perceived speed.",
-        "Rollback logic can be added in case of server failure."
+        "Call the setter inside an Action: a startTransition callback, as above, or a form action. Called outside one, React shows a warning and the optimistic value only renders briefly.",
+        "You do not write rollback code. If the request fails and the parent never updates value, the button goes back to the old count when the Action ends.",
+        "Use it for actions that usually succeed, such as likes, sending a chat message or adding to a basket."
       ]
     },
     {
@@ -155,32 +143,49 @@
     },
     {
       "t": "p",
-      "v": "The use hook simplifies handling promises in React components, especially for fetching data or suspense-based features."
+      "v": "use reads the value of a Promise or a context during render. Strictly speaking, React calls it an API rather than a hook, because unlike hooks it can be called inside conditions and loops."
+    },
+    {
+      "t": "p",
+      "v": "Its most common use is streaming data from a Server Component to a Client Component: the server starts the request without awaiting it, and the client component reads the result with use, inside a Suspense boundary."
     },
     {
       "t": "code",
-      "v": "import { use } from \"react\";  // Hypothetical future React feature\r\n\r\nasync function fetchData() {\r\n  const response = await fetch(\"/api/data\");\r\n  return response.json();\r\n}\r\n\r\nfunction MyDataComponent() {\r\n  // Assuming `use` could be used to directly fetch data\r\n  const data = use(fetchData());  // `use` would handle async fetching\r\n\r\n  return (\r\n    <div>\r\n      <p>Data: {JSON.stringify(data)}</p>\r\n    </div>\r\n  );\r\n}\r\n\r\nexport default MyDataComponent;"
+      "v": "// page.js (Server Component)\nimport { Suspense } from \"react\";\nimport { Message } from \"./message\";\nimport { fetchMessage } from \"./lib\";\n\nexport default function Page() {\n  const messagePromise = fetchMessage(); // started here, not awaited\n  return (\n    <Suspense fallback={<p>Loading message...</p>}>\n      <Message messagePromise={messagePromise} />\n    </Suspense>\n  );\n}\n\n// message.js (Client Component)\n\"use client\";\n\nimport { use } from \"react\";\n\nexport function Message({ messagePromise }) {\n  const message = use(messagePromise);\n  return <p>{message}</p>;\n}"
     },
     {
       "t": "h3",
-      "v": "Key Points:"
+      "v": "Key points"
     },
     {
       "t": "list",
       "ordered": false,
       "v": [
-        "use resolves promises directly within the component.",
-        "Useful in server components and with Suspense for async data fetching.",
-        "Avoids the need for additional state or effects to manage loading states."
+        "While the Promise is pending, the nearest Suspense boundary shows its fallback. If it rejects, the nearest Error Boundary shows its fallback.",
+        "Do not create the Promise during render, for example use(fetch(url)) inside the component. A new Promise on every render makes React show the fallback again and again. Pass in a Promise that was created once, or cached.",
+        "Do not wrap use in try/catch; use an Error Boundary instead.",
+        "use can also read context, like useContext, but inside an if statement. Reading context with use is not supported in Server Components."
       ]
     },
     {
-      "t": "p",
-      "v": "React 19 hooks like useFormStatus, useActionState, useOptimistic, and use bring new capabilities for managing state and enhancing user interactions. These hooks simplify handling form states, actions, optimistic updates, and async data fetching, making your components more intuitive and responsive."
+      "t": "h2",
+      "v": "Other React 19 changes worth knowing"
     },
     {
       "t": "p",
-      "v": "Embrace these hooks in your projects to unlock a smoother developer experience and richer user interfaces."
+      "v": "Alongside these hooks, React 19 lets function components receive ref as an ordinary prop, so new components no longer need forwardRef. Form elements also accept functions in their action prop, which is what makes useFormStatus and useActionState work without any extra wiring."
+    },
+    {
+      "t": "h2",
+      "v": "Conclusion: which React 19 hooks to use, and when"
+    },
+    {
+      "t": "p",
+      "v": "Together, these hooks remove most of the hand-written loading and error state that forms used to need. useFormStatus handles the pending button, useActionState holds the result of a submission, useOptimistic makes the interface feel instant, and use reads async data with Suspense. Check the official React documentation for the full API of each before relying on edge cases."
+    },
+    {
+      "t": "p",
+      "v": "If you want a React application or a set of fast, reliable forms built for your business, that is part of my [[custom web development|/services/custom-web-development]] work."
     }
   ],
   "metaTitle": "Exploring the New React 19 Hooks, with Examples"

@@ -1,72 +1,26 @@
 {
   "slug": "react-native-flatlist-vs-scrollview",
   "title": "React Native FlatList vs ScrollView: What to Use and When",
-  "description": "When to use FlatList and when ScrollView in React Native, the props that fix a slow list, and why nesting them is usually the wrong question.",
+  "description": "FlatList vs ScrollView in React Native: when to use each, a side-by-side table, the React Native FlatList props that fix slow lists, and common mistakes.",
   "published": "2025-06-13",
-  "updatedAt": "2026-10-14",
+  "updatedAt": "2026-10-16",
   "tags": [
     "Mobile Apps",
     "React Js"
   ],
-  "words": 1097,
+  "words": 1435,
   "blocks": [
     {
-      "t": "h2",
-      "v": "Introduction: FlatList vs ScrollView, a Common Developer Dilemma"
+      "t": "p",
+      "v": "Use FlatList for any list built from data, especially one that can grow, because it only renders the rows near the screen. Use ScrollView for short, fixed content such as a settings screen, a form or a detail page, because it renders every child at once and that is only cheap while there are few children."
     },
     {
       "t": "p",
-      "v": "If you’ve spent any time building mobile apps in React Native, you’ve probably used ScrollView and FlatList. And if you’re like most developers, you may have even used them interchangeably, especially for rendering vertical lists of content."
-    },
-    {
-      "t": "p",
-      "v": "At first glance, they look similar. Both allow you to display scrollable views. But under the hood, they work very differently, and choosing the wrong one can lead to performance issues, memory overuse, and a poor user experience."
-    },
-    {
-      "t": "p",
-      "v": "In this article, we’ll break down:"
-    },
-    {
-      "t": "list",
-      "ordered": false,
-      "v": [
-        "What FlatList and ScrollView actually are",
-        "When to use each one",
-        "Key differences in performance and features",
-        "Real-world examples and best practices"
-      ]
-    },
-    {
-      "t": "p",
-      "v": "By the end, you’ll know exactly which to use, and why."
+      "v": "That is the whole decision for most screens. The rest of this guide shows how each one works, the FlatList props that fix a slow list, the mistakes that cause most performance complaints, and where SectionList and FlashList fit. It is the same checklist I use on client apps as part of my [[React Native development|/services/react-native-development]] work, and every prop below is checked against the official React Native documentation."
     },
     {
       "t": "h2",
-      "v": "What Are ScrollView and FlatList?"
-    },
-    {
-      "t": "p",
-      "v": "Both ScrollView and FlatList are components provided by React Native to create scrollable content in your apps."
-    },
-    {
-      "t": "h3",
-      "v": "ScrollView"
-    },
-    {
-      "t": "p",
-      "v": "ScrollView renders all of its child components at once. That means if you pass it 1000 items, it will try to render all of them when the component mounts, regardless of whether they’re visible or not."
-    },
-    {
-      "t": "h3",
-      "v": "FlatList"
-    },
-    {
-      "t": "p",
-      "v": "FlatList is a more advanced component that is optimized for large data sets. It only renders the visible items on screen, and as the user scrolls, it lazily loads new content."
-    },
-    {
-      "t": "h2",
-      "v": "Key Differences Between FlatList and ScrollView"
+      "v": "FlatList vs ScrollView at a glance"
     },
     {
       "t": "table",
@@ -78,183 +32,286 @@
       "rows": [
         [
           "Rendering",
-          "All children, immediately",
-          "Only what is on screen, plus a buffer"
+          "Every child, as soon as it mounts",
+          "Rows near the viewport, rendered in batches as you scroll"
         ],
         [
-          "Memory with 1,000 items",
-          "All 1,000 mounted",
-          "Roughly 10 to 12 mounted"
+          "Memory",
+          "Grows with every item you add",
+          "Bounded by windowSize (21 screen lengths by default)"
         ],
         [
-          "Mount time",
-          "Grows with the list",
-          "Roughly constant"
+          "Large lists (hundreds of rows or more)",
+          "Slow to mount and heavy to keep",
+          "What it is built for"
         ],
         [
-          "Built-in pull to refresh",
-          "No",
-          "Yes, via refreshing and onRefresh"
+          "Headers and footers",
+          "Ordinary children above or below the content",
+          "ListHeaderComponent, ListFooterComponent and ListEmptyComponent"
         ],
         [
-          "Built-in pagination",
-          "No",
-          "Yes, via onEndReached"
+          "Pull to refresh",
+          "refreshControl with a RefreshControl (vertical only)",
+          "refreshing and onRefresh"
         ],
         [
-          "Separators, headers, footers",
-          "Hand-rolled",
-          "Built in"
+          "Sticky headers",
+          "stickyHeaderIndices",
+          "stickyHeaderIndices, or SectionList for sticky section headers"
         ],
         [
-          "Right for",
-          "Short, fixed content",
-          "Any list driven by data"
+          "Infinite scroll",
+          "Hand-rolled from scroll events",
+          "onEndReached and onEndReachedThreshold"
+        ],
+        [
+          "Typical use",
+          "Settings, forms, profile and detail screens",
+          "Feeds, chats, search results, anything from an API"
         ]
       ]
     },
     {
       "t": "h2",
-      "v": "ScrollView: When to Use It"
+      "v": "How ScrollView works, and when to use it"
     },
     {
       "t": "p",
-      "v": "You should use ScrollView when:"
+      "v": "ScrollView is a scrollable container. The React Native docs are direct about the trade-off: it renders all of its children at once, and on a long list that means creating components and native views for content the user may never scroll to, which slows rendering and raises memory use."
+    },
+    {
+      "t": "p",
+      "v": "For short content that is not a problem, and ScrollView is the simpler tool. Use it when:"
     },
     {
       "t": "list",
       "ordered": false,
       "v": [
-        "You’re rendering a small number of items (usually fewer than 20)",
-        "The content size is fixed or predictable",
-        "You need flexible layout control inside the scrollable area",
-        "Performance is not a concern"
+        "The number of children is small and bounded, and will stay that way",
+        "The content is a layout rather than a list, such as a form, a profile or a product page",
+        "You want full control over what sits inside the scrollable area"
       ]
     },
     {
       "t": "code",
-      "v": "import { ScrollView, Text } from 'react-native';\n\n<ScrollView>\n  {items.map((item) => (\n    <Text key={item.id}>{item.name}</Text>\n  ))}\n</ScrollView>"
-    },
-    {
-      "t": "h2",
-      "v": "FlatList: When to Use It"
+      "v": "import { ScrollView, Text } from 'react-native';\n\nexport function Settings({ options }) {\n  return (\n    <ScrollView>\n      {options.map((option) => (\n        <Text key={option.id}>{option.label}</Text>\n      ))}\n    </ScrollView>\n  );\n}"
     },
     {
       "t": "p",
-      "v": "You should use FlatList when:"
+      "v": "One thing that catches people out: a ScrollView needs a bounded height to work. If it does not scroll, check that every parent view passes flex: 1 down the tree rather than setting a fixed height on the ScrollView itself."
     },
     {
-      "t": "list",
-      "ordered": false,
-      "v": [
-        "You’re dealing with medium to large datasets",
-        "Your list contains repeating or structured items",
-        "You want to support features like: Lazy loading",
-        "Pull to refresh",
-        "Pagination",
-        "Item separators"
-      ]
+      "t": "p",
+      "v": "ScrollView is not simply a worse FlatList. FlatList does real work to virtualise: it tracks which rows are visible, renders in batches and mounts and unmounts rows as you scroll. On a screen of ten fixed sections that machinery buys nothing, and a plain ScrollView is easier to lay out, easier to read and easier to debug."
+    },
+    {
+      "t": "h2",
+      "v": "How a React Native FlatList works"
+    },
+    {
+      "t": "p",
+      "v": "FlatList is built on VirtualizedList. It renders an initial batch of rows (initialNumToRender, 10 by default), then renders more in small batches as the user scrolls, and unmounts rows that move far enough outside a render window. That is why a list of thousands of rows can mount as quickly as a list of twenty."
+    },
+    {
+      "t": "p",
+      "v": "It also brings the features a data list usually needs, so you do not build them yourself: pull to refresh, infinite scroll, separators, an empty state, headers and footers, and multiple columns through numColumns. A typical production list looks like this:"
     },
     {
       "t": "code",
-      "v": "import { FlatList, Text } from 'react-native';\n\n<FlatList\n  data={items}\n  renderItem={({ item }) => <Text>{item.name}</Text>}\n  keyExtractor={(item) => item.id.toString()}\n/>"
-    },
-    {
-      "t": "h2",
-      "v": "Common Mistakes to Avoid"
+      "v": "import { memo, useCallback } from 'react';\nimport { FlatList, Text, View } from 'react-native';\n\nconst Row = memo(function Row({ title }) {\n  return (\n    <View style={{ height: 64, justifyContent: 'center' }}>\n      <Text>{title}</Text>\n    </View>\n  );\n});\n\nexport function OrdersList({ orders, refreshing, onRefresh, onLoadMore }) {\n  const renderItem = useCallback(({ item }) => <Row title={item.title} />, []);\n\n  return (\n    <FlatList\n      data={orders}\n      renderItem={renderItem}\n      keyExtractor={(item) => String(item.id)}\n      refreshing={refreshing}\n      onRefresh={onRefresh}\n      onEndReached={onLoadMore}\n      onEndReachedThreshold={0.5}\n      ListEmptyComponent={<Text>No orders yet</Text>}\n    />\n  );\n}"
     },
     {
       "t": "p",
-      "v": "This is the most frequent issue. Developers use ScrollView for a long list of items, which leads to performance problems like:"
+      "v": "Two details matter here. onEndReachedThreshold is measured in visible lengths of the list, so 0.5 asks for more data when the end is within half a screen; the default is 2. And because FlatList is a PureComponent, it only re-renders when its props change. If a row depends on something outside data, such as a selected id, pass it through extraData or the row will not update."
     },
     {
-      "t": "list",
-      "ordered": false,
-      "v": [
-        "App crashes on lower-end devices",
-        "Slow rendering",
-        "Poor scroll experience",
-        "High memory consumption"
+      "t": "p",
+      "v": "One more consequence of virtualisation: a row's internal state is not preserved once it scrolls out of the render window and is unmounted. If a row has a toggle, a text input or an expanded state the user expects to keep, store that state in the item data or in a parent store rather than in useState inside the row."
+    },
+    {
+      "t": "h2",
+      "v": "The React Native FlatList props that actually matter"
+    },
+    {
+      "t": "p",
+      "v": "FlatList is faster than ScrollView out of the box, but most complaints about it being slow come down to a handful of props left at their defaults on a list that needed them set."
+    },
+    {
+      "t": "table",
+      "head": [
+        "Prop",
+        "What it does",
+        "Set it when"
+      ],
+      "rows": [
+        [
+          "keyExtractor",
+          "Returns a unique string key per row, used for caching and re-ordering. The default checks item.key, then item.id, then falls back to the index",
+          "Your items have no key or id field, or the id is a number you want as a string"
+        ],
+        [
+          "getItemLayout",
+          "Tells FlatList each row's length and offset so it can skip measuring",
+          "Every row is the same height (or width, for a horizontal list)"
+        ],
+        [
+          "initialNumToRender",
+          "How many rows render in the first batch. Default 10",
+          "The first screen is slow to appear, or 10 rows does not fill it"
+        ],
+        [
+          "windowSize",
+          "How many visible lengths of content stay rendered. Default 21: the screen plus up to 10 above and 10 below",
+          "Fast scrolling shows blank space (raise it) or memory is too high (lower it)"
+        ],
+        [
+          "maxToRenderPerBatch",
+          "Rows rendered per batch while scrolling. Default 10",
+          "You need to trade fill rate against responsiveness to taps"
+        ],
+        [
+          "removeClippedSubviews",
+          "Detaches off-screen views from the native hierarchy. Default true on Android, false elsewhere",
+          "Long lists, after testing; the docs warn it can cause missing content"
+        ]
       ]
     },
     {
       "t": "p",
-      "v": "If you have more than 20 list items, default to using FlatList."
+      "v": "If every row has a fixed height, getItemLayout is usually the first prop to add, because without it FlatList has to measure rows as it goes. Remember to include the separator height in the offset if you use ItemSeparatorComponent."
+    },
+    {
+      "t": "code",
+      "v": "const ROW_HEIGHT = 64;\n\nconst getItemLayout = (data, index) => ({\n  length: ROW_HEIGHT,\n  offset: ROW_HEIGHT * index,\n  index,\n});\n\n<FlatList data={orders} renderItem={renderItem} getItemLayout={getItemLayout} />"
     },
     {
       "t": "h2",
-      "v": "Performance Comparison: Real-World Results"
+      "v": "Common FlatList vs ScrollView mistakes"
+    },
+    {
+      "t": "h3",
+      "v": "Using ScrollView for hundreds of items"
     },
     {
       "t": "p",
-      "v": "Let’s compare a list of 1000 items:"
+      "v": "This is the most frequent cause of a slow screen. Mapping an API response into a ScrollView works in development with twenty test records, then mounts every row at once when production returns hundreds. If the data comes from a server and has no fixed ceiling, start with FlatList even while the list is short."
     },
     {
-      "t": "list",
-      "ordered": false,
-      "v": [
-        "Loads all 1000 items in memory at once",
-        "Takes longer to mount the component",
-        "Scroll gets laggy or stuck on mid-range devices",
-        "Uses more CPU/GPU resources"
-      ]
-    },
-    {
-      "t": "list",
-      "ordered": false,
-      "v": [
-        "Loads only 10–12 items (based on screen size)",
-        "Scroll stays smooth",
-        "Saves memory and boosts performance",
-        "Supports infinite scrolling and dynamic loading"
-      ]
+      "t": "h3",
+      "v": "Defining renderItem inline"
     },
     {
       "t": "p",
-      "v": "Verdict: FlatList wins for performance every time you're dealing with unbounded or dynamic lists."
+      "v": "Writing renderItem as an arrow function inside the JSX creates a new function on every render of the parent. The React Native performance guide recommends moving it out of the returned JSX and wrapping it in useCallback, as in the example above, and memoising the row component with memo so unchanged rows are skipped."
+    },
+    {
+      "t": "h3",
+      "v": "Missing or unstable keys"
+    },
+    {
+      "t": "p",
+      "v": "If your items have neither key nor id, FlatList falls back to the array index. Index keys break as soon as rows are inserted, removed or re-ordered, which shows up as the wrong row keeping its state or animation. Give every item a stable id and return it as a string from keyExtractor."
+    },
+    {
+      "t": "h3",
+      "v": "Nesting a FlatList inside a ScrollView"
+    },
+    {
+      "t": "p",
+      "v": "Putting a FlatList inside a ScrollView that scrolls the same way triggers this warning in development: \"VirtualizedLists should never be nested inside plain ScrollViews with the same orientation because it can break windowing and other functionality - use another VirtualizedList-backed container instead.\" The outer ScrollView gives the list unlimited height, so it renders everything and you lose the virtualisation you chose it for."
+    },
+    {
+      "t": "p",
+      "v": "The fix is almost always to invert it. Make the FlatList the outer component and move the content that sat above and below it into ListHeaderComponent and ListFooterComponent:"
+    },
+    {
+      "t": "code",
+      "v": "<FlatList\n  data={orders}\n  renderItem={renderItem}\n  keyExtractor={(item) => String(item.id)}\n  ListHeaderComponent={<ProfileHeader />}\n  ListFooterComponent={<Footer />}\n/>"
+    },
+    {
+      "t": "p",
+      "v": "The header scrolls with the list, the list stays virtualised, and there is only one vertical scroll on screen. A horizontal FlatList inside a vertical ScrollView, such as a carousel, does not trigger the warning, because the orientations differ."
     },
     {
       "t": "h2",
-      "v": "FlatList Features Worth Using"
+      "v": "Moving a ScrollView list to FlatList"
+    },
+    {
+      "t": "p",
+      "v": "Most of the lists I am asked to speed up started life as a map inside a ScrollView. The change is small and safe if you take it in order:"
     },
     {
       "t": "list",
-      "ordered": false,
+      "ordered": true,
       "v": [
-        "onEndReached: Trigger pagination when the user scrolls to the end",
-        "ListHeaderComponent & ListFooterComponent: Add headers or footers inside the list",
-        "refreshing & onRefresh: Add pull-to-refresh functionality",
-        "ItemSeparatorComponent: Automatically insert dividers between items",
-        "initialNumToRender: Control how many items render initially"
+        "Replace the ScrollView and the map with a FlatList, passing the array as data and the row markup as renderItem.",
+        "Add a keyExtractor that returns a stable id as a string, and remove the key you were setting on each mapped child.",
+        "Move anything that sat above or below the list into ListHeaderComponent and ListFooterComponent, so there is only one scroll container.",
+        "Extract the row into its own component wrapped in memo, and wrap renderItem in useCallback.",
+        "If a row reads state that is not in data, pass that value to extraData.",
+        "Add getItemLayout if rows are a fixed height, then test on a lower-end Android device rather than only in a simulator."
       ]
     },
     {
       "t": "h2",
-      "v": "When You Might Combine ScrollView and FlatList"
+      "v": "What about SectionList?"
     },
     {
       "t": "p",
-      "v": "In rare cases, you may need to nest scrollable components."
+      "v": "SectionList is the built-in choice when your data falls into groups with headings: contacts by letter, orders by date, bookings by month. It is virtualised in the same way, takes the same performance props, and adds renderSectionHeader. Section headers stick to the top by default on iOS and not on Android; stickySectionHeadersEnabled controls that."
     },
     {
-      "t": "p",
-      "v": "For example:"
-    },
-    {
-      "t": "list",
-      "ordered": false,
-      "v": [
-        "A parent ScrollView for vertical scroll",
-        "A child FlatList for horizontal scrolling (carousel)"
-      ]
-    },
-    {
-      "t": "p",
-      "v": "But be careful! Nested scrolls can lead to gesture conflicts, especially on Android."
+      "t": "code",
+      "v": "<SectionList\n  sections={[\n    { title: 'Today', data: todayOrders },\n    { title: 'Earlier', data: olderOrders },\n  ]}\n  keyExtractor={(item) => String(item.id)}\n  renderItem={({ item }) => <Row title={item.title} />}\n  renderSectionHeader={({ section }) => <Text>{section.title}</Text>}\n/>"
     },
     {
       "t": "h2",
-      "v": "Summary: When to Use Which?"
+      "v": "When FlatList is still not fast enough: FlashList"
+    },
+    {
+      "t": "p",
+      "v": "FlashList is Shopify's open-source list component with a FlatList-style API. Instead of mounting and unmounting rows, it recycles row components as you scroll. The current major version, v2, was rebuilt for React Native's New Architecture and will not run on the old one; projects still on the old architecture need v1. Unlike v1, v2 does not need size estimates, so the old estimatedItemSize prop is no longer used."
+    },
+    {
+      "t": "code",
+      "v": "import { FlashList } from '@shopify/flash-list';\n\n<FlashList\n  data={orders}\n  renderItem={renderItem}\n  keyExtractor={(item) => String(item.id)}\n/>"
+    },
+    {
+      "t": "p",
+      "v": "Its docs strongly recommend a valid keyExtractor, and getItemType helps recycling when a list mixes different row types. Because rows are reused, any useState inside a row can carry over to a different item, so check row state when you migrate. It is also one more dependency to keep current. Most lists that feel slow on FlatList improve once the mistakes above are fixed, so fix those and measure before switching."
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "How many items before I should switch from ScrollView to FlatList?"
+    },
+    {
+      "t": "p",
+      "v": "There is no official number. The better question is whether the count is bounded. A settings screen has a fixed set of rows, so ScrollView is fine. Anything driven by an API has no ceiling, so use FlatList from the start, even while the list is short."
+    },
+    {
+      "t": "h3",
+      "v": "Why is my FlatList showing blank space while I scroll?"
+    },
+    {
+      "t": "p",
+      "v": "Rows are rendering more slowly than you are scrolling. Add getItemLayout if rows are a fixed height, memoise the row component, move renderItem into useCallback, use smaller images, and consider raising windowSize or maxToRenderPerBatch, accepting the extra memory and JavaScript work."
+    },
+    {
+      "t": "h3",
+      "v": "Can FlatList have sticky headers and pull to refresh?"
+    },
+    {
+      "t": "p",
+      "v": "Yes. refreshing and onRefresh add pull to refresh, and FlatList accepts stickyHeaderIndices because it inherits ScrollView props. For headers that belong to groups of rows, SectionList is the cleaner tool."
+    },
+    {
+      "t": "h2",
+      "v": "Summary: which to use"
     },
     {
       "t": "table",
@@ -268,7 +325,7 @@
           "ScrollView"
         ],
         [
-          "A form that scrolls",
+          "A form or detail page that scrolls",
           "ScrollView"
         ],
         [
@@ -280,178 +337,23 @@
           "FlatList"
         ],
         [
-          "Grouped sections with headers",
+          "Grouped rows with section headers",
           "SectionList"
         ],
         [
-          "Thousands of rows, still janky on FlatList",
+          "Very long or complex lists still dropping frames after tuning, on the New Architecture",
           "Consider FlashList"
         ]
       ]
     },
     {
-      "t": "h2",
-      "v": "The FlatList props that actually matter"
+      "t": "p",
+      "v": "Choosing between FlatList and ScrollView is a decision about how the screen will behave in production, not about syntax. Pick ScrollView for short, fixed content and FlatList for data, and the most common performance problems never appear."
     },
     {
       "t": "p",
-      "v": "FlatList is faster than ScrollView out of the box, but most of the complaints about it being slow come down to four props left at their defaults on a list that needed them set."
-    },
-    {
-      "t": "table",
-      "head": [
-        "Prop",
-        "What it does",
-        "Set it when"
-      ],
-      "rows": [
-        [
-          "keyExtractor",
-          "Tells FlatList how to identify a row",
-          "Always, unless your items already have an id field"
-        ],
-        [
-          "getItemLayout",
-          "Removes the need to measure rows",
-          "Every row is the same height. This is the single biggest win"
-        ],
-        [
-          "initialNumToRender",
-          "How many rows to render on first paint",
-          "The first screen is slow to appear"
-        ],
-        [
-          "windowSize",
-          "How many screens of content to keep mounted",
-          "Scrolling shows blank space, or memory is too high"
-        ],
-        [
-          "removeClippedSubviews",
-          "Detaches off-screen views on Android",
-          "Long lists on Android, and test it, it can cause blanking"
-        ]
-      ]
-    },
-    {
-      "t": "p",
-      "v": "If you set only one of these, make it getItemLayout. Without it FlatList has to measure every row as it scrolls, which is exactly the work it exists to avoid."
-    },
-    {
-      "t": "code",
-      "v": "<FlatList\n  data={items}\n  keyExtractor={(item) => item.id}\n  getItemLayout={(_, index) => ({\n    length: ROW_HEIGHT,\n    offset: ROW_HEIGHT * index,\n    index,\n  })}\n  initialNumToRender={10}\n  windowSize={5}\n  renderItem={({ item }) => <Row item={item} />}\n/>"
-    },
-    {
-      "t": "h2",
-      "v": "Stop re-creating renderItem on every render"
-    },
-    {
-      "t": "p",
-      "v": "A common and expensive mistake: defining renderItem inline means a new function on every render, so FlatList cannot tell that nothing changed and re-renders rows it did not need to."
-    },
-    {
-      "t": "code",
-      "v": "// Every render creates a new function.\n<FlatList renderItem={({ item }) => <Row item={item} />} />\n\n// Stable across renders.\nconst renderItem = useCallback(({ item }) => <Row item={item} />, []);\n<FlatList renderItem={renderItem} />"
-    },
-    {
-      "t": "p",
-      "v": "Pair that with React.memo on the row component itself. The two together are usually worth more than any prop you can tune, because they stop the work rather than making it faster."
-    },
-    {
-      "t": "h2",
-      "v": "What about SectionList?"
-    },
-    {
-      "t": "p",
-      "v": "SectionList is FlatList with grouping built in. If your data is naturally split into sections with headers, contacts grouped by letter, orders grouped by date, bookings grouped by month, use it rather than flattening your data and faking the headers inside a FlatList."
-    },
-    {
-      "t": "p",
-      "v": "It takes the same performance props and behaves the same way. The only real difference is the shape of the data it expects."
-    },
-    {
-      "t": "h2",
-      "v": "When FlatList is still not fast enough"
-    },
-    {
-      "t": "p",
-      "v": "On very large lists, or rows with images and complex layouts, FlatList can still show blank space while scrolling fast. The usual next step is FlashList, Shopify's drop-in replacement, which recycles row views instead of mounting and unmounting them."
-    },
-    {
-      "t": "p",
-      "v": "Two honest caveats before you reach for it. It is a third-party dependency, so it is one more thing to keep current. And most lists that feel slow on FlatList are slow because of the mistakes above rather than because of FlatList, so fix those first and measure again. Swapping libraries to avoid setting getItemLayout is not a fix."
-    },
-    {
-      "t": "h2",
-      "v": "Nested scrolling: usually the wrong question"
-    },
-    {
-      "t": "p",
-      "v": "Putting a FlatList inside a ScrollView produces a warning, gesture conflicts on Android, and the loss of the virtualisation you came for, because a FlatList with unbounded height renders everything."
-    },
-    {
-      "t": "p",
-      "v": "The fix is almost always to invert it. Make the FlatList the outer component and put the content that was above it into ListHeaderComponent:"
-    },
-    {
-      "t": "code",
-      "v": "<FlatList\n  data={items}\n  ListHeaderComponent={<ProfileHeader />}\n  ListFooterComponent={<Footer />}\n  renderItem={renderItem}\n/>"
-    },
-    {
-      "t": "p",
-      "v": "The header scrolls with the list, the list stays virtualised, and there is only one scroll gesture on screen. A horizontal FlatList inside a vertical one is fine, because the gestures do not compete."
-    },
-    {
-      "t": "h2",
-      "v": "Frequently asked questions"
-    },
-    {
-      "t": "h3",
-      "v": "How many items before I should switch from ScrollView to FlatList?"
-    },
-    {
-      "t": "p",
-      "v": "There is no exact number, and twenty is a reasonable rule of thumb. The better question is whether the count is bounded. A settings screen has a fixed number of rows forever, so ScrollView is fine at any size. Anything driven by an API has no ceiling, so start with FlatList even while the list is short."
-    },
-    {
-      "t": "h3",
-      "v": "Why is my FlatList showing blank space while I scroll?"
-    },
-    {
-      "t": "p",
-      "v": "It is rendering more slowly than you are scrolling. Set getItemLayout if rows are a fixed height, raise windowSize, memoise the row component, and check whether each row is doing work it could do once, such as formatting dates or building objects inside the render."
-    },
-    {
-      "t": "h3",
-      "v": "Does FlatList work with pull to refresh and infinite scroll?"
-    },
-    {
-      "t": "p",
-      "v": "Both are built in. refreshing and onRefresh give you pull to refresh; onEndReached with onEndReachedThreshold gives you pagination. That is a genuine reason to choose it over ScrollView even for a short list that will grow."
-    },
-    {
-      "t": "h3",
-      "v": "Is ScrollView ever the better choice for performance?"
-    },
-    {
-      "t": "p",
-      "v": "Yes, for small fixed content. FlatList has real overhead: it measures, it tracks what is visible, it mounts and unmounts rows. On ten items that overhead is pure cost with no benefit. ScrollView is not a worse FlatList, it is a different tool."
-    },
-    {
-      "t": "h2",
-      "v": "Final Thoughts"
-    },
-    {
-      "t": "p",
-      "v": "Choosing between FlatList and ScrollView in React Native isn’t just about syntax. It’s about performance, user experience, and scalability."
-    },
-    {
-      "t": "p",
-      "v": "Use ScrollView when the content is short and simple. Use FlatList when you're dealing with data, especially when the list might grow."
-    },
-    {
-      "t": "p",
-      "v": "By making the right choice early, you avoid rework, crashes, and slow UI in production. If you would rather have the lists, and the app around them, built for you, that is my [[React Native development|/services/react-native-development]] work."
+      "v": "If you would rather have the lists, and the app around them, built and tuned for you, see my [[mobile app development in Dubai|/services/mobile-app-development]] services."
     }
   ],
-  "metaTitle": "React Native FlatList vs ScrollView"
+  "metaTitle": "React Native FlatList vs ScrollView: When to Use Each"
 }
