@@ -1,0 +1,163 @@
+{
+  "slug": "how-to-choose-a-mobile-app-developer-in-dubai",
+  "title": "How to Choose a Mobile App Developer in Dubai",
+  "metaTitle": "How to Choose a Mobile App Developer in Dubai",
+  "description": "How to choose a mobile app developer in Dubai: the brief, tech stack, real costs, UAE data rules, CRM integration and the red flags to walk away from.",
+  "published": "2026-10-16",
+  "updatedAt": "2026-10-16",
+  "tags": [
+    "Mobile Apps",
+    "Dubai"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "Most Dubai founders and property developers don't fail at building an app. They fail at choosing who builds it. The wrong mobile app developer in Dubai doesn't just cost money. It costs months of rebuild time, broken lead pipelines and a product that does nothing for the business."
+    },
+    {
+      "t": "p",
+      "v": "I've spent 17 years across marketing, design and development, and I've built mobile products for real estate, including the sales and mobile apps written up in my [[LEOS Developments case studies|/portfolio/leos-developments]]. What I've seen again and again is that the hiring decision goes wrong before a single line of code is written. This guide covers what to get right first: the brief, the tech stack, the real cost picture, UAE data rules, CRM integration and the red flags that separate a solid developer from an expensive mistake."
+    },
+    {
+      "t": "h2",
+      "v": "Before you look for a mobile app developer in Dubai, define the outcome"
+    },
+    {
+      "t": "p",
+      "v": "Most founders brief a developer on features before defining what the app is supposed to do commercially. Generate leads? Qualify buyers? Automate follow-up? Retain tenants? An app without a commercial objective is just an expense. The outcome drives every decision that follows, from platform choice to back end to how your CRM connects to the whole system."
+    },
+    {
+      "t": "p",
+      "v": "Vague briefs produce vague quotes. A property developer who says \"I need something like Bayut\" will receive wildly different estimates, and none of them will be comparable. Lock down your first version before you contact anyone: one core user journey, one target audience and a written set of acceptance criteria. Most scope creep starts with an unclear brief, not with the developer."
+    },
+    {
+      "t": "p",
+      "v": "Data rules are rarely discussed upfront and they should be. An app that collects personal data in the UAE falls under the UAE Personal Data Protection Law, and a lead form inside your app is personal data processing. Ask any developer how they handle consent, privacy notices and where the data is stored before the contract is signed, not after the app is built. For your specific obligations, take advice from a qualified legal professional."
+    },
+    {
+      "t": "h2",
+      "v": "Tech stack: what to ask a mobile app developer in Dubai"
+    },
+    {
+      "t": "p",
+      "v": "For most property apps, startup MVPs and service business tools, a cross-platform framework is the right starting point: one codebase that runs on iPhone and Android, built once and fixed once. I build with [[React Native|/services/react-native-development]]. Flutter is the other serious option, and a good developer should be able to explain why they chose one over the other for your project rather than defaulting to the one they know."
+    },
+    {
+      "t": "p",
+      "v": "Ask specifically about Arabic. Right-to-left support is not just text alignment. It means mirrored navigation, layouts built with start and end spacing rather than left and right, localised dates and currency, and an Arabic speaker reviewing every screen before launch. Ask to see a bilingual app they have delivered."
+    },
+    {
+      "t": "p",
+      "v": "Native development, Swift for [[iOS|/services/ios-app-development]] and Kotlin for [[Android|/services/android-app-development]], makes sense when the app depends on heavy device features, augmented reality, advanced video or platform-specific experiences. For most first versions in this market, it is a premium you don't need yet."
+    },
+    {
+      "t": "p",
+      "v": "The front end is only half the build. The [[back end|/services/app-backend-development]] holds the data, the admin panel your team will use every day and the integrations. A developer who can't explain how a lead from your app will reach HubSpot, Zoho or Salesforce on day one is not the right hire for a marketing-driven product."
+    },
+    {
+      "t": "h2",
+      "v": "Budget and timeline: get the full picture in writing"
+    },
+    {
+      "t": "p",
+      "v": "App quotes in Dubai vary widely, because two quotes for \"an app\" rarely describe the same thing. Instead of comparing headline numbers, compare what each quote includes. My own published starting points are on the [[pricing page|/pricing]]."
+    },
+    {
+      "t": "p",
+      "v": "The costs that rarely appear in the first quote deserve attention:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Ongoing maintenance after launch, including updates for new iOS and Android versions",
+        "Arabic localisation and right-to-left layouts, if they were not in the original scope",
+        "Apple and Google developer accounts, push notification services and cloud hosting",
+        "Third-party APIs, maps and payment providers",
+        "Server-side tracking and CRM integration"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "Ask for an all-in scope document that lists each of these. Also ask how the timeline is split between discovery, design, build, testing and store submission, and plan for store review time: Apple and Google change their submission requirements regularly, and a requirement can change between the start of your build and the day you submit."
+    },
+    {
+      "t": "h2",
+      "v": "Red flags that tell you to walk away before signing"
+    },
+    {
+      "t": "p",
+      "v": "Ask to see real, working products, not only screenshots. That might be a live store listing, a test build you can install on your own phone, or an internal app shown running on a device. Check whether the experience matches what the developer claims. Mock-ups alone don't tell you whether someone can ship."
+    },
+    {
+      "t": "p",
+      "v": "The contract must say that you own the source code once you have paid for it. You should also receive repository access, ownership of the Apple and Google developer accounts, signing keys, deployment documentation and the details of every third-party licence. Vague milestones, full payment upfront and refusal to assign intellectual property are reasons to walk away."
+    },
+    {
+      "t": "p",
+      "v": "Before committing to a full build, pay for a small scoping task: a login screen, one API integration or the data model for one feature. Judge the code quality, the documentation and whether they asked sensible questions. It surfaces most problems while they are still cheap. If you are unsure what to ask, these [[questions to ask a developer before hiring|/questions-to-ask-a-web-developer-before-hiring]] apply to apps too."
+    },
+    {
+      "t": "h2",
+      "v": "Connect the app to your CRM and your ad funnels"
+    },
+    {
+      "t": "p",
+      "v": "An app that doesn't send lead data into your CRM is a marketing dead end. Every lead action in the app, registrations, enquiries, saved properties and call requests, should create a record in your CRM with its source attached. That works best as a direct integration from the app's back end rather than a chain of third-party connectors that can break when one tool changes. I covered the options in [[CRM integration|/services/crm-integration]]."
+    },
+    {
+      "t": "p",
+      "v": "If you run Meta or Google campaigns to drive app installs or leads, connect the ad platforms to the same events your CRM records, using server-side tracking such as Meta's Conversions API. The app captures the enquiry; the CRM confirms whether it was qualified, whether a viewing was booked and whether it became a sale. Sending those outcomes back lets the ad platforms optimise for buyers rather than installs."
+    },
+    {
+      "t": "p",
+      "v": "App installs are a vanity number. The measure that matters is cost per qualified enquiry or booked call, which is the same argument I made about [[what to track instead of platform conversions|/what-to-track-in-marketing-uae]]. Put this in the technical brief before any code is written."
+    },
+    {
+      "t": "h2",
+      "v": "What working with a single partner looks like"
+    },
+    {
+      "t": "p",
+      "v": "The app is one part of a connected system: campaigns driving installs and registrations, tracking feeding the CRM, and follow-up turning enquiries into calls. When one agency builds the app, another runs the ads and a third owns the CRM, the gaps between them cost time and lead quality."
+    },
+    {
+      "t": "p",
+      "v": "That is why I work as one point of contact across [[mobile app development|/services/mobile-app-development]], paid marketing and CRM automation. It suits property developers, founders and service businesses who want one senior person accountable for the whole result rather than a project manager coordinating separate suppliers."
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "How much does it cost to hire a mobile app developer in Dubai?"
+    },
+    {
+      "t": "p",
+      "v": "It depends on scope far more than on the developer's location: platforms, integrations, Arabic support and the admin tools behind the app. Compare quotes by what they include, ask for an all-in scope document, and see my published starting points on the [[pricing page|/pricing]]."
+    },
+    {
+      "t": "h3",
+      "v": "Flutter or React Native for a UAE property app?"
+    },
+    {
+      "t": "p",
+      "v": "Both are capable of production apps in this market. I build with React Native. The more important question is whether the developer has delivered a bilingual Arabic and English app with right-to-left screens reviewed by an Arabic speaker."
+    },
+    {
+      "t": "h3",
+      "v": "What should I check before hiring an app development company in Dubai?"
+    },
+    {
+      "t": "p",
+      "v": "Working products you can try, written confirmation that you own the code and the developer accounts, how they handle UAE data protection, a small paid scoping task before the full build, and a clear answer on how leads from the app will reach your CRM from day one."
+    }
+  ],
+  "words": 1278,
+  "image": {
+    "src": "/blog/app-developer/card.jpg",
+    "alt": "Card on how to choose a mobile app developer in Dubai: choose the developer before the features",
+    "width": 1200,
+    "height": 630
+  }
+}
