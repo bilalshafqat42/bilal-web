@@ -869,7 +869,7 @@ export const serviceDepth: Record<string, Depth> = {
         heading: "Social media marketing in Dubai, by one person rather than a department",
         paragraphs: [
           "Social media marketing in Dubai is sold in two shapes. An agency assigns you an account manager, a strategist, a designer and a community person, and you speak to the account manager. A low-cost freelancer sends you fifteen posts a month and nothing else happens. Neither is what most businesses here actually need.",
-          "What this is: one social media manager who writes the strategy, designs the creative, schedules and posts it, watches the inbox, and runs the paid budget behind it. Fewer people means fewer handovers, and in social that matters more than in most work because the gap between an idea and a post is where tone goes to die.",
+          "What this is: one freelance social media manager in Dubai who writes the strategy, designs the creative, schedules and posts it, watches the inbox, and runs the paid budget behind it. Fewer people means fewer handovers, and in social that matters more than in most work because the gap between an idea and a post is where tone goes to die.",
           "Scope is agreed per month rather than sold as a package with a number of posts on it, because posting volume is the least useful thing to buy. Three posts that say something beat fifteen that fill a grid, and a calendar built to hit a quota is how a brand ends up posting on International Pancake Day.",
         ],
       },
@@ -1035,7 +1035,8 @@ export const serviceDepth: Record<string, Depth> = {
         paragraphs: [
           "Most of the work is Dubai, because most of the clients are. The market is not, and a campaign built only around Dubai search behaviour leaves money on the table in Abu Dhabi, Sharjah and the Northern Emirates, where competition is usually thinner and cost per enquiry lower.",
           "What that changes in practice is targeting and language rather than the strategy. Search volumes differ by emirate, the Arabic to English split differs, and the hours people respond on WhatsApp differ. Those are settings on a campaign, not a different campaign, and they are the sort of thing that gets missed when everything is configured once for the UAE as a single market.",
-          "The title varies with who is asking. A digital marketing specialist is usually the person running the channels. A digital marketing strategist is usually the person deciding which channels, with what budget split, and what counts as the measurement. In a business of this size both are the same person, and that person should be able to explain why the plan is what it is rather than only execute it.",
+          "The title varies with who is asking. A digital marketing specialist is usually the person running the channels. A digital marketing strategist is usually the person deciding which channels, with what budget split, and what counts as the measurement. In a business of this size both are the same person, and whether you call them a digital marketing expert in Dubai or something else, that person should be able to explain why the plan is what it is rather than only execute it.",
+          "A digital marketing strategy in Dubai is worth having in writing before any money is spent: who the buyer is, which channels reach them, how the budget is split between them, and which number decides whether it worked. It does not need to be long. It needs to be specific enough that you can check the work against it a month later.",
         ],
       },
       {

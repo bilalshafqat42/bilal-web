@@ -263,6 +263,11 @@ export const megaMenuGroups: MegaMenuGroup[] = [
           "Yours, under your billing, with you as owner. This matters more than it sounds: an agency that builds campaigns in its own account keeps the conversion history when the relationship ends, and you start from zero with whoever comes next. Your data should stay yours.",
       },
       {
+        question: "Should I hire a freelancer or a Google Ads agency in Dubai?",
+        answer:
+          "It depends on how much there is to manage. A Google Ads agency in Dubai gives you capacity, cover when someone is away, and a team that can run many accounts, feeds and formats at once. A freelancer gives you the person who built the campaigns reading your search terms each week, with no account manager in between. If you run several brands or large budgets across many markets, an agency is often the better fit. If you have one account and want the person doing the work on the call, a freelancer usually is. Either way, make sure the account is under your ownership.",
+      },
+      {
         question: "How soon will I see results?",
         answer:
           "Clicks immediately, useful conclusions in weeks. The first fortnight is mostly learning which searches you are actually showing for, which is rarely what anyone expected. Judge it on cost per qualified enquiry after a month, not on the dashboard after three days.",
@@ -428,6 +433,11 @@ export const megaMenuGroups: MegaMenuGroup[] = [
         question: "Why WhatsApp?",
         answer:
           "It is the default business channel across the UAE. Broadcast campaigns, automated replies and lead capture flows there reach people where they already are, rather than where a marketing textbook says they should be.",
+      },
+      {
+        question: "Do you work as a digital marketing strategist or do you run the campaigns too?",
+        answer:
+          "Both, and that is the point of hiring one person. As a digital marketing strategist in Dubai I decide which channels, with what budget split and what counts as success. As a digital marketing specialist in Dubai I then build and run the campaigns, the landing pages and the tracking behind them. If you already have someone in-house running the channels, a one-off review session is the lighter way to get the strategy without the execution.",
       },
     ],
     accent: "gold",
@@ -1165,12 +1175,17 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       {
         question: "How is this different from a design agency?",
         answer:
-          "You work with the person designing it. There is no account manager translating your feedback and no junior doing the work the pitch was won on. The trade is capacity: one person has a ceiling. If you need several designs a week across several brands, an agency is the better answer.",
+          "Hiring a freelance web designer in Dubai means you work with the person designing it. There is no account manager translating your feedback and no junior doing the work the pitch was won on. The trade is capacity: one person has a ceiling. If you need several designs a week across several brands, an agency is the better answer.",
       },
       {
         question: "Do you do the copy as well?",
         answer:
           "I write the structure and the working copy, because layout and words are the same decision. You cannot design a page around content that does not exist yet. If you have a writer or a brand voice, I design to it and say where the structure is fighting the words.",
+      },
+      {
+        question: "Is responsive website design included?",
+        answer:
+          "Always, and not as an extra. Responsive website design here means the phone layout is designed as deliberately as the desktop one, with the breakpoints drawn in the file rather than left for a developer to guess. Most visitors arrive on a phone, so that is usually the layout designed first.",
       },
     ],
     items: [
@@ -1693,6 +1708,11 @@ export const megaMenuGroups: MegaMenuGroup[] = [
         question: "What does a CRO engagement involve?",
         answer:
           "An audit of your pages against real user behaviour, a prioritised list of changes, then implementing and testing them rather than guessing which might help.",
+      },
+      {
+        question: "Why hire a freelance video editor in Dubai rather than a production house?",
+        answer:
+          "When the footage exists or the shoot is already arranged, and what you need is the edit and the cutdowns for each placement. A freelance video editor in Dubai gives you the person cutting the film on the feedback call, and turnaround in days from supplied footage. A production house is the better answer when you need the crew, the cameras and the shoot planned as well, and I can work alongside one on the edit.",
       },
     ],
     accent: "cyan",

@@ -88,6 +88,11 @@ export const SERVICE_CONTENT_DATES: Record<string, string> = {
   "figma-design": "2026-10-16",
   "crm-marketing-automation": "2026-10-16",
   "mobile-app-development": "2026-10-16",
+  // Three more the same day: an FAQ or sentence each for strategist,
+  // agency-comparison and freelance-manager questions buyers search for.
+  "digital-marketing": "2026-10-16",
+  "google-ads": "2026-10-16",
+  "social-media-marketing": "2026-10-16",
 };
 
 export function serviceContentDate(slug: string): string {
