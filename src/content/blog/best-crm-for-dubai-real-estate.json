@@ -72,7 +72,7 @@
     },
     {
       "t": "p",
-      "v": "I set up HubSpot, Zoho and Salesforce. If you push me for one answer without seeing your setup: Zoho if budget leads and someone will own the configuration, HubSpot if marketing leads and you want the reporting to work without a specialist. Neither is the right answer for every business, which is why the real work is the next three sections rather than the choice itself."
+      "v": "I set up HubSpot, Zoho and Salesforce. If you push me for one answer without seeing your setup: Zoho if budget leads and someone will own the configuration, HubSpot if marketing leads and you want the reporting to work without a specialist. Neither is the right answer for every business, which is why the real work is the next three sections rather than the choice itself. How each lead source reaches whichever CRM you choose is covered on my [[CRM integration|/services/crm-integration]] page."
     },
     {
       "t": "h2",
@@ -191,5 +191,5 @@
       "v": "Last updated 4 October 2026. AED figures are my own published rates, not a market survey."
     }
   ],
-  "words": 1081
+  "words": 1097
 }

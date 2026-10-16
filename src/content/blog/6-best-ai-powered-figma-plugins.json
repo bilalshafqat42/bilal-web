@@ -8,7 +8,7 @@
     "Figma",
     "UI UX Design"
   ],
-  "words": 997,
+  "words": 1022,
   "blocks": [
     {
       "t": "p",
@@ -205,7 +205,7 @@
     },
     {
       "t": "p",
-      "v": "They are strongest on first drafts and repetitive work: realistic content in a mockup, a dark version of an existing screen, a clean image cutout, alternative wording for a button. That is real time saved."
+      "v": "They are strongest on first drafts and repetitive work: realistic content in a mockup, a dark version of an existing screen, a clean image cutout, alternative wording for a button. That is real time saved. Structuring a file so a developer can build from it is still manual work, and it is most of what my [[Figma design|/services/figma-design]] service covers."
     },
     {
       "t": "p",

@@ -7,7 +7,7 @@
   "tags": [
     "Figma"
   ],
-  "words": 1009,
+  "words": 1030,
   "blocks": [
     {
       "t": "h2",
@@ -91,7 +91,7 @@
     },
     {
       "t": "p",
-      "v": "Data to Design supports various content sources, making it a versatile tool for designers working with different types of data. Whether you're designing for e-commerce, content-heavy websites, or data-driven applications, this plugin can significantly streamline your workflow and improve the accuracy of your designs."
+      "v": "Data to Design supports various content sources, making it a versatile tool for designers working with different types of data. Whether you're designing for e-commerce, content-heavy websites, or data-driven applications, this plugin can significantly streamline your workflow and improve the accuracy of your designs. If you need a Figma file a developer can build a website from, that is what my [[Figma design|/services/figma-design]] service covers."
     },
     {
       "t": "h2",

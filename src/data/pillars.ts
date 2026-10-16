@@ -197,7 +197,7 @@ export const pillars: Pillar[] = [
     sections: [
       {
         title: "Website Design & Development",
-        body: "Websites built on Next.js for speed and SEO out of the box, or on WordPress, Squarespace or Wix where you want to update content yourself, designed around conversion rather than just visual polish.",
+        body: "Websites built on Next.js for speed and SEO out of the box, or on WordPress, Wix, Squarespace or Strapi where you want to update content yourself, designed around conversion rather than just visual polish.",
         bullets: ["High-converting landing pages", "SEO-ready page structure", "CMS integration"],
       },
       {
@@ -209,6 +209,158 @@ export const pillars: Pillar[] = [
         title: "Custom Marketing Tools & Calculators",
         body: "Bespoke tools, calculators, and internal dashboards built on the MERN stack (MongoDB, Express, React, Node.js), with PostgreSQL where the data is relational, when an off-the-shelf product doesn't fit how your team actually works.",
         bullets: ["Custom marketing applications", "Internal dashboards & tools", "APIs & third-party integrations"],
+      },
+      // The sections below back the CMS and custom development pages added
+      // 2026-10-16 (see `serviceCategories.ts`). They live in this pillar
+      // because a page's "What this covers" list resolves to pillar sections,
+      // and this is the pillar the work belongs to.
+      {
+        title: "CMS Selection & Planning",
+        body: "Choosing the platform against four things before any design starts: who edits the site and how often, how much content it carries and in how many languages, what the campaigns need from it (landing pages, tracking, forms that feed a CRM), and what it will cost to run in two years rather than just to launch.",
+        bullets: ["A platform recommendation with the trade-offs written down", "Content model and page templates planned up front", "Tracking and CRM requirements set before the build"],
+      },
+      {
+        title: "CMS Migration & Redirects",
+        body: "Moving a site between platforms without losing what it has earned. Every URL is mapped and either kept or redirected, page titles and descriptions come across, and forms, GA4 and the Meta Pixel are tested on the new site before the domain switches.",
+        bullets: ["URL map and 301 redirects", "Content and metadata migration", "Tracking and form tests before go-live"],
+      },
+      {
+        title: "Editor Training & Handover",
+        body: "A CMS is only worth having if the people who edit it can use it without calling anyone. Handover means your editor adding a page and changing a form in front of me, a short written guide for the tasks they will repeat, and every account in your name.",
+        bullets: ["Hands-on training for your editors", "A short written guide for repeat tasks", "Accounts, domain and hosting in your name"],
+      },
+      {
+        title: "Custom WordPress Themes",
+        body: "A theme built for your site rather than a multipurpose theme bought for its demo. It loads only what your pages use, matches the design exactly, and gives editors fields and blocks that fit your content instead of a hundred options they will never need.",
+        bullets: ["Theme built from your design, not a demo", "Blocks or ACF fields matched to your content", "No plugin for what a few lines of code can do"],
+      },
+      {
+        title: "Elementor & ACF Builds",
+        body: "Elementor where your team wants to build layouts themselves, set up with global colours, fonts and saved sections so new pages stay on brand. Advanced Custom Fields where they edit structured content such as projects, team members or listings, so the layout cannot be broken by accident.",
+        bullets: ["Elementor with global styles and saved templates", "ACF fields and custom post types", "Editing set up around your marketing team"],
+      },
+      {
+        title: "WordPress Speed, SEO & Lead Forms",
+        body: "The parts that decide whether the site earns its keep: pages that load fast on a phone, titles, schema and redirects handled properly, and forms that send every enquiry to your CRM with its campaign source, alongside GA4 and Meta Pixel events through Google Tag Manager.",
+        bullets: ["Core Web Vitals checked on mobile", "Technical SEO and redirects", "Forms into HubSpot, Zoho or Salesforce, with tracking"],
+      },
+      {
+        title: "Wix Website Setup",
+        body: "A Wix site structured before it is designed: the pages your buyers actually need, navigation that leads to an enquiry, and a layout checked on a phone first. Built in the Wix editor or Wix Studio, so you can keep editing it yourself after handover.",
+        bullets: ["Site structure planned around enquiries", "Mobile layout checked page by page", "Handover so you can edit it yourself"],
+      },
+      {
+        title: "Wix Campaign Landing Pages",
+        body: "Pages built for a specific ad campaign rather than sending it to the homepage: one offer, one form, the same promise as the ad, and a thank-you page the ad platforms can count as a conversion. Kept out of the site menu, so campaign traffic does not wander.",
+        bullets: ["One page per campaign offer", "Short forms built for phones", "Thank-you pages for conversion tracking"],
+      },
+      {
+        title: "Wix SEO & Tracking",
+        body: "Titles, descriptions, URLs and redirects set on every page, Google Search Console verified, and GA4, Google Tag Manager and the Meta Pixel connected through Wix's marketing integrations, so you can see which campaign brought each enquiry.",
+        bullets: ["Page-level SEO settings and redirects", "GA4, GTM and Meta Pixel connected", "Search Console verified, sitemap submitted"],
+      },
+      {
+        title: "Squarespace Website Design",
+        body: "A template used as a starting point, not a finished design. Typography, spacing, colour and image treatment are set at site level so your brand reads through, with custom CSS where the built-in options run out.",
+        bullets: ["Site styles set to your brand", "Custom CSS where the template stops", "Every page checked on a phone"],
+      },
+      {
+        title: "Squarespace Portfolio Sites",
+        body: "Portfolio and project pages for work that sells on images: galleries that load quickly, project pages with enough words to be found in search, and a clear route from admiring the work to asking about it.",
+        bullets: ["Project and gallery pages", "Images sized and described for speed and search", "An enquiry route on every project"],
+      },
+      {
+        title: "Squarespace Lead Capture & Tracking",
+        body: "Forms that ask only what you need and send it somewhere useful, plus GA4, the Meta Pixel and Google Tag Manager installed so each enquiry can be traced to the campaign or search that produced it.",
+        bullets: ["Short enquiry forms", "GA4, GTM and Meta Pixel", "Form entries passed to email or a CRM"],
+      },
+      {
+        title: "Strapi Content Modelling",
+        body: "Designing the content types before anything is built: what a project, a unit, an agent or a location is made of, which fields are required, and how they relate. Done well, editors fill in forms that make sense to them and every page is built from consistent data.",
+        bullets: ["Content types and relations planned with your team", "Required fields and validation", "Draft and publish workflow"],
+      },
+      {
+        title: "Next.js Front End for Strapi",
+        body: "A Next.js site that reads from Strapi's API and renders pages on the server, so they are fast on a phone and readable by search engines and AI crawlers. Pages refresh when an editor publishes, without a developer redeploying the site.",
+        bullets: ["Server-rendered Next.js pages", "Refresh on publish through webhooks", "SEO fields controlled by editors"],
+      },
+      {
+        title: "Multilingual Content & Roles",
+        body: "Strapi's built-in internationalisation for English, Arabic and any other language you sell in, with each translation linked to its original. Roles and permissions so an agent can update a listing, a marketer can publish a page, and nobody can change what they should not.",
+        bullets: ["English, Arabic and more", "Roles and permissions per team", "One media library across languages"],
+      },
+      {
+        title: "MERN Stack Applications",
+        body: "Web applications on MongoDB, Express, React and Node.js, with PostgreSQL where the data is relational: portals people log into, dashboards that read live data from a CRM, and internal tools that replace a spreadsheet the sales team has outgrown.",
+        bullets: ["Client and broker portals", "Dashboards on live CRM data", "APIs and third-party integrations"],
+      },
+      {
+        title: "React & Next.js Front Ends",
+        body: "Fast, server-rendered sites and landing pages in Next.js and React, written in TypeScript, with tracking, forms and CRM connections built into the code rather than added through plugins. PHP where an existing system or host calls for it.",
+        bullets: ["Next.js and React in TypeScript", "Server rendering for speed and search", "PHP for existing systems"],
+      },
+      // The sections below back the React Native, iOS, Android and app back-end
+      // pages added 2026-10-16 (see `serviceCategories.ts`). Every one is
+      // React Native: no Swift or Kotlin claim anywhere in them.
+      {
+        title: "React Native App Builds",
+        body: "iOS and Android apps built from one React Native codebase in TypeScript, using Expo where it fits, with each platform's own navigation and conventions respected rather than one layout forced onto both.",
+        bullets: ["One codebase for iOS and Android", "TypeScript and Expo", "Platform conventions respected"],
+      },
+      {
+        title: "Real Estate Sales Apps",
+        body: "Apps for property sales teams: 3D views of buildings and floors, unit availability read from the CRM, live project data such as pricing and progress, and brochures shared from inside the app so the follow-up leaves the meeting with the buyer.",
+        bullets: ["3D property and floor views", "Availability read from the CRM", "Live project data and sharing"],
+      },
+      {
+        title: "App Performance & Release",
+        body: "Apps that stay smooth on mid-range phones, with virtualised lists, sized images and fewer re-renders, then builds, beta testing and store releases managed through launch and the updates after it.",
+        bullets: ["Performance on mid-range devices", "Beta testing on both platforms", "Release and update process"],
+      },
+      {
+        title: "iPhone & iPad App Builds",
+        body: "iOS apps for iPhone and iPad built in React Native, with layouts designed for the larger iPad screen where a sales team presents from a tablet, rather than a phone layout stretched to fit.",
+        bullets: ["iPhone and iPad layouts", "Apple's own interface components", "Tablet presentation set-ups"],
+      },
+      {
+        title: "App Store Submission & Review",
+        body: "Submission through App Store Connect under your Apple Developer account: TestFlight betas, screenshots and listing copy, privacy details, and the checks that prevent the common App Review rejections.",
+        bullets: ["TestFlight beta testing", "Listing, screenshots and privacy labels", "App Review preparation"],
+      },
+      {
+        title: "iOS Push Notifications & Tracking",
+        body: "Push notifications through Apple's service, asked for at a moment that makes sense to the user, plus install and in-app event tracking set up to respect App Tracking Transparency.",
+        bullets: ["Push notifications", "Install and in-app event tracking", "App Tracking Transparency handled"],
+      },
+      {
+        title: "Android App Builds",
+        body: "Android apps built in React Native from the same code as iOS, with Android's own back behaviour, permissions, notification channels and layouts handled properly rather than copied from the iPhone version.",
+        bullets: ["Same codebase as iOS", "Android navigation and permissions", "Notification channels"],
+      },
+      {
+        title: "Google Play Submission & Play Console",
+        body: "Publishing through Google Play Console under your account: app bundles, testing tracks, staged rollouts, the Data safety form, and a store listing written to convert rather than filled in at the end.",
+        bullets: ["Testing tracks and staged rollouts", "Data safety and content rating", "Store listing copy and graphics"],
+      },
+      {
+        title: "Android Device Testing & Tracking",
+        body: "Testing on real Android phones across ages, sizes and makers, including budget devices and large font settings, then install attribution and in-app events connected to your campaigns and CRM.",
+        bullets: ["Real-device testing across the range", "Install referrer attribution", "Events into GA4 and ad platforms"],
+      },
+      {
+        title: "Firebase App Back Ends",
+        body: "Firebase for apps that need realtime data, logins and notifications quickly: Firestore, Authentication, Cloud Functions and Cloud Messaging, with security rules written before launch rather than after a scare.",
+        bullets: ["Firestore and Authentication", "Cloud Functions and messaging", "Security rules from day one"],
+      },
+      {
+        title: "Node & Express APIs on MongoDB",
+        body: "Node and Express APIs on MongoDB for apps with complex data, reporting and integrations: validated, versioned and logged, so the older app versions still on people's phones keep working.",
+        bullets: ["REST APIs with validation", "Versioning for older app releases", "Indexes and aggregation for reports"],
+      },
+      {
+        title: "Admin Panels & CRM Sync",
+        body: "A web admin panel your team runs the app from, built in React or Next.js, and connections to your CRM so leads, bookings and users created in the app reach the sales team without anyone copying them across.",
+        bullets: ["Admin panel with roles", "CRM sync for leads and bookings", "Push notification sending"],
       },
     ],
     faqs: [
@@ -307,6 +459,22 @@ export const pillars: Pillar[] = [
         body: "Once traffic is arriving, CRO work looks at what's actually stopping visitors from converting: page structure, copy, forms, and load speed, and tests changes against real data.",
         bullets: ["Landing page audits", "A/B testing", "Form & funnel optimisation"],
       },
+      // Back the Figma page added 2026-10-16.
+      {
+        title: "Website & Landing Page Design in Figma",
+        body: "Websites and campaign landing pages designed in Figma on a phone-first layout, with every state drawn and the real copy in place, so the file shows exactly what will be built.",
+        bullets: ["Phone-first layouts", "States and breakpoints drawn", "Real copy, not placeholder text"],
+      },
+      {
+        title: "Figma Prototypes & Design Systems",
+        body: "Clickable prototypes for stakeholders to try and sign off, and a component library with variables and variants so every screen is assembled from the same parts.",
+        bullets: ["Clickable prototypes", "Components, variants and variables", "A shared library across files"],
+      },
+      {
+        title: "Figma to Website Handover",
+        body: "Figma to website builds in WordPress or Next.js, with design tokens carried into code, assets exported at the right sizes, and the build checked against the file before launch.",
+        bullets: ["Figma to WordPress or Next.js", "Tokens carried into CSS", "Build reviewed against the design"],
+      },
     ],
     faqs: [
       {
@@ -367,6 +535,83 @@ export const pillars: Pillar[] = [
         title: "Growth Marketing",
         body: "Running structured experiments across acquisition, conversion, and retention together, not just one channel in isolation, so a win in one place compounds instead of staying stuck there.",
         bullets: ["Cross-channel experimentation", "Full-funnel testing, not just ads", "Retention & lifecycle campaigns"],
+      },
+      // The sections below back the CRM integration hub and its four platform
+      // pages, added 2026-10-16 (see `serviceCategories.ts`).
+      {
+        title: "CRM Lead Source Integration",
+        body: "Every lead source connected to one CRM with its origin attached: website and landing page forms, Meta and Google lead forms, WhatsApp, and portal or partner feeds where they exist. Each one is tested end to end before launch, so nothing arrives without its campaign.",
+        bullets: ["Forms, lead ads and WhatsApp into one CRM", "UTMs and click IDs kept on every lead", "End-to-end tests for each source"],
+      },
+      {
+        title: "Lead Routing & Deduplication",
+        body: "Rules that decide who gets each lead and what counts as the same person: assignment by project, language or rotation, alerts when a lead waits too long, and duplicates matched on phone and email before they become three records for three agents.",
+        bullets: ["Assignment rules and rotation", "Response-time alerts", "Duplicate matching on phone and email"],
+      },
+      {
+        title: "Unified Lead Reporting",
+        body: "Ad spend from the platforms joined to outcomes in the CRM, so reports show leads, qualified leads and cost per qualified lead by source and campaign, and the qualified ones go back to Google and Meta as conversions.",
+        bullets: ["Leads and qualified leads by source", "Cost per qualified lead", "Offline conversions back to the ad platforms"],
+      },
+      {
+        title: "Zoho CRM Setup for Real Estate",
+        body: "Zoho CRM configured for property: modules and fields for projects, units and brokers, lead stages that match how your sales team works, and assignment rules so each enquiry reaches the right person.",
+        bullets: ["Custom modules for projects and units", "Lead stages and Blueprint processes", "Assignment rules and roles"],
+      },
+      {
+        title: "Meta Lead Ads into Zoho",
+        body: "Facebook and Instagram lead forms connected to Zoho CRM, so every lead arrives within seconds with its campaign, ad set and form attached, alongside website enquiries and other social lead forms.",
+        bullets: ["Native or webhook connection", "Phone numbers in international format", "Campaign and ad attached to the lead"],
+      },
+      {
+        title: "Zoho WhatsApp Follow-up Automation",
+        body: "A first WhatsApp message sent automatically when a lead arrives, using an approved template, with replies logged against the contact in Zoho and follow-up tasks created for the agent who owns it.",
+        bullets: ["Approved WhatsApp templates", "Conversations logged in Zoho", "Follow-up tasks and reminders"],
+      },
+      {
+        title: "HubSpot Forms & Tracking",
+        body: "Website and landing page forms connected to HubSpot, whether they are HubSpot forms or your own, with the tracking code installed so each contact carries its original source, campaign and page history.",
+        bullets: ["HubSpot or custom forms", "Original source and UTM properties", "Tracking code alongside GA4 and GTM"],
+      },
+      {
+        title: "HubSpot Lifecycle Stages & Workflows",
+        body: "Lifecycle stages and lead status defined with your sales team, then workflows that move contacts on real triggers, assign owners, create tasks and send the follow-up nobody has to remember.",
+        bullets: ["Stage definitions agreed with sales", "Owner rotation and tasks", "Nurture and follow-up workflows"],
+      },
+      {
+        title: "HubSpot Ads & Reporting",
+        body: "Google, Meta and LinkedIn ad accounts connected to HubSpot, lead form submissions synced, stage changes sent back as conversions, and dashboards that show cost per qualified lead by source.",
+        bullets: ["Ads integration and conversion events", "Lead form sync", "Dashboards marketing and sales share"],
+      },
+      {
+        title: "Marketing Cloud Email Design",
+        body: "EDMs designed to your Salesforce Marketing Cloud templates and content blocks, from launch announcements to sales offer emails, built to read properly on a phone and across the main email clients.",
+        bullets: ["Template-based EDM design", "Sales offer content", "Rendering and send tests"],
+      },
+      {
+        title: "CloudPages & Sales Data Pages",
+        body: "CloudPages built on Marketing Cloud data: landing pages and forms for campaigns, and pages that present company sales data to sales managers inside a custom application.",
+        bullets: ["Campaign landing pages and forms", "Sales data pages for managers", "Access limited to the right people"],
+      },
+      {
+        title: "Campaign & Lead Capture into Salesforce",
+        body: "Website forms and ad lead forms creating leads in Salesforce with their campaign attached, through Web-to-Lead, the API or a connector, with GA4 and the ad platforms kept in step.",
+        bullets: ["Web-to-Lead and API forms", "Campaign source on every lead", "Duplicate checks before creation"],
+      },
+      {
+        title: "Custom CRM Lead Intake & Pipelines",
+        body: "A CRM built around your process: lead intake from every source, pipelines and stages that match how you sell, roles for agents, managers and marketing, and a record of every change.",
+        bullets: ["Lead intake from forms, ads and WhatsApp", "Pipelines and roles built to your process", "An audit trail on every record"],
+      },
+      {
+        title: "Attribution & Ad Platform Syncs",
+        body: "Campaign, ad and click IDs stored on every lead, ad spend pulled from Google Ads and Meta through their APIs, and qualified leads sent back as conversions, so cost per qualified lead is calculated rather than estimated.",
+        bullets: ["UTMs and click IDs on every lead", "Spend synced from the ad platforms", "Conversions sent back"],
+      },
+      {
+        title: "Custom Sales Reporting Dashboards",
+        body: "Dashboards built for the questions management actually asks: leads and qualified leads by source, response times by agent, pipeline by project and cost per sale, on the web or in an app.",
+        bullets: ["Source and campaign reports", "Agent response times", "Pipeline by project"],
       },
     ],
     faqs: [

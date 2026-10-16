@@ -18,7 +18,38 @@ import { search } from "../src/lib/searchRank.ts";
 const MUST_FIND = [
   ["wordpress", "WordPress"],
   ["squarespace", "Squarespace"],
-  ["wix", "Squarespace"],
+  // Was "Squarespace" until 2026-10-16, when the answer for Wix lived in a
+  // shared Squarespace-or-Wix FAQ. Wix has its own page now and is the right
+  // destination for its own name.
+  ["wix", "Wix"],
+  // The CMS and custom development pages, added 2026-10-16.
+  ["strapi", "Strapi"],
+  ["headless cms", "headless CMS"],
+  ["elementor", "Elementor"],
+  ["wordpress developer", "WordPress developer"],
+  ["netlify", "Netlify"],
+  ["custom web development", "Custom Web Development"],
+  // The CRM integration, app and Figma sub-pages, added 2026-10-16. Each
+  // platform name must reach its own page rather than the CRM or mobile hub.
+  ["zoho", "Zoho"],
+  ["hubspot", "HubSpot"],
+  ["salesforce", "Salesforce"],
+  ["marketing cloud", "Marketing Cloud"],
+  ["cloudpages", "CloudPages"],
+  ["crm integration", "CRM integration"],
+  ["custom crm", "Custom CRM"],
+  ["testflight", "TestFlight"],
+  ["google play", "Google Play"],
+  ["kotlin", "Kotlin"],
+  ["firebase", "Firebase"],
+  ["firebase or mongodb", "Firebase"],
+  // "backend" as one word: the copy says "back end" and the Node articles
+  // own the word, so without the FAQ that spells it this way the page that
+  // sells the work was not reachable by it.
+  ["app backend", "backend"],
+  ["react native developer", "React Native"],
+  ["figma to website", "Figma"],
+  ["figma designer", "Figma"],
   ["postgres", "PostgreSQL"],
   ["postgresql", "PostgreSQL"],
   ["do you build wordpress sites", "WordPress"],

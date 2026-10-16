@@ -33,7 +33,7 @@ const stack = [
       "Next.js, React & React Native",
       "MERN (MongoDB, Express, React, Node)",
       "PostgreSQL",
-      "WordPress, Squarespace & Wix",
+      "WordPress (Elementor & ACF), Wix, Squarespace & Strapi",
       "Tailwind CSS",
     ],
   },
@@ -43,7 +43,14 @@ const stack = [
   },
   {
     title: "Design",
-    items: ["UI/UX & product design", "Branding & brand guidelines", "Social & campaign creative", "Video editing"],
+    items: [
+      "UI/UX & product design",
+      "Branding & brand guidelines",
+      "Social & campaign creative",
+      "Video editing",
+      "Figma, Illustrator, InDesign & Photoshop",
+      "Premiere Pro & CapCut",
+    ],
   },
 ];
 

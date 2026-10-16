@@ -949,7 +949,7 @@ export const clients: Client[] = [
       },
       {
         heading: "Cross-platform mobile app",
-        body: "A React Native app shipped to both iOS and Android from one codebase, covering sign-in with a guest route, the developments list, and the same enquiry and call actions the launch pages use.",
+        body: "A React Native app built for iOS and Android from one codebase, covering sign-in with a guest route, the developments list, and the same enquiry and call actions the launch pages use.",
       },
       {
         heading: "Brand social creative",
@@ -1081,7 +1081,7 @@ export const clients: Client[] = [
           {
             question: "Why one codebase instead of separate iOS and Android apps?",
             answer:
-              "Economics. Two native codebases means writing, testing and maintaining every screen twice, which for a business app of this kind buys very little a buyer would notice. React Native gives both stores from one build. Where an app genuinely needs platform-specific native work I say so rather than take the project.",
+              "Economics. Two native codebases means writing, testing and maintaining every screen twice, which for a business app of this kind buys very little a buyer would notice. React Native gives iOS and Android from one build. Where an app genuinely needs platform-specific native work I say so rather than take the project.",
           },
           {
             question: "Who designed the screens, and who built them?",

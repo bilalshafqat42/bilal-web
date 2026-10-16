@@ -12,6 +12,8 @@
  * To add a post: `node scripts/new-post.mjs <slug>` writes the file and the two
  * lines here. See docs/adding-a-blog-post.md.
  */
+import p_google_tag_manager_update_october_2026 from "./google-tag-manager-update-october-2026.json";
+import p_what_to_track_in_marketing_uae from "./what-to-track-in-marketing-uae.json";
 import p_your_landing_page_is_part_of_your_ad_spend from "./your-landing-page-is-part-of-your-ad-spend.json";
 import p_cost_per_lead_is_fine_sales_team_unhappy from "./cost-per-lead-is-fine-sales-team-unhappy.json";
 import p_how_much_should_a_dubai_business_spend_on_digital_marketing from "./how-much-should-a-dubai-business-spend-on-digital-marketing.json";
@@ -92,6 +94,8 @@ import p_react_js_state_management_for_beginners from "./react-js-state-manageme
 
 /** Untyped here; `src/data/blogPosts.ts` applies the `BlogPost` type. */
 export const postsInOrder = [
+  p_google_tag_manager_update_october_2026,
+  p_what_to_track_in_marketing_uae,
   p_your_landing_page_is_part_of_your_ad_spend,
   p_cost_per_lead_is_fine_sales_team_unhappy,
   p_how_much_should_a_dubai_business_spend_on_digital_marketing,

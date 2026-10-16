@@ -6,13 +6,18 @@ import { ArrowRight } from "lucide-react";
 import Contact from "@/components/sections/Contact";
 import PortfolioShowcase from "@/components/portfolio/PortfolioShowcase";
 import ClientLogoRow from "@/components/portfolio/ClientLogoRow";
-import { megaMenuGroups, accentClasses, spellCount } from "@/data/pillars";
+import { megaMenuGroups, accentClasses, spellCount, menuGroups, subPagesOf } from "@/data/pillars";
 import { SITE_URL, breadcrumbNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
 import Eyebrow from "@/components/ui/Eyebrow";
 
 /** Read from the data, never typed as a word. See `spellCount` — the page said
  *  "eight" above nine cards for as long as the ninth category existed. */
-const count = spellCount(megaMenuGroups.length);
+// Counts the menu's pages, the ones shown as cards below. The four CMS platform
+// pages (2026-10-16) are listed under their hub rather than as cards of their
+// own, so counting them would put a number above the grid that the grid does
+// not show, which is the fault this constant was created to end.
+const cards = menuGroups();
+const count = spellCount(cards.length);
 const Count = count.charAt(0).toUpperCase() + count.slice(1);
 
 export const metadata: Metadata = pageMetadata({
@@ -72,7 +77,7 @@ export default function ServicesPage() {
         <section className="relative section-tight">
           <div className="site-container">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-              {megaMenuGroups.map((pillar) => {
+              {cards.map((pillar) => {
                 const accent = accentClasses[pillar.accent];
                 return (
                   <Link
@@ -113,6 +118,33 @@ export default function ServicesPage() {
                 );
               })}
             </div>
+
+            {/* Pages that sit under a card rather than beside it: the four CMS
+                platforms under CMS Development, and since 2026-10-16 the CRM
+                integration pages, the four app pages and Figma. Derived from
+                `parent`, so a platform page added to the data appears here
+                without this file changing. A separate block because a card is
+                one link and cannot hold four more inside it. */}
+            {cards
+              .filter((g) => subPagesOf(g.slug).length)
+              .map((g) => (
+                <div key={g.slug} className="mt-10 r-card surface-1 p-6 sm:p-8">
+                  <h2 className="t-h4 text-ink">{g.subPagesHeading ?? `${g.title} by platform`}</h2>
+                  <ul className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                    {subPagesOf(g.slug).map((sub) => (
+                      <li key={sub.slug}>
+                        <Link
+                          href={`/services/${sub.slug}`}
+                          className="card-hover flex items-center justify-between gap-3 r-card surface-2 px-5 py-4 text-sm font-medium text-ink"
+                        >
+                          {sub.title}
+                          <ArrowRight size={15} className={accentClasses[sub.accent].icon} />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
           </div>
         </section>
 

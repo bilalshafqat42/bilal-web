@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { disciplinesWithPages, disciplineItems } from "@/data/disciplines";
-import { megaMenuGroups, serviceMenuColumns } from "@/data/pillars";
+import { megaMenuGroups, serviceMenuColumns, subPagesOf } from "@/data/pillars";
 import Image from "next/image";
 import { Building2, MapPin } from "lucide-react";
 import SocialLinks from "@/components/ui/SocialLinks";
@@ -71,7 +71,21 @@ const serviceGroups = serviceMenuColumns.map((column) => ({
   links: column.slugs
     .map((slug) => megaMenuGroups.find((g) => g.slug === slug))
     .filter((g): g is NonNullable<typeof g> => Boolean(g))
-    .map((g) => ({ label: g.title, href: `/services/${g.slug}` })),
+    .map((g) => ({
+      label: g.title,
+      href: `/services/${g.slug}`,
+      // The CMS platform pages (2026-10-16), as one short row under their hub
+      // rather than four full rows: four more lines would run the Development
+      // column far past its neighbours, which is what the two sub-columns
+      // exist to prevent. The same day the CRM integration pages, the four app
+      // pages and Figma joined the same way, each row under its menu page.
+      // `subPagesOf` descends through CRM Integration, so its four platforms
+      // sit in the CRM row beside it rather than nowhere.
+      children: subPagesOf(g.slug).map((sub) => ({
+        label: sub.shortTitle ?? sub.title,
+        href: `/services/${sub.slug}`,
+      })),
+    })),
 }));
 
 // Sectors worked in rather than pages that exist, so these are plain text. The
@@ -101,14 +115,14 @@ export default function Footer() {
                 <p className="text-base font-semibold text-ink">{name}</p>
                 <p className="mt-1 text-xs uppercase tracking-wide text-muted/80">{meta}</p>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{line}</p>
-                <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1">
+                <div className="mt-2 flex flex-wrap gap-x-5 gap-y-0.5">
                   {actions.map((a) => {
                     // This array mixes `tel:` with a real route, so it cannot
                     // be one or the other wholesale — `next/link` on a `tel:`
                     // breaks it, and a plain anchor on `/appointment` reloads
                     // the document. Split on the href instead.
                     const cls =
-                      "break-words text-sm font-medium text-gold transition-opacity hover:opacity-75";
+                      "inline-flex min-h-6 items-center break-words text-sm font-medium text-gold transition-opacity hover:opacity-75";
                     return a.href.startsWith("/") ? (
                       <Link key={a.href} href={a.href} className={cls}>
                         {a.label}
@@ -147,7 +161,9 @@ export default function Footer() {
             />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
               Bilal Shafqat is a{" "}
-              <Link href="/" className="text-muted underline-offset-2 transition-colors hover:text-gold">
+              {/* `py-1` on an inline link grows its tap area to 25px without
+                  changing the paragraph's line height. */}
+              <Link href="/" className="py-1 text-muted underline-offset-2 transition-colors hover:text-gold">
                 freelance digital marketer in Dubai
               </Link>
               , and one senior partner for paid marketing, website and app
@@ -159,10 +175,10 @@ export default function Footer() {
 
           <div>
             <p className="text-sm font-semibold text-ink">Company</p>
-            <ul className="mt-4 space-y-2.5">
+            <ul className="mt-4 space-y-1.5">
               {companyLinks.map((l) => (
                 <li key={l.label}>
-                  <Link href={l.href} className="text-sm text-muted transition-colors hover:text-gold">
+                  <Link href={l.href} className="inline-flex min-h-6 items-center text-sm text-muted transition-colors hover:text-gold">
                     {l.label}
                   </Link>
                 </li>
@@ -170,7 +186,12 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* All fifteen, in two sub-columns under their menu headings. One flat
+          {/* Every footer link is at least 24px tall (WCAG 2.5.8): on
+              2026-10-16, 39 of 62 measured 17 to 20px on a phone. Rows went
+              from 20px with 10px gaps to 24px with 6px gaps, so the pitch and
+              the footer's height are unchanged.
+
+              All fifteen, in two sub-columns under their menu headings. One flat
               list of fifteen would run seven rows past every neighbour and make
               the footer look broken; two sub-columns keep it the same height as
               Company and Portfolio. */}
@@ -182,15 +203,29 @@ export default function Footer() {
                   <Eyebrow as="p" size="sm" tone="muted">
                     {group.title}
                   </Eyebrow>
-                  <ul className="mt-2.5 space-y-2.5">
+                  <ul className="mt-2.5 space-y-1.5">
                     {group.links.map((l) => (
                       <li key={l.href}>
                         <Link
                           href={l.href}
-                          className="text-sm text-muted transition-colors hover:text-gold"
+                          className="inline-flex min-h-6 items-center text-sm text-muted transition-colors hover:text-gold"
                         >
                           {l.label}
                         </Link>
+                        {l.children.length ? (
+                          <ul className="mt-1 flex flex-wrap gap-x-4 pl-3">
+                            {l.children.map((c) => (
+                              <li key={c.href}>
+                                <Link
+                                  href={c.href}
+                                  className="inline-flex min-h-6 items-center text-[0.8125rem] text-muted transition-colors hover:text-gold"
+                                >
+                                  {c.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
                       </li>
                     ))}
                   </ul>
@@ -206,12 +241,12 @@ export default function Footer() {
               has no page never does. */}
           <div>
             <p className="text-sm font-semibold text-ink">Portfolio</p>
-            <ul className="mt-4 space-y-2.5">
+            <ul className="mt-4 space-y-1.5">
               {disciplinesWithPages().map((d) => (
                 <li key={d.slug}>
                   <Link
                     href={`/portfolio/${d.slug}`}
-                    className="flex items-baseline gap-2 text-sm text-muted transition-colors hover:text-gold"
+                    className="flex min-h-6 items-center gap-2 text-sm text-muted transition-colors hover:text-gold"
                   >
                     {d.title}
                     <span className="font-mono text-[0.65rem] text-faint">
@@ -227,13 +262,13 @@ export default function Footer() {
               <li>
                 <Link
                   href="/real-estate-marketing"
-                  className="text-sm text-muted transition-colors hover:text-gold"
+                  className="inline-flex min-h-6 items-center text-sm text-muted transition-colors hover:text-gold"
                 >
                   Real Estate Marketing
                 </Link>
               </li>
               <li>
-                <Link href="/portfolio" className="text-sm text-muted transition-colors hover:text-gold">
+                <Link href="/portfolio" className="inline-flex min-h-6 items-center text-sm text-muted transition-colors hover:text-gold">
                   All work
                 </Link>
               </li>
@@ -242,9 +277,9 @@ export default function Footer() {
 
           <div>
             <p className="text-sm font-semibold text-ink">Industries</p>
-            <ul className="mt-4 space-y-2.5">
+            <ul className="mt-4 space-y-1.5">
               {industries.map((i) => (
-                <li key={i} className="text-sm text-muted">
+                <li key={i} className="flex min-h-6 items-center text-sm text-muted">
                   {i}
                 </li>
               ))}
@@ -264,10 +299,10 @@ export default function Footer() {
               and JavaScript on every page, which is not worth it. */}
           <p>© {new Date().getFullYear()} {SITE_NAME}. All rights reserved.</p>
           <p className="flex items-center gap-5">
-            <Link href="/pricing" className="transition-colors hover:text-gold">Pricing</Link>
-            <Link href="/faq" className="transition-colors hover:text-gold">FAQ</Link>
-            <Link href="/privacy" className="transition-colors hover:text-gold">Privacy Policy</Link>
-            <Link href="/contact" className="transition-colors hover:text-gold">Contact</Link>
+            <Link href="/pricing" className="inline-flex min-h-6 items-center transition-colors hover:text-gold">Pricing</Link>
+            <Link href="/faq" className="inline-flex min-h-6 items-center transition-colors hover:text-gold">FAQ</Link>
+            <Link href="/privacy" className="inline-flex min-h-6 items-center transition-colors hover:text-gold">Privacy Policy</Link>
+            <Link href="/contact" className="inline-flex min-h-6 items-center transition-colors hover:text-gold">Contact</Link>
           </p>
           <SocialLinks />
         </div>

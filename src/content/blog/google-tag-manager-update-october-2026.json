@@ -1,0 +1,103 @@
+{
+  "slug": "google-tag-manager-update-october-2026",
+  "title": "The Google Tag Manager Update: Check Your Tracking",
+  "metaTitle": "Google Tag Manager Update, October 2026",
+  "description": "The Google Tag Manager update of October 2026 changes how containers send data and handle gtag config. Who it affects, and five checks.",
+  "published": "2026-10-16",
+  "updatedAt": "2026-10-16",
+  "tags": [
+    "Digital Marketing",
+    "Paid Ads"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "The Google Tag Manager update this October came in two parts, a week apart. Neither change shows up as a new button, and both can change what your tracking reports without anyone touching the account. If your leads, conversions or ad results are measured through Google Tag Manager, this is worth ten minutes before your next campaign goes live."
+    },
+    {
+      "t": "p",
+      "v": "Here is what changed, according to Google's own Tag Manager release notes, what it means for a business running ads in the UAE, and the checks to do this week."
+    },
+    {
+      "t": "h2",
+      "v": "Change one: containers can send data straight to Google"
+    },
+    {
+      "t": "p",
+      "v": "On 12 October Google released what it calls optimised containers. A Tag Manager container can now send data directly to Google's measurement products, such as GA4 and Google Ads, without loading a separate gtag.js file for each connection."
+    },
+    {
+      "t": "p",
+      "v": "That matters more than it sounds. On most sites I audit, the Google tag script is the single largest file on the page, and every extra script slows the first screen a visitor sees. Google says the change should make sites faster, collect data more reliably and keep settings and user access in one place inside the container. Each destination tag is also tied clearly to its destination, so diagnostics should be easier to read."
+    },
+    {
+      "t": "p",
+      "v": "For paid campaigns, page speed is not a technical nicety. Every ad click lands on a page, and a slower page loses people before the form appears. Anything that takes weight off that first load is money back on the same budget, which is why [[the landing page is part of your ad spend|/your-landing-page-is-part-of-your-ad-spend]]."
+    },
+    {
+      "t": "h2",
+      "v": "Change two: gtag config now behaves the same everywhere"
+    },
+    {
+      "t": "p",
+      "v": "On 8 October Google standardised how the gtag('config') command behaves alongside Tag Manager. In plain terms, every Tag Manager container now starts as soon as it loads, whether or not a config command is on the page."
+    },
+    {
+      "t": "p",
+      "v": "The part to watch is a side effect. Google's notes say config commands will now appear in the dataLayer as visible gtag.config events. If your container uses wildcard custom event triggers, the kind set to fire on any event, those triggers can now catch these new events and fire tags you did not intend to fire."
+    },
+    {
+      "t": "p",
+      "v": "That can mean a conversion counted twice, a Meta Pixel event sent on page load, or a report that quietly jumps after 8 October with nothing to explain it. Google also advises that if you keep using gtag configuration code, every page on the site should carry the Google tag snippet."
+    },
+    {
+      "t": "h2",
+      "v": "Who the Google Tag Manager update affects, and who can relax"
+    },
+    {
+      "t": "p",
+      "v": "The sites most at risk are the ones that grew in layers, which describes a lot of UAE marketing sites: a developer added the Google tag years ago, an agency later added Tag Manager, and both now run side by side. That mix of a Tag Manager snippet and hard-coded gtag config lines is exactly what this update affects."
+    },
+    {
+      "t": "p",
+      "v": "If your site uses only Tag Manager and never calls gtag config directly, the first change is mostly good news and the second may not touch you at all. My own site is a third case: it loads GA4 directly, with no container, so neither change alters what it reports. Knowing which of the three you are is the first job."
+    },
+    {
+      "t": "p",
+      "v": "One more group deserves a mention: sites where nobody is sure who set the tracking up. That is common after a change of agency or developer, and it is the riskiest position to be in, because nobody is watching when the numbers move. If that is you, the checks below are worth doing even if you think the update does not apply, since they also show what your container is actually firing today."
+    },
+    {
+      "t": "h2",
+      "v": "What to check this week"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Open your site's source and search for gtag('config' and for GTM-. Both on the same page means you are in the group this affects.",
+        "In Tag Manager, list every custom event trigger set to match all events or a pattern. Those are the ones that can now fire on gtag.config.",
+        "Use Preview mode and load a page. If a gtag.config event appears and a tag fires on it that should not, fix the trigger before your next campaign.",
+        "Compare conversions in GA4 and Google Ads for the days before and after 8 October. A sudden jump with no change in spend is worth investigating.",
+        "Check that each Google destination in the container is linked correctly, so you get the speed benefit of the 12 October change."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "The bigger lesson for anyone running ads"
+    },
+    {
+      "t": "p",
+      "v": "Tracking is not set up once, and this Google Tag Manager update is a reminder of it. Platforms change how it works without asking, and the first sign is usually a number that looks better or worse than it should. That is why I treat tracking as part of the campaign rather than a job for the end, and why the number to run the business on is still the one in your CRM, as I explained in [[your ad platforms are counting leads your CRM never saw|/what-to-track-in-marketing-uae]]."
+    },
+    {
+      "t": "p",
+      "v": "If you are not sure which group your site falls into, or what your container is firing, that is a short audit rather than a project. It is part of how I set up [[tracking for paid campaigns|/services/paid-marketing]], and it is cheaper than a month of decisions made on the wrong numbers."
+    }
+  ],
+  "words": 859,
+  "image": {
+    "src": "/blog/gtm-update/card.jpg",
+    "alt": "Quote card on the Google Tag Manager update: Google Tag Manager changed, check your tracking",
+    "width": 1200,
+    "height": 630
+  }
+}

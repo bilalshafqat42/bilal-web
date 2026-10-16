@@ -91,7 +91,7 @@ export const disciplines: Discipline[] = [
         "Every screen here is shipped work, not a concept. What is worth looking at is not the surface but the decision underneath it: whether to force a sign-in, whether actions belong on the card or behind a menu, how many fields an enquiry form can carry before it starts costing completions. Each piece links through to the reasoning.",
       metaTitle: "UI/UX Design Portfolio: App & Mobile | Bilal Shafqat",
       metaDescription:
-        "Shipped React Native app screens and mobile web layouts. Every screen is live work, not a concept, and each links through to the decision behind it.",
+        "React Native app screens and mobile web layouts. Every screen is from real client work, not a concept, and each links through to the decision behind it.",
       lens: "This page is the interface cut. It gathers the app screens and the mobile web layouts in one place because they answer the same question (what does a buyer do on a small screen?) and it is the only page where they sit together with the design reasoning attached.",
       depth: [
         {
@@ -215,16 +215,16 @@ export const disciplines: Discipline[] = [
     page: {
       headline: "A cross-platform property app, from a single codebase",
       intro:
-        "Cross-platform apps in React Native, one codebase serving both stores. The app below carries the same inventory as the client's website, so someone who first saw a landing page finds the same items, the same photography and the same enquiry routes on their phone. The pattern applies to any catalogue a business already publishes on the web. Every screen is from the shipped build, and each links to the decision behind it.",
+        "Cross-platform apps in React Native, one codebase for iOS and Android. The app below carries the same inventory as the client's website, so someone who first saw a landing page finds the same items, the same photography and the same enquiry routes on their phone. The pattern applies to any catalogue a business already publishes on the web. Every screen is from the built app, and each links to the decision behind it.",
       metaTitle: "Mobile App Portfolio: React Native | Bilal Shafqat",
       metaDescription:
         "Mobile app development portfolio: cross-platform React Native apps for iOS and Android from a single codebase, with each screen decision explained.",
       lens: "These screens also appear on the UI/UX Design page, where the subject is the interface decision. Here it is the app as a delivered product: one codebase, two platforms, and the same inventory as the website it sits alongside.",
       depth: [
         {
-          heading: "One codebase, two stores, and why that was the right call",
+          heading: "One codebase, two platforms, and why that was the right call",
           paragraphs: [
-            "These apps are React Native, which means iOS and Android were built once rather than twice. The saving is real and it is not the fifty per cent people expect: there is still platform-specific work, separate testing on both, two store submissions and two sets of compliance. What it removes is the budget pressure that normally causes Android to be treated as the version that gets done second and tested least.",
+            "These apps are React Native, which means iOS and Android were built once rather than twice. The saving is real and it is not the fifty per cent people expect: there is still platform-specific work, separate testing on both, and two store submissions and two sets of compliance to plan for at release. What it removes is the budget pressure that normally causes Android to be treated as the version that gets done second and tested least.",
             "In this region that matters more than it would elsewhere. Android is the majority platform across much of the UAE audience, and an app that was clearly built for iOS and ported afterwards is obvious to the people using it.",
           ],
         },
@@ -247,7 +247,7 @@ export const disciplines: Discipline[] = [
         {
           question: "Do you build native or cross-platform?",
           answer:
-            "Cross-platform in React Native, as on this project. For most business apps one codebase serving both stores is the right economics for a single developer. If your app genuinely needs platform-specific native work, I will say so rather than take the project.",
+            "Cross-platform in React Native, as on this project. For most business apps one codebase for iOS and Android is the right economics for a single developer. If your app genuinely needs platform-specific native work, I will say so rather than take the project.",
         },
         {
           question: "Do you handle App Store and Play Store submission?",

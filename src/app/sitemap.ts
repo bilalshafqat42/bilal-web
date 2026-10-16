@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { megaMenuGroups } from "@/data/pillars";
 import {
   contentDates,
-  SERVICES_CONTENT_DATE,
+  serviceContentDate,
   PORTFOLIO_CONTENT_DATE,
   DISCIPLINE_CONTENT_DATE,
 } from "@/data/contentDates";
@@ -143,7 +143,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // the four new category pages out of the sitemap entirely.
     ...megaMenuGroups.map((category) => ({
       url: `${baseUrl}/services/${category.slug}`,
-      lastModified: new Date(SERVICES_CONTENT_DATE),
+      lastModified: new Date(serviceContentDate(category.slug)),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),

@@ -258,6 +258,17 @@ export default function NavBar({ menu }: { menu: MenuColumn[] }) {
   const light = !scrolled;
 
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** The mobile drawer is a modal dialog: focus moves into it on open, Tab
+   *  stays inside it, and closing it by Escape or the close button hands focus
+   *  back to the menu button. A link inside it navigates instead, and the
+   *  route change moves focus, so that path does not restore. */
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
+  const drawerRef = useRef<HTMLDivElement | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  const closeDrawer = () => {
+    setOpen(false);
+    menuButtonRef.current?.focus();
+  };
   const triggerRefs = useRef<Partial<Record<MegaId, HTMLAnchorElement | null>>>({});
   // Escape closes the panel and returns focus to the trigger — but that focus
   // would immediately re-open it. This suppresses exactly one focus-open.
@@ -371,8 +382,30 @@ export default function NavBar({ menu }: { menu: MenuColumn[] }) {
   // drawer open cannot leave the page unscrollable.
   useEffect(() => {
     if (!open) return;
+    closeButtonRef.current?.focus();
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        setOpen(false);
+        menuButtonRef.current?.focus();
+        return;
+      }
+      if (e.key !== "Tab" || !drawerRef.current) return;
+      const focusable = [
+        ...drawerRef.current.querySelectorAll<HTMLElement>("a[href], button, summary, input, [tabindex]:not([tabindex='-1'])"),
+      ].filter((el) => el.offsetParent !== null || el === document.activeElement);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      } else if (!drawerRef.current.contains(document.activeElement)) {
+        e.preventDefault();
+        first.focus();
+      }
     };
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -521,6 +554,7 @@ export default function NavBar({ menu }: { menu: MenuColumn[] }) {
 
           <button
             type="button"
+            ref={menuButtonRef}
             onClick={() => setOpen(true)}
             aria-label="Open menu"
             aria-expanded={open}
@@ -542,7 +576,13 @@ export default function NavBar({ menu }: { menu: MenuColumn[] }) {
           trigger — so a keyboard user opened the panel and then tabbed straight
           past it into the page, reaching its links about ten stops later. */}
       {open ? (
-        <div className="fixed inset-0 z-50 overflow-y-auto bg-bg lg:hidden">
+        <div
+          ref={drawerRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site menu"
+          className="fixed inset-0 z-50 overflow-y-auto bg-bg lg:hidden"
+        >
           <div className="sticky top-0 flex h-[68px] items-center justify-between border-b border-border bg-bg px-6">
             <Image
               src="/logo/bs-logo.svg"
@@ -553,7 +593,8 @@ export default function NavBar({ menu }: { menu: MenuColumn[] }) {
             />
             <button
               type="button"
-              onClick={() => setOpen(false)}
+              ref={closeButtonRef}
+              onClick={closeDrawer}
               aria-label="Close menu"
               className="-mr-1 p-1 text-ink"
             >

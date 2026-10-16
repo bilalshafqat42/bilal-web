@@ -100,8 +100,21 @@ export const serviceMenuColumns: ServiceMenuColumn[] = [
     // CRM belongs here rather than under Marketing: the page is about systems,
     // integrations and server-side tracking, and the person who needs it is
     // asking a technical question.
+    //
+    // CMS Development and Custom Web Development added 2026-10-16, second and
+    // third: they are the two halves of the web decision the column opens on.
+    // The four platform pages under CMS Development (WordPress, Wix,
+    // Squarespace, Strapi) are deliberately not here. They are reached from
+    // the CMS hub and the footer; four tool names in the menu would make it
+    // longer without adding a decision a visitor makes from a menu.
     title: "Development",
-    slugs: ["website-app-development", "mobile-app-development", "crm-marketing-automation"],
+    slugs: [
+      "website-app-development",
+      "cms-development",
+      "custom-web-development",
+      "mobile-app-development",
+      "crm-marketing-automation",
+    ],
   },
   {
     // Web Design sits here rather than under Development. Its own page opens

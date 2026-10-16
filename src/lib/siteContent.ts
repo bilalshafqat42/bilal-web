@@ -12,6 +12,7 @@ import { clients } from "@/data/caseStudies";
 import { disciplinesWithPages, disciplineItems } from "@/data/disciplines";
 import { blogPosts, type Block } from "@/data/blogPosts";
 import { POSITIONING, yearsExperience } from "./site";
+import { plainText } from "./inlineLinks";
 import { SITE_EMAIL, SITE_PHONE } from "./contact";
 
 export function buildSiteContent(): string {
@@ -43,7 +44,12 @@ Includes: ${group.items.map((i) => i.title).join(", ")}.`);
     const depth = serviceDepth[group.slug];
     if (depth) {
       for (const block of depth.blocks) {
-        parts.push(`### ${block.heading}\n${block.paragraphs.join("\n\n")}`);
+        parts.push(`### ${block.heading}\n${block.paragraphs.map(plainText).join("\n\n")}`);
+        if (block.table) {
+          parts.push(
+            [block.table.caption, block.table.head.join(" | "), ...block.table.rows.map((r) => r.join(" | "))].join("\n")
+          );
+        }
       }
     }
     for (const faq of [...group.faqs, ...(depth?.faqs ?? [])]) {

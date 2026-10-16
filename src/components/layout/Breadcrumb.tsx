@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /**
  * The trail above a page heading.
@@ -33,28 +33,42 @@ export default function Breadcrumb({
   items: Crumb[];
   className?: string;
 }) {
+  // Below `sm` the full trail ran to two lines on every sub-page (five crumbs
+  // on the CMS and CRM platform pages) and pushed the hero CTA below the fold
+  // at 390x844. A phone gets one back link to the page above instead, which is
+  // the only crumb anyone taps there. The full trail returns from `sm` up.
+  // The BreadcrumbList schema is built separately and is unchanged.
+  const parent = items.length > 1 ? items[items.length - 2] : undefined;
   return (
-    <nav
-      aria-label="Breadcrumb"
-      className={`flex flex-wrap items-center gap-1.5 text-xs text-muted ${className}`}
-    >
-      {items.map((item, i) => {
-        const last = i === items.length - 1;
-        return (
-          <span key={item.label} className="inline-flex items-center gap-1.5">
-            {i > 0 ? <ChevronRight size={13} aria-hidden="true" /> : null}
-            {item.href && !last ? (
-              <Link href={item.href} className="transition-colors hover:text-ink">
-                {item.label}
-              </Link>
-            ) : (
-              <span className={last ? "text-ink" : undefined} aria-current={last ? "page" : undefined}>
-                {item.label}
-              </span>
-            )}
-          </span>
-        );
-      })}
+    <nav aria-label="Breadcrumb" className={`text-xs text-muted ${className}`}>
+      {parent?.href ? (
+        <Link
+          href={parent.href}
+          className="gap-1 transition-colors hover:text-ink sm:!hidden"
+        >
+          <ChevronLeft size={13} aria-hidden="true" />
+          {parent.label}
+        </Link>
+      ) : null}
+      <ol className="hidden flex-wrap items-center gap-1.5 sm:flex">
+        {items.map((item, i) => {
+          const last = i === items.length - 1;
+          return (
+            <li key={item.label} className="inline-flex items-center gap-1.5">
+              {i > 0 ? <ChevronRight size={13} aria-hidden="true" /> : null}
+              {item.href && !last ? (
+                <Link href={item.href} className="transition-colors hover:text-ink">
+                  {item.label}
+                </Link>
+              ) : (
+                <span className={last ? "text-ink" : undefined} aria-current={last ? "page" : undefined}>
+                  {item.label}
+                </span>
+              )}
+            </li>
+          );
+        })}
+      </ol>
     </nav>
   );
 }

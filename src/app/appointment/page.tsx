@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/site";
 import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
 import AppointmentBooking from "@/components/forms/AppointmentBooking";
-import { megaMenuGroups } from "@/data/pillars";
+import { menuGroups } from "@/data/pillars";
 import FaqSection from "@/components/ui/FaqSection";
 import { SITE_URL, breadcrumbNode, faqNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
 import Eyebrow from "@/components/ui/Eyebrow";
@@ -284,7 +284,11 @@ export default function AppointmentPage() {
                 Not sticky below `lg`, where the panel is full width and there
                 is nothing beside it to scroll. */}
             <div className="lg:sticky lg:top-28">
-              <AppointmentBooking services={megaMenuGroups.map((g) => g.title)} />
+              {/* The menu's pages, not every service page: the four CMS
+                  platforms are one topic here ("CMS Development"), and a
+                  dropdown of twenty is a worse question than one of
+                  seventeen. */}
+              <AppointmentBooking services={menuGroups().map((g) => g.title)} />
             </div>
           </div>
         </section>

@@ -621,3 +621,205 @@ Weekly rhythm: not before 2026-10-21. Import from the URL. Title "Marketing
 Metrics to Track: Your CRM Beats the Dashboard"; tags Digital Marketing,
 Marketing Analytics, CRM, Lead Generation, Marketing Strategy. Rewrite the one
 table as bold-label lines after import.
+
+---
+
+## Post 4 (2026-10-16): Google Tag Manager update
+
+**Blog:** `/google-tag-manager-update-october-2026`, 846 words, dated
+2026-10-16. Sources: Google's Tag Manager release notes, entries of
+8 October 2026 ("Standardizing gtag('config') command behavior") and
+12 October 2026 ("Optimizing Google Tag Manager containers"),
+https://support.google.com/tagmanager/answer/4620708 . **Links to Post 3, so
+publish both together.** Site card `public/blog/gtm-update/card.jpg`; all
+sizes in `.post-cards/gtm-update-*`.
+
+Full URL: `https://bilalshafqat.com/google-tag-manager-update-october-2026`
+
+### Card text (light style, 1080x1350)
+
+```
+Google Tag Manager changed. Check your tracking.
+
+Two updates in October. No new buttons. Your numbers can still move.
+
+Before your next campaign, check:
+• Snippets: GTM and gtag('config') on the same page?
+• Triggers: any custom event set to fire on every event?
+• Preview: does a gtag.config event fire a tag it shouldn't?
+• Reports: conversions jumped after 8 October with no change in spend?
+
+Tracking isn't set up once.
+Platforms change it without asking.
+```
+
+Alt text: Card reading "Google Tag Manager changed. Check your tracking."
+Four checks: GTM and gtag config on the same page, wildcard custom event
+triggers, Preview mode, conversions after 8 October. By Bilal Shafqat,
+Digital Marketer.
+
+### LinkedIn
+
+```
+Google changed how Tag Manager works twice in one week this October.
+
+No new buttons. No email to most account owners. But your tracking can report differently from 8 October without anyone touching it.
+
+12 October: a Tag Manager container can now send data straight to GA4 and Google Ads without loading a separate gtag.js file. Less weight on the page your ad clicks land on. That part is good news.
+
+8 October: every container now starts on load, and gtag('config') commands show up in the dataLayer as gtag.config events. If your container has custom event triggers set to fire on any event, they can now fire tags you never meant to fire. A conversion counted twice. A pixel event on page load.
+
+Sites most at risk are the ones built in layers: a developer added the Google tag years ago, an agency added Tag Manager later, and both still run.
+
+Four checks for this week:
+Search your page source for gtag('config' and GTM- together
+List every wildcard custom event trigger
+Load a page in Preview and watch for gtag.config
+Compare conversions before and after 8 October
+
+Tracking is not set up once. Platforms change it without asking.
+
+Full breakdown with the five checks:
+bilalshafqat.com/google-tag-manager-update-october-2026
+
+#GoogleTagManager #GA4 #DigitalMarketing
+```
+
+### Meta (Facebook, Instagram, Threads; under 500 characters)
+
+```
+Google changed how Tag Manager works in October, and your tracking can report differently without anyone touching it.
+
+If your site runs Tag Manager and gtag('config') together, check your wildcard triggers. They can now fire tags you never meant to.
+
+Five checks for this week in the full post: bilalshafqat.com/google-tag-manager-update-october-2026
+
+#GoogleTagManager #GA4 #DigitalMarketing #DubaiBusiness
+```
+
+Instagram: link in bio. Facebook: button "Learn more" to the full URL.
+
+### X
+
+```
+Google changed Tag Manager twice in October. If your site runs GTM and gtag('config') together, wildcard triggers can now fire tags you never meant to.
+
+Five checks: bilalshafqat.com/google-tag-manager-update-october-2026
+
+#GoogleTagManager #GA4
+```
+
+### Pinterest
+
+Board **Digital Marketing**, pin size image.
+- **Title:** Google Tag Manager Update October 2026: 5 Tracking Checks
+- **Description:** Google changed how Tag Manager sends data and handles
+  gtag config in October 2026. What changed, which sites it affects, and five
+  checks to keep your conversion tracking accurate.
+
+### Google Business Profile
+
+Add update, button **Learn more** to the full URL.
+
+```
+Google Tag Manager changed in October 2026.
+
+If your website runs Tag Manager alongside gtag config code, some triggers can now fire tags you never intended, and conversions can be counted twice. Read the five checks to do before your next campaign.
+```
+
+### Medium
+
+Not before 2026-10-26 (weekly rhythm; post 3 goes first). Import from URL.
+Title "Google Tag Manager Update October 2026: What to Check"; tags Google Tag
+Manager, Google Analytics, Digital Marketing, Marketing Analytics, Conversion
+Tracking.
+
+---
+
+## Google review request (drafted 2026-10-16, send when ready)
+
+Get the link first: Google Business Profile, **Ask for reviews** (or "Get more
+reviews"), copy the short review link. Send to past clients one by one on
+WhatsApp, not as a broadcast.
+
+**Google's rules (follow them):** no discounts, gifts or anything in return
+for a review; ask everyone, not only clients you expect to be happy (no
+"review gating"); never write or suggest the review text for them.
+
+**WhatsApp message (personalise the first line each time):**
+
+```
+Hi [Name], hope you're well. It was great working with you on [project].
+
+I'm building up my Google profile as a freelance digital marketer in Dubai, and a short review from you would really help other businesses decide whether to work with me.
+
+If you have two minutes, here's the link: [review link]
+
+A sentence or two about what we worked on and how it went is perfect. Thank you either way.
+
+Bilal
+```
+
+**Follow-up (only once, after 5-7 days, if no reply):**
+
+```
+Hi [Name], just a gentle reminder about the review, only if you have a moment: [review link]. Thanks again.
+```
+
+Reply to every review within 48 hours (roadmap 398 §4).
+
+---
+
+## Post 5 draft (for Thursday 2026-10-22): Why your retargeting is burning budget
+
+Not on the site yet (draft text only). Topic from roadmap 394, post 4:
+"Audience built on a page that never segmented the traffic". Links to
+`/services/facebook-ads`, `/your-landing-page-is-part-of-your-ad-spend`,
+`/what-to-track-in-marketing-uae`. No statistics.
+
+**Title (h1):** Your Retargeting Isn't Failing. It's Following the Wrong People.
+**metaTitle:** Why Retargeting Ads Burn Budget (and the Fix)
+**Description:** Retargeting usually shows ads to everyone who visited, including staff, job seekers and existing customers. How to build audiences that convert.
+
+**Outline (850-1,000 words when written up):**
+1. *Retargeting feels safe, and that's the problem.* "Show ads to people who
+   already visited" sounds like the cheapest money in marketing. Default
+   audiences are "all website visitors, last 30 days".
+2. *Who is actually in "all visitors".* Staff checking the site, job
+   seekers on the careers page, existing customers logging in or looking up
+   contact details, competitors, bots, people who bounced in two seconds. The
+   ad budget follows all of them equally.
+3. *The page decides the audience.* If the site never separates intent
+   (pricing page vs careers page vs a two-second bounce), the ad platform
+   can't either. Segmenting starts on the page, not in Ads Manager.
+4. *Five audiences worth paying for.* Viewed pricing or a project page;
+   spent 30+ seconds or scrolled 50%; started the form but didn't submit;
+   watched 50% of a video; engaged with a lead form but didn't finish. And
+   exclude: existing leads and customers (CRM list), staff, careers-page
+   visitors.
+5. *Frequency and fatigue.* Cap frequency, rotate creative, and give each
+   audience a different message (the pricing viewer needs an offer; the
+   video viewer needs proof).
+6. *What to do this week.* Open Ads Manager, find every retargeting
+   audience, check what defines it, add the CRM exclusion list, and split one
+   "all visitors" audience into two by intent.
+
+**Card text (light style, 1080x1350):**
+
+```
+Your retargeting is following the wrong people.
+
+"All website visitors" includes your staff, job seekers and existing customers.
+
+Before you spend another dirham, check:
+• Intent: retarget pricing and project page viewers, not everyone
+• Exclude: current leads and customers from your CRM
+• Exclude: staff and careers page visitors
+• Message: a different ad for each audience
+
+Retarget people who showed intent.
+Not people who showed up.
+```
+
+Captions (LinkedIn, Meta, X, Pinterest, GBP) to write once the article is
+approved and live.

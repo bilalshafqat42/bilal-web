@@ -11407,6 +11407,16 @@ email notifications switched off at Bilal's request. "Hide from search
 engines" left off. Optional later: verification (work email
 bilal@bilalshafqat.com + LinkedIn, then Request verification).
 
+#### Stack Overflow — found 2026-10-16
+`stackoverflow.com/users/7025626/bilal-shafqat`: member 10 years, title "Web
+Developer", website bilalshafqat.com, Dubai, 2 answers, 1 badge. To do: title
+"Digital Marketer & Web Developer, Dubai"; About me with the 398 §7 line plus
+stack (Next.js, React, WordPress, GA4, GTM, Zoho, Salesforce Marketing Cloud);
+add LinkedIn/X. Then one genuine answer a week in GTM/GA4 (the October 2026
+gtag.config change will raise new questions), Next.js, WordPress, Zoho. No
+self-promotional links in answers; disclose ownership if a link to the site
+genuinely answers the question. Backlink-plan item 31.
+
 #### Next profiles (from backlink-plan.md, can be done early)
 - Clutch (about 1 hour, highest value for Dubai buyers; planned Mon 19 Oct).
 
@@ -11608,6 +11618,17 @@ reported as a later LCP. Test before changing anything: Lighthouse with the
 phrase rendered static on first paint (typing starting only after load), on a
 local build, then compare. Only ship it if mobile LCP improves.
 
+**Tested 2026-10-16: hypothesis wrong, change reverted.** Mobile Lighthouse,
+median of 5, local: LCP 2,547 ms baseline vs 2,548 ms with typing deferred.
+The LCP element is the hero h1 in HeroBanner.tsx, painted at once (real
+trace: LCP = FCP = 65 ms). The 2.1 s "render delay" is Lighthouse's simulated
+throttling counting ~279 KB started before LCP: 11 Next.js chunks (~191 KB),
+the 28 KB portrait AVIF, the 19 KB render-blocking CSS. What would move it:
+trim or defer client JS on the homepage (DisciplineStatement, HomeParallax,
+PortraitReveal are client components), smaller or inlined critical CSS, lower
+priority for the portrait if below the h1. Confirm any change with a live
+PageSpeed run.
+
 ---
 
 ### 411. IDEAS (2026-10-16) — Future products to plan
@@ -11646,3 +11667,132 @@ the launch page and a supporter list in advance, since a launch happens once.
 
 Order: neither before the CV (407), the freelance profiles (409) and the
 Google Business Profile move (398). Revisit monthly.
+
+---
+
+### 412. BUILT, NOT PUBLISHED (2026-10-16) — 16 service sub-pages, Post 4, and the fixes from three audits
+
+Everything below is in the working tree and verified on a local production
+build (tsc, lint, build, related 79, search 67, lead-options 48, discipline,
+h1 and schema on all sitemap routes, crawl 138/138 200, no internal links to
+redirects or 404s). **Not committed: waiting for Bilal's five decisions.**
+
+#### New service pages (flat URLs, parent field drives breadcrumbs)
+- Under Website & App Development: cms-development (hub), wordpress-, wix-,
+  squarespace-, strapi-development, custom-web-development (Netlify, Vercel,
+  Cloudflare under hosting).
+- Under CRM & MarTech: crm-integration (hub), zoho-crm-integration (retitled
+  "Zoho CRM Consultant in Dubai"), hubspot-integration,
+  salesforce-integration (Marketing Cloud only, Sales Cloud admin declined),
+  custom-crm-development.
+- Under Mobile App: react-native-development, ios-app-development and
+  android-app-development (retitled "iOS/Android App Developer in Dubai",
+  React Native only, no Swift/Kotlin claim; iOS says when native Swift is the
+  better hire), app-backend-development (Firebase and MongoDB).
+- Under Web Design: figma-design (says when a Figma file is not needed).
+- Each 1,500+ words, own angle, 5 FAQs, onpage 92-96. Sub-pages are not in
+  the top menu (kept marketing-led); reached from parents, /services groups,
+  footer rows, search.
+- Template: parent/breadcrumbs, related cards, sub-page groups, tables in
+  sections, inline `[label](/path)` links (internal only; `//host` refused).
+
+#### Changes to existing pages
+- website-app-development retargeted: "Web Development in Dubai | Freelance
+  Web Developer" (96 on "web development dubai"; "freelance web developer
+  dubai" 79 to 58; brand name no longer in that title).
+- Tools named: Figma (UI/UX), Illustrator, InDesign, Photoshop (branding),
+  Premiere Pro, CapCut (video), Strapi (about).
+- LEOS app: every "both stores" / published claim removed (Bilal confirmed it
+  is not on the App Store or Google Play). "Halves the build" softened.
+- Squarespace page: Choppershoot production-house site named as real work.
+- Article links into the new pages: FlatList to React Native, CRM article to
+  CRM integration, both Figma plugin articles to Figma design.
+
+#### UX fixes (site-wide)
+- Client logo row: LEOS only (Refine, Tomorrow World hidden; were invisible
+  white-on-light until the fix made them visible).
+- Mobile hero: CTA above the fold on all 31 service pages (22 were below).
+- Breadcrumb: nav > ol > li, aria-current; phones show only "< Parent".
+- Inline form errors: friendly message + email + WhatsApp (was raw
+  "Forbidden." / "Could not reach the lead system").
+- Brand casing ("How Google Ads works", form placeholder).
+- Footer links all >= 24px tall on mobile; table focus ring; mobile menu
+  role="dialog".
+
+#### Content
+- Post 3 `/what-to-track-in-marketing-uae` (written 15 Oct).
+- Post 4 `/google-tag-manager-update-october-2026`, onpage 95, from Google's
+  release notes (8 and 12 October 2026). Links to Post 3: publish together.
+- Post 5 (retargeting) drafted in docs/daily-posts.md, not on the site.
+- Google review WhatsApp message drafted in docs/daily-posts.md.
+
+#### Bilal's five decisions before commit
+1. Publish Posts 3 and 4 with the pages?
+2. Homepage text still names Refine and Tomorrow World (HeroBanner hero line,
+   home.ts FAQ): keep or remove until written permission?
+3. Choppershoot portfolio draft says "web design planned, not delivered":
+   correct now or later?
+4. Wix "custom code on paid plans" / Squarespace "code injection on some
+   plans": confirm.
+5. Main web page title without the brand name: OK?
+
+#### Also 2026-10-16
+- Stack Overflow profile updated (title, About me, links). An answer posted
+  by mistake as a template was deleted the same day. Stack Overflow bans
+  AI-written answers: Claude checks facts only, never writes answers to post.
+- Product Hunt profile done (406). CV drafted (407). Trends/Ubersuggest
+  learning plan (408). Freelance profiles plan (409). Product ideas (411).
+
+#### 405 Phase 3 review, done 2026-10-16 (read-only; nothing changed yet)
+51 older articles: **9 improve, 12 merge (301), 30 leave**; the 26 October
+2026 buyer posts are out of scope.
+
+Top 5, about one day in total (398: buyer work first):
+1. Improve `react-native-flatlist-vs-scrollview` (599 impressions, position
+   24.9, the only learner page in reach of page one): comparison table, FAQ,
+   FlashList note, mobile service link near the top.
+2. Fix factually wrong React posts: `exploring-react-19-hooks`
+   (useFormStatus is from react-dom; wrong fields). `redux-made-easy` and
+   `react-js-state-management-for-beginners` (createStore, ReactDOM.render,
+   broken JSX, leftover WordPress tags) are fixed by merging.
+3. One 301 batch of 12 merges: 6-unique-powerful-figma-plugins into
+   6-best-ai-powered-figma-plugins; most-useful-react-hooks and
+   react-built-in-hooks-vs-additional-hooks into react-hooks-explained;
+   top-react-design-patterns into 5-must-know-react-component-patterns;
+   redux-made-easy, react-js-state-management-for-beginners and
+   master-redux-toolkit into react-state-management-usestate-vs-redux-vs-context;
+   typescript-guide-for-javascript-programmers into
+   how-javascript-developers-can-learn-typescript; 10-reasons-why-node-js into
+   learn-node-js-from-scratch; javascript-es6-features into
+   7-javascript-concepts-to-learn-before-react; 5-ui-ux-design-trends-2025 into
+   exploring-key-trends-in-modern-user-interfaces;
+   optimizing-react-applications into react-tips-and-tricks.
+4. Refresh the merged Figma article (AI plugin queries, about position 33).
+5. Rework 7-tips-to-improve-ctr for SEO buyers (replace the 2023 example,
+   link /services/seo). Light: direct answers on useCallback and useReducer;
+   React 19 ref-as-a-prop on useImperativeHandle.
+Also stale: "2025" slugs (keep slugs, fix titles), AI model claims in
+chatgpt-vs-deepseek and ai-tools-2025.
+
+---
+
+### 413. FOUND (2026-10-16) — Performo ad-platform syncs: Google Ads broken, Meta at risk
+
+Read-only check of ~/Desktop/bilal/performo/performo/web (no edits, no live
+calls). Official sources:
+https://developers.google.com/google-ads/api/docs/sunset-dates ,
+https://developers.facebook.com/docs/graph-api/changelog/versions
+
+| Platform | Code | Status | Fix |
+| --- | --- | --- | --- |
+| Google Ads | `src/lib/googleAdsSync.js:5` v17 (REST) | **Broken**: v17 sunset 4 June 2025; requests fail. Supported now v23-v26 (v23 sunsets Feb 2027) | v26; read error body with res.text() before JSON (line 93); check each GAQL field in the v26 reference |
+| Meta insights | `src/lib/metaAdsSync.js:4` v19.0 | At risk: expired; relies on Meta auto-upgrade | v25.0; re-check LEAD_ACTION_TYPES |
+| Meta CAPI + WhatsApp | `metaConversionsApi.js:3`, `send-whatsapp/route.js:8` v19.0 | At risk: expired, defaulted by Meta | v25.0 (valid to 29 July 2028), one shared constant |
+| TikTok | v1.3 | Works | none |
+| Snapchat | v1 | Works | none |
+
+Failures are not silent: the nightly cron notifies "Google Ads sync failed"
+once (no repeat while unread); manual Sync Now shows the error. No "last
+synced" timestamp is stored. Plan: upgrade versions, test Sync Now on one
+company, add last-synced/last-error per platform, reminder for Feb 2027.
+Not started: separate repo and deploy; needs Bilal's go-ahead.

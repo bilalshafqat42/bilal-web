@@ -1,10 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, Loader2 } from "lucide-react";
+import { ArrowRight, Loader2, MessageCircle } from "lucide-react";
 import { useLeadSubmit, TURNSTILE_ENABLED } from "@/lib/useLeadSubmit";
+import { SITE_EMAIL } from "@/lib/contact";
+import WhatsAppLink from "@/components/ui/WhatsAppLink";
 
-const NOT_SENT = "That didn't send. Try WhatsApp or email instead.";
+// Never displayed. Any failed send shows the panel below instead of the
+// server's text: on 2026-10-16 this form printed "Could not reach the lead
+// system right now." and "Forbidden." to a visitor, which tells them nothing
+// they can act on. Same rule as the popup and the contact form.
+const NOT_SENT = "That didn't send.";
 
 /**
  * Short enquiry form placed directly on a service page.
@@ -23,10 +29,11 @@ export default function InlineLeadForm({ service }: { service: string }) {
   const [message, setMessage] = useState("");
   // No success state here: the button stays disabled while the push to
   // /thank-you lands, and a failed send (fallback or not) shows one message.
-  const { status, error, submit, turnstileRef } = useLeadSubmit({
+  const { status, submit, turnstileRef } = useLeadSubmit({
     source: "service-page-form",
     thankYouPath: "/thank-you?source=enquiry",
     honeypotField: "company",
+    fallbackState: true,
     defaultError: NOT_SENT,
     networkError: NOT_SENT,
   });
@@ -65,7 +72,9 @@ export default function InlineLeadForm({ service }: { service: string }) {
         rows={3}
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        placeholder={`What do you need? (optional; I'll assume it's about ${service.toLowerCase()})`}
+        // The page title as written, not lowercased: `toLowerCase()` gave
+        // "zoho crm integration" and "ios app development".
+        placeholder={`What do you need? (Optional. Blank is fine: I'll know it came from the ${service} page.)`}
         aria-label="What do you need"
         className="w-full resize-none rounded-xl surface-2 px-4 py-3 text-sm text-ink outline-none transition placeholder:text-faint focus:border-gold/50 focus:ring-2 focus:ring-gold/20 sm:col-span-2"
       />
@@ -82,10 +91,25 @@ export default function InlineLeadForm({ service }: { service: string }) {
 
       {TURNSTILE_ENABLED ? <div ref={turnstileRef} className="sm:col-span-2" /> : null}
 
-      {error ? (
-        <p role="alert" className="text-sm text-red-400 sm:col-span-2">
-          {error}
-        </p>
+      {status === "fallback" || status === "error" ? (
+        <div role="alert" className="rounded-xl border border-gold/30 bg-gold/5 p-4 sm:col-span-2">
+          <p className="text-sm font-medium text-ink">That didn&apos;t send.</p>
+          <p className="mt-1.5 text-sm leading-relaxed text-muted">
+            Rather than lose your message, send it to me directly on WhatsApp, or
+            email{" "}
+            <a href={`mailto:${SITE_EMAIL}`} className="text-ink underline underline-offset-4">
+              {SITE_EMAIL}
+            </a>
+            . Everything you typed is still in the form above.
+          </p>
+          <WhatsAppLink
+            context="inline-form-fallback"
+            message={`Hi Bilal, I tried the enquiry form on your ${service} page.\n\n${message || "I'd like to talk about this."}${name ? `\n\n${name}` : ""}`}
+            className="btn-primary mt-4 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold"
+          >
+            <MessageCircle size={15} /> Send on WhatsApp
+          </WhatsAppLink>
+        </div>
       ) : null}
 
       <button

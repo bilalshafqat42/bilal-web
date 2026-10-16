@@ -8,7 +8,7 @@
     "Mobile Apps",
     "React Js"
   ],
-  "words": 1075,
+  "words": 1097,
   "blocks": [
     {
       "t": "h2",
@@ -450,7 +450,7 @@
     },
     {
       "t": "p",
-      "v": "By making the right choice early, you avoid rework, crashes, and slow UI in production."
+      "v": "By making the right choice early, you avoid rework, crashes, and slow UI in production. If you would rather have the lists, and the app around them, built for you, that is my [[React Native development|/services/react-native-development]] work."
     }
   ],
   "metaTitle": "React Native FlatList vs ScrollView"

@@ -16,6 +16,7 @@ export type { Chunk } from "./searchRank";
 import type { Chunk } from "./searchRank";
 import { blogPosts, type Block } from "@/data/blogPosts";
 import { SITE_EMAIL, SITE_PHONE } from "./contact";
+import { plainText } from "./inlineLinks";
 
 export function buildIndex(): Chunk[] {
   const chunks: Chunk[] = [];
@@ -38,7 +39,7 @@ export function buildIndex(): Chunk[] {
       for (const block of depth.blocks) {
         chunks.push({
           title: block.heading,
-          body: block.paragraphs.join(" "),
+          body: block.paragraphs.map(plainText).join(" "),
           url: `/services/${group.slug}`,
           kind: "service",
         });

@@ -57,10 +57,40 @@ const TAG_ROUTES: { service: string; tags: string[] }[] = [
     service: "ui-ux-design",
     tags: ["UI UX Design", "Figma", "Design"],
   },
+  // Added 2026-10-16 with the CRM, app and Figma sub-pages. Same rule as the
+  // CMS routes below: specific before general, and no article carries these
+  // tags yet, so nothing currently routed changes. "best-crm-for-dubai-real-
+  // estate" stays on digital marketing through its "Digital Marketing" tag,
+  // which sits above. "Figma" deliberately stays on UI/UX: the two Figma
+  // posts are about plugins, a designer's question rather than a hiring one,
+  // and moving them would be a routing change nobody asked for.
+  { service: "zoho-crm-integration", tags: ["Zoho", "Zoho CRM"] },
+  { service: "hubspot-integration", tags: ["HubSpot"] },
+  { service: "salesforce-integration", tags: ["Salesforce", "Salesforce Marketing Cloud"] },
+  { service: "custom-crm-development", tags: ["Custom CRM"] },
+  { service: "crm-integration", tags: ["CRM", "CRM Integration"] },
+  { service: "ios-app-development", tags: ["iOS"] },
+  { service: "android-app-development", tags: ["Android"] },
+  { service: "react-native-development", tags: ["React Native"] },
+  { service: "app-backend-development", tags: ["Firebase", "MongoDB"] },
   {
     service: "mobile-app-development",
     tags: ["Mobile Apps"],
   },
+  // Added 2026-10-16 with the CMS and custom development pages. Ahead of
+  // "Web Development" so a post about one platform reaches that platform's page
+  // rather than the general one. No article carries these tags yet; the routes
+  // exist so the first one that does is linked correctly on the day it ships.
+  // "WordPress or Next.js" deliberately stays on web development: it compares
+  // across the two pages rather than belonging to either, and roadmap 405 put
+  // it on that page's reading list to get it crawled. The CMS hub and the
+  // WordPress page link to it from their copy instead.
+  { service: "wordpress-development", tags: ["WordPress", "Elementor"] },
+  { service: "wix-development", tags: ["Wix"] },
+  { service: "squarespace-development", tags: ["Squarespace"] },
+  { service: "strapi-development", tags: ["Strapi", "Headless CMS"] },
+  { service: "cms-development", tags: ["CMS"] },
+  { service: "custom-web-development", tags: ["Custom Web Development", "MERN Stack"] },
   {
     service: "website-app-development",
     tags: [
@@ -124,6 +154,111 @@ const PITCHES: Record<string, Pitch> = {
     accent: "built properly?",
     body:
       "I build the web and mobile products these notes come out of, in React, React Native and Node. A first conversation costs nothing and often ends with a smaller scope than you expected.",
+  },
+  "cms-development": {
+    eyebrow: "Website work",
+    heading: "Not sure which",
+    accent: "CMS to choose?",
+    body:
+      "I build on WordPress, Wix, Squarespace and Strapi, and choose between them by who edits the site and what the campaigns need from it. A first conversation costs nothing.",
+  },
+  "wordpress-development": {
+    eyebrow: "WordPress work",
+    heading: "Want WordPress",
+    accent: "built properly?",
+    body:
+      "I build custom WordPress themes your marketing team can edit, with the tracking and CRM forms wired in from the start rather than added by a plugin later. A first conversation costs nothing.",
+  },
+  "wix-development": {
+    eyebrow: "Wix work",
+    heading: "Want a Wix site",
+    accent: "that brings enquiries?",
+    body:
+      "I set up Wix sites that owners can run themselves, with SEO, tracking and lead forms configured properly from day one. A first conversation costs nothing.",
+  },
+  "squarespace-development": {
+    eyebrow: "Squarespace work",
+    heading: "Want Squarespace",
+    accent: "done properly?",
+    body:
+      "I build design-led Squarespace sites you can maintain yourself, with tracking and lead capture set up so the site is measured, not just admired. A first conversation costs nothing.",
+  },
+  "strapi-development": {
+    eyebrow: "Headless CMS work",
+    heading: "Need structured",
+    accent: "content at speed?",
+    body:
+      "I build Strapi back ends with Next.js front ends for teams that publish a lot of structured content, and I will tell you when it is more than you need. A first conversation costs nothing.",
+  },
+  "custom-web-development": {
+    eyebrow: "Build work",
+    heading: "Need something a",
+    accent: "CMS cannot do?",
+    body:
+      "I build custom web applications in React, Next.js and Node, with the tracking and CRM connections a marketing team needs. A first conversation costs nothing.",
+  },
+  "crm-integration": {
+    eyebrow: "CRM work",
+    heading: "Leads in five",
+    accent: "different places?",
+    body:
+      "I connect forms, lead ads and WhatsApp to one CRM, with routing, deduplication and cost per qualified lead in a single view. A first conversation costs nothing.",
+  },
+  "zoho-crm-integration": {
+    eyebrow: "Zoho work",
+    heading: "Want Zoho",
+    accent: "set up properly?",
+    body:
+      "I connect Meta lead ads and web forms to Zoho CRM, with assignment rules and WhatsApp follow-up, so every lead reaches the right person fast. A first conversation costs nothing.",
+  },
+  "hubspot-integration": {
+    eyebrow: "HubSpot work",
+    heading: "Want HubSpot",
+    accent: "everyone trusts?",
+    body:
+      "I finish HubSpot setups: forms and ads connected, lifecycle stages defined with sales, and reports both teams accept. A first conversation costs nothing.",
+  },
+  "salesforce-integration": {
+    eyebrow: "Salesforce work",
+    heading: "Marketing Cloud",
+    accent: "working harder?",
+    body:
+      "I design Marketing Cloud EDMs and CloudPages and connect campaigns and lead capture to Salesforce, alongside your administrator. A first conversation costs nothing.",
+  },
+  "custom-crm-development": {
+    eyebrow: "CRM build work",
+    heading: "Outgrown your",
+    accent: "CRM?",
+    body:
+      "I build custom CRMs on MERN and Next.js with lead intake, attribution and ad platform syncs, and I will tell you if configuration would do instead. A first conversation costs nothing.",
+  },
+  "react-native-development": {
+    eyebrow: "App work",
+    heading: "One app for",
+    accent: "iOS and Android?",
+    body:
+      "I build iOS and Android apps in React Native, with the tracking and CRM connections in from the first release. A first conversation costs nothing.",
+  },
+  "ios-app-development": {
+    eyebrow: "iOS work",
+    heading: "Need an app",
+    accent: "on the App Store?",
+    body:
+      "I build iPhone and iPad apps in React Native and take them through TestFlight and App Review under your account. A first conversation costs nothing.",
+  },
+  "android-app-development": {
+    eyebrow: "Android work",
+    heading: "Need an app",
+    accent: "on Google Play?",
+    body:
+      "I build Android apps in React Native, test them on real devices across the range and publish through Play Console under your account. A first conversation costs nothing.",
+  },
+  "app-backend-development": {
+    eyebrow: "Back-end work",
+    heading: "Firebase or",
+    accent: "MongoDB?",
+    body:
+      "I build app back ends on Firebase or on Node and MongoDB, with admin panels and CRM sync, and explain which suits your app first. A first conversation costs nothing.",
   },
   "digital-marketing": {
     eyebrow: "Growth work",

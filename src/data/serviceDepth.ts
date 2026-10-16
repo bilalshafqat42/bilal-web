@@ -14,7 +14,15 @@ import type { Faq } from "./types";
 import { spellCount } from "./serviceCategories";
 import { yearsExperience } from "@/lib/site";
 
-export type DepthBlock = { heading: string; paragraphs: string[] };
+/** `paragraphs` may carry inline links written as `[label](/path)`. Only
+ *  internal paths: the page renders them with `next/link`, and the text
+ *  corpora (llms-full.txt, the site search) keep the label and drop the path
+ *  through `plainText()` in `src/lib/inlineLinks.ts`.
+ *
+ *  `table` renders after the paragraphs. Added 2026-10-16 for the CMS
+ *  comparison, the first service page whose argument is a comparison. */
+export type DepthTable = { caption: string; head: string[]; rows: string[][] };
+export type DepthBlock = { heading: string; paragraphs: string[]; table?: DepthTable };
 export type { Faq };
 
 type Depth = { blocks: DepthBlock[]; faqs: Faq[] };
@@ -160,6 +168,10 @@ export const serviceDepth: Record<string, Depth> = {
           "Plenty of Dubai businesses are told they need a custom build when what they need is a site their own team can edit without calling anyone. If your marketing person wants to add a page on a Tuesday afternoon, WordPress is usually the honest recommendation, and I will give it even though a custom build is better paid work.",
           "The version worth having is not a purchased theme with twenty plugins stacked on it. It is a design made for your business and built into WordPress properly, so the editing experience makes sense to a non-technical person and the site is not carrying code for features you do not use. Most slow WordPress sites are slow because of what was installed, not because of WordPress.",
           "Where it stops being the right answer: anything with real custom functionality, a product rather than a site, or a business that will never edit a page and is paying a maintenance cost for flexibility it does not use. That conversation happens before the quote, not after.",
+          // Added 2026-10-16. This page keeps the design query; the build
+          // query ("wordpress developer dubai") has its own page now, and the
+          // two link to each other rather than competing.
+          "This page is about the design. If the design is settled and what you need is the build itself, a custom theme, Elementor or ACF, and forms that reach your CRM, that is the [WordPress development](/services/wordpress-development) page, and the [CMS comparison](/services/cms-development) sets WordPress against Wix, Squarespace and Strapi.",
         ],
       },
       {
@@ -181,6 +193,10 @@ export const serviceDepth: Record<string, Depth> = {
         paragraphs: [
           "If someone else builds what I design, the handover is where quality usually leaks. A file a developer can build from has the states drawn rather than implied: hover, focus, error, empty, loading, and the breakpoints between. Without those, a developer invents them, and the result is a site that resembles the design rather than matching it.",
           "You own the design files, the domain and the hosting account, regardless of who builds it. That sounds like a formality until the relationship ends and you discover the site is somewhere you cannot reach.",
+          // Added 2026-10-16. The file and the handover have their own page
+          // now ("figma designer dubai"); this page keeps the web designer
+          // query and links across.
+          "How the file itself is made, from clickable prototypes for sign-off to components and the build in WordPress or Next.js, is on the [Figma design](/services/figma-design) page.",
         ],
       },
     ],
@@ -204,6 +220,70 @@ export const serviceDepth: Record<string, Depth> = {
         question: "Will my site rank better after a redesign?",
         answer:
           "Not automatically, and a redesign done carelessly makes it worse. The usual damage is URLs changing without redirects, which throws away whatever ranking history those pages had. This site had to repair exactly that after a migration, so it is not a theoretical risk. Keep the URLs, or redirect every one of them.",
+      },
+    ],
+  },
+
+  // Added 2026-10-16. "figma designer dubai" and "figma to website". About the
+  // file and the handover, deliberately not about what a site should say (web
+  // design) or how a product is used (UI/UX); the last block says so and links
+  // both. The word "plugins" is avoided on purpose: the two Figma plugin
+  // articles own that search on the site (`search-check`).
+  "figma-design": {
+    blocks: [
+      {
+        heading: "What a Figma designer in Dubai should hand you",
+        paragraphs: [
+          "A good Figma file is a specification, not a picture. Pages are organised so anyone can find the screen they need, layouts use auto layout so they resize the way the built page will, and every repeated element is a component, so changing a button once changes it everywhere. Colours, type sizes and spacing are saved as styles and variables rather than typed in by hand on each frame.",
+          "Above all, the file shows the states a developer would otherwise have to invent: hover and focus, error and success on forms, empty and loading screens, long names that wrap, and the breakpoints between phone, tablet and desktop. When those are missing, the built site resembles the design rather than matching it, and that gap is where quality goes.",
+        ],
+      },
+      {
+        heading: "Prototypes for stakeholder sign-off",
+        paragraphs: [
+          "Decisions here often involve several people: an owner, a sales director, a marketing manager, sometimes a consultant for the developer. A static mockup invites each of them to picture the site differently. A clickable Figma prototype removes the guessing. Everyone taps through the same flow on their own phone, from the ad's landing page to the thank-you screen, and comments directly on the frame they mean.",
+          "Changing a decision in a prototype takes minutes. Changing it after the build takes days and usually breaks something else. So sign-off happens on the prototype, with the comments resolved in the file, and the build starts from an agreed design rather than from a conversation people remember differently.",
+        ],
+      },
+      {
+        heading: "Design systems and components that keep it consistent",
+        paragraphs: [
+          "For anything that will grow, a website with many page types, an app, a family of landing pages, the file is built on a small design system: variables for colour, type and spacing, components with variants for each size and state, and a shared library other files can use. An Arabic version gets right-to-left variants designed rather than mirrored at the last moment.",
+          "The system is scaled to the job. A single campaign landing page does not need a library, and building one would be time you pay for and never use. The test is simple: if a second designer, or you in a year, will need to add a page that looks like it belongs, the components earn their keep.",
+        ],
+      },
+      {
+        heading: "Figma to website: WordPress or Next.js",
+        paragraphs: [
+          "Figma to website is where many good designs lose their quality, because the person building has to interpret the file. I build from my own files, and from other designers', with the components mapped one to one: Figma components become WordPress blocks or React components, variables become CSS variables or Tailwind tokens, and spacing comes across as designed rather than eyeballed.",
+          "WordPress is the choice where your team will edit the site every week, covered on [WordPress development](/services/wordpress-development). Next.js is the choice where speed, custom functionality or a connection to your CRM matters more, covered on [custom web development](/services/custom-web-development). Either way, the build is checked against the file at every breakpoint before launch, and assets are exported at the sizes the page actually uses.",
+        ],
+      },
+      {
+        heading: "Designing landing pages around the campaign",
+        paragraphs: [
+          "Because I also run the campaigns, landing page design in Figma starts from the ad, not from a blank frame. The first screen repeats the ad's promise, the form is drawn at its real length on a phone, and the events the page has to track, such as a form submission, a WhatsApp click or a brochure download, are marked in the file so the build includes them and GA4 and the Meta Pixel can record them.",
+          "Variants for testing are designed together, so a headline test or a shorter form can go live without a second design round. This page is about the file and the handover. What a site should say and do is on [web design](/services/web-design), and how a product is used, screen by screen, is on [UI/UX design](/services/ui-ux-design).",
+        ],
+      },
+      {
+        heading: "When you do not need a Figma file",
+        paragraphs: [
+          "Not every project needs a Figma stage, and paying for one you do not need delays the launch. A quick campaign landing page that follows an existing brand and an existing page layout can be built straight in code, or in a CMS template your team already uses, and changed in the browser where everyone can see it. The same goes for small edits to a live site and for pages that reuse components already in a design system.",
+          "In those cases I skip the file and build the page directly, on [WordPress](/services/wordpress-development) or in Next.js, with the tracking and lead form set up the same way. A Figma file earns its cost when several people have to agree on a new design before it is built, when the work is a new site or app, or when the design will be handed to another developer.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can you work from a design another designer made in Figma?",
+        answer:
+          "Yes. I review the file first for missing states, inconsistent spacing and components that are really one-off frames, and tell you what needs finishing before the build. Small gaps I fill in to match the original; larger ones I raise with you or the designer, so the design stays theirs.",
+      },
+      {
+        question: "Do you use Dev Mode?",
+        answer:
+          "Where your Figma plan includes it, yes, and it helps when another developer builds from the file, because measurements, variables and assets are easier to inspect. When I build it myself, the file is still prepared as if someone else would, because the next developer might.",
       },
     ],
   },
@@ -385,10 +465,12 @@ export const serviceDepth: Record<string, Depth> = {
   "mobile-app-development": {
     blocks: [
       {
-        heading: "One codebase, two stores, half the maintenance",
+        heading: "One codebase, two platforms, one set of fixes",
         paragraphs: [
-          "React Native builds iOS and Android from the same code. That halves the build, and it halves every change you make for as long as the app exists, which is the part that matters more. An app is not a project that finishes; it is a thing you keep paying for. Two native codebases means every fix, every OS update and every new screen gets done twice, forever.",
-          "Native earns its cost when an app leans hard on hardware in a way the bridge handles badly, and that is rarer than it is claimed to be. The LEOS app on this site is React Native and runs on both stores. If your requirement genuinely needs native, I will tell you, and I will tell you it costs roughly twice as much to build and to keep.",
+          "React Native builds iOS and Android from the same code. That means one build rather than two, and one set of fixes for as long as the app exists, which is the part that matters more. An app is not a project that finishes; it is a thing you keep paying for. With two native codebases, every fix, every OS update and every new screen gets done twice.",
+          "Native earns its cost when an app leans hard on hardware in a way the bridge handles badly, and that is rarer than it is claimed to be. The LEOS app on this site is built in React Native for iOS and Android from one codebase. If your requirement genuinely needs native, I will tell you, and I will tell you it costs more to build and to keep.",
+          // Added 2026-10-16 with the four pages under this one.
+          "How the React Native build itself works is on the [React Native development](/services/react-native-development) page. The store-specific work has its own pages, one for an [iOS app developer](/services/ios-app-development) and one for an [Android app developer](/services/android-app-development), and the database, APIs and admin panel behind the app are on [app back-end development](/services/app-backend-development).",
         ],
       },
       {
@@ -409,11 +491,21 @@ export const serviceDepth: Record<string, Depth> = {
       {
         // "android app development dubai", 260 searches at difficulty 26. The
         // page had an Android section and never used the phrase a buyer types.
-        heading: "Android app development, which is half the work and most of the market",
+        //
+        // 2026-10-16: the phrase moved to its own page,
+        // /services/android-app-development, and this heading no longer carries
+        // it, so the two pages do not compete for one query (roadmap 398 §5).
+        // The section stays, shorter on Play Store detail, and links across.
+        //
+        // Later the same day the Android page was retitled "Android App
+        // Developer in Dubai", because its old title contained "app
+        // development in Dubai" and competed with this page. The phrase came
+        // back here, where the rest of "app development in Dubai" lives.
+        heading: "Android app development in Dubai: half the work, most of the market",
         paragraphs: [
           "Android is the majority platform across much of this region, and it is routinely treated as the version that gets done second and tested least. The symptoms are familiar: a layout built to iOS proportions, a back gesture that does nothing, notifications that behave differently and nobody checked, and testing done on one recent flagship rather than on the four-year-old device a real customer is using.",
           "Building cross-platform in React Native means the Android app is not a port. It is built in the same pass from the same codebase, which removes the budget pressure that usually causes the shortcuts. What still needs separate attention is the platform behaviour: navigation conventions, permissions, background limits, notification channels, and the Play Store's own review rules, which differ from Apple's.",
-          "Testing happens on real Android hardware rather than only in an emulator, including older devices and weak connections, because that is the condition most of your users are actually in.",
+          "Testing happens on real Android hardware rather than only in an emulator, including older devices and weak connections, because that is the condition most of your users are actually in. The detail, Play Console and device testing included, is on the [Android app developer](/services/android-app-development) page.",
         ],
       },
       {
@@ -465,6 +557,240 @@ export const serviceDepth: Record<string, Depth> = {
         question: "Can you do the launch campaign too?",
         answer:
           "That is the reason to use one person rather than a development shop and an agency. The tracking is built in rather than retrofitted, the store listing is written as a conversion page, and the campaign is planned against the same funnel. Most apps are built by one supplier and marketed by another, and the join is exactly where the measurement disappears.",
+      },
+    ],
+  },
+
+  // React Native, iOS, Android and app back end, added 2026-10-16. See the note
+  // in `serviceCategories.ts`. Store rules named below (TestFlight, App
+  // Tracking Transparency, Play testing tracks, the Data safety form) are
+  // general properties of Apple's and Google's platforms, not figures. The
+  // LEOS sales application is linked as the published example of a property
+  // sales tool, without stating which framework it was built in; the LEOS
+  // mobile app is the React Native case study.
+  "react-native-development": {
+    blocks: [
+      {
+        heading: "What a React Native developer in Dubai should be building",
+        paragraphs: [
+          "React Native suits the large majority of business apps: screens of lists, forms, search, maps, media, accounts and notifications. That covers customer apps, booking apps, loyalty and content apps, and the internal tools sales teams use. For those, one React Native codebase produces a real app for iPhone and Android, using each platform's own interface components, and every later change is made once.",
+          "It is the wrong tool for a narrow set of apps: games and constant heavy graphics, deep custom hardware work, or a product whose value depends on the newest Apple or Google features on the day they ship. If yours is one of them, I will say so. The fuller argument, written so you could use it against me, is in [native vs cross-platform](/native-vs-cross-platform-app-development).",
+        ],
+      },
+      {
+        heading: "Sales apps for real estate: 3D views, CRM data and live project data",
+        paragraphs: [
+          "Much of my app work is for property sales teams, and it shapes how I build. A sales app is used in front of a buyer, on a tablet in a sales centre or a phone in a meeting, so it has to be fast, obvious and right. The work has included 3D views of buildings and floors a buyer can rotate, unit availability read from the CRM so it is true at the moment it is shown, and live project data such as pricing, payment plans and construction progress.",
+          "Two examples written up as case studies show the range. The [LEOS mobile app](/portfolio/leos-developments/mobile-app) is a React Native app for iOS and Android from one codebase. The [LEOS sales application](/portfolio/leos-developments/sales-app) shows the same thinking on a showroom touch screen: every development in one place, 3D floor plates and availability from the CRM.",
+        ],
+      },
+      {
+        heading: "Performance is designed in, not tuned afterwards",
+        paragraphs: [
+          "Most slow React Native apps are slow for the same few reasons: long lists rendered all at once, images downloaded at full size, and screens that re-render whenever anything changes. Long lists use virtualised components, explained in [FlatList vs ScrollView](/react-native-flatlist-vs-scrollview), images are sized and cached, and state is structured so a change redraws only what it affects.",
+          "The app is then measured on the phones your customers carry, which in this market includes plenty of mid-range Android devices, not only the newest iPhone on the developer's desk. Start-up time, scrolling and memory are checked on real hardware before each release, because an app that stutters on first launch rarely gets a second one.",
+        ],
+      },
+      {
+        heading: "Tracking and the marketing side",
+        paragraphs: [
+          "Analytics go in during the build. Screen views and the handful of events that matter to the business, such as an enquiry, a booking or a brochure download, are sent to Firebase Analytics and GA4, and to Meta and Google where app campaigns are running. Deep links let a campaign open the app on the right screen rather than its home page, which is often the difference between an install and a lead.",
+          "Leads created in the app go to your CRM with their source, the same as a website enquiry, through the [app back end](/services/app-backend-development). The store listings are written as conversion pages, and each store has its own rules, covered on the [iOS app developer](/services/ios-app-development) and [Android app developer](/services/android-app-development) pages.",
+        ],
+      },
+      {
+        heading: "Releases, updates and handover",
+        paragraphs: [
+          "Builds run through Expo's build service or the native toolchains, and every release goes to testers first, TestFlight on iOS and a testing track on Android, before the public stores. Small JavaScript fixes can ship as over-the-air updates within the stores' rules, so a typo does not need a full review cycle.",
+          "The code is TypeScript in a repository you own, and the Apple and Google accounts are yours from the first submission. Handover includes how to build and release, so another developer could pick the app up. If you are still deciding whether you need an app at all, the [mobile app development](/services/mobile-app-development) page starts there.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can React Native apps work offline?",
+        answer:
+          "Yes. Data can be stored on the device and synced when the connection returns, which suits sales teams in show apartments or on site visits where signal is poor. Offline support adds work, mainly in deciding what happens when two people change the same record, so it is scoped deliberately rather than assumed.",
+      },
+      {
+        question: "Can the app share code with our website?",
+        answer:
+          "Some of it. Business rules, validation, API clients and types can be shared between a React Native app and a React or Next.js website, especially in one repository. Screens are built separately, because a phone and a browser need different interfaces, but the rules behind them stay the same in both.",
+      },
+    ],
+  },
+
+  "ios-app-development": {
+    blocks: [
+      {
+        heading: "What an iOS app developer in Dubai handles beyond the code",
+        paragraphs: [
+          "Building the screens is the part people picture. The rest is Apple's: an app has to run well across the iPhones still in use, follow the Human Interface Guidelines closely enough to feel at home, declare exactly what data it collects, ask for permissions at the right moment, and pass App Review before anyone can download it. Each of those can delay a launch, and each is predictable if it is planned from the start.",
+          "I build iOS apps in React Native rather than Swift. The result is a real iOS app using Apple's own interface components, and the same code ships to Android, which matters to most businesses here. Where an app genuinely needs Swift, such as for heavy graphics or the newest Apple frameworks on day one, a native iOS developer is the better hire, and I will tell you before you commit.",
+        ],
+      },
+      {
+        heading: "iPhone, and the iPad in the sales centre",
+        paragraphs: [
+          "Most apps are designed for the iPhone first, and that is right for customer apps. Sales teams are different. In property especially, the iPad is the presentation device: a sales manager sits beside a buyer and walks them through projects, floor plans and availability on a ten or eleven-inch screen. An iPhone layout stretched to that size wastes it.",
+          "So iPad layouts are designed for the larger screen, often with a list and its detail side by side, and tested in landscape, which is how tablets sit on a sales desk. For a tablet dedicated to one app in a showroom, iOS features such as Guided Access keep it locked to that app. The [React Native development](/services/react-native-development) page covers the sales apps this work comes from.",
+        ],
+      },
+      {
+        heading: "TestFlight, App Review and the rules that cause rejections",
+        paragraphs: [
+          "Every build goes to TestFlight before the App Store. Your team installs it on their own iPhones and iPads, uses it for real and reports problems, and external testers can be invited after Apple's beta review. That is where most issues are caught, while they are inexpensive to fix.",
+          "App Review then checks the app against Apple's guidelines. The usual rejections are avoidable: a demo login the reviewer can use, a privacy policy that matches what the app does, no placeholder content or broken links, and payments for digital goods going through Apple's in-app purchase where the rules require it. Releases can also be phased, so an update reaches users gradually and a problem can be paused before it reaches everyone.",
+        ],
+      },
+      {
+        heading: "Privacy labels, permissions and App Tracking Transparency",
+        paragraphs: [
+          "Every App Store listing carries privacy details that state what the app collects and why, and they have to match what the app and its third-party tools actually do. Analytics and advertising SDKs count, so they are listed before submission rather than discovered by a reviewer. The same thinking applies to the UAE PDPL: collect what the app needs and say so plainly.",
+          "Permissions are asked for in context. A request for notifications on first launch is usually refused; the same request after a buyer saves a property, explaining that they will hear about price changes, usually is not. Tracking users across other companies' apps and websites requires Apple's App Tracking Transparency prompt, and many people decline it, so app campaigns are measured with that in mind rather than with numbers that assume everyone said yes.",
+        ],
+      },
+      {
+        heading: "When a native Swift build is the better call",
+        paragraphs: [
+          "React Native is not the right tool for every iPhone app, and the honest answer matters more than the booking. A native Swift build is the better call when the app is built around Apple hardware or frameworks: augmented reality with ARKit, heavy real-time graphics or video processing, deep Apple Watch, widget or CarPlay work, or a feature that depends on an Apple framework released this year. It is also the better call when the app will only ever be on iPhone and you already have, or plan to hire, an iOS team that works in Swift.",
+          "In those cases I will say so before we start and recommend you hire a Swift developer for the app. I can still own the parts around it that I do build: the [app back end](/services/app-backend-development), the tracking, the App Store listing and the campaign that sends people to download it.",
+        ],
+      },
+      {
+        heading: "Push notifications and the App Store listing",
+        paragraphs: [
+          "Push notifications go through Apple's notification service, usually via Firebase Cloud Messaging or Expo, from an [app back end](/services/app-backend-development) that decides who receives what. Fewer, relevant messages keep people from switching notifications off: a viewing reminder, a price change on a saved unit, a launch they registered for.",
+          "The App Store listing is a conversion page. The name, subtitle, keywords, screenshots and the first lines of the description decide most installs, and App Store Connect can produce campaign links so you can see which campaign brought each download. Leads from the app reach your CRM with their source, the same as a web enquiry. The Android side is on the [Android app developer](/services/android-app-development) page.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can the app run on iPad as well as iPhone?",
+        answer:
+          "Yes. React Native supports iPad, and the layouts are designed for the larger screen rather than stretched, with a list and its detail side by side where a sales manager needs both. Apple reviews iPad support too, so if the app offers it, it has to work well on it.",
+      },
+      {
+        question: "What is TestFlight?",
+        answer:
+          "Apple's beta testing service. Builds are uploaded and sent to internal testers in your team, or to external testers after a short Apple review, so the people who will use the app can try it on their own devices before it reaches the public App Store.",
+      },
+    ],
+  },
+
+  "android-app-development": {
+    blocks: [
+      {
+        heading: "What an Android app developer in Dubai has to plan for",
+        paragraphs: [
+          "Android is not one platform in the way iOS is. Samsung, Xiaomi, Oppo, Huawei and others ship their own versions of it on phones that range from flagships to budget models several years old, with different screen sizes, memory and battery rules. An app that is only tested on one recent phone will meet the rest for the first time in the hands of a customer.",
+          "There is a regional detail worth knowing early. Recent Huawei phones ship without Google Play services, so features that depend on them, such as Firebase push notifications and Google sign-in, need an alternative or are accepted as a gap, and Huawei has its own store, AppGallery. Whether that matters depends on your audience, and it is decided before the build rather than after the first complaint.",
+        ],
+      },
+      {
+        heading: "React Native, not Kotlin, and why that suits most apps",
+        paragraphs: [
+          "I build Android apps in React Native rather than Kotlin. The app is a real Android app using Android's own components, and it shares its code with the iOS version, so a feature or a fix is built once. For the kind of apps most businesses need, the difference to a user is not visible; the difference to a budget is.",
+          "What does not come for free is Android's own behaviour, and it is built deliberately: the system back gesture, how the keyboard pushes a form up, runtime permissions, notification channels a user can switch off one at a time, and background limits that some phone makers apply more strictly than others. The shared build is covered on the [React Native development](/services/react-native-development) page.",
+        ],
+      },
+      {
+        heading: "Testing across the range, not on one flagship",
+        paragraphs: [
+          "Testing happens on real devices across ages and price points, not only in the emulator. Small screens, large font settings, Arabic right-to-left layouts, low memory and weak connections each find different problems, and each reflects someone in your audience. A form that hides its submit button behind the keyboard on a small phone is a lost lead that no report will explain.",
+          "Where a wider spread of devices is needed than a desk can hold, a device cloud such as Firebase Test Lab runs the app across many more models. Crashes and slow screens in production are reported back through crash reporting, so problems on a particular model show up as data rather than as one-star reviews.",
+        ],
+      },
+      {
+        heading: "Google Play Console: listing, testing tracks and policy",
+        paragraphs: [
+          "Apps are published through Google Play Console under your organisation's account. Builds go first to internal testing, then closed or open testing tracks, and releases to the public can be staged so an update reaches a share of users first. New personal developer accounts must complete a closed test with real testers before publishing, which is one reason a business should publish under an organisation account.",
+          "Each app also needs its Data safety section, which declares what data is collected and shared, a content rating and a target audience, and it has to meet Google Play's current target API level. The store listing is a conversion page: a short description of up to 80 characters, screenshots that show the app doing its job, and custom store listings where a campaign deserves its own version.",
+        ],
+      },
+      {
+        heading: "Tracking installs and leads from Android",
+        paragraphs: [
+          "Google Play passes campaign details to the app through the Play Install Referrer, so installs can be attributed to the campaign that produced them, and app campaigns in Google Ads and Meta use that data to find more of the right users. In-app events, an enquiry, a booking, a brochure download, go to Firebase Analytics and GA4 so you can see what installs turn into.",
+          "Leads created in the app should land in the same CRM as everything else, with their source attached, which is the job of the [app back end](/services/app-backend-development) and the [CRM integration](/services/crm-integration) behind it. The iPhone side of the same app is on the [iOS app developer](/services/ios-app-development) page.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can an internal app be distributed without the public Play Store?",
+        answer:
+          "Yes. A sales team app can be published privately through managed Google Play and installed on company devices by your device management, such as Microsoft Intune, so it never appears in the public store. That is safer than sending installation files around, which bypasses Play's checks and your device policies.",
+      },
+      {
+        question: "Will notifications work the same as on iPhone?",
+        answer:
+          "Not exactly. Android groups notifications into channels that users can switch off one by one, asks for permission on recent versions, and some phone makers restrict background activity to save battery. Each is planned for, so a reminder about a viewing arrives when it should.",
+      },
+    ],
+  },
+
+  "app-backend-development": {
+    blocks: [
+      {
+        heading: "What app back-end development in Dubai covers",
+        paragraphs: [
+          "Take one tap: a buyer presses Book a viewing. The app checks who they are, saves the request, checks the slot is still free, notifies the right agent, sends the lead to the CRM with the campaign that brought them, and confirms by push notification. None of that happens on the phone. It happens in the back end: the database, the authentication, the APIs, the functions that run on events, and the integrations with your other systems.",
+          "That is why app quotes that leave the back end vague are the ones that grow. It is also where most of the long-term cost sits, because the back end is what has to stay secure, stay up and keep serving older versions of the app that people have not updated.",
+        ],
+      },
+      {
+        heading: "Firebase or MongoDB: how they compare",
+        paragraphs: [
+          "The two back ends I build on suit different apps. Firebase, mainly Firestore, Authentication, Cloud Functions and Cloud Messaging, gets an app live quickly and makes realtime updates simple. MongoDB, with an API in Node and Express, takes longer to set up and gives you control over the data, the queries and where everything runs. The table sets out the differences that usually decide it.",
+        ],
+        table: {
+          caption: "How Firebase and MongoDB with Node and Express compare as an app back end",
+          head: ["What matters", "Firebase (Firestore)", "MongoDB with Node and Express"],
+          rows: [
+            ["Realtime updates", "Built in: screens update the moment data changes", "Possible with change streams and sockets, built for the app"],
+            ["Authentication", "Firebase Authentication: email, phone, Google and Apple sign-in ready to use", "Built into the API, or an authentication provider alongside it"],
+            ["Offline use", "Offline caching and sync built into the client libraries", "Built in the app, with local storage and a sync step"],
+            ["Querying and reporting", "Fast simple queries; joins and complex reports are limited", "Rich queries and aggregation; suits reporting"],
+            ["Cost as you grow", "Pay per read, write and stored data; low to start, can climb with heavy reading", "Pay for server and database size; more predictable at volume"],
+            ["Lock-in", "Higher: Google's APIs and data model", "Lower: open-source database that runs on any cloud"],
+            ["Best for", "Chat, live updates, first versions, apps with simple data", "Business apps with complex data, reporting and integrations"],
+          ],
+        },
+      },
+      {
+        heading: "Node and Express APIs the app can rely on",
+        paragraphs: [
+          "An API built in Node and Express sits between the app and the database. Every request is checked: who is asking, whether they are allowed, and whether the data they send is valid, before anything is written. Responses are shaped for the screens that use them, so the app downloads what it shows and no more, which matters on mobile data.",
+          "Versioning is the part apps need that websites do not. When a new version of the app ships, plenty of people keep the old one for weeks, so the API keeps serving both until the old version can be retired. Requests are logged, errors alert someone, and MongoDB collections are indexed for the queries the app actually makes, which keeps it quick as the data grows.",
+        ],
+      },
+      {
+        heading: "Admin panels your team runs the app from",
+        paragraphs: [
+          "An app without an admin panel needs a developer for every change. The admin panel, built in React or Next.js, is where your team adds a project, updates prices or availability, manages users, reads enquiries and sends push notifications to a chosen group. Roles limit who can do what, so a sales coordinator can update availability without being able to delete a project.",
+          "The same back end can power your website as well as the app, so a listing added once appears in both. That web side is covered on [custom web development](/services/custom-web-development), and the app it serves on [React Native development](/services/react-native-development).",
+        ],
+      },
+      {
+        heading: "CRM sync, tracking and security",
+        paragraphs: [
+          "Leads, bookings and sign-ups created in the app are sent to your CRM with their source, by API or webhook, and updates from the CRM, such as availability or a lead's owner, flow back. The connection is logged and retried, because an integration that fails quietly loses leads without anyone noticing. How the CRM side is set up is on [CRM integration](/services/crm-integration).",
+          "Security follows least privilege. Firebase security rules or API checks ensure each user reads only their own data, keys and secrets stay on the server rather than inside the app, data is encrypted in transit, and backups are tested. Both Firebase and MongoDB let you choose the cloud region your data is held in, and the options vary by service, so the region is checked against your requirements, including the UAE PDPL, before setup.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can the same back end serve the app and the website?",
+        answer:
+          "Yes, and it should when they share users or data. A Node and Express API, or Firebase, can serve a React Native app, a Next.js website and an admin panel at once, so a booking made on a phone appears on the website straight away and your team manages both from one place.",
+      },
+      {
+        question: "Where is the data stored, and does it have to stay in the UAE?",
+        answer:
+          "Both Firebase and MongoDB let you choose the cloud region your data is held in, and the available regions differ by service. Whether your data must stay in the UAE depends on your sector and the data itself, under the UAE PDPL and any sector rules. I set up the region you decide on, but for a formal position on data residency please consult a qualified legal professional.",
       },
     ],
   },
@@ -767,7 +1093,7 @@ export const serviceDepth: Record<string, Depth> = {
   "website-app-development": {
     blocks: [
       {
-        heading: "What a web developer in Dubai should be building around",
+        heading: "What a freelance web developer in Dubai should be building around",
         paragraphs: [
           "A landing page built in isolation from the campaign pointing at it is where most paid budget quietly leaks. The ad promises one thing, the page opens with another, and the form asks for eight fields when three would do. None of that shows up as a broken link, so it goes unnoticed for months.",
           "Because the campaign and the build sit with the same person here, the page is designed against the ad that will send traffic to it: the same promise above the fold, the qualifier high enough to filter, and one primary action with anything secondary visibly subordinate to it.",
@@ -778,6 +1104,7 @@ export const serviceDepth: Record<string, Depth> = {
         paragraphs: [
           "Marketing sites and landing pages are built on Next.js, which renders on the server. That matters commercially rather than technically: server-rendered pages are fast on a mid-range phone on mobile data, and they are readable by search engines and AI crawlers without waiting for JavaScript. Application work is MERN, MongoDB, Express, React and Node, with React Native where a mobile app is genuinely warranted.",
           "Speed is treated as a requirement, not a nice-to-have. Images are served in modern formats at the sizes actually used, third-party scripts are loaded so they cannot block the page, and the result is checked on real viewport sizes rather than on a designer's monitor.",
+          "Where your own team needs to edit the site, the choice between WordPress, Wix, Squarespace and Strapi is on the [CMS development](/services/cms-development) page. Portals, dashboards and calculators, and the hosting behind them, are on [custom web development](/services/custom-web-development).",
         ],
       },
       {
@@ -802,7 +1129,7 @@ export const serviceDepth: Record<string, Depth> = {
       {
         question: "What is your full development stack?",
         answer:
-          "Next.js and React for websites and marketing tools, React Native for mobile apps, and the MERN stack (MongoDB, Express, React, Node.js) for custom applications and dashboards. PostgreSQL where relational data and reporting matter more than document flexibility. On the CMS side: WordPress, Squarespace and Wix.",
+          "Next.js and React for websites and marketing tools, written in TypeScript, React Native for mobile apps, and the MERN stack (MongoDB, Express, React, Node.js) for custom applications and dashboards. PostgreSQL where relational data and reporting matter more than document flexibility, and PHP for existing systems. On the CMS side: WordPress (with Elementor and ACF), Wix, Squarespace and Strapi.",
       },
       {
         question: "Do you use MongoDB or PostgreSQL?",
@@ -852,6 +1179,338 @@ export const serviceDepth: Record<string, Depth> = {
     ],
   },
 
+  // The CMS hub and its four platforms, plus custom web development, added
+  // 2026-10-16. See the note above them in `serviceCategories.ts`. Every
+  // platform claim below is a general, checkable property of the platform
+  // (what it can export, what it bundles, what needs a plan or a plugin), not a
+  // figure; no prices beyond pointing at /pricing, no client beyond LEOS.
+  "cms-development": {
+    blocks: [
+      {
+        heading: "What CMS development in Dubai should start with",
+        paragraphs: [
+          "Most businesses here pick a CMS because a friend uses it, an agency resells it or a template looked good. Then the site goes live, the marketing starts, and the platform turns out to be wrong for the job: the sales team cannot add a project page without a developer, or next week's campaign landing page cannot carry the tracking the ads need.",
+          "So the choice is made against five questions, in this order. Who edits the site, and how comfortable are they with software? How much content is there, and does it come in English and Arabic or more? What is the real budget, including running costs for the next two years? How fast does the site need to be on a phone on mobile data? And what does it have to talk to: Google Ads, Meta, GA4, a CRM such as HubSpot, Zoho or Salesforce, WhatsApp?",
+        ],
+      },
+      {
+        heading: "WordPress, Wix, Squarespace and Strapi compared",
+        paragraphs: [
+          "The short version is in the table. Each platform has its own page with the detail: [WordPress development](/services/wordpress-development), [Wix development](/services/wix-development), [Squarespace development](/services/squarespace-development) and [Strapi development](/services/strapi-development).",
+        ],
+        table: {
+          caption: "How WordPress, Wix, Squarespace and Strapi compare for a marketing-led website",
+          head: ["What matters", "WordPress", "Wix", "Squarespace", "Strapi"],
+          rows: [
+            ["Who edits it", "A marketing team, several editors", "The owner, one or two people", "The owner, usually design-minded", "Editors in a structured admin; a developer owns the front end"],
+            ["Content volume", "Hundreds of pages and posts", "Small to medium", "Small and image-led", "Large, structured, reused across channels"],
+            ["Running cost", "Hosting, updates and plugin licences", "A monthly plan, little else", "A monthly plan, little else", "Hosting for the CMS and the front end, plus developer time"],
+            ["Speed", "Good when built lean, slow when overloaded", "Acceptable, limited control", "Acceptable, limited control", "The fastest of the four, with a Next.js front end"],
+            ["Tracking and CRM", "Full control: GTM, server-side, any CRM", "Built-in integrations; custom code on paid plans", "Built-in integrations; code injection on some plans", "Full control, built into the front end"],
+            ["Leaving later", "Easy: your files, any host", "Hard: the design stays on Wix", "Hard: only some content exports", "Easy: your code, your database"],
+            ["Best for", "Content-heavy marketing sites", "Small business sites and quick campaign pages", "Portfolios and brochure sites", "Multilingual listings, a site plus an app"],
+          ],
+        },
+      },
+      {
+        heading: "When none of them is the answer",
+        paragraphs: [
+          "Sometimes the site is not really a content site. A payment plan calculator, a portal brokers log into, a dashboard that reads from your CRM, a page that has to load instantly on a weak connection: forcing those into a CMS produces a plugin stack nobody can maintain. That is [custom web development](/services/custom-web-development), and the honest recommendation is to build it properly rather than bend a CMS around it.",
+          "Often the answer is both: a CMS for the pages the marketing team edits every week, and a custom build for the one tool that does something no plugin does. They can share a domain, a design and the same tracking.",
+        ],
+      },
+      {
+        heading: "Built for the campaigns that send it traffic",
+        paragraphs: [
+          "This is the part most CMS projects skip. Before launch, every form is tested end to end: the submission reaches the CRM with the campaign source attached, GA4 records the conversion, and the Meta Pixel and Google Ads tags fire on the right event and only on that event. Google Tag Manager goes in on every platform that allows it, so tags can change later without a developer.",
+          "SEO is set up the same way: clean URLs, editable titles and descriptions on every page, a sitemap, redirects for anything that moved, and page speed checked on a phone rather than on an office connection. A site that cannot be measured cannot be improved, whatever platform it runs on. The campaign side of this is on the [digital marketing](/services/digital-marketing) page.",
+        ],
+      },
+      {
+        heading: "What it costs to run, not just to build",
+        paragraphs: [
+          "The launch quote is the smaller number. WordPress needs hosting, updates and security patches every month, and a site with thirty plugins needs more of that than one with eight. Wix and Squarespace bundle all of it into a subscription that is hard to leave, because neither exports a working site to another host. Strapi needs hosting for the CMS and for the front end, and a developer on call.",
+          "None of that is a reason to avoid any of them. It is a reason to compare them over two years rather than at launch, and the [pricing page](/pricing) explains how project and retainer work is charged. If you are weighing WordPress against a custom Next.js build, there is a longer comparison in [WordPress or Next.js for your business website](/wordpress-or-nextjs-for-your-business-website).",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What does CMS development cost?",
+        answer:
+          "It depends on the platform and the scope, and the published starting figures are on the pricing page. As a rule, the platform is rarely the expensive part. Custom design, integrations with your CRM and the number of page templates decide the cost far more than whether it is Wix or WordPress.",
+      },
+      {
+        question: "Is a headless CMS better than WordPress?",
+        answer:
+          "Not by default. A headless CMS such as Strapi separates content from the front end, which gives you speed and the freedom to publish the same content to a website, an app and a portal. It also means a developer owns the front end permanently. For a marketing site with a few editors, WordPress or a site builder is usually the better trade.",
+      },
+    ],
+  },
+
+  "wordpress-development": {
+    blocks: [
+      {
+        heading: "What a WordPress developer in Dubai should be building",
+        paragraphs: [
+          "WordPress runs a large share of the web, which is both why it is a safe choice and why so much of it is badly built. The platform is fine. What goes wrong is the assembly: a multipurpose theme that ships with forty layouts you will never use, a page builder layered on top, and a plugin for every small job. Each one adds weight, updates and another way for the site to break.",
+          "The build I do starts from the design and the content, not from a theme. A custom theme carries only what your pages need, and the editing screens are shaped around what your team actually changes: a project, a price, a team member, a landing page. That is what keeps a WordPress site fast and tidy two years after launch.",
+        ],
+      },
+      {
+        heading: "Elementor or ACF, decided by who edits the site",
+        paragraphs: [
+          "Elementor is the right tool when your marketing team wants to build new page layouts without a developer. It is the wrong tool when it is handed over unconfigured, because every editor then makes their own decisions about fonts, spacing and colours, and the brand drifts within months. Set up properly, with global styles and a library of saved sections, it gives a team freedom without the drift.",
+          "Advanced Custom Fields suits the opposite case: content with a fixed shape. Property listings, case studies, team pages, events. Editors fill in fields, the theme handles the layout, and nobody can break a page by dragging a block. Many sites use both: ACF for the structured content, Elementor or the block editor for the landing pages marketing builds every month.",
+        ],
+      },
+      {
+        heading: "Made for non-technical marketing teams",
+        paragraphs: [
+          "The measure of a WordPress build is what happens when the developer is not there. Can your marketing coordinator add a landing page for Thursday's campaign, change a form or publish an article without asking anyone? If not, the site is a dependency rather than a tool.",
+          "So the admin is trimmed to what your team uses, custom fields are labelled in plain English, and before handover the person who will edit the site does each common task in front of me. Anything that needs a second attempt gets simplified or written into a short guide.",
+        ],
+      },
+      {
+        heading: "Speed and SEO are build decisions",
+        paragraphs: [
+          "A slow WordPress site is almost always slow because of what was put on it: images uploaded at camera size, a slider on every page, scripts from five plugins loading whether the page uses them or not. Fixing that afterwards is possible and avoiding it is better value. Images are resized and served in modern formats, scripts load only where they are needed, and the result is measured on a mid-range phone rather than a developer's laptop.",
+          "SEO gets the same treatment: editable titles and descriptions on every page, clean URLs, schema where it helps, no thin tag and archive pages competing with the real ones, and every old URL redirected when a site is rebuilt. If the design itself is the open question rather than the build, that is the [web design](/services/web-design) page.",
+        ],
+      },
+      {
+        heading: "Lead forms that reach your CRM",
+        paragraphs: [
+          "This is where my work differs from a typical WordPress build. A contact form that sends an email is not a lead system: it cannot tell you which campaign produced the enquiry or whether anyone followed it up. Forms here post to your CRM, whether that is HubSpot, Zoho or Salesforce, with the UTM source, the page and the campaign attached, and the same submission fires the GA4 and Meta Pixel conversion through Google Tag Manager.",
+          "Because I also run the campaigns, landing pages are built for the ads that will point at them: the same promise above the fold, a form short enough to finish on a phone, and a thank-you page the ad platforms can count. The tracking side is covered on the [CRM and tracking](/services/crm-marketing-automation) page, and if you are still choosing between WordPress and a custom build, read [WordPress or Next.js](/wordpress-or-nextjs-for-your-business-website) first.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Is WordPress good for SEO?",
+        answer:
+          "It gives you everything SEO needs: editable titles and descriptions, clean URLs, sitemaps and full control of the HTML. It does not do SEO for you, and an SEO plugin showing all green is not the same as a page that ranks. The bigger risks are speed and the duplicate pages that tags and archives create, and both are build decisions.",
+      },
+      {
+        question: "Can WordPress handle English and Arabic?",
+        answer:
+          "Yes. WordPress supports right-to-left languages, and a multilingual plugin such as WPML or Polylang manages the translated pages. The work is in the theme: an Arabic layout needs to be designed and tested as Arabic rather than simply mirrored, or it reads like an afterthought.",
+      },
+    ],
+  },
+
+  "wix-development": {
+    blocks: [
+      {
+        heading: "When a Wix developer in Dubai is the right hire",
+        paragraphs: [
+          "Wix makes sense when three things are true: the site is small to medium, one or two people will edit it, and nobody wants to manage hosting, updates or security. That describes a lot of businesses here: a clinic, a consultancy, a training provider, a small brokerage, a shop with a handful of services. For them, a custom build or a WordPress install would mean paying for flexibility they will never use.",
+          "Where Wix stops being the right answer is just as clear: many editors with different permissions, hundreds of listings that need filtering, a site that must load instantly on poor connections, or a deep integration with your own systems. At that point I will say so and point you at [WordPress](/services/wordpress-development) or a [custom build](/services/custom-web-development) instead, before any money goes into the wrong platform.",
+        ],
+      },
+      {
+        heading: "Built for the owner who maintains it",
+        paragraphs: [
+          "The point of Wix is that you can change your own site, so the build is shaped around that: sections you can duplicate rather than rebuild, a small set of fonts and colours saved as the site theme, and image areas that a new upload will not break. When you add a page in six months, it should look like it belongs.",
+          "Handover is practical. You change a price, add a team member and publish a page while I watch, and anything that is not obvious goes into a one-page guide. The account, the domain and the billing stay in your name.",
+        ],
+      },
+      {
+        heading: "Landing pages for campaigns, not just a homepage",
+        paragraphs: [
+          "Most small business Wix sites send every ad to the homepage, which has to serve every visitor and serves none of them well. A campaign landing page does one job: it repeats the ad's promise, answers the two or three questions that stop people enquiring, and asks for the minimum on a form that works with one thumb.",
+          "Wix handles this well. Landing pages can be built quickly, kept out of the main menu and duplicated for the next campaign. Because I also run [Google Ads](/services/google-ads) and [Facebook ads](/services/facebook-ads), the page is written against the ad that will send traffic to it rather than in isolation.",
+        ],
+      },
+      {
+        heading: "SEO and tracking set up properly on Wix",
+        paragraphs: [
+          "Wix gives you the controls: page titles and descriptions, URL slugs, a redirect manager, structured data and a sitemap. Many Wix sites never use them, so every page goes out with a default title and the business ranks only for its own name. Setting them deliberately, with each page aimed at one thing people actually search for, is often the biggest single improvement a small site can make.",
+          "Tracking is the same story. GA4, Google Tag Manager and the Meta Pixel connect through Wix's marketing integrations, and form submissions are marked as conversions, so you can see which campaign produced which enquiry instead of guessing. Where a CRM is involved, form entries reach it through an integration or a small piece of code rather than being copied by hand.",
+        ],
+      },
+      {
+        heading: "Velo, apps and the limits worth knowing",
+        paragraphs: [
+          "When the editor cannot do something, there are two routes. The Wix App Market covers common needs such as appointments, reviews and chat. Velo, Wix's coding layer, allows custom JavaScript, data collections and connections to outside services. I use it for the specific things that justify it: a calculator, a filtered list of projects, or sending form data to a CRM that has no ready-made app.",
+          "The limits are real, and better known before you start than after. You have less control over page weight and code than on WordPress or a custom build, so a Wix site is rarely the fastest in its market, and it cannot be moved to another host: your content and domain are yours, but the design stays on Wix. For most small businesses those are fair trades for a site they never have to maintain. The [CMS comparison](/services/cms-development) sets them against the other platforms.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What is Velo, and do I need it?",
+        answer:
+          "Velo is Wix's coding layer: JavaScript, data collections and connections to other services inside a Wix site. It is useful for things the editor cannot do, such as a calculator, a filtered listing or sending form data somewhere specific. Most small business sites never need it, and I only use it where it saves you a workaround.",
+      },
+      {
+        question: "Wix or Wix Studio?",
+        answer:
+          "Wix Studio is the version aimed at agencies and designers, with more control over responsive layouts. For a site an owner will maintain alone, the standard editor is usually simpler to live with. I build in whichever suits the person who edits the site afterwards.",
+      },
+    ],
+  },
+
+  "squarespace-development": {
+    blocks: [
+      {
+        heading: "What a Squarespace developer in Dubai is hired for",
+        paragraphs: [
+          "Squarespace is built for brochure and portfolio sites: a business with a strong visual identity, a modest number of pages and an owner who wants to change them without help. Interior design studios, architects, photographers, boutique consultancies and personal brands are the natural fit. For them, a Squarespace site can look as considered as a custom build at a fraction of the effort to maintain.",
+          // Real work, added 2026-10-16. Not linked: the Choppershoot case study
+          // in caseStudies.ts is still a noindex draft.
+          "The website I built for Choppershoot, a production house, is a good example. It runs on Squarespace so the team can update their showreels and projects themselves, without waiting on a developer for every new piece of work.",
+          "The work is not dragging blocks onto a template. It is deciding what the site has to say and in what order, adapting the template so it looks like your brand rather than its demo, and setting up the parts Squarespace leaves to you: the enquiry route, the search settings and the tracking.",
+        ],
+      },
+      {
+        heading: "Design-led, without looking like the template",
+        paragraphs: [
+          "Squarespace templates are good, which is the problem: a great many sites use the same ones, and a visitor who has seen the demo recognises it. The fix is in the site styles rather than in decoration. Your type, your spacing, your colours and a consistent treatment for photography change the feel of a template more than any number of added effects.",
+          "Where the built-in controls stop, custom CSS fills the gap, used sparingly so the site still updates cleanly. If you need a brand identity before a website, the [graphic design and branding](/services/graphic-design-branding) work comes first and the site is built from it.",
+        ],
+      },
+      {
+        heading: "When to choose Squarespace over Wix or WordPress",
+        paragraphs: [
+          "Choose Squarespace when the site will stay small, the design matters more than features, and you never want to think about hosting, plugins or updates. Choose [Wix](/services/wix-development) when you need more from an app market or more layout freedom. Choose [WordPress](/services/wordpress-development) when several people will publish often, you need structured content such as listings, or you want full control over speed and code.",
+          "The limits are worth knowing in advance. Squarespace has no plugin ecosystem in the WordPress sense, multilingual and right-to-left support is limited, and some features, such as adding your own code to every page, depend on the plan you are on. None of that matters for a twenty-page portfolio. All of it matters for a bilingual property site with three hundred units.",
+        ],
+      },
+      {
+        heading: "Lead capture and tracking on Squarespace",
+        paragraphs: [
+          "A portfolio site that impresses people and never hears from them is a common outcome. Every project page needs a route to an enquiry, the contact form should ask only what you will use, and its entries need to go somewhere you will see and act on within the hour, not to an inbox checked on Fridays.",
+          "Squarespace connects to GA4 and the Meta Pixel, and Google Tag Manager can be added through code injection on plans that allow it. Form submissions are tracked as conversions, so if you run [paid campaigns](/services/paid-marketing) you can see what each enquiry cost. Where a CRM is involved, entries are passed to it through an integration and tested end to end before launch.",
+        ],
+      },
+      {
+        heading: "Speed and search on an image-heavy site",
+        paragraphs: [
+          "Image-led sites are the ones most likely to be slow on a phone. Squarespace serves images at sizes suited to each screen, but it cannot fix a gallery of forty full-resolution photographs on one page. Fewer, better images per page, a sensible upload size, and pages split by project rather than one endless gallery keep the site quick.",
+          "Search needs words. A project page with twelve photographs and one line of text gives Google nothing to rank. Each project gets a title that says what and where, a few honest paragraphs about the brief and the result, and image descriptions that a screen reader and a search engine can both use.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Does Squarespace work for Arabic or bilingual sites?",
+        answer:
+          "Not well on its own. Squarespace has limited built-in support for multilingual sites and right-to-left text, so a bilingual site usually needs a translation service on top or two linked sites. If Arabic is central to your audience, WordPress or Strapi is usually the better foundation, and I will say so before we start.",
+      },
+      {
+        question: "Can Squarespace send enquiries to my CRM?",
+        answer:
+          "Yes, with some setup. Squarespace forms can send submissions to email and a few connected services, and an automation tool can pass them on to HubSpot, Zoho or Salesforce with the source attached. It is less direct than on WordPress or a custom build, so I test it end to end before launch rather than assume it works.",
+      },
+    ],
+  },
+
+  "strapi-development": {
+    blocks: [
+      {
+        heading: "What a Strapi developer in Dubai builds, and why headless",
+        paragraphs: [
+          "In a traditional CMS the content and the design live in one system. In a headless setup they are separate: Strapi holds the content and serves it through an API, and a front end built in Next.js decides how it looks. The split sounds technical and the commercial effect is simple. Pages load faster, the same content can feed a website, an app and a sales screen, and the design can change without touching the content.",
+          "The cost is that the front end is code. Your team edits content freely, but a new page layout needs a developer. That is the trade to weigh before choosing Strapi, and it is why I recommend it less often than any other platform on this site.",
+        ],
+      },
+      {
+        heading: "Where it earns its place: structured content at volume",
+        paragraphs: [
+          "The clearest case in this market is real estate. A developer or brokerage with several projects, hundreds of units, floor plans, payment plans, amenities and agents, in English and Arabic, is managing a database, not writing pages. In Strapi each of those is a content type with its own fields, the relationships between them are defined once, and every project page, listing and comparison is built from the same source.",
+          "Other good fits share that shape: a property portal, a directory, a product catalogue that also feeds an app, or a marketing site where a landing page for each campaign is generated from structured data rather than built by hand. For property specifically, the [real estate marketing](/real-estate-marketing) page covers the campaign side.",
+        ],
+      },
+      {
+        heading: "A fast Next.js front end, built for search and campaigns",
+        paragraphs: [
+          "The front end is where the speed comes from. Next.js renders pages on the server, so a listing page arrives ready to read on a mid-range phone on mobile data, and search engines and AI assistants can read it without running JavaScript. When an editor publishes in Strapi, a webhook tells the site to refresh that page, so changes appear within moments and without a full rebuild.",
+          "Because it is code, the tracking is exactly what the campaigns need. GA4 and Meta Pixel events fire on real actions such as a brochure download or a callback request, forms post to your CRM with the listing and the campaign attached, and landing pages can be created per project from the data. More on the build side is on the [custom web development](/services/custom-web-development) page.",
+        ],
+      },
+      {
+        heading: "Roles, languages and the editors who use it",
+        paragraphs: [
+          "Strapi's admin is clean and quick to learn, and its roles and permissions let you decide who can do what: sales updates availability, marketing publishes pages, a translator works only on the Arabic versions. Internationalisation is built in, so each translation is linked to its original and nothing goes live in one language and not the other by accident.",
+          "Before handover, each role does its own common tasks in front of me. If an agent cannot update a unit in under a minute, the content model gets simplified, because a CMS the sales team avoids ends up full of stale prices, which is worse than having no CMS at all.",
+        ],
+      },
+      {
+        heading: "When Strapi is overkill",
+        paragraphs: [
+          "Most of the time, honestly. A company website with twenty pages, one editor and no app does not need a headless CMS, and building one anyway means paying for two systems and a developer for every layout change. [WordPress](/services/wordpress-development) or a site builder will launch sooner and cost less to run.",
+          "The test I use has three parts: is the content structured, is it reused in more than one place, and does speed or scale matter enough to justify a separate front end? If two of those are not true, Strapi is the wrong answer, and the [CMS comparison](/services/cms-development) will point to a better one.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Where is Strapi hosted?",
+        answer:
+          "Strapi is open source, so it can run on a cloud server you control with a PostgreSQL database, or on Strapi's own cloud hosting. The Next.js front end is hosted separately, usually on Vercel, Netlify or Cloudflare. Every account sits in your name, not mine.",
+      },
+      {
+        question: "Can the same content feed a website and a mobile app?",
+        answer:
+          "Yes, and it is one of the main reasons to choose a headless CMS. The website and the app read the same API, so a new project or a price change is entered once and appears in both. Without that, the same listing is typed into two systems and they drift apart within weeks.",
+      },
+    ],
+  },
+
+  "custom-web-development": {
+    blocks: [
+      {
+        heading: "When custom web development in Dubai beats a CMS",
+        paragraphs: [
+          "A CMS is built for publishing pages. The moment a site has to do something with data, it starts fighting you: a mortgage or payment plan calculator, a portal where brokers log in to see their leads, a dashboard that reads live from the CRM, a property search with filters that must respond instantly. Each of those can be bolted onto WordPress with plugins, and each bolt is another thing to maintain, slow down and break.",
+          "Custom development is the right call when the logic is the product, when the integration matters more than the editing, or when speed decides the outcome. It is the wrong call for a marketing site that mostly publishes pages, and the [CMS development](/services/cms-development) page covers that side. Plenty of projects need both: a CMS for the pages and a custom tool beside it.",
+        ],
+      },
+      {
+        heading: "The kind of work this covers",
+        paragraphs: [
+          "Most of what I build sits where marketing meets sales. Broker portals with a web app and a mobile app sharing one back end, so agents see the same leads and listings wherever they are. Sales presentation applications for real estate, used in the room with a buyer; one of them, built for LEOS Developments and reading live unit availability from the CRM, is written up as a [case study](/portfolio/leos-developments/sales-app).",
+          "And CRM-connected landing pages: campaign pages where every enquiry lands in HubSpot, Zoho or Salesforce with its source, its campaign and the listing it came from, and the conversion goes back to the ad platforms so they optimise towards real leads. These are small builds with an outsized effect, because they fix the measurement everything else depends on.",
+        ],
+      },
+      {
+        heading: "The stack: MERN, React, Next.js, TypeScript and PHP",
+        paragraphs: [
+          "Front ends are React, and marketing sites and landing pages are Next.js, which renders on the server so pages are quick on a phone and readable by search engines without waiting for JavaScript. Applications use the MERN stack, MongoDB, Express, React and Node.js, with PostgreSQL in place of MongoDB when the data is relational and needs reporting across it.",
+          "New code is written in TypeScript, because it makes a project safer to change and easier for the next developer to take over. PHP is part of the toolkit too, for existing systems, WordPress work and hosts that run nothing else. The choice follows the project and whoever will maintain it, not habit. Apps that share the same back end are covered on the [mobile app development](/services/mobile-app-development) page.",
+        ],
+      },
+      {
+        heading: "Hosting and deployment: Netlify, Vercel and Cloudflare",
+        paragraphs: [
+          "Where code runs matters as much as how it is written. Netlify and Vercel are hosting and deployment platforms, not content management systems: every change pushed to the repository is built and published automatically, each change can be previewed on its own link before it goes live, and rolling back is a single step. Vercel is made by the team behind Next.js; Netlify suits static sites and front ends with small serverless functions.",
+          "Cloudflare sits in front of many sites as DNS, security and a content delivery network, caching pages close to visitors, and it can host front ends and small functions itself. APIs and databases for larger applications run on a cloud server or a managed database. The accounts are opened in your name, the deployment is documented, and nothing depends on a login only I hold.",
+        ],
+      },
+      {
+        heading: "Built with the marketing in mind",
+        paragraphs: [
+          "A custom build from a typical development shop arrives without tracking, or with a tag pasted in the week before launch. Here the events are part of the specification: which actions count as a lead, what is sent to GA4 and to the ad platforms, including Meta's Conversions API, and which fields go to the CRM. Server-side tracking is set up where the ad spend justifies it, so the numbers survive ad blockers and privacy settings.",
+          "That is the reason to have someone who runs campaigns build the thing the campaigns point at. Scope and cost depend on the build; the [pricing page](/pricing) explains how projects are charged, and a [free consultation](/appointment) is the quickest way to find out whether you need custom at all.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Where will the site be hosted?",
+        answer:
+          "In your accounts, on the platform that suits the build. Next.js front ends usually go on Vercel, Netlify or Cloudflare; Node APIs and databases on a cloud server or a managed service; PHP on conventional hosting. You own the repository, the hosting and the domain from day one.",
+      },
+      {
+        question: "Can you work on an existing PHP or React codebase?",
+        answer:
+          "Often, yes. I read the code first and tell you whether extending it is better value than replacing it, including when the honest answer is that it is not. Inherited projects usually need their tracking and forms checked before anything else, because that is where they quietly lose leads.",
+      },
+    ],
+  },
+
   "ui-ux-design": {
     blocks: [
       {
@@ -873,6 +1532,17 @@ export const serviceDepth: Record<string, Depth> = {
         paragraphs: [
           "Wireframes for structure, then interface design in Figma with the components, spacing scale and type scale defined so the design can be extended without guessing. Where the work will keep growing, that becomes a small design system rather than a set of one-off screens.",
           "Prototypes are used for anything with real interaction, so a flow can be clicked through and corrected before it is expensive to change. Testing with real users is part of the work where the budget allows, because how something is actually used is more useful than any opinion about it, including mine.",
+        ],
+      },
+      {
+        // Added 2026-10-16: the tools, named once and plainly. Figma was in two
+        // FAQs and nowhere a scanning reader would see it.
+        heading: "Tools: Figma, with Photoshop and Illustrator for assets",
+        paragraphs: [
+          "Interface work is done in Figma: wireframes, components with a variant for each state, auto layout so screens respond the way the build will, and clickable prototypes, all in a file you own and your developer can inspect directly. Image and icon assets that go into the interface are prepared in Adobe Photoshop and Illustrator, so they arrive at the right size and format rather than as screenshots.",
+          // Added 2026-10-16: the Figma page takes "figma designer dubai"; this
+          // page keeps "ui ux designer dubai".
+          "If what you need is the Figma work on its own, a website or landing page designed and handed over for build, that is the [Figma design](/services/figma-design) page.",
         ],
       },
       {
@@ -968,7 +1638,7 @@ export const serviceDepth: Record<string, Depth> = {
       {
         heading: "Deliverables and file handover",
         paragraphs: [
-          "You get working source files, not only flattened exports: layered originals, logo lockups in vector at the sizes and colourways you will actually need, and a written guideline document covering the decisions rather than only showing the outcome.",
+          "You get working source files, not only flattened exports: layered Adobe Illustrator and Photoshop originals, InDesign files for multi-page documents such as company profiles and brochures, logo lockups in vector at the sizes and colourways you will actually need, and a written guideline document covering the decisions rather than only showing the outcome.",
           "Exports are supplied at the specifications each channel actually needs, which sounds small and saves a great deal of back and forth once ten people start asking for the logo in different formats.",
         ],
       },
@@ -1012,6 +1682,11 @@ export const serviceDepth: Record<string, Depth> = {
           "Yes. Layered source files and vector logo artwork are handed over as standard. Withholding them to keep a client dependent is common practice and not something I do.",
       },
       {
+        question: "Which design software do you use?",
+        answer:
+          "Adobe Illustrator for logos and vector artwork, InDesign for multi-page documents such as company profiles, brochures and guideline decks, and Photoshop for image work. Figma for anything that will end up on a screen. Source files come in those formats, so another designer can pick them up.",
+      },
+      {
         question: "Can you refresh a brand without starting again?",
         answer:
           "Usually yes, and often it is the better call. If the brand has recognition, a refresh that tightens the type, fixes the palette and defines the missing rules gets you most of the benefit without discarding what people already recognise.",
@@ -1038,6 +1713,10 @@ export const serviceDepth: Record<string, Depth> = {
         paragraphs: [
           "I work with HubSpot, Zoho and Salesforce. The platform matters less than whether the pipeline stages match how your team actually sells, because a CRM that does not reflect reality gets worked around within a fortnight and then holds data nobody trusts.",
           "Automation is added where it removes real work: routing enquiries to the right person, chasing follow-ups that would otherwise be forgotten, and moving records between stages on genuine triggers. Automating a broken process only makes it break faster, so the process gets fixed first.",
+          // Added 2026-10-16 with the CRM integration pages. This page keeps
+          // the consultant query; the connections and each platform have their
+          // own pages now, linked here and in the cards near the top.
+          "Getting every lead source into one CRM, and choosing between the platforms, is on the [CRM integration](/services/crm-integration) page. Each platform has its own: [Zoho CRM integration](/services/zoho-crm-integration), [HubSpot integration](/services/hubspot-integration) and [Salesforce integration](/services/salesforce-integration), which covers Marketing Cloud. When none of them fits, there is [custom CRM development](/services/custom-crm-development).",
         ],
       },
       {
@@ -1088,6 +1767,282 @@ export const serviceDepth: Record<string, Depth> = {
         question: "Is server-side tracking compliant?",
         answer:
           "It can be, and it is how I set it up: consent captured before tracking fires, and consent state respected downstream. I am not a lawyer and this is not legal advice, so for a formal position on UAE PDPL or GDPR you should speak to a qualified professional.",
+      },
+    ],
+  },
+
+  // The CRM integration hub and its four platforms, added 2026-10-16. See the
+  // note above them in `serviceCategories.ts` for what each page may claim.
+  // Platform features named below are general, checkable properties of the
+  // product (a native lead ads connection, a Forms API, Web-to-Lead), not
+  // figures. No prices, no client names, no employer named.
+  "crm-integration": {
+    blocks: [
+      {
+        heading: "What CRM integration in Dubai should fix first",
+        paragraphs: [
+          "The symptom is nearly always the same meeting. Marketing reports four hundred leads, sales says it received one hundred and fifty worth calling, and finance wants to know what a sale cost. All three are reading different systems. Meta lead forms sit in Meta, Google Ads forms in Google, website enquiries in an inbox, WhatsApp chats on agents' phones and portal leads in a weekly export.",
+          "CRM integration fixes that at the source. Every channel lands in one CRM, as it happens, with its campaign, ad and page attached, and the CRM becomes the only place anyone counts. The tracking and automation that sit around this are covered on the [CRM and MarTech integration](/services/crm-marketing-automation) page; this one is about the connections themselves and the CRM they feed.",
+        ],
+      },
+      {
+        heading: "One view: leads by source and cost per qualified lead",
+        paragraphs: [
+          "Ad spend lives in the ad platforms and outcomes live in the CRM, so neither can tell you what a qualified lead cost. Joining them is the point of the exercise. Once each lead carries its source and the CRM records whether it qualified, a single report can show leads, qualified leads, viewings or meetings, and cost per qualified lead by channel and by campaign.",
+          "That number matters more than cost per lead, which can fall while lead quality collapses, a pattern described in [your cost per lead is fine, your sales team is still unhappy](/cost-per-lead-is-fine-sales-team-unhappy). The same qualified leads are sent back to Google Ads and Meta as offline conversions, so the platforms optimise towards people your sales team wanted to speak to rather than anyone who filled in a form.",
+        ],
+      },
+      {
+        heading: "Lead routing and deduplication",
+        paragraphs: [
+          "A lead that waits is a lead that cools. Routing rules assign each one the moment it arrives: by project, by language, by budget, or in rotation across the team, with an alert to a manager if nobody has made contact within the time you set. The rules are agreed with sales before they are built, because a routing rule nobody believes in gets worked around within a week.",
+          "Deduplication runs alongside it. The same buyer often enquires on several campaigns and a portal in the same week. Without a matching rule that becomes several contacts, owned by several agents, each calling the same person. Matching on phone number in international format first, then email, turns it into one contact with a history of enquiries, which is also the only way the source reports stay honest.",
+        ],
+      },
+      {
+        heading: "Forms, WhatsApp and ad platforms into the CRM",
+        paragraphs: [
+          "Website and landing page forms post to the CRM through its API, carrying the UTM parameters and the Google and Meta click IDs captured when the visitor arrived. Meta and Google lead forms connect through each CRM's native integration or a webhook. Click-to-WhatsApp ads and the WhatsApp button on the site create or update a contact, so the chat is not the only record of the lead.",
+          "Every route is tested end to end before launch: a real submission from each source, checked in the CRM for its fields, its owner and its campaign, and checked in GA4 and the ad platforms for its conversion. Broken integrations fail silently, which is why the second item in [why your leads are not converting](/why-your-leads-are-not-converting) is the enquiry that went somewhere nobody looks.",
+        ],
+      },
+      {
+        heading: "Zoho, HubSpot, Salesforce or a custom CRM",
+        paragraphs: [
+          "The platform matters less than the setup, and most of the work above is the same on all four. They still differ in who they suit, and the table sets them side by side. Each has its own page with the detail: [Zoho CRM integration](/services/zoho-crm-integration), [HubSpot integration](/services/hubspot-integration), [Salesforce integration](/services/salesforce-integration) and [custom CRM development](/services/custom-crm-development). For property specifically, [the best CRM for a Dubai real estate business](/best-crm-for-dubai-real-estate) goes further.",
+        ],
+        table: {
+          caption: "How Zoho CRM, HubSpot, Salesforce and a custom CRM compare for a marketing-led sales team",
+          head: ["What matters", "Zoho CRM", "HubSpot", "Salesforce", "Custom CRM"],
+          rows: [
+            ["Best for", "Cost-conscious teams who will configure it properly", "Marketing-led teams who want reporting without a specialist", "Large teams with a dedicated administrator", "Processes and reporting no package fits"],
+            ["Running cost", "Per-user licences, usually the lowest of the three", "Free to start; climbs with contacts and paid tiers", "Per-user licences plus administrator time", "No licences; hosting and developer time"],
+            ["Adoption", "Flexible, so easy to configure badly", "The easiest for marketing teams", "Powerful, needs training and ownership", "Built around how your team already works"],
+            ["Lead ads and forms", "Native Meta lead ads; web forms and API", "Ads tool for Google, Meta and LinkedIn; Forms API", "Web-to-Lead, API and connectors", "Whatever you need, through each platform's API"],
+            ["WhatsApp", "Through Zoho's integration or a provider", "Built-in inbox on eligible plans", "Through connectors or partners", "WhatsApp Business Platform, built in"],
+            ["Leaving later", "Data exports; configuration stays", "Data exports; configuration stays", "Data exports; configuration stays", "Your code and your database"],
+          ],
+        },
+      },
+    ],
+    faqs: [
+      {
+        question: "How do you stop duplicate leads?",
+        answer:
+          "By deciding what makes two records the same person before anything is connected, usually the phone number in international format, then the email. Every source is checked against that rule as the lead arrives, so a buyer who enquires on three campaigns becomes one contact with three enquiries rather than three contacts for three agents to chase.",
+      },
+      {
+        question: "Is lead data in the CRM covered by UAE data protection law?",
+        answer:
+          "Personal data such as names, phone numbers and emails is, and the UAE PDPL sets rules on consent, purpose and retention. I build integrations with consent captured on the form and access limited to the people who need it, but I am not a lawyer, so for a formal position please speak to a qualified professional.",
+      },
+    ],
+  },
+
+  "zoho-crm-integration": {
+    blocks: [
+      {
+        heading: "What a Zoho CRM consultant in Dubai is usually fixing",
+        paragraphs: [
+          "The pattern is familiar from real estate sales teams here. Leads from Meta campaigns are downloaded as a spreadsheet and imported once a day, or once a week. Lead source is a free text field, so the same campaign appears under six spellings and no report can group it. Agents call from their own phones and the CRM never hears about it. Zoho is doing its job; nothing is feeding it properly.",
+          "I have managed leads in Zoho CRM for real estate developers in Dubai, so the fixes below are the ones that made the difference there: leads arriving on their own within seconds, sources that can be reported on, assignment that does not depend on a manager forwarding emails, and a WhatsApp follow-up that goes out before the buyer has spoken to a competitor. Whether Zoho is the right CRM at all, and how every other lead source reaches it, is covered on the [CRM integration](/services/crm-integration) page.",
+        ],
+      },
+      {
+        heading: "Social media lead forms flowing into Zoho",
+        paragraphs: [
+          "Meta lead ads, on Facebook and Instagram, connect to Zoho CRM through its native integration, or through a webhook where a campaign needs extra fields or logic. The mapping is where care goes: name, phone in international format so WhatsApp works, email, the project or unit asked about, any qualifying answers, and the campaign, ad set and ad the lead came from, each in its own field rather than squeezed into a description.",
+          "Other social platforms with lead forms, and the website's own forms, feed the same module the same way, so a lead from a TikTok form and a lead from a landing page look identical in Zoho apart from their source. Website forms post through Zoho's web forms or its API with UTM parameters carried across. If you run the campaigns with me, the [Facebook ads](/services/facebook-ads) work and the CRM setup are planned as one job.",
+        ],
+      },
+      {
+        heading: "Assignment rules and follow-up automation",
+        paragraphs: [
+          "Zoho's assignment rules decide who owns each lead: by project, by language, by source or in rotation. Workflow rules then do the remembering. A new lead creates a call task for its owner, a lead untouched after the time you set alerts a manager, and a lead marked as not reachable gets a second attempt scheduled rather than forgotten.",
+          "Where the sales process has fixed stages, Zoho's Blueprint can enforce them, so a lead cannot be marked as a site visit without a date or moved to a booking without the unit attached. Used lightly, that keeps the data clean. Used everywhere, it frustrates agents into avoiding the CRM, so it goes only where a missing field actually breaks a report.",
+        ],
+      },
+      {
+        heading: "WhatsApp follow-up from inside Zoho",
+        paragraphs: [
+          "In this market the first reply often decides who gets the conversation. When a lead lands in Zoho, an approved WhatsApp template can go out automatically within moments: a thank you, the brochure for the project they asked about, and the name of the agent who will call. Replies come back into Zoho against the contact, so a manager can see the conversation and it survives an agent leaving.",
+          "WhatsApp's rules shape the design. Messages outside a customer's most recent conversation window must use templates approved in advance, and people have to have agreed to hear from you. Both are planned before launch, along with the opt-out, because a number reported as spam is hard to recover.",
+        ],
+      },
+      {
+        heading: "Reporting by campaign and project, and sending results back",
+        paragraphs: [
+          "With sources clean and stages enforced, Zoho's reports and dashboards, or Zoho Analytics for heavier work, show what matters: leads, qualified leads, site visits and bookings by campaign and by project, and response times by agent. That is the view a sales director and a marketing manager can both work from, because it is the same data.",
+          "The results then go back to the ad platforms. Qualified leads and bookings are sent to Meta and to [Google Ads](/services/google-ads) as conversions, so both learn which audiences produce buyers rather than form fills. If Zoho turns out not to fit your team, the [CRM integration](/services/crm-integration) page compares it with the alternatives.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can you fix a Zoho CRM someone else set up?",
+        answer:
+          "Usually. The common problems repeat: too many custom fields nobody fills in, lead sources typed by hand so reports cannot group them, and workflows that fire twice or not at all. I audit the setup, fix the fields and rules that do the most damage first, and keep your data and history intact.",
+      },
+      {
+        question: "Does Zoho CRM work for real estate?",
+        answer:
+          "Well, once it is configured for property. Out of the box it knows leads, contacts and deals. It does not know projects, units or brokers. Custom modules and fields add those, so a lead can be tied to the project it enquired about and a deal to the unit it is for, and reports can be run by project as well as by campaign.",
+      },
+    ],
+  },
+
+  "hubspot-integration": {
+    blocks: [
+      {
+        heading: "What HubSpot integration in Dubai usually has to repair",
+        paragraphs: [
+          "HubSpot is easy to start and easy to leave unfinished. A common inheritance: the tracking code on some pages and not others, forms that create contacts without an original source, every contact labelled a lead whether they downloaded a brochure or asked for a quote, and a dashboard nobody opens because nobody believes it.",
+          "None of that is HubSpot's fault, and none of it needs a new CRM. It needs the integration finished: every form and ad connected, stages defined, workflows doing the follow-up and reports that both teams accept. The order matters, because reports built on unfinished tracking only formalise the argument.",
+        ],
+      },
+      {
+        heading: "Forms and site tracking into HubSpot",
+        paragraphs: [
+          "The HubSpot tracking code goes on every page, through Google Tag Manager or the site itself, so a contact's original source, first page and later visits are recorded from the first click. HubSpot forms can be embedded directly. Forms on a WordPress or custom site can stay as they are and post to HubSpot through its Forms API, which keeps your design and still links the submission to the visitor.",
+          "UTM parameters are standardised before anything else, because HubSpot groups sources by them and six spellings of one campaign make six rows in every report. GA4 and the ad pixels run alongside HubSpot rather than instead of it, and each form submission is checked in all of them before launch. WhatsApp chats can come into HubSpot's inbox on eligible plans, so they are logged as well.",
+        ],
+      },
+      {
+        heading: "Lifecycle stages and lead status that mean something",
+        paragraphs: [
+          "HubSpot's lifecycle stages, from subscriber through lead, marketing qualified lead, sales qualified lead, opportunity and customer, are only useful if each one has a definition everyone agrees with. That definition is written with your sales team, not handed to them. What makes someone marketing qualified? What does sales have to do, and by when, to accept or reject them?",
+          "Lead status then tracks the sales side within a stage: new, attempted, connected, bad timing, unqualified. Moving contacts between stages is automated on real triggers, a form, a meeting booked, a deal created, so the funnel report is a record of what happened rather than of who remembered to update a dropdown.",
+        ],
+      },
+      {
+        heading: "Workflows that do the follow-up",
+        paragraphs: [
+          "Workflows take on the work people forget. A new sales qualified lead is assigned an owner in rotation and given a call task. A contact who downloads a price list but does not book a meeting gets a short nurture sequence. A deal that has not moved in a set period alerts its owner and their manager. Each workflow has one job and a name that says what it is.",
+          "Automation is added only where the process is already sound. Automating a follow-up nobody would send by hand produces emails that read like automation, and automating around an unclear stage definition makes the confusion faster. Marketing emails sent from HubSpot follow the same rules as the [email marketing](/services/email-marketing) work: consented lists, useful content, an easy way out.",
+        ],
+      },
+      {
+        heading: "Ads, attribution and reports sales trusts",
+        paragraphs: [
+          "HubSpot's ads tool connects Google Ads, Facebook and Instagram, and LinkedIn. Lead form submissions on those platforms sync into HubSpot, and lifecycle changes go back to the platforms as conversion events, so the campaigns optimise towards sales qualified leads rather than raw form fills. That is usually the single biggest improvement the integration makes to the ad spend.",
+          "The reporting then answers the questions management asks: contacts and qualified leads by original source, how many marketing qualified leads sales accepted, and what each qualified lead cost per channel. If HubSpot turns out to be the wrong fit for your team, the [CRM integration](/services/crm-integration) page compares it with Zoho, Salesforce and a custom build.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can you migrate us to HubSpot from spreadsheets or another CRM?",
+        answer:
+          "Yes. Contacts, companies and deals are mapped to HubSpot's properties, duplicates merged on email and phone before import, and the source of each historical lead kept where it exists. Old activity comes across as history, so nothing that happened before the switch is lost.",
+      },
+      {
+        question: "Does HubSpot work with WhatsApp?",
+        answer:
+          "Yes. HubSpot connects to the WhatsApp Business Platform, so messages can be sent and received from the HubSpot inbox and logged against the contact. Availability depends on your HubSpot plan and a WhatsApp Business account connected to it, so both are confirmed before the build is planned.",
+      },
+    ],
+  },
+
+  "salesforce-integration": {
+    blocks: [
+      {
+        heading: "What Salesforce integration in Dubai means on the marketing side",
+        paragraphs: [
+          "Salesforce is a family of products rather than one. Sales Cloud holds leads, accounts and opportunities and is where sales teams work. Marketing Cloud sends email, hosts pages and holds marketing data. Many projects fail at the join between them: campaigns run in one place, leads are worked in another, and nobody can trace a sale to the email or ad that started it.",
+          "My Salesforce work sits on the marketing side of that join. I design EDMs to Marketing Cloud templates, write and lay out sales offer content, build CloudPages, and connect campaigns and lead capture to Salesforce so the source survives into the sales record. The deep configuration of Sales Cloud is a different specialism, and the last section on this page is plain about where my work stops.",
+        ],
+      },
+      {
+        heading: "EDMs designed to Marketing Cloud templates",
+        paragraphs: [
+          "An EDM in Marketing Cloud is rarely a one-off. It is built from your templates and content blocks so the next launch, the next payment plan offer or the next event invitation can reuse it without a designer. I design within that system: your brand, your blocks, layouts that work on a phone first, images that are not carrying the message on their own, and alt text for the inboxes that block images.",
+          "Sales offer content is where design and copy meet. A launch email has one job, getting a qualified buyer to ask for details, so the offer, the price point where you publish one and the call to action sit at the top, not under three paragraphs of introduction. Every send is tested across the main email clients before it goes to your list, and links carry UTM parameters so GA4 and the CRM can see what each email produced.",
+        ],
+      },
+      {
+        heading: "CloudPages that show sales data to the people who need it",
+        paragraphs: [
+          "CloudPages are Marketing Cloud's own web pages. Most companies use them for landing pages and preference centres. I have also built them to show company sales data to sales managers inside a custom application: figures held in Marketing Cloud, presented on a page designed for a quick read on a laptop or tablet rather than a report someone has to export.",
+          "That use takes the same care as any internal tool. The page shows only what its audience needs, access is limited to the people who should see it, and the layout is designed around the two or three numbers a sales manager checks first. Campaign landing pages on CloudPages get the same treatment as any other landing page: message match with the email or ad, a short form, and tracking that records the conversion.",
+        ],
+      },
+      {
+        heading: "Campaigns and lead capture connected to Salesforce",
+        paragraphs: [
+          "Leads reach Salesforce from website forms through Web-to-Lead or the API, and from Meta and Google lead forms through connectors. Each one carries its source: the campaign, the medium and the UTM values captured on arrival, mapped to fields and to Salesforce Campaigns so reports can group them. Duplicates are checked before a lead is created rather than merged by hand later.",
+          "The same submission is tracked in GA4 and the ad platforms through Google Tag Manager, so the numbers in Salesforce and the numbers in the ad accounts describe the same events. This is the same discipline as the [CRM integration](/services/crm-integration) work on any platform, applied to the system your sales team already uses.",
+        ],
+      },
+      {
+        heading: "Where my Salesforce work stops",
+        paragraphs: [
+          "I do not offer Sales Cloud administration, Apex development or complex permission and sharing models. Those belong with a certified Salesforce administrator or a Salesforce partner, and pretending otherwise would put your system at risk. On projects that need both, I work alongside your administrator: they own the platform, I own the email, the pages and the marketing data feeding it.",
+          "It is also worth asking whether Salesforce is the right CRM at all. For a smaller team without an administrator, [Zoho CRM](/services/zoho-crm-integration) or [HubSpot](/services/hubspot-integration) usually delivers more for less effort. If you already run Salesforce, the marketing side is where most of the untapped value tends to be.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can web forms and ad leads go into Salesforce?",
+        answer:
+          "Yes. Web-to-Lead, the Salesforce API or a connector can create leads from your website forms, and Meta and Google lead forms can be connected the same way. The important part is the same as on any CRM: the campaign source travels with the lead, and the record is checked for duplicates before it is created.",
+      },
+      {
+        question: "Is Salesforce worth it for a small team?",
+        answer:
+          "Often not. Salesforce is the most configurable of the major CRMs and needs someone to own that configuration. A small sales team without an administrator usually gets more from Zoho or HubSpot, and the CRM integration page compares the three.",
+      },
+    ],
+  },
+
+  "custom-crm-development": {
+    blocks: [
+      {
+        heading: "When custom CRM development in Dubai is the right call",
+        paragraphs: [
+          "The signs are practical rather than technical. Someone spends part of every day copying leads between systems. Management reports are rebuilt in a spreadsheet each week because the CRM cannot produce them. The sales process has steps, approvals or relationships, such as brokers, projects and units, that the CRM can only represent with a workaround. Or a large team pays per-user licences for a platform it uses a fraction of.",
+          "Even then, the first question is whether better configuration would do. Most teams that think they need a custom CRM need their current one set up properly, and the [CRM integration](/services/crm-integration) page covers that. A custom build is the answer when the gap is in what the software can represent, not in how it was configured.",
+        ],
+      },
+      {
+        heading: "What I have built and worked with",
+        paragraphs: [
+          "Two kinds of experience sit behind this page. I have worked inside a brokerage's custom CRM, with agents, listings and leads from several sources, so I know what a sales team needs from one day to day and where custom systems tend to fall short: reporting added late, integrations nobody monitors, and screens built for the developer rather than the agent.",
+          "I have also built my own CRM and reporting platform from scratch. It takes in leads from forms and ad platforms, attributes each one to its campaign, syncs with the ad platforms and produces the reports I use to judge marketing, including for this site. Building and using it is where the opinions on this page come from.",
+        ],
+      },
+      {
+        heading: "The core: lead intake, pipelines and roles",
+        paragraphs: [
+          "A custom CRM starts with the data model, agreed before any screen is drawn: what a lead, a contact, a deal, a project, a unit and an agent are, which fields are required, and how they relate. Getting this right is most of the value, because every report and every screen depends on it.",
+          "Then the parts a team touches every day. Lead intake from every source, with duplicates matched on arrival. Pipelines with the stages your team actually uses. Roles, so agents see their own leads, managers see their team and marketing sees sources without seeing everything. And an audit trail, so when a lead changes hands or a status changes, the record says who did it and when.",
+        ],
+      },
+      {
+        heading: "Attribution and ad platform syncs",
+        paragraphs: [
+          "This is where a custom CRM can do what packaged ones struggle with. Every lead stores its UTM parameters and its Google and Meta click IDs. Ad spend is pulled daily from Google Ads and Meta through their APIs, so cost per lead and cost per qualified lead are calculated from real figures rather than typed into a spreadsheet at the end of the month.",
+          "Qualified leads and sales go back the other way, to Google Ads as offline conversions and to Meta through the Conversions API, so the platforms optimise towards buyers. The campaign side of that is on the [paid marketing](/services/paid-marketing) page. Each sync is monitored and logged, because ad platform APIs change and an integration that fails quietly is the main risk of owning the system.",
+        ],
+      },
+      {
+        heading: "The stack, and what you own",
+        paragraphs: [
+          "Custom CRMs here are built on the MERN stack, MongoDB, Express, React and Node.js, with Next.js for the web interface and TypeScript throughout. PostgreSQL replaces MongoDB where the reporting leans heavily on relationships between records. The same back end can serve a [mobile app](/services/mobile-app-development) for agents in the field, so a lead updated on a phone is updated everywhere.",
+          "The repository, the database and the hosting accounts sit in your name from day one, and the system is documented so another developer could take it over. More on the build side, hosting included, is on the [custom web development](/services/custom-web-development) page, and the [pricing page](/pricing) explains how project and retainer work is charged.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What does it cost to run a custom CRM?",
+        answer:
+          "There are no per-user licences, but there is hosting, monitoring and developer time for changes and API updates. Over a few years that can come to less or more than a subscription, depending on team size and how much the system changes. The pricing page explains how project and retainer work is charged.",
+      },
+      {
+        question: "Can we start with an off-the-shelf CRM and move later?",
+        answer:
+          "Yes, and it is often the sensible order. A year on Zoho or HubSpot shows which features your team uses and which reports matter, which makes the custom build smaller and better aimed. All three export their data, so moving later is a migration rather than a restart.",
       },
     ],
   },
@@ -1159,6 +2114,7 @@ export const serviceDepth: Record<string, Depth> = {
         paragraphs: [
           "Most social video is watched muted, on a phone, in a feed that offers something else every second. That makes the first frame, the crop and the subtitles part of the edit rather than an afterthought, and it means the vertical cut is planned rather than salvaged from a horizontal one.",
           "Most of my recent editing has been property and B2B: development walkthroughs, launch films and campaign cutdowns, delivered in the aspect ratios and durations each placement actually needs rather than one master everyone is told to make do with.",
+          "Edits are cut in Adobe Premiere Pro, with CapCut for quick social cutdowns and captioned reels where turnaround matters more than a finishing pass.",
         ],
       },
       {
@@ -1181,6 +2137,11 @@ export const serviceDepth: Record<string, Depth> = {
         question: "Do you shoot video or only edit?",
         answer:
           "My side is editing, motion and post-production. For shooting I work alongside production teams, which is the arrangement I have with Choppershoot, where I handle the digital side rather than the camera.",
+      },
+      {
+        question: "Which editing software do you use?",
+        answer:
+          "Adobe Premiere Pro for most edits, from launch films to property walkthroughs, and CapCut for fast short-form cutdowns and captioned reels. The software matters less than the brief: knowing what the video is for decides more than any tool.",
       },
       {
         question: "Do you make reels and short-form video?",

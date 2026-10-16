@@ -1,0 +1,144 @@
+{
+  "slug": "what-to-track-in-marketing-uae",
+  "title": "Your Ad Platforms Are Counting Leads Your CRM Never Saw",
+  "metaTitle": "Marketing Metrics to Track: A UAE Business Guide",
+  "description": "Meta and Google count conversions by their own rules and often claim the same lead. The marketing metrics to track instead, for a UAE business.",
+  "published": "2026-10-15",
+  "updatedAt": "2026-10-15",
+  "tags": [
+    "Digital Marketing",
+    "Dubai"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "Ask a business owner in Dubai how their marketing is doing and you usually get a number from an ad platform. Meta says 48 leads this month. Google says 31. Add them up and it sounds like a good month."
+    },
+    {
+      "t": "p",
+      "v": "Then ask the sales team how many enquiries they actually spoke to, and the answer is smaller. Sometimes much smaller. Nobody is lying. The platforms and the CRM are simply counting different things, and most businesses only ever look at the one that flatters them. Choosing the right marketing metrics to track starts with knowing which count is which."
+    },
+    {
+      "t": "h2",
+      "v": "The platform counts what it can see, not what you can sell"
+    },
+    {
+      "t": "p",
+      "v": "A \"conversion\" in Google Ads or Meta is whatever you told the platform to count. On a lot of accounts that is a button click, a form that loaded its thank-you page, or a WhatsApp link being tapped. None of those is a customer. A tap on WhatsApp is someone opening a chat, not someone starting a conversation, and a thank-you page can be reached by a bot as easily as by a buyer."
+    },
+    {
+      "t": "p",
+      "v": "Each platform also gives itself credit generously. Meta counts a lead if someone clicked an ad within a set window before converting, and by default also if they only saw one. Google does the same with its own window. When the same person saw an Instagram ad on Monday and searched your name on Wednesday, both platforms can claim the same enquiry. Add the two dashboards together and you have counted one person twice."
+    },
+    {
+      "t": "h2",
+      "v": "The number that matters lives in your CRM"
+    },
+    {
+      "t": "p",
+      "v": "The only count that cannot be double-claimed is the one in your own system: the enquiries that actually arrived, with a name and a way to reach them. That is the number to run the business on, and it is the one most UAE businesses cannot produce on demand."
+    },
+    {
+      "t": "table",
+      "head": [
+        "",
+        "What it tells you"
+      ],
+      "rows": [
+        [
+          "Platform conversions",
+          "What the ad platform believes it caused, by its own rules"
+        ],
+        [
+          "Enquiries in the CRM",
+          "How many real people actually got in touch"
+        ],
+        [
+          "Qualified enquiries",
+          "How many of them were worth a sales conversation"
+        ],
+        [
+          "Won deals",
+          "What the marketing actually paid for"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "v": "Read top to bottom, each line is smaller than the one above it, and each one is closer to money. Most reporting stops at the first line. The decisions should be made on the last two."
+    },
+    {
+      "t": "h2",
+      "v": "The marketing metrics to track, and the ones to stop reporting"
+    },
+    {
+      "t": "p",
+      "v": "Five marketing metrics are enough to track for most service businesses, and every one of them comes from your own records rather than a platform:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Enquiries that reached the CRM, by source",
+        "Qualified enquiries, marked by whoever spoke to them",
+        "Cost per qualified enquiry, not cost per lead",
+        "Time to first reply, because a lead answered tomorrow is often a lead lost",
+        "Won deals and their value, traced back to the campaign that started them"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "And a few that look like progress but rarely are: impressions and reach on their own, click-through rate without what happened next, followers, and any \"leads\" figure that adds two platforms together. They are not useless, but they describe the advert, not the business."
+    },
+    {
+      "t": "h2",
+      "v": "Make the link between the click and the customer"
+    },
+    {
+      "t": "p",
+      "v": "None of this works unless each enquiry arrives in the CRM carrying where it came from. That means the campaign source and the ad click ID travel with the form, so a lead record says which campaign, which ad and which day, not just a name and a phone number."
+    },
+    {
+      "t": "p",
+      "v": "On my own site that is how it is set up. An enquiry is counted as a conversion in Google Analytics only after the CRM confirms it received it, not when someone presses the button, and spam that trips the hidden form field is never counted at all. It is a small difference in the code and a large one in the report. Setting that up for a business is most of what [[CRM and marketing automation|/services/crm-marketing-automation]] means in practice."
+    },
+    {
+      "t": "p",
+      "v": "Once the link exists, you can go one step further and send the result back. When a lead becomes qualified or turns into a client, both Google and Meta can be told, and their bidding starts optimising for the people who buy rather than the people who fill in forms. That is the difference between a campaign that finds leads and one that finds customers."
+    },
+    {
+      "t": "h2",
+      "v": "Why this matters more in the UAE"
+    },
+    {
+      "t": "p",
+      "v": "Two things make the gap wider here. First, a large share of first contact happens on WhatsApp, and a WhatsApp click is the easiest thing in the world to count and the hardest to follow up on unless someone logs the conversation. Second, many businesses split the work: an agency runs the ads, a developer owns the site and a sales team owns the CRM. Each one reports its own number, and nobody owns the gap between them."
+    },
+    {
+      "t": "p",
+      "v": "That gap is where budget quietly disappears. It is also why [[the landing page is part of your ad spend|/your-landing-page-is-part-of-your-ad-spend]]: the same handoff that slows a page fix hides the real cost of a lead."
+    },
+    {
+      "t": "h2",
+      "v": "What to do this week"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Export last month's leads from your CRM and count them. Compare that with what Meta and Google each reported.",
+        "Mark each lead qualified or not. Divide your ad spend by the qualified number. That is your real cost.",
+        "Check that every new enquiry records its source. If a lead in your CRM cannot tell you which campaign it came from, fix that before you spend another dirham."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "If the gap between the platforms and your CRM is bigger than you expected, that is not bad news. It is the first honest number your marketing has given you, and everything you optimise from here will be built on it. For the cost side of the same question, read [[why your cost per lead can look fine while sales stay unhappy|/cost-per-lead-is-fine-sales-team-unhappy]]."
+    }
+  ],
+  "words": 888,
+  "image": {
+    "src": "/blog/what-to-track/card.jpg",
+    "alt": "Quote card reading: your CRM is the only honest lead count, on marketing metrics to track",
+    "width": 1200,
+    "height": 630
+  }
+}

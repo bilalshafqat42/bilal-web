@@ -9,7 +9,13 @@ import FaqSection from "@/components/ui/FaqSection";
 import PageOpener from "@/components/layout/PageOpener";
 import SecondaryButton, { secondaryButtonClass } from "@/components/ui/SecondaryButton";
 import FurtherReading from "@/components/article/FurtherReading";
-import { megaMenuGroups, getCategoryBySlug } from "@/data/serviceCategories";
+import {
+  megaMenuGroups,
+  getCategoryBySlug,
+  categoryAncestors,
+  menuGroups,
+  titleInSentence,
+} from "@/data/serviceCategories";
 import { accentClasses } from "@/data/menu";
 import { resolveItem, slugify } from "@/data/pillars";
 import { serviceDepth } from "@/data/serviceDepth";
@@ -22,6 +28,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import { SITE_URL, serviceNode, faqNode, breadcrumbNode } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
 import Eyebrow from "@/components/ui/Eyebrow";
+import LinkedText from "@/components/ui/LinkedText";
 
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -64,8 +71,17 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
     .filter((x) => x.resolved);
   const depth = serviceDepth[category.slug];
   const faqs = [...category.faqs, ...(depth?.faqs ?? [])];
-  const others = megaMenuGroups.filter((c) => c.slug !== category.slug);
+  // The menu's pages only. The four CMS platform pages are reached from the
+  // CMS hub and from each other (`related` below); listing them on all twenty
+  // pages would bury the fifteen buyer decisions under four tool names.
+  const others = menuGroups().filter((c) => c.slug !== category.slug);
+  const related = (category.related?.slugs ?? [])
+    .map((s) => getCategoryBySlug(s))
+    .filter((g): g is NonNullable<typeof g> => Boolean(g));
   const url = `${SITE_URL}/services/${category.slug}`;
+  // Pages above this one, outermost first. Empty for the fifteen top-level
+  // pages, so their trail is unchanged: Home › Services › {title}.
+  const ancestors = categoryAncestors(category.slug);
 
   // One graph per page, keyed by @id, rather than three unlinked blocks each
   // restating who the provider is. `provider` now points at #business instead
@@ -93,6 +109,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
     breadcrumbNode(url, [
       { name: "Home", item: SITE_URL },
       { name: "Services", item: `${SITE_URL}/services` },
+      ...ancestors.map((a) => ({ name: a.title, item: `${SITE_URL}/services/${a.slug}` })),
       { name: category.title, item: url },
     ]),
   ];
@@ -112,6 +129,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
           crumbs={[
             { label: "Home", href: "/" },
             { label: "Services", href: "/services" },
+            ...ancestors.map((a) => ({ label: a.title, href: `/services/${a.slug}` })),
             { label: category.title },
           ]}
           title={category.headline}
@@ -133,7 +151,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
 
               {/* Evidence directly under the CTA, and a route to the buying
                   question that follows it. */}
-              <ClientLogoRow variant="row" className="mt-10 justify-start" />
+              <ClientLogoRow variant="row" ground="light" className="mt-10 justify-start" />
               <Link
                 href="/pricing#engagement"
                 className="tap-target mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"
@@ -172,6 +190,38 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
           </div>
         </section>
 
+        {related.length && category.related ? (
+          <section className="relative section">
+            <div className="site-container">
+              <Reveal>
+                <Eyebrow>Options</Eyebrow>
+                <h2 className="t-h2 mt-4 text-ink">{category.related.heading}</h2>
+                <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
+                  {category.related.intro}
+                </p>
+              </Reveal>
+              <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {related.map((r) => (
+                  <li key={r.slug}>
+                    <Link
+                      href={`/services/${r.slug}`}
+                      className="card-hover group flex h-full flex-col r-card surface-1 p-6"
+                    >
+                      <span className="t-h5 text-ink transition-colors group-hover:text-gold">{r.title}</span>
+                      <span className="mt-2.5 text-sm leading-relaxed text-muted">{r.metaDescription}</span>
+                      <span
+                        className={`mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-semibold ${accentClasses[r.accent].icon}`}
+                      >
+                        Read more <ArrowRight size={15} />
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        ) : null}
+
         {depth ? (
           <section className="relative section">
             <div className="site-container">
@@ -199,7 +249,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
               <Reveal>
                 <Eyebrow>Process</Eyebrow>
                 <h2 className="t-h2 mt-4 text-ink">
-                  How {category.title.toLowerCase()} works in practice
+                  {category.depthHeading ?? `How ${titleInSentence(category.title)} works in practice`}
                 </h2>
               </Reveal>
               <div className="mt-10 space-y-12">
@@ -210,10 +260,53 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                       <div className="mt-4 space-y-4">
                         {block.paragraphs.map((para) => (
                           <p key={para.slice(0, 40)} className="text-base leading-relaxed text-muted">
-                            {para}
+                            <LinkedText text={para} />
                           </p>
                         ))}
                       </div>
+                      {block.table ? (
+                        // Scrolls inside its own box on a phone rather than
+                        // widening the page: five columns do not fit 390px.
+                        // Focusable and labelled because it can scroll: a
+                        // keyboard user has to be able to reach the columns
+                        // that start off screen.
+                        <div
+                          className="mt-6 overflow-x-auto r-card border border-border outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                          tabIndex={0}
+                          role="region"
+                          aria-label={block.table.caption}
+                        >
+                          <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
+                            <caption className="sr-only">{block.table.caption}</caption>
+                            <thead>
+                              <tr className="surface-2">
+                                {block.table.head.map((h) => (
+                                  <th key={h} scope="col" className="px-4 py-3 font-semibold text-ink">
+                                    {h}
+                                  </th>
+                                ))}
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {block.table.rows.map((row) => (
+                                <tr key={row[0]} className="border-t border-border align-top">
+                                  {row.map((cell, i) =>
+                                    i === 0 ? (
+                                      <th key={i} scope="row" className="px-4 py-3 font-medium text-ink">
+                                        {cell}
+                                      </th>
+                                    ) : (
+                                      <td key={i} className="px-4 py-3 leading-relaxed text-muted">
+                                        {cell}
+                                      </td>
+                                    )
+                                  )}
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      ) : null}
                     </div>
                   </Reveal>
                 ))}

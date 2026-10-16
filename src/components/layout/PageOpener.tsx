@@ -63,6 +63,12 @@ type Props = {
   className?: string;
 };
 
+/* Top padding is 64px on a phone, 160px from `sm` up. At 128px the primary CTA
+ * sat below the fold at 390x844 on twenty-two of the thirty-three service pages
+ * (917px on Zoho, 946px on Salesforce, measured 2026-10-16), under a band of
+ * white that only exists to clear the fixed header, which is 68px tall. The
+ * standfirst also drops to the 16px body size below `sm`: at 18px a
+ * sixty-word intro ran to twelve lines on a phone. */
 export default function PageOpener({
   title,
   eyebrow,
@@ -77,21 +83,21 @@ export default function PageOpener({
 }: Props) {
   const heading = (
     <div className={bleed ? "lg:max-w-[56%]" : undefined}>
-      {crumbs?.length ? <Breadcrumb items={crumbs} className="mb-8" /> : null}
+      {crumbs?.length ? <Breadcrumb items={crumbs} className="mb-6 sm:mb-8" /> : null}
       {above ? <div className="mb-7">{above}</div> : null}
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
       <h1 className={`t-${titleSize} text-balance text-ink ${eyebrow ? "mt-4" : ""}`}>{title}</h1>
       {standfirst ? (
-        <div className="mt-6 max-w-2xl space-y-4 text-lg leading-relaxed text-muted">
+        <div className="mt-6 max-w-2xl space-y-4 text-base leading-relaxed text-muted sm:text-lg">
           {standfirst}
         </div>
       ) : null}
-      {actions ? <div className="mt-9 flex flex-wrap items-center gap-3">{actions}</div> : null}
+      {actions ? <div className="mt-7 flex flex-wrap items-center gap-3 sm:mt-9">{actions}</div> : null}
     </div>
   );
 
   return (
-    <section className={`page-opener relative overflow-hidden pt-32 sm:pt-40 ${className}`}>
+    <section className={`page-opener relative overflow-hidden pt-16 sm:pt-40 ${className}`}>
       {/* Decorative. `pointer-events-none` so it never eats a click on the
           breadcrumb sitting over it. */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 grid-fade" />

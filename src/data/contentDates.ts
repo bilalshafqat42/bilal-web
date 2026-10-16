@@ -26,8 +26,11 @@ export const contentDates: Record<string, string> = {
   // Every route below had its copy changed on 2026-10-13 in 0ed36bc, the
   // full-site audit (roadmap 399). /pricing gained a cost heading and
   // /portfolio descriptive cover alt text on 2026-10-14.
-  "/about": "2026-10-13",
-  "/services": "2026-10-13",
+  // 2026-10-16: build stack names Strapi; design tools named.
+  "/about": "2026-10-16",
+  // 2026-10-16: the CMS and custom development pages added to the listing,
+  // then the CRM, app and Figma sub-pages in "by platform" blocks.
+  "/services": "2026-10-16",
   "/portfolio": "2026-10-14",
   "/pricing": "2026-10-14",
   "/faq": "2026-10-13",
@@ -50,6 +53,46 @@ export const contentDates: Record<string, string> = {
  *  (0ed36bc, roadmap 399), and the data moved from `pillars.ts` into
  *  `serviceCategories.ts`. Refresh it when service copy changes. */
 export const SERVICES_CONTENT_DATE = "2026-10-13";
+
+/** Service pages whose copy changed after `SERVICES_CONTENT_DATE`, by slug.
+ *
+ *  2026-10-16: six pages added (the CMS hub, four platforms, custom web
+ *  development); web and app development and web design gained links to them;
+ *  UI/UX, graphic design and video name the tools the work is done in. One
+ *  date for every service page would either understate these or tell Google the
+ *  other fourteen changed when they did not. */
+export const SERVICE_CONTENT_DATES: Record<string, string> = {
+  "cms-development": "2026-10-16",
+  "wordpress-development": "2026-10-16",
+  "wix-development": "2026-10-16",
+  "squarespace-development": "2026-10-16",
+  "strapi-development": "2026-10-16",
+  "custom-web-development": "2026-10-16",
+  "website-app-development": "2026-10-16",
+  "web-design": "2026-10-16",
+  "ui-ux-design": "2026-10-16",
+  "graphic-design-branding": "2026-10-16",
+  "video-conversion": "2026-10-16",
+  // Ten more the same day: the CRM integration hub and its four platforms,
+  // React Native, iOS, Android and app back end, and Figma. Their three
+  // parents (CRM, mobile, web design) gained cards and links to them.
+  "crm-integration": "2026-10-16",
+  "zoho-crm-integration": "2026-10-16",
+  "hubspot-integration": "2026-10-16",
+  "salesforce-integration": "2026-10-16",
+  "custom-crm-development": "2026-10-16",
+  "react-native-development": "2026-10-16",
+  "ios-app-development": "2026-10-16",
+  "android-app-development": "2026-10-16",
+  "app-backend-development": "2026-10-16",
+  "figma-design": "2026-10-16",
+  "crm-marketing-automation": "2026-10-16",
+  "mobile-app-development": "2026-10-16",
+};
+
+export function serviceContentDate(slug: string): string {
+  return SERVICE_CONTENT_DATES[slug] ?? SERVICES_CONTENT_DATE;
+}
 
 /** Portfolio pages all read from `src/data/caseStudies.ts` (and
  *  `caseStudyDepth.ts`). Used for the sitemap and for `dateModified` in every

@@ -42,9 +42,14 @@ type Logo = {
   height: number;
   heightClass: string;
   href?: string;
+  /** Whether the client has agreed to its mark appearing as a client logo.
+   *  Tomorrow World and Refine were employers rather than clients, and
+   *  permission to show their marks as clients is not confirmed (2026-10-16),
+   *  so they stay in the list, with their files, but are not rendered. */
+  cleared: boolean;
 };
 
-const logos: Logo[] = [
+const allLogos: Logo[] = [
   {
     id: "leos",
     name: "LEOS Developments",
@@ -54,6 +59,7 @@ const logos: Logo[] = [
     height: 551,
     heightClass: "max-h-8",
     href: "/portfolio/leos-developments",
+    cleared: true,
   },
   {
     id: "tomorrow-world",
@@ -62,6 +68,7 @@ const logos: Logo[] = [
     width: 2004,
     height: 1220,
     heightClass: "max-h-14",
+    cleared: false,
   },
   {
     id: "refine",
@@ -70,8 +77,11 @@ const logos: Logo[] = [
     width: 2000,
     height: 648,
     heightClass: "max-h-10",
+    cleared: false,
   },
 ];
+
+const logos = allLogos.filter((logo) => logo.cleared);
 
 /** Both marks are stacked and cross-faded rather than swapping `src`, so the
  *  hover state never flashes while the second file loads. */
@@ -112,14 +122,26 @@ type Props = {
   variant?: "wall" | "row";
   /** Layout-only classes from the call site, e.g. `mt-14`. */
   className?: string;
+  /** The ground the row sits on. Every mark is a white SVG drawn for the dark
+   *  page, so on the light band (`PageOpener`) the white LEOS file at 70%
+   *  opacity was a white mark on white: a 150px blank gap under the service
+   *  page CTA, measured 2026-10-16. `light` swaps LEOS for its own dark
+   *  (gold) file and turns the other two into dark silhouettes with the
+   *  `client-mark` filter, rather than inverting them. Row variant only. */
+  ground?: "dark" | "light";
 };
 
-export default function ClientLogoRow({ variant = "wall", className = "" }: Props) {
+export default function ClientLogoRow({ variant = "wall", className = "", ground = "dark" }: Props) {
   if (variant === "row") {
+    const light = ground === "light";
     return (
       <ul className={`flex flex-wrap items-center gap-x-10 gap-y-6 ${className}`}>
-        {logos.map((logo) => {
-          const imgClass = `${logo.heightClass} w-auto max-w-full object-contain`;
+        {logos.map((raw) => {
+          // On a light ground there is no hover swap: the dark file is the
+          // only one that reads, so it is the resting state.
+          const logo: Logo = light && raw.srcHover ? { ...raw, src: raw.srcHover, srcHover: undefined } : raw;
+          const mono = light && !raw.srcHover ? " client-mark" : "";
+          const imgClass = `${logo.heightClass} w-auto max-w-full object-contain${mono}`;
           const inner = <Mark logo={logo} imgClass={imgClass} />;
           return (
             <li key={logo.id} className="flex items-center">
@@ -127,12 +149,16 @@ export default function ClientLogoRow({ variant = "wall", className = "" }: Prop
                 <Link
                   href={logo.href}
                   aria-label={`${logo.name} case study`}
-                  className="group opacity-70 transition-opacity hover:opacity-100"
+                  className={`group transition-opacity hover:opacity-100 ${light ? "opacity-90" : "opacity-70"}`}
                 >
                   {inner}
                 </Link>
               ) : (
-                <span className="group opacity-50 grayscale transition hover:opacity-80 hover:grayscale-0">
+                <span
+                  className={`group transition ${
+                    light ? "opacity-60 hover:opacity-90" : "opacity-50 grayscale hover:opacity-80 hover:grayscale-0"
+                  }`}
+                >
                   {inner}
                 </span>
               )}

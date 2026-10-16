@@ -56,6 +56,11 @@ export const CARDS = {
     lines: ["Your landing page", "*is* your ad spend."],
     kicker: "Paid ads tip",
   },
+  "gtm-update": {
+    slug: "google-tag-manager-update-october-2026",
+    lines: ["Google Tag Manager changed.", "*Check your tracking.*"],
+    kicker: "Tracking update",
+  },
   "what-to-track": {
     slug: "what-to-track-in-marketing-uae",
     lines: ["Your CRM is the", "*only honest* lead count."],
