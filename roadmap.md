@@ -11398,9 +11398,17 @@ Advertising, SEO, Web Development; email bilal@bilalshafqat.com. If no access,
 sign up with bilal@bilalshafqat.com (domain match) and claim/edit. Do not
 create a second profile.
 
+#### Product Hunt — done 2026-10-16
+`producthunt.com/@bilalshafqat` (signed up with bilalshafqat42@gmail.com via
+Google). Headline "Founder & Digital Marketer, Dubai" (the longer form was over
+the field limit); bio with 17 years; links Website, LinkedIn, X; current photo;
+interests Marketing, SEO, Analytics, Productivity, AI. All newsletters and
+email notifications switched off at Bilal's request. "Hide from search
+engines" left off. Optional later: verification (work email
+bilal@bilalshafqat.com + LinkedIn, then Request verification).
+
 #### Next profiles (from backlink-plan.md, can be done early)
 - Clutch (about 1 hour, highest value for Dubai buyers; planned Mon 19 Oct).
-- Product Hunt (5-10 minutes).
 
 ---
 
