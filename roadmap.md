@@ -11874,3 +11874,19 @@ Zoho CRM, campaigns), then case-study entries as for 4Direction (roadmap 415).
 No spend or results unless Bilal has the real figures (he has none for the
 LEOS studies either, so the homepage line now says "the brief and the
 decisions" rather than "the spend and what actually moved").
+
+---
+
+### 417. DONE (2026-10-19) — Industries I have worked in
+
+From Bilal's list. `src/data/industries.ts` feeds a new section on /about
+(after Stack) and the footer Industries column. Real estate (LEOS
+Developments linked, 4Direction, plus three Dubai developers and brokerages
+unnamed: Refine, Tomorrow World, PSI, roadmap 416), renovation (LEOS Project
+Management), production house (Choppershoot), textile chemicals UK (Texdale,
+AKS Chemicals), HR consultancy (Next Gen HR Consultancy). Footer no longer
+lists sectors with no work behind them (SaaS, hospitality, e-commerce,
+professional services). SEO checked: /about title, description, h1 and
+canonical unchanged; onpage scores unchanged (home 100, about 66).
+Later: case studies for LEOS Project Management, AKS Chemicals and Next Gen
+HR (screenshots, write-up, permission), as for 4Direction (415).

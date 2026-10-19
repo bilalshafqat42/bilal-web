@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { industriesWorkedIn } from "@/data/industries";
 import { disciplinesWithPages, disciplineItems } from "@/data/disciplines";
 import { megaMenuGroups, serviceMenuColumns, subPagesOf } from "@/data/pillars";
 import Image from "next/image";
@@ -89,16 +90,11 @@ const serviceGroups = serviceMenuColumns.map((column) => ({
 }));
 
 // Sectors worked in rather than pages that exist, so these are plain text. The
-// moment any of them earns a real page, it becomes a link.
-const industries = [
-  "Real Estate & Property",
-  "Technology & SaaS",
-  "Professional Services",
-  "Hospitality",
-  "E-commerce & Retail",
-  "Manufacturing & Industrial",
-  "Media & Production",
-];
+// moment any of them earns a real page, it becomes a link. Read from
+// `industries.ts` since 2026-10-19, so the footer and /about cannot disagree;
+// the old hand-written list named sectors (SaaS, hospitality) with no work
+// behind them.
+const industries = industriesWorkedIn.map((i) => i.sector);
 
 export default function Footer() {
   return (

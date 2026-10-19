@@ -12,6 +12,7 @@ import PageOpener from "@/components/layout/PageOpener";
 import WhoIWorkWith from "@/components/sections/WhoIWorkWith";
 import { SITE_URL, breadcrumbNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
 import Eyebrow from "@/components/ui/Eyebrow";
+import { industriesWorkedIn } from "@/data/industries";
 
 export const metadata: Metadata = pageMetadata({
   // Led with "Freelance Marketer & Developer" until 2026-10-13. The site sells
@@ -320,6 +321,47 @@ export default function AboutPage() {
                         </li>
                       ))}
                     </ul>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="relative section">
+          <div className="site-container">
+            <Reveal>
+              <Eyebrow>Industries</Eyebrow>
+              <h2 className="t-h2 mt-4 text-ink">Industries I have worked in</h2>
+              <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">
+                Mostly property, in Dubai and the UK, but not only property. The
+                same approach has run for a production house, a renovation
+                company, an HR consultancy and two textile chemicals companies in the UK.
+              </p>
+            </Reveal>
+
+            <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {industriesWorkedIn.map((group, i) => (
+                <Reveal key={group.sector} delay={i * 0.06}>
+                  <div className="h-full r-card surface-1 p-6">
+                    <h3 className="text-sm font-semibold tracking-wide text-gold uppercase">
+                      {group.sector}
+                    </h3>
+                    <ul className="mt-4 space-y-2.5">
+                      {group.companies.map((c) => (
+                        <li key={c.name} className="flex items-start gap-2 text-sm text-muted">
+                          <CheckCircle2 size={14} className="mt-0.5 shrink-0 text-gold" />
+                          {c.href ? (
+                            <Link href={c.href} className="text-ink underline-offset-4 hover:text-gold hover:underline">
+                              {c.name}
+                            </Link>
+                          ) : (
+                            c.name
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                    {group.note && <p className="mt-3 text-sm text-muted">{group.note}</p>}
                   </div>
                 </Reveal>
               ))}
