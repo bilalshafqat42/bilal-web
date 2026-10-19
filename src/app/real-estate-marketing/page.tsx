@@ -44,7 +44,7 @@ export const metadata: Metadata = pageMetadata({
   // 58 characters. The earlier version ran to 63 and Google would have cut it.
   title: "Off-Plan Real Estate Marketing, Dubai & UK | Bilal Shafqat",
   description:
-    "Off-plan launch marketing for property developers in Dubai and the UK: landing pages, campaign creative and lead capture built as one system by one person.",
+    "Off-plan real estate marketing in Dubai and the UK: launch landing pages, campaign creative and lead capture, built as one system.",
   path: "/real-estate-marketing",
 });
 

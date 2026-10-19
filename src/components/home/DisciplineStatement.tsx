@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ArrowRight, Pause, Play } from "lucide-react";
 import RotatingDiscipline from "@/components/home/RotatingDiscipline";
+import CtaButton from "@/components/ui/CtaButton";
 import { yearsExperience } from "@/lib/site";
 
 /**
@@ -103,6 +104,16 @@ export default function DisciplineStatement() {
               No account managers, no handoffs, and no week spent translating between three
               suppliers.
             </p>
+
+            {/* Phones only. This band fills the first mobile screen, and the
+                hero's booking button sat about two screens down, so a visitor
+                on a phone saw no way to book without scrolling (audit
+                2026-10-19). Same target as the header and hero CTAs. In the
+                flow from the server render, so it moves nothing (no CLS) and
+                adds no JavaScript. Desktop already has the header button. */}
+            <CtaButton href="/appointment" className="mt-6 lg:hidden">
+              Book a free consultation
+            </CtaButton>
 
             <hr className="mt-6 border-t border-black/10" />
 

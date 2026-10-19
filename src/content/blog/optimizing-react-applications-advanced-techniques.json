@@ -11,31 +11,31 @@
   "blocks": [
     {
       "t": "h2",
-      "v": "Insights: Why Optimization Matters in React"
+      "v": "Insights: Why Optimisation Matters in React"
     },
     {
       "t": "p",
-      "v": "React is a powerful JavaScript library for building user interfaces, but as applications grow in complexity, performance issues can arise. Optimizing React applications is crucial to ensure fast load times, smooth interactions, and an overall better user experience."
+      "v": "React is a powerful JavaScript library for building user interfaces, but as applications grow in complexity, performance issues can arise. Optimising React applications is crucial to ensure fast load times, smooth interactions, and an overall better user experience."
     },
     {
       "t": "p",
-      "v": "In this guide, we'll explore key optimization techniques including image optimization, route-based lazy loading, component lazy loading, useMemo, React.memo, useCallback, and useEffect cleanup. These strategies help reduce unnecessary re-renders, improve page load times, and enhance application efficiency."
+      "v": "In this guide, we'll explore key optimisation techniques including image optimisation, route-based lazy loading, component lazy loading, useMemo, React.memo, useCallback, and useEffect cleanup. These strategies help reduce unnecessary re-renders, improve page load times, and enhance application efficiency."
     },
     {
       "t": "h2",
-      "v": "1. Image Optimization in React"
+      "v": "1. Image Optimisation in React"
     },
     {
       "t": "h3",
-      "v": "Why Image Optimization is Important"
+      "v": "Why Image Optimisation is Important"
     },
     {
       "t": "p",
-      "v": "Images are often the largest assets on a webpage, affecting load speed and user experience. Unoptimized images can slow down your application, increasing bounce rates and lowering SEO rankings."
+      "v": "Images are often the largest assets on a webpage, affecting load speed and user experience. Unoptimised images can slow down your application, increasing bounce rates and lowering SEO rankings."
     },
     {
       "t": "h3",
-      "v": "Best Practices for Image Optimization"
+      "v": "Best Practices for Image Optimisation"
     },
     {
       "t": "p",
@@ -51,11 +51,11 @@
     },
     {
       "t": "p",
-      "v": "✅ Optimize with Tools: Use tools like TinyPNG, ImageOptim, or Squoosh."
+      "v": "✅ Optimise with Tools: Use tools like TinyPNG, ImageOptim, or Squoosh."
     },
     {
       "t": "p",
-      "v": "✅ Use a CDN: Content Delivery Networks (CDNs) like Cloudinary or Imgix can serve optimized images efficiently."
+      "v": "✅ Use a CDN: Content Delivery Networks (CDNs) like Cloudinary or Imgix can serve optimised images efficiently."
     },
     {
       "t": "h3",
@@ -111,7 +111,7 @@
     },
     {
       "t": "h2",
-      "v": "4. useMemo Hook for Performance Optimization"
+      "v": "4. useMemo Hook for Performance Optimisation"
     },
     {
       "t": "h3",
@@ -123,7 +123,7 @@
     },
     {
       "t": "h3",
-      "v": "Example: Using useMemo to Optimize Expensive Calculations"
+      "v": "Example: Using useMemo to Optimise Expensive Calculations"
     },
     {
       "t": "code",
@@ -151,7 +151,7 @@
     },
     {
       "t": "h2",
-      "v": "6. useCallback Hook to Optimize Function References"
+      "v": "6. useCallback Hook to Optimise Function References"
     },
     {
       "t": "h3",
@@ -163,7 +163,7 @@
     },
     {
       "t": "h3",
-      "v": "Example: Using useCallback to Optimize Function References"
+      "v": "Example: Using useCallback to Optimise Function References"
     },
     {
       "t": "code",
@@ -223,7 +223,7 @@
     },
     {
       "t": "p",
-      "v": "React.memo optimizes components, while useMemo optimizes computed values."
+      "v": "React.memo optimises components, while useMemo optimises computed values."
     }
   ],
   "metaTitle": "Optimizing React Apps: Advanced Techniques"

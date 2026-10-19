@@ -224,7 +224,7 @@ export default function HeroBanner() {
           </div>
 
           <p className="mt-5 text-sm text-muted lg:mt-0 lg:shrink-0">
-            For LEOS Developments, Tomorrow World and Refine
+            For property developers in the UK and Dubai
           </p>
         </div>
       </div>

@@ -1,7 +1,7 @@
 {
   "slug": "react-usecontext-hook-explained",
   "title": "React useContext Hook Explained (With Real Examples and Best Practices)",
-  "description": "Learn how the react useContext hook works in React with examples and best practices. Simplify global state without prop drilling. Ideal for beginners.",
+  "description": "The React useContext hook explained: how the Context API works, a real auth example, and how to share state without prop drilling.",
   "published": "2025-06-20",
   "updatedAt": "2026-10-14",
   "tags": [
@@ -212,7 +212,7 @@
         "Use it for global, shared, low-frequency state",
         "Combine with useState or useReducer for dynamic updates",
         "Split context by domain: theme, auth, cart, etc.",
-        "Wrap your app in centralized providers for cleaner structure"
+        "Wrap your app in centralised providers for cleaner structure"
       ]
     },
     {

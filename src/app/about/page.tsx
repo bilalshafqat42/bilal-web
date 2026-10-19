@@ -18,7 +18,7 @@ export const metadata: Metadata = pageMetadata({
   // one identity, a digital marketer who also builds what the campaign lands on
   // (roadmap 397), and the About page is where a name search lands.
   title: "About Bilal Shafqat | Freelance Digital Marketer in Dubai",
-  description: `Freelance digital marketer in Dubai with ${yearsExperience()} years in paid media, SEO and social. I run the campaign and build the page it lands on, as one partner.`,
+  description: `Freelance digital marketer in Dubai with ${yearsExperience()} years in paid media, SEO and social. I run the campaign and build the page it lands on.`,
   path: "/about",
 });
 

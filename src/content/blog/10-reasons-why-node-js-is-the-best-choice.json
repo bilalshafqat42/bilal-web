@@ -43,7 +43,7 @@
     },
     {
       "t": "p",
-      "v": "Thanks to the Google V8 engine, Node.js offers incredible speed. JavaScript is compiled directly into optimized machine code, enabling high performance for I/O-heavy tasks like APIs and real-time apps."
+      "v": "Thanks to the Google V8 engine, Node.js offers incredible speed. JavaScript is compiled directly into optimised machine code, enabling high performance for I/O-heavy tasks like APIs and real-time apps."
     },
     {
       "t": "h2",
@@ -101,7 +101,7 @@
     },
     {
       "t": "h2",
-      "v": "Security & Optimization Best Practices"
+      "v": "Security & Optimisation Best Practices"
     },
     {
       "t": "list",
@@ -110,7 +110,7 @@
         "Use HTTPS and secure headers (e.g., Helmet)",
         "Validate user input (e.g., Joi, Zod)",
         "Audit dependencies using npm audit",
-        "Use PM2 or Cluster for multi-core CPU utilization",
+        "Use PM2 or Cluster for multi-core CPU utilisation",
         "Implement logging with Winston or Sentry"
       ]
     },
@@ -135,7 +135,7 @@
       "ordered": false,
       "v": [
         "Install Node.js from nodejs.org",
-        "Initialize a project with npm init",
+        "Initialise a project with npm init",
         "Use Express.js to build your server",
         "Explore npm modules",
         "Deploy on platforms like Heroku, Vercel, or AWS"

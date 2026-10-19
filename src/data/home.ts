@@ -88,7 +88,7 @@ export type Cell = string | { items: (string | { text: string; muted: true })[] 
  *  entry here and change the grid below back to `lg:grid-cols-4`. */
 export const heroStats = [
   { value: String(yearsExperience()), label: "Years across marketing, design and development" },
-  { value: "4", label: "Disciplines, one person, not four suppliers" },
+  { value: "3", label: "Disciplines, one person, not three suppliers" },
   { value: "UK + UAE", label: "Property developers in the UK and UAE" },
 ];
 
@@ -134,12 +134,10 @@ export const audiences: Audience[] = [
 
 /** Measured outcomes. Every one traceable to a published case study.
  *
- *  A function taking the discipline count rather than a constant that computes
- *  it. Counting disciplines means importing `disciplines.ts`, which imports the
- *  service and case-study data, and this file reaches the browser through
- *  client components (`AboutSplit`, `WhoIWorkWith`). `Results`, a server
- *  component, passes the count in, so that data stays on the server. */
-export const resultStatsFor = (disciplineCount: number): Stat[] => [
+ *  A function so `yearsExperience()` is read at render time. It used to take
+ *  the portfolio discipline count from `Results`; the stat is now the fixed
+ *  three of the capability ledger (2026-10-19). */
+export const resultStatsFor = (): Stat[] => [
   {
     value: `${yearsExperience()}+`,
     label: "Years, one point of contact",
@@ -158,11 +156,12 @@ export const resultStatsFor = (disciplineCount: number): Stat[] => [
     verified: true,
   },
   {
-    // The same four the capability ledger names, counted from the data behind
-    // it (by the caller) rather than asserted twice.
-    value: `${disciplineCount}`,
+    // The three the capability ledger names (Marketing, Design, Development).
+    // Was the portfolio discipline count (4), which contradicted "Three
+    // disciplines" on the same page; fixed 2026-10-19.
+    value: "3",
     label: "Disciplines, one contract",
-    detail: "Marketing, design, web and mobile under one agreement",
+    detail: "Marketing, design and development under one agreement",
     meta: "No subcontractors",
     verified: true,
   },
@@ -290,7 +289,7 @@ export const homeFaqs = [
     // studies. Tomorrow World and Refine are named as clients rather than
     // attached to projects, which is what the logo row already claims and no
     // more.
-    a: "Campaigns, websites and apps for LEOS Developments, plus work for Tomorrow World Real Estate and Refine. The published case studies cover Hadley Heights, Weybridge Gardens and Cavendish Square: off-plan lead generation, launch and sales-gallery sites, and the CRM behind the enquiries.",
+    a: "Campaigns, websites and apps for LEOS Developments, a property developer in the UK and Dubai. The published case studies cover Hadley Heights, Weybridge Gardens and Cavendish Square: off-plan lead generation, launch and sales-gallery sites, and the CRM behind the enquiries.",
   },
   {
     q: "What actually happens in the free consultation?",

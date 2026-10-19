@@ -1,7 +1,7 @@
 {
   "slug": "redux-made-easy-beginners-guide-to-state-management-in-react-js",
   "title": "Redux Made Easy: Beginner's Guide to State Management in React JS",
-  "description": "A beginner's guide to Redux in React. Build a counter app and understand actions, reducers and the store by using them rather than reading about them.",
+  "description": "Redux made easy for beginners: build a counter app in React and learn actions, reducers and the store by using them, not reading about them.",
   "published": "2024-09-17",
   "updatedAt": "2026-10-07",
   "tags": [
@@ -36,7 +36,7 @@
     },
     {
       "t": "p",
-      "v": "1. Initialize a New React Project:"
+      "v": "1. Initialise a New React Project:"
     },
     {
       "t": "code",

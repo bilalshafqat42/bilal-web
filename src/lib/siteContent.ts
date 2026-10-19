@@ -8,7 +8,7 @@
 import { pillars, megaMenuGroups } from "@/data/pillars";
 import { faqGroups } from "@/data/faqs";
 import { serviceDepth } from "@/data/serviceDepth";
-import { clients } from "@/data/caseStudies";
+import { publishedClients } from "@/data/caseStudies";
 import { disciplinesWithPages, disciplineItems } from "@/data/disciplines";
 import { blogPosts, type Block } from "@/data/blogPosts";
 import { POSITIONING, yearsExperience } from "./site";
@@ -76,7 +76,7 @@ Includes: ${group.items.map((i) => i.title).join(", ")}.`);
   }
 
   parts.push(`# Case studies\n`);
-  for (const client of clients) {
+  for (const client of publishedClients()) {
     parts.push(`## ${client.name}  (page: /portfolio/${client.slug})
 ${client.intro}
 Scope: ${client.scope.map((s) => `${s.heading}: ${s.body}`).join(" ")}`);

@@ -103,7 +103,7 @@ export const processSteps: ProcessStep[] = [
     step: "04",
     timing: { label: "Ongoing", verified: true },
     deliverable: "A monthly report against the agreed metric",
-    title: "Optimize & Scale",
+    title: "Optimise & Scale",
     subtitle: "Measurement & Iteration",
     description:
       "Once live, I focus on measuring performance and improving it, whether that's ad spend, conversion rate, or app usage.",

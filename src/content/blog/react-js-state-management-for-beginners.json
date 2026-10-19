@@ -1,7 +1,7 @@
 {
   "slug": "react-js-state-management-for-beginners",
   "title": "React JS State management for beginners",
-  "description": "In this tutorial, you’ll learn about react js state management, useState, what are props? understanding prop drilling, solving prop drilling and what is redux",
+  "description": "React JS state management for beginners: useState, how props work, what prop drilling is, and how Redux solves it, with a counter app.",
   "published": "2023-11-09",
   "updatedAt": "2026-10-01",
   "tags": [
@@ -77,11 +77,11 @@
     },
     {
       "t": "h3",
-      "v": "Organizing the Counter Appp"
+      "v": "Organising the Counter Appp"
     },
     {
       "t": "p",
-      "v": "Next, we’ll turn our counter logic into a React component for better organization."
+      "v": "Next, we’ll turn our counter logic into a React component for better organisation."
     },
     {
       "t": "list",
@@ -135,7 +135,7 @@
       "v": [
         "What is Redux? Redux allows you to store your app’s state in one place, and any component can access the state without needing to pass props.",
         "Why Redux? It eliminates the need to pass props down multiple components (solving prop drilling).",
-        "It keeps your state in one organized place."
+        "It keeps your state in one organised place."
       ]
     },
     {

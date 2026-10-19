@@ -15,7 +15,7 @@ export const metadata: Metadata = pageMetadata({
   // as /about and /contact (roadmap 397).
   title: "FAQ | Hiring a Freelance Digital Marketer in Dubai",
   description:
-    "Straight answers on hiring a freelance digital marketer instead of an agency: how projects start, working across timezones from Dubai, and measuring results.",
+    "FAQs on hiring a freelance digital marketer in Dubai instead of an agency: how projects start, working across timezones, and measuring results.",
   path: "/faq",
 });
 

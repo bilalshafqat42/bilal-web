@@ -7,6 +7,7 @@ import { SITE_EMAIL } from "@/lib/contact";
 import { useLeadSubmit, TURNSTILE_ENABLED } from "@/lib/useLeadSubmit";
 import WhatsAppLink from "@/components/ui/WhatsAppLink";
 import { useFocusTrap } from "@/lib/focusTrap";
+import Honeypot from "@/components/forms/Honeypot";
 
 const POPUP_MESSAGE =
   "Hi Bilal, I found you through bilalshafqat.com and wanted to ask about a project.";
@@ -17,7 +18,6 @@ export default function LeadFormPopup() {
   const { status, setStatus, submit, turnstileRef } = useLeadSubmit({
     source: "website-popup",
     thankYouPath: "/thank-you?source=enquiry",
-    honeypotField: "botcheck",
     markSuccess: true,
     resetOnSuccess: true,
     // The popup shows one generic error with the email address, never the
@@ -44,6 +44,51 @@ export default function LeadFormPopup() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  // On phones the floating buttons (this one and WhatsApp) step aside while the
+  // visitor scrolls down and return on any scroll up, at the top, or near the
+  // end of the page. The rule itself is `html[data-float-hidden]` in
+  // globals.css; this only publishes the direction. A data attribute for the
+  // same reason as the consent handover: neither button imports the other.
+  //
+  // Passive, one rAF per frame at most, and only writes the DOM when the state
+  // flips. Nothing here renders, so scrolling never re-renders React.
+  useEffect(() => {
+    const root = document.documentElement;
+    const mobile = window.matchMedia("(max-width: 1023px)");
+    let lastY = window.scrollY;
+    let hidden = false;
+    let frame = 0;
+    const set = (next: boolean) => {
+      if (next === hidden) return;
+      hidden = next;
+      if (next) root.dataset.floatHidden = "true";
+      else delete root.dataset.floatHidden;
+    };
+    const update = () => {
+      frame = 0;
+      const y = window.scrollY;
+      const delta = y - lastY;
+      const nearEnd = y + window.innerHeight >= document.documentElement.scrollHeight - 600;
+      if (!mobile.matches || y < 120 || nearEnd) set(false);
+      else if (delta > 6) set(true);
+      else if (delta < -6) set(false);
+      // Small jitters (momentum scrolling, address bar resize) are ignored, and
+      // lastY only moves once a direction has been decided.
+      if (Math.abs(delta) > 6) lastY = y;
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    mobile.addEventListener("change", update);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      mobile.removeEventListener("change", update);
+      if (frame) cancelAnimationFrame(frame);
+      delete root.dataset.floatHidden;
+    };
+  }, []);
 
   // Dismiss once the navigation the submit started has actually landed.
   //
@@ -152,14 +197,8 @@ export default function LeadFormPopup() {
                 </p>
 
                 <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
-                  <input
-                    type="checkbox"
-                    name="botcheck"
-                    className="hidden"
-                    style={{ display: "none" }}
-                    tabIndex={-1}
-                    autoComplete="off"
-                  />
+                  {/* Spam trap: bots fill it, people never see it. */}
+                  <Honeypot />
 
                   <div>
                     <label htmlFor="lead-name" className="text-xs font-medium text-muted">

@@ -1,14 +1,14 @@
 {
   "slug": "react-usereducer-hook-explained",
   "title": "React useReducer Hook Explained with Real Examples and Best Practices",
-  "description": "Confused about when to use useReducer in React? Learn how this powerful hook helps manage complex state logic, with real examples and best practices.",
+  "description": "The React useReducer hook explained: when to use it instead of useState, its syntax, a counter example and pairing it with useContext.",
   "published": "2025-06-30",
-  "updatedAt": "2026-10-14",
+  "updatedAt": "2026-10-19",
   "tags": [
     "React Hooks",
     "React Js"
   ],
-  "words": 395,
+  "words": 420,
   "blocks": [
     {
       "t": "h2",
@@ -20,7 +20,7 @@
     },
     {
       "t": "p",
-      "v": "This is where useReducer comes in. It gives you a structured way to manage state transitions, especially when those transitions depend on the previous state."
+      "v": "This is where useReducer comes in. It gives you a structured way to manage state transitions, especially when those transitions depend on the previous state. In the React builds behind my [[web development in Dubai|/services/website-app-development]] projects, it is the usual choice for a form or filter with several moving parts."
     },
     {
       "t": "h3",
@@ -71,7 +71,7 @@
       "v": [
         "There are multiple pieces of state",
         "State updates are conditional or depend on previous state",
-        "You want to centralize state logic in one function"
+        "You want to centralise state logic in one function"
       ]
     },
     {
@@ -205,7 +205,7 @@
         "Multi-step workflows (wizards, tabs)",
         "State objects with multiple sub-properties",
         "Redux-like global stores without external libraries",
-        "Reusable UI components with configurable state behavior"
+        "Reusable UI components with configurable state behaviour"
       ]
     },
     {

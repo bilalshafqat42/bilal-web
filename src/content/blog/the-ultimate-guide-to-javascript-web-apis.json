@@ -1,7 +1,7 @@
 {
   "slug": "the-ultimate-guide-to-javascript-web-apis",
   "title": "The Ultimate Guide to JavaScript Web APIs",
-  "description": "JavaScript Web APIs empower developers to create dynamic, interactive, and feature-rich web applications. These APIs enable seamless interaction between the",
+  "description": "A guide to 18 JavaScript Web APIs, from Speech, Storage and Fetch to Canvas, WebSockets and Payment Request, with what each one does.",
   "published": "2025-01-15",
   "updatedAt": "2026-09-30",
   "tags": [
@@ -79,7 +79,7 @@
     },
     {
       "t": "p",
-      "v": "The Web Audio API is a powerful tool for processing and synthesizing audio in web applications. It’s perfect for creating music apps, sound effects, and even real-time audio visualization tools."
+      "v": "The Web Audio API is a powerful tool for processing and synthesizing audio in web applications. It’s perfect for creating music apps, sound effects, and even real-time audio visualisation tools."
     },
     {
       "t": "code",
@@ -127,7 +127,7 @@
     },
     {
       "t": "p",
-      "v": "The Notification API allows web apps to send notifications to the user, even when the browser is minimized. It’s a great way to engage users with updates, reminders, or alerts."
+      "v": "The Notification API allows web apps to send notifications to the user, even when the browser is minimised. It’s a great way to engage users with updates, reminders, or alerts."
     },
     {
       "t": "code",
@@ -171,7 +171,7 @@
     },
     {
       "t": "p",
-      "v": "The Battery Status API provides information about the device’s battery level and charging status. This API helps developers optimize app behavior based on battery usage."
+      "v": "The Battery Status API provides information about the device’s battery level and charging status. This API helps developers optimise app behaviour based on battery usage."
     },
     {
       "t": "code",

@@ -7,7 +7,6 @@ import { caseStudyCount } from "@/data/caseStudyUrls";
 import Eyebrow from "@/components/ui/Eyebrow";
 import SecondaryButton from "@/components/ui/SecondaryButton";
 import { resultStatsFor, resultMethod as METHOD } from "@/data/home";
-import { disciplinesWithPages } from "@/data/disciplines";
 
 /**
  * The proof wall — the single proof section on the homepage.
@@ -41,7 +40,7 @@ export default function Results() {
   // the real number is whatever is in the data, and a hand-typed count is a
   // claim that goes stale the moment a project is added or removed.
   const studies = caseStudyCount();
-  const stats = resultStatsFor(disciplinesWithPages().length);
+  const stats = resultStatsFor();
 
   return (
     <section className="relative section-pad">
@@ -129,7 +128,7 @@ export default function Results() {
             <div>
               <p className="font-semibold text-ink">Want the working behind these numbers?</p>
               <p className="mt-1.5 text-sm leading-relaxed text-muted">
-                {studies} case studies, with the brief, the spend and what actually moved.
+                {studies} case studies, with the brief and the decisions behind each one.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">

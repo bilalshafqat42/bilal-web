@@ -184,7 +184,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     // volume and therefore its own page.
     metaTitle: "Freelance Paid Marketing in Dubai | Bilal Shafqat",
     metaDescription:
-      "Freelance paid marketing in Dubai across Google, Meta, TikTok and LinkedIn, with conversion tracking from day one and reporting in cost per lead.",
+      "Freelance paid marketing in Dubai across Google, Meta, TikTok and LinkedIn, with conversion tracking from day one and cost per lead reporting.",
     // Condensed from "How long before the numbers mean anything?"
     railTimeline: "Two to four weeks before the numbers mean anything",
     faqs: [
@@ -238,7 +238,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       "Everywhere else you interrupt someone. On search they have typed the thing they are looking for, in their own words, which makes Google Ads in Dubai the shortest route from a budget to an enquiry and usually the place to start. It is also the easiest place to waste money, because the default settings are built to spend it.",
     metaTitle: "Freelance Google Ads in Dubai | Bilal Shafqat",
     metaDescription:
-      "Google Ads in Dubai planned and managed by a freelancer, with tracking built before the spend starts and reporting in enquiries rather than clicks.",
+      "Google Ads in Dubai managed by a freelancer, with tracking built before the spend starts and reporting in enquiries rather than clicks.",
     // Condensed from "How soon will I see results?"
     railTimeline: "Clicks immediately, useful conclusions in weeks",
     faqs: [
@@ -301,7 +301,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       "Nobody opens Facebook or Instagram to buy something, so Facebook ads in Dubai have to earn attention rather than capture it. That makes the creative the real targeting mechanism, and it makes the lead form the place where most budgets quietly go wrong.",
     metaTitle: "Freelance Facebook Ads in Dubai | Bilal Shafqat",
     metaDescription:
-      "Facebook ads in Dubai across Facebook and Instagram, measured on qualified enquiries rather than the cheap leads instant forms tend to produce.",
+      "Facebook ads in Dubai across Facebook and Instagram, measured on qualified enquiries rather than the cheap leads instant forms produce.",
     faqs: [
       {
         question: "Why do my Meta leads never answer the phone?",
@@ -353,7 +353,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       "LinkedIn marketing in Dubai costs several times what the other platforms do per click, and for a narrow commercial audience it is still the cheapest way to reach them. Targeting by job title, company size and seniority is something no other channel does properly, which makes it right for B2B and commercial property and wrong for most residential.",
     metaTitle: "Freelance LinkedIn Marketing in Dubai | Bilal Shafqat",
     metaDescription:
-      "LinkedIn marketing in Dubai for B2B and commercial property, targeted by job title and company rather than by interest, and wired into your CRM.",
+      "LinkedIn marketing in Dubai for B2B and commercial property, targeted by job title and company rather than interest, and wired to your CRM.",
     faqs: [
       {
         question: "Why is LinkedIn so expensive?",
@@ -464,7 +464,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     // because the scorer and Google both weight the opening words.
     metaTitle: "Web Development in Dubai | Freelance Web Developer",
     metaDescription:
-      "Freelance web development in Dubai: Next.js and WordPress sites, landing pages and custom tools, from a web developer who also runs the ads.",
+      "Web development in Dubai by a freelance web developer: Next.js and WordPress sites, landing pages and custom tools, built around the ads.",
     // Condensed from "How long does a website take?"
     railTimeline: "Landing page two weeks, a full site four to eight",
     faqs: [
@@ -500,8 +500,11 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       { title: "Mobile App Development", pillarSlug: "website-app-development" },
       { title: "Custom Marketing Tools & Calculators", pillarSlug: "website-app-development" },
     ],
+    // 2026-10-19: "web developer dubai" and "freelance web developer dubai"
+    // had no owner (best 58). This h2 and the intro carry the phrase here
+    // rather than on a new page.
     related: {
-      heading: "A CMS, or a custom build",
+      heading: "Hiring a web developer in Dubai: a CMS, or a custom build",
       intro:
         "Most web projects come down to one decision before any design starts: a CMS your own team edits, or something built in code because it has to do more than publish pages. Each has its own page.",
       slugs: ["cms-development", "custom-web-development"],
@@ -673,7 +676,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       "Squarespace is the platform for businesses whose work sells on how it looks: architects, interior designers, photographers, studios and consultancies with a strong brand. Its templates are well designed and hard to make ugly, which is why so many sites look the same. As a Squarespace developer in Dubai, I make it look like yours, then set up the lead capture and tracking it does not do for you.",
     metaTitle: "Freelance Squarespace Developer in Dubai | Bilal Shafqat",
     metaDescription:
-      "Squarespace developer in Dubai for portfolio and brochure sites: custom design you can maintain, lead capture, and GA4 and Meta Pixel tracking.",
+      "Squarespace developer in Dubai for portfolio and brochure sites: design you can maintain, lead capture, and GA4 and Meta Pixel tracking.",
     depthHeading: "How a Squarespace site is built in practice",
     related: {
       heading: "Other CMS options",
@@ -754,13 +757,17 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     title: "Custom Web Development",
     accent: "violet",
     parent: "website-app-development",
-    headline: "Custom web development in Dubai for the tools a CMS cannot build",
+    headline: "Custom web application development in Dubai, for the tools a CMS cannot build",
     intro:
-      "Custom web development in Dubai is worth paying for when a site has to do something rather than say something: calculate, filter, log people in, read from a CRM, or load instantly on a weak connection. I build those in React, Next.js and Node, on the MERN stack where an application needs one, and wire them into the campaigns and CRM they serve, which is the part a development shop usually leaves to someone else.",
-    metaTitle: "Custom Web Development in Dubai | Bilal Shafqat",
+      "Custom web application development in Dubai is worth paying for when a site has to do something rather than say something: calculate, filter, log people in, read from a CRM, or load instantly on a weak connection. I build those in React, Next.js and Node, on the MERN stack where an application needs one, and wire them into the campaigns and CRM they serve, which is the part a development shop usually leaves to someone else.",
+    // Retitled 2026-10-19 from "Custom Web Development in Dubai". That title
+    // and h1 contained "web development in Dubai", the hub's phrase, and the
+    // two pages scored 96 and 92 on it. This page now leads with what it
+    // builds (applications) and links up to the hub for the general query.
+    metaTitle: "Custom Web Application Development in Dubai | Bilal Shafqat",
     metaDescription:
-      "Custom web development in Dubai in React, Next.js and the MERN stack: portals, dashboards and calculators wired into your CRM and ads.",
-    depthHeading: "How custom web development works in practice",
+      "Custom web application development in Dubai in React, Next.js and MERN: portals, dashboards and calculators wired into your CRM and ads.",
+    depthHeading: "How custom web application development works in practice",
     related: {
       heading: "Not sure you need custom?",
       intro:
@@ -813,7 +820,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     accent: "violet",
     headline: "Mobile app development in Dubai, by the person who markets it too",
     intro:
-      "Mobile app development in Dubai fails somewhere other than the code, most of the time. Apps ship without analytics, so nobody can say which screen loses people. They launch with no campaign behind them, so the download numbers never arrive. Or they are built as a separate thing from the website and the two never share a user, a login or a number. One codebase in React Native, the back end behind it, and the launch campaign pointing at it, from the same person.",
+      "Mobile app development in Dubai fails somewhere other than the code, most of the time. Apps ship without analytics, so nobody can say which screen loses people. They launch with no campaign behind them, so the download numbers never arrive. Or they are built as a separate thing from the website and the two never share a user, a login or a number. One codebase in React Native, the back end behind it, and the launch campaign pointing at it, from one mobile app developer in Dubai rather than three suppliers.",
     // "Freelance" added 2026-10-02 at Bilal's request, for consistency with the
     // other eleven. It costs 95px (418 → 513, still inside the ~600 budget) and
     // keeps "Mobile App Developer in Dubai" intact as a phrase, so the match for
@@ -824,6 +831,11 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       "Mobile app development in Dubai: React Native for iOS and Android, with the back end, analytics and launch campaign built in. Real client work.",
     // Condensed from "How long does an app take?"
     railTimeline: "Months rather than weeks, scope decides",
+    // 2026-10-19: "mobile app developer dubai" (720 a month) is given to this
+    // page rather than to the article on choosing one or the iOS and Android
+    // pages, which split it between them. The intro's last sentence and this
+    // h2 carry the phrase; "mobile app development dubai" stays in the h1.
+    depthHeading: "Hiring a mobile app developer in Dubai: how the work runs",
     faqs: [
       {
         question: "Native or React Native?",
@@ -944,17 +956,20 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     shortTitle: "iOS",
     accent: "cyan",
     parent: "mobile-app-development",
-    headline: "An iOS app developer in Dubai, from the first build to App Store approval",
+    headline: "An iOS developer in Dubai, from the first build to App Store approval",
     intro:
-      "An iOS app developer in Dubai spends half the job building and half getting through Apple. The app has to work on every current iPhone and, for sales teams, on the iPad in the sales centre, then pass App Review, carry accurate privacy labels and ask for permissions at the right moment. I build iOS apps in React Native, so the same code can also ship to Android, and take them through TestFlight and the App Store under your developer account.",
+      "An iOS developer in Dubai spends half the job building and half getting through Apple. The app has to work on every current iPhone and, for sales teams, on the iPad in the sales centre, then pass App Review, carry accurate privacy labels and ask for permissions at the right moment. I build iOS apps in React Native, so the same code can also ship to Android, and take them through TestFlight and the App Store under your developer account.",
     // Retitled 2026-10-16 from "iOS App Development in Dubai". That title and
     // h1 contained "app development in Dubai", the phrase the mobile hub owns,
     // and split the site's only near-page-one query between three pages. The
     // children now lead with the platform and the person; the hub keeps the
     // phrase.
-    metaTitle: "iOS App Developer in Dubai | Bilal Shafqat",
+    // 2026-10-19: "App Developer" dropped from the title and h1. "iOS App
+    // Developer in Dubai" contains "app developer in Dubai", the phrase the
+    // mobile hub now owns ("mobile app developer dubai", 720 a month).
+    metaTitle: "iOS Developer in Dubai | Bilal Shafqat",
     metaDescription:
-      "iOS app developer in Dubai building iPhone and iPad apps in React Native: TestFlight, App Store review, push notifications and install tracking.",
+      "iOS developer in Dubai building iPhone and iPad apps in React Native: TestFlight, App Store review, push notifications and install tracking.",
     depthHeading: "How an iOS app build works in practice",
     related: {
       heading: "The rest of the app",
@@ -996,13 +1011,14 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     shortTitle: "Android",
     accent: "gold",
     parent: "mobile-app-development",
-    headline: "An Android app developer in Dubai, testing on the phones your customers carry",
+    headline: "An Android developer in Dubai, testing on the phones your customers carry",
     intro:
-      "Android is often treated as the port that follows the iPhone version. It should not be: it runs on a far wider range of phones, screen sizes and OS versions, and plenty of your customers are on one of them. As an Android app developer in Dubai, I build in React Native from the same codebase as iOS, test on real devices including older and budget models, and publish through Google Play Console under your account, with install tracking in place so every download and lead can be traced to the campaign that brought it.",
+      "Android is often treated as the port that follows the iPhone version. It should not be: it runs on a far wider range of phones, screen sizes and OS versions, and plenty of your customers are on one of them. As an Android developer in Dubai, I build in React Native from the same codebase as iOS, test on real devices including older and budget models, and publish through Google Play Console under your account, with install tracking in place so every download and lead can be traced to the campaign that brought it.",
     // Retitled 2026-10-16, for the same reason as the iOS page above.
-    metaTitle: "Android App Developer in Dubai | Bilal Shafqat",
+    // 2026-10-19: "App Developer" dropped, for the same reason as iOS above.
+    metaTitle: "Android Developer in Dubai | Bilal Shafqat",
     metaDescription:
-      "Android app developer in Dubai building in React Native: Google Play submission, testing on real devices, Play Console and install tracking.",
+      "Android developer in Dubai building in React Native: Google Play submission, testing on real devices, Play Console and install tracking.",
     depthHeading: "How an Android app build works in practice",
     related: {
       heading: "The rest of the app",
@@ -1100,7 +1116,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     // different buyer.
     metaTitle: "Freelance UI/UX Designer in Dubai | Bilal Shafqat",
     metaDescription:
-      "Freelance UI/UX designer in Dubai: wireframing, prototyping, web and mobile interface design and design systems, from someone who builds them.",
+      "Freelance UI/UX designer in Dubai: wireframes, prototypes, web and app interface design and design systems, from someone who builds them.",
     faqs: [
       {
         question: "Do you deliver design systems or one-off screens?",
@@ -1191,7 +1207,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     items: [
       { title: "Web Design", pillarSlug: "design-content-conversion" },
       { title: "UI/UX Design", pillarSlug: "design-content-conversion" },
-      { title: "Conversion Rate Optimization (CRO)", pillarSlug: "design-content-conversion" },
+      { title: "Conversion Rate Optimisation (CRO)", pillarSlug: "design-content-conversion" },
     ],
     // Added 2026-10-16 with the Figma page below. This page keeps "web
     // designer dubai"; the Figma page takes "figma designer dubai" and "figma
@@ -1262,7 +1278,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       "A logo is the easy part, and it is the smallest thing a graphic designer in Dubai is actually asked for. What matters is whether the identity still works on a website, an ad, a brochure and a pitch deck once other people are applying it. Graphic design in Dubai covers far more than the mark: logo, colour and typography systems, documented brand guidelines so anyone can apply them consistently, and the company profile and pitch materials that carry the brand into a room.",
     metaTitle: "Freelance Graphic Designer in Dubai | Bilal Shafqat",
     metaDescription:
-      "Freelance graphic designer in Dubai: logo design, colour and typography systems, documented brand guidelines, company profiles and pitch decks.",
+      "Freelance graphic designer in Dubai: logo design, colour and typography systems, brand guidelines, company profiles and pitch decks.",
     // Condensed from "How long does a brand project take?"
     railTimeline: "Two to four weeks for an identity with guidelines",
     faqs: [
@@ -1370,7 +1386,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       "CRM integration in Dubai usually gets asked for as a plumbing job: connect the website form to the CRM. The real problem is larger. Leads arrive from Meta lead forms, Google Ads, WhatsApp, portals and the website, sit in two or three systems that disagree, and nobody can say what a qualified lead actually cost. I connect those sources into one view, route each lead to the right person within minutes, and keep the duplicates out.",
     metaTitle: "CRM Integration in Dubai | Bilal Shafqat",
     metaDescription:
-      "CRM integration in Dubai: Meta, Google Ads, WhatsApp and web forms into one CRM, with lead routing, deduplication and cost per qualified lead.",
+      "CRM integration in Dubai: Meta, Google Ads, WhatsApp and web forms into one CRM, with routing, deduplication and cost per qualified lead.",
     depthHeading: "Connecting every lead source to one CRM",
     related: {
       heading: "Pick the CRM, or build one",
@@ -1412,16 +1428,20 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     shortTitle: "Zoho",
     accent: "cyan",
     parent: "crm-integration",
-    headline: "A Zoho CRM consultant in Dubai for sales teams that live on lead forms and WhatsApp",
+    headline: "Zoho CRM implementation in Dubai for sales teams that live on lead forms and WhatsApp",
     intro:
-      "Zoho CRM is the system many Dubai real estate developers and brokerages actually run on, because it does a great deal for a modest licence. It is also easy to set up badly. As a Zoho CRM consultant in Dubai, I have managed leads in Zoho CRM for real estate developers: Meta lead forms and website enquiries flowing straight in with their campaign attached, assigned to the right salesperson, and followed up on WhatsApp before the buyer has moved on to the next developer.",
+      "Zoho CRM is the system many Dubai real estate developers and brokerages actually run on, because it does a great deal for a modest licence. It is also easy to set up badly, so Zoho CRM implementation in Dubai is mostly about getting the setup right. I have managed leads in Zoho CRM for real estate developers: Meta lead forms and website enquiries flowing straight in with their campaign attached, assigned to the right salesperson, and followed up on WhatsApp before the buyer has moved on to the next developer.",
     // Retitled 2026-10-16 from "Zoho CRM Integration in Dubai", which scored
     // 92 on "crm integration dubai" and so competed with the CRM integration
     // hub for its own query. The page now leads with the consultant and
     // links up to the hub for the general question.
-    metaTitle: "Zoho CRM Consultant in Dubai | Bilal Shafqat",
+    // Retitled again 2026-10-19 from "Zoho CRM Consultant in Dubai", which
+    // scored 92 on "crm consultant dubai" against the CRM & MarTech page's
+    // 92 for its own query. "Implementation" names the work without the word
+    // the parent page owns.
+    metaTitle: "Zoho CRM Implementation in Dubai | Bilal Shafqat",
     metaDescription:
-      "Zoho CRM consultant in Dubai: Meta lead ads, web forms and WhatsApp into Zoho, with lead assignment, follow-up automation and reports.",
+      "Zoho CRM implementation in Dubai: Meta lead ads, web forms and WhatsApp into Zoho, with lead assignment, follow-ups and reports.",
     depthHeading: "How a Zoho CRM setup works in practice",
     related: {
       heading: "Other CRMs, side by side",
@@ -1463,7 +1483,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       "HubSpot is the CRM marketing teams find easiest to adopt, and the one most often left half set up: forms that create contacts with no source, lifecycle stages nobody moves, and reports that count everything as a lead. HubSpot integration in Dubai, done properly, connects your website, ads and WhatsApp to HubSpot, defines what each stage means, and builds the workflows and reports that let marketing and sales agree on one number.",
     metaTitle: "HubSpot Integration in Dubai | Bilal Shafqat",
     metaDescription:
-      "HubSpot integration in Dubai: forms, ads and site tracking into HubSpot, lifecycle stages that mean something, workflows and reports sales trusts.",
+      "HubSpot integration in Dubai: forms, ads and site tracking into HubSpot, lifecycle stages that mean something, and reports sales trusts.",
     depthHeading: "How a HubSpot integration works in practice",
     related: {
       heading: "Other CRMs, side by side",
@@ -1547,7 +1567,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       "Custom CRM development in Dubai makes sense in fewer cases than developers suggest, and in those cases it is the thing that works. When your sales process, lead sources and reporting no longer fit Zoho, HubSpot or Salesforce without a stack of workarounds, a CRM built for how you sell can be easier and less expensive to live with. I have worked inside a brokerage's custom CRM and built my own CRM and reporting platform, on the MERN stack and Next.js.",
     metaTitle: "Custom CRM Development in Dubai | Bilal Shafqat",
     metaDescription:
-      "Custom CRM development in Dubai on MERN and Next.js: lead intake, attribution, ad platform syncs and reports built around how your team sells.",
+      "Custom CRM development in Dubai on MERN and Next.js: lead intake, attribution, ad platform syncs and reports built around how you sell.",
     depthHeading: "How custom CRM development works in practice",
     related: {
       heading: "Rule out off-the-shelf first",
@@ -1718,7 +1738,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     accent: "cyan",
     items: [
       { title: "B2B & Real Estate Video Editing", pillarSlug: "design-content-conversion" },
-      { title: "Conversion Rate Optimization (CRO)", pillarSlug: "design-content-conversion" },
+      { title: "Conversion Rate Optimisation (CRO)", pillarSlug: "design-content-conversion" },
     ],
   },
 ];

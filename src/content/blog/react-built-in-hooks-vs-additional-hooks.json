@@ -1,7 +1,7 @@
 {
   "slug": "react-built-in-hooks-vs-additional-hooks",
   "title": "React Built-in Hooks vs Additional Hooks: What’s the Difference?",
-  "description": "Confused about the difference between React Built-in Hooks vs Additional Hooks? Learn what they are, when to use them, and how to write better code.",
+  "description": "React built-in hooks vs additional hooks: what each group is, real examples of both, when to use which, and the common mistakes to avoid.",
   "published": "2025-06-20",
   "updatedAt": "2026-10-14",
   "tags": [
@@ -24,7 +24,7 @@
     },
     {
       "t": "p",
-      "v": "Understanding the difference is key to writing clean, optimized, and scalable React code."
+      "v": "Understanding the difference is key to writing clean, optimised, and scalable React code."
     },
     {
       "t": "h3",
@@ -98,7 +98,7 @@
     },
     {
       "t": "p",
-      "v": "React also provides a few less commonly used hooks that are considered \"advanced\" or \"additional.\" These are designed for more complex scenarios, like fine-tuning performance, working with layout or animations, or customizing how refs behave."
+      "v": "React also provides a few less commonly used hooks that are considered \"advanced\" or \"additional.\" These are designed for more complex scenarios, like fine-tuning performance, working with layout or animations, or customising how refs behave."
     },
     {
       "t": "h3",
@@ -137,7 +137,7 @@
       "ordered": false,
       "v": [
         "Building custom components or libraries",
-        "Optimizing responsiveness or layout behavior",
+        "Optimising responsiveness or layout behaviour",
         "Needing developer tooling or ref control"
       ]
     },
@@ -289,7 +289,7 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Everyday UI state and behavior",
+        "Everyday UI state and behaviour",
         "Lifecycle effects",
         "Accessing DOM or context"
       ]
@@ -309,7 +309,7 @@
     },
     {
       "t": "p",
-      "v": "You don’t need to memorize all the hooks. Just understand their purpose and use them when the problem calls for it."
+      "v": "You don’t need to memorise all the hooks. Just understand their purpose and use them when the problem calls for it."
     }
   ],
   "metaTitle": "React Built-in Hooks vs Additional Hooks"

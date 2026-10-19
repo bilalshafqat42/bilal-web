@@ -5,6 +5,7 @@ import { ArrowRight, Loader2, MessageCircle } from "lucide-react";
 import { useLeadSubmit, TURNSTILE_ENABLED } from "@/lib/useLeadSubmit";
 import { SITE_EMAIL } from "@/lib/contact";
 import WhatsAppLink from "@/components/ui/WhatsAppLink";
+import Honeypot from "@/components/forms/Honeypot";
 
 // Never displayed. Any failed send shows the panel below instead of the
 // server's text: on 2026-10-16 this form printed "Could not reach the lead
@@ -32,7 +33,6 @@ export default function InlineLeadForm({ service }: { service: string }) {
   const { status, submit, turnstileRef } = useLeadSubmit({
     source: "service-page-form",
     thankYouPath: "/thank-you?source=enquiry",
-    honeypotField: "company",
     fallbackState: true,
     defaultError: NOT_SENT,
     networkError: NOT_SENT,
@@ -79,15 +79,8 @@ export default function InlineLeadForm({ service }: { service: string }) {
         className="w-full resize-none rounded-xl surface-2 px-4 py-3 text-sm text-ink outline-none transition placeholder:text-faint focus:border-gold/50 focus:ring-2 focus:ring-gold/20 sm:col-span-2"
       />
 
-      {/* Honeypot. Off-screen rather than display:none, which some bots skip. */}
-      <input
-        type="text"
-        name="company"
-        tabIndex={-1}
-        autoComplete="off"
-        aria-hidden="true"
-        className="absolute left-[-9999px] h-0 w-0 opacity-0"
-      />
+      {/* Spam trap: bots fill it, people never see it. */}
+      <Honeypot />
 
       {TURNSTILE_ENABLED ? <div ref={turnstileRef} className="sm:col-span-2" /> : null}
 

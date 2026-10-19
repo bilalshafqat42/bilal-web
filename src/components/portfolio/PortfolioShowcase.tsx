@@ -100,7 +100,7 @@ const slides: Slide[] = [
     short: "Paid and organic",
     headline: "Creative that runs paid and organic",
     detail:
-      "Award-winning campaign and brand creative, produced to stay consistent with the website and the ads rather than drifting into its own visual language.",
+      "Campaign and brand creative for an award-winning developer, produced to stay consistent with the website and the ads rather than drifting into its own visual language.",
     client: "LEOS Developments",
     href: "/portfolio/leos-developments",
     image: "/portfolio/leos/social-media/1.avif",
@@ -246,7 +246,7 @@ export default function PortfolioShowcase() {
                         href={s.href}
                         className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-bg transition-transform hover:scale-[1.03]"
                       >
-                        Learn more <ArrowRight size={15} />
+                        Learn more<span className="sr-only"> about {s.label}</span> <ArrowRight size={15} />
                       </a>
                     </div>
                   </div>
@@ -311,7 +311,7 @@ export default function PortfolioShowcase() {
                 <h3 className="t-h4 text-white">{s.headline}</h3>
                 <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-white/70">{s.detail}</p>
                 <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
-                  Learn more <ArrowRight size={14} />
+                  Learn more<span className="sr-only"> about {s.label}</span> <ArrowRight size={14} />
                 </span>
               </div>
             </Link>

@@ -178,7 +178,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-1.5">
               {companyLinks.map((l) => (
                 <li key={l.label}>
-                  <Link href={l.href} className="inline-flex min-h-6 items-center text-sm text-muted transition-colors hover:text-gold">
+                  <Link href={l.href} className="inline-flex min-h-6 min-w-6 items-center text-sm text-muted transition-colors hover:text-gold">
                     {l.label}
                   </Link>
                 </li>
@@ -208,7 +208,7 @@ export default function Footer() {
                       <li key={l.href}>
                         <Link
                           href={l.href}
-                          className="inline-flex min-h-6 items-center text-sm text-muted transition-colors hover:text-gold"
+                          className="inline-flex min-h-6 min-w-6 items-center text-sm text-muted transition-colors hover:text-gold"
                         >
                           {l.label}
                         </Link>
@@ -218,7 +218,7 @@ export default function Footer() {
                               <li key={c.href}>
                                 <Link
                                   href={c.href}
-                                  className="inline-flex min-h-6 items-center text-[0.8125rem] text-muted transition-colors hover:text-gold"
+                                  className="inline-flex min-h-6 min-w-6 items-center text-[0.8125rem] text-muted transition-colors hover:text-gold"
                                 >
                                   {c.label}
                                 </Link>
@@ -262,13 +262,13 @@ export default function Footer() {
               <li>
                 <Link
                   href="/real-estate-marketing"
-                  className="inline-flex min-h-6 items-center text-sm text-muted transition-colors hover:text-gold"
+                  className="inline-flex min-h-6 min-w-6 items-center text-sm text-muted transition-colors hover:text-gold"
                 >
                   Real Estate Marketing
                 </Link>
               </li>
               <li>
-                <Link href="/portfolio" className="inline-flex min-h-6 items-center text-sm text-muted transition-colors hover:text-gold">
+                <Link href="/portfolio" className="inline-flex min-h-6 min-w-6 items-center text-sm text-muted transition-colors hover:text-gold">
                   All work
                 </Link>
               </li>
@@ -299,10 +299,10 @@ export default function Footer() {
               and JavaScript on every page, which is not worth it. */}
           <p>© {new Date().getFullYear()} {SITE_NAME}. All rights reserved.</p>
           <p className="flex items-center gap-5">
-            <Link href="/pricing" className="inline-flex min-h-6 items-center transition-colors hover:text-gold">Pricing</Link>
-            <Link href="/faq" className="inline-flex min-h-6 items-center transition-colors hover:text-gold">FAQ</Link>
-            <Link href="/privacy" className="inline-flex min-h-6 items-center transition-colors hover:text-gold">Privacy Policy</Link>
-            <Link href="/contact" className="inline-flex min-h-6 items-center transition-colors hover:text-gold">Contact</Link>
+            <Link href="/pricing" className="inline-flex min-h-6 min-w-6 items-center transition-colors hover:text-gold">Pricing</Link>
+            <Link href="/faq" className="inline-flex min-h-6 min-w-6 items-center transition-colors hover:text-gold">FAQ</Link>
+            <Link href="/privacy" className="inline-flex min-h-6 min-w-6 items-center transition-colors hover:text-gold">Privacy Policy</Link>
+            <Link href="/contact" className="inline-flex min-h-6 min-w-6 items-center transition-colors hover:text-gold">Contact</Link>
           </p>
           <SocialLinks />
         </div>

@@ -1,7 +1,7 @@
 {
   "slug": "7-tips-to-improve-ctr-click-through-rate",
   "title": "7 Tips to Improve CTR (Click-Through Rate)",
-  "description": "7 tips to improve CTR (Click-Through Rate), a key digital marketing metric that measures how often people click on your link after seeing it in search results.",
+  "description": "Seven ways to improve CTR (click-through rate) from search: titles and H1s that agree, honest headlines, short titles and matching intent.",
   "published": "2025-01-17",
   "updatedAt": "2026-10-14",
   "tags": [
@@ -11,7 +11,7 @@
   "blocks": [
     {
       "t": "p",
-      "v": "Click-through rate (CTR) is one of the most crucial metrics in digital marketing. It reflects how often people click on your link after seeing it in search results, emails, or ads. Improving your CTR is essential for driving traffic and achieving your marketing goals. Here are seven actionable tips to help you boost your CTR, each supported by best practices for search engine optimization (SEO)."
+      "v": "Click-through rate (CTR) is one of the most crucial metrics in digital marketing. It reflects how often people click on your link after seeing it in search results, emails, or ads. Improving your CTR is essential for driving traffic and achieving your marketing goals. Here are seven actionable tips to help you boost your CTR, each supported by best practices for search engine optimisation (SEO)."
     },
     {
       "t": "h2",
@@ -19,7 +19,7 @@
     },
     {
       "t": "p",
-      "v": "Your title tag and H1 heading are the first impressions your content makes. While they don’t have to be identical, they should complement each other. The title tag appears in search results and should be optimized for clicks, while the H1 is the headline users see on the page itself."
+      "v": "Your title tag and H1 heading are the first impressions your content makes. While they don’t have to be identical, they should complement each other. The title tag appears in search results and should be optimised for clicks, while the H1 is the headline users see on the page itself."
     },
     {
       "t": "list",
@@ -87,13 +87,13 @@
     },
     {
       "t": "p",
-      "v": "Standing out in a crowded digital space requires emphasizing what makes your content, product, or service unique. Your unique selling point (USP) should be clear in your title and meta description."
+      "v": "Standing out in a crowded digital space requires emphasising what makes your content, product, or service unique. Your unique selling point (USP) should be clear in your title and meta description."
     },
     {
       "t": "list",
       "ordered": false,
       "v": [
-        "Tip : Use your title to showcase value. For instance, \"Free Shipping on Handmade Jewelry\" instantly tells users what they gain.",
+        "Tip : Use your title to showcase value. For instance, \"Free Shipping on Handmade Jewellery\" instantly tells users what they gain.",
         "Example : \"Eco-Friendly Sneakers – Sustainable Comfort for Runners.\"",
         "SEO Insight : Highlighting your USP can attract niche audiences and improve your rankings for long-tail keywords."
       ]

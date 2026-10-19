@@ -1,7 +1,7 @@
 {
   "slug": "how-javascript-developers-can-learn-typescript",
   "title": "How JavaScript Developers Can Learn TypeScript Easily",
-  "description": "Discover how JavaScript developers can transition to TypeScript with ease. Learn key concepts, migration steps, and productivity benefits of Typescript",
+  "description": "How JavaScript developers can learn TypeScript: the key concepts, a step-by-step setup, migration best practices and where it pays off.",
   "published": "2025-06-12",
   "updatedAt": "2026-10-14",
   "tags": [
@@ -117,7 +117,7 @@
     },
     {
       "t": "h3",
-      "v": "Step 2: Initialize Your Project"
+      "v": "Step 2: Initialise Your Project"
     },
     {
       "t": "p",

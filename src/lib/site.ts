@@ -80,7 +80,7 @@ export const BLOG_DESCRIPTION =
 export const blogPagedTitle = (page: number) =>
   `Writing on Digital Marketing in Dubai, Page ${page}`;
 export const blogPagedDescription = (page: number) =>
-  `Page ${page} of the archive. Digital marketing notes for Dubai businesses, plus older notes on design, React and web development, written from client work.`;
+  `Page ${page} of the archive: digital marketing notes for Dubai businesses, plus older notes on design, React and web development.`;
 
 /**
  * Title, description, canonical, Open Graph and Twitter card for one page.

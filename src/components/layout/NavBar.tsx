@@ -89,6 +89,7 @@ function MegaPanel({
   const isOpen = megaOpen === id;
   return (
     <div
+      id={`mega-${id}`}
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
       className={`mega-panel absolute inset-x-0 top-full hidden transition-[opacity,transform] duration-200 lg:block ${
@@ -269,13 +270,13 @@ export default function NavBar({ menu }: { menu: MenuColumn[] }) {
     setOpen(false);
     menuButtonRef.current?.focus();
   };
-  const triggerRefs = useRef<Partial<Record<MegaId, HTMLAnchorElement | null>>>({});
-  // Escape closes the panel and returns focus to the trigger — but that focus
-  // would immediately re-open it. This suppresses exactly one focus-open.
-  const suppressFocusOpen = useRef(false);
-  // The panel state as it was before the current press. Focus and hover both
-  // open the panel and both land before `click`, so a plain toggle in the click
-  // handler would undo them and the panel could never be opened by pressing.
+  /** The disclosure buttons, so Escape can hand focus back to the one that
+   *  owns the open panel. */
+  const triggerRefs = useRef<Partial<Record<MegaId, HTMLButtonElement | null>>>({});
+  // The panel state as it was before the current pointer press. Hover opens
+  // the panel before `click` lands, so a plain toggle in the click handler
+  // would undo it and a mouse user could never open the panel by pressing.
+  // Keyboard presses (Enter, Space) have no pointerdown and toggle directly.
   const openBeforePress = useRef(false);
 
   // Hover intent. Closing on a 250ms delay rather than immediately, so moving
@@ -368,7 +369,6 @@ export default function NavBar({ menu }: { menu: MenuColumn[] }) {
     if (!megaOpen) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== "Escape") return;
-      suppressFocusOpen.current = true;
       const trigger = triggerRefs.current[megaOpen];
       setMegaOpen(null);
       trigger?.focus();
@@ -452,38 +452,51 @@ export default function NavBar({ menu }: { menu: MenuColumn[] }) {
                 key={link.href}
                 onMouseEnter={() => openMega(link.mega!)}
                 onMouseLeave={closeMega}
+                // Tabbing out of the panel (or back above the trigger) closes
+                // it, as a disclosure should. `relatedTarget` is null when
+                // focus leaves the window, which is not a reason to close.
+                onBlur={(e) => {
+                  const next = e.relatedTarget as Node | null;
+                  if (next && !e.currentTarget.contains(next)) setMegaOpen(null);
+                }}
               >
                 <div className="flex items-center gap-1">
+                  {/* A plain link to the hub. It no longer opens the panel on
+                      focus: that put all fifteen service links in the path of
+                      anyone tabbing along the bar (audit 2026-10-19). The
+                      button beside it is the disclosure. */}
                   <Link
-                    ref={(el) => {
-                      triggerRefs.current[link.mega!] = el;
-                    }}
                     href={link.href}
-                    onFocus={() => {
-                      if (suppressFocusOpen.current) {
-                        suppressFocusOpen.current = false;
-                        return;
-                      }
-                      openMega(link.mega!);
-                    }}
                     className={`text-[0.75rem] uppercase tracking-[0.06em] transition-colors ${
                       light ? "text-[#54545c] hover:text-[#14140f]" : "text-muted hover:text-ink"
                     }`}
                   >
                     {link.label}
                   </Link>
-                  {/* A separate control, so pressing the chevron opens the panel
-                      while pressing the label still navigates to the hub. */}
+                  {/* The disclosure button (WAI-ARIA disclosure pattern): Enter
+                      or Space toggles the panel, `aria-expanded` reports it,
+                      Tab walks into the open panel or straight past a closed
+                      one, Escape closes it and returns focus here. A separate
+                      control, so the label still navigates to the hub. */}
                   <button
                     type="button"
+                    ref={(el) => {
+                      triggerRefs.current[link.mega!] = el;
+                    }}
                     onPointerDown={() => {
                       openBeforePress.current = megaOpen === link.mega;
                     }}
-                    onClick={() => setMegaOpen(openBeforePress.current ? null : link.mega!)}
+                    onClick={(e) => {
+                      // `detail` is 0 for a click made by the keyboard: no
+                      // pointer press came first, so read the live state.
+                      const wasOpen = e.detail === 0 ? megaOpen === link.mega : openBeforePress.current;
+                      if (closeTimer.current) clearTimeout(closeTimer.current);
+                      setMegaOpen(wasOpen ? null : link.mega!);
+                    }}
                     aria-expanded={megaOpen === link.mega}
-                    aria-haspopup="true"
-                    aria-label={`${megaOpen === link.mega ? "Close" : "Open"} ${link.label.toLowerCase()} menu`}
-                    className={`p-1 transition-colors ${
+                    aria-controls={`mega-${link.mega}`}
+                    aria-label={`${link.label} menu`}
+                    className={`-m-0.5 p-1.5 transition-colors ${
                       light ? "text-[#54545c] hover:text-[#14140f]" : "text-muted hover:text-ink"
                     }`}
                   >

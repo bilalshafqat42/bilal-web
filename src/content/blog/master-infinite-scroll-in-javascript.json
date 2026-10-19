@@ -1,7 +1,7 @@
 {
   "slug": "master-infinite-scroll-in-javascript",
   "title": "Master Infinite Scroll in JavaScript with Just a Few Lines of Code",
-  "description": "Learn how to implement master infinite scroll in javascript using just a few lines of code. Ideal for developers who want to boost UX without heavy libraries.",
+  "description": "Infinite scroll in JavaScript in a few lines of code: detect the bottom of the page, load more items, show a loader and debounce the scroll.",
   "published": "2025-05-26",
   "updatedAt": "2026-10-14",
   "tags": [

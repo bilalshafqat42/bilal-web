@@ -1,7 +1,7 @@
 {
   "slug": "structuring-your-react-app-like-a-pro",
   "title": "Structuring Your React App Like a Pro",
-  "description": "Structuring Your React App, A well-structured React app allows developers to navigate the codebase efficiently, scale features, and debug issues with ease.",
+  "description": "How to structure a React app like a pro: folders for assets, styles, components, helpers, hooks, contexts and layouts, and why each matters.",
   "published": "2025-02-18",
   "updatedAt": "2026-09-30",
   "tags": [
@@ -15,7 +15,7 @@
     },
     {
       "t": "p",
-      "v": "When developing a React application, maintaining a well-organized project structure is crucial for scalability, maintainability, and collaboration. A well-structured React app allows developers to navigate the codebase efficiently, scale features seamlessly, and debug issues with ease."
+      "v": "When developing a React application, maintaining a well-organised project structure is crucial for scalability, maintainability, and collaboration. A well-structured React app allows developers to navigate the codebase efficiently, scale features seamlessly, and debug issues with ease."
     },
     {
       "t": "p",
@@ -30,11 +30,11 @@
       "ordered": false,
       "v": [
         "Assets : Managing static files",
-        "Styles : Organizing stylesheets and theme configurations",
+        "Styles : Organising stylesheets and theme configurations",
         "Components : Building reusable UI elements",
         "Helpers : Creating utility functions for common operations",
         "Hooks : Custom React hooks for managing state and side effects",
-        "Contexts : Centralized state management using React Context API",
+        "Contexts : Centralised state management using React Context API",
         "Layouts : Structuring pages efficiently"
       ]
     },
@@ -58,7 +58,7 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Store images in /assets/images and organize them by feature or category.",
+        "Store images in /assets/images and organise them by feature or category.",
         "Keep icons in /assets/icons for better reusability.",
         "Fonts should reside in /assets/fonts to maintain consistency across the app.",
         "Avoid importing assets directly into components. Instead, use dynamic imports for better performance."
@@ -70,7 +70,7 @@
     },
     {
       "t": "h2",
-      "v": "2. Styles – Organizing Stylesheets and Themes"
+      "v": "2. Styles – Organising Stylesheets and Themes"
     },
     {
       "t": "p",
@@ -113,7 +113,7 @@
         "Use separate folders for each component.",
         "Keep related files (JSX, CSS, test files) within the same component folder.",
         "Maintain an index.js for easy imports.",
-        "Categorize components into UI , Common , and Feature-Specific components."
+        "Categorise components into UI , Common , and Feature-Specific components."
       ]
     },
     {
@@ -238,7 +238,7 @@
     },
     {
       "t": "p",
-      "v": "Yes, keeping each component in its own folder along with its styles and tests improves organization."
+      "v": "Yes, keeping each component in its own folder along with its styles and tests improves organisation."
     },
     {
       "t": "h3",

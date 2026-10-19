@@ -1,7 +1,7 @@
 {
   "slug": "react-useeffect-hook-explained-with-examples",
   "title": "React useEffect Hook Explained with Examples and Best Practices",
-  "description": "Master the useEffect hook in React with clear examples and real-world use cases. Learn how dependencies work, how to avoid infinite loops, and when to clean up.",
+  "description": "The React useEffect hook explained with examples: dependency arrays, fetching data, avoiding infinite loops and when to clean up.",
   "published": "2025-06-18",
   "updatedAt": "2026-10-14",
   "tags": [
@@ -172,7 +172,7 @@
     },
     {
       "t": "p",
-      "v": "Some side effects, like event listeners or intervals, need cleanup to prevent memory leaks or unwanted behaviors."
+      "v": "Some side effects, like event listeners or intervals, need cleanup to prevent memory leaks or unwanted behaviours."
     },
     {
       "t": "h3",

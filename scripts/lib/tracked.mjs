@@ -36,7 +36,8 @@ export const TRACKED = [
   ["/services/wix-development", "wix developer dubai"],
   ["/services/squarespace-development", "squarespace developer dubai"],
   ["/services/strapi-development", "strapi developer dubai"],
-  ["/services/custom-web-development", "custom web development dubai"],
+  // 2026-10-19: retitled off the hub's "web development in Dubai".
+  ["/services/custom-web-development", "custom web application development dubai"],
   ["/services/mobile-app-development", "mobile app development dubai"],
   // Added 2026-10-16, unmeasured like the six above. iOS and Android moved
   // the same day from "<platform> app development dubai" to "<platform> app
@@ -46,12 +47,15 @@ export const TRACKED = [
   // to "zoho crm consultant dubai" for the same reason against the CRM
   // integration hub.
   ["/services/react-native-development", "react native developer dubai"],
-  ["/services/ios-app-development", "ios app developer dubai"],
-  ["/services/android-app-development", "android app developer dubai"],
+  // 2026-10-19: "app developer" dropped so neither contains "app developer
+  // dubai", which the mobile hub now owns ("mobile app developer dubai").
+  ["/services/ios-app-development", "ios developer dubai"],
+  ["/services/android-app-development", "android developer dubai"],
   ["/services/app-backend-development", "app back end development dubai"],
   ["/services/crm-marketing-automation", "crm consultant dubai"],
   ["/services/crm-integration", "crm integration dubai"],
-  ["/services/zoho-crm-integration", "zoho crm consultant dubai"],
+  // 2026-10-19: "consultant" left to /services/crm-marketing-automation.
+  ["/services/zoho-crm-integration", "zoho crm implementation dubai"],
   ["/services/hubspot-integration", "hubspot integration dubai"],
   ["/services/salesforce-integration", "salesforce integration dubai"],
   ["/services/custom-crm-development", "custom crm development dubai"],

@@ -19,7 +19,7 @@ export const metadata: Metadata = pageMetadata({
   // weight. Marketing leads now, as on every other page (roadmap 397).
   title: "Contact Bilal Shafqat | Digital Marketer in Dubai",
   description:
-    "Contact Bilal Shafqat, a freelance digital marketer in Dubai who runs the campaign and builds the page it lands on. Email, phone or WhatsApp, reply in a day.",
+    "Contact Bilal Shafqat, a freelance digital marketer in Dubai who runs the campaign and builds the page. Email, phone or WhatsApp.",
   path: "/contact",
 });
 

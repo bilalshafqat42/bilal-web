@@ -1,7 +1,7 @@
 {
   "slug": "react-hooks-explained",
   "title": "React Hooks Explained: The Ultimate Guide for Developers",
-  "description": "React Hooks Explained, React Hooks revolutionized the way developers build React applications by enabling functional components to handle state and side effect.",
+  "description": "React hooks explained: what they are, why they matter, how the key hooks work in function components, and the common mistakes to avoid.",
   "published": "2025-03-09",
   "updatedAt": "2026-09-30",
   "tags": [
@@ -42,7 +42,7 @@
       "ordered": false,
       "v": [
         "Simplified Code: No need for complex class components.",
-        "Better Performance: Optimized re-rendering and memoization.",
+        "Better Performance: Optimised re-rendering and memoization.",
         "Reusable Logic: Custom Hooks enable reusable stateful logic.",
         "Cleaner Component Structure: Improved readability and maintainability.",
         "Easier Testing: Functional components with Hooks are easier to test than class components."
@@ -123,7 +123,7 @@
     },
     {
       "t": "h3",
-      "v": "6. useMemo – Optimizing Performance"
+      "v": "6. useMemo – Optimising Performance"
     },
     {
       "t": "p",
@@ -155,7 +155,7 @@
       "v": [
         "Forgetting Dependency Arrays in useEffect : Leads to infinite loops or unnecessary re-executions.",
         "Mutating State Directly : Always use the state setter function.",
-        "Not Using Memoization for Performance Optimization : Leads to redundant computations.",
+        "Not Using Memoization for Performance Optimisation : Leads to redundant computations.",
         "Using Hooks in Loops or Conditions : Always call Hooks at the top level of the component."
       ]
     },

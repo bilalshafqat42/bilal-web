@@ -87,7 +87,9 @@ const cases = [
   ["bad email format", 400, { name: "A", email: "not-an-email" }],
   ["array body", 400, "[1,2,3]"],
   ["malformed JSON", 400, "{oops"],
-  ["honeypot filled", 200, { name: "A", email: "a@example.invalid", botcheck: "x" }],
+  ["honeypot filled", 200, { name: "A", email: "a@example.invalid", hp_x7q: "x" }],
+  ["old company key", 502, { name: "A", email: "a@example.invalid", company: "Acme Ltd" }],
+  ["old botcheck key", 502, { name: "A", email: "a@example.invalid", botcheck: "Acme Ltd" }],
   // A non-string where a string belongs used to reach `.includes()` and 500.
   ["source as a number", 400, { name: "A", email: "a@example.invalid", source: 123 }],
   ["attribution as text", 400, { name: "A", email: "a@example.invalid", attribution: "x" }],

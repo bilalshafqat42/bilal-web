@@ -1,7 +1,7 @@
 {
   "slug": "most-useful-react-hooks",
   "title": "The Most Useful React Hooks",
-  "description": "Discover the most essential React Hooks that every developer should know! From managing state with useState to harnessing advanced features like useEffect,",
+  "description": "The most useful React hooks, useState and useEffect, explained with their parameters, examples and the key points on when to use each.",
   "published": "2025-01-27",
   "updatedAt": "2026-10-02",
   "tags": [
@@ -60,7 +60,7 @@
       "v": [
         "Re-renders : Updating the state via setState triggers a re-render of the component.",
         "State is isolated : Each useState call creates its own state, even if used multiple times in the same component.",
-        "Lazy Initialization : If initialValue requires computation, you can pass a function to useState :"
+        "Lazy Initialisation : If initialValue requires computation, you can pass a function to useState :"
       ]
     },
     {

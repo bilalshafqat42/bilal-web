@@ -1,7 +1,7 @@
 {
   "slug": "websites-every-developer-must-bookmark",
   "title": "Websites Every Developer Must Bookmark for Stunning UI and Creative Design",
-  "description": "The reference sites worth keeping one click away: documentation, CSS and layout tools, icons, colour, and the utilities that save an hour every week.",
+  "description": "Websites every developer should bookmark for UI work: CoolShape, Penrose, Teable, VisActor, Matcha.css, Magick.css and more, and why.",
   "published": "2025-02-11",
   "updatedAt": "2026-10-05",
   "tags": [
@@ -15,7 +15,7 @@
     },
     {
       "t": "p",
-      "v": "As a developer, your workflow and efficiency depend significantly on the resources you have at hand. Whether you're designing interfaces, structuring layouts, or adding animations, having quick access to the right tools can save you countless hours. The websites listed below offer immense value in areas like UI inspiration, CSS frameworks, data visualization, and creative design elements. By bookmarking these resources, you ensure that you can quickly retrieve solutions and enhance your projects without starting from scratch every time."
+      "v": "As a developer, your workflow and efficiency depend significantly on the resources you have at hand. Whether you're designing interfaces, structuring layouts, or adding animations, having quick access to the right tools can save you countless hours. The websites listed below offer immense value in areas like UI inspiration, CSS frameworks, data visualisation, and creative design elements. By bookmarking these resources, you ensure that you can quickly retrieve solutions and enhance your projects without starting from scratch every time."
     },
     {
       "t": "p",
@@ -40,7 +40,7 @@
       "v": [
         "Random shape generation",
         "Export options in SVG format",
-        "Customizable settings for size, opacity, and complexity",
+        "Customisable settings for size, opacity, and complexity",
         "Lightweight and free to use"
       ]
     },
@@ -63,7 +63,7 @@
     },
     {
       "t": "p",
-      "v": "Penrose is a research-backed tool developed by Carnegie Mellon University that allows developers to create complex mathematical and data visualization diagrams effortlessly."
+      "v": "Penrose is a research-backed tool developed by Carnegie Mellon University that allows developers to create complex mathematical and data visualisation diagrams effortlessly."
     },
     {
       "t": "h3",
@@ -75,7 +75,7 @@
       "v": [
         "Converts mathematical expressions into structured visuals",
         "Ideal for scientific documentation and academic papers",
-        "Customizable styling for graphs and charts",
+        "Customisable styling for graphs and charts",
         "Works with LaTeX-style inputs"
       ]
     },
@@ -85,7 +85,7 @@
     },
     {
       "t": "p",
-      "v": "If you frequently deal with technical diagrams and mathematical visualizations, Penrose automates the entire process, saving you hours of manual work."
+      "v": "If you frequently deal with technical diagrams and mathematical visualisations, Penrose automates the entire process, saving you hours of manual work."
     },
     {
       "t": "h2",
@@ -109,7 +109,7 @@
       "ordered": false,
       "v": [
         "Handpicked UI/UX inspiration",
-        "Categorized examples by industry",
+        "Categorised examples by industry",
         "Mobile and desktop design references",
         "Regular updates with new trends"
       ]
@@ -140,7 +140,7 @@
       "ordered": false,
       "v": [
         "Pre-built table designs for web apps",
-        "Customizable themes and color schemes",
+        "Customisable themes and colour schemes",
         "Works with multiple frameworks like React and Vue",
         "Drag-and-drop table builder"
       ]
@@ -155,12 +155,12 @@
     },
     {
       "t": "h2",
-      "v": "5. Visactor.io – Data Visualization Made Simple",
+      "v": "5. Visactor.io – Data Visualisation Made Simple",
       "href": "https://visactor.io/"
     },
     {
       "t": "p",
-      "v": "Visactor.io is an intuitive data visualization tool for creating interactive charts and graphs."
+      "v": "Visactor.io is an intuitive data visualisation tool for creating interactive charts and graphs."
     },
     {
       "t": "h3",
@@ -276,7 +276,7 @@
       "v": [
         "Free and premium 404 illustrations",
         "SVG and PNG formats available",
-        "Customizable color schemes",
+        "Customisable colour schemes",
         "Various design styles (minimalist, humorous, abstract)"
       ]
     },
@@ -298,7 +298,7 @@
     },
     {
       "t": "p",
-      "v": "Most of these websites offer free resources, while some may have premium features for additional customization."
+      "v": "Most of these websites offer free resources, while some may have premium features for additional customisation."
     },
     {
       "t": "h3",

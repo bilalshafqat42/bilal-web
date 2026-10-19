@@ -1,7 +1,7 @@
 {
   "slug": "5-ui-ux-design-trends-you-cant-ignore-in-2025",
   "title": "5 UI/UX Design Trends You Can't Ignore in 2026",
-  "description": "5 UI/UX Design Trends, The digital design landscape is evolving rapidly, with new trends emerging that prioritize user experience, accessibility & technology.",
+  "description": "Five UI/UX design trends for 2026: AI personalisation, purposeful minimalism, immersive interfaces, accessibility-first design and AR.",
   "published": "2025-02-13",
   "updatedAt": "2026-10-01",
   "tags": [
@@ -17,7 +17,7 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "AI-driven personalization is revolutionizing UI/UX design in 2026",
+        "AI-driven personalisation is revolutionizing UI/UX design in 2026",
         "Minimalism continues to evolve, focusing on simplicity and functionality",
         "Immersive and interactive experiences are becoming more prevalent",
         "Accessibility and inclusivity are now core design principles",
@@ -30,22 +30,22 @@
     },
     {
       "t": "p",
-      "v": "The digital design landscape is evolving rapidly, with new trends emerging that prioritize user experience, accessibility, and cutting-edge technology. Here are five UI/UX design trends that are shaping the future of digital interfaces in 2026:"
+      "v": "The digital design landscape is evolving rapidly, with new trends emerging that prioritise user experience, accessibility, and cutting-edge technology. Here are five UI/UX design trends that are shaping the future of digital interfaces in 2026:"
     },
     {
       "t": "h3",
-      "v": "1. AI-Powered Personalization"
+      "v": "1. AI-Powered Personalisation"
     },
     {
       "t": "p",
-      "v": "Artificial Intelligence is no longer just a buzzword; it's become an essential tool in UI/UX design. In 2026, AI is being harnessed to create unparalleled personalized experiences for users. This trend goes beyond simple recommendations, offering tailored interfaces that adapt to individual user preferences and behaviors."
+      "v": "Artificial Intelligence is no longer just a buzzword; it's become an essential tool in UI/UX design. In 2026, AI is being harnessed to create unparalleled personalised experiences for users. This trend goes beyond simple recommendations, offering tailored interfaces that adapt to individual user preferences and behaviours."
     },
     {
       "t": "list",
       "ordered": false,
       "v": [
-        "Implementation : AI analyzes user data to dynamically adjust layouts, content, and features in real-time.",
-        "Impact : Increased user engagement and satisfaction through interfaces that feel intuitive and personalized."
+        "Implementation : AI analyses user data to dynamically adjust layouts, content, and features in real-time.",
+        "Impact : Increased user engagement and satisfaction through interfaces that feel intuitive and personalised."
       ]
     },
     {
@@ -54,7 +54,7 @@
     },
     {
       "t": "p",
-      "v": "While minimalism isn't new, its application in 2026 has evolved. Designers are now focusing on \"purposeful minimalism\" that balances visual appeal with practical usability. This approach emphasizes clean aesthetics without sacrificing functionality."
+      "v": "While minimalism isn't new, its application in 2026 has evolved. Designers are now focusing on \"purposeful minimalism\" that balances visual appeal with practical usability. This approach emphasises clean aesthetics without sacrificing functionality."
     },
     {
       "t": "list",
@@ -92,7 +92,7 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Features : High-contrast color schemes, scalable fonts, and voice user interfaces (VUI).",
+        "Features : High-contrast colour schemes, scalable fonts, and voice user interfaces (VUI).",
         "Impact : Broader user base and improved usability for all users."
       ]
     },
@@ -122,7 +122,7 @@
     },
     {
       "t": "p",
-      "v": "A: AI is enabling highly personalized user experiences, automating design processes, and creating more intuitive interfaces that adapt to user behavior."
+      "v": "A: AI is enabling highly personalised user experiences, automating design processes, and creating more intuitive interfaces that adapt to user behaviour."
     },
     {
       "t": "p",

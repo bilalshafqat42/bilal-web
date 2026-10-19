@@ -455,7 +455,7 @@ export const pillars: Pillar[] = [
         bullets: ["Property & project walkthroughs", "Testimonial & case study videos", "Ad & social video cuts"],
       },
       {
-        title: "Conversion Rate Optimization (CRO)",
+        title: "Conversion Rate Optimisation (CRO)",
         body: "Once traffic is arriving, CRO work looks at what's actually stopping visitors from converting: page structure, copy, forms, and load speed, and tests changes against real data.",
         bullets: ["Landing page audits", "A/B testing", "Form & funnel optimisation"],
       },
@@ -703,9 +703,9 @@ export const homeDisciplines: HomeDiscipline[] = [
       "Websites, mobile apps and the CRM and tracking behind them, so the marketing has something built for it to point at.",
     href: "/services/website-app-development",
     tags: [
-      { label: "React & Next.js", href: "/services/website-app-development" },
+      { label: "React & Next.js", href: "/services/custom-web-development" },
       { label: "iOS & Android apps", href: "/services/mobile-app-development" },
-      { label: "CRM & tracking", href: "/services/crm-marketing-automation" },
+      { label: "CRM & tracking", href: "/services/crm-integration" },
     ],
   },
 ];

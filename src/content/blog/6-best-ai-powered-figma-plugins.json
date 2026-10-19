@@ -45,7 +45,7 @@
       "v": [
         "AI-powered layout suggestions – Quickly generate responsive layouts based on design best practices.",
         "Pre-built UI components – Access a wide range of UI elements like buttons, forms, and cards.",
-        "Customization options – Easily tweak designs to fit your brand’s aesthetics."
+        "Customisation options – Easily tweak designs to fit your brand’s aesthetics."
       ]
     },
     {
@@ -95,8 +95,8 @@
       "ordered": false,
       "v": [
         "Automated dark mode conversion – No need to adjust every colour by hand.",
-        "Color contrast optimization – Ensures accessibility and readability.",
-        "Customizable settings – Modify elements based on preferences and branding."
+        "Colour contrast optimisation – Ensures accessibility and readability.",
+        "Customisable settings – Modify elements based on preferences and branding."
       ]
     },
     {
@@ -237,7 +237,7 @@
     },
     {
       "t": "p",
-      "v": "While AI plugins use processing power, well-optimized plugins should not significantly affect Figma’s performance. If you experience lag, try disabling unused plugins."
+      "v": "While AI plugins use processing power, well-optimised plugins should not significantly affect Figma’s performance. If you experience lag, try disabling unused plugins."
     },
     {
       "t": "h3",
@@ -257,7 +257,7 @@
     },
     {
       "t": "h3",
-      "v": "6. Are AI-generated designs fully customizable?"
+      "v": "6. Are AI-generated designs fully customisable?"
     },
     {
       "t": "p",

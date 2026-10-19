@@ -1,7 +1,7 @@
 {
   "slug": "the-ultimate-css-cheat-sheet",
   "title": "The Ultimate CSS Cheat Sheet – Boost Your Styling Skills!",
-  "description": "CSS is an essential part of modern web design, allowing developers to create visually stunning and responsive websites. Whether you're a beginner or a",
+  "description": "A CSS cheat sheet for everyday styling: CSS functions, colour manipulation, filters and effects, transforms, transitions and animations.",
   "published": "2025-02-06",
   "updatedAt": "2026-09-30",
   "tags": [
@@ -134,11 +134,11 @@
     },
     {
       "t": "h2",
-      "v": "2. CSS Color Manipulation"
+      "v": "2. CSS Colour Manipulation"
     },
     {
       "t": "p",
-      "v": "CSS provides several functions to manipulate colors dynamically."
+      "v": "CSS provides several functions to manipulate colours dynamically."
     },
     {
       "t": "h3",
@@ -148,7 +148,7 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Defines colors using Hue, Saturation, and Lightness.",
+        "Defines colours using Hue, Saturation, and Lightness.",
         "Example:"
       ]
     },
@@ -160,7 +160,7 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Makes color adjustments more intuitive."
+        "Makes colour adjustments more intuitive."
       ]
     },
     {
@@ -171,7 +171,7 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Defines colors with an alpha (transparency) value.",
+        "Defines colours with an alpha (transparency) value.",
         "Example:"
       ]
     },
@@ -194,7 +194,7 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Inverts colors for a negative effect.",
+        "Inverts colours for a negative effect.",
         "Example:"
       ]
     },
@@ -217,7 +217,7 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Adjusts the color saturation.",
+        "Adjusts the colour saturation.",
         "Example:"
       ]
     },
@@ -229,7 +229,7 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Enhances or dulls colors dynamically."
+        "Enhances or dulls colours dynamically."
       ]
     },
     {
@@ -533,7 +533,7 @@
     },
     {
       "t": "p",
-      "v": "rgba() defines colors using red, green, blue, and alpha (opacity). hsl() uses hue, saturation, and lightness, making it easier to create color variations."
+      "v": "rgba() defines colours using red, green, blue, and alpha (opacity). hsl() uses hue, saturation, and lightness, making it easier to create colour variations."
     },
     {
       "t": "h3",

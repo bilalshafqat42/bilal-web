@@ -1066,6 +1066,35 @@ html[data-consent-open] .floating-enquiry {
   display: none;
 }
 
+/* On phones the two floating buttons step aside while the visitor scrolls down,
+ * and come back on any scroll up or near the end of the page.
+ *
+ * Stacked bottom-right they cover about 70px of a 390px column, which on an
+ * article is the end of every line of body text being read (audit 2026-10-19).
+ * `LeadFormPopup` sets the attribute from scroll direction, below `lg` only.
+ *
+ * Moved off-screen and faded, never `visibility: hidden` or `display: none`, so
+ * both stay in the tab order: a keyboard user who tabs to one gets it back at
+ * once through `:focus-visible`. Reduced motion drops the slide, not the
+ * behaviour. */
+.floating-enquiry {
+  transition-property: transform, scale, opacity, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: ease-out;
+}
+@media (max-width: 1023px) {
+  html[data-float-hidden] .floating-enquiry:not(:focus-visible) {
+    transform: translateY(calc(100% + 7.5rem));
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .floating-enquiry {
+    transition: none;
+  }
+}
+
 /* Ground for a tall screen capture on the app case study.
  *
  * A 1206x5807 screen recording cannot fill a 1200px column without being
@@ -1381,6 +1410,195 @@ html[data-consent-open] .floating-enquiry {
   }
   to {
     opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Homepage services ledger (`CapabilityLedger.tsx`).
+   ---------------------------------------------------------------------------
+
+   **The lead-in.** On desktop with motion the section is uncovered by the about
+   band lifting off it, and the band is fully gone at the moment this section's
+   top reaches the top of the window. With the ordinary section padding the
+   label was then at 133px, level with the 84px floating header, and the
+   heading was already leaving. 14svh more above it lands the label around a
+   quarter of the way down the window on that first clear frame. Only in that
+   layout: on a phone, or with reduced motion, the section scrolls in normally
+   and the default rhythm is right. */
+.ledger-section {
+  padding-block: var(--space-section);
+}
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .ledger-section {
+    padding-top: calc(var(--space-section) + 14svh);
+  }
+}
+
+/* **The rows.** One state, reached three ways: pointer hover (only where a
+   pointer can hover, so a phone never gets a stuck gold row after a tap),
+   keyboard focus on any link in the row, and a press on touch. Gold sweeps in
+   from the left, the row lifts 2px and everything in it turns black.
+
+   Black on #f2c94c is 13:1, so every piece of text, including the 12px mono
+   chips, clears WCAG AAA. */
+.ledger-row {
+  --lr-ink: #0a0a0c;
+  --lr-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  isolation: isolate;
+  border-radius: var(--radius-card);
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 300ms var(--lr-ease),
+    box-shadow 300ms var(--lr-ease);
+}
+.ledger-row__fill {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--color-gold);
+  /* `clip-path` rather than `scaleX`, so the rounded corners are not squashed
+     while the fill travels. */
+  clip-path: inset(0 100% 0 0 round var(--radius-card));
+  transition: clip-path 320ms var(--lr-ease);
+}
+.ledger-row__num {
+  color: var(--color-faint);
+  transition: color 250ms ease;
+}
+.ledger-row__title {
+  color: var(--color-ink);
+  transition: color 250ms ease;
+}
+.ledger-row__text {
+  color: var(--color-muted);
+  transition: color 250ms ease;
+}
+/* The row link, stretched over the whole row. Its focus is shown on the row
+   itself (below), so the text needs no ring of its own. */
+.ledger-row__link {
+  outline: none;
+}
+.ledger-row__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.ledger-chip {
+  position: relative;
+  z-index: 1;
+  display: block;
+  border-radius: 0.375rem;
+  border: 1px solid var(--color-border);
+  background: color-mix(in oklab, var(--color-surface) 60%, transparent);
+  padding: 0.375rem 0.75rem;
+  color: var(--color-muted);
+  transition:
+    color 250ms ease,
+    background-color 250ms ease,
+    border-color 250ms ease;
+}
+.ledger-chip:focus-visible {
+  outline: 2px solid var(--lr-ink);
+  outline-offset: 2px;
+}
+.ledger-row__arrow {
+  height: 2.5rem;
+  width: 2.5rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  color: var(--color-muted);
+  transition:
+    color 250ms ease,
+    background-color 250ms ease,
+    border-color 250ms ease;
+}
+.ledger-row__arrow svg {
+  transition: transform 300ms var(--lr-ease);
+}
+
+/* The "on" state. Written twice because a selector list cannot mix a rule
+   inside `@media (hover: hover)` with ones outside it. */
+@media (hover: hover) {
+  .ledger-row:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px -22px rgba(242, 201, 76, 0.55);
+  }
+  .ledger-row:hover .ledger-row__fill {
+    clip-path: inset(0 0 0 0 round var(--radius-card));
+  }
+  .ledger-row:hover :is(.ledger-row__num, .ledger-row__title, .ledger-row__text) {
+    color: var(--lr-ink);
+  }
+  .ledger-row:hover .ledger-chip {
+    color: var(--lr-ink);
+    border-color: rgba(10, 10, 12, 0.4);
+    background: rgba(10, 10, 12, 0.06);
+  }
+  .ledger-row:hover .ledger-row__arrow {
+    color: var(--color-gold);
+    background: var(--lr-ink);
+    border-color: var(--lr-ink);
+  }
+  .ledger-row:hover .ledger-row__arrow svg {
+    transform: translateX(3px);
+  }
+  /* The chip under the pointer inverts, so it is clear it goes somewhere other
+     than the row. */
+  .ledger-row .ledger-chip:hover {
+    color: var(--color-gold);
+    background: var(--lr-ink);
+    border-color: var(--lr-ink);
+  }
+}
+.ledger-row:is(:has(:focus-visible), :active) {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px -22px rgba(242, 201, 76, 0.55);
+}
+.ledger-row:is(:has(:focus-visible), :active) .ledger-row__fill {
+  clip-path: inset(0 0 0 0 round var(--radius-card));
+}
+.ledger-row:is(:has(:focus-visible), :active) :is(.ledger-row__num, .ledger-row__title, .ledger-row__text) {
+  color: var(--lr-ink);
+}
+.ledger-row:is(:has(:focus-visible), :active) .ledger-chip {
+  color: var(--lr-ink);
+  border-color: rgba(10, 10, 12, 0.4);
+  background: rgba(10, 10, 12, 0.06);
+}
+.ledger-row:is(:has(:focus-visible), :active) .ledger-row__arrow {
+  color: var(--color-gold);
+  background: var(--lr-ink);
+  border-color: var(--lr-ink);
+}
+/* A visible ring when the row link itself has keyboard focus, on top of the
+   colour change, so focus never relies on colour alone. */
+.ledger-row:has(.ledger-row__link:focus-visible) {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+/* Reduced motion: the same colours, instantly, with nothing moving. */
+@media (prefers-reduced-motion: reduce) {
+  .ledger-row,
+  .ledger-row__fill,
+  .ledger-row__num,
+  .ledger-row__title,
+  .ledger-row__text,
+  .ledger-chip,
+  .ledger-row__arrow,
+  .ledger-row__arrow svg {
+    transition: none;
+  }
+  .ledger-row,
+  .ledger-row:hover,
+  .ledger-row:is(:has(:focus-visible), :active),
+  .ledger-row:hover .ledger-row__arrow svg {
     transform: none;
   }
 }

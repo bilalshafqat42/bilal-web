@@ -1,4 +1,4 @@
-import { clients } from "@/data/caseStudies";
+import { publishedClients } from "@/data/caseStudies";
 
 /**
  * Single derivation of every portfolio artefact from `caseStudies.ts`.
@@ -59,7 +59,7 @@ export type Item = {
 export function allItems(): Item[] {
   const out: Item[] = [];
 
-  for (const c of clients) {
+  for (const c of publishedClients()) {
     if (c.website) {
       out.push({
         key: `${c.slug}-site`,

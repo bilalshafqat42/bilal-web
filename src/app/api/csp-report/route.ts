@@ -24,6 +24,11 @@ import { NextResponse } from "next/server";
 import { clientIp } from "@/lib/clientIp";
 
 const MAX_BODY_BYTES = 8 * 1024;
+
+/** An empty answer that nothing may cache, matching /api/lead. */
+function noStore(status: number) {
+  return new NextResponse(null, { status, headers: { "Cache-Control": "no-store" } });
+}
 const MAX_LINES_PER_REQUEST = 10;
 
 // Light, per-IP, in-process limit, keyed by the same `clientIp` as the lead
@@ -111,17 +116,17 @@ const ACCEPTED = new Set(["application/csp-report", "application/reports+json", 
 
 export async function POST(request: Request) {
   const contentType = (request.headers.get("content-type") ?? "").split(";")[0].trim().toLowerCase();
-  if (!ACCEPTED.has(contentType)) return new NextResponse(null, { status: 415 });
+  if (!ACCEPTED.has(contentType)) return noStore(415);
 
-  if (limited(clientIp(request))) return new NextResponse(null, { status: 429 });
+  if (limited(clientIp(request))) return noStore(429);
 
   if (Number(request.headers.get("content-length") ?? "0") > MAX_BODY_BYTES) {
-    return new NextResponse(null, { status: 413 });
+    return noStore(413);
   }
 
   // Read at most MAX_BODY_BYTES, whatever Content-Length claimed.
   const reader = request.body?.getReader();
-  if (!reader) return new NextResponse(null, { status: 204 });
+  if (!reader) return noStore(204);
   const chunks: Uint8Array[] = [];
   let size = 0;
   try {
@@ -131,19 +136,19 @@ export async function POST(request: Request) {
       size += value.byteLength;
       if (size > MAX_BODY_BYTES) {
         await reader.cancel().catch(() => {});
-        return new NextResponse(null, { status: 413 });
+        return noStore(413);
       }
       chunks.push(value);
     }
   } catch {
-    return new NextResponse(null, { status: 400 });
+    return noStore(400);
   }
 
   let data: unknown;
   try {
     data = JSON.parse(Buffer.concat(chunks).toString("utf8"));
   } catch {
-    return new NextResponse(null, { status: 204 });
+    return noStore(204);
   }
 
   for (const v of violations(contentType, data).slice(0, MAX_LINES_PER_REQUEST)) {
@@ -152,5 +157,5 @@ export async function POST(request: Request) {
       `[CSP] directive=${directive} blocked=${tidy(blockedOrigin(v.blocked))} page=${tidy(documentPath(v.document))}`
     );
   }
-  return new NextResponse(null, { status: 204 });
+  return noStore(204);
 }

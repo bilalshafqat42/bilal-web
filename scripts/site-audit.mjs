@@ -15,6 +15,9 @@
  *         npm run audit -- http://localhost:3000
  */
 
+// Same width table as `npm run serp`, so the two never disagree about a cut.
+import { px, DESC_SIZE, DESC_LIMIT } from "./lib/serpWidth.mjs";
+
 const BASE = (process.argv[2] || "https://bilalshafqat.com").replace(/\/$/, "");
 
 const strip = (s) => s.replace(/<[^>]+>/g, " ");
@@ -52,6 +55,7 @@ for (const url of urls) {
     title,
     titleLen: title.length,
     descLen: desc.length,
+    descPx: Math.round(px(desc, DESC_SIZE)),
     h2: (main.match(/<h2[\s>]/g) || []).length,
     h3: (main.match(/<h3[\s>]/g) || []).length,
     schema: /application\/ld\+json/.test(doc),
@@ -73,6 +77,15 @@ console.log("\n=== META DESCRIPTIONS OUTSIDE 120-160 CHARACTERS ===");
 const badDesc = ok.filter((r) => r.descLen < 120 || r.descLen > 160).sort((a, b) => a.descLen - b.descLen);
 for (const r of badDesc) console.log(`  ${String(r.descLen).padStart(3)}  ${r.path}`);
 if (!badDesc.length) console.log("  none");
+
+// By width as well as length: a 150-character description full of capitals
+// and "m"s runs past the two-line cut that a 150-character one in lower case
+// clears. 64 pages passed the character check above on 2026-10-19 and were
+// still truncated in the result.
+console.log(`\n=== META DESCRIPTIONS WIDER THAN ${DESC_LIMIT}px (truncated in Google) ===`);
+const wideDesc = ok.filter((r) => r.descPx > DESC_LIMIT).sort((a, b) => b.descPx - a.descPx);
+for (const r of wideDesc) console.log(`  ${String(r.descPx).padStart(4)}px  ${r.path}`);
+if (!wideDesc.length) console.log("  none");
 
 console.log("\n=== PAGES WITH NO <h2> ===");
 const noH2 = ok.filter((r) => r.h2 === 0);
@@ -99,4 +112,5 @@ console.log(`  fattest          ${words[words.length - 1]}`);
 console.log(`  under 800 words  ${thin.length}`);
 console.log(`  titles too long  ${long.length}`);
 console.log(`  descriptions off ${badDesc.length}`);
+console.log(`  descriptions wide ${wideDesc.length}`);
 console.log("");

@@ -1,7 +1,7 @@
 {
   "slug": "typescript-guide-for-javascript-programmers",
   "title": "TypeScript Guide for JavaScript Programmers",
-  "description": "JavaScript is a powerful language for web development, but as projects grow, managing complex codebases can become challenging. Enter TypeScript, a superset",
+  "description": "A TypeScript guide for JavaScript programmers: type inference, defining types, unions, generics and structural typing, with examples.",
   "published": "2025-01-14",
   "updatedAt": "2026-09-30",
   "tags": [

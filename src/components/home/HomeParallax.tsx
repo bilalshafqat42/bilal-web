@@ -297,7 +297,14 @@ export default function HomeParallax({
         {hero}
       </div>
 
-      {after ? <div className="relative z-20">{after}</div> : null}
+      {/* `pointer-events-none` on the wrapper, handed back by the band's own
+          stage (see `AboutSplit`). The ledger is pulled up one window under
+          this layer, and an unpainted box still catches the pointer: before
+          this, the transparent part of the about section sat over the top
+          window of the ledger on desktop, so its rows could not be hovered or
+          clicked. Measured 2026-10-18: `elementFromPoint` on all three rows
+          returned the about section, not the row's link. */}
+      {after ? <div className="relative z-20 motion-safe:lg:pointer-events-none">{after}</div> : null}
     </div>
   );
 }

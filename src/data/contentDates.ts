@@ -67,8 +67,6 @@ export const SERVICE_CONTENT_DATES: Record<string, string> = {
   "wix-development": "2026-10-16",
   "squarespace-development": "2026-10-16",
   "strapi-development": "2026-10-16",
-  "custom-web-development": "2026-10-16",
-  "website-app-development": "2026-10-16",
   "web-design": "2026-10-16",
   "ui-ux-design": "2026-10-16",
   "graphic-design-branding": "2026-10-16",
@@ -77,22 +75,31 @@ export const SERVICE_CONTENT_DATES: Record<string, string> = {
   // React Native, iOS, Android and app back end, and Figma. Their three
   // parents (CRM, mobile, web design) gained cards and links to them.
   "crm-integration": "2026-10-16",
-  "zoho-crm-integration": "2026-10-16",
   "hubspot-integration": "2026-10-16",
   "salesforce-integration": "2026-10-16",
   "custom-crm-development": "2026-10-16",
   "react-native-development": "2026-10-16",
-  "ios-app-development": "2026-10-16",
-  "android-app-development": "2026-10-16",
   "app-backend-development": "2026-10-16",
   "figma-design": "2026-10-16",
   "crm-marketing-automation": "2026-10-16",
-  "mobile-app-development": "2026-10-16",
   // Three more the same day: an FAQ or sentence each for strategist,
   // agency-comparison and freelance-manager questions buyers search for.
-  "digital-marketing": "2026-10-16",
-  "google-ads": "2026-10-16",
   "social-media-marketing": "2026-10-16",
+  // 2026-10-19: the SEO copy pass (one buyer query per page). Custom web
+  // development, Zoho, iOS and Android retitled off their parents' phrases;
+  // the mobile and web hubs given "mobile app developer" and "web developer"
+  // in Dubai; digital marketing, Google Ads, Facebook ads and paid marketing
+  // link to /real-estate-marketing. Description-only changes are not dated.
+  "custom-web-development": "2026-10-19",
+  "zoho-crm-integration": "2026-10-19",
+  "ios-app-development": "2026-10-19",
+  "android-app-development": "2026-10-19",
+  "mobile-app-development": "2026-10-19",
+  "website-app-development": "2026-10-19",
+  "digital-marketing": "2026-10-19",
+  "google-ads": "2026-10-19",
+  "facebook-ads": "2026-10-19",
+  "paid-marketing": "2026-10-19",
 };
 
 export function serviceContentDate(slug: string): string {

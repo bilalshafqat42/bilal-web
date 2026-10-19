@@ -1,7 +1,7 @@
 {
   "slug": "exploring-key-trends-in-modern-user-interfaces",
   "title": "The Future of UI Design: Exploring Key Trends in Modern User Interfaces",
-  "description": "Dark mode is no longer just an optional theme. It’s an expectation. Major platforms like Instagram, Facebook, and Google have implemented dark mode to cater to",
+  "description": "Key trends in modern user interfaces: dark mode, minimalism, glassmorphism, 3D elements and AI, and how to use each one in your projects.",
   "published": "2025-01-20",
   "updatedAt": "2026-10-14",
   "tags": [
@@ -15,7 +15,7 @@
     },
     {
       "t": "p",
-      "v": "This article delves into some of the most transformative UI design trends: dark mode design, minimalism, glassmorphism, 3D website elements, and AI integration. These concepts are not just trends. They represent a shift toward future-ready interfaces that prioritize both aesthetics and usability."
+      "v": "This article delves into some of the most transformative UI design trends: dark mode design, minimalism, glassmorphism, 3D website elements, and AI integration. These concepts are not just trends. They represent a shift toward future-ready interfaces that prioritise both aesthetics and usability."
     },
     {
       "t": "h2",
@@ -23,7 +23,7 @@
     },
     {
       "t": "p",
-      "v": "Dark mode has rapidly gained popularity in recent years, offering a sleek and modern appearance for digital platforms. This design approach uses dark color palettes as the primary background, contrasted with lighter text and vibrant accents."
+      "v": "Dark mode has rapidly gained popularity in recent years, offering a sleek and modern appearance for digital platforms. This design approach uses dark colour palettes as the primary background, contrasted with lighter text and vibrant accents."
     },
     {
       "t": "list",
@@ -44,7 +44,7 @@
     },
     {
       "t": "p",
-      "v": "Minimalist UI design emphasizes simplicity, focusing on core elements and removing unnecessary clutter. This trend is rooted in the belief that a streamlined interface enhances user engagement and accessibility."
+      "v": "Minimalist UI design emphasises simplicity, focusing on core elements and removing unnecessary clutter. This trend is rooted in the belief that a streamlined interface enhances user engagement and accessibility."
     },
     {
       "t": "p",
@@ -56,7 +56,7 @@
       "v": [
         "Whitespace: Creating breathing room between elements for better focus.",
         "Simple Typography: Clean, readable fonts with minimal embellishments.",
-        "Limited Color Palettes: Subtle and harmonious color schemes that direct attention."
+        "Limited Colour Palettes: Subtle and harmonious colour schemes that direct attention."
       ]
     },
     {
@@ -69,7 +69,7 @@
     },
     {
       "t": "p",
-      "v": "Glassmorphism, a design trend inspired by frosted glass effects, combines transparency, blur, and vivid colors to create a layered, tactile interface. It has become a popular choice for designers aiming to infuse modernity and sophistication into their projects."
+      "v": "Glassmorphism, a design trend inspired by frosted glass effects, combines transparency, blur, and vivid colours to create a layered, tactile interface. It has become a popular choice for designers aiming to infuse modernity and sophistication into their projects."
     },
     {
       "t": "list",
@@ -100,7 +100,7 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Product Visualization: 3D models allow users to view products from all angles, improving decision-making.",
+        "Product Visualisation: 3D models allow users to view products from all angles, improving decision-making.",
         "Interactive Storytelling: Adds depth to narratives, making content more engaging.",
         "Realism and Depth: Creates a lifelike experience that captures attention."
       ]
@@ -115,7 +115,7 @@
     },
     {
       "t": "p",
-      "v": "Artificial intelligence (AI) is transforming how interfaces adapt to user needs. By leveraging AI, designers can create personalized experiences that respond to user behavior in real time."
+      "v": "Artificial intelligence (AI) is transforming how interfaces adapt to user needs. By leveraging AI, designers can create personalised experiences that respond to user behaviour in real time."
     },
     {
       "t": "p",
@@ -150,7 +150,7 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Focus on User Needs: Prioritizing usability and accessibility.",
+        "Focus on User Needs: Prioritising usability and accessibility.",
         "Aesthetic Innovation: Pushing the boundaries of design to keep interfaces fresh and modern.",
         "Technology-Driven Solutions: Leveraging advancements like AI and 3D rendering to enhance experiences."
       ]

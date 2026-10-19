@@ -29,7 +29,7 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Better Performance: Optimized components render faster, improving user experience.",
+        "Better Performance: Optimised components render faster, improving user experience.",
         "Easier Maintenance: Clean and consistent code is easier to update and debug.",
         "Cost-Effective: Efficient code means shorter development times and fewer bugs.",
         "Improved Accessibility: A streamlined DOM structure benefits all users."
@@ -140,7 +140,7 @@
     },
     {
       "t": "p",
-      "v": "Assign unique keys to list items to help React optimize re-rendering."
+      "v": "Assign unique keys to list items to help React optimise re-rendering."
     },
     {
       "t": "p",
@@ -165,7 +165,7 @@
     },
     {
       "t": "p",
-      "v": "Optimize performance by preventing unnecessary re-renders with useCallback."
+      "v": "Optimise performance by preventing unnecessary re-renders with useCallback."
     },
     {
       "t": "code",
@@ -181,7 +181,7 @@
       "v": [
         "Improves performance in large applications",
         "Prevents unnecessary re-renders of child components",
-        "Optimizes memoized components ( React.memo )"
+        "Optimises memoized components ( React.memo )"
       ]
     },
     {
@@ -190,7 +190,7 @@
     },
     {
       "t": "p",
-      "v": "Use export default for better code organization and easier imports."
+      "v": "Use export default for better code organisation and easier imports."
     },
     {
       "t": "code",
@@ -202,7 +202,7 @@
       "v": [
         "Easier to import components",
         "Reduces confusion with multiple named exports",
-        "Simplifies file organization"
+        "Simplifies file organisation"
       ]
     },
     {

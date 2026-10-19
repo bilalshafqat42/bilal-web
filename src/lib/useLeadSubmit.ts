@@ -4,6 +4,7 @@ import { useCallback, useRef, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { getAttribution, getFacebookCookies } from "@/lib/attribution";
 import { trackLead, generateEventId } from "@/lib/analytics";
+import { HONEYPOT_FIELD } from "@/lib/honeypot";
 
 /**
  * The submit logic shared by ContactForm, InlineLeadForm and LeadFormPopup.
@@ -23,8 +24,6 @@ type Options = {
   source: string;
   /** Where a delivered lead goes next, e.g. "/thank-you?source=enquiry". */
   thankYouPath: string;
-  /** Name of the honeypot input in the form. A checkbox reads as "on". */
-  honeypotField: string;
   /** Set status to "success" on delivery. Off keeps the button disabled while
    *  the navigation to the thank-you page is in flight. */
   markSuccess?: boolean;
@@ -171,8 +170,10 @@ export function useLeadSubmit(opts: Options) {
     setStatus("submitting");
 
     const fd = new FormData(form);
-    const honeypot = fd.get(opts.honeypotField);
-    const botcheck = typeof honeypot === "string" ? honeypot : "";
+    // The spam trap (see components/forms/Honeypot.tsx). Read from the form
+    // and sent under its own meaningless key, never "company".
+    const trap = fd.get(HONEYPOT_FIELD);
+    const trapValue = typeof trap === "string" ? trap : "";
     const { fields, service } = build(fd);
     // One id for this submission attempt, shared between the /api/lead POST
     // and the trackLead pixel fire below, so Meta dedupes the browser pixel
@@ -185,7 +186,7 @@ export function useLeadSubmit(opts: Options) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...fields,
-          botcheck,
+          [HONEYPOT_FIELD]: trapValue,
           source: opts.source,
           attribution: getAttribution(),
           eventId,
@@ -197,10 +198,11 @@ export function useLeadSubmit(opts: Options) {
 
       if (res.ok && data.success) {
         // Fired only on confirmed delivery, so the conversion count matches
-        // what actually reached the CRM. `counted: false` is the honeypot's
-        // deliberate fake success (see api/lead/route.ts): the bot is told it
-        // worked, the analytics are not.
-        if (data.counted !== false) trackLead(opts.source, service, eventId);
+        // what actually reached the CRM. A filled trap gets a success from the
+        // route that looks exactly like a real one (so a bot learns nothing),
+        // so the client skips the conversion on its own knowledge instead.
+        // Otherwise a blocked bot would train the ad account on bot traffic.
+        if (!trapValue) trackLead(opts.source, service, eventId);
         if (opts.markSuccess) setStatus("success");
         if (opts.resetOnSuccess) form.reset();
         router.push(opts.thankYouPath);

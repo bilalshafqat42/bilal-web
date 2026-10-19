@@ -15,7 +15,7 @@
     },
     {
       "t": "p",
-      "v": "Debugging is a crucial part of JavaScript development, and the browser console is an essential tool for identifying and resolving issues efficiently. The console object provides various methods to output useful information, test performance, organize logs, and debug applications effectively. Mastering these console methods can significantly improve your development workflow."
+      "v": "Debugging is a crucial part of JavaScript development, and the browser console is an essential tool for identifying and resolving issues efficiently. The console object provides various methods to output useful information, test performance, organise logs, and debug applications effectively. Mastering these console methods can significantly improve your development workflow."
     },
     {
       "t": "p",
@@ -112,7 +112,7 @@
     },
     {
       "t": "h2",
-      "v": "5. console.group() & console.groupEnd() – Organize Logs"
+      "v": "5. console.group() & console.groupEnd() – Organise Logs"
     },
     {
       "t": "p",
@@ -128,7 +128,7 @@
     },
     {
       "t": "p",
-      "v": "💡 Tip: Use nested groups to organize logs hierarchically."
+      "v": "💡 Tip: Use nested groups to organise logs hierarchically."
     },
     {
       "t": "h2",
@@ -168,7 +168,7 @@
     },
     {
       "t": "p",
-      "v": "💡 Tip: Use these methods to analyze function performance and optimize slow operations."
+      "v": "💡 Tip: Use these methods to analyse function performance and optimise slow operations."
     },
     {
       "t": "h2",
@@ -216,7 +216,7 @@
     },
     {
       "t": "p",
-      "v": "Mastering JavaScript console methods can drastically improve debugging efficiency and streamline the development process. By leveraging methods like console.table(), console.trace(), and console.time(), developers can gain deeper insights into their applications and optimize performance effectively."
+      "v": "Mastering JavaScript console methods can drastically improve debugging efficiency and streamline the development process. By leveraging methods like console.table(), console.trace(), and console.time(), developers can gain deeper insights into their applications and optimise performance effectively."
     },
     {
       "t": "h2",

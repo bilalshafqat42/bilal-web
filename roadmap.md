@@ -11828,3 +11828,49 @@ developer" and "application developer" (generic, off positioning).
 Bilal to mark covered keywords Done in Ubersuggest. Rule for the future: for
 each Ubersuggest gap, first ask "which page already owns this?"; a new page
 only when none does. Keep the 3 remaining article generations for real gaps.
+
+---
+
+### 415. DRAFT BUILT (2026-10-19) — 4Direction Developments portfolio (freelance)
+
+Bilal develops the website of 4Direction Developments (https://4direction.ae),
+a Dubai property developer (DLRC and Majan communities; UAE, Saudi Arabia,
+Russia), as a freelancer. Draft case study at
+`/portfolio/4direction-developments` (`src/data/caseStudies.ts`), noindex,
+not in the sitemap or the portfolio grid.
+
+Built from what the live site shows: WordPress with Elementor; project and
+community pages; construction updates and media centre; register-interest
+form (broker / investor / end user, unit size); channel partner page.
+Homepage capture taken 2026-10-19:
+`public/portfolio/4direction/4direction-website.avif` (1440x6977, 270KB).
+
+To publish (remove `draft: true`), Bilal to confirm:
+1. What he did: built the site from scratch, redesigned it, or maintains it.
+   Rewrite the intro's "TBC" sentence and the scope cards to match.
+2. Since when (month and year).
+3. The client is happy to be shown (a WhatsApp or email "yes" is enough).
+   Rule from roadmap 300: no client work published without permission.
+4. Optional: logo file (SVG), a mobile capture, any project pages he built
+   (DLRC, Majan, Barari Gardens, Haven Views) as separate projects.
+
+No results or figures on the page unless Bilal supplies real ones. The
+4Direction homepage figures (1.5Bn+, 3.5M, etc.) are the client's own claims;
+do not repeat them as Bilal's results.
+Freelance work stays off the CV (decided 2026-10-16); the website is fine.
+
+---
+
+### 416. TO ADD LATER (2026-10-19) — Refine and Tomorrow World as portfolio
+
+Bilal wants both as portfolio case studies once written permission is in
+hand. Removed from the homepage on 2026-10-19: the hero "For LEOS
+Developments, Tomorrow World and Refine" line (now "For property developers
+in the UK and Dubai") and the home FAQ answer. Logos already sit uncleared
+in `ClientLogoRow.tsx` (`cleared: false`); files in public/portfolio/refine
+and public/portfolio/tomorrow. To add: permission, screenshots, write-up
+(Refine: Salesforce Marketing Cloud EDMs, CloudPages, mobile; Tomorrow World:
+Zoho CRM, campaigns), then case-study entries as for 4Direction (roadmap 415).
+No spend or results unless Bilal has the real figures (he has none for the
+LEOS studies either, so the homepage line now says "the brief and the
+decisions" rather than "the spend and what actually moved").

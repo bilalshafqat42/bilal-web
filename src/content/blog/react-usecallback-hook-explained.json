@@ -1,14 +1,14 @@
 {
   "slug": "react-usecallback-hook-explained",
   "title": "React useCallback Hook Explained with Real Examples and Best Practices",
-  "description": "Learn what React useCallback hook does, when to use it, and how it helps prevent unnecessary re-renders in your components. Includes real examples.",
+  "description": "React useCallback explained: what it does, when to use it, how it differs from useMemo, and how it stops needless re-renders, with examples.",
   "published": "2025-06-25",
-  "updatedAt": "2026-10-14",
+  "updatedAt": "2026-10-19",
   "tags": [
     "React Hooks",
     "React Js"
   ],
-  "words": 472,
+  "words": 489,
   "blocks": [
     {
       "t": "h2",
@@ -16,11 +16,11 @@
     },
     {
       "t": "p",
-      "v": "React's useCallback is one of those hooks that seems confusing at first, until you start dealing with unnecessary re-renders or memoized components."
+      "v": "React's useCallback is one of those hooks that seems confusing at first, until you start dealing with unnecessary re-renders or memoized components. It comes up regularly in the React and Next.js builds behind my [[web development in Dubai|/services/website-app-development]] work."
     },
     {
       "t": "p",
-      "v": "In React, functions are re-created on every render. This behavior is harmless in most cases, but when passing callbacks to deeply nested or memoized child components, re-creating the function can cause unnecessary re-renders and performance issues."
+      "v": "In React, functions are re-created on every render. This behaviour is harmless in most cases, but when passing callbacks to deeply nested or memoized child components, re-creating the function can cause unnecessary re-renders and performance issues."
     },
     {
       "t": "p",

@@ -9,6 +9,7 @@ import { CONTACT_OTHER_OPTION } from "@/data/leadOptions";
 import WhatsAppLink from "@/components/ui/WhatsAppLink";
 import Eyebrow from "@/components/ui/Eyebrow";
 import { secondaryButtonClass } from "@/components/ui/SecondaryButton";
+import Honeypot from "@/components/forms/Honeypot";
 
 /** "/portfolio/leos-developments/hadley-heights" -> "Portfolio / Leos Developments / Hadley Heights" */
 function prettyPath(path: string): string {
@@ -58,7 +59,6 @@ export default function ContactForm({ serviceOptions }: { serviceOptions: Servic
   const { status, error, submit, turnstileRef } = useLeadSubmit({
     source: "contact-page-form",
     thankYouPath: "/thank-you?source=contact",
-    honeypotField: "company",
     markSuccess: true,
     fallbackState: true,
     defaultError: "Something went wrong.",
@@ -135,13 +135,8 @@ export default function ContactForm({ serviceOptions }: { serviceOptions: Servic
         The more you can tell me, the more useful my first reply will be.
       </p>
 
-      {/* Honeypot: bots fill this, people never see it. Positioned off-screen rather
-          than sized to zero — a 0x0 clipping wrapper still leaves the input itself
-          with a real bounding box, so it was not reliably hidden. */}
-      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", top: "auto", width: 1, height: 1, overflow: "hidden" }}>
-        <label htmlFor="company">Company</label>
-        <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
-      </div>
+      {/* Spam trap: bots fill it, people never see it. */}
+      <Honeypot />
 
       {pageContext ? (
         <div className="mt-6 flex items-start gap-3 rounded-xl surface-2 px-4 py-3">

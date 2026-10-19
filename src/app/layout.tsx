@@ -87,6 +87,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/logo/bs.svg",
+    apple: "/apple-touch-icon.png",
   },
   // Search Console verification. Set NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION to the
   // token Google gives you under the "HTML tag" method; leaving it unset simply

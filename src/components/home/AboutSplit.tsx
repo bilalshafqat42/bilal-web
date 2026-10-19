@@ -237,7 +237,7 @@ export default function AboutSplit() {
             "--gutter": "calc((100% - min(1440px, 100%)) / 2)",
           } as CSSProperties
         }
-        className="relative overflow-hidden lg:flex lg:min-h-svh lg:items-center motion-safe:lg:sticky motion-safe:lg:top-0"
+        className="pointer-events-auto relative overflow-hidden lg:flex lg:min-h-svh lg:items-center motion-safe:lg:sticky motion-safe:lg:top-0"
       >
         {/* The white field: columns one and two together, 40% of the screen.
             One element rather than two painted cells, because it is one move —

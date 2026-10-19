@@ -1,7 +1,7 @@
 {
   "slug": "what-are-em-and-rem-units",
   "title": "What Are EM and REM Units?",
-  "description": "CSS uses various units to define lengths, such as px (pixels), % (percentages), and relative units like em and rem. Unlike absolute units like pixels, EM and",
+  "description": "What are EM and REM units in CSS? REM is relative to the root font size, EM to the parent's. When to use each, with examples and pitfalls.",
   "published": "2025-01-24",
   "updatedAt": "2026-10-14",
   "tags": [
@@ -37,7 +37,7 @@
       "ordered": false,
       "v": [
         "REM always references the root element’s font size.",
-        "Cascading Behavior:"
+        "Cascading Behaviour:"
       ]
     },
     {

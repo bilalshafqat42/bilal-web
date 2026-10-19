@@ -917,6 +917,65 @@ export const clients: Client[] = [
     keywords: [],
   },
   {
+    // Added 2026-10-19 (roadmap 415). A Dubai developer whose website Bilal
+    // develops as a freelancer. Unlike the four drafts above, the copy here is
+    // written from what the live site shows (WordPress with Elementor, the
+    // DLRC and Majan community pages, construction updates, media centre,
+    // channel partner and register-interest form) and the capture is real,
+    // taken from https://4direction.ae on 2026-10-19. Still a draft because
+    // three things are Bilal's to confirm: what he built versus maintains,
+    // the dates, and the client's permission to show the work.
+    slug: "4direction-developments",
+    name: "4Direction Developments",
+    industry: "Real Estate & Property",
+    draft: true,
+    title: "4Direction Developments: Property Developer Website in Dubai",
+    description:
+      "WordPress website development for 4Direction Developments, a Dubai property developer: project and community pages, construction updates and lead capture.",
+    headline: "The website behind a Dubai developer's projects and enquiries",
+    intro:
+      "4Direction Developments is a property developer building residential projects in Dubailand Residence Complex and Majan, with investments across the UAE, Saudi Arabia and Russia. I develop their website as a freelancer. TBC: since when, and whether the build was from scratch.",
+    facts: [
+      { label: "Client", value: "4Direction Developments" },
+      { label: "Sector", value: "Residential real estate" },
+      { label: "Market", value: "Dubai" },
+      { label: "Scope", value: "Website development" },
+    ],
+    scopeIntro:
+      "A developer's website has two jobs: show buyers and brokers every project clearly, and turn that interest into an enquiry the sales team can follow up. The site is structured around both.",
+    scope: [
+      {
+        heading: "Project and community pages",
+        body: "A page for each project and for the DLRC and Majan communities, so buyers and brokers can compare unit types and locations without asking the sales team first.",
+      },
+      {
+        heading: "Construction updates and media centre",
+        body: "Construction progress and company news in one place, filtered by topic, so off-plan buyers can follow their project and the developer has fresh content to share.",
+      },
+      {
+        heading: "Lead capture",
+        body: "A register-your-interest form on the homepage that asks whether the visitor is a broker, investor or end user and which unit size they want, plus a separate channel partner page for agents.",
+      },
+      {
+        heading: "WordPress and Elementor",
+        body: "Built on WordPress with Elementor, so the team can add a project or post an update without a developer.",
+      },
+    ],
+    website: {
+      heading: "The website",
+      body: "The homepage as it stands today. Scroll inside the frame to view the complete page.",
+      capture: {
+        src: "/portfolio/4direction/4direction-website.avif",
+        width: 1440,
+        height: 6977,
+        alt: "Full-page view of the 4Direction Developments homepage: hero with apartments ready in six months, company figures, projects, media and the register-interest form",
+        label: "4Direction Developments, homepage",
+      },
+    },
+    projects: [],
+    keywords: [],
+  },
+  {
     slug: "leos-developments",
     name: "LEOS Developments",
     industry: "Real Estate & Property",

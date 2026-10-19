@@ -122,6 +122,11 @@ export default async function ArticlePage({ params }: PageProps) {
       dateModified: post.updatedAt,
       keywords: post.tags,
       wordCount: post.words,
+      // The card image the page already shows above the body, as an absolute
+      // URL. Posts without one send no `image` rather than a stand-in.
+      image: post.image
+        ? { url: `${SITE_URL}${post.image.src}`, width: post.image.width, height: post.image.height }
+        : undefined,
     }),
   ];
 
@@ -141,6 +146,18 @@ export default async function ArticlePage({ params }: PageProps) {
           actions={
             <div className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted">
               <time dateTime={post.published}>{formatDate(post.published)}</time>
+              {/* The same `updatedAt` the schema sends as `dateModified`.
+                  Until 2026-10-19 a refreshed article showed only its 2025
+                  publish date here while telling Google it changed in 2026,
+                  so the reader and the crawler saw two different ages. */}
+              {post.updatedAt !== post.published ? (
+                <>
+                  <span aria-hidden="true" className="text-border">/</span>
+                  <span>
+                    Updated <time dateTime={post.updatedAt}>{formatDate(post.updatedAt)}</time>
+                  </span>
+                </>
+              ) : null}
               <span aria-hidden="true" className="text-border">/</span>
               <span>{readingMinutes(post)} min read</span>
               {post.tags.map((t) => (

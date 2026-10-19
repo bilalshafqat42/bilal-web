@@ -1,7 +1,7 @@
 {
   "slug": "react-state-management-usestate-vs-redux-vs-context",
   "title": "React State Management: useState vs Redux vs Context, What to Use and When",
-  "description": "Confused about managing state in React? This detailed comparison of useState, Redux, and Context API explains their differences, use cases, pros and cons,",
+  "description": "useState vs Redux vs Context for React state management: what each is best for, a side-by-side comparison, and a guide to choosing.",
   "published": "2025-06-16",
   "updatedAt": "2026-10-14",
   "tags": [
@@ -45,7 +45,7 @@
     },
     {
       "t": "p",
-      "v": "In React, state refers to data that determines a component’s behavior and rendering. It can be:"
+      "v": "In React, state refers to data that determines a component’s behaviour and rendering. It can be:"
     },
     {
       "t": "list",
@@ -67,7 +67,7 @@
     },
     {
       "t": "p",
-      "v": "The useState hook is React’s built-in way to manage local component state. It’s simple, lightweight, and ideal for isolated UI behaviors."
+      "v": "The useState hook is React’s built-in way to manage local component state. It’s simple, lightweight, and ideal for isolated UI behaviours."
     },
     {
       "t": "h3",

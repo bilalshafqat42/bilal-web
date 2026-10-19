@@ -2,6 +2,16 @@ import { NextResponse, after } from "next/server";
 import { clientIp } from "@/lib/clientIp";
 import { saveToFile, sendAlert, type BackupRecord, type FailureReason } from "@/lib/leadBackup";
 import { ALLOWED_SERVICES, ALLOWED_BUDGETS, ALLOWED_TIMELINES } from "@/data/leadAllowList";
+import { HONEYPOT_FIELD } from "@/lib/honeypot";
+
+/** Every answer from this route, success or refusal, carries `no-store`: a
+ *  response about one person's enquiry must never be cached by a browser, a
+ *  proxy or Cloudflare. */
+function json(body: unknown, init: ResponseInit = {}) {
+  const headers = new Headers(init.headers);
+  headers.set("Cache-Control", "no-store");
+  return NextResponse.json(body, { ...init, headers });
+}
 
 // Mirrors the Attribution type in src/lib/attribution.ts — kept as an
 // inline shape here rather than imported, since this is a server route and
@@ -32,7 +42,9 @@ type LeadPayload = {
   service?: string;
   meetingTime?: string;
   source?: string;
-  botcheck?: string | boolean;
+  /** The spam trap, under HONEYPOT_FIELD's key ("hp_x7q"). Any non-empty
+   *  value marks a bot. Older keys ("botcheck", "company") are ignored. */
+  [HONEYPOT_FIELD]?: unknown;
   pageUrl?: string;
   // Preferred: src/lib/attribution.ts's getAttribution(), sent by both
   // ContactForm and WhatsAppButton. Flat utm* fields below are kept as a
@@ -255,7 +267,7 @@ export async function POST(request: Request) {
   // first attempts were rejected for a typo still gets through.
   if (overLimit(ip)) {
     logRejection("rate_limited", ip);
-    return NextResponse.json(
+    return json(
       { success: false, error: "Too many submissions. Please try again in a few minutes." },
       { status: 429 }
     );
@@ -268,7 +280,7 @@ export async function POST(request: Request) {
   const contentType = (request.headers.get("content-type") ?? "").split(";")[0].trim().toLowerCase();
   if (contentType !== "application/json") {
     logRejection("unsupported_content_type", ip, { contentType: contentType.slice(0, 60) });
-    return NextResponse.json(
+    return json(
       { success: false, error: "Send the form as application/json." },
       { status: 415 }
     );
@@ -276,13 +288,13 @@ export async function POST(request: Request) {
   const origin = request.headers.get("origin");
   if (!originAllowed(origin)) {
     logRejection("foreign_origin", ip, { origin: (origin ?? "").slice(0, 100) });
-    return NextResponse.json({ success: false, error: "Forbidden." }, { status: 403 });
+    return json({ success: false, error: "Forbidden." }, { status: 403 });
   }
 
   const declared = Number(request.headers.get("content-length") ?? "0");
   if (declared > MAX_BODY_BYTES) {
     logRejection("payload_too_large_declared", ip, { declared });
-    return NextResponse.json(
+    return json(
       { success: false, error: "That submission is too large." },
       { status: 413 }
     );
@@ -295,11 +307,11 @@ export async function POST(request: Request) {
     raw = await request.text();
   } catch {
     logRejection("body_unreadable", ip);
-    return NextResponse.json({ success: false, error: "Invalid request body." }, { status: 400 });
+    return json({ success: false, error: "Invalid request body." }, { status: 400 });
   }
   if (new TextEncoder().encode(raw).length > MAX_BODY_BYTES) {
     logRejection("payload_too_large_actual", ip, { bytes: raw.length });
-    return NextResponse.json(
+    return json(
       { success: false, error: "That submission is too large." },
       { status: 413 }
     );
@@ -310,28 +322,30 @@ export async function POST(request: Request) {
     body = JSON.parse(raw) as LeadPayload;
   } catch {
     logRejection("invalid_json", ip, { bytes: raw.length });
-    return NextResponse.json({ success: false, error: "Invalid request body." }, { status: 400 });
+    return json({ success: false, error: "Invalid request body." }, { status: 400 });
   }
   if (!body || typeof body !== "object" || Array.isArray(body)) {
     logRejection("not_an_object", ip);
-    return NextResponse.json({ success: false, error: "Invalid request body." }, { status: 400 });
+    return json({ success: false, error: "Invalid request body." }, { status: 400 });
   }
 
-  // Honeypot: real visitors never fill this in. Answer success so bots do not
-  // learn they were caught and retry with the field removed.
+  // Honeypot: real visitors never fill this in. Answer exactly as a delivered
+  // lead does, same status, body and headers, so a bot cannot tell it was
+  // caught and retry with the field removed.
   //
-  // `counted: false` is the part that matters, and it was missing. Every client
-  // read only `success` and then fired `trackLead()`, so a blocked bot pushed
-  // `generate_lead` to GA4 and `Lead` to Meta for a submission that was
-  // discarded here. Meta optimises delivery toward whoever produced those
-  // events, so the honeypot was quietly training the ad account on bot traffic.
+  // This used to add `counted: false` so the client would skip the conversion
+  // pixel. That made the trap detectable from the response. The client now
+  // skips the pixel on its own: it knows whether it sent a trap value.
   //
-  // A bot sees `success: true` and learns nothing, which is the whole point of
-  // the lie. The extra field only tells an honest client not to count it.
-  if (body.botcheck) {
+  // Only HONEYPOT_FIELD counts. The trap was once a field named "company",
+  // which browser autofill filled for real people, so their enquiries were
+  // dropped as spam. Neither "company" nor the old "botcheck" key is a bot
+  // signal here: a real company name must never block a lead.
+  const trap = body[HONEYPOT_FIELD];
+  if (trap !== undefined && trap !== null && trap !== "" && trap !== false) {
     recordHit(ip);
     logRejection("honeypot", ip, { source: clean(body.source, LIMITS.generic) });
-    return NextResponse.json({ success: true, counted: false });
+    return json({ success: true });
   }
 
 
@@ -343,7 +357,7 @@ export async function POST(request: Request) {
     body.attribution != null && (typeof body.attribution !== "object" || Array.isArray(body.attribution));
   if (wrongType || badAttribution) {
     logRejection("invalid_field_type", ip, { field: wrongType ?? "attribution" });
-    return NextResponse.json({ success: false, error: "Invalid request body." }, { status: 400 });
+    return json({ success: false, error: "Invalid request body." }, { status: 400 });
   }
 
   // Nothing in `body` is typed by the time it arrives: a field declared as a
@@ -377,14 +391,14 @@ export async function POST(request: Request) {
 
   if (!name || !email) {
     logRejection("missing_required", ip, { hasName: !!name, hasEmail: !!email });
-    return NextResponse.json(
+    return json(
       { success: false, error: "Name and email are required." },
       { status: 400 }
     );
   }
   if (!EMAIL.test(email)) {
     logRejection("invalid_email", ip);
-    return NextResponse.json(
+    return json(
       { success: false, error: "That email address doesn't look right." },
       { status: 400 }
     );
@@ -404,7 +418,7 @@ export async function POST(request: Request) {
   const service = clean(body.service, LIMITS.generic);
   if (service && !allowedServices.has(service)) {
     logRejection("unknown_service", ip, { service });
-    return NextResponse.json(
+    return json(
       { success: false, error: "Unrecognised service." },
       { status: 400 }
     );
@@ -413,7 +427,7 @@ export async function POST(request: Request) {
   const serviceInterest = clean(body.serviceInterest, LIMITS.generic);
   if (serviceInterest && !allowedServices.has(serviceInterest)) {
     logRejection("unknown_service_interest", ip, { serviceInterest });
-    return NextResponse.json(
+    return json(
       { success: false, error: "Unrecognised service." },
       { status: 400 }
     );
@@ -422,13 +436,13 @@ export async function POST(request: Request) {
   const budget = clean(body.budget, LIMITS.generic);
   if (budget && !ALLOWED_BUDGETS.has(budget)) {
     logRejection("unknown_budget", ip, { budget });
-    return NextResponse.json({ success: false, error: "Unrecognised budget." }, { status: 400 });
+    return json({ success: false, error: "Unrecognised budget." }, { status: 400 });
   }
 
   const timeline = clean(body.timeline, LIMITS.generic);
   if (timeline && !ALLOWED_TIMELINES.has(timeline)) {
     logRejection("unknown_timeline", ip, { timeline });
-    return NextResponse.json({ success: false, error: "Unrecognised timeline." }, { status: 400 });
+    return json({ success: false, error: "Unrecognised timeline." }, { status: 400 });
   }
 
   // Turnstile runs after the cheap field checks, so a malformed request never
@@ -438,7 +452,7 @@ export async function POST(request: Request) {
   if (!(await turnstileOk(clean(body.turnstileToken, 4096), ip))) {
     recordHit(ip);
     logRejection("turnstile_failed", ip);
-    return NextResponse.json(
+    return json(
       { success: false, fallback: true, error: "Could not verify that submission. Please try again." },
       { status: 403 }
     );
@@ -525,7 +539,7 @@ export async function POST(request: Request) {
   if (!crmUrl) {
     console.error("[LEAD NOT DELIVERED — CRM_LEAD_API_URL unset]", JSON.stringify(redactedLead(lead)));
     await backUp(lead, "crm_unset");
-    return NextResponse.json(
+    return json(
       { success: false, fallback: true, error: "Lead intake is not configured yet." },
       { status: 503 }
     );
@@ -554,7 +568,7 @@ export async function POST(request: Request) {
       JSON.stringify(redactedLead(lead))
     );
     await backUp(lead, "crm_unreachable");
-    return NextResponse.json(
+    return json(
       { success: false, fallback: true, error: "Could not reach the lead system right now." },
       { status: 502 }
     );
@@ -570,13 +584,13 @@ export async function POST(request: Request) {
       JSON.stringify(redactedLead(lead))
     );
     await backUp(lead, "crm_rejected", crmResponse.status);
-    return NextResponse.json(
+    return json(
       { success: false, fallback: true, error: "The lead system rejected this submission." },
       { status: 502 }
     );
   }
 
-  return NextResponse.json({ success: true });
+  return json({ success: true });
 }
 
 /**

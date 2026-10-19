@@ -91,7 +91,7 @@ export const disciplines: Discipline[] = [
         "Every screen here is shipped work, not a concept. What is worth looking at is not the surface but the decision underneath it: whether to force a sign-in, whether actions belong on the card or behind a menu, how many fields an enquiry form can carry before it starts costing completions. Each piece links through to the reasoning.",
       metaTitle: "UI/UX Design Portfolio: App & Mobile | Bilal Shafqat",
       metaDescription:
-        "React Native app screens and mobile web layouts. Every screen is from real client work, not a concept, and each links through to the decision behind it.",
+        "UI/UX design portfolio: React Native app screens and mobile web layouts from real client work, each linked to the decision behind it.",
       lens: "This page is the interface cut. It gathers the app screens and the mobile web layouts in one place because they answer the same question (what does a buyer do on a small screen?) and it is the only page where they sit together with the design reasoning attached.",
       depth: [
         {
@@ -159,7 +159,7 @@ export const disciplines: Discipline[] = [
         "Corporate websites and campaign landing pages, grouped below by what each one is rather than by who it was for. The published set is property: a corporate site and four off-plan launches, all built to carry high-resolution renders without the load time that usually comes with them, and the same build applies to any sector where a page has to load fast and produce an enquiry. Follow any capture through to the case study for the stack and the structure.",
       metaTitle: "Web Design & Development Portfolio | Bilal Shafqat",
       metaDescription:
-        "Corporate websites and campaign landing pages built for speed, mobile and one clear enquiry action. The published set is property: a site and four launches.",
+        "Web development portfolio: corporate websites and campaign landing pages built for speed, mobile and one clear enquiry action.",
       lens: "This page carries both the design and the build, because they are the same seven captures looked at two ways: how each page is composed, and how it was implemented. Splitting that into two pages would mean two pages showing identical images, which is worth avoiding.",
       depth: [
         {
@@ -218,7 +218,7 @@ export const disciplines: Discipline[] = [
         "Cross-platform apps in React Native, one codebase for iOS and Android. The app below carries the same inventory as the client's website, so someone who first saw a landing page finds the same items, the same photography and the same enquiry routes on their phone. The pattern applies to any catalogue a business already publishes on the web. Every screen is from the built app, and each links to the decision behind it.",
       metaTitle: "Mobile App Portfolio: React Native | Bilal Shafqat",
       metaDescription:
-        "Mobile app development portfolio: cross-platform React Native apps for iOS and Android from a single codebase, with each screen decision explained.",
+        "Mobile app development portfolio: React Native apps for iOS and Android from a single codebase, with each screen decision explained.",
       lens: "These screens also appear on the UI/UX Design page, where the subject is the interface decision. Here it is the app as a delivered product: one codebase, two platforms, and the same inventory as the website it sits alongside.",
       depth: [
         {

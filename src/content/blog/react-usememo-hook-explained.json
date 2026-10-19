@@ -1,7 +1,7 @@
 {
   "slug": "react-usememo-hook-explained",
   "title": "React useMemo Hook Explained with Real Examples and Best Practices",
-  "description": "Learn how to use the React useMemo hook to optimize performance, avoid unnecessary recalculations, and improve app speed. Includes real-world examples and",
+  "description": "The React useMemo hook explained: how it avoids costly recalculations, when to use it, and how it differs from useCallback, with examples.",
   "published": "2025-06-26",
   "updatedAt": "2026-10-14",
   "tags": [
@@ -99,7 +99,7 @@
     },
     {
       "t": "h3",
-      "v": "Optimized with useMemo:"
+      "v": "Optimised with useMemo:"
     },
     {
       "t": "code",
@@ -124,7 +124,7 @@
         "You have expensive calculations",
         "You want to memoize derived state",
         "You're passing computed props to memoized child components",
-        "You want to optimize large data structures"
+        "You want to optimise large data structures"
       ]
     },
     {
@@ -215,8 +215,8 @@
         "Use for real performance gains, not just style",
         "Wrap only expensive operations",
         "Keep the dependency array accurate",
-        "Use React DevTools to inspect performance before optimizing",
-        "Pair with React.memo and useCallback for full optimization"
+        "Use React DevTools to inspect performance before optimising",
+        "Pair with React.memo and useCallback for full optimisation"
       ]
     },
     {
@@ -241,7 +241,7 @@
     },
     {
       "t": "p",
-      "v": "React’s useMemo is a powerful optimization tool, when used correctly."
+      "v": "React’s useMemo is a powerful optimisation tool, when used correctly."
     },
     {
       "t": "h3",

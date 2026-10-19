@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: "Privacy & What This Site Stores | Bilal Shafqat, Dubai",
     // Was 104 characters and left a third of the space Google gives you unused.
     description:
-      "What this site stores: Google Analytics, the Meta Pixel, campaign tracking and enquiry details. What each is for, and how to decline or delete yours.",
+      "What this site stores: Google Analytics, the Meta Pixel, campaign tracking and enquiry details, what each is for, and how to decline or delete.",
     path: "/privacy",
   }),
   robots: { index: true, follow: true },

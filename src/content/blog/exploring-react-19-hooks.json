@@ -1,7 +1,7 @@
 {
   "slug": "exploring-react-19-hooks",
   "title": "Exploring React 19 Hooks",
-  "description": "The React 19 hooks useFormStatus, useActionState, useOptimistic and use, explained with correct, current code examples and the mistakes to avoid.",
+  "description": "The React 19 hooks useFormStatus, useActionState, useOptimistic and use, explained with current code examples and the mistakes to avoid.",
   "published": "2025-01-16",
   "updatedAt": "2026-10-16",
   "tags": [

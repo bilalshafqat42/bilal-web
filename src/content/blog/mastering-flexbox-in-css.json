@@ -1,7 +1,7 @@
 {
   "slug": "mastering-flexbox-in-css",
   "title": "Mastering Flexbox in CSS: The Ultimate Guide for Responsive Web Design",
-  "description": "Mastering Flexbox in CSS is crucial for modern web design. It provides an efficient, scalable, and responsive way to align and distribute elements",
+  "description": "Mastering Flexbox in CSS: the key container and item properties for aligning and spacing elements in a responsive layout, with FAQs.",
   "published": "2025-02-07",
   "updatedAt": "2026-09-30",
   "tags": [
@@ -16,7 +16,7 @@
     },
     {
       "t": "p",
-      "v": "Flexbox, or the Flexible Box Layout, is a CSS module designed to provide an efficient way to align, distribute, and organize elements within a container, even when their sizes are dynamic or unknown. It simplifies responsive web design by eliminating the need for traditional layout techniques like floats, tables, or positioning."
+      "v": "Flexbox, or the Flexible Box Layout, is a CSS module designed to provide an efficient way to align, distribute, and organise elements within a container, even when their sizes are dynamic or unknown. It simplifies responsive web design by eliminating the need for traditional layout techniques like floats, tables, or positioning."
     },
     {
       "t": "p",
@@ -90,7 +90,7 @@
       "v": [
         "flex-start – Aligns items to the start of the container.",
         "flex-end – Aligns items to the end of the container.",
-        "center – Centers items horizontally .",
+        "center – Centres items horizontally .",
         "space-between – Distributes items with space between them .",
         "space-around – Places equal space around each item.",
         "space-evenly – Ensures equal spacing between items."
@@ -115,7 +115,7 @@
         "stretch (default) – Items stretch to fit the container.",
         "flex-start – Aligns items at the top .",
         "flex-end – Aligns items at the bottom .",
-        "center – Centers items vertically .",
+        "center – Centres items vertically .",
         "baseline – Aligns items based on their text baselines ."
       ]
     },
@@ -158,7 +158,7 @@
         "auto – Inherits from the parent container.",
         "flex-start – Aligns the item at the top .",
         "flex-end – Aligns the item at the bottom .",
-        "center – Centers the item vertically .",
+        "center – Centres the item vertically .",
         "stretch – Stretches the item to fill the container."
       ]
     },
@@ -217,7 +217,7 @@
     },
     {
       "t": "h3",
-      "v": "4. How can I center an element using Flexbox?"
+      "v": "4. How can I centre an element using Flexbox?"
     },
     {
       "t": "code",

@@ -1,7 +1,7 @@
 {
   "slug": "react-native-flatlist-vs-scrollview",
   "title": "React Native FlatList vs ScrollView: What to Use and When",
-  "description": "FlatList vs ScrollView in React Native: when to use each, a side-by-side table, the React Native FlatList props that fix slow lists, and common mistakes.",
+  "description": "React Native FlatList vs ScrollView: when to use each, a side-by-side table, the FlatList props that fix slow lists, and common mistakes.",
   "published": "2025-06-13",
   "updatedAt": "2026-10-16",
   "tags": [

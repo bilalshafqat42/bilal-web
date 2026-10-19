@@ -319,7 +319,7 @@ export const serviceDepth: Record<string, Depth> = {
         heading: "Creative is the targeting",
         paragraphs: [
           "Audience settings matter far less here than on search, because the algorithm finds the people who respond to the creative faster than any targeting you can specify. A video of one specific unit will find the people interested in that kind of unit. A generic brand film will find nobody in particular.",
-          "Which means production is most of the work, and it is where most property campaigns in Dubai underinvest. Renders cut for a brochure perform badly in a vertical feed against video shot for it. Several rough cuts tested quickly beats one polished film, and the winner is regularly the one that looked worst in the edit.",
+          "Which means production is most of the work, and it is where most property campaigns in Dubai underinvest. Renders cut for a brochure perform badly in a vertical feed against video shot for it. Several rough cuts tested quickly beats one polished film, and the winner is regularly the one that looked worst in the edit. The launch pages and lead capture that sit behind that creative are covered under [real estate marketing in Dubai](/real-estate-marketing).",
         ],
       },
       {
@@ -399,7 +399,7 @@ export const serviceDepth: Record<string, Depth> = {
         heading: "The first week of Google Ads in Dubai is spent finding what you are paying for",
         paragraphs: [
           "Google will happily spend a budget on searches that were never going to convert, and the default settings help it. The expensive part of most accounts is not the bid, it is the breadth: broad match reaching for anything loosely related, no negative list, and a search terms report nobody has read since launch.",
-          "So the first work is subtraction. Pull the search terms report, see what you actually showed for, and build the negative list from reality rather than from a template. In Dubai property that single exercise routinely removes a third of the spend without touching a bid, because a large share of the traffic is brokers, students and people researching a city they are not buying in.",
+          "So the first work is subtraction. Pull the search terms report, see what you actually showed for, and build the negative list from reality rather than from a template. In Dubai property that single exercise routinely removes a third of the spend without touching a bid, because a large share of the traffic is brokers, students and people researching a city they are not buying in. How search fits into a full off-plan launch is on the [real estate marketing in Dubai](/real-estate-marketing) page.",
         ],
       },
       {
@@ -470,7 +470,7 @@ export const serviceDepth: Record<string, Depth> = {
           "React Native builds iOS and Android from the same code. That means one build rather than two, and one set of fixes for as long as the app exists, which is the part that matters more. An app is not a project that finishes; it is a thing you keep paying for. With two native codebases, every fix, every OS update and every new screen gets done twice.",
           "Native earns its cost when an app leans hard on hardware in a way the bridge handles badly, and that is rarer than it is claimed to be. The LEOS app on this site is built in React Native for iOS and Android from one codebase. If your requirement genuinely needs native, I will tell you, and I will tell you it costs more to build and to keep.",
           // Added 2026-10-16 with the four pages under this one.
-          "How the React Native build itself works is on the [React Native development](/services/react-native-development) page. The store-specific work has its own pages, one for an [iOS app developer](/services/ios-app-development) and one for an [Android app developer](/services/android-app-development), and the database, APIs and admin panel behind the app are on [app back-end development](/services/app-backend-development).",
+          "How the React Native build itself works is on the [React Native development](/services/react-native-development) page. The store-specific work has its own pages, one for an [iOS developer](/services/ios-app-development) and one for an [Android developer](/services/android-app-development), and the database, APIs and admin panel behind the app are on [app back-end development](/services/app-backend-development).",
         ],
       },
       {
@@ -505,7 +505,7 @@ export const serviceDepth: Record<string, Depth> = {
         paragraphs: [
           "Android is the majority platform across much of this region, and it is routinely treated as the version that gets done second and tested least. The symptoms are familiar: a layout built to iOS proportions, a back gesture that does nothing, notifications that behave differently and nobody checked, and testing done on one recent flagship rather than on the four-year-old device a real customer is using.",
           "Building cross-platform in React Native means the Android app is not a port. It is built in the same pass from the same codebase, which removes the budget pressure that usually causes the shortcuts. What still needs separate attention is the platform behaviour: navigation conventions, permissions, background limits, notification channels, and the Play Store's own review rules, which differ from Apple's.",
-          "Testing happens on real Android hardware rather than only in an emulator, including older devices and weak connections, because that is the condition most of your users are actually in. The detail, Play Console and device testing included, is on the [Android app developer](/services/android-app-development) page.",
+          "Testing happens on real Android hardware rather than only in an emulator, including older devices and weak connections, because that is the condition most of your users are actually in. The detail, Play Console and device testing included, is on the [Android developer](/services/android-app-development) page.",
         ],
       },
       {
@@ -595,7 +595,7 @@ export const serviceDepth: Record<string, Depth> = {
         heading: "Tracking and the marketing side",
         paragraphs: [
           "Analytics go in during the build. Screen views and the handful of events that matter to the business, such as an enquiry, a booking or a brochure download, are sent to Firebase Analytics and GA4, and to Meta and Google where app campaigns are running. Deep links let a campaign open the app on the right screen rather than its home page, which is often the difference between an install and a lead.",
-          "Leads created in the app go to your CRM with their source, the same as a website enquiry, through the [app back end](/services/app-backend-development). The store listings are written as conversion pages, and each store has its own rules, covered on the [iOS app developer](/services/ios-app-development) and [Android app developer](/services/android-app-development) pages.",
+          "Leads created in the app go to your CRM with their source, the same as a website enquiry, through the [app back end](/services/app-backend-development). The store listings are written as conversion pages, and each store has its own rules, covered on the [iOS developer](/services/ios-app-development) and [Android developer](/services/android-app-development) pages.",
         ],
       },
       {
@@ -623,7 +623,7 @@ export const serviceDepth: Record<string, Depth> = {
   "ios-app-development": {
     blocks: [
       {
-        heading: "What an iOS app developer in Dubai handles beyond the code",
+        heading: "What an iOS developer in Dubai handles beyond the code",
         paragraphs: [
           "Building the screens is the part people picture. The rest is Apple's: an app has to run well across the iPhones still in use, follow the Human Interface Guidelines closely enough to feel at home, declare exactly what data it collects, ask for permissions at the right moment, and pass App Review before anyone can download it. Each of those can delay a launch, and each is predictable if it is planned from the start.",
           "I build iOS apps in React Native rather than Swift. The result is a real iOS app using Apple's own interface components, and the same code ships to Android, which matters to most businesses here. Where an app genuinely needs Swift, such as for heavy graphics or the newest Apple frameworks on day one, a native iOS developer is the better hire, and I will tell you before you commit.",
@@ -661,7 +661,7 @@ export const serviceDepth: Record<string, Depth> = {
         heading: "Push notifications and the App Store listing",
         paragraphs: [
           "Push notifications go through Apple's notification service, usually via Firebase Cloud Messaging or Expo, from an [app back end](/services/app-backend-development) that decides who receives what. Fewer, relevant messages keep people from switching notifications off: a viewing reminder, a price change on a saved unit, a launch they registered for.",
-          "The App Store listing is a conversion page. The name, subtitle, keywords, screenshots and the first lines of the description decide most installs, and App Store Connect can produce campaign links so you can see which campaign brought each download. Leads from the app reach your CRM with their source, the same as a web enquiry. The Android side is on the [Android app developer](/services/android-app-development) page.",
+          "The App Store listing is a conversion page. The name, subtitle, keywords, screenshots and the first lines of the description decide most installs, and App Store Connect can produce campaign links so you can see which campaign brought each download. Leads from the app reach your CRM with their source, the same as a web enquiry. The Android side is on the [Android developer](/services/android-app-development) page.",
         ],
       },
     ],
@@ -682,7 +682,7 @@ export const serviceDepth: Record<string, Depth> = {
   "android-app-development": {
     blocks: [
       {
-        heading: "What an Android app developer in Dubai has to plan for",
+        heading: "What an Android developer in Dubai has to plan for",
         paragraphs: [
           "Android is not one platform in the way iOS is. Samsung, Xiaomi, Oppo, Huawei and others ship their own versions of it on phones that range from flagships to budget models several years old, with different screen sizes, memory and battery rules. An app that is only tested on one recent phone will meet the rest for the first time in the hands of a customer.",
           "There is a regional detail worth knowing early. Recent Huawei phones ship without Google Play services, so features that depend on them, such as Firebase push notifications and Google sign-in, need an alternative or are accepted as a gap, and Huawei has its own store, AppGallery. Whether that matters depends on your audience, and it is decided before the build rather than after the first complaint.",
@@ -713,7 +713,7 @@ export const serviceDepth: Record<string, Depth> = {
         heading: "Tracking installs and leads from Android",
         paragraphs: [
           "Google Play passes campaign details to the app through the Play Install Referrer, so installs can be attributed to the campaign that produced them, and app campaigns in Google Ads and Meta use that data to find more of the right users. In-app events, an enquiry, a booking, a brochure download, go to Firebase Analytics and GA4 so you can see what installs turn into.",
-          "Leads created in the app should land in the same CRM as everything else, with their source attached, which is the job of the [app back end](/services/app-backend-development) and the [CRM integration](/services/crm-integration) behind it. The iPhone side of the same app is on the [iOS app developer](/services/ios-app-development) page.",
+          "Leads created in the app should land in the same CRM as everything else, with their source attached, which is the job of the [app back end](/services/app-backend-development) and the [CRM integration](/services/crm-integration) behind it. The iPhone side of the same app is on the [iOS developer](/services/ios-app-development) page.",
         ],
       },
     ],
@@ -808,7 +808,7 @@ export const serviceDepth: Record<string, Depth> = {
         heading: "Structure that a real budget can survive",
         paragraphs: [
           "Campaign structure decides how much of your money reaches the people worth reaching. That means separating markets rather than lumping the UAE in with the UK, separating intent so someone searching your development by name is not bidding against someone browsing the category, and setting exclusions before spend rather than after a wasted month.",
-          "For property and high-value services in particular, the qualifier belongs early. Putting a starting price in the ad and again above the fold on the landing page filters out traffic that was never going to convert. It lowers your click volume and raises your cost per click, and it is still the cheapest thing you can do to your cost per acquisition.",
+          "For property and high-value services in particular, the qualifier belongs early. Putting a starting price in the ad and again above the fold on the landing page filters out traffic that was never going to convert. It lowers your click volume and raises your cost per click, and it is still the cheapest thing you can do to your cost per acquisition. For property developers, the whole pattern from ad to registration form is on the [real estate marketing in Dubai](/real-estate-marketing) page.",
         ],
       },
       {
@@ -914,7 +914,7 @@ export const serviceDepth: Record<string, Depth> = {
         heading: "Built on a real brand system",
         paragraphs: [
           "Campaign creative is produced from the same brand rules as the website and the sales material, so what a buyer sees on Instagram, on the landing page and in the brochure looks like one company. That sounds obvious and is genuinely rare, because those three things are usually made by three different suppliers.",
-          "Award-winning work for LEOS Developments came out of exactly that arrangement: the same person building the site the campaigns pointed at, and making the creative that drove traffic to it. You can see how that played out in the case studies on this site.",
+          "The work for LEOS Developments, an award-winning developer, came out of exactly that arrangement: the same person building the site the campaigns pointed at, and making the creative that drove traffic to it. You can see how that played out in the case studies on this site.",
         ],
       },
       {
@@ -1002,7 +1002,7 @@ export const serviceDepth: Record<string, Depth> = {
         heading: "What digital marketing in Dubai actually involves",
         paragraphs: [
           "Digital marketing is a category rather than a service, which is why quotes for it vary by a factor of ten. What sits under it here: paid advertising across Google, Meta, TikTok, Snapchat and LinkedIn; search visibility, meaning both classic SEO and the AI answers that increasingly sit above it; email and WhatsApp; the content that feeds all three; and the tracking that tells you which of them produced an enquiry.",
-          "The Dubai specifics change the shape of it more than people expect. The market is small enough that a national campaign is a city campaign, competitive enough that cost per click is high by international standards, and multilingual enough that an English-only funnel leaves money behind. WhatsApp is a primary channel here rather than an afterthought, and the response window people expect on it is measured in minutes.",
+          "The Dubai specifics change the shape of it more than people expect. The market is small enough that a national campaign is a city campaign, competitive enough that cost per click is high by international standards, and multilingual enough that an English-only funnel leaves money behind. WhatsApp is a primary channel here rather than an afterthought, and the response window people expect on it is measured in minutes. Property is where those specifics bite hardest, so [real estate marketing in Dubai](/real-estate-marketing) has its own page.",
           "Digital marketing services in Dubai are usually bought as a bundle and delivered as separate projects, which is where the margin goes. Running them as one sequence, with the same person deciding what the landing page says and what the ad promises, is the practical difference between a campaign that leaks and one that compounds.",
           "All of it is run by one freelance digital marketing specialist rather than split across a team, which is the trade worth understanding before you hire either way. An agency gives you capacity and cover. A freelancer gives you the person who decides what the ad promises also deciding what the landing page says, which is where most campaigns lose their money.",
           "Performance marketing is the half of this that is judged on a number rather than on reach: cost per enquiry, cost per qualified lead, cost per sale. That is the half I am usually hired for, and it is also the half that cannot be done honestly without the tracking being right first, which is why the tracking goes in before the spend starts rather than after somebody asks why the reporting does not add up.",
@@ -1359,9 +1359,10 @@ export const serviceDepth: Record<string, Depth> = {
         heading: "What a Squarespace developer in Dubai is hired for",
         paragraphs: [
           "Squarespace is built for brochure and portfolio sites: a business with a strong visual identity, a modest number of pages and an owner who wants to change them without help. Interior design studios, architects, photographers, boutique consultancies and personal brands are the natural fit. For them, a Squarespace site can look as considered as a custom build at a fraction of the effort to maintain.",
-          // Real work, added 2026-10-16. Not linked: the Choppershoot case study
-          // in caseStudies.ts is still a noindex draft.
-          "The website I built for Choppershoot, a production house, is a good example. It runs on Squarespace so the team can update their showreels and projects themselves, without waiting on a developer for every new piece of work.",
+          // Choppershoot's Squarespace site is still in progress (Bilal,
+          // 2026-10-19), so no "I built" claim until it is live and the
+          // draft case study is published.
+          "A production house is a good example: a Squarespace site lets the team update their showreels and projects themselves, without waiting on a developer for every new piece of work.",
           "The work is not dragging blocks onto a template. It is deciding what the site has to say and in what order, adapting the template so it looks like your brand rather than its demo, and setting up the parts Squarespace leaves to you: the enquiry route, the search settings and the tracking.",
         ],
       },
@@ -1463,10 +1464,10 @@ export const serviceDepth: Record<string, Depth> = {
   "custom-web-development": {
     blocks: [
       {
-        heading: "When custom web development in Dubai beats a CMS",
+        heading: "When custom web application development beats a CMS",
         paragraphs: [
           "A CMS is built for publishing pages. The moment a site has to do something with data, it starts fighting you: a mortgage or payment plan calculator, a portal where brokers log in to see their leads, a dashboard that reads live from the CRM, a property search with filters that must respond instantly. Each of those can be bolted onto WordPress with plugins, and each bolt is another thing to maintain, slow down and break.",
-          "Custom development is the right call when the logic is the product, when the integration matters more than the editing, or when speed decides the outcome. It is the wrong call for a marketing site that mostly publishes pages, and the [CMS development](/services/cms-development) page covers that side. Plenty of projects need both: a CMS for the pages and a custom tool beside it.",
+          "Custom development is the right call when the logic is the product, when the integration matters more than the editing, or when speed decides the outcome. It is the wrong call for a marketing site that mostly publishes pages, and the [CMS development](/services/cms-development) page covers that side. Plenty of projects need both: a CMS for the pages and a custom tool beside it. For the wider picture, sites and landing pages as well as applications, see [web development in Dubai](/services/website-app-development).",
         ],
       },
       {
@@ -1843,7 +1844,7 @@ export const serviceDepth: Record<string, Depth> = {
   "zoho-crm-integration": {
     blocks: [
       {
-        heading: "What a Zoho CRM consultant in Dubai is usually fixing",
+        heading: "What a Zoho CRM implementation in Dubai is usually fixing",
         paragraphs: [
           "The pattern is familiar from real estate sales teams here. Leads from Meta campaigns are downloaded as a spreadsheet and imported once a day, or once a week. Lead source is a free text field, so the same campaign appears under six spellings and no report can group it. Agents call from their own phones and the CRM never hears about it. Zoho is doing its job; nothing is feeding it properly.",
           "I have managed leads in Zoho CRM for real estate developers in Dubai, so the fixes below are the ones that made the difference there: leads arriving on their own within seconds, sources that can be reported on, assignment that does not depend on a manager forwarding emails, and a WhatsApp follow-up that goes out before the buyer has spoken to a competitor. Whether Zoho is the right CRM at all, and how every other lead source reaches it, is covered on the [CRM integration](/services/crm-integration) page.",

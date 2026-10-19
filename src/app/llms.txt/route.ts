@@ -1,5 +1,5 @@
 import { megaMenuGroups } from "@/data/pillars";
-import { clients } from "@/data/caseStudies";
+import { publishedClients } from "@/data/caseStudies";
 import { faqGroups } from "@/data/faqs";
 import { disciplinesWithPages, disciplineItems } from "@/data/disciplines";
 import { blogPosts } from "@/data/blogPosts";
@@ -77,7 +77,7 @@ Full content for machine reading: ${SITE}/llms-full.txt
   }
 
   lines.push(`\n## Case studies\n`);
-  for (const c of clients) {
+  for (const c of publishedClients()) {
     lines.push(`- [${c.name}](${SITE}/portfolio/${c.slug}): ${c.intro}`);
     for (const p of c.projects) {
       lines.push(`  - [${p.name}](${SITE}/portfolio/${c.slug}/${p.slug}): ${p.cardBlurb}`);

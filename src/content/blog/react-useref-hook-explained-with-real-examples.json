@@ -1,7 +1,7 @@
 {
   "slug": "react-useref-hook-explained-with-real-examples",
   "title": "React useRef Hook Explained with Real Examples and Best Practices",
-  "description": "Learn React useRef() hook does, when to use it, how it compares to useState(). Includes examples for DOM access, value tracking, performance optimizations.",
+  "description": "The React useRef hook explained: focusing inputs, tracking previous values, how it differs from useState, and the mistakes to avoid.",
   "published": "2025-06-24",
   "updatedAt": "2026-10-14",
   "tags": [
@@ -12,7 +12,7 @@
   "blocks": [
     {
       "t": "p",
-      "v": "Learn what the React useRef() hook does, when to use it, and how it compares to useState(). Includes real-world examples for DOM access, value tracking, and performance optimizations."
+      "v": "Learn what the React useRef() hook does, when to use it, and how it compares to useState(). Includes real-world examples for DOM access, value tracking, and performance optimisations."
     },
     {
       "t": "h2",
@@ -24,7 +24,7 @@
     },
     {
       "t": "p",
-      "v": "React's useRef() hook is a powerful yet often underutilized tool. While it’s commonly associated with accessing DOM elements, it’s much more versatile than that."
+      "v": "React's useRef() hook is a powerful yet often underutilised tool. While it’s commonly associated with accessing DOM elements, it’s much more versatile than that."
     },
     {
       "t": "h3",
@@ -218,7 +218,7 @@
       "ordered": false,
       "v": [
         "Use it to hold mutable values you don’t want to trigger a render",
-        "Use it to reference DOM nodes for animations or focus behavior",
+        "Use it to reference DOM nodes for animations or focus behaviour",
         "Combine with useEffect() to track previous props or state",
         "Use it to store timers or animation frame IDs",
         "Avoid overusing it where useState() or useReducer() are better fits"
@@ -286,7 +286,7 @@
       "ordered": false,
       "v": [
         "You're calculating a value that should be cached",
-        "You want to optimize expensive logic that runs every render"
+        "You want to optimise expensive logic that runs every render"
       ]
     },
     {

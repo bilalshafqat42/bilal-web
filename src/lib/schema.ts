@@ -142,7 +142,7 @@ const KNOWS_ABOUT = [
   // The four pillars, as the services pages name them.
   "Paid Marketing & Lead Generation",
   "Website & App Development",
-  "Design, Content & Conversion Optimization",
+  "Design, Content & Conversion Optimisation",
   "CRM & Marketing Automation",
   // Platforms, named specifically. "Digital marketing" as a bare term says
   // nothing a search engine can use; the platform names are what a brief
@@ -151,7 +151,7 @@ const KNOWS_ABOUT = [
   "Meta, LinkedIn & TikTok Advertising",
   "Snapchat Advertising",
   "HubSpot, Zoho & Salesforce CRM Setup",
-  "Conversion Rate Optimization (CRO)",
+  "Conversion Rate Optimisation (CRO)",
   // Disciplines with their own service pages.
   "Search Engine Optimisation",
   "Email Marketing & Automation",
@@ -319,12 +319,17 @@ export function articleNode(opts: {
   dateModified: string;
   keywords: string[];
   wordCount: number;
+  /** Absolute URL of the post's card image, when it has one. */
+  image?: { url: string; width: number; height: number };
 }) {
   return {
     "@type": "Article",
     "@id": `${opts.url}#article`,
     headline: opts.headline,
     description: opts.description,
+    ...(opts.image
+      ? { image: { "@type": "ImageObject", url: opts.image.url, width: opts.image.width, height: opts.image.height } }
+      : {}),
     datePublished: opts.datePublished,
     dateModified: opts.dateModified,
     keywords: opts.keywords,

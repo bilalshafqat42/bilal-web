@@ -1,7 +1,7 @@
 {
   "slug": "react-usestate-hook-explained-with-examples",
   "title": "React useState Hook Explained with Examples",
-  "description": "Learn how the React useState hook works with real-world examples, syntax breakdowns, and best practices. Ideal for new and growing frontend developers.",
+  "description": "The React useState hook explained with examples: a basic counter, state of any type, updating state correctly and avoiding mutation.",
   "published": "2025-06-18",
   "updatedAt": "2026-10-14",
   "tags": [
@@ -159,7 +159,7 @@
     },
     {
       "t": "h3",
-      "v": "Initialize with the correct type"
+      "v": "Initialise with the correct type"
     },
     {
       "t": "code",
@@ -271,7 +271,7 @@
       "ordered": false,
       "v": [
         "The syntax and signature of useState",
-        "How to initialize and update state correctly",
+        "How to initialise and update state correctly",
         "Examples for counters, form fields, booleans, and lists",
         "How to avoid common mistakes",
         "When to use useState , and when not to"

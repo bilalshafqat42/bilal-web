@@ -152,8 +152,8 @@
       "v": [
         "Ubiquity in Real-World Projects – Strings are everywhere: form fields, UI messages, API responses, and URL parsing.",
         "Code Clarity – Using built-in methods like .trim() or .split() avoids writing repetitive manual logic.",
-        "Interview Preparation – String manipulation questions are a favorite in JavaScript coding interviews.",
-        "Performance – Optimized string methods are faster than writing custom loops or conditions."
+        "Interview Preparation – String manipulation questions are a favourite in JavaScript coding interviews.",
+        "Performance – Optimised string methods are faster than writing custom loops or conditions."
       ]
     },
     {
@@ -198,7 +198,7 @@
     },
     {
       "t": "p",
-      "v": "Instead of writing manual logic, learn to use these built-in methods. They're more efficient, cleaner, and universally recognized across teams and projects."
+      "v": "Instead of writing manual logic, learn to use these built-in methods. They're more efficient, cleaner, and universally recognised across teams and projects."
     },
     {
       "t": "p",

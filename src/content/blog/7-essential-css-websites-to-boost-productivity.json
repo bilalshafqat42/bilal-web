@@ -1,7 +1,7 @@
 {
   "slug": "7-essential-css-websites-to-boost-productivity",
   "title": "7 Essential CSS Websites to Boost Your Productivity and Design Efficiency",
-  "description": "As a web designer or developer, maintaining an efficient workflow is essential to delivering high-quality projects on time. CSS can often become tedious,",
+  "description": "Seven CSS websites that save hours of hand-written styles, from glassmorphism and shadow generators to waves, blobs and patterns.",
   "published": "2025-01-21",
   "updatedAt": "2026-09-30",
   "tags": [
@@ -16,7 +16,7 @@
     },
     {
       "t": "p",
-      "v": "These websites provide everything from glassmorphism effects to customizable patterns, offering a wide range of design features that can be integrated into your web pages. Let’s dive into each one, explaining how it can enhance your design workflow."
+      "v": "These websites provide everything from glassmorphism effects to customisable patterns, offering a wide range of design features that can be integrated into your web pages. Let’s dive into each one, explaining how it can enhance your design workflow."
     },
     {
       "t": "h2",
@@ -24,7 +24,7 @@
     },
     {
       "t": "p",
-      "v": "Glassmorphism is a trend that's taken the design world by storm. It creates sleek, modern visuals with frosted glass-like effects on elements. Glass UI is a tool that makes it incredibly simple to apply these effects. You can adjust the transparency, blur, and background colors to create depth and layers in your web designs without needing advanced CSS skills."
+      "v": "Glassmorphism is a trend that's taken the design world by storm. It creates sleek, modern visuals with frosted glass-like effects on elements. Glass UI is a tool that makes it incredibly simple to apply these effects. You can adjust the transparency, blur, and background colours to create depth and layers in your web designs without needing advanced CSS skills."
     },
     {
       "t": "list",
@@ -52,7 +52,7 @@
       "ordered": false,
       "v": [
         "Generate soft, realistic shadow effects",
-        "Customize blur, spread, and position",
+        "Customise blur, spread, and position",
         "Easily copy the generated CSS code"
       ]
     },
@@ -72,7 +72,7 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Customize wave height, color, and opacity",
+        "Customise wave height, colour, and opacity",
         "Download SVGs for easy integration into your website",
         "Adjustable for different screen sizes"
       ]
@@ -94,7 +94,7 @@
       "ordered": false,
       "v": [
         "Generate neumorphic buttons, inputs, and cards",
-        "Customize shadow, color, and light direction",
+        "Customise shadow, colour, and light direction",
         "Real-time previews of changes"
       ]
     },
@@ -108,14 +108,14 @@
     },
     {
       "t": "p",
-      "v": "If you’re looking for high-quality SVG patterns for your backgrounds, Hero Patterns is a fantastic resource. It offers a wide range of customizable, scalable patterns that can be used for website backgrounds, headers, or sections."
+      "v": "If you’re looking for high-quality SVG patterns for your backgrounds, Hero Patterns is a fantastic resource. It offers a wide range of customisable, scalable patterns that can be used for website backgrounds, headers, or sections."
     },
     {
       "t": "list",
       "ordered": false,
       "v": [
         "Choose from a variety of patterns and designs",
-        "Adjust color and opacity to match your branding",
+        "Adjust colour and opacity to match your branding",
         "Download SVGs for easy integration"
       ]
     },
@@ -125,18 +125,18 @@
     },
     {
       "t": "h2",
-      "v": "Blob Maker: Unique, Customizable Shapes"
+      "v": "Blob Maker: Unique, Customisable Shapes"
     },
     {
       "t": "p",
-      "v": "Abstract shapes can add personality and visual interest to your design. Blob Maker allows you to generate unique blob shapes that can be used for backgrounds, overlays, or image masks. Customize the size, complexity, and color of your blobs for a truly distinctive look."
+      "v": "Abstract shapes can add personality and visual interest to your design. Blob Maker allows you to generate unique blob shapes that can be used for backgrounds, overlays, or image masks. Customise the size, complexity, and colour of your blobs for a truly distinctive look."
     },
     {
       "t": "list",
       "ordered": false,
       "v": [
         "Generate abstract blob shapes for backgrounds and sections",
-        "Customize shape complexity and smoothness",
+        "Customise shape complexity and smoothness",
         "Download as SVGs for scalability"
       ]
     },
@@ -157,7 +157,7 @@
       "ordered": false,
       "v": [
         "Generate gradients, patterns, and organic shapes",
-        "Fully customizable with multiple settings for color, opacity, and angle",
+        "Fully customisable with multiple settings for color, opacity, and angle",
         "Export in multiple formats like SVG and PNG"
       ]
     },
@@ -179,7 +179,7 @@
     },
     {
       "t": "p",
-      "v": "Tags: blob maker css websites customizeable shapes glass ui gradients haikei hero patterns moden ui design neumorphism patterns reusable backgrounds shadows waves"
+      "v": "Tags: blob maker css websites customisable shapes glass ui gradients haikei hero patterns moden ui design neumorphism patterns reusable backgrounds shadows waves"
     }
   ],
   "metaTitle": "7 Essential CSS Websites for Productivity"

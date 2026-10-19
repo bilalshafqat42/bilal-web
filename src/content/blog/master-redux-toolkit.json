@@ -1,7 +1,7 @@
 {
   "slug": "master-redux-toolkit",
   "title": "Master Redux Toolkit: The Modern Way to Manage State in React",
-  "description": "Learn how Redux Toolkit simplifies state management in React apps. Discover how to use createSlice, configureStore, and createAsyncThunk with practical examples",
+  "description": "Redux Toolkit explained: how createSlice, configureStore and createAsyncThunk simplify state management in React, with practical examples.",
   "published": "2025-06-09",
   "updatedAt": "2026-09-30",
   "tags": [
@@ -193,7 +193,7 @@
     },
     {
       "t": "p",
-      "v": "A: No. RTK is Redux. It just modernizes the API and usage."
+      "v": "A: No. RTK is Redux. It just modernises the API and usage."
     }
   ],
   "metaTitle": "Master Redux Toolkit: Modern State in React"

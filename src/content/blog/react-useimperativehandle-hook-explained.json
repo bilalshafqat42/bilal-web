@@ -3,12 +3,12 @@
   "title": "React useImperativeHandle Hook Explained with Real Examples and Best Practices",
   "description": "Ever needed to call a function inside a child component from the parent? React’s useImperativeHandle hook makes that possible.",
   "published": "2025-07-01",
-  "updatedAt": "2026-10-14",
+  "updatedAt": "2026-10-19",
   "tags": [
     "React Hooks",
     "React Js"
   ],
-  "words": 514,
+  "words": 544,
   "blocks": [
     {
       "t": "h2",
@@ -20,7 +20,7 @@
     },
     {
       "t": "p",
-      "v": "That’s where useImperativeHandle() comes in. It lets you define exactly what a parent can do with a ref passed to a child component. Combined with forwardRef(), this hook gives you a controlled way to expose internal functionality of a component, without breaking encapsulation."
+      "v": "That’s where useImperativeHandle() comes in. It lets you define exactly what a parent can do with a ref passed to a child component. Combined with forwardRef(), this hook gives you a controlled way to expose internal functionality of a component, without breaking encapsulation. It is rarely needed, but in the React builds behind my [[web development in Dubai|/services/website-app-development]] projects it earns its place for jobs like focusing or resetting a form from outside."
     },
     {
       "t": "h3",
@@ -43,7 +43,7 @@
     },
     {
       "t": "p",
-      "v": "useImperativeHandle is a React hook that lets you customize what gets exposed through a ref from a child component to its parent. It works in combination with forwardRef()."
+      "v": "useImperativeHandle is a React hook that lets you customise what gets exposed through a ref from a child component to its parent. It works in combination with forwardRef()."
     },
     {
       "t": "h3",
@@ -100,7 +100,7 @@
         "Exposing controlled APIs from reusable components",
         "Accessing focus(), scrollIntoView(), or reset() methods",
         "Form libraries with uncontrolled inputs",
-        "Custom behaviors like animations, validators, or measurements"
+        "Custom behaviours like animations, validators, or measurements"
       ]
     },
     {
@@ -228,7 +228,7 @@
       "v": [
         "Always pair it with forwardRef()",
         "Expose the minimal, focused API possible",
-        "Use useRef() in the parent to control behavior",
+        "Use useRef() in the parent to control behaviour",
         "Document clearly in reusable components (e.g., form libraries)",
         "Avoid side effects in imperative methods; keep them controlled"
       ]
@@ -239,7 +239,7 @@
     },
     {
       "t": "p",
-      "v": "useImperativeHandle is a specialized React hook that empowers parent components to call specific methods inside a child. It’s perfect for controlling focus, reset, scrolling, or other non-state-driven interactions."
+      "v": "useImperativeHandle is a specialised React hook that empowers parent components to call specific methods inside a child. It’s perfect for controlling focus, reset, scrolling, or other non-state-driven interactions."
     },
     {
       "t": "p",
