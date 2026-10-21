@@ -14,7 +14,7 @@ import Eyebrow from "@/components/ui/Eyebrow";
 export const metadata: Metadata = {
   title: "What a Freelance Digital Marketer Costs in Dubai",
   description:
-    "What a freelance digital marketer costs in Dubai. Published figures, not a range: projects from AED 31,500, retainers from AED 16,000.",
+    "Digital marketing cost in Dubai: what a freelance digital marketer costs in Dubai, from AED 31,500 a project or AED 16,000 a month.",
   alternates: { canonical: "/pricing" },
   openGraph: {
     title: "What a Freelance Digital Marketer Costs in Dubai",
@@ -135,7 +135,7 @@ export default function PricingPage() {
             <Reveal>
               <Eyebrow>Cost drivers</Eyebrow>
               <h2 className="t-h2 mt-4 text-ink">
-                What moves the price
+                What moves digital marketing cost in Dubai
               </h2>
               <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">
                 Two projects with the same title can differ several times over in

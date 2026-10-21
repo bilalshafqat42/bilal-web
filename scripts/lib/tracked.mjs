@@ -48,7 +48,9 @@ export const TRACKED = [
   // integration hub.
   ["/services/react-native-development", "react native developer dubai"],
   // 2026-10-19: "app developer" dropped so neither contains "app developer
-  // dubai", which the mobile hub now owns ("mobile app developer dubai").
+  // dubai". "mobile app developer dubai" is owned by the article
+  // /how-to-choose-a-mobile-app-developer-in-dubai (roadmap 414), not the
+  // mobile hub, which keeps "mobile app development dubai".
   ["/services/ios-app-development", "ios developer dubai"],
   ["/services/android-app-development", "android developer dubai"],
   ["/services/app-backend-development", "app back end development dubai"],

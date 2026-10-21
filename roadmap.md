@@ -11890,3 +11890,22 @@ professional services). SEO checked: /about title, description, h1 and
 canonical unchanged; onpage scores unchanged (home 100, about 66).
 Later: case studies for LEOS Project Management, AKS Chemicals and Next Gen
 HR (screenshots, write-up, permission), as for 4Direction (415).
+
+---
+
+### 418. DONE (2026-10-21) — Eight gap phrases on their owning pages
+
+From the 2026-10-20 snapshot (queries with impressions and no page scoring
+75+). No new pages, no title/h1/URL changes; one heading (and sometimes the
+opening line or description) per page. Target scores before → after:
+digital marketing freelancer dubai (/) 29 → 58; freelance seo consultant
+dubai (/services/seo) 53 → 82; how much does a website cost in dubai
+(article) 80 → 96; custom web development dubai (custom-web) 29 → 41;
+digital marketing cost dubai (/pricing) 29 → 54; linkedin marketing services
+dubai 29 → 46; off plan marketing dubai (/real-estate-marketing) 29 → 58;
+freelance web developer dubai (hub) 58, unchanged (already present). Guards:
+every page's main keyword unchanged; hub still wins web development dubai
+(96 vs custom 50). Links added from four articles to their owning pages.
+Ubersuggest article generations kept (3 left). Review positions around
+2026-11-04. Also: request indexing for strapi, zoho, ios and figma
+sub-pages (not yet known to Google on 2026-10-20).

@@ -2,9 +2,9 @@
   "slug": "how-much-does-a-website-cost-in-dubai",
   "title": "How Much Does a Website Cost in Dubai? An Honest Breakdown",
   "metaTitle": "How Much Does a Website Cost in Dubai? (2026)",
-  "description": "How much a website costs in Dubai in 2026, what moves the price and what the quote leaves out, from a digital marketer who builds sites.",
+  "description": "How much does a website cost in Dubai in 2026? What moves the price and what the quote leaves out, from a digital marketer who builds sites.",
   "published": "2026-10-01",
-  "updatedAt": "2026-10-14",
+  "updatedAt": "2026-10-20",
   "tags": [
     "Dubai",
     "Web Development",
@@ -21,7 +21,11 @@
     },
     {
       "t": "h2",
-      "v": "The short answer"
+      "v": "How much does a website cost in Dubai?"
+    },
+    {
+      "t": "p",
+      "v": "It depends on who builds it more than on anything else. A template service costs a few hundred dirhams a year plus your own time, an experienced Dubai freelancer generally starts in the tens of thousands of dirhams, and agency pricing commonly starts around the middle of the freelance range and climbs steeply. Custom functionality, Arabic and a compressed timeline push any of those up."
     },
     {
       "t": "p",
@@ -242,5 +246,5 @@
       "v": "Last updated 1 October 2026. All AED figures are my own published rates, stated so there is at least one verifiable number on this page. They are not a market survey."
     }
   ],
-  "words": 1399
+  "words": 1464
 }

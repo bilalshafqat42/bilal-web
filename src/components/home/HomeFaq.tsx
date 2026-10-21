@@ -41,7 +41,7 @@ export default function HomeFaq() {
       className="scroll-mt-28 section-pad"
       rule
       eyebrow="Common questions"
-      title="The questions I get before the first call"
+      title="The questions I get as a digital marketing freelancer in Dubai"
       intro={
         <>
           Answered here so you do not have to book a call to find out. If yours is not

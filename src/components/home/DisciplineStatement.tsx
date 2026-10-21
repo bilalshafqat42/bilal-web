@@ -101,8 +101,8 @@ export default function DisciplineStatement() {
               <strong className="font-semibold text-[#14140f]">
                 One point of contact for all of it.
               </strong>{" "}
-              No account managers, no handoffs, and no week spent translating between three
-              suppliers.
+              A digital marketing freelancer in Dubai, with no account managers, no handoffs
+              and no week spent translating between three suppliers.
             </p>
 
             {/* Phones only. This band fills the first mobile screen, and the

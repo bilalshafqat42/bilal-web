@@ -186,7 +186,7 @@ export default function RealEstateMarketingPage() {
           }
           standfirst={
             <>
-              Four launches for one developer across Dubai and the UK: the page, the
+              Off-plan marketing in Dubai and the UK, for four launches by one developer: the page, the
               campaign creative and the lead capture built together by one person,
               because a launch page and the spend pointed at it optimise against each
               other when they are bought separately.
@@ -211,7 +211,7 @@ export default function RealEstateMarketingPage() {
               The parts
             </Eyebrow>
             <h2 className="t-h2 mt-4 text-ink">
-              What an off-plan launch actually needs
+              What off-plan marketing in Dubai actually needs
             </h2>
             <p className="mt-4 max-w-[62ch] text-lg leading-relaxed text-muted">
               Usually bought as four separate things from four separate suppliers, which

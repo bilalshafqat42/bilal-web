@@ -352,6 +352,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     intro:
       "LinkedIn marketing in Dubai costs several times what the other platforms do per click, and for a narrow commercial audience it is still the cheapest way to reach them. Targeting by job title, company size and seniority is something no other channel does properly, which makes it right for B2B and commercial property and wrong for most residential.",
     metaTitle: "Freelance LinkedIn Marketing in Dubai | Bilal Shafqat",
+    depthHeading: "How LinkedIn marketing services in Dubai work in practice",
     metaDescription:
       "LinkedIn marketing in Dubai for B2B and commercial property, targeted by job title and company rather than interest, and wired to your CRM.",
     faqs: [
@@ -767,7 +768,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     metaTitle: "Custom Web Application Development in Dubai | Bilal Shafqat",
     metaDescription:
       "Custom web application development in Dubai in React, Next.js and MERN: portals, dashboards and calculators wired into your CRM and ads.",
-    depthHeading: "How custom web application development works in practice",
+    depthHeading: "How custom web development in Dubai works in practice",
     related: {
       heading: "Not sure you need custom?",
       intro:
@@ -1622,8 +1623,9 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     accent: "cyan",
     headline: "What an SEO consultant in Dubai is actually hired to fix",
     intro:
-      "Two things have to be true for search to bring you work. The pages have to be readable by a crawler and aimed at what someone actually types, and the result has to be worth clicking when it appears. Most sites fail the second long before the first, and most of what an SEO consultant in Dubai gets hired for sits there: pages that rank for the company name, which only people who already know you ever search.",
+      "Two things have to be true for search to bring you work. The pages have to be readable by a crawler and aimed at what someone actually types, and the result has to be worth clicking when it appears. Most sites fail the second long before the first, and most of what a freelance SEO consultant in Dubai gets hired for sits there: pages that rank for the company name, which only people who already know you ever search.",
     metaTitle: "Freelance SEO Consultant in Dubai | Bilal Shafqat",
+    depthHeading: "How I work as a freelance SEO consultant in Dubai",
     metaDescription:
       "Freelance SEO consultant in Dubai covering technical SEO, local search and AI visibility, measured against enquiries rather than rankings.",
     // Condensed from "How long does SEO take in Dubai?"

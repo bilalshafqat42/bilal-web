@@ -22,7 +22,9 @@ export const contentDates: Record<string, string> = {
   // than written by hand. 2026-10-13: hero, about band and FAQ copy
   // rewritten in the full-site audit (0ed36bc). Earlier: the FAQ section
   // (09-30), the proof wall and timeline (09-29), the about band (09-25).
-  "/": "2026-10-14",
+  // 2026-10-20: opener line and FAQ heading name "digital marketing
+  // freelancer in Dubai".
+  "/": "2026-10-20",
   // Every route below had its copy changed on 2026-10-13 in 0ed36bc, the
   // full-site audit (roadmap 399). /pricing gained a cost heading and
   // /portfolio descriptive cover alt text on 2026-10-14.
@@ -32,7 +34,7 @@ export const contentDates: Record<string, string> = {
   // then the CRM, app and Figma sub-pages in "by platform" blocks.
   "/services": "2026-10-16",
   "/portfolio": "2026-10-14",
-  "/pricing": "2026-10-14",
+  "/pricing": "2026-10-20",
   "/faq": "2026-10-13",
   "/contact": "2026-10-13",
   "/appointment": "2026-10-13",
@@ -43,7 +45,8 @@ export const contentDates: Record<string, string> = {
   // deploy**, the exact signal this file exists to stop sending. Caught by
   // reading the rendered sitemap rather than the source: the route was dated
   // today while nothing about it had been touched.
-  "/real-estate-marketing": "2026-10-13",
+  // 2026-10-20: "off-plan marketing in Dubai" in the opener and a heading.
+  "/real-estate-marketing": "2026-10-20",
 };
 
 /** Service category pages all read from `src/data/serviceCategories.ts`,
@@ -90,7 +93,6 @@ export const SERVICE_CONTENT_DATES: Record<string, string> = {
   // the mobile and web hubs given "mobile app developer" and "web developer"
   // in Dubai; digital marketing, Google Ads, Facebook ads and paid marketing
   // link to /real-estate-marketing. Description-only changes are not dated.
-  "custom-web-development": "2026-10-19",
   "zoho-crm-integration": "2026-10-19",
   "ios-app-development": "2026-10-19",
   "android-app-development": "2026-10-19",
@@ -100,6 +102,12 @@ export const SERVICE_CONTENT_DATES: Record<string, string> = {
   "google-ads": "2026-10-19",
   "facebook-ads": "2026-10-19",
   "paid-marketing": "2026-10-19",
+  // 2026-10-20: one buyer phrase each in a heading (and for SEO, the intro):
+  // "freelance SEO consultant", "LinkedIn marketing services", "custom web
+  // development in Dubai".
+  "seo": "2026-10-20",
+  "linkedin-marketing": "2026-10-20",
+  "custom-web-development": "2026-10-20",
 };
 
 export function serviceContentDate(slug: string): string {
