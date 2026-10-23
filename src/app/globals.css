@@ -743,6 +743,199 @@ nav[aria-label="Breadcrumb"] a,
   }
 }
 
+/* ---------------------------------------------------------------------------
+   Logo intro (src/components/ui/LogoIntro.tsx).
+   ---------------------------------------------------------------------------
+
+   A 1.7s splash on the first homepage load in a tab. Every timing below is
+   measured from the moment the page first renders, which is why each part
+   uses an absolute delay rather than chaining.
+
+   **The resting styles are the end state.** The overlay is hidden unless its
+   animation is applying keyframes, and every part uses `backwards` fill: the
+   first keyframe is painted before the delay elapses, then the element falls
+   back to its resting style. If animations never run, the visitor just sees
+   the page. The overlay is white with dark ink because every page opens on
+   the white `.page-opener` band, so the fade lands on the colour it leaves.
+
+   z-index 90: above the cookie banner (60), search (70) and header (50), but
+   below the skip link's focus state (100), so a keyboard user who presses
+   Tab during the splash still sees where focus went.
+
+   **Only opacity, transform and clip-path animate. No layout, ever.** The
+   brief's version grows the name with `max-width`, which moves the lockup by
+   layout on every frame, and Chrome scores each of those frames as a layout
+   shift: CLS went from 0 to 0.005 on Lighthouse mobile. The same picture is
+   drawn here without layout. The name is laid out at full width from the
+   start and revealed left to right by `clip-path`, while the lockup starts
+   shifted right by half the name's width and slides back to centre on the
+   same curve. At every frame the mark sits exactly where the max-width
+   version would put it. Transform and clip-path never count as layout
+   shifts and run on the compositor. */
+.logo-intro {
+  /* One size drives the whole lockup: the mark's height. Its width follows
+     from the viewBox ratio (the slide needs it to centre the mark alone), and
+     the name's font size is a fixed fraction of it, so the pair always scales
+     together.
+
+     Phone: 5.2rem (83px), 30% up from the first 4rem at Bilal's request
+     (2026-10-23), but never more than 22vw. The lockup is about 4x the mark's
+     height wide, so on a 360px phone 22vw (79px) gives ~315px with Segoe UI's
+     wider bold, inside the 328px left by 16px gutters. From 390px up the
+     full 5.2rem applies. */
+  --logo-intro-h: min(5.2rem, 22vw);
+  --logo-intro-w: calc(var(--logo-intro-h) * 242 / 253);
+  --logo-intro-type: 0.469;
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  contain: strict;
+  animation: logo-intro-out 1.7s linear backwards;
+}
+
+/* The lockup is mark + name, centred as a pair. Shifting it right by
+   (50% of its width - half the mark) puts the mark alone at the centre. */
+.logo-intro-lockup {
+  display: flex;
+  align-items: center;
+  animation: logo-intro-slide 0.55s cubic-bezier(0.65, 0, 0.35, 1) 0.7s backwards;
+}
+
+.logo-intro-mark {
+  display: block;
+  width: var(--logo-intro-w);
+  height: var(--logo-intro-h);
+  flex: none;
+  overflow: visible;
+  animation: logo-intro-in 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+
+/* Both parts turn about the middle of the dark shape, in viewBox units. The
+   start pose is the gold shape at -14deg, 4 units left and 90%, with the dark
+   shape turned +12deg the other way: measured by rasterising both paths, that
+   hides every gold pixel, so the mark starts as one shape. Turning both in
+   opposite directions is what makes the split read at this size; moving the gold
+   one alone looked like a flicker. */
+.logo-intro-gold,
+.logo-intro-front {
+  transform-box: view-box;
+  transform-origin: 121px 128px;
+}
+
+.logo-intro-gold {
+  animation: logo-intro-split-gold 0.85s cubic-bezier(0.65, 0, 0.35, 1) backwards;
+}
+
+.logo-intro-front {
+  animation: logo-intro-split-front 0.85s cubic-bezier(0.65, 0, 0.35, 1) backwards;
+}
+
+.logo-intro-name {
+  display: block;
+  white-space: nowrap;
+  /* Padding, not a gap on the lockup: it is inside the clipped box, so the
+     space between mark and name opens with the name rather than before it. */
+  padding-left: 0.4em;
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: calc(var(--logo-intro-h) * var(--logo-intro-type));
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #14140f;
+  animation: logo-intro-name 0.55s cubic-bezier(0.65, 0, 0.35, 1) 0.7s backwards;
+}
+
+.logo-intro-dot {
+  color: #fbc91b;
+}
+
+@media (min-width: 640px) {
+  /* 6.825rem (109px) mark and a 54.6px name: 5.25rem and 42px plus 30%. */
+  .logo-intro {
+    --logo-intro-h: 6.825rem;
+    --logo-intro-type: 0.5;
+  }
+}
+
+@keyframes logo-intro-out {
+  0%,
+  76.5% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes logo-intro-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 0-35% of 0.85s holds the stacked state until 0.3s; the split then runs
+   0.3-0.85s on the brief's ease. */
+@keyframes logo-intro-split-gold {
+  0%,
+  35% {
+    transform: translateX(-4px) rotate(-14deg) scale(0.9);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes logo-intro-split-front {
+  0%,
+  35% {
+    transform: rotate(12deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes logo-intro-slide {
+  from {
+    transform: translateX(calc(50% - var(--logo-intro-w) / 2));
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes logo-intro-name {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+/* No intro at all for reduced motion: not a shorter one, not a fade. */
+@media (prefers-reduced-motion: reduce) {
+  .logo-intro {
+    display: none;
+  }
+}
+
 /* The hero's typewriter reveal lived here until 2026-09-24.
  *
  * Removed with the effect itself: `@keyframes type-reveal`, `.type-line`,

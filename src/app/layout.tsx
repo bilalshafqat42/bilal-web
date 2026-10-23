@@ -4,6 +4,7 @@ import Footer from "@/components/layout/Footer";
 import LeadFormPopup from "@/components/forms/LeadFormPopup";
 import WhatsAppFloat from "@/components/ui/WhatsAppFloat";
 import CookieConsent from "@/components/layout/CookieConsent";
+import LogoIntro from "@/components/ui/LogoIntro";
 import SpotlightSearch from "@/components/layout/SpotlightSearch";
 import Analytics from "@/components/seo/Analytics";
 import MetaPixel from "@/components/seo/MetaPixel";
@@ -131,6 +132,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col bg-bg text-ink">
+        {/* The logo splash. First in <body> so it arrives in the first bytes
+         * of HTML, before the page it covers can paint. In the layout, not the
+         * homepage, so a client-side navigation back to "/" never remounts it
+         * and replays it; its own script limits it to a first homepage load.
+         * Nothing in it is focusable, so the skip link below is still the
+         * first tab stop. */}
+        <LogoIntro />
         {/* Skip link — WCAG 2.4.1 Bypass Blocks, Level A.
          *
          * The site had none on any of its 31 routes, so a keyboard or screen
