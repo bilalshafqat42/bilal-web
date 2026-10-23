@@ -3,6 +3,9 @@ import PageOpener from "@/components/layout/PageOpener";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/seo/JsonLd";
 import BlogList from "@/components/article/BlogList";
+import TopicChips from "@/components/article/TopicChips";
+import { blogPosts } from "@/data/blogPosts";
+import { TOPICS, topicsFor, type TopicSlug } from "@/data/blogTopics";
 import { SITE_URL, breadcrumbNode, ID, ref } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
 import { blogPageSlice, totalBlogPages, blogPagePath } from "@/lib/blogPagination";
@@ -25,6 +28,11 @@ type Props = { params: Promise<{ n: string }> };
 export function generateStaticParams() {
   return Array.from({ length: totalBlogPages() - 1 }, (_, i) => ({ n: String(i + 2) }));
 }
+
+const topicCounts = () =>
+  Object.fromEntries(
+    TOPICS.map((t) => [t.slug, blogPosts.filter((p) => topicsFor(p).includes(t.slug)).length]),
+  ) as Record<TopicSlug, number>;
 
 const pageNumber = (n: string) => (/^\d+$/.test(n) ? Number(n) : NaN);
 
@@ -101,7 +109,12 @@ export default async function BlogPagedPage({ params }: Props) {
 
         <section className="relative section-tight">
           <div className="site-container">
-            <BlogList posts={posts} page={page} totalPages={totalPages} />
+            {/* Plain links to `/blog?topic=...`: a topic view spans every
+                article, so it lives on `/blog`, never on page N. */}
+            <TopicChips active={null} counts={topicCounts()} total={blogPosts.length} />
+            <div className="mt-10">
+              <BlogList posts={posts} page={page} totalPages={totalPages} />
+            </div>
           </div>
         </section>
       </main>

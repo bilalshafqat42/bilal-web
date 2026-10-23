@@ -20,6 +20,12 @@ list decides the `/blog` pages, the related posts and the sitemap.
    metaTitle, description, tags, image, blocks). Block types are defined in
    `src/data/blogPosts.ts`.
 
+   Tags decide the post's topic (Marketing, Development, Design, AI & Tools)
+   through `src/data/blogTopics.ts`. A new tag must be added there. For a
+   news piece tied to a dated event, add `"kind": "News"`; otherwise the label
+   is Tip (under 600 body words, a read of three minutes or less) or Guide.
+   The rule is `kindOf` in the same file.
+
 3. Check it:
 
    ```

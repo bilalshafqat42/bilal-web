@@ -12,9 +12,19 @@ import PageOpener from "@/components/layout/PageOpener";
 import CtaButton from "@/components/ui/CtaButton";
 import Reveal from "@/components/ui/Reveal";
 import JsonLd from "@/components/seo/JsonLd";
-import { SITE_URL, articleNode, breadcrumbNode } from "@/lib/schema";
+import { SITE_URL, articleNode, breadcrumbNode, faqNode } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
-import { blogPost, readingMinutes, metaTitleOf, relatedPosts } from "@/data/blogPosts";
+import {
+  blogPost,
+  readingMinutes,
+  metaTitleOf,
+  relatedPosts,
+  moreLikeThis,
+  listPostOf,
+  faqOf,
+} from "@/data/blogPosts";
+import { kindOf, topicsFor, topicBySlug } from "@/data/blogTopics";
+import { topicHref } from "@/components/article/TopicChips";
 import { blogPosts } from "@/data/blogPosts";
 import { serviceForArticle } from "@/data/articleServices";
 import Eyebrow from "@/components/ui/Eyebrow";
@@ -105,6 +115,12 @@ export default async function ArticlePage({ params }: PageProps) {
   // rather than the one block of copy every article used to share.
   const service = serviceForArticle(post);
   const toc = tocOf(post.blocks);
+  const kind = kindOf(post);
+  const topics = topicsFor(post);
+  const more = moreLikeThis(post.slug, 3).map(listPostOf);
+  // Only from a visible "Frequently asked questions" section with `h3`
+  // questions; empty for every other article. See `faqOf`.
+  const faq = faqOf(post);
 
   const nodes = [
     breadcrumbNode(url, [
@@ -128,6 +144,9 @@ export default async function ArticlePage({ params }: PageProps) {
         ? { url: `${SITE_URL}${post.image.src}`, width: post.image.width, height: post.image.height }
         : undefined,
     }),
+    // The article's own FAQ, word for word as the page shows it, and only
+    // when it has one (42 of the 83 articles on 2026-10-23).
+    ...(faq.length ? [faqNode(url, faq)] : []),
   ];
 
   return (
@@ -145,6 +164,9 @@ export default async function ArticlePage({ params }: PageProps) {
           standfirst={post.description}
           actions={
             <div className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted">
+              {/* Guide, Tip or News: the rule is `kindOf` in blogTopics.ts. */}
+              <span className="font-semibold text-gold">{kind}</span>
+              <span aria-hidden="true" className="text-border">/</span>
               <time dateTime={post.published}>{formatDate(post.published)}</time>
               {/* The same `updatedAt` the schema sends as `dateModified`.
                   Until 2026-10-19 a refreshed article showed only its 2025
@@ -160,6 +182,17 @@ export default async function ArticlePage({ params }: PageProps) {
               ) : null}
               <span aria-hidden="true" className="text-border">/</span>
               <span>{readingMinutes(post)} min read</span>
+              {/* Topics link to the filtered writing index; tags stay as
+                  plain labels. */}
+              {topics.map((t) => (
+                <Link
+                  key={t}
+                  href={topicHref(t)}
+                  className="r-chip border border-gold/30 px-3 py-1 tracking-[0.1em] text-gold transition-colors hover:border-gold/35 hover:text-ink"
+                >
+                  {topicBySlug(t).label}
+                </Link>
+              ))}
               {post.tags.map((t) => (
                 <span key={t} className="r-chip border border-border px-3 py-1 tracking-[0.1em] text-muted">
                   {t}
@@ -226,7 +259,7 @@ export default async function ArticlePage({ params }: PageProps) {
           </article>
 
           <div className="hidden xl:block">
-            <ArticleRail service={service} url={url} title={post.title} />
+            <ArticleRail service={service} url={url} title={post.title} topics={topics} more={more} />
           </div>
         </div>
 

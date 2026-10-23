@@ -1,4 +1,6 @@
 import { postsInOrder } from "../content/blog/index";
+import { topicsFor, kindOf } from "./blogTopics";
+import type { ListPost } from "@/components/article/BlogListItem";
 
 /**
  * The articles: 76 recovered WordPress posts and the ones written here since.
@@ -106,6 +108,10 @@ export type BlogPost = {
    *  recovery date for posts untouched since. Bump it by hand when you change
    *  an article's words; leave it for a typo. */
   updatedAt: string;
+  /** Optional label override: "News" for a piece tied to a dated event.
+   *  Absent, the label is derived from length. See `kindOf` in
+   *  `src/data/blogTopics.ts`. */
+  kind?: "Guide" | "Tip" | "News";
   tags: string[];
   /** A lead image for the article.
    *
@@ -250,3 +256,129 @@ export function relatedPosts(slug: string, count = 3): BlogPost[] {
   if (!list) return blogPosts.filter((p) => p.slug !== slug).slice(0, count);
   return list.slice(0, count);
 }
+
+/**
+ * "Read more like this" in the article sidebar (added 2026-10-23).
+ *
+ * Deliberately **not** the same three as "Keep reading" at the foot of the
+ * page: both are on screen on a desktop, and the same three titles twice on
+ * one page is a wasted list. So this excludes the post itself and its
+ * `relatedPosts`, keeps only posts sharing at least one topic, and ranks them:
+ *
+ *   - a shared subject tag ("Mobile Apps", "Paid Ads")    5 each
+ *   - a shared `Dubai` or `Pricing` tag                   2 each
+ *     (no topic of their own, but they mark the buyer-guide strand, so a
+ *     hiring guide offers other hiring guides before a hooks tutorial)
+ *   - a word of four letters or more shared by the two
+ *     titles and descriptions                             1 each
+ *   - a News piece                                       -3
+ *     (dated; it should not crowd out evergreen guides)
+ *
+ * Ties go to the newest, which is file order. Below `xl` the sidebar is not
+ * shown and nothing replaces it: "Keep reading" already does that job on a
+ * phone, and a second related list straight above it would be noise.
+ */
+const GENERIC_TAGS = new Set(["Dubai", "Pricing"]);
+const STOP = new Set(["with", "your", "what", "when", "which", "that", "this", "from", "into", "than", "them", "they", "their", "there", "about", "have", "will", "does", "should", "more", "most", "each", "every", "only", "also", "here", "where", "before", "after", "between", "versus", "best", "guide", "2025", "2026"]);
+const words = (p: BlogPost) =>
+  new Set(
+    `${p.title} ${p.description}`
+      .toLowerCase()
+      .split(/[^a-z0-9]+/)
+      .filter((w) => w.length >= 4 && !STOP.has(w)),
+  );
+
+export function moreLikeThis(slug: string, count = 3): BlogPost[] {
+  const self = blogPost(slug);
+  if (!self) return [];
+  const exclude = new Set([slug, ...relatedPosts(slug).map((p) => p.slug)]);
+  const topics = new Set(topicsFor(self));
+  const own = words(self);
+  return blogPosts
+    .map((p, i) => {
+      const shared = p.tags.filter((t) => self.tags.includes(t));
+      const score =
+        shared.filter((t) => !GENERIC_TAGS.has(t)).length * 5 +
+        shared.filter((t) => GENERIC_TAGS.has(t)).length * 2 +
+        [...words(p)].filter((w) => own.has(w)).length -
+        (p.kind === "News" ? 3 : 0);
+      return { post: p, i, onTopic: topicsFor(p).some((t) => topics.has(t)), score };
+    })
+    .filter((c) => !exclude.has(c.post.slug) && c.onTopic)
+    .sort((a, b) => b.score - a.score || a.i - b.i)
+    .slice(0, count)
+    .map((c) => c.post);
+}
+
+/**
+ * The questions and answers of an article's visible FAQ, for `FAQPage` schema.
+ *
+ * Strict on purpose, because the schema must describe exactly what a reader
+ * sees and nothing else:
+ *
+ *   - the section is an `h2` reading "Frequently asked questions", "FAQ" or
+ *     "FAQs" (with or without a trailing qualifier), and runs to the next `h2`;
+ *   - each question is an `h3` ending in "?";
+ *   - its answer is the `p` blocks under it, joined, with `[[label|/path]]`
+ *     reduced to the label the page shows;
+ *   - a question whose answer holds anything else (a list, code) is left
+ *     out rather than flattened into text that does not match the page;
+ *   - the dateline that closes many articles ("Published 4 October 2026...",
+ *     "Last updated...", "Every link above was opened...") sits under the last
+ *     question but answers nothing, so it is dropped.
+ *
+ * Old posts that wrote their FAQ as "Q: ... A: ..." paragraphs have no `h3`
+ * questions and get no schema; guessing where a question ends is exactly how
+ * schema drifts from the page. Fewer than two questions returns nothing.
+ */
+const FAQ_HEADING = /^(frequently asked questions|faqs?)\b/i;
+const DATELINE = /^(published|last (checked|updated)|every (tool|link))\b/i;
+const INLINE_LINK = /\[\[([^\]|]+)\|(\/[^\]]*)\]\]/g;
+
+export const articlePlainText = (s: string) => s.replace(INLINE_LINK, "$1");
+
+export function faqOf(post: BlogPost): { question: string; answer: string }[] {
+  const start = post.blocks.findIndex((b) => b.t === "h2" && FAQ_HEADING.test(b.v));
+  if (start < 0) return [];
+  const rest = post.blocks.slice(start + 1);
+  const end = rest.findIndex((b) => b.t === "h2");
+  const section = end < 0 ? rest : rest.slice(0, end);
+
+  const out: { question: string; answer: string }[] = [];
+  for (let i = 0; i < section.length; i++) {
+    const q = section[i];
+    if (q.t !== "h3") continue;
+    const body: Block[] = [];
+    for (let j = i + 1; j < section.length && section[j].t !== "h3"; j++) body.push(section[j]);
+    // The last answer in the section can be followed by the article's dateline.
+    while (body.length > 1) {
+      const last = body[body.length - 1];
+      if (last.t === "p" && DATELINE.test(last.v)) body.pop();
+      else break;
+    }
+    if (!q.v.trim().endsWith("?") || q.href) continue;
+    if (!body.length || body.some((b) => b.t !== "p")) continue;
+    // A numbered step written as a paragraph ("2. Click on Resources") is a
+    // list that lost its other items in the WordPress recovery. The page still
+    // shows it, but as an answer it reads as broken, so it stays out.
+    if (body.some((b) => /^\d+\.\s/.test((b as { v: string }).v))) continue;
+    const answer = body
+      .map((b) => articlePlainText((b as { v: string }).v).trim())
+      .join(" ");
+    out.push({ question: q.v.trim(), answer });
+  }
+  return out.length >= 2 ? out : [];
+}
+
+/** The fields one row of the writing index needs, and nothing else. Used for
+ *  the server list and for the compact list the `/blog` topic filter carries
+ *  to the browser, which must not include the article bodies. */
+export const listPostOf = (p: BlogPost): ListPost => ({
+  slug: p.slug,
+  title: p.title,
+  description: p.description,
+  published: p.published,
+  minutes: readingMinutes(p),
+  kind: kindOf(p),
+  topics: topicsFor(p),
+});

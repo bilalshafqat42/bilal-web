@@ -57,10 +57,26 @@
  *    - `published` and `updatedAt` are ISO dates and `updatedAt` is not
  *      earlier than `published`.
  *
+ *
+ * ---------------------------------------------------------------------------
+ * 5. **Topics, kinds, the sidebar list and FAQ schema** (2026-10-23).
+ *
+ *    - every tag in use is listed in `TAG_TOPIC` (`src/data/blogTopics.ts`),
+ *      so a new tag cannot quietly file a post nowhere;
+ *    - every post maps to at least one topic, or the `/blog` filter would
+ *      hide it under every chip but "All";
+ *    - an explicit `kind` is one of Guide, Tip, News;
+ *    - "Read more like this" never offers the post itself or any of its
+ *      "Keep reading" three, and shares a topic with it;
+ *    - FAQ schema: every question is an `h3` the page shows, every answer is
+ *      the visible text of the paragraphs under it, and no `[[label|/path]]`
+ *      link syntax survives into the JSON.
+ *
  * Usage:  npm run related-check
  */
 import { readdirSync } from "node:fs";
-import { blogPosts, relatedPosts } from "../src/data/blogPosts.ts";
+import { blogPosts, relatedPosts, moreLikeThis, faqOf, articlePlainText } from "../src/data/blogPosts.ts";
+import { TAG_TOPIC, KINDS, topicsFor } from "../src/data/blogTopics.ts";
 
 let failed = 0;
 const fail = (msg) => {
@@ -178,6 +194,45 @@ for (const post of blogPosts) {
   else if (post.updatedAt < post.published) fail(`${post.slug} updatedAt ${post.updatedAt} is before published ${post.published}`);
 }
 
+// 5. Topics, kinds, the sidebar list and FAQ schema.
+const topicCounts = {};
+let withFaq = 0;
+for (const post of blogPosts) {
+  for (const t of post.tags) {
+    if (!(t in TAG_TOPIC)) fail(`${post.slug} uses tag "${t}", which is not in TAG_TOPIC (src/data/blogTopics.ts)`);
+  }
+  const topics = topicsFor(post);
+  if (!topics.length) fail(`${post.slug} maps to no topic: give it a subject tag`);
+  for (const t of topics) topicCounts[t] = (topicCounts[t] ?? 0) + 1;
+  if (post.kind !== undefined && !KINDS.includes(post.kind)) fail(`${post.slug} has kind "${post.kind}", expected one of ${KINDS.join(", ")}`);
+
+  const keep = new Set(relatedPosts(post.slug).map((p) => p.slug));
+  for (const m of moreLikeThis(post.slug)) {
+    if (m.slug === post.slug) fail(`${post.slug} offers itself under "Read more like this"`);
+    if (keep.has(m.slug)) fail(`${post.slug} repeats ${m.slug} in both "Keep reading" and "Read more like this"`);
+    if (!topicsFor(m).some((t) => topics.includes(t))) fail(`${post.slug} offers off-topic ${m.slug} under "Read more like this"`);
+  }
+
+  const faq = faqOf(post);
+  if (faq.length) withFaq++;
+  const h3s = new Set(post.blocks.filter((b) => b.t === "h3").map((b) => b.v.trim()));
+  const paras = post.blocks.filter((b) => b.t === "p").map((b) => articlePlainText(b.v).trim());
+  for (const { question, answer } of faq) {
+    if (!h3s.has(question)) fail(`${post.slug} FAQ question is not a visible h3: "${question}"`);
+    if (!answer || /\[\[|\]\]/.test(answer)) fail(`${post.slug} FAQ answer is empty or carries link syntax: "${question}"`);
+    // The answer must be made of whole visible paragraphs, in order.
+    let rest = answer;
+    while (rest) {
+      const next = paras.find((p) => rest === p || rest.startsWith(`${p} `));
+      if (!next) {
+        fail(`${post.slug} FAQ answer does not match the visible text: "${question}"`);
+        break;
+      }
+      rest = rest.slice(next.length).trimStart();
+    }
+  }
+}
+
 const orphans = [...inbound].filter(([, n]) => n === 0).map(([s]) => s);
 for (const slug of orphans) fail(`${slug} is never offered as related reading by any article`);
 
@@ -193,5 +248,7 @@ console.log(
     `Inbound related links: ` +
     `min ${Math.min(...counts)}, max ${Math.max(...counts)}. ` +
     `${tagged} articles had a same-tag pool and all three links stayed on topic ` +
-    `(${offTopic} off-topic).`,
+    `(${offTopic} off-topic). ` +
+    `Topics: ${Object.entries(topicCounts).map(([t, n]) => `${t} ${n}`).join(", ")}; every post has one. ` +
+    `FAQ schema on ${withFaq} articles, all matching visible text.`,
 );

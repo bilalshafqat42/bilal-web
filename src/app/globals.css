@@ -1016,6 +1016,37 @@ nav[aria-label="Breadcrumb"] a,
   background-color: var(--color-gold);
   border-color: var(--color-gold);
 }
+/* The same chip as a link: the topic filter on /blog and the topic list in the
+   article sidebar (2026-10-23). Links rather than radios because each topic is
+   a real URL (`/blog?topic=marketing`) that works without JavaScript, can be
+   opened in a new tab and shared. `aria-current` marks the selected filter;
+   `data-on` marks the current article's own topics in the sidebar. */
+a.work-chip:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+/* Full strength on the link chips: at the shared 0.7 opacity the count
+   measured 3.96:1 on the page ground, under the 4.5:1 that Lighthouse asks
+   for at this size. */
+a.work-chip .work-chip-count {
+  opacity: 1;
+}
+.work-chip[aria-current="true"] {
+  color: var(--color-bg);
+  background-color: var(--color-gold);
+  border-color: var(--color-gold);
+}
+.work-chip[data-on] {
+  color: var(--color-ink);
+  border-color: color-mix(in oklab, var(--color-gold) 60%, transparent);
+  background-color: color-mix(in oklab, var(--color-gold) 10%, transparent);
+}
+/* The smaller chip for the 300px article sidebar, where four full-size chips
+   took three rows. */
+.work-chip--sm {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.75rem;
+}
 .work-chip-count {
   font-family: var(--font-mono, ui-monospace), monospace;
   font-size: 0.7rem;

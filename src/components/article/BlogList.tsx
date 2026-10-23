@@ -1,17 +1,8 @@
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { readingMinutes, type BlogPost } from "@/data/blogPosts";
+import { listPostOf, type BlogPost } from "@/data/blogPosts";
 import { blogPagePath } from "@/lib/blogPagination";
-import Eyebrow from "@/components/ui/Eyebrow";
-
-/** "2 Oct 2026" — UAE convention, and unambiguous where 10/02 is not. */
-const formatDate = (iso: string) =>
-  new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-    timeZone: "UTC",
-  });
+import BlogListItem from "@/components/article/BlogListItem";
 
 /**
  * The writing index list, plus its pager.
@@ -32,26 +23,7 @@ export default function BlogList({
     <>
       <ul className="border-t border-border">
         {posts.map((p) => (
-          <li key={p.slug}>
-            <Link
-              href={`/${p.slug}`}
-              className="group grid gap-3 border-b border-border py-8 transition-colors sm:grid-cols-[9rem_1fr_auto] sm:items-baseline sm:gap-6"
-            >
-              <time
-                dateTime={p.published}
-                className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted"
-              >
-                {formatDate(p.published)}
-              </time>
-              <div>
-                <h2 className="t-h5 text-ink transition-colors group-hover:text-gold">{p.title}</h2>
-                <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">{p.description}</p>
-              </div>
-              <Eyebrow tone="muted">
-                {readingMinutes(p)} min
-              </Eyebrow>
-            </Link>
-          </li>
+          <BlogListItem key={p.slug} post={listPostOf(p)} />
         ))}
       </ul>
 

@@ -3,11 +3,11 @@
   "title": "6 Unique Powerful Figma Plugins",
   "description": "Figma has revolutionized the way designers work, and its plugin ecosystem has played a significant role in enhancing productivity and creativity.",
   "published": "2025-01-30",
-  "updatedAt": "2026-09-30",
+  "updatedAt": "2026-10-23",
   "tags": [
     "Figma"
   ],
-  "words": 1030,
+  "words": 1096,
   "blocks": [
     {
       "t": "h2",
@@ -136,11 +136,7 @@
     },
     {
       "t": "p",
-      "v": "2. Click on the \"Resources\" menu"
-    },
-    {
-      "t": "p",
-      "v": "5. Click \"Install\" next to the desired plugin"
+      "v": "Figma plugins run inside Figma, so there is nothing to download. Open a design file, click Actions in the toolbar (or press Ctrl + K, or Cmd + K on a Mac) and open the Plugins & widgets tab. Search for the plugin by name and click Run to use it straight away, or save it so it is easier to find next time. You can also find a plugin on the Figma Community site and open it from there."
     },
     {
       "t": "h3",

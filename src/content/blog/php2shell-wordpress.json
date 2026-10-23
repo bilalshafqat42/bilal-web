@@ -5,6 +5,7 @@
   "description": "PHP2Shell is a critical flaw in PHP itself, disclosed on 21 October 2026. What it means for your WordPress site, and five steps to take today.",
   "published": "2026-10-23",
   "updatedAt": "2026-10-23",
+  "kind": "News",
   "tags": [
     "WordPress",
     "Web Development",

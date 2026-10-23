@@ -7,7 +7,8 @@ import JsonLd from "@/components/seo/JsonLd";
 import { SITE_URL, breadcrumbNode, ID, ref } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
 import BlogList from "@/components/article/BlogList";
-import { blogPosts } from "@/data/blogPosts";
+import BlogFilter from "@/components/article/BlogFilter";
+import { blogPosts, listPostOf } from "@/data/blogPosts";
 import { blogPageSlice, totalBlogPages } from "@/lib/blogPagination";
 import Eyebrow from "@/components/ui/Eyebrow";
 import { yearsExperience, BLOG_TITLE, BLOG_DESCRIPTION } from "@/lib/site";
@@ -114,7 +115,12 @@ export default function BlogIndexPage() {
 
         <section className="relative section-tight">
           <div className="site-container">
-            <BlogList posts={posts} page={1} totalPages={totalPages} />
+            {/* Page one stays in the server HTML as `children`; a topic
+                (`?topic=`) is applied in the browser over every article. See
+                `BlogFilter` for why this is not a category route. */}
+            <BlogFilter posts={blogPosts.map(listPostOf)}>
+              <BlogList posts={posts} page={1} totalPages={totalPages} />
+            </BlogFilter>
           </div>
         </section>
 
