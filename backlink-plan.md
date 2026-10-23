@@ -283,3 +283,25 @@ Last day: Friday 01 January 2027.
 
 Numbers 2, 4 and 5 are worth more than the other sixty combined.
 
+
+## Status and daily queue (2026-10-22)
+
+Bilal's routine from 2026-10-23: one listing a day, one Ubersuggest gap
+article a day (when the export arrives), one social post a day on all
+platforms. Google Business Profile stays blocked until the trade licence.
+
+Done: LinkedIn website fields, YouTube, Peerlist, Pinterest, Product Hunt
+profile, Stack Overflow profile. Started: Sortlist (confirm it published),
+Wellfound (education, CV, AI interview left). Closed: GoodFirms (no
+freelancers). Unknown, Bilal to confirm: Behance, Dribbble, GitHub, X,
+Instagram, Upwork, Fiverr. Blocked: Google Business Profile (licence),
+Crunchbase (login recovery), Trustpilot (needs real clients).
+
+Queue, one a day, individuals-accepted first:
+1 Sortlist finish + 3 portfolio items · 2 Bark · 3 Contra · 4 Clutch
+(check freelancer policy first) · 5 Wellfound finish · 6 PeoplePerHour ·
+7 Behance website + project links · 8 Dribbble · 9 Quora profile + one
+answer · 10 GitHub website field · 11 Gravatar + About.me · 12 DesignRush
+(policy check) · 13 Upwork · 14 Fiverr · 15 X + Instagram + Threads bio
+links · 16 Figma Community file · 17 CodePen · 18 Malt · then content
+(dev.to, Hashnode, Medium republish with canonical).

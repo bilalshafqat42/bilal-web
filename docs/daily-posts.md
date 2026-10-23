@@ -910,3 +910,75 @@ bilalshafqat.com/how-to-choose-a-mobile-app-developer-in-dubai
 ```
 Choosing a mobile app developer in Dubai? Check the business outcome, test a working build, get the code and developer accounts in your name, and make sure every lead reaches your CRM. Read the full guide.
 ```
+
+---
+
+## PHP2Shell cluster (drafted 2026-10-23, not yet live)
+
+Three articles, all dated 2026-10-23, tags WordPress, Web Development, Dubai
+(the WordPress tag routes them to `/services/wordpress-development`):
+
+| Article | Main keyword |
+| --- | --- |
+| `/php2shell-wordpress` (hub, news) | php2shell |
+| `/how-to-check-and-update-php-version-in-wordpress` | update php version wordpress |
+| `/wordpress-security-checklist` | wordpress security checklist |
+
+Sources: https://www.wiz.io/blog/php2shell-php-rce ,
+https://www.php.net/archive/2026.php#2026-10-21-5 , the WordPress Site Health
+and hardening docs, Hostinger, cPanel and Plesk help pages (linked at the foot
+of each article). No statistics, no exploit detail, no claim that any client
+site was affected. Publish all three together: they link to each other.
+
+Full URL: `https://bilalshafqat.com/php2shell-wordpress`
+
+### LinkedIn
+
+```
+A WordPress site with every plugin up to date can still be exposed this week.
+
+On 21 October, Wiz Research disclosed PHP2Shell: two critical flaws in PHP itself, the language WordPress runs on. php.net says they can allow unauthenticated remote code execution. Someone with no login could run their own code on your server.
+
+The fix is not in your WordPress dashboard. It is a PHP update on your hosting.
+
+The fixed versions, per php.net: 8.5.12, 8.4.27, 8.3.36 and 8.2.35. PHP 8.1 and older get no fixes from the PHP project at all.
+
+What to do today:
+Check your version in Tools, Site Health, Info, Server
+Back up files and database, off the server
+Update PHP, or ask your host to confirm in writing that the 21 October fixes are installed
+Test your forms and checkout afterwards
+
+If nobody in your business knows who updates PHP, that is the real gap.
+
+Plain-English guide with the full FAQ:
+bilalshafqat.com/php2shell-wordpress
+
+#WordPress #CyberSecurity #Dubai
+```
+
+### Meta (Facebook, Instagram, Threads; under 500 characters)
+
+```
+Run a WordPress site? PHP2Shell is a critical flaw in PHP itself, disclosed on 21 October. Plugin updates won't fix it. Your hosting needs to run PHP 8.5.12, 8.4.27, 8.3.36 or 8.2.35 or later.
+
+Check your version in Tools > Site Health > Info, back up, then update or ask your host.
+
+Full guide: bilalshafqat.com/php2shell-wordpress
+
+#WordPress #CyberSecurity #Dubai #DubaiBusiness
+```
+
+Instagram: link in bio. Facebook: button "Learn more" to the full URL.
+
+### X
+
+```
+PHP2Shell: two critical flaws in PHP itself, disclosed 21 Oct. A WordPress plugin update won't fix it; a PHP update on your hosting will.
+
+Fixed: 8.5.12, 8.4.27, 8.3.36, 8.2.35.
+
+What to do today: bilalshafqat.com/php2shell-wordpress
+
+#WordPress #CyberSecurity #Dubai
+```

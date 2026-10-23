@@ -12,6 +12,9 @@
  * To add a post: `node scripts/new-post.mjs <slug>` writes the file and the two
  * lines here. See docs/adding-a-blog-post.md.
  */
+import p_php2shell_wordpress from "./php2shell-wordpress.json";
+import p_how_to_check_and_update_php_version_in_wordpress from "./how-to-check-and-update-php-version-in-wordpress.json";
+import p_wordpress_security_checklist from "./wordpress-security-checklist.json";
 import p_how_to_choose_a_mobile_app_developer_in_dubai from "./how-to-choose-a-mobile-app-developer-in-dubai.json";
 import p_google_tag_manager_update_october_2026 from "./google-tag-manager-update-october-2026.json";
 import p_what_to_track_in_marketing_uae from "./what-to-track-in-marketing-uae.json";
@@ -95,6 +98,9 @@ import p_react_js_state_management_for_beginners from "./react-js-state-manageme
 
 /** Untyped here; `src/data/blogPosts.ts` applies the `BlogPost` type. */
 export const postsInOrder = [
+  p_php2shell_wordpress,
+  p_how_to_check_and_update_php_version_in_wordpress,
+  p_wordpress_security_checklist,
   p_how_to_choose_a_mobile_app_developer_in_dubai,
   p_google_tag_manager_update_october_2026,
   p_what_to_track_in_marketing_uae,

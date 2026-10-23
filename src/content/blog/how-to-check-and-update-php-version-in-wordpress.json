@@ -1,0 +1,180 @@
+{
+  "slug": "how-to-check-and-update-php-version-in-wordpress",
+  "title": "How to Check and Update the PHP Version in WordPress",
+  "metaTitle": "Update PHP Version in WordPress: Hostinger, cPanel",
+  "description": "How to check and update the PHP version in WordPress: Site Health, Hostinger hPanel, cPanel and Plesk steps, plus how to test and roll back.",
+  "published": "2026-10-23",
+  "updatedAt": "2026-10-23",
+  "tags": [
+    "WordPress",
+    "Web Development",
+    "Dubai"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "To update the PHP version in WordPress, check which version you run under Tools, Site Health, Info, then change it in your hosting control panel: PHP Configuration in Hostinger's hPanel, MultiPHP Manager in cPanel or the PHP settings in Plesk. WordPress cannot change PHP itself; your hosting does. Take a backup first, and test the pages that bring you business afterwards."
+    },
+    {
+      "t": "p",
+      "v": "The reason to do it this week: on 21 October 2026 the PHP project released security updates for two critical flaws, named PHP2Shell by the researchers who found them, in the engine underneath WordPress. I have explained what that means for business owners in [[PHP2Shell: what WordPress site owners should do now|/php2shell-wordpress]]. This guide is the practical part. If you would rather not touch the server at all, a [[WordPress developer in Dubai|/services/wordpress-development]] can do it with you."
+    },
+    {
+      "t": "h2",
+      "v": "Step 1: check your PHP version in Site Health"
+    },
+    {
+      "t": "p",
+      "v": "The quickest way to check the PHP version in WordPress is the Site Health screen. Log in as an administrator and go to Tools, then Site Health. If WordPress considers your PHP too old, the Status tab shows it as a critical issue: \"Your site is running an outdated version of PHP, which requires an update.\" For the exact number, open the Info tab and expand the Server section, where the PHP version is listed."
+    },
+    {
+      "t": "p",
+      "v": "Write down the full number, for example 8.3.36 rather than just 8.3. The last part tells you whether the latest security release is installed. Site Health only reports the version; WordPress's own documentation says you cannot configure settings from that screen."
+    },
+    {
+      "t": "h2",
+      "v": "Step 2: back up, and test on a copy first"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Take a full backup, files and database, and keep a copy off the server. Most hosts have a backup tool in the control panel, and a backup plugin works too.",
+        "Use a staging copy if your host offers one. Change PHP there first, click through the site, then repeat on the live site.",
+        "Update WordPress, your theme and your plugins before you change PHP, so each one is on its most compatible release.",
+        "Note any plugin or theme that has not been updated in years, or whose developer has stopped supporting it. Those are the ones most likely to break, and the ones to replace."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Step 3: update the PHP version in WordPress on Hostinger"
+    },
+    {
+      "t": "p",
+      "v": "In Hostinger's hPanel, go to Websites and click Dashboard next to your site, then find PHP Configuration in the sidebar. Choose the version and click Update. Hostinger says the change takes a couple of minutes and applies to every website on the same hosting plan, so check each site on the plan afterwards, not just one."
+    },
+    {
+      "t": "p",
+      "v": "Hostinger's help article also says it offers PHP 8.2 and above, and that you cannot switch back to a lower version except within the same login session if something goes wrong. That makes the backup in step 2 more important, not less. To confirm your Hostinger PHP version afterwards, open Site Health again or look at the PHP Configuration page."
+    },
+    {
+      "t": "h2",
+      "v": "Step 4: change PHP in cPanel, Plesk or managed hosting"
+    },
+    {
+      "t": "h3",
+      "v": "cPanel: MultiPHP Manager"
+    },
+    {
+      "t": "p",
+      "v": "In cPanel, open MultiPHP Manager, which most hosts place under Software. Tick the checkbox next to your domain, choose a version from the PHP Version menu and click Apply. cPanel's documentation notes that if the version you want is not listed, it is either not installed on the server or not available to your account, which is a question for your host. Some hosts replace this screen with their own PHP selector; the idea is the same."
+    },
+    {
+      "t": "h3",
+      "v": "Plesk: PHP settings"
+    },
+    {
+      "t": "p",
+      "v": "In Plesk, go to Websites & Domains, find your domain and click PHP. Make sure PHP support is ticked, choose the version from the drop-down and click OK. Plesk's documentation warns that different PHP versions are not 100% compatible, and suggests switching to a different version if the site stops displaying correctly."
+    },
+    {
+      "t": "h3",
+      "v": "Managed WordPress hosting: ask support"
+    },
+    {
+      "t": "p",
+      "v": "On managed WordPress hosting, or a server a previous developer set up, you may not see a PHP setting at all. Open a support ticket and ask three things: which PHP version the site runs, whether it includes the 21 October 2026 security fixes, and when they will move you to a supported version. Ask for the answer in writing."
+    },
+    {
+      "t": "h2",
+      "v": "Step 5: test what earns you money"
+    },
+    {
+      "t": "p",
+      "v": "Once the version has changed, check the site as a customer would, not just the homepage."
+    },
+    {
+      "t": "list",
+      "v": [
+        "Submit every enquiry form and confirm the lead arrives in your inbox or CRM.",
+        "If you sell online, run a test order through checkout and payment.",
+        "Clear the cache in your caching plugin, at your host and in any CDN such as Cloudflare, then reload the key pages.",
+        "Open Site Health again and confirm the new version under Info, Server.",
+        "Check your analytics the next day to make sure visits and conversions are still being recorded."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "What to do if the site breaks after a PHP update"
+    },
+    {
+      "t": "p",
+      "v": "A blank page, a critical error message or a broken layout straight after a PHP change usually means a plugin or theme does not support the new version. Switch PHP back to the previous version in your control panel if your host allows it, or restore the backup you took in step 2. Then find the plugin responsible, update or replace it, and try again on staging."
+    },
+    {
+      "t": "p",
+      "v": "Rolling back buys time; it is not a destination. php.net says PHP 8.1 and older no longer receive updates from the PHP project, so a site rolled back to one of those stays exposed until the plugin problem is solved."
+    },
+    {
+      "t": "h2",
+      "v": "Where these steps come from"
+    },
+    {
+      "t": "h3",
+      "v": "WordPress: the Site Health screen",
+      "href": "https://wordpress.org/documentation/article/site-health-screen/"
+    },
+    {
+      "t": "p",
+      "v": "Where Site Health lives, what the Status and Info tabs show, and the outdated PHP warning."
+    },
+    {
+      "t": "h3",
+      "v": "Hostinger: changing the PHP version in hPanel",
+      "href": "https://www.hostinger.com/support/1575755-how-can-i-change-my-php-version/"
+    },
+    {
+      "t": "p",
+      "v": "The hPanel steps, the versions offered and the note on switching back."
+    },
+    {
+      "t": "h3",
+      "v": "cPanel: MultiPHP Manager",
+      "href": "https://docs.cpanel.net/cpanel/software/multiphp-manager-for-cpanel/"
+    },
+    {
+      "t": "p",
+      "v": "How to set a PHP version per domain, and why a version may be missing from the list."
+    },
+    {
+      "t": "h3",
+      "v": "Plesk: PHP settings",
+      "href": "https://docs.plesk.com/en-US/obsidian/administrator-guide/website-management/websites-and-domains/hosting-settings/web-scripting-settings/php-settings.70742/"
+    },
+    {
+      "t": "p",
+      "v": "The Websites & Domains steps and the compatibility warning."
+    },
+    {
+      "t": "h3",
+      "v": "php.net: security advisory of 21 October 2026",
+      "href": "https://www.php.net/archive/2026.php#2026-10-21-5"
+    },
+    {
+      "t": "p",
+      "v": "The fixed versions and the support status of PHP 8.1 and older."
+    },
+    {
+      "t": "h2",
+      "v": "Make PHP part of your monthly upkeep"
+    },
+    {
+      "t": "p",
+      "v": "Most WordPress routines cover core, plugins and themes and forget the layer underneath. Add a PHP check to the same monthly list, alongside the other items in my [[WordPress security checklist|/wordpress-security-checklist]], and the next security release becomes a two-minute job rather than a scramble."
+    },
+    {
+      "t": "p",
+      "v": "If you would like a second pair of eyes before you change anything, [[book a free call|/appointment]]. We can check your version, your host's settings and what might break, together."
+    }
+  ],
+  "words": 1005
+}

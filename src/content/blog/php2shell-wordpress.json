@@ -1,0 +1,178 @@
+{
+  "slug": "php2shell-wordpress",
+  "title": "PHP2Shell: Is Your WordPress Site at Risk, and What to Do Today",
+  "metaTitle": "PHP2Shell: What WordPress Site Owners Should Do Now",
+  "description": "PHP2Shell is a critical flaw in PHP itself, disclosed on 21 October 2026. What it means for your WordPress site, and five steps to take today.",
+  "published": "2026-10-23",
+  "updatedAt": "2026-10-23",
+  "tags": [
+    "WordPress",
+    "Web Development",
+    "Dubai"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "PHP2Shell is the name Wiz Research gave to two critical vulnerabilities in PHP, the language WordPress runs on. They were made public on 21 October 2026, and php.net says they can allow unauthenticated remote code execution: someone with no login could run their own code on your web server. If your business website runs on WordPress, the fix is a PHP update on your hosting, and it is worth doing today."
+    },
+    {
+      "t": "p",
+      "v": "I have spent 17 years building websites, many of them on WordPress, and this is the kind of news that slips past busy owners because it is not about a plugin. Below is what happened in plain English, who is affected, five things to do today and straight answers to the questions business owners are asking. If you would rather hand it over, this is routine work for a [[WordPress developer in Dubai|/services/wordpress-development]]."
+    },
+    {
+      "t": "h2",
+      "v": "What PHP2Shell is, in plain English"
+    },
+    {
+      "t": "p",
+      "v": "According to Wiz, the researchers who found it, the problem sits in PHP's core engine, not in WordPress, a theme or a plugin. Wiz says the flaws can be used to run code remotely without logging in, and to read memory from the server that may hold passwords, tokens and keys. php.net rates both as critical and lists them as CVE-2026-109618 and CVE-2026-109619."
+    },
+    {
+      "t": "p",
+      "v": "Wiz says it demonstrated the attack on standard installs of WordPress, Drupal and Joomla. That matters because a well-kept WordPress site, with every plugin up to date, can still be exposed if the PHP underneath it has not been patched. I am not going to describe how the attack works. You do not need that to fix it, and the people who would misuse it do not need the help."
+    },
+    {
+      "t": "h2",
+      "v": "Which WordPress sites are affected by PHP2Shell?"
+    },
+    {
+      "t": "p",
+      "v": "In short: any site whose server runs a PHP version without the 21 October fixes. Wiz says nearly every PHP version is affected by at least one of the issues, including releases going back to PHP 5.4. The php.net advisory says all PHP installations serving web requests are at risk, including the setups hosting companies commonly use, such as PHP-FPM, Apache with mod_php and LiteSpeed."
+    },
+    {
+      "t": "p",
+      "v": "The fixed versions, released on 21 October 2026 according to php.net, are:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "PHP 8.5.12 or later",
+        "PHP 8.4.27 or later",
+        "PHP 8.3.36 or later",
+        "PHP 8.2.35 or later"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "php.net says PHP 8.1 and older no longer receive updates from the PHP project. Some Linux vendors and hosting companies backport fixes to older versions, so for a site on PHP 7.4 or 8.1 the honest answer is to ask your host, and to plan a move to a supported version either way. php.net also notes that PHP 8.2 stops receiving security fixes after 31 December 2026."
+    },
+    {
+      "t": "h2",
+      "v": "Five things to do today"
+    },
+    {
+      "t": "list",
+      "ordered": true,
+      "v": [
+        "Find your PHP version. In the WordPress dashboard, go to Tools, then Site Health, then the Info tab, and open the Server section. My step-by-step guide shows [[how to check and change PHP|/how-to-check-and-update-php-version-in-wordpress]] on Hostinger, cPanel and Plesk.",
+        "Compare it with the fixed versions above. If the last number is lower than the fixed release for your branch, assume the site is not patched. Some hosts backport fixes without changing the number, so ask them to confirm in writing.",
+        "Back up the site before you change anything: files and database, with a copy stored somewhere other than the server.",
+        "Update PHP, or ask your host to. On shared and managed hosting the host usually patches PHP for you. On a VPS or a server you run yourself, the update is yours to apply.",
+        "Test the pages that bring in business, then keep watching. Submit a contact form, run a test order if you sell online and clear any cache. Ask your host or developer to watch for the warning signs listed in the questions below for the next few weeks."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "If the server cannot be updated straight away"
+    },
+    {
+      "t": "p",
+      "v": "php.net is clear that only an update is a complete fix. For servers that cannot be updated immediately, its advisory lists temporary settings that reduce exposure to specific attack paths: turning off session upload progress (session.upload_progress.enabled = 0), turning off fatal error backtraces on PHP 8.5, and lowering the maximum size of form posts and uploads. php.net is equally clear that these do not make a server safe."
+    },
+    {
+      "t": "p",
+      "v": "These are server settings, not WordPress settings, and some can break uploads or forms if applied carelessly. Hand them to your host or developer as a stopgap with a date to patch, not as the fix. Wiz also says several hosting, CDN and security providers prepared their own interim protections, so ask yours what is in place for your site."
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "Is my WordPress site affected by PHP2Shell?"
+    },
+    {
+      "t": "p",
+      "v": "If it runs on a PHP version older than 8.5.12, 8.4.27, 8.3.36 or 8.2.35, and your host has not backported the fix, assume yes. Check the version in Site Health and confirm with your host. The answer depends on the server, not on your theme or plugins."
+    },
+    {
+      "t": "h3",
+      "v": "Does a WordPress or plugin update fix it?"
+    },
+    {
+      "t": "p",
+      "v": "No. PHP2Shell is in PHP itself, which runs underneath WordPress. Updating WordPress, your theme and your plugins is still good practice, but none of it patches PHP. The fix comes from the hosting server."
+    },
+    {
+      "t": "h3",
+      "v": "How do I know if my site was attacked?"
+    },
+    {
+      "t": "p",
+      "v": "There is no simple test a site owner can run. Wiz lists warning signs for whoever looks after the server: unusual multipart requests followed by memory-limit errors, repeated HTTP 500 errors, unexpectedly large or malformed PHPSESSID cookies and unexplained churn in PHP worker processes. Wiz also notes that application logs, including WordPress's, may show little, because the activity happens below the application. Its write-up does not say whether the flaws have been exploited in the wild."
+    },
+    {
+      "t": "p",
+      "v": "If you notice admin users you did not create, files you did not add or pages that changed on their own, treat it as an incident: involve your host, change every password and restore from a clean backup if needed."
+    },
+    {
+      "t": "h3",
+      "v": "Is my hosting company fixing it?"
+    },
+    {
+      "t": "p",
+      "v": "Many will, but do not assume. php.net says Linux distributions and long-term support vendors received the patches in advance, and Wiz says hosting and CDN providers prepared mitigations. Managed WordPress hosts usually patch PHP for you. On a VPS, or a server a previous developer set up years ago, nobody may be watching. Open a support ticket and ask two questions: which PHP version is my site on, and does it include the 21 October 2026 security fixes?"
+    },
+    {
+      "t": "h3",
+      "v": "What if my site is on PHP 7 or 8.1?"
+    },
+    {
+      "t": "p",
+      "v": "Those versions no longer get fixes from the PHP project, according to php.net. It has published minimal source backports for PHP 7.4, 8.0 and 8.1 for people who build PHP themselves, and some vendors offer patched packages, but for a business site the realistic answer is to move to a supported version. Older sites may need theme or plugin updates first, which is why a backup and a staging copy matter."
+    },
+    {
+      "t": "h3",
+      "v": "Do I need to take my site offline?"
+    },
+    {
+      "t": "p",
+      "v": "Usually not. For most business sites the faster route is a backup and a PHP update today. Taking a site offline is a decision for you and your host if the server cannot be patched or protected quickly, or if there are signs it has already been compromised. If customer data might be involved, take advice from a qualified legal professional on your obligations under UAE data protection law."
+    },
+    {
+      "t": "h2",
+      "v": "Where these facts come from"
+    },
+    {
+      "t": "h3",
+      "v": "Wiz Research: the PHP2Shell disclosure",
+      "href": "https://www.wiz.io/blog/php2shell-php-rce"
+    },
+    {
+      "t": "p",
+      "v": "Published 21 October 2026. The research, the affected versions, the disclosure timeline and the warning signs quoted above."
+    },
+    {
+      "t": "h3",
+      "v": "php.net: security advisory of 21 October 2026",
+      "href": "https://www.php.net/archive/2026.php#2026-10-21-5"
+    },
+    {
+      "t": "p",
+      "v": "The PHP project's own advisory: the two CVEs, the fixed versions, what happens to PHP 8.1 and older, and the temporary settings for servers that cannot update yet."
+    },
+    {
+      "t": "h2",
+      "v": "PHP is part of your WordPress upkeep, not a separate job"
+    },
+    {
+      "t": "p",
+      "v": "PHP2Shell is a useful reminder that a WordPress site has layers: WordPress itself, the theme, the plugins, PHP and the server. Most maintenance routines only cover the first three. If nobody in your business knows who updates PHP, that is the gap to close, and my [[WordPress security checklist|/wordpress-security-checklist]] covers the rest of the routine."
+    },
+    {
+      "t": "p",
+      "v": "Not sure which PHP version your site runs, or who is responsible for updating it? I can check it with you on a short call, not a project. [[Book a free call|/appointment]] and I will tell you where your site stands."
+    }
+  ],
+  "words": 1302
+}

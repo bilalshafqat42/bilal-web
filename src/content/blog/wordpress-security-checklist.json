@@ -1,0 +1,199 @@
+{
+  "slug": "wordpress-security-checklist",
+  "title": "The WordPress Security Checklist for Business Websites in Dubai",
+  "metaTitle": "WordPress Security Checklist: 14 Checks for Businesses",
+  "description": "A WordPress security checklist for business sites: 14 checks on updates, PHP, backups, 2FA, firewalls and who owns your hosting and domain.",
+  "published": "2026-10-23",
+  "updatedAt": "2026-10-23",
+  "tags": [
+    "WordPress",
+    "Web Development",
+    "Dubai"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "A WordPress security checklist for a business website comes down to four habits: keep everything updated, PHP included; keep tested backups away from the server; lock down who can log in; and know who owns the hosting and the domain. To secure a WordPress website properly, you need all four. These are my WordPress security tips for Dubai businesses: 14 checks that turn those habits into a list you can work through in an afternoon, then repeat every month."
+    },
+    {
+      "t": "p",
+      "v": "The timing matters. On 21 October 2026 the PHP project patched two critical flaws, named PHP2Shell, in the language WordPress runs on. If you have not dealt with that yet, start with [[what WordPress site owners should do about PHP2Shell|/php2shell-wordpress]], then come back. And if you would rather have someone run this list for you, it is part of the care work I do as a [[WordPress developer in Dubai|/services/wordpress-development]]."
+    },
+    {
+      "t": "h2",
+      "v": "Updates come first, and PHP is one of them"
+    },
+    {
+      "t": "h3",
+      "v": "1. Update WordPress, plugins and themes"
+    },
+    {
+      "t": "p",
+      "v": "WordPress's own hardening guide is direct about it: keep WordPress up to date and make sure your plugins are always updated. Turn on automatic updates for minor releases and for plugins you trust, and check the Updates screen every week for the rest."
+    },
+    {
+      "t": "h3",
+      "v": "2. Keep PHP on a supported version"
+    },
+    {
+      "t": "p",
+      "v": "PHP runs underneath WordPress and is updated by your host, not from the dashboard, so it is easy to forget. php.net says PHP 8.1 and older no longer receive fixes from the PHP project, and that PHP 8.2 stops receiving security fixes after 31 December 2026. My guide shows [[how to check and change PHP|/how-to-check-and-update-php-version-in-wordpress]] on Hostinger, cPanel and Plesk."
+    },
+    {
+      "t": "h3",
+      "v": "3. Delete the plugins and themes you do not use"
+    },
+    {
+      "t": "p",
+      "v": "A deactivated plugin is still code on your server. The hardening guide says to delete any plugin you are not using; I apply the same rule to themes, keeping one default theme as a fallback. Fewer plugins also means fewer updates and, usually, a faster site."
+    },
+    {
+      "t": "h3",
+      "v": "4. Replace abandoned plugins"
+    },
+    {
+      "t": "p",
+      "v": "On the Plugins screen, check when each one was last updated. A plugin that has not been updated in a long time, or that has been closed on the WordPress plugin directory, is worth replacing even if it still works today."
+    },
+    {
+      "t": "h2",
+      "v": "A backup only counts once you have restored it"
+    },
+    {
+      "t": "h3",
+      "v": "5. Keep backups off the server, and test them"
+    },
+    {
+      "t": "p",
+      "v": "WordPress recommends regular backups, database included, kept in a trusted location. Keep at least one copy outside the hosting account, such as in cloud storage, so a compromised or cancelled server does not take the backups with it. Once a quarter, restore one to a staging site to prove it works."
+    },
+    {
+      "t": "h2",
+      "v": "Who can log in decides how bad a breach gets"
+    },
+    {
+      "t": "h3",
+      "v": "6. Strong passwords and two-factor authentication"
+    },
+    {
+      "t": "p",
+      "v": "Every administrator needs a unique password from a password manager and two-step authentication, which the hardening guide recommends alongside a strong password. Apply the same to the hosting account, the domain registrar and the email account that can reset them all."
+    },
+    {
+      "t": "h3",
+      "v": "7. Fewer administrators"
+    },
+    {
+      "t": "p",
+      "v": "Give each person their own account with the lowest role that does the job: Editor for the marketing team, Author for writers, Administrator for one or two people. Remove accounts when people leave, including former agencies and freelancers, and avoid usernames such as admin or webmaster."
+    },
+    {
+      "t": "h3",
+      "v": "8. Protect the login page"
+    },
+    {
+      "t": "p",
+      "v": "Any public WordPress login page will see automated password guessing. Limit repeated login attempts with a security plugin or your host's tools, and where your team works from known locations, consider restricting the admin area through your firewall."
+    },
+    {
+      "t": "h2",
+      "v": "Put a shield in front of the site"
+    },
+    {
+      "t": "h3",
+      "v": "9. Use a firewall or CDN"
+    },
+    {
+      "t": "p",
+      "v": "A web application firewall filters malicious requests before they reach WordPress. Services such as Cloudflare sit in front of a site as DNS, CDN and firewall, and many hosts include one. Wiz noted that hosting, CDN and security providers prepared interim protections for PHP2Shell, which shows why this layer is worth having, though it never replaces patching."
+    },
+    {
+      "t": "h3",
+      "v": "10. HTTPS on every page"
+    },
+    {
+      "t": "p",
+      "v": "Every page, including the login and admin screens, should load over HTTPS with a valid certificate. The Info tab in Tools, Site Health tells you whether WordPress thinks the site is using HTTPS."
+    },
+    {
+      "t": "h3",
+      "v": "11. Turn off file editing and tighten permissions"
+    },
+    {
+      "t": "p",
+      "v": "Adding define( 'DISALLOW_FILE_EDIT', true ); to wp-config.php removes the theme and plugin code editors from the dashboard, so a stolen admin password cannot be used to edit code there. The hardening guide also recommends locking file permissions down as far as the site allows. Ask your developer or host to check both."
+    },
+    {
+      "t": "h2",
+      "v": "Know when something goes wrong, and who can fix it"
+    },
+    {
+      "t": "h3",
+      "v": "12. Uptime and malware monitoring"
+    },
+    {
+      "t": "p",
+      "v": "An uptime monitor tells you when the site goes down; a malware scanner from your host or a security plugin flags changed files and known malicious code. Make sure the alerts reach someone who will act on them, not a shared inbox nobody reads."
+    },
+    {
+      "t": "h3",
+      "v": "13. Own your hosting and domain accounts"
+    },
+    {
+      "t": "p",
+      "v": "The hosting account, the domain registration, DNS and any Cloudflare account should be in the company's name, with logins your business controls. If a former developer or agency holds them, move them now while relations are good. In an incident, every hour spent chasing a login is an hour the site stays exposed."
+    },
+    {
+      "t": "h3",
+      "v": "14. A monthly maintenance routine"
+    },
+    {
+      "t": "p",
+      "v": "Put it in the calendar: update core, plugins and themes; check the PHP version; review the user list; confirm last night's backup exists; scan for malware; and test the main forms. Half an hour a month is far less work than a clean-up."
+    },
+    {
+      "t": "h2",
+      "v": "Where these recommendations come from"
+    },
+    {
+      "t": "h3",
+      "v": "WordPress: hardening WordPress",
+      "href": "https://developer.wordpress.org/advanced-administration/security/hardening/"
+    },
+    {
+      "t": "p",
+      "v": "The official guide behind the update, backup, two-step login, file editing and file permission checks."
+    },
+    {
+      "t": "h3",
+      "v": "php.net: security advisory of 21 October 2026",
+      "href": "https://www.php.net/archive/2026.php#2026-10-21-5"
+    },
+    {
+      "t": "p",
+      "v": "Supported PHP versions and the PHP2Shell fixes."
+    },
+    {
+      "t": "h3",
+      "v": "Wiz Research: the PHP2Shell disclosure",
+      "href": "https://www.wiz.io/blog/php2shell-php-rce"
+    },
+    {
+      "t": "p",
+      "v": "The research, and the note on interim protections from hosting and CDN providers."
+    },
+    {
+      "t": "h2",
+      "v": "Work through this WordPress security checklist a month at a time"
+    },
+    {
+      "t": "p",
+      "v": "You do not need all 14 done by Friday. Start with PHP and backups, because those two decide whether a bad day is an inconvenience or a rebuild, then work down the list over the month."
+    },
+    {
+      "t": "p",
+      "v": "Want someone to check your WordPress site? [[Book a free call|/appointment]] and we will go through this checklist together, starting with PHP and your backups."
+    }
+  ],
+  "words": 893
+}
