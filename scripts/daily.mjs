@@ -17,6 +17,7 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync } from "node:fs";
 import { checksFor, scoreOf, text } from "./lib/score.mjs";
 import { TRACKED } from "./lib/tracked.mjs";
+import { fetchPage } from "./lib/fetchPage.mjs";
 
 /** One scorer, shared with `onpage-check.mjs`.
  *
@@ -35,12 +36,12 @@ const DIR = new URL("../.seo-snapshots/", import.meta.url).pathname;
 const today = new Date().toISOString().slice(0, 10);
 
 // ────────────────────────────────────────────────────────── measure
-const sitemap = await (await fetch(`${BASE}/sitemap.xml`)).text();
+const sitemap = await (await fetchPage(`${BASE}/sitemap.xml`)).text();
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 
 let totalWords = 0, thin = 0, broken = 0, longTitles = 0;
 for (const url of urls) {
-  const res = await fetch(url);
+  const res = await fetchPage(url);
   if (!res.ok) { broken++; continue; }
   const doc = await res.text();
   const main = doc.match(/<main[\s\S]*?<\/main>/)?.[0] ?? "";
@@ -53,7 +54,7 @@ for (const url of urls) {
 
 const pages = {};
 for (const [path, kw] of TRACKED) {
-  const res = await fetch(BASE + path);
+  const res = await fetchPage(BASE + path);
   pages[path] = res.ok ? { kw, ...score(await res.text(), kw) } : { kw, score: 0, words: 0 };
 }
 

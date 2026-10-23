@@ -27,12 +27,13 @@
 
 import { checksFor, scoreOf } from "./lib/score.mjs";
 import { TRACKED } from "./lib/tracked.mjs";
+import { fetchPage } from "./lib/fetchPage.mjs";
 
 const BASE = process.env.SITE_URL || "https://bilalshafqat.com";
 const [, , url, keyword] = process.argv;
 
 const fetchDoc = async (u) => {
-  const res = await fetch(u, { headers: { "user-agent": "onpage-check" } });
+  const res = await fetchPage(u, { headers: { "user-agent": "onpage-check" } });
   if (!res.ok) throw new Error(`${u} returned HTTP ${res.status}`);
   return res.text();
 };

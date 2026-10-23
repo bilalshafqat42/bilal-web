@@ -17,6 +17,7 @@
 
 // Same width table as `npm run serp`, so the two never disagree about a cut.
 import { px, DESC_SIZE, DESC_LIMIT } from "./lib/serpWidth.mjs";
+import { fetchPage } from "./lib/fetchPage.mjs";
 
 const BASE = (process.argv[2] || "https://bilalshafqat.com").replace(/\/$/, "");
 
@@ -31,13 +32,13 @@ const decode = (s) =>
     .replace(/&[a-z]+;/g, " ");
 const text = (s) => decode(strip(s)).replace(/\s+/g, " ").trim();
 
-const sitemap = await (await fetch(`${BASE}/sitemap.xml`)).text();
+const sitemap = await (await fetchPage(`${BASE}/sitemap.xml`)).text();
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 console.error(`Auditing ${urls.length} URLs from the sitemap…`);
 
 const rows = [];
 for (const url of urls) {
-  const res = await fetch(url);
+  const res = await fetchPage(url);
   const path = url.replace(BASE, "") || "/";
   if (!res.ok) {
     rows.push({ path, status: res.status });

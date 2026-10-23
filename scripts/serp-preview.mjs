@@ -18,6 +18,7 @@
 // The width table and limits live in lib/serpWidth.mjs, shared with
 // site-audit.mjs so both measure descriptions the same way.
 import { px, TITLE_LIMIT, DESC_LIMIT } from "./lib/serpWidth.mjs";
+import { fetchPage } from "./lib/fetchPage.mjs";
 
 const BASE = "https://bilalshafqat.com";
 const paths = process.argv.slice(2).length
@@ -43,7 +44,7 @@ function truncate(s, size, limit) {
 console.log("");
 for (const path of paths) {
   const url = BASE + path;
-  const res = await fetch(url);
+  const res = await fetchPage(url);
   if (!res.ok) { console.log(`  ${path}  HTTP ${res.status}\n`); continue; }
   const doc = await res.text();
   const title = decode((doc.match(/<title>([\s\S]*?)<\/title>/)?.[1] ?? "").trim());

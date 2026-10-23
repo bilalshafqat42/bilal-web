@@ -15,6 +15,7 @@
  *         BASE_URL=http://localhost:3020 npm run schema-check
  */
 import { readdirSync } from "node:fs";
+import { fetchPage } from "./lib/fetchPage.mjs";
 
 const BASE = (process.env.BASE_URL || "http://localhost:3000").replace(/\/$/, "");
 
@@ -51,7 +52,7 @@ const EXPECTED = [
 ];
 
 async function get(url) {
-  const res = await fetch(url, { headers: { "user-agent": "schema-check" } });
+  const res = await fetchPage(url, { headers: { "user-agent": "schema-check" } });
   if (!res.ok) throw new Error(`${res.status} ${url}`);
   return res.text();
 }

@@ -1,3 +1,4 @@
+import { fetchPage } from "./lib/fetchPage.mjs";
 /**
  * Asserts that every route in the sitemap has exactly one non-empty <h1>, and
  * that no heading loses a word boundary at a line break.
@@ -45,7 +46,7 @@ function textOf(html) {
 }
 
 async function get(url) {
-  const res = await fetch(url, { headers: { "user-agent": "h1-check" } });
+  const res = await fetchPage(url, { headers: { "user-agent": "h1-check" } });
   if (!res.ok) throw new Error(`${res.status} ${url}`);
   return res.text();
 }
