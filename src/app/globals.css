@@ -1292,6 +1292,27 @@ html[data-consent-open] .floating-enquiry {
   display: none;
 }
 
+/* The consent banner stands down while any modal dialog is open (the mobile
+ * menu, Quick Enquiry, search, the gallery lightbox), and comes back when it
+ * closes. The banner is z-[60] and the mobile drawer z-50, so it sat on top of
+ * the open menu, and the drawer's focus trap made its buttons unreachable by
+ * keyboard: visible, covering the menu, and impossible to answer (audit batch
+ * 2, 2026-10-24). The banner itself is `aria-modal="false"`, so it never
+ * matches. `data-consent-open` stays set, so the floating button stays hidden
+ * until the visitor actually answers. */
+html:has([aria-modal="true"]) .consent-banner {
+  display: none;
+}
+
+/* AboutSplit hides its text steps with opacity until the scroll reaches them.
+ * A keyboard user can Tab into a step before that, so a step holding focus is
+ * shown regardless of the scroll position. `!important` because GSAP writes
+ * the opacity and transform inline (audit batch 2, 2026-10-24). */
+.about-split [data-reveal]:focus-within {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 /* On phones the two floating buttons step aside while the visitor scrolls down,
  * and come back on any scroll up or near the end of the page.
  *
@@ -1354,6 +1375,20 @@ html[data-consent-open] .floating-enquiry {
   vertical-align: baseline;
   background: currentColor;
   animation: caret-blink 1s step-end infinite;
+}
+
+/* Restored 2026-10-24 (audit batch 2). The comment above the old typewriter
+ * notes says this was kept for `.type-caret-block`, but the keyframes had gone,
+ * so the caret was a solid bar that never blinked. Reduced motion hides the
+ * caret entirely (below), so there is nothing to guard here. */
+@keyframes caret-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

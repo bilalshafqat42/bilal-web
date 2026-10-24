@@ -61,8 +61,14 @@ export default function GalleryLightbox({
     };
   }, []);
 
+  // Keyed on whether the overlay is open, not on which slide it shows. It was
+  // keyed on `open` (the index) and focused the close button on every run, so
+  // each arrow press threw focus back to Close; a keyboard user on the Next
+  // button lost their place every slide (audit batch 2, 2026-10-24). Focus
+  // moving in on open is `useFocusTrap`'s job, below.
+  const isOpen = open !== null;
   useEffect(() => {
-    if (open === null) return;
+    if (!isOpen) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(null);
       if (e.key === "ArrowRight") go(1);
@@ -73,12 +79,11 @@ export default function GalleryLightbox({
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
-    closeRef.current?.focus();
     return () => {
       document.body.style.overflow = prev;
       window.removeEventListener("keydown", onKey);
     };
-  }, [open, go]);
+  }, [isOpen, go]);
 
   useEffect(() => {
     if (open === null) lastTrigger.current?.focus();
@@ -86,7 +91,7 @@ export default function GalleryLightbox({
 
   // This one already focused the close button and restored focus on exit — it
   // was the best of the three — and only ever needed the trap itself.
-  useFocusTrap(dialogRef, open !== null, closeRef);
+  useFocusTrap(dialogRef, isOpen, closeRef);
 
   const item = open === null ? null : gallery.items[open];
 
@@ -123,7 +128,9 @@ export default function GalleryLightbox({
               width={gallery.width}
               height={gallery.height}
               sizes={gallery.layout === "screens" ? "(min-width: 1500px) 1400px, 92vw" : "(min-width: 900px) 800px, 92vw"}
-              priority
+              // Eager: the overlay opens on a click, so there is nothing to
+              // preload in the head. Was the deprecated `priority`.
+              loading="eager"
               className="w-full rounded-xl"
             />
             <p className="mt-3 text-center text-sm text-white/70">

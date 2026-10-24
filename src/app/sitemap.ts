@@ -3,7 +3,7 @@ import { megaMenuGroups } from "@/data/pillars";
 import {
   contentDates,
   serviceContentDate,
-  PORTFOLIO_CONTENT_DATE,
+  clientContentDate,
   DISCIPLINE_CONTENT_DATE,
 } from "@/data/contentDates";
 
@@ -130,11 +130,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       // pages that convert are the ones that should be crawled first.
       priority: 0.5,
     })),
-    // All four case studies read from src/data/caseStudies.ts, so they share
-    // that file's date rather than each claiming to have changed today.
+    // Each client's pages carry that client's own date (CLIENT_CONTENT_DATES),
+    // so publishing one case study does not re-date every other one.
     ...caseStudyUrls().map((path) => ({
       url: `${baseUrl}${path}`,
-      lastModified: new Date(PORTFOLIO_CONTENT_DATE),
+      lastModified: new Date(clientContentDate(path.split("/")[2])),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),

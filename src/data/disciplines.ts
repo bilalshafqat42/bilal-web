@@ -50,6 +50,14 @@ export type Discipline = {
    *  into a section of the web development page rather than duplicating it.
    *  The menu still shows the real count, taken from `countFrom`. */
   aliasHref?: string;
+  /** Other service pages (slugs) this discipline's portfolio page is proof
+   *  for, beyond the one `serviceHref` names. Added 2026-10-24 (audit batch
+   *  2): `serviceHref` can name one page, and the mobile work is the proof for
+   *  the Website & App Development hub *and* the dedicated mobile, React
+   *  Native, iOS and Android pages. Before this the dedicated pages, the ones
+   *  that rank, showed no portfolio proof at all. Only pages the shown work
+   *  genuinely evidences. */
+  alsoProves?: string[];
   /** Discipline slug whose item count this one reports in the menu. */
   countFrom?: string;
   /** Page copy. Only meaningful for disciplines that have a page. */
@@ -141,7 +149,10 @@ export const disciplines: Discipline[] = [
     // development is the same set of captures — one set of pages looked at two
     // ways. Two pages carrying identical images would be a near-duplicate, so
     // this label lands on the design section of the development page instead.
-    serviceHref: "/services/ui-ux-design#web-design",
+    // The dedicated page since 2026-10-24; was an anchor on /services/ui-ux-design.
+    // The proof for /services/web-design comes from `web-development`, whose
+    // captures this discipline shares (`alsoProves` there).
+    serviceHref: "/services/web-design",
     aliasHref: "/portfolio/web-development#design",
     countFrom: "web-development",
   },
@@ -154,6 +165,9 @@ export const disciplines: Discipline[] = [
     blurb: "Corporate sites and off-plan launch pages, built and live",
     kinds: ["site-desktop", "site-mobile"],
     serviceHref: "/services/website-app-development#website-design-development",
+    // Every capture here is a designed web page, so it is the proof for the
+    // web design page too (web-design has no portfolio page of its own).
+    alsoProves: ["web-design"],
     page: {
       headline: "Websites and launch pages, designed and built to convert",
       intro:
@@ -212,7 +226,17 @@ export const disciplines: Discipline[] = [
     group: "Web & Apps",
     blurb: "Cross-platform iOS and Android from one codebase",
     kinds: ["app-screen"],
-    serviceHref: "/services/website-app-development#mobile-app-development",
+    // The dedicated page since 2026-10-24; was an anchor on the hub, which is
+    // why /services/mobile-app-development showed no proof. The LEOS app is
+    // React Native, one codebase for iOS and Android, so it evidences those
+    // pages and the hub as well.
+    serviceHref: "/services/mobile-app-development",
+    alsoProves: [
+      "website-app-development",
+      "react-native-development",
+      "ios-app-development",
+      "android-app-development",
+    ],
     page: {
       headline: "A cross-platform property app, from a single codebase",
       intro:
@@ -347,7 +371,10 @@ export const disciplines: Discipline[] = [
     title: "CRM Integration",
     group: "Marketing",
     blurb: "HubSpot, Zoho and Salesforce wired to the source of the lead",
-    serviceHref: "/services/crm-marketing-automation",
+    // The dedicated CRM Integration page since 2026-10-24 (was the CRM &
+    // Marketing Automation hub). Still no portfolio page: no published case
+    // study shows CRM integration work as its subject.
+    serviceHref: "/services/crm-integration",
   },
 ];
 
@@ -420,7 +447,8 @@ export function proofForService(serviceSlug: string): Discipline[] {
     (d) =>
       hasPortfolioPage(d) &&
       (d.serviceHref === `/services/${serviceSlug}` ||
-        d.serviceHref.startsWith(`/services/${serviceSlug}#`))
+        d.serviceHref.startsWith(`/services/${serviceSlug}#`) ||
+        Boolean(d.alsoProves?.includes(serviceSlug)))
   );
 }
 

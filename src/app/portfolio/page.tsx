@@ -13,16 +13,33 @@ import {
 import CaseStudyGrid from "@/components/portfolio/CaseStudyGrid";
 import Contact from "@/components/sections/Contact";
 import { SITE_URL, breadcrumbNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
-import { disciplinesWithPages } from "@/data/disciplines";
+import { disciplinesWithPages, caseStudiesForService } from "@/data/disciplines";
+import { publishedClients } from "@/data/caseStudies";
 import Eyebrow from "@/components/ui/Eyebrow";
+
+/** Small whole numbers as words, the way the copy reads ("Two clients"). */
+const WORDS = ["No", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"];
+const word = (n: number) => WORDS[n] ?? String(n);
+
+/** Counts for the copy below, derived from the published data so publishing a
+ *  client cannot leave the opener describing the old portfolio. Until
+ *  2026-10-24 the description, H1 and standfirst all described LEOS alone,
+ *  although the Texdale case study was published that day. */
+const published = publishedClients();
+const clientCount = published.length;
+const sectorCount = new Set(published.map((c) => c.industry)).size;
+// Launch pages: the projects under a client other than its featured one (the
+// LEOS sales application is featured, and is a tool rather than a launch).
+const launchCount = published
+  .flatMap((c) => c.projects.filter((p) => p.slug !== c.featured?.projectSlug))
+  .length;
 
 export const metadata: Metadata = pageMetadata({
   title: "Portfolio: Off-Plan Launches & App Work | Bilal Shafqat",
   // The old description said "browse by discipline", which described the page
   // this one replaced — the discipline browser is now a footnote below the work,
-  // not the page's purpose.
-  description:
-    "Four off-plan property launches, a corporate website and a cross-platform app for a Dubai and UK developer, with the decisions behind each.",
+  // not the page's purpose. 884px against the 920px limit (serpWidth.mjs).
+  description: `${word(clientCount)} clients, ${word(sectorCount).toLowerCase()} sectors: off-plan launches, a website and apps for a Dubai and UK developer, and full digital marketing for a UK manufacturer.`,
   path: "/portfolio",
 });
 
@@ -95,14 +112,16 @@ export default function PortfolioPage() {
           eyebrow="Selected work"
           title={
             <>
-              Four off-plan launches where{" "}
+              Property launches and B2B marketing where{" "}
               <span className="text-gradient">one person owned the page and the spend</span>
             </>
           }
           standfirst={
             <>
-              Plus a corporate website and a cross-platform app for the same Dubai and
-              UK developer. Every project below opens into the brief, the decisions
+              {word(launchCount)} off-plan launches, a corporate website, a sales
+              application and a cross-platform app for a Dubai and UK property
+              developer, and complete digital marketing for a UK textile chemicals
+              manufacturer. Every project below opens into the brief, the decisions
               behind it and what shipped.
             </>
           }
@@ -165,7 +184,9 @@ export default function PortfolioPage() {
                 </h2>
               </div>
               <p className="max-w-xs text-sm leading-relaxed text-faint sm:text-right">
-                Counts are the pieces actually shown on each page. A discipline
+                Counts are the pieces actually shown on each page.{" "}
+                <span className="text-muted">Case study</span> means the work is
+                written up in one rather than shown as a gallery. A discipline
                 marked <span className="text-muted">Service</span> has no case
                 study published yet.
               </p>
@@ -181,6 +202,12 @@ export default function PortfolioPage() {
                     {group.disciplines.map((d) => {
                       const count = disciplineCount(d);
                       const live = hasPortfolioPage(d) || Boolean(d.aliasHref);
+                      // Paid marketing leaves no capture to build a gallery
+                      // from, but the Texdale engagement covered it, so it is
+                      // not "no case study yet" (audit batch 2, 2026-10-24).
+                      const cases = caseStudiesForService(
+                        d.serviceHref.split("#")[0].replace("/services/", ""),
+                      ).length;
                       return (
                         <li key={d.slug}>
                           <Link
@@ -200,6 +227,10 @@ export default function PortfolioPage() {
                                 <span className="rounded-full border border-gold/25 bg-gold/[0.07] px-2 py-0.5 font-mono text-[0.6rem] text-gold/90">
                                   {count}
                                 </span>
+                              ) : cases > 0 ? (
+                                <Eyebrow size="sm" tone="muted">
+                                  Case study
+                                </Eyebrow>
                               ) : (
                                 <Eyebrow size="sm" tone="muted">
                                   Service

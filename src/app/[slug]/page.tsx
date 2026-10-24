@@ -247,7 +247,7 @@ export default async function ArticlePage({ params }: PageProps) {
                 width={post.image.width}
                 height={post.image.height}
                 sizes="(min-width: 1024px) 720px, 92vw"
-                priority
+                preload
                 className="mb-10 w-full"
               />
             ) : null}

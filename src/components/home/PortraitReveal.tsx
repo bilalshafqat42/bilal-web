@@ -52,14 +52,15 @@ export default function PortraitReveal({
   alt,
   sizes,
   className = "",
-  priority = false,
+  preload = false,
 }: {
   src: string;
   alt: string;
   sizes: string;
   /** Applied to both copies: object-fit, object-position, tone adjustments. */
   className?: string;
-  priority?: boolean;
+  /** Next 16's `preload` (the deprecated `priority`), passed to the image. */
+  preload?: boolean;
 }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const reduced = useRef(false);
@@ -113,7 +114,7 @@ export default function PortraitReveal({
         alt={alt}
         fill
         sizes={sizes}
-        priority={priority}
+        preload={preload}
         className={`portrait-layer grayscale ${className}`}
       />
 

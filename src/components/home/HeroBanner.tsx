@@ -167,7 +167,7 @@ export default function HeroBanner() {
             // a soft portrait in the first thing anyone sees (roadmap 213.18).
             sizes="(min-width: 1024px) 46vw, 100vw"
             className="object-cover object-[50%_15%] brightness-[1.04] contrast-[1.12] lg:origin-top lg:scale-[1.035]"
-            priority
+            preload
           />
         </div>
       </div>

@@ -72,6 +72,38 @@ for (const d of data) {
   }
 }
 
+// Content dates. A warning, not a failure: a commit to a data file can be a
+// type or a draft change that alters no published copy. But the dates in
+// `contentDates.ts` drifted for weeks without anyone noticing (audit batch 2,
+// 2026-10-24: DISCIPLINE_CONTENT_DATE said 09-09 while disciplines.ts had
+// changed five times since), so the check at least says so.
+const datesOut = execFileSync("npx", ["--yes", "tsx", "-e",
+  'import * as d from "./src/data/contentDates"; console.log(JSON.stringify({ p: d.PORTFOLIO_CONTENT_DATE, d: d.DISCIPLINE_CONTENT_DATE, c: d.CLIENT_CONTENT_DATES }));'
+], { encoding: "utf8" });
+const dates = JSON.parse(datesOut.trim().split("\n").pop());
+const lastCommit = (file) => {
+  try {
+    return execFileSync("git", ["log", "-1", "--format=%cs", "--", file], { encoding: "utf8" }).trim();
+  } catch {
+    return ""; // not a git checkout (a deploy bundle): nothing to compare
+  }
+};
+const newestClient = [dates.p, ...Object.values(dates.c)].sort().pop();
+const dateChecks = [
+  ["src/data/caseStudies.ts", newestClient, "PORTFOLIO_CONTENT_DATE / CLIENT_CONTENT_DATES"],
+  ["src/data/caseStudyDepth.ts", newestClient, "PORTFOLIO_CONTENT_DATE / CLIENT_CONTENT_DATES"],
+  ["src/data/disciplines.ts", dates.d, "DISCIPLINE_CONTENT_DATE"],
+];
+for (const [file, recorded, name] of dateChecks) {
+  const committed = lastCommit(file);
+  if (committed && committed > recorded) {
+    console.warn(
+      `Warning: ${file} last committed ${committed}, but ${name} in src/data/contentDates.ts ` +
+      `says ${recorded}. If published copy changed, update the date.`
+    );
+  }
+}
+
 if (errors.length) {
   console.error("Discipline routes and data are out of step:\n");
   for (const e of errors) console.error("  - " + e);

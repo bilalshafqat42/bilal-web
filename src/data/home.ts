@@ -127,7 +127,7 @@ export const audiences: Audience[] = [
     icon: Network,
     title: "Agencies & Consulting Partners",
     description: "White-label or collaborative support for agencies that need reliable delivery on marketing, design, or dev.",
-    bullets: ["Paid ads & landing page execution", "Web, mobile & MERN development support", "Design & social content production"],
+    bullets: ["Paid ads & landing page execution", "Landing pages, websites & app builds", "Design & social content production"],
     note: "Agencies that value clarity, quality, and dependable delivery.",
   },
 ];
@@ -162,7 +162,9 @@ export const resultStatsFor = (): Stat[] => [
     value: "3",
     label: "Disciplines, one contract",
     detail: "Marketing, design and development under one agreement",
-    meta: "No subcontractors",
+    // "No subcontractors" until 2026-10-24, which contradicted the FAQ's
+    // "Nothing is subcontracted without telling you first".
+    meta: "No hidden subcontractors",
     verified: true,
   },
 ];

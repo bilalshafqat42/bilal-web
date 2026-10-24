@@ -12,7 +12,7 @@ import PageOpener from "@/components/layout/PageOpener";
 import { getClient, routableClients, SHOW_DRAFTS } from "@/data/caseStudies";
 import { SITE_URL as SITE, jsonLdSafe } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
-import { PORTFOLIO_CONTENT_DATE } from "@/data/contentDates";
+import { clientContentDate } from "@/data/contentDates";
 import Eyebrow from "@/components/ui/Eyebrow";
 
 /**
@@ -119,7 +119,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
     inLanguage: "en",
     // The date the case study data last changed, not the build date: `new
     // Date()` here told search engines every case study changed on every deploy.
-    dateModified: PORTFOLIO_CONTENT_DATE,
+    dateModified: clientContentDate(client),
     genre: "Mobile application case study",
     // `lead` is optional on the type, so the property is omitted rather than
     // asserted — an `image` key pointing at undefined is worse than no key.
@@ -224,7 +224,7 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                   height={app.lead.height}
                   sizes="(min-width: 1024px) 620px, 100vw"
                   className="h-auto w-full"
-                  priority
+                  preload
                 />
               </Reveal>
             ) : null
@@ -422,7 +422,6 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                           alt={s.capture.alt}
                           fill
                           sizes="(min-width: 1280px) 1200px, 100vw"
-                          priority={i === 0}
                           className="object-cover object-center"
                         />
                       </div>
@@ -441,7 +440,6 @@ export default async function MobileAppCaseStudy({ params }: Props) {
                           width={s.capture.width}
                           height={s.capture.height}
                           sizes="(min-width: 640px) 360px, 70vw"
-                          priority={i === 0}
                           className="h-auto max-h-[820px] w-auto max-w-[70vw] rounded-xl shadow-2xl shadow-black/50 sm:max-w-[380px]"
                         />
                       </div>

@@ -38,10 +38,14 @@ export default function LeadFormPopup() {
       if (e.key === "Escape") setOpen(false);
     };
     document.addEventListener("keydown", onKeyDown);
+    // Restores what was there rather than "", same as the mobile drawer and
+    // the lightbox: clearing it outright would unlock a page another overlay
+    // still holds (audit batch 2).
+    const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = "";
+      document.body.style.overflow = prevOverflow;
     };
   }, [open]);
 
@@ -208,6 +212,7 @@ export default function LeadFormPopup() {
                       id="lead-name"
                       name="name"
                       type="text"
+                      autoComplete="name"
                       required
                       className="mt-1.5 w-full rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-faint outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20"
                       placeholder="Your name"
@@ -222,6 +227,7 @@ export default function LeadFormPopup() {
                       id="lead-email"
                       name="email"
                       type="email"
+                      autoComplete="email"
                       required
                       className="mt-1.5 w-full rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-faint outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20"
                       placeholder="you@company.com"
@@ -236,6 +242,7 @@ export default function LeadFormPopup() {
                       id="lead-phone"
                       name="phone"
                       type="tel"
+                      autoComplete="tel"
                       className="mt-1.5 w-full rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-faint outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20"
                       placeholder="+971 5X XXX XXXX"
                     />

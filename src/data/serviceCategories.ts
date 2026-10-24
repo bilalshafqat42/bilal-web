@@ -1734,7 +1734,9 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     items: [
       { title: "Email Marketing", pillarSlug: "paid-marketing" },
       { title: "WhatsApp Marketing", pillarSlug: "paid-marketing" },
-      { title: "CRM & MarTech Integration", pillarSlug: "crm-marketing-automation" },
+      // "CRM & MarTech Integration" was listed here until 2026-10-24. No section
+      // on either pillar has that title, so the page silently dropped it while
+      // the menu rail, /services and llms.txt still listed it (audit batch 2).
     ],
   },
   {

@@ -162,11 +162,11 @@ export default function AppointmentPage() {
             src="/images/bilal-shirt.avif"
             alt="Bilal Shafqat"
             fill
-            // In Next 16 `priority` adds the preload link but no
-            // `fetchpriority="high"`, so the LCP image (on a phone too) was
-            // fetched at default priority. Full bleed at every width, so 100vw
-            // is the tight value here, not a lazy one.
-            priority
+            // In Next 16 `preload` (formerly `priority`, now deprecated) adds the
+            // preload link but no `fetchpriority="high"`, so the LCP image (on a
+            // phone too) was fetched at default priority. Full bleed at every
+            // width, so 100vw is the tight value here, not a lazy one.
+            preload
             fetchPriority="high"
             sizes="100vw"
             className="object-cover brightness-[1.04] contrast-[1.12] grayscale"

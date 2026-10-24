@@ -101,8 +101,8 @@ export default async function BlogPagedPage({ params }: Props) {
           title="Writing"
           standfirst={
             <>
-              Page {page} of {totalPages}. Notes on the things I hit in client work, from React
-              hooks to the design references I keep going back to.
+              Page {page} of {totalPages}. Marketing notes for Dubai businesses deciding where
+              their budget goes, plus the older design and development notes from client builds.
             </>
           }
         />

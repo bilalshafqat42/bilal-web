@@ -12,7 +12,7 @@ import GalleryLightbox from "@/components/portfolio/GalleryLightbox";
 import Reveal from "@/components/ui/Reveal";
 import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/portfolio/CaseStudyParts";
 import { getClient, routableClients, SHOW_DRAFTS } from "@/data/caseStudies";
-import { PORTFOLIO_CONTENT_DATE } from "@/data/contentDates";
+import { clientContentDate } from "@/data/contentDates";
 import CtaButton from "@/components/ui/CtaButton";
 import DeviceFrame from "@/components/portfolio/DeviceFrame";
 import { jsonLdSafe } from "@/lib/schema";
@@ -100,7 +100,7 @@ export default async function ClientCaseStudy({ params }: Props) {
     inLanguage: "en",
     // When the case study data last changed, not the build date. `new Date()`
     // told search engines every case study changed on every deploy.
-    dateModified: PORTFOLIO_CONTENT_DATE,
+    dateModified: clientContentDate(client),
     // Was "Real estate marketing case study" for every client, which became
     // untrue with Texdale (2026-10-24).
     genre:
@@ -148,7 +148,7 @@ export default async function ClientCaseStudy({ params }: Props) {
                 alt={c.name}
                 width={c.logoWidth ?? 2000}
                 height={c.logoHeight ?? 551}
-                priority
+                preload
                 // White marks are silhouetted for the light band; a coloured
                 // mark (Texdale's four-colour bar) ships a dark file instead
                 // and is shown as it is. See `.client-mark` in globals.css.

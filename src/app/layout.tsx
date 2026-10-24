@@ -130,7 +130,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
+    // `data-scroll-behavior="smooth"`: globals.css sets `scroll-behavior:
+    // smooth` for in-page anchors, and since Next 16 the router no longer
+    // switches it off during a route change unless this attribute is present,
+    // so every page change smooth-scrolled to the top (Next 16 upgrade guide,
+    // "Scroll Behavior Override"; audit batch 2).
+    <html lang="en" className="h-full antialiased" data-scroll-behavior="smooth">
       <body className="min-h-full flex flex-col bg-bg text-ink">
         {/* The logo splash. First in <body> so it arrives in the first bytes
          * of HTML, before the page it covers can paint. In the layout, not the

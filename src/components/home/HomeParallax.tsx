@@ -74,6 +74,10 @@ import { useEffect, useRef, type ReactNode } from "react";
  *  full-bleed and unpinned — the very state this is built to prevent. */
 const OPEN_AT = "top top";
 
+/** Where the animation runs. Checked before gsap is imported, and again by
+ *  `gsap.matchMedia` once it is, which tears the animation down on a resize. */
+const MOTION_QUERY = "(min-width: 1024px) and (prefers-reduced-motion: no-preference)";
+
 /** Seconds the hero takes to open or close.
  *
  *  Long enough to read as one object changing size rather than a cut, short
@@ -120,7 +124,19 @@ export default function HomeParallax({
     let cleanup: (() => void) | undefined;
     let cancelled = false;
 
-    (async () => {
+    // Check the media query **before** importing anything. Until 2026-10-24
+    // gsap and ScrollTrigger (about 50 KB) were downloaded on every phone and
+    // then told by `gsap.matchMedia` to do nothing (audit batch 2). Now a phone,
+    // or a desktop with reduced motion, never fetches them; a window resized up
+    // to desktop width loads them at that moment.
+    const query = window.matchMedia(MOTION_QUERY);
+    const onQueryChange = (e: MediaQueryListEvent) => {
+      if (!e.matches) return;
+      query.removeEventListener("change", onQueryChange);
+      void load();
+    };
+
+    const load = async () => {
       // Dynamic, so gsap lands in its own async chunk rather than the
       // homepage's initial payload. See the note at the top of this file.
       const [{ gsap }, { ScrollTrigger }] = await Promise.all([
@@ -137,7 +153,7 @@ export default function HomeParallax({
       const mm = gsap.matchMedia();
 
       mm.add(
-        "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
+        MOTION_QUERY,
         () => {
           let lastWidth = -1;
           let lastFill = -1;
@@ -246,10 +262,14 @@ export default function HomeParallax({
       );
 
       cleanup = () => mm.revert();
-    })();
+    };
+
+    if (query.matches) void load();
+    else query.addEventListener("change", onQueryChange);
 
     return () => {
       cancelled = true;
+      query.removeEventListener("change", onQueryChange);
       cleanup?.();
     };
   }, []);

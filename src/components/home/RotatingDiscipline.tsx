@@ -131,6 +131,10 @@ export default function RotatingDiscipline({ paused = false }: { paused?: boolea
     return () => {
       cancelled = true;
       if (timer.current) clearTimeout(timer.current);
+      // Pausing stopped the loop wherever it was, which could leave "paid a"
+      // on screen for as long as the pause lasted (audit batch 2). Back to the
+      // resting phrase, so a resume also starts from a whole sentence.
+      setText(FINAL);
     };
   }, [paused]);
 
@@ -163,7 +167,9 @@ export default function RotatingDiscipline({ paused = false }: { paused?: boolea
     // block renders at 2.4rem on a phone and 4.6rem at desktop, and a fixed 4px
     // is proportionally very different at each.
     <span className="inline-block w-fit whitespace-nowrap rounded-lg bg-gold px-[0.18em] py-[0.04em] leading-[1.25] text-[#14140f]">
-      {text || " "}
+      {/* The resting phrase while paused, for the render before the cleanup's
+          reset lands. */}
+      {(paused ? FINAL : text) || " "}
       <span aria-hidden="true" className={paused ? "hidden" : "type-caret-block"} />
     </span>
   );

@@ -224,7 +224,7 @@ export default function DisciplinePage({ slug }: { slug: string }) {
               {/* Why this page exists next to its siblings. Several of these
                   cuts draw on overlapping captures, and saying so is better than
                   letting a reader wonder whether they have looped. */}
-              <p className="border-l-2 border-gold/60 pl-5 text-sm leading-relaxed text-muted/85">
+              <p className="border-l-2 border-gold/60 pl-5 text-sm leading-relaxed text-muted">
                 {d.page.lens}
               </p>
             </>

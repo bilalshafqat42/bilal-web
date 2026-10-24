@@ -19,7 +19,9 @@ export const metadata: Metadata = {
 /** Shown on the page so a visitor can tell whether what they are reading is
  *  current. Update it whenever the rows below change. */
 // 13 October 2026: the lead-backup row was added (0ed36bc, roadmap 399).
-const LAST_UPDATED = "13 October 2026";
+// 24 October 2026: cookie names and lifetimes added to the Google Analytics and
+// Meta rows, to match the rewritten cookie banner (audit batch 2).
+const LAST_UPDATED = "24 October 2026";
 
 const rows = [
   {
@@ -35,8 +37,8 @@ const rows = [
     optional: "Yes. Decline on the banner and nothing is stored.",
   },
   {
-    what: "Google Analytics (GA4): pages you visit, roughly where you are, and what kind of device you use",
-    where: "Sent to Google, which may transfer it outside the UAE",
+    what: "Google Analytics (GA4): pages you visit, roughly where you are, and what kind of device you use. If you accept, it sets _ga cookies identifying your browser, which last up to two years",
+    where: "Sent to Google, which may transfer it outside the UAE. Accepting also lets Google use it to measure and personalise advertising",
     why: "So I can see which pages people actually read and which ones are not working.",
     optional:
       "Partly. The script loads on every page, but it is set to store nothing until you accept. Decline and it keeps storing nothing.",
@@ -48,7 +50,7 @@ const rows = [
     optional: "Yes. The calendar only loads if you press \u201cShow available times\u201d, and nothing is sent unless you book.",
   },
   {
-    what: "Meta (Facebook) Pixel: page views, and an `_fbp` cookie identifying your browser",
+    what: "Meta (Facebook) Pixel: page views, and an _fbp cookie identifying your browser, which lasts 90 days",
     where: "Sent to Meta Platforms Ireland, which may transfer it outside the UAE",
     why: "So I can measure and retarget advertising. It loads only after you accept.",
     optional: "Yes. Decline on the banner and the pixel never loads at all.",

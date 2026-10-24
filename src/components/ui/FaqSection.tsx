@@ -105,7 +105,7 @@ export default function FaqSection({
           <div className="divide-y divide-border border-t border-border">
             {faqs.map((f) => (
               <div key={f.question} className="py-7 first:pt-8">
-                <h3 className="text-lg font-semibold text-ink sm:text-xl">{f.question}</h3>
+                <h3 className="t-h5 text-ink">{f.question}</h3>
                 {/* Capped in `ch`, not by a container width: the problem is the
                     ratio of font size to column, not the page. */}
                 <p className="mt-3 max-w-[68ch] text-base leading-relaxed text-muted">

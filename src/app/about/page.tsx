@@ -2,10 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { pageMetadata, yearsExperience } from "@/lib/site";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Code2, Palette, Target } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SocialLinks from "@/components/ui/SocialLinks";
-import { pillars, accentClasses } from "@/data/pillars";
+import { homeDisciplines, accentClasses, type Accent } from "@/data/pillars";
 import CtaButton from "@/components/ui/CtaButton";
 import SecondaryButton from "@/components/ui/SecondaryButton";
 import PageOpener from "@/components/layout/PageOpener";
@@ -54,6 +54,18 @@ const stack = [
     ],
   },
 ];
+
+/**
+ * Icon and accent for each of the three disciplines on this page. Kept here
+ * rather than on `homeDisciplines`, which the homepage ledger renders without
+ * icons. Until 2026-10-24 this section rendered the four `pillars` under a
+ * sentence that says "Three disciplines", which a reader could count.
+ */
+const disciplineLook: Record<string, { icon: typeof Target; accent: Accent }> = {
+  Marketing: { icon: Target, accent: "gold" },
+  Design: { icon: Palette, accent: "cyan" },
+  Development: { icon: Code2, accent: "violet" },
+};
 
 const principles = [
   {
@@ -153,9 +165,10 @@ export default function AboutPage() {
                 // across it — a soft portrait in the first thing anyone sees.
                 sizes="(min-width: 1024px) 46vw, 100vw"
                 className="hero-portrait object-cover object-[50%_15%] brightness-[1.04] contrast-[1.12] grayscale lg:origin-top lg:scale-[1.035]"
-                priority
+                preload
                 // The LCP element on a phone. See the appointment page:
-                // `priority` no longer sets this by itself.
+                // `preload` (was `priority`, deprecated in Next 16) does not set
+                // this by itself.
                 fetchPriority="high"
               />
             </div>
@@ -175,18 +188,15 @@ export default function AboutPage() {
               </p>
             </Reveal>
 
-            <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
-              {pillars.map((pillar, i) => {
-                const accent = accentClasses[pillar.accent];
-                const Icon = pillar.icon;
+            <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+              {homeDisciplines.map((discipline, i) => {
+                const look = disciplineLook[discipline.label] ?? disciplineLook.Marketing;
+                const accent = accentClasses[look.accent];
+                const Icon = look.icon;
                 return (
-                  <Reveal key={pillar.slug} delay={i * 0.08}>
+                  <Reveal key={discipline.label} delay={i * 0.08}>
                     <Link
-                      // `ledgerHref` where the pillar has one, same as the
-                      // homepage ledger. `design-content-conversion` was retired
-                      // and 308s to the services hub, so linking the raw slug
-                      // sent every visitor from this page through a redirect.
-                      href={pillar.ledgerHref ?? `/services/${pillar.slug}`}
+                      href={discipline.href}
                       className="card-hover group flex h-full flex-col r-card surface-1 p-7"
                     >
                       <span
@@ -194,12 +204,15 @@ export default function AboutPage() {
                       >
                         <Icon size={20} className={accent.icon} />
                       </span>
-                      <h3 className="t-h4 mt-5 text-ink">{pillar.label}</h3>
+                      <h3 className="t-h4 mt-5 text-ink">{discipline.label}</h3>
                       <p className="mt-3 text-sm text-muted leading-relaxed">
-                        {pillar.shortDescription}
+                        {discipline.summary}
                       </p>
-                      <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
-                        Explore this pillar{" "}
+                      <p className="mt-4 text-xs leading-relaxed text-muted">
+                        {discipline.tags.map((t) => t.label).join(" · ")}
+                      </p>
+                      <span className="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-semibold text-gold">
+                        Explore {discipline.label.toLowerCase()}{" "}
                         <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
                       </span>
                     </Link>
@@ -215,7 +228,7 @@ export default function AboutPage() {
             <div className="max-w-3xl">
               <Reveal>
                 <Eyebrow>The short version</Eyebrow>
-                <h2 className="t-h2 mt-4 text-ink">How one person ended up doing four jobs</h2>
+                <h2 className="t-h2 mt-4 text-ink">How one person ended up doing three jobs</h2>
                 <p className="mt-6 text-base leading-relaxed text-muted">
                   Not by plan. I started on the build side, writing code and designing
                   interfaces, and kept being handed campaigns that pointed at pages
@@ -236,7 +249,9 @@ export default function AboutPage() {
                 <h2 className="t-h2 mt-14 text-ink">What I am not</h2>
                 <p className="mt-6 text-base leading-relaxed text-muted">
                   Not an agency, and not a freelancer with a network of subcontractors
-                  behind a single invoice. One person, which has a real cost: there is a
+                  behind a single invoice. I do the work myself, and if a job ever needs
+                  a specialist, you hear about it before anyone else touches it. One
+                  person, which has a real cost: there is a
                   ceiling on capacity and no cover if I am unavailable. For a programme
                   running across six channels every week, an agency is the better answer
                   and I will say so.

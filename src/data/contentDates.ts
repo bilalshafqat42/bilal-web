@@ -31,18 +31,26 @@ export const contentDates: Record<string, string> = {
   // full-site audit (roadmap 399). /pricing gained a cost heading and
   // /portfolio descriptive cover alt text on 2026-10-14.
   // 2026-10-16: build stack names Strapi; design tools named.
-  "/about": "2026-10-16",
+  // 2026-10-19: "Industries I have worked in" (roadmap 417), which this line
+  // missed. 2026-10-24: the work section shows the three disciplines rather
+  // than four pillar cards; subcontracting sentence (audit batch 2).
+  "/about": "2026-10-24",
   // 2026-10-16: the CMS and custom development pages added to the listing,
   // then the CRM, app and Figma sub-pages in "by platform" blocks.
   "/services": "2026-10-16",
-  "/portfolio": "2026-10-14",
+  // 2026-10-24: opener and description cover Texdale as well as LEOS; paid
+  // marketing marked as having a case study (audit batch 2).
+  "/portfolio": "2026-10-24",
   "/pricing": "2026-10-20",
-  "/faq": "2026-10-13",
+  // 2026-10-24: the industry answer names both published sectors.
+  "/faq": "2026-10-24",
   "/contact": "2026-10-13",
   // 2026-10-24: description no longer leads with the name (roadmap 420).
   "/appointment": "2026-10-24",
   "/process": "2026-10-13",
-  "/privacy": "2026-10-13",
+  // 2026-10-24: cookie names and lifetimes (audit batch 2). The page's own
+  // LAST_UPDATED says the same.
+  "/privacy": "2026-10-24",
   // Was missing entirely until 2026-09-29, so `dateFor` fell back to
   // `Date.now()` and this page told Google it had changed **on every single
   // deploy**, the exact signal this file exists to stop sending. Caught by
@@ -86,7 +94,6 @@ export const SERVICE_CONTENT_DATES: Record<string, string> = {
   "hubspot-integration": "2026-10-16",
   "salesforce-integration": "2026-10-16",
   "custom-crm-development": "2026-10-16",
-  "react-native-development": "2026-10-16",
   "app-backend-development": "2026-10-16",
   "figma-design": "2026-10-16",
   "crm-marketing-automation": "2026-10-16",
@@ -99,10 +106,12 @@ export const SERVICE_CONTENT_DATES: Record<string, string> = {
   // in Dubai; digital marketing, Google Ads, Facebook ads and paid marketing
   // link to /real-estate-marketing. Description-only changes are not dated.
   "zoho-crm-integration": "2026-10-19",
-  "ios-app-development": "2026-10-19",
-  "android-app-development": "2026-10-19",
+  // ios and android: 2026-10-24, proof block added (audit batch 2).
+  "ios-app-development": "2026-10-24",
+  "android-app-development": "2026-10-24",
   "website-app-development": "2026-10-19",
-  "digital-marketing": "2026-10-19",
+  // 2026-10-24: two FAQ answers name the UAE and the UK, matching areaServed.
+  "digital-marketing": "2026-10-24",
   "facebook-ads": "2026-10-19",
   // 2026-10-20: one buyer phrase each in a heading (and for SEO, the intro):
   // "freelance SEO consultant", "LinkedIn marketing services", "custom web
@@ -114,6 +123,9 @@ export const SERVICE_CONTENT_DATES: Record<string, string> = {
   // web design a short UAE and Abu Dhabi section; graphic design a reworded
   // FAQ question. Web design and graphic design are dated in place above.
   "seo": "2026-10-24",
+  // 2026-10-24 (audit batch 2): the mobile, React Native, iOS and Android
+  // pages and web design now show their portfolio proof block.
+  "react-native-development": "2026-10-24",
   "mobile-app-development": "2026-10-24",
   "google-ads": "2026-10-24",
   "paid-marketing": "2026-10-24",
@@ -132,12 +144,35 @@ export function serviceContentDate(slug: string): string {
  *  src/data/caseStudies.ts`), so the older date understated a page that did
  *  not exist on 08-28. 2026-10-14: every project card now carries descriptive
  *  alt text. Refresh it when case study copy changes. */
-export const PORTFOLIO_CONTENT_DATE = "2026-10-14";
+export const PORTFOLIO_CONTENT_DATE = "2026-10-24";
+
+/** Each published client's own date, for its case study pages (overview,
+ *  projects, app page). Added 2026-10-24 (audit batch 2): one shared date meant
+ *  publishing Texdale either left it dated 10-14, before it existed, or told
+ *  Google every LEOS page changed the day Texdale went up.
+ *
+ *  From `git log` on the client's lines in `caseStudies.ts` and
+ *  `caseStudyDepth.ts`: LEOS last changed on 2026-10-16 (the app wording in
+ *  2978560), Texdale was published on 2026-10-24 (cca652b). A client not
+ *  listed falls back to `PORTFOLIO_CONTENT_DATE`. */
+export const CLIENT_CONTENT_DATES: Record<string, string> = {
+  "leos-developments": "2026-10-16",
+  texdale: "2026-10-24",
+};
+
+export function clientContentDate(clientSlug: string): string {
+  return CLIENT_CONTENT_DATES[clientSlug] ?? PORTFOLIO_CONTENT_DATE;
+}
 
 /** Discipline pages carry their own copy in `src/data/disciplines.ts` as well
  *  as the shared captures, so they date from when that copy was written rather
- *  than from the case study data. */
-export const DISCIPLINE_CONTENT_DATE = "2026-09-09";
+ *  than from the case study data.
+ *
+ *  Was 2026-09-09 until 2026-10-24, though `disciplines.ts` changed on 10-13,
+ *  10-14, 10-16, 10-19 and 10-24 (Texdale's captures and the web development
+ *  intro naming it). `npm run discipline-check` now warns when the data files
+ *  have a newer commit than these dates. */
+export const DISCIPLINE_CONTENT_DATE = "2026-10-24";
 
 // Blog dates are not kept here. Each article's `dateModified` and sitemap
 // `lastModified` come from its own `updatedAt` in `src/content/blog/<slug>.json`,

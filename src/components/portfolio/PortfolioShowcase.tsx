@@ -223,8 +223,10 @@ export default function PortfolioShowcase() {
                   {/* Collapsed cards are narrow, so the headline is held to a
                       readable measure rather than wrapping one word per line. */}
                   <h3
-                    className={`font-semibold leading-tight text-white transition-all duration-500 ${
-                      open ? "max-w-lg text-2xl sm:text-3xl" : "text-lg"
+                    // `t-h3` / `t-h5`, not Tailwind sizes: the unlayered `h3` rule in
+                    // globals.css beats any utility, so `text-lg` rendered at h3 size.
+                    className={`leading-tight text-white transition-all duration-500 ${
+                      open ? "t-h3 max-w-lg" : "t-h5"
                     }`}
                   >
                     {open ? s.headline : s.short}
@@ -242,12 +244,12 @@ export default function PortfolioShowcase() {
                         {s.detail}
                       </p>
                       <p className="mt-3 text-sm text-white/55">{s.client}</p>
-                      <a
+                      <Link
                         href={s.href}
                         className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-bg transition-transform hover:scale-[1.03]"
                       >
                         Learn more<span className="sr-only"> about {s.label}</span> <ArrowRight size={15} />
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -261,7 +263,7 @@ export default function PortfolioShowcase() {
             end so they never look active with nowhere to go. */}
         <div className="mt-8 hidden items-center gap-6 border-t border-border pt-6 lg:flex">
           <p className="flex-1 text-sm text-muted">
-            {active === -1 ? "Seven disciplines, one supplier." : slides[active].full}
+            {active === -1 ? "Three disciplines, one supplier: marketing, design and development." : slides[active].full}
           </p>
           <div className="flex items-center gap-2">
             <button

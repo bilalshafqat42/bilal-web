@@ -139,7 +139,16 @@ export default function ArticleBody({ blocks }: { blocks: Block[] }) {
             // than drag the article sideways at phone width. `w-full` with
             // `min-w-[34rem]` on the table keeps it full-bleed on desktop and
             // scrollable rather than crushed on a phone.
-            <div key={i} className="mt-6 overflow-x-auto rounded-xl border border-border">
+            //
+            // Focusable and labelled, so a keyboard user can scroll it with the
+            // arrow keys (axe "scrollable-region-focusable"; audit batch 2).
+            <div
+              key={i}
+              tabIndex={0}
+              role="region"
+              aria-label={`Table: ${b.head.join(", ")}`}
+              className="mt-6 overflow-x-auto rounded-xl border border-border"
+            >
               <table className="w-full min-w-[34rem] border-collapse text-left text-base text-muted sm:text-lg">
                 <thead>
                   <tr className="border-b border-border bg-bg-soft">

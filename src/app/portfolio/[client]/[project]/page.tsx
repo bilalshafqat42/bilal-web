@@ -15,7 +15,7 @@ import FaqSection from "@/components/ui/FaqSection";
 import CaseStudyStory from "@/components/portfolio/CaseStudyStory";
 import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/portfolio/CaseStudyParts";
 import { getProject, routableClients, SHOW_DRAFTS } from "@/data/caseStudies";
-import { PORTFOLIO_CONTENT_DATE } from "@/data/contentDates";
+import { clientContentDate } from "@/data/contentDates";
 import CtaButton from "@/components/ui/CtaButton";
 import DeviceFrame from "@/components/portfolio/DeviceFrame";
 import { jsonLdSafe } from "@/lib/schema";
@@ -102,7 +102,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
     inLanguage: "en",
     // When the case study data last changed, not the build date. `new Date()`
     // told search engines every case study changed on every deploy.
-    dateModified: PORTFOLIO_CONTENT_DATE,
+    dateModified: clientContentDate(client),
     genre: "Real estate marketing case study",
     image: `${SITE}${p.cardImage}`,
     creator: { "@id": `${SITE}/#person`, "@type": "Person" },
@@ -169,7 +169,11 @@ export default async function ProjectCaseStudy({ params }: Props) {
                 // size.
                 width={p.logoWidth ?? 900}
                 height={p.logoHeight ?? 1983}
-                priority
+                // Eager but not preloaded: the hero capture beside it is this
+                // page's LCP image and the only one worth a preload link. Both
+                // were preloaded until 2026-10-24, so they competed for the
+                // first bytes (audit batch 2).
+                loading="eager"
                 className="client-mark h-16 w-auto"
               />
             ) : null
@@ -193,16 +197,17 @@ export default async function ProjectCaseStudy({ params }: Props) {
                   </div>
                   {/* The dedicated top-of-page crop where one exists. This is
                       the page's LCP image, and the full captures run 4,500 to
-                      6,600px tall. `loading="eager"` alongside `priority`
+                      6,600px tall. `loading="eager"` alongside `preload`
                       because Next's own LCP warning checks the `loading`
-                      attribute, and `priority` alone only omits `lazy`. */}
+                      attribute, and `preload` (Next 16's name for the deprecated
+                      `priority`) alone only omits `lazy`. */}
                   <div className="relative aspect-[16/11] w-full">
                     <Image
                       src={p.landingPage.heroCrop?.src ?? p.landingPage.capture.src}
                       alt={p.landingPage.capture.alt}
                       fill
                       sizes="(min-width: 1024px) 40vw, 92vw"
-                      priority
+                      preload
                       loading="eager"
                       className="object-cover object-top"
                     />

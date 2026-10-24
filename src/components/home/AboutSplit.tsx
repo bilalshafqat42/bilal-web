@@ -56,6 +56,10 @@ import { yearsExperience } from "@/lib/site";
  * the site competing for the same words.
  */
 
+/** Where the animation runs. Checked before gsap is imported, and again by
+ *  `gsap.matchMedia` once it is, which tears the animation down on a resize. */
+const MOTION_QUERY = "(min-width: 1024px) and (prefers-reduced-motion: no-preference)";
+
 export default function AboutSplit() {
   const sectionRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -76,7 +80,19 @@ export default function AboutSplit() {
     let cleanup: (() => void) | undefined;
     let cancelled = false;
 
-    (async () => {
+    // Check the media query **before** importing anything. Until 2026-10-24
+    // gsap and ScrollTrigger (about 50 KB) were downloaded on every phone and
+    // then told by `gsap.matchMedia` to do nothing (audit batch 2). Now a phone,
+    // or a desktop with reduced motion, never fetches them; a window resized up
+    // to desktop width loads them at that moment.
+    const query = window.matchMedia(MOTION_QUERY);
+    const onQueryChange = (e: MediaQueryListEvent) => {
+      if (!e.matches) return;
+      query.removeEventListener("change", onQueryChange);
+      void load();
+    };
+
+    const load = async () => {
       // The same two modules `HomeParallax` already pulls on this route, so this
       // costs one cached chunk rather than a second copy — and still nothing at
       // all on the other 29 routes.
@@ -90,7 +106,7 @@ export default function AboutSplit() {
       const mm = gsap.matchMedia();
 
       mm.add(
-        "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
+        MOTION_QUERY,
         () => {
           const headText = head.querySelectorAll("[data-reveal]");
           const darkText = dark.querySelectorAll("[data-reveal]");
@@ -123,7 +139,13 @@ export default function AboutSplit() {
           //
           // The panels keep `from`, because they start at position 0 where
           // there is no such ambiguity.
-          gsap.set([...headText, ...darkText], { y: 28, autoAlpha: 0 });
+          // `opacity`, not `autoAlpha`. autoAlpha also sets `visibility:
+          // hidden`, which takes the CTA row out of the tab order until the
+          // scroll reaches it: a keyboard user tabbed straight past "Book a free
+          // consultation" (audit batch 2, 2026-10-24). A focused element inside
+          // a hidden step is shown by `.about-split [data-reveal]:focus-within`
+          // in globals.css.
+          gsap.set([...headText, ...darkText], { y: 28, opacity: 0 });
           // Two sets of timings, because the two groups are different sizes:
           // the heading is two elements and the body is six, and one stagger
           // value for both would make the body's last line land well after the
@@ -137,8 +159,8 @@ export default function AboutSplit() {
           // band was already leaving. Measured: CTA at 0.33 opacity with the
           // stage 92px up. The body stagger and duration are tuned so the last
           // element lands at 0.79, clear of the lift at 0.86.
-          const showHead = { y: 0, autoAlpha: 1, stagger: 0.04, duration: 0.09 };
-          const showBody = { y: 0, autoAlpha: 1, stagger: 0.02, duration: 0.07 };
+          const showHead = { y: 0, opacity: 1, stagger: 0.04, duration: 0.09 };
+          const showBody = { y: 0, opacity: 1, stagger: 0.02, duration: 0.07 };
 
           // Positions on a 0-to-1 playhead, so these numbers read as fractions
           // of the scroll rather than seconds. Each step finishes before the
@@ -196,10 +218,14 @@ export default function AboutSplit() {
       );
 
       cleanup = () => mm.revert();
-    })();
+    };
+
+    if (query.matches) void load();
+    else query.addEventListener("change", onQueryChange);
 
     return () => {
       cancelled = true;
+      query.removeEventListener("change", onQueryChange);
       cleanup?.();
     };
   }, []);
@@ -217,7 +243,7 @@ export default function AboutSplit() {
       // that never runs** — measured at 1800px before this, with nothing moving
       // through any of it. No background — see the note above; the hero shows
       // through whatever the panels have not covered.
-      className="relative motion-safe:lg:min-h-[240svh]"
+      className="about-split relative motion-safe:lg:min-h-[240svh]"
     >
       {/* The stage. Sticky, so it holds still at the top of the window while
           the section's second window of height scrolls past underneath it.
@@ -363,9 +389,11 @@ export default function AboutSplit() {
                 screen. */}
             <dl data-reveal className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3">
               {FACTS.map((fact) => (
-                <div key={fact.label}>
+                // `<dt>` first, as the HTML spec requires; `flex-col-reverse`
+                // keeps the figure above its label on screen.
+                <div key={fact.label} className="flex flex-col-reverse gap-2">
+                  <dt className="text-xs leading-relaxed text-muted">{fact.label}</dt>
                   <dd className="t-h3 text-ink">{fact.value}</dd>
-                  <dt className="mt-2 text-xs leading-relaxed text-muted">{fact.label}</dt>
                 </div>
               ))}
             </dl>

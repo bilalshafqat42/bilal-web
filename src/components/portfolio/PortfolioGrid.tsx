@@ -35,10 +35,12 @@ import Tag from "@/components/ui/Tag";
  * **On the content.** Bilal offered placeholders "for the time being". These
  * are all real, published projects with real routes instead, because a
  * placeholder on a portfolio is a claim about work that does not exist, and
- * the repo already had nine genuine pieces sitting in `caseStudies`. They are
- * all LEOS, which is honest — it is the one client with published work — but it
- * does mean the homepage reads as a single-client portfolio. Worth revisiting
- * the moment a second client's work can be shown; see roadmap 213.12.
+ * the repo already had nine genuine pieces sitting in `caseStudies`. They were
+ * all LEOS until 2026-10-24, when Texdale (published that day) took the place
+ * of Weybridge Gardens 2, the fourth near-identical launch page, so the grid
+ * stops reading as a single-client portfolio (audit batch 2; roadmap 213.12).
+ * The list stays hand-picked rather than generated: each card has a thumbnail
+ * cut for its frame, which the case-study data does not carry.
  */
 
 type Card = {
@@ -56,7 +58,7 @@ type Card = {
    *  creatives are the opposite: a 1:1 in a 16:9 frame loses 44% of its height
    *  whatever you do, and taking that off the top decapitates the artwork —
    *  "HADLEY HEIGHTS" was being cut through the middle of the word. */
-  focus?: "top" | "center";
+  focus?: "top" | "center" | "left";
 };
 
 /** The row rhythm Bilal specified: three across, then two, then four.
@@ -124,11 +126,14 @@ const cards: Card[] = [
     alt: "Weybridge Gardens landing page, showing the balcony hero and register-your-interest call to action",
   },
   {
-    title: "Weybridge Gardens 2",
-    tags: ["Web Development"],
-    href: "/portfolio/leos-developments/weybridge-gardens-2",
-    image: "/portfolio/leos/weybridge-gardens-2/landing-page/weybridge-gardens-2-thumb.avif",
-    alt: "Weybridge Gardens 2 landing page, showing the Provence Edition hero and pricing section",
+    title: "Texdale",
+    tags: ["Digital Marketing", "Web Development"],
+    href: "/portfolio/texdale",
+    image: "/portfolio/texdale/texdale-card.avif",
+    alt: "The Texdale website hero: Chemistry for the wet process, above folded indigo denim",
+    // The card image is 16:10 and the headline sits on its left, so a centred
+    // crop into this near-square cell cut it to "emistry for".
+    focus: "left",
   },
   {
     title: "Hadley Heights Social",
@@ -196,6 +201,16 @@ const SPAN: Record<number, string> = {
  *  `cavendish-thumb.avif` is cut at 1200:799 to match, so it is not cropped by
  *  the browser at all. That asset is used by exactly one card, in this row; if
  *  the row pattern changes, re-cut it. */
+/** `sizes` by row length. Was one value, "48vw", for every card, the width of
+ *  the two-up cells, so the three-up (about 30vw) and four-up (about 22vw)
+ *  cells fetched a source twice the width they paint (audit batch 2,
+ *  2026-10-24). Rounded up a little so nothing is upscaled. */
+const SIZES: Record<number, string> = {
+  2: "(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 48vw",
+  3: "(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 32vw",
+  4: "(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 24vw",
+};
+
 const FRAME: Record<number, string> = {
   2: "lg:aspect-[1200/799]",
   3: "",
@@ -277,15 +292,15 @@ export default function PortfolioGrid() {
                     src={card.image}
                     alt={card.alt}
                     fill
-                    // Three different cell widths at desktop, and `sizes` can
-                    // only describe one. The widest is taken — the two-up row
-                    // at roughly half the viewport — because guessing low makes
-                    // the browser fetch a source too small for those cells and
-                    // upscale it, which is visible. Guessing high only costs
-                    // bytes on the narrow cells.
-                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 48vw"
+                    // One `sizes` per row length (see SIZES): the three cell
+                    // widths at desktop each get their own.
+                    sizes={SIZES[row.length] ?? SIZES[2]}
                     className={`object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100 ${
-                      card.focus === "center" ? "object-center" : "object-top"
+                      card.focus === "center"
+                        ? "object-center"
+                        : card.focus === "left"
+                          ? "object-left-top"
+                          : "object-top"
                     }`}
                   />
                 </div>

@@ -47,7 +47,7 @@ export default function CookieConsent() {
       role="dialog"
       aria-modal="false"
       aria-labelledby="consent-title"
-      className="pointer-events-none fixed inset-x-0 bottom-0 z-[60] p-3 sm:p-5"
+      className="consent-banner pointer-events-none fixed inset-x-0 bottom-0 z-[60] p-3 sm:p-5"
     >
       {/* `relative` so the mobile close button below positions against this
           card rather than against the fixed wrapper, where it landed a few
@@ -61,10 +61,18 @@ export default function CookieConsent() {
           <p id="consent-title" className="text-sm font-semibold text-ink">
             Cookies and campaign tracking
           </p>
+          {/* Rewritten 2026-10-24 (audit batch 2). The old text said the data
+              "stays on this site for this session only", but Accept also loads
+              the Meta Pixel (`_fbp`, 90 days) and lets Google Analytics write
+              `_ga` (two years by default; `cookie_expires` is not set in
+              `Analytics.tsx`). Kept to four lines on a phone: a longer paragraph
+              became the homepage's LCP element on a first visit. The campaign
+              note (session storage, this tab only) is listed on /privacy.
+              Wording to be checked by Bilal's adviser. */}
           <p className="mt-1.5 text-sm text-muted leading-relaxed">
-            I&apos;d like to remember which campaign or search brought you here, so
-            I know what&apos;s working. It stays on this site for this session only,
-            and is never sold or shared.{" "}
+            Accept, and Google Analytics and the Meta Pixel use cookies to measure
+            which pages and ads work: Meta&apos;s lasts 90 days, Google&apos;s up to two
+            years. Decline and nothing is stored.{" "}
             <Link href="/privacy" className="text-gold underline underline-offset-2 hover:opacity-80">
               What&apos;s stored
             </Link>

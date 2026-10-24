@@ -1080,7 +1080,7 @@ export const serviceDepth: Record<string, Depth> = {
       {
         question: "Can you help us rank outside the UAE?",
         answer:
-          "Yes. I work with clients in the UK, Europe and North America. Ranking in a new market is mostly a content and structure problem rather than a technical one, and it takes longer in a competitive market than a local one.",
+          "Yes. Alongside the UAE, I work with clients in the UK. Ranking in a new market is mostly a content and structure problem rather than a technical one, and it takes longer in a competitive market than a local one.",
       },
       {
         question: "Do you write the content yourself?",
@@ -1105,7 +1105,7 @@ export const serviceDepth: Record<string, Depth> = {
       {
         question: "Do you work with businesses outside the UAE?",
         answer:
-          "Yes. I am based in Dubai and work with clients in the UK, Europe and North America. The time difference is three to four hours to London and eight to nine to New York, which means most of a UK working day overlaps and North American calls happen in my evening.",
+          "Yes. I am based in Dubai and work with clients in the UAE and the UK. London is three to four hours behind Dubai, so most of a UK working day overlaps.",
       },
     ],
   },

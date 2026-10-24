@@ -479,7 +479,10 @@ export default function NavBar({ menu }: { menu: MenuColumn[] }) {
             alt="Bilal Shafqat"
             width={161}
             height={63}
-            priority
+            // Eager, not preloaded (was the deprecated `priority`). A preload
+            // link for the logo on every page competed with each page's real
+            // LCP image for the first bytes (audit batch 2, 2026-10-24).
+            loading="eager"
             className="h-8 w-auto lg:h-9"
           />
         </Link>

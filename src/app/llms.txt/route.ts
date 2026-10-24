@@ -47,7 +47,7 @@ Full content for machine reading: ${SITE}/llms-full.txt
 - [Book a consultation](${SITE}/appointment): the booking page every primary CTA points at; pick a slot for a free call
 - [Real estate marketing](${SITE}/real-estate-marketing): off-plan and property developer work: campaigns, launch sites and CRM, as one vertical
 - [Contact](${SITE}/contact): enquiry form, email, WhatsApp
-- [Writing](${SITE}/blog): ${blogPosts.length} technical articles on React hooks, React Native and design practice
+- [Writing](${SITE}/blog): ${blogPosts.length} articles: marketing notes for Dubai businesses (budgets, Google Ads vs SEO, real estate leads, hiring a freelancer or an agency), plus older design and development notes from client builds
 - [Privacy](${SITE}/privacy): what the site stores`);
 
   // The articles sit at the root of the domain, not under /blog — they are the

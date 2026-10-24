@@ -96,7 +96,10 @@ const decisions = [
     n: "03",
     title: "Lead with what the buyer is actually choosing on",
     body:
-      "At the studio and one-bedroom end the differentiator is character, not price, so the copy leads with the design language. On a larger unit it leads with location and scale. The same template with the same copy across a portfolio is how launches start looking interchangeable.",
+      // Until 2026-10-24 this said "on a larger unit it leads with location and
+      // scale" above a link to Cavendish Square, which is 114 studios and 24
+      // one-beds (caseStudies.ts). Both examples are now what the case studies say.
+      "Two compact launches, two answers. Weybridge Gardens is studios and one-beds on a crowded price shelf, so the page leads on design credibility rather than square footage. Cavendish Square is studios and one-beds too, and leads with the address and the amenity set, because at that size the shared space is the product. The same template with the same copy across a portfolio is how launches start looking interchangeable.",
     href: "/portfolio/leos-developments/cavendish-square",
     label: "See it on Cavendish Square",
   },
