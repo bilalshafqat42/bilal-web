@@ -39,6 +39,9 @@ export const PUBLISHED_CASE_STUDIES: readonly PublishedCaseStudy[] = [
       "weybridge-gardens-2",
     ],
   },
+  // A single-page case study: no app page and no projects under it, so the
+  // overview is the case study (see `caseStudyCount`).
+  { client: "texdale", mobileApp: false, projects: [] },
 ];
 
 /** Every case-study URL, for the sitemap: each client overview, its mobile app
@@ -51,8 +54,17 @@ export function caseStudyUrls(): string[] {
   ]);
 }
 
-/** Case studies below the client overview: the projects and the app pages.
- *  The figure the homepage quotes. */
+/** The figure the homepage quotes.
+ *
+ *  A client with pages under it (projects, an app page) counts those pages and
+ *  not its overview, which is a hub onto them: LEOS is six case studies, not
+ *  seven. A client with nothing under it is a single-page case study and
+ *  counts once. Before Texdale (2026-10-24) every published client had
+ *  sub-pages, and counting only those would have left Texdale out of the
+ *  number entirely. */
 export function caseStudyCount(): number {
-  return caseStudyUrls().filter((u) => u.split("/").length > 3).length;
+  return PUBLISHED_CASE_STUDIES.reduce((n, c) => {
+    const below = c.projects.length + (c.mobileApp ? 1 : 0);
+    return n + (below > 0 ? below : 1);
+  }, 0);
 }

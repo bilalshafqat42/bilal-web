@@ -230,14 +230,41 @@ export type Client = {
    *  move anything on the page. Holding a case study back over a missing vector
    *  file would keep real work off the site for a decorative reason. */
   logo?: string;
+  /** The logo's intrinsic size, read off the SVG's viewBox. Defaults to
+   *  2000x551, the LEOS wordmark. Same reason as `Project.logoWidth`: an
+   *  `h-10 w-auto` image takes its box from these attributes, so a mark with a
+   *  different shape needs its own numbers. Added 2026-10-24 for Texdale.
+   *
+   *  A logo whose file name ends in `-white.svg` is a white mark and gets the
+   *  `client-mark` silhouette filter on the light page opener. Any other logo
+   *  is shown in its own colours, which is what a multicoloured mark needs. */
+  logoWidth?: number;
+  logoHeight?: number;
   /** The share card. Optional since 2026-10-01: a draft case study has no
    *  artwork yet, and the site-wide default is a better answer than holding the
    *  page back or inventing a path to a file that does not exist. */
   ogImage?: string;
+  /** Alt text for `ogImage`. Falls back to "{name} campaign creative", which
+   *  is right for LEOS and wrong for a share card that shows a website. */
+  ogImageAlt?: string;
   title: string;
   description: string;
   headline: string;
   intro: string;
+  /** The question before "Let's talk." in the closing panel. Defaults to
+   *  "Launching a development?", which only fits a property developer. */
+  ctaLead?: string;
+  /** Service pages (`megaMenuGroups` slugs) this engagement covered that the
+   *  captures cannot show on their own.
+   *
+   *  Added 2026-10-24 for Texdale. Every other link between a case study and a
+   *  service is derived from the captures: a website capture proves web
+   *  development. Paid campaigns leave no capture behind unless the ads are
+   *  supplied, so without this field the paid half of an engagement Bilal ran
+   *  end to end would link to nothing. Listed first in "Services behind this
+   *  work", shown on those service pages, and turned into discipline tags on
+   *  the /portfolio card. Only services Bilal has stated he delivered. */
+  services?: string[];
   facts: Fact[];
   scope: { heading: string; body: string }[];
   scopeIntro: string;
@@ -259,7 +286,19 @@ export type Client = {
    *
    *  `projectSlug` is removed from the grid so it cannot appear twice. */
   featured?: { projectSlug: string; eyebrow: string; heading: string; body: string };
-  website?: { heading: string; body: string; capture: Capture };
+  website?: {
+    heading: string;
+    body: string;
+    capture: Capture;
+    /** The same page captured on a phone, shown in a device frame beside the
+     *  desktop capture when the client has no app screen to put there. Feeds
+     *  the UI/UX and web development pages as a mobile layout. */
+    mobileCapture?: Capture;
+    /** A small top-of-page crop for the /portfolio card. Without it the card
+     *  loads the full capture, which is a whole page scroll (300KB+) to paint
+     *  a 16:7 window onto its top. */
+    cardImage?: { src: string; width: number; height: number };
+  };
   /** Phone screens, rendered in phone frames rather than a square gallery grid.
    *  Deliberately not a `Gallery`: GalleryGrid forces `aspect-square
    *  object-cover`, which would crop a 1206x5807 screen capture into a square
@@ -852,7 +891,7 @@ export const clients: Client[] = [
   {
     // Added 2026-10-05. A production house Bilal has worked at as an employee.
     // The web design and the mobile app are planned rather than delivered, so
-    // this is further from publishable than the other three drafts: those are
+    // this is further from publishable than the other two drafts: those are
     // waiting on screenshots of work that exists, this is waiting on the work.
     slug: "choppershoot",
     name: "Choppershoot",
@@ -866,27 +905,6 @@ export const clients: Client[] = [
     facts: [
       { label: "Company", value: "Choppershoot" },
       { label: "Sector", value: "Production house" },
-      { label: "Role", value: "TBC" },
-      { label: "Scope", value: "TBC" },
-    ],
-    scopeIntro: "DRAFT PLACEHOLDER. One paragraph framing the scope of the work.",
-    scope: [{ heading: "DRAFT", body: "DRAFT PLACEHOLDER. What was delivered." }],
-    projects: [],
-    keywords: [],
-  },
-  {
-    slug: "texdale",
-    name: "Texdale",
-    industry: "Manufacturing & Industrial",
-    draft: true,
-    title: "Texdale: DRAFT, not published",
-    description: "DRAFT placeholder. Awaiting screenshots, write-up and permission.",
-    headline: "DRAFT: one line on what the work achieved",
-    intro:
-      "DRAFT PLACEHOLDER. Texdale is a textile chemicals business. Replace with who they are, what the work was, and over what period.",
-    facts: [
-      { label: "Company", value: "Texdale" },
-      { label: "Sector", value: "Textile chemicals" },
       { label: "Role", value: "TBC" },
       { label: "Scope", value: "TBC" },
     ],
@@ -918,7 +936,7 @@ export const clients: Client[] = [
   },
   {
     // Added 2026-10-19 (roadmap 415). A Dubai developer whose website Bilal
-    // develops as a freelancer. Unlike the four drafts above, the copy here is
+    // develops as a freelancer. Unlike the three drafts above, the copy here is
     // written from what the live site shows (WordPress with Elementor, the
     // DLRC and Majan community pages, construction updates, media centre,
     // channel partner and register-interest form) and the capture is real,
@@ -1376,6 +1394,119 @@ export const clients: Client[] = [
       "social media campaign creative",
       "Dubai real estate marketing",
       "LEOS Developments",
+    ],
+  },
+  {
+    // Published 2026-10-24. Bilal supplied the logo and a design export and
+    // asked for it to go up. Everything below is either his own account (one
+    // person, complete digital marketing from scratch: website design and
+    // build, a mobile app, Google and Meta ads) or readable off the live site
+    // at texdale.co.uk and the source he built. Deliberately absent until he
+    // supplies them: the dates, what the app does and on which platforms, the
+    // campaign detail and any result. The photographs on Texdale's site are
+    // licensed stock (Burst), so nothing here describes them as Texdale's
+    // premises or products.
+    slug: "texdale",
+    name: "Texdale",
+    industry: "Manufacturing & Industrial",
+    logo: "/portfolio/texdale/logo/texdale-dark.svg",
+    logoWidth: 742,
+    logoHeight: 260,
+    ogImage: "/portfolio/texdale/og-texdale.jpg",
+    ogImageAlt: "The Texdale homepage hero: Chemistry for the wet process, above folded indigo denim",
+    title: "Texdale: Complete Digital Marketing for a UK Manufacturer",
+    description:
+      "Complete digital marketing for Texdale, a UK textile chemicals maker: strategy, website design and build, a mobile app, and Google and Meta ads.",
+    headline: "Complete digital marketing for a UK textile chemicals manufacturer",
+    intro:
+      "Texdale is a textile chemicals manufacturer in Stockport, England, formulating pretreatment, dyeing, finishing and denim chemistry for mills worldwide. I built their digital marketing from scratch: the strategy, a brand-consistent website I designed and developed, a mobile app, and paid campaigns on Google and Meta. One person, from the first design to the live ads.",
+    facts: [
+      { label: "Client", value: "Texdale" },
+      { label: "Sector", value: "Textile chemicals" },
+      { label: "Market", value: "UK and global mills" },
+      { label: "Scope", value: "Digital marketing, website, app, ads" },
+    ],
+    scopeIntro:
+      "This was complete digital marketing, built from scratch by one person, so the strategy, the website, the app and the ads were planned as one piece of work rather than handed between suppliers. The website sits at the centre: it is where the campaigns send people and where an enquiry starts.",
+    scope: [
+      {
+        heading: "Digital marketing strategy",
+        body: "Who Texdale sells to, what a technical buyer needs to see before getting in touch, and which channels should carry that. The plan the website, the app and the campaigns were built against.",
+      },
+      {
+        heading: "Google Ads",
+        body: "Campaigns on Google pointing at the new website, set up by the same person who built the pages they land on.",
+      },
+      {
+        heading: "Meta ads",
+        body: "Campaigns on Meta in the same brand and voice as the website, so an ad and the page it opens read as one company.",
+      },
+      {
+        heading: "Brand-consistent website design",
+        body: "UI/UX design built on Texdale's own identity. The navy wordmark and the four-colour bar carry into the type, the layout and the colour coding of the process stages, so the site looks like the company rather than a template.",
+      },
+      {
+        heading: "Website development",
+        body: "A custom Next.js build: eight product ranges, a catalogue of 87 products searchable by name or function, and a contact form that asks first whether the visitor wants a quote, a sample or a data sheet.",
+      },
+      {
+        heading: "Mobile app",
+        body: "A mobile app, delivered as part of the same engagement and under the same identity as the website and the campaigns.",
+      },
+    ],
+    services: ["digital-marketing", "paid-marketing", "google-ads", "facebook-ads"],
+    website: {
+      heading: "The website",
+      body: "The Texdale homepage as it is live today, from the hero to the contact block, on desktop and on a phone. Scroll inside either frame to see the complete page.",
+      capture: {
+        src: "/portfolio/texdale/texdale-website.avif",
+        width: 1600,
+        height: 10799,
+        alt: "Full-page view of the Texdale homepage: the Chemistry for the wet process hero, company facts, the three process stages, eight product ranges, the Sample in. Bulk out. method, sustainability and contact",
+        label: "Texdale, homepage",
+      },
+      mobileCapture: {
+        src: "/portfolio/texdale/texdale-website-mobile.avif",
+        width: 600,
+        height: 14847,
+        alt: "The Texdale homepage on a phone, with the same sections stacked into one column",
+        label: "Texdale, homepage on a phone",
+      },
+      cardImage: { src: "/portfolio/texdale/texdale-card.avif", width: 1600, height: 1000 },
+    },
+    depth: [
+      {
+        heading: "Marketing chemistry to people who read data sheets",
+        paragraphs: [
+          "Texdale's buyers are technical. They arrive with a process problem and a specification, and they judge a supplier on whether it understands the chemistry, not on how the homepage makes them feel.",
+          "So the site leads with the process rather than with slogans: pretreatment, dyeing and finishing as three stages, eight product ranges with their functions listed, and a catalogue of 87 products that can be searched by name or by what a product does. That is also what makes paid traffic worth buying. A click from Google or Meta lands on a page that answers a technical question quickly, instead of a brochure.",
+        ],
+      },
+      {
+        heading: "Sample in. Bulk out.",
+        paragraphs: [
+          "In textile chemicals a sale rarely starts with an order. It starts with a sample tried on the mill's own cloth. Texdale's site says so in four words, and sets out the method behind it in four steps: consult, formulate, test, supply.",
+          "The enquiry flow follows the same path. Request a sample is the main button in the header on every page, and the contact form asks what the visitor needs before anything else: a general enquiry, a quote, a sample, a technical data sheet or a safety data sheet. Each request arrives labelled, so the team knows what to send before they reply.",
+        ],
+      },
+      {
+        heading: "One person, from design to the live ads",
+        paragraphs: [
+          "The usual route for a manufacturer is a designer for the look, a developer for the build and an agency for the ads, each briefed separately. Here one person did all of it. The design followed the brand, the build followed the design, and the campaigns pointed at pages built with them in mind. Nothing was lost in a handover, because there was not one.",
+          "It also means one person answers for the whole thing. If an enquiry form is not being used, or an ad sends people to the wrong range, there is no question of whose problem it is.",
+          "There are no performance figures on this page. The results belong to Texdale, and none are published without their agreement.",
+        ],
+      },
+    ],
+    ctaLead: "Starting your digital marketing from scratch?",
+    projects: [],
+    keywords: [
+      "digital marketing case study",
+      "B2B manufacturer website design",
+      "textile chemicals website",
+      "Google Ads and Meta ads",
+      "Next.js website development",
+      "Texdale",
     ],
   },
 ];

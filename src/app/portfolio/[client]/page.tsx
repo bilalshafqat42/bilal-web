@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       url: `/portfolio/${c.slug}`,
       images: c.ogImage
-        ? [{ url: c.ogImage, width: 1200, height: 630, alt: `${c.name} campaign creative` }]
+        ? [{ url: c.ogImage, width: 1200, height: 630, alt: c.ogImageAlt ?? `${c.name} campaign creative` }]
         : OG_IMAGES,
     },
     twitter: {
@@ -96,7 +96,12 @@ export default async function ClientCaseStudy({ params }: Props) {
     // When the case study data last changed, not the build date. `new Date()`
     // told search engines every case study changed on every deploy.
     dateModified: PORTFOLIO_CONTENT_DATE,
-    genre: "Real estate marketing case study",
+    // Was "Real estate marketing case study" for every client, which became
+    // untrue with Texdale (2026-10-24).
+    genre:
+      c.industry === "Real Estate & Property"
+        ? "Real estate marketing case study"
+        : "Digital marketing case study",
     image: c.ogImage ? `${SITE}${c.ogImage}` : OG_IMAGE_URL,
     creator: { "@id": `${SITE}/#person`, "@type": "Person" },
     about: { "@type": "Organization", name: c.name, description: c.intro },
@@ -133,7 +138,17 @@ export default async function ClientCaseStudy({ params }: Props) {
           ]}
           above={
             c.logo ? (
-              <Image src={c.logo} alt={c.name} width={2000} height={551} priority className="client-mark h-10 w-auto" />
+              <Image
+                src={c.logo}
+                alt={c.name}
+                width={c.logoWidth ?? 2000}
+                height={c.logoHeight ?? 551}
+                priority
+                // White marks are silhouetted for the light band; a coloured
+                // mark (Texdale's four-colour bar) ships a dark file instead
+                // and is shown as it is. See `.client-mark` in globals.css.
+                className={`h-10 w-auto ${c.logo.endsWith("-white.svg") ? "client-mark" : ""}`}
+              />
             ) : (
               <ClientWordmark name={c.name} />
             )
@@ -238,7 +253,7 @@ export default async function ClientCaseStudy({ params }: Props) {
               <Reveal delay={0.1}>
                 <div
                   className={`mt-10 grid grid-cols-1 items-start gap-8 ${
-                    appHomeScreen ? "lg:grid-cols-[70fr_30fr] lg:gap-10" : ""
+                    appHomeScreen || c.website.mobileCapture ? "lg:grid-cols-[70fr_30fr] lg:gap-10" : ""
                   }`}
                 >
                   <CaptureFrame capture={c.website.capture} />
@@ -255,6 +270,11 @@ export default async function ClientCaseStudy({ params }: Props) {
                         Read the app case study <ArrowRight size={15} />
                       </Link>
                     </div>
+                  ) : c.website.mobileCapture ? (
+                    // No app to pair with, so the right column shows the same
+                    // page on a phone: the half of a website build that a
+                    // desktop capture never shows.
+                    <DeviceFrame capture={c.website.mobileCapture} caption="The same page on a phone" />
                   ) : null}
                 </div>
               </Reveal>
@@ -453,7 +473,8 @@ export default async function ClientCaseStudy({ params }: Props) {
                 <div className="relative">
                   <Eyebrow>Next step</Eyebrow>
                   <h2 className="t-h2 mt-4 text-ink">
-                    Launching a development? <span className="text-gradient">Let&apos;s talk.</span>
+                    {c.ctaLead ?? "Launching a development?"}{" "}
+                    <span className="text-gradient">Let&apos;s talk.</span>
                   </h2>
                   <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
                     <CtaButton href="/appointment">Book a free consultation</CtaButton>

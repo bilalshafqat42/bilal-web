@@ -1249,8 +1249,9 @@ a.work-chip .work-chip-count {
 
 /* Hide what does not match.
  *
- * **These four tokens are written by hand and must match the disciplines that
- * `disciplinesInWork()` can return.** The chips themselves are derived from the
+ * **These tokens are written by hand and must match the disciplines that
+ * `disciplinesInWork()` and `disciplinesFromServices()` can return.** Paid
+ * marketing was added 2026-10-24 with Texdale, the first card to carry it. The chips themselves are derived from the
  * data, so adding a fifth discipline with a portfolio page would render a chip
  * with no rule behind it — it would look enabled and filter nothing. If a
  * discipline is ever added, add its token here too. The tokens come from
@@ -1261,7 +1262,8 @@ a.work-chip .work-chip-count {
 .work-filter:has(#work-filter-web-development:checked) .work-item:not([data-tags~="web-development"]),
 .work-filter:has(#work-filter-ui-ux-design:checked) .work-item:not([data-tags~="ui-ux-design"]),
 .work-filter:has(#work-filter-mobile-development:checked) .work-item:not([data-tags~="mobile-development"]),
-.work-filter:has(#work-filter-social-media-marketing:checked) .work-item:not([data-tags~="social-media-marketing"]) {
+.work-filter:has(#work-filter-social-media-marketing:checked) .work-item:not([data-tags~="social-media-marketing"]),
+.work-filter:has(#work-filter-paid-marketing:checked) .work-item:not([data-tags~="paid-marketing"]) {
   display: none;
 }
 

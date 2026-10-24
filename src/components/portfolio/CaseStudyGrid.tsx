@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import { publishedClients } from "@/data/caseStudies";
 import { OG_IMAGE_URL } from "@/lib/ogImage";
-import { disciplinesInWork } from "@/data/disciplines";
+import { disciplinesInWork, disciplinesFromServices } from "@/data/disciplines";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Tag from "@/components/ui/Tag";
 
@@ -63,16 +63,24 @@ function buildCards(): Card[] {
   const out: Card[] = [];
 
   for (const c of publishedClients()) {
+    // Tags from `services` first (the engagement as Bilal describes it, which
+    // for Texdale leads with the marketing), then the ones the captures prove.
+    const tags = [
+      ...disciplinesFromServices(c.slug).map((d) => d.title),
+      ...disciplinesInWork(c.slug).map((d) => d.title),
+    ].filter((t, i, all) => all.indexOf(t) === i);
     out.push({
       href: `/portfolio/${c.slug}`,
-      image: c.website?.capture.src ?? c.ogImage ?? OG_IMAGE_URL,
+      // The small crop where there is one: the full capture is a whole page
+      // scroll to download for a 16:7 window onto its top.
+      image: c.website?.cardImage?.src ?? c.website?.capture.src ?? c.ogImage ?? OG_IMAGE_URL,
       alt: c.website?.capture.alt ?? `${c.name} case study cover`,
       position: "top",
       wide: true,
       eyebrow: c.industry,
       name: c.name,
       summary: c.headline,
-      tags: disciplinesInWork(c.slug).map((d) => d.title),
+      tags,
     });
 
     if (c.mobileApp?.lead) {

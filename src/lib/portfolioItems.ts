@@ -74,6 +74,21 @@ export function allItems(): Item[] {
         meta: "Corporate website",
         href: `/portfolio/${c.slug}`,
       });
+      if (c.website.mobileCapture) {
+        out.push({
+          key: `${c.slug}-site-mobile`,
+          kind: "site-mobile",
+          deliverable: "Mobile layouts",
+          clientSlug: c.slug,
+          src: c.website.mobileCapture.src,
+          width: c.website.mobileCapture.width,
+          height: c.website.mobileCapture.height,
+          alt: c.website.mobileCapture.alt,
+          label: `${c.name}: website on mobile`,
+          meta: "Mobile website",
+          href: `/portfolio/${c.slug}`,
+        });
+      }
     }
 
     if (c.mobileApp) {

@@ -6,6 +6,7 @@ import {
   disciplinesInWork,
   servicesInWork,
   disciplineItems,
+  caseStudiesForService,
   type Discipline,
 } from "@/data/disciplines";
 import Eyebrow from "@/components/ui/Eyebrow";
@@ -65,7 +66,11 @@ function DisciplineCards({ items }: { items: Discipline[] }) {
 /** On a service category page: the work that proves this service. */
 export function ServiceProof({ serviceSlug }: { serviceSlug: string }) {
   const proof = proofForService(serviceSlug);
-  if (proof.length === 0) return null;
+  // Case studies that name this service in `Client.services`: services like
+  // paid marketing, whose work leaves no capture to build a discipline page
+  // from, still point at the engagement they were part of.
+  const cases = caseStudiesForService(serviceSlug);
+  if (proof.length === 0 && cases.length === 0) return null;
 
   return (
     <section className="site-container section-pad-tight">
@@ -78,7 +83,28 @@ export function ServiceProof({ serviceSlug }: { serviceSlug: string }) {
             Shipped work behind this service
           </h2>
         </div>
-        <DisciplineCards items={proof} />
+        {proof.length ? <DisciplineCards items={proof} /> : null}
+        {cases.length ? (
+          <ul className={`mt-8 grid grid-cols-1 gap-4 ${cases.length > 1 ? "sm:grid-cols-2" : ""}`}>
+            {cases.map((c) => (
+              <li key={c.slug}>
+                <Link
+                  href={`/portfolio/${c.slug}`}
+                  className="card-hover group block h-full r-card surface-1 p-6"
+                >
+                  <Eyebrow size="sm" tone="muted">
+                    Case study
+                  </Eyebrow>
+                  <span className="mt-2.5 flex items-center justify-between gap-3 text-base font-semibold text-ink">
+                    {c.name}
+                    <ArrowRight size={16} className="shrink-0 text-muted transition-colors group-hover:text-gold" />
+                  </span>
+                  <span className="mt-2 block text-sm leading-relaxed text-muted">{c.headline}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : null}
       </Reveal>
     </section>
   );

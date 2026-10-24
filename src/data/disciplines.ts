@@ -1,5 +1,6 @@
 import type { Faq } from "./types";
 import { megaMenuGroups } from "./serviceCategories";
+import { getClient, publishedClients, type Client } from "./caseStudies";
 import {
   allItems,
   itemsOfKind,
@@ -137,7 +138,7 @@ export const disciplines: Discipline[] = [
     group: "Design",
     blurb: "Layout, hierarchy and the path to an enquiry",
     // No page of its own, deliberately. The evidence for web design and for web
-    // development is the same seven captures — one set of pages looked at two
+    // development is the same set of captures — one set of pages looked at two
     // ways. Two pages carrying identical images would be a near-duplicate, so
     // this label lands on the design section of the development page instead.
     serviceHref: "/services/ui-ux-design#web-design",
@@ -156,11 +157,11 @@ export const disciplines: Discipline[] = [
     page: {
       headline: "Websites and launch pages, designed and built to convert",
       intro:
-        "Corporate websites and campaign landing pages, grouped below by what each one is rather than by who it was for. The published set is property: a corporate site and four off-plan launches, all built to carry high-resolution renders without the load time that usually comes with them, and the same build applies to any sector where a page has to load fast and produce an enquiry. Follow any capture through to the case study for the stack and the structure.",
+        "Corporate websites and campaign landing pages, grouped below by what each one is rather than by who it was for. Most of the published set is property: a corporate site and four off-plan launches, built to carry high-resolution renders without the load time that usually comes with them. Alongside them sits the website for Texdale, a UK textile chemicals manufacturer, which shows the same approach in a sector where the buyer reads data sheets rather than brochures. Follow any capture through to the case study for the stack and the structure.",
       metaTitle: "Web Design & Development Portfolio | Bilal Shafqat",
       metaDescription:
         "Web development portfolio: corporate websites and campaign landing pages built for speed, mobile and one clear enquiry action.",
-      lens: "This page carries both the design and the build, because they are the same seven captures looked at two ways: how each page is composed, and how it was implemented. Splitting that into two pages would mean two pages showing identical images, which is worth avoiding.",
+      lens: "This page carries both the design and the build, because they are the same captures looked at two ways: how each page is composed, and how it was implemented. Splitting that into two pages would mean two pages showing identical images, which is worth avoiding.",
       depth: [
         {
           heading: "Built around the campaign pointing at it",
@@ -459,6 +460,20 @@ export function servicesInWork(
   const kinds = new Set(mine.map((i) => i.kind));
   const seen = new Set<string>();
   const out: { href: string; title: string }[] = [];
+  // Services the client engagement covered that no capture shows (paid
+  // campaigns, chiefly). Client level only: a project page shows one piece of
+  // the work, and these describe the whole engagement. Listed first, in the
+  // order the data gives them, because for an engagement like Texdale's the
+  // marketing is the headline and the website is part of it.
+  if (!projectSlug) {
+    for (const slug of getClient(clientSlug)?.services ?? []) {
+      const group = megaMenuGroups.find((g) => g.slug === slug);
+      const href = `/services/${slug}`;
+      if (!group || seen.has(href)) continue;
+      seen.add(href);
+      out.push({ href, title: group.title });
+    }
+  }
   for (const d of disciplines) {
     if (!d.kinds?.some((k) => kinds.has(k))) continue;
     const base = d.serviceHref.split("#")[0];
@@ -489,5 +504,27 @@ export function disciplinesInWork(clientSlug: string, projectSlug?: string): Dis
   const kinds = new Set(mine.map((i) => i.kind));
   return disciplines.filter(
     (d) => hasPortfolioPage(d) && d.kinds!.some((k) => kinds.has(k))
+  );
+}
+
+/**
+ * Published case studies whose engagement covered a given service page, as
+ * stated in `Client.services`. Feeds the service page's proof block alongside
+ * the discipline cards, so a service with no gallery of its own (paid
+ * marketing) still points at the work it was part of. Added 2026-10-24.
+ */
+export function caseStudiesForService(serviceSlug: string): Client[] {
+  return publishedClients().filter((c) => c.services?.includes(serviceSlug));
+}
+
+/**
+ * Disciplines named by a client's `services` rather than by its captures: the
+ * discipline whose service page is one of them. Used for the /portfolio card
+ * tags, so Texdale's card says Paid Marketing even though no ad is shown.
+ */
+export function disciplinesFromServices(clientSlug: string): Discipline[] {
+  const services = getClient(clientSlug)?.services ?? [];
+  return disciplines.filter((d) =>
+    services.some((s) => d.serviceHref.split("#")[0] === `/services/${s}`)
   );
 }

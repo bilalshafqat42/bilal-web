@@ -13,7 +13,8 @@
  * arrives; nothing else needs changing.
  *
  * `href` only where a published page exists. Draft case studies (4Direction,
- * Choppershoot, Texdale) stay unlinked until they are published.
+ * Choppershoot) stay unlinked until they are published. Texdale was linked
+ * when its case study was published on 2026-10-24.
  */
 export type IndustryEntry = {
   sector: string;
@@ -41,7 +42,7 @@ export const industriesWorkedIn: IndustryEntry[] = [
   },
   {
     sector: "Textile chemicals, UK",
-    companies: [{ name: "Texdale" }, { name: "AKS Chemicals" }],
+    companies: [{ name: "Texdale", href: "/portfolio/texdale" }, { name: "AKS Chemicals" }],
   },
   {
     sector: "HR consultancy",
