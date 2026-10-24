@@ -18,8 +18,34 @@ import type { NextFetchEvent, NextRequest } from "next/server";
 export const config = {
   matcher: [
     "/((?!_next/static|_next/image|favicon\\.ico|images/|(?!llms(?:-full)?\\.txt$).*\\.(?:svg|png|jpg|jpeg|gif|webp|avif|ico|css|js|mjs|txt|xml|json|woff|woff2)$).*)",
+    // Old optimiser URLs only, for `legacyImageRedirect` below.
+    "/_next/image",
   ],
 };
+
+/**
+ * Old `/_next/image?url=/portfolio/...` URLs to the original file (roadmap
+ * 419). The custom image loader (src/lib/imageLoader.ts) switched the
+ * optimiser off, and Next then answers `/_next/image` with a 404. HTML cached
+ * before the switch (in Cloudflare or a browser) and Google Images still hold
+ * those URLs.
+ *
+ * Done here because a next.config redirect cannot do it: Next compiles every
+ * custom route with `(?!/_next)`, so a rule for `/_next/image` never matches.
+ *
+ * Only our own image folders, and only a plain path (no `//host`, no `..`), so
+ * this can never be used as an open redirect. 307, not 308: the target is the
+ * full-size original, right for an old link but not worth a permanent cache.
+ */
+const LEGACY_IMAGE = /^\/(?:portfolio|images|blog|logo)\/[\w\-./]+\.(?:avif|jpe?g|png|webp|svg)$/;
+
+function legacyImageRedirect(request: NextRequest): NextResponse {
+  const target = request.nextUrl.searchParams.get("url") ?? "";
+  if (!LEGACY_IMAGE.test(target) || target.includes("..")) {
+    return new NextResponse(null, { status: 404 });
+  }
+  return NextResponse.redirect(new URL(target, request.url), 307);
+}
 
 // AI assistants and AI-training crawlers specifically — not the classic
 // Googlebot/Bingbot, which are already tracked via Search Console and Bing
@@ -82,6 +108,8 @@ function reportBotHit(botName: string, userAgent: string, path: string, event: N
       method: "POST",
       headers: { "Content-Type": "application/json", "x-api-key": apiKey },
       body: JSON.stringify({ botName, userAgent, path }),
+      // A hung Performo must not hold the function open (audit batch 1).
+      signal: AbortSignal.timeout(3000),
     }).catch(() => {
       /* best-effort — a missed bot hit is not worth retrying or logging */
     })
@@ -124,6 +152,8 @@ function isGone(pathname: string): boolean {
 }
 
 export function proxy(request: NextRequest, event: NextFetchEvent) {
+  if (request.nextUrl.pathname === "/_next/image") return legacyImageRedirect(request);
+
   const userAgent = request.headers.get("user-agent") || "";
   const botName = detectBot(userAgent);
 

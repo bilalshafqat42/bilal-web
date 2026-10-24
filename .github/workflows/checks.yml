@@ -58,6 +58,13 @@ jobs:
       - name: Lead form options accepted by the route
         run: npm run lead-options-check
 
+      # Every image under public/portfolio, images and blog has its pre-cut
+      # AVIF widths, cut from its current contents, and nothing else is left
+      # over. The image loader points srcsets at these files, so a missing one
+      # is a broken image on the live site (roadmap 419). Data only.
+      - name: Image variants present and current
+        run: npm run image-check
+
       - name: Build
         run: npm run build
 

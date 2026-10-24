@@ -8,6 +8,13 @@
  * this once after each deploy means every variant is already on disk, so real
  * requests are served as static files in ~2ms.
  *
+ * **Since roadmap 419 (2026-10-24) the site emits no `/_next/image` URLs.**
+ * Every srcset points at a pre-cut static file (`npm run image-variants`), so
+ * there is nothing for the server to encode. The script now also fetches those
+ * static URLs: run against the live site after a deploy it proves every
+ * variant a page lists actually exists (a 404 is counted as failed and the
+ * script exits non-zero), and it fills the Cloudflare edge nearest to you.
+ *
  * Usage:  npm run warm            (against http://localhost:3000)
  *         npm run warm -- https://bilalshafqat.com
  */
@@ -34,6 +41,10 @@ function imageUrls(html) {
   for (const m of html.matchAll(/\/_next\/image\?[^"'\s]+/g)) {
     out.add(BASE + m[0].replace(/&amp;/g, "&"));
   }
+  // Static variants in src/srcset: `/portfolio/a/b.640w.avif?v=1a2b3c4d`.
+  for (const m of html.matchAll(/\/(?:portfolio|images|blog)\/[^"'\s,]+\.(?:avif|jpe?g|png|webp)(?:\?v=[0-9a-f]+)?/g)) {
+    out.add(BASE + m[0]);
+  }
   return out;
 }
 
@@ -59,7 +70,7 @@ for (const url of all) {
     const res = await fetch(url);
     const ms = Date.now() - t;
     total += ms;
-    if (!res.ok) { failed++; continue; }
+    if (!res.ok) { failed++; console.log(`  FAILED ${res.status}  ${url}`); continue; }
     await res.arrayBuffer();
     done++;
     // Next reports cache state directly. An earlier version of this script
@@ -88,3 +99,4 @@ if (failed) console.log(`  failed : ${failed}`);
 console.log(miss === 0 && failed === 0
   ? "\nEverything was already cached — nothing for a visitor to wait on."
   : "\nThose are now cached; real visitors will be served them from disk.");
+if (failed) process.exitCode = 1;

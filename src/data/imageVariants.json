@@ -1,0 +1,608 @@
+{
+ "/blog/app-developer/card.jpg": {
+  "w": 1200,
+  "v": "98b51b4c",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1200
+  ]
+ },
+ "/blog/cost-per-lead/card.jpg": {
+  "w": 1200,
+  "v": "da3eaf2d",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1200
+  ]
+ },
+ "/blog/gtm-update/card.jpg": {
+  "w": 1200,
+  "v": "e3737dd9",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1200
+  ]
+ },
+ "/blog/landing-page-ad-spend/card.jpg": {
+  "w": 1200,
+  "v": "f3a51948",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1200
+  ]
+ },
+ "/blog/what-to-track/card.jpg": {
+  "w": 1200,
+  "v": "e9529d9a",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1200
+  ]
+ },
+ "/images/bilal-shafqat-coat.avif": {
+  "w": 1412,
+  "v": "62d79711",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1412
+  ]
+ },
+ "/images/bilal-shirt.avif": {
+  "w": 1800,
+  "v": "6daf0e78",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   1800
+  ]
+ },
+ "/portfolio/4direction/4direction-website.avif": {
+  "w": 1440,
+  "v": "15544a42",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280
+  ]
+ },
+ "/portfolio/leos/cavendish/landing-page/cavendish-thumb.avif": {
+  "w": 1200,
+  "v": "5f346bc3",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1200
+  ]
+ },
+ "/portfolio/leos/cavendish/landing-page/cavendish-web-hero.avif": {
+  "w": 1041,
+  "v": "b63cabd4",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1041
+  ]
+ },
+ "/portfolio/leos/cavendish/landing-page/cavendish-web.avif": {
+  "w": 1041,
+  "v": "a90fd89a",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1041
+  ]
+ },
+ "/portfolio/leos/cavendish/mobile-app/cavendish-mobile-app.avif": {
+  "w": 367,
+  "v": "a93d1477",
+  "widths": [
+   256,
+   367
+  ]
+ },
+ "/portfolio/leos/hadley-heights/landing-page/hadley-heights-landing-page-hero.avif": {
+  "w": 1400,
+  "v": "35356486",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1400
+  ]
+ },
+ "/portfolio/leos/hadley-heights/landing-page/hadley-heights-landing-page.avif": {
+  "w": 1600,
+  "v": "14b6b27c",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/leos/hadley-heights/landing-page/hadley-heights-thumb.avif": {
+  "w": 1200,
+  "v": "d20d8d65",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1200
+  ]
+ },
+ "/portfolio/leos/hadley-heights/social-media/1.avif": {
+  "w": 800,
+  "v": "407fc9f1",
+  "widths": [
+   256,
+   384,
+   640,
+   800
+  ]
+ },
+ "/portfolio/leos/hadley-heights/social-media/2.avif": {
+  "w": 800,
+  "v": "5648d51d",
+  "widths": [
+   256,
+   384,
+   640,
+   800
+  ]
+ },
+ "/portfolio/leos/hadley-heights/social-media/3.avif": {
+  "w": 800,
+  "v": "f657a3f8",
+  "widths": [
+   256,
+   384,
+   640,
+   800
+  ]
+ },
+ "/portfolio/leos/hadley-heights/social-media/4.avif": {
+  "w": 800,
+  "v": "ed228ff9",
+  "widths": [
+   256,
+   384,
+   640,
+   800
+  ]
+ },
+ "/portfolio/leos/hadley-heights/social-media/5.avif": {
+  "w": 800,
+  "v": "2022b084",
+  "widths": [
+   256,
+   384,
+   640,
+   800
+  ]
+ },
+ "/portfolio/leos/landing-page/leos-landing-page.avif": {
+  "w": 1600,
+  "v": "9ee41e1f",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/leos/landing-page/leos-thumb.avif": {
+  "w": 1200,
+  "v": "a3de0b24",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1200
+  ]
+ },
+ "/portfolio/leos/mobile-app/enquiry.avif": {
+  "w": 1080,
+  "v": "fb132b6c",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080
+  ]
+ },
+ "/portfolio/leos/mobile-app/home-screen.avif": {
+  "w": 1206,
+  "v": "2b5a04cd",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1206
+  ]
+ },
+ "/portfolio/leos/mobile-app/leos-login-mobile.avif": {
+  "w": 1398,
+  "v": "0fd2bc3d",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1398
+  ]
+ },
+ "/portfolio/leos/mobile-app/leos-mobile-featured.avif": {
+  "w": 1376,
+  "v": "45a2e6a9",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1376
+  ]
+ },
+ "/portfolio/leos/mobile-app/leos-mobile-menu.avif": {
+  "w": 1080,
+  "v": "ea034eb0",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080
+  ]
+ },
+ "/portfolio/leos/mobile-app/projects.avif": {
+  "w": 1206,
+  "v": "7f9cf999",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1206
+  ]
+ },
+ "/portfolio/leos/sales-app/1-home.jpg": {
+  "w": 1600,
+  "v": "609e5f8e",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/leos/sales-app/2-exterior.jpg": {
+  "w": 1600,
+  "v": "fb457b2e",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/leos/sales-app/3-floor.jpg": {
+  "w": 1600,
+  "v": "75140c7c",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/leos/sales-app/4-interiors.jpg": {
+  "w": 1600,
+  "v": "199963d7",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/leos/sales-app/5-units.jpg": {
+  "w": 1600,
+  "v": "e970b7e5",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/leos/sales-app/6-floor.jpg": {
+  "w": 1600,
+  "v": "e0407728",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/leos/sales-app/cover.jpg": {
+  "w": 1600,
+  "v": "02e9c923",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/leos/sales-app/thumbnail.jpg": {
+  "w": 1200,
+  "v": "46d49a83",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1200
+  ]
+ },
+ "/portfolio/leos/social-media/1.avif": {
+  "w": 800,
+  "v": "5a8aa988",
+  "widths": [
+   256,
+   384,
+   640,
+   800
+  ]
+ },
+ "/portfolio/leos/social-media/2.avif": {
+  "w": 800,
+  "v": "8961f4cb",
+  "widths": [
+   256,
+   384,
+   640,
+   800
+  ]
+ },
+ "/portfolio/leos/social-media/3.avif": {
+  "w": 800,
+  "v": "aa2ee3e9",
+  "widths": [
+   256,
+   384,
+   640,
+   800
+  ]
+ },
+ "/portfolio/leos/social-media/4.avif": {
+  "w": 800,
+  "v": "434bc46b",
+  "widths": [
+   256,
+   384,
+   640,
+   800
+  ]
+ },
+ "/portfolio/leos/social-media/5.avif": {
+  "w": 800,
+  "v": "f601dcdc",
+  "widths": [
+   256,
+   384,
+   640,
+   800
+  ]
+ },
+ "/portfolio/leos/social-media/6.avif": {
+  "w": 800,
+  "v": "dbdf7867",
+  "widths": [
+   256,
+   384,
+   640,
+   800
+  ]
+ },
+ "/portfolio/leos/social-media/7.avif": {
+  "w": 800,
+  "v": "61da081a",
+  "widths": [
+   256,
+   384,
+   640,
+   800
+  ]
+ },
+ "/portfolio/leos/weybridge-gardens-2/landing-page/weybridge-gardens-2-thumb.avif": {
+  "w": 1200,
+  "v": "08959f87",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1200
+  ]
+ },
+ "/portfolio/leos/weybridge-gardens-2/landing-page/weybridge-landing-page-hero.avif": {
+  "w": 1041,
+  "v": "ec3de05f",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1041
+  ]
+ },
+ "/portfolio/leos/weybridge-gardens-2/landing-page/weybridge-landing-page.avif": {
+  "w": 1041,
+  "v": "f08a1c98",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1041
+  ]
+ },
+ "/portfolio/leos/weybridge-gardens-2/landing-page/weybridge-mobile.avif": {
+  "w": 366,
+  "v": "46c7b56a",
+  "widths": [
+   256,
+   366
+  ]
+ },
+ "/portfolio/leos/weybridge-gardens/landing-page/weybridge-gardens-landing-page-hero.avif": {
+  "w": 1400,
+  "v": "36de633a",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1400
+  ]
+ },
+ "/portfolio/leos/weybridge-gardens/landing-page/weybridge-gardens-landing-page.avif": {
+  "w": 1600,
+  "v": "f3dc9d91",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/leos/weybridge-gardens/landing-page/weybridge-gardens-thumb.avif": {
+  "w": 1200,
+  "v": "3f889a5a",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1200
+  ]
+ },
+ "/portfolio/texdale/texdale-card.avif": {
+  "w": 1600,
+  "v": "125a4432",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/texdale/texdale-website-mobile.avif": {
+  "w": 600,
+  "v": "cf71d854",
+  "widths": [
+   256,
+   384,
+   600
+  ]
+ },
+ "/portfolio/texdale/texdale-website.avif": {
+  "w": 1600,
+  "v": "3f37fa18",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280
+  ]
+ }
+}
