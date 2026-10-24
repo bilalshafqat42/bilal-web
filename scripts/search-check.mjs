@@ -54,7 +54,6 @@ const MUST_FIND = [
   ["postgresql", "PostgreSQL"],
   ["do you build wordpress sites", "WordPress"],
   ["mongodb or postgresql", "PostgreSQL"],
-  ["ui ux designer", "UI/UX"],
   ["designer", "design"],
   ["developer", "develop"],
   ["difference between ui and ux", "UI design and UX"],

@@ -14,7 +14,8 @@ import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 
-import { SIZES } from "./post-cards.mjs";
+// From lib, not from post-cards.mjs: importing that file runs it.
+import { SIZES } from "./lib/cardSizes.mjs";
 
 const CHROME =
   process.env.CHROME ?? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";

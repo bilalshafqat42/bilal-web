@@ -34,15 +34,22 @@ list decides the `/blog` pages, the related posts and the sitemap.
 
    It tells you the correct `words` value if yours is wrong, and fails on an
    empty heading, a ragged table, a file missing from `index.ts`, a bad date,
-   or a slug that matches a folder in `src/app`.
+   or a slug that matches a top-level route in `src/app`.
 
-4. Measure the rendered page as usual (`npm run onpage`, `npm run serp`).
+4. Measure the rendered page once it is live:
+   `npm run onpage -- "https://bilalshafqat.com/<slug>" "<keyword>"` and
+   `npm run serp -- /<slug>`. With no arguments, both measure their usual
+   page lists, which do not include a new article.
 
 ## Slugs
 
-Articles live at the root (`/my-post`, not `/blog/my-post`). A folder in
-`src/app` with the same name wins, so the article would never show. The
-scaffold and `related-check` both refuse that.
+Articles live at the root (`/my-post`, not `/blog/my-post`). A static route
+with the same name wins, so the article would never show. That means any
+top-level folder in `src/app`, or a folder directly inside a route group such
+as `src/app/(marketing)/`, since a `(group)` adds nothing to the URL.
+`[dynamic]`, `_private` and `@slot` folders do not count. The scaffold and
+`related-check` both refuse a clashing slug, using the same list
+(`scripts/lib/routes.mjs`).
 
 Never rename a slug once it is live. It is the URL.
 

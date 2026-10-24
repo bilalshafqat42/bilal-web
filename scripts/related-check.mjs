@@ -77,6 +77,7 @@
 import { readdirSync } from "node:fs";
 import { blogPosts, relatedPosts, moreLikeThis, faqOf, articlePlainText } from "../src/data/blogPosts.ts";
 import { TAG_TOPIC, KINDS, topicsFor } from "../src/data/blogTopics.ts";
+import { topLevelRoutes } from "./lib/routes.mjs";
 
 let failed = 0;
 const fail = (msg) => {
@@ -127,7 +128,7 @@ for (const post of blogPosts) {
 const proseWords = (post) =>
   post.blocks
     .filter((b) => b.t === "p" || b.t === "list")
-    .reduce((n, b) => n + (Array.isArray(b.v) ? b.v.join(" ") : b.v).trim().split(/\s+/).length, 0);
+    .reduce((n, b) => n + (Array.isArray(b.v) ? b.v.join(" ") : b.v).trim().split(/\s+/).filter(Boolean).length, 0);
 
 for (const post of blogPosts) {
   const expected = proseWords(post);
@@ -170,24 +171,15 @@ for (const file of readdirSync(contentDir).filter((f) => f.endsWith(".json"))) {
   if (!indexed.has(slug)) fail(`src/content/blog/${file} is not listed in src/content/blog/index.ts (or its slug field differs from its file name)`);
 }
 
-/** Top-level route segments. `(group)` folders add no segment, so their
- *  children count as top level; `[dynamic]`, `_private` and `@slot` folders
- *  claim no fixed name. */
-const appDir = new URL("../src/app/", import.meta.url);
-const routeNames = (dir) =>
-  readdirSync(dir, { withFileTypes: true })
-    .filter((d) => d.isDirectory())
-    .flatMap((d) => {
-      if (/^\(.*\)$/.test(d.name)) return routeNames(new URL(`${d.name}/`, dir));
-      if (/^[[_@]/.test(d.name)) return [];
-      return [d.name];
-    });
-const routes = new Set(routeNames(appDir));
+/** Top-level route segments, route groups included (scripts/lib/routes.mjs,
+ *  shared with new-post.mjs). */
+const routes = topLevelRoutes(new URL("../src/app/", import.meta.url));
 for (const post of blogPosts) {
   if (routes.has(post.slug)) fail(`${post.slug} matches the static route src/app/${post.slug}, which would shadow the article`);
 }
 
-const ISO = /^\d{4}-\d{2}-\d{2}$/;
+// Shape and a real calendar day: 2026-13-45 has the shape and is not a date.
+const ISO = { test: (s) => /^\d{4}-\d{2}-\d{2}$/.test(s) && new Date(`${s}T00:00:00Z`).toJSON()?.slice(0, 10) === s };
 for (const post of blogPosts) {
   if (!ISO.test(post.published ?? "")) fail(`${post.slug} has no ISO \`published\` date`);
   if (!ISO.test(post.updatedAt ?? "")) fail(`${post.slug} has no ISO \`updatedAt\` date`);

@@ -19,7 +19,8 @@ export async function fetchPage(url, opts = {}) {
     } catch (err) {
       last = err.name === "TimeoutError" ? "timeout" : "error";
     }
-    await new Promise((r) => setTimeout(r, 1000 * (attempt + 1)));
+    // No wait after the last attempt: nothing follows it but the give-up.
+    if (attempt < RETRIES) await new Promise((r) => setTimeout(r, 1000 * (attempt + 1)));
   }
   console.error(`  ${url}: gave up after ${RETRIES + 1} tries (${last})`);
   return { ok: false, status: last, text: async () => "" };

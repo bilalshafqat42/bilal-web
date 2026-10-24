@@ -19,16 +19,14 @@
 // site-audit.mjs so both measure descriptions the same way.
 import { px, TITLE_LIMIT, DESC_LIMIT } from "./lib/serpWidth.mjs";
 import { fetchPage } from "./lib/fetchPage.mjs";
+// The shared decode (audit batch 3), so this and the audit agree on every
+// entity, hex ones included.
+import { decode } from "./lib/score.mjs";
 
 const BASE = "https://bilalshafqat.com";
 const paths = process.argv.slice(2).length
   ? process.argv.slice(2)
   : ["/", "/services/mobile-app-development", "/pricing", "/portfolio", "/about", "/blog"];
-
-const decode = (s) =>
-  s.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
-   .replace(/&quot;/g, '"').replace(/&#(\d+);/g, (_, d) => String.fromCharCode(+d))
-   .replace(/&#x27;/g, "'").replace(/&[a-z]+;/g, " ");
 
 /** Cut a string to a pixel budget the way a browser would, then ellipsis it. */
 function truncate(s, size, limit) {

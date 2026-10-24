@@ -45,25 +45,43 @@ if (!url || !keyword) {
   console.log(`\n  ON-PAGE SCORES   ${BASE}\n`);
   console.log(`    ${"page".padEnd(40)} ${"keyword".padEnd(42)} score`);
   let worst = null;
+  let failedLoads = 0;
   for (const [path, kw] of TRACKED) {
-    let score = 0;
+    let score;
     try {
       const { checks } = checksFor(await fetchDoc(BASE + path), kw);
       score = scoreOf(checks);
-    } catch {
-      score = 0;
+    } catch (err) {
+      // Reported as a failure, not as a score of 0: a page that did not load
+      // has not been measured (audit batch 3).
+      failedLoads++;
+      console.log(`    ${path.padEnd(40)} ${kw.padEnd(42)} FAILED  ${err.message}`);
+      continue;
     }
     if (!worst || score < worst[2]) worst = [path, kw, score];
     console.log(`    ${path.padEnd(40)} ${kw.padEnd(42)} ${String(score).padStart(5)}`);
   }
-  console.log(`\n  Lowest: ${worst[0]} at ${worst[2]}.`);
-  console.log(`  For the detail on any one page:\n`);
-  console.log(`      npm run onpage -- "${BASE}${worst[0]}" "${worst[1]}"\n`);
+  if (worst) {
+    console.log(`\n  Lowest: ${worst[0]} at ${worst[2]}.`);
+    console.log(`  For the detail on any one page:\n`);
+    console.log(`      npm run onpage -- "${BASE}${worst[0]}" "${worst[1]}"\n`);
+  }
+  if (failedLoads) {
+    console.error(`  ${failedLoads} page(s) did not load and were not scored.\n`);
+    process.exit(2);
+  }
   process.exit(0);
 }
 
 // ─────────────────────────────────────────────── one page, every check printed
-const { checks } = checksFor(await fetchDoc(url), keyword);
+let doc;
+try {
+  doc = await fetchDoc(url);
+} catch (err) {
+  console.error(`\n  Could not load the page, so it was not scored: ${err.message}\n`);
+  process.exit(2);
+}
+const { checks } = checksFor(doc, keyword);
 const pct = scoreOf(checks);
 const pad = (s, n) => (s.length > n ? s.slice(0, n - 1) + "…" : s.padEnd(n));
 

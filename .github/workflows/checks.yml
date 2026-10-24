@@ -4,8 +4,16 @@
 # h1 on /process reached a review only because someone happened to run a sweep
 # by hand. A check nobody runs is not a check.
 #
-# The h1, schema and search checks need a running server, so the job builds, starts the
-# production server, waits for it, then runs them against it.
+# Data-only checks (lint, types, discipline routes, article data, lead
+# options, image variants, search ranking, the scorer self-test) run before
+# the build. The h1 and schema checks need a running server, so the job builds,
+# starts the production server, waits for it, then runs them against it. The
+# lead probe starts its own server from the same build.
+#
+# Actions are pinned to version tags, not commit SHAs. Pinning to a SHA needs
+# the tag resolved against GitHub, which was not done offline in audit batch 3
+# (2026-10-24). To do it: `git ls-remote https://github.com/actions/checkout
+# refs/tags/v7` and likewise for setup-node, then `uses: owner/repo@<sha> # v7`.
 name: Checks
 
 on:
@@ -13,14 +21,25 @@ on:
     branches: [main]
   pull_request:
 
+# Read the code, nothing else. The job never writes to the repository, issues
+# or releases, so the token gets no write scope at all.
+permissions:
+  contents: read
+
 jobs:
   checks:
     runs-on: ubuntu-latest
+    # A normal run takes a few minutes. A hung server or fetch should fail the
+    # run, not hold a runner for GitHub's six-hour default.
+    timeout-minutes: 20
     steps:
       # v7 (7.0.1, July 2026). v4 ran on Node 20, which GitHub deprecated for
       # actions, so every run logged a warning. Majors chosen once they were at
       # least two weeks old.
       - uses: actions/checkout@v7
+        with:
+          # No token left in .git/config for later steps to pick up.
+          persist-credentials: false
 
       # Pinned to v7.0.0 (July 2026) rather than the floating @v7 tag, which
       # already points at 7.1.0 (2026-10-08) and was under two weeks old when
@@ -33,6 +52,11 @@ jobs:
           cache: npm
 
       - run: npm ci
+
+      # Known high or critical advisories in what the site ships (dev tools
+      # excluded, they never reach the server).
+      - name: Dependency audit
+        run: npm audit --omit=dev --audit-level=high
 
       - name: Lint
         run: npm run lint
@@ -65,6 +89,17 @@ jobs:
       - name: Image variants present and current
         run: npm run image-check
 
+      # Imports the real index from src/lib and ranks fixtures against it. No
+      # server needed, so it runs before the build (it used to run after it).
+      - name: Search ranking regression check
+        run: npm run search-check
+
+      # The on-page scorer's matching rules: entities, word boundaries,
+      # optional stop words, counting inside <main> only. Every score in
+      # onpage, daily and audit depends on them.
+      - name: Scorer self-test
+        run: npm run score-selftest
+
       - name: Build
         run: npm run build
 
@@ -90,5 +125,11 @@ jobs:
         env:
           BASE_URL: http://localhost:3000
 
-      - name: Search ranking regression check
-        run: npm run search-check
+      # /api/lead's guards (size limit, validation, origin check, rate limit,
+      # header injection). Safe here: the script starts its own server on port
+      # 3099 from the build above, with CRM_LEAD_API_URL pointed at a closed
+      # port, SMTP blank and the lead backup in a temp folder, and refuses to
+      # run unless the CRM address is proved unreachable first. Every probe uses
+      # an @example.invalid address. It also refuses a build older than src/.
+      - name: Lead endpoint guards
+        run: npm run lead-probe

@@ -21,29 +21,68 @@
  */
 
 export const strip = (s) => s.replace(/<[^>]+>/g, " ");
+
+/** Named entities worth turning back into their character. Any other named
+ *  entity becomes a space, so it can never glue two words together. */
+const NAMED = {
+  amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " ",
+  ndash: "–", mdash: "—", hellip: "…", middot: "·",
+  lsquo: "‘", rsquo: "’", ldquo: "“", rdquo: "”",
+  copy: "©", reg: "®", trade: "™", times: "×",
+};
+const fromCode = (n) => {
+  try {
+    return String.fromCodePoint(n);
+  } catch {
+    return " ";
+  }
+};
+
+/** One pass over every entity, so `&amp;lt;` stays the text "&lt;" instead of
+ *  becoming "<", and hex references (`&#x27;`, React's apostrophe) decode like
+ *  decimal ones. Until audit batch 3 (2026-10-24) there were four copies of
+ *  this function and `&#x27;` turned into a space in three of them, so
+ *  "Bilal's" was read as "Bilal s". Shared by score, site-audit, daily and
+ *  serp-preview. */
 export const decode = (s) =>
-  s
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#(\d+);/g, (_, d) => String.fromCharCode(+d))
-    .replace(/&[a-z]+;/g, " ");
+  s.replace(/&(#[xX][0-9a-fA-F]+|#\d+|[a-zA-Z][a-zA-Z0-9]*);/g, (_, e) => {
+    if (e[0] === "#") return fromCode(e[1] === "x" || e[1] === "X" ? parseInt(e.slice(2), 16) : +e.slice(1));
+    return NAMED[e] ?? NAMED[e.toLowerCase()] ?? " ";
+  });
 export const text = (s) => decode(strip(s)).replace(/\s+/g, " ").trim();
 
-const STOP = "(?:in|for|the|a|an|at|of|and|to|on)";
+/** The page's `<main>`, or "" when it has none. Never the whole document: the
+ *  mega menu would then count as content (roadmap 341). */
+export const mainOf = (doc) => doc.match(/<main[\s\S]*?<\/main>/)?.[0] ?? "";
+/** Readable text inside `<main>`, scripts removed. */
+export const mainText = (main) => text(main.replace(/<script[\s\S]*?<\/script>/g, ""));
+export const wordCount = (s) => s.split(/\s+/).filter(Boolean).length;
+
+const STOP_WORDS = ["in", "for", "the", "a", "an", "at", "of", "and", "to", "on"];
+const STOP = `(?:${STOP_WORDS.join("|")})`;
 const SEP = `(?:\\s+(?:${STOP}\\s+)?|\\s*[/-]\\s*)`;
 const esc = (w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-const pattern = (kw) => kw.trim().split(/\s+/).map(esc).join(SEP);
 
-export const kwRegex = (kw) => new RegExp(pattern(kw), "i");
-export const kwCount = (hay, kw) => (hay.match(new RegExp(pattern(kw), "gi")) || []).length;
+/** Stop words are optional both ways (audit batch 3). The keyword's own stop
+ *  words are dropped and SEP allows one between any two remaining terms, so
+ *  "freelance digital marketer in dubai" and "freelance digital marketer dubai"
+ *  each match the other's wording. Word boundaries at both ends, so "seo
+ *  consultant dubai" is not found inside "seoul seo consultant dubaian". */
+const pattern = (kw) => {
+  const all = kw.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const terms = all.filter((w) => !STOP_WORDS.includes(w));
+  const core = (terms.length ? terms : all).map(esc).join(SEP);
+  return `(?<![\\p{L}\\p{N}])${core}(?![\\p{L}\\p{N}])`;
+};
+
+export const kwRegex = (kw) => new RegExp(pattern(kw), "iu");
+export const kwCount = (hay, kw) => (hay.match(new RegExp(pattern(kw), "giu")) || []).length;
 
 /** The fifteen checks, scored against one rendered document. */
 export function checksFor(doc, keyword) {
   const kw = keyword.toLowerCase().trim();
-  const main = doc.match(/<main[\s\S]*?<\/main>/)?.[0] ?? doc;
-  const body = text(main.replace(/<script[\s\S]*?<\/script>/g, ""));
+  const main = mainOf(doc);
+  const body = mainText(main);
   const low = body.toLowerCase();
   const words = body.split(/\s+/).filter(Boolean);
 
@@ -51,7 +90,7 @@ export function checksFor(doc, keyword) {
   const desc = decode(doc.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? "");
   const h1s = [...main.matchAll(/<h1[^>]*>([\s\S]*?)<\/h1>/g)].map((m) => text(m[1]));
   const subs = [...main.matchAll(/<h[23][^>]*>([\s\S]*?)<\/h[23]>/g)].map((m) => text(m[1]));
-  const alts = [...main.matchAll(/<img[^>]*alt="([^"]*)"/g)].map((m) => m[1].toLowerCase());
+  const alts = [...main.matchAll(/<img[^>]*alt="([^"]*)"/g)].map((m) => decode(m[1]).toLowerCase());
   const internal = [...main.matchAll(/<a[^>]*href="(\/[^"]*)"/g)].map((m) => m[1]);
   const hasSchema = /<script type="application\/ld\+json">/.test(doc);
 
@@ -77,6 +116,10 @@ export function checksFor(doc, keyword) {
     { name: "At least 3 internal links", max: 4, got: internal.length >= 3, note: `${internal.length} internal links` },
     { name: "Structured data present", max: 4, got: hasSchema, note: "" },
   ];
+  // No <main> means nothing on the page can be measured honestly. Worth no
+  // points, so scores stay comparable, but it shows as a MISS instead of the
+  // menu and footer being scored as content (the old `?? doc` fallback).
+  if (!main) checks.unshift({ name: "Page has a <main> element", max: 0, got: false, note: "no <main>: body checks scored against nothing" });
   return { checks, words: words.length };
 }
 

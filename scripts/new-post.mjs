@@ -7,12 +7,14 @@
  * post to the top of `src/content/blog/index.ts` (newest first). `published`
  * and `updatedAt` default to today in Dubai time.
  *
- * It refuses a slug that already exists or that matches a top-level folder in
- * `src/app`, because a static route there would shadow the article. Fill in the
+ * It refuses a slug that already exists or that matches a top-level route in
+ * `src/app` (including one inside a `(group)` folder), because a static route
+ * would shadow the article. Fill in the
  * placeholders, then run `npm run related-check`. See
  * docs/adding-a-blog-post.md.
  */
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { topLevelRoutes } from "./lib/routes.mjs";
 
 // Walked in order so the value after `--date` is never taken for the slug:
 // `--date 2026-10-20 my-slug` used to scaffold a post called "2026-10-20".
@@ -58,8 +60,11 @@ const file = new URL(`src/content/blog/${slug}.json`, root);
 const indexFile = new URL("src/content/blog/index.ts", root);
 
 if (existsSync(file)) die(`src/content/blog/${slug}.json already exists.`);
-if (existsSync(new URL(`src/app/${slug}`, root))) {
-  die(`src/app/${slug} is a route, so /${slug} would never show the article. Pick another slug.`);
+// Every top-level route, including those inside `(group)` folders, from the
+// same list related-check uses. Checking only `src/app/<slug>` missed a route
+// inside a group.
+if (topLevelRoutes(new URL("src/app/", root)).has(slug)) {
+  die(`/${slug} is already a route in src/app, so it would never show the article. Pick another slug.`);
 }
 
 const index = readFileSync(indexFile, "utf8");
