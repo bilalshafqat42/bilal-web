@@ -11909,3 +11909,92 @@ every page's main keyword unchanged; hub still wins web development dubai
 Ubersuggest article generations kept (3 left). Review positions around
 2026-11-04. Also: request indexing for strapi, zoho, ios and figma
 sub-pages (not yet known to Google on 2026-10-20).
+
+---
+
+### 419. BUILT, NOT PUBLISHED (2026-10-24) — Images served as static files, not through /_next/image
+
+**Problem.** Cloudflare bypasses `/_next/image` (Rule B, roadmap 400), so every
+image waited on Hostinger's CPU. Measured live 2026-10-24: Texdale's capture
+via `/_next/image` was DYNAMIC, 2.4-4.8s, 489 KB from a 348 KB source; the
+slowest image on /portfolio/texdale took 11.2s on a phone. The same static file
+was a Cloudflare HIT in about 1s.
+
+**Fix.** A custom loader (`src/lib/imageLoader.ts`, `images.loaderFile`) points
+every srcset entry at an AVIF cut ahead of time and stored next to its original
+(`name.640w.avif`). No component changed: same sizes, alt, width/height,
+priority and fetchPriority. Quality 47 (what Next used), effort 6.
+- `npm run image-variants` cuts them (53 sources, 288 files, about 11 MB).
+  Run it after adding or replacing any image in public/portfolio, images or blog.
+- `npm run image-check` (CI, before build) fails if any is missing or stale.
+- Every URL carries `?v=<content hash>`, so replacing an image in place is now
+  safe: new contents, new URL (Cloudflare keys on the query string; verified).
+- Old `/_next/image?url=/portfolio/...` URLs 307 to the original in
+  `src/proxy.ts` (a next.config redirect cannot match `/_next/...`).
+- `npm run warm -- https://bilalshafqat.com` now fetches every static variant
+  and exits non-zero on any 404: run it after the deploy.
+
+**Measured** (local build, image bytes, raster only): 2-7% smaller on all five
+pages tested; `/_next/image` requests 0 (from 1-15 per page). Same image as a
+Cloudflare-cached static file on live: 200-340 ms instead of 0.6-11 s.
+Lighthouse mobile unchanged locally (95/96, CLS 0); the gain is on Hostinger.
+Evidence: `review/images-speed/`.
+
+**Cloudflare:** no change needed. `/images/` and `/blog/` .avif and .jpg are
+already HITs (Cloudflare's default extension cache); `/portfolio/` is Rule C.
+Rule B can stay: it now only carries the 307s.
+
+---
+
+### 420. IN PROGRESS (2026-10-24) — Ubersuggest keyword data and rank tracking
+
+**Bulk Analysis, UAE, English (200 keywords, SEO difficulty refreshed
+2026-10-24, about 106 credits used; about 143 left until the 1 Nov renewal).**
+Main finding: UAE buyers search "web designer dubai", "seo expert dubai",
+"mobile app development dubai", not "freelance ..." (most freelance phrasings
+show 0 volume). Keep freelance wording on pages; stop chasing it.
+
+The 14 targets, now in Rank Tracking (EN-AE, desktop):
+
+| Keyword | Volume | SD | Owning page |
+| --- | ---: | ---: | --- |
+| seo dubai | 2,400 | 11 | /services/seo |
+| seo expert dubai | 1,300 | 9 | /services/seo |
+| seo services dubai | 1,300 | 18 | /services/seo |
+| local seo dubai | 480 | 9 | /services/seo (new section) |
+| seo consultant dubai | 480 | 19 | /services/seo |
+| web designer dubai | 1,600 | 17 | /services/web-design |
+| web design abu dhabi | 720 | 11 | /services/web-design (UAE section) |
+| real estate website design dubai | 210 | 11 | /real-estate-marketing |
+| google ads agency dubai | 480 | 6 | /services/google-ads |
+| ppc agency dubai | 320 | 15 | /services/paid-marketing |
+| logo design dubai | 720 | 13 | /services/graphic-design-branding |
+| graphic designer dubai | 390 | 16 | /services/graphic-design-branding |
+| app developer dubai | 720 | 12 | /services/mobile-app-development |
+| mobile app developer dubai | 720 | 15 | article (roadmap 414) |
+
+Harder, longer term: web developer dubai 4,400/24, mobile app development
+dubai 1,900/24, web development dubai 1,900/30, website design dubai
+4,400/50. Easy small wins: instagram ads dubai 70/8, email marketing dubai
+90/10, salesforce consultant dubai 70/12, wordpress website design dubai
+110/12. Later: mobile app development abu dhabi 390/26, ecommerce website
+development dubai 390/25, real estate crm dubai 140/25.
+
+**Rank Tracking baseline (24 Oct, 74 keywords):** bilal shafqat #2 (but
+Google shows /appointment, not the homepage: fix the brand page), freelance
+seo consultant dubai #2, best crm for dubai real estate #30 (+15), how much
+does a website cost in dubai #34 (+66, roadmap 418 working), linkedin
+marketing dubai #61 (+39), freelance web developer dubai #68 (+32),
+digital marketing freelancer in dubai #49 (720/mo), freelance digital
+marketer in dubai #38 (480/mo, -8). "Average position 3 → 45" is the
+tracked set growing from 1 keyword to 74, not a fall.
+
+**Next, waiting on Bilal's go-ahead (reply "both", "keywords" or "images"):**
+1. Page updates for the 14 targets (as roadmap 418: phrases in headings and
+   opening text, no new pages, before/after shown first). SEO page first.
+2. Image speed fix (roadmap 419, built, not published).
+3. Brand query: make the homepage the page Google shows for "bilal shafqat".
+
+**Dates:** 28 Oct, first positions for the 14 new keywords (Bilal sends a
+Rank Tracking screenshot). 1 Nov, 500 credits renew: refresh the 14 and
+compare. 4 Nov, review roadmap 418 positions.
