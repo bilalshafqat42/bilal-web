@@ -60,7 +60,9 @@ const MUST_FIND = [
   ["difference between ui and ux", "UI design and UX"],
   ["is web design the same as ui ux", "web design the same"],
   ["do you do print design", "print"],
-  ["do you design logos", "logos"],
+  // Expectation "logos" -> "logo design" on 2026-10-24: the FAQ became "Do
+  // you do logo design in Dubai?" (roadmap 420). Same answer, same page.
+  ["do you design logos", "logo design"],
   ["how much does a website cost", "website cost"],
   ["do i get the figma files", "Figma"],
   ["do you shoot video", "shoot video"],

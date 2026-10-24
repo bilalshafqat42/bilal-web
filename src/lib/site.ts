@@ -68,7 +68,7 @@ export const POSITIONING =
  *  for every route, and the homepage restates them with its own `og:url`. */
 export const HOME_TITLE = "Freelance Digital Marketer in Dubai | Bilal Shafqat";
 export const HOME_DESCRIPTION =
-  "Freelance digital marketer in Dubai. I run your paid ads, SEO and social, and build the page each campaign lands on, as one senior partner.";
+  "Bilal Shafqat, freelance digital marketer in Dubai. I run your paid ads, SEO and social, and build the page each campaign lands on.";
 
 /** The /blog index's title and description, shared with the paginated pages
  *  so the two cannot drift. Rewritten 2026-10-14: the old line led with React

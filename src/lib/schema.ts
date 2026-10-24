@@ -261,6 +261,23 @@ export function websiteNode() {
   };
 }
 
+/** The homepage as a page about the person (added 2026-10-24, roadmap 420).
+ *  Google was showing /appointment for the bare name; this states in the
+ *  markup that the homepage is the page about Bilal Shafqat, alongside the
+ *  name now in its description and opening line. /about stays the
+ *  `ProfilePage`; this is the site's front door, not a second profile. */
+export function homePageNode() {
+  return {
+    "@type": "WebPage",
+    "@id": `${SITE_URL}/#webpage`,
+    url: SITE_URL,
+    name: "Bilal Shafqat, freelance digital marketer in Dubai",
+    inLanguage: "en",
+    isPartOf: ref(ID.website, "WebSite"),
+    about: ref(ID.person, "Person"),
+  };
+}
+
 /** A single service category. Every field comes from the page's own copy —
  *  nothing is generated. */
 export function serviceNode(opts: {

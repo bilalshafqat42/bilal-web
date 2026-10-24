@@ -24,12 +24,15 @@ export type MenuService = {
   points: string[];
   /** See `MegaMenuGroup.railTimeline`. Absent where nothing is published. */
   timeline?: string;
+  /** A small sub-label rendered above this entry (see `ServiceMenuColumn`). */
+  subLabel?: string;
 };
 
 export type MenuColumn = { title: string; services: MenuService[] };
 
 /**
- * The Services menu, as four numbered columns of real pages.
+ * The Services menu, as numbered columns of real pages (three since
+ * 2026-10-24; see `serviceMenuColumns`).
  *
  * Rebuilt 2026-10-06. The menu was fifteen flat groups, each with three to five
  * sub-items, and the sub-items were the problem: **49 entries carrying 31
@@ -39,7 +42,7 @@ export type MenuColumn = { title: string; services: MenuService[] };
  * columns saw the same phrases and learned nothing from the repetition.
  *
  * All fifteen service pages are real and live. They are what belongs in a menu.
- * So the hierarchy is now four groups of real pages rather than fifteen groups
+ * So the hierarchy is now three groups of real pages rather than fifteen groups
  * of repeated tags, which is both shorter to read and honest about the shape of
  * the business.
  *
@@ -50,7 +53,7 @@ export type MenuColumn = { title: string; services: MenuService[] };
  * Three disciplines is also what he actually sells, and the menu should say
  * what the business is rather than how a specialist files it.
  *
- * The columns are uneven, 8 / 4 / 3, and that is honest. Marketing is the
+ * The columns are uneven, 8 / 4 / 5, and that is honest. Marketing is the
  * positioning and it carries the volume. Padding the other two to match would
  * mean inventing services.
  *
@@ -63,38 +66,53 @@ export type ServiceMenuColumn = {
   title: string;
   /** Slugs from `megaMenuGroups`, in the order they should read. */
   slugs: string[];
+  /** Optional small sub-label shown above one slug inside the column, so a
+   *  long column can name its second half without becoming a column of its
+   *  own. Keyed by the slug it sits above. */
+  subLabels?: Record<string, string>;
 };
 
+/**
+ * Three columns since 2026-10-24, at Bilal's request: the site sells three
+ * disciplines (the homepage ledger reads 01 Marketing, 02 Design,
+ * 03 Development) and the menu and footer now say the same thing in the same
+ * order. Until then Paid Marketing was a fourth column of its own and Design
+ * sat last, so the header, the footer and the homepage disagreed.
+ *
+ * Paid is folded back into Marketing with a small "Paid" sub-label above it.
+ * That keeps the split visible, which was the reason it was a column (a reader
+ * cannot infer a split from position alone), without presenting it as a
+ * fourth discipline.
+ *
+ * Menu only. The set of slugs is unchanged, so `isInServiceMenu()`,
+ * `menuGroups()`, breadcrumbs, schema and every service page are unaffected;
+ * only the header panel, the mobile drawer and the footer read the grouping.
+ */
 export const serviceMenuColumns: ServiceMenuColumn[] = [
   {
-    // Marketing and Paid Marketing are two named columns rather than one
-    // eight-item column split across two unlabelled tracks.
-    //
-    // The old version used `span: 2` and `grid-flow-col` to make eight items
-    // read down one track and then down the next. The grouping was real — paid
-    // in one track, earned in the other — but nothing on screen said so, and a
-    // reader cannot infer a split from position alone. Naming both halves costs
-    // one heading and removes the guess.
-    //
-    // Marketing sits first, Paid second, for three reasons:
-    //   1. Hierarchy. Paid Marketing is a child of Digital Marketing, which is
-    //      the conclusion Bilal reached himself on 2026-10-06. Left to right
-    //      should read broad then narrow.
-    //   2. Search. "digital marketing in dubai" is 1,300 searches, the largest
-    //      term on the board, and this puts its page first in source order on
-    //      every page of the site.
-    //   3. Journey. Somebody who already knows they want Google Ads will find
-    //      "Google Ads" wherever it sits. Somebody who does not know what they
-    //      want needs the general bucket in front of the specific one.
-    //
-    // Each column leads with its own hub page, so the broadest page in a group
-    // is the first thing read in it.
+    // Earned first, paid second: Paid Marketing is a child of Digital
+    // Marketing (Bilal, 2026-10-06), so broad reads before narrow, and
+    // "digital marketing in dubai" stays first in source order sitewide.
     title: "Marketing",
-    slugs: ["digital-marketing", "seo", "social-media-marketing", "email-marketing"],
+    slugs: [
+      "digital-marketing",
+      "seo",
+      "social-media-marketing",
+      "email-marketing",
+      "paid-marketing",
+      "google-ads",
+      "facebook-ads",
+      "linkedin-marketing",
+    ],
+    subLabels: { "paid-marketing": "Paid" },
   },
   {
-    title: "Paid Marketing",
-    slugs: ["paid-marketing", "google-ads", "facebook-ads", "linkedin-marketing"],
+    // Web Design sits here rather than under Development. Its own page opens
+    // "most of the design decisions that matter here are not visual ones",
+    // which is a design argument, and a visitor looking for a web designer is
+    // not looking for a developer.
+    title: "Design",
+    slugs: ["ui-ux-design", "web-design", "graphic-design-branding", "video-conversion"],
   },
   {
     // CRM belongs here rather than under Marketing: the page is about systems,
@@ -115,14 +133,6 @@ export const serviceMenuColumns: ServiceMenuColumn[] = [
       "mobile-app-development",
       "crm-marketing-automation",
     ],
-  },
-  {
-    // Web Design sits here rather than under Development. Its own page opens
-    // "most of the design decisions that matter here are not visual ones",
-    // which is a design argument, and a visitor looking for a web designer is
-    // not looking for a developer.
-    title: "Design",
-    slugs: ["ui-ux-design", "web-design", "graphic-design-branding", "video-conversion"],
   },
 ];
 

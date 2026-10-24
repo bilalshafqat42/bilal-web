@@ -176,7 +176,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     title: "Paid Marketing",
     headline: "Paid marketing in Dubai, reported as cost per lead rather than impressions",
     intro:
-      "Paid marketing in Dubai only works when it is built around the sales pipeline it feeds. I plan, launch and manage campaigns across Google and every major social platform, with conversion tracking configured before a dirham is spent, so performance is measured against real enquiries rather than clicks and reach.",
+      "Paid marketing in Dubai only works when it is built around the sales pipeline it feeds. I plan, launch and manage campaigns across Google and every major social platform, with conversion tracking configured before a dirham is spent, so performance is measured against real enquiries rather than clicks and reach. It is the work a PPC agency in Dubai sells, done by the person you brief.",
     // Narrowed 2026-10-04 when Google Ads got its own page below. "Google Ads &
     // Paid Ads" carried two searches and so competed for neither — the same
     // ampersand problem fixed on the designer and developer pages in Phase 2.
@@ -192,6 +192,13 @@ export const megaMenuGroups: MegaMenuGroup[] = [
         question: "Which platforms do you manage?",
         answer:
           "Google Search, Shopping, Display and Performance Max, Meta across Facebook and Instagram, plus TikTok, Snapchat and LinkedIn. I recommend the mix based on where your buyers actually are rather than running every channel by default.",
+      },
+      // 2026-10-24 (roadmap 420): "ppc agency dubai" (320). Honest framing:
+      // one person, not an agency, and when an agency is the better answer.
+      {
+        question: "Do I need a PPC agency in Dubai, or will one specialist do?",
+        answer:
+          "PPC, pay per click, is the paid search and social work on this page. An agency gives you a team, cover when someone is away and the capacity to run many accounts at once. Working with me gives you the person who built the campaigns reading the numbers each week, with no account manager in between. If you run several brands or markets at high volume, an agency is often the better fit. I am one person, not an agency, and I will say so on the call if your account needs more than that.",
       },
       {
         question: "Do you handle the creative as well as the buying?",
@@ -235,7 +242,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     accent: "cyan",
     headline: "Google Ads in Dubai: the one channel where people type what they want",
     intro:
-      "Everywhere else you interrupt someone. On search they have typed the thing they are looking for, in their own words, which makes Google Ads in Dubai the shortest route from a budget to an enquiry and usually the place to start. It is also the easiest place to waste money, because the default settings are built to spend it.",
+      "Everywhere else you interrupt someone. On search they have typed the thing they are looking for, in their own words, which makes Google Ads in Dubai the shortest route from a budget to an enquiry and usually the place to start. It is also the easiest place to waste money, because the default settings are built to spend it, whether a Google Ads agency in Dubai runs your account or a specialist does.",
     metaTitle: "Freelance Google Ads in Dubai | Bilal Shafqat",
     metaDescription:
       "Google Ads in Dubai managed by a freelancer, with tracking built before the spend starts and reporting in enquiries rather than clicks.",
@@ -265,7 +272,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       {
         question: "Should I hire a freelancer or a Google Ads agency in Dubai?",
         answer:
-          "It depends on how much there is to manage. A Google Ads agency in Dubai gives you capacity, cover when someone is away, and a team that can run many accounts, feeds and formats at once. A freelancer gives you the person who built the campaigns reading your search terms each week, with no account manager in between. If you run several brands or large budgets across many markets, an agency is often the better fit. If you have one account and want the person doing the work on the call, a freelancer usually is. Either way, make sure the account is under your ownership.",
+          "It depends on how much there is to manage. An agency gives you capacity, cover when someone is away, and a team that can run many accounts, feeds and formats at once. A freelancer gives you the person who built the campaigns reading your search terms each week, with no account manager in between. If you run several brands or large budgets across many markets, an agency is often the better fit. If you have one account and want the person doing the work on the call, a freelancer usually is. Either way, make sure the account is under your ownership.",
       },
       {
         question: "How soon will I see results?",
@@ -857,6 +864,14 @@ export const megaMenuGroups: MegaMenuGroup[] = [
         question: "Can you market the app as well as build it?",
         answer:
           "That is the reason to use me rather than a development shop. The tracking goes in during the build instead of being retrofitted, the store listing is written as a conversion page, and the launch campaign is planned against the same funnel. Most apps are built by one supplier and marketed by another, and the join is where the measurement disappears.",
+      },
+      // 2026-10-24 (roadmap 420): "app developer dubai" (720). Deliberately
+      // "app developer", never "mobile app developer": that phrase belongs to
+      // the article /how-to-choose-a-mobile-app-developer-in-dubai (roadmap 414).
+      {
+        question: "Why hire an app developer in Dubai rather than offshore?",
+        answer:
+          "Mostly for the parts that are not code. Someone in your time zone can sit in the workshops where the scope is decided, knows how buyers here move from an app to WhatsApp or a phone call, and can tell you early what the UAE's data protection law means for the data your app collects. Offshore teams can cost less per hour and some are excellent; the cost tends to show up in the brief, the handoffs and the time difference instead. I build in React Native, so if your app needs fully native Swift or Kotlin work, I will tell you and point you to a native developer.",
       },
       {
         question: "What happens after launch?",
@@ -1623,7 +1638,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     accent: "cyan",
     headline: "What an SEO consultant in Dubai is actually hired to fix",
     intro:
-      "Two things have to be true for search to bring you work. The pages have to be readable by a crawler and aimed at what someone actually types, and the result has to be worth clicking when it appears. Most sites fail the second long before the first, and most of what a freelance SEO consultant in Dubai gets hired for sits there: pages that rank for the company name, which only people who already know you ever search.",
+      "Two things have to be true for SEO in Dubai to bring you work. The pages have to be readable by a crawler and aimed at what someone actually types, and the result has to be worth clicking when it appears. Most sites fail the second long before the first, and most of what a freelance SEO consultant in Dubai gets hired for sits there: pages that rank for the company name, which only people who already know you ever search.",
     metaTitle: "Freelance SEO Consultant in Dubai | Bilal Shafqat",
     depthHeading: "How I work as a freelance SEO consultant in Dubai",
     metaDescription:
@@ -1640,6 +1655,19 @@ export const megaMenuGroups: MegaMenuGroup[] = [
         question: "How long does SEO take in Dubai?",
         answer:
           "For a new site on a competitive commercial term, plan on six to twelve months. For long, specific, lower-competition phrases, sometimes weeks. The variable is not effort, it is how much authority the pages above you already have.",
+      },
+      // 2026-10-24 (roadmap 420): two buyer questions carrying "seo services
+      // dubai" (1,300) and "seo expert dubai" (1,300). Answers restate what the
+      // sections below already say; nothing new is claimed.
+      {
+        question: "What do your SEO services in Dubai include?",
+        answer:
+          "A technical audit and the fixes it finds, page targeting for the searches you can actually win, content written by me or briefed to your writer, local SEO through your Google Business Profile, structured data so AI assistants can read and quote the site, and monthly reporting against enquiries. Not every site needs all of it; the audit decides the order.",
+      },
+      {
+        question: "What should I look for in an SEO expert in Dubai?",
+        answer:
+          "Three things. They should tell you which of your terms are winnable before quoting, with the backlink numbers behind that answer. They should want conversion tracking in place before the work starts, so results are judged on enquiries. And they should refuse to promise a ranking by a date, because nobody controls that.",
       },
       {
         question: "Are you an SEO agency?",
@@ -1746,7 +1774,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
 ];
 
 /**
- * The Services menu as the header renders it: four columns, each service
+ * The Services menu as the header renders it: three columns, each service
  * reduced to the handful of fields the menu and its preview rail read.
  *
  * Server-side only. The result is passed to the header as props, so the client
@@ -1768,6 +1796,7 @@ export function buildServiceMenu(): MenuColumn[] {
           summary: firstSentence(group.intro),
           points: group.items.slice(0, 3).map((item) => item.title),
           ...(group.railTimeline ? { timeline: group.railTimeline } : {}),
+          ...(column.subLabels?.[slug] ? { subLabel: column.subLabels[slug] } : {}),
         },
       ];
     }),

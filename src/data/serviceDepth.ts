@@ -67,6 +67,16 @@ export const serviceDepth: Record<string, Depth> = {
         ],
       },
       {
+        // 2026-10-24 (roadmap 420): "local seo dubai" (480, SD 9). General
+        // practice only, no promised positions: the section above already
+        // says the local pack is won through the profile and reviews.
+        heading: "Local SEO in Dubai: profile, citations, location pages and reviews",
+        paragraphs: [
+          "Local SEO is the work that decides whether you appear in the map results when someone nearby searches for what you do. It starts with the Google Business Profile: the right primary category, accurate hours, a phone number that is answered, real photos, your services listed, and regular posts. Then the citations: your business name, address and phone number written the same way everywhere they appear, on directories and map platforms, because conflicting details make every one of them less trusted.",
+          "Location pages come next, where they are honest: a page for an area you genuinely serve, with something specific to say about it, rather than the same text with the area name swapped. Reviews carry more weight than most businesses expect, and the work there is process rather than copy: asking satisfied clients at the right moment and replying to every review, good or bad. None of this guarantees a place in the map results, which also depend on how close the searcher is. It removes the reasons you would be left out.",
+        ],
+      },
+      {
         heading: "Winnable is a number, not an opinion",
         paragraphs: [
           "Before writing anything I want two figures for each target: how many backlinks the current top ten carry, and what is already occupying the first page. Those decide whether content can win the term at all. A term where the top ten average forty thousand backlinks is not a content problem, it is a different sport.",
@@ -186,6 +196,15 @@ export const serviceDepth: Record<string, Depth> = {
         paragraphs: [
           "A template decides the shape of your page before anyone has asked what it is for, and the result usually reads like every other site using it. That is fine for a brochure and expensive for a page you are sending paid traffic to, where the gap between a good layout and an adequate one shows up directly in cost per enquiry.",
           "The part most sites get wrong is the ask. One clear action per page, repeated where a reader is actually ready rather than only at the bottom, and a form that requests the minimum. Every extra field costs you completions, and most forms collect three things nobody ever reads.",
+        ],
+      },
+      {
+        // 2026-10-24 (roadmap 420): "web design abu dhabi" (720, SD 11). A
+        // service statement only: Bilal is Dubai-based and works with
+        // businesses across the UAE remotely. No Abu Dhabi address or office.
+        heading: "Web design in Abu Dhabi and across the UAE, from Dubai",
+        paragraphs: [
+          "I am based in Dubai and work with businesses across the UAE, including Abu Dhabi. The work runs remotely: the brief and reviews on video calls, designs shared in Figma so you can comment on the actual screens, and the build handed over or carried through to launch. If you are looking for web design in Abu Dhabi, the process is the same as for a Dubai client.",
         ],
       },
       {
@@ -1654,7 +1673,8 @@ export const serviceDepth: Record<string, Depth> = {
     ],
     faqs: [
       {
-        question: "Do you design logos?",
+        // Reworded 2026-10-24 (roadmap 420) to carry "logo design dubai" (720).
+        question: "Do you do logo design in Dubai?",
         answer:
           "Yes, though a logo on its own is rarely what a business actually needs. A mark without a defined palette, type scale and usage rules drifts within months as different people apply it differently. The logo is one deliverable inside a brand system.",
       },

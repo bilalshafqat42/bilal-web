@@ -24,7 +24,9 @@ export const contentDates: Record<string, string> = {
   // (09-30), the proof wall and timeline (09-29), the about band (09-25).
   // 2026-10-20: opener line and FAQ heading name "digital marketing
   // freelancer in Dubai".
-  "/": "2026-10-20",
+  // 2026-10-24: the hero line opens with the name, for the brand query
+  // (roadmap 420).
+  "/": "2026-10-24",
   // Every route below had its copy changed on 2026-10-13 in 0ed36bc, the
   // full-site audit (roadmap 399). /pricing gained a cost heading and
   // /portfolio descriptive cover alt text on 2026-10-14.
@@ -37,7 +39,8 @@ export const contentDates: Record<string, string> = {
   "/pricing": "2026-10-20",
   "/faq": "2026-10-13",
   "/contact": "2026-10-13",
-  "/appointment": "2026-10-13",
+  // 2026-10-24: description no longer leads with the name (roadmap 420).
+  "/appointment": "2026-10-24",
   "/process": "2026-10-13",
   "/privacy": "2026-10-13",
   // Was missing entirely until 2026-09-29, so `dateFor` fell back to
@@ -46,7 +49,8 @@ export const contentDates: Record<string, string> = {
   // reading the rendered sitemap rather than the source: the route was dated
   // today while nothing about it had been touched.
   // 2026-10-20: "off-plan marketing in Dubai" in the opener and a heading.
-  "/real-estate-marketing": "2026-10-20",
+  // 2026-10-24: "real estate website design in Dubai" in a heading.
+  "/real-estate-marketing": "2026-10-24",
 };
 
 /** Service category pages all read from `src/data/serviceCategories.ts`,
@@ -70,9 +74,10 @@ export const SERVICE_CONTENT_DATES: Record<string, string> = {
   "wix-development": "2026-10-16",
   "squarespace-development": "2026-10-16",
   "strapi-development": "2026-10-16",
-  "web-design": "2026-10-16",
+  // 2026-10-24: see the roadmap 420 note at the end of this list.
+  "web-design": "2026-10-24",
   "ui-ux-design": "2026-10-16",
-  "graphic-design-branding": "2026-10-16",
+  "graphic-design-branding": "2026-10-24",
   "video-conversion": "2026-10-16",
   // Ten more the same day: the CRM integration hub and its four platforms,
   // React Native, iOS, Android and app back end, and Figma. Their three
@@ -96,18 +101,22 @@ export const SERVICE_CONTENT_DATES: Record<string, string> = {
   "zoho-crm-integration": "2026-10-19",
   "ios-app-development": "2026-10-19",
   "android-app-development": "2026-10-19",
-  "mobile-app-development": "2026-10-19",
   "website-app-development": "2026-10-19",
   "digital-marketing": "2026-10-19",
-  "google-ads": "2026-10-19",
   "facebook-ads": "2026-10-19",
-  "paid-marketing": "2026-10-19",
   // 2026-10-20: one buyer phrase each in a heading (and for SEO, the intro):
   // "freelance SEO consultant", "LinkedIn marketing services", "custom web
   // development in Dubai".
-  "seo": "2026-10-20",
   "linkedin-marketing": "2026-10-20",
   "custom-web-development": "2026-10-20",
+  // 2026-10-24 (roadmap 420): the Ubersuggest targets, one phrase each in a
+  // heading or FAQ question. SEO also gained a "Local SEO in Dubai" section;
+  // web design a short UAE and Abu Dhabi section; graphic design a reworded
+  // FAQ question. Web design and graphic design are dated in place above.
+  "seo": "2026-10-24",
+  "mobile-app-development": "2026-10-24",
+  "google-ads": "2026-10-24",
+  "paid-marketing": "2026-10-24",
 };
 
 export function serviceContentDate(slug: string): string {

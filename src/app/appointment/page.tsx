@@ -12,10 +12,13 @@ import { SITE_PHONE_HREF } from "@/lib/contact";
 
 export const metadata: Metadata = pageMetadata({
   title: "Book a Free 30-Minute Call | Bilal Shafqat, Dubai",
-  // 144 characters. "Marketer, developer and designer" became "digital
-  // marketer" on 2026-10-13, matching the positioning on every other page.
+  // 2026-10-24 (roadmap 420): the name and "freelance digital marketer in
+  // Dubai" came out of this description. Google was showing this page, not the
+  // homepage, for "bilal shafqat", and the description restated both the name
+  // and the homepage's own keyword. The title already leads with the booking,
+  // not the name, so it is unchanged; the name stays there as the site suffix.
   description:
-    "Book a free 30-minute call with Bilal Shafqat, a freelance digital marketer in Dubai. Monday to Friday, 9am to 6pm GST. No pitch, no obligation.",
+    "Book a free 30-minute video call about your campaign, website or app. Monday to Friday, 9am to 6pm GST. No pitch and no obligation.",
   path: "/appointment",
 });
 
@@ -86,9 +89,9 @@ const schema = graph([
     "@type": "WebPage",
     "@id": `${url}#page`,
     url,
-    name: "Book a call with Bilal Shafqat",
+    name: "Book a free consultation",
     description:
-      "Book a free 30-minute consultation with Bilal Shafqat, a freelance digital marketer in Dubai who runs the campaign and builds the page it lands on.",
+      "Book a free 30-minute consultation about your campaign, website or app, with the person who runs the campaign and builds the page it lands on.",
     inLanguage: "en",
     isPartOf: ref(ID.website, "WebSite"),
     about: ref(ID.business, "ProfessionalService"),

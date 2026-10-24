@@ -1,5 +1,5 @@
 import JsonLd from "@/components/seo/JsonLd";
-import { personNode, businessNode, websiteNode } from "@/lib/schema";
+import { personNode, businessNode, websiteNode, homePageNode } from "@/lib/schema";
 
 /**
  * The site's identity graph: who I am, the business, and the site itself.
@@ -10,5 +10,5 @@ import { personNode, businessNode, websiteNode } from "@/lib/schema";
  * reference `#person` and `#business` by id instead of restating them.
  */
 export default function StructuredData() {
-  return <JsonLd nodes={[personNode(), businessNode(), websiteNode()]} />;
+  return <JsonLd nodes={[personNode(), businessNode(), websiteNode(), homePageNode()]} />;
 }

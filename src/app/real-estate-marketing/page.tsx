@@ -252,8 +252,11 @@ export default function RealEstateMarketingPage() {
             <Eyebrow>
               What decides it
             </Eyebrow>
+            {/* "Real estate website design in Dubai" added 2026-10-24 (roadmap
+                420, 210 searches, SD 11): the four decisions below are website
+                design decisions, so the heading names the search. */}
             <h2 className="t-h2 mt-4 text-ink">
-              Four decisions that separate a launch page from a brochure
+              Real estate website design in Dubai: four decisions that separate a launch page from a brochure
             </h2>
           </Reveal>
           <div className="mt-12 space-y-12">

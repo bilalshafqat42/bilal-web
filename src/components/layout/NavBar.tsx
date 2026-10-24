@@ -57,16 +57,52 @@ type MegaId = "services";
  * duplicate: the gold button beside it points at the same /appointment page.
  */
 const links: { label: string; href: string; mega?: MegaId }[] = [
-  { label: "Work", href: "/portfolio" },
+  // Reordered 2026-10-24 at Bilal's request, with Home and Contact added: a
+  // visitor reads the bar left to right as "who, what, proof, how, reading,
+  // reach me", and the gold button stays the one call to action at the end.
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
   { label: "Services", href: "/services", mega: "services" },
+  { label: "Work", href: "/portfolio" },
   { label: "Process", href: "/process" },
   // Added back on 2026-09-30, at Bilal's request. The trim above was made when
   // there was no blog to link to; there are now 52 articles carrying the
   // traffic the rest of the site does not (roadmap 281), and reaching them only
   // from the footer made the largest section of the site the least visible.
   { label: "Blog", href: "/blog" },
-  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
+
+/**
+ * Where the visitor is, against one bar link.
+ *
+ * `"page"` on the exact URL, as WAI-ARIA asks. `"true"` inside a section (a
+ * service page under Services, a case study under Work), so the bar still
+ * shows where you are without telling a screen reader that the hub link is
+ * the page you are on. Home only ever matches exactly, or it would match
+ * everything.
+ */
+function currentFor(href: string, pathname: string): "page" | "true" | undefined {
+  if (pathname === href) return "page";
+  if (href !== "/" && pathname.startsWith(href + "/")) return "true";
+  return undefined;
+}
+
+/** One style for every bar link, so the current page reads the same whether it
+ *  is a plain link or the Services hub. The current link takes the full ink
+ *  colour and a gold rule underneath; colour alone would fail WCAG 1.4.1. */
+function barLinkClass(light: boolean, current: boolean): string {
+  const tone = current
+    ? light
+      ? "text-[#14140f]"
+      : "text-ink"
+    : light
+      ? "text-[#54545c] hover:text-[#14140f]"
+      : "text-muted hover:text-ink";
+  return `whitespace-nowrap text-[0.75rem] uppercase tracking-[0.06em] transition-colors ${tone} ${
+    current ? "underline decoration-gold decoration-2 underline-offset-[7px]" : ""
+  }`;
+}
 
 /** The panel shell both mega menus render inside. Extracted when the second
  *  menu was added: the visibility rules below are the parts that took real
@@ -128,7 +164,7 @@ function ServicesMenu({ menu, onNavigate }: { menu: MenuColumn[]; onNavigate: ()
 
   return (
     <>
-      {/* Four numbered columns of real pages, replacing fifteen flat groups of
+      {/* Numbered columns of real pages, replacing fifteen flat groups of
           repeated tags.
           -------------------------------------------------------------------
           The old menu rendered 49 sub-items carrying 31 unique labels: "Lead
@@ -144,11 +180,13 @@ function ServicesMenu({ menu, onNavigate }: { menu: MenuColumn[]; onNavigate: ()
 
           The numbering is not decoration. It says "this is a finite set you can
           read all of", which is the thing a long menu most needs to say. */}
-      {/* The rail is a fifth column, and only above `xl`. Below that the four
+      {/* The rail is an extra column, and only above `xl`. Below that the
           service columns already use the full width, and squeezing a preview
           panel in would cost the menu more than it adds. There is no hover on a
           phone at all, so the mobile menu does not render it. */}
-      <div className="grid grid-cols-4 gap-x-10 xl:grid-cols-[repeat(4,minmax(0,1fr))_1.08fr]">
+      {/* Three columns since 2026-10-24 (Marketing, Design, Development, the
+          order the homepage uses); see `serviceMenuColumns`. */}
+      <div className="grid grid-cols-3 gap-x-10 xl:grid-cols-[repeat(3,minmax(0,1fr))_1.08fr]">
         {menu.map((column, i) => (
           <div
             key={column.title}
@@ -178,7 +216,12 @@ function ServicesMenu({ menu, onNavigate }: { menu: MenuColumn[]; onNavigate: ()
                 const { slug } = svc;
                 const accent = accentClasses[svc.accent];
                 return (
-                  <li key={slug}>
+                  <li key={slug} className={svc.subLabel ? "pt-2" : undefined}>
+                    {svc.subLabel ? (
+                      <span className="mb-2.5 block font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted">
+                        {svc.subLabel}
+                      </span>
+                    ) : null}
                     <Link
                       href={`/services/${slug}`}
                       onClick={() => onNavigate()}
@@ -467,9 +510,8 @@ export default function NavBar({ menu }: { menu: MenuColumn[] }) {
                       button beside it is the disclosure. */}
                   <Link
                     href={link.href}
-                    className={`text-[0.75rem] uppercase tracking-[0.06em] transition-colors ${
-                      light ? "text-[#54545c] hover:text-[#14140f]" : "text-muted hover:text-ink"
-                    }`}
+                    aria-current={currentFor(link.href, pathname)}
+                    className={barLinkClass(light, Boolean(currentFor(link.href, pathname)))}
                   >
                     {link.label}
                   </Link>
@@ -533,9 +575,8 @@ export default function NavBar({ menu }: { menu: MenuColumn[] }) {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-[0.75rem] uppercase tracking-[0.06em] transition-colors ${
-                  light ? "text-[#54545c] hover:text-[#14140f]" : "text-muted hover:text-ink"
-                }`}
+                aria-current={currentFor(link.href, pathname)}
+                className={barLinkClass(light, Boolean(currentFor(link.href, pathname)))}
               >
                 {link.label}
               </Link>
@@ -620,18 +661,27 @@ export default function NavBar({ menu }: { menu: MenuColumn[] }) {
               link.mega === "services" ? (
                 <details key={link.href} className="group border-b border-border">
                   <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-lg font-semibold text-ink marker:hidden">
-                    Services
+                    <span
+                      className={
+                        currentFor(link.href, pathname)
+                          ? "underline decoration-gold decoration-2 underline-offset-[6px]"
+                          : undefined
+                      }
+                    >
+                      {link.label}
+                    </span>
                     <ChevronDown size={18} className="transition-transform group-open:rotate-180" />
                   </summary>
                   <div className="pb-3">
                     <Link
                       href="/services"
                       onClick={() => setOpen(false)}
+                      aria-current={pathname === "/services" ? "page" : undefined}
                       className="block py-2 text-sm font-semibold text-gold"
                     >
                       All services
                     </Link>
-                    {/* Same four columns as the desktop panel, stacked. It was
+                    {/* Same three columns as the desktop panel, stacked. It was
                         fifteen collapsible groups, each hiding three to five
                         repeated labels behind a tap: forty-nine taps to see a
                         menu of fifteen pages. Now four headings and fifteen
@@ -648,18 +698,25 @@ export default function NavBar({ menu }: { menu: MenuColumn[] }) {
                         </div>
                         {column.services.map((svc) => {
                           return (
-                            <Link
-                              key={svc.slug}
-                              href={`/services/${svc.slug}`}
-                              onClick={() => setOpen(false)}
-                              className="flex items-center gap-2 py-1.5 pl-1 text-sm text-ink"
-                            >
-                              <span
-                                aria-hidden="true"
-                                className={`h-1.5 w-1.5 shrink-0 rounded-full ${accentClasses[svc.accent].dot}`}
-                              />
-                              {svc.title}
-                            </Link>
+                            <div key={svc.slug}>
+                              {svc.subLabel ? (
+                                <span className="mt-2 block pl-1 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted">
+                                  {svc.subLabel}
+                                </span>
+                              ) : null}
+                              <Link
+                                href={`/services/${svc.slug}`}
+                                onClick={() => setOpen(false)}
+                                aria-current={pathname === `/services/${svc.slug}` ? "page" : undefined}
+                                className="flex items-center gap-2 py-1.5 pl-1 text-sm text-ink"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  className={`h-1.5 w-1.5 shrink-0 rounded-full ${accentClasses[svc.accent].dot}`}
+                                />
+                                {svc.title}
+                              </Link>
+                            </div>
                           );
                         })}
                       </div>
@@ -671,7 +728,12 @@ export default function NavBar({ menu }: { menu: MenuColumn[] }) {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="border-b border-border py-4 text-lg font-semibold text-ink"
+                  aria-current={currentFor(link.href, pathname)}
+                  className={`border-b border-border py-4 text-lg font-semibold ${
+                    currentFor(link.href, pathname)
+                      ? "text-ink underline decoration-gold decoration-2 underline-offset-[6px]"
+                      : "text-ink"
+                  }`}
                 >
                   {link.label}
                 </Link>
