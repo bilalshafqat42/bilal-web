@@ -9,7 +9,7 @@ import Reveal from "@/components/ui/Reveal";
 import FaqSection from "@/components/ui/FaqSection";
 import CtaButton from "@/components/ui/CtaButton";
 import PageOpener from "@/components/layout/PageOpener";
-import { clients, getClient } from "@/data/caseStudies";
+import { getClient, routableClients, SHOW_DRAFTS } from "@/data/caseStudies";
 import { SITE_URL as SITE, jsonLdSafe } from "@/lib/schema";
 import { OG_IMAGES } from "@/lib/ogImage";
 import { PORTFOLIO_CONTENT_DATE } from "@/data/contentDates";
@@ -53,8 +53,12 @@ import Eyebrow from "@/components/ui/Eyebrow";
  */
 type Props = { params: Promise<{ client: string }> };
 
+// Drafts are not generated in a production build, and an ungenerated slug
+// is a 404 rather than rendered on demand.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
-  return clients.filter((c) => c.mobileApp).map((c) => ({ client: c.slug }));
+  return routableClients().filter((c) => c.mobileApp).map((c) => ({ client: c.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -90,7 +94,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function MobileAppCaseStudy({ params }: Props) {
   const { client } = await params;
   const c = getClient(client);
-  if (!c?.mobileApp) notFound();
+  if (!c?.mobileApp || (c.draft && !SHOW_DRAFTS)) notFound();
 
   const app = c.mobileApp;
   const page = app.page;

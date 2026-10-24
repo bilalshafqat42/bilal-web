@@ -5,7 +5,8 @@ name: Purge Cloudflare after deploy
 # build (s-maxage plus stale-while-revalidate), which then asks for scripts
 # that no longer exist: the page renders but nothing on it responds. Seen on
 # 2026-10-14 (roadmap 401). This job waits until the origin serves the new
-# build, then purges Cloudflare so every visitor gets matching HTML and JS.
+# build (read from /version.txt, see src/app/version.txt/route.ts), then
+# purges Cloudflare so every visitor gets matching HTML and JS.
 #
 # Needs two repository secrets (Settings, Secrets and variables, Actions):
 #   CLOUDFLARE_API_TOKEN  a token with only Zone > Cache Purge > Purge, for
@@ -36,48 +37,90 @@ jobs:
     timeout-minutes: 12
     steps:
       - name: Wait for the new build, then purge
+        shell: bash
         env:
           CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CF_ZONE: ${{ secrets.CLOUDFLARE_ZONE_ID }}
           SITE: https://bilalshafqat.com
+          EXPECTED_SHA: ${{ github.sha }}
         run: |
+          set -euo pipefail
+
           if [ -z "$CF_TOKEN" ] || [ -z "$CF_ZONE" ]; then
             echo "::warning::Cloudflare secrets not set; skipping purge. Purge Cloudflare by hand after this deploy."
             exit 0
           fi
 
-          # The set of /_next/static files the homepage references is a
-          # fingerprint of the build. A unique query string bypasses the
-          # Cloudflare cache, so this reads the origin directly.
-          fingerprint() {
-            curl -fsS "$SITE/?purge-check=$(date +%s%N)" \
-              | grep -o '/_next/static/[^"]*' | sort -u | sha256sum | cut -c1-16
+          # /version.txt (src/app/version.txt/route.ts) is written at build
+          # time and says which build is live:
+          #   sha=<commit the build was made from, or "unknown">
+          #   build=<random id, new on every build>
+          # A unique query string bypasses the Cloudflare cache, so this reads
+          # the origin. A failed or empty fetch prints nothing, and nothing is
+          # never read as "new build" (audit batch 1, 2026-10-24: the old
+          # fingerprint check could mistake a failed fetch for a new build and
+          # purge before the deploy finished).
+          live_version() {
+            curl -fsS --max-time 15 "$SITE/version.txt?purge-check=$(date +%s%N)" 2>/dev/null || true
+          }
+          field() {
+            printf '%s\n' "$1" | sed -n "s/^$2=//p" | head -n 1
           }
 
-          before=$(fingerprint || echo none)
-          echo "Build fingerprint at start: $before"
+          start=$(live_version)
+          before_sha=$(field "$start" sha)
+          before_build=$(field "$start" build)
+          echo "Expecting commit $EXPECTED_SHA."
+          echo "At start: sha=${before_sha:-none} build=${before_build:-none}"
 
-          # Hostinger usually finishes in about 2 minutes. Poll for up to 8.
-          for i in $(seq 1 24); do
-            sleep 20
-            now=$(fingerprint || echo none)
-            if [ "$now" != "none" ] && [ "$now" != "$before" ]; then
-              echo "New build live after ~$((i * 20))s ($now)."
-              break
-            fi
-          done
-
-          if [ "$now" = "$before" ]; then
-            # Content-only pushes (roadmap, docs) can produce the same build.
-            # Purging is still harmless, so do it rather than guess.
-            echo "Fingerprint unchanged after 8 minutes; purging anyway."
+          live=no
+          if [ "$before_sha" = "$EXPECTED_SHA" ]; then
+            live=yes
+            echo "Commit already live."
+          else
+            # Hostinger usually finishes in about 2 minutes. Poll for up to 8.
+            for i in $(seq 1 24); do
+              sleep 20
+              now=$(live_version)
+              now_sha=$(field "$now" sha)
+              now_build=$(field "$now" build)
+              if [ -z "$now_build" ]; then
+                echo "~$((i * 20))s: no answer from the origin; still waiting."
+                continue
+              fi
+              # Best signal: the build says it is the commit just pushed.
+              if [ "$now_sha" = "$EXPECTED_SHA" ]; then
+                live=yes
+                echo "Commit $EXPECTED_SHA live after ~$((i * 20))s."
+                break
+              fi
+              # Fallback when the host's build cannot see the commit: a
+              # different build id than the one read at the start. Only when
+              # the start read worked, so a failed first fetch cannot make the
+              # old build look new.
+              if [ "$now_sha" = "unknown" ] && [ -n "$before_build" ] && [ "$now_build" != "$before_build" ]; then
+                live=yes
+                echo "New build live after ~$((i * 20))s (build $now_build; commit not exposed by the host)."
+                break
+              fi
+              echo "~$((i * 20))s: still sha=${now_sha:-none}; waiting."
+            done
           fi
 
-          curl -fsS -X POST \
+          if [ "$live" != yes ]; then
+            # Purging is harmless, so do it rather than guess; the warning
+            # shows on the run summary so a slow or failed deploy is noticed.
+            echo "::warning::New build not confirmed after 8 minutes; purging anyway. Check the deploy, then purge again by hand if it finished later."
+          fi
+
+          response=$(curl -fsS --max-time 30 -X POST \
             "https://api.cloudflare.com/client/v4/zones/$CF_ZONE/purge_cache" \
             -H "Authorization: Bearer $CF_TOKEN" \
             -H "Content-Type: application/json" \
-            --data '{"purge_everything":true}' \
-            | grep -q '"success":true' \
-            && echo "Cloudflare cache purged." \
-            || { echo "::error::Cloudflare purge failed."; exit 1; }
+            --data '{"purge_everything":true}' || true)
+          if printf '%s' "$response" | grep -q '"success":true'; then
+            echo "Cloudflare cache purged."
+          else
+            echo "::error::Cloudflare purge failed."
+            exit 1
+          fi

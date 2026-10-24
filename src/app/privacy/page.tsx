@@ -18,7 +18,8 @@ export const metadata: Metadata = {
 
 /** Shown on the page so a visitor can tell whether what they are reading is
  *  current. Update it whenever the rows below change. */
-const LAST_UPDATED = "16 September 2026";
+// 13 October 2026: the lead-backup row was added (0ed36bc, roadmap 399).
+const LAST_UPDATED = "13 October 2026";
 
 const rows = [
   {

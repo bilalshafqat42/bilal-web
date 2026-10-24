@@ -56,3 +56,33 @@ export function clientIp(request: Request): string {
   if (real) return real;
   return lastForwardedFor(request);
 }
+
+/**
+ * The network a visitor is on, not the visitor: /24 for IPv4, /48 for IPv6.
+ * Enough to spot one network flooding the form, not enough to name a
+ * household, so the host's log no longer keeps a full IP (personal data under
+ * UAE PDPL) for every refused request. The rate limiter still keys on the
+ * full address, in memory only.
+ */
+export function truncateIp(ip: string): string {
+  const raw = ip.trim().replace(/%.*$/, "");
+  const mapped = raw.match(/^::ffff:(\d{1,3}(?:\.\d{1,3}){3})$/i);
+  const v4 = mapped ? mapped[1] : raw;
+  if (/^\d{1,3}(?:\.\d{1,3}){3}$/.test(v4)) {
+    return `${v4.split(".").slice(0, 3).join(".")}.0/24`;
+  }
+  if (raw.includes(":")) {
+    const [head, tail] = raw.split("::");
+    const left = head ? head.split(":") : [];
+    const right = tail !== undefined && tail !== "" ? tail.split(":") : [];
+    const groups =
+      tail === undefined
+        ? left
+        : [...left, ...Array(Math.max(0, 8 - left.length - right.length)).fill("0"), ...right];
+    const first = groups.slice(0, 3).map((g) => (g || "0").toLowerCase().replace(/^0+(?=.)/, ""));
+    if (first.length === 3 && first.every((g) => /^[0-9a-f]{1,4}$/.test(g))) {
+      return `${first.join(":")}::/48`;
+    }
+  }
+  return "unknown";
+}

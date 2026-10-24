@@ -27,7 +27,7 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import { backupDir, PENDING_FILE } from "./leadBackupDir.mjs";
 
-export type FailureReason = "crm_unset" | "crm_rejected" | "crm_unreachable";
+export type FailureReason = "crm_unset" | "crm_rejected" | "crm_unreachable" | "route_error";
 
 export type BackupRecord = {
   savedAt: string;
@@ -132,6 +132,10 @@ export async function sendAlert(record: BackupRecord): Promise<boolean> {
       host: SMTP_HOST,
       port,
       secure: port === 465,
+      // On 587/25 the connection starts in plain text and upgrades with
+      // STARTTLS. Without requireTLS, a server (or anything in between) that
+      // does not offer STARTTLS gets the password and the lead in clear text.
+      requireTLS: port !== 465,
       auth: { user: SMTP_USER, pass: SMTP_PASS },
       connectionTimeout: 8_000,
       greetingTimeout: 8_000,

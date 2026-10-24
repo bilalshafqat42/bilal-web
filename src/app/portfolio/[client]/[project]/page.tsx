@@ -14,7 +14,7 @@ import PageOpener from "@/components/layout/PageOpener";
 import FaqSection from "@/components/ui/FaqSection";
 import CaseStudyStory from "@/components/portfolio/CaseStudyStory";
 import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/portfolio/CaseStudyParts";
-import { clients, getProject } from "@/data/caseStudies";
+import { getProject, routableClients, SHOW_DRAFTS } from "@/data/caseStudies";
 import { PORTFOLIO_CONTENT_DATE } from "@/data/contentDates";
 import CtaButton from "@/components/ui/CtaButton";
 import DeviceFrame from "@/components/portfolio/DeviceFrame";
@@ -26,8 +26,12 @@ const SITE = SITE_URL;
 
 type Props = { params: Promise<{ client: string; project: string }> };
 
+// Drafts' projects are not generated in a production build, and an
+// ungenerated slug is a 404 rather than rendered on demand.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
-  return clients.flatMap((c) => c.projects.map((p) => ({ client: c.slug, project: p.slug })));
+  return routableClients().flatMap((c) => c.projects.map((p) => ({ client: c.slug, project: p.slug })));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -59,7 +63,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ProjectCaseStudy({ params }: Props) {
   const { client, project } = await params;
   const found = getProject(client, project);
-  if (!found) notFound();
+  if (!found || (found.client.draft && !SHOW_DRAFTS)) notFound();
   const { client: c, project: p } = found;
 
   const url = `${SITE}/portfolio/${c.slug}/${p.slug}`;

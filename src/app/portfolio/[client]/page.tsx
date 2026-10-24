@@ -11,7 +11,7 @@ import { WorkProof } from "@/components/portfolio/ProofLoop";
 import GalleryLightbox from "@/components/portfolio/GalleryLightbox";
 import Reveal from "@/components/ui/Reveal";
 import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/portfolio/CaseStudyParts";
-import { clients, getClient } from "@/data/caseStudies";
+import { getClient, routableClients, SHOW_DRAFTS } from "@/data/caseStudies";
 import { PORTFOLIO_CONTENT_DATE } from "@/data/contentDates";
 import CtaButton from "@/components/ui/CtaButton";
 import DeviceFrame from "@/components/portfolio/DeviceFrame";
@@ -24,8 +24,12 @@ const SITE = SITE_URL;
 
 type Props = { params: Promise<{ client: string }> };
 
+// Only the slugs generated below exist; anything else, drafts included in a
+// production build, is a 404 rather than rendered on demand.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
-  return clients.map((c) => ({ client: c.slug }));
+  return routableClients().map((c) => ({ client: c.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -35,7 +39,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: c.title,
     description: c.description,
-    // A draft is reachable so Bilal can review the layout, and must not be
+    // A draft is reachable under `next dev` only (404 in production builds,
+    // see SHOW_DRAFTS), so Bilal can review the layout. It must not be
     // indexed: the copy is placeholder, and the company is an employer whose
     // permission is still outstanding. `follow` stays on so the nav links on
     // the page are still crawled normally.
@@ -62,7 +67,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ClientCaseStudy({ params }: Props) {
   const { client } = await params;
   const c = getClient(client);
-  if (!c) notFound();
+  if (!c || (c.draft && !SHOW_DRAFTS)) notFound();
   // Picked by key rather than position, so reordering `screens` in the data
   // cannot silently swap which screen sits beside the website capture.
   const appHomeScreen = c.mobileApp?.screens.find((s) => s.key === "home");

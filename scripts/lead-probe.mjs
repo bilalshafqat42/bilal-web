@@ -80,9 +80,13 @@ const NUL = String.fromCharCode(0);
 
 const cases = [
   ["oversized body", 413, { name: "A", email: "a@example.invalid", message: "x".repeat(40000) }],
-  ["unknown service", 400, { name: "A", email: "a@example.invalid", service: "Bitcoin Mining" }],
-  ["unknown budget", 400, { name: "A", email: "a@example.invalid", budget: "AED 9,999,999" }],
-  ["unknown timeline", 400, { name: "A", email: "a@example.invalid", timeline: "yesterday" }],
+  // An unknown dropdown value is dropped, not refused: the lead still goes on
+  // to delivery (502 here, because the CRM is blackholed). Until audit batch 1
+  // (2026-10-24) each of these was a 400 and the whole enquiry was lost.
+  ["unknown service", 502, { name: "A", email: "a@example.invalid", service: "Bitcoin Mining" }],
+  ["unknown interest", 502, { name: "A", email: "a@example.invalid", serviceInterest: "Bitcoin Mining" }],
+  ["unknown budget", 502, { name: "A", email: "a@example.invalid", budget: "AED 9,999,999" }],
+  ["unknown timeline", 502, { name: "A", email: "a@example.invalid", timeline: "yesterday" }],
   ["missing name/email", 400, { message: "hi" }],
   ["bad email format", 400, { name: "A", email: "not-an-email" }],
   ["array body", 400, "[1,2,3]"],
@@ -137,6 +141,36 @@ for (const [i, [label, want, body, headers]] of cases.entries()) {
   console.log(`  ${ok ? "pass" : "FAIL"}  ${"typos not counted".padEnd(20)} valid after 6 rejected: ${after}`);
 }
 
+// Unknown service value -> still delivered. The CRM is blackholed, so
+// "delivered" here means the lead reached the delivery step: the visitor is
+// offered the fallback, and the lead is in the backup file (the script sets
+// LEAD_BACKUP_DIR to a fresh temp folder) with the unknown value removed.
+{
+  const marker = `unknown-service-${Date.now()}@example.invalid`;
+  const res = await post(
+    { name: "U", email: marker, service: "Bitcoin Mining", budget: "AED 9,999,999", message: "probe" },
+    "203.0.113.55"
+  );
+  const data = await res.json().catch(() => ({}));
+  let record;
+  const dir = process.env.LEAD_BACKUP_DIR;
+  if (dir) {
+    const { readFile } = await import("node:fs/promises");
+    const lines = (await readFile(`${dir}/failed-leads.jsonl`, "utf8").catch(() => "")).split("\n");
+    record = lines.filter(Boolean).map((l) => JSON.parse(l)).find((r) => r.lead?.email === marker);
+  }
+  const ok =
+    res.status === 502 &&
+    data.fallback === true &&
+    (!dir ||
+      (record && record.lead.service === undefined && record.lead.budget === undefined && record.lead.message === "probe"));
+  if (!ok) failed++;
+  console.log(
+    `  ${ok ? "pass" : "FAIL"}  ${"unknown service → still delivered".padEnd(20)} ${res.status}, fallback ${data.fallback}, ` +
+      (dir ? (record ? `backed up without the unknown values: ${record.lead.service === undefined && record.lead.budget === undefined}` : "NOT in backup file") : "backup not checked (LEAD_BACKUP_DIR unset)")
+  );
+}
+
 // The rate limiter, from one IP so the window actually fills.
 const statuses = [];
 for (let i = 0; i < 7; i++) {
@@ -151,4 +185,4 @@ if (failed) {
   console.error(`\n${failed} guard(s) failed.\n`);
   process.exit(1);
 }
-console.log(`\nAll ${cases.length + 2} guards on /api/lead behave as expected.`);
+console.log(`\nAll ${cases.length + 3} guards on /api/lead behave as expected.`);

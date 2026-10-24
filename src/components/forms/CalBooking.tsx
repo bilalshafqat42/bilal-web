@@ -57,6 +57,24 @@ declare global {
  *  the experiment. */
 const LAYOUT = "month_view" as const;
 
+/**
+ * One `bookingSuccessful` listener per page load, shared by every mount.
+ *
+ * `window.Cal` lives for the whole page, and every `Cal("on", ...)` adds a
+ * listener that is never removed. The embed remounts whenever the
+ * qualification answers change (it is keyed on them) and on every visit back
+ * to /appointment by client-side navigation, so each remount used to add one
+ * more listener, and one booking fired `schedule_call` and Meta `Schedule`
+ * once per remount (audit batch 1, 2026-10-24).
+ *
+ * Now the listener is registered once, and calls whichever instance is
+ * mounted at the moment of the booking. Exported for the test harness only.
+ */
+export const calBookedListener: {
+  registered: boolean;
+  handler: (() => void) | undefined;
+} = { registered: false, handler: undefined };
+
 export default function CalBooking({ link, prefill, onBooked }: Props) {
   const mounted = useRef(false);
   // Held in a ref so the one-shot effect below always calls the current
@@ -64,6 +82,16 @@ export default function CalBooking({ link, prefill, onBooked }: Props) {
   // on every render would fire the conversion several times for one booking.
   const onBookedRef = useRef(onBooked);
   onBookedRef.current = onBooked;
+
+  // This instance becomes the one the shared listener calls, and stops being
+  // it on unmount, so a booking after navigating away fires nothing twice.
+  useEffect(() => {
+    const mine = () => onBookedRef.current?.();
+    calBookedListener.handler = mine;
+    return () => {
+      if (calBookedListener.handler === mine) calBookedListener.handler = undefined;
+    };
+  }, []);
 
   useEffect(() => {
     if (mounted.current) return;
@@ -133,10 +161,15 @@ export default function CalBooking({ link, prefill, onBooked }: Props) {
     // Registered before `ui` rather than after because Cal replays its queue in
     // order, and a callback queued after the embed has already rendered can
     // miss an immediate booking.
-    window.Cal?.("on", {
-      action: "bookingSuccessful",
-      callback: () => onBookedRef.current?.(),
-    });
+    //
+    // Once per page load, not once per mount: see `calBookedListener`.
+    if (!calBookedListener.registered && window.Cal) {
+      calBookedListener.registered = true;
+      window.Cal("on", {
+        action: "bookingSuccessful",
+        callback: () => calBookedListener.handler?.(),
+      });
+    }
 
     window.Cal?.("ui", {
       theme: "dark",

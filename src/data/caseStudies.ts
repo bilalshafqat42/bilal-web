@@ -1518,6 +1518,19 @@ export function publishedClients(): Client[] {
   return clients.filter((c) => !c.draft);
 }
 
+/** Drafts are previewable with `next dev` only. In a production build they
+ *  are neither generated nor served (audit batch 1, 2026-10-24): `noindex`
+ *  kept them out of Google, but the four draft URLs still answered 200 to
+ *  anyone who guessed them, with placeholder copy about employers whose
+ *  permission is outstanding. */
+export const SHOW_DRAFTS = process.env.NODE_ENV === "development";
+
+/** The clients the case-study routes may render: every one under `next dev`,
+ *  published ones only in a production build. */
+export function routableClients(): Client[] {
+  return SHOW_DRAFTS ? clients : publishedClients();
+}
+
 export function getClient(slug: string): Client | undefined {
   return clients.find((c) => c.slug === slug);
 }

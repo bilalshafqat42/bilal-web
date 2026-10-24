@@ -1,5 +1,5 @@
 import { NextResponse, after } from "next/server";
-import { clientIp } from "@/lib/clientIp";
+import { clientIp, truncateIp } from "@/lib/clientIp";
 import { saveToFile, sendAlert, type BackupRecord, type FailureReason } from "@/lib/leadBackup";
 import { ALLOWED_SERVICES, ALLOWED_BUDGETS, ALLOWED_TIMELINES } from "@/data/leadAllowList";
 import { HONEYPOT_FIELD } from "@/lib/honeypot";
@@ -195,7 +195,7 @@ function redactedLead(lead: Record<string, unknown>) {
  *  stable token; the detail is whatever helps diagnose that reason. */
 function logRejection(reason: string, ip: string, detail: Record<string, unknown> = {}) {
   console.warn(
-    `[LEAD REJECTED] ${JSON.stringify({ reason, ip, at: new Date().toISOString(), ...detail })}`
+    `[LEAD REJECTED] ${JSON.stringify({ reason, ip: truncateIp(ip), at: new Date().toISOString(), ...detail })}`
   );
 }
 
@@ -365,18 +365,6 @@ export async function POST(request: Request) {
   // `clean()`, which returns undefined for anything that is not a string, and
   // `attribution` is used only if it is a plain object. `source` was the one
   // field used raw (`.includes()`), so `"source": 123` threw a 500.
-  const {
-    meetingTime,
-    pageUrl,
-    utmSource,
-    utmMedium,
-    utmCampaign,
-    utmContent,
-    utmTerm,
-    eventId,
-    fbp,
-    fbc,
-  } = body;
   const source = clean(body.source, LIMITS.generic);
   const attribution: Attribution | undefined =
     body.attribution && typeof body.attribution === "object" && !Array.isArray(body.attribution)
@@ -406,7 +394,13 @@ export async function POST(request: Request) {
 
   // Whitelisted against the same lists the form renders from. A select
   // constrains an honest visitor and nobody else, so an unrecognised value is
-  // rejected rather than passed through to the CRM.
+  // never passed through to the CRM.
+  //
+  // It is DROPPED, not refused (audit batch 1, 2026-10-24). Refusing with a
+  // 400 lost the whole enquiry over one optional field: a renamed option, a
+  // stale cached form or a translated label was enough. Name and email are
+  // valid by this point, so the lead goes through without the unknown answer.
+  // Only the field's name is logged, never the value the visitor sent.
   //
   // The /contact dropdown lists the four pillar labels, not the fifteen
   // service titles. Until 2026-10-14 only the titles were allowed here, so
@@ -414,35 +408,23 @@ export async function POST(request: Request) {
   // enquiry was lost without a fallback. Both lists are accepted now, from
   // `src/data/leadAllowList.ts`, which `npm run lead-options-check` tests
   // against every list the forms render.
-  const allowedServices = ALLOWED_SERVICES;
-  const service = clean(body.service, LIMITS.generic);
-  if (service && !allowedServices.has(service)) {
-    logRejection("unknown_service", ip, { service });
-    return json(
-      { success: false, error: "Unrecognised service." },
-      { status: 400 }
-    );
-  }
-
-  const serviceInterest = clean(body.serviceInterest, LIMITS.generic);
-  if (serviceInterest && !allowedServices.has(serviceInterest)) {
-    logRejection("unknown_service_interest", ip, { serviceInterest });
-    return json(
-      { success: false, error: "Unrecognised service." },
-      { status: 400 }
-    );
-  }
-
-  const budget = clean(body.budget, LIMITS.generic);
-  if (budget && !ALLOWED_BUDGETS.has(budget)) {
-    logRejection("unknown_budget", ip, { budget });
-    return json({ success: false, error: "Unrecognised budget." }, { status: 400 });
-  }
-
-  const timeline = clean(body.timeline, LIMITS.generic);
-  if (timeline && !ALLOWED_TIMELINES.has(timeline)) {
-    logRejection("unknown_timeline", ip, { timeline });
-    return json({ success: false, error: "Unrecognised timeline." }, { status: 400 });
+  const dropped: string[] = [];
+  const allowed = (field: string, value: string | undefined, list: ReadonlySet<string>) => {
+    if (!value) return undefined;
+    if (list.has(value)) return value;
+    dropped.push(field);
+    return undefined;
+  };
+  const service = allowed("service", clean(body.service, LIMITS.generic), ALLOWED_SERVICES);
+  const serviceInterest = allowed(
+    "serviceInterest",
+    clean(body.serviceInterest, LIMITS.generic),
+    ALLOWED_SERVICES
+  );
+  const budget = allowed("budget", clean(body.budget, LIMITS.generic), ALLOWED_BUDGETS);
+  const timeline = allowed("timeline", clean(body.timeline, LIMITS.generic), ALLOWED_TIMELINES);
+  if (dropped.length) {
+    console.warn(`[LEAD FIELD DROPPED] ${JSON.stringify({ fields: dropped, at: new Date().toISOString() })}`);
   }
 
   // Turnstile runs after the cheap field checks, so a malformed request never
@@ -460,6 +442,52 @@ export async function POST(request: Request) {
 
   // Valid from here on, so it counts towards the limit whatever happens next.
   recordHit(ip);
+
+  // Anything that throws after this point is our bug, not the visitor's, so
+  // the lead is kept and the visitor offered WhatsApp and email exactly as on
+  // a CRM failure, instead of an unhandled 500 that loses the enquiry.
+  try {
+    return await deliver({
+      body, source, attribution, name, email, phone, message,
+      service, serviceInterest, budget, timeline,
+    });
+  } catch (err) {
+    const e = err as Error;
+    console.error("[LEAD NOT DELIVERED — route error]", `${e?.name ?? "Error"}: ${safeDetail(String(e?.message ?? ""))}`);
+    await backUp(
+      {
+        type: (source ?? "").includes("whatsapp") ? "chat" : "form",
+        name, email, phone, message,
+        service: serviceInterest || service, budget, timeline,
+      },
+      "route_error"
+    );
+    return json(
+      { success: false, fallback: true, error: "Something went wrong saving your enquiry." },
+      { status: 500 }
+    );
+  }
+}
+
+/** The validated fields `deliver` builds the CRM record from. */
+type Validated = {
+  body: LeadPayload;
+  source?: string;
+  attribution?: Attribution;
+  name: string;
+  email: string;
+  phone?: string;
+  message?: string;
+  service?: string;
+  serviceInterest?: string;
+  budget?: string;
+  timeline?: string;
+};
+
+/** Builds the CRM record and sends it. Runs only after validation passed. */
+async function deliver(v: Validated) {
+  const { body, source, attribution, name, email, phone, message, service, serviceInterest, budget, timeline } = v;
+  const { meetingTime, pageUrl, utmSource, utmMedium, utmCampaign, utmContent, utmTerm, eventId, fbp, fbc } = body;
 
   const isChat = (source ?? "").includes("whatsapp");
 
@@ -590,6 +618,9 @@ export async function POST(request: Request) {
     );
   }
 
+  // Nobody reads the CRM's success body; release the connection now rather
+  // than leaving it for the garbage collector.
+  await crmResponse.body?.cancel().catch(() => {});
   return json({ success: true });
 }
 
