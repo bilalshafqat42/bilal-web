@@ -32,10 +32,28 @@ if (served !== KEY) {
 }
 console.log(`Key verified at ${keyUrl}\n`);
 
-const xml = await (await fetch(`${BASE}/sitemap.xml`)).text();
-const urlList = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+const sitemapRes = await fetch(`${BASE}/sitemap.xml`).catch(() => null);
+if (!sitemapRes?.ok) {
+  console.error(`Sitemap not readable at ${BASE}/sitemap.xml (HTTP ${sitemapRes?.status ?? "no response"}). Nothing sent.`);
+  process.exit(1);
+}
+const xml = await sitemapRes.text();
+const listed = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+// IndexNow wants every URL on the submitted host. A staging sitemap lists the
+// canonical production URLs, so submitting it as-is would announce production
+// pages under the staging key and host. Only same-host URLs go.
+const urlList = listed.filter((u) => {
+  try {
+    return new URL(u).host === host;
+  } catch {
+    return false;
+  }
+});
+if (listed.length !== urlList.length) {
+  console.error(`Skipping ${listed.length - urlList.length} sitemap URL(s) not on ${host}.`);
+}
 if (!urlList.length) {
-  console.error("No URLs found in sitemap. Nothing sent.");
+  console.error(`No URLs on ${host} in the sitemap. Nothing sent.`);
   process.exit(1);
 }
 

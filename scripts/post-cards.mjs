@@ -30,13 +30,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-/** Every size a platform actually wants, and what each one is for. */
-export const SIZES = [
-  { key: "link", w: 1200, h: 630, for: "Blog lead image, LinkedIn and Facebook link cards" },
-  { key: "feed", w: 1080, h: 1350, for: "Instagram and Facebook feed (4:5, the tallest the feed allows)" },
-  { key: "pin", w: 1000, h: 1500, for: "Pinterest (2:3, what the platform recommends)" },
-  { key: "story", w: 1080, h: 1920, for: "Instagram and Facebook stories" },
-];
+import { SIZES } from "./lib/cardSizes.mjs";
 
 /**
  * Post 1. To make the next card, copy this block and change the four fields.

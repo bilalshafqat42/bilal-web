@@ -12,10 +12,18 @@
  *
  * Usage:  npm run daily
  *         npm run daily -- --json      (machine-readable, no diff)
+ *         SITE_URL=http://localhost:3000 npm run daily
+ *
+ * Against any SITE_URL other than production, snapshots go to a temporary
+ * folder (printed at the end) unless SEO_SNAPSHOT_DIR says otherwise, so a
+ * local test run never lands in the production history and skews tomorrow's
+ * diff.
  */
 
-import { readFileSync, writeFileSync, mkdirSync, readdirSync } from "node:fs";
-import { checksFor, scoreOf, text } from "./lib/score.mjs";
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, mkdtempSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { checksFor, scoreOf, text, mainOf, mainText, wordCount } from "./lib/score.mjs";
 import { TRACKED } from "./lib/tracked.mjs";
 import { fetchPage } from "./lib/fetchPage.mjs";
 
@@ -31,21 +39,36 @@ const score = (doc, kw) => {
   return { score: scoreOf(checks), words };
 };
 
-const BASE = "https://bilalshafqat.com";
-const DIR = new URL("../.seo-snapshots/", import.meta.url).pathname;
-const today = new Date().toISOString().slice(0, 10);
+const PROD = "https://bilalshafqat.com";
+const BASE = (process.env.SITE_URL || PROD).replace(/\/$/, "");
+const DIR = process.env.SEO_SNAPSHOT_DIR
+  ? join(process.env.SEO_SNAPSHOT_DIR, "/")
+  : BASE === PROD
+    ? new URL("../.seo-snapshots/", import.meta.url).pathname
+    : join(mkdtempSync(join(tmpdir(), "seo-snapshots-")), "/");
+// Dubai date, not UTC: a run before 4am Dubai time used to be filed under
+// yesterday and overwrite yesterday's snapshot.
+const dubaiDate = (d) => new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Dubai" }).format(d);
+const today = dubaiDate(new Date());
 
 // ────────────────────────────────────────────────────────── measure
 const sitemap = await (await fetchPage(`${BASE}/sitemap.xml`)).text();
-const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+// The sitemap lists canonical (production) URLs. Fetch the same paths from
+// BASE, so a SITE_URL run measures that server and not the live site.
+const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => BASE + new URL(m[1]).pathname);
+if (!urls.length) {
+  // Without this, an unreachable sitemap produced a "report" of 0 pages and
+  // NaN average words, saved as if it were a real reading.
+  console.error(`No URLs in ${BASE}/sitemap.xml. Nothing measured, no snapshot written.`);
+  process.exit(1);
+}
 
 let totalWords = 0, thin = 0, broken = 0, longTitles = 0;
 for (const url of urls) {
   const res = await fetchPage(url);
   if (!res.ok) { broken++; continue; }
   const doc = await res.text();
-  const main = doc.match(/<main[\s\S]*?<\/main>/)?.[0] ?? "";
-  const w = text(main.replace(/<script[\s\S]*?<\/script>/g, "")).split(/\s+/).filter(Boolean).length;
+  const w = wordCount(mainText(mainOf(doc)));
   totalWords += w;
   if (w < 800) thin++;
   const t = text(doc.match(/<title>([\s\S]*?)<\/title>/)?.[1] ?? "");
@@ -55,12 +78,15 @@ for (const url of urls) {
 const pages = {};
 for (const [path, kw] of TRACKED) {
   const res = await fetchPage(BASE + path);
-  pages[path] = res.ok ? { kw, ...score(await res.text(), kw) } : { kw, score: 0, words: 0 };
+  // null, not 0, when the page did not load: a 0 read as a 90-point drop in
+  // tomorrow's diff, and as a 90-point recovery the day after.
+  pages[path] = res.ok ? { kw, ...score(await res.text(), kw) } : { kw, score: null, words: null };
 }
 
+const loaded = urls.length - broken;
 const snap = {
   date: today,
-  site: { pages: urls.length, thin, broken, longTitles, avgWords: Math.round(totalWords / urls.length) },
+  site: { pages: urls.length, thin, broken, longTitles, avgWords: loaded ? Math.round(totalWords / loaded) : null },
   pages,
 };
 
@@ -76,10 +102,14 @@ if (process.argv.includes("--json")) {
 const files = readdirSync(DIR).filter((f) => f.endsWith(".json") && f !== `${today}.json`).sort();
 const load = (f) => JSON.parse(readFileSync(DIR + f, "utf8"));
 const prev = files.length ? load(files[files.length - 1]) : null;
-const weekAgoName = files.filter((f) => f.slice(0, 10) <= new Date(Date.now() - 6 * 864e5).toISOString().slice(0, 10)).pop();
+// The newest snapshot at least 7 days old. The old cut-off was 6 days, so the
+// "7d" column was really a 6-day comparison.
+const sevenBack = new Date(Date.parse(`${today}T00:00:00Z`) - 7 * 864e5).toISOString().slice(0, 10);
+const weekAgoName = files.filter((f) => f.slice(0, 10) <= sevenBack).pop();
 const weekAgo = weekAgoName ? load(weekAgoName) : null;
 
 const delta = (now, then) => {
+  if (now === undefined || now === null) return "  --";
   if (then === undefined || then === null) return "    ";
   const d = now - then;
   if (d === 0) return "   ·";
@@ -98,16 +128,17 @@ const siteRows = [
 const siteKeys = ["pages", "avgWords", "thin", "longTitles", "broken"];
 siteRows.forEach(([label, val], i) => {
   const k = siteKeys[i];
-  console.log(`    ${label.padEnd(20)} ${String(val).padStart(6)}  ${delta(val, prev?.site[k])}  ${delta(val, weekAgo?.site[k])}`);
+  console.log(`    ${label.padEnd(20)} ${String(val ?? "n/c").padStart(6)}  ${delta(val, prev?.site[k])}  ${delta(val, weekAgo?.site[k])}`);
 });
 
 console.log("\n  PAGE SCORES");
 console.log(`    ${"page".padEnd(40)} ${"score".padStart(6)}  ${"1d".padStart(4)}  ${"7d".padStart(4)}   words`);
 for (const [path] of TRACKED) {
   const p = snap.pages[path];
+  // A page that did not load today is "not checked", never a drop.
   console.log(
-    `    ${path.padEnd(40)} ${String(p.score).padStart(6)}  ${delta(p.score, prev?.pages[path]?.score)}  ` +
-    `${delta(p.score, weekAgo?.pages[path]?.score)}   ${String(p.words).padStart(5)}`
+    `    ${path.padEnd(40)} ${String(p.score ?? "n/c").padStart(6)}  ${delta(p.score, prev?.pages[path]?.score)}  ` +
+    `${delta(p.score, weekAgo?.pages[path]?.score)}   ${String(p.words ?? "").padStart(5)}${p.score === null ? "   not checked (did not load)" : ""}`
   );
 }
-console.log(`\n  snapshot saved to .seo-snapshots/${today}.json\n`);
+console.log(`\n  snapshot saved to ${DIR}${today}.json\n`);

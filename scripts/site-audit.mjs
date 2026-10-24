@@ -18,41 +18,40 @@
 // Same width table as `npm run serp`, so the two never disagree about a cut.
 import { px, DESC_SIZE, DESC_LIMIT } from "./lib/serpWidth.mjs";
 import { fetchPage } from "./lib/fetchPage.mjs";
+// One decode for every measuring script (audit batch 3): this file had its own
+// copy, which turned React's `&#x27;` apostrophe into a space.
+import { text, decode, mainOf, mainText, wordCount } from "./lib/score.mjs";
 
 const BASE = (process.argv[2] || "https://bilalshafqat.com").replace(/\/$/, "");
 
-const strip = (s) => s.replace(/<[^>]+>/g, " ");
-const decode = (s) =>
-  s
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#(\d+);/g, (_, d) => String.fromCharCode(+d))
-    .replace(/&[a-z]+;/g, " ");
-const text = (s) => decode(strip(s)).replace(/\s+/g, " ").trim();
-
 const sitemap = await (await fetchPage(`${BASE}/sitemap.xml`)).text();
-const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-console.error(`Auditing ${urls.length} URLs from the sitemap…`);
+// The sitemap lists canonical production URLs whatever server serves it. Fetch
+// each path from BASE, as h1-check does, so `npm run audit -- http://localhost:3000`
+// audits localhost. Until audit batch 3 it read localhost's sitemap and then
+// audited the live site.
+const paths = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => new URL(m[1]).pathname);
+if (!paths.length) {
+  console.error(`No URLs in ${BASE}/sitemap.xml. Nothing audited.`);
+  process.exit(1);
+}
+console.error(`Auditing ${paths.length} URLs from the sitemap, fetched from ${BASE}…`);
 
 const rows = [];
-for (const url of urls) {
-  const res = await fetchPage(url);
-  const path = url.replace(BASE, "") || "/";
+for (const path of paths) {
+  const res = await fetchPage(BASE + path);
   if (!res.ok) {
     rows.push({ path, status: res.status });
     continue;
   }
   const doc = await res.text();
-  const main = doc.match(/<main[\s\S]*?<\/main>/)?.[0] ?? "";
-  const body = text(main.replace(/<script[\s\S]*?<\/script>/g, ""));
+  const main = mainOf(doc);
+  const body = mainText(main);
   const title = text(doc.match(/<title>([\s\S]*?)<\/title>/)?.[1] ?? "");
   const desc = decode(doc.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? "");
   rows.push({
     path,
     status: 200,
-    words: body.split(/\s+/).filter(Boolean).length,
+    words: wordCount(body),
     title,
     titleLen: title.length,
     descLen: desc.length,
@@ -114,4 +113,8 @@ console.log(`  under 800 words  ${thin.length}`);
 console.log(`  titles too long  ${long.length}`);
 console.log(`  descriptions off ${badDesc.length}`);
 console.log(`  descriptions wide ${wideDesc.length}`);
+console.log(`  non-200          ${broken.length}`);
 console.log("");
+
+// A broken page is a failure, not a line in a report nobody scrolls to.
+if (broken.length) process.exit(1);

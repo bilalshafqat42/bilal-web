@@ -31,6 +31,12 @@ concurrency:
   group: purge-cache
   cancel-in-progress: true
 
+# The job only calls the site and the Cloudflare API with curl. It never
+# checks out or writes to the repository, so the GitHub token gets read-only
+# access (audit batch 3). timeout-minutes is set on the job below.
+permissions:
+  contents: read
+
 jobs:
   purge:
     runs-on: ubuntu-latest

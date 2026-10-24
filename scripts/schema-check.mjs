@@ -111,7 +111,8 @@ for (const path of paths) {
     const walk = (n) => {
       if (Array.isArray(n)) return n.forEach(walk);
       if (!n || typeof n !== "object") return;
-      if (typeof n["@type"] === "string") types.add(n["@type"]);
+      // "@type" may be an array, e.g. ["Person", "ProfessionalService"].
+      for (const t of [n["@type"]].flat()) if (typeof t === "string") types.add(t);
       // A node *defines* an id only if it carries properties beyond @id and
       // @type. Anything with just those two is a reference, and references are
       // supposed to repeat — `#business` is legitimately pointed at from both
