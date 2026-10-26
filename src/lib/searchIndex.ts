@@ -17,6 +17,7 @@ import type { Chunk } from "./searchRank";
 import { blogPosts, type Block } from "@/data/blogPosts";
 import { SITE_EMAIL, SITE_PHONE } from "./contact";
 import { plainText } from "./inlineLinks";
+import { HEALTH_CHECK_PATH, HEALTH_CHECK_SUMMARY } from "@/data/healthCheck";
 
 export function buildIndex(): Chunk[] {
   const chunks: Chunk[] = [];
@@ -141,6 +142,15 @@ export function buildIndex(): Chunk[] {
       "Off-plan property launch marketing for developers in Dubai and the UK: the landing page, the campaign creative and the lead capture built together rather than bought separately. Four launches for LEOS Developments over two years - Hadley Heights, Cavendish Square, Weybridge Gardens and Weybridge Gardens 2 - plus the corporate website, the mobile app and the brand social work. The entry price sits in the hero so unqualified traffic self-selects out, one primary call to action short enough to finish on a phone, a separate route for existing buyers so they stay out of the new-enquiry list, and a brochure download as a lower-commitment second entry point.",
     url: "/real-estate-marketing",
     kind: "service",
+  });
+  // The free health check: a standalone route like the one above, so no
+  // builder reaches it. One chunk, not one per FAQ: "Is this a full SEO
+  // audit?" as a title of its own would compete with /services/seo for "seo".
+  chunks.push({
+    title: "Free website health check",
+    body: `${HEALTH_CHECK_SUMMARY} Free website audit for businesses in Dubai and the UAE, no obligation, no logins.`,
+    url: HEALTH_CHECK_PATH,
+    kind: "info",
   });
   chunks.push({
     title: "Getting in touch",

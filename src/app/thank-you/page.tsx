@@ -33,6 +33,12 @@ const COPY: Record<string, { heading: string; body: string }> = {
     heading: "Enquiry received",
     body: "It has landed with me directly, not with an assistant or a shared inbox.",
   },
+  // HEALTH_CHECK_SOURCE in src/data/leadOptions.ts. No turnaround beyond the
+  // site's usual reply time is promised here or on the offer page.
+  "health-check": {
+    heading: "Health check requested",
+    body: "I will look at your site myself and send the summary to the email address you gave. If the review needs longer than my first reply, that reply will say when to expect it.",
+  },
 };
 
 const next = [

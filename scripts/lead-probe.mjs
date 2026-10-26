@@ -109,6 +109,29 @@ const cases = [
     "CRM & Marketing Automation",
     "Something else",
   ].map((service) => [`contact: ${service.slice(0, 12)}`, 502, { name: "A", email: "a@example.invalid", service }]),
+  // The free health check (2026-10-26): `websiteUrl` is required for that
+  // source and must be a public http(s) address; `goal` is a select, so an
+  // unknown one is dropped like the others rather than refused.
+  ...(() => {
+    const hc = {
+      name: "A",
+      email: "a@example.invalid",
+      source: "health-check",
+      service: "Free website health check",
+      goal: "More enquiries",
+    };
+    return [
+      ["health check: valid", 502, { ...hc, websiteUrl: "example.com" }],
+      ["health check: no site", 400, { ...hc }],
+      ["health check: js url", 400, { ...hc, websiteUrl: "javascript:alert(1)" }],
+      ["health check: login url", 400, { ...hc, websiteUrl: "https://user:pass@example.com" }],
+      ["health check: one word", 400, { ...hc, websiteUrl: "localhost" }],
+      ["health check: ip address", 400, { ...hc, websiteUrl: "http://127.0.0.1:9099" }],
+      ["health check: too long", 400, { ...hc, websiteUrl: `https://example.com/${"a".repeat(400)}` }],
+      ["health check: bad goal", 502, { ...hc, websiteUrl: "https://example.com", goal: "Get rich" }],
+      ["health check: url as number", 400, { ...hc, websiteUrl: 42 }],
+    ];
+  })(),
   [
     "CRLF injection",
     502,
@@ -171,6 +194,43 @@ for (const [i, [label, want, body, headers]] of cases.entries()) {
   );
 }
 
+// A health check request reaches delivery with the website and goal written
+// into the message, since Performo's public intake has no field for either,
+// and labelled by `service`. Control characters in the address are stripped
+// and the address is normalised; the visitor's own note comes after.
+{
+  const marker = `health-check-${Date.now()}@example.invalid`;
+  const res = await post(
+    {
+      name: "H",
+      email: marker,
+      source: "health-check",
+      service: "Free website health check",
+      websiteUrl: `  Example.com/contact${CR}${LF}`,
+      goal: "Better tracking",
+      message: "probe note",
+    },
+    "203.0.113.66"
+  );
+  let record;
+  const dir = process.env.LEAD_BACKUP_DIR;
+  if (dir) {
+    const { readFile } = await import("node:fs/promises");
+    const lines = (await readFile(`${dir}/failed-leads.jsonl`, "utf8").catch(() => "")).split("\n");
+    record = lines.filter(Boolean).map((l) => JSON.parse(l)).find((r) => r.lead?.email === marker);
+  }
+  const want =
+    "Free website health check request\nWebsite: https://example.com/contact\nMain goal: Better tracking\n\nprobe note";
+  const ok =
+    res.status === 502 &&
+    (!dir || (record && record.lead.message === want && record.lead.service === "Free website health check"));
+  if (!ok) failed++;
+  console.log(
+    `  ${ok ? "pass" : "FAIL"}  ${"health check → message carries site and goal".padEnd(20)} ${res.status}, ` +
+      (dir ? (record ? `message ${JSON.stringify(record.lead.message)}` : "NOT in backup file") : "backup not checked (LEAD_BACKUP_DIR unset)")
+  );
+}
+
 // The rate limiter, from one IP so the window actually fills.
 const statuses = [];
 for (let i = 0; i < 7; i++) {
@@ -185,4 +245,4 @@ if (failed) {
   console.error(`\n${failed} guard(s) failed.\n`);
   process.exit(1);
 }
-console.log(`\nAll ${cases.length + 3} guards on /api/lead behave as expected.`);
+console.log(`\nAll ${cases.length + 4} guards on /api/lead behave as expected.`);

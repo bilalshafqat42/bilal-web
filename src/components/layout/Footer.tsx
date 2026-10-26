@@ -40,6 +40,7 @@ const regions = [
 const companyLinks = [
   { label: "Home", href: "/" },
   { label: "Book a call", href: "/appointment" },
+  { label: "Free health check", href: "/free-website-health-check" },
   { label: "About", href: "/about" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Pricing", href: "/pricing" },

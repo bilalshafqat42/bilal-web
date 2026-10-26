@@ -14,6 +14,12 @@ import { blogPosts, type Block } from "@/data/blogPosts";
 import { POSITIONING, yearsExperience } from "./site";
 import { plainText } from "./inlineLinks";
 import { SITE_EMAIL, SITE_PHONE } from "./contact";
+import {
+  HEALTH_CHECK_FAQS,
+  HEALTH_CHECK_PATH,
+  HEALTH_CHECK_POINTS,
+  HEALTH_CHECK_SUMMARY,
+} from "@/data/healthCheck";
 
 export function buildSiteContent(): string {
   const parts: string[] = [];
@@ -31,6 +37,16 @@ internationally.
 
 Contact: ${SITE_EMAIL}, ${SITE_PHONE} (also WhatsApp).
 Contact page: /contact  ·  Pricing: /pricing  ·  FAQ: /faq`);
+
+  parts.push(`# Free website health check  (page: ${HEALTH_CHECK_PATH})
+
+${HEALTH_CHECK_SUMMARY}
+
+The ten checks:
+${HEALTH_CHECK_POINTS.map((p, i) => `${i + 1}. ${p.title}: ${p.body}`).join("\n")}`);
+  for (const faq of HEALTH_CHECK_FAQS) {
+    parts.push(`Q: ${faq.question}\nA: ${faq.answer}`);
+  }
 
   parts.push(`# Services\n`);
   for (const group of megaMenuGroups) {
