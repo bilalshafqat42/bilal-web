@@ -41,6 +41,13 @@ export type Gallery = {
    *  would get skipped. Reading the extension from the data is cheaper than
    *  keeping two galleries. */
   ext?: string;
+  /** Service pages (slugs) this set is proof for beyond its discipline.
+   *
+   *  Added 2026-10-26. Texdale's range creatives are what ran on Meta, so they
+   *  are proof for the Facebook and Meta ads page as well as for social media
+   *  marketing, and no discipline page covers paid ads. Read by the service
+   *  page proof block to pick a thumbnail. Only where the client used them. */
+  alsoProves?: string[];
   /** How the tiles are laid out. Defaults to `tiles`.
    *
    *  `tiles` is the carousel case: four square crops per row, `object-cover`.
@@ -52,6 +59,12 @@ export type Gallery = {
    *  on the first pass. `screens` keeps the native ratio and drops to two
    *  columns so the baked-in type stays readable. */
   layout?: "tiles" | "screens";
+  /** Desktop columns for `tiles`. Defaults to 4.
+   *
+   *  Added 2026-10-26 for Texdale's nine campaign creatives: a brand tile and
+   *  one per product range, designed as a 3x3 set. Four columns left the ninth
+   *  alone on its own row. Three keeps the set the shape it was made in. */
+  columns?: 3 | 4;
   items: GalleryItem[];
 };
 
@@ -388,6 +401,25 @@ export type Client = {
        *  FAQPage schema are omitted when absent. */
       faqs?: Faq[];
     };
+  };
+  /** An app shown as a design and prototype, on the client page itself.
+   *
+   *  Added 2026-10-26 for Texdale Field. Deliberately not `mobileApp`: that
+   *  shape is for a built app (screen-by-screen captures, a platform and stack,
+   *  its own `/mobile-app` page and store questions in the FAQ). Texdale's app
+   *  is designed and prototyped, not released, and its platform is not
+   *  decided, so a page asserting a stack and platforms would claim things that
+   *  are not true. A section on the case study says what it is and no more.
+   *
+   *  Its images feed the discipline pages as app screens, labelled as a design
+   *  and prototype (see `portfolioItems.ts`). */
+  appDesign?: Gallery & {
+    /** The app's own name, used in labels on the discipline pages. */
+    name: string;
+    /** One honest sentence on where the app stands. Shown under the intro. */
+    status: string;
+    /** What the screens show it doing. Only what is visible in the mockups. */
+    features: { title: string; body: string }[];
   };
   /** Identity moments: announcements, the experience centre, a teaser. Posts
    *  about the company rather than about a building. */
@@ -1460,6 +1492,14 @@ export const clients: Client[] = [
     // campaign detail and any result. The photographs on Texdale's site are
     // licensed stock (Burst), so nothing here describes them as Texdale's
     // premises or products.
+    //
+    // 2026-10-26: the app (Texdale Field) and the Meta creatives added from
+    // files Bilal supplied. The app is a design and prototype, not released on
+    // either store, platform not decided: `appDesign`, not `mobileApp`, and no
+    // `/mobile-app` page. Some mockups still carry small placeholder text
+    // ("IMAGE TO SUPPLY", "PLACEHOLDER SPECIFICATION"); Bilal chose to show them
+    // as they are. The creatives are the set used for the Meta campaign, as
+    // Bilal describes them. No performance figures for either.
     slug: "texdale",
     name: "Texdale",
     industry: "Manufacturing & Industrial",
@@ -1470,15 +1510,15 @@ export const clients: Client[] = [
     ogImageAlt: "The Texdale homepage hero: Chemistry for the wet process, above folded indigo denim",
     title: "Texdale: Complete Digital Marketing for a UK Manufacturer",
     description:
-      "Complete digital marketing for Texdale, a UK textile chemicals maker: strategy, website design and build, a mobile app, and Google and Meta ads.",
+      "Complete digital marketing for Texdale, a UK textile chemicals maker: strategy, website design and build, an app prototype, and Google and Meta ads.",
     headline: "Complete digital marketing for a UK textile chemicals manufacturer",
     intro:
-      "Texdale is a textile chemicals manufacturer in Stockport, England, formulating pretreatment, dyeing, finishing and denim chemistry for mills worldwide. I built their digital marketing from scratch: the strategy, a brand-consistent website I designed and developed, a mobile app, and paid campaigns on Google and Meta. One person, from the first design to the live ads.",
+      "Texdale is a textile chemicals manufacturer in Stockport, England, formulating pretreatment, dyeing, finishing and denim chemistry for mills worldwide. I built their digital marketing from scratch: the strategy, a brand-consistent website I designed and developed, a mobile app designed and prototyped for their sales team, and paid campaigns on Google and Meta with the creatives that ran on them. One person, from the first design to the live ads.",
     facts: [
       { label: "Client", value: "Texdale" },
       { label: "Sector", value: "Textile chemicals" },
       { label: "Market", value: "UK and global mills" },
-      { label: "Scope", value: "Digital marketing, website, app, ads" },
+      { label: "Scope", value: "Digital marketing, website, app design, ads" },
     ],
     scopeIntro:
       "This was complete digital marketing, built from scratch by one person, so the strategy, the website, the app and the ads were planned as one piece of work rather than handed between suppliers. The website sits at the centre: it is where the campaigns send people and where an enquiry starts.",
@@ -1492,8 +1532,8 @@ export const clients: Client[] = [
         body: "Campaigns on Google pointing at the new website, set up by the same person who built the pages they land on.",
       },
       {
-        heading: "Meta ads",
-        body: "Campaigns on Meta in the same brand and voice as the website, so an ad and the page it opens read as one company.",
+        heading: "Meta ads and creatives",
+        body: "Campaigns on Meta (Facebook and Instagram) in the same brand and voice as the website, with a set of creatives made for them: one for the brand and one for each product range. An ad and the page it opens read as one company.",
       },
       {
         heading: "Brand-consistent website design",
@@ -1504,11 +1544,22 @@ export const clients: Client[] = [
         body: "A custom Next.js build: eight product ranges, a catalogue of 87 products searchable by name or function, and a contact form that asks first whether the visitor wants a quote, a sample or a data sheet.",
       },
       {
-        heading: "Mobile app",
-        body: "A mobile app, delivered as part of the same engagement and under the same identity as the website and the campaigns.",
+        heading: "Mobile app design and prototype",
+        body: "Texdale Field, an app designed and prototyped for Texdale's sales team and the mills they supply: the product ranges, a dosing calculator, drum label scanning, data sheets, and sample and reorder requests. Not yet released in the app stores.",
       },
     ],
-    services: ["digital-marketing", "paid-marketing", "google-ads", "facebook-ads"],
+    // social-media-marketing and mobile-app-development added 2026-10-26 with
+    // the creatives and the app prototype, so those service pages show this
+    // case study. Not the iOS, Android or React Native pages: the platform is
+    // not decided.
+    services: [
+      "digital-marketing",
+      "paid-marketing",
+      "google-ads",
+      "facebook-ads",
+      "social-media-marketing",
+      "mobile-app-development",
+    ],
     website: {
       heading: "The website",
       body: "The Texdale homepage as it is live today, from the hero to the contact block, on desktop and on a phone. Scroll inside either frame to see the complete page.",
@@ -1527,6 +1578,130 @@ export const clients: Client[] = [
         label: "Texdale, homepage on a phone",
       },
       cardImage: { src: "/portfolio/texdale/texdale-card.avif", width: 1600, height: 1000 },
+    },
+    appDesign: {
+      name: "Texdale Field",
+      heading: "The mobile app: Texdale Field",
+      body: "Texdale Field is a mobile app designed and prototyped for Texdale's sales team and the mills they supply. It puts the range, the dosing and the paperwork in one place: scan a drum, check the dose, open the data sheet, ask for a sample or a reorder. It carries the same identity as the website and the campaigns, so the app, the site and the ads read as one company.",
+      status: "Design and prototype. Not yet released on the App Store or Google Play. Some screens still show placeholder text where Texdale's own photography and specifications will go.",
+      features: [
+        {
+          title: "Scan a drum",
+          body: "Point the camera at a drum label and the app matches it to the product, with a manual code entry as the fallback.",
+        },
+        {
+          title: "Eight ranges",
+          body: "The full range by process stage, 31 products in the prototype, each with its dosing, documents and safety.",
+        },
+        {
+          title: "Product pages",
+          body: "Overview, Dosing, Docs and Safety tabs: appearance, ionic character, pH, storage and pack sizes on one screen.",
+        },
+        {
+          title: "Dosing calculator",
+          body: "Enter the fabric weight and the dose, and it gives the amount to add to the bath, with the recommended range beside it.",
+        },
+        {
+          title: "Data sheets",
+          body: "Technical and safety data sheets (TDS and SDS) in one list, filterable by type, with a Saved list for the ones used most.",
+        },
+        {
+          title: "Samples and reorders",
+          body: "Sample and Reorder on every product, and a Requests list showing where each one is. The contact screen asks the mill to send the cloth.",
+        },
+      ],
+      basePath: "/portfolio/texdale/mobile",
+      width: 1616,
+      height: 1264,
+      layout: "screens",
+      items: [
+        {
+          file: "04",
+          alt: "Two Texdale Field app screens for Neutral cellulase from the denim washing range: the Overview tab listing appearance, ionic character, pH, solubility, storage and pack sizes, and the Dosing tab where 200 kg of fabric at 1.25% gives 2.50 kg to add to the bath, with Sample and Reorder buttons",
+          caption: "Product page: overview and dosing calculator",
+        },
+        {
+          file: "01",
+          alt: "Eight Texdale Field app screens in two rows: home, the eight product ranges, a product overview, the dosing calculator, the drum label scanner, data sheets, the requests list with statuses, and the Send us the cloth contact screen",
+          caption: "The eight core screens",
+        },
+        {
+          file: "02",
+          alt: "Four Texdale Field app screens fanned out: the Chemistry for the wet process home screen, the Eight ranges list, the Neutral cellulase overview and its dosing calculator",
+          caption: "Home, ranges, product and dosing",
+        },
+        {
+          file: "06",
+          alt: "Three Texdale Field app screens: the Eight ranges list, the home screen with Scan a drum and The range links, and the Data sheets list with All, TDS, SDS and Saved filters",
+          caption: "Ranges, home and data sheets",
+        },
+        {
+          file: "03",
+          alt: "Close-up of two Texdale Field app screens: the home screen reading Chemistry for the wet process, and the Neutral cellulase overview with a matched drum and Sample and Reorder buttons",
+          caption: "Home and product overview, close up",
+        },
+        {
+          file: "05",
+          alt: "Close-up of the Texdale Field dosing calculator: a fabric weight of 200 kg and a dose of 1.25% on weight of fabric give 2.50 kg to add to the bath",
+          caption: "Dosing calculator, close up",
+        },
+      ],
+    },
+    socialDesigns: {
+      heading: "Meta campaign creatives",
+      body: "A brand-consistent set built from the same identity as the website: the Texdale wordmark, the four-colour bar and the same type. One creative for the brand and one for each of the eight product ranges, used for the Meta campaign on Facebook and Instagram.",
+      basePath: "/portfolio/texdale/social",
+      width: 1080,
+      height: 1080,
+      columns: 3,
+      alsoProves: ["facebook-ads"],
+      items: [
+        {
+          file: "texdale-01-brand",
+          alt: "Texdale brand creative: the white Texdale wordmark and four-colour bar on near-black, with the lines Textile chemicals, manufactured in the north of England, supplied to mills worldwide",
+          caption: "Texdale: brand",
+        },
+        {
+          file: "texdale-02-pretreatment",
+          alt: "Texdale Pretreatment creative, range 01 of 08, listing desizing agents, scouring agents, peroxide stabilisers, wetting agents and sequestrants",
+          caption: "Texdale: Pretreatment",
+        },
+        {
+          file: "texdale-03-dyeing-auxiliaries",
+          alt: "Texdale Dyeing Auxiliaries creative on blue, range 02 of 08, listing levelling agents, dispersing agents, dyebath sequestrants, cationic fixing agents and anti-creasing agents",
+          caption: "Texdale: Dyeing Auxiliaries",
+        },
+        {
+          file: "texdale-04-printing",
+          alt: "Texdale Printing creative, range 03 of 08, listing synthetic thickeners, pigment binders, print fixers and anti-migrating agents",
+          caption: "Texdale: Printing",
+        },
+        {
+          file: "texdale-05-finishing",
+          alt: "Texdale Finishing creative on near-black, range 04 of 08, listing softeners, silicones, hand builders and hydrophilic finishes",
+          caption: "Texdale: Finishing",
+        },
+        {
+          file: "texdale-06-softening",
+          alt: "Texdale Softening creative, range 05 of 08, listing amino silicone emulsions, non-yellowing softeners and polyethylene softeners",
+          caption: "Texdale: Softening",
+        },
+        {
+          file: "texdale-07-denim-washing",
+          alt: "Texdale Denim Washing creative on navy, range 06 of 08, listing neutral and acid cellulases, reducing agents, anti back-staining agents and denim fixers",
+          caption: "Texdale: Denim Washing",
+        },
+        {
+          file: "texdale-08-special-finishes",
+          alt: "Texdale Special Finishes creative, range 07 of 08, listing water repellents, oil repellents, flame retardants and crosslinking resins",
+          caption: "Texdale: Special Finishes",
+        },
+        {
+          file: "texdale-09-yarn-lubricants",
+          alt: "Texdale Special Yarn Lubricants creative, range 08 of 08, listing Dalerol coning oils and lick-roll lubricants, water-free with no drying stage",
+          caption: "Texdale: Special Yarn Lubricants",
+        },
+      ],
     },
     depth: [
       {
@@ -1560,6 +1735,8 @@ export const clients: Client[] = [
       "textile chemicals website",
       "Google Ads and Meta ads",
       "Next.js website development",
+      "mobile app design",
+      "Meta campaign creatives",
       "Texdale",
     ],
   },

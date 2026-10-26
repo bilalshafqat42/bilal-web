@@ -12029,3 +12029,21 @@ from 2021. The site says the company was established in 1987 in Lahore,
 Pakistan, while industries.ts and /about list it as UK. To publish, Bilal to
 confirm: what he did and when, UK or Pakistan, and permission. Captures are in
 `public/portfolio/aks-chemicals/` (public files, though the page 404s).
+
+---
+
+### 422. BUILT, NOT PUBLISHED (2026-10-26): Texdale app prototype and Meta creatives
+
+`/portfolio/texdale` gains two sections from files Bilal supplied: "The mobile
+app: Texdale Field" (status line: design and prototype, not on the App Store
+or Google Play; six features read off the screens; six mockups, 04 first) and
+"Meta campaign creatives" (brand tile plus one per range, 3x3). New
+`Client.appDesign` field rather than `mobileApp`, so no `/mobile-app` page and
+no platform or stack claimed. Texdale `services` gain social-media-marketing
+and mobile-app-development (not iOS, Android or React Native). Service page
+proof cards now show thumbnails (`proofImagesFor`); the creatives also prove
+facebook-ads via `Gallery.alsoProves`. Discipline pages render landscape app
+boards at their own ratio (also fixes the LEOS sales application boards,
+previously cropped to a portrait sliver). Mockups still show some placeholder
+text, by Bilal's choice. Source JPGs moved to `_incoming/texdale/`.
+Evidence: `review/texdale-app/`.

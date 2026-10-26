@@ -323,6 +323,38 @@ export default async function ClientCaseStudy({ params }: Props) {
           </section>
         ) : null}
 
+        {/* An app shown as a design and prototype (Texdale Field). Its own
+            block rather than `mobileApp`, which is for a built app with a page
+            of its own. The status line sits directly under the intro so nobody
+            reads the mockups as a store listing. `id` is what the discipline
+            pages link to. */}
+        {c.appDesign ? (
+          <section id="mobile-app" className="relative section scroll-mt-28">
+            <div className="site-container">
+              <Reveal>
+                <Eyebrow>Mobile app</Eyebrow>
+                <h2 className="t-h2 mt-4 text-ink">{c.appDesign.heading}</h2>
+                <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">{c.appDesign.body}</p>
+                <p className="mt-5 max-w-2xl border-l-2 border-gold/60 pl-5 text-sm leading-relaxed text-muted">
+                  <span className="font-semibold text-ink">Status: </span>
+                  {c.appDesign.status}
+                </p>
+              </Reveal>
+              <ul className="mt-10 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+                {c.appDesign.features.map((f) => (
+                  <li key={f.title} className="border-t border-border pt-4">
+                    <h3 className="t-h5 text-ink">{f.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted">{f.body}</p>
+                  </li>
+                ))}
+              </ul>
+              <GalleryLightbox gallery={c.appDesign}>
+                <GalleryGrid gallery={c.appDesign} />
+              </GalleryLightbox>
+            </div>
+          </section>
+        ) : null}
+
         {c.brandSocial ? (
           <section className="relative section">
             <div className="site-container">
@@ -344,7 +376,7 @@ export default async function ClientCaseStudy({ params }: Props) {
         ) : null}
 
         {c.socialDesigns ? (
-          <section className="relative section">
+          <section id="campaign-creative" className="relative section scroll-mt-28">
             <div className="site-container">
               <Reveal>
                 <Eyebrow>Campaign creative</Eyebrow>

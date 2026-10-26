@@ -54,6 +54,12 @@ export type Item = {
   /** What the piece is. */
   meta: string;
   href: string;
+  /** Service pages this piece is proof for beyond its discipline, carried
+   *  from `Gallery.alsoProves`. Only read by the service page proof block. */
+  alsoProves?: string[];
+  /** The set the piece belongs to, by its heading on the case study ("Meta
+   *  campaign creatives"). Names the pictures on a service page's proof card. */
+  group?: string;
 };
 
 export function allItems(): Item[] {
@@ -114,6 +120,28 @@ export function allItems(): Item[] {
       }
     }
 
+    // An app shown as a design and prototype (Texdale Field). App screens like
+    // the LEOS ones, but the label says what they are, so nobody on a
+    // discipline page takes a prototype for a released app.
+    if (c.appDesign) {
+      const g = c.appDesign;
+      for (const item of g.items) {
+        out.push({
+          key: `${g.basePath}/${item.file}`,
+          kind: "app-screen",
+          deliverable: "App screens",
+          clientSlug: c.slug,
+          src: `${g.basePath}/${item.file}.${g.ext ?? "avif"}`,
+          width: g.width,
+          height: g.height,
+          alt: item.alt,
+          label: `${g.name} app: design and prototype`,
+          meta: item.caption,
+          href: `/portfolio/${c.slug}#mobile-app`,
+        });
+      }
+    }
+
     // Both social galleries feed the discipline pages. Splitting the one grid
     // into branding and designs must not drop four pieces off /portfolio/
     // social-media-marketing, which iterating only `brandSocial` would do.
@@ -132,6 +160,8 @@ export function allItems(): Item[] {
           label: `${c.name}: brand`,
           meta: item.caption,
           href: `/portfolio/${c.slug}`,
+          alsoProves: social.alsoProves,
+          group: social.heading,
         });
       }
     }

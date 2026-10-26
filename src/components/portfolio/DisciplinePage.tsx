@@ -39,7 +39,12 @@ import Eyebrow from "@/components/ui/Eyebrow";
  *  and a 1:2.17 phone screen in a 16:10 cell is two thin bars of background. */
 function ItemGrid({ items }: { items: Item[] }) {
   const wide = items.filter((i) => i.kind === "site-desktop");
-  const tall = items.filter((i) => i.kind === "site-mobile" || i.kind === "app-screen");
+  const phone = (i: Item) => i.kind === "site-mobile" || i.kind === "app-screen";
+  const tall = items.filter((i) => phone(i) && i.height > i.width);
+  // Mockup boards: several phones on one landscape image (Texdale Field,
+  // 1616x1264). The portrait cell would crop them to one phone's sliver, so
+  // they keep their own ratio in a grid of their own.
+  const boards = items.filter((i) => phone(i) && i.height <= i.width);
   const square = items.filter((i) => i.kind === "social");
 
   return (
@@ -94,6 +99,32 @@ function ItemGrid({ items }: { items: Item[] }) {
                     className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                   />
                 </div>
+                <div className="border-t border-border px-4 py-3">
+                  <span className="block text-xs font-semibold text-ink">{it.label}</span>
+                  <span className="mt-0.5 block text-[0.7rem] leading-relaxed text-muted">{it.meta}</span>
+                </div>
+              </Link>
+            </RevealItem>
+          ))}
+        </RevealStagger>
+      ) : null}
+
+      {boards.length > 0 ? (
+        <RevealStagger className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {boards.map((it) => (
+            <RevealItem key={it.key}>
+              <Link
+                href={it.href}
+                className="card-hover group block overflow-hidden r-card surface-2"
+              >
+                <Image
+                  src={it.src}
+                  alt={it.alt}
+                  width={it.width}
+                  height={it.height}
+                  sizes="(min-width: 1024px) 400px, (min-width: 640px) 45vw, 92vw"
+                  className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.03]"
+                />
                 <div className="border-t border-border px-4 py-3">
                   <span className="block text-xs font-semibold text-ink">{it.label}</span>
                   <span className="mt-0.5 block text-[0.7rem] leading-relaxed text-muted">{it.meta}</span>

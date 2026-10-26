@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import {
@@ -7,8 +8,10 @@ import {
   servicesInWork,
   disciplineItems,
   caseStudiesForService,
+  proofImagesFor,
   type Discipline,
 } from "@/data/disciplines";
+import type { Item } from "@/lib/portfolioItems";
 import Eyebrow from "@/components/ui/Eyebrow";
 
 /**
@@ -63,6 +66,42 @@ function DisciplineCards({ items }: { items: Discipline[] }) {
   );
 }
 
+/** The pictures on a service page's case study card. One landscape board
+ *  (an app mockup) on its own; square creative three across. Lazy-loaded by
+ *  default: the proof block sits well below the fold on every service page.
+ *  `alt=""` because they sit inside the card's link: their long descriptions
+ *  would become the link's name. The "Shown:" line says what they are. */
+function ProofThumbs({ items, side }: { items: Item[]; side: boolean }) {
+  const first = items[0];
+  if (first.width > first.height * 1.1) {
+    return (
+      <Image
+        src={first.src}
+        alt=""
+        width={first.width}
+        height={first.height}
+        sizes={side ? "(min-width: 1280px) 460px, (min-width: 640px) 38vw, 88vw" : "(min-width: 640px) 45vw, 88vw"}
+        className="h-auto w-full r-chip"
+      />
+    );
+  }
+  return (
+    <span className="grid grid-cols-3 gap-2">
+      {items.slice(0, 3).map((it) => (
+        <Image
+          key={it.key}
+          src={it.src}
+          alt=""
+          width={it.width}
+          height={it.height}
+          sizes={side ? "(min-width: 1280px) 150px, (min-width: 640px) 12vw, 29vw" : "(min-width: 640px) 15vw, 29vw"}
+          className="aspect-square h-auto w-full r-chip object-cover"
+        />
+      ))}
+    </span>
+  );
+}
+
 /** On a service category page: the work that proves this service. */
 export function ServiceProof({ serviceSlug }: { serviceSlug: string }) {
   const proof = proofForService(serviceSlug);
@@ -86,23 +125,41 @@ export function ServiceProof({ serviceSlug }: { serviceSlug: string }) {
         {proof.length ? <DisciplineCards items={proof} /> : null}
         {cases.length ? (
           <ul className={`mt-8 grid grid-cols-1 gap-4 ${cases.length > 1 ? "sm:grid-cols-2" : ""}`}>
-            {cases.map((c) => (
-              <li key={c.slug}>
-                <Link
-                  href={`/portfolio/${c.slug}`}
-                  className="card-hover group block h-full r-card surface-1 p-6"
-                >
-                  <Eyebrow size="sm" tone="muted">
-                    Case study
-                  </Eyebrow>
-                  <span className="mt-2.5 flex items-center justify-between gap-3 text-base font-semibold text-ink">
-                    {c.name}
-                    <ArrowRight size={16} className="shrink-0 text-muted transition-colors group-hover:text-gold" />
-                  </span>
-                  <span className="mt-2 block text-sm leading-relaxed text-muted">{c.headline}</span>
-                </Link>
-              </li>
-            ))}
+            {cases.map((c) => {
+              const thumbs = proofImagesFor(c.slug, serviceSlug);
+              // A lone card spans the container, so the picture sits beside
+              // the text rather than above it at 1,200px wide.
+              const side = thumbs.length > 0 && cases.length === 1;
+              return (
+                <li key={c.slug}>
+                  <Link
+                    href={`/portfolio/${c.slug}`}
+                    className={`card-hover group block h-full r-card surface-1 p-6 ${
+                      side ? "sm:grid sm:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] sm:items-center sm:gap-8" : ""
+                    }`}
+                  >
+                    {thumbs.length ? <ProofThumbs items={thumbs} side={side} /> : null}
+                    <span className={`block ${thumbs.length ? (side ? "mt-5 sm:mt-0" : "mt-5") : ""}`}>
+                      <Eyebrow size="sm" tone="muted">
+                        Case study
+                      </Eyebrow>
+                      <span className="mt-2.5 flex items-center justify-between gap-3 text-base font-semibold text-ink">
+                        {c.name}
+                        <ArrowRight size={16} className="shrink-0 text-muted transition-colors group-hover:text-gold" />
+                      </span>
+                      <span className="mt-2 block text-sm leading-relaxed text-muted">{c.headline}</span>
+                      {thumbs.length ? (
+                        // What the pictures are, in words: a crawler and a
+                        // screen reader get the same proof the image gives.
+                        <span className="mt-2 block text-xs leading-relaxed text-faint">
+                          Shown: {thumbs[0].group ?? thumbs[0].label}
+                        </span>
+                      ) : null}
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         ) : null}
       </Reveal>

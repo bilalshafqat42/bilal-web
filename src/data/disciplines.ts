@@ -97,7 +97,7 @@ export const disciplines: Discipline[] = [
     page: {
       headline: "Interface design, judged on the decision behind each screen",
       intro:
-        "Every screen here is shipped work, not a concept. What is worth looking at is not the surface but the decision underneath it: whether to force a sign-in, whether actions belong on the card or behind a menu, how many fields an enquiry form can carry before it starts costing completions. Each piece links through to the reasoning.",
+        "Every screen here is real client work. Most of it shipped; the Texdale Field app is a design and prototype, not yet released, and is labelled that way. What is worth looking at is not the surface but the decision underneath it: whether to force a sign-in, whether actions belong on the card or behind a menu, how many fields an enquiry form can carry before it starts costing completions. Each piece links through to the reasoning.",
       metaTitle: "UI/UX Design Portfolio: App & Mobile | Bilal Shafqat",
       metaDescription:
         "UI/UX design portfolio: React Native app screens and mobile web layouts from real client work, each linked to the decision behind it.",
@@ -130,7 +130,7 @@ export const disciplines: Discipline[] = [
         {
           question: "Do you design as well as build?",
           answer:
-            "Yes, and on the projects here I did both. The app screens and the mobile layouts on this page were designed and then built by me, which is why the reasoning and the implementation match rather than one having been handed over to the other.",
+            "Yes, and on the projects here I did both. The app screens and the mobile layouts on this page were designed by me, and everything apart from the Texdale Field prototype was built by me too, which is why the reasoning and the implementation match rather than one having been handed over to the other.",
         },
         {
           question: "Do you work in Figma?",
@@ -240,7 +240,7 @@ export const disciplines: Discipline[] = [
     page: {
       headline: "A cross-platform property app, from a single codebase",
       intro:
-        "Cross-platform apps in React Native, one codebase for iOS and Android. The app below carries the same inventory as the client's website, so someone who first saw a landing page finds the same items, the same photography and the same enquiry routes on their phone. The pattern applies to any catalogue a business already publishes on the web. Every screen is from the built app, and each links to the decision behind it.",
+        "Cross-platform apps in React Native, one codebase for iOS and Android. The LEOS app carries the same inventory as the developer's website, so someone who first saw a landing page finds the same items, the same photography and the same enquiry routes on their phone. The pattern applies to any catalogue a business already publishes on the web. The LEOS screens are from the built app, and each links to the decision behind it. The Texdale Field screens are a design and prototype for a UK textile chemicals manufacturer's sales team, not yet released in the app stores.",
       metaTitle: "Mobile App Portfolio: React Native | Bilal Shafqat",
       metaDescription:
         "Mobile app development portfolio: React Native apps for iOS and Android from a single codebase, with each screen decision explained.",
@@ -277,7 +277,7 @@ export const disciplines: Discipline[] = [
         {
           question: "Do you handle App Store and Play Store submission?",
           answer:
-            "Submission is a step I can run with you, and it is worth planning for early because store review is the part of a launch date nobody controls. I have not claimed a published listing for the app on this page, because that is the client's to announce.",
+            "Submission is a step I can run with you, and it is worth planning for early because store review is the part of a launch date nobody controls. I have not claimed a published listing for either app on this page, because that is the client's to announce.",
         },
       ],
     },
@@ -301,7 +301,7 @@ export const disciplines: Discipline[] = [
     page: {
       headline: "Social creative built as a set, not as one-off posts",
       intro:
-        "Brand creative and campaign creative, split below because they are different jobs: one holds a feed together between campaigns, the other sells a specific launch. Both are designed as a run rather than as individual posts, so a feed reads as one brand instead of as a series of unrelated announcements. The published set is property; the approach is the same for any business running campaigns off a single brand.",
+        "Brand creative and campaign creative, split below because they are different jobs: one holds a feed together between campaigns, the other sells a specific launch. Both are designed as a run rather than as individual posts, so a feed reads as one brand instead of as a series of unrelated announcements. Most of the published work is property. The Texdale set shows the same approach for a UK textile chemicals manufacturer: one creative for the brand and one per product range, made for its Meta campaign.",
       metaTitle: "Social Media Portfolio: Brand & Campaign | Bilal Shafqat",
       metaDescription:
         "Brand and campaign creative designed as runs rather than one-off posts, so a feed reads as one brand instead of unrelated announcements.",
@@ -543,6 +543,35 @@ export function disciplinesInWork(clientSlug: string, projectSlug?: string): Dis
  */
 export function caseStudiesForService(serviceSlug: string): Client[] {
   return publishedClients().filter((c) => c.services?.includes(serviceSlug));
+}
+
+/**
+ * A few pieces of one client's work that show a given service, for the
+ * thumbnail on that service page's case study card. Added 2026-10-26, when
+ * Texdale gained an app prototype and Meta creatives: a text card reading
+ * "Texdale" on the mobile app page said nothing about what was made.
+ *
+ * Derived the same way as `proofForService`: an item counts when a discipline
+ * proving this service covers its kind, or when its own gallery names the
+ * service in `alsoProves` (the Meta creatives on the Facebook ads page). Empty
+ * when nothing qualifies, and the card then shows no image, as before.
+ */
+export function proofImagesFor(clientSlug: string, serviceSlug: string, max = 3): Item[] {
+  const kinds = new Set(
+    disciplines
+      .filter(
+        (d) =>
+          d.serviceHref === `/services/${serviceSlug}` ||
+          d.serviceHref.startsWith(`/services/${serviceSlug}#`) ||
+          Boolean(d.alsoProves?.includes(serviceSlug))
+      )
+      .flatMap((d) => d.kinds ?? [])
+  );
+  return allItems()
+    .filter(
+      (i) => i.clientSlug === clientSlug && (kinds.has(i.kind) || Boolean(i.alsoProves?.includes(serviceSlug)))
+    )
+    .slice(0, max);
 }
 
 /**

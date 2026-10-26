@@ -45,7 +45,8 @@ export const contentDates: Record<string, string> = {
   "/free-website-health-check": "2026-10-26",
   // 2026-10-24: opener and description cover Texdale as well as LEOS; paid
   // marketing marked as having a case study (audit batch 2).
-  // 2026-10-26: description, standfirst and grid name NextGen HR.
+  // 2026-10-26: description, standfirst and grid name NextGen HR. Same day:
+  // Texdale's card gains the Mobile Development and Social Media tags.
   "/portfolio": "2026-10-26",
   "/pricing": "2026-10-20",
   // 2026-10-24: the industry answer names both published sectors.
@@ -107,7 +108,9 @@ export const SERVICE_CONTENT_DATES: Record<string, string> = {
   "crm-marketing-automation": "2026-10-16",
   // Three more the same day: an FAQ or sentence each for strategist,
   // agency-comparison and freelance-manager questions buyers search for.
-  "social-media-marketing": "2026-10-16",
+  // 2026-10-26: the proof block shows the Texdale case study with its Meta
+  // creatives.
+  "social-media-marketing": "2026-10-26",
   // 2026-10-19: the SEO copy pass (one buyer query per page). Custom web
   // development, Zoho, iOS and Android retitled off their parents' phrases;
   // the mobile and web hubs given "mobile app developer" and "web developer"
@@ -134,7 +137,9 @@ export const SERVICE_CONTENT_DATES: Record<string, string> = {
   // 2026-10-24 (audit batch 2): the mobile, React Native, iOS and Android
   // pages and web design now show their portfolio proof block.
   "react-native-development": "2026-10-24",
-  "mobile-app-development": "2026-10-24",
+  // 2026-10-26: the proof block shows the Texdale case study with the
+  // Texdale Field app prototype.
+  "mobile-app-development": "2026-10-26",
   "google-ads": "2026-10-24",
   "paid-marketing": "2026-10-24",
   // 2026-10-26 (roadmap 420, step 2): one buyer phrase each in the intro, a
@@ -171,7 +176,9 @@ export const PORTFOLIO_CONTENT_DATE = "2026-10-24";
  *  listed falls back to `PORTFOLIO_CONTENT_DATE`. */
 export const CLIENT_CONTENT_DATES: Record<string, string> = {
   "leos-developments": "2026-10-16",
-  texdale: "2026-10-24",
+  // 2026-10-26: the Texdale Field app (design and prototype) and the Meta
+  // campaign creatives added; scope cards and intro updated to match.
+  texdale: "2026-10-26",
   // Published 2026-10-26.
   "nextgen-hr": "2026-10-26",
 };
@@ -189,6 +196,8 @@ export function clientContentDate(clientSlug: string): string {
  *  intro naming it). `npm run discipline-check` now warns when the data files
  *  have a newer commit than these dates. */
 // 2026-10-26: NextGen HR's captures and the web development intro naming it.
+// Same day: Texdale's app prototype on the mobile and UI/UX pages and its
+// creatives on the social page, with their intros saying what each is.
 export const DISCIPLINE_CONTENT_DATE = "2026-10-26";
 
 // Blog dates are not kept here. Each article's `dateModified` and sitemap

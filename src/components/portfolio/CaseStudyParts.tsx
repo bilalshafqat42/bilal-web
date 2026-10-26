@@ -87,12 +87,15 @@ export function GalleryGrid({ gallery }: { gallery: Gallery }) {
   // square crop would cut both off. Two columns at full ratio instead, and one
   // column on phones because a 1600px-wide board halved is unreadable type.
   const isScreens = gallery.layout === "screens";
+  const threeUp = gallery.columns === 3;
   const ext = gallery.ext ?? "avif";
 
   return (
     <div
       className={`mt-7 grid gap-3 sm:gap-5 ${
-        isScreens ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-2 lg:grid-cols-4"
+        // Three-up sets (Texdale's 3x3 creatives) stay three across on a
+        // phone too: two columns there leaves the ninth tile alone on a row.
+        isScreens ? "grid-cols-1 sm:grid-cols-2" : threeUp ? "grid-cols-3" : "grid-cols-2 lg:grid-cols-4"
       }`}
     >
       {gallery.items.map((item, i) => (
@@ -126,7 +129,13 @@ export function GalleryGrid({ gallery }: { gallery: Gallery }) {
                 // inside max-w-7xl with padding and gaps, so a tile is ~293px fixed
                 // on large screens, not 25% of a 1440px viewport (360px). That gap
                 // alone made desktop fetch an 800px file instead of a 640px one.
-                sizes={isScreens ? "(min-width: 640px) 610px, 92vw" : "(min-width: 1024px) 300px, 45vw"}
+                sizes={
+                  isScreens
+                    ? "(min-width: 640px) 610px, 92vw"
+                    : threeUp
+                      ? "(min-width: 1280px) 400px, 31vw"
+                      : "(min-width: 1024px) 300px, 45vw"
+                }
                 className={isScreens ? "w-full" : "aspect-square w-full object-cover"}
               />
             </button>
