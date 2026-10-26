@@ -42,6 +42,8 @@ export const PUBLISHED_CASE_STUDIES: readonly PublishedCaseStudy[] = [
   // A single-page case study: no app page and no projects under it, so the
   // overview is the case study (see `caseStudyCount`).
   { client: "texdale", mobileApp: false, projects: [] },
+  // Single-page, as Texdale. Published 2026-10-26.
+  { client: "nextgen-hr", mobileApp: false, projects: [] },
 ];
 
 /** Every case-study URL, for the sitemap: each client overview, its mobile app

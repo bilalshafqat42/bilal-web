@@ -994,6 +994,60 @@ export const clients: Client[] = [
     keywords: [],
   },
   {
+    // Added 2026-10-26 as a draft. Bilal says he can show AKS Chemicals as a
+    // case study, but nothing on disk shows what he did: no repository, no
+    // design files, no notes. The live site (http://akschemicals.com, captured
+    // 2026-10-26) is WordPress on the Salient theme with WPBakery, Slider
+    // Revolution and Gravity Forms, and its uploads date from 2021. The
+    // company describes itself as established in 1987 in Lahore, Pakistan,
+    // which does not match "Textile chemicals, UK" in industries.ts: Bilal to
+    // confirm. Scope stays "TBC" until he says what he built and when, and
+    // whether the client is happy to be shown (roadmap 300).
+    slug: "aks-chemicals",
+    name: "AKS Chemicals",
+    industry: "Manufacturing & Industrial",
+    draft: true,
+    title: "AKS Chemicals: DRAFT, not published",
+    description: "DRAFT. Awaiting Bilal's confirmation of what he did for AKS Chemicals, when, and the client's permission.",
+    headline: "DRAFT: one line on what the work achieved",
+    intro:
+      "AKS Chemicals manufactures and supplies textile chemicals for fabric preparation, dyeing and finishing, including water and oil repellents and flame retardants. TBC: what I did for them (website design and development, maintenance, or other digital work), and over what period.",
+    facts: [
+      { label: "Client", value: "AKS Chemicals" },
+      { label: "Sector", value: "Textile chemicals" },
+      { label: "Market", value: "TBC" },
+      { label: "Scope", value: "TBC" },
+    ],
+    scopeIntro:
+      "DRAFT. One paragraph framing the scope of the work, once Bilal confirms it. The live site is built on WordPress (Salient theme with WPBakery Page Builder, Slider Revolution and Gravity Forms).",
+    scope: [
+      {
+        heading: "DRAFT: scope to confirm",
+        body: "DRAFT. What was delivered. Nothing is listed here until Bilal confirms it.",
+      },
+    ],
+    website: {
+      heading: "The website",
+      body: "The AKS Chemicals homepage as it is live today, on desktop and on a phone. Scroll inside either frame to see the complete page.",
+      capture: {
+        src: "/portfolio/aks-chemicals/aks-chemicals-website.avif",
+        width: 1440,
+        height: 5581,
+        alt: "Full-page view of the AKS Chemicals homepage: hero banner, welcome and company introduction, three product ranges, water and oil repellents, flame retardants, contact form and footer",
+        label: "AKS Chemicals, homepage",
+      },
+      mobileCapture: {
+        src: "/portfolio/aks-chemicals/aks-chemicals-website-mobile.avif",
+        width: 600,
+        height: 10442,
+        alt: "The AKS Chemicals homepage on a phone, with the same sections stacked into one column",
+        label: "AKS Chemicals, homepage on a phone",
+      },
+    },
+    projects: [],
+    keywords: [],
+  },
+  {
     slug: "leos-developments",
     name: "LEOS Developments",
     industry: "Real Estate & Property",
@@ -1507,6 +1561,120 @@ export const clients: Client[] = [
       "Google Ads and Meta ads",
       "Next.js website development",
       "Texdale",
+    ],
+  },
+  {
+    // Published 2026-10-26. Bilal said he can show the work, and the source is
+    // his own repository (~/Desktop/bilal/nextgen, every commit his, first
+    // commit "Create Next App"): he designed and built the site from scratch.
+    // Everything below is readable off that source or the live site at
+    // nextgenhr.ae. Deliberately absent until he supplies them: the dates, any
+    // result, and any claim about the logo itself (the repo shows him adding
+    // the SVG files and building the intro, not designing the mark). The Google
+    // Ads and Meta Pixel IDs in the source are still placeholders, so no
+    // campaign is claimed; the /hire page is described as ready for paid
+    // traffic, nothing more.
+    slug: "nextgen-hr",
+    name: "NextGen HR",
+    industry: "Professional Services",
+    logo: "/portfolio/nextgen-hr/logo/nextgen-hr-logo.svg",
+    logoWidth: 295,
+    logoHeight: 49,
+    ogImage: "/portfolio/nextgen-hr/og-nextgen-hr.jpg",
+    ogImageAlt: "The NextGen HR homepage hero: People first. Hiring done right, over the Dubai skyline at night",
+    title: "NextGen HR: Recruitment Agency Website Design in Dubai",
+    description:
+      "Website design and build for NextGen HR, a Dubai recruitment agency and HR consultancy: custom Next.js, SEO pages, a blog and lead capture.",
+    headline: "A recruitment agency website, designed and built from scratch in Dubai",
+    intro:
+      "NextGen HR Consultancy is a licensed recruitment agency and HR consultancy in Meydan, Dubai, helping employers across the UAE hire permanent and fixed-term staff. I designed and built their website from scratch: the design, a custom Next.js build, the pages search engines need to find them, and the enquiry flow that turns a visit into a hiring brief.",
+    facts: [
+      { label: "Client", value: "NextGen HR Consultancy" },
+      { label: "Sector", value: "Recruitment and HR consultancy" },
+      { label: "Market", value: "Dubai and the wider UAE" },
+      { label: "Scope", value: "Website design, build and SEO" },
+    ],
+    scopeIntro:
+      "A recruitment agency's website serves two audiences at once: employers with a role to fill, and people looking for their next job. The site is built for both, with a clear route for each from the first screen, and structured so each service, sector and emirate can be found on its own.",
+    scope: [
+      {
+        heading: "Website design",
+        body: "UI/UX design in the brand's copper and dark blue, with square corners throughout and a header that slides in on scroll. The site opens with a short logo animation: one circle splits into the two-circle NextGen symbol and the name slides in beside it. Visitors who prefer reduced motion skip it.",
+      },
+      {
+        heading: "Website development",
+        body: "A custom Next.js build in plain JavaScript with Tailwind CSS, made of small reusable components. All of the site's words live in one data file, so changing a line of copy does not mean hunting through the code.",
+      },
+      {
+        heading: "SEO structure",
+        body: "A page for each of five services, five sectors and three emirates (Dubai, Abu Dhabi and Sharjah), plus about, FAQ and contact. Structured data, a sitemap, an llms.txt file for AI assistants, and verification with Google Search Console and Bing Webmaster Tools.",
+      },
+      {
+        heading: "Blog",
+        body: "A blog launched with five articles on the questions employers and job seekers ask: what a recruitment agency costs in the UAE, whether job seekers pay a fee, Emiratisation targets, and how to choose an agency.",
+      },
+      {
+        heading: "Enquiries",
+        body: "A contact form that delivers each hiring brief to the company mailbox and shows a reference code if sending fails, an enquiry pop-up, a WhatsApp button, and a separate landing page with its own thank-you page, ready for paid campaigns.",
+      },
+      {
+        heading: "Consent-based tracking",
+        body: "Google Analytics 4 loads only after a visitor accepts cookies, with lead events recorded when an enquiry is sent. Privacy, cookie and terms pages match the tools that are actually switched on.",
+      },
+    ],
+    services: ["seo"],
+    website: {
+      heading: "The website",
+      body: "The NextGen HR homepage as it is live today, from the hero to the footer, on desktop and on a phone. Scroll inside either frame to see the complete page.",
+      capture: {
+        src: "/portfolio/nextgen-hr/nextgen-hr-website.avif",
+        width: 1440,
+        height: 10650,
+        alt: "Full-page view of the NextGen HR homepage: the People first. Hiring done right hero over the Dubai skyline, about, five services, why companies hire with NextGen, how hiring works, sectors, emirates, job seekers, FAQ, blog and contact",
+        label: "NextGen HR, homepage",
+      },
+      mobileCapture: {
+        src: "/portfolio/nextgen-hr/nextgen-hr-website-mobile.avif",
+        width: 450,
+        height: 16357,
+        alt: "The NextGen HR homepage on a phone, with the same sections stacked into one column",
+        label: "NextGen HR, homepage on a phone",
+      },
+      cardImage: { src: "/portfolio/nextgen-hr/nextgen-hr-card.avif", width: 1440, height: 900 },
+    },
+    depth: [
+      {
+        heading: "Two audiences, one homepage",
+        paragraphs: [
+          "Most visitors to a recruitment agency are one of two people: an employer with a role to fill, or someone looking for work. They want different things, and a homepage that speaks to both in the same breath serves neither.",
+          "So the hero gives each its own route. Send your hiring brief takes an employer to the contact form; Looking for a job? takes a job seeker to a section of their own, which says plainly that candidates never pay a fee. The heading search engines read says exactly what NextGen is and where: a recruitment agency and HR consultancy in Dubai, UAE.",
+        ],
+      },
+      {
+        heading: "One page per search",
+        paragraphs: [
+          "People do not search for a recruitment agency in general. They search for executive search, or Emiratisation hiring, or a recruitment agency in Abu Dhabi. A single services page cannot rank for all of those, because search engines rank pages, not paragraphs.",
+          "That is why the site has a page for each service, each sector and each emirate, all generated from the same data, plus a blog that answers the questions people ask before they get in touch. Each page is a separate way in, and each one ends with the same next step.",
+        ],
+      },
+      {
+        heading: "Live before every detail arrived",
+        paragraphs: [
+          "A new company rarely has every detail ready on launch day. Office hours, a licence number and tracking IDs often arrive later. Rather than hold the site back, any detail still waiting on the client stays hidden until it is filled in, and each tracking tool stays switched off until its ID is added.",
+          "The site went live with what was true on the day, and nothing on it reads as unfinished.",
+          "There are no performance figures on this page. The results belong to NextGen HR, and none are published without their agreement.",
+        ],
+      },
+    ],
+    ctaLead: "Need a website that brings in enquiries?",
+    projects: [],
+    keywords: [
+      "recruitment agency website design",
+      "HR consultancy website",
+      "website design Dubai",
+      "Next.js website development",
+      "SEO for a recruitment agency",
+      "NextGen HR",
     ],
   },
 ];

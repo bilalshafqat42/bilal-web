@@ -171,7 +171,7 @@ export const disciplines: Discipline[] = [
     page: {
       headline: "Websites and launch pages, designed and built to convert",
       intro:
-        "Corporate websites and campaign landing pages, grouped below by what each one is rather than by who it was for. Most of the published set is property: a corporate site and four off-plan launches, built to carry high-resolution renders without the load time that usually comes with them. Alongside them sits the website for Texdale, a UK textile chemicals manufacturer, which shows the same approach in a sector where the buyer reads data sheets rather than brochures. Follow any capture through to the case study for the stack and the structure.",
+        "Corporate websites and campaign landing pages, grouped below by what each one is rather than by who it was for. Most of the published set is property: a corporate site and four off-plan launches, built to carry high-resolution renders without the load time that usually comes with them. Alongside them sit the website for Texdale, a UK textile chemicals manufacturer, which shows the same approach in a sector where the buyer reads data sheets rather than brochures, and the website for NextGen HR, a Dubai recruitment agency and HR consultancy, with a page for every service, sector and emirate it hires in. Follow any capture through to the case study for the stack and the structure.",
       metaTitle: "Web Design & Development Portfolio | Bilal Shafqat",
       metaDescription:
         "Web development portfolio: corporate websites and campaign landing pages built for speed, mobile and one clear enquiry action.",

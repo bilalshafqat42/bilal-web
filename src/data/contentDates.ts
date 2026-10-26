@@ -40,10 +40,12 @@ export const contentDates: Record<string, string> = {
   "/services": "2026-10-16",
   // 2026-10-24: opener and description cover Texdale as well as LEOS; paid
   // marketing marked as having a case study (audit batch 2).
-  "/portfolio": "2026-10-24",
+  // 2026-10-26: description, standfirst and grid name NextGen HR.
+  "/portfolio": "2026-10-26",
   "/pricing": "2026-10-20",
   // 2026-10-24: the industry answer names both published sectors.
-  "/faq": "2026-10-24",
+  // 2026-10-26: the industry answer names a third sector (NextGen HR).
+  "/faq": "2026-10-26",
   "/contact": "2026-10-13",
   // 2026-10-24: description no longer leads with the name (roadmap 420).
   "/appointment": "2026-10-24",
@@ -158,6 +160,8 @@ export const PORTFOLIO_CONTENT_DATE = "2026-10-24";
 export const CLIENT_CONTENT_DATES: Record<string, string> = {
   "leos-developments": "2026-10-16",
   texdale: "2026-10-24",
+  // Published 2026-10-26.
+  "nextgen-hr": "2026-10-26",
 };
 
 export function clientContentDate(clientSlug: string): string {
@@ -172,7 +176,8 @@ export function clientContentDate(clientSlug: string): string {
  *  10-14, 10-16, 10-19 and 10-24 (Texdale's captures and the web development
  *  intro naming it). `npm run discipline-check` now warns when the data files
  *  have a newer commit than these dates. */
-export const DISCIPLINE_CONTENT_DATE = "2026-10-24";
+// 2026-10-26: NextGen HR's captures and the web development intro naming it.
+export const DISCIPLINE_CONTENT_DATE = "2026-10-26";
 
 // Blog dates are not kept here. Each article's `dateModified` and sitemap
 // `lastModified` come from its own `updatedAt` in `src/content/blog/<slug>.json`,

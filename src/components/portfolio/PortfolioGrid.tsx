@@ -136,12 +136,16 @@ const cards: Card[] = [
     focus: "left",
   },
   {
-    title: "Hadley Heights Social",
-    tags: ["Social Media"],
-    href: "/portfolio/leos-developments/hadley-heights",
-    image: "/portfolio/leos/hadley-heights/social-media/1.avif",
-    alt: "Hadley Heights social campaign creative",
-    focus: "center",
+    // Took the place of Hadley Heights Social on 2026-10-26, when the NextGen HR
+    // case study was published: Hadley Heights already has a card in row one,
+    // and the grid now shows a third client.
+    title: "NextGen HR",
+    tags: ["Web Design", "Web Development"],
+    href: "/portfolio/nextgen-hr",
+    image: "/portfolio/nextgen-hr/nextgen-hr-card.avif",
+    alt: "The NextGen HR website hero: People first. Hiring done right, over the Dubai skyline at night",
+    // The headline sits low and left in a 16:10 card image.
+    focus: "left",
   },
   {
     // Was the Cavendish mobile capture, which is 367x5317 — a full phone
