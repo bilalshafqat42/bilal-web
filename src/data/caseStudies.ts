@@ -1616,6 +1616,11 @@ export const clients: Client[] = [
       layout: "screens",
       items: [
         {
+          file: "05",
+          alt: "Close-up of the Texdale Field dosing calculator: a fabric weight of 200 kg and a dose of 1.25% on weight of fabric give 2.50 kg to add to the bath",
+          caption: "Dosing calculator, close up",
+        },
+        {
           file: "04",
           alt: "Two Texdale Field app screens for Neutral cellulase from the denim washing range: the Overview tab listing appearance, ionic character, pH, solubility, storage and pack sizes, and the Dosing tab where 200 kg of fabric at 1.25% gives 2.50 kg to add to the bath, with Sample and Reorder buttons",
           caption: "Product page: overview and dosing calculator",
@@ -1639,11 +1644,6 @@ export const clients: Client[] = [
           file: "03",
           alt: "Close-up of two Texdale Field app screens: the home screen reading Chemistry for the wet process, and the Neutral cellulase overview with a matched drum and Sample and Reorder buttons",
           caption: "Home and product overview, close up",
-        },
-        {
-          file: "05",
-          alt: "Close-up of the Texdale Field dosing calculator: a fabric weight of 200 kg and a dose of 1.25% on weight of fabric give 2.50 kg to add to the bath",
-          caption: "Dosing calculator, close up",
         },
       ],
     },
