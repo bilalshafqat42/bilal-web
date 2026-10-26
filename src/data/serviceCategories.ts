@@ -305,7 +305,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     accent: "violet",
     headline: "Facebook ads in Dubai: the creative targets, the form decides what you get",
     intro:
-      "Nobody opens Facebook or Instagram to buy something, so Facebook ads in Dubai have to earn attention rather than capture it. That makes the creative the real targeting mechanism, and it makes the lead form the place where most budgets quietly go wrong.",
+      "Nobody opens Facebook or Instagram to buy something, so Facebook and Instagram ads in Dubai have to earn attention rather than capture it. That makes the creative the real targeting mechanism, and it makes the lead form the place where most budgets quietly go wrong.",
     metaTitle: "Freelance Facebook Ads in Dubai | Bilal Shafqat",
     metaDescription:
       "Facebook ads in Dubai across Facebook and Instagram, measured on qualified enquiries rather than the cheap leads instant forms produce.",
@@ -316,7 +316,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
           "Because instant forms are designed to be easy, and easy produces volume rather than intent. Somebody taps twice between two videos and the form auto-fills from their profile without them reading it. The fix is friction in the right place: one qualifying question the idle tapper will not bother with, and a follow-up call within minutes rather than the next working day.",
       },
       {
-        question: "Facebook or Instagram?",
+        question: "Facebook or Instagram ads in Dubai?",
         answer:
           "Both, from one campaign, with the placements decided by where the results actually come from rather than by assumption. In the UAE the split varies enormously by product and by audience age, and it is cheap to find out and expensive to guess.",
       },
@@ -597,7 +597,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     parent: "cms-development",
     headline: "A WordPress developer in Dubai who builds the theme, not the plugin pile",
     intro:
-      "Most slow, fragile WordPress sites were not built, they were assembled: a bought theme, a page builder on top, and twenty plugins doing jobs nobody remembers adding. As a WordPress developer in Dubai, I build the other kind: a theme made for your business, editing your marketing team can use without breaking the layout, and the tracking and CRM forms wired in from the first day.",
+      "Most slow, fragile WordPress sites were not built, they were assembled: a bought theme, a page builder on top, and twenty plugins doing jobs nobody remembers adding. As a WordPress developer in Dubai, I build the other kind, with the WordPress website design in Dubai and the build done by the same person: a theme made for your business, editing your marketing team can use without breaking the layout, and the tracking and CRM forms wired in from the first day.",
     metaTitle: "Freelance WordPress Developer in Dubai | Bilal Shafqat",
     metaDescription:
       "WordPress developer in Dubai: custom themes with Elementor and ACF, fast pages your team can edit, and lead forms that feed your CRM.",
@@ -623,6 +623,14 @@ export const megaMenuGroups: MegaMenuGroup[] = [
         question: "Who looks after updates and security?",
         answer:
           "Someone has to, every month. WordPress itself, the theme and every plugin receive updates, and an unpatched plugin is a common way for a WordPress site to be compromised. I can run it as a care plan, or set it up so your own team or host can, with backups that are tested rather than assumed.",
+      },
+      {
+        // Added 2026-10-26 for "wordpress website design dubai" (roadmap 420).
+        // Restates what the page and the web design page already say: design
+        // and build by one person, design-only work on the web design page.
+        question: "Do you do WordPress website design in Dubai, or only the build?",
+        answer:
+          "Both. The build starts from the design rather than from a bought theme, so the page layouts, the templates and the editing screens are planned together, and nothing is lost between a designer's file and the finished site. If you only need the design, for your own developer to build, the web design page covers that.",
       },
     ],
     items: [
@@ -1179,7 +1187,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     // weights heaviest at 14 points and it was the single largest miss.
     headline: "A freelance web designer in Dubai who designs around the enquiry, not the template",
     intro:
-      "A website that looks good and converts nobody is a cost. Most of what a web designer in Dubai actually decides is not visual: what the first screen has to say, how few steps stand between interest and an enquiry, and what gets cut. The visual work comes after those, and is much easier once they are settled.",
+      "A website that looks good and converts nobody is a cost. Most of what a web designer in Dubai actually decides is not visual: what the first screen has to say, how few steps stand between interest and an enquiry, and what gets cut. The visual work comes after those, and is much easier once they are settled. A website redesign in Dubai follows the same order: decide what the site has to do before changing how it looks.",
     // Deliberately still opening on "Freelance" rather than on the search
     // phrase, which costs 4 points on the "keyword at the START of title"
     // check. "Freelance" is the word that makes these terms winnable at all,
@@ -1538,7 +1546,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     parent: "crm-integration",
     headline: "Salesforce integration in Dubai, from Marketing Cloud email to lead capture",
     intro:
-      "Most Salesforce work in Dubai is quoted as an admin project. Mine is the marketing side. I have designed EDMs to Salesforce Marketing Cloud templates, written and laid out sales offer emails, and built CloudPages that put company sales data in front of sales managers in a custom application. Salesforce integration, as I do it, means connecting your campaigns and lead capture to Salesforce so marketing is measured in the system sales already lives in.",
+      "Ask a Salesforce consultant in Dubai about your CRM and you will usually be quoted an admin project. Mine is the marketing side. I have designed EDMs to Salesforce Marketing Cloud templates, written and laid out sales offer emails, and built CloudPages that put company sales data in front of sales managers in a custom application. Salesforce integration, as I do it, means connecting your campaigns and lead capture to Salesforce so marketing is measured in the system sales already lives in.",
     metaTitle: "Salesforce Integration in Dubai | Bilal Shafqat",
     metaDescription:
       "Salesforce integration in Dubai for marketing: Marketing Cloud EDMs and CloudPages, campaign tracking and lead capture into Salesforce.",

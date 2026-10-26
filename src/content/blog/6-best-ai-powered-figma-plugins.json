@@ -3,12 +3,12 @@
   "title": "6 Best AI Figma Plugins to Boost Your Design Efficiency",
   "description": "Six AI Figma plugins for layouts, copy, imagery and dark mode, what each one is for, and how to choose a Figma AI plugin worth keeping.",
   "published": "2025-02-04",
-  "updatedAt": "2026-10-14",
+  "updatedAt": "2026-10-26",
   "tags": [
     "Figma",
     "UI UX Design"
   ],
-  "words": 1022,
+  "words": 1237,
   "blocks": [
     {
       "t": "p",
@@ -213,6 +213,46 @@
     },
     {
       "t": "h2",
+      "v": "Non-AI Figma plugins worth keeping alongside them"
+    },
+    {
+      "t": "p",
+      "v": "Not every useful plugin needs AI. These four do one job each, and do it well enough to stay installed."
+    },
+    {
+      "t": "h3",
+      "v": "Figr Identity"
+    },
+    {
+      "t": "p",
+      "v": "Figr Identity generates a consistent set of style tokens (colours, typography, spacing, effects and grids) and applies them to a library of ready-made components with variants and sizes. You can preview and edit the styles inside Figma, which makes it a quick way to start a design system that stays consistent across projects."
+    },
+    {
+      "t": "h3",
+      "v": "Data to Design"
+    },
+    {
+      "t": "p",
+      "v": "Data to Design connects a data source, such as your database or CMS, to your Figma file and fills designs with real content and assets. Mockups then show what users will actually see instead of placeholder text, which catches layout problems with long names or missing images before development starts."
+    },
+    {
+      "t": "h3",
+      "v": "Better File Thumbnails"
+    },
+    {
+      "t": "p",
+      "v": "Better File Thumbnails creates custom cover thumbnails for your files from a visual editor: brand colours, a status such as in progress or approved, and an emoji. Its Quick Create option makes one in a couple of clicks. Small, but it makes a busy Figma workspace much easier to scan."
+    },
+    {
+      "t": "h3",
+      "v": "Lil' Pixel Icon"
+    },
+    {
+      "t": "p",
+      "v": "Lil' Pixel Icon draws pixel-art icons on a 16 by 16 grid and outputs them as vectors, so they scale without losing quality. Useful for retro or playful interfaces, and simple enough for designers at any level."
+    },
+    {
+      "t": "h2",
       "v": "FAQs"
     },
     {
@@ -273,7 +313,7 @@
     },
     {
       "t": "p",
-      "v": "Try one or two of these on a real project rather than installing all six at once. For non-AI plugins worth keeping, see [[six unique Figma plugins|/6-unique-powerful-figma-plugins]]."
+      "v": "Try one or two of these on a real project rather than installing all six at once. Each one should earn its place by saving time on work you do every week."
     }
   ],
   "metaTitle": "6 Best AI Figma Plugins for Designers"

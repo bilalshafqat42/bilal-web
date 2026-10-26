@@ -3,11 +3,11 @@
   "title": "How JavaScript Developers Can Learn TypeScript Easily",
   "description": "How JavaScript developers can learn TypeScript: the key concepts, a step-by-step setup, migration best practices and where it pays off.",
   "published": "2025-06-12",
-  "updatedAt": "2026-10-14",
+  "updatedAt": "2026-10-26",
   "tags": [
     "Typescript"
   ],
-  "words": 625,
+  "words": 724,
   "blocks": [
     {
       "t": "h2",
@@ -198,6 +198,58 @@
     {
       "t": "code",
       "v": "let value: string | number;\r\nvalue = \"Hello\";\r\nvalue = 42;"
+    },
+    {
+      "t": "h3",
+      "v": "6. Optional Properties"
+    },
+    {
+      "t": "p",
+      "v": "Add ? to a property that may be missing:"
+    },
+    {
+      "t": "code",
+      "v": "interface Fruit {\r\n  id: number;\r\n  name: string;\r\n  description?: string; // Marked optional with '?'\r\n}\r\nlet fruit: Fruit = {\r\n  id: 1,\r\n  name: \"Banana\",\r\n  description: \"A healthy snack.\",\r\n};"
+    },
+    {
+      "t": "h3",
+      "v": "7. Literal Unions"
+    },
+    {
+      "t": "p",
+      "v": "A union of exact values limits a variable to a fixed set of options, which catches typos at compile time:"
+    },
+    {
+      "t": "code",
+      "v": "type FruitSize = \"S\" | \"M\" | \"L\";\nlet validSize: FruitSize = \"M\";\nlet invalidSize: FruitSize = \"Medium\"; // Type error: \"Medium\" is not assignable to type 'FruitSize'"
+    },
+    {
+      "t": "h3",
+      "v": "8. Generics"
+    },
+    {
+      "t": "p",
+      "v": "Generics let one type work with many others while staying type-safe. Here Page<T> describes a page of results of any type, decided when it is used:"
+    },
+    {
+      "t": "code",
+      "v": "interface Fruit {\r\n  id: number;\r\n  name: string;\r\n}\r\ninterface Vegetable {\r\n  id: number;\r\n  color: string;\r\n}\r\ninterface Page<T> {\r\n  data: T[];\r\n}\r\nlet fruit1: Fruit = { id: 1, name: \"Banana\" };\r\nlet fruit2: Fruit = { id: 2, name: \"Orange\" };\r\nlet vegetable1: Vegetable = { id: 1, color: \"Green\" };\r\nlet vegetable2: Vegetable = { id: 2, color: \"Red\" };\r\nlet fruitsPage: Page<Fruit> = {\r\n  data: [fruit1, fruit2],\r\n};\r\nlet vegetablesPage: Page<Vegetable> = {\r\n  data: [vegetable1, vegetable2],\r\n};"
+    },
+    {
+      "t": "h3",
+      "v": "9. Structural Typing"
+    },
+    {
+      "t": "p",
+      "v": "TypeScript checks the shape of a value, not its declared name. Any object with the properties Fruit requires is accepted as a Fruit:"
+    },
+    {
+      "t": "code",
+      "v": "function eatFruit(fruit: Fruit) {\n  console.log(`Yummy! ${fruit.name} is delicious`);\n}\n\neatFruit({ id: 1, name: \"Banana\" }); // OK: it has the shape of a Fruit"
+    },
+    {
+      "t": "p",
+      "v": "This is why TypeScript feels natural to JavaScript developers: plain objects work as they always have, with the compiler checking them."
     },
     {
       "t": "h2",

@@ -3,12 +3,12 @@
   "title": "7 JavaScript Concepts to Learn Before React",
   "description": "Learn the 7 essential JavaScript concepts every beginner must know before learning React, with simple examples, tips, and code snippets.",
   "published": "2025-06-04",
-  "updatedAt": "2026-10-14",
+  "updatedAt": "2026-10-26",
   "tags": [
     "Javascript",
     "Es6"
   ],
-  "words": 468,
+  "words": 604,
   "blocks": [
     {
       "t": "p",
@@ -189,6 +189,70 @@
     {
       "t": "p",
       "v": "Why it's important in React:React apps frequently fetch data from APIs. Knowing how to use promises and async/await helps in handling asynchronous code correctly."
+    },
+    {
+      "t": "h2",
+      "v": "Also Worth Knowing: The Rest of ES6"
+    },
+    {
+      "t": "p",
+      "v": "The seven concepts above are the ones you will use daily in React. These ES6 features come up almost as often:"
+    },
+    {
+      "t": "h3",
+      "v": "let and const Instead of var"
+    },
+    {
+      "t": "p",
+      "v": "let and const are block-scoped; var is function-scoped. const cannot be reassigned, so use it by default and let only when the value must change. You will rarely need var."
+    },
+    {
+      "t": "h3",
+      "v": "Default Parameters"
+    },
+    {
+      "t": "code",
+      "v": "const greet = (name = \"Guest\") => console.log(`Hello, ${name}!`);\ngreet(); // \"Hello, Guest!\""
+    },
+    {
+      "t": "p",
+      "v": "Why it's important in React: default values in destructured props are how most components handle a missing prop."
+    },
+    {
+      "t": "h3",
+      "v": "Modules: import and export"
+    },
+    {
+      "t": "code",
+      "v": "// greet.js\nexport const greet = () => console.log(\"Hello!\");\n\n// app.js\nimport { greet } from './greet.js';\ngreet();"
+    },
+    {
+      "t": "p",
+      "v": "Why it's important in React: every component lives in its own file and is shared with import and export."
+    },
+    {
+      "t": "h3",
+      "v": ".reduce() for Totals"
+    },
+    {
+      "t": "code",
+      "v": "const numbers = [1, 2, 3, 4];\nconst sum = numbers.reduce((acc, curr) => acc + curr, 0); // 10"
+    },
+    {
+      "t": "p",
+      "v": "Why it's important in React: totals, counts and grouped data shown in the UI are often built with reduce."
+    },
+    {
+      "t": "h3",
+      "v": "Map and Set"
+    },
+    {
+      "t": "code",
+      "v": "const map = new Map();\nmap.set(\"name\", \"Ali\");\nmap.get(\"name\"); // \"Ali\"\n\nconst set = new Set([1, 2, 3, 3]); // Set { 1, 2, 3 }"
+    },
+    {
+      "t": "p",
+      "v": "A Map stores key-value pairs in insertion order and accepts any type as a key. A Set keeps only unique values, which makes removing duplicates a one-liner: [...new Set(array)]."
     },
     {
       "t": "h2",

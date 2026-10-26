@@ -3,11 +3,11 @@
   "title": "React Tips and Tricks for Efficient Development",
   "description": "React tips for writing clean, efficient components: avoiding wrapper elements, using useCallback, and simplifying conditional rendering.",
   "published": "2025-02-13",
-  "updatedAt": "2026-10-14",
+  "updatedAt": "2026-10-26",
   "tags": [
     "React Js"
   ],
-  "words": 508,
+  "words": 699,
   "blocks": [
     {
       "t": "h2",
@@ -236,6 +236,63 @@
         "Keeps JSX clean and focused on structure",
         "Improves styling consistency",
         "Allows style reuse and theming"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Performance: Load Less, Render Less"
+    },
+    {
+      "t": "p",
+      "v": "The tips above keep code clean. These four keep a growing app fast."
+    },
+    {
+      "t": "h3",
+      "v": "Split Code with React.lazy and Suspense"
+    },
+    {
+      "t": "p",
+      "v": "Load a heavy component only when it is needed, instead of in the first bundle:"
+    },
+    {
+      "t": "code",
+      "v": "import React, { lazy, Suspense } from 'react';\r\n\r\nconst HeavyComponent = lazy(() => import('./HeavyComponent'));\r\n\r\nconst App = () => {\r\n    return (\r\n        <Suspense fallback={<p>Loading component...</p>}>\r\n            <HeavyComponent />\r\n        </Suspense>\r\n    );\r\n};\r\nexport default App;"
+    },
+    {
+      "t": "p",
+      "v": "The same idea works per route: lazy-load each page so a visitor downloads only the page they open. Most routers and frameworks, Next.js included, split code by route for you."
+    },
+    {
+      "t": "h3",
+      "v": "Skip Re-renders with React.memo"
+    },
+    {
+      "t": "p",
+      "v": "React.memo re-renders a component only when its props change. It pairs with useCallback above: a memoised child is only skipped if the functions passed to it keep the same reference."
+    },
+    {
+      "t": "code",
+      "v": "import React from 'react';\r\n\r\nconst Button = React.memo(({ onClick, label }) => {\r\n    console.log(\"Rendering Button\");\r\n    return <button onClick={onClick}>{label}</button>;\r\n});\r\n\r\nexport default Button;"
+    },
+    {
+      "t": "h3",
+      "v": "Cache Expensive Values with useMemo"
+    },
+    {
+      "t": "p",
+      "v": "useMemo recalculates a value only when its dependencies change. Use it for genuinely expensive work such as filtering or sorting a large list, not for simple arithmetic, where the memoisation costs more than it saves. In short: useMemo caches a value, useCallback caches a function, and React.memo caches a component's output."
+    },
+    {
+      "t": "h3",
+      "v": "Serve Smaller Images"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Use modern formats such as AVIF and WebP, and SVG for icons and logos",
+        "Add loading=\"lazy\" to images below the fold so they load as the user scrolls",
+        "Serve different sizes for different screens with srcset and sizes",
+        "Compress images before upload, or use an image CDN that does it for you"
       ]
     },
     {

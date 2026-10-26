@@ -1,0 +1,121 @@
+{
+  "slug": "why-retargeting-burns-budget",
+  "title": "Your Retargeting Isn't Failing. It's Following the Wrong People.",
+  "metaTitle": "Why Retargeting Ads Burn Budget, and How to Fix It",
+  "description": "Retargeting often follows everyone who visited: staff, job seekers, current customers. How to build retargeting audiences that convert instead.",
+  "published": "2026-10-26",
+  "updatedAt": "2026-10-26",
+  "kind": "Guide",
+  "tags": [
+    "Paid Ads",
+    "Digital Marketing",
+    "Dubai"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "Retargeting feels like the safest money in advertising. Someone has already been to your website, so showing them an ad again sounds like the cheapest way to win them back. That feeling is exactly why retargeting budgets are rarely questioned, and why so many of them quietly burn money, on [[Facebook and Instagram ads|/services/facebook-ads]] as much as on Google."
+    },
+    {
+      "t": "p",
+      "v": "The problem is usually not the ads or the bidding. It is who the audience contains."
+    },
+    {
+      "t": "h2",
+      "v": "Who is actually in \"all website visitors\""
+    },
+    {
+      "t": "p",
+      "v": "The default retargeting audience on Meta and Google is some version of \"everyone who visited in the last 30 days\". It sounds precise. It isn't. That audience includes your own staff checking the site, people applying for jobs on the careers page, existing customers looking up your phone number, competitors, suppliers, and visitors who left within two seconds because they clicked the wrong result."
+    },
+    {
+      "t": "p",
+      "v": "All of them are counted the same. Your budget follows the person who read your pricing page for three minutes exactly as closely as it follows the person who landed by mistake and left."
+    },
+    {
+      "t": "h2",
+      "v": "The page decides the audience"
+    },
+    {
+      "t": "p",
+      "v": "The ad platform can only separate visitors the way your website separates them. If every page sends the same signals, the platform sees one large crowd. If the site records what people actually did (viewed pricing, opened a project page, started the enquiry form), the platform can build audiences around intent instead of attendance."
+    },
+    {
+      "t": "p",
+      "v": "That is why retargeting starts on the website, not in Ads Manager. It is the same argument as [[the landing page is part of your ad spend|/your-landing-page-is-part-of-your-ad-spend]]: the page shapes what the campaign can do."
+    },
+    {
+      "t": "h2",
+      "v": "Retargeting audiences worth paying for"
+    },
+    {
+      "t": "p",
+      "v": "Instead of one \"all visitors\" audience, build a few small ones, each based on a behaviour that signals interest:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "People who viewed your pricing page or a specific project or service page",
+        "People who spent real time on the site, for example scrolling most of a page or staying beyond a few seconds",
+        "People who started your enquiry form but didn't submit it",
+        "People who watched most of a video",
+        "People who opened a lead form in Meta but didn't finish it"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "Each of these is smaller than \"all visitors\". That is the point. A smaller audience with clear intent usually beats a large one full of people who were never going to buy."
+    },
+    {
+      "t": "h2",
+      "v": "Who to leave out"
+    },
+    {
+      "t": "p",
+      "v": "Exclusions matter as much as audiences:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Existing leads and customers, uploaded from your CRM, so you stop paying to advertise to people already talking to your sales team",
+        "Your own team, and visitors to your careers page",
+        "Anyone who has already converted on the action you are advertising"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "The CRM exclusion is the one most businesses skip, and it is often where the waste is largest. If your CRM is set up properly, as I describe in [[what to track instead of platform conversions|/what-to-track-in-marketing-uae]], building that exclusion list is a few minutes' work."
+    },
+    {
+      "t": "h2",
+      "v": "One message per audience"
+    },
+    {
+      "t": "p",
+      "v": "Showing the same ad to every retargeting audience wastes the work above. The person who viewed pricing needs a reason to act now: an offer, a deadline, a clear next step. The person who watched a video needs proof: a result, a case study, a testimonial. The person who abandoned a form may only need a reminder that it takes two minutes."
+    },
+    {
+      "t": "p",
+      "v": "Cap how often the same person sees your ads, and refresh the creative before people stop noticing it. Retargeting that follows someone with the same banner for a month does more harm to the brand than good."
+    },
+    {
+      "t": "h2",
+      "v": "What to do this week"
+    },
+    {
+      "t": "list",
+      "ordered": true,
+      "v": [
+        "Open your ad accounts and list every retargeting audience. Check exactly what defines each one.",
+        "Upload your current leads and customers from the CRM and exclude them.",
+        "Split one \"all visitors\" audience into two: high intent (pricing, project pages, form starts) and everyone else. Put most of the budget on the first.",
+        "Give each audience its own ad."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "Retarget people who showed intent, not people who showed up. If you want a second pair of eyes on your audiences, it is part of how I run [[Facebook and Meta ads|/services/facebook-ads]]."
+    }
+  ],
+  "words": 658
+}

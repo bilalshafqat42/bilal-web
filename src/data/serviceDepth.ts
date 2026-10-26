@@ -221,7 +221,7 @@ export const serviceDepth: Record<string, Depth> = {
     ],
     faqs: [
       {
-        question: "Can you redesign without rebuilding everything?",
+        question: "Can you do a website redesign in Dubai without rebuilding everything?",
         answer:
           "Often, yes, and it is usually the better value. Many sites need the homepage, the main service page and the enquiry flow rather than all forty pages. I would rather fix the three that carry the traffic than quote a full rebuild you do not need.",
       },
@@ -1177,9 +1177,9 @@ export const serviceDepth: Record<string, Depth> = {
           "Yes, with React Native so one codebase serves iOS and Android. I will also tell you when you do not need an app: for a lot of businesses a fast mobile website does the same job without app store approval and two platforms to maintain.",
       },
       {
-        question: "Do you provide hosting and ongoing maintenance?",
+        question: "Do you provide hosting and website maintenance in Dubai?",
         answer:
-          "Yes, as a care plan rather than as hosting resale: updates, monitoring, backups and a set amount of change work each month. You keep ownership of the hosting account either way.",
+          "Yes. Website maintenance in Dubai, as I run it, is a care plan rather than hosting resale: updates, monitoring, backups and a set amount of change work each month. You keep ownership of the hosting account either way.",
       },
       {
         question: "Do you work with WordPress, or only Next.js?",
@@ -1996,7 +1996,7 @@ export const serviceDepth: Record<string, Depth> = {
         ],
       },
       {
-        heading: "Where my Salesforce work stops",
+        heading: "Where my work as a Salesforce consultant in Dubai stops",
         paragraphs: [
           "I do not offer Sales Cloud administration, Apex development or complex permission and sharing models. Those belong with a certified Salesforce administrator or a Salesforce partner, and pretending otherwise would put your system at risk. On projects that need both, I work alongside your administrator: they own the platform, I own the email, the pages and the marketing data feeding it.",
           "It is also worth asking whether Salesforce is the right CRM at all. For a smaller team without an administrator, [Zoho CRM](/services/zoho-crm-integration) or [HubSpot](/services/hubspot-integration) usually delivers more for less effort. If you already run Salesforce, the marketing side is where most of the untapped value tends to be.",

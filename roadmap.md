@@ -11888,8 +11888,16 @@ AKS Chemicals), HR consultancy (Next Gen HR Consultancy). Footer no longer
 lists sectors with no work behind them (SaaS, hospitality, e-commerce,
 professional services). SEO checked: /about title, description, h1 and
 canonical unchanged; onpage scores unchanged (home 100, about 66).
-Later: case studies for LEOS Project Management, AKS Chemicals and Next Gen
-HR (screenshots, write-up, permission), as for 4Direction (415).
+Later: case studies for AKS Chemicals and Next Gen HR (screenshots,
+write-up, permission), as for 4Direction (415).
+
+**Update 2026-10-26:** LEOS Project Management (renovation) removed at
+Bilal's request: he no longer wants to be associated with it. Gone from
+`industries.ts` (so the footer Industries column no longer lists
+"Renovation") and from the /about intro sentence ("a production house, an HR
+consultancy and two textile chemicals companies in the UK"). No case study
+for it; do not re-add. /about content date 2026-10-26. LEOS Developments
+(real estate) is unaffected.
 
 ---
 

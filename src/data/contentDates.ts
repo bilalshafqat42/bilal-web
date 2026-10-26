@@ -34,7 +34,9 @@ export const contentDates: Record<string, string> = {
   // 2026-10-19: "Industries I have worked in" (roadmap 417), which this line
   // missed. 2026-10-24: the work section shows the three disciplines rather
   // than four pillar cards; subcontracting sentence (audit batch 2).
-  "/about": "2026-10-24",
+  // 2026-10-26: the renovation sector removed from the industries section
+  // and its intro sentence, at Bilal's request.
+  "/about": "2026-10-26",
   // 2026-10-16: the CMS and custom development pages added to the listing,
   // then the CRM, app and Figma sub-pages in "by platform" blocks.
   "/services": "2026-10-16",
@@ -78,12 +80,12 @@ export const SERVICES_CONTENT_DATE = "2026-10-13";
  *  other fourteen changed when they did not. */
 export const SERVICE_CONTENT_DATES: Record<string, string> = {
   "cms-development": "2026-10-16",
-  "wordpress-development": "2026-10-16",
+  "wordpress-development": "2026-10-26",
   "wix-development": "2026-10-16",
   "squarespace-development": "2026-10-16",
   "strapi-development": "2026-10-16",
   // 2026-10-24: see the roadmap 420 note at the end of this list.
-  "web-design": "2026-10-24",
+  "web-design": "2026-10-26",
   "ui-ux-design": "2026-10-16",
   "graphic-design-branding": "2026-10-24",
   "video-conversion": "2026-10-16",
@@ -92,7 +94,7 @@ export const SERVICE_CONTENT_DATES: Record<string, string> = {
   // parents (CRM, mobile, web design) gained cards and links to them.
   "crm-integration": "2026-10-16",
   "hubspot-integration": "2026-10-16",
-  "salesforce-integration": "2026-10-16",
+  "salesforce-integration": "2026-10-26",
   "custom-crm-development": "2026-10-16",
   "app-backend-development": "2026-10-16",
   "figma-design": "2026-10-16",
@@ -109,10 +111,10 @@ export const SERVICE_CONTENT_DATES: Record<string, string> = {
   // ios and android: 2026-10-24, proof block added (audit batch 2).
   "ios-app-development": "2026-10-24",
   "android-app-development": "2026-10-24",
-  "website-app-development": "2026-10-19",
+  "website-app-development": "2026-10-26",
   // 2026-10-24: two FAQ answers name the UAE and the UK, matching areaServed.
   "digital-marketing": "2026-10-24",
-  "facebook-ads": "2026-10-19",
+  "facebook-ads": "2026-10-26",
   // 2026-10-20: one buyer phrase each in a heading (and for SEO, the intro):
   // "freelance SEO consultant", "LinkedIn marketing services", "custom web
   // development in Dubai".
@@ -129,6 +131,12 @@ export const SERVICE_CONTENT_DATES: Record<string, string> = {
   "mobile-app-development": "2026-10-24",
   "google-ads": "2026-10-24",
   "paid-marketing": "2026-10-24",
+  // 2026-10-26 (roadmap 420, step 2): one buyer phrase each in the intro, a
+  // heading or an FAQ: "Instagram ads in Dubai" (facebook-ads), "Salesforce
+  // consultant in Dubai" (salesforce-integration), "WordPress website design
+  // in Dubai" (wordpress-development), "website redesign in Dubai"
+  // (web-design) and "website maintenance in Dubai" (website-app-development).
+  // Those five are dated in place above.
 };
 
 export function serviceContentDate(slug: string): string {

@@ -3,12 +3,12 @@
   "title": "React State Management: useState vs Redux vs Context, What to Use and When",
   "description": "useState vs Redux vs Context for React state management: what each is best for, a side-by-side comparison, and a guide to choosing.",
   "published": "2025-06-16",
-  "updatedAt": "2026-10-14",
+  "updatedAt": "2026-10-26",
   "tags": [
     "React Js",
     "Redux"
   ],
-  "words": 579,
+  "words": 843,
   "blocks": [
     {
       "t": "h2",
@@ -98,6 +98,14 @@
         "Not designed for sharing state between multiple components",
         "Can become messy when passed through many levels (props drilling)"
       ]
+    },
+    {
+      "t": "h3",
+      "v": "Where useState Stops: Prop Drilling"
+    },
+    {
+      "t": "p",
+      "v": "Props pass data from a parent to its children, and they work well for one or two levels. When the same value has to reach a component several levels down, every component in between has to accept it and pass it on, even if it never uses it. This is called prop drilling. It makes components harder to move and change, and it is the usual sign that state needs to live somewhere shared: Context for simple values, Redux for larger apps."
     },
     {
       "t": "h2",
@@ -263,6 +271,86 @@
       ]
     },
     {
+      "t": "p",
+      "v": "The difference is easiest to see side by side. A classic Redux reducer:"
+    },
+    {
+      "t": "code",
+      "v": "function counterReducer(state = { value: 0 }, action) {\r\n  switch (action.type) {\r\n    case 'increment':\r\n      return { value: state.value + 1 };\r\n    default:\r\n      return state;\r\n  }\r\n}"
+    },
+    {
+      "t": "p",
+      "v": "The same thing with Redux Toolkit. No switch statement and no action type constants, and you can write state.value += 1 safely because Redux Toolkit uses Immer to turn it into an immutable update:"
+    },
+    {
+      "t": "code",
+      "v": "const counterSlice = createSlice({\r\n  name: 'counter',\r\n  initialState: { value: 0 },\r\n  reducers: {\r\n    increment: (state) => {\r\n      state.value += 1;\r\n    },\r\n  },\r\n});"
+    },
+    {
+      "t": "h3",
+      "v": "Setting Up Redux Toolkit"
+    },
+    {
+      "t": "p",
+      "v": "1. Install it with React-Redux:"
+    },
+    {
+      "t": "code",
+      "v": "npm install @reduxjs/toolkit react-redux"
+    },
+    {
+      "t": "p",
+      "v": "2. Create a slice. The actions are generated for you:"
+    },
+    {
+      "t": "code",
+      "v": "// features/counter/counterSlice.js\r\nimport { createSlice } from '@reduxjs/toolkit';\r\n\r\nconst counterSlice = createSlice({\r\n  name: 'counter',\r\n  initialState: { value: 0 },\r\n  reducers: {\r\n    increment: (state) => { state.value += 1 },\r\n    decrement: (state) => { state.value -= 1 },\r\n    incrementByAmount: (state, action) => {\r\n      state.value += action.payload;\r\n    },\r\n  },\r\n});\r\n\r\nexport const { increment, decrement, incrementByAmount } = counterSlice.actions;\r\nexport default counterSlice.reducer;"
+    },
+    {
+      "t": "p",
+      "v": "3. Configure the store. Redux DevTools support is switched on by default:"
+    },
+    {
+      "t": "code",
+      "v": "// app/store.js\r\nimport { configureStore } from '@reduxjs/toolkit';\r\nimport counterReducer from '../features/counter/counterSlice';\r\n\r\nexport const store = configureStore({\r\n  reducer: {\r\n    counter: counterReducer,\r\n  },\r\n});"
+    },
+    {
+      "t": "p",
+      "v": "4. Wrap the app in a Provider, using createRoot:"
+    },
+    {
+      "t": "code",
+      "v": "// index.js\r\nimport React from 'react';\r\nimport ReactDOM from 'react-dom/client';\r\nimport { Provider } from 'react-redux';\r\nimport { store } from './app/store';\r\nimport App from './App';\r\n\r\nconst root = ReactDOM.createRoot(document.getElementById('root'));\r\nroot.render(\r\n  <Provider store={store}>\r\n    <App />\r\n  </Provider>\r\n);"
+    },
+    {
+      "t": "p",
+      "v": "5. Read state with useSelector and update it with useDispatch:"
+    },
+    {
+      "t": "code",
+      "v": "import { useSelector, useDispatch } from 'react-redux';\nimport { increment, decrement } from './features/counter/counterSlice';\n\nfunction Counter() {\n  const count = useSelector((state) => state.counter.value);\n  const dispatch = useDispatch();\n\n  return (\n    <div>\n      <p>Count: {count}</p>\n      <button onClick={() => dispatch(increment())}>+</button>\n      <button onClick={() => dispatch(decrement())}>-</button>\n    </div>\n  );\n}"
+    },
+    {
+      "t": "p",
+      "v": "Older tutorials set Redux up with createStore and ReactDOM.render. Avoid both in new code: createStore is marked deprecated in favour of Redux Toolkit's configureStore, and ReactDOM.render was removed in React 19."
+    },
+    {
+      "t": "h3",
+      "v": "Loading Data with createAsyncThunk"
+    },
+    {
+      "t": "p",
+      "v": "createAsyncThunk handles API calls and generates pending, fulfilled and rejected actions, so you do not write the loading logic by hand:"
+    },
+    {
+      "t": "code",
+      "v": "// features/users/usersSlice.js\r\nimport { createSlice, createAsyncThunk } from '@reduxjs/toolkit';\r\n\r\nexport const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {\r\n  const response = await fetch('/api/users');\r\n  return await response.json();\r\n});\r\n\r\nconst usersSlice = createSlice({\r\n  name: 'users',\r\n  initialState: { users: [], status: 'idle' },\r\n  reducers: {},\r\n  extraReducers: (builder) => {\r\n    builder\r\n      .addCase(fetchUsers.pending, (state) => {\r\n        state.status = 'loading';\r\n      })\r\n      .addCase(fetchUsers.fulfilled, (state, action) => {\r\n        state.status = 'succeeded';\r\n        state.users = action.payload;\r\n      })\r\n      .addCase(fetchUsers.rejected, (state) => {\r\n        state.status = 'failed';\r\n      });\r\n  },\r\n});\r\n\r\nexport default usersSlice.reducer;"
+    },
+    {
+      "t": "p",
+      "v": "Redux Toolkit is fully typed, so it works well with TypeScript, and it is still Redux: the same store, actions and DevTools, with less code."
+    },
+    {
       "t": "h2",
       "v": "Related Tools and Alternatives"
     },
@@ -271,7 +359,7 @@
       "ordered": false,
       "v": [
         "Zustand – Minimal state management with hooks",
-        "Recoil – State management from Meta",
+        "Recoil – Atom-based state from Meta, now archived and no longer maintained, so avoid it for new projects",
         "Jotai – Atomic state for React",
         "MobX – Observable-driven reactivity"
       ]

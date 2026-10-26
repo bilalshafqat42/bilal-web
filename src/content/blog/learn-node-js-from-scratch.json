@@ -3,11 +3,11 @@
   "title": "Learn Node.js from Scratch: A Beginner's Guide to Backend Development",
   "description": "Start backend development with JavaScript. What Node.js is, why it runs the way it does, and how to build and run your first server from scratch.",
   "published": "2025-06-11",
-  "updatedAt": "2026-10-14",
+  "updatedAt": "2026-10-26",
   "tags": [
     "Node JS"
   ],
-  "words": 604,
+  "words": 798,
   "blocks": [
     {
       "t": "h2",
@@ -177,6 +177,42 @@
         "HTTP – Build servers that handle requests/responses",
         "Event Loop – Manage asynchronous code with efficiency",
         "Express.js – A minimalist framework to speed up server-side development"
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Where Node.js Fits Best"
+    },
+    {
+      "t": "p",
+      "v": "Node.js handles many connections at once on a single thread with an event loop, so it is strongest where the work is mostly waiting on networks, files and databases:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "APIs and backends for web and mobile apps",
+        "Real-time features such as chat, live dashboards and notifications, usually with WebSockets through a library like Socket.io",
+        "Small services and serverless functions, which suit its quick start-up and light footprint",
+        "Full-stack JavaScript, where the same language and often the same types run on the front end and the back end"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "It is a weaker fit for long, CPU-heavy calculations on the main thread, which block every other request. Move that work to worker threads or a separate service."
+    },
+    {
+      "t": "h2",
+      "v": "Before Your App Goes Live"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Serve over HTTPS and set security headers, for example with Helmet in Express",
+        "Validate every input with a schema library such as Zod or Joi",
+        "Run npm audit regularly and keep dependencies up to date",
+        "Use all CPU cores with the cluster module or a process manager such as PM2",
+        "Log errors to somewhere you will actually read, with a library such as Winston or a service such as Sentry",
+        "Use the current LTS release of Node.js in production"
       ]
     },
     {

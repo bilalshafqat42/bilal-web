@@ -3,13 +3,13 @@
   "title": "5 Must-Know React Component Patterns for Scalable Code",
   "description": "Five React component patterns for reusable code, with examples: containers, HOCs, render props, compound components and custom hooks.",
   "published": "2025-06-08",
-  "updatedAt": "2026-10-14",
+  "updatedAt": "2026-10-26",
   "tags": [
     "Javascript",
     "Es6",
     "React Js"
   ],
-  "words": 414,
+  "words": 498,
   "blocks": [
     {
       "t": "p",
@@ -127,6 +127,57 @@
     },
     {
       "t": "h2",
+      "v": "Trade-offs at a Glance"
+    },
+    {
+      "t": "p",
+      "v": "Every pattern solves one problem and introduces another. This is the short version:"
+    },
+    {
+      "t": "table",
+      "head": [
+        "Pattern",
+        "Strength",
+        "Watch out for"
+      ],
+      "rows": [
+        [
+          "Presentational vs Container",
+          "Logic and UI are separate, so each is easier to test and reuse",
+          "More components and some boilerplate"
+        ],
+        [
+          "Higher-Order Components",
+          "Adds the same behaviour to many components without changing them",
+          "Layers of wrappers make debugging harder, and props can clash"
+        ],
+        [
+          "Render Props",
+          "Full control over what gets rendered with shared logic",
+          "Deep nesting that becomes hard to read"
+        ],
+        [
+          "Compound Components",
+          "A clean API for related pieces such as tabs or dropdowns, without prop drilling",
+          "Harder to build correctly"
+        ],
+        [
+          "Custom Hooks",
+          "Reusable stateful logic that keeps components small",
+          "Too many tiny hooks can scatter logic across files"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "v": "Here is a slightly bigger custom hook than the toggle above, for loading data:"
+    },
+    {
+      "t": "code",
+      "v": "function useFetch(url) {\n  const [data, setData] = React.useState(null);\n  const [loading, setLoading] = React.useState(true);\n\n  React.useEffect(() => {\n    let cancelled = false;\n    fetch(url)\n      .then((res) => res.json())\n      .then((json) => {\n        if (!cancelled) {\n          setData(json);\n          setLoading(false);\n        }\n      });\n    return () => {\n      cancelled = true;\n    };\n  }, [url]);\n\n  return { data, loading };\n}"
+    },
+    {
+      "t": "h2",
       "v": "Related Post"
     },
     {
@@ -168,6 +219,22 @@
     {
       "t": "p",
       "v": "Start with Presentational vs Container: it’s simple and effective."
+    },
+    {
+      "t": "p",
+      "v": "Q5: Are HOCs still relevant?"
+    },
+    {
+      "t": "p",
+      "v": "Yes, especially in older codebases and some libraries, but for new code custom hooks usually do the same job with less wrapping."
+    },
+    {
+      "t": "p",
+      "v": "Q6: Custom hook or render prop?"
+    },
+    {
+      "t": "p",
+      "v": "Use a custom hook to share stateful logic. Use a render prop when the caller needs to decide what gets rendered with that logic."
     },
     {
       "t": "h2",

@@ -3,11 +3,11 @@
   "title": "React Hooks Explained: The Ultimate Guide for Developers",
   "description": "React hooks explained: what they are, why they matter, how the key hooks work in function components, and the common mistakes to avoid.",
   "published": "2025-03-09",
-  "updatedAt": "2026-09-30",
+  "updatedAt": "2026-10-26",
   "tags": [
     "React Js"
   ],
-  "words": 395,
+  "words": 594,
   "blocks": [
     {
       "t": "h2",
@@ -65,6 +65,21 @@
       "v": "import { useState } from 'react';\r\n\r\nfunction Counter() {\r\n  const [count, setCount] = useState(0);\r\n\r\n  return (\r\n    <div>\r\n      <p>Count: {count}</p>\r\n      <button onClick={() => setCount(count + 1)}>Increase</button>\r\n    </div>\r\n  );\r\n}"
     },
     {
+      "t": "p",
+      "v": "Two details worth knowing early:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Each useState call holds its own value. Calling it three times in one component gives you three independent pieces of state.",
+        "If the starting value is expensive to work out, pass a function instead of a value. React runs it only on the first render (lazy initialisation)."
+      ]
+    },
+    {
+      "t": "code",
+      "v": "const [value, setValue] = useState(() => expensiveComputation());"
+    },
+    {
       "t": "h3",
       "v": "2. useEffect – Handling Side Effects"
     },
@@ -84,6 +99,26 @@
         "Cleanup subscriptions to avoid memory leaks.",
         "Separate concerns by using multiple useEffect calls."
       ]
+    },
+    {
+      "t": "p",
+      "v": "The dependency array decides when the effect runs again:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Empty array ([]): once, after the first render.",
+        "Array with values ([userId]): after the first render and whenever one of those values changes.",
+        "No array at all: after every render. Rarely what you want."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "If the effect subscribes to something, return a cleanup function. React calls it before the effect runs again and when the component is removed, which prevents memory leaks:"
+    },
+    {
+      "t": "code",
+      "v": "import React, { useState, useEffect } from 'react';\r\n\r\nfunction WindowSize() {\r\n  const [width, setWidth] = useState(window.innerWidth);\r\n\r\n  useEffect(() => {\r\n    const handleResize = () => setWidth(window.innerWidth);\r\n\r\n    window.addEventListener('resize', handleResize);\r\n\r\n    // Cleanup function to remove the event listener\r\n    return () => {\r\n      window.removeEventListener('resize', handleResize);\r\n    };\r\n  }, []); // Empty array ensures this effect is added only once\r\n\r\n  return <p>Window width: {width}px</p>;\r\n}\r\n\r\nexport default WindowSize;"
     },
     {
       "t": "h3",
@@ -144,6 +179,51 @@
     {
       "t": "code",
       "v": "import { useCallback } from 'react';\r\n\r\nfunction ParentComponent() {\r\n  const handleClick = useCallback(() => {\r\n    console.log(\"Button clicked!\");\r\n  }, []);\r\n\r\n  return <button onClick={handleClick}>Click Me</button>;\r\n}"
+    },
+    {
+      "t": "h2",
+      "v": "The less common hooks, and when they earn their place"
+    },
+    {
+      "t": "p",
+      "v": "The seven hooks above cover almost every component. React ships a few more for specific problems: layout measurement, ref control, responsiveness and library code. You will not need them often, but it helps to know they exist."
+    },
+    {
+      "t": "table",
+      "head": [
+        "Hook",
+        "What it is for"
+      ],
+      "rows": [
+        [
+          "useLayoutEffect",
+          "Runs synchronously after the DOM updates and before the browser paints. Use it to measure layout and avoid a visible flicker"
+        ],
+        [
+          "useImperativeHandle",
+          "Controls which methods a component exposes to a parent through a ref, for example focus() or scrollToTop()"
+        ],
+        [
+          "useDeferredValue",
+          "Lets an expensive part of the screen lag behind fast input, such as a results list while the user types"
+        ],
+        [
+          "useId",
+          "Generates a stable unique ID, for example to link a label to its input, that matches between server and client rendering"
+        ],
+        [
+          "useDebugValue",
+          "Shows a custom label for your own hook in React DevTools"
+        ],
+        [
+          "useInsertionEffect",
+          "Injects styles before layout effects run. Meant for CSS-in-JS library authors, not application code"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "v": "Reaching for these, or wrapping everything in useMemo and useCallback, is not a sign of seniority. Each has a cost of its own. Use them when you have a specific problem they solve, ideally after you have measured it."
     },
     {
       "t": "h2",

@@ -350,8 +350,8 @@ export default function AboutPage() {
               <h2 className="t-h2 mt-4 text-ink">Industries I have worked in</h2>
               <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">
                 Mostly property, in Dubai and the UK, but not only property. The
-                same approach has run for a production house, a renovation
-                company, an HR consultancy and two textile chemicals companies in the UK.
+                same approach has run for a production house, an HR consultancy
+                and two textile chemicals companies in the UK.
               </p>
             </Reveal>
 

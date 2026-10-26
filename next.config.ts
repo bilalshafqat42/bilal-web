@@ -310,6 +310,23 @@ const nextConfig: NextConfig = {
       // and had no recorded impressions (snapshot of 2026-10-13); the newer
       // one is the keeper, so the old URL passes whatever it has to it.
       { source: "/ux-vs-ui-the-perfect-balance-for-a-winning", destination: "/ux-designer-vs-ui-designer", permanent: true },
+      // Merged 2026-10-26 (roadmap 405 phase 3): twelve thin or overlapping
+      // articles Google had crawled and chosen not to index. Anything unique in
+      // each was moved into the stronger article on the same subject, and the
+      // old URL passes whatever it has to that article. None of the twelve had
+      // recorded impressions in the 2026-10-26 snapshot.
+      { source: "/6-unique-powerful-figma-plugins", destination: "/6-best-ai-powered-figma-plugins", permanent: true },
+      { source: "/most-useful-react-hooks", destination: "/react-hooks-explained", permanent: true },
+      { source: "/react-built-in-hooks-vs-additional-hooks", destination: "/react-hooks-explained", permanent: true },
+      { source: "/top-react-design-patterns", destination: "/5-must-know-react-component-patterns", permanent: true },
+      { source: "/redux-made-easy-beginners-guide-to-state-management-in-react-js", destination: "/react-state-management-usestate-vs-redux-vs-context", permanent: true },
+      { source: "/react-js-state-management-for-beginners", destination: "/react-state-management-usestate-vs-redux-vs-context", permanent: true },
+      { source: "/master-redux-toolkit", destination: "/react-state-management-usestate-vs-redux-vs-context", permanent: true },
+      { source: "/typescript-guide-for-javascript-programmers", destination: "/how-javascript-developers-can-learn-typescript", permanent: true },
+      { source: "/10-reasons-why-node-js-is-the-best-choice", destination: "/learn-node-js-from-scratch", permanent: true },
+      { source: "/javascript-es6-features-a-comprehensive-guide", destination: "/7-javascript-concepts-to-learn-before-react", permanent: true },
+      { source: "/5-ui-ux-design-trends-you-cant-ignore-in-2025", destination: "/exploring-key-trends-in-modern-user-interfaces", permanent: true },
+      { source: "/optimizing-react-applications-advanced-techniques", destination: "/react-tips-and-tricks-for-efficient-development", permanent: true },
       // WordPress category archives. Search Console lists /category/ai/,
       // /category/ui-ux-design/ and /category/design/ among the 404s.
       //

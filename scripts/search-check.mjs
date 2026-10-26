@@ -26,7 +26,11 @@ const MUST_FIND = [
   ["strapi", "Strapi"],
   ["headless cms", "headless CMS"],
   ["elementor", "Elementor"],
-  ["wordpress developer", "WordPress developer"],
+  // "WordPress develop" since 2026-10-26: the "WordPress website design in
+  // Dubai" FAQ (roadmap 420) moved the page's own "WordPress Development" chunk
+  // above its "What a WordPress developer in Dubai..." heading. Same page, so
+  // either title passes; any other page still fails.
+  ["wordpress developer", "WordPress develop"],
   ["netlify", "Netlify"],
   ["custom web development", "Custom Web Development"],
   // The CRM integration, app and Figma sub-pages, added 2026-10-16. Each
