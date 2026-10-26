@@ -12006,3 +12006,26 @@ tracked set growing from 1 keyword to 74, not a fall.
 **Dates:** 28 Oct, first positions for the 14 new keywords (Bilal sends a
 Rank Tracking screenshot). 1 Nov, 500 credits renew: refresh the 14 and
 compare. 4 Nov, review roadmap 418 positions.
+
+---
+
+### 421. PUBLISHED / DRAFT (2026-10-26): NextGen HR and AKS Chemicals case studies
+
+**NextGen HR (published, `/portfolio/nextgen-hr`).** Evidence: Bilal's own
+repo `~/Desktop/bilal/nextgen` (remote github.com/bilalshafqat42/Nextgenhr),
+34 commits, all his, 2026-10-20 to 2026-10-26, starting from Create Next App.
+Next.js 16 in JavaScript, Tailwind 4, Hostinger. Page covers design, build,
+SEO structure (5 services, 5 sectors, 3 emirates), blog (5 articles),
+enquiry flow and consent-based GA4. `services: ["seo"]`. Logo SVG copied from
+the repo. Not claimed: logo design, Google Ads or Meta campaigns (IDs are
+still placeholders), dates, results. Bilal to confirm: client is happy to be
+shown in writing (roadmap 300), whether he designed the logo, launch month,
+and whether ads have since gone live.
+
+**AKS Chemicals (draft, `/portfolio/aks-chemicals`, 404 in production).** No
+repo or files on disk. Live site (HTTP only; HTTPS fails with a TLS error) is
+WordPress, Salient theme, WPBakery, Slider Revolution, Gravity Forms, uploads
+from 2021. The site says the company was established in 1987 in Lahore,
+Pakistan, while industries.ts and /about list it as UK. To publish, Bilal to
+confirm: what he did and when, UK or Pakistan, and permission. Captures are in
+`public/portfolio/aks-chemicals/` (public files, though the page 404s).

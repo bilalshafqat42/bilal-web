@@ -14,7 +14,9 @@
  *
  * `href` only where a published page exists. Draft case studies (4Direction,
  * Choppershoot) stay unlinked until they are published. Texdale was linked
- * when its case study was published on 2026-10-24.
+ * when its case study was published on 2026-10-24, NextGen HR on 2026-10-26.
+ * AKS Chemicals has a draft case study and stays unlinked until it is
+ * published.
  *
  * The renovation sector entry was removed on 2026-10-26 at Bilal's
  * request: he no longer wants to be associated with it. Do not re-add it.
@@ -45,6 +47,6 @@ export const industriesWorkedIn: IndustryEntry[] = [
   },
   {
     sector: "HR consultancy",
-    companies: [{ name: "Next Gen HR Consultancy" }],
+    companies: [{ name: "NextGen HR Consultancy", href: "/portfolio/nextgen-hr" }],
   },
 ];

@@ -92,6 +92,26 @@
    1280
   ]
  },
+ "/portfolio/aks-chemicals/aks-chemicals-website-mobile.avif": {
+  "w": 600,
+  "v": "d7d53cc3",
+  "widths": [
+   256,
+   384
+  ]
+ },
+ "/portfolio/aks-chemicals/aks-chemicals-website.avif": {
+  "w": 1440,
+  "v": "d95763eb",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1440
+  ]
+ },
  "/portfolio/leos/cavendish/landing-page/cavendish-thumb.avif": {
   "w": 1200,
   "v": "5f346bc3",
@@ -569,6 +589,39 @@
    800,
    1080,
    1200
+  ]
+ },
+ "/portfolio/nextgen-hr/nextgen-hr-card.avif": {
+  "w": 1440,
+  "v": "4ea396b0",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1440
+  ]
+ },
+ "/portfolio/nextgen-hr/nextgen-hr-website-mobile.avif": {
+  "w": 450,
+  "v": "1a9e6266",
+  "widths": [
+   256,
+   384
+  ]
+ },
+ "/portfolio/nextgen-hr/nextgen-hr-website.avif": {
+  "w": 1440,
+  "v": "8def9d26",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280
   ]
  },
  "/portfolio/texdale/texdale-card.avif": {

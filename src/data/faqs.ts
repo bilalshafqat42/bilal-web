@@ -81,7 +81,7 @@ export const faqGroups: FaqGroup[] = [
       {
         question: "Do you work with any particular industry?",
         answer:
-          "No. The published case studies cover two sectors, a UK and Dubai property developer and a UK textile chemicals manufacturer, and the services are industry-neutral. A Google Ads campaign or a Next.js build is judged on execution, not sector.",
+          "No. The published case studies cover three sectors, a UK and Dubai property developer, a UK textile chemicals manufacturer and a Dubai recruitment agency, and the services are industry-neutral. A Google Ads campaign or a Next.js build is judged on execution, not sector.",
       },
       {
         question: "Do you rebuild everything, or improve what we have?",

@@ -38,8 +38,8 @@ export const metadata: Metadata = pageMetadata({
   title: "Portfolio: Off-Plan Launches & App Work | Bilal Shafqat",
   // The old description said "browse by discipline", which described the page
   // this one replaced — the discipline browser is now a footnote below the work,
-  // not the page's purpose. 884px against the 920px limit (serpWidth.mjs).
-  description: `${word(clientCount)} clients, ${word(sectorCount).toLowerCase()} sectors: off-plan launches, a website and apps for a Dubai and UK developer, and full digital marketing for a UK manufacturer.`,
+  // not the page's purpose. 868px against the 920px limit (serpWidth.mjs), 2026-10-26.
+  description: `${word(clientCount)} clients, ${word(sectorCount).toLowerCase()} sectors: launches, a website and apps for a developer, digital marketing for a UK manufacturer and a Dubai HR website.`,
   path: "/portfolio",
 });
 
@@ -120,8 +120,8 @@ export default function PortfolioPage() {
             <>
               {word(launchCount)} off-plan launches, a corporate website, a sales
               application and a cross-platform app for a Dubai and UK property
-              developer, and complete digital marketing for a UK textile chemicals
-              manufacturer. Every project below opens into the brief, the decisions
+              developer, complete digital marketing for a UK textile chemicals
+              manufacturer, and a website for a Dubai recruitment agency. Every project below opens into the brief, the decisions
               behind it and what shipped.
             </>
           }
