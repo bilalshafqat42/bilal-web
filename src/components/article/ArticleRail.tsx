@@ -7,6 +7,7 @@ import Eyebrow from "@/components/ui/Eyebrow";
 import { topicHref } from "@/components/article/TopicChips";
 import { TOPICS, type TopicSlug } from "@/data/blogTopics";
 import type { ListPost } from "@/components/article/BlogListItem";
+import { HEALTH_CHECK_PATH } from "@/data/healthCheck";
 
 /**
  * The right-hand column beside an article: what I do about this, and how to
@@ -88,6 +89,14 @@ export default function ArticleRail({
           className="tap-target mt-3 block text-sm text-muted transition-colors hover:text-ink"
         >
           More on {service.label}
+        </Link>
+        {/* The smaller first step, for a reader not ready to give up a
+            calendar slot. One link, not a second pitch. */}
+        <Link
+          href={HEALTH_CHECK_PATH}
+          className="tap-target mt-2 block text-sm text-muted transition-colors hover:text-ink"
+        >
+          Or get a free website health check
         </Link>
       </Surface>
 

@@ -9,6 +9,8 @@ import ClientLogoRow from "@/components/portfolio/ClientLogoRow";
 import { megaMenuGroups, accentClasses, spellCount, menuGroups, subPagesOf } from "@/data/pillars";
 import { SITE_URL, breadcrumbNode, graph, ref, ID, jsonLdSafe } from "@/lib/schema";
 import Eyebrow from "@/components/ui/Eyebrow";
+import CtaButton from "@/components/ui/CtaButton";
+import { HEALTH_CHECK_PATH } from "@/data/healthCheck";
 
 /** Read from the data, never typed as a word. See `spellCount` — the page said
  *  "eight" above nine cards for as long as the ninth category existed. */
@@ -145,6 +147,24 @@ export default function ServicesPage() {
                   </ul>
                 </div>
               ))}
+
+            {/* For the visitor who has read the list and is not ready to book
+                a call: a smaller first step than a consultation, which still
+                arrives as a lead. One card, after the listing, so it does not
+                compete with the services themselves. */}
+            <div className="mt-10 flex flex-col gap-6 r-card surface-1 p-6 sm:p-8 md:flex-row md:items-center md:justify-between">
+              <div className="max-w-2xl">
+                <Eyebrow>Not ready to book a call?</Eyebrow>
+                <h2 className="t-h4 mt-3 text-ink">Start with a free website health check</h2>
+                <p className="mt-2 text-sm leading-relaxed text-muted">
+                  Ten points across your site, tracking and ads, checked from the
+                  outside with no logins. You get the top fixes by email.
+                </p>
+              </div>
+              <CtaButton href={HEALTH_CHECK_PATH} size="sm" className="shrink-0 self-start md:self-auto">
+                Get the free check
+              </CtaButton>
+            </div>
           </div>
         </section>
 

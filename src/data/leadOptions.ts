@@ -36,8 +36,27 @@ export const CONTACT_OTHER_OPTION = "Something else";
  *  and pillar labels: the labels other forms on the site legitimately send.
  *  Anything not in this set or in those lists is rejected rather than
  *  forwarded. See `src/data/leadAllowList.ts`. */
+/** The `service` label the free health check form sends, so Performo files
+ *  every request under one recognisable service (its public intake has no
+ *  `source` field; see /api/lead). */
+export const HEALTH_CHECK_SERVICE = "Free website health check";
+
+/** The `source` the health check form sends to /api/lead and as `lead_source`
+ *  on `generate_lead`. Also the thank-you page's `?source=` key. */
+export const HEALTH_CHECK_SOURCE = "health-check";
+
+/** "Main goal" on /free-website-health-check. The route drops any other value
+ *  rather than forwarding it, like every other select on the site. */
+export const HEALTH_CHECK_GOALS: readonly string[] = [
+  "More enquiries",
+  "Better tracking",
+  "A faster site",
+  "Not sure yet",
+];
+
 export const SERVICE_EXTRA_OPTIONS: readonly string[] = [
   "Appointment request",
   "General enquiry",
   CONTACT_OTHER_OPTION,
+  HEALTH_CHECK_SERVICE,
 ];

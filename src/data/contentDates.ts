@@ -39,14 +39,18 @@ export const contentDates: Record<string, string> = {
   "/about": "2026-10-26",
   // 2026-10-16: the CMS and custom development pages added to the listing,
   // then the CRM, app and Figma sub-pages in "by platform" blocks.
-  "/services": "2026-10-16",
+  // 2026-10-26: the free health check card under the listing.
+  "/services": "2026-10-26",
+  // 2026-10-26: the free website and marketing health check offer, new.
+  "/free-website-health-check": "2026-10-26",
   // 2026-10-24: opener and description cover Texdale as well as LEOS; paid
   // marketing marked as having a case study (audit batch 2).
   "/portfolio": "2026-10-24",
   "/pricing": "2026-10-20",
   // 2026-10-24: the industry answer names both published sectors.
   "/faq": "2026-10-24",
-  "/contact": "2026-10-13",
+  // 2026-10-26: a line pointing at the free health check.
+  "/contact": "2026-10-26",
   // 2026-10-24: description no longer leads with the name (roadmap 420).
   "/appointment": "2026-10-24",
   "/process": "2026-10-13",

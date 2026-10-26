@@ -19,6 +19,8 @@
  *   /services/[slug] (InlineLeadForm) megaMenuGroups[].title
  *   /appointment (AppointmentBooking) megaMenuGroups[].title, BUDGET_OPTIONS,
  *                                     TIMELINE_OPTIONS
+ *   /free-website-health-check        HEALTH_CHECK_SERVICE, HEALTH_CHECK_GOALS
+ *     (HealthCheckForm)
  *   fixed labels                      SERVICE_EXTRA_OPTIONS
  *
  * The route also passes each value through `clean()` (trim, collapse spaces,
@@ -32,8 +34,10 @@ import {
   TIMELINE_OPTIONS,
   SERVICE_EXTRA_OPTIONS,
   CONTACT_OTHER_OPTION,
+  HEALTH_CHECK_GOALS,
+  HEALTH_CHECK_SERVICE,
 } from "../src/data/leadOptions.ts";
-import { ALLOWED_SERVICES, ALLOWED_BUDGETS, ALLOWED_TIMELINES } from "../src/data/leadAllowList.ts";
+import { ALLOWED_SERVICES, ALLOWED_BUDGETS, ALLOWED_TIMELINES, ALLOWED_GOALS } from "../src/data/leadAllowList.ts";
 
 const GENERIC_LIMIT = 200; // LIMITS.generic in src/app/api/lead/route.ts
 
@@ -44,6 +48,8 @@ const groups = [
   ["fixed service labels", [...SERVICE_EXTRA_OPTIONS], ALLOWED_SERVICES],
   ["/appointment budget", [...BUDGET_OPTIONS], ALLOWED_BUDGETS],
   ["/appointment timeline", [...TIMELINE_OPTIONS], ALLOWED_TIMELINES],
+  ["/free-website-health-check service", [HEALTH_CHECK_SERVICE], ALLOWED_SERVICES],
+  ["/free-website-health-check goal", [...HEALTH_CHECK_GOALS], ALLOWED_GOALS],
 ];
 
 let failed = 0;

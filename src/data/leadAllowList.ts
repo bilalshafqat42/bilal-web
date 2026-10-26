@@ -1,6 +1,6 @@
 /**
- * The allow-lists /api/lead checks `service`, `serviceInterest`, `budget` and
- * `timeline` against, in one place.
+ * The allow-lists /api/lead checks `service`, `serviceInterest`, `budget`,
+ * `timeline` and `goal` against, in one place.
  *
  * Kept apart from `leadOptions.ts` on purpose: that file is imported by client
  * components (AppointmentBooking), and this one pulls in `pillars`, which would
@@ -13,7 +13,7 @@
  */
 import { megaMenuGroups } from "@/data/serviceCategories";
 import { pillars } from "@/data/pillars";
-import { BUDGET_OPTIONS, TIMELINE_OPTIONS, SERVICE_EXTRA_OPTIONS } from "@/data/leadOptions";
+import { BUDGET_OPTIONS, TIMELINE_OPTIONS, SERVICE_EXTRA_OPTIONS, HEALTH_CHECK_GOALS } from "@/data/leadOptions";
 
 /** Every `service` value a form on the site can send:
  *   - megaMenuGroups titles: InlineLeadForm on /services/[slug], and the
@@ -31,3 +31,4 @@ export function buildAllowedServices(): Set<string> {
 export const ALLOWED_SERVICES: ReadonlySet<string> = buildAllowedServices();
 export const ALLOWED_BUDGETS: ReadonlySet<string> = new Set(BUDGET_OPTIONS);
 export const ALLOWED_TIMELINES: ReadonlySet<string> = new Set(TIMELINE_OPTIONS);
+export const ALLOWED_GOALS: ReadonlySet<string> = new Set(HEALTH_CHECK_GOALS);

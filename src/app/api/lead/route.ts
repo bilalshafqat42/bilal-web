@@ -1,7 +1,9 @@
 import { NextResponse, after } from "next/server";
 import { clientIp, truncateIp } from "@/lib/clientIp";
 import { saveToFile, sendAlert, type BackupRecord, type FailureReason } from "@/lib/leadBackup";
-import { ALLOWED_SERVICES, ALLOWED_BUDGETS, ALLOWED_TIMELINES } from "@/data/leadAllowList";
+import { ALLOWED_SERVICES, ALLOWED_BUDGETS, ALLOWED_TIMELINES, ALLOWED_GOALS } from "@/data/leadAllowList";
+import { HEALTH_CHECK_SERVICE, HEALTH_CHECK_SOURCE } from "@/data/leadOptions";
+import { normaliseWebsite, WEBSITE_URL_MAX } from "@/lib/websiteUrl";
 import { HONEYPOT_FIELD } from "@/lib/honeypot";
 
 /** Every answer from this route, success or refusal, carries `no-store`: a
@@ -69,6 +71,11 @@ type LeadPayload = {
   serviceInterest?: string;
   budget?: string;
   timeline?: string;
+  /** The free health check (/free-website-health-check): the site to review,
+   *  and the visitor's main goal from a fixed list. Performo's public intake
+   *  has no field for either, so both are written into the message. */
+  websiteUrl?: string;
+  goal?: string;
   /** Cloudflare Turnstile response, verified server-side when a secret is set. */
   turnstileToken?: string;
 };
@@ -77,7 +84,7 @@ type LeadPayload = {
 const STRING_FIELDS = [
   "name", "email", "phone", "message", "service", "meetingTime", "source", "pageUrl",
   "utmSource", "utmMedium", "utmCampaign", "utmContent", "utmTerm", "eventId", "fbp", "fbc",
-  "serviceInterest", "budget", "timeline", "turnstileToken",
+  "serviceInterest", "budget", "timeline", "websiteUrl", "goal", "turnstileToken",
 ] as const satisfies readonly (keyof LeadPayload)[];
 
 // Best-effort in-process rate limit. On serverless each instance keeps its own
@@ -155,6 +162,43 @@ function clean(value: unknown, max: number, keepNewlines = false): string | unde
   out = out.replace(/[ \t]{2,}/g, " ").trim();
   if (!out) return undefined;
   return out.length > max ? out.slice(0, max) : out;
+}
+
+/**
+ * The website address from the free health check form, or why it was refused.
+ *
+ * The raw value is checked for length before anything is cleaned: `clean()`
+ * truncates, and a truncated address is a different address. Then it is
+ * cleaned like every other field (control characters out) and checked by
+ * `normaliseWebsite`, the same rule the form runs before sending. Only the
+ * normalised form (`URL.href`) is forwarded, never the text as typed.
+ */
+function websiteFrom(value: unknown): { url?: string; invalid: boolean } {
+  if (typeof value === "string" && value.trim().length > WEBSITE_URL_MAX) return { invalid: true };
+  const raw = clean(value, WEBSITE_URL_MAX);
+  if (!raw) return { invalid: false };
+  const url = normaliseWebsite(raw);
+  return url ? { url, invalid: false } : { invalid: true };
+}
+
+/**
+ * The message as it reaches the CRM.
+ *
+ * Performo's public intake (`/api/public/submissions`) stores a fixed list of
+ * text fields and ignores everything else: there is no `source`, website or
+ * custom field. So the health check's answers go where whoever reads the lead
+ * will see them, at the top of the message, and the request is labelled by its
+ * `service` ("Free website health check"). Checked against Performo's route on
+ * 2026-10-26; Performo itself was not changed.
+ */
+function composeMessage(v: { service?: string; websiteUrl?: string; goal?: string; message?: string }) {
+  if (!v.websiteUrl && !v.goal) return v.message;
+  const lines = [
+    v.service === HEALTH_CHECK_SERVICE ? "Free website health check request" : null,
+    v.websiteUrl ? `Website: ${v.websiteUrl}` : null,
+    v.goal ? `Main goal: ${v.goal}` : null,
+  ].filter(Boolean);
+  return v.message ? `${lines.join("\n")}\n\n${v.message}` : lines.join("\n");
 }
 
 /**
@@ -392,6 +436,27 @@ export async function POST(request: Request) {
     );
   }
 
+  // The health check's website address. Refused rather than dropped, unlike
+  // the selects below: it is the one thing that request is about, and the
+  // form checks it by the same rules before sending, so only a hand-made
+  // request reaches this with a bad value.
+  const website = websiteFrom(body.websiteUrl);
+  if (website.invalid) {
+    logRejection("invalid_website", ip);
+    return json(
+      { success: false, error: "That website address doesn't look right. Try something like yourcompany.com." },
+      { status: 400 }
+    );
+  }
+  if (source === HEALTH_CHECK_SOURCE && !website.url) {
+    logRejection("missing_website", ip);
+    return json(
+      { success: false, error: "Please add the address of the website you would like checked." },
+      { status: 400 }
+    );
+  }
+  const websiteUrl = website.url;
+
   // Whitelisted against the same lists the form renders from. A select
   // constrains an honest visitor and nobody else, so an unrecognised value is
   // never passed through to the CRM.
@@ -423,6 +488,7 @@ export async function POST(request: Request) {
   );
   const budget = allowed("budget", clean(body.budget, LIMITS.generic), ALLOWED_BUDGETS);
   const timeline = allowed("timeline", clean(body.timeline, LIMITS.generic), ALLOWED_TIMELINES);
+  const goal = allowed("goal", clean(body.goal, LIMITS.generic), ALLOWED_GOALS);
   if (dropped.length) {
     console.warn(`[LEAD FIELD DROPPED] ${JSON.stringify({ fields: dropped, at: new Date().toISOString() })}`);
   }
@@ -448,7 +514,8 @@ export async function POST(request: Request) {
   // a CRM failure, instead of an unhandled 500 that loses the enquiry.
   try {
     return await deliver({
-      body, source, attribution, name, email, phone, message,
+      body, source, attribution, name, email, phone,
+      message: composeMessage({ service, websiteUrl, goal, message }),
       service, serviceInterest, budget, timeline,
     });
   } catch (err) {
@@ -457,7 +524,8 @@ export async function POST(request: Request) {
     await backUp(
       {
         type: (source ?? "").includes("whatsapp") ? "chat" : "form",
-        name, email, phone, message,
+        name, email, phone,
+        message: composeMessage({ service, websiteUrl, goal, message }),
         service: serviceInterest || service, budget, timeline,
       },
       "route_error"

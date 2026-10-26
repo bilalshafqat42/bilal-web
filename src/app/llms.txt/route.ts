@@ -5,6 +5,7 @@ import { disciplinesWithPages, disciplineItems } from "@/data/disciplines";
 import { blogPosts } from "@/data/blogPosts";
 import { SITE_URL as SITE, POSITIONING, yearsExperience } from "@/lib/site";
 import { SITE_EMAIL, SITE_PHONE } from "@/lib/contact";
+import { HEALTH_CHECK_PATH, HEALTH_CHECK_SUMMARY } from "@/data/healthCheck";
 
 // Built once at build time. Nothing here reads the request, and every input is
 // data compiled into the bundle, so rendering it per request only cost CPU.
@@ -45,6 +46,7 @@ Full content for machine reading: ${SITE}/llms-full.txt
 - [Pricing](${SITE}/pricing): published figures (projects from AED 31,500, retainers from AED 16,000 a month, a review session at AED 3,500), engagement models and what drives cost
 - [FAQ](${SITE}/faq): freelancer vs agency, timezones, process, measurement
 - [Book a consultation](${SITE}/appointment): the booking page every primary CTA points at; pick a slot for a free call
+- [Free website health check](${SITE}${HEALTH_CHECK_PATH}): ${HEALTH_CHECK_SUMMARY} Free, no obligation, request by form
 - [Real estate marketing](${SITE}/real-estate-marketing): off-plan and property developer work: campaigns, launch sites and CRM, as one vertical
 - [Contact](${SITE}/contact): enquiry form, email, WhatsApp
 - [Writing](${SITE}/blog): ${blogPosts.length} articles: marketing notes for Dubai businesses (budgets, Google Ads vs SEO, real estate leads, hiring a freelancer or an agency), plus older design and development notes from client builds

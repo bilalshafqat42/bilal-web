@@ -51,6 +51,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      // The free website and marketing health check: a lead offer for
+      // visitors not ready to book a call.
+      url: `${baseUrl}/free-website-health-check`,
+      lastModified: dateFor("/free-website-health-check"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/pricing`,
       lastModified: dateFor("/pricing"),
       changeFrequency: "monthly",

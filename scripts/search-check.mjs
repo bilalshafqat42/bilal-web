@@ -110,6 +110,10 @@ const MUST_FIND = [
   // demotion exists to stop. Asserted against the service page, so a change to
   // that weighting fails here rather than quietly costing an enquiry.
   ["ui ux designer", "UI/UX"],
+  // The free health check (2026-10-26), a standalone route added by hand to
+  // the index. Both its own name and the phrase people search for must reach it.
+  ["website health check", "health check"],
+  ["free website audit", "health check"],
 ];
 
 // nothing on this site answers these, so they must return zero results

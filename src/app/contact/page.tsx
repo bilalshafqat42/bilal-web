@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { pageMetadata } from "@/lib/site";
 import PageOpener from "@/components/layout/PageOpener";
 import Surface from "@/components/ui/Surface";
@@ -294,6 +295,17 @@ export default function ContactPage() {
                   for, or to fix the tracking before touching the site, or that you do
                   not need an app at all. Those answers are worth having and they cost
                   nothing.
+                </p>
+                <p className="mt-5 text-base leading-relaxed text-muted">
+                  Not ready for a conversation yet? Ask for a{" "}
+                  <Link
+                    href="/free-website-health-check"
+                    className="text-ink underline underline-offset-4 hover:text-gold"
+                  >
+                    free website health check
+                  </Link>{" "}
+                  instead: ten points across your site, tracking and ads, checked from
+                  the outside, with the top fixes sent by email.
                 </p>
               </Reveal>
 

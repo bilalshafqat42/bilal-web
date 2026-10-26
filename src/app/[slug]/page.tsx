@@ -29,6 +29,7 @@ import { blogPosts } from "@/data/blogPosts";
 import { serviceForArticle } from "@/data/articleServices";
 import Eyebrow from "@/components/ui/Eyebrow";
 import SecondaryButton from "@/components/ui/SecondaryButton";
+import { HEALTH_CHECK_PATH } from "@/data/healthCheck";
 
 /**
  * The recovered articles, at the root of the domain.
@@ -295,6 +296,18 @@ export default async function ArticlePage({ params }: PageProps) {
                     <SecondaryButton href={service.href}>See {service.label}
                       <ChevronRight size={15} /></SecondaryButton>
                   </div>
+                  {/* A third, smaller step for a reader not ready to book: the
+                      free health check still arrives as a lead. A line, not a
+                      button, so the booking stays the clear first choice. */}
+                  <p className="mt-7 text-sm text-muted">
+                    Not ready to book a call?{" "}
+                    <Link
+                      href={HEALTH_CHECK_PATH}
+                      className="text-gold underline underline-offset-4 hover:opacity-80"
+                    >
+                      Get a free website health check
+                    </Link>
+                  </p>
                 </div>
               </div>
             </Reveal>
