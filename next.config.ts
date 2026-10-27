@@ -295,6 +295,14 @@ const nextConfig: NextConfig = {
         // src/proxy.ts: these rules match case-insensitively, so a "/About"
         // source here also caught "/about" and looped.)
         { source: "/portfolio/leos/hadley-heights/social-media", destination: "/portfolio/leos-developments/hadley-heights", permanent: true },
+        // Everything else under the old /portfolio/leos/ structure (Search
+        // Console 404s of 2026-10-24, e.g. /portfolio/leos/social-media/5)
+        // goes to the client page. Listed after the exact rule above so that
+        // one still wins. Paths containing a dot are excluded: redirects run
+        // before /public, and every LEOS image, logo and OG card still lives
+        // under public/portfolio/leos/. A plain :path* broke all of them.
+        { source: "/portfolio/leos", destination: "/portfolio/leos-developments", permanent: true },
+        { source: "/portfolio/leos/:path((?!.*\\.).*)", destination: "/portfolio/leos-developments", permanent: true },
         // From the "Blocked by robots.txt" and "Crawled, not indexed" exports
         // of the same day: the old WordPress web development page, and the
         // long first slug of the string-methods article, which kept the short one.

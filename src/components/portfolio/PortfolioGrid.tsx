@@ -59,6 +59,11 @@ type Card = {
    *  whatever you do, and taking that off the top decapitates the artwork —
    *  "HADLEY HEIGHTS" was being cut through the middle of the word. */
   focus?: "top" | "center" | "left";
+  /** The image's width over its height, when it is wider than the frame.
+   *  `object-cover` then paints it wider than the cell to fill the height, and
+   *  `sizesFor` asks for a source that wide. Leave out for images cut to the
+   *  frame or narrower than it. */
+  ratio?: number;
 };
 
 /** The row rhythm Bilal specified: three across, then two, then four.
@@ -95,6 +100,7 @@ const cards: Card[] = [
     tags: ["App Development", "UI Design"],
     href: "/portfolio/leos-developments/mobile-app",
     image: "/portfolio/leos/mobile-app/leos-mobile-featured.avif",
+    ratio: 1376 / 768,
     alt: "The LEOS cross-platform mobile app open on the Hadley Heights development, shown on an iPhone",
   },
 
@@ -105,6 +111,7 @@ const cards: Card[] = [
     tags: ["Web Development", "UI Design", "Mobile"],
     href: "/portfolio/leos-developments/cavendish-square",
     image: "/portfolio/leos/cavendish/landing-page/cavendish-thumb.avif",
+    ratio: 1200 / 799,
     alt: "Cavendish Square landing page, showing the hero with register-your-interest and check-construction-progress routes",
   },
   {
@@ -130,6 +137,7 @@ const cards: Card[] = [
     tags: ["Digital Marketing", "Web Development"],
     href: "/portfolio/texdale",
     image: "/portfolio/texdale/texdale-card.avif",
+    ratio: 1600 / 1000,
     alt: "The Texdale website hero: Chemistry for the wet process, above folded indigo denim",
     // The card image is 16:10 and the headline sits on its left, so a centred
     // crop into this near-square cell cut it to "emistry for".
@@ -143,6 +151,7 @@ const cards: Card[] = [
     tags: ["Web Design", "Web Development"],
     href: "/portfolio/nextgen-hr",
     image: "/portfolio/nextgen-hr/nextgen-hr-card.avif",
+    ratio: 1440 / 900,
     alt: "The NextGen HR website hero: People first. Hiring done right, over the Dubai skyline at night",
     // The headline sits low and left in a 16:10 card image.
     focus: "left",
@@ -156,6 +165,7 @@ const cards: Card[] = [
     tags: ["App Development", "UI Design"],
     href: "/portfolio/leos-developments/mobile-app",
     image: "/portfolio/leos/mobile-app/leos-login-mobile.avif",
+    ratio: 1398 / 768,
     alt: "Sign-in and account screens from the LEOS cross-platform mobile app",
   },
 ];
@@ -208,12 +218,31 @@ const SPAN: Record<number, string> = {
 /** `sizes` by row length. Was one value, "48vw", for every card, the width of
  *  the two-up cells, so the three-up (about 30vw) and four-up (about 22vw)
  *  cells fetched a source twice the width they paint (audit batch 2,
- *  2026-10-24). Rounded up a little so nothing is upscaled. */
-const SIZES: Record<number, string> = {
-  2: "(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 48vw",
-  3: "(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 32vw",
-  4: "(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 24vw",
-};
+ *  2026-10-24). Rounded up a little so nothing is upscaled.
+ *
+ *  These are cell widths. A card wider than its frame is painted wider than
+ *  the cell, and `sizesFor` scales them up for it. */
+const CELL_VW: Record<number, number> = { 2: 48, 3: 32, 4: 24 };
+
+/** Frame width over height: 1200:1141 everywhere except the two-up row at
+ *  desktop (see FRAME). */
+const BASE_FRAME = 1200 / 1141;
+const WIDE_FRAME = 1200 / 799;
+
+/** `sizes` for one card. A 16:9 image in the near-square frame is painted
+ *  about 1.7 times the cell's width, and with a cell-width `sizes` the browser
+ *  fetched a source that small and stretched it: every wide card on the home
+ *  page was soft, at 1.5 to 1.7 times its natural size (design audit,
+ *  2026-10-27). */
+function sizesFor(rowLength: number, ratio = 0): string {
+  const scale = (frame: number) => Math.max(1, ratio / frame);
+  const vw = (cell: number, frame: number) => `${Math.ceil(cell * scale(frame))}vw`;
+  const desktopFrame = rowLength === 2 ? WIDE_FRAME : BASE_FRAME;
+  return `(max-width: 640px) ${vw(92, BASE_FRAME)}, (max-width: 1024px) ${vw(46, BASE_FRAME)}, ${vw(
+    CELL_VW[rowLength] ?? CELL_VW[2],
+    desktopFrame
+  )}`;
+}
 
 const FRAME: Record<number, string> = {
   2: "lg:aspect-[1200/799]",
@@ -296,9 +325,8 @@ export default function PortfolioGrid() {
                     src={card.image}
                     alt={card.alt}
                     fill
-                    // One `sizes` per row length (see SIZES): the three cell
-                    // widths at desktop each get their own.
-                    sizes={SIZES[row.length] ?? SIZES[2]}
+                    // Per row length and per image: see `sizesFor`.
+                    sizes={sizesFor(row.length, card.ratio)}
                     className={`object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100 ${
                       card.focus === "center"
                         ? "object-center"

@@ -203,7 +203,11 @@ export default function CaseStudyGrid() {
                         src={card.image}
                         alt={card.alt}
                         fill
-                        sizes={card.wide ? "(min-width:1024px) 1100px, 100vw" : "(min-width:1024px) 540px, 100vw"}
+                        // Painted wider than the cell when a capture is wider
+                        // than the frame (2403x1231 in 16:10 is 1.2 times), so
+                        // the desktop values carry that margin: at 540 and 1100
+                        // they were stretched (design audit, 2026-10-27).
+                        sizes={card.wide ? "(min-width:1024px) 1320px, 100vw" : "(min-width:1024px) 700px, 100vw"}
                         className={`object-cover transition-transform duration-500 group-hover:scale-[1.02] ${
                           card.position === "top" ? "object-top" : "object-center"
                         }`}

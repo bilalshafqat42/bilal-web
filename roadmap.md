@@ -12047,3 +12047,65 @@ boards at their own ratio (also fixes the LEOS sales application boards,
 previously cropped to a portrait sliver). Mockups still show some placeholder
 text, by Bilal's choice. Source JPGs moved to `_incoming/texdale/`.
 Evidence: `review/texdale-app/`.
+
+---
+
+### 423. BUILT, NOT PUBLISHED (2026-10-27): Four fixes from the 27 Oct audits
+
+- **Old LEOS URLs** (`/portfolio/leos`, `/portfolio/leos/<anything>`) now 308
+  to `/portfolio/leos-developments`. Paths with a dot are excluded, because
+  redirects run before `/public` and every LEOS image lives under
+  `public/portfolio/leos/`. All 73 LEOS image URLs checked at 200.
+- **Unapproved files out of `public/`**: 4Direction and AKS captures, and the
+  Refine and Tomorrow World logos, moved to `private-assets/` (see its
+  README). On Hostinger `/public` is served by LiteSpeed, so no Next rule could
+  hide them. After deploy, check they 404 live; if Hostinger keeps old files,
+  delete them in hPanel. Supersedes the AKS note in 421.
+- **Blurry portfolio cards**: `sizes` on the home grid now allows for
+  `object-cover` cropping (`sizesFor` in `PortfolioGrid.tsx`); `/portfolio`
+  cards raised to 700px and 1320px. Checked at 390, 768 and 1440: nothing
+  stretched, except one NextGen capture at 1440 (10%, needs a wider capture).
+- **Homepage hero jump**: not changed. It is the scroll-driven widening
+  (`HomeParallax`). Bilal to choose: A keep, or B keep the widening with the
+  content held still.
+
+---
+
+### 424. TODO (2026-10-27): LinkedIn profile, one step at a time
+
+Two goals: a marketing manager job, and freelance digital marketing and
+consulting. Review of the profile PDF and page of 2026-10-27. A CV matching
+this positioning is in Claude Docs ("Bilal Shafqat - CV").
+
+**Step 1: mistakes (about 30 minutes)**
+- [ ] Refine entry: delete "ROLE SUMMARY" and "TOP SKILLS TO TAG"; fix "end-toend"
+- [ ] About: "5+ years in UAE real estate" to "four years in Dubai real estate" (UAE roles start Nov 2022)
+- [ ] Organisations: delete "Key2code, Senior Web Developer, 2016 to Present" (experience says it ended 2019)
+- [ ] Typos: "Bechelor", "Hotspot" (HubSpot), "reponsibilities", "Seo Managing", lowercase "urdu", "punjabi", "hindi", Geeks Valley line
+- [ ] Retype "&" in About where "&amp;" shows
+- [ ] Tomorrow World: "I manage" to past tense
+- [ ] Education: university name in the school field; remove "Grade: 3"
+- [ ] Languages: set Urdu (and Punjabi if true) to native
+
+**Step 2: position as a marketing manager**
+- [ ] Headline: Digital Marketing Manager | Performance Marketing, Google & Meta Ads, SEO, CRM | Lead Generation | Dubai
+- [ ] About: replace with the new version (same text as the CV profile, plus a services list)
+- [ ] Top skills: pin Digital Marketing, Performance Marketing, Google Ads, Meta Ads, Marketing Strategy (move API, Salesforce CRM Analytics, Growth Engineering down)
+- [ ] Banner: one line, "Digital Marketing Manager · Ads, SEO, CRM, Web" plus bilalshafqat.com
+- [ ] Add 1 or 2 real numbers per marketing role (budget, leads a month, CPL, team size). Only figures you can prove
+- [ ] Say who or what you managed, if true (people, agencies, budgets)
+- [ ] Merge the 2010-2022 Lahore roles into fewer entries; explain Oct 2019 to Nov 2021 if there was work
+- [ ] Open to Work (recruiters only): add Marketing Manager, Digital Marketing Manager, Head of Digital Marketing
+
+**Step 3: proof and trust**
+- [ ] Ask for 3 recommendations: a former manager (PSI or Tomorrow World), a sales colleague, a freelance client
+- [ ] Featured: free website health check page, one case study (Texdale or NextGen HR), best post
+
+**Step 4: freelance (check employment contract on side work first)**
+- [ ] Add "Freelance Digital Marketing Consultant" experience entry linking bilalshafqat.com
+- [ ] LinkedIn Services page, if the contract allows
+
+**Step 5: activity (ongoing)**
+- [ ] Post own content daily from the weekly cards, not reposts
+- [ ] Comment on 5 posts a day from marketing leaders and Dubai developers
+- [ ] Recheck profile views and search appearances weekly (27 Oct baseline: 173 views, 75 search appearances, 11,590 followers)
