@@ -12065,9 +12065,9 @@ Evidence: `review/texdale-app/`.
   `object-cover` cropping (`sizesFor` in `PortfolioGrid.tsx`); `/portfolio`
   cards raised to 700px and 1320px. Checked at 390, 768 and 1440: nothing
   stretched, except one NextGen capture at 1440 (10%, needs a wider capture).
-- **Homepage hero jump**: not changed. It is the scroll-driven widening
-  (`HomeParallax`). Bilal to choose: A keep, or B keep the widening with the
-  content held still.
+- **Homepage hero jump**: not changed, and staying. It is the scroll-driven
+  widening (`HomeParallax`). Bilal decided on 2026-10-27 to keep it exactly as
+  it is. Do not change or remove the homepage animations.
 
 ---
 
