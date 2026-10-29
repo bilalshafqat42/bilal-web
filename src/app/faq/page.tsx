@@ -52,7 +52,7 @@ export default function FaqPage() {
                 <a
                   key={g.id}
                   href={`#${g.id}`}
-                  className="tap-target rounded-full surface-2 px-4 py-2 text-xs font-medium text-muted transition-colors hover:border-gold/35 hover:text-ink"
+                  className="tap-target rounded-full surface-2 px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-gold/35 hover:text-ink sm:text-xs"
                 >
                   {g.title}
                 </a>

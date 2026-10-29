@@ -26,7 +26,7 @@ export function CaptureFrame({
             <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
             <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
             <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-            <span className="ml-3 truncate text-xs text-muted">{capture.label}</span>
+            <span className="ml-3 truncate text-sm sm:text-xs text-muted">{capture.label}</span>
           </>
         )}
       </div>
@@ -66,7 +66,7 @@ export function CaptureFrame({
       ) : (
         // Discoverability, not decoration. Nothing told a visitor the frame
         // scrolled, so most never saw past the top 70vh of a 6,000px capture.
-        <p className="border-t border-border px-4 py-2.5 text-center text-xs text-faint">
+        <p className="border-t border-border px-4 py-2.5 text-center text-sm sm:text-xs text-faint">
           Scroll inside the frame to read the full page
         </p>
       )}

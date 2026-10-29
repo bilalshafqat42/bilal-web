@@ -193,7 +193,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
                     <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
                     <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
                     <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                    <span className="ml-3 truncate text-xs text-muted">{p.landingPage.capture.label}</span>
+                    <span className="ml-3 truncate text-sm sm:text-xs text-muted">{p.landingPage.capture.label}</span>
                   </div>
                   {/* The dedicated top-of-page crop where one exists. This is
                       the page's LCP image, and the full captures run 4,500 to

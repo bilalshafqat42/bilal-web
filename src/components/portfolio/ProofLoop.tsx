@@ -151,7 +151,7 @@ export function ServiceProof({ serviceSlug }: { serviceSlug: string }) {
                       {thumbs.length ? (
                         // What the pictures are, in words: a crawler and a
                         // screen reader get the same proof the image gives.
-                        <span className="mt-2 block text-xs leading-relaxed text-faint">
+                        <span className="mt-2 block text-sm sm:text-xs leading-relaxed text-faint">
                           Shown: {thumbs[0].group ?? thumbs[0].label}
                         </span>
                       ) : null}

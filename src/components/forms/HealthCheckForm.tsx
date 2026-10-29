@@ -223,7 +223,7 @@ export default function HealthCheckForm() {
         )}
       </button>
 
-      <p className="mt-4 text-xs leading-relaxed text-muted">
+      <p className="mt-4 text-sm sm:text-xs leading-relaxed text-muted">
         Your details are used only to send you the review and reply to you.
         Nothing is shared or sold, and you are not added to a mailing list. See the{" "}
         <Link href="/privacy" className="text-ink underline underline-offset-4 hover:text-gold">

@@ -218,7 +218,7 @@ export default function PortfolioPage() {
                               <span className="block text-sm font-semibold text-ink transition-colors group-hover:text-gold">
                                 {d.title}
                               </span>
-                              <span className="mt-1 block text-xs leading-relaxed text-muted">
+                              <span className="mt-1 block text-sm sm:text-xs leading-relaxed text-muted">
                                 {d.blurb}
                               </span>
                             </span>

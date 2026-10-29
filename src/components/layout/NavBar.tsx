@@ -613,9 +613,14 @@ export default function NavBar({ menu }: { menu: MenuColumn[] }) {
             type="button"
             ref={menuButtonRef}
             onClick={() => setOpen(true)}
-            aria-label="Open menu"
+            // "Menu", not "Open menu": `aria-expanded` already announces the
+            // state, and a label that names the action read "Open menu,
+            // expanded" while the drawer was open (design audit, 2026-10-27).
+            aria-label="Menu"
             aria-expanded={open}
-            className={`-mr-1 p-1 lg:hidden ${light ? "text-[#14140f]" : "text-ink"}`}
+            // 44px square, the minimum comfortable tap target; it was 32px. The
+            // -mr-2.5 keeps the icon's right edge where it was.
+            className={`-mr-2.5 inline-flex h-11 w-11 items-center justify-center lg:hidden ${light ? "text-[#14140f]" : "text-ink"}`}
           >
             <Menu size={24} />
           </button>
@@ -653,7 +658,7 @@ export default function NavBar({ menu }: { menu: MenuColumn[] }) {
               ref={closeButtonRef}
               onClick={closeDrawer}
               aria-label="Close menu"
-              className="-mr-1 p-1 text-ink"
+              className="-mr-2.5 inline-flex h-11 w-11 items-center justify-center text-ink"
             >
               <X size={24} />
             </button>

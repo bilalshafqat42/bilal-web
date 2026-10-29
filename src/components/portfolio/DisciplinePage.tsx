@@ -151,7 +151,7 @@ function ItemGrid({ items }: { items: Item[] }) {
                   sizes="(min-width: 1024px) 300px, 45vw"
                   className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
-                <p className="border-t border-border px-4 py-3 text-xs leading-relaxed text-muted">
+                <p className="border-t border-border px-4 py-3 text-sm sm:text-xs leading-relaxed text-muted">
                   {it.meta}
                 </p>
               </Link>

@@ -152,12 +152,19 @@ export default function AppointmentPage() {
             that silently kills `position: sticky` on every descendant — the
             booking panel scrolled away with the page until this changed.
             `clip` does the same clipping without becoming a scroll container. */}
-        <section className="relative min-h-[100svh] overflow-clip pb-16 pt-32 sm:pt-40">
+        {/* **Below `lg` the portrait is a photo at the top, not a background.**
+            Full bleed behind the copy put the headline across the face on every
+            phone, and the booking form started about 1,260px down, under the
+            whole left column (design audit, 2026-10-27). Now the photo sits in
+            its own block, the copy starts where it fades out, and the booking
+            panel follows the intro paragraph. From `lg` up nothing changes. */}
+        <section className="relative overflow-clip pb-16 lg:min-h-[100svh] lg:pt-40">
           {/* The blue suit, on request. Note the filenames are misleading and
               have been since they were added: `bilal-shirt.avif` is the blue
               three-piece, and `bilal-shafqat-coat.avif` — which this page used
               to show — is the grey coat. Renaming them would touch a dozen
               references, so the correction lives here instead. */}
+          <div className="relative h-[26rem] sm:h-[34rem] lg:absolute lg:inset-0 lg:h-auto">
           <Image
             src="/images/bilal-shirt.avif"
             alt="Bilal Shafqat"
@@ -169,30 +176,41 @@ export default function AppointmentPage() {
             preload
             fetchPriority="high"
             sizes="100vw"
-            className="object-cover brightness-[1.04] contrast-[1.12] grayscale"
-            // Retuned for this image, not carried over. The blue suit is a
-            // full-torso frame at 3368x5056, so `object-cover` on a full-height
-            // section shows only about 47% of it, and the inherited 12% landed
-            // on the face alone with no suit visible.
+            // Position as a class rather than an inline style, so it can differ
+            // by width. At `lg` it is the value retuned for this image: the blue
+            // suit is a full-torso frame at 3368x5056, so `object-cover` on a
+            // full-height section shows only about 47% of it, and the inherited
+            // 12% landed on the face alone with no suit visible. The value is
+            // height-sensitive, because the section is `min-h-[100svh]`: 60% read
+            // well at 1280x800 and cut the face off at the eyes on a 14-inch
+            // 1512x982. 38% holds the whole face plus the suit at 982 and stays
+            // acceptable at 800.
             //
-            // The value is height-sensitive, because the section is
-            // `min-h-[100svh]`: a taller viewport crops more and the window
-            // moves. 60% read well at 1280x800 and cut the face off at the eyes
-            // on a 14-inch 1512x982. 38% holds the whole face plus the suit at
-            // 982 and stays acceptable at 800.
-            style={{ objectPosition: "26% 38%" }}
+            // Below `lg` the block is short and wide, so it frames from near the
+            // top: face and shoulders, clear of the fixed header.
+            className="object-cover object-[50%_12%] brightness-[1.04] contrast-[1.12] grayscale lg:object-[26%_38%]"
           />
-          {/* Two scrims rather than one: a horizontal wash keeps the right-hand
-              panel readable, a vertical one lifts the copy off the floor of the
-              image. */}
-          <div className="absolute inset-0 bg-gradient-to-r from-bg via-bg/60 to-bg/25" />
-          <div className="absolute inset-0 bg-gradient-to-t from-bg/90 via-transparent to-bg/40" />
+          {/* Phones and tablets: one scrim, fading the bottom of the photo into
+              the page so the eyebrow and headline start on plain ground. */}
+          <div className="absolute inset-0 bg-gradient-to-b from-bg/40 via-transparent to-bg lg:hidden" />
+          {/* Desktop: two scrims rather than one. A horizontal wash keeps the
+              right-hand panel readable, a vertical one lifts the copy off the
+              floor of the image. */}
+          <div className="absolute inset-0 hidden bg-gradient-to-r from-bg via-bg/60 to-bg/25 lg:block" />
+          <div className="absolute inset-0 hidden bg-gradient-to-t from-bg/90 via-transparent to-bg/40 lg:block" />
+          </div>
 
           {/* `items-start`, not `items-center`. A centred grid item cannot stick:
               sticky needs the item anchored to the top of a track taller than
-              itself, and centring gives it nowhere to travel. */}
-          <div className="site-container relative grid grid-cols-1 items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,520px)] lg:gap-14">
-            <div className="min-w-0">
+              itself, and centring gives it nowhere to travel.
+
+              Three items so the order can change by width: intro, booking
+              panel, details below `lg`; intro and details down the left with
+              the panel spanning both rows from `lg`. `grid-rows-[auto_1fr]` at
+              `lg` keeps the tall panel's height in the second row, so it never
+              opens a gap between the intro and the details. */}
+          <div className="site-container relative -mt-10 grid grid-cols-1 items-start gap-12 sm:-mt-16 lg:mt-0 lg:grid-cols-[minmax(0,1fr)_minmax(0,520px)] lg:grid-rows-[auto_1fr] lg:gap-x-14 lg:gap-y-0">
+            <div className="min-w-0 lg:col-start-1 lg:row-start-1">
               {/* The last rounded pill on the site became the flat gold label
                   every other section uses (item 189), but keeps its pulsing
                   dot. The pill shape was the inconsistency; the dot is the part
@@ -228,8 +246,29 @@ export default function AppointmentPage() {
                 One conversation, one person, and a straight answer about whether
                 I am the right fit for what you are trying to do.
               </p>
+            </div>
 
-              <ul className="mt-9 space-y-3">
+            {/* Sticky on desktop so the booking panel stays in view while the
+                rest of the page scrolls past it.
+
+                The old note here explained a 620px cap needed because the
+                Cal.com embed rendered at 1,251px, taller than most viewports,
+                which made a sticky panel stick with its bottom cut off. That
+                does not apply any more: the embed loads on request, so the
+                panel is short until someone asks for the calendar.
+
+                Not sticky below `lg`, where the panel is full width and there
+                is nothing beside it to scroll. */}
+            <div className="lg:sticky lg:top-28 lg:col-start-2 lg:row-span-2 lg:row-start-1">
+              {/* The menu's pages, not every service page: the four CMS
+                  platforms are one topic here ("CMS Development"), and a
+                  dropdown of twenty is a worse question than one of
+                  seventeen. */}
+              <AppointmentBooking services={menuGroups().map((g) => g.title)} />
+            </div>
+
+            <div className="min-w-0 lg:col-start-1 lg:row-start-2">
+              <ul className="space-y-3 lg:mt-9">
                 {reassurance.map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-base text-muted">
                     <CheckCircle2 size={17} className="mt-0.5 shrink-0 text-gold" />
@@ -273,25 +312,6 @@ export default function AppointmentPage() {
                 </Link>
                 .
               </p>
-            </div>
-
-            {/* Sticky on desktop so the booking panel stays in view while the
-                rest of the page scrolls past it.
-
-                The old note here explained a 620px cap needed because the
-                Cal.com embed rendered at 1,251px, taller than most viewports,
-                which made a sticky panel stick with its bottom cut off. That
-                does not apply any more: the embed loads on request, so the
-                panel is short until someone asks for the calendar.
-
-                Not sticky below `lg`, where the panel is full width and there
-                is nothing beside it to scroll. */}
-            <div className="lg:sticky lg:top-28">
-              {/* The menu's pages, not every service page: the four CMS
-                  platforms are one topic here ("CMS Development"), and a
-                  dropdown of twenty is a worse question than one of
-                  seventeen. */}
-              <AppointmentBooking services={menuGroups().map((g) => g.title)} />
             </div>
           </div>
         </section>
