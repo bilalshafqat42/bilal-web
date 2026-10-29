@@ -271,6 +271,15 @@ export const homeFaqs = [
     a: "Paid ads on Google, Meta, TikTok, Snapchat and LinkedIn, search and content, email and WhatsApp, and the tracking underneath all of it. The difference from most digital marketing freelancers in Dubai is that I also build the landing pages and apps the campaigns point at, so the site and the spend are designed together instead of handed between two suppliers.",
   },
   {
+    // Added 2026-10-29. Google's AI Overview for "freelance digital marketer
+    // in Dubai" answers with an hourly range quoted from Upwork, and "How much
+    // does a freelance digital marketer charge?" sits in People also ask. A
+    // direct answer with the published AED prices gives it something to quote
+    // from this page instead. Same figures as /pricing; no market averages.
+    q: "How much does a freelance digital marketer in Dubai charge?",
+    a: "My published rates are a monthly retainer from AED 16,000, project work such as a website or a campaign launch from AED 31,500, and a four-hour advisory session at AED 3,500. Ad spend is separate in every case. I price by the month or by the project, not by the hour, and the full breakdown is on the pricing page.",
+  },
+  {
     q: "Do you build mobile apps?",
     // From the website-app-development FAQ, kept whole. The second half is the
     // part worth keeping: telling someone they do not need an app is the
