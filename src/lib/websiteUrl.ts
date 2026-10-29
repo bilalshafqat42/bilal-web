@@ -26,7 +26,11 @@ export const WEBSITE_URL_MAX = 300;
 export function normaliseWebsite(text: string): string | null {
   const raw = text.trim();
   if (!raw || raw.length > WEBSITE_URL_MAX || /\s/.test(raw)) return null;
-  const withScheme = /^[a-z][a-z0-9+.-]*:/i.test(raw) ? raw : `https://${raw}`;
+  // A colon followed only by digits is a port, not a scheme: "example.com:8080"
+  // read as the scheme "example.com:" and was refused (code review,
+  // 2026-10-27). `javascript:`, `data:` and `mailto:` are still schemes here,
+  // and the protocol check below refuses them.
+  const withScheme = /^[a-z][a-z0-9+.-]*:(?!\d+(?:[/?#]|$))/i.test(raw) ? raw : `https://${raw}`;
   let parsed: URL;
   try {
     parsed = new URL(withScheme);

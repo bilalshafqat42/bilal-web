@@ -10,12 +10,17 @@ import { HEALTH_CHECK_GOALS, HEALTH_CHECK_SERVICE, HEALTH_CHECK_SOURCE } from "@
 import WhatsAppLink from "@/components/ui/WhatsAppLink";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Honeypot from "@/components/forms/Honeypot";
+import FieldError from "@/components/forms/FieldError";
+import { useFieldErrors } from "@/lib/useFieldErrors";
 
 const fieldClass =
   "w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink placeholder:text-faint outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20";
 const labelClass = "block text-xs font-medium uppercase tracking-wide text-muted";
 
 const WEBSITE_ERROR = "That doesn't look like a website address. Try something like yourcompany.com.";
+
+/** Module scope, so `useFieldErrors` gets the same object every render. */
+const CHECKS = { "hc-website": (v: string) => (normaliseWebsite(v) ? "" : WEBSITE_ERROR) };
 
 /**
  * The request form on /free-website-health-check.
@@ -28,7 +33,8 @@ const WEBSITE_ERROR = "That doesn't look like a website address. Try something l
  *
  * The website is checked here by the same rule the route uses
  * (`normaliseWebsite`), so a visitor sees the problem beside the field instead
- * of a refusal after sending. It is a text input with `inputMode="url"` rather
+ * of a refusal after sending: when they leave the field, and again on submit
+ * (`useFieldErrors`, as on the other lead forms). It is a text input with `inputMode="url"` rather
  * than `type="url"`: the browser's own URL check refuses "yourcompany.com"
  * without `https://`, which is how most people type their own site.
  */
@@ -49,20 +55,18 @@ export default function HealthCheckForm() {
     goal: HEALTH_CHECK_GOALS[HEALTH_CHECK_GOALS.length - 1],
     message: "",
   });
-  const [websiteError, setWebsiteError] = useState("");
+  const { errors, fieldProps, setError } = useFieldErrors(CHECKS);
 
   const set =
     (k: keyof typeof values) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
       setValues((v) => ({ ...v, [k]: e.target.value }));
-      if (k === "websiteUrl" && websiteError) setWebsiteError("");
-    };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     const website = normaliseWebsite(values.websiteUrl);
     if (!website) {
       e.preventDefault();
-      setWebsiteError(WEBSITE_ERROR);
+      setError("hc-website", WEBSITE_ERROR);
       document.getElementById("hc-website")?.focus();
       return;
     }
@@ -112,13 +116,15 @@ export default function HealthCheckForm() {
           <label htmlFor="hc-name" className={labelClass}>
             Name <span className="text-gold">*</span>
           </label>
-          <input id="hc-name" required value={values.name} onChange={set("name")} className={`mt-2 ${fieldClass}`} placeholder="Your name" autoComplete="name" maxLength={120} />
+          <input id="hc-name" required value={values.name} onChange={set("name")} {...fieldProps("hc-name")} className={`mt-2 ${fieldClass}`} placeholder="Your name" autoComplete="name" maxLength={120} />
+          <FieldError id="hc-name" message={errors["hc-name"]} />
         </div>
         <div>
           <label htmlFor="hc-email" className={labelClass}>
             Email <span className="text-gold">*</span>
           </label>
-          <input id="hc-email" type="email" required value={values.email} onChange={set("email")} className={`mt-2 ${fieldClass}`} placeholder="you@company.com" autoComplete="email" maxLength={254} />
+          <input id="hc-email" type="email" required value={values.email} onChange={set("email")} {...fieldProps("hc-email")} className={`mt-2 ${fieldClass}`} placeholder="you@company.com" autoComplete="email" maxLength={254} />
+          <FieldError id="hc-email" message={errors["hc-email"]} />
         </div>
         <div>
           <label htmlFor="hc-website" className={labelClass}>
@@ -137,14 +143,9 @@ export default function HealthCheckForm() {
             autoCapitalize="none"
             spellCheck={false}
             maxLength={WEBSITE_URL_MAX}
-            aria-invalid={websiteError ? true : undefined}
-            aria-describedby={websiteError ? "hc-website-error" : undefined}
+            {...fieldProps("hc-website")}
           />
-          {websiteError ? (
-            <p id="hc-website-error" className="mt-2 text-xs leading-relaxed text-ink">
-              {websiteError}
-            </p>
-          ) : null}
+          <FieldError id="hc-website" message={errors["hc-website"]} />
         </div>
         <div>
           <label htmlFor="hc-phone" className={labelClass}>

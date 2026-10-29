@@ -6,6 +6,8 @@ import { useLeadSubmit, TURNSTILE_ENABLED } from "@/lib/useLeadSubmit";
 import { SITE_EMAIL } from "@/lib/contact";
 import WhatsAppLink from "@/components/ui/WhatsAppLink";
 import Honeypot from "@/components/forms/Honeypot";
+import FieldError from "@/components/forms/FieldError";
+import { useFieldErrors } from "@/lib/useFieldErrors";
 
 // Never displayed. Any failed send shows the panel below instead of the
 // server's text: on 2026-10-16 this form printed "Could not reach the lead
@@ -38,6 +40,8 @@ export default function InlineLeadForm({ service }: { service: string }) {
     networkError: NOT_SENT,
   });
 
+  const { errors, fieldProps } = useFieldErrors();
+
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) =>
     submit(e, () => ({
       fields: {
@@ -51,23 +55,35 @@ export default function InlineLeadForm({ service }: { service: string }) {
 
   return (
     <form onSubmit={onSubmit} className="mt-6 grid gap-3 sm:grid-cols-2">
-      <input
-        required
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Your name"
-        aria-label="Your name"
-        className="w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink outline-none transition placeholder:text-faint focus:border-gold/50 focus:ring-2 focus:ring-gold/20"
-      />
-      <input
-        required
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Your email address"
-        aria-label="Your email address"
-        className="w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink outline-none transition placeholder:text-faint focus:border-gold/50 focus:ring-2 focus:ring-gold/20"
-      />
+      {/* Each field in its own cell, so its message sits under it rather
+          than becoming a grid item of its own. */}
+      <div>
+        <input
+          id="inline-name"
+          required
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          {...fieldProps("inline-name")}
+          placeholder="Your name"
+          aria-label="Your name"
+          className="w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink outline-none transition placeholder:text-faint focus:border-gold/50 focus:ring-2 focus:ring-gold/20"
+        />
+        <FieldError id="inline-name" message={errors["inline-name"]} />
+      </div>
+      <div>
+        <input
+          id="inline-email"
+          required
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          {...fieldProps("inline-email")}
+          placeholder="Your email address"
+          aria-label="Your email address"
+          className="w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink outline-none transition placeholder:text-faint focus:border-gold/50 focus:ring-2 focus:ring-gold/20"
+        />
+        <FieldError id="inline-email" message={errors["inline-email"]} />
+      </div>
       <textarea
         rows={3}
         value={message}

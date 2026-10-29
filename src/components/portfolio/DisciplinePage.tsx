@@ -39,7 +39,7 @@ import Eyebrow from "@/components/ui/Eyebrow";
  *  and a 1:2.17 phone screen in a 16:10 cell is two thin bars of background. */
 function ItemGrid({ items }: { items: Item[] }) {
   const wide = items.filter((i) => i.kind === "site-desktop");
-  const phone = (i: Item) => i.kind === "site-mobile" || i.kind === "app-screen";
+  const phone = (i: Item) => i.kind === "site-mobile" || i.kind === "app-screen" || i.kind === "app-design";
   const tall = items.filter((i) => phone(i) && i.height > i.width);
   // Mockup boards: several phones on one landscape image (Texdale Field,
   // 1616x1264). The portrait cell would crop them to one phone's sliver, so

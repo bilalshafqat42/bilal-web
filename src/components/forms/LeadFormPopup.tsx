@@ -8,6 +8,8 @@ import { useLeadSubmit, TURNSTILE_ENABLED } from "@/lib/useLeadSubmit";
 import WhatsAppLink from "@/components/ui/WhatsAppLink";
 import { useFocusTrap } from "@/lib/focusTrap";
 import Honeypot from "@/components/forms/Honeypot";
+import FieldError from "@/components/forms/FieldError";
+import { useFieldErrors } from "@/lib/useFieldErrors";
 
 const POPUP_MESSAGE =
   "Hi Bilal, I found you through bilalshafqat.com and wanted to ask about a project.";
@@ -31,6 +33,7 @@ export default function LeadFormPopup() {
   // a keyboard user on the trigger with no indication anything had happened,
   // and Tab then walked the page behind it (roadmap 213.9).
   useFocusTrap(dialogRef, open);
+  const { errors, fieldProps } = useFieldErrors();
 
   useEffect(() => {
     if (!open) return;
@@ -210,6 +213,7 @@ export default function LeadFormPopup() {
                     </label>
                     <input
                       id="lead-name"
+                      {...fieldProps("lead-name")}
                       name="name"
                       type="text"
                       autoComplete="name"
@@ -217,6 +221,7 @@ export default function LeadFormPopup() {
                       className="mt-1.5 w-full rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-faint outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20"
                       placeholder="Your name"
                     />
+                    <FieldError id="lead-name" message={errors["lead-name"]} />
                   </div>
 
                   <div>
@@ -225,6 +230,7 @@ export default function LeadFormPopup() {
                     </label>
                     <input
                       id="lead-email"
+                      {...fieldProps("lead-email")}
                       name="email"
                       type="email"
                       autoComplete="email"
@@ -232,6 +238,7 @@ export default function LeadFormPopup() {
                       className="mt-1.5 w-full rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-faint outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20"
                       placeholder="you@company.com"
                     />
+                    <FieldError id="lead-email" message={errors["lead-email"]} />
                   </div>
 
                   <div>
@@ -254,12 +261,14 @@ export default function LeadFormPopup() {
                     </label>
                     <textarea
                       id="lead-message"
+                      {...fieldProps("lead-message")}
                       name="message"
                       required
                       rows={3}
                       className="mt-1.5 w-full resize-none rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-faint outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20"
                       placeholder="Briefly describe your project or query"
                     />
+                    <FieldError id="lead-message" message={errors["lead-message"]} />
                   </div>
 
                   {TURNSTILE_ENABLED ? <div ref={turnstileRef} /> : null}

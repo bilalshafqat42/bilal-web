@@ -340,8 +340,8 @@ const nextConfig: NextConfig = {
       //
       // These redirect where the course URLs deliberately do not, and the
       // difference is whether a genuine successor exists. A category archive
-      // listed the articles filed under one topic; /blog lists all 52 of them,
-      // including every article those three archives held. The visitor who
+      // listed the articles filed under one topic; /blog lists every article
+      // (72 on 2026-10-29), including every one those three archives held. The visitor who
       // clicked a category link wanted a list of writing and gets a list of
       // writing, which is what separates this from the soft 404 the note below
       // describes — a tutorial URL swept into a marketing page.
