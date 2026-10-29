@@ -411,8 +411,11 @@ export type Client = {
    *  decided, so a page asserting a stack and platforms would claim things that
    *  are not true. A section on the case study says what it is and no more.
    *
-   *  Its images feed the discipline pages as app screens, labelled as a design
-   *  and prototype (see `portfolioItems.ts`). */
+   *  Its images are the `app-design` kind (see `portfolioItems.ts`): shown on
+   *  the UI/UX page, labelled as a design and prototype, and never counted as
+   *  a shipped app on the Mobile Development, iOS, Android or React Native
+   *  pages. `alsoProves` puts a board on the mobile app service page's case
+   *  study card, under a heading that does not say "shipped". */
   appDesign?: Gallery & {
     /** The app's own name, used in labels on the discipline pages. */
     name: string;
@@ -1581,6 +1584,7 @@ export const clients: Client[] = [
     },
     appDesign: {
       name: "Texdale Field",
+      alsoProves: ["mobile-app-development"],
       heading: "The mobile app: Texdale Field",
       body: "Texdale Field is a mobile app designed and prototyped for Texdale's sales team and the mills they supply. It puts the range, the dosing and the paperwork in one place: scan a drum, check the dose, open the data sheet, ask for a sample or a reorder. It carries the same identity as the website and the campaigns, so the app, the site and the ads read as one company.",
       status: "Design and prototype. Not yet released on the App Store or Google Play. Some screens still show placeholder text where Texdale's own photography and specifications will go.",
@@ -1751,6 +1755,10 @@ export const clients: Client[] = [
     // Ads and Meta Pixel IDs in the source are still placeholders, so no
     // campaign is claimed; the /hire page is described as ready for paid
     // traffic, nothing more.
+    //
+    // 2026-10-29: web-design and custom-web-development added to `services`,
+    // so the case study shows on those service pages. He designed and built
+    // the site, in Next.js; the SEO page already listed it.
     slug: "nextgen-hr",
     name: "NextGen HR",
     industry: "Professional Services",
@@ -1799,7 +1807,7 @@ export const clients: Client[] = [
         body: "Google Analytics 4 loads only after a visitor accepts cookies, with lead events recorded when an enquiry is sent. Privacy, cookie and terms pages match the tools that are actually switched on.",
       },
     ],
-    services: ["seo"],
+    services: ["web-design", "custom-web-development", "seo"],
     website: {
       heading: "The website",
       body: "The NextGen HR homepage as it is live today, from the hero to the footer, on desktop and on a phone. Scroll inside either frame to see the complete page.",

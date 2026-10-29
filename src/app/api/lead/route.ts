@@ -436,12 +436,16 @@ export async function POST(request: Request) {
     );
   }
 
-  // The health check's website address. Refused rather than dropped, unlike
-  // the selects below: it is the one thing that request is about, and the
-  // form checks it by the same rules before sending, so only a hand-made
-  // request reaches this with a bad value.
+  // The health check's website address. Refused rather than dropped on that
+  // form, unlike the selects below: it is the one thing that request is about,
+  // and the form checks it by the same rules before sending, so only a
+  // hand-made request reaches this with a bad value. On any other form it is
+  // an extra, so a bad value is dropped and the lead kept, like an unknown
+  // select option (code review, 2026-10-27).
   const website = websiteFrom(body.websiteUrl);
-  if (website.invalid) {
+  if (website.invalid && source !== HEALTH_CHECK_SOURCE) {
+    console.warn(`[LEAD FIELD DROPPED] ${JSON.stringify({ fields: ["websiteUrl"], at: new Date().toISOString() })}`);
+  } else if (website.invalid) {
     logRejection("invalid_website", ip);
     return json(
       { success: false, error: "That website address doesn't look right. Try something like yourcompany.com." },

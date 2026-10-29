@@ -92,7 +92,8 @@ export const disciplines: Discipline[] = [
     title: "UI / UX Design",
     group: "Design",
     blurb: "Interface and flow decisions, across web and app",
-    kinds: ["app-screen", "site-mobile"],
+    // `app-design` too: a prototype is design work, and this page says so.
+    kinds: ["app-screen", "app-design", "site-mobile"],
     serviceHref: "/services/ui-ux-design",
     page: {
       headline: "Interface design, judged on the decision behind each screen",

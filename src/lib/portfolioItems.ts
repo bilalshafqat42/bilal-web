@@ -17,6 +17,11 @@ export type ItemKind =
   | "site-desktop"
   | "site-mobile"
   | "app-screen"
+  /** Screens from an app that is designed and prototyped but not released
+   *  (Texdale Field). Its own kind since 2026-10-29 rather than `app-screen`,
+   *  which the Mobile Development page and the iOS, Android and React Native
+   *  service pages count as shipped work. */
+  | "app-design"
   | "social";
 
 /**
@@ -120,15 +125,15 @@ export function allItems(): Item[] {
       }
     }
 
-    // An app shown as a design and prototype (Texdale Field). App screens like
-    // the LEOS ones, but the label says what they are, so nobody on a
-    // discipline page takes a prototype for a released app.
+    // An app shown as a design and prototype (Texdale Field). Screens like the
+    // LEOS ones, but a kind of their own, so they appear only where a design
+    // counts (UI/UX) and never as shipped apps; the label says what they are.
     if (c.appDesign) {
       const g = c.appDesign;
       for (const item of g.items) {
         out.push({
           key: `${g.basePath}/${item.file}`,
-          kind: "app-screen",
+          kind: "app-design",
           deliverable: "App screens",
           clientSlug: c.slug,
           src: `${g.basePath}/${item.file}.${g.ext ?? "avif"}`,
@@ -138,6 +143,7 @@ export function allItems(): Item[] {
           label: `${g.name} app: design and prototype`,
           meta: item.caption,
           href: `/portfolio/${c.slug}#mobile-app`,
+          alsoProves: g.alsoProves,
         });
       }
     }

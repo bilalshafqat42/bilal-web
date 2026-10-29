@@ -32,10 +32,6 @@ export const TIMELINE_OPTIONS: readonly string[] = [
  *  enquiry to a 400. */
 export const CONTACT_OTHER_OPTION = "Something else";
 
-/** Free-text values the route accepts for `service` beyond the category titles
- *  and pillar labels: the labels other forms on the site legitimately send.
- *  Anything not in this set or in those lists is rejected rather than
- *  forwarded. See `src/data/leadAllowList.ts`. */
 /** The `service` label the free health check form sends, so Performo files
  *  every request under one recognisable service (its public intake has no
  *  `source` field; see /api/lead). */
@@ -54,6 +50,10 @@ export const HEALTH_CHECK_GOALS: readonly string[] = [
   "Not sure yet",
 ];
 
+/** Free-text values the route accepts for `service` beyond the category titles
+ *  and pillar labels: the labels other forms on the site legitimately send.
+ *  Anything not in this set or in those lists is rejected rather than
+ *  forwarded. See `src/data/leadAllowList.ts`. */
 export const SERVICE_EXTRA_OPTIONS: readonly string[] = [
   "Appointment request",
   "General enquiry",

@@ -110,6 +110,9 @@ export function ServiceProof({ serviceSlug }: { serviceSlug: string }) {
   // from, still point at the engagement they were part of.
   const cases = caseStudiesForService(serviceSlug);
   if (proof.length === 0 && cases.length === 0) return null;
+  // "Shipped" only when it is all shipped. On the mobile app page the Texdale
+  // card shows an app that is a design and prototype, not released.
+  const unreleased = cases.some((c) => proofImagesFor(c.slug, serviceSlug).some((i) => i.kind === "app-design"));
 
   return (
     <section className="site-container section-pad-tight">
@@ -119,7 +122,7 @@ export function ServiceProof({ serviceSlug }: { serviceSlug: string }) {
             The proof
           </Eyebrow>
           <h2 className="t-h3 mt-3 max-w-2xl text-ink">
-            Shipped work behind this service
+            {unreleased ? "Work behind this service" : "Shipped work behind this service"}
           </h2>
         </div>
         {proof.length ? <DisciplineCards items={proof} /> : null}

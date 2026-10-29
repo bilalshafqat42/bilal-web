@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Building2, MapPin } from "lucide-react";
 import SocialLinks from "@/components/ui/SocialLinks";
 import FooterWordmark from "@/components/layout/FooterWordmark";
+import FooterSection from "@/components/layout/FooterSection";
 import Eyebrow from "@/components/ui/Eyebrow";
 import { SITE_NAME } from "@/lib/site";
 import { SITE_EMAIL, SITE_PHONE, SITE_PHONE_HREF, SITE_PHONE_ALT, SITE_PHONE_ALT_HREF } from "@/lib/contact";
@@ -149,8 +150,10 @@ export default function Footer() {
         {/* The oversized mark now opens the footer instead of closing it. */}
         <FooterWordmark />
 
-        <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.8fr_2.4fr_1.1fr_0.9fr]">
-          <div>
+        {/* No row gap below `md`: there the four link columns are folded rows
+            (`FooterSection`), and their borders do the separating. */}
+        <div className="mt-14 grid gap-x-10 sm:grid-cols-2 md:gap-y-10 lg:grid-cols-[1.3fr_0.8fr_2.4fr_1.1fr_0.9fr]">
+          <div className="mb-8 md:mb-0">
             <Image
               src="/logo/bilal-square-light.svg"
               alt="Bilal Shafqat"
@@ -172,9 +175,8 @@ export default function Footer() {
             </p>
           </div>
 
-          <div>
-            <p className="text-sm font-semibold text-ink">Company</p>
-            <ul className="mt-4 space-y-1.5">
+          <FooterSection title="Company">
+            <ul className="space-y-1.5 md:mt-4">
               {companyLinks.map((l) => (
                 <li key={l.label}>
                   <Link href={l.href} className="inline-flex min-h-6 min-w-6 items-center text-sm text-muted transition-colors hover:text-gold">
@@ -183,7 +185,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </FooterSection>
 
           {/* Every footer link is at least 24px tall (WCAG 2.5.8): on
               2026-10-16, 39 of 62 measured 17 to 20px on a phone. Rows went
@@ -195,12 +197,12 @@ export default function Footer() {
               the footer look broken; two sub-columns keep it the same height as
               Company and Portfolio. */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <p className="text-sm font-semibold text-ink">Services</p>
+            <FooterSection title="Services">
             {/* Marketing fills the first sub-column (eight pages), Design and
                 Development stack in the second, so the three groups read in
                 the homepage's order and the two halves stay a similar height
                 (2026-10-24, when Paid Marketing folded into Marketing). */}
-            <div className="mt-4 grid gap-x-8 gap-y-6 sm:grid-cols-2">
+            <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2 md:mt-4">
               {[serviceGroups.slice(0, 1), serviceGroups.slice(1)].map((stack, si) => (
                 <div key={si} className="space-y-6">
                   {stack.map((group) => (
@@ -244,6 +246,7 @@ export default function Footer() {
                 </div>
               ))}
             </div>
+            </FooterSection>
           </div>
 
           {/* Portfolio, added when the discipline pages shipped. These are new
@@ -251,9 +254,8 @@ export default function Footer() {
               is what gets them crawled. Derived, so a discipline that gains a
               page appears here without this file being touched — and one that
               has no page never does. */}
-          <div>
-            <p className="text-sm font-semibold text-ink">Portfolio</p>
-            <ul className="mt-4 space-y-1.5">
+          <FooterSection title="Portfolio">
+            <ul className="space-y-1.5 md:mt-4">
               {disciplinesWithPages().map((d) => (
                 <li key={d.slug}>
                   <Link
@@ -285,18 +287,17 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </FooterSection>
 
-          <div>
-            <p className="text-sm font-semibold text-ink">Industries</p>
-            <ul className="mt-4 space-y-1.5">
+          <FooterSection title="Industries">
+            <ul className="space-y-1.5 md:mt-4">
               {industries.map((i) => (
                 <li key={i} className="flex min-h-6 items-center text-sm text-muted">
                   {i}
                 </li>
               ))}
             </ul>
-          </div>
+          </FooterSection>
         </div>
 
         {/* `sm:pr-14` keeps the right end of this row (the social icons) out

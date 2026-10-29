@@ -130,6 +130,12 @@ const cases = [
       ["health check: too long", 400, { ...hc, websiteUrl: `https://example.com/${"a".repeat(400)}` }],
       ["health check: bad goal", 502, { ...hc, websiteUrl: "https://example.com", goal: "Get rich" }],
       ["health check: url as number", 400, { ...hc, websiteUrl: 42 }],
+      // A port is part of an address, not a scheme (2026-10-29).
+      ["health check: with port", 502, { ...hc, websiteUrl: "example.com:8080" }],
+      ["health check: port and path", 502, { ...hc, websiteUrl: "example.com:8080/contact" }],
+      // Only the health check is about the website. On any other form a bad
+      // one is dropped and the lead kept, like an unknown select option.
+      ["contact: bad website kept", 502, { name: "A", email: "a@example.invalid", websiteUrl: "javascript:alert(1)" }],
     ];
   })(),
   [
