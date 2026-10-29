@@ -198,54 +198,54 @@ export default function Footer() {
               Company and Portfolio. */}
           <div className="sm:col-span-2 lg:col-span-1">
             <FooterSection title="Services">
-            {/* Marketing fills the first sub-column (eight pages), Design and
-                Development stack in the second, so the three groups read in
-                the homepage's order and the two halves stay a similar height
-                (2026-10-24, when Paid Marketing folded into Marketing). */}
-            <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2 md:mt-4">
-              {[serviceGroups.slice(0, 1), serviceGroups.slice(1)].map((stack, si) => (
-                <div key={si} className="space-y-6">
-                  {stack.map((group) => (
-                    <div key={group.title}>
-                      <Eyebrow as="p" size="sm" tone="muted">
-                        {group.title}
-                      </Eyebrow>
-                      <ul className="mt-2.5 space-y-1.5">
-                        {group.links.map((l) => (
-                          <li key={l.href} className={l.subLabel ? "pt-2" : undefined}>
-                            {l.subLabel ? (
-                              <span className="mb-1 block font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted">
-                                {l.subLabel}
-                              </span>
-                            ) : null}
-                            <Link
-                              href={l.href}
-                              className="inline-flex min-h-6 min-w-6 items-center text-sm text-muted transition-colors hover:text-gold"
-                            >
-                              {l.label}
-                            </Link>
-                            {l.children.length ? (
-                              <ul className="mt-1 flex flex-wrap gap-x-4 pl-3">
-                                {l.children.map((c) => (
-                                  <li key={c.href}>
-                                    <Link
-                                      href={c.href}
-                                      className="inline-flex min-h-6 min-w-6 items-center text-[0.8125rem] text-muted transition-colors hover:text-gold"
-                                    >
-                                      {c.label}
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            ) : null}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
+              {/* Marketing fills the first sub-column (eight pages), Design and
+                  Development stack in the second, so the three groups read in
+                  the homepage's order and the two halves stay a similar height
+                  (2026-10-24, when Paid Marketing folded into Marketing). */}
+              <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2 md:mt-4">
+                {[serviceGroups.slice(0, 1), serviceGroups.slice(1)].map((stack, si) => (
+                  <div key={si} className="space-y-6">
+                    {stack.map((group) => (
+                      <div key={group.title}>
+                        <Eyebrow as="p" size="sm" tone="muted">
+                          {group.title}
+                        </Eyebrow>
+                        <ul className="mt-2.5 space-y-1.5">
+                          {group.links.map((l) => (
+                            <li key={l.href} className={l.subLabel ? "pt-2" : undefined}>
+                              {l.subLabel ? (
+                                <span className="mb-1 block font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted">
+                                  {l.subLabel}
+                                </span>
+                              ) : null}
+                              <Link
+                                href={l.href}
+                                className="inline-flex min-h-6 min-w-6 items-center text-sm text-muted transition-colors hover:text-gold"
+                              >
+                                {l.label}
+                              </Link>
+                              {l.children.length ? (
+                                <ul className="mt-1 flex flex-wrap gap-x-4 pl-3">
+                                  {l.children.map((c) => (
+                                    <li key={c.href}>
+                                      <Link
+                                        href={c.href}
+                                        className="inline-flex min-h-6 min-w-6 items-center text-[0.8125rem] text-muted transition-colors hover:text-gold"
+                                      >
+                                        {c.label}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              ) : null}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
             </FooterSection>
           </div>
 
