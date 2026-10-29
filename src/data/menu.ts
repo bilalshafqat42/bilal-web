@@ -99,6 +99,9 @@ export const serviceMenuColumns: ServiceMenuColumn[] = [
       "seo",
       "social-media-marketing",
       "email-marketing",
+      // Added 2026-10-29. Marketing rather than Development: the buyer is a
+      // marketing or sales lead asking for faster follow-up, not a developer.
+      "marketing-automation",
       "paid-marketing",
       "google-ads",
       "facebook-ads",

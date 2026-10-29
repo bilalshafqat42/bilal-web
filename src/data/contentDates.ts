@@ -106,6 +106,7 @@ export const SERVICE_CONTENT_DATES: Record<string, string> = {
   "app-backend-development": "2026-10-16",
   "figma-design": "2026-10-16",
   "crm-marketing-automation": "2026-10-16",
+  "marketing-automation": "2026-10-29",
   // Three more the same day: an FAQ or sentence each for strategist,
   // agency-comparison and freelance-manager questions buyers search for.
   // 2026-10-26: the proof block shows the Texdale case study with its Meta
@@ -198,7 +199,7 @@ export function clientContentDate(clientSlug: string): string {
 // 2026-10-26: NextGen HR's captures and the web development intro naming it.
 // Same day: Texdale's app prototype on the mobile and UI/UX pages and its
 // creatives on the social page, with their intros saying what each is.
-export const DISCIPLINE_CONTENT_DATE = "2026-10-26";
+export const DISCIPLINE_CONTENT_DATE = "2026-10-29";
 
 // Blog dates are not kept here. Each article's `dateModified` and sitemap
 // `lastModified` come from its own `updatedAt` in `src/content/blog/<slug>.json`,

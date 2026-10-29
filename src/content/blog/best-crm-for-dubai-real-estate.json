@@ -128,7 +128,7 @@
     },
     {
       "t": "p",
-      "v": "The fix is the WhatsApp Business API connected to the CRM, so the conversation sits against the contact record. It costs something and it is worth it: it survives staff turnover, it makes handovers possible, and it is the only way the pipeline report reflects what actually happened."
+      "v": "The fix is the WhatsApp Business API connected to the CRM, so the conversation sits against the contact record. It costs something and it is worth it: it survives staff turnover, it makes handovers possible, and it is the only way the pipeline report reflects what actually happened. Setting that up, with an instant first reply and a reminder when a lead waits too long, is the core of the [[marketing automation|/services/marketing-automation]] I build for property sales teams."
     },
     {
       "t": "h2",
@@ -191,5 +191,5 @@
       "v": "Last updated 4 October 2026. AED figures are my own published rates, not a market survey."
     }
   ],
-  "words": 1113
+  "words": 1143
 }

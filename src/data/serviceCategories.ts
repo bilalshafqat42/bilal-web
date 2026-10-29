@@ -1747,6 +1747,59 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       // the menu rail, /services and llms.txt still listed it (audit batch 2).
     ],
   },
+  // Added 2026-10-29 at Bilal's request: one page that says "if it can be
+  // automated, ask me", covering lead automation, AI assistants, ads and
+  // reporting automation and custom sales tools. Kept general on purpose (his
+  // call): no demos, no client names, no results claimed. Takes "marketing
+  // automation dubai"; "crm consultant dubai" stays on crm-marketing-automation.
+  {
+    slug: "marketing-automation",
+    title: "Marketing Automation & AI",
+    accent: "gold",
+    headline: "Marketing automation in Dubai that answers every lead in minutes, with AI where it helps",
+    intro:
+      "Marketing automation in Dubai is usually sold as software. What a sales team actually needs is simpler: every enquiry answered in minutes, given to the right person, and followed up until it is closed or dead, without anyone copying details between systems. I build that layer across your ads, website, WhatsApp and CRM, use AI where it saves real time, and build the custom tools your sales team works in, from broker portals to big-screen presentation apps.",
+    metaTitle: "Marketing Automation in Dubai, with AI | Bilal Shafqat",
+    metaDescription:
+      "Marketing automation in Dubai: lead automation, WhatsApp and AI assistants, ads reporting, CRM workflows and custom tools for sales teams.",
+    depthHeading: "Automating a marketing and sales team, step by step",
+    related: {
+      heading: "The systems the automation runs on",
+      intro:
+        "Automation sits on top of a CRM, a website and the channels leads arrive through. Each of those has its own page.",
+      slugs: [
+        "crm-integration",
+        "custom-crm-development",
+        "email-marketing",
+        "custom-web-development",
+        "mobile-app-development",
+      ],
+    },
+    faqs: [
+      {
+        question: "What can you automate?",
+        answer:
+          "Most of what a marketing or sales team does by hand more than once a day. Typical examples are capturing leads from every source into the CRM, the first reply on WhatsApp or email, assigning each lead to the right person, follow-up reminders, weekly reports, and sending qualified leads back to Google and Meta. If your team copies, pastes or chases something every day, it is worth asking.",
+      },
+      {
+        question: "Do you build AI chatbots?",
+        answer:
+          "Yes, for websites and WhatsApp, as long as the job suits one. An AI assistant is good at answering the same twenty questions at any hour, collecting what a lead wants and booking a call. It should hand over to a person for prices, availability and anything that sounds like a promise, and I set it up that way.",
+      },
+      {
+        question: "Is this only for real estate?",
+        answer:
+          "No. Most of my work has been with real estate and property sales teams in Dubai, so the examples on this page lean that way. The same setup suits any business that gets enquiries from ads and has people who follow them up: clinics, education, holiday homes, B2B services and retail.",
+      },
+    ],
+    items: [
+      { title: "Lead Automation", pillarSlug: "crm-marketing-automation" },
+      { title: "AI Chatbots & Assistants", pillarSlug: "crm-marketing-automation" },
+      { title: "Ads & Campaign Automation", pillarSlug: "crm-marketing-automation" },
+      { title: "Marketing Automation Workflows", pillarSlug: "crm-marketing-automation" },
+      { title: "Custom Tools for Sales Teams", pillarSlug: "crm-marketing-automation" },
+    ],
+  },
   {
     slug: "video-conversion",
     title: "Video & Conversion",

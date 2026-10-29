@@ -553,6 +553,29 @@ export const pillars: Pillar[] = [
         body: "Ad spend from the platforms joined to outcomes in the CRM, so reports show leads, qualified leads and cost per qualified lead by source and campaign, and the qualified ones go back to Google and Meta as conversions.",
         bullets: ["Leads and qualified leads by source", "Cost per qualified lead", "Offline conversions back to the ad platforms"],
       },
+      // The four sections below back the Marketing Automation & AI page, added
+      // 2026-10-29 (see `serviceCategories.ts`). "Marketing Automation
+      // Workflows" above is the fifth.
+      {
+        title: "Lead Automation",
+        body: "Every enquiry captured from ads, the website, WhatsApp and portals, answered within minutes, assigned to the right person and chased until it is closed or marked lost. Nobody copies a lead between systems, and nobody has to remember to follow up.",
+        bullets: ["Instant first reply on WhatsApp or email", "Assignment and follow-up reminders", "Alerts when a lead waits too long"],
+      },
+      {
+        title: "AI Chatbots & Assistants",
+        body: "AI assistants on your website and WhatsApp that answer common questions at any hour, find out what a lead actually wants, and book a call, then hand over to a person with a summary. They work from your own approved information and pass anything about price or availability to your team.",
+        bullets: ["Website and WhatsApp assistants", "Lead qualification and booking", "Hand-over to a person with a summary"],
+      },
+      {
+        title: "Ads & Campaign Automation",
+        body: "The repetitive side of running campaigns, done by the system: reports that build themselves, alerts when spend or cost per lead drifts, audiences kept in sync with the CRM, and qualified leads sent back to Google and Meta so the ads learn from real outcomes.",
+        bullets: ["Automated reports and dashboards", "Spend and cost-per-lead alerts", "CRM audiences and offline conversions"],
+      },
+      {
+        title: "Custom Tools for Sales Teams",
+        body: "Tools built for how your sales team works when no off-the-shelf product fits: broker and agent portals, big-screen presentation apps for sales galleries and events, mobile apps for agents, and live dashboards for managers.",
+        bullets: ["Broker and agent portals", "Big-screen presentation apps", "Sales mobile apps and dashboards"],
+      },
       {
         title: "Zoho CRM Setup for Real Estate",
         body: "Zoho CRM configured for property: modules and fields for projects, units and brokers, lead stages that match how your sales team works, and assignment rules so each enquiry reaches the right person.",

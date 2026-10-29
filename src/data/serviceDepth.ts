@@ -1738,7 +1738,7 @@ export const serviceDepth: Record<string, Depth> = {
           // Added 2026-10-16 with the CRM integration pages. This page keeps
           // the consultant query; the connections and each platform have their
           // own pages now, linked here and in the cards near the top.
-          "Getting every lead source into one CRM, and choosing between the platforms, is on the [CRM integration](/services/crm-integration) page. Each platform has its own: [Zoho CRM integration](/services/zoho-crm-integration), [HubSpot integration](/services/hubspot-integration) and [Salesforce integration](/services/salesforce-integration), which covers Marketing Cloud. When none of them fits, there is [custom CRM development](/services/custom-crm-development).",
+          "Getting every lead source into one CRM, and choosing between the platforms, is on the [CRM integration](/services/crm-integration) page. Each platform has its own: [Zoho CRM integration](/services/zoho-crm-integration), [HubSpot integration](/services/hubspot-integration) and [Salesforce integration](/services/salesforce-integration), which covers Marketing Cloud. When none of them fits, there is [custom CRM development](/services/custom-crm-development). The automation on top, from instant WhatsApp replies to AI assistants and sales tools, is on [marketing automation and AI](/services/marketing-automation).",
         ],
       },
       {
@@ -2119,6 +2119,84 @@ export const serviceDepth: Record<string, Depth> = {
         question: "How often should we send?",
         answer:
           "Less than most tools encourage. The right answer depends on whether you have something to say, and a calendar that demands a send every Tuesday will invent reasons. I would rather set the cadence from your actual launch and project schedule.",
+      },
+    ],
+  },
+  // Added 2026-10-29 with the page. General on purpose, at Bilal's request: it
+  // describes what he builds, with no client names, demos or results. The AI
+  // block says plainly what an assistant should not do, because a bot that
+  // quotes a wrong price is worse than no bot.
+  "marketing-automation": {
+    blocks: [
+      {
+        heading: "What marketing automation in Dubai should fix first",
+        paragraphs: [
+          "Most teams I talk to start with a tool: a new CRM, an automation platform, a chatbot. The better starting point is a stopwatch. Submit an enquiry on your own website or ad, and time how long it takes for a person to reply, and whether anyone does. In most businesses that answer is hours, sometimes days, and that delay costs more than any ad setting.",
+          "So the first job is almost always speed and certainty: every lead lands in one place with its source attached, gets an immediate first reply, and reaches a named person who is reminded until they act. Only once that works is it worth automating reports, campaigns or anything clever. Automating a broken process only makes it break faster.",
+        ],
+      },
+      {
+        heading: "Lead automation: from enquiry to the right person in minutes",
+        paragraphs: [
+          "A lead can arrive from a Meta lead form, a Google Ads landing page, a WhatsApp click, a portal or a phone call. Each source is connected to the CRM so the lead arrives with its campaign, which is the job of [CRM integration](/services/crm-integration). On top of that sit the rules: who gets the lead, what counts as a duplicate, what the first message says, and what happens if nobody responds.",
+          "In Dubai the first reply usually belongs on WhatsApp, because that is where people actually answer. Longer nurture belongs in [email marketing](/services/email-marketing), for the contacts who are months away from a decision. The CRM decides which channel a contact is on and when they move between them.",
+        ],
+        table: {
+          caption: "What lead automation changes, step by step",
+          head: ["Step", "Done by hand", "Automated"],
+          rows: [
+            ["Capture", "Someone downloads leads from Meta and pastes them into a sheet", "Every source lands in the CRM within seconds, with its campaign attached"],
+            ["First reply", "Whenever an agent sees the lead", "An instant WhatsApp or email reply, in the lead's language where possible"],
+            ["Assignment", "A manager forwards leads in a group chat", "Rules by project, language or rotation, with a named owner on every lead"],
+            ["Follow-up", "Depends on the agent remembering", "Reminders and escalation when a lead waits too long"],
+            ["Reporting", "A weekly spreadsheet built by hand", "A live view of leads, qualified leads and cost per qualified lead by source"],
+          ],
+        },
+      },
+      {
+        heading: "Where AI helps, and where it should not be trusted",
+        paragraphs: [
+          "AI is genuinely useful in a few places. An assistant on your website or WhatsApp can answer the same common questions at three in the morning, find out what someone is looking for and their budget range, and book a call into an agent's calendar. Inside the team, AI can summarise call notes into the CRM, draft follow-up messages for a person to approve, and write first drafts of ad variations to test.",
+          "It should not quote prices, confirm availability, or make anything that sounds like a promise, because a confident wrong answer is worse than a slow right one. The assistants I set up work from information you approve, hand over to a person with a summary of the conversation, and store only the personal data the job needs, agreed with you up front.",
+        ],
+      },
+      {
+        heading: "Ads and reporting that run themselves",
+        paragraphs: [
+          "The repetitive side of running [Google Ads](/services/google-ads) and [Meta ads](/services/facebook-ads) is a good place for automation: reports that arrive every Monday without anyone building them, alerts when spend or cost per lead drifts outside a range, and audiences that update from the CRM instead of being uploaded by hand once a quarter.",
+          "The most valuable part is sending outcomes back. When a lead becomes qualified or books a viewing in the CRM, that event goes back to Google and Meta as a conversion, so the platforms learn which people turn into buyers rather than which people fill in forms. That one change usually does more for lead quality than any new campaign.",
+        ],
+      },
+      {
+        heading: "Custom tools for sales teams",
+        paragraphs: [
+          "Sometimes the right answer is not another subscription but a tool built for how your team actually sells. A broker portal where partner agents register leads, download material and track their commission. A big-screen presentation app for a sales gallery or an event, showing projects, availability and payment plans. A mobile app for agents in the field, or a live dashboard for sales managers.",
+          "These are built with the same stack as the rest of my development work, covered on [custom web development](/services/custom-web-development) and [mobile app development](/services/mobile-app-development), and connected to your CRM so nothing lives in a second database that drifts out of date. When the CRM itself is the problem, there is [custom CRM development](/services/custom-crm-development).",
+        ],
+      },
+      {
+        heading: "Tools, ownership and handover",
+        paragraphs: [
+          "For a few low-volume flows, an automation tool such as Zapier, Make or n8n is often enough and quick to change. Once volumes grow, or a lead has to be checked and routed before it lands, a direct API integration is more reliable and easier to monitor. I use whichever the volume and the stakes justify.",
+          "Either way, everything runs in accounts you own, every flow is documented in plain English, and failures alert a person instead of failing silently. If I stopped working with you tomorrow, your team should be able to see what runs, why, and who to call.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What is marketing automation, in plain terms?",
+        answer:
+          "Software doing the repetitive parts of marketing and sales follow-up so people do not have to: capturing leads, sending the first reply, assigning them, reminding the team, and building reports. The people still do the selling. The automation makes sure nothing waits for someone to remember.",
+      },
+      {
+        question: "Do we need to change our CRM?",
+        answer:
+          "Usually not. Most CRMs a Dubai business already pays for can do what is needed once they are set up properly and connected to the lead sources. I look at what you have first and only recommend a change when the current system genuinely cannot do the job.",
+      },
+      {
+        question: "Where do we start if we have no automation at all?",
+        answer:
+          "With the lead flow: every source into one place, an instant first reply, a named owner on every lead and a reminder when it waits. It is the smallest piece of work with the most visible result, and everything else, from AI assistants to reporting, builds on it.",
       },
     ],
   },
