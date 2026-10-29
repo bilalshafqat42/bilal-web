@@ -178,7 +178,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                     <p className="mt-3 text-muted leading-relaxed">{resolved!.section.body}</p>
                     <ul className="mt-5 flex flex-wrap gap-2">
                       {resolved!.section.bullets.map((b) => (
-                        <li key={b} className="rounded-full surface-2 px-3.5 py-1.5 text-xs text-muted">
+                        <li key={b} className="rounded-full surface-2 px-3.5 py-1.5 text-sm sm:text-xs text-muted">
                           {b}
                         </li>
                       ))}

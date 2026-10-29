@@ -104,7 +104,7 @@ export default function ServicesPage() {
                       {pillar.items.map((c) => (
                         <li
                           key={c.title}
-                          className="rounded-full surface-2 px-3 py-1.5 text-xs text-muted"
+                          className="rounded-full surface-2 px-3 py-1.5 text-sm sm:text-xs text-muted"
                         >
                           {c.title}
                         </li>

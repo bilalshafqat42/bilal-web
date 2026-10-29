@@ -120,7 +120,7 @@ export default function InlineLeadForm({ service }: { service: string }) {
           </>
         )}
       </button>
-      <p className="text-center text-xs text-muted sm:col-span-2">
+      <p className="text-center text-sm sm:text-xs text-muted sm:col-span-2">
         Goes straight to me. I reply personally, usually within one working day.
       </p>
     </form>

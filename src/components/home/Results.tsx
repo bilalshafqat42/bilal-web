@@ -81,7 +81,7 @@ export default function Results() {
                 ))}
               </ul>
               <hr className="mt-5 border-t border-border" />
-              <p className="mt-4 text-xs leading-relaxed text-muted/80">
+              <p className="mt-4 text-sm sm:text-xs leading-relaxed text-muted/80">
                 Access stays in your name. If we stop working together, the data stays
                 with you.
               </p>

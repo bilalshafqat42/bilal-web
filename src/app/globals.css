@@ -1547,6 +1547,14 @@ html:has([aria-modal="true"]) .consent-banner {
 .page-opener .border-gold\/30 { border-color: rgba(138, 106, 5, 0.4); }
 
 .page-opener .bg-surface\/60 { background-color: rgba(0, 0, 0, 0.04); }
+/* `.surface-2` is the dark surface at 60%, which over white composites to a
+   mid grey: the /faq jump links sat at about 1.5:1 with the muted text on
+   them (design audit, 2026-10-27). On the band it becomes the same faint tint
+   as `bg-surface/60`, so the muted text keeps its 7:1. */
+.page-opener .surface-2 {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.14);
+}
 .page-opener .bg-gold\/10 { background-color: rgba(138, 106, 5, 0.12); }
 .page-opener .bg-white\/15 { background-color: rgba(0, 0, 0, 0.08); }
 /* A white tint over white is invisible, so the hover affordance has to invert. */

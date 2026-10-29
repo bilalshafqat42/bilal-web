@@ -208,7 +208,7 @@ export default function AboutPage() {
                       <p className="mt-3 text-sm text-muted leading-relaxed">
                         {discipline.summary}
                       </p>
-                      <p className="mt-4 text-xs leading-relaxed text-muted">
+                      <p className="mt-4 text-sm sm:text-xs leading-relaxed text-muted">
                         {discipline.tags.map((t) => t.label).join(" · ")}
                       </p>
                       <span className="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-semibold text-gold">

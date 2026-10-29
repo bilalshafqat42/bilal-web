@@ -392,7 +392,7 @@ export default function AboutSplit() {
                 // `<dt>` first, as the HTML spec requires; `flex-col-reverse`
                 // keeps the figure above its label on screen.
                 <div key={fact.label} className="flex flex-col-reverse gap-2">
-                  <dt className="text-xs leading-relaxed text-muted">{fact.label}</dt>
+                  <dt className="text-sm leading-relaxed text-muted sm:text-xs">{fact.label}</dt>
                   <dd className="t-h3 text-ink">{fact.value}</dd>
                 </div>
               ))}
