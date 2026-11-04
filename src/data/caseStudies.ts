@@ -1503,6 +1503,12 @@ export const clients: Client[] = [
     // ("IMAGE TO SUPPLY", "PLACEHOLDER SPECIFICATION"); Bilal chose to show them
     // as they are. The creatives are the set used for the Meta campaign, as
     // Bilal describes them. No performance figures for either.
+    //
+    // 2026-11-04: Bilal confirmed he also runs Texdale's SEO, GEO/AIO, social
+    // media and promotion: the whole of their digital marketing. The SEO and
+    // GEO detail is readable off texdale.co.uk (structured data, sitemap,
+    // llms.txt, the /insights articles). Social and promotion are described
+    // in general terms only, because no channel detail or result was supplied.
     slug: "texdale",
     name: "Texdale",
     industry: "Manufacturing & Industrial",
@@ -1511,20 +1517,21 @@ export const clients: Client[] = [
     logoHeight: 260,
     ogImage: "/portfolio/texdale/og-texdale.jpg",
     ogImageAlt: "The Texdale homepage hero: Chemistry for the wet process, above folded indigo denim",
-    title: "Texdale: Complete Digital Marketing for a UK Manufacturer",
+    title: "Texdale: End-to-End Digital Marketing for a UK Manufacturer",
     description:
-      "Complete digital marketing for Texdale, a UK textile chemicals maker: strategy, website design and build, an app prototype, and Google and Meta ads.",
-    headline: "Complete digital marketing for a UK textile chemicals manufacturer",
+      "End-to-end digital marketing for Texdale, a UK textile chemicals maker: strategy, website, app design, SEO, GEO, social media, Google and Meta ads.",
+    headline: "End-to-end digital marketing for a UK textile chemicals manufacturer",
     intro:
-      "Texdale is a textile chemicals manufacturer in Stockport, England, formulating pretreatment, dyeing, finishing and denim chemistry for mills worldwide. I built their digital marketing from scratch: the strategy, a brand-consistent website I designed and developed, a mobile app designed and prototyped for their sales team, and paid campaigns on Google and Meta with the creatives that ran on them. One person, from the first design to the live ads.",
+      "Texdale is a textile chemicals manufacturer in Stockport, England, formulating pretreatment, dyeing, finishing and denim chemistry for mills worldwide. I run their digital marketing from end to end: the strategy, a brand-consistent website I designed and developed, a mobile app designed and prototyped for their sales team, SEO and AI search optimisation, social media, promotion, and paid campaigns on Google and Meta with the creatives that ran on them. One person, from the first design to the live ads and every channel after.",
     facts: [
       { label: "Client", value: "Texdale" },
       { label: "Sector", value: "Textile chemicals" },
       { label: "Market", value: "UK and global mills" },
-      { label: "Scope", value: "Digital marketing, website, app design, ads" },
+      { label: "Role", value: "Growth marketing lead, end to end" },
+      { label: "Scope", value: "Strategy, web, app, SEO, GEO, social, ads" },
     ],
     scopeIntro:
-      "This was complete digital marketing, built from scratch by one person, so the strategy, the website, the app and the ads were planned as one piece of work rather than handed between suppliers. The website sits at the centre: it is where the campaigns send people and where an enquiry starts.",
+      "This is end-to-end digital marketing, built from scratch by one person, so the strategy, the website, the app, search, social and the ads are planned as one piece of work rather than handed between suppliers. The website sits at the centre: it is where the campaigns, the search results and the social posts send people, and where an enquiry starts.",
     scope: [
       {
         heading: "Digital marketing strategy",
@@ -1550,6 +1557,18 @@ export const clients: Client[] = [
         heading: "Mobile app design and prototype",
         body: "Texdale Field, an app designed and prototyped for Texdale's sales team and the mills they supply: the product ranges, a dosing calculator, drum label scanning, data sheets, and sample and reorder requests. Not yet released in the app stores.",
       },
+      {
+        heading: "SEO",
+        body: "Search built into the site from the start: a page for each of the eight product ranges, titles and descriptions written for what technical buyers search, structured data, a sitemap, and an Insights section of technical articles from the applications team.",
+      },
+      {
+        heading: "GEO and AI search (AIO)",
+        body: "Optimised for AI assistants as well as Google: an llms.txt file that summarises the company, its ranges and its compliance position, structured data on every key page, and answers written plainly enough for ChatGPT, Gemini and Google's AI Overviews to quote.",
+      },
+      {
+        heading: "Social media and promotion",
+        body: "Texdale's social channels run in the same identity as the website and the ads, with posts on the product ranges, the process and the company, so a buyer who checks a profile sees the same company the campaigns promised. Launches go out on every channel in the same week, so search, social and paid carry one message.",
+      },
     ],
     // social-media-marketing and mobile-app-development added 2026-10-26 with
     // the creatives and the app prototype, so those service pages show this
@@ -1561,6 +1580,9 @@ export const clients: Client[] = [
       "google-ads",
       "facebook-ads",
       "social-media-marketing",
+      "seo",
+      "web-design",
+      "custom-web-development",
       "mobile-app-development",
     ],
     website: {
@@ -1723,9 +1745,9 @@ export const clients: Client[] = [
         ],
       },
       {
-        heading: "One person, from design to the live ads",
+        heading: "One person, from design to every channel",
         paragraphs: [
-          "The usual route for a manufacturer is a designer for the look, a developer for the build and an agency for the ads, each briefed separately. Here one person did all of it. The design followed the brand, the build followed the design, and the campaigns pointed at pages built with them in mind. Nothing was lost in a handover, because there was not one.",
+          "The usual route for a manufacturer is a designer for the look, a developer for the build and an agency for the ads, each briefed separately. Here one person does all of it. The design followed the brand, the build followed the design, the campaigns pointed at pages built with them in mind, and search, AI search and social all describe the same company in the same words. Nothing was lost in a handover, because there was not one.",
           "It also means one person answers for the whole thing. If an enquiry form is not being used, or an ad sends people to the wrong range, there is no question of whose problem it is.",
           "There are no performance figures on this page. The results belong to Texdale, and none are published without their agreement.",
         ],
@@ -1741,6 +1763,8 @@ export const clients: Client[] = [
       "Next.js website development",
       "mobile app design",
       "Meta campaign creatives",
+      "B2B SEO and GEO",
+      "growth marketing case study",
       "Texdale",
     ],
   },
@@ -1759,6 +1783,11 @@ export const clients: Client[] = [
     // 2026-10-29: web-design and custom-web-development added to `services`,
     // so the case study shows on those service pages. He designed and built
     // the site, in Next.js; the SEO page already listed it.
+    //
+    // 2026-11-04: Bilal confirmed Google Ads and Meta Ads are live, and that
+    // he runs their social media and GEO/AIO. The four creatives are his
+    // launch set (nextgen-mockups/social/posts), used as posts and as Meta
+    // ads, in Meta's Employment special ad category. Still no results.
     slug: "nextgen-hr",
     name: "NextGen HR",
     industry: "Professional Services",
@@ -1767,17 +1796,18 @@ export const clients: Client[] = [
     logoHeight: 49,
     ogImage: "/portfolio/nextgen-hr/og-nextgen-hr.jpg",
     ogImageAlt: "The NextGen HR homepage hero: People first. Hiring done right, over the Dubai skyline at night",
-    title: "NextGen HR: Recruitment Agency Website Design in Dubai",
+    title: "NextGen HR: Recruitment Website and Marketing in Dubai",
     description:
-      "Website design and build for NextGen HR, a Dubai recruitment agency and HR consultancy: custom Next.js, SEO pages, a blog and lead capture.",
-    headline: "A recruitment agency website, designed and built from scratch in Dubai",
+      "Website and marketing for NextGen HR, a Dubai recruitment agency: design, Next.js build, SEO, GEO, social media, and Google and Meta ads.",
+    headline: "A recruitment agency in Dubai, from the first design to the live ads",
     intro:
-      "NextGen HR Consultancy is a licensed recruitment agency and HR consultancy in Meydan, Dubai, helping employers across the UAE hire permanent and fixed-term staff. I designed and built their website from scratch: the design, a custom Next.js build, the pages search engines need to find them, and the enquiry flow that turns a visit into a hiring brief.",
+      "NextGen HR Consultancy is a licensed recruitment agency and HR consultancy in Meydan, Dubai, helping employers across the UAE hire permanent and fixed-term staff. I run their digital marketing from end to end: the website design, a custom Next.js build, SEO and AI search optimisation, social media, and Google and Meta campaigns that send employers to a landing page built for them.",
     facts: [
       { label: "Client", value: "NextGen HR Consultancy" },
       { label: "Sector", value: "Recruitment and HR consultancy" },
       { label: "Market", value: "Dubai and the wider UAE" },
-      { label: "Scope", value: "Website design, build and SEO" },
+      { label: "Role", value: "Growth marketing lead, end to end" },
+      { label: "Scope", value: "Web, SEO, GEO, social, Google and Meta ads" },
     ],
     scopeIntro:
       "A recruitment agency's website serves two audiences at once: employers with a role to fill, and people looking for their next job. The site is built for both, with a clear route for each from the first screen, and structured so each service, sector and emirate can be found on its own.",
@@ -1791,23 +1821,44 @@ export const clients: Client[] = [
         body: "A custom Next.js build in plain JavaScript with Tailwind CSS, made of small reusable components. All of the site's words live in one data file, so changing a line of copy does not mean hunting through the code.",
       },
       {
-        heading: "SEO structure",
-        body: "A page for each of five services, five sectors and three emirates (Dubai, Abu Dhabi and Sharjah), plus about, FAQ and contact. Structured data, a sitemap, an llms.txt file for AI assistants, and verification with Google Search Console and Bing Webmaster Tools.",
+        heading: "SEO structure and blog",
+        body: "A page for each of five services, five sectors and three emirates (Dubai, Abu Dhabi and Sharjah), plus about, FAQ and contact, and a blog launched with five articles on what employers and job seekers ask, from agency fees to Emiratisation targets. Structured data, a sitemap, and verification with Google Search Console and Bing Webmaster Tools.",
       },
       {
-        heading: "Blog",
-        body: "A blog launched with five articles on the questions employers and job seekers ask: what a recruitment agency costs in the UAE, whether job seekers pay a fee, Emiratisation targets, and how to choose an agency.",
+        heading: "GEO and AI search (AIO)",
+        body: "An llms.txt file that tells AI assistants who NextGen is, where it is licensed and what it does, plus structured data and FAQ answers written plainly enough for ChatGPT, Gemini and Google's AI Overviews to quote.",
       },
       {
         heading: "Enquiries",
-        body: "A contact form that delivers each hiring brief to the company mailbox and shows a reference code if sending fails, an enquiry pop-up, a WhatsApp button, and a separate landing page with its own thank-you page, ready for paid campaigns.",
+        body: "A contact form that delivers each hiring brief to the company mailbox and shows a reference code if sending fails, an enquiry pop-up, a WhatsApp button, and a separate landing page with its own thank-you page, where the paid campaigns send employers.",
       },
       {
         heading: "Consent-based tracking",
         body: "Google Analytics 4 loads only after a visitor accepts cookies, with lead events recorded when an enquiry is sent. Privacy, cookie and terms pages match the tools that are actually switched on.",
       },
+      {
+        heading: "Google Ads",
+        body: "Search campaigns aimed at UAE employers looking for a recruitment agency or HR support, landing on the hiring page rather than the homepage.",
+      },
+      {
+        heading: "Meta ads and creatives",
+        body: "Facebook and Instagram campaigns aimed at employers, run in Meta's Employment category so they meet its rules, with a launch set of four creatives in the brand's copper and dark blue.",
+      },
+      {
+        heading: "Social media management",
+        body: "NextGen's Facebook, Instagram and LinkedIn profiles, from the covers and profile images to the posts, in the same voice as the website, so an employer who checks a profile sees the same company the ad promised.",
+      },
     ],
-    services: ["web-design", "custom-web-development", "seo"],
+    services: [
+      "digital-marketing",
+      "paid-marketing",
+      "google-ads",
+      "facebook-ads",
+      "social-media-marketing",
+      "seo",
+      "web-design",
+      "custom-web-development",
+    ],
     website: {
       heading: "The website",
       body: "The NextGen HR homepage as it is live today, from the hero to the footer, on desktop and on a phone. Scroll inside either frame to see the complete page.",
@@ -1826,6 +1877,37 @@ export const clients: Client[] = [
         label: "NextGen HR, homepage on a phone",
       },
       cardImage: { src: "/portfolio/nextgen-hr/nextgen-hr-card.avif", width: 1440, height: 900 },
+    },
+    socialDesigns: {
+      heading: "Launch creatives for Meta and social",
+      body: "Four creatives in the brand's copper and dark blue, used as the first posts on Facebook and Instagram and as the Meta ads aimed at employers: an introduction, how hiring works, the HR consultancy, and why employers choose NextGen.",
+      basePath: "/portfolio/nextgen-hr/social",
+      width: 1080,
+      height: 1350,
+      layout: "screens",
+      alsoProves: ["facebook-ads"],
+      items: [
+        {
+          file: "nextgen-hr-01-hire-in-the-uae",
+          alt: "NextGen HR creative over the Dubai skyline at night: Hire the right people in the UAE, a licensed recruitment agency and HR consultancy in Dubai, with a Send your brief button",
+          caption: "NextGen HR: introduction",
+        },
+        {
+          file: "nextgen-hr-02-how-we-recruit",
+          alt: "NextGen HR creative: Not a pile of CVs. A shortlist that fits, with four steps from sharing a brief to hiring directly on your own contract",
+          caption: "NextGen HR: how we recruit",
+        },
+        {
+          file: "nextgen-hr-03-hr-consultancy",
+          alt: "NextGen HR creative: Growing faster than your HR? listing HR set-up, policies and handbooks, team structure, appraisals and salary benchmarking",
+          caption: "NextGen HR: HR consultancy",
+        },
+        {
+          file: "nextgen-hr-04-why-nextgen",
+          alt: "NextGen HR creative: Licensed. Direct. Fair to candidates. Licensed by Meydan Free Zone, 18+ years of experience, direct hiring, candidates never pay a fee",
+          caption: "NextGen HR: why NextGen",
+        },
+      ],
     },
     depth: [
       {
@@ -1846,12 +1928,12 @@ export const clients: Client[] = [
         heading: "Live before every detail arrived",
         paragraphs: [
           "A new company rarely has every detail ready on launch day. Office hours, a licence number and tracking IDs often arrive later. Rather than hold the site back, any detail still waiting on the client stays hidden until it is filled in, and each tracking tool stays switched off until its ID is added.",
-          "The site went live with what was true on the day, and nothing on it reads as unfinished.",
+          "The site went live with what was true on the day, and nothing on it reads as unfinished. Once the tracking was in, the Google and Meta campaigns started, so every paid enquiry is counted from the first click.",
           "There are no performance figures on this page. The results belong to NextGen HR, and none are published without their agreement.",
         ],
       },
     ],
-    ctaLead: "Need a website that brings in enquiries?",
+    ctaLead: "Need marketing that brings in enquiries, from the website to the ads?",
     projects: [],
     keywords: [
       "recruitment agency website design",
@@ -1859,6 +1941,9 @@ export const clients: Client[] = [
       "website design Dubai",
       "Next.js website development",
       "SEO for a recruitment agency",
+      "recruitment agency marketing Dubai",
+      "Google Ads and Meta ads",
+      "growth marketing case study",
       "NextGen HR",
     ],
   },

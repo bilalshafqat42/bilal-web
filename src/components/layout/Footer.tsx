@@ -93,6 +93,11 @@ const serviceGroups = serviceMenuColumns.map((column) => ({
     })),
 }));
 
+const caseStudyLinks = [
+  { label: "Texdale: end-to-end marketing", href: "/portfolio/texdale" },
+  { label: "NextGen HR: website to ads", href: "/portfolio/nextgen-hr" },
+];
+
 // Sectors worked in rather than pages that exist, so these are plain text. The
 // moment any of them earns a real page, it becomes a link. Read from
 // `industries.ts` since 2026-10-19, so the footer and /about cannot disagree;
@@ -255,7 +260,10 @@ export default function Footer() {
               page appears here without this file being touched — and one that
               has no page never does. */}
           <FooterSection title="Portfolio">
-            <ul className="space-y-1.5 md:mt-4">
+            <Eyebrow as="p" size="sm" tone="muted" className="md:mt-4">
+              By discipline
+            </Eyebrow>
+            <ul className="mt-2.5 space-y-1.5">
               {disciplinesWithPages().map((d) => (
                 <li key={d.slug}>
                   <Link
@@ -281,6 +289,22 @@ export default function Footer() {
                   Real Estate Marketing
                 </Link>
               </li>
+            </ul>
+            {/* The end-to-end case studies by name (2026-11-04, Bilal asked for
+                them in the footer). Hand-written, and LEOS deliberately left
+                out: the footer renders on every blog article, and LEOS is named
+                only on the portfolio itself. */}
+            <Eyebrow as="p" size="sm" tone="muted" className="mt-6">
+              Case studies
+            </Eyebrow>
+            <ul className="mt-2.5 space-y-1.5">
+              {caseStudyLinks.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="inline-flex min-h-6 min-w-6 items-center text-sm text-muted transition-colors hover:text-gold">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
               <li>
                 <Link href="/portfolio" className="inline-flex min-h-6 min-w-6 items-center text-sm text-muted transition-colors hover:text-gold">
                   All work

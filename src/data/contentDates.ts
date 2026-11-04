@@ -179,9 +179,9 @@ export const CLIENT_CONTENT_DATES: Record<string, string> = {
   "leos-developments": "2026-10-16",
   // 2026-10-26: the Texdale Field app (design and prototype) and the Meta
   // campaign creatives added; scope cards and intro updated to match.
-  texdale: "2026-10-26",
+  texdale: "2026-11-04",
   // Published 2026-10-26.
-  "nextgen-hr": "2026-10-26",
+  "nextgen-hr": "2026-11-04",
 };
 
 export function clientContentDate(clientSlug: string): string {
