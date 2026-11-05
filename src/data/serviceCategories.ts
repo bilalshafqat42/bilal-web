@@ -1502,13 +1502,13 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     shortTitle: "HubSpot",
     accent: "violet",
     parent: "crm-integration",
-    headline: "HubSpot integration in Dubai, set up so marketing and sales read the same numbers",
+    headline: "HubSpot integration provider in Dubai, so marketing and sales read the same numbers",
     intro:
-      "HubSpot is the CRM marketing teams find easiest to adopt, and the one most often left half set up: forms that create contacts with no source, lifecycle stages nobody moves, and reports that count everything as a lead. HubSpot integration in Dubai, done properly, connects your website, ads and WhatsApp to HubSpot, defines what each stage means, and builds the workflows and reports that let marketing and sales agree on one number.",
-    metaTitle: "HubSpot Integration in Dubai | Bilal Shafqat",
+      "HubSpot is the CRM marketing teams find easiest to adopt, and the one most often left half set up: forms that create contacts with no source, lifecycle stages nobody moves, and reports that count everything as a lead. As a HubSpot integration provider in Dubai, I connect your website, ads and WhatsApp to HubSpot, define what each stage means, and build the workflows and reports that let marketing and sales agree on one number.",
+    metaTitle: "HubSpot Integration Provider in Dubai | Bilal Shafqat",
     metaDescription:
-      "HubSpot integration in Dubai: forms, ads and site tracking into HubSpot, lifecycle stages that mean something, and reports sales trusts.",
-    depthHeading: "How a HubSpot integration works in practice",
+      "HubSpot integration provider in Dubai: forms, ads and site tracking into HubSpot, lifecycle stages that mean something, and reports sales trusts.",
+    depthHeading: "How I work as a HubSpot integration provider in Dubai",
     related: {
       heading: "Other CRMs, side by side",
       intro:
@@ -1644,7 +1644,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     slug: "seo",
     title: "SEO & AI Search",
     accent: "cyan",
-    headline: "What an SEO consultant in Dubai is actually hired to fix",
+    headline: "Freelance SEO consultant in Dubai: what I am actually hired to fix",
     intro:
       "Two things have to be true for SEO in Dubai to bring you work. The pages have to be readable by a crawler and aimed at what someone actually types, and the result has to be worth clicking when it appears. Most sites fail the second long before the first, and most of what a freelance SEO consultant in Dubai gets hired for sits there: pages that rank for the company name, which only people who already know you ever search.",
     metaTitle: "Freelance SEO Consultant in Dubai | Bilal Shafqat",
