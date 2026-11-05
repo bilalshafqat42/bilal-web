@@ -1519,7 +1519,7 @@ export const clients: Client[] = [
     ogImageAlt: "The Texdale homepage hero: Chemistry for the wet process, above folded indigo denim",
     title: "Texdale: End-to-End Digital Marketing for a UK Manufacturer",
     description:
-      "End-to-end digital marketing for Texdale, a UK textile chemicals maker: strategy, website, app design, SEO, GEO, social media, Google and Meta ads.",
+      "End-to-end marketing for Texdale, a UK textile chemicals maker: strategy, website, app, SEO, GEO, social media, and Google and Meta ads.",
     headline: "End-to-end digital marketing for a UK textile chemicals manufacturer",
     intro:
       "Texdale is a textile chemicals manufacturer in Stockport, England, formulating pretreatment, dyeing, finishing and denim chemistry for mills worldwide. I run their digital marketing from end to end: the strategy, a brand-consistent website I designed and developed, a mobile app designed and prototyped for their sales team, SEO and AI search optimisation, social media, promotion, and paid campaigns on Google and Meta with the creatives that ran on them. One person, from the first design to the live ads and every channel after.",

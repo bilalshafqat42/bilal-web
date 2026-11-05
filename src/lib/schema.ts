@@ -1,5 +1,5 @@
 import { SITE_URL } from "./site";
-import { SITE_EMAIL } from "./contact";
+import { SITE_EMAIL, SITE_PHONE_HREF } from "./contact";
 
 /**
  * One source for every JSON-LD node on the site.
@@ -172,8 +172,12 @@ const KNOWS_ABOUT = [
 const ADDRESS = {
   "@type": "PostalAddress",
   addressLocality: "Dubai",
+  addressRegion: "Dubai",
   addressCountry: "AE",
 } as const;
+// No streetAddress or postalCode: there is no office to publish, and Dubai has
+// no postcodes. The Rich Results Test lists both as non-critical; inventing
+// either would put an address in the markup that appears nowhere on the site.
 
 export function personNode() {
   return {
@@ -223,9 +227,15 @@ export function businessNode() {
     "@type": "ProfessionalService",
     "@id": ID.business,
     name: "Bilal Shafqat",
+    description:
+      "Freelance digital marketer in Dubai: paid ads, SEO, social media, websites, apps and CRM automation.",
     url: SITE_URL,
+    // Added 2026-11-05 after the Rich Results Test flagged both as missing.
+    // The phone is the WhatsApp line shown in the footer and on /contact.
+    logo: `${SITE_URL}/icons/icon-512.png`,
     image: `${SITE_URL}/images/bilal-shafqat-coat.avif`,
     email: SITE_EMAIL,
+    telephone: SITE_PHONE_HREF,
     address: ADDRESS,
     // AE and GB only. These are the two markets with delivered work behind
     // them; the roadmap's US and Canada ambition has no shipped project yet,
