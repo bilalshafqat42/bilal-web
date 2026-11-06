@@ -65,7 +65,7 @@ const faqs = [
   {
     question: "Do you work with clients outside the UAE?",
     answer:
-      "Yes. I work with clients across the UAE and the UK. The call is on video, so the only thing that matters is finding an hour that works across both timezones.",
+      "Yes. I work with clients across the UAE and the UK. The call is on video, so the only thing that matters is finding an hour that works across both timezones. In the US or Canada, message me and I will arrange an evening call on Dubai time, which is your morning.",
   },
 ];
 

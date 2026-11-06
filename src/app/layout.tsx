@@ -8,6 +8,7 @@ import LogoIntro from "@/components/ui/LogoIntro";
 import SpotlightSearch from "@/components/layout/SpotlightSearch";
 import Analytics from "@/components/seo/Analytics";
 import MetaPixel from "@/components/seo/MetaPixel";
+import ContactClickTracker from "@/components/seo/ContactClickTracker";
 import { SITE_URL, OG_IMAGES, OG_IMAGE_URL, HOME_TITLE, HOME_DESCRIPTION as SITE_DESCRIPTION } from "@/lib/site";
 import "./globals.css";
 
@@ -165,6 +166,7 @@ export default function RootLayout({
 
         <Analytics />
         <MetaPixel />
+        <ContactClickTracker />
         {/* The header and footer live here, not in each page.
          *
          * They were imported individually into all 17 page templates plus

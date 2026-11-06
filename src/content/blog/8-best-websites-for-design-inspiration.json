@@ -3,12 +3,12 @@
   "title": "8 Best Websites for Design Inspiration and Trends in 2026",
   "description": "Eight of the best websites for design inspiration, each one checked, with what each is good for and when to use it in a project.",
   "published": "2025-02-13",
-  "updatedAt": "2026-10-05",
+  "updatedAt": "2026-11-06",
   "tags": [
     "Web Design",
     "UI UX Design"
   ],
-  "words": 817,
+  "words": 857,
   "blocks": [
     {
       "t": "h2",
@@ -254,6 +254,10 @@
     {
       "t": "p",
       "v": "By regularly visiting and engaging with these 8 websites, you'll be well-equipped to spark your creativity, stay ahead of design trends, and continually improve your craft. Remember, the key is not just to observe but to analyse, learn, and apply these inspirations to your own unique projects and style."
+    },
+    {
+      "t": "p",
+      "v": "Inspiration is the starting point, not the design. If you need a site or app designed for your own business, my [[web design|/services/web-design]] and [[UI/UX design|/services/ui-ux-design]] pages show how I take a brief from reference boards to a working layout."
     },
     {
       "t": "p",

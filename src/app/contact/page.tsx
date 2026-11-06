@@ -3,7 +3,7 @@ import Link from "next/link";
 import { pageMetadata } from "@/lib/site";
 import PageOpener from "@/components/layout/PageOpener";
 import Surface from "@/components/ui/Surface";
-import { ArrowUpRight, Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { ArrowUpRight, Clock, Globe, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import ContactForm from "@/components/forms/ContactForm";
 import { pillars } from "@/data/pillars";
@@ -253,6 +253,22 @@ export default function ContactPage() {
                         </span>
                         Monday to Friday. A reply typically lands within one
                         business day, and same day if you reach me on WhatsApp.
+                      </span>
+                    </li>
+                    {/* Added 2026-11-06. US and Canada are the second market, and
+                        a visitor there cannot tell from "UTC+4" alone whether a
+                        call fits their day. The booking calendar only offers 9am
+                        to 6pm Dubai, which is the middle of their night, so the
+                        route for them is a message. No fixed hours, so daylight
+                        saving cannot make it wrong. */}
+                    <li className="flex items-start gap-3">
+                      <Globe size={16} className="mt-0.5 shrink-0 text-gold" />
+                      <span>
+                        <span className="block font-medium text-ink">
+                          In the US or Canada?
+                        </span>
+                        Message me and I will arrange an evening call on Dubai
+                        time, which is the morning in New York and Toronto.
                       </span>
                     </li>
                   </ul>

@@ -22,6 +22,16 @@ const cards = menuGroups();
 const count = spellCount(cards.length);
 const Count = count.charAt(0).toUpperCase() + count.slice(1);
 
+/** The four services the site leads with (2026-11-06). Eighteen equal cards
+ *  told a visitor, and Google, that every service mattered the same; these are
+ *  the ones Bilal sells first, so they open the page and the full list follows
+ *  as "every service". Read from the same data as the cards, so a renamed
+ *  service cannot drift out of step here. */
+const CORE_SLUGS = ["paid-marketing", "seo", "ui-ux-design", "website-app-development"];
+const core = CORE_SLUGS.map((slug) => megaMenuGroups.find((g) => g.slug === slug)).filter(
+  (g): g is (typeof megaMenuGroups)[number] => Boolean(g),
+);
+
 export const metadata: Metadata = pageMetadata({
   title: "Services: Marketing, Development & Design | Bilal Shafqat",
   description: `Paid marketing, website and app development, UI/UX and brand design, and CRM automation. ${Count} categories, one senior partner.`,
@@ -72,13 +82,38 @@ export default function ServicesPage() {
         <PageOpener
           crumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
           eyebrow="Services"
-          title={<>{Count} services, one senior partner</>}
-          standfirst="Paid marketing, website and app development, design and conversion, and the CRM and automation that connects them, delivered personally from strategy to launch, without handoffs between departments."
+          title={<>Four core services, one senior partner</>}
+          standfirst="Paid ads and social media campaigns, SEO and AI search, web and app design, and website and app development, delivered personally from strategy to launch, without handoffs between departments."
         />
 
         <section className="relative section-tight">
           <div className="site-container">
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <Eyebrow>Where most clients start</Eyebrow>
+            <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {core.map((g) => (
+                <Link
+                  key={g.slug}
+                  href={`/services/${g.slug}`}
+                  className="card-hover group flex flex-col r-card surface-1 p-6"
+                >
+                  <span className={`h-2.5 w-2.5 rounded-full ${accentClasses[g.accent].dot}`} />
+                  <h2 className="t-h4 mt-4 text-ink">{g.title}</h2>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">{g.metaDescription}</p>
+                  <span
+                    className={`mt-5 inline-flex items-center gap-1.5 text-sm font-semibold ${accentClasses[g.accent].icon} group-hover:opacity-80`}
+                  >
+                    See what&apos;s included <ArrowRight size={15} />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="relative section-tight">
+          <div className="site-container">
+            <h2 className="t-h2 text-ink">Every service: all {count}</h2>
+            <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
               {cards.map((pillar) => {
                 const accent = accentClasses[pillar.accent];
                 return (
@@ -95,9 +130,9 @@ export default function ServicesPage() {
                       <span className={`h-2.5 w-2.5 rounded-full ${accent.dot}`} />
                     </div>
 
-                    <h2 className="t-h3 relative mt-6 text-ink">
+                    <h3 className="t-h3 relative mt-6 text-ink">
                       {pillar.title}
-                    </h2>
+                    </h3>
                     <p className="relative mt-3 text-sm text-muted leading-relaxed">{pillar.metaDescription}</p>
 
                     <ul className="relative mt-5 flex flex-wrap gap-2">

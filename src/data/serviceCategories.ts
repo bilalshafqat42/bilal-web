@@ -1504,10 +1504,10 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     parent: "crm-integration",
     headline: "HubSpot integration provider in Dubai, so marketing and sales read the same numbers",
     intro:
-      "HubSpot is the CRM marketing teams find easiest to adopt, and the one most often left half set up: forms that create contacts with no source, lifecycle stages nobody moves, and reports that count everything as a lead. As a HubSpot integration provider in Dubai, I connect your website, ads and WhatsApp to HubSpot, define what each stage means, and build the workflows and reports that let marketing and sales agree on one number.",
+      "HubSpot integration in Dubai usually means fixing a CRM someone has already bought. HubSpot is the one marketing teams find easiest to adopt, and the one most often left half set up: forms that create contacts with no source, lifecycle stages nobody moves, and reports that count everything as a lead. As a HubSpot integration provider in Dubai, I connect your website, ads and WhatsApp to HubSpot, define what each stage means, and build the workflows and reports that let marketing and sales agree on one number.",
     metaTitle: "HubSpot Integration Provider in Dubai | Bilal Shafqat",
     metaDescription:
-      "HubSpot integration provider in Dubai: forms, ads and site tracking into HubSpot, lifecycle stages that mean something, and reports sales trusts.",
+      "HubSpot integration in Dubai from a hands-on provider: forms, ads and tracking into HubSpot, stages that mean something, reports sales trusts.",
     depthHeading: "How I work as a HubSpot integration provider in Dubai",
     related: {
       heading: "Other CRMs, side by side",

@@ -124,6 +124,19 @@ export function trackWhatsApp(context: string, eventId?: string) {
   meta("Contact", { content_name: `whatsapp:${context}` }, eventId);
 }
 
+/** A phone number was tapped. `Contact` on Meta, like WhatsApp: both mean the
+ *  visitor chose to reach out directly instead of filling in a form. */
+export function trackPhone(context: string) {
+  track("phone_click", { contact_context: context });
+  meta("Contact", { content_name: `phone:${context}` });
+}
+
+/** An email address was clicked. */
+export function trackEmail(context: string) {
+  track("email_click", { contact_context: context });
+  meta("Contact", { content_name: `email:${context}` });
+}
+
 /**
  * A service or case study page was read. Builds interest-segmented audiences, so
  * a future campaign can retarget by discipline rather than site-wide, which is
