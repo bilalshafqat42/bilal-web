@@ -1125,13 +1125,22 @@ export const clients: Client[] = [
     ],
     website: {
       heading: "The website",
-      body: "The new AKS Chemicals homepage as it is live today, from The chemistry behind the cloth to the enquiry form and footer. Scroll inside the frame to see the complete page.",
+      body: "The new AKS Chemicals homepage as it is live today, on a desktop and on a phone, from The chemistry behind the cloth to the enquiry form and footer. The mobile layout is designed for a phone in a mill, not squeezed from the desktop: one column, the ranges as a tappable list, and the enquiry form within thumb reach. Scroll inside each frame to see the complete page.",
       capture: {
         src: "/portfolio/aks-chemicals/aks-chemicals-website.avif",
         width: 1600,
         height: 7912,
         alt: "Full-page view of the AKS Chemicals homepage: The chemistry behind the cloth hero, five key facts, who we are, the five product ranges, beyond textiles, toll manufacturing, standards and the Send us the cloth enquiry form",
         label: "AKS Chemicals, homepage",
+      },
+      // Captured from the live site at 390px wide on 2026-11-06. Scaled to
+      // 16,384px tall, the AVIF height limit; the full page is 8,229 CSS px.
+      mobileCapture: {
+        src: "/portfolio/aks-chemicals/aks-chemicals-mobile.avif",
+        width: 776,
+        height: 16384,
+        alt: "Full-page view of the AKS Chemicals homepage on a phone: the hero, key facts, the five product ranges as a tappable list, toll manufacturing, standards and the Send us the cloth enquiry form in a single column",
+        label: "AKS Chemicals, mobile",
       },
       cardImage: { src: "/portfolio/aks-chemicals/aks-chemicals-card.avif", width: 1600, height: 1000 },
     },
