@@ -96,6 +96,7 @@ const serviceGroups = serviceMenuColumns.map((column) => ({
 const caseStudyLinks = [
   { label: "Texdale: end-to-end marketing", href: "/portfolio/texdale" },
   { label: "NextGen HR: website to ads", href: "/portfolio/nextgen-hr" },
+  { label: "AKS Chemicals: end-to-end marketing", href: "/portfolio/aks-chemicals" },
 ];
 
 // Sectors worked in rather than pages that exist, so these are plain text. The

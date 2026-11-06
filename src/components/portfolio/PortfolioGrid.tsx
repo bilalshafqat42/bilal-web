@@ -126,11 +126,18 @@ const cards: Card[] = [
   // Row three, four across. The narrowest cells, so pieces that read at a
   // glance rather than ones that need studying.
   {
-    title: "Weybridge Gardens",
-    tags: ["Web Development"],
-    href: "/portfolio/leos-developments/weybridge-gardens",
-    image: "/portfolio/leos/weybridge-gardens/landing-page/weybridge-gardens-thumb.avif",
-    alt: "Weybridge Gardens landing page, showing the balcony hero and register-your-interest call to action",
+    // Took the place of Weybridge Gardens on 2026-11-06, when the AKS
+    // Chemicals case study was published: LEOS already has four cards, and
+    // the grid now shows a fourth client. Weybridge stays linked from the
+    // LEOS case study.
+    title: "AKS Chemicals",
+    tags: ["Digital Marketing", "Web Design"],
+    href: "/portfolio/aks-chemicals",
+    image: "/portfolio/aks-chemicals/aks-chemicals-card.avif",
+    ratio: 1600 / 1000,
+    alt: "The AKS Chemicals website hero: The chemistry behind the cloth, in a serif headline on dark ink",
+    // The headline sits on the left of a 16:10 card image.
+    focus: "left",
   },
   {
     title: "Texdale",

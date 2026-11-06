@@ -60,6 +60,11 @@ export const CARDS = {
     lines: ["Google Tag Manager changed.", "*Check your tracking.*"],
     kicker: "Tracking update",
   },
+  "ga-mcp": {
+    slug: "google-analytics-mcp-server",
+    lines: ["Google Analytics now", "*talks to AI.* Read-only first."],
+    kicker: "AI update",
+  },
   "what-to-track": {
     slug: "what-to-track-in-marketing-uae",
     lines: ["Your CRM is the", "*only honest* lead count."],

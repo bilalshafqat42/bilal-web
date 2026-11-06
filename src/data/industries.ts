@@ -42,8 +42,11 @@ export const industriesWorkedIn: IndustryEntry[] = [
     companies: [{ name: "Choppershoot" }],
   },
   {
-    sector: "Textile chemicals, UK",
-    companies: [{ name: "Texdale", href: "/portfolio/texdale" }, { name: "AKS Chemicals" }],
+    sector: "Textile chemicals, UK and Pakistan",
+    companies: [
+      { name: "Texdale", href: "/portfolio/texdale" },
+      { name: "AKS Chemicals", href: "/portfolio/aks-chemicals" },
+    ],
   },
   {
     sector: "HR consultancy",

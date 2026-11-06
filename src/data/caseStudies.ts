@@ -278,6 +278,19 @@ export type Client = {
    *  work", shown on those service pages, and turned into discipline tags on
    *  the /portfolio card. Only services Bilal has stated he delivered. */
   services?: string[];
+  /** The client's own live website. Added 2026-11-06 so the case study's
+   *  schema can name the company by its URL (`about.url`), which is how search
+   *  engines and AI assistants tie this page to the real business rather than
+   *  to a name that could belong to anyone. */
+  siteUrl?: string;
+  /** Questions about this engagement, answered in plain sentences.
+   *
+   *  Added 2026-11-06. AI assistants quote short, direct answers, and a case
+   *  study that only shows images and scope cards gives them nothing to lift.
+   *  Rendered on the page and emitted as FAQPage from the same array, so the
+   *  markup never describes text a visitor cannot see. Only facts stated
+   *  elsewhere on the page or confirmed by Bilal; never a result. */
+  faqs?: Faq[];
   facts: Fact[];
   scope: { heading: string; body: string }[];
   scopeIntro: string;
@@ -1029,58 +1042,231 @@ export const clients: Client[] = [
     keywords: [],
   },
   {
-    // Added 2026-10-26 as a draft. Bilal says he can show AKS Chemicals as a
-    // case study, but nothing on disk shows what he did: no repository, no
-    // design files, no notes. The live site (http://akschemicals.com, captured
-    // 2026-10-26) is WordPress on the Salient theme with WPBakery, Slider
-    // Revolution and Gravity Forms, and its uploads date from 2021. The
-    // company describes itself as established in 1987 in Lahore, Pakistan,
-    // which does not match "Textile chemicals, UK" in industries.ts: Bilal to
-    // confirm. Scope stays "TBC" until he says what he built and when, and
-    // whether the client is happy to be shown (roadmap 300).
+    // Published 2026-11-06. Bilal designed and built the new site himself (his
+    // repository ~/Desktop/bilal/aks-chemicals, every commit his, from "Create
+    // Next App"): a Next.js static export that replaced the 2021 WordPress
+    // site on akschemicals.com on 2026-11-06. The nine creatives are his set
+    // (Downloads/aks-social). On 2026-11-06 he confirmed he also runs Google
+    // Ads, Meta ads, SEO and AI search, and designed a mobile app for them.
+    //
+    // Deliberately absent: any result or figure, and any claim about the
+    // photographs (stock placeholders until AKS supplies its own) or the ISO
+    // edition (marked CONFIRM in the site's own content file). The mobile app
+    // is named in the scope only: no screens have been supplied, so it is not
+    // in `services` and no app section is shown until they are.
     slug: "aks-chemicals",
     name: "AKS Chemicals",
     industry: "Manufacturing & Industrial",
-    draft: true,
-    title: "AKS Chemicals: DRAFT, not published",
-    description: "DRAFT. Awaiting Bilal's confirmation of what he did for AKS Chemicals, when, and the client's permission.",
-    headline: "DRAFT: one line on what the work achieved",
+    siteUrl: "https://akschemicals.com",
+    ogImage: "/portfolio/aks-chemicals/og-aks-chemicals.jpg",
+    ogImageAlt: "The AKS Chemicals homepage hero: The chemistry behind the cloth, in a serif headline on a dark ink background",
+    title: "AKS Chemicals: Digital Marketing for Textile Chemicals",
+    description:
+      "End-to-end marketing for AKS Chemicals, a Lahore textile chemicals maker: new website, SEO, AI search, social media, Google and Meta ads.",
+    headline: "End-to-end digital marketing for a textile chemicals manufacturer in Pakistan",
     intro:
-      "AKS Chemicals manufactures and supplies textile chemicals for fabric preparation, dyeing and finishing, including water and oil repellents and flame retardants. TBC: what I did for them (website design and development, maintenance, or other digital work), and over what period.",
+      "AKS Chemicals has manufactured textile chemicals in Lahore, Pakistan since 1987: pretreatment, dyeing auxiliaries, finishes, denim washing and special finishing, plus confidential toll manufacturing, for mills at home and abroad. I run their digital marketing from end to end: a new website I designed and built to replace their WordPress site, SEO and AI search optimisation, social media, Google and Meta campaigns with the creatives that run on them, and a mobile app designed in the same identity. One person, from the first design to every channel after.",
     facts: [
       { label: "Client", value: "AKS Chemicals" },
       { label: "Sector", value: "Textile chemicals" },
-      { label: "Market", value: "TBC" },
-      { label: "Scope", value: "TBC" },
+      { label: "Market", value: "Pakistan and export mills" },
+      { label: "Role", value: "Growth marketing lead, end to end" },
+      { label: "Scope", value: "Strategy, web, app, SEO, GEO, social, ads" },
     ],
     scopeIntro:
-      "DRAFT. One paragraph framing the scope of the work, once Bilal confirms it. The live site is built on WordPress (Salient theme with WPBakery Page Builder, Slider Revolution and Gravity Forms).",
+      "A chemicals manufacturer sells to technical buyers who judge a supplier on whether it understands their process. Every part of this work, from the website to the ads, is planned as one piece around that buyer, so a dyehouse manager who sees an ad, searches the company or asks an AI assistant finds the same company, saying the same thing, with one clear way to start a trial.",
     scope: [
       {
-        heading: "DRAFT: scope to confirm",
-        body: "DRAFT. What was delivered. Nothing is listed here until Bilal confirms it.",
+        heading: "Digital marketing strategy",
+        body: "Who AKS sells to, what a mill needs to see before it sends a sample of cloth, and which channels should carry that. The plan the website, the campaigns and the social channels were built against.",
       },
+      {
+        heading: "Website redesign",
+        body: "A new identity for the site built on the AKS logo: the brand navy taken from the mark, a warm dye-orange accent, dark ink and bone paper sections, and a serif display face that reads like a technical publication rather than a template.",
+      },
+      {
+        heading: "Website development",
+        body: "A custom Next.js build, exported as plain static files for the existing hosting. Fonts are self-hosted, the page is fully readable without JavaScript, and every range, figure and contact detail comes from one content file, so adding a sixth range updates the list, the footer and the enquiry form at once.",
+      },
+      {
+        heading: "SEO and a clean migration",
+        body: "Titles and descriptions written for what buyers search, a sitemap and robots file, HTTPS forced on one domain, and permanent redirects from every old WordPress address to the new page, so links and rankings the old site had earned are carried over rather than lost.",
+      },
+      {
+        heading: "GEO and AI search (AIO)",
+        body: "Structured data that names the company, its location, its founding year and its product ranges, and an llms.txt file that summarises AKS for AI assistants, so ChatGPT, Gemini and Google's AI Overviews describe the company accurately when a buyer asks.",
+      },
+      {
+        heading: "Google Ads",
+        body: "Search campaigns aimed at mills and buyers looking for a textile chemicals supplier, pointing at the new site, set up by the same person who built the pages they land on.",
+      },
+      {
+        heading: "Meta ads and creatives",
+        body: "Facebook and Instagram campaigns in the same identity as the website, with a set of nine creatives: one for the brand, one for each of the five product ranges, and one each for toll manufacturing, standards and the markets beyond textiles.",
+      },
+      {
+        heading: "Social media",
+        body: "AKS's social channels run in the same look and voice as the website and the ads, with posts on the ranges, the process and the company, so a buyer who checks a profile sees the company the campaign promised.",
+      },
+      {
+        heading: "Mobile app design",
+        body: "A mobile app designed in the same identity as the website and the campaigns, so the app, the site and the ads read as one company.",
+      },
+    ],
+    services: [
+      "digital-marketing",
+      "paid-marketing",
+      "google-ads",
+      "facebook-ads",
+      "social-media-marketing",
+      "seo",
+      "web-design",
+      "custom-web-development",
     ],
     website: {
       heading: "The website",
-      body: "The AKS Chemicals homepage as it is live today, on desktop and on a phone. Scroll inside either frame to see the complete page.",
+      body: "The new AKS Chemicals homepage as it is live today, from The chemistry behind the cloth to the enquiry form and footer. Scroll inside the frame to see the complete page.",
       capture: {
         src: "/portfolio/aks-chemicals/aks-chemicals-website.avif",
-        width: 1440,
-        height: 5581,
-        alt: "Full-page view of the AKS Chemicals homepage: hero banner, welcome and company introduction, three product ranges, water and oil repellents, flame retardants, contact form and footer",
+        width: 1600,
+        height: 7912,
+        alt: "Full-page view of the AKS Chemicals homepage: The chemistry behind the cloth hero, five key facts, who we are, the five product ranges, beyond textiles, toll manufacturing, standards and the Send us the cloth enquiry form",
         label: "AKS Chemicals, homepage",
       },
-      mobileCapture: {
-        src: "/portfolio/aks-chemicals/aks-chemicals-website-mobile.avif",
-        width: 600,
-        height: 10442,
-        alt: "The AKS Chemicals homepage on a phone, with the same sections stacked into one column",
-        label: "AKS Chemicals, homepage on a phone",
-      },
+      cardImage: { src: "/portfolio/aks-chemicals/aks-chemicals-card.avif", width: 1600, height: 1000 },
     },
+    socialDesigns: {
+      heading: "Meta campaign and social creatives",
+      body: "A set of nine square creatives built from the same identity as the website: the AKS wordmark, the navy, the dye-orange accent and the same type. One for the brand, one for each of the five ranges, and one each for toll manufacturing, standards and the markets beyond textiles, used as posts and as the Meta campaign on Facebook and Instagram.",
+      basePath: "/portfolio/aks-chemicals/social",
+      width: 1080,
+      height: 1080,
+      columns: 3,
+      alsoProves: ["facebook-ads"],
+      items: [
+        {
+          file: "aks-01-brand",
+          alt: "AKS Chemicals brand creative: the white AKS Chemicals wordmark on dark ink, with the lines Manufacturer of textile chemicals, Lahore, Pakistan, established 1987",
+          caption: "AKS Chemicals: brand",
+        },
+        {
+          file: "aks-02-pretreatment",
+          alt: "AKS Chemicals Pretreatment creative, range 01 of 05, listing desizing, scouring, bleaching and mercerising: clean, even, absorbent cloth before any colour goes near it",
+          caption: "AKS Chemicals: Pretreatment",
+        },
+        {
+          file: "aks-03-dyeing-auxiliaries",
+          alt: "AKS Chemicals Dyeing Auxiliaries creative on navy, range 02 of 05, listing levelling, dispersing, sequestering and fixing: so the shade is right first time and holds across the batch",
+          caption: "AKS Chemicals: Dyeing Auxiliaries",
+        },
+        {
+          file: "aks-04-finishes",
+          alt: "AKS Chemicals Finishes creative, range 03 of 05, listing softening, handle building, hydrophilic finishing and resin finishing: the handle, the drape, the way a buyer feels it",
+          caption: "AKS Chemicals: Finishes",
+        },
+        {
+          file: "aks-05-denim-washing",
+          alt: "AKS Chemicals Denim Washing creative on dark ink, range 04 of 05, listing desizing, enzyme wash, bleaching and neutralising: an honest wash-down without wrecking the garment",
+          caption: "AKS Chemicals: Denim Washing",
+        },
+        {
+          file: "aks-06-special-finishing",
+          alt: "AKS Chemicals Special Finishing creative, range 05 of 05, listing water repellents, oil repellents and flame retardants: for cloth that has to do a job",
+          caption: "AKS Chemicals: Special Finishing",
+        },
+        {
+          file: "aks-07-toll-manufacturing",
+          alt: "AKS Chemicals toll manufacturing creative on navy: Your formula. Our plant. Confidential, quality driven, cost effective",
+          caption: "AKS Chemicals: toll manufacturing",
+        },
+        {
+          file: "aks-08-standards",
+          alt: "AKS Chemicals standards creative on dark ink: ISO 9001 and REACH, with an ISO 9001 registration and a REACH compliance programme",
+          caption: "AKS Chemicals: standards",
+        },
+        {
+          file: "aks-09-beyond-textiles",
+          alt: "AKS Chemicals beyond textiles creative: Same plant. Other markets. Tissue, wet wipes and cleaning",
+          caption: "AKS Chemicals: beyond textiles",
+        },
+      ],
+    },
+    depth: [
+      {
+        heading: "Replacing a WordPress site without losing what it had",
+        paragraphs: [
+          "The old akschemicals.com ran on WordPress with a page builder and slider plugins, and most of its content dated from 2021. It worked, but it was slow to change and needed regular updates to stay secure, which is a poor fit for a manufacturer whose team has a plant to run.",
+          "The new site is plain static files: nothing to patch, nothing to log in to, and fast on a phone in a mill. The risk in any rebuild is losing the search traffic the old site had earned, so every old address, from the contact page to old posts, now redirects permanently to the new one. Search engines are told where each page went instead of finding a dead end.",
+        ],
+      },
+      {
+        heading: "Selling to a mill, not a shopper",
+        paragraphs: [
+          "In textile chemicals a sale starts with a trial on the mill's own cloth, not with a basket. So the site leads with the process: five ranges in the order a fabric meets them, from pretreatment to special finishing, each with one plain line on what it is for.",
+          "The enquiry form asks the questions a technician needs first: the company, the process and what the mill is trying to achieve, from the substrate to the machine and the target result. Send us the cloth is the heading, and it says exactly what happens next: a technician comes back with a trial recipe. A click from Google or Meta lands on a page that answers a technical buyer quickly, which is what makes paid traffic worth buying.",
+        ],
+      },
+      {
+        heading: "Built for search engines and AI assistants",
+        paragraphs: [
+          "A buyer looking for a supplier now asks ChatGPT or Gemini as often as Google. Both answer from what they can read and trust, so the site states its facts plainly in text rather than in images: who AKS is, where it is, since when, and what each range does.",
+          "Structured data repeats those facts in a form machines read without guessing, and an llms.txt file gives AI assistants a short, accurate summary of the company. The aim is simple: when someone asks which manufacturers in Pakistan supply denim washing or dyeing auxiliaries, the answer can name AKS and describe it correctly.",
+        ],
+      },
+      {
+        heading: "One person, one textile chemicals playbook",
+        paragraphs: [
+          "AKS is the second textile chemicals manufacturer I market from end to end, after Texdale in the UK. The buyers are the same kind of people, dyehouse and finishing managers with a process problem, and the method carries over: lead with the process, make a trial the first step, and keep the website, search, social and ads saying one thing.",
+          "Design, build, search and campaigns all sit with one person, so nothing is lost in a handover and there is no question of whose problem it is when an enquiry goes quiet.",
+          "There are no performance figures on this page. The results belong to AKS Chemicals, and none are published without their agreement.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What did Bilal Shafqat do for AKS Chemicals?",
+        answer:
+          "Their digital marketing from end to end: the strategy, a new website designed and built in Next.js to replace their WordPress site, SEO and AI search optimisation, social media, Google Ads, Meta ads with a set of nine creatives, and a mobile app designed in the same identity.",
+      },
+      {
+        question: "Why replace a working WordPress site?",
+        answer:
+          "The old site depended on a page builder and plugins that needed regular updates, and most of its content dated from 2021. The new site is static files with nothing to patch, loads quickly on a phone, and keeps every product range and contact detail in one place, so it stays accurate as AKS changes.",
+      },
+      {
+        question: "Did the move to a new website lose search rankings?",
+        answer:
+          "It was built not to. Every old WordPress address redirects permanently to the new page, the site has a sitemap and a single HTTPS domain, and titles and descriptions were rewritten for what buyers search, so the links the old site earned are passed on.",
+      },
+      {
+        question: "How does the website turn a visit into an enquiry?",
+        answer:
+          "The enquiry form is headed Send us the cloth and asks for the company, the process and the result the mill needs. A technician replies with a trial recipe, which matches how textile chemicals are actually bought: trial first, bulk order after.",
+      },
+      {
+        question: "How is the site optimised for AI search?",
+        answer:
+          "The facts are written as plain text, repeated in structured data, and summarised in an llms.txt file for AI assistants. That gives ChatGPT, Gemini and Google's AI Overviews an accurate description of AKS to quote when a buyer asks about textile chemicals suppliers in Pakistan.",
+      },
+      {
+        question: "Are there results or figures for this work?",
+        answer:
+          "Not on this page. The results belong to AKS Chemicals and are not published without their agreement. The work itself, the live website and the creatives, is shown in full.",
+      },
+    ],
+    ctaLead: "Marketing a manufacturer to technical buyers?",
     projects: [],
-    keywords: [],
+    keywords: [
+      "textile chemicals digital marketing",
+      "B2B manufacturer website design",
+      "textile chemicals website",
+      "WordPress to Next.js migration",
+      "Google Ads and Meta ads",
+      "Meta campaign creatives",
+      "B2B SEO and GEO",
+      "digital marketing case study",
+      "AKS Chemicals",
+    ],
   },
   {
     slug: "leos-developments",
@@ -1753,6 +1939,34 @@ export const clients: Client[] = [
         ],
       },
     ],
+    siteUrl: "https://texdale.co.uk",
+    faqs: [
+      {
+        question: "What did Bilal Shafqat do for Texdale?",
+        answer:
+          "Texdale's digital marketing from end to end: the strategy, a brand-consistent website designed and built in Next.js, the Texdale Field mobile app designed and prototyped for the sales team, SEO and AI search optimisation, social media, and Google and Meta campaigns with the creatives that run on them.",
+      },
+      {
+        question: "How do you market textile chemicals to technical buyers?",
+        answer:
+          "Lead with the process, not slogans. The site sets out pretreatment, dyeing and finishing as three stages, eight product ranges and a catalogue of 87 products searchable by name or function, so a buyer with a process problem finds the answer quickly. Sample in. Bulk out. makes a trial the first step.",
+      },
+      {
+        question: "How does the website handle enquiries?",
+        answer:
+          "Request a sample is the main button on every page, and the contact form first asks whether the visitor wants a general enquiry, a quote, a sample, a technical data sheet or a safety data sheet. Each request arrives labelled, so the team knows what to send before replying.",
+      },
+      {
+        question: "How is Texdale optimised for AI search?",
+        answer:
+          "An llms.txt file summarises the company, its ranges and its compliance position for AI assistants, every key page carries structured data, and answers are written plainly enough for ChatGPT, Gemini and Google's AI Overviews to quote.",
+      },
+      {
+        question: "Is the Texdale Field app live?",
+        answer:
+          "Not yet. It is designed and prototyped, with a drum label scanner, a dosing calculator, data sheets and sample and reorder requests, and is not yet released on the App Store or Google Play.",
+      },
+    ],
     ctaLead: "Starting your digital marketing from scratch?",
     projects: [],
     keywords: [
@@ -1931,6 +2145,34 @@ export const clients: Client[] = [
           "The site went live with what was true on the day, and nothing on it reads as unfinished. Once the tracking was in, the Google and Meta campaigns started, so every paid enquiry is counted from the first click.",
           "There are no performance figures on this page. The results belong to NextGen HR, and none are published without their agreement.",
         ],
+      },
+    ],
+    siteUrl: "https://nextgenhr.ae",
+    faqs: [
+      {
+        question: "What did Bilal Shafqat do for NextGen HR?",
+        answer:
+          "NextGen HR's digital marketing from end to end: the website design, a custom Next.js build, SEO and AI search optimisation, a blog, consent-based tracking, social media on Facebook, Instagram and LinkedIn, and Google and Meta campaigns that send employers to a landing page built for them.",
+      },
+      {
+        question: "How do you build a recruitment agency website that ranks in Dubai?",
+        answer:
+          "Give each search its own page. NextGen has a page for each of five services, five sectors and three emirates, plus a blog answering what employers and job seekers ask, all with structured data and a sitemap, and verified in Google Search Console and Bing Webmaster Tools.",
+      },
+      {
+        question: "How does the site serve employers and job seekers at once?",
+        answer:
+          "The hero gives each its own route: Send your hiring brief takes employers to the contact form, and Looking for a job? takes candidates to a section of their own, which says plainly that candidates never pay a fee.",
+      },
+      {
+        question: "How do the paid campaigns work for a recruitment agency?",
+        answer:
+          "Google search campaigns reach UAE employers looking for a recruitment agency or HR support, and Meta campaigns run in Meta's Employment category so they meet its rules. Both land on a dedicated hiring page with its own thank-you page, so every paid enquiry is counted.",
+      },
+      {
+        question: "How is NextGen HR optimised for AI search?",
+        answer:
+          "An llms.txt file tells AI assistants who NextGen is, where it is licensed and what it does, and structured data and FAQ answers are written plainly enough for ChatGPT, Gemini and Google's AI Overviews to quote.",
       },
     ],
     ctaLead: "Need marketing that brings in enquiries, from the website to the ads?",

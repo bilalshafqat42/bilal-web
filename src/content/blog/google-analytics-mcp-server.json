@@ -1,0 +1,149 @@
+{
+  "slug": "google-analytics-mcp-server",
+  "title": "Google Analytics Can Now Talk to Your AI Assistant. Should You Connect It?",
+  "metaTitle": "Google Analytics MCP Server: What It Is, Is It Safe?",
+  "description": "The Google Analytics MCP server lets an AI assistant read your GA4 data. What it does, how to set it up safely, and who should wait.",
+  "published": "2026-11-06",
+  "updatedAt": "2026-11-06",
+  "tags": [
+    "AI",
+    "Digital Marketing"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "Google now publishes a Google Analytics MCP server: a small open-source program that lets an AI assistant read your GA4 data directly. Instead of clicking through reports, you ask a question in plain English and the assistant pulls the answer from your property. For anyone who spends Monday morning building the same traffic report, that is a real change."
+    },
+    {
+      "t": "p",
+      "v": "It also raises a fair question before anyone connects it: what exactly are you giving an AI access to? This is what the tool does, according to Google's own documentation and the project on GitHub, how to set it up without opening more than you need, and who should wait."
+    },
+    {
+      "t": "h2",
+      "v": "What the Google Analytics MCP server actually does"
+    },
+    {
+      "t": "p",
+      "v": "MCP stands for Model Context Protocol, an open standard for connecting AI assistants to outside tools and data. The Google Analytics MCP server is Google's connector for GA4. It sits between your assistant and two Google APIs, the Analytics Admin API and the Data API, and turns your question into the right request."
+    },
+    {
+      "t": "p",
+      "v": "Google's developer documentation lists what it can read:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Your accounts and properties, and the details of each property.",
+        "Standard reports, with dimensions, metrics, filters and date ranges.",
+        "Realtime reports, useful for checking a launch or a tracking fix as it happens.",
+        "Funnel reports, showing where visitors drop out of a sequence of steps.",
+        "Conversion reports, custom dimensions and metrics, Google Ads links and the annotations on your timeline."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "Google's documentation names Claude Desktop, Claude Code, Cursor and Antigravity among the assistants it works with. The code is on GitHub under the googleanalytics organisation, with an Apache 2.0 licence."
+    },
+    {
+      "t": "h2",
+      "v": "Questions it can answer in seconds"
+    },
+    {
+      "t": "p",
+      "v": "The value is in the questions you would never build a report for, because each one would take twenty minutes. A few that suit a business running ads in the UAE:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Compare sessions and conversions by Google Ads campaign for the last 30 days against the 30 before.",
+        "Which pages do visitors from the UAE land on, and which of them lead to an enquiry?",
+        "Is traffic from the campaign we launched this morning arriving right now?",
+        "Where do paid visitors drop out between the landing page and the thank-you page?",
+        "How much traffic came from ChatGPT and Perplexity this month?"
+      ]
+    },
+    {
+      "t": "p",
+      "v": "None of these answers is more accurate than GA4 itself. The assistant reads the same data you already have. If your tracking counts a lead twice, it will report the double count with the same confidence. That is why [[getting the key events right|/what-to-track-in-marketing-uae]] comes before any of this."
+    },
+    {
+      "t": "h2",
+      "v": "Is it safe to give AI access to your analytics?"
+    },
+    {
+      "t": "p",
+      "v": "Mostly, if you set it up the way Google describes. Google's documentation says the server is available for read requests only and cannot create, modify or delete your Analytics configuration. The newer version on GitHub adds optional tools that can create annotations, key events and custom dimensions, but they stay switched off unless you start the server with a write flag and grant an edit scope. Leave them off."
+    },
+    {
+      "t": "p",
+      "v": "Four points are worth understanding before you connect anything:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "It runs on your own computer. Your login stays on your machine as Google Cloud credentials, not on a third-party server.",
+        "The answers go to your AI provider. When you ask a question, the report data it pulls is sent to the assistant you use. Analytics data is normally counts, pages and sources, and Google's terms forbid sending personal data such as names or emails into GA4 in the first place.",
+        "You choose the property. Your Google account may see several properties, including a client's or an employer's. Grant access only to the one you mean to analyse.",
+        "You can cut it off. Removing the credentials from your machine, or the app's access in your Google account settings, ends it."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "For client or company data, the question is not technical. Check your contract and the client's agreement before any of their data passes through an AI tool, and in the UAE keep data protection law in mind. If in doubt, ask whoever owns the data, and get qualified advice before connecting anything that holds customer information."
+    },
+    {
+      "t": "h2",
+      "v": "How to set it up without opening more than you need"
+    },
+    {
+      "t": "p",
+      "v": "The setup is short for anyone comfortable with a terminal, and a wall for anyone who is not. In outline, from Google's guide:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Install Python 3.10 or later, and pipx or uv to run the server.",
+        "Create or choose a Google Cloud project, and enable the Google Analytics Admin API and the Google Analytics Data API in it.",
+        "Sign in with Application Default Credentials, using the read-only Analytics scope.",
+        "Make sure your Google account has at least Viewer access on the GA4 property.",
+        "Add the server to your assistant's MCP settings, without the write flag."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "Read-only scope, Viewer role and one property is the whole security model. Each step grants the minimum, and nothing in that list lets the assistant change your tracking."
+    },
+    {
+      "t": "h2",
+      "v": "Who should connect it now, and who should wait"
+    },
+    {
+      "t": "p",
+      "v": "Connect it now if you own the property, report on it every week and are happy with a terminal. Marketers who answer the same five questions every Monday will get that time back quickly."
+    },
+    {
+      "t": "p",
+      "v": "Wait if your tracking is not trusted yet, if the data belongs to a client or employer who has not agreed, or if nobody on the team can maintain a Google Cloud project. A tool that reads bad data faster does not make it better data. If you are not sure your events and conversions are right, a [[tracking audit for your campaigns|/services/paid-marketing]] is the better first step, and it is the same check I run before any [[marketing automation|/services/marketing-automation]] goes live."
+    },
+    {
+      "t": "h2",
+      "v": "What this changes for marketers"
+    },
+    {
+      "t": "p",
+      "v": "Reporting is turning into a conversation. The skill that matters is no longer knowing where a report lives in GA4, but asking a precise question and knowing when the answer looks wrong. The same pattern ran through last month's [[Google Tag Manager update|/google-tag-manager-update-october-2026]]: the platforms change, and the person who checks the numbers is the one who catches it."
+    },
+    {
+      "t": "p",
+      "v": "Every fact in this article was checked against Google's developer documentation and the project's GitHub page on 6 November 2026. The tool is moving quickly, so check both before you rely on a detail."
+    }
+  ],
+  "words": 996,
+  "kind": "News",
+  "image": {
+    "src": "/blog/ga-mcp/card.jpg",
+    "alt": "Quote card on the Google Analytics MCP server: Google Analytics now talks to AI, read-only first",
+    "width": 1200,
+    "height": 630
+  }
+}

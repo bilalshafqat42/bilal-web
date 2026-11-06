@@ -21,6 +21,17 @@
    1200
   ]
  },
+ "/blog/ga-mcp/card.jpg": {
+  "w": 1200,
+  "v": "6b771e36",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1200
+  ]
+ },
  "/blog/gtm-update/card.jpg": {
   "w": 1200,
   "v": "e3737dd9",
@@ -78,6 +89,128 @@
    1280,
    1600,
    1800
+  ]
+ },
+ "/portfolio/aks-chemicals/aks-chemicals-card.avif": {
+  "w": 1600,
+  "v": "3e7b722b",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/aks-chemicals/aks-chemicals-website.avif": {
+  "w": 1600,
+  "v": "fb02aa5c",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/aks-chemicals/social/aks-01-brand.avif": {
+  "w": 1080,
+  "v": "6beb96ca",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080
+  ]
+ },
+ "/portfolio/aks-chemicals/social/aks-02-pretreatment.avif": {
+  "w": 1080,
+  "v": "ac192463",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080
+  ]
+ },
+ "/portfolio/aks-chemicals/social/aks-03-dyeing-auxiliaries.avif": {
+  "w": 1080,
+  "v": "ae3e168b",
+  "widths": [
+   256,
+   384,
+   640,
+   1080
+  ]
+ },
+ "/portfolio/aks-chemicals/social/aks-04-finishes.avif": {
+  "w": 1080,
+  "v": "ee79b5a8",
+  "widths": [
+   256,
+   384,
+   640,
+   1080
+  ]
+ },
+ "/portfolio/aks-chemicals/social/aks-05-denim-washing.avif": {
+  "w": 1080,
+  "v": "f2bb64e8",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080
+  ]
+ },
+ "/portfolio/aks-chemicals/social/aks-06-special-finishing.avif": {
+  "w": 1080,
+  "v": "41eb00f1",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080
+  ]
+ },
+ "/portfolio/aks-chemicals/social/aks-07-toll-manufacturing.avif": {
+  "w": 1080,
+  "v": "ba3b0295",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080
+  ]
+ },
+ "/portfolio/aks-chemicals/social/aks-08-standards.avif": {
+  "w": 1080,
+  "v": "46ec5c45",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080
+  ]
+ },
+ "/portfolio/aks-chemicals/social/aks-09-beyond-textiles.avif": {
+  "w": 1080,
+  "v": "f81f08b0",
+  "widths": [
+   256,
+   384,
+   800,
+   1080
   ]
  },
  "/portfolio/leos/cavendish/landing-page/cavendish-thumb.avif": {

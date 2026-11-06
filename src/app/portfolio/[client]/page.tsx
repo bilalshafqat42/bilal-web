@@ -14,6 +14,7 @@ import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/portfolio/Cas
 import { getClient, routableClients, SHOW_DRAFTS } from "@/data/caseStudies";
 import { clientContentDate } from "@/data/contentDates";
 import CtaButton from "@/components/ui/CtaButton";
+import FaqSection from "@/components/ui/FaqSection";
 import DeviceFrame from "@/components/portfolio/DeviceFrame";
 import { jsonLdSafe } from "@/lib/schema";
 import { SITE_URL } from "@/lib/site";
@@ -109,7 +110,12 @@ export default async function ClientCaseStudy({ params }: Props) {
         : "Digital marketing case study",
     image: c.ogImage ? `${SITE}${c.ogImage}` : OG_IMAGE_URL,
     creator: { "@id": `${SITE}/#person`, "@type": "Person" },
-    about: { "@type": "Organization", name: c.name, description: c.intro },
+    about: {
+      "@type": "Organization",
+      name: c.name,
+      description: c.intro,
+      ...(c.siteUrl ? { url: c.siteUrl, sameAs: [c.siteUrl] } : {}),
+    },
     hasPart: c.projects.map((p) => ({
       "@type": "CreativeWork",
       name: p.name,
@@ -129,10 +135,27 @@ export default async function ClientCaseStudy({ params }: Props) {
     ],
   };
 
+  // Built from the array the FAQ section renders, so the two cannot disagree.
+  const faqSchema = c.faqs?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "@id": `${url}#faq`,
+        mainEntity: c.faqs.map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      }
+    : null;
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(schema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(breadcrumb) }} />
+      {faqSchema ? (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdSafe(faqSchema) }} />
+      ) : null}
       <TrackView name={c.name} category="Client" />
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
         <PageOpener
@@ -158,7 +181,12 @@ export default async function ClientCaseStudy({ params }: Props) {
               <ClientWordmark name={c.name} />
             )
           }
-          title={c.headline}
+          // The client's name leads the h1 (2026-11-06). Someone searching
+          // "AKS Chemicals case study" or asking an assistant about the work
+          // types the name, and the h1 never said it. Prefixed here rather
+          // than in `headline`, because the grid and proof cards already
+          // print the name beside the headline.
+          title={`${c.name}: ${c.headline.charAt(0).toLowerCase()}${c.headline.slice(1)}`}
           standfirst={c.intro}
           actions={
             <Reveal delay={0.1}>
@@ -496,6 +524,15 @@ export default async function ClientCaseStudy({ params }: Props) {
               ))}
             </div>
           </section>
+        ) : null}
+
+        {c.faqs?.length ? (
+          <FaqSection
+            eyebrow="Common questions"
+            title={`About the ${c.name} work`}
+            faqs={c.faqs}
+            className="section-pad-tight"
+          />
         ) : null}
 
         <WorkProof clientSlug={c.slug} />

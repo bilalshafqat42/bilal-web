@@ -12,6 +12,7 @@
  * To add a post: `node scripts/new-post.mjs <slug>` writes the file and the two
  * lines here. See docs/adding-a-blog-post.md.
  */
+import p_google_analytics_mcp_server from "./google-analytics-mcp-server.json";
 import p_why_retargeting_burns_budget from "./why-retargeting-burns-budget.json";
 import p_php2shell_wordpress from "./php2shell-wordpress.json";
 import p_how_to_check_and_update_php_version_in_wordpress from "./how-to-check-and-update-php-version-in-wordpress.json";
@@ -87,6 +88,7 @@ import p_8_must_have_free_icon_libraries_for_designers from "./8-must-have-free-
 
 /** Untyped here; `src/data/blogPosts.ts` applies the `BlogPost` type. */
 export const postsInOrder = [
+  p_google_analytics_mcp_server,
   p_why_retargeting_burns_budget,
   p_php2shell_wordpress,
   p_how_to_check_and_update_php_version_in_wordpress,
