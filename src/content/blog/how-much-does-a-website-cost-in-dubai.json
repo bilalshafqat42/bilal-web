@@ -4,7 +4,7 @@
   "metaTitle": "How Much Does a Website Cost in Dubai? (2026)",
   "description": "How much does a website cost in Dubai in 2026? What moves the price and what the quote leaves out, from a digital marketer who builds sites.",
   "published": "2026-10-01",
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-11-06",
   "tags": [
     "Dubai",
     "Web Development",
@@ -26,6 +26,45 @@
     {
       "t": "p",
       "v": "It depends on who builds it more than on anything else. A template service costs a few hundred dirhams a year plus your own time, an experienced Dubai freelancer generally starts in the tens of thousands of dirhams, and agency pricing commonly starts around the middle of the freelance range and climbs steeply. Custom functionality, Arabic and a compressed timeline push any of those up."
+    },
+    {
+      "t": "p",
+      "v": "The four routes side by side, before the detail:"
+    },
+    {
+      "t": "table",
+      "head": [
+        "Route",
+        "Typical cost",
+        "Best for",
+        "Main risk"
+      ],
+      "rows": [
+        [
+          "Template service or DIY builder",
+          "A few hundred dirhams a year, plus your own time",
+          "A presence rather than a pipeline",
+          "Looks assembled from a template"
+        ],
+        [
+          "Experienced Dubai freelancer",
+          "Tens of thousands of dirhams",
+          "One senior person from design to launch",
+          "Capacity: one person, one diary"
+        ],
+        [
+          "Dubai agency",
+          "From the middle of the freelance range, rising steeply",
+          "Large projects with many stakeholders",
+          "Paying for layers between you and the work"
+        ],
+        [
+          "Offshore team",
+          "The lowest headline number",
+          "Clients with a technical person to manage them",
+          "Time-zone gaps and variable quality"
+        ]
+      ]
     },
     {
       "t": "p",
@@ -246,5 +285,5 @@
       "v": "Last updated 1 October 2026. All AED figures are my own published rates, stated so there is at least one verifiable number on this page. They are not a market survey."
     }
   ],
-  "words": 1464
+  "words": 1473
 }
