@@ -111,7 +111,7 @@ export default function HeroBanner() {
               statement, and nowhere else — a page that uses it twice has
               stopped having a hierarchy. */}
           <h1 className="t-display mt-8 text-ink lg:mt-11">
-            Freelance digital marketer in Dubai.{" "}
+            Freelance digital marketer in Dubai, UAE.{" "}
             <br />
             Campaign to code.
           </h1>
@@ -121,7 +121,8 @@ export default function HeroBanner() {
                 was showing /appointment for "bilal shafqat", and until now the
                 homepage said the name only once, halfway down. */}
             I&rsquo;m Bilal Shafqat, a freelance digital marketer in Dubai, with {yearsExperience()} years across paid
-            marketing, web and app development, design and CRM automation. No account managers, no handoffs.
+            marketing, web and app development, design and CRM automation. Freelance digital marketing in
+            Dubai and across the UAE, with no account managers and no handoffs.
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-8 lg:mt-14">

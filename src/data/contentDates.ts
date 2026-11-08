@@ -26,7 +26,7 @@ export const contentDates: Record<string, string> = {
   // freelancer in Dubai".
   // 2026-10-24: the hero line opens with the name, for the brand query
   // (roadmap 420).
-  "/": "2026-10-24",
+  "/": "2026-11-09",
   // Every route below had its copy changed on 2026-10-13 in 0ed36bc, the
   // full-site audit (roadmap 399). /pricing gained a cost heading and
   // /portfolio descriptive cover alt text on 2026-10-14.
