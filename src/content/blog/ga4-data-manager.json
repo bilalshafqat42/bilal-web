@@ -1,0 +1,133 @@
+{
+  "slug": "ga4-data-manager",
+  "title": "GA4 Data Manager: Google Analytics Now Shows Every Data Connection in One Place",
+  "metaTitle": "GA4 Data Manager: What It Is and How to Check It",
+  "description": "GA4 Data Manager puts every data connection in one screen. What it shows, where to find it, and the mistake that counts conversions twice.",
+  "published": "2026-11-09",
+  "updatedAt": "2026-11-09",
+  "tags": [
+    "Digital Marketing",
+    "Paid Ads"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "On 6 November 2026, Google launched Google Analytics Data Manager, in beta. It is one screen in GA4 Admin that shows every data connection your property has: the tag on your website, your Google Ads link, your CRM, your file imports and where your data is exported to. Connections with a problem show up in red."
+    },
+    {
+      "t": "p",
+      "v": "That matters more than it sounds. Most tracking problems I find are not in the reports. They are in connections nobody remembers making: an old import, a second Google Ads link, a CRM upload an agency set up and never handed over. Until now, finding them meant clicking through several menus. Here is what Data Manager does, according to Google's own help pages, and a ten-minute check worth doing this week."
+    },
+    {
+      "t": "h2",
+      "v": "What is GA4 Data Manager?"
+    },
+    {
+      "t": "p",
+      "v": "Google describes Data Manager as a centralised data management tool for your data streams and connected products, all from a single home page. In practice it does four things:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "A data connection map: a picture of where your data comes from, what kind of data it is, which property and streams it lands in, and where it is exported to.",
+        "One list of your data streams and connected products, including product links such as Google Ads and your data imports.",
+        "A Fix button on any connection that has an error, so you can see the problem and act on it from the same screen.",
+        "A data strength guide, which Google says gives recommendations based on specific signals from your property."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "You can also add a data stream, connect a new product, import first-party data such as CRM records or offline conversions, and delete a connection you no longer use."
+    },
+    {
+      "t": "h2",
+      "v": "Where to find Google Analytics Data Manager"
+    },
+    {
+      "t": "p",
+      "v": "Open Google Analytics, go to Admin, and select Data Manager in the left menu, just below My preferences. Google says you need the appropriate permissions for the property but does not name a role, so if you cannot see it, ask whoever owns the account. One beta limit: subproperties and roll-up properties do not support the Data Manager page yet."
+    },
+    {
+      "t": "h2",
+      "v": "What the connection map shows you"
+    },
+    {
+      "t": "p",
+      "v": "The map puts your GA4 property in the middle. Data sources sit on the left, such as your Google tag, Google Tag Manager, a CRM, a Google Ads link or an uploaded file. Export destinations sit on the right. Expand it and you get four columns: data sources, data types, property and streams, and data export, with details down to the name of a connected Google Sheet or a tag ID."
+    },
+    {
+      "t": "p",
+      "v": "The part worth your time is the status. A data source with a problem shows a broken state or a red indicator. Click it, read the summary, and use the Fix button. If you have ever wondered why conversions dropped in a week when nothing changed, this is the first place to look now."
+    },
+    {
+      "t": "h2",
+      "v": "The one mistake to avoid: counting conversions twice"
+    },
+    {
+      "t": "p",
+      "v": "Google's help page carries one clear warning: do not set up the same data pipeline in two places, because it can record conversions twice. If your offline conversions or CRM data already flow into Google Ads, keep managing that connection in Google Ads. Do not rebuild it in Data Manager as well."
+    },
+    {
+      "t": "p",
+      "v": "Google's advice is to keep managing existing connections where they already live, and to use Google Analytics Data Manager for new ones. Your existing data imports appear in Data Manager automatically, so you do not need to move anything. Data also flows one way, from Google Analytics down to linked Google Ads and Google Marketing Platform accounts, not back again."
+    },
+    {
+      "t": "p",
+      "v": "Double counting is the most expensive tracking error a business can have, because it makes campaigns look better than they are. Smart bidding then spends more on the campaigns that look strongest, which are the ones being over-counted."
+    },
+    {
+      "t": "h2",
+      "v": "A ten-minute Data Manager check"
+    },
+    {
+      "t": "p",
+      "v": "Before your next big campaign, whether that is a launch, White Friday or Ramadan, open Data Manager and run through this:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Look for anything in red. A broken connection means data you think you have, you do not.",
+        "Count your Google Ads links. Each ad account should be linked once.",
+        "Read the list of imports. Anything you do not recognise needs an owner or a deletion.",
+        "Check the same conversion is not arriving from two sources, for example from both the website tag and a CRM upload.",
+        "Write down who set up each connection. When a person or agency leaves, their connections stay behind."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "If the map shows something you cannot explain, do not delete it straight away. Find out what depends on it first. Removing a live connection mid-campaign is how a tidy-up turns into a reporting gap."
+    },
+    {
+      "t": "h2",
+      "v": "Who should look at it this week"
+    },
+    {
+      "t": "p",
+      "v": "Anyone running Google Ads with conversions tracked in GA4, anyone importing CRM or offline data, and anyone who has changed agency or marketer in the last year. If a previous supplier set up your tracking, Data Manager is the quickest way to see what they left behind."
+    },
+    {
+      "t": "h2",
+      "v": "What this changes for marketers"
+    },
+    {
+      "t": "p",
+      "v": "Google keeps moving the same way: fewer places to look, more weight on whether the data underneath is right. Last week it was the [[Google Analytics MCP server|/google-analytics-mcp-server]], which lets an AI assistant read your GA4 data. Before that, the [[Google Tag Manager update|/google-tag-manager-update-october-2026]]. Neither is worth much if the connections feeding them are broken or doubled."
+    },
+    {
+      "t": "p",
+      "v": "Data Manager makes the check faster. It does not decide [[which events are worth tracking|/what-to-track-in-marketing-uae]] or whether the numbers match your CRM. That is still a person's job. As a [[freelance digital marketer in Dubai|/]], it is the first thing I check before any [[paid campaign|/services/paid-marketing]] goes live, because every decision after it depends on those numbers."
+    },
+    {
+      "t": "p",
+      "v": "Every fact in this article was checked against Google's Analytics help pages on 9 November 2026. Data Manager is in beta, so check the help page before you rely on a detail."
+    }
+  ],
+  "words": 943,
+  "kind": "News",
+  "image": {
+    "src": "/blog/ga4-data-manager/card.jpg",
+    "alt": "Quote card on GA4 Data Manager: Google Analytics now shows every data connection in one place",
+    "width": 1200,
+    "height": 630
+  }
+}

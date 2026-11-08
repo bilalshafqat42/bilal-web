@@ -65,6 +65,11 @@ export const CARDS = {
     lines: ["Google Analytics now", "*talks to AI.* Read-only first."],
     kicker: "AI update",
   },
+  "ga4-data-manager": {
+    slug: "ga4-data-manager",
+    lines: ["GA4 now shows every", "*data connection* in one place."],
+    kicker: "Analytics update",
+  },
   "what-to-track": {
     slug: "what-to-track-in-marketing-uae",
     lines: ["Your CRM is the", "*only honest* lead count."],
