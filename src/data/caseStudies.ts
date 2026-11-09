@@ -1442,7 +1442,7 @@ export const clients: Client[] = [
           {
             question: "Why one codebase instead of separate iOS and Android apps?",
             answer:
-              "Economics. Two native codebases means writing, testing and maintaining every screen twice, which for a business app of this kind buys very little a buyer would notice. React Native gives iOS and Android from one build. Where an app genuinely needs platform-specific native work I say so rather than take the project.",
+              "Economics. Two native codebases mean writing, testing and maintaining every screen twice, which for a business app of this kind buys very little a buyer would notice. React Native gives iOS and Android from one build. Where an app genuinely needs platform-specific native work I say so rather than take the project.",
           },
           {
             question: "Who designed the screens, and who built them?",
@@ -1452,7 +1452,7 @@ export const clients: Client[] = [
           {
             question: "Are these real screens or concepts?",
             answer:
-              "Real. Every capture on this page is from the built app rather than a mockup, which is why the walkthrough talks about decisions that had to survive contact with real content: long development names, missing photography, and units that change availability.",
+              "Real. Every screen on this page is from the built app, shown on a phone rather than redrawn as a concept, which is why the walkthrough talks about decisions that had to survive contact with real content: long development names, missing photography, and units that change availability.",
           },
           {
             question: "Why does the app repeat what the website already does?",
@@ -1500,32 +1500,16 @@ export const clients: Client[] = [
           label: "Home",
           journey:
             "A single featured development leads, not a grid. One building with its location, unit mix and size range answers more than six thumbnails do, and Enquire Now and Call Us Now sit on the card itself rather than behind a menu, so the two actions a serious buyer wants are never more than one tap from what they are looking at.",
+          // The lifestyle mockup, not the old full-length scroll capture: Bilal
+          // asked on 2026-11-09 for the mockups only, and the long captures
+          // read as the website rather than the app.
+          mockup: true,
           capture: {
-            src: "/portfolio/leos/mobile-app/home-screen.avif",
-            width: 1206,
-            height: 3547,
-            alt: "LEOS app home screen featuring Hadley Heights in Jumeirah Village Circle with enquire and call actions",
+            src: "/portfolio/leos/mobile-app/leos-mobile-featured.avif",
+            width: 1376,
+            height: 768,
+            alt: "LEOS app home screen featuring Hadley Heights with enquire and call actions, on an iPhone resting on a brushed gold surface",
             label: "Home",
-          },
-        },
-        {
-          key: "developments",
-          glance: [
-            { label: "Cards", value: "Three developments" },
-            { label: "On each card", value: "Name, strapline, link" },
-            { label: "Order", value: "Matches the launch pages" },
-          ],
-          headline: "The full portfolio, one card per building.",
-          tag: "Price on the card, not behind a tap",
-          label: "Developments",
-          journey:
-            "The full portfolio, one card per development, each carrying its own entry price. Price on the card rather than behind a tap is deliberate: it filters early, which costs some browsing and produces better enquiries. The same three developments the launch pages cover, so nothing contradicts the website.",
-          capture: {
-            src: "/portfolio/leos/mobile-app/projects.avif",
-            width: 1206,
-            height: 5807,
-            alt: "LEOS app developments list showing Hadley Heights, Weybridge Gardens and Cavendish Square",
-            label: "Developments",
           },
         },
         {

@@ -292,7 +292,23 @@ export default async function ClientCaseStudy({ params }: Props) {
                   <CaptureFrame capture={c.website.capture} />
                   {appHomeScreen ? (
                     <div>
-                      <DeviceFrame capture={appHomeScreen.capture} caption="The app, same developments" />
+                      {appHomeScreen.mockup ? (
+                        // A lifestyle mockup is already a photo of a phone, so
+                        // a device frame around it would be a phone in a phone.
+                        <figure>
+                          <Image
+                            src={appHomeScreen.capture.src}
+                            alt={appHomeScreen.capture.alt}
+                            width={appHomeScreen.capture.width}
+                            height={appHomeScreen.capture.height}
+                            sizes="(min-width: 1024px) 380px, 92vw"
+                            className="w-full r-card"
+                          />
+                          <figcaption className="mt-3 text-center text-xs text-muted">The app, same developments</figcaption>
+                        </figure>
+                      ) : (
+                        <DeviceFrame capture={appHomeScreen.capture} caption="The app, same developments" />
+                      )}
                       {/* The pairing makes the consistency point; the full app case study
                           is a page of its own, so this is the route to it rather than
                           more of it inline. */}

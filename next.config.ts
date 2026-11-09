@@ -295,6 +295,10 @@ const nextConfig: NextConfig = {
         // src/proxy.ts: these rules match case-insensitively, so a "/About"
         // source here also caught "/about" and looped.)
         { source: "/portfolio/leos/hadley-heights/social-media", destination: "/portfolio/leos-developments/hadley-heights", permanent: true },
+        // Search Console 404 of 2026-10-28: a link to /portfolio/texdale run
+        // into its own anchor text. No source on the site produces it now, but
+        // Google holds the URL, so it goes to the page it was clearly meant for.
+        { source: "/portfolio/texdaleTexdale", destination: "/portfolio/texdale", permanent: true },
         // Everything else under the old /portfolio/leos/ structure (Search
         // Console 404s of 2026-10-24, e.g. /portfolio/leos/social-media/5)
         // goes to the client page. Listed after the exact rule above so that
