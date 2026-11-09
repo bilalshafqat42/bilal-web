@@ -400,18 +400,6 @@
    1080
   ]
  },
- "/portfolio/leos/mobile-app/home-screen.avif": {
-  "w": 1206,
-  "v": "2b5a04cd",
-  "widths": [
-   256,
-   384,
-   640,
-   800,
-   1080,
-   1206
-  ]
- },
  "/portfolio/leos/mobile-app/leos-login-mobile.avif": {
   "w": 1398,
   "v": "0fd2bc3d",
@@ -446,18 +434,6 @@
    640,
    800,
    1080
-  ]
- },
- "/portfolio/leos/mobile-app/projects.avif": {
-  "w": 1206,
-  "v": "7f9cf999",
-  "widths": [
-   256,
-   384,
-   640,
-   800,
-   1080,
-   1206
   ]
  },
  "/portfolio/leos/sales-app/1-home.jpg": {
