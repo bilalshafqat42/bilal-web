@@ -66,7 +66,10 @@ export const POSITIONING =
 
 /** The homepage's title and description. The layout uses them as the default
  *  for every route, and the homepage restates them with its own `og:url`. */
-export const HOME_TITLE = "Freelance Digital Marketer in Dubai, UAE | Bilal Shafqat";
+// Name first (2026-11-10): for "bilal shafqat" Google kept showing /about above
+// the homepage, and /about was the page whose title led with the name. The
+// keyword stays in full after it.
+export const HOME_TITLE = "Bilal Shafqat: Freelance Digital Marketer in Dubai, UAE";
 export const HOME_DESCRIPTION =
   "Bilal Shafqat, freelance digital marketer in Dubai, UAE. Freelance digital marketing: paid ads, SEO, social and the pages your ads land on.";
 
