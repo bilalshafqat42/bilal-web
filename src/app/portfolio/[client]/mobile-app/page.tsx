@@ -200,9 +200,13 @@ export default async function MobileAppCaseStudy({ params }: Props) {
             {/* Fact strip. Dividers are cell borders rather than a separate
                 element, so they cannot drift out of line with the grid. */}
             <Reveal delay={0.15}>
-              <dl className="mt-16 grid grid-cols-2 gap-px overflow-hidden r-card border border-border bg-border lg:grid-cols-4">
+              {/* Light cells, not `bg-bg`. This strip sits inside the white
+                  `.page-opener` band, which flips `text-ink` to near-black but
+                  cannot flip `bg-bg` (see globals.css, `@theme inline`), so the
+                  cells rendered dark with dark values on them: unreadable. */}
+              <dl className="mt-16 grid grid-cols-2 gap-px overflow-hidden r-card border border-black/10 bg-black/10 lg:grid-cols-4">
                 {facts.map((f) => (
-                  <div key={f.label} className="bg-bg p-6">
+                  <div key={f.label} className="bg-white p-6">
                     <Eyebrow as="dt" size="sm" tone="muted">
                       {f.label}
                     </Eyebrow>
