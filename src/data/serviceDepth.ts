@@ -338,7 +338,7 @@ export const serviceDepth: Record<string, Depth> = {
         heading: "Creative is the targeting",
         paragraphs: [
           "Audience settings matter far less here than on search, because the algorithm finds the people who respond to the creative faster than any targeting you can specify. A video of one specific unit will find the people interested in that kind of unit. A generic brand film will find nobody in particular.",
-          "Which means production is most of the work, and it is where most property campaigns in Dubai underinvest. Renders cut for a brochure perform badly in a vertical feed against video shot for it. Several rough cuts tested quickly beats one polished film, and the winner is regularly the one that looked worst in the edit. The launch pages and lead capture that sit behind that creative are covered under [real estate marketing in Dubai](/real-estate-marketing).",
+          "Which means production is most of the work, and it is where most property campaigns in Dubai underinvest. Renders cut for a brochure perform badly in a vertical feed against video shot for it. Several rough cuts tested quickly beat one polished film, and the winner is regularly the one that looked worst in the edit. The launch pages and lead capture that sit behind that creative are covered under [real estate marketing in Dubai](/real-estate-marketing).",
         ],
       },
       {
@@ -545,14 +545,14 @@ export const serviceDepth: Record<string, Depth> = {
         heading: "The accounts are yours from the first submission",
         paragraphs: [
           "Apps get submitted under your Apple Developer and Google Play accounts, not mine. This sounds like a formality and is not: an app published under a supplier's account cannot be updated, transferred or taken down without that supplier, and transferring it afterwards is a process rather than a click.",
-          "The same applies to the analytics property, the push notification service and any backend. You should own every account the app depends on. If a developer resists that, it is worth asking why, because the answer is usually that it makes you harder to leave.",
+          "The same applies to the analytics property, the push notification service and any back end. You should own every account the app depends on. If a developer resists that, it is worth asking why, because the answer is usually that it makes you harder to leave.",
         ],
       },
       {
         heading: "What it costs, and what moves the number",
         paragraphs: [
-          "Project work starts at AED 31,500 and an app is usually well above that, because the scope is wider than a website by definition: two platforms, a backend, store submission, and the review cycle. I would rather give you a range after seeing what the app has to do than a figure now that we both know is a guess.",
-          "What moves it most: whether the app needs its own backend or can use what you already run, how many screens genuinely differ rather than repeat, whether payments are involved, and whether offline use is a requirement. Those four decisions account for most of the difference between a straightforward build and a long one.",
+          "Project work starts at AED 31,500 and an app is usually well above that, because the scope is wider than a website by definition: two platforms, a back end, store submission, and the review cycle. I would rather give you a range after seeing what the app has to do than a figure now that we both know is a guess.",
+          "What moves it most: whether the app needs its own back end or can use what you already run, how many screens genuinely differ rather than repeat, whether payments are involved, and whether offline use is a requirement. Those four decisions account for most of the difference between a straightforward build and a long one.",
         ],
       },
     ],
@@ -826,7 +826,7 @@ export const serviceDepth: Record<string, Depth> = {
       {
         heading: "Structure that a real budget can survive",
         paragraphs: [
-          "Campaign structure decides how much of your money reaches the people worth reaching. That means separating markets rather than lumping the UAE in with the UK, separating intent so someone searching your development by name is not bidding against someone browsing the category, and setting exclusions before spend rather than after a wasted month.",
+          "Campaign structure decides how much of your money reaches the people worth reaching. That means separating markets rather than lumping the UAE in with the UK, separating intent so searches for your development by name do not share a budget with people browsing the category, and setting exclusions before spend rather than after a wasted month.",
           "For property and high-value services in particular, the qualifier belongs early. Putting a starting price in the ad and again above the fold on the landing page filters out traffic that was never going to convert. It lowers your click volume and raises your cost per click, and it is still the cheapest thing you can do to your cost per acquisition. For property developers, the whole pattern from ad to registration form is on the [real estate marketing in Dubai](/real-estate-marketing) page.",
         ],
       },
@@ -913,7 +913,7 @@ export const serviceDepth: Record<string, Depth> = {
         // management thoroughly and never used the phrase.
         heading: "Social media management in Dubai, which is the part most people hand back",
         paragraphs: [
-          "There is a difference between social media marketing and social media management, and most suppliers quietly sell the first while the client assumed the second. Marketing is the strategy and the creative. Management is the daily work: scheduling, posting at the hours your audience is actually awake, answering comments, routing the direct message that is really an enquiry to somebody who can close it.",
+          "There is a difference between social media marketing and social media management, and most suppliers quietly sell the first while the client assumes the second. Marketing is the strategy and the creative. Management is the daily work: scheduling, posting at the hours your audience is actually awake, answering comments, routing the direct message that is really an enquiry to somebody who can close it.",
           "Management is where most arrangements fail, because it is unglamorous and continuous and nobody puts it in a proposal. A folder of beautiful assets delivered on the first of the month is not management, and a business that has to post them itself has bought design, not social.",
           "Here it is included. The calendar is agreed ahead, the posting happens on schedule, and the inbox is monitored on working days. Where a message is a genuine enquiry it goes to you with the context attached, not left in an app nobody opens at the weekend.",
         ],
@@ -1169,7 +1169,7 @@ export const serviceDepth: Record<string, Depth> = {
       {
         question: "Do you build e-commerce sites?",
         answer:
-          "Yes, though I will tell you honestly when an off-the-shelf platform like Shopify is the better commercial decision than a custom build. Paying for custom development to replicate what a hosted platform already does well is a poor use of budget.",
+          "Yes, though I will tell you honestly when an off-the-shelf platform like Shopify is a better commercial decision than a custom build. Paying for custom development to replicate what a hosted platform already does well is a poor use of budget.",
       },
       {
         question: "Can you build a mobile app as well?",
@@ -1691,7 +1691,7 @@ export const serviceDepth: Record<string, Depth> = {
       {
         question: "Can you design a company profile or pitch deck?",
         answer:
-          "Yes. These are usually the highest-value design a service business owns, because they are what a buyer reads when deciding whether you are serious, and most are built in a hurry from a template.",
+          "Yes. These are usually the highest-value design work a service business owns, because they are what a buyer reads when deciding whether you are serious, and most are built in a hurry from a template.",
       },
       {
         question: "How much does branding cost?",
@@ -2059,7 +2059,7 @@ export const serviceDepth: Record<string, Depth> = {
       {
         question: "What does it cost to run a custom CRM?",
         answer:
-          "There are no per-user licences, but there is hosting, monitoring and developer time for changes and API updates. Over a few years that can come to less or more than a subscription, depending on team size and how much the system changes. The pricing page explains how project and retainer work is charged.",
+          "There are no per-user licences, but there are hosting, monitoring and developer time for changes and API updates. Over a few years that can come to less or more than a subscription, depending on team size and how much the system changes. The pricing page explains how project and retainer work is charged.",
       },
       {
         question: "Can we start with an off-the-shelf CRM and move later?",

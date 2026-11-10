@@ -86,7 +86,7 @@ export const pillars: Pillar[] = [
       },
       {
         title: "TikTok Ads",
-        body: "TikTok punishes advertising that looks like advertising. Creative made for Meta and reposted here reliably underperforms, because the feed is judged against organic video made by people with no budget and a better instinct for the platform. It rewards volume and iteration: several rough cuts tested quickly beats one polished film, and the winner is rarely the one that looked best in the edit. Worth testing where the product is visual and the audience skews younger, and worth skipping where it is neither.",
+        body: "TikTok punishes advertising that looks like advertising. Creative made for Meta and reposted here reliably underperforms, because the feed is judged against organic video made by people with no budget and a better instinct for the platform. It rewards volume and iteration: several rough cuts tested quickly beat one polished film, and the winner is rarely the one that looked best in the edit. Worth testing where the product is visual and the audience skews younger, and worth skipping where it is neither.",
         bullets: ["Creative made for the platform, not adapted to it", "Several variants tested rather than one hero cut", "Spark Ads from organic posts that already earned attention", "Honest reporting on whether it is working for your product"],
       },
       {
@@ -216,7 +216,7 @@ export const pillars: Pillar[] = [
       // and this is the pillar the work belongs to.
       {
         title: "CMS Selection & Planning",
-        body: "Choosing the platform against four things before any design starts: who edits the site and how often, how much content it carries and in how many languages, what the campaigns need from it (landing pages, tracking, forms that feed a CRM), and what it will cost to run in two years rather than just to launch.",
+        body: "Choosing the platform before any design starts, based on who edits the site and how often, how much content it carries and in how many languages, what the campaigns need from it (landing pages, tracking, forms that feed a CRM), and what it will cost to run in two years rather than just to launch.",
         bullets: ["A platform recommendation with the trade-offs written down", "Content model and page templates planned up front", "Tracking and CRM requirements set before the build"],
       },
       {

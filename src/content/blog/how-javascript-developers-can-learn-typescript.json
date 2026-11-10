@@ -7,7 +7,7 @@
   "tags": [
     "Typescript"
   ],
-  "words": 724,
+  "words": 721,
   "blocks": [
     {
       "t": "h2",
@@ -278,9 +278,9 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "React : Use .tsx files for typed components.",
-        "Vue : Built-in support in Vue 3 and Vite.",
-        "Angular : Built entirely with TypeScript."
+        "React: Use .tsx files for typed components.",
+        "Vue: Built-in support in Vue 3 and Vite.",
+        "Angular: Built entirely with TypeScript."
       ]
     },
     {
@@ -313,7 +313,7 @@
     },
     {
       "t": "h3",
-      "v": "What’s the difference between type and interface ?"
+      "v": "What’s the difference between type and interface?"
     },
     {
       "t": "p",

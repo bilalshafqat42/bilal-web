@@ -148,7 +148,7 @@
     },
     {
       "t": "p",
-      "v": "Template literals allow you to embed variables directly inside strings using backticks (\") and ${}."
+      "v": "Template literals allow you to embed variables directly inside strings using backticks (`) and ${}."
     },
     {
       "t": "h3",

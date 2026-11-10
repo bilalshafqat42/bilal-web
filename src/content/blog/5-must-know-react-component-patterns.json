@@ -9,7 +9,7 @@
     "Es6",
     "React Js"
   ],
-  "words": 498,
+  "words": 495,
   "blocks": [
     {
       "t": "p",
@@ -31,8 +31,8 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Presentational Components : Focus on how things look (UI), are stateless, and receive data via props.",
-        "Container Components : Handle state, logic, and data. Focus on how things work ."
+        "Presentational Components: Focus on how things look (UI), are stateless, and receive data via props.",
+        "Container Components: Handle state, logic, and data. Focus on how things work."
       ]
     },
     {

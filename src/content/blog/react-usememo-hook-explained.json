@@ -24,7 +24,7 @@
     },
     {
       "t": "p",
-      "v": "useMemo() helps developers prevent unnecessary recalculations by memoizing the return value of a function. In short: it lets you cache expensive computations between renders, only recalculating when necessary."
+      "v": "useMemo() helps developers prevent unnecessary recalculations by memoising the return value of a function. In short: it lets you cache expensive computations between renders, only recalculating when necessary."
     },
     {
       "t": "h3",
@@ -47,7 +47,7 @@
     },
     {
       "t": "p",
-      "v": "useMemo is a built-in React hook that returns a memoized value. It helps avoid recalculating a result unless the dependencies change."
+      "v": "useMemo is a built-in React hook that returns a memoised value. It helps avoid recalculating a result unless the dependencies change."
     },
     {
       "t": "h3",
@@ -122,8 +122,8 @@
       "ordered": false,
       "v": [
         "You have expensive calculations",
-        "You want to memoize derived state",
-        "You're passing computed props to memoized child components",
+        "You want to memoise derived state",
+        "You're passing computed props to memoised child components",
         "You want to optimise large data structures"
       ]
     },
@@ -142,7 +142,7 @@
     },
     {
       "t": "p",
-      "v": "Remember: Memoization itself has overhead. Don’t use useMemo “just in case.” Profile first."
+      "v": "Remember: Memoisation itself has overhead. Don’t use useMemo “just in case.” Profile first."
     },
     {
       "t": "h2",
@@ -186,7 +186,7 @@
     },
     {
       "t": "p",
-      "v": "If the function is fast and cheap, don’t memoize it."
+      "v": "If the function is fast and cheap, don’t memoise it."
     },
     {
       "t": "h3",
@@ -202,7 +202,7 @@
     },
     {
       "t": "p",
-      "v": "Memoization has overhead. It only helps when the cost of recalculating is higher than the cost of caching."
+      "v": "Memoisation has overhead. It only helps when the cost of recalculating is higher than the cost of caching."
     },
     {
       "t": "h2",
@@ -225,7 +225,7 @@
     },
     {
       "t": "p",
-      "v": "If you're passing computed props into a memoized child component (via React.memo), useMemo ensures the child doesn't re-render unless necessary."
+      "v": "If you're passing computed props into a memoised child component (via React.memo), useMemo ensures the child doesn't re-render unless necessary."
     },
     {
       "t": "h3",
@@ -251,9 +251,9 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "It memoizes return values, skipping re-computation unless needed",
+        "It memoises return values, skipping re-computation unless needed",
         "It helps improve performance for expensive logic",
-        "Don’t overuse it; memoization comes with a cost"
+        "Don’t overuse it; memoisation comes with a cost"
       ]
     }
   ],

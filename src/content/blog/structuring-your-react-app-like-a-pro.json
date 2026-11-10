@@ -7,7 +7,7 @@
   "tags": [
     "React Js"
   ],
-  "words": 561,
+  "words": 551,
   "blocks": [
     {
       "t": "h2",
@@ -29,13 +29,13 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Assets : Managing static files",
-        "Styles : Organising stylesheets and theme configurations",
-        "Components : Building reusable UI elements",
-        "Helpers : Creating utility functions for common operations",
-        "Hooks : Custom React hooks for managing state and side effects",
-        "Contexts : Centralised state management using React Context API",
-        "Layouts : Structuring pages efficiently"
+        "Assets: Managing static files",
+        "Styles: Organising stylesheets and theme configurations",
+        "Components: Building reusable UI elements",
+        "Helpers: Creating utility functions for common operations",
+        "Hooks: Custom React hooks for managing state and side effects",
+        "Contexts: Centralised state management using React Context API",
+        "Layouts: Structuring pages efficiently"
       ]
     },
     {
@@ -113,7 +113,7 @@
         "Use separate folders for each component.",
         "Keep related files (JSX, CSS, test files) within the same component folder.",
         "Maintain an index.js for easy imports.",
-        "Categorise components into UI , Common , and Feature-Specific components."
+        "Categorise components into UI, Common, and Feature-Specific components."
       ]
     },
     {
@@ -161,7 +161,7 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Prefix hook names with use (e.g., useAuth , useFetch ).",
+        "Prefix hook names with use (e.g., useAuth, useFetch ).",
         "Keep hooks focused on a single responsibility.",
         "Document how each hook should be used."
       ]

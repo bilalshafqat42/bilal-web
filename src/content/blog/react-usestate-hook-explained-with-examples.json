@@ -7,7 +7,7 @@
   "tags": [
     "React Js"
   ],
-  "words": 512,
+  "words": 508,
   "blocks": [
     {
       "t": "h2",
@@ -56,9 +56,9 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "state : the current state value",
-        "setState : a function used to update the state",
-        "initialValue : the default value for the state when the component mounts"
+        "state: the current state value",
+        "setState: a function used to update the state",
+        "initialValue: the default value for the state when the component mounts"
       ]
     },
     {
@@ -274,7 +274,7 @@
         "How to initialise and update state correctly",
         "Examples for counters, form fields, booleans, and lists",
         "How to avoid common mistakes",
-        "When to use useState , and when not to"
+        "When to use useState, and when not to"
       ]
     }
   ]

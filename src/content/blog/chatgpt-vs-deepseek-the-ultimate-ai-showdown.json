@@ -9,7 +9,7 @@
     "ChatGPT",
     "DeepSeek"
   ],
-  "words": 1024,
+  "words": 1023,
   "blocks": [
     {
       "t": "p",
@@ -37,7 +37,7 @@
     },
     {
       "t": "p",
-      "v": "For ordinary questions, drafting and summarising, the gap between the two is smaller than the headlines suggest. Both produce fluent, well structured text, and both will confidently state things that are wrong. Neither should be the final word on a fact, a figure or a regulation."
+      "v": "For ordinary questions, drafting and summarising, the gap between the two is smaller than the headlines suggest. Both produce fluent, well-structured text, and both will confidently state things that are wrong. Neither should be the final word on a fact, a figure or a regulation."
     },
     {
       "t": "p",

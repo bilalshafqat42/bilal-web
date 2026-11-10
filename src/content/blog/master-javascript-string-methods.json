@@ -120,7 +120,7 @@
     },
     {
       "t": "p",
-      "v": "Use case: Update or sanitize user input, convert dates/formats, or modify templates."
+      "v": "Use case: Update or sanitise user input, convert dates/formats, or modify templates."
     },
     {
       "t": "h2",
@@ -170,7 +170,7 @@
     },
     {
       "t": "p",
-      "v": "Before saving to a database or rendering on the page, always sanitize and trim strings."
+      "v": "Before saving to a database or rendering on the page, always sanitise and trim strings."
     },
     {
       "t": "code",

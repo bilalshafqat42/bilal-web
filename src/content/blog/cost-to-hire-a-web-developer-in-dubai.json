@@ -53,7 +53,7 @@
     },
     {
       "t": "p",
-      "v": "The salary is the part people quote and the smaller part of the real number. Budget also for visa and sponsorship costs, medical insurance, end of service gratuity, recruitment fees, equipment and software, and the time your own team spends managing them."
+      "v": "The salary is the part people quote and the smaller part of the real number. Budget also for visa and sponsorship costs, medical insurance, end-of-service gratuity, recruitment fees, equipment and software, and the time your own team spends managing them."
     },
     {
       "t": "p",
@@ -147,7 +147,7 @@
       "v": [
         "Custom functionality. A page that displays information is solved. A page that does something is a project inside the project. Booking, payments, calculators, portals, search with filters.",
         "Integrations. Every connection to a CRM, a feed, a gateway or an accounting system is a dependency on somebody else's documentation and uptime. Individually easy, collectively expensive.",
-        "Arabic. Right to left mirrors the layout, not just the text. Navigation, icons, forms, charts and any asymmetric design all need a second decision. Budget it as a percentage of the build, not a line item.",
+        "Arabic. Right-to-left mirrors the layout, not just the text. Navigation, icons, forms, charts and any asymmetric design all need a second decision. Budget it as a percentage of the build, not a line item.",
         "Content. The most commonly forgotten cost and the most common reason a finished build sits unlaunched. Copy and photography belong in the budget unless you are personally writing and shooting them."
       ]
     },
@@ -227,5 +227,5 @@
       "v": "Published 4 October 2026. All AED figures are my own published rates, stated so there is at least one verifiable number here. They are not a market survey."
     }
   ],
-  "words": 979
+  "words": 975
 }

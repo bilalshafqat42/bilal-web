@@ -64,7 +64,7 @@ export const caseStudyDepth: Record<string, DepthBlock[]> = {
       heading: "Why two phases needed two different pages",
       paragraphs: [
         "LEOS launched Weybridge twice in the same district, and the second phase arrived as the Provence Edition with a French-inspired identity and a lower entry price. The temptation with a phase two is to reuse the phase one page and change the numbers, because it is faster and it looks consistent.",
-        "That is usually the wrong call. A buyer who considered phase one and did not buy is being asked to look again, and an identical page tells them nothing has changed. A buyer arriving fresh at a AED 600,000 entry price is a different person from one who looked at the original. The two launches were treated as two launches, which is why the Provence Edition has its own case study rather than a paragraph appended to this one.",
+        "That is usually the wrong call. A buyer who considered phase one and did not buy is being asked to look again, and an identical page tells them nothing has changed. A buyer arriving fresh at an AED 600,000 entry price is a different person from one who looked at the original. The two launches were treated as two launches, which is why the Provence Edition has its own case study rather than a paragraph appended to this one.",
       ],
     }
   ],
@@ -92,11 +92,11 @@ export const caseStudyDepth: Record<string, DepthBlock[]> = {
       ],
     },
     {
-      heading: "One page, four different buyers",
+      heading: "One page, very different buyers",
       paragraphs: [
         "The unit mix runs from studios to three bedrooms, which means a single page has to work for an investor buying the smallest unit for yield and a family buying the largest to live in. Those two people want almost opposite things from the same screen: one wants the entry price and the rental context, the other wants room sizes and what is nearby for children.",
         "Rather than trying to speak to both at once and satisfying neither, the page leads with what they genuinely share, the location and the price floor, then lets the unit mix section do the separating. It is the section a visitor self-selects into, so it carries the detail that would clutter the hero.",
-        "This is also why the price is stated as a floor rather than a range. \"From AED 600,000\" invites the investor in without misleading the family buyer, where a range spanning three bedroom pricing would filter out the studio audience the development mostly consists of.",
+        "This is also why the price is stated as a floor rather than a range. \"From AED 600,000\" invites the investor in without misleading the family buyer, where a range spanning three-bedroom pricing would filter out the studio audience the development mostly consists of.",
       ],
     }
   ],

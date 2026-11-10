@@ -351,7 +351,7 @@ export default function AboutPage() {
               <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">
                 Mostly property, in Dubai and the UK, but not only property. The
                 same approach has run for a production house, an HR consultancy
-                and two textile chemicals companies in the UK.
+                and two textile chemicals companies, one in the UK and one in Pakistan.
               </p>
             </Reveal>
 

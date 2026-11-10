@@ -8,7 +8,7 @@
     "CSS",
     "Flexbox"
   ],
-  "words": 628,
+  "words": 608,
   "blocks": [
     {
       "t": "h2",
@@ -66,10 +66,10 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "row (default) – Aligns items from left to right .",
-        "row-reverse – Aligns items from right to left .",
-        "column – Stacks items vertically from top to bottom .",
-        "column-reverse – Stacks items vertically from bottom to top ."
+        "row (default) – Aligns items from left to right.",
+        "row-reverse – Aligns items from right to left.",
+        "column – Stacks items vertically from top to bottom.",
+        "column-reverse – Stacks items vertically from bottom to top."
       ]
     },
     {
@@ -90,8 +90,8 @@
       "v": [
         "flex-start – Aligns items to the start of the container.",
         "flex-end – Aligns items to the end of the container.",
-        "center – Centres items horizontally .",
-        "space-between – Distributes items with space between them .",
+        "center – Centres items horizontally.",
+        "space-between – Distributes items with space between them.",
         "space-around – Places equal space around each item.",
         "space-evenly – Ensures equal spacing between items."
       ]
@@ -113,10 +113,10 @@
       "ordered": false,
       "v": [
         "stretch (default) – Items stretch to fit the container.",
-        "flex-start – Aligns items at the top .",
-        "flex-end – Aligns items at the bottom .",
-        "center – Centres items vertically .",
-        "baseline – Aligns items based on their text baselines ."
+        "flex-start – Aligns items at the top.",
+        "flex-end – Aligns items at the bottom.",
+        "center – Centres items vertically.",
+        "baseline – Aligns items based on their text baselines."
       ]
     },
     {
@@ -135,8 +135,8 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "It can be set in pixels , percentages , or auto .",
-        "When combined with flex-grow and flex-shrink , it helps manage item resizing."
+        "It can be set in pixels, percentages, or auto.",
+        "When combined with flex-grow and flex-shrink, it helps manage item resizing."
       ]
     },
     {
@@ -156,9 +156,9 @@
       "ordered": false,
       "v": [
         "auto – Inherits from the parent container.",
-        "flex-start – Aligns the item at the top .",
-        "flex-end – Aligns the item at the bottom .",
-        "center – Centres the item vertically .",
+        "flex-start – Aligns the item at the top.",
+        "flex-end – Aligns the item at the bottom.",
+        "center – Centres the item vertically.",
         "stretch – Stretches the item to fill the container."
       ]
     },
@@ -178,8 +178,8 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Default value is 1 , meaning the item will shrink if necessary.",
-        "If set to 0 , the item won’t shrink .",
+        "Default value is 1, meaning the item will shrink if necessary.",
+        "If set to 0, the item won’t shrink.",
         "Higher values make an item shrink faster than others."
       ]
     },

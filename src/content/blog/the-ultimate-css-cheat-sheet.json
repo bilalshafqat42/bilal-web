@@ -317,7 +317,7 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Converts an element to grayscale.",
+        "Converts an element to greyscale.",
         "Example:"
       ]
     },

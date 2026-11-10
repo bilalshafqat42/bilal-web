@@ -181,7 +181,7 @@
       "v": [
         "Improves performance in large applications",
         "Prevents unnecessary re-renders of child components",
-        "Optimises memoized components ( React.memo )"
+        "Optimises memoised components ( React.memo )"
       ]
     },
     {
@@ -309,7 +309,7 @@
     },
     {
       "t": "p",
-      "v": "3. What is the impact of using useCallback on performance?useCallback prevents unnecessary re-renders by memoizing functions, which is particularly useful in apps with many child components."
+      "v": "3. What is the impact of using useCallback on performance?useCallback prevents unnecessary re-renders by memoising functions, which is particularly useful in apps with many child components."
     },
     {
       "t": "p",

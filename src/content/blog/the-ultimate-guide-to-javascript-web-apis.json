@@ -7,7 +7,7 @@
   "tags": [
     "Javascript"
   ],
-  "words": 526,
+  "words": 527,
   "blocks": [
     {
       "t": "h2",
@@ -55,7 +55,7 @@
     },
     {
       "t": "p",
-      "v": "The Geolocation API allows web applications to access the user’s geographical location in real-time. This API is commonly used in map-based apps and location-aware services."
+      "v": "The Geolocation API allows web applications to access the user’s geographical location in real time. This API is commonly used in map-based apps and location-aware services."
     },
     {
       "t": "code",
@@ -79,7 +79,7 @@
     },
     {
       "t": "p",
-      "v": "The Web Audio API is a powerful tool for processing and synthesizing audio in web applications. It’s perfect for creating music apps, sound effects, and even real-time audio visualisation tools."
+      "v": "The Web Audio API is a powerful tool for processing and synthesising audio in web applications. It’s perfect for creating music apps, sound effects, and even real-time audio visualisation tools."
     },
     {
       "t": "code",

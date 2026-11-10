@@ -224,7 +224,7 @@
     },
     {
       "t": "h3",
-      "v": "1. What is the difference between console.error() and console.warn() ?"
+      "v": "1. What is the difference between console.error() and console.warn()?"
     },
     {
       "t": "p",
@@ -232,7 +232,7 @@
     },
     {
       "t": "h3",
-      "v": "2. When should I use console.table() instead of console.log() ?"
+      "v": "2. When should I use console.table() instead of console.log()?"
     },
     {
       "t": "p",

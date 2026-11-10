@@ -8,7 +8,7 @@
     "React Js",
     "React Hooks"
   ],
-  "words": 503,
+  "words": 505,
   "blocks": [
     {
       "t": "p",
@@ -183,7 +183,7 @@
     },
     {
       "t": "p",
-      "v": "If your UI depends on a value, it should be stored in state, not ref."
+      "v": "If your UI depends on a value, it should be stored in state, not in a ref."
     },
     {
       "t": "code",
@@ -262,7 +262,7 @@
     },
     {
       "t": "p",
-      "v": "useMemo() is for memoizing computed values to prevent unnecessary recalculations."
+      "v": "useMemo() is for memoising computed values to prevent unnecessary recalculations."
     },
     {
       "t": "h3",

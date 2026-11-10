@@ -15,7 +15,7 @@
     },
     {
       "t": "p",
-      "v": "In the ever-evolving world of web development, learning backend technologies is crucial, and Node.js is one of the best platforms to start with. Built on Chrome’s V8 JavaScript engine, Node.js lets developers write fast, scalable, and server-side applications using JavaScript, the most widely-used programming language in the world."
+      "v": "In the ever-evolving world of web development, learning backend technologies is crucial, and Node.js is one of the best platforms to start with. Built on Chrome’s V8 JavaScript engine, Node.js lets developers write fast, scalable, and server-side applications using JavaScript, the most widely used programming language in the world."
     },
     {
       "t": "p",
@@ -225,7 +225,7 @@
       "v": [
         "YouTube: Traversy Media, Web Dev Simplified",
         "Courses: Node.js on Udemy, Codecademy, freeCodeCamp",
-        "Docs: nodejs.org/docs , expressjs.com"
+        "Docs: nodejs.org/docs, expressjs.com"
       ]
     },
     {

@@ -7,7 +7,7 @@
   "tags": [
     "React Js"
   ],
-  "words": 594,
+  "words": 591,
   "blocks": [
     {
       "t": "h2",
@@ -15,7 +15,7 @@
     },
     {
       "t": "p",
-      "v": "React Hooks revolutionized the way developers build React applications by enabling functional components to handle state and side effects without relying on class components. Since their introduction in React 16.8, Hooks have become a crucial part of modern React development."
+      "v": "React Hooks revolutionised the way developers build React applications by enabling functional components to handle state and side effects without relying on class components. Since their introduction in React 16.8, Hooks have become a crucial part of modern React development."
     },
     {
       "t": "p",
@@ -42,7 +42,7 @@
       "ordered": false,
       "v": [
         "Simplified Code: No need for complex class components.",
-        "Better Performance: Optimised re-rendering and memoization.",
+        "Better Performance: Optimised re-rendering and memoisation.",
         "Reusable Logic: Custom Hooks enable reusable stateful logic.",
         "Cleaner Component Structure: Improved readability and maintainability.",
         "Easier Testing: Functional components with Hooks are easier to test than class components."
@@ -96,7 +96,7 @@
       "ordered": false,
       "v": [
         "Use dependency arrays to control execution.",
-        "Cleanup subscriptions to avoid memory leaks.",
+        "Clean up subscriptions to avoid memory leaks.",
         "Separate concerns by using multiple useEffect calls."
       ]
     },
@@ -162,7 +162,7 @@
     },
     {
       "t": "p",
-      "v": "The useMemo Hook memoizes expensive calculations to improve performance."
+      "v": "The useMemo Hook memoises expensive calculations to improve performance."
     },
     {
       "t": "code",
@@ -170,7 +170,7 @@
     },
     {
       "t": "h3",
-      "v": "7. useCallback – Memoizing Functions"
+      "v": "7. useCallback – Memoising Functions"
     },
     {
       "t": "p",
@@ -233,10 +233,10 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Forgetting Dependency Arrays in useEffect : Leads to infinite loops or unnecessary re-executions.",
-        "Mutating State Directly : Always use the state setter function.",
-        "Not Using Memoization for Performance Optimisation : Leads to redundant computations.",
-        "Using Hooks in Loops or Conditions : Always call Hooks at the top level of the component."
+        "Forgetting Dependency Arrays in useEffect: Leads to infinite loops or unnecessary re-executions.",
+        "Mutating State Directly: Always use the state setter function.",
+        "Not Using Memoisation for Performance Optimisation: Leads to redundant computations.",
+        "Using Hooks in Loops or Conditions: Always call Hooks at the top level of the component."
       ]
     },
     {

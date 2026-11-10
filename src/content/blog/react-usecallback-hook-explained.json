@@ -16,11 +16,11 @@
     },
     {
       "t": "p",
-      "v": "React's useCallback is one of those hooks that seems confusing at first, until you start dealing with unnecessary re-renders or memoized components. It comes up regularly in the React and Next.js builds behind my [[web development in Dubai|/services/website-app-development]] work."
+      "v": "React's useCallback is one of those hooks that seems confusing at first, until you start dealing with unnecessary re-renders or memoised components. It comes up regularly in the React and Next.js builds behind my [[web development in Dubai|/services/website-app-development]] work."
     },
     {
       "t": "p",
-      "v": "In React, functions are re-created on every render. This behaviour is harmless in most cases, but when passing callbacks to deeply nested or memoized child components, re-creating the function can cause unnecessary re-renders and performance issues."
+      "v": "In React, functions are re-created on every render. This behaviour is harmless in most cases, but when passing callbacks to deeply nested or memoised child components, re-creating the function can cause unnecessary re-renders and performance issues."
     },
     {
       "t": "p",
@@ -47,7 +47,7 @@
     },
     {
       "t": "p",
-      "v": "useCallback is a built-in React hook that lets you memoize a function, meaning it returns the same function reference between renders unless one of its dependencies has changed."
+      "v": "useCallback is a built-in React hook that lets you memoise a function, meaning it returns the same function reference between renders unless one of its dependencies has changed."
     },
     {
       "t": "h3",
@@ -67,7 +67,7 @@
     },
     {
       "t": "p",
-      "v": "When you pass a function as a prop to a memoized child component (e.g., using React.memo), even a new function reference (with identical logic) can cause that component to re-render."
+      "v": "When you pass a function as a prop to a memoised child component (e.g., using React.memo), even a new function reference (with identical logic) can cause that component to re-render."
     },
     {
       "t": "p",
@@ -75,7 +75,7 @@
     },
     {
       "t": "h2",
-      "v": "Example 1: Memoizing a Handler"
+      "v": "Example 1: Memoising a Handler"
     },
     {
       "t": "code",
@@ -91,7 +91,7 @@
     },
     {
       "t": "p",
-      "v": "Both useCallback and useMemo help with memoization, but they do different things."
+      "v": "Both useCallback and useMemo help with memoisation, but they do different things."
     },
     {
       "t": "h2",
@@ -111,7 +111,7 @@
     },
     {
       "t": "h2",
-      "v": "Real Use Case: Avoid Re-rendering Memoized Children"
+      "v": "Real Use Case: Avoid Re-rendering Memoised Children"
     },
     {
       "t": "code",
@@ -129,7 +129,7 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "You're passing a function as a prop to a memoized child component",
+        "You're passing a function as a prop to a memoised child component",
         "You want to avoid unnecessary function recreation",
         "You're building reusable components or component libraries",
         "You’re using a stable callback in an effect"
@@ -144,7 +144,7 @@
       "ordered": false,
       "v": [
         "Your function doesn’t affect performance when recreated",
-        "You’re not passing it to memoized children",
+        "You’re not passing it to memoised children",
         "Your dependencies change frequently (useCallback won’t help much)"
       ]
     },
@@ -162,7 +162,7 @@
     },
     {
       "t": "p",
-      "v": "Don’t wrap every function in useCallback by default. Only use it for actual memoization needs."
+      "v": "Don’t wrap every function in useCallback by default. Only use it for actual memoisation needs."
     },
     {
       "t": "h3",
@@ -174,7 +174,7 @@
     },
     {
       "t": "h3",
-      "v": "3. Using it without memoized children"
+      "v": "3. Using it without memoised children"
     },
     {
       "t": "p",
@@ -192,7 +192,7 @@
         "Use with stable dependencies to avoid re-creating the function",
         "Combine with useEffect when passing a callback that must not change",
         "Profile performance with dev tools before applying",
-        "Clean up side effects when passing memoized callbacks to useEffect"
+        "Clean up side effects when passing memoised callbacks to useEffect"
       ]
     },
     {
@@ -211,7 +211,7 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "It returns a memoized version of your function",
+        "It returns a memoised version of your function",
         "It helps avoid unnecessary re-renders",
         "It should be used selectively, not everywhere"
       ]

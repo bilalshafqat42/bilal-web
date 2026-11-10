@@ -7,7 +7,7 @@
   "tags": [
     "Tools"
   ],
-  "words": 755,
+  "words": 737,
   "blocks": [
     {
       "t": "p",
@@ -26,8 +26,8 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Best For : Small teams and visual learners.",
-        "Standout Features : Power-ups for integrations, automation, and templates."
+        "Best For: Small teams and visual learners.",
+        "Standout Features: Power-ups for integrations, automation, and templates."
       ]
     },
     {
@@ -43,8 +43,8 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Best For : Teams working on collaborative projects.",
-        "Standout Features : Task dependencies, project templates, and workload management."
+        "Best For: Teams working on collaborative projects.",
+        "Standout Features: Task dependencies, project templates, and workload management."
       ]
     },
     {
@@ -60,8 +60,8 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Best For : Dynamic teams with evolving needs.",
-        "Standout Features : Custom dashboards, automation, and integrations with popular tools like Slack and Zoom."
+        "Best For: Dynamic teams with evolving needs.",
+        "Standout Features: Custom dashboards, automation, and integrations with popular tools like Slack and Zoom."
       ]
     },
     {
@@ -77,8 +77,8 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Best For : Individuals seeking a straightforward to-do list.",
-        "Standout Features : Natural language input for task creation, productivity tracking, and cross-platform sync."
+        "Best For: Individuals seeking a straightforward to-do list.",
+        "Standout Features: Natural language input for task creation, productivity tracking, and cross-platform sync."
       ]
     },
     {
@@ -94,8 +94,8 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Best For : Teams needing a comprehensive productivity suite.",
-        "Standout Features : Custom fields, built-in docs, and time tracking."
+        "Best For: Teams needing a comprehensive productivity suite.",
+        "Standout Features: Custom fields, built-in docs, and time tracking."
       ]
     },
     {
@@ -111,8 +111,8 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Best For : Individuals and Office 365 users.",
-        "Standout Features : Cloud sync, shared lists, and daily task suggestions."
+        "Best For: Individuals and Office 365 users.",
+        "Standout Features: Cloud sync, shared lists, and daily task suggestions."
       ]
     },
     {
@@ -128,8 +128,8 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Best For : Creative teams and knowledge workers.",
-        "Standout Features : Templates, wikis, and a drag-and-drop interface."
+        "Best For: Creative teams and knowledge workers.",
+        "Standout Features: Templates, wikis, and a drag-and-drop interface."
       ]
     },
     {
@@ -145,8 +145,8 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Best For : Enterprise teams and complex projects.",
-        "Standout Features : Advanced reporting, workload views, and integration with over 400 tools."
+        "Best For: Enterprise teams and complex projects.",
+        "Standout Features: Advanced reporting, workload views, and integration with over 400 tools."
       ]
     },
     {
@@ -162,8 +162,8 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Best For : Startups and remote teams.",
-        "Standout Features : Team message boards, schedule management, and document sharing."
+        "Best For: Startups and remote teams.",
+        "Standout Features: Team message boards, schedule management, and document sharing."
       ]
     },
     {
@@ -173,14 +173,14 @@
     },
     {
       "t": "p",
-      "v": "Integrated with Google Workspace, Google Tasks offers a simple, no-frills way to manage your to-do list. Its integration with Gmail and Google Calendar ensures your tasks are always accessible and up-to-date."
+      "v": "Integrated with Google Workspace, Google Tasks offers a simple, no-frills way to manage your to-do list. Its integration with Gmail and Google Calendar ensures your tasks are always accessible and up to date."
     },
     {
       "t": "list",
       "ordered": false,
       "v": [
-        "Best For : Google Workspace users.",
-        "Standout Features : Seamless Gmail integration, subtasks, and mobile accessibility."
+        "Best For: Google Workspace users.",
+        "Standout Features: Seamless Gmail integration, subtasks, and mobile accessibility."
       ]
     },
     {

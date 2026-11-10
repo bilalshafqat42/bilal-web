@@ -146,7 +146,7 @@ const faqs = [
   {
     question: "Do you work on UK developments as well as Dubai ones?",
     answer:
-      "Yes. LEOS Developments is headquartered in Weybridge, Surrey with offices in London and an experience centre in Dubai, so the work already ran across both markets. The buyer for a Dubai off-plan unit is frequently not in Dubai, which is a large part of why the campaign and the page have to be built together.",
+      "Yes. LEOS Developments is headquartered in Weybridge, Surrey, with offices in London and an experience centre in Dubai, so the work already ran across both markets. The buyer for a Dubai off-plan unit is frequently not in Dubai, which is a large part of why the campaign and the page have to be built together.",
   },
 ];
 

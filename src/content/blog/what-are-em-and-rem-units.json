@@ -7,14 +7,14 @@
   "tags": [
     "CSS"
   ],
-  "words": 615,
+  "words": 611,
   "blocks": [
     {
       "t": "list",
       "ordered": false,
       "v": [
-        "EM (Relative to Parent Element): EM units are relative to the font size of the element's parent. For instance, if the font size of the parent is 16px and you set an element's font size to 2em , the resulting size will be 2 * 16px = 32px . The EM unit cascades, meaning its value is affected by the parent element’s computed font size.",
-        "REM (Relative to Root Element): REM, short for “Root EM,” is always relative to the font size of the root element ( <html> ). For example, if the root element’s font size is 16px , setting an element’s font size to 2rem will result in 2 * 16px = 32px , regardless of its parent element."
+        "EM (Relative to Parent Element): EM units are relative to the font size of the element's parent. For instance, if the font size of the parent is 16px and you set an element's font size to 2em, the resulting size will be 2 * 16px = 32px. The EM unit cascades, meaning its value is affected by the parent element’s computed font size.",
+        "REM (Relative to Root Element): REM, short for “Root EM,” is always relative to the font size of the root element ( <html> ). For example, if the root element’s font size is 16px, setting an element’s font size to 2rem will result in 2 * 16px = 32px, regardless of its parent element."
       ]
     },
     {

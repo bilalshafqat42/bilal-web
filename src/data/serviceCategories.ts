@@ -302,6 +302,9 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     // The page is named for the search, not for the brand's current name.
     slug: "facebook-ads",
     title: "Facebook & Meta Ads",
+    // Set explicitly: the default template reads "How Facebook & Meta Ads
+    // works in practice", a plural subject with a singular verb.
+    depthHeading: "How Facebook and Meta ads work in practice",
     accent: "violet",
     headline: "Facebook ads in Dubai: the creative targets, the form decides what you get",
     intro:
@@ -381,7 +384,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       {
         question: "Can lead gen forms feed my CRM?",
         answer:
-          "Yes, and they should. LinkedIn lead gen forms convert well because they pre-fill from the profile, which is also why they need the same qualifying question Meta forms do. Wired into the CRM with the campaign attached, so the source survives to the point where someone can tell you whether it produced revenue.",
+          "Yes, and they should. LinkedIn lead gen forms convert well because they pre-fill from the profile, which is also why they need the same qualifying question Meta forms do. Wire them into the CRM with the campaign attached, so the source survives to the point where someone can tell you whether it produced revenue.",
       },
     ],
     items: [
@@ -1329,7 +1332,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     title: "CRM & MarTech Integration",
     headline: "A CRM consultant in Dubai for the layer where leads get lost",
     intro:
-      "Most leads a business loses were not lost to bad marketing, which is why a CRM consultant in Dubai is usually called in after the ads are already working. They were lost to a follow-up that never happened, because nothing was tracking them properly. This connects campaigns, website and CRM into one system: HubSpot, Zoho or Salesforce configured around how your team actually sells, server-side tracking so conversion data survives browser restrictions, and automation so a new enquiry gets a response in minutes.",
+      "Most leads a business loses were not lost to bad marketing. They were lost to a follow-up that never happened, because nothing was tracking them properly, which is why a CRM consultant in Dubai is usually called in after the ads are already working. This connects campaigns, website and CRM into one system: HubSpot, Zoho or Salesforce configured around how your team actually sells, server-side tracking so conversion data survives browser restrictions, and automation so a new enquiry gets a response in minutes.",
     metaTitle: "Freelance CRM Consultant in Dubai | Bilal Shafqat",
     metaDescription:
       "Freelance CRM consultant in Dubai: HubSpot, Zoho and Salesforce setup, server-side tracking, Conversions API and automation workflows.",
@@ -1338,11 +1341,6 @@ export const megaMenuGroups: MegaMenuGroup[] = [
         question: "Which CRMs do you work with?",
         answer:
           "HubSpot, Zoho and Salesforce most often. If you use something else, get in touch and we will confirm fit.",
-      },
-      {
-        question: "What is server-side tracking and why does it matter?",
-        answer:
-          "It sends conversion data, such as a completed form, directly from your server to platforms like Meta and Google, instead of relying only on a browser pixel. It matters because ad blockers, cookie restrictions and iOS privacy changes have made browser tracking substantially less reliable.",
       },
       {
         question: "We already have a CRM. Can you just fix the automation?",

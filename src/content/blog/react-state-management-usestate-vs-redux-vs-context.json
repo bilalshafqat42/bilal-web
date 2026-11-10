@@ -96,7 +96,7 @@
         "Very easy to learn and use",
         "Great for fast prototyping and small components",
         "Not designed for sharing state between multiple components",
-        "Can become messy when passed through many levels (props drilling)"
+        "Can become messy when passed through many levels (prop drilling)"
       ]
     },
     {
