@@ -32,8 +32,8 @@ const points = [
     body: "I am based in Dubai and work on Dubai hours, so you get answers during your working day, not overnight from another time zone. Businesses in Abu Dhabi and Sharjah get the same service through calls and screen shares, with a meeting in person when it helps. I also work with clients in the UK on the same terms.",
   },
   {
-    title: "How to choose a digital marketing expert in Dubai",
-    body: "Ask to see live work, not a slide. Ask who will own the ad accounts, the website and the analytics (it should be you). Ask what one number they will report on each month. And ask who builds the landing page, because most wasted ad spend in Dubai is a good ad sending people to a slow or vague page.",
+    title: "How to choose the best freelance digital marketer in Dubai",
+    body: "The best digital marketing expert in Dubai for you is the one who can show results like the ones you need. Ask to see live work, not a slide. Ask who will own the ad accounts, the website and the analytics (it should be you). Ask what one number they will report on each month. And ask who builds the landing page, because most wasted ad spend in Dubai is a good ad sending people to a slow or vague page.",
   },
 ];
 
