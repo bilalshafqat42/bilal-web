@@ -70,8 +70,10 @@ export const POSITIONING =
 // the homepage, and /about was the page whose title led with the name. The
 // keyword stays in full after it.
 export const HOME_TITLE = "Bilal Shafqat: Freelance Digital Marketer in Dubai, UAE";
+// Second sentence reworded 2026-11-11 to carry "digital marketing freelancer
+// in Dubai", the variant with the most searches (720 a month, Ubersuggest UAE).
 export const HOME_DESCRIPTION =
-  "Bilal Shafqat, freelance digital marketer in Dubai, UAE. Freelance digital marketing: paid ads, SEO, social and the pages your ads land on.";
+  "Bilal Shafqat, freelance digital marketer in Dubai, UAE. A digital marketing freelancer in Dubai for paid ads, SEO, social and the pages ads land on.";
 
 /** The /blog index's title and description, shared with the paginated pages
  *  so the two cannot drift. Rewritten 2026-10-14: the old line led with React
