@@ -60,7 +60,7 @@ export const TRACKED = [
   ["/services/marketing-automation", "marketing automation dubai"],
   // 2026-10-19: "consultant" left to /services/crm-marketing-automation.
   ["/services/zoho-crm-integration", "zoho crm implementation dubai"],
-  ["/services/hubspot-integration", "hubspot integration dubai"],
+  ["/services/hubspot-integration", "hubspot integration provider dubai"],
   ["/services/salesforce-integration", "salesforce integration dubai"],
   ["/services/custom-crm-development", "custom crm development dubai"],
   ["/services/ui-ux-design", "ui ux designer dubai"],
