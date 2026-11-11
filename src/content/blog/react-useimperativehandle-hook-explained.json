@@ -3,12 +3,12 @@
   "title": "React useImperativeHandle Hook Explained with Real Examples and Best Practices",
   "description": "Ever needed to call a function inside a child component from the parent? React’s useImperativeHandle hook makes that possible.",
   "published": "2025-07-01",
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-11-11",
   "tags": [
     "React Hooks",
     "React Js"
   ],
-  "words": 544,
+  "words": 542,
   "blocks": [
     {
       "t": "h2",
@@ -243,7 +243,7 @@
     },
     {
       "t": "p",
-      "v": "✅ Great for:"
+      "v": "Great for:"
     },
     {
       "t": "list",
@@ -256,7 +256,7 @@
     },
     {
       "t": "p",
-      "v": "❌ Avoid it when:"
+      "v": "Avoid it when:"
     },
     {
       "t": "list",

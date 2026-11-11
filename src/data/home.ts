@@ -139,7 +139,7 @@ export const audiences: Audience[] = [
  *  three of the capability ledger (2026-10-19). */
 export const resultStatsFor = (): Stat[] => [
   {
-    value: `${yearsExperience()}+`,
+    value: `${yearsExperience()}`,
     label: "Years, one point of contact",
     detail: "Strategy, design and build without a handoff layer",
     meta: "Based in Dubai, UAE",
@@ -279,7 +279,7 @@ export const homeFaqs = [
     // were putting smaller businesses off before they got in touch), so the
     // answer explains how pricing works rather than giving numbers.
     q: "How much does a freelance digital marketer in Dubai charge?",
-    a: "It depends on what you need, so I quote rather than publish a price list. After a free 30-minute call you get a fixed price in writing, by the project or by the month, sized to your goals and your budget. Smaller businesses often start with one campaign or one landing page and grow from there. Ad spend is always separate and paid directly by you.",
+    a: "It depends on what you need, so I quote rather than publish a price list. After a free 30-minute call you get a price range, then a fixed price in writing once the scope is agreed, by the project or by the month, sized to your goals and your budget. Smaller businesses often start with one campaign or one landing page and grow from there. Ad spend is always separate and paid directly by you.",
   },
   {
     q: "Do you build mobile apps?",
@@ -303,6 +303,21 @@ export const homeFaqs = [
     // attached to projects, which is what the logo row already claims and no
     // more.
     a: "Campaigns, websites and apps for LEOS Developments, a property developer in the UK and Dubai. The published case studies cover Hadley Heights, Weybridge Gardens and Cavendish Square: off-plan lead generation, launch and sales-gallery sites, and the CRM behind the enquiries.",
+  },
+  {
+    // The next three added 2026-11-11 from the competitor comparison: the
+    // questions the page ranking first answers and this one did not. Every
+    // answer restates something already true elsewhere on the site.
+    q: "Should I hire a freelancer or an agency?",
+    a: "It depends on the size of the job. A freelancer suits a business that wants the person doing the work to be the person they brief, on one or two channels at a time. An agency suits a large programme running many channels every week with several people involved. I have written up [freelancer vs agency in Dubai](/freelance-digital-marketer-vs-agency-dubai) honestly, including when an agency is the better answer.",
+  },
+  {
+    q: "Is there a minimum commitment?",
+    a: "Project work is one agreed scope with no ongoing commitment. A monthly retainer has a three-month minimum, because paid campaigns and SEO need that long to learn and show a trend. A one-off review session is exactly that.",
+  },
+  {
+    q: "Who owns the ad accounts, the website and the data?",
+    a: "You do, from day one. The domain, hosting, ad accounts and analytics stay in your name, and I work inside them with my own access. If we stop working together, nothing has to be moved or handed back.",
   },
   {
     q: "What actually happens in the free consultation?",

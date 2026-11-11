@@ -11,7 +11,7 @@ import WhatsAppLink from "@/components/ui/WhatsAppLink";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Honeypot from "@/components/forms/Honeypot";
 import FieldError from "@/components/forms/FieldError";
-import { useFieldErrors } from "@/lib/useFieldErrors";
+import { EMAIL_PATTERN, useFieldErrors } from "@/lib/useFieldErrors";
 
 const fieldClass =
   "w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink placeholder:text-faint outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20";
@@ -123,7 +123,8 @@ export default function HealthCheckForm() {
           <label htmlFor="hc-email" className={labelClass}>
             Email <span className="text-gold">*</span>
           </label>
-          <input id="hc-email" type="email" required value={values.email} onChange={set("email")} {...fieldProps("hc-email")} className={`mt-2 ${fieldClass}`} placeholder="you@company.com" autoComplete="email" maxLength={254} />
+          <input id="hc-email" type="email"
+          pattern={EMAIL_PATTERN} required value={values.email} onChange={set("email")} {...fieldProps("hc-email")} className={`mt-2 ${fieldClass}`} placeholder="you@company.com" autoComplete="email" maxLength={254} />
           <FieldError id="hc-email" message={errors["hc-email"]} />
         </div>
         <div>

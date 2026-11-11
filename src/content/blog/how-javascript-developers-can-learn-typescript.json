@@ -3,11 +3,11 @@
   "title": "How JavaScript Developers Can Learn TypeScript Easily",
   "description": "How JavaScript developers can learn TypeScript: the key concepts, a step-by-step setup, migration best practices and where it pays off.",
   "published": "2025-06-12",
-  "updatedAt": "2026-10-26",
+  "updatedAt": "2026-11-11",
   "tags": [
     "Typescript"
   ],
-  "words": 721,
+  "words": 710,
   "blocks": [
     {
       "t": "h2",
@@ -49,7 +49,7 @@
     },
     {
       "t": "p",
-      "v": "Since it compiles to plain JavaScript, every valid JS file is also a valid TS file, which makes it easy to adopt incrementally."
+      "v": "Because TypeScript is a superset of JavaScript, almost any valid JS file can be renamed to .ts, which makes it easy to adopt gradually."
     },
     {
       "t": "h2",
@@ -259,11 +259,11 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Use any sparingly – It disables TypeScript’s benefits.",
-        "Start with strict mode OFF – Gradually improve types, then enable strict mode.",
-        "Use tsc --watch – Automatically recompile on changes.",
-        "Adopt interfaces before typing everything – Focus on shaping your data first.",
-        "Leverage your IDE – VSCode and TypeScript are the perfect combo."
+        "Use any sparingly: It disables TypeScript’s benefits.",
+        "Start with strict mode OFF: Gradually improve types, then enable strict mode.",
+        "Use tsc --watch: Automatically recompile on changes.",
+        "Adopt interfaces before typing everything: Focus on shaping your data first.",
+        "Leverage your IDE: VSCode and TypeScript are the perfect combo."
       ]
     },
     {
@@ -364,11 +364,11 @@
     },
     {
       "t": "p",
-      "v": "🔁 Share this article with your dev friends"
+      "v": "Share this article with your dev friends"
     },
     {
       "t": "p",
-      "v": "💬 Got questions? Leave a comment below or contact us anytime!"
+      "v": "Got questions? Get in touch."
     }
   ],
   "metaTitle": "How JavaScript Developers Can Learn TypeScript"

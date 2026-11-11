@@ -453,9 +453,17 @@ export default function NavBar({ menu }: { menu: MenuColumn[] }) {
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
+    // The drawer is `lg:hidden`. Widening past lg (a tablet turned sideways)
+    // hid it while `open` stayed true, and the page could not scroll. Close it.
+    const wide = window.matchMedia("(min-width: 1024px)");
+    const onWide = (e: MediaQueryListEvent) => {
+      if (e.matches) setOpen(false);
+    };
+    wide.addEventListener("change", onWide);
     return () => {
       document.body.style.overflow = prev;
       window.removeEventListener("keydown", onKey);
+      wide.removeEventListener("change", onWide);
     };
   }, [open]);
 

@@ -299,6 +299,8 @@ const nextConfig: NextConfig = {
         // into its own anchor text. No source on the site produces it now, but
         // Google holds the URL, so it goes to the page it was clearly meant for.
         { source: "/portfolio/texdaleTexdale", destination: "/portfolio/texdale", permanent: true },
+        // Page 1 of the archive is /blog itself; the numbered URL was a 404.
+        { source: "/blog/page/1", destination: "/blog", permanent: true },
         // Everything else under the old /portfolio/leos/ structure (Search
         // Console 404s of 2026-10-24, e.g. /portfolio/leos/social-media/5)
         // goes to the client page. Listed after the exact rule above so that

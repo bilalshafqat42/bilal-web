@@ -30,8 +30,31 @@ import { OG_IMAGES } from "@/lib/ogImage";
 import Eyebrow from "@/components/ui/Eyebrow";
 import LinkedText from "@/components/ui/LinkedText";
 
+/**
+ * One contextual link to the homepage from each marketing service page, added
+ * 2026-11-11. The homepage owns "freelance digital marketer in Dubai" and its
+ * variants, but 144 of its 153 internal links were the breadcrumb "Home" and
+ * the other nine all used one anchor. Each page gets a different variant, in a
+ * sentence that is true on that page: one person plans and does the work.
+ */
+const HOME_ANCHOR: Record<string, string> = {
+  "digital-marketing": "digital marketing freelancer in Dubai",
+  "seo": "freelance digital marketing expert in Dubai",
+  "google-ads": "digital marketing specialist in Dubai",
+  "facebook-ads": "freelance digital marketer in Dubai",
+  "linkedin-marketing": "digital marketing consultant in Dubai",
+  "social-media-marketing": "digital marketing freelancer in Dubai",
+  "email-marketing": "freelance digital marketing expert in Dubai",
+  "paid-marketing": "digital marketing specialist in Dubai",
+  "marketing-automation": "digital marketing consultant in Dubai",
+};
+
 
 type PageProps = { params: Promise<{ slug: string }> };
+
+// Only the pre-built slugs (2026-11-11), like the other dynamic routes: an
+// unknown /services/xyz is a 404 without a server render to find that out.
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return megaMenuGroups.map((c) => ({ slug: c.slug }));
@@ -145,7 +168,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                   href="/pricing"
                   className="tap-target inline-flex items-center gap-2 text-sm font-semibold text-muted underline decoration-1 underline-offset-[6px] transition-colors hover:text-ink"
                 >
-                  What this costs
+                  How pricing works
                 </Link>
               </div>
 
@@ -187,6 +210,15 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
                 </Reveal>
               ))}
             </div>
+            {HOME_ANCHOR[category.slug] ? (
+              <p className="mt-10 max-w-2xl border-t border-border pt-8 text-base leading-relaxed text-muted">
+                Every part of this is planned and done by one person. I work as a{" "}
+                <Link href="/" className="text-ink underline decoration-gold/40 underline-offset-[6px] hover:text-gold">
+                  {HOME_ANCHOR[category.slug]}
+                </Link>
+                , so there is no account manager between you and the work.
+              </p>
+            ) : null}
           </div>
         </section>
 

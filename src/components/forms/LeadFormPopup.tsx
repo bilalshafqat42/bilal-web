@@ -9,7 +9,7 @@ import WhatsAppLink from "@/components/ui/WhatsAppLink";
 import { useFocusTrap } from "@/lib/focusTrap";
 import Honeypot from "@/components/forms/Honeypot";
 import FieldError from "@/components/forms/FieldError";
-import { useFieldErrors } from "@/lib/useFieldErrors";
+import { EMAIL_PATTERN, useFieldErrors } from "@/lib/useFieldErrors";
 
 const POPUP_MESSAGE =
   "Hi Bilal, I found you through bilalshafqat.com and wanted to ask about a project.";
@@ -233,6 +233,7 @@ export default function LeadFormPopup() {
                       {...fieldProps("lead-email")}
                       name="email"
                       type="email"
+          pattern={EMAIL_PATTERN}
                       autoComplete="email"
                       required
                       className="mt-1.5 w-full rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-faint outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20"
@@ -274,7 +275,7 @@ export default function LeadFormPopup() {
                   {TURNSTILE_ENABLED ? <div ref={turnstileRef} /> : null}
 
                   {status === "error" ? (
-                    <div className="flex items-start gap-2 rounded-xl border border-red-500/20 bg-red-500/5 px-4 py-3 text-xs text-red-300">
+                    <div role="alert" className="flex items-start gap-2 rounded-xl border border-red-500/20 bg-red-500/5 px-4 py-3 text-xs text-red-300">
                       <AlertCircle size={14} className="mt-0.5 shrink-0" />
                       <span>
                         Something went wrong. Please email{" "}

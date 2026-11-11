@@ -71,7 +71,7 @@ export const HEALTH_CHECK_FAQS: Faq[] = [
   {
     question: "Is the health check really free?",
     answer:
-      "Yes. There is nothing to pay and no card to enter. It is a short review of ten points, not the paid review session listed on the pricing page, and it is written to be useful on its own.",
+      "Yes. There is nothing to pay and no card to enter. It is a short review of ten points, not a paid review, and it is written to be useful on its own.",
   },
   {
     question: "Do I have to hire you afterwards?",

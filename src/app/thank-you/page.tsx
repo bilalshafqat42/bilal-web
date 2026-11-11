@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   // nothing useful and would let people arrive here without converting, which
   // pollutes the very measurement it exists to provide.
   robots: { index: false, follow: false },
+  // No canonical (2026-11-11). Without its own `alternates` this page inherited
+  // the layout's canonical of "/", so a noindex page named the homepage as its
+  // main copy. Setting `alternates` replaces the layout's whole, which drops it.
+  alternates: { types: { "application/rss+xml": [{ url: "/rss.xml", title: "Bilal Shafqat: Writing" }] } },
 };
 
 type PageProps = {

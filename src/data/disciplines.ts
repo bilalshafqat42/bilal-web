@@ -251,7 +251,7 @@ export const disciplines: Discipline[] = [
           heading: "One codebase, two platforms, and why that was the right call",
           paragraphs: [
             "These apps are React Native, which means iOS and Android were built once rather than twice. The saving is real and it is not the fifty per cent people expect: there is still platform-specific work, separate testing on both, and two store submissions and two sets of compliance to plan for at release. What it removes is the budget pressure that normally causes Android to be treated as the version that gets done second and tested least.",
-            "In this region that matters more than it would elsewhere. Android is the majority platform across much of the UAE audience, and an app that was clearly built for iOS and ported afterwards is obvious to the people using it.",
+            "In this region that matters more than it would elsewhere. Android is a large share of the UAE audience, and an app that was clearly built for iOS and ported afterwards is obvious to the people using it.",
           ],
         },
         {

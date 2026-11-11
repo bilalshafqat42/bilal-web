@@ -69,7 +69,7 @@ export default function DubaiFocus() {
         <div className="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6">
           <CtaButton href="/appointment">Book a free 30-minute call</CtaButton>
           <p className="text-sm text-muted">
-            Free, no obligation, and you leave with a plan and a fixed price.
+            Free, no obligation, and you leave with a plan and a price range.
           </p>
         </div>
       </div>

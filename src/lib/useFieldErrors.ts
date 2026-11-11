@@ -4,6 +4,13 @@ import { useCallback, useRef, useState, type FocusEvent, type FormEvent } from "
 
 type Field = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
+
+/** Same pattern as the lead API (`src/app/api/lead/route.ts`). */
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+/** The same rule as an HTML `pattern`, so the browser blocks the submit too. */
+export const EMAIL_PATTERN = "[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}";
+
 /** A field's own check beyond the browser's, e.g. `normaliseWebsite`. Returns
  *  the message to show, or "" when the value is fine. */
 export type FieldCheck = (value: string) => string;
@@ -39,7 +46,10 @@ export function useFieldErrors(checks: Partial<Record<string, FieldCheck>> = NO_
       if (el.validity.valueMissing || (el.required && !value)) {
         return touched.current.has(el.id) ? "This field is required." : "";
       }
-      if (el.validity.typeMismatch && el.type === "email") {
+      // The server's own rule as well (2026-11-11). The browser accepts
+      // "name@gmail", the server rejects it, and the visitor used to see a
+      // generic "something went wrong" instead of being told to fix a typo.
+      if (el.type === "email" && (el.validity.typeMismatch || (value && !EMAIL.test(value)))) {
         return "That email address doesn't look right. Try something like you@company.com.";
       }
       if (el.validity.tooLong) return "That is longer than this field allows.";

@@ -3,7 +3,7 @@
   "title": "React Hooks Explained: The Ultimate Guide for Developers",
   "description": "React hooks explained: what they are, why they matter, how the key hooks work in function components, and the common mistakes to avoid.",
   "published": "2025-03-09",
-  "updatedAt": "2026-10-26",
+  "updatedAt": "2026-11-11",
   "tags": [
     "React Js"
   ],
@@ -54,7 +54,7 @@
     },
     {
       "t": "h3",
-      "v": "1. useState – Managing Local State"
+      "v": "1. useState: Managing Local State"
     },
     {
       "t": "p",
@@ -81,7 +81,7 @@
     },
     {
       "t": "h3",
-      "v": "2. useEffect – Handling Side Effects"
+      "v": "2. useEffect: Handling Side Effects"
     },
     {
       "t": "p",
@@ -122,7 +122,7 @@
     },
     {
       "t": "h3",
-      "v": "3. useContext – Avoiding Props Drilling"
+      "v": "3. useContext: Avoiding Props Drilling"
     },
     {
       "t": "p",
@@ -134,7 +134,7 @@
     },
     {
       "t": "h3",
-      "v": "4. useRef – Accessing DOM Elements & Persisting Values"
+      "v": "4. useRef: Accessing DOM Elements & Persisting Values"
     },
     {
       "t": "p",
@@ -146,7 +146,7 @@
     },
     {
       "t": "h3",
-      "v": "5. useReducer – Managing Complex State Logic"
+      "v": "5. useReducer: Managing Complex State Logic"
     },
     {
       "t": "p",
@@ -158,7 +158,7 @@
     },
     {
       "t": "h3",
-      "v": "6. useMemo – Optimising Performance"
+      "v": "6. useMemo: Optimising Performance"
     },
     {
       "t": "p",
@@ -170,7 +170,7 @@
     },
     {
       "t": "h3",
-      "v": "7. useCallback – Memoising Functions"
+      "v": "7. useCallback: Memoising Functions"
     },
     {
       "t": "p",

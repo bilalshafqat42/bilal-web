@@ -3,12 +3,12 @@
   "title": "Mastering Flexbox in CSS: The Ultimate Guide for Responsive Web Design",
   "description": "Mastering Flexbox in CSS: the key container and item properties for aligning and spacing elements in a responsive layout, with FAQs.",
   "published": "2025-02-07",
-  "updatedAt": "2026-09-30",
+  "updatedAt": "2026-11-11",
   "tags": [
     "CSS",
     "Flexbox"
   ],
-  "words": 608,
+  "words": 578,
   "blocks": [
     {
       "t": "h2",
@@ -28,23 +28,23 @@
     },
     {
       "t": "p",
-      "v": "✅ Simplifies layout design – No need for complex CSS hacks or float-based layouts."
+      "v": "Simplifies layout design: No need for complex CSS hacks or float-based layouts."
     },
     {
       "t": "p",
-      "v": "✅ Supports responsive design – Adjusts elements dynamically based on screen size."
+      "v": "Supports responsive design: Adjusts elements dynamically based on screen size."
     },
     {
       "t": "p",
-      "v": "✅ Efficient space distribution – Evenly spaces elements inside a container."
+      "v": "Efficient space distribution: Evenly spaces elements inside a container."
     },
     {
       "t": "p",
-      "v": "✅ Better alignment options – Easily align elements both horizontally and vertically."
+      "v": "Better alignment options: Easily align elements both horizontally and vertically."
     },
     {
       "t": "p",
-      "v": "✅ Eliminates margin and padding issues – Prevents layout inconsistencies across browsers."
+      "v": "Eliminates margin and padding issues: Prevents layout inconsistencies across browsers."
     },
     {
       "t": "h2",
@@ -66,10 +66,10 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "row (default) – Aligns items from left to right.",
-        "row-reverse – Aligns items from right to left.",
-        "column – Stacks items vertically from top to bottom.",
-        "column-reverse – Stacks items vertically from bottom to top."
+        "row (default): Aligns items from left to right.",
+        "row-reverse: Aligns items from right to left.",
+        "column: Stacks items vertically from top to bottom.",
+        "column-reverse: Stacks items vertically from bottom to top."
       ]
     },
     {
@@ -88,12 +88,12 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "flex-start – Aligns items to the start of the container.",
-        "flex-end – Aligns items to the end of the container.",
-        "center – Centres items horizontally.",
-        "space-between – Distributes items with space between them.",
-        "space-around – Places equal space around each item.",
-        "space-evenly – Ensures equal spacing between items."
+        "flex-start: Aligns items to the start of the container.",
+        "flex-end: Aligns items to the end of the container.",
+        "center: Centres items horizontally.",
+        "space-between: Distributes items with space between them.",
+        "space-around: Places equal space around each item.",
+        "space-evenly: Ensures equal spacing between items."
       ]
     },
     {
@@ -112,11 +112,11 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "stretch (default) – Items stretch to fit the container.",
-        "flex-start – Aligns items at the top.",
-        "flex-end – Aligns items at the bottom.",
-        "center – Centres items vertically.",
-        "baseline – Aligns items based on their text baselines."
+        "stretch (default): Items stretch to fit the container.",
+        "flex-start: Aligns items at the top.",
+        "flex-end: Aligns items at the bottom.",
+        "center: Centres items vertically.",
+        "baseline: Aligns items based on their text baselines."
       ]
     },
     {
@@ -155,11 +155,11 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "auto – Inherits from the parent container.",
-        "flex-start – Aligns the item at the top.",
-        "flex-end – Aligns the item at the bottom.",
-        "center – Centres the item vertically.",
-        "stretch – Stretches the item to fill the container."
+        "auto: Inherits from the parent container.",
+        "flex-start: Aligns the item at the top.",
+        "flex-end: Aligns the item at the bottom.",
+        "center: Centres the item vertically.",
+        "stretch: Stretches the item to fill the container."
       ]
     },
     {

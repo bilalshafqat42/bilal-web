@@ -4,7 +4,7 @@
   "metaTitle": "Google Tag Manager Update, October 2026",
   "description": "The Google Tag Manager update of October 2026 changes how containers send data and handle gtag config. Who it affects, and five checks.",
   "published": "2026-10-16",
-  "updatedAt": "2026-10-16",
+  "updatedAt": "2026-11-11",
   "kind": "News",
   "tags": [
     "Digital Marketing",
@@ -29,7 +29,7 @@
     },
     {
       "t": "p",
-      "v": "That matters more than it sounds. On most sites I audit, the Google tag script is the single largest file on the page, and every extra script slows the first screen a visitor sees. Google says the change should make sites faster, collect data more reliably and keep settings and user access in one place inside the container. Each destination tag is also tied clearly to its destination, so diagnostics should be easier to read."
+      "v": "That matters more than it sounds. On most sites I audit, the Google tag script is one of the heaviest scripts on the page, and every extra script slows the first screen a visitor sees. Google says the change should make sites faster, collect data more reliably and keep settings and user access in one place inside the container. Each destination tag is also tied clearly to its destination, so diagnostics should be easier to read."
     },
     {
       "t": "p",
@@ -94,7 +94,7 @@
       "v": "If you are not sure which group your site falls into, or what your container is firing, that is a short audit rather than a project. It is part of how I set up [[tracking for paid campaigns|/services/paid-marketing]], and it is cheaper than a month of decisions made on the wrong numbers."
     }
   ],
-  "words": 859,
+  "words": 860,
   "image": {
     "src": "/blog/gtm-update/card.jpg",
     "alt": "Quote card on the Google Tag Manager update: Google Tag Manager changed, check your tracking",

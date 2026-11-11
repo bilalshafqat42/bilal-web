@@ -121,7 +121,7 @@
     },
     {
       "t": "p",
-      "v": "If the answer is no, it only displays information, you are mostly in front-end territory. If the answer is yes, it stores enquiries, accounts, orders, bookings, uploads, anything, you need back-end capability and you should not hire someone who treats it as an afterthought."
+      "v": "If the answer is no (it only displays information), you are mostly in front-end territory. If the answer is yes (it stores enquiries, accounts, orders, bookings, uploads, anything), you need back-end capability and you should not hire someone who treats it as an afterthought."
     },
     {
       "t": "h2",
@@ -173,7 +173,7 @@
     },
     {
       "t": "p",
-      "v": "Ask what happens when a payment succeeds but the confirmation email fails, or what they do when an integration goes down. Someone with real back-end experience answers immediately and in detail, because they have lived it. Someone without changes the subject to frameworks."
+      "v": "Ask what happens when a payment succeeds but the confirmation email fails, or what they do when an integration goes down. Someone with real back-end experience answers immediately and in detail, because they have lived it. Someone without it changes the subject to frameworks."
     },
     {
       "t": "h3",
@@ -188,5 +188,5 @@
       "v": "Published 4 October 2026 by a Dubai-based freelance full stack developer."
     }
   ],
-  "words": 659
+  "words": 660
 }

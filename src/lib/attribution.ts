@@ -36,6 +36,33 @@ export type Attribution = Partial<Record<(typeof PARAMS)[number], string>> & {
 
 const KEY = "bs-attribution";
 
+/*
+ * The last two in-site paths, kept by `RouteHistory` in the layout.
+ *
+ * Added 2026-11-11. `document.referrer` is set once per full page load and
+ * never changes on client-side navigation, so a visitor who went
+ * /services/google-ads -> /contact through a Next link was recorded with
+ * pageOfInterest "/contact". This in-memory record is updated on every route
+ * change. Memory only: nothing is written to storage, so it needs no consent.
+ */
+let currentPath: string | undefined;
+let previousPath: string | undefined;
+
+export function notePath(path: string) {
+  if (path === currentPath) return;
+  previousPath = currentPath;
+  currentPath = path;
+}
+
+/** The in-site page before this one, or undefined on a first page load. During
+ *  the render of a new page the route effect has not run yet, so `currentPath`
+ *  is still the page they came from. */
+function previousInSitePath(): string | undefined {
+  const here = window.location.pathname;
+  if (currentPath && currentPath.split("?")[0] !== here) return currentPath;
+  return previousPath && previousPath.split("?")[0] !== here ? previousPath : undefined;
+}
+
 function fromCurrentUrl(): Attribution {
   if (typeof window === "undefined") return {};
   const q = new URLSearchParams(window.location.search);
@@ -85,9 +112,9 @@ export function getAttribution(): Attribution {
   }
   // Same-origin referrer only. An external referrer is already captured as
   // `referrer` at landing; here we want "which of my pages sent them here".
-  let internalReferrer: string | undefined;
+  let internalReferrer: string | undefined = previousInSitePath();
   try {
-    if (document.referrer) {
+    if (!internalReferrer && document.referrer) {
       const r = new URL(document.referrer);
       if (r.origin === window.location.origin && r.pathname !== window.location.pathname) {
         internalReferrer = r.pathname + r.search;
@@ -101,11 +128,15 @@ export function getAttribution(): Attribution {
   const isContactPage = path === "/contact";
   const pageOfInterest = isContactPage ? internalReferrer || path : path;
 
+  // Ad click IDs and the full URL (which can carry them) only with consent
+  // (2026-11-11). The banner says "Decline and nothing is stored", and a click
+  // ID saved to the CRM is stored. Without consent the lead keeps the path.
+  const consented = hasConsent();
   return {
     ...stored,
-    ...fromCurrentUrl(),
+    ...(consented ? fromCurrentUrl() : {}),
     submittedFrom: path,
-    pageUrl: window.location.href,
+    pageUrl: consented ? window.location.href : window.location.origin + path,
     internalReferrer,
     pageOfInterest,
   };

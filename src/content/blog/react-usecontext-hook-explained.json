@@ -3,12 +3,12 @@
   "title": "React useContext Hook Explained (With Real Examples and Best Practices)",
   "description": "The React useContext hook explained: how the Context API works, a real auth example, and how to share state without prop drilling.",
   "published": "2025-06-20",
-  "updatedAt": "2026-10-14",
+  "updatedAt": "2026-11-11",
   "tags": [
     "React Hooks",
     "React Js"
   ],
-  "words": 427,
+  "words": 425,
   "blocks": [
     {
       "t": "h2",
@@ -89,7 +89,7 @@
     },
     {
       "t": "p",
-      "v": "Let’s walk through a real-world example of using useContext() to manage a global theme."
+      "v": "Let’s walk through a real-world example of using useContext() to manage authentication."
     },
     {
       "t": "h3",

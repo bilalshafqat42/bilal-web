@@ -87,7 +87,7 @@ export const caseStudyDepth: Record<string, DepthBlock[]> = {
     {
       heading: "What was delivered",
       paragraphs: [
-        "Desktop and mobile landing pages for the Provence Edition launch, with Register Your Interest as the single primary goal and the price qualifier placed high so unqualified traffic filters itself out before it costs a click.",
+        "Desktop and mobile landing pages for the Provence Edition launch, with Register Your Interest as the single primary goal and the price qualifier placed high so unqualified traffic filters itself out before it costs a lead.",
         "A secondary Check Construction Progress route gives existing buyers somewhere to go that does not compete with the registration form, the same pattern used on Hadley Heights and for the same reason.",
       ],
     },

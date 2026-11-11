@@ -3,11 +3,11 @@
   "title": "7 Tips to Improve CTR (Click-Through Rate)",
   "description": "Seven ways to improve CTR (click-through rate) from search: titles and H1s that agree, honest headlines, short titles and matching intent.",
   "published": "2025-01-17",
-  "updatedAt": "2026-10-14",
+  "updatedAt": "2026-11-11",
   "tags": [
     "Seo"
   ],
-  "words": 710,
+  "words": 701,
   "blocks": [
     {
       "t": "p",
@@ -26,7 +26,7 @@
       "ordered": false,
       "v": [
         "Tip: Craft a title tag that grabs attention but remains relevant to the content.",
-        "Example: If your title tag is \"10 Ways to Save on Travel,\" your H1 could be \"Your Ultimate Guide to Travel Savings in 2023.\"",
+        "Example: If your title tag is \"10 Ways to Save on Travel,\" your H1 could be \"Your Ultimate Guide to Travel Savings in 2026.\"",
         "SEO Insight: Google values clarity. Misalignment between the title tag and H1 can confuse users and search engines, potentially reducing your rankings."
       ]
     },
@@ -94,7 +94,7 @@
       "ordered": false,
       "v": [
         "Tip: Use your title to showcase value. For instance, \"Free Shipping on Handmade Jewellery\" instantly tells users what they gain.",
-        "Example: \"Eco-Friendly Sneakers – Sustainable Comfort for Runners.\"",
+        "Example: \"Eco-Friendly Sneakers: Sustainable Comfort for Runners.\"",
         "SEO Insight: Highlighting your USP can attract niche audiences and improve your rankings for long-tail keywords."
       ]
     },
@@ -121,7 +121,7 @@
     },
     {
       "t": "p",
-      "v": "Adding brackets to your title can increase clicks by up to 38%, according to studies. Brackets allow you to highlight extra value, such as \"[Free Guide]\" or \"[2026 Update].\""
+      "v": "Brackets can make a title stand out. They allow you to highlight extra value, such as \"[Free Guide]\" or \"[2026 Update].\""
     },
     {
       "t": "list",

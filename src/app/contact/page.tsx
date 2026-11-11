@@ -54,7 +54,7 @@ const channels = [
     label: "Call",
     value: SITE_PHONE,
     href: `tel:${SITE_PHONE_HREF}`,
-    note: `Alternate line: ${SITE_PHONE_ALT}.`,
+    note: `Alternative line: ${SITE_PHONE_ALT}.`,
   },
 ];
 

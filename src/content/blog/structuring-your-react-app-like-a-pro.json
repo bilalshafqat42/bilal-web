@@ -3,7 +3,7 @@
   "title": "Structuring Your React App Like a Pro",
   "description": "How to structure a React app like a pro: folders for assets, styles, components, helpers, hooks, contexts and layouts, and why each matters.",
   "published": "2025-02-18",
-  "updatedAt": "2026-09-30",
+  "updatedAt": "2026-11-11",
   "tags": [
     "React Js"
   ],
@@ -44,7 +44,7 @@
     },
     {
       "t": "h2",
-      "v": "1. Assets – Managing Static Files"
+      "v": "1. Assets: Managing Static Files"
     },
     {
       "t": "p",
@@ -70,7 +70,7 @@
     },
     {
       "t": "h2",
-      "v": "2. Styles – Organising Stylesheets and Themes"
+      "v": "2. Styles: Organising Stylesheets and Themes"
     },
     {
       "t": "p",
@@ -96,7 +96,7 @@
     },
     {
       "t": "h2",
-      "v": "3. Components – Reusable UI Elements"
+      "v": "3. Components: Reusable UI Elements"
     },
     {
       "t": "p",
@@ -122,7 +122,7 @@
     },
     {
       "t": "h2",
-      "v": "4. Helpers – Utility Functions"
+      "v": "4. Helpers: Utility Functions"
     },
     {
       "t": "p",
@@ -147,7 +147,7 @@
     },
     {
       "t": "h2",
-      "v": "5. Hooks – Custom React Hooks"
+      "v": "5. Hooks: Custom React Hooks"
     },
     {
       "t": "p",
@@ -172,7 +172,7 @@
     },
     {
       "t": "h2",
-      "v": "6. Contexts – State Management with React Context API"
+      "v": "6. Contexts: State Management with React Context API"
     },
     {
       "t": "p",
@@ -197,7 +197,7 @@
     },
     {
       "t": "h2",
-      "v": "7. Layouts – Structuring Pages"
+      "v": "7. Layouts: Structuring Pages"
     },
     {
       "t": "p",

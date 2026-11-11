@@ -3,12 +3,12 @@
   "title": "Top 10 JavaScript Array Methods You Should Know",
   "description": "Master the most essential JavaScript array methods. Learn how and when to use forEach, map, filter, reduce, find, and more.",
   "published": "2025-06-17",
-  "updatedAt": "2026-10-14",
+  "updatedAt": "2026-11-11",
   "tags": [
     "Javascript",
     "Es6"
   ],
-  "words": 527,
+  "words": 524,
   "blocks": [
     {
       "t": "h2",
@@ -28,7 +28,7 @@
     },
     {
       "t": "h2",
-      "v": "1. forEach() – Loop Through Items"
+      "v": "1. forEach(): Loop Through Items"
     },
     {
       "t": "p",
@@ -60,7 +60,7 @@
     },
     {
       "t": "h2",
-      "v": "2. map() – Transform Every Item"
+      "v": "2. map(): Transform Every Item"
     },
     {
       "t": "p",
@@ -91,7 +91,7 @@
     },
     {
       "t": "h2",
-      "v": "3. filter() – Extract What You Need"
+      "v": "3. filter(): Extract What You Need"
     },
     {
       "t": "p",
@@ -126,7 +126,7 @@
     },
     {
       "t": "h2",
-      "v": "4. reduce() – Aggregate to a Single Value"
+      "v": "4. reduce(): Aggregate to a Single Value"
     },
     {
       "t": "p",
@@ -157,7 +157,7 @@
     },
     {
       "t": "h2",
-      "v": "5. find() – Get the First Match"
+      "v": "5. find(): Get the First Match"
     },
     {
       "t": "p",
@@ -173,7 +173,7 @@
     },
     {
       "t": "h2",
-      "v": "6. findIndex() – Get the Index of First Match"
+      "v": "6. findIndex(): Get the Index of First Match"
     },
     {
       "t": "p",
@@ -200,7 +200,7 @@
     },
     {
       "t": "h2",
-      "v": "7. includes() – Check If a Value Exists"
+      "v": "7. includes(): Check If a Value Exists"
     },
     {
       "t": "p",
@@ -227,7 +227,7 @@
     },
     {
       "t": "h2",
-      "v": "8. some() – Check If Any Item Passes"
+      "v": "8. some(): Check If Any Item Passes"
     },
     {
       "t": "p",
@@ -243,7 +243,7 @@
     },
     {
       "t": "h2",
-      "v": "9. every() – Check If All Items Pass"
+      "v": "9. every(): Check If All Items Pass"
     },
     {
       "t": "p",
@@ -259,7 +259,7 @@
     },
     {
       "t": "h2",
-      "v": "10. sort() – Sort Array Items"
+      "v": "10. sort(): Sort Array Items"
     },
     {
       "t": "p",
@@ -285,10 +285,10 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "flat() – Flattens nested arrays",
-        "fill() – Fills an array with static values",
-        "splice() – Adds/removes elements (mutates)",
-        "at() – Retrieves the element at a specific index (supports negative indexing)"
+        "flat(): Flattens nested arrays",
+        "fill(): Fills an array with static values",
+        "splice(): Adds/removes elements (mutates)",
+        "at(): Retrieves the element at a specific index (supports negative indexing)"
       ]
     },
     {
@@ -370,7 +370,7 @@
     },
     {
       "t": "p",
-      "v": "These are the building blocks of modern JavaScript, especially in libraries like React, Vue, and Node.js. Mastering these makes you a faster, smarter, and more readable developer."
+      "v": "These are the building blocks of modern JavaScript, especially in libraries like React, Vue, and Node.js. Mastering these makes you a faster developer and your code more readable."
     }
   ],
   "metaTitle": "Top 10 JavaScript Array Methods You Should Know"

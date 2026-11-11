@@ -12,12 +12,12 @@ import { OG_IMAGES } from "@/lib/ogImage";
 import Eyebrow from "@/components/ui/Eyebrow";
 
 export const metadata: Metadata = {
-  title: "What a Freelance Digital Marketer Costs in Dubai",
+  title: "Digital Marketing Pricing in Dubai: How I Quote",
   description:
-    "Digital marketing cost in Dubai: how a freelance digital marketer in Dubai prices work, what moves the cost, and how to get a fixed quote fast.",
+    "Digital marketing pricing in Dubai: how I quote work, what moves the cost up or down, and how to get a fixed price in writing within a business day.",
   alternates: { canonical: "/pricing" },
   openGraph: {
-    title: "What a Freelance Digital Marketer Costs in Dubai",
+    title: "Digital Marketing Pricing in Dubai: How I Quote",
     description:
       "The four engagement models, what pushes cost up or down, and how to get a real figure quickly.",
     type: "website",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "What a Freelance Digital Marketer Costs in Dubai",
+    title: "Digital Marketing Pricing in Dubai: How I Quote",
     description:
       "The four engagement models, what pushes cost up or down, and how to get a real figure quickly.",
     images: OG_IMAGES.map((i) => i.url),
@@ -68,7 +68,7 @@ export default function PricingPage() {
     {
       question: "Do you charge hourly or by project?",
       answer:
-        "By project wherever the scope can be defined, because that puts the risk of estimating on me rather than you. Retainers are priced monthly. Hourly is used only for advisory work where the output genuinely is time.",
+        "By project wherever the scope can be defined, because that puts the risk of estimating on me rather than you. Retainers are priced monthly. Advisory sessions are a fixed fee agreed in advance. Nothing is billed by the hour.",
     },
     {
       question: "What currency do you work in?",
@@ -96,7 +96,7 @@ export default function PricingPage() {
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
         <PageOpener
           crumbs={[{ label: "Home", href: "/" }, { label: "Pricing" }]}
-          title="What a freelance digital marketer costs in Dubai"
+          title="Digital marketing pricing in Dubai, and how I quote"
           standfirst={
             <>
               <p>
@@ -106,6 +106,11 @@ export default function PricingPage() {
                 starts. No packages and no tiers you have to squeeze into.
               </p>
               <p>
+                I work as a{" "}
+                <Link href="/" className="text-ink underline decoration-gold/40 underline-offset-[6px] hover:text-gold">
+                  digital marketing freelancer in Dubai
+                </Link>
+                , so you deal with the person who quotes and does the work.
                 Below: the four ways of working compared, what pushes the number up or
                 down, and how to get a real figure for your own project, usually within
                 one business day.
@@ -172,12 +177,12 @@ export default function PricingPage() {
           <div className="site-container">
             <div className="max-w-3xl">
               <Reveal>
-                {/* Retitled 2026-10-14 so a subheading carries the page's
-                    keyword, "freelance digital marketer costs in Dubai", in the
-                    order people search it. The section already compared the
-                    four options; only the heading changed. */}
+                {/* Retitled again 2026-11-11: the old heading repeated
+                    "freelance digital marketer ... in Dubai", which belongs to
+                    the homepage. This page now targets "digital marketing
+                    pricing in Dubai", the query it actually gets shown for. */}
                 <h2 className="t-h2 text-ink">
-                  What a freelance digital marketer costs in Dubai, against the alternatives
+                  Freelancer, agency or in-house: how the costs compare
                 </h2>
                 <p className="mt-6 text-base leading-relaxed text-muted">
                   The market splits four ways and the prices are not comparable,
@@ -219,8 +224,9 @@ export default function PricingPage() {
                 <p className="mt-5 text-base leading-relaxed text-muted">
                   If what you have in mind does not fit the budget, I will say so on
                   the call and suggest the smaller version that still moves your
-                  number. You leave with a clear plan and a fixed price either way,
-                  with no obligation and no follow-up sequence.
+                  number. You leave with a clear plan and a price range either way, a
+                  fixed price in writing follows, and there is no obligation and no
+                  follow-up sequence.
                 </p>
               </Reveal>
 

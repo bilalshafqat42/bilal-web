@@ -363,7 +363,7 @@ export const serviceDepth: Record<string, Depth> = {
       {
         question: "Why do you call it Facebook when it is Meta?",
         answer:
-          "Because that is what people in Dubai type. \"Meta ads dubai\" has no measurable search volume; \"facebook ads dubai\" has ninety searches a month. The company renamed itself in 2021 and the searches did not follow. Naming the page after the brand rather than the search would cost real visitors.",
+          "Because that is what people in Dubai type. \"Meta ads dubai\" has no measurable search volume; \"facebook ads dubai\" has steady monthly searches. The company renamed itself in 2021 and the searches did not follow. Naming the page after the brand rather than the search would cost real visitors.",
       },
     ],
   },
@@ -522,7 +522,7 @@ export const serviceDepth: Record<string, Depth> = {
         // back here, where the rest of "app development in Dubai" lives.
         heading: "Android app development in Dubai: half the work, most of the market",
         paragraphs: [
-          "Android is the majority platform across much of this region, and it is routinely treated as the version that gets done second and tested least. The symptoms are familiar: a layout built to iOS proportions, a back gesture that does nothing, notifications that behave differently and nobody checked, and testing done on one recent flagship rather than on the four-year-old device a real customer is using.",
+          "Android is a large share of the UAE audience, and it is routinely treated as the version that gets done second and tested least. The symptoms are familiar: a layout built to iOS proportions, a back gesture that does nothing, notifications that behave differently and nobody checked, and testing done on one recent flagship rather than on the four-year-old device a real customer is using.",
           "Building cross-platform in React Native means the Android app is not a port. It is built in the same pass from the same codebase, which removes the budget pressure that usually causes the shortcuts. What still needs separate attention is the platform behaviour: navigation conventions, permissions, background limits, notification channels, and the Play Store's own review rules, which differ from Apple's.",
           "Testing happens on real Android hardware rather than only in an emulator, including older devices and weak connections, because that is the condition most of your users are actually in. The detail, Play Console and device testing included, is on the [Android developer](/services/android-app-development) page.",
         ],
@@ -1159,7 +1159,7 @@ export const serviceDepth: Record<string, Depth> = {
       {
         question: "How much does a website cost?",
         answer:
-          "It depends on scope, and any number quoted before understanding that is guesswork. A focused landing page and a multi-language site with a CMS and CRM integration are different projects. Send me what you have in mind and you will get a real number rather than a range.",
+          "It depends on scope, and any number quoted before understanding that is guesswork. A focused landing page and a multi-language site with a CMS and CRM integration are different projects. Send me what you have in mind and you will get a realistic range within a business day, then a fixed price once the scope is agreed.",
       },
       {
         question: "How long does a website take?",
@@ -1258,7 +1258,7 @@ export const serviceDepth: Record<string, Depth> = {
       {
         question: "What does CMS development cost?",
         answer:
-          "It depends on the platform and the scope, and the published starting figures are on the pricing page. As a rule, the platform is rarely the expensive part. Custom design, integrations with your CRM and the number of page templates decide the cost far more than whether it is Wix or WordPress.",
+          "It depends on the platform and the scope, and the pricing page explains how projects are quoted. As a rule, the platform is rarely the expensive part. Custom design, integrations with your CRM and the number of page templates decide the cost far more than whether it is Wix or WordPress.",
       },
       {
         question: "Is a headless CMS better than WordPress?",

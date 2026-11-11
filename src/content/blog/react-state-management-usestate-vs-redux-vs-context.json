@@ -3,12 +3,12 @@
   "title": "React State Management: useState vs Redux vs Context, What to Use and When",
   "description": "useState vs Redux vs Context for React state management: what each is best for, a side-by-side comparison, and a guide to choosing.",
   "published": "2025-06-16",
-  "updatedAt": "2026-10-26",
+  "updatedAt": "2026-11-11",
   "tags": [
     "React Js",
     "Redux"
   ],
-  "words": 843,
+  "words": 839,
   "blocks": [
     {
       "t": "h2",
@@ -358,10 +358,10 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Zustand – Minimal state management with hooks",
-        "Recoil – Atom-based state from Meta, now archived and no longer maintained, so avoid it for new projects",
-        "Jotai – Atomic state for React",
-        "MobX – Observable-driven reactivity"
+        "Zustand: Minimal state management with hooks",
+        "Recoil: Atom-based state from Meta, now archived and no longer maintained, so avoid it for new projects",
+        "Jotai: Atomic state for React",
+        "MobX: Observable-driven reactivity"
       ]
     },
     {

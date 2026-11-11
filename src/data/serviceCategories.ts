@@ -1340,7 +1340,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       {
         question: "Which CRMs do you work with?",
         answer:
-          "HubSpot, Zoho and Salesforce most often. If you use something else, get in touch and we will confirm fit.",
+          "HubSpot, Zoho and Salesforce most often. If you use something else, get in touch and I will confirm whether it fits.",
       },
       {
         question: "We already have a CRM. Can you just fix the automation?",

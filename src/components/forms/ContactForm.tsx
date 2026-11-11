@@ -11,7 +11,7 @@ import Eyebrow from "@/components/ui/Eyebrow";
 import { secondaryButtonClass } from "@/components/ui/SecondaryButton";
 import Honeypot from "@/components/forms/Honeypot";
 import FieldError from "@/components/forms/FieldError";
-import { useFieldErrors } from "@/lib/useFieldErrors";
+import { EMAIL_PATTERN, useFieldErrors } from "@/lib/useFieldErrors";
 
 /** "/portfolio/leos-developments/hadley-heights" -> "Portfolio / Leos Developments / Hadley Heights" */
 function prettyPath(path: string): string {
@@ -38,11 +38,15 @@ const fieldClass =
  * it is browser-only state, and the snapshot is cached at module scope so React
  * gets a referentially stable value instead of a fresh object every render.
  */
-let cachedContext: { path: string; url: string } | null | undefined;
+// Cached per page of interest rather than once per module (2026-11-11), so a
+// second visit to /contact from a different page is not shown the first one.
+let cachedContext: { path: string; url: string } | null = null;
+let cachedKey: string | undefined;
 function readPageContext() {
-  if (cachedContext === undefined) {
-    const a = getAttribution();
-    const path = a.pageOfInterest || "";
+  const a = getAttribution();
+  const path = a.pageOfInterest || "";
+  if (path !== cachedKey) {
+    cachedKey = path;
     cachedContext =
       path && path !== "/contact" ? { path, url: a.pageUrl || window.location.href } : null;
   }
@@ -168,7 +172,8 @@ export default function ContactForm({ serviceOptions }: { serviceOptions: Servic
           <label htmlFor="email" className="block text-xs font-medium uppercase tracking-wide text-muted">
             Email <span className="text-gold">*</span>
           </label>
-          <input id="email" type="email" required value={values.email} onChange={set("email")} {...fieldProps("email")} className={`mt-2 ${fieldClass}`} placeholder="you@company.com" autoComplete="email" />
+          <input id="email" type="email"
+          pattern={EMAIL_PATTERN} required value={values.email} onChange={set("email")} {...fieldProps("email")} className={`mt-2 ${fieldClass}`} placeholder="you@company.com" autoComplete="email" />
           <FieldError id="email" message={errors.email} />
         </div>
         <div>

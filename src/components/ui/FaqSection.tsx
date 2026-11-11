@@ -3,6 +3,7 @@ import Reveal from "@/components/ui/Reveal";
 import Eyebrow from "@/components/ui/Eyebrow";
 
 import type { Faq } from "@/data/types";
+import LinkedText from "@/components/ui/LinkedText";
 
 export type { Faq };
 
@@ -109,7 +110,11 @@ export default function FaqSection({
                 {/* Capped in `ch`, not by a container width: the problem is the
                     ratio of font size to column, not the page. */}
                 <p className="mt-3 max-w-[68ch] text-base leading-relaxed text-muted">
-                  {f.answer}
+                  {/* LinkedText renders `[label](/path)` as a link and plain
+                      answers unchanged. Only the homepage FAQ, which carries
+                      no FAQPage schema, uses links, so schema text elsewhere
+                      still matches what is shown. */}
+                  <LinkedText text={f.answer} />
                 </p>
               </div>
             ))}

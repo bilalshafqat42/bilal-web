@@ -68,5 +68,6 @@ export const TRACKED = [
   ["/services/figma-design", "figma designer dubai"],
   ["/services/graphic-design-branding", "graphic designer in dubai"],
   ["/services/video-conversion", "video editor dubai"],
-  ["/pricing", "freelance digital marketer costs in dubai"],
+  ["/pricing", "digital marketing pricing dubai"],
+  ["/freelance-digital-marketer-vs-agency-dubai", "freelancer vs agency dubai"],
 ];

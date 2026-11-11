@@ -3,11 +3,11 @@
   "title": "Learn Node.js from Scratch: A Beginner's Guide to Backend Development",
   "description": "Start backend development with JavaScript. What Node.js is, why it runs the way it does, and how to build and run your first server from scratch.",
   "published": "2025-06-11",
-  "updatedAt": "2026-10-26",
+  "updatedAt": "2026-11-11",
   "tags": [
     "Node JS"
   ],
-  "words": 798,
+  "words": 794,
   "blocks": [
     {
       "t": "h2",
@@ -15,7 +15,7 @@
     },
     {
       "t": "p",
-      "v": "In the ever-evolving world of web development, learning backend technologies is crucial, and Node.js is one of the best platforms to start with. Built on Chrome’s V8 JavaScript engine, Node.js lets developers write fast, scalable, and server-side applications using JavaScript, the most widely used programming language in the world."
+      "v": "In the ever-evolving world of web development, learning backend technologies is crucial, and Node.js is one of the best platforms to start with. Built on Chrome’s V8 JavaScript engine, Node.js lets developers write fast, scalable server-side applications using JavaScript, the most widely used programming language in the world."
     },
     {
       "t": "p",
@@ -130,7 +130,7 @@
     },
     {
       "t": "h2",
-      "v": "Understanding npm – Node Package Manager"
+      "v": "Understanding npm: Node Package Manager"
     },
     {
       "t": "p",
@@ -172,11 +172,11 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Modules – Reusable blocks of code using require()",
-        "File System – Read/write local files using fs",
-        "HTTP – Build servers that handle requests/responses",
-        "Event Loop – Manage asynchronous code with efficiency",
-        "Express.js – A minimalist framework to speed up server-side development"
+        "Modules: Reusable blocks of code using require()",
+        "File System: Read/write local files using fs",
+        "HTTP: Build servers that handle requests/responses",
+        "Event Loop: Manage asynchronous code with efficiency",
+        "Express.js: A minimalist framework to speed up server-side development"
       ]
     },
     {
@@ -304,7 +304,7 @@
     },
     {
       "t": "p",
-      "v": "Whether you're aiming to become a full-stack developer, a backend specialist, or launch your own project, Node.js is a powerful first step."
+      "v": "Whether you're aiming to become a full-stack developer or a backend specialist, or to launch your own project, Node.js is a powerful first step."
     }
   ],
   "metaTitle": "Learn Node.js from Scratch: A Beginner's Guide"

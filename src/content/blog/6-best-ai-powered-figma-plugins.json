@@ -3,12 +3,12 @@
   "title": "6 Best AI Figma Plugins to Boost Your Design Efficiency",
   "description": "Six AI Figma plugins for layouts, copy, imagery and dark mode, what each one is for, and how to choose a Figma AI plugin worth keeping.",
   "published": "2025-02-04",
-  "updatedAt": "2026-10-26",
+  "updatedAt": "2026-11-11",
   "tags": [
     "Figma",
     "UI UX Design"
   ],
-  "words": 1237,
+  "words": 1219,
   "blocks": [
     {
       "t": "p",
@@ -43,9 +43,9 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "AI-powered layout suggestions – Quickly generate responsive layouts based on design best practices.",
-        "Pre-built UI components – Access a wide range of UI elements like buttons, forms, and cards.",
-        "Customisation options – Easily tweak designs to fit your brand’s aesthetics."
+        "AI-powered layout suggestions: Quickly generate responsive layouts based on design best practices.",
+        "Pre-built UI components: Access a wide range of UI elements like buttons, forms, and cards.",
+        "Customisation options: Easily tweak designs to fit your brand’s aesthetics."
       ]
     },
     {
@@ -68,9 +68,9 @@
     {
       "t": "list",
       "v": [
-        "Image search inside Figma – Find and place images without leaving the canvas.",
-        "Realistic mockups – Replace placeholder boxes with imagery that shows how the finished design will feel.",
-        "Licence terms – Check Lummi’s current terms before using images in client work."
+        "Image search inside Figma: Find and place images without leaving the canvas.",
+        "Realistic mockups: Replace placeholder boxes with imagery that shows how the finished design will feel.",
+        "Licence terms: Check Lummi’s current terms before using images in client work."
       ]
     },
     {
@@ -94,9 +94,9 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Automated dark mode conversion – No need to adjust every colour by hand.",
-        "Colour contrast optimisation – Ensures accessibility and readability.",
-        "Customisable settings – Modify elements based on preferences and branding."
+        "Automated dark mode conversion: No need to adjust every colour by hand.",
+        "Colour contrast optimisation: Ensures accessibility and readability.",
+        "Customisable settings: Modify elements based on preferences and branding."
       ]
     },
     {
@@ -120,9 +120,9 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "One-click background removal – Easily cut out subjects from images.",
-        "High-precision AI algorithm – Ensures clean and crisp cutouts.",
-        "Bulk processing – Remove backgrounds from multiple images at once."
+        "One-click background removal: Easily cut out subjects from images.",
+        "High-precision AI algorithm: Ensures clean and crisp cutouts.",
+        "Bulk processing: Remove backgrounds from multiple images at once."
       ]
     },
     {
@@ -146,9 +146,9 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Extensive logo library – Access thousands of brand logos in vector format.",
-        "Scalable without quality loss – Maintain high resolution regardless of size.",
-        "Quick search and insert – Find and add logos to designs in seconds."
+        "Extensive logo library: Access thousands of brand logos in vector format.",
+        "Scalable without quality loss: Maintain high resolution regardless of size.",
+        "Quick search and insert: Find and add logos to designs in seconds."
       ]
     },
     {
@@ -172,9 +172,9 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Context-aware AI writing – Generates smart suggestions for UX copy.",
-        "Grammar and clarity enhancements – Improve readability and coherence.",
-        "Seamless Figma integration – Edit and refine text without switching applications."
+        "Context-aware AI writing: Generates smart suggestions for UX copy.",
+        "Grammar and clarity enhancements: Improve readability and coherence.",
+        "Seamless Figma integration: Edit and refine text without switching applications."
       ]
     },
     {

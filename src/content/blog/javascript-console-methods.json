@@ -3,11 +3,11 @@
   "title": "JavaScript Console Methods You Must Know!",
   "description": "In this article, we will explore various JavaScript console methods, their use cases, and best practices for debugging efficiently.",
   "published": "2025-03-09",
-  "updatedAt": "2026-09-30",
+  "updatedAt": "2026-11-11",
   "tags": [
     "Javascript"
   ],
-  "words": 416,
+  "words": 407,
   "blocks": [
     {
       "t": "h2",
@@ -23,7 +23,7 @@
     },
     {
       "t": "h2",
-      "v": "1. console.log() – Print Output",
+      "v": "1. console.log(): Print Output",
       "href": "https://www.w3schools.com/jsref/met_console_log.asp"
     },
     {
@@ -40,7 +40,7 @@
     },
     {
       "t": "p",
-      "v": "💡 Tip: Use console.log() with template literals for better readability:"
+      "v": "Tip: Use console.log() with template literals for better readability:"
     },
     {
       "t": "code",
@@ -48,7 +48,7 @@
     },
     {
       "t": "h2",
-      "v": "2. console.error() – Highlight Errors"
+      "v": "2. console.error(): Highlight Errors"
     },
     {
       "t": "p",
@@ -64,7 +64,7 @@
     },
     {
       "t": "p",
-      "v": "💡 Tip: Use throw new Error() along with console.error() to provide more meaningful error messages:"
+      "v": "Tip: Use throw new Error() along with console.error() to provide more meaningful error messages:"
     },
     {
       "t": "code",
@@ -72,7 +72,7 @@
     },
     {
       "t": "h2",
-      "v": "3. console.warn() – Show Warnings"
+      "v": "3. console.warn(): Show Warnings"
     },
     {
       "t": "p",
@@ -88,11 +88,11 @@
     },
     {
       "t": "p",
-      "v": "💡 Tip: Use warnings to alert about deprecated features or potential performance issues."
+      "v": "Tip: Use warnings to alert about deprecated features or potential performance issues."
     },
     {
       "t": "h2",
-      "v": "4. console.table() – Display Data in Table Format"
+      "v": "4. console.table(): Display Data in Table Format"
     },
     {
       "t": "p",
@@ -108,11 +108,11 @@
     },
     {
       "t": "p",
-      "v": "💡 Tip: Use console.table() for debugging API responses and database queries."
+      "v": "Tip: Use console.table() for debugging API responses and database queries."
     },
     {
       "t": "h2",
-      "v": "5. console.group() & console.groupEnd() – Organise Logs"
+      "v": "5. console.group() & console.groupEnd(): Organise Logs"
     },
     {
       "t": "p",
@@ -128,11 +128,11 @@
     },
     {
       "t": "p",
-      "v": "💡 Tip: Use nested groups to organise logs hierarchically."
+      "v": "Tip: Use nested groups to organise logs hierarchically."
     },
     {
       "t": "h2",
-      "v": "6. console.trace() – Track Function Calls"
+      "v": "6. console.trace(): Track Function Calls"
     },
     {
       "t": "p",
@@ -148,11 +148,11 @@
     },
     {
       "t": "p",
-      "v": "💡 Tip: Use console.trace() inside event listeners and callbacks to trace execution paths."
+      "v": "Tip: Use console.trace() inside event listeners and callbacks to trace execution paths."
     },
     {
       "t": "h2",
-      "v": "7. console.time() & console.timeEnd() – Measure Execution Time"
+      "v": "7. console.time() & console.timeEnd(): Measure Execution Time"
     },
     {
       "t": "p",
@@ -168,11 +168,11 @@
     },
     {
       "t": "p",
-      "v": "💡 Tip: Use these methods to analyse function performance and optimise slow operations."
+      "v": "Tip: Use these methods to analyse function performance and optimise slow operations."
     },
     {
       "t": "h2",
-      "v": "8. console.count() & console.countReset() – Count Log Occurrences"
+      "v": "8. console.count() & console.countReset(): Count Log Occurrences"
     },
     {
       "t": "p",
@@ -188,11 +188,11 @@
     },
     {
       "t": "p",
-      "v": "💡 Tip: Use console.count() to track recursive function calls or loop iterations."
+      "v": "Tip: Use console.count() to track recursive function calls or loop iterations."
     },
     {
       "t": "h2",
-      "v": "9. console.clear() – Clean Up the Console"
+      "v": "9. console.clear(): Clean Up the Console"
     },
     {
       "t": "p",
@@ -208,7 +208,7 @@
     },
     {
       "t": "p",
-      "v": "💡 Tip: Be cautious while using console.clear() in production, as it may remove valuable debugging information."
+      "v": "Tip: Be cautious while using console.clear() in production, as it may remove valuable debugging information."
     },
     {
       "t": "h2",

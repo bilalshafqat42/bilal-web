@@ -118,7 +118,10 @@ for (const path of paths) {
       // supposed to repeat — `#business` is legitimately pointed at from both
       // `founder` and `publisher` on the same page. Counting typed references
       // as definitions produced a false duplicate report the first time.
-      if (n["@id"] && Object.keys(n).length > 2) ids.push(n["@id"]);
+      // Since 2026-11-11 references also carry `name` and `url` (see `ref()` in
+      // lib/schema.ts), because Google does not follow an @id across pages.
+      const REF_KEYS = new Set(["@id", "@type", "name", "url"]);
+      if (n["@id"] && Object.keys(n).some((k) => !REF_KEYS.has(k))) ids.push(n["@id"]);
       Object.values(n).forEach(walk);
     };
     walk(json);

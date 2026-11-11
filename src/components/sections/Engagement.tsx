@@ -153,7 +153,7 @@ export default function Engagement({
             <table className="w-full min-w-[56rem] border-collapse text-left">
               <caption className="sr-only">
                 The four engagement models compared by commitment, what suits each one,
-                what is included, time to start and reporting.
+                what is included and reporting.
               </caption>
 
               <thead>

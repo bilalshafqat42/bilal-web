@@ -4,7 +4,7 @@
   "metaTitle": "How to Choose a Mobile App Developer in Dubai",
   "description": "How to choose a mobile app developer in Dubai: the brief, tech stack, real costs, UAE data rules, CRM integration and red flags to avoid.",
   "published": "2026-10-16",
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-11-11",
   "tags": [
     "Mobile Apps",
     "Dubai"
@@ -16,7 +16,7 @@
     },
     {
       "t": "p",
-      "v": "I've worked across marketing, design and development since 2009, and I've built mobile products for real estate, including the sales and mobile apps written up in my [[LEOS Developments case studies|/portfolio/leos-developments]]. What I've seen again and again is that the hiring decision goes wrong before a single line of code is written. This guide covers what to get right first: the brief, the tech stack, the real cost picture, UAE data rules, CRM integration and the red flags that separate a solid developer from an expensive mistake."
+      "v": "I've worked across marketing, design and development since 2009, and I've built mobile products for real estate, including the sales and mobile apps written up in my [[property case studies|/portfolio/leos-developments]]. What I've seen again and again is that the hiring decision goes wrong before a single line of code is written. This guide covers what to get right first: the brief, the tech stack, the real cost picture, UAE data rules, CRM integration and the red flags that separate a solid developer from an expensive mistake."
     },
     {
       "t": "h2",
@@ -60,7 +60,7 @@
     },
     {
       "t": "p",
-      "v": "App quotes in Dubai vary widely, because two quotes for \"an app\" rarely describe the same thing. Instead of comparing headline numbers, compare what each quote includes. My own published starting points are on the [[pricing page|/pricing]]."
+      "v": "App quotes in Dubai vary widely, because two quotes for \"an app\" rarely describe the same thing. Instead of comparing headline numbers, compare what each quote includes. For my own work, you get a fixed price in writing after a free 30-minute call, and the [[pricing page|/pricing]] explains how it is worked out."
     },
     {
       "t": "p",
@@ -134,7 +134,7 @@
     },
     {
       "t": "p",
-      "v": "It depends on scope far more than on the developer's location: platforms, integrations, Arabic support and the admin tools behind the app. Compare quotes by what they include, ask for an all-in scope document, and see my published starting points on the [[pricing page|/pricing]]."
+      "v": "It depends on scope far more than on the developer's location: platforms, integrations, Arabic support and the admin tools behind the app. Compare quotes by what they include, and ask for an all-in scope document. I quote a fixed price after a free call."
     },
     {
       "t": "h3",
@@ -153,7 +153,7 @@
       "v": "Working products you can try, written confirmation that you own the code and the developer accounts, how they handle UAE data protection, a small paid scoping task before the full build, and a clear answer on how leads from the app will reach your CRM from day one."
     }
   ],
-  "words": 1281,
+  "words": 1296,
   "image": {
     "src": "/blog/app-developer/card.jpg",
     "alt": "Card on how to choose a mobile app developer in Dubai: choose the developer before the features",

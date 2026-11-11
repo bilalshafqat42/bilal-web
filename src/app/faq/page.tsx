@@ -12,10 +12,11 @@ import Eyebrow from "@/components/ui/Eyebrow";
 
 export const metadata: Metadata = pageMetadata({
   // "Freelance Marketer & Developer" until 2026-10-13. Same positioning change
-  // as /about and /contact (roadmap 397).
-  title: "FAQ | Hiring a Freelance Digital Marketer in Dubai",
+  // as /about and /contact (roadmap 397). Changed again 2026-11-11 so the
+  // title stops repeating the homepage's keyword word for word.
+  title: "FAQ | Working With Bilal Shafqat in Dubai",
   description:
-    "FAQs on hiring a freelance digital marketer in Dubai instead of an agency: how projects start, working across timezones, and measuring results.",
+    "Questions about working with Bilal Shafqat in Dubai rather than an agency: how projects start, working across timezones, and measuring results.",
   path: "/faq",
 });
 

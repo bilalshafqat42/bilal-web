@@ -7,7 +7,7 @@ import { SITE_EMAIL } from "@/lib/contact";
 import WhatsAppLink from "@/components/ui/WhatsAppLink";
 import Honeypot from "@/components/forms/Honeypot";
 import FieldError from "@/components/forms/FieldError";
-import { useFieldErrors } from "@/lib/useFieldErrors";
+import { EMAIL_PATTERN, useFieldErrors } from "@/lib/useFieldErrors";
 
 // Never displayed. Any failed send shows the panel below instead of the
 // server's text: on 2026-10-16 this form printed "Could not reach the lead
@@ -75,6 +75,7 @@ export default function InlineLeadForm({ service }: { service: string }) {
           id="inline-email"
           required
           type="email"
+          pattern={EMAIL_PATTERN}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           {...fieldProps("inline-email")}

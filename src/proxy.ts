@@ -91,6 +91,29 @@ function detectBot(userAgent: string): string | null {
  * wait on it — a slow or unreachable Performo should never slow the site
  * down for an AI crawler, let alone a real visitor.
  */
+/*
+ * Per-IP cap on reported bot hits (2026-11-11). Any client can send a
+ * "GPTBot" user agent, so without a cap a loop of fake requests inflated the
+ * answer-fetch figures SEO decisions are read from, and cost one Performo call
+ * each. Real crawlers rarely exceed this from one address; the request itself
+ * is still served, only the report is skipped. In memory, per instance.
+ */
+const BOT_HIT_WINDOW_MS = 60_000;
+const BOT_HITS_PER_WINDOW = 20;
+const botHits = new Map<string, { start: number; count: number }>();
+
+function botHitAllowed(ip: string): boolean {
+  const now = Date.now();
+  const entry = botHits.get(ip);
+  if (!entry || now - entry.start > BOT_HIT_WINDOW_MS) {
+    if (botHits.size > 5_000) botHits.clear();
+    botHits.set(ip, { start: now, count: 1 });
+    return true;
+  }
+  entry.count += 1;
+  return entry.count <= BOT_HITS_PER_WINDOW;
+}
+
 function reportBotHit(botName: string, userAgent: string, path: string, event: NextFetchEvent) {
   const apiUrl = process.env.CRM_LEAD_API_URL;
   const apiKey = process.env.CRM_LEAD_API_KEY;
@@ -107,7 +130,7 @@ function reportBotHit(botName: string, userAgent: string, path: string, event: N
     fetch(botHitUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json", "x-api-key": apiKey },
-      body: JSON.stringify({ botName, userAgent, path }),
+      body: JSON.stringify({ botName, userAgent: userAgent.slice(0, 256), path: path.slice(0, 512) }),
       // A hung Performo must not hold the function open (audit batch 1).
       signal: AbortSignal.timeout(3000),
     }).catch(() => {
@@ -158,7 +181,11 @@ export function proxy(request: NextRequest, event: NextFetchEvent) {
   const botName = detectBot(userAgent);
 
   if (botName) {
-    reportBotHit(botName, userAgent, request.nextUrl.pathname, event);
+    const ip =
+      request.headers.get("cf-connecting-ip") ||
+      request.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
+      "unknown";
+    if (botHitAllowed(ip)) reportBotHit(botName, userAgent, request.nextUrl.pathname, event);
   }
 
   // Case-sensitive on purpose. A next.config redirect cannot tell "/About"

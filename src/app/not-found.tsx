@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   // cannot be switched off, so declaring our own produced a second, different
   // robots tag. One "noindex" is enough: "follow" is the default when nofollow
   // is absent, so links on this page are still followed.
+  // No canonical (2026-11-11). Without its own `alternates` this page inherited
+  // the layout's canonical of "/", so a noindex page named the homepage as its
+  // main copy. Setting `alternates` replaces the layout's whole, which drops it.
+  alternates: { types: { "application/rss+xml": [{ url: "/rss.xml", title: "Bilal Shafqat: Writing" }] } },
 };
 
 export default function NotFound() {

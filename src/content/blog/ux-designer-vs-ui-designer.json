@@ -4,7 +4,7 @@
   "metaTitle": "UX Designer vs UI Designer: The Difference",
   "description": "Two roles that get written as one word. What each produces, why the order matters, and which one your project needs if you can only afford one.",
   "published": "2026-10-04",
-  "updatedAt": "2026-10-13",
+  "updatedAt": "2026-11-11",
   "tags": [
     "UI UX Design",
     "Design",
@@ -17,7 +17,7 @@
     },
     {
       "t": "p",
-      "v": "Job adverts compound it by asking for a UI/UX designer as though it were one qualification. In a small team it usually is one person. It is still two skills, and most people are genuinely strong at one of them."
+      "v": "Job adverts compound it by asking for a UI/UX designer as though it were one qualification. Most people are genuinely strong at one of them."
     },
     {
       "t": "p",
@@ -197,5 +197,5 @@
       "v": "Published 4 October 2026 by a Dubai-based designer and developer."
     }
   ],
-  "words": 798
+  "words": 783
 }

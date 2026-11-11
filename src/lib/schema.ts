@@ -1,4 +1,4 @@
-import { SITE_URL } from "./site";
+import { SITE_NAME, SITE_URL } from "./site";
 import { SITE_EMAIL, SITE_PHONE_HREF } from "./contact";
 
 /**
@@ -74,6 +74,12 @@ export const ID = {
 export const ref = (id: string, type: "Person" | "ProfessionalService" | "WebSite") => ({
   "@id": id,
   "@type": type,
+  // Name and url as well (2026-11-11). Google reads structured data one page
+  // at a time and does not follow an @id to a node defined on another URL, so
+  // on an article the author was a Person with no name. Same @id, so this is
+  // still one entity, not a second copy of it.
+  name: id === ID.website ? SITE_NAME : "Bilal Shafqat",
+  url: SITE_URL,
 });
 
 /** Real profiles, supplied by Bilal. Nothing here is inferred from a username

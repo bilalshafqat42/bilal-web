@@ -3,11 +3,11 @@
   "title": "Master Infinite Scroll in JavaScript with Just a Few Lines of Code",
   "description": "Infinite scroll in JavaScript in a few lines of code: detect the bottom of the page, load more items, show a loader and debounce the scroll.",
   "published": "2025-05-26",
-  "updatedAt": "2026-10-14",
+  "updatedAt": "2026-11-11",
   "tags": [
     "Javascript"
   ],
-  "words": 290,
+  "words": 258,
   "blocks": [
     {
       "t": "h2",
@@ -118,20 +118,36 @@
       "v": "FAQs"
     },
     {
-      "t": "p",
-      "v": "Q: Can I use this with real APIs?Yes! Replace fetchData() with a real fetch() call or API integration."
+      "t": "h3",
+      "v": "Can I use this with real APIs?"
     },
     {
       "t": "p",
-      "v": "Q: Is this better than pagination?It depends. Infinite scroll is ideal for mobile and social feeds. Pagination is better for SEO and precise navigation."
+      "v": "Yes! Replace fetchData() with a real fetch() call or API integration."
+    },
+    {
+      "t": "h3",
+      "v": "Is this better than pagination?"
     },
     {
       "t": "p",
-      "v": "Q: Can I use this in frameworks like React or Vue?Absolutely. The logic remains similar: you just manage state and DOM differently."
+      "v": "It depends. Infinite scroll is ideal for mobile and social feeds. Pagination is better for SEO and precise navigation."
+    },
+    {
+      "t": "h3",
+      "v": "Can I use this in frameworks like React or Vue?"
     },
     {
       "t": "p",
-      "v": "Q: How do I stop loading after all items are fetched?You can use a flag like hasMoreData and conditionally skip fetching when false."
+      "v": "Absolutely. The logic remains similar: you just manage state and DOM differently."
+    },
+    {
+      "t": "h3",
+      "v": "How do I stop loading after all items are fetched?"
+    },
+    {
+      "t": "p",
+      "v": "You can use a flag like hasMoreData and conditionally skip fetching when false."
     },
     {
       "t": "h2",

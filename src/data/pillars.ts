@@ -76,7 +76,7 @@ export const pillars: Pillar[] = [
     sections: [
       {
         title: "Google Ads & Performance Max",
-        body: "Search is the only channel where someone tells you what they want in their own words, which is why it is almost always where a budget should start. The work is less about writing ads than about controlling what you pay for: separating brand from category so you are not bidding against people looking for you by name, separating markets so the UAE is not lumped in with the UK, and building the negative keyword list that stops the other eighty per cent of the traffic. Performance Max will spend whatever you give it and reports back very little, so it goes in after the search campaigns have told us what converts, never before.",
+        body: "Search is the only channel where someone tells you what they want in their own words, which is why it is almost always where a budget should start. The work is less about writing ads than about controlling what you pay for: separating brand from category so you are not bidding against people looking for you by name, separating markets so the UAE is not lumped in with the UK, and building the negative keyword list that stops the traffic that was never going to convert. Performance Max will spend whatever you give it and reports back very little, so it goes in after the search campaigns have told us what converts, never before.",
         bullets: ["Search, Shopping and Performance Max", "Negative keyword lists, built before launch and maintained after", "Brand and category separated, so you stop paying twice for your own name", "Conversion tracking server-side, so the reporting survives ad blockers"],
       },
       {

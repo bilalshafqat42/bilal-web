@@ -131,8 +131,11 @@ export default function AboutPage() {
           }
           standfirst={
             <>
-              I&apos;m Bilal Shafqat, a freelance digital marketer in Dubai. I
-              run the campaign and build the page it lands on. Companies usually hire an agency for
+              I&apos;m Bilal Shafqat, a{" "}
+              <Link href="/" className="text-ink underline decoration-gold/40 underline-offset-[6px] hover:text-gold">
+                freelance digital marketer in Dubai
+              </Link>
+              . I run the campaign and build the page it lands on. Companies usually hire an agency for
               marketing, a developer for the website, and a freelancer for
               design, then spend their own time managing the handoffs between
               them. I do all of it myself, which means one brief, one point of

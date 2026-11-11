@@ -1218,7 +1218,7 @@ export const clients: Client[] = [
       {
         heading: "Built for search engines and AI assistants",
         paragraphs: [
-          "A buyer looking for a supplier now asks ChatGPT or Gemini as often as Google. Both answer from what they can read and trust, so the site states its facts plainly in text rather than in images: who AKS is, where it is, since when, and what each range does.",
+          "A buyer looking for a supplier increasingly asks ChatGPT or Gemini as well as Google. Both answer from what they can read and trust, so the site states its facts plainly in text rather than in images: who AKS is, where it is, since when, and what each range does.",
           "Structured data repeats those facts in a form machines read without guessing, and an llms.txt file gives AI assistants a short, accurate summary of the company. The aim is simple: when someone asks which manufacturers in Pakistan supply denim washing or dyeing auxiliaries, the answer can name AKS and describe it correctly.",
         ],
       },
@@ -1523,7 +1523,7 @@ export const clients: Client[] = [
           tag: "Weighted, not evenly split",
           label: "Menu",
           journey:
-            "Developments, investments, the LEOS Hub and news, as a slide-over rather than a tab bar, because five destinations of uneven importance do not divide well into equal tabs. Log out sits at the bottom in the accent colour, visible rather than buried in a settings screen two levels down.",
+            "Developments, investments, the LEOS Hub and news, as a slide-over rather than a tab bar, because four destinations of uneven importance do not divide well into equal tabs. Log out sits at the bottom in the accent colour, visible rather than buried in a settings screen two levels down.",
           mockup: true,
           capture: {
             src: "/portfolio/leos/mobile-app/leos-mobile-menu.avif",
@@ -1942,7 +1942,7 @@ export const clients: Client[] = [
       {
         question: "How do you market textile chemicals to technical buyers?",
         answer:
-          "Lead with the process, not slogans. The site sets out pretreatment, dyeing and finishing as three stages, eight product ranges and a catalogue of 87 products searchable by name or function, so a buyer with a process problem finds the answer quickly. Sample in. Bulk out. makes a trial the first step.",
+          "Lead with the process, not slogans. The site sets out pretreatment, dyeing and finishing as three stages, eight product ranges and a catalogue of 87 products searchable by name or function, so a buyer with a process problem finds the answer quickly. The line \"Sample in. Bulk out.\" makes a trial the first step.",
       },
       {
         question: "How does the website handle enquiries?",

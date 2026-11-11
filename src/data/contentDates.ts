@@ -42,7 +42,7 @@ export const contentDates: Record<string, string> = {
   // 2026-10-26: the free health check card under the listing.
   "/services": "2026-10-26",
   // 2026-10-26: the free website and marketing health check offer, new.
-  "/free-website-health-check": "2026-10-26",
+  "/free-website-health-check": "2026-11-11",
   // 2026-10-24: opener and description cover Texdale as well as LEOS; paid
   // marketing marked as having a case study (audit batch 2).
   // 2026-10-26: description, standfirst and grid name NextGen HR. Same day:
@@ -51,9 +51,9 @@ export const contentDates: Record<string, string> = {
   "/pricing": "2026-11-11",
   // 2026-10-24: the industry answer names both published sectors.
   // 2026-10-26: the industry answer names a third sector (NextGen HR).
-  "/faq": "2026-10-26",
+  "/faq": "2026-11-11",
   // 2026-10-26: a line pointing at the free health check.
-  "/contact": "2026-10-26",
+  "/contact": "2026-11-11",
   // 2026-10-24: description no longer leads with the name (roadmap 420).
   "/appointment": "2026-10-24",
   "/process": "2026-10-13",
@@ -86,7 +86,8 @@ export const SERVICES_CONTENT_DATE = "2026-10-13";
  *  date for every service page would either understate these or tell Google the
  *  other fourteen changed when they did not. */
 export const SERVICE_CONTENT_DATES: Record<string, string> = {
-  "cms-development": "2026-10-16",
+  "email-marketing": "2026-11-11",
+  "cms-development": "2026-11-11",
   "wordpress-development": "2026-10-26",
   "wix-development": "2026-10-16",
   "squarespace-development": "2026-10-16",
@@ -100,18 +101,18 @@ export const SERVICE_CONTENT_DATES: Record<string, string> = {
   // React Native, iOS, Android and app back end, and Figma. Their three
   // parents (CRM, mobile, web design) gained cards and links to them.
   "crm-integration": "2026-10-16",
-  "hubspot-integration": "2026-10-16",
+  "hubspot-integration": "2026-11-11",
   "salesforce-integration": "2026-10-26",
   "custom-crm-development": "2026-10-16",
   "app-backend-development": "2026-10-16",
   "figma-design": "2026-10-16",
-  "crm-marketing-automation": "2026-10-16",
-  "marketing-automation": "2026-10-29",
+  "crm-marketing-automation": "2026-11-11",
+  "marketing-automation": "2026-11-11",
   // Three more the same day: an FAQ or sentence each for strategist,
   // agency-comparison and freelance-manager questions buyers search for.
   // 2026-10-26: the proof block shows the Texdale case study with its Meta
   // creatives.
-  "social-media-marketing": "2026-10-26",
+  "social-media-marketing": "2026-11-11",
   // 2026-10-19: the SEO copy pass (one buyer query per page). Custom web
   // development, Zoho, iOS and Android retitled off their parents' phrases;
   // the mobile and web hubs given "mobile app developer" and "web developer"
@@ -121,28 +122,28 @@ export const SERVICE_CONTENT_DATES: Record<string, string> = {
   // ios and android: 2026-10-24, proof block added (audit batch 2).
   "ios-app-development": "2026-10-24",
   "android-app-development": "2026-10-24",
-  "website-app-development": "2026-10-26",
+  "website-app-development": "2026-11-11",
   // 2026-10-24: two FAQ answers name the UAE and the UK, matching areaServed.
-  "digital-marketing": "2026-10-24",
-  "facebook-ads": "2026-10-26",
+  "digital-marketing": "2026-11-11",
+  "facebook-ads": "2026-11-11",
   // 2026-10-20: one buyer phrase each in a heading (and for SEO, the intro):
   // "freelance SEO consultant", "LinkedIn marketing services", "custom web
   // development in Dubai".
-  "linkedin-marketing": "2026-10-20",
+  "linkedin-marketing": "2026-11-11",
   "custom-web-development": "2026-10-20",
   // 2026-10-24 (roadmap 420): the Ubersuggest targets, one phrase each in a
   // heading or FAQ question. SEO also gained a "Local SEO in Dubai" section;
   // web design a short UAE and Abu Dhabi section; graphic design a reworded
   // FAQ question. Web design and graphic design are dated in place above.
-  "seo": "2026-10-24",
+  "seo": "2026-11-11",
   // 2026-10-24 (audit batch 2): the mobile, React Native, iOS and Android
   // pages and web design now show their portfolio proof block.
   "react-native-development": "2026-10-24",
   // 2026-10-26: the proof block shows the Texdale case study with the
   // Texdale Field app prototype.
-  "mobile-app-development": "2026-10-26",
-  "google-ads": "2026-10-24",
-  "paid-marketing": "2026-10-24",
+  "mobile-app-development": "2026-11-11",
+  "google-ads": "2026-11-11",
+  "paid-marketing": "2026-11-11",
   // 2026-10-26 (roadmap 420, step 2): one buyer phrase each in the intro, a
   // heading or an FAQ: "Instagram ads in Dubai" (facebook-ads), "Salesforce
   // consultant in Dubai" (salesforce-integration), "WordPress website design
@@ -164,7 +165,7 @@ export function serviceContentDate(slug: string): string {
  *  src/data/caseStudies.ts`), so the older date understated a page that did
  *  not exist on 08-28. 2026-10-14: every project card now carries descriptive
  *  alt text. Refresh it when case study copy changes. */
-export const PORTFOLIO_CONTENT_DATE = "2026-10-24";
+export const PORTFOLIO_CONTENT_DATE = "2026-11-11";
 
 /** Each published client's own date, for its case study pages (overview,
  *  projects, app page). Added 2026-10-24 (audit batch 2): one shared date meant
@@ -176,15 +177,15 @@ export const PORTFOLIO_CONTENT_DATE = "2026-10-24";
  *  2978560), Texdale was published on 2026-10-24 (cca652b). A client not
  *  listed falls back to `PORTFOLIO_CONTENT_DATE`. */
 export const CLIENT_CONTENT_DATES: Record<string, string> = {
-  "leos-developments": "2026-10-16",
+  "leos-developments": "2026-11-11",
   // 2026-10-26: the Texdale Field app (design and prototype) and the Meta
   // campaign creatives added; scope cards and intro updated to match.
-  texdale: "2026-11-06",
+  texdale: "2026-11-11",
   // Published 2026-10-26.
   "nextgen-hr": "2026-11-06",
   // Published 2026-11-06. Texdale and NextGen moved to the same date for
   // their new FAQ sections.
-  "aks-chemicals": "2026-11-06",
+  "aks-chemicals": "2026-11-11",
 };
 
 export function clientContentDate(clientSlug: string): string {
@@ -202,7 +203,7 @@ export function clientContentDate(clientSlug: string): string {
 // 2026-10-26: NextGen HR's captures and the web development intro naming it.
 // Same day: Texdale's app prototype on the mobile and UI/UX pages and its
 // creatives on the social page, with their intros saying what each is.
-export const DISCIPLINE_CONTENT_DATE = "2026-10-29";
+export const DISCIPLINE_CONTENT_DATE = "2026-11-11";
 
 // Blog dates are not kept here. Each article's `dateModified` and sitemap
 // `lastModified` come from its own `updatedAt` in `src/content/blog/<slug>.json`,

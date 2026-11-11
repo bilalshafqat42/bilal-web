@@ -3,13 +3,13 @@
   "title": "5 Must-Know React Component Patterns for Scalable Code",
   "description": "Five React component patterns for reusable code, with examples: containers, HOCs, render props, compound components and custom hooks.",
   "published": "2025-06-08",
-  "updatedAt": "2026-10-26",
+  "updatedAt": "2026-11-11",
   "tags": [
     "Javascript",
     "Es6",
     "React Js"
   ],
-  "words": 495,
+  "words": 493,
   "blocks": [
     {
       "t": "p",
@@ -259,11 +259,11 @@
     },
     {
       "t": "p",
-      "v": "👉 Save this post. Bookmark it. And share it with your dev friends!"
+      "v": "Save this post. Bookmark it. And share it with your dev friends!"
     },
     {
       "t": "p",
-      "v": "📖 Want more? Browse more tutorials at bilalshafqat.com"
+      "v": "Want more? Browse more tutorials at bilalshafqat.com"
     }
   ]
 }

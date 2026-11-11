@@ -3,11 +3,11 @@
   "title": "React Tips and Tricks for Efficient Development",
   "description": "React tips for writing clean, efficient components: avoiding wrapper elements, using useCallback, and simplifying conditional rendering.",
   "published": "2025-02-13",
-  "updatedAt": "2026-10-26",
+  "updatedAt": "2026-11-11",
   "tags": [
     "React Js"
   ],
-  "words": 699,
+  "words": 646,
   "blocks": [
     {
       "t": "h2",
@@ -300,28 +300,52 @@
       "v": "Frequently Asked Questions (FAQs)"
     },
     {
-      "t": "p",
-      "v": "1. Why should I use React Fragments instead of wrapper <div> elements?React Fragments help reduce unnecessary DOM nodes, making your page load faster and your component structure cleaner."
+      "t": "h3",
+      "v": "Why should I use React Fragments instead of wrapper <div> elements?"
     },
     {
       "t": "p",
-      "v": "2. How do default props improve my React app?Default props ensure your components function even if no values are passed, preventing undefined errors and improving user experience."
+      "v": "React Fragments help reduce unnecessary DOM nodes, making your page load faster and your component structure cleaner."
+    },
+    {
+      "t": "h3",
+      "v": "How do default props improve my React app?"
     },
     {
       "t": "p",
-      "v": "3. What is the impact of using useCallback on performance?useCallback prevents unnecessary re-renders by memoising functions, which is particularly useful in apps with many child components."
+      "v": "Default props ensure your components function even if no values are passed, preventing undefined errors and improving user experience."
+    },
+    {
+      "t": "h3",
+      "v": "What is the impact of using useCallback on performance?"
     },
     {
       "t": "p",
-      "v": "4. Are inline styles bad for performance?Yes, because inline styles reduce page loading efficiency and caching capabilities. Using external styles or CSS-in-JS libraries like styled-components is better."
+      "v": "useCallback prevents unnecessary re-renders by memoising functions, which is particularly useful in apps with many child components."
+    },
+    {
+      "t": "h3",
+      "v": "Are inline styles bad for performance?"
     },
     {
       "t": "p",
-      "v": "5. Should I always use export default for React components?While not mandatory, using export default for primary components simplifies imports and maintains consistency across your project."
+      "v": "Yes, because inline styles reduce page loading efficiency and caching capabilities. Using external styles or CSS-in-JS libraries like styled-components is better."
+    },
+    {
+      "t": "h3",
+      "v": "Should I always use export default for React components?"
     },
     {
       "t": "p",
-      "v": "6. Why is using unique keys in lists important for performance?Unique keys help React identify which items have changed, improving rendering efficiency and preventing layout issues."
+      "v": "While not mandatory, using export default for primary components simplifies imports and maintains consistency across your project."
+    },
+    {
+      "t": "h3",
+      "v": "Why is using unique keys in lists important for performance?"
+    },
+    {
+      "t": "p",
+      "v": "Unique keys help React identify which items have changed, improving rendering efficiency and preventing layout issues."
     },
     {
       "t": "h2",

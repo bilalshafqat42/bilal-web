@@ -3,12 +3,12 @@
   "title": "Master JavaScript String Methods: The Essential Guide for Developers",
   "description": "Master key JavaScript string methods like .length, .toLowerCase(), .split(), .trim(), and more with simple explanations and code examples.",
   "published": "2025-06-09",
-  "updatedAt": "2026-10-14",
+  "updatedAt": "2026-11-11",
   "tags": [
     "Es6",
     "Javascript"
   ],
-  "words": 580,
+  "words": 572,
   "blocks": [
     {
       "t": "p",
@@ -20,7 +20,7 @@
     },
     {
       "t": "h2",
-      "v": "1. .length – Count Characters in a String"
+      "v": "1. .length: Count Characters in a String"
     },
     {
       "t": "p",
@@ -36,7 +36,7 @@
     },
     {
       "t": "h2",
-      "v": "2. .toLowerCase() & .toUpperCase() – Change Text Case"
+      "v": "2. .toLowerCase() & .toUpperCase(): Change Text Case"
     },
     {
       "t": "p",
@@ -52,7 +52,7 @@
     },
     {
       "t": "h2",
-      "v": "3. .indexOf() – Find the Position of a Substring"
+      "v": "3. .indexOf(): Find the Position of a Substring"
     },
     {
       "t": "p",
@@ -68,7 +68,7 @@
     },
     {
       "t": "h2",
-      "v": "4. .substring() – Extract Parts of a String"
+      "v": "4. .substring(): Extract Parts of a String"
     },
     {
       "t": "p",
@@ -84,7 +84,7 @@
     },
     {
       "t": "h2",
-      "v": "5. .split() – Convert String to Array"
+      "v": "5. .split(): Convert String to Array"
     },
     {
       "t": "p",
@@ -100,7 +100,7 @@
     },
     {
       "t": "h2",
-      "v": "6. .replace() – Modify Part of a String"
+      "v": "6. .replace(): Modify Part of a String"
     },
     {
       "t": "p",
@@ -112,7 +112,7 @@
     },
     {
       "t": "p",
-      "v": "⚠️ It only replaces the first occurrence by default. To replace all, use a regular expression with the global flag /g:"
+      "v": "It only replaces the first occurrence by default. To replace all, use a regular expression with the global flag /g:"
     },
     {
       "t": "code",
@@ -124,7 +124,7 @@
     },
     {
       "t": "h2",
-      "v": "7. .trim() – Remove Extra Whitespace"
+      "v": "7. .trim(): Remove Extra Whitespace"
     },
     {
       "t": "p",
@@ -150,10 +150,10 @@
       "t": "list",
       "ordered": false,
       "v": [
-        "Ubiquity in Real-World Projects – Strings are everywhere: form fields, UI messages, API responses, and URL parsing.",
-        "Code Clarity – Using built-in methods like .trim() or .split() avoids writing repetitive manual logic.",
-        "Interview Preparation – String manipulation questions are a favourite in JavaScript coding interviews.",
-        "Performance – Optimised string methods are faster than writing custom loops or conditions."
+        "Ubiquity in Real-World Projects: Strings are everywhere: form fields, UI messages, API responses, and URL parsing.",
+        "Code Clarity: Using built-in methods like .trim() or .split() avoids writing repetitive manual logic.",
+        "Interview Preparation: String manipulation questions are a favourite in JavaScript coding interviews.",
+        "Performance: Optimised string methods are faster than writing custom loops or conditions."
       ]
     },
     {
@@ -162,7 +162,7 @@
     },
     {
       "t": "p",
-      "v": "🛠️ Always Check for undefined or null"
+      "v": "Always Check for undefined or null"
     },
     {
       "t": "code",
@@ -202,7 +202,7 @@
     },
     {
       "t": "p",
-      "v": "🧠 Pro Tip: Combine them to perform complex transformations in just a few lines of code!"
+      "v": "Pro Tip: Combine them to perform complex transformations in just a few lines of code!"
     },
     {
       "t": "h2",
@@ -218,11 +218,11 @@
     },
     {
       "t": "p",
-      "v": "👉 https://bilalshafqat.com/master-javascript-string-methods-guide"
+      "v": "https://bilalshafqat.com/master-javascript-string-methods-guide"
     },
     {
       "t": "h2",
-      "v": "FAQs – JavaScript String Methods"
+      "v": "FAQs: JavaScript String Methods"
     },
     {
       "t": "p",

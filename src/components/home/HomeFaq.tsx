@@ -41,7 +41,7 @@ export default function HomeFaq() {
       className="scroll-mt-28 section-pad"
       rule
       eyebrow="Common questions"
-      title="Freelance digital marketing in Dubai and the UAE: your questions"
+      title="Hiring a digital marketing freelancer in Dubai: your questions"
       intro={
         <>
           Answered here so you do not have to book a call to find out. If yours is not
