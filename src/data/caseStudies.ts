@@ -539,7 +539,7 @@ const hadleyHeights: Project = {
     {
       question: "How much does an off-plan launch landing page cost in Dubai?",
       answer:
-        "Project work starts from AED 31,500 for a defined deliverable with an agreed scope, timeline and price. What moves it is how much is already decided: unit information, renders and brand assets ready to use keep it at the lower end, while writing the positioning, sourcing the creative and building a campaign around it takes it up. The full engagement models are on the pricing page.",
+        "It is quoted as a fixed project price after a free call, with an agreed scope, timeline and price in writing. What moves it is how much is already decided: unit information, renders and brand assets ready to use keep it at the lower end, while writing the positioning, sourcing the creative and building a campaign around it takes it up. How pricing works is set out on the pricing page.",
     },
     {
       question: "Do you run the ad campaigns as well as building the landing page?",

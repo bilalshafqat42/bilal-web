@@ -129,7 +129,7 @@ export function buildIndex(): Chunk[] {
 
   chunks.push({
     title: "Pricing and how projects are costed",
-    body: "Published figures: project work from AED 31,500, monthly retainers from AED 16,000, a one-off review session at AED 3,500. Four engagement models: project-based with a fixed scope and price, monthly retainer, ongoing partner embedded with your team, and consulting and advisory. Cost is driven by custom functionality, timelines and whether content already exists. Priced by project wherever the scope can be defined, so the estimating risk sits with Bilal rather than the client; retainers are priced monthly; hourly is used only for advisory work. A real figure usually comes within a business day. The first conversation is free. AED for UAE clients, other currencies on request.",
+    body: "Every engagement is quoted as a fixed price after a free 30-minute call, sized to the goals and the budget. Four engagement models: project-based with a fixed scope and price, monthly retainer, ongoing partner embedded with your team, and consulting and advisory. Cost is driven by custom functionality, timelines and whether content already exists. Priced by project wherever the scope can be defined, so the estimating risk sits with Bilal rather than the client; retainers are priced monthly; hourly is used only for advisory work. A real figure usually comes within a business day. The first conversation is free. AED for UAE clients, other currencies on request.",
     url: "/pricing",
     kind: "info",
   });

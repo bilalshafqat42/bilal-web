@@ -192,15 +192,15 @@ export const aboutFacts = [
 export const engagementModels: Model[] = [
   {
     name: "Project-based",
-    price: "AED 31,500",
-    priceNote: "starting price",
+    price: "Fixed price",
+    priceNote: "quoted after a free call",
     priceVerified: true,
     cta: { label: "Get a quote", href: "/contact" },
   },
   {
     name: "Monthly retainer",
-    price: "AED 16,000",
-    priceNote: "per month",
+    price: "Monthly fee",
+    priceNote: "sized to your budget",
     featured: true,
     priceVerified: true,
     cta: { label: "Book a free consultation", href: "/appointment" },
@@ -217,8 +217,8 @@ export const engagementModels: Model[] = [
   },
   {
     name: "Consulting",
-    price: "AED 3,500",
-    priceNote: "per session",
+    price: "One fixed fee",
+    priceNote: "agreed before the session",
     priceVerified: true,
     cta: { label: "Book a session", href: "/appointment" },
   },
@@ -274,10 +274,12 @@ export const homeFaqs = [
     // Added 2026-10-29. Google's AI Overview for "freelance digital marketer
     // in Dubai" answers with an hourly range quoted from Upwork, and "How much
     // does a freelance digital marketer charge?" sits in People also ask. A
-    // direct answer with the published AED prices gives it something to quote
-    // from this page instead. Same figures as /pricing; no market averages.
+    // direct answer gives it something to quote from this page instead.
+    // Rates were taken off the site on 2026-11-11 (Bilal: published figures
+    // were putting smaller businesses off before they got in touch), so the
+    // answer explains how pricing works rather than giving numbers.
     q: "How much does a freelance digital marketer in Dubai charge?",
-    a: "My published rates are a monthly retainer from AED 16,000, project work such as a website or a campaign launch from AED 31,500, and a four-hour advisory session at AED 3,500. Ad spend is separate in every case. I price by the month or by the project, not by the hour, and the full breakdown is on the pricing page.",
+    a: "It depends on what you need, so I quote rather than publish a price list. After a free 30-minute call you get a fixed price in writing, by the project or by the month, sized to your goals and your budget. Smaller businesses often start with one campaign or one landing page and grow from there. Ad spend is always separate and paid directly by you.",
   },
   {
     q: "Do you build mobile apps?",
@@ -288,7 +290,7 @@ export const homeFaqs = [
   },
   {
     q: "How much does a landing page cost?",
-    a: "It depends on scope, and any number quoted before understanding that is guesswork. What is published: project work starts at AED 31,500, a monthly retainer at AED 16,000, and an advisory session at AED 3,500. Describe what you have in mind and you get a real figure within a business day.",
+    a: "It depends on scope, and any number quoted before understanding that is guesswork. Describe what you have in mind, and your budget if you have one, and you get a fixed figure within a business day. If the budget is tight, I will tell you what the most useful smaller version looks like.",
   },
   {
     q: "Can you work with clients outside the UAE?",

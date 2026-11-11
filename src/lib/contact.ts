@@ -13,7 +13,7 @@
  */
 
 /** The address published everywhere. A domain address, not a free mailbox:
- *  a Gmail address on a site quoting AED 31,500 projects undercuts the quote. */
+ *  a Gmail address on a professional site undercuts the quote. */
 export const SITE_EMAIL = "bilal@bilalshafqat.com";
 
 /** Primary number. Also the WhatsApp number. */

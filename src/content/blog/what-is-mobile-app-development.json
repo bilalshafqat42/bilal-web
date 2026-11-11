@@ -4,7 +4,7 @@
   "metaTitle": "What Is Mobile App Development?",
   "description": "What mobile app development involves, for non-technical founders: how a build runs, where the money goes, and the decisions you will face.",
   "published": "2026-10-04",
-  "updatedAt": "2026-10-05",
+  "updatedAt": "2026-11-11",
   "tags": [
     "Mobile Apps",
     "Web Development",
@@ -179,7 +179,7 @@
     },
     {
       "t": "p",
-      "v": "For reference, my own published project minimum is AED 31,500 and retainers start at AED 16,000 a month. App projects normally sit well above that minimum. Those are my rates rather than market data."
+      "v": "App projects normally cost more than a website, because there is an app, a back end and two app stores to deal with. I quote a fixed price after a free call, based on the scope and your budget."
     },
     {
       "t": "h2",
@@ -235,8 +235,8 @@
     },
     {
       "t": "p",
-      "v": "Published 4 October 2026 by a Dubai-based developer. All AED figures are my own published rates."
+      "v": "Published 4 October 2026 by a Dubai-based developer."
     }
   ],
-  "words": 816
+  "words": 813
 }

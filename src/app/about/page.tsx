@@ -257,11 +257,11 @@ export default function AboutPage() {
                   and I will say so.
                 </p>
                 <p className="mt-5 text-base leading-relaxed text-muted">
-                  Not the lowest price either. The published figures are on the pricing
-                  page rather than behind a conversation, and they rule some projects out.
-                  That is deliberate: a budget that cannot cover the work properly produces
-                  a result nobody is happy with, and finding that out at the quote stage is
-                  cheaper for both of us than finding it out in month three.
+                  Not the lowest price either, but sized to the job. You get a fixed price
+                  in writing after a free call, and if the budget cannot cover the work
+                  properly I will say so and suggest the smaller version that can. Finding
+                  that out at the quote stage is cheaper for both of us than finding it out
+                  in month three.
                 </p>
               </Reveal>
 

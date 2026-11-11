@@ -128,8 +128,8 @@ Published ${post.published}. Covers: ${headings}.`);
 
   parts.push(`# Pricing
 
-Published figures: project work from AED 31,500, monthly retainers from AED 16,000,
-and a one-off review session at AED 3,500. Four engagement models: Project-Based (fixed scope, timeline
+Every engagement is quoted as a fixed price after a free 30-minute call, sized to
+the goals and the budget. Ad spend is always separate. Four engagement models: Project-Based (fixed scope, timeline
 and price), Monthly Retainer, Ongoing Partner (embedded alongside an existing team),
 and Consulting & Advisory (review and direction without implementation).
 

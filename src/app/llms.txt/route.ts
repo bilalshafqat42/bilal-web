@@ -43,7 +43,7 @@ Full content for machine reading: ${SITE}/llms-full.txt
 - [Portfolio](${SITE}/portfolio): all work, browsable by discipline and by client
 - [LEOS mobile app](${SITE}/portfolio/leos-developments/mobile-app): React Native case study: cross-platform iOS and Android from one codebase, screen by screen
 - [Process](${SITE}/process): the four delivery stages: brief and discovery, planning and design, build and launch, then measurement and iteration, with worked examples
-- [Pricing](${SITE}/pricing): published figures (projects from AED 31,500, retainers from AED 16,000 a month, a review session at AED 3,500), engagement models and what drives cost
+- [Pricing](${SITE}/pricing): how pricing works (a fixed quote after a free call, by project, by month or per session), engagement models and what drives cost
 - [FAQ](${SITE}/faq): freelancer vs agency, timezones, process, measurement
 - [Book a consultation](${SITE}/appointment): the booking page every primary CTA points at; pick a slot for a free call
 - [Free website health check](${SITE}${HEALTH_CHECK_PATH}): ${HEALTH_CHECK_SUMMARY} Free, no obligation, request by form

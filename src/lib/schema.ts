@@ -246,17 +246,9 @@ export function businessNode() {
     ],
     founder: ref(ID.person, "Person"),
     knowsAbout: KNOWS_ABOUT,
-    // Added 2026-09-05, when /pricing began showing figures. The condition for
-    // this property was always that the page actually publishes numbers, and it
-    // now publishes three: advisory from 3,500, a retainer from 16,000 a month,
-    // project work from 31,500.
-    //
-    // The range spans only those three. It deliberately excludes the eight
-    // per-service build prices, which are still unpublished because they are
-    // priced by hours *required* rather than hours included — a guess until two
-    // jobs have been timed. Widening this to cover them would put a number in
-    // the markup that appears nowhere on the site.
-    priceRange: "AED 3500 - 31500",
+    // No priceRange. It was added when /pricing published figures and removed
+    // with them on 2026-11-11: the property must describe numbers the site
+    // actually shows, and it no longer shows any.
   };
 }
 

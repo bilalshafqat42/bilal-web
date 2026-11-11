@@ -353,7 +353,7 @@ export const serviceDepth: Record<string, Depth> = {
       {
         question: "Can you fix an account someone else is running?",
         answer:
-          "Usually, and the audit comes first: what is actually being tracked, what the form asks, and where the spend is going. That is a four-hour session at AED 3,500 with written recommendations you can hand to whoever runs it. Often the answer is a form question and a tracking fix rather than a new agency.",
+          "Usually, and the audit comes first: what is actually being tracked, what the form asks, and where the spend is going. That is a four-hour review session with written recommendations you can hand to whoever runs it. Often the answer is a form question and a tracking fix rather than a new agency.",
       },
       {
         question: "What about WhatsApp ads?",
@@ -461,12 +461,12 @@ export const serviceDepth: Record<string, Depth> = {
       {
         question: "Can you audit my existing account before I commit?",
         answer:
-          "Yes, and it is usually the sensible first step. A four-hour review at AED 3,500 covers the structure, the search terms report, what is actually being tracked and where the waste is, with written recommendations you can hand to whoever runs the account. If that turns out to be enough, it is enough.",
+          "Yes, and it is usually the sensible first step. A four-hour review session covers the structure, the search terms report, what is actually being tracked and where the waste is, with written recommendations you can hand to whoever runs the account. If that turns out to be enough, it is enough.",
       },
       {
         question: "Do you charge a percentage of ad spend?",
         answer:
-          "No. A percentage fee pays me more when you spend more, which is the wrong incentive on a channel where the best advice is often to spend less. My rates are published: projects from AED 31,500, retainers from AED 16,000 a month. Ad spend is paid to Google and is never part of a quote.",
+          "No. A percentage fee pays me more when you spend more, which is the wrong incentive on a channel where the best advice is often to spend less. I quote a fixed project price or a monthly fee, agreed in writing after a free call. Ad spend is paid to Google and is never part of a quote.",
       },
       {
         question: "What if my account was built by someone else?",
@@ -495,7 +495,7 @@ export const serviceDepth: Record<string, Depth> = {
       {
         heading: "What does mobile app development in Dubai cost?",
         paragraphs: [
-          "My published project minimum is AED 31,500 and app projects normally sit well above it, because an app is three things rather than one: the app itself, the back end holding the data, and the admin side you use to run it. A quote that looks surprisingly low is usually pricing the first and leaving the other two out.",
+          "App projects normally cost more than a website, because an app is three things rather than one: the app itself, the back end holding the data, and the admin side you use to run it. A quote that looks surprisingly low is usually pricing the first and leaving the other two out.",
           "What moves the number, in order: custom functionality such as payments, live tracking, chat or offline use; the integrations with systems you do not control; building for two platforms, which costs less with React Native than with native but is never free; and the design, where every state is a screen and there are more of them than anyone expects.",
           "Then maintenance, which is not optional and is the line most commonly missing from a budget. Operating systems update twice a year and can break things, store rules change, certificates expire. An app nobody maintains stops working, usually inside about eighteen months.",
         ],
@@ -551,7 +551,7 @@ export const serviceDepth: Record<string, Depth> = {
       {
         heading: "What it costs, and what moves the number",
         paragraphs: [
-          "Project work starts at AED 31,500 and an app is usually well above that, because the scope is wider than a website by definition: two platforms, a back end, store submission, and the review cycle. I would rather give you a range after seeing what the app has to do than a figure now that we both know is a guess.",
+          "An app usually costs more than a website, because the scope is wider than a website by definition: two platforms, a back end, store submission, and the review cycle. I would rather give you a fixed price after seeing what the app has to do than a figure now that we both know is a guess.",
           "What moves it most: whether the app needs its own back end or can use what you already run, how many screens genuinely differ rather than repeat, whether payments are involved, and whether offline use is a requirement. Those four decisions account for most of the difference between a straightforward build and a long one.",
         ],
       },
@@ -1006,8 +1006,8 @@ export const serviceDepth: Record<string, Depth> = {
         // to find out.
         heading: "What does digital marketing cost in Dubai?",
         paragraphs: [
-          "Project work starts at AED 31,500 and monthly retainers at AED 16,000, with a one-off review session at AED 3,500. Those are my own published rates rather than a market average, and ad spend is separate in every case.",
-          "What moves the number is scope rather than the number of channels. A single campaign with one landing page and the tracking behind it is a different project from a monthly retainer running five channels with content feeding them. The honest shortcut: if your total monthly budget including ad spend is under about AED 20,000, a retainer is the wrong shape and a one-off project or a review session will serve you better.",
+          "It depends on what you need, so I do not publish a price list. I quote a fixed project price or a monthly fee after a free 30-minute call, sized to your goals and your budget, and you get it in writing before any work starts. Ad spend is separate in every case and paid directly by you.",
+          "What moves the number is scope rather than the number of channels. A single campaign with one landing page and the tracking behind it is a different project from a monthly retainer running five channels with content feeding them. If your budget is small, a retainer is the wrong shape: a one-off project or a review session will serve you better, and I will tell you so on the first call.",
           "Agency retainers in this market generally start above the freelance range and climb with scope, because an office, an account manager and a project manager sit in the quote whether or not your project benefits from them. That is a fair trade on a large programme with several stakeholders and poor value on a single-channel campaign.",
         ],
       },

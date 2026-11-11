@@ -14,7 +14,7 @@ import Eyebrow from "@/components/ui/Eyebrow";
 export const metadata: Metadata = {
   title: "What a Freelance Digital Marketer Costs in Dubai",
   description:
-    "Digital marketing cost in Dubai: what a freelance digital marketer costs in Dubai, from AED 31,500 a project or AED 16,000 a month.",
+    "Digital marketing cost in Dubai: how a freelance digital marketer in Dubai prices work, what moves the cost, and how to get a fixed quote fast.",
   alternates: { canonical: "/pricing" },
   openGraph: {
     title: "What a Freelance Digital Marketer Costs in Dubai",
@@ -56,9 +56,9 @@ export default function PricingPage() {
 
   const faqs = [
     {
-      question: "Why are these starting prices rather than fixed prices?",
+      question: "Why is there no price list?",
       answer:
-        "Because a number without a scope is misleading. A landing page can be a two-day job or a three-week one depending on integrations, content and how many stakeholders review it. The figures above are real minimums, and this page explains what moves a project above them so you can judge roughly where yours sits. You get a fixed number after one short conversation.",
+        "Because a number without a scope is misleading. A landing page can be a two-day job or a three-week one depending on integrations, content and how many stakeholders review it. This page explains what moves the cost, and you get a fixed number after one short conversation, sized to your budget.",
     },
     {
       question: "How quickly can I get an actual figure?",
@@ -100,17 +100,15 @@ export default function PricingPage() {
           standfirst={
             <>
               <p>
-                Published figures rather than a range with nobody behind it. Project
-                work from AED 31,500, monthly retainers from AED 16,000, a one-off
-                review session at AED 3,500. No packages, no tiers you have to squeeze
-                into, and no form to fill in before you are told a number.
+                No price list, because two businesses asking for the same thing rarely
+                need the same work. Instead, a free 30-minute call, then a fixed price
+                in writing, sized to your goals and your budget, before any work
+                starts. No packages and no tiers you have to squeeze into.
               </p>
               <p>
                 Below: the four ways of working compared, what pushes the number up or
-                down, and how to get a real figure for your own project. These are my
-                own rates and not a market survey, stated so there is at least one
-                verifiable number on the subject rather than another article that gives
-                a range and stops.
+                down, and how to get a real figure for your own project, usually within
+                one business day.
               </p>
             </>
           }
@@ -124,9 +122,8 @@ export default function PricingPage() {
  * the same four *with* the prices. Measured: every model name appeared twice
  * inside <main> (roadmap 213.15).
  *
- * The duplicate is gone and the real block moved up into its slot. The prices
- * are the reason someone opens a page called "How projects are priced"; they
- * were the last thing on it.
+ * The duplicate is gone and the real block moved up into its slot. Figures
+ * were removed on 2026-11-11; the models now say how each is priced.
  */}
         <Engagement variant="detailed" />
 
@@ -212,19 +209,18 @@ export default function PricingPage() {
               </Reveal>
 
               <Reveal>
-                <h2 className="t-h2 mt-14 text-ink">Why these numbers are published at all</h2>
+                <h2 className="t-h2 mt-14 text-ink">Working with your budget</h2>
                 <p className="mt-6 text-base leading-relaxed text-muted">
-                  Most Dubai suppliers will not put a price on a page. The reason
-                  given is that every project is different, which is true, and the
-                  reason underneath is that a number lets you leave before a
-                  conversation has had a chance to work on you.
+                  Tell me your budget on the first call, even if it feels small. It
+                  is the fastest way to a useful answer. A tight budget usually means
+                  doing one thing well, such as one campaign or one landing page with
+                  proper tracking, rather than five things badly.
                 </p>
                 <p className="mt-5 text-base leading-relaxed text-muted">
-                  Publishing them costs me the enquiries I could not have served
-                  anyway. If your budget is a fifth of the project minimum, finding
-                  that out here takes you four seconds and costs you nothing. Finding
-                  it out after two calls and a proposal wastes a week of your time
-                  and a week of mine.
+                  If what you have in mind does not fit the budget, I will say so on
+                  the call and suggest the smaller version that still moves your
+                  number. You leave with a clear plan and a fixed price either way,
+                  with no obligation and no follow-up sequence.
                 </p>
               </Reveal>
 

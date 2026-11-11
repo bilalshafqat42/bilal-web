@@ -3,7 +3,7 @@
   "title": "What Does a Mobile Developer Do?",
   "description": "What a mobile developer does, explained for people hiring one: how mobile differs from web, the two specialisms, and how to spot a real one.",
   "published": "2026-10-04",
-  "updatedAt": "2026-10-05",
+  "updatedAt": "2026-11-11",
   "tags": [
     "Mobile Apps",
     "Web Development",
@@ -175,12 +175,12 @@
     },
     {
       "t": "p",
-      "v": "My own published project minimum is AED 31,500 with retainers from AED 16,000 a month, and app projects usually sit well above that minimum because of the back-end and the two platforms. Those are my rates and not a market survey."
+      "v": "App projects usually cost more than a website because of the back end and the two platforms. I quote a fixed price after a free call, based on the screens, the back end and your budget."
     },
     {
       "t": "p",
-      "v": "Published 4 October 2026 by a Dubai-based React Native developer. All AED figures are my own published rates."
+      "v": "Published 4 October 2026 by a Dubai-based React Native developer."
     }
   ],
-  "words": 759
+  "words": 746
 }

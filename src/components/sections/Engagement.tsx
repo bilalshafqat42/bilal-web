@@ -30,9 +30,10 @@ import { engagementModels as models, engagementRows as rows, type Model } from "
  * they cannot drift.
  * ---------------------------------------------------------------------------
  *
- * **On the prices.** `AED 31,500`, `AED 16,000` and `AED 3,500` are real and
- * already published on /pricing and in the site content. The three-month
- * retainer minimum is real too. Everything still in brackets is not: the
+ * **On the prices.** Figures were removed on 2026-11-11 at Bilal's request:
+ * published minimums were putting smaller businesses off before they got in
+ * touch. Each model now says how it is priced, not what it costs. The
+ * three-month retainer minimum is real. Everything still in brackets is not: the
  * ongoing-partner rate, every "time to start", the support and session windows,
  * and the "most chosen" badge — see the note on that below.
  */
@@ -72,8 +73,8 @@ export default function Engagement({
             <h2 className="t-h2 mt-5 text-ink">Compare the four models side by side</h2>
           </div>
           <p className="max-w-sm text-base leading-relaxed text-muted lg:text-right">
-            No accordions, no &ldquo;contact for pricing&rdquo;. Everything you need to
-            shortlist is on this screen.
+            Every model starts with a free call. You get a fixed price in writing,
+            sized to your goals and your budget, before any work starts.
           </p>
         </div>
 
@@ -241,8 +242,8 @@ export default function Engagement({
 
         <p className="mt-10 flex max-w-[68ch] gap-3 text-sm leading-relaxed text-muted">
           <Info size={16} className="mt-0.5 shrink-0 text-faint" aria-hidden="true" />
-          Prices exclude ad spend and third-party licences. Every model starts with the
-          same free consultation, and you get a written scope before anything is invoiced.
+          Quotes exclude ad spend and third-party licences. Every model starts with the
+          same free consultation, and you get a written scope and price before anything is invoiced.
         </p>
       </div>
     </section>

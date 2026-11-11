@@ -4,7 +4,7 @@
   "metaTitle": "What a UX Designer Actually Does",
   "description": "A real UX engagement from first conversation to launch, written for people about to commission one who want to know what they are paying for.",
   "published": "2026-10-04",
-  "updatedAt": "2026-10-05",
+  "updatedAt": "2026-11-11",
   "tags": [
     "UI UX Design",
     "Design",
@@ -177,7 +177,7 @@
     },
     {
       "t": "p",
-      "v": "Keep two parts and drop the rest: the first conversation about what the site is for, and specifying the states. Those two carry most of the value. A one-off review session at AED 3,500 is how I usually handle a budget that will not stretch to a full engagement."
+      "v": "Keep two parts and drop the rest: the first conversation about what the site is for, and specifying the states. Those two carry most of the value. A one-off review session is how I usually handle a budget that will not stretch to a full engagement."
     },
     {
       "t": "h3",
@@ -192,5 +192,5 @@
       "v": "Published 4 October 2026 by a Dubai-based designer and developer. The AED figure is my own published rate."
     }
   ],
-  "words": 850
+  "words": 847
 }

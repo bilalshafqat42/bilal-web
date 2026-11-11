@@ -26,7 +26,7 @@ export const contentDates: Record<string, string> = {
   // freelancer in Dubai".
   // 2026-10-24: the hero line opens with the name, for the brand query
   // (roadmap 420).
-  "/": "2026-11-09",
+  "/": "2026-11-11",
   // Every route below had its copy changed on 2026-10-13 in 0ed36bc, the
   // full-site audit (roadmap 399). /pricing gained a cost heading and
   // /portfolio descriptive cover alt text on 2026-10-14.
@@ -36,7 +36,7 @@ export const contentDates: Record<string, string> = {
   // than four pillar cards; subcontracting sentence (audit batch 2).
   // 2026-10-26: the renovation sector removed from the industries section
   // and its intro sentence, at Bilal's request.
-  "/about": "2026-10-26",
+  "/about": "2026-11-11",
   // 2026-10-16: the CMS and custom development pages added to the listing,
   // then the CRM, app and Figma sub-pages in "by platform" blocks.
   // 2026-10-26: the free health check card under the listing.
@@ -48,7 +48,7 @@ export const contentDates: Record<string, string> = {
   // 2026-10-26: description, standfirst and grid name NextGen HR. Same day:
   // Texdale's card gains the Mobile Development and Social Media tags.
   "/portfolio": "2026-10-26",
-  "/pricing": "2026-10-20",
+  "/pricing": "2026-11-11",
   // 2026-10-24: the industry answer names both published sectors.
   // 2026-10-26: the industry answer names a third sector (NextGen HR).
   "/faq": "2026-10-26",

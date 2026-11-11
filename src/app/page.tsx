@@ -9,12 +9,14 @@ import CapabilityLedger from "@/components/home/CapabilityLedger";
 import PortfolioGrid from "@/components/portfolio/PortfolioGrid";
 import Results from "@/components/home/Results";
 import ProcessCompact from "@/components/home/ProcessCompact";
+import DubaiFocus from "@/components/home/DubaiFocus";
 import Engagement from "@/components/sections/Engagement";
 import HomeFaq from "@/components/home/HomeFaq";
 import Contact from "@/components/sections/Contact";
 
 /**
- * Homepage: eight sections, down from eleven.
+ * Homepage: nine sections. Eight, down from eleven, plus `DubaiFocus`
+ * (2026-11-11), which carries the page's main keyword group.
  *
  * The page previously made the same offer three times — a services band, a
  * partnerships section and a logo wall all restated it — and carried the full
@@ -82,6 +84,7 @@ export default function Home() {
         </div>
         <PortfolioGrid />
         <Results />
+        <DubaiFocus />
         <ProcessCompact />
         <Engagement />
         <HomeFaq />
