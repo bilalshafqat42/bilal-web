@@ -1,17 +1,6 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Square corners site-wide (2026-11-12): Tailwind's rounded-sm to
-     rounded-3xl read these. rounded-full and arbitrary values are left alone,
-     so circles, phone frames and the hero's widening animation keep theirs. */
-  --radius-xs: 0;
-  --radius-sm: 0;
-  --radius-md: 0;
-  --radius-lg: 0;
-  --radius-xl: 0;
-  --radius-2xl: 0;
-  --radius-3xl: 0;
-  --radius-4xl: 0;
   --color-bg: #08080b;
   --color-bg-soft: #0e0e13;
   --color-surface: #121218;
@@ -248,12 +237,9 @@ nav[aria-label="Breadcrumb"] a,
   /* Corner radius. `--radius-panel` is the large one for full-width feature
      blocks, `--radius-card` the everyday card, `--radius-chip` for tags and
      pills that are smaller than their own radius would otherwise allow. */
-  /* All three 0 since 2026-11-12: square corners site-wide, following the
-     portfolio wireframe Bilal approved (and brande.ae, measured at 0px on
-     cards, images and buttons). Were 2rem, 1rem and 0.5rem. */
-  --radius-panel: 0;
-  --radius-card: 0;
-  --radius-chip: 0;
+  --radius-panel: 2rem;
+  --radius-card: 1rem;
+  --radius-chip: 0.5rem;
 }
 
 /* Section rhythm. `.section` sets the gap ABOVE a block, so sections compose
@@ -1036,9 +1022,7 @@ main > .section-pad:not([class*="bg-"]) + .section-pad:not([class*="bg-"]) {
 .nav-header.is-floating .nav-shell {
   height: 48px;
   max-width: 100%;
-  /* Square since 2026-11-12, with every other corner on the site. Was a
-     999px pill. */
-  border-radius: 0;
+  border-radius: 999px;
   /* No border. The shadow and the blur already separate the pill from the page
      behind it, and a visible outline made it read as a box sitting on top
      rather than as glass floating over. */
@@ -1212,7 +1196,7 @@ main > .section-pad:not([class*="bg-"]) + .section-pad:not([class*="bg-"]) {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.9rem;
-  border-radius: 0;
+  border-radius: 999px;
   border: 1px solid var(--color-border);
   font-size: 0.8rem;
   color: var(--color-muted);
@@ -1927,16 +1911,3 @@ html:has([aria-modal="true"]) .consent-banner {
     transition: none;
   }
 }
-
-/* Square buttons and chips (2026-11-12). Pills are written as rounded-full
-   with horizontal padding; a true circle (an icon disc, an avatar) has a fixed
-   width and height and no px-/pl- class, so it keeps its shape. Unlayered, so
-   it wins over Tailwind's utility layer. The arrow disc inside the main button
-   goes square with the button. */
-.btn-primary,
-.btn-primary > .rounded-full,
-.rounded-full[class*="px-"],
-.rounded-full[class*="pl-"] {
-  border-radius: 0;
-}
-
