@@ -253,6 +253,129 @@
    1080
   ]
  },
+ "/portfolio/homemaid/homemaid-card.avif": {
+  "w": 1600,
+  "v": "d392abff",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/homemaid/homemaid-mobile.avif": {
+  "w": 561,
+  "v": "f158e0c4",
+  "widths": [
+   256,
+   384,
+   561
+  ]
+ },
+ "/portfolio/homemaid/homemaid-website.avif": {
+  "w": 1600,
+  "v": "5dc3a0a7",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/homemaid/social/homemaid-01-brand.avif": {
+  "w": 1080,
+  "v": "1e30b67f",
+  "widths": [
+   256,
+   384,
+   640
+  ]
+ },
+ "/portfolio/homemaid/social/homemaid-02-general-cleaning.avif": {
+  "w": 1080,
+  "v": "8677749c",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080
+  ]
+ },
+ "/portfolio/homemaid/social/homemaid-03-deep-cleaning.avif": {
+  "w": 1080,
+  "v": "52259750",
+  "widths": [
+   256,
+   384,
+   800
+  ]
+ },
+ "/portfolio/homemaid/social/homemaid-04-subscription.avif": {
+  "w": 1080,
+  "v": "34ba9699",
+  "widths": [
+   256,
+   384,
+   800
+  ]
+ },
+ "/portfolio/homemaid/social/homemaid-05-furniture-cleaning.avif": {
+  "w": 1080,
+  "v": "fb9bcee1",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080
+  ]
+ },
+ "/portfolio/homemaid/social/homemaid-06-handyman.avif": {
+  "w": 1080,
+  "v": "6491e192",
+  "widths": [
+   256,
+   384,
+   800
+  ]
+ },
+ "/portfolio/homemaid/social/homemaid-07-arabic.avif": {
+  "w": 1080,
+  "v": "ac560b9d",
+  "widths": [
+   256,
+   384,
+   640,
+   800
+  ]
+ },
+ "/portfolio/homemaid/social/homemaid-08-home-painting.avif": {
+  "w": 1080,
+  "v": "ad6ae116",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080
+  ]
+ },
+ "/portfolio/homemaid/social/homemaid-09-areas.avif": {
+  "w": 1080,
+  "v": "1f9345d3",
+  "widths": [
+   256,
+   384,
+   800
+  ]
+ },
  "/portfolio/leos/cavendish/landing-page/cavendish-thumb.avif": {
   "w": 1200,
   "v": "5f346bc3",

@@ -215,6 +215,7 @@ export type Industry =
   | "Hospitality"
   | "Technology & SaaS"
   | "Professional Services"
+  | "Home Services"
   | "Manufacturing & Industrial"
   | "Media & Production";
 
@@ -2180,6 +2181,251 @@ export const clients: Client[] = [
       "Google Ads and Meta ads",
       "growth marketing case study",
       "NextGen HR",
+    ],
+  },
+  {
+    // Added 2026-11-12. Bilal designed and built the platform from scratch: his
+    // repository ~/Desktop/bilal/harvey/home-maid, 86 commits, all his, from 27
+    // Oct to 10 Nov 2026. Every claim below is checked against that code or the
+    // live site. The nine creatives were designed on 2026-11-12 in the client's
+    // identity, using the client's own team photography.
+    //
+    // A draft until Bilal confirms the client is happy to be named. Deliberately
+    // absent: prices (Bilal keeps prices off his site), the trade licence number,
+    // the site's rating and testimonials (entered through the admin, source not
+    // shown), any campaign figure or result, and the logo design (supplied by
+    // the client). The app is described as upcoming: the API is built for it,
+    // the app is not.
+    slug: "homemaid",
+    name: "Homemaid",
+    industry: "Home Services",
+    draft: true,
+    siteUrl: "https://homemaid.ae",
+    logo: "/portfolio/homemaid/logo/home-maid-blue.svg",
+    logoWidth: 1784,
+    logoHeight: 250,
+    ogImage: "/portfolio/homemaid/og-homemaid.jpg",
+    ogImageAlt: "The Homemaid homepage hero: Your Home, Our Commitment, above the HomeMaid team beside their van",
+    title: "Homemaid: Booking Platform and Marketing in Dubai",
+    description:
+      "A bilingual booking and payments platform for Homemaid, a Dubai home services company: UX, UI, build, automation, and Google and Meta campaigns.",
+    headline: "A bilingual booking platform, automation and launch campaigns for a Dubai home services company",
+    intro:
+      "Homemaid cleans and maintains apartments and villas across Dubai: general and deep cleaning, furniture cleaning, handyman work and painting. I designed and built their platform from a blank page: the booking and payments flow, customer accounts, a full Arabic version built right to left, an admin system to run the day, and automation that takes payments and briefs the team overnight. Then the Google and Meta campaigns with the creatives that run on them. One person, from the first screen to the live ads.",
+    facts: [
+      { label: "Client", value: "Homemaid" },
+      { label: "Sector", value: "Home services" },
+      { label: "Market", value: "Dubai, UAE" },
+      { label: "Role", value: "Product, build and growth, end to end" },
+      { label: "Languages", value: "English and Arabic" },
+    ],
+    scopeIntro:
+      "A home services business is won or lost on how quickly someone can go from \"I need a cleaner\" to a confirmed booking. Every part of this work, from the first screen to the ads, is built around that moment, so a customer who sees an ad, lands on their area's page or opens the site in Arabic can book and pay in under a minute.",
+    scope: [
+      {
+        heading: "UX and the booking flow",
+        body: "One question per step: service, home size, hours and team, materials, area, date and time, then payment. The area can be detected from the phone, the total including VAT stays on screen throughout, and painting is chosen by picture: apartment, villa or a single room.",
+      },
+      {
+        heading: "UI design",
+        body: "A UI system built on Homemaid's navy and neon brand, with Outfit for headings and Inter for text: service cards, the step indicator, the booking summary and buttons, used across the site, the admin panel and the emails.",
+      },
+      {
+        heading: "Arabic version, right to left",
+        body: "Every page, the booking flow, the account area and the emails in Arabic, with the layout properly mirrored, IBM Plex Sans Arabic for type, and separate Arabic titles and descriptions for search engines.",
+      },
+      {
+        heading: "Booking and payments platform",
+        body: "A Next.js platform with MongoDB and Stripe. Cards are saved securely and Apple Pay is supported. Bookings within about six days are held on the card and charged after the service; cancellation fees follow the policy automatically, and every receipt includes VAT.",
+      },
+      {
+        heading: "Customer accounts and subscriptions",
+        body: "Accounts with saved addresses and cards, booking history, promo codes, and cleaning subscriptions offered at up to 40% off.",
+      },
+      {
+        heading: "Admin system",
+        body: "An admin panel to run bookings, customers, subscriptions, promo codes, closed dates and the site's wording in both languages, with an activity log on every booking.",
+      },
+      {
+        heading: "Automation",
+        body: "Scheduled jobs close finished bookings and take due payments at 2am Dubai time, and a 7am summary tells the team today's jobs, pending confirmations and payment issues. Booking, confirmation, cancellation and receipt emails send themselves, and a failed card gets a secure payment link, followed up up to three times.",
+      },
+      {
+        heading: "Local SEO",
+        body: "Ten Dubai area pages, LocalBusiness and FAQ structured data, a sitemap, and English and Arabic metadata, so the site can be found by service and by area.",
+      },
+      {
+        heading: "Google Ads and Meta campaigns",
+        body: "Search campaigns by service and area, each landing on the matching page, and Meta campaigns on Facebook and Instagram with a set of nine creatives in the client's identity.",
+      },
+      {
+        heading: "Mobile app, upcoming",
+        body: "An iOS and Android app is next. The platform's API is built to serve it, so accounts, saved cards, bookings and subscriptions carry over from day one.",
+      },
+    ],
+    services: [
+      "digital-marketing",
+      "paid-marketing",
+      "google-ads",
+      "facebook-ads",
+      "ui-ux-design",
+      "web-design",
+      "custom-web-development",
+      "marketing-automation",
+    ],
+    website: {
+      heading: "The website",
+      body: "The Homemaid homepage as it is live today, on a desktop and on a phone: the quick booker, the services, how it works, the cleaning subscription and the booking prompt. The phone layout is designed for booking with one thumb, with the next step always in reach. Scroll inside each frame to see the complete page.",
+      capture: {
+        src: "/portfolio/homemaid/homemaid-website.avif",
+        width: 1600,
+        height: 5842,
+        alt: "Full-page view of the Homemaid homepage: the Your Home, Our Commitment hero with the quick booker, the eight services, why Homemaid, how it works, the cleaning subscription, reviews and the booking prompt",
+        label: "Homemaid, homepage",
+      },
+      // Captured from the live site at 390px wide on 2026-11-12, in two halves
+      // (Chrome cannot paint a screenshot taller than 16,384px) and scaled to
+      // 16,384px tall, the AVIF limit.
+      mobileCapture: {
+        src: "/portfolio/homemaid/homemaid-mobile.avif",
+        width: 561,
+        height: 16384,
+        alt: "Full-page view of the Homemaid homepage on a phone: the hero, the quick booker, each service as a card with its own book button, how it works and the cleaning subscription in a single column",
+        label: "Homemaid, mobile",
+      },
+      cardImage: { src: "/portfolio/homemaid/homemaid-card.avif", width: 1600, height: 1000 },
+    },
+    socialDesigns: {
+      heading: "Meta campaign creatives",
+      body: "A set of nine square creatives in Homemaid's identity, mixing three kinds in turn: a brand tile, a photograph of the team at work, and a plain text tile. One for each of the five services, one for the cleaning subscription, one for the ten areas, the brand, and one in Arabic, for the Meta campaign on Facebook and Instagram.",
+      basePath: "/portfolio/homemaid/social",
+      width: 1080,
+      height: 1080,
+      columns: 3,
+      alsoProves: ["facebook-ads"],
+      items: [
+        {
+          file: "homemaid-01-brand",
+          alt: "Homemaid brand creative: the neon homemaid logo on navy, with the lines Home cleaning and home services, apartments and villas across Dubai, book online in under a minute",
+          caption: "Homemaid: brand",
+        },
+        {
+          file: "homemaid-02-general-cleaning",
+          alt: "Homemaid General Cleaning creative, service 01 of 05: a Homemaid cleaner wiping a table in a Dubai apartment, with the line book by the hour, with or without cleaning materials",
+          caption: "Homemaid: General Cleaning",
+        },
+        {
+          file: "homemaid-03-deep-cleaning",
+          alt: "Homemaid Deep Cleaning creative, service 02 of 05, listing kitchen and appliances, bathrooms, windows and glass, and corners, edges and build-up",
+          caption: "Homemaid: Deep Cleaning",
+        },
+        {
+          file: "homemaid-04-subscription",
+          alt: "Homemaid cleaning subscription creative on neon green: save up to 40%, set your cleaning once and your home stays clean",
+          caption: "Homemaid: subscription",
+        },
+        {
+          file: "homemaid-05-furniture-cleaning",
+          alt: "Homemaid Furniture Cleaning creative, service 03 of 05: a Homemaid technician cleaning a sofa, with the line sofas, recliners and headboards, cleaned in your home",
+          caption: "Homemaid: Furniture Cleaning",
+        },
+        {
+          file: "homemaid-06-handyman",
+          alt: "Homemaid Handyman creative, service 04 of 05, listing shelves and hanging, lights and ceiling fans, taps and drains, and appliances: priced per job, parts agreed on site",
+          caption: "Homemaid: Handyman",
+        },
+        {
+          file: "homemaid-07-arabic",
+          alt: "Homemaid Arabic creative on navy: book in under a minute, and see the full price before you confirm, in Arabic",
+          caption: "Homemaid: Arabic",
+        },
+        {
+          file: "homemaid-08-home-painting",
+          alt: "Homemaid Home Painting creative, service 05 of 05: a Homemaid painter rolling a wall, with the line from one feature wall to a whole villa",
+          caption: "Homemaid: Home Painting",
+        },
+        {
+          file: "homemaid-09-areas",
+          alt: "Homemaid areas creative: 10 areas across Dubai, listing Dubai Marina, JLT, Business Bay, Downtown, JVC, Palm Jumeirah, Dubai Hills Estate, Arabian Ranches, DAMAC Hills and Al Barsha",
+          caption: "Homemaid: areas",
+        },
+      ],
+    },
+    depth: [
+      {
+        heading: "Booked and paid in under a minute",
+        paragraphs: [
+          "Booking a clean in Dubai often still means messages back and forth, a price that changes, and cash on the day. Homemaid's flow asks one question per screen and keeps the full total, VAT included, in view the whole way, so the price a customer sees on the first step is the price they confirm on the last.",
+          "Every service page and every area page opens the same flow with what the visitor came for already chosen, so an ad for deep cleaning in Dubai Marina lands one tap from a booking rather than on a homepage.",
+        ],
+      },
+      {
+        heading: "A full Arabic site, not a translation on top",
+        paragraphs: [
+          "Arabic-speaking customers book, pay and receive every email in Arabic. The layout mirrors from right to left, Arabic text is set in its own typeface, and the language switches in place on any page.",
+          "Search engines get separate Arabic titles and descriptions for each page, so the Arabic site can be found in its own right rather than as a copy of the English one.",
+        ],
+      },
+      {
+        heading: "Payments that protect both sides",
+        paragraphs: [
+          "For bookings in the next few days the amount is held on the customer's card and charged after the service, so people pay for work they have seen and the business knows the money is there before the team travels.",
+          "If a card is declined, the booking is not lost: the customer gets a secure payment link by email, followed up up to three times, and the team sees it in the morning summary.",
+        ],
+      },
+      {
+        heading: "A business that runs itself overnight",
+        paragraphs: [
+          "Scheduled jobs close finished bookings and take payments at 2am, and at 7am the team gets one email with the day's jobs, anything waiting for confirmation and any payment problem. The admin panel holds bookings, customers, subscriptions, promo codes and the site's wording in both languages, so nothing runs on spreadsheets.",
+          "There are no performance figures on this page. The results belong to Homemaid, and none are published without their agreement.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What did Bilal Shafqat build for Homemaid?",
+        answer:
+          "Their platform from scratch: the UX and UI, a booking and payments system in English and Arabic, customer accounts and subscriptions, an admin panel, overnight automation for payments and team summaries, local SEO for ten Dubai areas, and the Google and Meta campaigns with nine creatives.",
+      },
+      {
+        question: "How does a customer book a clean?",
+        answer:
+          "In one short flow: choose the service, the home size, hours and materials, the area and a time, then pay by card or Apple Pay. The total including VAT is shown throughout, and the area can be detected from the phone.",
+      },
+      {
+        question: "Is the Homemaid website available in Arabic?",
+        answer:
+          "Yes. The whole site, including booking, payment, the account area and emails, is available in Arabic with a right-to-left layout and its own Arabic metadata for search engines.",
+      },
+      {
+        question: "When is the customer charged?",
+        answer:
+          "For bookings in the next few days, the amount is held on the card and charged after the service. Bookings further ahead are charged at booking, and cancellation fees follow the published policy automatically.",
+      },
+      {
+        question: "Is there a Homemaid mobile app?",
+        answer:
+          "It is upcoming. The platform's API was built to serve an iOS and Android app, so accounts, saved cards, bookings and subscriptions will carry over to it.",
+      },
+      {
+        question: "Are there results or figures for this work?",
+        answer:
+          "Not on this page. The results belong to Homemaid and are not published without their agreement. The live website and the creatives are shown in full.",
+      },
+    ],
+    ctaLead: "Need a booking platform and the campaigns to fill it?",
+    projects: [],
+    keywords: [
+      "booking platform Dubai",
+      "home services website Dubai",
+      "cleaning company website",
+      "Arabic RTL website",
+      "Stripe booking and payments",
+      "marketing automation",
+      "Google Ads and Meta ads",
+      "Meta campaign creatives",
+      "digital marketing case study Dubai",
+      "Homemaid",
     ],
   },
 ];
