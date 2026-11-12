@@ -103,6 +103,53 @@ export type StoryBlock =
   | { type: "pair"; images: [StoryImage, StoryImage] }
   | { type: "text"; eyebrow?: string; heading: string; paragraphs: string[] };
 
+/** A section of `CaseStudyShowcase`. `at` places it on the client page:
+ *  "opener" under the fact strip, "scope" after the scope of work, "website"
+ *  after the website captures, "creative" after the campaign creatives.
+ *  Added 2026-11-12 for Homemaid; see the component for why. */
+export type ShowcaseBlock = { at: "opener" | "scope" | "website" | "creative" } & (
+  | { kind: "stats"; items: { value: string; label: string }[] }
+  | {
+      kind: "flow";
+      eyebrow: string;
+      heading: string;
+      body?: string;
+      steps: string[];
+      /** Phone screens, shown in device frames beside the notes. */
+      screens: Capture[];
+      notes: { title: string; body: string }[];
+    }
+  | {
+      kind: "screens";
+      eyebrow: string;
+      heading: string;
+      body?: string;
+      desktop?: Capture;
+      phone?: Capture;
+      points?: { title: string; body: string }[];
+    }
+  | {
+      kind: "architecture";
+      eyebrow: string;
+      heading: string;
+      body?: string;
+      /** What talks to the system, drawn on the left. */
+      clients: string[];
+      hub: string;
+      /** What the system talks to, drawn on the right. */
+      services: string[];
+      points?: { title: string; body: string }[];
+    }
+  | {
+      kind: "timeline";
+      eyebrow: string;
+      heading: string;
+      body?: string;
+      items: { when: string; title: string; body: string }[];
+    }
+  | { kind: "upcoming"; eyebrow: string; heading: string; body: string }
+);
+
 export type PlaceSchema = {
   units?: number;
   locality: string;
@@ -447,6 +494,9 @@ export type Client = {
    *  creative" held an awards announcement next to a rooftop render next to a
    *  lifestyle set, which are three different jobs shown as one. */
   socialDesigns?: Gallery;
+  /** Flow, screens, architecture, timeline and upcoming-work sections, placed
+   *  between the template's own sections. See `ShowcaseBlock`. */
+  showcase?: ShowcaseBlock[];
   projects: Project[];
   keywords: string[];
 };
@@ -2287,7 +2337,7 @@ export const clients: Client[] = [
       // 16,384px tall, the AVIF limit.
       mobileCapture: {
         src: "/portfolio/homemaid/homemaid-mobile.avif",
-        width: 561,
+        width: 558,
         height: 16384,
         alt: "Full-page view of the Homemaid homepage on a phone: the hero, the quick booker, each service as a card with its own book button, how it works and the cleaning subscription in a single column",
         label: "Homemaid, mobile",
@@ -2413,6 +2463,140 @@ export const clients: Client[] = [
       },
     ],
     ctaLead: "Need a booking platform and the campaigns to fill it?",
+    // The Version 1 sections from the approved canvas (2026-11-12). Screens
+    // captured from the live site after its mobile button fix went out.
+    showcase: [
+      {
+        at: "opener",
+        kind: "stats",
+        items: [
+          { value: "5", label: "bookable services, with 3 more on the way" },
+          { value: "10", label: "Dubai areas, each with its own page" },
+          { value: "2", label: "languages, with a full Arabic site built right to left" },
+          { value: "2", label: "scheduled jobs that close the day and brief the team" },
+        ],
+      },
+      {
+        at: "scope",
+        kind: "flow",
+        eyebrow: "UX strategy",
+        heading: "A booking flow built around how people actually book a clean",
+        body: "One question per step, the total updating as you go, and nothing asked twice. The area is detected from the phone, and the full price including VAT shows before you confirm.",
+        steps: ["Service", "Home size", "Hours and team", "Materials", "Area", "Date and time", "Pay by card or Apple Pay"],
+        screens: [
+          {
+            src: "/portfolio/homemaid/screens/book-mobile.avif",
+            width: 780,
+            height: 1688,
+            alt: "Step one of the Homemaid booking flow on a phone: Which service do you need, with each service as a card and the running total at the bottom",
+            label: "Step 1: the service",
+          },
+          {
+            src: "/portfolio/homemaid/screens/painting-mobile.avif",
+            width: 780,
+            height: 1688,
+            alt: "The Homemaid home painting page on a phone: Home Painting in Dubai, with Book online and See Services and Prices stacked full width",
+            label: "A service page",
+          },
+        ],
+        notes: [
+          {
+            title: "Quick booker on the homepage",
+            body: "Service, area and home size in one row, so a returning customer skips straight to the times.",
+          },
+          {
+            title: "Painting chosen by picture",
+            body: "Apartment, villa and single-room tabs, because people think of painting as a room they can see, not a line in a price list.",
+          },
+          {
+            title: "A total that never hides",
+            body: "The price including VAT stays on screen through every step, with one button to move on, under the thumb.",
+          },
+        ],
+      },
+      {
+        at: "scope",
+        kind: "screens",
+        eyebrow: "UI design",
+        heading: "A UI system on the client's navy and neon brand",
+        body: "Service cards, the step indicator, the booking summary and the buttons, designed once and used across the site, the admin panel and the emails. Every button grows with its label, so nothing is squeezed on a small phone. The logo is the client's own.",
+        desktop: {
+          src: "/portfolio/homemaid/screens/area-desktop.avif",
+          width: 1600,
+          height: 1000,
+          alt: "The Homemaid Dubai Marina area page on a desktop: home cleaning in Dubai Marina with the services available there",
+          label: "Area page, Dubai Marina",
+        },
+        points: [
+          { title: "Navy and neon", body: "Neon for buttons and highlights only, never text on white, so every label stays readable." },
+          { title: "Outfit and Inter", body: "Outfit for headings, Inter for text and forms, sized for reading on a phone." },
+          { title: "One component set", body: "The same cards, steps and buttons on the site, in the admin panel and in every email." },
+          { title: "Built for thumbs", body: "Buttons at least 48px tall, stacked full width on phones, with the next step always in reach." },
+        ],
+      },
+      {
+        at: "scope",
+        kind: "screens",
+        eyebrow: "Arabic version",
+        heading: "A full Arabic site, built right to left, not translated on top",
+        body: "Every page, the booking flow, the account area and the emails exist in Arabic. The layout mirrors properly, Arabic is set in its own typeface, and search engines get Arabic titles and descriptions for every page.",
+        desktop: {
+          src: "/portfolio/homemaid/screens/ar-desktop.avif",
+          width: 1600,
+          height: 1000,
+          alt: "The Arabic Homemaid homepage on a desktop, laid out right to left, with the booking buttons and the team photograph",
+          label: "Arabic homepage",
+        },
+        phone: {
+          src: "/portfolio/homemaid/screens/ar-mobile.avif",
+          width: 780,
+          height: 1688,
+          alt: "The Arabic Homemaid homepage on a phone, right to left, with the two booking buttons stacked full width",
+          label: "The same page on a phone",
+        },
+        points: [
+          { title: "Mirrored layout", body: "Navigation, steps and arrows flip right to left." },
+          { title: "Arabic booking", body: "The whole flow and payment in Arabic, start to finish." },
+          { title: "One switch", body: "The language changes in place, on any page." },
+          { title: "Arabic SEO", body: "Separate Arabic titles and descriptions for search engines." },
+        ],
+      },
+      {
+        at: "website",
+        kind: "architecture",
+        eyebrow: "Backend and payments",
+        heading: "One system behind the website, the admin panel and the app",
+        clients: ["Website, English and Arabic", "Admin panel", "Mobile app, upcoming"],
+        hub: "REST API on Next.js",
+        services: ["MongoDB", "Stripe, cards and Apple Pay", "Transactional email"],
+        points: [
+          { title: "Payments", body: "Cards saved securely, held for near bookings and charged after the service, with VAT on every receipt." },
+          { title: "Cancellation rules", body: "Free up to 6 hours before, half the fee from 2 to 6 hours, the full fee under 2 hours, applied automatically." },
+          { title: "Accounts", body: "Saved addresses and cards, booking history, promo codes and subscriptions at up to 40% off." },
+          { title: "Admin", body: "Bookings, customers, subscriptions, closed dates and the site's wording in both languages." },
+        ],
+      },
+      {
+        at: "website",
+        kind: "timeline",
+        eyebrow: "Automation",
+        heading: "The business runs itself between 2am and 7am",
+        items: [
+          { when: "On booking", title: "Emails out", body: "Booking received and confirmed for the customer, an alert to the team on cancellations." },
+          { when: "02:00 Dubai", title: "The day closes", body: "Finished bookings are marked complete and due payments are taken." },
+          { when: "If a card fails", title: "A payment link", body: "Sent by email and followed up up to three times, so the booking is not lost." },
+          { when: "07:00 Dubai", title: "Morning summary", body: "One email with today's jobs, anything pending and any payment problem." },
+          { when: "Every booking", title: "An activity log", body: "Every payment and email recorded, with a one-click resend." },
+        ],
+      },
+      {
+        at: "creative",
+        kind: "upcoming",
+        eyebrow: "Mobile app",
+        heading: "Book again in two taps",
+        body: "The iOS and Android app is next. It runs on the same API as the website, so accounts, saved cards, bookings and subscriptions carry over from day one.",
+      },
+    ],
     projects: [],
     keywords: [
       "booking platform Dubai",

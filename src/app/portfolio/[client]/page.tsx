@@ -20,6 +20,7 @@ import { jsonLdSafe } from "@/lib/schema";
 import { SITE_URL } from "@/lib/site";
 import Eyebrow from "@/components/ui/Eyebrow";
 import SecondaryButton from "@/components/ui/SecondaryButton";
+import CaseStudyShowcase from "@/components/portfolio/CaseStudyShowcase";
 
 const SITE = SITE_URL;
 
@@ -197,6 +198,8 @@ export default async function ClientCaseStudy({ params }: Props) {
           }
         />
 
+        <CaseStudyShowcase blocks={c.showcase} at="opener" />
+
         <section className="relative section">
           <div className="site-container">
             <Reveal>
@@ -218,6 +221,8 @@ export default async function ClientCaseStudy({ params }: Props) {
             </div>
           </div>
         </section>
+
+        <CaseStudyShowcase blocks={c.showcase} at="scope" />
 
         {/* The featured project, above the website and everything else.
             Order on this page is deliberate: the tool the sales floor runs on,
@@ -331,6 +336,8 @@ export default async function ClientCaseStudy({ params }: Props) {
           </section>
         ) : null}
 
+        <CaseStudyShowcase blocks={c.showcase} at="website" />
+
         {c.mobileApp ? (
           <section className="relative section">
             <div className="site-container">
@@ -439,6 +446,8 @@ export default async function ClientCaseStudy({ params }: Props) {
           </section>
         ) : null}
 
+
+        <CaseStudyShowcase blocks={c.showcase} at="creative" />
         {gridProjects.length > 0 ? (
           <section id="projects" className="relative mt-20 scroll-mt-28 border-t border-border pt-20 sm:mt-28 sm:pt-24">
             <div className="site-container">

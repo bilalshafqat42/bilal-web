@@ -255,7 +255,7 @@
  },
  "/portfolio/homemaid/homemaid-card.avif": {
   "w": 1600,
-  "v": "d392abff",
+  "v": "0f34ac1c",
   "widths": [
    256,
    384,
@@ -267,17 +267,17 @@
   ]
  },
  "/portfolio/homemaid/homemaid-mobile.avif": {
-  "w": 561,
-  "v": "f158e0c4",
+  "w": 558,
+  "v": "6bcef09c",
   "widths": [
    256,
    384,
-   561
+   558
   ]
  },
  "/portfolio/homemaid/homemaid-website.avif": {
   "w": 1600,
-  "v": "5dc3a0a7",
+  "v": "edb05bbd",
   "widths": [
    256,
    384,
@@ -286,6 +286,61 @@
    1080,
    1280,
    1600
+  ]
+ },
+ "/portfolio/homemaid/screens/ar-desktop.avif": {
+  "w": 1600,
+  "v": "ba2708f0",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/homemaid/screens/ar-mobile.avif": {
+  "w": 780,
+  "v": "e6311b38",
+  "widths": [
+   256,
+   384,
+   640,
+   780
+  ]
+ },
+ "/portfolio/homemaid/screens/area-desktop.avif": {
+  "w": 1600,
+  "v": "81027144",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/homemaid/screens/book-mobile.avif": {
+  "w": 780,
+  "v": "e5280664",
+  "widths": [
+   256,
+   384,
+   780
+  ]
+ },
+ "/portfolio/homemaid/screens/painting-mobile.avif": {
+  "w": 780,
+  "v": "1f4dcf7e",
+  "widths": [
+   256,
+   384,
+   640,
+   780
   ]
  },
  "/portfolio/homemaid/social/homemaid-01-brand.avif": {
