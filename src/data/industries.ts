@@ -52,4 +52,8 @@ export const industriesWorkedIn: IndustryEntry[] = [
     sector: "HR consultancy",
     companies: [{ name: "NextGen HR Consultancy", href: "/portfolio/nextgen-hr" }],
   },
+  {
+    sector: "Home services, Dubai",
+    companies: [{ name: "Homemaid", href: "/portfolio/homemaid" }],
+  },
 ];

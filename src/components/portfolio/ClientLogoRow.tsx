@@ -96,6 +96,19 @@ const allLogos: Logo[] = [
     cleared: true,
   },
   {
+    // Added 2026-11-12, when the Homemaid case study was published. The
+    // neon file, which reads on the dark page; on a light ground the row
+    // turns it into a silhouette like the others.
+    id: "homemaid",
+    name: "Homemaid",
+    src: "/portfolio/homemaid/logo/home-maid-green.svg",
+    width: 1784,
+    height: 250,
+    heightClass: "max-h-6",
+    href: "/portfolio/homemaid",
+    cleared: true,
+  },
+  {
     id: "tomorrow-world",
     name: "Tomorrow World Real Estate",
     src: "/portfolio/tomorrow/logo/tomorrow-world-logo.svg",

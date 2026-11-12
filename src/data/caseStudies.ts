@@ -2190,8 +2190,8 @@ export const clients: Client[] = [
     // live site. The nine creatives were designed on 2026-11-12 in the client's
     // identity, using the client's own team photography.
     //
-    // A draft until Bilal confirms the client is happy to be named. Deliberately
-    // absent: prices (Bilal keeps prices off his site), the trade licence number,
+    // Published 2026-11-12, after Bilal confirmed the client is happy to be
+    // named. Deliberately absent: prices (Bilal keeps prices off his site), the trade licence number,
     // the site's rating and testimonials (entered through the admin, source not
     // shown), any campaign figure or result, and the logo design (supplied by
     // the client). The app is described as upcoming: the API is built for it,
@@ -2199,7 +2199,6 @@ export const clients: Client[] = [
     slug: "homemaid",
     name: "Homemaid",
     industry: "Home Services",
-    draft: true,
     siteUrl: "https://homemaid.ae",
     logo: "/portfolio/homemaid/logo/home-maid-blue.svg",
     logoWidth: 1784,
@@ -2208,7 +2207,7 @@ export const clients: Client[] = [
     ogImageAlt: "The Homemaid homepage hero: Your Home, Our Commitment, above the HomeMaid team beside their van",
     title: "Homemaid: Booking Platform and Marketing in Dubai",
     description:
-      "A bilingual booking and payments platform for Homemaid, a Dubai home services company: UX, UI, build, automation, and Google and Meta campaigns.",
+      "A bilingual booking platform for Homemaid, a Dubai home services company: UX, UI, build, automation, and Google and Meta campaigns.",
     headline: "A bilingual booking platform, automation and launch campaigns for a Dubai home services company",
     intro:
       "Homemaid cleans and maintains apartments and villas across Dubai: general and deep cleaning, furniture cleaning, handyman work and painting. I designed and built their platform from a blank page: the booking and payments flow, customer accounts, a full Arabic version built right to left, an admin system to run the day, and automation that takes payments and briefs the team overnight. Then the Google and Meta campaigns with the creatives that run on them. One person, from the first screen to the live ads.",

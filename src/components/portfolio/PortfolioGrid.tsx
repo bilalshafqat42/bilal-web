@@ -80,12 +80,22 @@ type Card = {
 const ROW_PATTERN = [3, 2, 4] as const;
 
 const cards: Card[] = [
-  // Reordered 2026-11-12, at Bilal's request: six of nine cards were LEOS, so
-  // the grid read as one client with a few extras. Now the three other clients
-  // lead, and LEOS keeps two cards, its launch page and its app. The other LEOS
-  // pieces (corporate site, Hadley Heights, campaign creative, app screens)
-  // stay on /portfolio and in the LEOS case study, one click away.
+  // 2026-11-12: Homemaid leads, the second UAE client on the grid. NextGen HR
+  // moves to the wide row, where its 16:10 card fits the frame with almost no
+  // crop, and the LEOS app card comes off the homepage: LEOS keeps Cavendish
+  // Square here and every other piece on /portfolio and its case study.
   //
+  // Row one, three across.
+  {
+    title: "Homemaid",
+    tags: ["Web Development", "UI Design", "Paid Ads"],
+    href: "/portfolio/homemaid",
+    image: "/portfolio/homemaid/homemaid-card.avif",
+    ratio: 1600 / 1000,
+    alt: "The Homemaid homepage hero: Your Home, Our Commitment, with the quick booker and the HomeMaid team",
+    // The headline sits on the left of the 16:10 card image.
+    focus: "left",
+  },
   // Row one, three across.
   // Row three, four across. The narrowest cells, so pieces that read at a
   // glance rather than ones that need studying.
@@ -114,20 +124,8 @@ const cards: Card[] = [
     // crop into this near-square cell cut it to "emistry for".
     focus: "left",
   },
-  {
-    // Took the place of Hadley Heights Social on 2026-10-26, when the NextGen HR
-    // case study was published: Hadley Heights already has a card in row one,
-    // and the grid now shows a third client.
-    title: "NextGen HR",
-    tags: ["Web Design", "Web Development"],
-    href: "/portfolio/nextgen-hr",
-    image: "/portfolio/nextgen-hr/nextgen-hr-card.avif",
-    ratio: 1440 / 900,
-    alt: "The NextGen HR website hero: People first. Hiring done right, over the Dubai skyline at night",
-    // The headline sits low and left in a 16:10 card image.
-    focus: "left",
-  },
 
+  // Row two, two across: the wide frame. Cavendish's thumbnail is cut for it.
   // Row two, two across: the wide frame. Cavendish's thumbnail is cut for it.
   // Row two, two across. The widest cells in the grid, so the two projects with
   // the most to look at sit here.
@@ -140,12 +138,17 @@ const cards: Card[] = [
     alt: "Cavendish Square landing page, showing the hero with register-your-interest and check-construction-progress routes",
   },
   {
-    title: "LEOS Mobile App",
-    tags: ["App Development", "UI Design"],
-    href: "/portfolio/leos-developments/mobile-app",
-    image: "/portfolio/leos/mobile-app/leos-mobile-featured.avif",
-    ratio: 1376 / 768,
-    alt: "The LEOS cross-platform mobile app open on the Hadley Heights development, shown on an iPhone",
+    // Took the place of Hadley Heights Social on 2026-10-26, when the NextGen HR
+    // case study was published: Hadley Heights already has a card in row one,
+    // and the grid now shows a third client.
+    title: "NextGen HR",
+    tags: ["Web Design", "Web Development"],
+    href: "/portfolio/nextgen-hr",
+    image: "/portfolio/nextgen-hr/nextgen-hr-card.avif",
+    ratio: 1440 / 900,
+    alt: "The NextGen HR website hero: People first. Hiring done right, over the Dubai skyline at night",
+    // The headline sits low and left in a 16:10 card image.
+    focus: "left",
   },
 ];
 

@@ -47,6 +47,8 @@ export const PUBLISHED_CASE_STUDIES: readonly PublishedCaseStudy[] = [
   { client: "texdale", mobileApp: false, projects: [] },
   // Single-page, as Texdale. Published 2026-10-26.
   { client: "nextgen-hr", mobileApp: false, projects: [] },
+  // Single-page, as Texdale. Published 2026-11-12.
+  { client: "homemaid", mobileApp: false, projects: [] },
 ];
 
 /** Every case-study URL, for the sitemap: each client overview, its mobile app
