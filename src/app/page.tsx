@@ -6,7 +6,9 @@ import DisciplineStatement from "@/components/home/DisciplineStatement";
 import HomeParallax from "@/components/home/HomeParallax";
 import AboutSplit from "@/components/home/AboutSplit";
 import CapabilityLedger from "@/components/home/CapabilityLedger";
-import PortfolioGrid from "@/components/portfolio/PortfolioGrid";
+import WorkShowcase from "@/components/portfolio/WorkShowcase";
+import { cardsFor } from "@/data/workCards";
+import { caseStudyCount } from "@/data/caseStudyUrls";
 import Results from "@/components/home/Results";
 import ProcessCompact from "@/components/home/ProcessCompact";
 import DubaiFocus from "@/components/home/DubaiFocus";
@@ -82,7 +84,16 @@ export default function Home() {
         <div className="relative z-[15] bg-bg motion-safe:lg:-mt-[100svh]">
           <CapabilityLedger />
         </div>
-        <PortfolioGrid />
+        {/* The reusable portfolio section (2026-11-12): two tall cards, one
+            wide, two tall. The same component and the same card list
+            (`workCards.ts`) serve any other page that shows work. */}
+        <WorkShowcase
+          id="work-carousel"
+          eyebrow="Selected work"
+          heading="Real briefs, real launches. A closer look at five of them."
+          cards={cardsFor(["aks-chemicals", "texdale", "homemaid", "nextgen-hr", "leos-developments"])}
+          cta={{ href: "/portfolio", label: `See all ${caseStudyCount()} case studies` }}
+        />
         <Results />
         <DubaiFocus />
         <ProcessCompact />
