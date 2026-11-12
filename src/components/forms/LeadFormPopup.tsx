@@ -182,7 +182,7 @@ export default function LeadFormPopup() {
             {status === "success" ? (
               <div className="py-6 text-center">
                 <CheckCircle2 size={40} className="mx-auto text-gold" />
-                <h3 className="t-h5 mt-4 text-ink">Query sent</h3>
+                <h3 id="lead-form-heading" className="t-h5 mt-4 text-ink">Query sent</h3>
                 <p className="mt-2 text-sm text-muted leading-relaxed">
                   Thanks for reaching out. I&apos;ll get back to you shortly.
                 </p>
@@ -279,7 +279,7 @@ export default function LeadFormPopup() {
                       <AlertCircle size={14} className="mt-0.5 shrink-0" />
                       <span>
                         Something went wrong. Please email{" "}
-                        <span className="underline">{SITE_EMAIL}</span>{" "}
+                        <a href={`mailto:${SITE_EMAIL}`} className="underline">{SITE_EMAIL}</a>{" "}
                         directly instead.
                       </span>
                     </div>

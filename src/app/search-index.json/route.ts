@@ -23,7 +23,10 @@ export function GET() {
       // Immutable for a day, then revalidated. A stale index for a few hours
       // costs a visitor a slightly out-of-date search result; re-fetching it on
       // every page view costs every visitor the bytes we just removed.
-      "Cache-Control": "public, max-age=86400, must-revalidate",
+      //
+      // An hour rather than a day (2026-11-12): the URL never changes, so after
+      // a deploy that renames a page, a day-old copy sent searchers to 404s.
+      "Cache-Control": "public, max-age=3600, must-revalidate",
     },
   });
 }

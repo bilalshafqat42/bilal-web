@@ -248,6 +248,15 @@ nav[aria-label="Breadcrumb"] a,
 .section-tight { margin-top: var(--space-section-tight); }
 .section-pad { padding-block: var(--space-section); }
 .section-pad-tight { padding-block: var(--space-section-tight); }
+/* Two padded sections on the same ground stacked 128px of bottom padding on
+   128px of top padding: 256px of empty page between, say, the results CTA and
+   the Dubai section, which read as a missing block rather than a pause
+   (homepage audit, 2026-11-12). The second one keeps a quarter of its top
+   padding. Sections that paint their own ground are left alone, because their
+   padding is inside the colour. */
+main > .section-pad:not([class*="bg-"]) + .section-pad:not([class*="bg-"]) {
+  padding-top: calc(var(--space-section) * 0.25);
+}
 .block-gap { margin-top: var(--space-block); }
 
 /* ---------------------------------------------------------------------------

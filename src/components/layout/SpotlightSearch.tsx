@@ -77,6 +77,12 @@ export default function SpotlightSearch() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        // Not over another dialog (2026-11-12). Opening search on top of the
+        // enquiry popup left two focus traps fighting, and Tab did nothing.
+        const otherDialog = Array.from(
+          document.querySelectorAll('[aria-modal="true"]'),
+        ).some((el) => el !== dialogRef.current);
+        if (otherDialog) return;
         e.preventDefault();
         setOpen((v) => !v);
       }

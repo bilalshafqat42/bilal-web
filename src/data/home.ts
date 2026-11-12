@@ -139,10 +139,13 @@ export const audiences: Audience[] = [
  *  three of the capability ledger (2026-10-19). */
 export const resultStatsFor = (): Stat[] => [
   {
-    value: `${yearsExperience()}`,
-    label: "Years, one point of contact",
-    detail: "Strategy, design and build without a handoff layer",
-    meta: "Based in Dubai, UAE",
+    // Was the years figure, which the about band already shows three screens
+    // up: one number, said twice (2026-11-12). This is the policy the FAQ and
+    // pricing page already promise, stated as the number it is.
+    value: "0",
+    label: "Accounts kept in my name",
+    detail: "Ad accounts, website and analytics stay yours from day one",
+    meta: "No lock-in",
     verified: true,
   },
   {

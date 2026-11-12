@@ -54,12 +54,16 @@ import { useEffect, useRef, useState } from "react";
  *  shows, and what a paused visitor is most likely to be looking at. It is
  *  "all of it." rather than a service name because a single frame of any other
  *  reads as a specialist claim. */
+/*  Marketing first (2026-11-12). The first frame a visitor read was "UI/UX
+ *  design", and no frame said "digital marketing" or "SEO", on a page whose
+ *  main keyword is "freelance digital marketer in Dubai". UI/UX and CRM stay
+ *  covered by the hero paragraph and the capability ledger below. */
 const PHRASES = [
+  "digital marketing",
   "paid ads",
-  "UI/UX design",
+  "SEO",
   "web development",
   "app development",
-  "CRM automation",
   "all of it.",
 ] as const;
 

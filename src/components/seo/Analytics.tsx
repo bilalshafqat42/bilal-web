@@ -81,8 +81,25 @@ export default function Analytics() {
 
     apply(getConsent());
     const onChange = (e: Event) => apply((e as CustomEvent<string>).detail);
+    // Another tab answering or withdrawing (2026-11-12). Withdrawal in tab A
+    // swept the cookies and reloaded A only; tab B kept GA on "granted" and its
+    // already-loaded pixel, and rewrote `_ga` on the next navigation. A cleared
+    // choice reloads this tab too, the same honest reset `clearConsent` does.
+    const onStorage = (e: StorageEvent) => {
+      if (e.key !== null && e.key !== "bs-consent") return;
+      const value = getConsent();
+      if (value === null) {
+        window.location.reload();
+        return;
+      }
+      apply(value);
+    };
     window.addEventListener(CONSENT_EVENT, onChange);
-    return () => window.removeEventListener(CONSENT_EVENT, onChange);
+    window.addEventListener("storage", onStorage);
+    return () => {
+      window.removeEventListener(CONSENT_EVENT, onChange);
+      window.removeEventListener("storage", onStorage);
+    };
   }, [enabled]);
 
   if (!enabled) return null;

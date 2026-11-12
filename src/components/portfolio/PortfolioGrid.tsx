@@ -80,49 +80,13 @@ type Card = {
 const ROW_PATTERN = [3, 2, 4] as const;
 
 const cards: Card[] = [
+  // Reordered 2026-11-12, at Bilal's request: six of nine cards were LEOS, so
+  // the grid read as one client with a few extras. Now the three other clients
+  // lead, and LEOS keeps two cards, its launch page and its app. The other LEOS
+  // pieces (corporate site, Hadley Heights, campaign creative, app screens)
+  // stay on /portfolio and in the LEOS case study, one click away.
+  //
   // Row one, three across.
-  {
-    title: "LEOS Developments",
-    tags: ["UI Design", "Web Development"],
-    href: "/portfolio/leos-developments",
-    image: "/portfolio/leos/landing-page/leos-thumb.avif",
-    alt: "LEOS Developments corporate website, showing the developer's project listing interface",
-  },
-  {
-    title: "Hadley Heights",
-    tags: ["Web Development", "Conversion"],
-    href: "/portfolio/leos-developments/hadley-heights",
-    image: "/portfolio/leos/hadley-heights/landing-page/hadley-heights-thumb.avif",
-    alt: "Hadley Heights launch landing page, with the price qualifier and request-a-callback form in the hero",
-  },
-  {
-    title: "LEOS Mobile App",
-    tags: ["App Development", "UI Design"],
-    href: "/portfolio/leos-developments/mobile-app",
-    image: "/portfolio/leos/mobile-app/leos-mobile-featured.avif",
-    ratio: 1376 / 768,
-    alt: "The LEOS cross-platform mobile app open on the Hadley Heights development, shown on an iPhone",
-  },
-
-  // Row two, two across. The widest cells in the grid, so the two projects with
-  // the most to look at sit here.
-  {
-    title: "Cavendish Square",
-    tags: ["Web Development", "UI Design", "Mobile"],
-    href: "/portfolio/leos-developments/cavendish-square",
-    image: "/portfolio/leos/cavendish/landing-page/cavendish-thumb.avif",
-    ratio: 1200 / 799,
-    alt: "Cavendish Square landing page, showing the hero with register-your-interest and check-construction-progress routes",
-  },
-  {
-    title: "LEOS Campaign Creative",
-    tags: ["Social Media", "Brand Creative"],
-    href: "/portfolio/leos-developments",
-    image: "/portfolio/leos/social-media/1.avif",
-    alt: "Award-winner campaign creative for LEOS Developments set over a residential high-rise",
-    focus: "center",
-  },
-
   // Row three, four across. The narrowest cells, so pieces that read at a
   // glance rather than ones that need studying.
   {
@@ -163,17 +127,25 @@ const cards: Card[] = [
     // The headline sits low and left in a 16:10 card image.
     focus: "left",
   },
+
+  // Row two, two across: the wide frame. Cavendish's thumbnail is cut for it.
+  // Row two, two across. The widest cells in the grid, so the two projects with
+  // the most to look at sit here.
   {
-    // Was the Cavendish mobile capture, which is 367x5317 — a full phone
-    // scroll. In a landscape frame the top slice of that is the status bar and
-    // a strip of sky, which is what it rendered as. This asset is 1398x768,
-    // near enough 16:9 that the frame crops almost nothing.
-    title: "LEOS App Screens",
+    title: "Cavendish Square",
+    tags: ["Web Development", "UI Design", "Mobile"],
+    href: "/portfolio/leos-developments/cavendish-square",
+    image: "/portfolio/leos/cavendish/landing-page/cavendish-thumb.avif",
+    ratio: 1200 / 799,
+    alt: "Cavendish Square landing page, showing the hero with register-your-interest and check-construction-progress routes",
+  },
+  {
+    title: "LEOS Mobile App",
     tags: ["App Development", "UI Design"],
     href: "/portfolio/leos-developments/mobile-app",
-    image: "/portfolio/leos/mobile-app/leos-login-mobile.avif",
-    ratio: 1398 / 768,
-    alt: "Sign-in and account screens from the LEOS cross-platform mobile app",
+    image: "/portfolio/leos/mobile-app/leos-mobile-featured.avif",
+    ratio: 1376 / 768,
+    alt: "The LEOS cross-platform mobile app open on the Hadley Heights development, shown on an iPhone",
   },
 ];
 

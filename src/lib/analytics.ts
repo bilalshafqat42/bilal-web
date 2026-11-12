@@ -1,5 +1,7 @@
 "use client";
 
+import { hasConsent } from "./consent";
+
 type DataLayerEvent = Record<string, unknown> & { event: string };
 
 declare global {
@@ -65,13 +67,18 @@ function meta(
   params: Record<string, string | undefined> = {},
   eventId?: string,
 ) {
-  if (typeof window === "undefined") return;
+  // Checked here as well as at pixel load (2026-11-12). A pixel loaded in this
+  // tab stays loaded after consent is withdrawn in another tab, so "the pixel
+  // exists" no longer implies "the visitor consented". Re-read on every fire.
+  if (typeof window === "undefined" || !hasConsent()) return;
 
   const clean: Record<string, string> = {};
   for (const [k, v] of Object.entries(params)) if (v) clean[k] = v;
   const id = eventId || generateEventId();
 
-  const fire = () => window.fbq?.("track", event, clean, { eventID: id });
+  const fire = () => {
+    if (hasConsent()) window.fbq?.("track", event, clean, { eventID: id });
+  };
 
   if (typeof window.fbq === "function") {
     fire();

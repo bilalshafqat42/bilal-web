@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 type PageProps = {
-  searchParams: Promise<{ source?: string; slot?: string }>;
+  searchParams: Promise<{ source?: string }>;
 };
 
 /** Tailors one line per entry point. Anything unrecognised falls back to the
@@ -50,24 +50,13 @@ const next = [
   { icon: Mail, text: "Check your spam folder if nothing arrives, then email me directly." },
 ];
 
-/** `?slot=` is printed on the page, and anyone can link here with any value.
- *  React escapes it, so it cannot inject markup, but unchecked it could still
- *  put a sentence of someone else's choosing on this site ("You asked for a
- *  refund, call +1..."). Only what a time slot looks like is shown: letters,
- *  digits, spaces and `: , . - / ( ) +`, at most 60 characters. Anything else
- *  is dropped rather than trimmed, since a trimmed message is still theirs. */
-const SLOT_FORMAT = /^[A-Za-z0-9 :,.\-/()+]{1,60}$/;
-
-function safeSlot(value: unknown): string | undefined {
-  if (typeof value !== "string") return undefined;
-  const slot = value.trim().replace(/\s+/g, " ");
-  return SLOT_FORMAT.test(slot) ? slot : undefined;
-}
+/* `?slot=` was printed here, and nothing on the site ever sent it: dead input
+ * that let anyone put a sentence of their choosing on this page. Removed
+ * 2026-11-12 rather than filtered further. */
 
 export default async function ThankYouPage({ searchParams }: PageProps) {
   const params = await searchParams;
   const source = typeof params.source === "string" ? params.source : undefined;
-  const slot = safeSlot(params.slot);
   const copy = (source && Object.hasOwn(COPY, source) && COPY[source]) || {
     heading: "Thank you",
     body: "Your message has reached me directly, not an assistant or a shared inbox.",
@@ -94,13 +83,6 @@ export default async function ThankYouPage({ searchParams }: PageProps) {
               {copy.heading}
             </h1>
             <p className="mx-auto mt-5 max-w-lg text-lg leading-relaxed text-muted">{copy.body}</p>
-
-            {slot ? (
-              <p className="mt-6 inline-flex items-center gap-2 rounded-full surface-2 px-5 py-2.5 text-sm text-ink">
-                <Clock size={15} className="text-gold" />
-                You asked for {slot}
-              </p>
-            ) : null}
 
             <ul className="mx-auto mt-10 max-w-md space-y-3 text-left">
               {next.map(({ icon: Icon, text }) => (

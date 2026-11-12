@@ -390,8 +390,10 @@ export default function AboutSplit() {
             <dl data-reveal className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3">
               {FACTS.map((fact) => (
                 // `<dt>` first, as the HTML spec requires; `flex-col-reverse`
-                // keeps the figure above its label on screen.
-                <div key={fact.label} className="flex flex-col-reverse gap-2">
+                // keeps the figure above its label on screen. `justify-end` is
+                // the top in a reversed column: without it a one-line label sat
+                // its figure lower than the two-line ones (2026-11-12).
+                <div key={fact.label} className="flex flex-col-reverse justify-end gap-2">
                   <dt className="text-sm leading-relaxed text-muted sm:text-xs">{fact.label}</dt>
                   <dd className="t-h3 text-ink">{fact.value}</dd>
                 </div>

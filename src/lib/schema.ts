@@ -206,7 +206,7 @@ export function personNode() {
     description:
       "Freelance digital marketer in Dubai. Runs paid campaigns, SEO, social and email, and builds the landing pages, websites and CRM automation those campaigns land on.",
     url: SITE_URL,
-    image: `${SITE_URL}/images/bilal-shafqat-coat.avif`,
+    image: `${SITE_URL}/images/bilal-shafqat-portrait.jpg`,
     email: SITE_EMAIL,
     address: ADDRESS,
     sameAs: SAME_AS,
@@ -239,7 +239,7 @@ export function businessNode() {
     // Added 2026-11-05 after the Rich Results Test flagged both as missing.
     // The phone is the WhatsApp line shown in the footer and on /contact.
     logo: `${SITE_URL}/icons/icon-512.png`,
-    image: `${SITE_URL}/images/bilal-shafqat-coat.avif`,
+    image: `${SITE_URL}/images/bilal-shafqat-portrait.jpg`,
     email: SITE_EMAIL,
     telephone: SITE_PHONE_HREF,
     address: ADDRESS,

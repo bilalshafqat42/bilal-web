@@ -88,6 +88,18 @@
    1412
   ]
  },
+ "/images/bilal-shafqat-portrait.jpg": {
+  "w": 1200,
+  "v": "012e1517",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1200
+  ]
+ },
  "/images/bilal-shirt.avif": {
   "w": 1800,
   "v": "6daf0e78",
@@ -136,6 +148,13 @@
    1080,
    1280,
    1600
+  ]
+ },
+ "/portfolio/aks-chemicals/logo/aks-logo-white.png": {
+  "w": 403,
+  "v": "a1f88e11",
+  "widths": [
+   403
   ]
  },
  "/portfolio/aks-chemicals/social/aks-01-brand.avif": {

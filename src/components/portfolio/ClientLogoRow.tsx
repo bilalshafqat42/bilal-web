@@ -61,6 +61,40 @@ const allLogos: Logo[] = [
     href: "/portfolio/leos-developments",
     cleared: true,
   },
+  // Added 2026-11-12. The row showed LEOS alone, which read as one client
+  // rather than a list. All three are published, named case studies on this
+  // site already. White files only: their dark files are navy and charcoal, which
+  // would vanish on hover against the dark page.
+  {
+    id: "texdale",
+    name: "Texdale",
+    src: "/portfolio/texdale/logo/texdale-white.svg",
+    width: 742,
+    height: 260,
+    heightClass: "max-h-9",
+    href: "/portfolio/texdale",
+    cleared: true,
+  },
+  {
+    id: "aks-chemicals",
+    name: "AKS Chemicals",
+    src: "/portfolio/aks-chemicals/logo/aks-logo-white.png",
+    width: 403,
+    height: 36,
+    heightClass: "max-h-5",
+    href: "/portfolio/aks-chemicals",
+    cleared: true,
+  },
+  {
+    id: "nextgen-hr",
+    name: "NextGen HR",
+    src: "/portfolio/nextgen-hr/logo/nextgen-hr-logo-white.svg",
+    width: 295,
+    height: 49,
+    heightClass: "max-h-7",
+    href: "/portfolio/nextgen-hr",
+    cleared: true,
+  },
   {
     id: "tomorrow-world",
     name: "Tomorrow World Real Estate",
@@ -170,7 +204,7 @@ export default function ClientLogoRow({ variant = "wall", className = "", ground
   }
 
   return (
-    <RevealStagger className={`grid grid-cols-2 gap-4 sm:grid-cols-3 ${className}`}>
+    <RevealStagger className={`grid grid-cols-2 gap-4 sm:grid-cols-4 ${className}`}>
       {logos.map((logo) => {
         const tile =
           "flex h-28 items-center justify-center r-card surface-2 px-6 transition";

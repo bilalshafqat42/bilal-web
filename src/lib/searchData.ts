@@ -20,7 +20,13 @@ let cached: Promise<Chunk[]> | null = null;
 export function loadSearchIndex(): Promise<Chunk[]> {
   if (!cached) {
     cached = fetch("/search-index.json")
-      .then((r) => (r.ok ? (r.json() as Promise<Chunk[]>) : []))
+      // A non-OK response throws so the catch below clears the cache. It used
+      // to resolve to [] and stay cached, so one 502 meant "no results" for
+      // every search until a reload (2026-11-12).
+      .then((r) => {
+        if (!r.ok) throw new Error(`search index ${r.status}`);
+        return r.json() as Promise<Chunk[]>;
+      })
       .catch(() => {
         cached = null;
         return [] as Chunk[];
