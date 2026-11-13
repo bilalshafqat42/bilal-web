@@ -21,6 +21,7 @@ import { SITE_URL } from "@/lib/site";
 import Eyebrow from "@/components/ui/Eyebrow";
 import SecondaryButton from "@/components/ui/SecondaryButton";
 import CaseStudyShowcase from "@/components/portfolio/CaseStudyShowcase";
+import LinkedText from "@/components/ui/LinkedText";
 
 const SITE = SITE_URL;
 
@@ -541,7 +542,9 @@ export default async function ClientCaseStudy({ params }: Props) {
                     <h2 className="t-h3 text-ink">{block.heading}</h2>
                     {block.paragraphs.map((para) => (
                       <p key={para.slice(0, 40)} className="mt-5 text-base leading-relaxed text-muted">
-                        {para}
+                        {/* LinkedText since 2026-11-13, so a paragraph can link
+                            with [label](/path); plain text renders unchanged. */}
+                        <LinkedText text={para} />
                       </p>
                     ))}
                   </div>

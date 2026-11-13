@@ -2426,6 +2426,9 @@ export const clients: Client[] = [
         heading: "A business that runs itself overnight",
         paragraphs: [
           "Scheduled jobs close finished bookings and take payments at 2am, and at 7am the team gets one email with the day's jobs, anything waiting for confirmation and any payment problem. The admin panel holds bookings, customers, subscriptions, promo codes and the site's wording in both languages, so nothing runs on spreadsheets.",
+          // Link added 2026-11-13 (daily keyword push): the most-searched
+          // version of the main keyword, from the strongest UAE case study.
+          "Every part of this, from the first screen to the campaigns, was planned and built by one person. I work as a [digital marketing freelancer in Dubai](/), so the client speaks to the person doing the work, with no agency layer in between.",
           "There are no performance figures on this page. The results belong to Homemaid, and none are published without their agreement.",
         ],
       },
