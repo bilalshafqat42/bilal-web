@@ -12,9 +12,10 @@ import type { WorkCard, WorkImage } from "@/data/workCards";
  * Bilal approved on the "Portfolio Redesign Wireframes" canvas. The grid it
  * replaces mixed three, two and four across, cropped every card differently
  * and hung tag pills under each one, so it read as a list of screenshots. This
- * follows the pattern of the studio portfolios he pointed to: two tall cards,
- * then one wide card, repeating, with the same two shapes every time, a name
- * and a quiet link under each, and nothing else.
+ * follows the pattern of the studio portfolio he pointed to (brande.ae): tall
+ * vertical cards in pairs, one shape every time, a name and a quiet link
+ * under each, and nothing else. A wide card is still available through
+ * `pattern`, but off by default since 2026-11-13.
  *
  * Desktop (lg and up): a 1200px column. Portrait cards are 5:6 at about
  * 576 x 691, wide cards 15:8 at 1200 x 640, 48px apart across and 96px between
@@ -28,15 +29,16 @@ import type { WorkCard, WorkImage } from "@/data/workCards";
 type Row = { kind: "pair" | "wide"; cards: WorkCard[] };
 
 /** Splits the cards into rows following `pattern`, cycling it. A pair with
- *  only one card left becomes a wide row rather than a half-empty one. */
+ *  one card left keeps that card tall, alone in the left column, the way the
+ *  reference portfolio ends its list, rather than stretching it wide. */
 function rowsOf(cards: WorkCard[], pattern: Row["kind"][]): Row[] {
   const rows: Row[] = [];
   let i = 0;
   let p = 0;
   while (i < cards.length) {
     const kind = pattern[p % pattern.length];
-    const take = kind === "pair" && cards.length - i >= 2 ? 2 : 1;
-    rows.push({ kind: take === 2 ? "pair" : "wide", cards: cards.slice(i, i + take) });
+    const take = kind === "pair" ? 2 : 1;
+    rows.push({ kind, cards: cards.slice(i, i + take) });
     i += take;
     p += 1;
   }
@@ -108,7 +110,9 @@ export default function WorkShowcase({
   heading,
   id,
   cta,
-  pattern = ["pair", "wide"],
+  // Every card tall, in pairs (Bilal, 2026-11-13: "all tall, no wide card").
+  // Pass ["pair", "wide"] to bring the wide feature card back on a page.
+  pattern = ["pair"],
 }: {
   cards: WorkCard[];
   eyebrow: string;
@@ -117,7 +121,7 @@ export default function WorkShowcase({
   id?: string;
   /** The link under the cards, and repeated beside the heading on desktop. */
   cta?: { href: string; label: string };
-  /** The row rhythm, cycled. Defaults to a pair, then a wide card. */
+  /** The row rhythm, cycled. Defaults to tall pairs only. */
   pattern?: Row["kind"][];
 }) {
   const rows = rowsOf(cards, pattern);

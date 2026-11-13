@@ -1,12 +1,9 @@
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { WorkCardView } from "@/components/portfolio/WorkShowcase";
 import Reveal from "@/components/ui/Reveal";
 import { publishedClients } from "@/data/caseStudies";
 import { OG_IMAGE_URL } from "@/lib/ogImage";
 import { disciplinesInWork, disciplinesFromServices } from "@/data/disciplines";
 import Eyebrow from "@/components/ui/Eyebrow";
-import Tag from "@/components/ui/Tag";
 
 /**
  * Every case study on the site, as one grid of cards.
@@ -50,6 +47,9 @@ type Card = {
    *  nothing for a screen reader or an image search to go on. */
   alt: string;
   position: "top" | "center";
+  /** The image's own size, so the card asks for a sharp enough source. */
+  width: number;
+  height: number;
   /** Full width on desktop. Used for the client overview, which is the entry
    *  point to everything under it. */
   wide?: boolean;
@@ -74,6 +74,8 @@ function buildCards(): Card[] {
       // The small crop where there is one: the full capture is a whole page
       // scroll to download for a 16:7 window onto its top.
       image: c.website?.cardImage?.src ?? c.website?.capture.src ?? c.ogImage ?? OG_IMAGE_URL,
+      width: c.website?.cardImage?.width ?? c.website?.capture.width ?? 1600,
+      height: c.website?.cardImage?.height ?? c.website?.capture.height ?? 1000,
       alt: c.website?.capture.alt ?? `${c.name} case study cover`,
       position: "top",
       wide: true,
@@ -87,6 +89,8 @@ function buildCards(): Card[] {
       out.push({
         href: `/portfolio/${c.slug}/mobile-app`,
         image: c.mobileApp.lead.src,
+        width: c.mobileApp.lead.width,
+        height: c.mobileApp.lead.height,
         alt: c.mobileApp.lead.alt,
         position: "center",
         eyebrow: "Mobile app",
@@ -100,6 +104,8 @@ function buildCards(): Card[] {
       out.push({
         href: `/portfolio/${c.slug}/${p.slug}`,
         image: p.cardImage,
+        width: 1600,
+        height: 1000,
         alt: p.cardImageAlt ?? `${p.name} campaign creative`,
         position: p.cardImagePosition ?? "top",
         eyebrow: "Launch campaign",
@@ -177,74 +183,42 @@ export default function CaseStudyGrid() {
           </div>
         </fieldset>
 
-        <ol className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-2">
+        {/* Tall cards in pairs, drawn by the same component as the homepage
+            (2026-11-13), so the two pages can never drift apart. The filter
+            still reads `data-tags`; the tags are no longer printed under each
+            card, which is what made the old grid read as a list. */}
+        <ol className="mx-auto mt-12 grid max-w-[1200px] grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-x-12 lg:gap-y-24">
           {cards.map((card) => (
-            <li
-              key={card.href}
-              data-tags={card.tags.map(token).join(" ")}
-              className={`work-item ${card.wide ? "lg:col-span-2" : ""}`}
-            >
+            <li key={card.href} data-tags={card.tags.map(token).join(" ")} className="work-item">
               <Reveal>
-                <Link
-                  href={card.href}
-                  className="card-hover group flex h-full flex-col overflow-hidden r-card surface-1"
-                >
-                  {/* Padded well rather than a bleed image. Captures on this site
-                      range from 2403x1231 to a 1206x5807 phone screen; letting each
-                      one define its own card edge is what made the old page read as
-                      a pile of unrelated objects. */}
-                  <div className="bg-bg-soft/60 p-4 sm:p-6">
-                    <div
-                      className={`relative overflow-hidden rounded-xl border border-border/60 ${
-                        card.wide ? "aspect-[16/7]" : "aspect-[16/10]"
-                      }`}
-                    >
-                      <Image
-                        src={card.image}
-                        alt={card.alt}
-                        fill
-                        // Painted wider than the cell when a capture is wider
-                        // than the frame (2403x1231 in 16:10 is 1.2 times), so
-                        // the desktop values carry that margin: at 540 and 1100
-                        // they were stretched (design audit, 2026-10-27).
-                        sizes={card.wide ? "(min-width:1024px) 1320px, 100vw" : "(min-width:1024px) 700px, 100vw"}
-                        className={`object-cover transition-transform duration-500 group-hover:scale-[1.02] ${
-                          card.position === "top" ? "object-top" : "object-center"
-                        }`}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="flex flex-1 flex-col px-5 pb-6 pt-1 sm:px-7 sm:pb-7">
-                    <Eyebrow size="sm" tone="muted">
-                      {card.eyebrow}
-                    </Eyebrow>
-                    {/* An `h3`, not a `span`. This page exists to show six case
-                        studies and exposed no headings at all between the
-                        section `h2` and the discipline list, so a screen reader
-                        user could not navigate the work by heading (roadmap
-                        213.33). A heading is allowed to sit inside a link, and
-                        nothing changes visually. */}
-                    <h3 className="t-h4 mt-2.5 flex items-start justify-between gap-3 text-ink">
-                      {card.name}
-                      <ArrowUpRight
-                        size={18}
-                        className="mt-1 shrink-0 text-muted transition-colors group-hover:text-gold"
-                      />
-                    </h3>
-                    <span className="mt-2.5 block max-w-[58ch] text-sm leading-relaxed text-muted">
-                      {card.summary}
-                    </span>
-
-                    {card.tags.length ? (
-                      <span className="mt-5 flex flex-wrap gap-2">
-                        {card.tags.map((t) => (
-                          <Tag key={t}>{t}</Tag>
-                        ))}
-                      </span>
-                    ) : null}
-                  </div>
-                </Link>
+                <WorkCardView
+                  kind="pair"
+                  card={{
+                    slug: card.href,
+                    title: card.name,
+                    href: card.href,
+                    summary: card.summary,
+                    image: {
+                      src: card.image,
+                      width: card.width,
+                      height: card.height,
+                      alt: card.alt,
+                      // Client covers are 16:10 website heroes with the
+                      // headline on the left; project covers are tall page
+                      // captures, which must show their top, not their middle.
+                      // A full-page capture (taller than wide) is shown from
+                      // its top, as LEOS's overview card is.
+                      focus:
+                        card.height > card.width
+                          ? "top"
+                          : card.wide
+                            ? "left"
+                            : card.position === "top"
+                              ? "top"
+                              : "center",
+                    },
+                  }}
+                />
               </Reveal>
             </li>
           ))}
