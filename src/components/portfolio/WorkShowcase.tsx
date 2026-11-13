@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Reveal from "@/components/ui/Reveal";
+import CtaButton from "@/components/ui/CtaButton";
+import SecondaryButton from "@/components/ui/SecondaryButton";
 import type { WorkCard, WorkImage } from "@/data/workCards";
 
 /**
@@ -136,12 +138,10 @@ export default function WorkShowcase({
                 <h2 className="t-h2 mt-4 text-ink">{heading}</h2>
               </div>
               {cta ? (
-                <Link
-                  href={cta.href}
-                  className="hidden min-h-11 items-center gap-2.5 border border-white/20 px-5 font-mono text-[0.7rem] tracking-[0.16em] text-ink transition-colors hover:border-gold hover:text-gold lg:inline-flex"
-                >
-                  ALL WORK <span aria-hidden="true">→</span>
-                </Link>
+                // The site's own outline button (2026-11-13), not a one-off.
+                <SecondaryButton href={cta.href} size="sm" className="hidden lg:inline-flex">
+                  All work
+                </SecondaryButton>
               ) : null}
             </div>
           </Reveal>
@@ -165,13 +165,10 @@ export default function WorkShowcase({
           </div>
 
           {cta ? (
+            // The site's gold CtaButton (2026-11-13), the same button every
+            // other section closes with.
             <div className="mt-16 flex justify-center lg:mt-20">
-              <Link
-                href={cta.href}
-                className="inline-flex min-h-13 w-full items-center justify-center gap-2.5 border border-white/20 px-7 font-mono text-[0.7rem] tracking-[0.16em] text-ink transition-colors hover:border-gold hover:text-gold sm:w-auto"
-              >
-                {cta.label.toUpperCase()} <span aria-hidden="true">→</span>
-              </Link>
+              <CtaButton href={cta.href}>{cta.label}</CtaButton>
             </div>
           ) : null}
         </div>
