@@ -1,349 +1,202 @@
 import Link from "next/link";
-import { industriesWorkedIn } from "@/data/industries";
-import { disciplinesWithPages, disciplineItems } from "@/data/disciplines";
-import { megaMenuGroups, serviceMenuColumns, subPagesOf } from "@/data/pillars";
 import Image from "next/image";
-import { Building2, MapPin } from "lucide-react";
+import { megaMenuGroups, serviceMenuColumns, subPagesOf } from "@/data/pillars";
 import SocialLinks from "@/components/ui/SocialLinks";
+import CtaButton from "@/components/ui/CtaButton";
 import FooterWordmark from "@/components/layout/FooterWordmark";
 import FooterSection from "@/components/layout/FooterSection";
-import Eyebrow from "@/components/ui/Eyebrow";
 import { SITE_NAME } from "@/lib/site";
 import { SITE_EMAIL, SITE_PHONE, SITE_PHONE_HREF, SITE_PHONE_ALT, SITE_PHONE_ALT_HREF } from "@/lib/contact";
 
-const EMAIL = SITE_EMAIL;
-
 /**
- * Real locations only. An earlier version listed UK and North America as
- * coverage regions; Bilal asked for them out, since they are not addresses he
- * holds. Anything added here has to be somewhere he actually is.
+ * The site footer, rebuilt 2026-11-16 because Bilal said it looked like a mess.
+ *
+ * What it was: two office cards above the footer, the oversized wordmark in
+ * the middle, then six uneven columns (about 60 links) with mono sub-labels,
+ * platform names nested under their hubs, page counts beside the disciplines,
+ * a plain-text Industries list, and Pricing, FAQ and Contact repeated in the
+ * bottom row.
+ *
+ * What it is now, in the pattern studio sites use: the brand and how to reach
+ * Bilal on the left, four even link columns on the right, one quiet row of
+ * platform pages, a legal row, and the wordmark closing the page.
+ *
+ * Three things were kept on purpose, because they are why the old footer was
+ * the shape it was:
+ *
+ * - The description links home with "freelance digital marketer in Dubai".
+ *   The footer is on every page, so it is the site's strongest single vote
+ *   for the homepage on the main keyword.
+ * - Every service page is still linked. The fifteen menu pages are the two
+ *   service columns; the platform pages (WordPress, Wix, the CRM and app
+ *   pages, Figma) are not in the header menu at all, so they moved to the
+ *   Platforms row rather than being dropped.
+ * - LEOS is not named. The footer renders on every blog article, and LEOS is
+ *   named only on the portfolio itself.
+ *
+ * Dropped: the five discipline links with counts (one click away on
+ * /portfolio, under "Browse by discipline") and the Industries list (plain
+ * text, not links, and stated on /about).
  */
-const regions = [
-  {
-    icon: MapPin,
-    name: "United Arab Emirates",
-    meta: "Dubai · UTC+4",
-    line: "Monday to Friday, 9am to 6pm.",
-    actions: [
-      { label: SITE_PHONE, href: `tel:${SITE_PHONE_HREF}` },
-      { label: SITE_PHONE_ALT, href: `tel:${SITE_PHONE_ALT_HREF}` },
-    ],
-  },
-  {
-    icon: Building2,
-    name: "Pakistan",
-    meta: "UTC+5",
-    line: `Second base, on the same working week. ${EMAIL}`,
-    actions: [{ label: "Book a call", href: "/appointment" }],
-  },
+
+/** The two Services columns: Marketing as the menu orders it, then Design and
+ *  Development together so the two columns are close in height. */
+function menuLinks(title: string) {
+  const column = serviceMenuColumns.find((c) => c.title === title);
+  return (column?.slugs ?? [])
+    .map((slug) => megaMenuGroups.find((g) => g.slug === slug))
+    .filter((g): g is NonNullable<typeof g> => Boolean(g))
+    .map((g) => ({ label: g.title, href: `/services/${g.slug}` }));
+}
+
+const marketingLinks = menuLinks("Marketing");
+const buildLinks = [...menuLinks("Design"), ...menuLinks("Development")];
+
+/** Pages reached only from their hub and here: derived, so a new platform page
+ *  appears without this file being touched. */
+const platformLinks = serviceMenuColumns
+  .flatMap((c) => c.slugs)
+  .flatMap((slug) => subPagesOf(slug))
+  .filter((g, i, all) => all.findIndex((x) => x.slug === g.slug) === i)
+  .map((g) => ({ label: g.shortTitle ?? g.title, href: `/services/${g.slug}` }));
+
+const workLinks = [
+  { label: "Homemaid", href: "/portfolio/homemaid" },
+  { label: "AKS Chemicals", href: "/portfolio/aks-chemicals" },
+  { label: "Texdale", href: "/portfolio/texdale" },
+  { label: "NextGen HR", href: "/portfolio/nextgen-hr" },
+  { label: "Real estate marketing", href: "/real-estate-marketing" },
+  { label: "All work", href: "/portfolio" },
 ];
 
 const companyLinks = [
-  { label: "Home", href: "/" },
-  { label: "Book a call", href: "/appointment" },
-  { label: "Free health check", href: "/free-website-health-check" },
   { label: "About", href: "/about" },
-  { label: "Portfolio", href: "/portfolio" },
+  { label: "Process", href: "/process" },
   { label: "Pricing", href: "/pricing" },
   { label: "Writing", href: "/blog" },
   { label: "FAQ", href: "/faq" },
+  { label: "Free website health check", href: "/free-website-health-check" },
   { label: "Contact", href: "/contact" },
 ];
 
-/**
- * Every service, grouped the way the Services menu groups them.
- *
- * **Was six hardcoded links out of fifteen.** Nine service pages had no footer
- * link at all, which on a site whose strongest signal is its own internal
- * linking meant nine pages were being vouched for by the menu and nothing else.
- * The footer renders on all 119 pages, so a link here is the cheapest sitewide
- * vote a page can get, and it was the same omission the Portfolio column above
- * was derived to avoid.
- *
- * Derived from `serviceMenuColumns` rather than listed, for the reason that
- * column already records: a hardcoded list drifts the moment a service is added
- * or renamed and nobody remembers this file. That is exactly how it got to six
- * of fifteen.
- *
- * Grouped rather than flattened so the footer states the same taxonomy as the
- * menu and the homepage. One taxonomy everywhere is worth more over a year than
- * any per-surface cleverness (roadmap 363).
- */
-const serviceGroups = serviceMenuColumns.map((column) => ({
-  title: column.title,
-  links: column.slugs
-    .map((slug) => megaMenuGroups.find((g) => g.slug === slug))
-    .filter((g): g is NonNullable<typeof g> => Boolean(g))
-    .map((g) => ({
-      label: g.title,
-      href: `/services/${g.slug}`,
-      // "Paid" above Paid Marketing, as in the header (2026-10-24).
-      subLabel: column.subLabels?.[g.slug],
-      // The CMS platform pages (2026-10-16), as one short row under their hub
-      // rather than four full rows: four more lines would run the Development
-      // column far past its neighbours, which is what the two sub-columns
-      // exist to prevent. The same day the CRM integration pages, the four app
-      // pages and Figma joined the same way, each row under its menu page.
-      // `subPagesOf` descends through CRM Integration, so its four platforms
-      // sit in the CRM row beside it rather than nowhere.
-      children: subPagesOf(g.slug).map((sub) => ({
-        label: sub.shortTitle ?? sub.title,
-        href: `/services/${sub.slug}`,
-      })),
-    })),
-}));
+// Every link is at least 24px tall (WCAG 2.5.8), as the old footer was.
+const LINK =
+  "inline-flex min-h-6 items-center text-sm text-muted transition-colors hover:text-gold";
 
-const caseStudyLinks = [
-  { label: "Texdale: end-to-end marketing", href: "/portfolio/texdale" },
-  { label: "NextGen HR: website to ads", href: "/portfolio/nextgen-hr" },
-  { label: "AKS Chemicals: end-to-end marketing", href: "/portfolio/aks-chemicals" },
-];
-
-// Sectors worked in rather than pages that exist, so these are plain text. The
-// moment any of them earns a real page, it becomes a link. Read from
-// `industries.ts` since 2026-10-19, so the footer and /about cannot disagree;
-// the old hand-written list named sectors (SaaS, hospitality) with no work
-// behind them.
-const industries = industriesWorkedIn.map((i) => i.sector);
+function LinkList({ links }: { links: { label: string; href: string }[] }) {
+  return (
+    <ul className="space-y-2 md:mt-5">
+      {links.map((l) => (
+        <li key={l.href}>
+          <Link href={l.href} className={LINK}>
+            {l.label}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-border">
-      {/* Coverage strip, above the footer proper and visually set back from it. */}
-      <div className="border-b border-border bg-white/[0.02]">
-        <div className="site-container grid gap-8 py-10 sm:grid-cols-2 lg:gap-16">
-          {regions.map(({ icon: Icon, name, meta, line, actions }) => (
-            <div key={name} className="flex gap-4">
-              <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl surface-2 text-gold">
-                <Icon size={19} strokeWidth={1.6} />
-              </span>
-              <div className="min-w-0">
-                <p className="text-base font-semibold text-ink">{name}</p>
-                <p className="mt-1 text-xs uppercase tracking-wide text-muted/80">{meta}</p>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{line}</p>
-                <div className="mt-2 flex flex-wrap gap-x-5 gap-y-0.5">
-                  {actions.map((a) => {
-                    // This array mixes `tel:` with a real route, so it cannot
-                    // be one or the other wholesale — `next/link` on a `tel:`
-                    // breaks it, and a plain anchor on `/appointment` reloads
-                    // the document. Split on the href instead.
-                    const cls =
-                      "inline-flex min-h-6 items-center break-words text-sm font-medium text-gold transition-opacity hover:opacity-75";
-                    return a.href.startsWith("/") ? (
-                      <Link key={a.href} href={a.href} className={cls}>
-                        {a.label}
-                      </Link>
-                    ) : (
-                      <a key={a.href} href={a.href} className={cls}>
-                        {a.label}
-                      </a>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* The bottom padding clears the floating WhatsApp and Quick Enquiry
-          buttons, fixed to the bottom right. Without it they sat over the
-          last row (Contact, Pinterest, YouTube, Behance, Dribbble) once a
-          visitor scrolled to the very end. Mobile clears both buttons
-          (10rem); from `sm` it clears Quick Enquiry, and the last row's right
-          padding below keeps it clear of WhatsApp. */}
-      <div className="site-container pb-40 pt-12 sm:pb-[5.5rem]">
-        {/* The oversized mark now opens the footer instead of closing it. */}
-        <FooterWordmark />
-
-        {/* No row gap below `md`: there the four link columns are folded rows
-            (`FooterSection`), and their borders do the separating. */}
-        <div className="mt-14 grid gap-x-10 sm:grid-cols-2 md:gap-y-10 lg:grid-cols-[1.3fr_0.8fr_2.4fr_1.1fr_0.9fr]">
-          <div className="mb-8 md:mb-0">
+          buttons fixed to the bottom right: 10rem on a phone, where they stack,
+          and 5.5rem from `sm`. */}
+      <div className="site-container pb-40 pt-16 sm:pb-[5.5rem] lg:pt-20">
+        <div className="grid gap-x-10 md:grid-cols-2 md:gap-y-12 lg:grid-cols-[1.35fr_2fr_0.9fr_0.9fr]">
+          {/* Brand and contact. */}
+          <div className="mb-10 max-w-sm md:col-span-2 md:mb-0 lg:col-span-1">
             <Image
               src="/logo/bilal-square-light.svg"
               alt="Bilal Shafqat"
               width={382}
               height={642}
-              className="h-16 w-auto"
+              className="h-14 w-auto"
             />
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
+            <p className="mt-5 text-sm leading-relaxed text-muted">
               Bilal Shafqat is a{" "}
-              {/* `py-1` on an inline link grows its tap area to 25px without
-                  changing the paragraph's line height. */}
-              <Link href="/" className="py-1 text-muted underline-offset-2 transition-colors hover:text-gold">
+              {/* `py-1` grows the inline link's tap area without changing the
+                  paragraph's line height. */}
+              <Link href="/" className="py-1 text-ink underline-offset-4 transition-colors hover:text-gold hover:underline">
                 freelance digital marketer in Dubai
               </Link>
-              , and one senior partner for paid marketing, website and app
-              development, design, and the CRM automation that connects them.
-              Working with founders, developers and agencies from Dubai and
-              Pakistan.
+              : paid marketing, websites and apps, design, and the CRM automation
+              that connects them, from one senior partner.
             </p>
+
+            <ul className="mt-6 space-y-2 text-sm">
+              <li>
+                <a href={`mailto:${SITE_EMAIL}`} className="inline-flex min-h-6 items-center text-ink transition-colors hover:text-gold">
+                  {SITE_EMAIL}
+                </a>
+              </li>
+              <li className="flex flex-wrap gap-x-4">
+                <a href={`tel:${SITE_PHONE_HREF}`} className="inline-flex min-h-6 items-center text-ink transition-colors hover:text-gold">
+                  {SITE_PHONE}
+                </a>
+                <a href={`tel:${SITE_PHONE_ALT_HREF}`} className="inline-flex min-h-6 items-center text-ink transition-colors hover:text-gold">
+                  {SITE_PHONE_ALT}
+                </a>
+              </li>
+              <li className="text-muted">Dubai, UAE · Monday to Friday, 9am to 6pm</li>
+              <li className="text-muted">Second base in Pakistan, same working week</li>
+            </ul>
+
+            <CtaButton href="/appointment" size="sm" className="mt-7">
+              Book a free consultation
+            </CtaButton>
           </div>
 
-          <FooterSection title="Company">
-            <ul className="space-y-1.5 md:mt-4">
-              {companyLinks.map((l) => (
-                <li key={l.label}>
-                  <Link href={l.href} className="inline-flex min-h-6 min-w-6 items-center text-sm text-muted transition-colors hover:text-gold">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </FooterSection>
-
-          {/* Every footer link is at least 24px tall (WCAG 2.5.8): on
-              2026-10-16, 39 of 62 measured 17 to 20px on a phone. Rows went
-              from 20px with 10px gaps to 24px with 6px gaps, so the pitch and
-              the footer's height are unchanged.
-
-              All fifteen, in two sub-columns under their menu headings. One flat
-              list of fifteen would run seven rows past every neighbour and make
-              the footer look broken; two sub-columns keep it the same height as
-              Company and Portfolio. */}
-          <div className="sm:col-span-2 lg:col-span-1">
-            <FooterSection title="Services">
-              {/* Marketing fills the first sub-column (eight pages), Design and
-                  Development stack in the second, so the three groups read in
-                  the homepage's order and the two halves stay a similar height
-                  (2026-10-24, when Paid Marketing folded into Marketing). */}
-              <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2 md:mt-4">
-                {[serviceGroups.slice(0, 1), serviceGroups.slice(1)].map((stack, si) => (
-                  <div key={si} className="space-y-6">
-                    {stack.map((group) => (
-                      <div key={group.title}>
-                        <Eyebrow as="p" size="sm" tone="muted">
-                          {group.title}
-                        </Eyebrow>
-                        <ul className="mt-2.5 space-y-1.5">
-                          {group.links.map((l) => (
-                            <li key={l.href} className={l.subLabel ? "pt-2" : undefined}>
-                              {l.subLabel ? (
-                                <span className="mb-1 block font-mono text-[0.72rem] uppercase tracking-[0.14em] text-muted">
-                                  {l.subLabel}
-                                </span>
-                              ) : null}
-                              <Link
-                                href={l.href}
-                                className="inline-flex min-h-6 min-w-6 items-center text-sm text-muted transition-colors hover:text-gold"
-                              >
-                                {l.label}
-                              </Link>
-                              {l.children.length ? (
-                                <ul className="mt-1 flex flex-wrap gap-x-4 pl-3">
-                                  {l.children.map((c) => (
-                                    <li key={c.href}>
-                                      <Link
-                                        href={c.href}
-                                        className="inline-flex min-h-6 min-w-6 items-center text-[0.8125rem] text-muted transition-colors hover:text-gold"
-                                      >
-                                        {c.label}
-                                      </Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                              ) : null}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                ))}
-              </div>
+          {/* Link columns. Below `md` each folds into a row (`FooterSection`),
+              so the phone footer is four short rows, not 30 links. */}
+          <div className="grid gap-x-10 md:col-span-2 md:grid-cols-2 lg:col-span-1">
+            <FooterSection title="Marketing">
+              <LinkList links={marketingLinks} />
+            </FooterSection>
+            <FooterSection title="Design & Development">
+              <LinkList links={buildLinks} />
             </FooterSection>
           </div>
-
-          {/* Portfolio, added when the discipline pages shipped. These are new
-              URLs and the footer is the one place every page links from, which
-              is what gets them crawled. Derived, so a discipline that gains a
-              page appears here without this file being touched — and one that
-              has no page never does. */}
-          <FooterSection title="Portfolio">
-            <Eyebrow as="p" size="sm" tone="muted" className="md:mt-4">
-              By discipline
-            </Eyebrow>
-            <ul className="mt-2.5 space-y-1.5">
-              {disciplinesWithPages().map((d) => (
-                <li key={d.slug}>
-                  <Link
-                    href={`/portfolio/${d.slug}`}
-                    className="flex min-h-6 items-center gap-2 text-sm text-muted transition-colors hover:text-gold"
-                  >
-                    {d.title}
-                    <span className="font-mono text-[0.72rem] text-faint">
-                      {disciplineItems(d).length}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-              {/* The off-plan vertical. Hand-written rather than derived, because
-                  it is an industry page and `disciplinesWithPages()` only knows
-                  about disciplines. Without a link here it was an orphan — no
-                  page on the site pointed at it. */}
-              <li>
-                <Link
-                  href="/real-estate-marketing"
-                  className="inline-flex min-h-6 min-w-6 items-center text-sm text-muted transition-colors hover:text-gold"
-                >
-                  Real Estate Marketing
-                </Link>
-              </li>
-            </ul>
-            {/* The end-to-end case studies by name (2026-11-04, Bilal asked for
-                them in the footer). Hand-written, and LEOS deliberately left
-                out: the footer renders on every blog article, and LEOS is named
-                only on the portfolio itself. */}
-            <Eyebrow as="p" size="sm" tone="muted" className="mt-6">
-              Case studies
-            </Eyebrow>
-            <ul className="mt-2.5 space-y-1.5">
-              {caseStudyLinks.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="inline-flex min-h-6 min-w-6 items-center text-sm text-muted transition-colors hover:text-gold">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link href="/portfolio" className="inline-flex min-h-6 min-w-6 items-center text-sm text-muted transition-colors hover:text-gold">
-                  All work
-                </Link>
-              </li>
-            </ul>
+          <FooterSection title="Work">
+            <LinkList links={workLinks} />
           </FooterSection>
-
-          <FooterSection title="Industries">
-            <ul className="space-y-1.5 md:mt-4">
-              {industries.map((i) => (
-                <li key={i} className="flex min-h-6 items-center text-sm text-muted">
-                  {i}
-                </li>
-              ))}
-            </ul>
+          <FooterSection title="Company">
+            <LinkList links={companyLinks} />
           </FooterSection>
         </div>
 
-        {/* `sm:pr-14` keeps the right end of this row (the social icons) out
-            from under the WhatsApp button, which sits 92px to 148px above the
-            bottom edge. Bottom padding alone would need about 9.5rem here. */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 text-xs text-muted sm:flex-row sm:pr-14">
-          {/* The build year, not the visitor's: the footer is a server
-              component on prerendered pages, so this is fixed when the site is
-              built. The site deploys several times a week, so it is wrong for
-              at most a few days each January. A client component reading the
-              clock would fix those days at the price of a hydration mismatch
-              and JavaScript on every page, which is not worth it. */}
-          <p>© {new Date().getFullYear()} {SITE_NAME}. All rights reserved.</p>
-          <p className="flex items-center gap-5">
-            <Link href="/pricing" className="inline-flex min-h-6 min-w-6 items-center transition-colors hover:text-gold">Pricing</Link>
-            <Link href="/faq" className="inline-flex min-h-6 min-w-6 items-center transition-colors hover:text-gold">FAQ</Link>
-            <Link href="/privacy" className="inline-flex min-h-6 min-w-6 items-center transition-colors hover:text-gold">Privacy Policy</Link>
-            <Link href="/contact" className="inline-flex min-h-6 min-w-6 items-center transition-colors hover:text-gold">Contact</Link>
+        {/* Platform pages, one quiet row. */}
+        {platformLinks.length ? (
+          <div className="mt-14 border-t border-border pt-6">
+            <p className="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm">
+              <span className="mr-1 text-faint">Platforms</span>
+              {platformLinks.map((l) => (
+                <Link key={l.href} href={l.href} className={LINK}>
+                  {l.label}
+                </Link>
+              ))}
+            </p>
+          </div>
+        ) : null}
+
+        {/* Legal and social. `sm:pr-14` keeps the icons out from under the
+            WhatsApp button. */}
+        <div className="mt-6 flex flex-col-reverse items-start justify-between gap-5 border-t border-border pt-6 text-sm text-muted sm:flex-row sm:items-center sm:pr-14">
+          {/* The build year: the footer is prerendered, so this is fixed when
+              the site is built, which is wrong for at most a few days each
+              January and costs no JavaScript. */}
+          <p className="flex flex-wrap items-center gap-x-5 gap-y-1">
+            <span>© {new Date().getFullYear()} {SITE_NAME}</span>
+            <Link href="/privacy" className="inline-flex min-h-6 items-center transition-colors hover:text-gold">
+              Privacy Policy
+            </Link>
           </p>
           <SocialLinks />
         </div>
+
+        {/* The oversized mark closes the page. */}
+        <FooterWordmark />
       </div>
     </footer>
   );
