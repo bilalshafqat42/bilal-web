@@ -120,9 +120,11 @@ export default function PortfolioPage() {
             <>
               {word(launchCount)} off-plan launches, a corporate website, a sales
               application and a cross-platform app for a Dubai and UK property
-              developer, complete digital marketing for a UK textile chemicals
-              manufacturer, and a website for a Dubai recruitment agency. Every project below opens into the brief, the decisions
-              behind it and what shipped.
+              developer, complete digital marketing for two textile chemicals
+              manufacturers, a website for a Dubai recruitment agency and a
+              bilingual booking platform for a Dubai home services company. Every
+              project below opens into the brief, the decisions behind it and what
+              shipped.
             </>
           }
         />
@@ -151,6 +153,36 @@ export default function PortfolioPage() {
                 better cost per qualified lead, which is the number that matters. That
                 is only a trade worth making when the same person owns the page and the
                 spend pointed at it.
+              </p>
+            </div>
+          </Reveal>
+        </section>
+
+        {/* How the work was run, added 2026-11-16 (site audit: /portfolio was
+            the thinnest real page at 495 words, and it was one of the few
+            pages with no link home in its own words). */}
+        <section className="site-container pb-6">
+          <Reveal>
+            <div className="max-w-[68ch]">
+              <Eyebrow as="p">How these projects were run</Eyebrow>
+              <p className="mt-3 text-base leading-relaxed text-muted">
+                Every project here was planned, designed, built and marketed by one
+                person. I work as a{" "}
+                <Link
+                  href="/"
+                  className="font-semibold text-ink underline decoration-gold/50 decoration-2 underline-offset-4 transition-colors hover:text-gold"
+                >
+                  freelance digital marketer in Dubai
+                </Link>
+                , so the client deals with the person doing the work: the same person
+                writes the ad, builds the page it lands on and connects the enquiry to
+                the CRM behind it.
+              </p>
+              <p className="mt-3 text-base leading-relaxed text-muted">
+                That is why the case studies talk about decisions rather than
+                deliverables. Each one sets out the brief, what was decided and why,
+                and what went live. Results are published only where the client has
+                agreed, so most pages describe the work rather than claim numbers.
               </p>
             </div>
           </Reveal>
@@ -224,7 +256,7 @@ export default function PortfolioPage() {
                             </span>
                             <span className="mt-0.5 flex shrink-0 items-center gap-2">
                               {live && count > 0 ? (
-                                <span className="rounded-full border border-gold/25 bg-gold/[0.07] px-2 py-0.5 font-mono text-[0.6rem] text-gold/90">
+                                <span className="rounded-full border border-gold/25 bg-gold/[0.07] px-2 py-0.5 font-mono text-[0.68rem] text-gold/90">
                                   {count}
                                 </span>
                               ) : cases > 0 ? (

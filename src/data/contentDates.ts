@@ -40,14 +40,14 @@ export const contentDates: Record<string, string> = {
   // 2026-10-16: the CMS and custom development pages added to the listing,
   // then the CRM, app and Figma sub-pages in "by platform" blocks.
   // 2026-10-26: the free health check card under the listing.
-  "/services": "2026-10-26",
+  "/services": "2026-11-16",
   // 2026-10-26: the free website and marketing health check offer, new.
   "/free-website-health-check": "2026-11-11",
   // 2026-10-24: opener and description cover Texdale as well as LEOS; paid
   // marketing marked as having a case study (audit batch 2).
   // 2026-10-26: description, standfirst and grid name NextGen HR. Same day:
   // Texdale's card gains the Mobile Development and Social Media tags.
-  "/portfolio": "2026-10-26",
+  "/portfolio": "2026-11-16",
   "/pricing": "2026-11-11",
   // 2026-10-24: the industry answer names both published sectors.
   // 2026-10-26: the industry answer names a third sector (NextGen HR).
@@ -56,7 +56,7 @@ export const contentDates: Record<string, string> = {
   "/contact": "2026-11-11",
   // 2026-10-24: description no longer leads with the name (roadmap 420).
   "/appointment": "2026-10-24",
-  "/process": "2026-10-13",
+  "/process": "2026-11-16",
   // 2026-10-24: cookie names and lifetimes (audit batch 2). The page's own
   // LAST_UPDATED says the same.
   "/privacy": "2026-10-24",
@@ -67,7 +67,7 @@ export const contentDates: Record<string, string> = {
   // today while nothing about it had been touched.
   // 2026-10-20: "off-plan marketing in Dubai" in the opener and a heading.
   // 2026-10-24: "real estate website design in Dubai" in a heading.
-  "/real-estate-marketing": "2026-10-24",
+  "/real-estate-marketing": "2026-11-16",
 };
 
 /** Service category pages all read from `src/data/serviceCategories.ts`,
@@ -177,15 +177,15 @@ export const PORTFOLIO_CONTENT_DATE = "2026-11-11";
  *  2978560), Texdale was published on 2026-10-24 (cca652b). A client not
  *  listed falls back to `PORTFOLIO_CONTENT_DATE`. */
 export const CLIENT_CONTENT_DATES: Record<string, string> = {
-  "leos-developments": "2026-11-11",
+  "leos-developments": "2026-11-16",
   // 2026-10-26: the Texdale Field app (design and prototype) and the Meta
   // campaign creatives added; scope cards and intro updated to match.
-  texdale: "2026-11-11",
+  texdale: "2026-11-16",
   // Published 2026-10-26.
-  "nextgen-hr": "2026-11-06",
+  "nextgen-hr": "2026-11-16",
   // Published 2026-11-06. Texdale and NextGen moved to the same date for
   // their new FAQ sections.
-  "aks-chemicals": "2026-11-11",
+  "aks-chemicals": "2026-11-16",
   // Published 2026-11-12.
   homemaid: "2026-11-12",
 };

@@ -186,7 +186,7 @@ export default function Engagement({
                   <tr key={row.label} className="align-top">
                     <th
                       scope="row"
-                      className="border-t border-border py-5 pr-6 font-mono text-[0.65rem] font-normal uppercase tracking-[0.16em] text-faint"
+                      className="border-t border-border py-5 pr-6 font-mono text-[0.72rem] font-normal uppercase tracking-[0.16em] text-faint"
                     >
                       {row.label}
                     </th>

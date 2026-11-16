@@ -220,7 +220,7 @@ export default function Footer() {
                           {group.links.map((l) => (
                             <li key={l.href} className={l.subLabel ? "pt-2" : undefined}>
                               {l.subLabel ? (
-                                <span className="mb-1 block font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted">
+                                <span className="mb-1 block font-mono text-[0.72rem] uppercase tracking-[0.14em] text-muted">
                                   {l.subLabel}
                                 </span>
                               ) : null}
@@ -272,7 +272,7 @@ export default function Footer() {
                     className="flex min-h-6 items-center gap-2 text-sm text-muted transition-colors hover:text-gold"
                   >
                     {d.title}
-                    <span className="font-mono text-[0.65rem] text-faint">
+                    <span className="font-mono text-[0.72rem] text-faint">
                       {disciplineItems(d).length}
                     </span>
                   </Link>

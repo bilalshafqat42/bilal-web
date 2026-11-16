@@ -190,8 +190,11 @@ export default function RealEstateMarketingPage() {
           standfirst={
             <>
               Off-plan marketing in Dubai and the UK, for four launches by one developer: the page, the
-              campaign creative and the lead capture built together by one person,
-              because a launch page and the spend pointed at it optimise against each
+              campaign creative and the lead capture built together by one person, a{" "}
+              <Link href="/" className="font-semibold underline decoration-gold/50 decoration-2 underline-offset-4 transition-colors hover:text-gold">
+                freelance digital marketer in Dubai
+              </Link>
+              , because a launch page and the spend pointed at it optimise against each
               other when they are bought separately.
             </>
           }

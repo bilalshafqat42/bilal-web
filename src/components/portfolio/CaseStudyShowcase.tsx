@@ -186,7 +186,7 @@ function Block({ block }: { block: ShowcaseBlock }) {
           <div className="r-card surface-1 p-8 sm:p-10">
             <div className="flex flex-wrap items-center gap-3">
               <Eyebrow>{block.eyebrow}</Eyebrow>
-              <span className="rounded-full border border-gold px-3 py-1 font-mono text-[0.65rem] tracking-[0.16em] text-gold">
+              <span className="rounded-full border border-gold px-3 py-1 font-mono text-[0.72rem] tracking-[0.16em] text-gold">
                 UPCOMING
               </span>
             </div>

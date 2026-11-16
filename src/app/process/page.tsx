@@ -152,6 +152,15 @@ export default function ProcessPage() {
               and how much of the work your own team already covers. The full breakdown of each
               model, and what drives cost, is on the pricing page.
             </p>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
+              Whichever model you choose, you work with one person from the first call
+              to the live campaign. As a{" "}
+              <Link href="/" className="font-semibold text-ink underline decoration-gold/50 decoration-2 underline-offset-4 transition-colors hover:text-gold">
+                digital marketing consultant in Dubai
+              </Link>
+              , I run the strategy, the build and the ads myself, so nothing is passed
+              between teams.
+            </p>
             <Link
               href="/pricing#engagement"
               className="tap-target mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-opacity hover:opacity-80"

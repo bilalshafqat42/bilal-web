@@ -6,11 +6,11 @@ import type { ElementType, ReactNode } from "react";
  * **Counted on 2026-10-08: 98 instances across six different sizes.**
  *
  *     font-mono text-[0.7rem]  tracking-[0.18em]   75
- *     font-mono text-[0.65rem] tracking-[0.16em]   10
+ *     font-mono text-[0.72rem] tracking-[0.16em]   10
  *     font-mono text-[0.7rem]  tracking-[0.14em]    4
- *     font-mono text-[0.65rem] tracking-[0.18em]    4
- *     font-mono text-[0.65rem] tracking-[0.14em]    4
- *     font-mono text-[0.6rem]  tracking-[0.14em]    1
+ *     font-mono text-[0.72rem] tracking-[0.18em]    4
+ *     font-mono text-[0.72rem] tracking-[0.14em]    4
+ *     font-mono text-[0.68rem]  tracking-[0.14em]    1
  *
  * Nobody chose six. They accumulated one section at a time, which is how a site
  * ends up looking assembled rather than designed. This is the one definition.
@@ -41,7 +41,7 @@ type Props = {
 
 const SIZES = {
   default: "text-[0.7rem] tracking-[0.18em]",
-  sm: "text-[0.65rem] tracking-[0.16em]",
+  sm: "text-[0.72rem] tracking-[0.16em]",
 } as const;
 
 const TONES = {

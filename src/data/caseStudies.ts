@@ -1277,7 +1277,7 @@ export const clients: Client[] = [
         heading: "One person, one textile chemicals playbook",
         paragraphs: [
           "AKS is the second textile chemicals manufacturer I market from end to end, after Texdale in the UK. The buyers are the same kind of people, dyehouse and finishing managers with a process problem, and the method carries over: lead with the process, make a trial the first step, and keep the website, search, social and ads saying one thing.",
-          "Design, build, search and campaigns all sit with one person, so nothing is lost in a handover and there is no question of whose problem it is when an enquiry goes quiet.",
+          "I work as a [freelance digital marketer in Dubai](/), so design, build, search and campaigns all sit with one person. Nothing is lost in a handover, and there is no question of whose problem it is when an enquiry goes quiet.",
           "There are no performance figures on this page. The results belong to AKS Chemicals, and none are published without their agreement.",
         ],
       },
@@ -1672,7 +1672,7 @@ export const clients: Client[] = [
         heading: "Why one supplier across both halves was the point",
         paragraphs: [
           "The usual arrangement on a development launch is an agency for the campaign, a developer for the landing page and a designer somewhere between them. It works until something needs to change, at which point the agency is waiting on the developer, the developer is waiting on the designer, and a launch window that was always going to be short gets shorter.",
-          "Here the same person made the creative, built the page it pointed at and connected the enquiry to the CRM behind it. The practical effect is not that any single piece is better. It is that a change to the offer on a Tuesday reaches the ad, the page and the follow-up on the same day rather than across three suppliers and two weeks.",
+          "Here the same person, a [freelance digital marketer in Dubai](/), made the creative, built the page it pointed at and connected the enquiry to the CRM behind it. The practical effect is not that any single piece is better. It is that a change to the offer on a Tuesday reaches the ad, the page and the follow-up on the same day rather than across three suppliers and two weeks.",
         ],
       },
       {
@@ -1977,7 +1977,7 @@ export const clients: Client[] = [
       {
         heading: "One person, from design to every channel",
         paragraphs: [
-          "The usual route for a manufacturer is a designer for the look, a developer for the build and an agency for the ads, each briefed separately. Here one person does all of it. The design followed the brand, the build followed the design, the campaigns pointed at pages built with them in mind, and search, AI search and social all describe the same company in the same words. Nothing was lost in a handover, because there was not one.",
+          "The usual route for a manufacturer is a designer for the look, a developer for the build and an agency for the ads, each briefed separately. Here one person does all of it: I am a [digital marketing freelancer based in Dubai](/), and I work with clients in the UAE, the UK and beyond. The design followed the brand, the build followed the design, the campaigns pointed at pages built with them in mind, and search, AI search and social all describe the same company in the same words. Nothing was lost in a handover, because there was not one.",
           "It also means one person answers for the whole thing. If an enquiry form is not being used, or an ad sends people to the wrong range, there is no question of whose problem it is.",
           "There are no performance figures on this page. The results belong to Texdale, and none are published without their agreement.",
         ],
@@ -2186,7 +2186,7 @@ export const clients: Client[] = [
         heading: "Live before every detail arrived",
         paragraphs: [
           "A new company rarely has every detail ready on launch day. Office hours, a licence number and tracking IDs often arrive later. Rather than hold the site back, any detail still waiting on the client stays hidden until it is filled in, and each tracking tool stays switched off until its ID is added.",
-          "The site went live with what was true on the day, and nothing on it reads as unfinished. Once the tracking was in, the Google and Meta campaigns started, so every paid enquiry is counted from the first click.",
+          "The site went live with what was true on the day, and nothing on it reads as unfinished. Once the tracking was in, the Google and Meta campaigns started, so every paid enquiry is counted from the first click. For a Dubai business, that is the advantage of [freelance digital marketing in Dubai](/) over an agency: the person who built the site also runs the ads.",
           "There are no performance figures on this page. The results belong to NextGen HR, and none are published without their agreement.",
         ],
       },

@@ -83,7 +83,17 @@ export default function ServicesPage() {
           crumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
           eyebrow="Services"
           title={<>Four core services, one senior partner</>}
-          standfirst="Paid ads and social media campaigns, SEO and AI search, web and app design, and website and app development, delivered personally from strategy to launch, without handoffs between departments."
+          standfirst={
+            <>
+              Paid ads and social media campaigns, SEO and AI search, web and app
+              design, and website and app development, delivered personally from
+              strategy to launch by one{" "}
+              <Link href="/" className="font-semibold underline decoration-gold/50 decoration-2 underline-offset-4 transition-colors hover:text-gold">
+                digital marketing freelancer in Dubai
+              </Link>
+              , without handoffs between departments.
+            </>
+          }
         />
 
         <section className="relative section-tight">
