@@ -2,6 +2,24 @@ import Image from "next/image";
 import type { StoryBlock, StoryImage } from "@/data/caseStudies";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Reveal from "@/components/ui/Reveal";
+import LinkedText from "@/components/ui/LinkedText";
+import variants from "@/data/imageVariants.json";
+
+/** Every pre-cut width of `src`, as a srcset, or undefined when it has none.
+ *
+ *  Added 2026-11-16 for the Texdale slides. next/image stops its srcset at the
+ *  largest `deviceSizes` entry (1600), so a 3200px slide reached a retina
+ *  laptop at half its resolution and the small labels inside it went soft.
+ *  Listing the manifest's own widths includes the full-width copy where one
+ *  was kept, and nothing else changes for images that never had one. Mirrors
+ *  the file naming in src/lib/imageLoader.ts, which cannot be called from a
+ *  server component. */
+function srcSetFor(src: string): string | undefined {
+  const e = (variants as Record<string, { v: string; widths: number[] }>)[src];
+  if (!e?.widths.length) return undefined;
+  const base = src.replace(/\.[^./]+$/, "");
+  return e.widths.map((w) => `${base}.${w}w.avif?v=${e.v} ${w}w`).join(", ");
+}
 
 /**
  * The case study body, rendered from an ordered list of blocks.
@@ -40,16 +58,35 @@ function Caption({ text }: { text?: string }) {
 
 /** Edge to edge, height-capped. See the `88vh` note above. */
 function FullImage({ image }: { image: StoryImage }) {
+  const srcSet = srcSetFor(image.src);
   return (
     <figure className="section-tight">
-      <Image
-        src={image.src}
-        alt={image.alt}
-        width={image.width}
-        height={image.height}
-        sizes="100vw"
-        className="max-h-[88vh] w-full object-contain"
-      />
+      {srcSet ? (
+        // A plain img so the srcset can go past 1600px; see `srcSetFor`. The
+        // width it is shown at is the smaller of the viewport and the 88vh
+        // height cap times the image's own ratio, which `sizes` says exactly.
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={srcSet.split(", ").at(-1)!.split(" ")[0]}
+          srcSet={srcSet}
+          sizes={`min(100vw, ${Math.ceil((88 * image.width) / image.height)}vh)`}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+          loading="lazy"
+          decoding="async"
+          className="mx-auto h-auto max-h-[88vh] w-full object-contain"
+        />
+      ) : (
+        <Image
+          src={image.src}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+          sizes="100vw"
+          className="max-h-[88vh] w-full object-contain"
+        />
+      )}
       <Caption text={image.caption} />
     </figure>
   );
@@ -112,7 +149,7 @@ function TextBlock({
         <div className="space-y-5">
           {paragraphs.map((text) => (
             <p key={text.slice(0, 40)} className="max-w-[68ch] text-base leading-relaxed text-muted">
-              {text}
+              <LinkedText text={text} />
             </p>
           ))}
         </div>

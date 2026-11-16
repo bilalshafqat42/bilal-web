@@ -351,6 +351,13 @@ export type Client = {
    *  No results in here and none to be added without Bilal's own figures. A
    *  case study with invented numbers is worth less than one with none. */
   depth?: { heading: string; paragraphs: string[] }[];
+  /** The design case study as slides with the reasoning between them, shown
+   *  straight under the opener. When present it replaces the scrolling
+   *  website capture, which the slides already show.
+   *
+   *  Added 2026-11-16 for Texdale, from the twelve-slide case study Bilal
+   *  supplied. Same `StoryBlock` list the project pages use. */
+  story?: StoryBlock[];
   /** One project lifted out of the grid into its own section.
    *
    *  The sales application sat as the third card in a row headed "Development
@@ -1983,6 +1990,214 @@ export const clients: Client[] = [
         ],
       },
     ],
+    // 2026-11-16: the twelve-slide design case study Bilal supplied, shown as
+    // slides with the reasoning between them. Every fact in the text is on the
+    // slides or already on this page. Slide 12 (the closing call to action) is
+    // left out: its buttons are pictures and could not be clicked, so its line
+    // became `ctaLead` on the real panel instead. The slides themselves are
+    // Bilal's design and carry his own wording.
+    story: [
+      {
+        type: "full",
+        image: {
+          src: "/portfolio/texdale/case-study/texdale-01-cover.avif",
+          width: 3200,
+          height: 2000,
+          alt: "Texdale case study cover: Chemistry, made legible. A website for a Stockport textile chemicals manufacturer, beside a laptop showing the Textile chemicals for the wet process homepage",
+          caption: "Chemistry, made legible: a brand site designed and built for Texdale, texdale.co.uk.",
+        },
+      },
+      {
+        type: "text",
+        eyebrow: "01 Overview",
+        heading: "Website design for a textile chemicals manufacturer",
+        paragraphs: [
+          "Texdale makes textile auxiliaries in Reddish, Stockport, for every wet stage a mill runs: pretreatment, dyeing, finishing and denim washing. Its customers are spread across several continents, its catalogue holds 87 products in eight ranges, and the person reading the website is usually a dyehouse or finishing technician.",
+          "That buyer does not need persuading that chemistry matters. They need to find the right product, trust the company behind it and ask for a sample. So the site was built to be read quickly and trusted at once: a technical grid, monospace labels and a short route from any range to a sample request. Strategy, UX, UI and the Next.js build were done by one person.",
+        ],
+      },
+      {
+        type: "full",
+        image: {
+          src: "/portfolio/texdale/case-study/texdale-02-overview.avif",
+          width: 3200,
+          height: 2000,
+          alt: "Texdale overview slide: client Texdale Chemicals, sector textile chemicals B2B, location Reddish Stockport, scope strategy UX UI and build, stack Next.js, year 2026, under the headline A manufacturer that sells on precision, not on noise",
+          caption: "The brief: a manufacturer that sells on precision, not on noise.",
+        },
+      },
+      {
+        type: "text",
+        eyebrow: "02 Project scope",
+        heading: "A B2B website project in four phases",
+        paragraphs: [
+          "The work ran in four phases, and each one ended with something the client could check: a product map, a sitemap, a clickable prototype and a live site.",
+          "Discovery covered a product audit and a competitor scan. Structure mapped all 87 products into eight ranges and set the navigation and sitemap. Design produced the type system, colour, components and prototype. Build and launch delivered the Next.js site with its SEO, forms and handover notes. The test for success was simple: a technician finds the right auxiliary and requests a sample in under a minute.",
+        ],
+      },
+      {
+        type: "full",
+        image: {
+          src: "/portfolio/texdale/case-study/texdale-03-project-scope.avif",
+          width: 3200,
+          height: 2000,
+          alt: "Texdale project scope slide: four phases on a timeline, Discovery, Structure, Design, and Build and launch, each with its tasks and its output, under the headline From the mill floor to the sample request",
+          caption: "Four phases, each closing with something the client could test.",
+        },
+      },
+      {
+        type: "text",
+        eyebrow: "03 Colour",
+        heading: "A brand colour system built from the logo",
+        paragraphs: [
+          "Texdale's logo carries a four-colour bar under the wordmark. The site keeps that bar but gives it one job: blue, yellow and green index the stages of the wet process, pretreatment, dyeing and finishing, so a colour always means a place in the process.",
+          "Everything else is ink on warm paper, with navy and slate for long copy and labels. Six colours in total: ink #0C1119, navy #263760, paper #FAF9F6, blue #0162C8, yellow #FFD802 and green #0AA753. A small palette like this keeps a technical site calm and makes the coloured parts mean something.",
+        ],
+      },
+      {
+        type: "full",
+        image: {
+          src: "/portfolio/texdale/case-study/texdale-04-colour-palette.avif",
+          width: 3200,
+          height: 2000,
+          alt: "Texdale colour palette slide: six swatches, Ink #0C1119, Navy #263760, Paper #FAF9F6, Blue #0162C8, Yellow #FFD802 and Green #0AA753, with notes on headlines, body and labels, the process index and contrast",
+          caption: "Ink, paper and four process colours, each with one job.",
+        },
+      },
+      {
+        type: "text",
+        eyebrow: "04 Typography",
+        heading: "Typography for a technical catalogue",
+        paragraphs: [
+          "Three typefaces, each with a clear role. Archivo Bold sets the display headlines, large and tightly spaced, so the homepage opens with a statement a buyer cannot miss. IBM Plex Sans carries the body copy at 18px for easy reading. IBM Plex Mono labels and numbers every section, product count and range.",
+          "The monospace index is what makes the site read like a technical document, which is the kind of page this buyer already trusts. All the fonts are self-hosted, so they load with the page rather than from a third party.",
+        ],
+      },
+      {
+        type: "full",
+        image: {
+          src: "/portfolio/texdale/case-study/texdale-05-typography.avif",
+          width: 3200,
+          height: 2000,
+          alt: "Texdale typography slide: Archivo for display, IBM Plex Sans for body and IBM Plex Mono for the index, with the homepage headline Textile chemicals for the wet process set in Archivo Bold",
+          caption: "Archivo for headlines, IBM Plex Sans for reading, IBM Plex Mono for the index.",
+        },
+      },
+      {
+        type: "text",
+        eyebrow: "05 Homepage",
+        heading: "A homepage that qualifies the buyer on the first screen",
+        paragraphs: [
+          "Before anyone scrolls, the first screen answers four questions: who Texdale is, what it makes, how many products, and where. A strip of facts reads Texdale Chemicals, 87 products, Stockport, England, and REACH-compliant sourcing. The headline says Textile chemicals for the wet process.",
+          "Two routes sit under it, The range and Talk to a technician, and Request a sample stays in the header on every page. A buyer who is in the right place knows it in seconds. One who is not leaves quickly, which is also useful.",
+        ],
+      },
+      {
+        type: "full",
+        image: {
+          src: "/portfolio/texdale/case-study/texdale-06-homepage-design.avif",
+          width: 3200,
+          height: 2000,
+          alt: "Texdale homepage design at 1440px desktop width: the navigation with Request a sample, the facts strip, the headline Textile chemicals for the wet process and the links The range and Talk to a technician",
+          caption: "The first screen does the qualifying: who, what, how many and where.",
+        },
+      },
+      {
+        type: "text",
+        eyebrow: "06 Page system",
+        heading: "Numbered sections, so nobody gets lost",
+        paragraphs: [
+          "The homepage runs in seven numbered sections: Company, Process, Range, Method, Sustainability, Questions and Contact. Each carries its number in monospace, so the page can be scanned like a contents list.",
+          "Process sets out the three stages of the wet process, each with its own colour. Range shows the eight ranges on one grid with product counts taken straight from the catalogue. Method explains the four steps a buyer actually goes through: consult, formulate, test and supply.",
+        ],
+      },
+      {
+        type: "full",
+        image: {
+          src: "/portfolio/texdale/case-study/texdale-07-page-system.avif",
+          width: 3200,
+          height: 2000,
+          alt: "Texdale page system slide: three homepage sections in browser frames, One supplier the whole chain, Eight ranges, and Sample in. Bulk out., above the full homepage sequence from 01 Company to 07 Contact",
+          caption: "Three of the seven numbered homepage sections: Process, Range and Method.",
+        },
+      },
+      {
+        type: "text",
+        eyebrow: "07 Information architecture",
+        heading: "Product catalogue structure: 87 products, eight ways in",
+        paragraphs: [
+          "The old catalogue was a list. The new one is a structure: every product sits in a range, every range sits in the navigation, and a mega menu shows the whole catalogue in one view.",
+          "The eight ranges are Pretreatment, Dyeing auxiliaries, Printing, Finishing, Softening, Denim washing, Special finishes and Yarn lubricants. The counts come from the product menu, and some products appear in more than one range, because a mill looks for a product by the job it does. For a manufacturer, this structure matters more than any single page design. It decides whether a buyer finds the product at all.",
+        ],
+      },
+      {
+        type: "full",
+        image: {
+          src: "/portfolio/texdale/case-study/texdale-08-information-architecture.avif",
+          width: 3200,
+          height: 2000,
+          alt: "Texdale information architecture slide: eight product ranges with counts, Pretreatment 15, Dyeing auxiliaries 14, Printing 6, Finishing 15, Softening 3, Denim washing 19, Special finishes 21 and Yarn lubricants 4",
+          caption: "Eight ranges, each with its product count, taken from the product menu.",
+        },
+      },
+      {
+        type: "text",
+        eyebrow: "08 Mobile",
+        heading: "Mobile website design for a mill floor",
+        paragraphs: [
+          "Many of Texdale's buyers check a product on a phone, often standing next to the machine. On a phone the site becomes one column with full-width type, and the range turns into a short index with the product count beside each name.",
+          "The menu opens to five large links: Company, Products, Sustainability, Insights and Contact. From any range, a sample request is never more than two taps away.",
+        ],
+      },
+      {
+        type: "full",
+        image: {
+          src: "/portfolio/texdale/case-study/texdale-09-mobile-design.avif",
+          width: 3200,
+          height: 2000,
+          alt: "Texdale mobile design at 390 by 844: three phone screens showing the homepage with indigo denim, the open navigation menu, and the Eight ranges index with product counts",
+          caption: "Home, navigation and the range index on a phone.",
+        },
+      },
+      {
+        type: "text",
+        eyebrow: "09 Components",
+        heading: "Mega menu, FAQ accordion and enquiry form",
+        paragraphs: [
+          "Most of the site's depth lives in three components. The mega menu shows all 87 products across eight ranges under four headings: wet process, denim washing, special finishes and yarn lubricants. The FAQ accordion answers the questions technicians ask before they get in touch, such as what textile chemicals are, where the products are made and how Texdale handles REACH.",
+          "The enquiry form asks first what the visitor needs: a quote, a sample, a technical data sheet, a safety data sheet or a general question. Each request arrives labelled, so the reply comes from the right technician with the right document.",
+        ],
+      },
+      {
+        type: "full",
+        image: {
+          src: "/portfolio/texdale/case-study/texdale-10-components.avif",
+          width: 3200,
+          height: 2000,
+          alt: "Texdale components slide: the products mega menu showing 87 products across 8 ranges, the FAQ accordion opening on What are textile chemicals?, and the enquiry form with Request a sample selected",
+          caption: "The mega menu, the FAQ accordion and the enquiry form.",
+        },
+      },
+      {
+        type: "text",
+        eyebrow: "10 Outcome",
+        heading: "A catalogue that finally behaves like one",
+        paragraphs: [
+          "What shipped: 87 products published, each mapped to a range and a process stage; eight ranges in the navigation that were previously buried; seven numbered homepage sections; and a sample request two taps from any range on mobile. Texdale's technical team can now send a mill to the website, in any time zone, without sending a PDF first.",
+          "The site is also the base for the rest of the marketing. The [Google and Meta campaigns](/services/paid-marketing), [SEO](/services/seo) and AI search work all point at these pages, so the ads, the search results and the website describe one company in the same words.",
+        ],
+      },
+      {
+        type: "full",
+        image: {
+          src: "/portfolio/texdale/case-study/texdale-11-outcome.avif",
+          width: 3200,
+          height: 2000,
+          alt: "Texdale outcome slide: 87 products published, 08 ranges in the navigation, 07 numbered homepage sections and 2 taps from any range to a sample request on mobile, with notes on positioning, conversion path and build",
+          caption: "What shipped: 87 products, eight ranges, seven sections, two taps to a sample.",
+        },
+      },
+    ],
     siteUrl: "https://texdale.co.uk",
     faqs: [
       {
@@ -2010,8 +2225,40 @@ export const clients: Client[] = [
         answer:
           "Not yet. It is designed and prototyped, with a drum label scanner, a dosing calculator, data sheets and sample and reorder requests, and is not yet released on the App Store or Google Play.",
       },
+      // Added 2026-11-16 with the slide case study: each answer is stated on a
+      // slide or in the text between them.
+      {
+        question: "Who designed and built the Texdale website?",
+        answer:
+          "Bilal Shafqat, a freelance digital marketer based in Dubai, did the strategy, UX, UI and the Next.js build for texdale.co.uk. The same person runs Texdale's SEO, AI search, social media and Google and Meta campaigns.",
+      },
+      {
+        question: "How is the Texdale product catalogue organised?",
+        answer:
+          "87 products in eight ranges: Pretreatment, Dyeing auxiliaries, Printing, Finishing, Softening, Denim washing, Special finishes and Yarn lubricants. Every range is in the navigation, a mega menu shows the whole catalogue in one view, and some products sit in more than one range because mills search by the job a product does.",
+      },
+      {
+        question: "What fonts and colours does the Texdale website use?",
+        answer:
+          "Archivo Bold for headlines, IBM Plex Sans for body copy and IBM Plex Mono for labels and numbers, all self-hosted. The palette is ink, navy and warm paper, with blue, yellow and green from the logo used only to mark pretreatment, dyeing and finishing.",
+      },
+      {
+        question: "What should a website for a chemical manufacturer do?",
+        answer:
+          "Help a technical buyer find the right product and ask for a sample quickly. For Texdale that meant a first screen that says who, what, how many and where, a catalogue structured by range and process stage, data sheets close to every product, and an enquiry form that asks first whether the visitor wants a quote, a sample, a TDS, an SDS or a general answer.",
+      },
+      {
+        question: "How was the Texdale website project run?",
+        answer:
+          "In four phases, each ending with something the client could check: discovery (product audit and competitor scan), structure (87 products mapped to eight ranges, navigation and sitemap), design (type, colour, components and a clickable prototype) and build and launch (Next.js, SEO, forms and handover).",
+      },
+      {
+        question: "Can a freelancer in Dubai build a website for a UK manufacturer?",
+        answer:
+          "Yes. Texdale is in Stockport, England, and the whole project, from strategy and design to the build and the campaigns, was run remotely by Bilal Shafqat from Dubai, with clients in the UAE, the UK and beyond.",
+      },
     ],
-    ctaLead: "Starting your digital marketing from scratch?",
+    ctaLead: "Got a catalogue nobody can read?",
     projects: [],
     keywords: [
       "digital marketing case study",

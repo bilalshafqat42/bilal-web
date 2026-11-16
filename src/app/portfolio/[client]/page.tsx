@@ -22,6 +22,7 @@ import Eyebrow from "@/components/ui/Eyebrow";
 import SecondaryButton from "@/components/ui/SecondaryButton";
 import CaseStudyShowcase from "@/components/portfolio/CaseStudyShowcase";
 import LinkedText from "@/components/ui/LinkedText";
+import CaseStudyStory from "@/components/portfolio/CaseStudyStory";
 
 const SITE = SITE_URL;
 
@@ -110,7 +111,25 @@ export default async function ClientCaseStudy({ params }: Props) {
       c.industry === "Real Estate & Property"
         ? "Real estate marketing case study"
         : "Digital marketing case study",
-    image: c.ogImage ? `${SITE}${c.ogImage}` : OG_IMAGE_URL,
+    // The story's slides are listed too (2026-11-16): with their alt text
+    // they are the most descriptive images on the page, and an assistant
+    // reading the markup otherwise sees only the share card.
+    image: c.story
+      ? [
+          c.ogImage ? `${SITE}${c.ogImage}` : OG_IMAGE_URL,
+          ...c.story.flatMap((b) =>
+            b.type === "full" ? [b.image] : b.type === "pair" ? b.images : []
+          ).map((img) => ({
+            "@type": "ImageObject",
+            contentUrl: `${SITE}${img.src}`,
+            description: img.alt,
+            width: img.width,
+            height: img.height,
+          })),
+        ]
+      : c.ogImage
+        ? `${SITE}${c.ogImage}`
+        : OG_IMAGE_URL,
     creator: { "@id": `${SITE}/#person`, "@type": "Person" },
     about: {
       "@type": "Organization",
@@ -201,6 +220,10 @@ export default async function ClientCaseStudy({ params }: Props) {
 
         <CaseStudyShowcase blocks={c.showcase} at="opener" />
 
+        {/* The slide case study with the reasoning between the slides, first
+            after the opener, because it is the strongest thing on the page. */}
+        {c.story ? <CaseStudyStory story={c.story} /> : null}
+
         <section className="relative section">
           <div className="site-container">
             <Reveal>
@@ -267,7 +290,9 @@ export default async function ClientCaseStudy({ params }: Props) {
           </section>
         ) : null}
 
-        {c.website ? (
+        {/* With a story, the slides already show the homepage on desktop and
+            on a phone, so the scrolling capture would show it a second time. */}
+        {c.website && !c.story ? (
           <section className="relative section">
             <div className="site-container">
               <Reveal>
