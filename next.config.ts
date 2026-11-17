@@ -242,6 +242,16 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        // The design kit is a private checking page (2026-11-17, Bilal: "only
+        // for me to see"). The meta tag already says noindex; the header says
+        // it again for crawlers that read headers rather than HTML, and adds
+        // noarchive and nosnippet. Not listed in robots.txt on purpose: a
+        // Disallow there would stop crawlers reading this noindex, and would
+        // advertise the URL to anyone reading the file.
+        source: "/design-kit",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noarchive, nosnippet" }],
+      },
       // Logos and portfolio image files get a one-day browser TTL from a
       // Cloudflare Cache Rule ("Logos and portfolio files"), not from here:
       // Hostinger serves /public straight from LiteSpeed, so a header set here
