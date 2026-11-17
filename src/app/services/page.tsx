@@ -88,7 +88,7 @@ export default function ServicesPage() {
               Paid ads and social media campaigns, SEO and AI search, web and app
               design, and website and app development, delivered personally from
               strategy to launch by one{" "}
-              <Link href="/" className="font-semibold underline decoration-gold/50 decoration-2 underline-offset-4 transition-colors hover:text-gold">
+              <Link href="/" className="py-1 font-semibold underline decoration-gold/50 decoration-2 underline-offset-4 transition-colors hover:text-gold">
                 digital marketing freelancer in Dubai
               </Link>
               , without handoffs between departments.

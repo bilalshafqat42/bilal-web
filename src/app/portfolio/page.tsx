@@ -256,7 +256,7 @@ export default function PortfolioPage() {
                             </span>
                             <span className="mt-0.5 flex shrink-0 items-center gap-2">
                               {live && count > 0 ? (
-                                <span className="rounded-full border border-gold/25 bg-gold/[0.07] px-2 py-0.5 font-mono text-[0.68rem] text-gold/90">
+                                <span className="rounded-full border border-gold/25 bg-gold/[0.07] px-2 py-0.5 font-mono text-[0.72rem] text-gold/90">
                                   {count}
                                 </span>
                               ) : cases > 0 ? (
