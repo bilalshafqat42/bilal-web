@@ -1,7 +1,8 @@
-import Link from "next/link";
 import { Info } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import Eyebrow from "@/components/ui/Eyebrow";
+import CtaButton from "@/components/ui/CtaButton";
+import SecondaryButton from "@/components/ui/SecondaryButton";
 import { engagementModels as models, engagementRows as rows, type Model } from "@/data/home";
 
 /**
@@ -125,16 +126,17 @@ export default function Engagement({
                   })}
                 </dl>
 
-                <Link
-                  href={m.cta.href}
-                  className={`mt-6 inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-colors ${
-                    m.featured
-                      ? "btn-primary"
-                      : "border border-border text-ink hover:border-gold/40"
-                  }`}
-                >
-                  {m.cta.label}
-                </Link>
+                {/* The kit's small buttons (design kit check, 2026-11-17); these were
+    hand-made at 44 and 46px. */}
+{m.featured ? (
+  <CtaButton href={m.cta.href} size="sm" className="mt-6 w-full justify-between">
+    {m.cta.label}
+  </CtaButton>
+) : (
+  <SecondaryButton href={m.cta.href} size="sm" className="mt-6 w-full">
+    {m.cta.label}
+  </SecondaryButton>
+)}
               </li>
             ))}
           </ul>
@@ -222,16 +224,17 @@ export default function Engagement({
                       key={m.name}
                       className={`border-t border-border p-5 pb-7 rounded-b-2xl ${colClass(m)}`}
                     >
-                      <Link
-                        href={m.cta.href}
-                        className={`inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-colors ${
-                          m.featured
-                            ? "btn-primary"
-                            : "border border-border text-ink hover:border-gold/40"
-                        }`}
-                      >
-                        {m.cta.label}
-                      </Link>
+                      {/* The kit's small buttons (design kit check, 2026-11-17); these were
+    hand-made at 44 and 46px. */}
+{m.featured ? (
+  <CtaButton href={m.cta.href} size="sm" className="w-full justify-between">
+    {m.cta.label}
+  </CtaButton>
+) : (
+  <SecondaryButton href={m.cta.href} size="sm" className="w-full">
+    {m.cta.label}
+  </SecondaryButton>
+)}
                     </td>
                   ))}
                 </tr>

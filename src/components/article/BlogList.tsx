@@ -47,14 +47,14 @@ export default function BlogList({
                   // already on is a dead end for everyone.
                   <span
                     aria-current="page"
-                    className="inline-flex h-10 min-w-10 items-center justify-center rounded-full border border-gold/40 bg-gold/10 px-3 text-sm font-semibold text-ink"
+                    className="inline-flex h-[42px] min-w-[42px] items-center justify-center rounded-full border border-gold/40 bg-gold/10 px-3 text-sm font-semibold text-ink"
                   >
                     {n}
                   </span>
                 ) : (
                   <Link
                     href={blogPagePath(n)}
-                    className="inline-flex h-10 min-w-10 items-center justify-center rounded-full border border-border px-3 text-sm font-medium text-muted transition-colors hover:border-gold/35 hover:text-ink"
+                    className="inline-flex h-[42px] min-w-[42px] items-center justify-center rounded-full border border-border px-3 text-sm font-semibold text-muted transition-colors hover:border-gold/35 hover:text-ink"
                   >
                     {n}
                   </Link>
@@ -98,7 +98,7 @@ function PagerLink({
     </>
   );
   const base =
-    "inline-flex items-center gap-1.5 rounded-full border px-5 py-2.5 text-sm font-medium transition-colors";
+    "inline-flex items-center gap-1.5 rounded-full border px-5 py-2.5 text-sm font-semibold transition-colors";
 
   if (!href) {
     return (

@@ -147,7 +147,7 @@ export default function ArticleBody({ blocks }: { blocks: Block[] }) {
               tabIndex={0}
               role="region"
               aria-label={`Table: ${b.head.join(", ")}`}
-              className="mt-6 overflow-x-auto rounded-xl border border-border"
+              className="mt-6 overflow-x-auto r-card border border-border"
             >
               <table className="w-full min-w-[34rem] border-collapse text-left text-base text-muted sm:text-lg">
                 <thead>
@@ -187,7 +187,7 @@ export default function ArticleBody({ blocks }: { blocks: Block[] }) {
           <pre
             key={i}
             tabIndex={0}
-            className="mt-6 overflow-x-auto rounded-xl border border-border bg-bg-soft p-4 text-[0.82rem] leading-relaxed text-ink/90 sm:p-5 sm:text-sm"
+            className="mt-6 overflow-x-auto r-card border border-border bg-bg-soft p-4 text-[0.82rem] leading-relaxed text-ink/90 sm:p-5 sm:text-sm"
           >
             <code className="font-mono">{b.v}</code>
           </pre>

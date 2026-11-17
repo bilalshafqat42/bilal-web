@@ -164,7 +164,7 @@ export default async function ArticlePage({ params }: PageProps) {
           title={post.title}
           standfirst={post.description}
           actions={
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted">
               {/* Guide, Tip or News: the rule is `kindOf` in blogTopics.ts. */}
               <span className="font-semibold text-gold">{kind}</span>
               <span aria-hidden="true" className="text-border">/</span>
@@ -189,13 +189,13 @@ export default async function ArticlePage({ params }: PageProps) {
                 <Link
                   key={t}
                   href={topicHref(t)}
-                  className="r-chip border border-gold/30 px-3 py-1 tracking-[0.1em] text-gold transition-colors hover:border-gold/35 hover:text-ink"
+                  className="r-chip border border-gold/30 px-3 py-1 tracking-[0.18em] text-gold transition-colors hover:border-gold/35 hover:text-ink"
                 >
                   {topicBySlug(t).label}
                 </Link>
               ))}
               {post.tags.map((t) => (
-                <span key={t} className="r-chip border border-border px-3 py-1 tracking-[0.1em] text-muted">
+                <span key={t} className="r-chip border border-border px-3 py-1 tracking-[0.18em] text-muted">
                   {t}
                 </span>
               ))}

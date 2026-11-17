@@ -218,7 +218,7 @@ function ServicesMenu({ menu, onNavigate }: { menu: MenuColumn[]; onNavigate: ()
                 return (
                   <li key={slug} className={svc.subLabel ? "pt-2" : undefined}>
                     {svc.subLabel ? (
-                      <span className="mb-2.5 block font-mono text-[0.72rem] uppercase tracking-[0.14em] text-muted">
+                      <span className="mb-2.5 block font-mono text-[0.72rem] uppercase tracking-[0.16em] text-muted">
                         {svc.subLabel}
                       </span>
                     ) : null}
@@ -716,7 +716,7 @@ export default function NavBar({ menu }: { menu: MenuColumn[] }) {
                           return (
                             <div key={svc.slug}>
                               {svc.subLabel ? (
-                                <span className="mt-2 block pl-1 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-muted">
+                                <span className="mt-2 block pl-1 font-mono text-[0.72rem] uppercase tracking-[0.16em] text-muted">
                                   {svc.subLabel}
                                 </span>
                               ) : null}

@@ -39,7 +39,7 @@ export default function BlogListItem({ post: p }: { post: ListPost }) {
       >
         <time
           dateTime={p.published}
-          className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted"
+          className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted"
         >
           {formatDate(p.published)}
         </time>

@@ -53,7 +53,7 @@ export default function SectionHeading({
           {title} {highlight ? <span className="text-gradient">{highlight}</span> : null}
         </Heading>
         {description ? (
-          <p className="mt-5 text-lg sm:text-xl text-muted leading-relaxed">{description}</p>
+          <p className="mt-5 text-lg text-muted leading-relaxed">{description}</p>
         ) : null}
       </div>
     </Reveal>

@@ -1804,16 +1804,19 @@ html:has([aria-modal="true"]) .consent-banner {
 }
 .ledger-row__title {
   color: var(--color-ink);
-  font-size: clamp(1.625rem, 1.2rem + 1.6vw, 2.5rem);
+  /* The kit's h3 step since 2026-11-17 (design kit check): it was its own
+     clamp topping out at 40px, between h2 (48) and h3 (32). */
+  font-size: var(--t-h3);
   font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.025em;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   transition: color 250ms ease;
 }
 .ledger-row__text {
   color: var(--color-muted);
-  font-size: 1.0625rem;
-  line-height: 1.65;
+  /* 16px body, the kit size; was 17px, a size used nowhere else. */
+  font-size: 1rem;
+  line-height: 1.625;
 }
 /* The row link, stretched over the whole row. Its focus is shown on the row
    itself (below), so the text needs no ring of its own. */
