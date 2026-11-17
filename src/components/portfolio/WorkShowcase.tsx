@@ -49,15 +49,20 @@ function rowsOf(cards: WorkCard[], pattern: Row["kind"][]): Row[] {
 
 const PORTRAIT = 5 / 6;
 const WIDE = 15 / 8;
+/** The /portfolio grid's frame since 2026-11-17. Most covers there are 16:10
+ *  website heroes, and a 5:6 frame cut their sides off (Bilal: "they look cut
+ *  off"). The homepage keeps the tall frame it was designed with. */
+const LANDSCAPE = 16 / 10;
 
 /** `sizes` for an image painted with `object-cover` in a frame. When the image
  *  is wider than the frame it is painted wider than the frame, so the browser
  *  is asked for a source that wide, or the crop comes out soft. */
-function sizesFor(img: WorkImage, kind: Row["kind"]): string {
+function sizesFor(img: WorkImage, kind: Row["kind"], frame: "tall" | "landscape"): string {
   const ratio = img.width / img.height;
-  const scale = (frame: number) => Math.max(1, ratio / frame);
-  const mobile = Math.ceil(100 * scale(PORTRAIT));
-  const desktop = kind === "wide" ? Math.ceil(1200 * scale(WIDE)) : Math.ceil(576 * scale(PORTRAIT));
+  const scale = (f: number) => Math.max(1, ratio / f);
+  const card = frame === "landscape" ? LANDSCAPE : PORTRAIT;
+  const mobile = Math.ceil(100 * scale(card));
+  const desktop = kind === "wide" ? Math.ceil(1200 * scale(WIDE)) : Math.ceil(576 * scale(card));
   return `(max-width: 1023px) ${mobile}vw, ${desktop}px`;
 }
 
@@ -67,20 +72,29 @@ const POSITION: Record<NonNullable<WorkImage["focus"]>, string> = {
   top: "object-top",
 };
 
-export function WorkCardView({ card, kind }: { card: WorkCard; kind: Row["kind"] }) {
-  const img = (kind === "wide" ? card.wide : card.portrait) ?? card.image;
+export function WorkCardView({
+  card,
+  kind,
+  frame = "tall",
+}: {
+  card: WorkCard;
+  kind: Row["kind"];
+  /** `landscape` draws a 16:10 frame, for covers that are wide captures. */
+  frame?: "tall" | "landscape";
+}) {
+  const img = (kind === "wide" ? card.wide : frame === "tall" ? card.portrait : undefined) ?? card.image;
   return (
     <Link href={card.href} className="group block">
       <div
-        className={`relative overflow-hidden bg-surface/40 aspect-[5/6] ${
-          kind === "wide" ? "lg:aspect-[15/8]" : ""
-        }`}
+        className={`relative overflow-hidden bg-surface/40 ${
+          frame === "landscape" ? "aspect-[16/10]" : "aspect-[5/6]"
+        } ${kind === "wide" ? "lg:aspect-[15/8]" : ""}`}
       >
         <Image
           src={img.src}
           alt={img.alt}
           fill
-          sizes={sizesFor(img, kind)}
+          sizes={sizesFor(img, kind, frame)}
           className={`object-cover ${POSITION[img.focus ?? "center"]} transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100`}
         />
       </div>

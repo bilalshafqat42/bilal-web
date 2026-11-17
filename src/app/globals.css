@@ -1276,6 +1276,12 @@ a.work-chip .work-chip-count {
   display: none;
 }
 
+/* Sub-pages (Texdale's website, branding, app, social) appear only under a
+ * filter; under "All work" the client's overview card stands for them. */
+.work-filter:has(#work-filter-all:checked) .work-item[data-sub] {
+  display: none;
+}
+
 /* A filtered view is a short list, so the wide card stops earning a full row. */
 .work-filter:not(:has(#work-filter-all:checked)) .work-item {
   grid-column: auto;

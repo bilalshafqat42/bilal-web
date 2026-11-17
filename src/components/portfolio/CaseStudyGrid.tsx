@@ -57,6 +57,24 @@ type Card = {
   name: string;
   summary: string;
   tags: string[];
+  /** A sub-page of a client that has an overview card (Texdale's website,
+   *  branding, app and social pages). Hidden under "All work", where the
+   *  overview stands for them, and shown once a filter is picked (Bilal,
+   *  2026-11-17: Texdale was showing five times). */
+  sub?: boolean;
+};
+
+/** Filter chips for a sub-page, by the service it books. The captures cannot
+ *  decide these: the Texdale sub-pages share one set of images, so every one
+ *  of them was tagged Mobile Development and UI / UX Design, and the social
+ *  page never appeared under Social Media Marketing. The app is labelled a
+ *  design on its card, so listing it under Mobile Development claims nothing
+ *  it does not show. */
+const SUB_TAGS: Record<string, string[]> = {
+  "custom-web-development": ["Web Development", "Web Designing", "UI / UX Design"],
+  "graphic-design-branding": ["UI / UX Design", "Web Designing"],
+  "mobile-app-development": ["Mobile Development", "UI / UX Design"],
+  "social-media-marketing": ["Social Media Marketing"],
 };
 
 function buildCards(): Card[] {
@@ -101,17 +119,24 @@ function buildCards(): Card[] {
     }
 
     for (const p of c.projects) {
+      // A landing page capture where there is one: its top is a wide hero that
+      // fills the 16:10 frame, where a square social creative lost a fifth top
+      // and bottom.
+      const lp = p.landingPage?.capture;
       out.push({
         href: `/portfolio/${c.slug}/${p.slug}`,
-        image: p.cardImage,
-        width: 1600,
-        height: 1000,
-        alt: p.cardImageAlt ?? `${p.name} campaign creative`,
-        position: p.cardImagePosition ?? "top",
+        image: lp?.src ?? p.cardImage,
+        width: lp?.width ?? 1600,
+        height: lp?.height ?? 1000,
+        alt: lp?.alt ?? p.cardImageAlt ?? `${p.name} campaign creative`,
+        position: lp ? "top" : (p.cardImagePosition ?? "top"),
         eyebrow: p.eyebrow ?? "Launch campaign",
         name: p.name,
         summary: p.summary,
-        tags: disciplinesInWork(c.slug, p.slug).map((d) => d.title),
+        tags:
+          (c.subPages && p.service && SUB_TAGS[p.service]) ||
+          disciplinesInWork(c.slug, p.slug).map((d) => d.title),
+        sub: c.subPages,
       });
     }
   }
@@ -163,7 +188,7 @@ export default function CaseStudyGrid() {
             />
             <label htmlFor="work-filter-all" className="work-chip">
               All work
-              <span className="work-chip-count">{cards.length}</span>
+              <span className="work-chip-count">{cards.filter((c) => !c.sub).length}</span>
             </label>
 
             {filters.map(([tag, n]) => (
@@ -189,10 +214,16 @@ export default function CaseStudyGrid() {
             card, which is what made the old grid read as a list. */}
         <ol className="mx-auto mt-12 grid max-w-[1200px] grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-x-12 lg:gap-y-24">
           {cards.map((card) => (
-            <li key={card.href} data-tags={card.tags.map(token).join(" ")} className="work-item">
+            <li
+              key={card.href}
+              data-tags={card.tags.map(token).join(" ")}
+              data-sub={card.sub ? "" : undefined}
+              className="work-item"
+            >
               <Reveal>
                 <WorkCardView
                   kind="pair"
+                  frame="landscape"
                   card={{
                     slug: card.href,
                     title: card.name,
