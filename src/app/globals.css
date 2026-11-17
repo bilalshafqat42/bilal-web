@@ -1282,6 +1282,13 @@ a.work-chip .work-chip-count {
   display: none;
 }
 
+/* The last card under "All work", when the count is odd, spans both columns. */
+@media (min-width: 1024px) {
+  .work-filter:has(#work-filter-all:checked) .work-item[data-lone] {
+    grid-column: 1 / -1;
+  }
+}
+
 /* A filtered view is a short list, so the wide card stops earning a full row. */
 .work-filter:not(:has(#work-filter-all:checked)) .work-item {
   grid-column: auto;

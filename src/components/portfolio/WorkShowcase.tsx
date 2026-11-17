@@ -40,7 +40,10 @@ function rowsOf(cards: WorkCard[], pattern: Row["kind"][]): Row[] {
   while (i < cards.length) {
     const kind = pattern[p % pattern.length];
     const take = kind === "pair" ? 2 : 1;
-    rows.push({ kind, cards: cards.slice(i, i + take) });
+    const slice = cards.slice(i, i + take);
+    // A lone card at the end of a pair row goes full width (Bilal, 2026-11-17:
+    // "full width or 2 columns"), rather than sitting alone in one column.
+    rows.push({ kind: slice.length === 1 ? "wide" : kind, cards: slice });
     i += take;
     p += 1;
   }
@@ -62,7 +65,8 @@ function sizesFor(img: WorkImage, kind: Row["kind"], frame: "tall" | "landscape"
   const scale = (f: number) => Math.max(1, ratio / f);
   const card = frame === "landscape" ? LANDSCAPE : PORTRAIT;
   const mobile = Math.ceil(100 * scale(card));
-  const desktop = kind === "wide" ? Math.ceil(1200 * scale(WIDE)) : Math.ceil(576 * scale(card));
+  const desktop =
+    kind === "wide" ? Math.ceil(1200 * scale(frame === "tall" ? WIDE : LANDSCAPE)) : Math.ceil(576 * scale(card));
   return `(max-width: 1023px) ${mobile}vw, ${desktop}px`;
 }
 
@@ -75,11 +79,13 @@ const POSITION: Record<NonNullable<WorkImage["focus"]>, string> = {
 export function WorkCardView({
   card,
   kind,
-  frame = "tall",
+  frame = "landscape",
 }: {
   card: WorkCard;
   kind: Row["kind"];
-  /** `landscape` draws a 16:10 frame, for covers that are wide captures. */
+  /** `landscape` (the default since 2026-11-17) draws a 16:10 frame, the
+   *  shape of the case study covers, so a cover is never cut off at the sides.
+   *  `tall` is the 5:6 frame from the 2026-11-12 redesign. */
   frame?: "tall" | "landscape";
 }) {
   const img = (kind === "wide" ? card.wide : frame === "tall" ? card.portrait : undefined) ?? card.image;
@@ -88,7 +94,7 @@ export function WorkCardView({
       <div
         className={`relative overflow-hidden bg-surface/40 ${
           frame === "landscape" ? "aspect-[16/10]" : "aspect-[5/6]"
-        } ${kind === "wide" ? "lg:aspect-[15/8]" : ""}`}
+        } ${kind === "wide" && frame === "tall" ? "lg:aspect-[15/8]" : ""}`}
       >
         <Image
           src={img.src}

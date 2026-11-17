@@ -95,11 +95,13 @@ export const workCards: Record<string, WorkCard> = {
     href: "/portfolio/leos-developments",
     summary: "Corporate website, a mobile app and off-plan launch campaigns for a UK and Dubai developer.",
     image: {
-      src: "/portfolio/leos/cavendish/landing-page/cavendish-thumb.avif",
-      width: 1200,
-      height: 799,
-      alt: "Cavendish Square landing page for LEOS Developments, with the register-your-interest and construction progress routes",
-      focus: "center",
+      // The corporate website's hero since 2026-11-17, when this card went
+      // full width: the 1200px Cavendish thumbnail came out soft at that size.
+      src: "/portfolio/leos/landing-page/leos-landing-page.avif",
+      width: 1928,
+      height: 6555,
+      alt: "LEOS Developments corporate website, opening on the Weybridge Gardens rooftop pool",
+      focus: "top",
     },
   },
 };

@@ -155,6 +155,11 @@ export default function CaseStudyGrid() {
   for (const c of cards) for (const t of c.tags) counts.set(t, (counts.get(t) ?? 0) + 1);
   const filters = [...counts.entries()].sort((a, b) => b[1] - a[1]);
 
+  // Under "All work" an odd number of cards leaves the last one alone in a
+  // column; it goes full width instead (Bilal, 2026-11-17).
+  const shown = cards.filter((c) => !c.sub);
+  const lone = shown.length % 2 === 1 ? shown[shown.length - 1].href : undefined;
+
   return (
     <section className="site-container section-pad-tight">
       <Reveal>
@@ -218,6 +223,7 @@ export default function CaseStudyGrid() {
               key={card.href}
               data-tags={card.tags.map(token).join(" ")}
               data-sub={card.sub ? "" : undefined}
+              data-lone={card.href === lone ? "" : undefined}
               className="work-item"
             >
               <Reveal>
