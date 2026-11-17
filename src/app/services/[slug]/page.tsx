@@ -1,3 +1,4 @@
+import { bookingHref, consultLabel } from "@/data/consult";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -160,7 +161,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
           actions={
             <div className="w-full">
               <div className="flex flex-wrap items-center gap-4">
-                <CtaButton href="/appointment">Book a free consultation</CtaButton>
+                <CtaButton href={bookingHref(category.slug)}>{consultLabel(category.slug)}</CtaButton>
                 <SecondaryButton href="/portfolio">See related work</SecondaryButton>
                 {/* The third option, and the one a first-time visitor usually
                     wants before either of the others. */}
@@ -373,7 +374,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
 
               <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-border pt-5">
                 <span className="text-sm text-muted">Prefer another way?</span>
-                <SecondaryButton href="/appointment" size="sm">Book a call <ArrowRight size={14} /></SecondaryButton>
+                <SecondaryButton href={bookingHref(category.slug)} size="sm">Book a call <ArrowRight size={14} /></SecondaryButton>
                 <WhatsAppLink
                   context={`service-page:${category.slug}`}
                   className={secondaryButtonClass("sm")}

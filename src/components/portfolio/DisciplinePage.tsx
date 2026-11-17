@@ -1,3 +1,4 @@
+import { bookingHref, consultLabel } from "@/data/consult";
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
@@ -197,6 +198,13 @@ export default function DisciplinePage({ slug }: { slug: string }) {
 
   const items = disciplineItems(d);
   const url = `${SITE_URL}/portfolio/${d.slug}`;
+  // The service the booking button offers: the one `serviceHref` names,
+  // without its #section. Web development links to a section of the combined
+  // website and app page, but the work on it is websites.
+  const consultSlug =
+    d.slug === "web-development"
+      ? "custom-web-development"
+      : d.serviceHref.replace("/services/", "").split("#")[0];
 
   // Siblings that have their own page, so a visitor who arrived on the wrong
   // cut of the same work can get to the right one in a click. Every internal
@@ -265,7 +273,9 @@ export default function DisciplinePage({ slug }: { slug: string }) {
           <Reveal>
 
             <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <CtaButton href="/appointment">Book a free consultation</CtaButton>
+              {/* Worded for the service this cut proves (2026-11-17), from the
+                  service page it links to. */}
+              <CtaButton href={bookingHref(consultSlug)}>{consultLabel(consultSlug)}</CtaButton>
               <Link
                 href={d.serviceHref}
                 className="tap-target text-sm font-semibold text-ink underline decoration-gold/50 decoration-2 underline-offset-4 transition-colors hover:text-gold"

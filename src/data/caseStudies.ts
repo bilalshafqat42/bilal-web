@@ -358,6 +358,15 @@ export type Client = {
    *  Added 2026-11-16 for Texdale, from the twelve-slide case study Bilal
    *  supplied. Same `StoryBlock` list the project pages use. */
   story?: StoryBlock[];
+  /** A booking panel straight after `story`, for the service the slides show.
+   *  Added 2026-11-17: the story made the page twice as long, and a visitor
+   *  sold on the design had 12,000px to scroll before the next button.
+   *  `service` is a service slug; it sets the button wording and pre-selects
+   *  the service on /appointment (see src/data/consult.ts). */
+  storyCta?: { heading: string; body: string; service: string };
+  /** The service the closing panel offers a consultation for. Defaults to
+   *  "digital-marketing". */
+  ctaService?: string;
   /** One project lifted out of the grid into its own section.
    *
    *  The sales application sat as the third card in a row headed "Development
@@ -2258,7 +2267,12 @@ export const clients: Client[] = [
           "Yes. Texdale is in Stockport, England, and the whole project, from strategy and design to the build and the campaigns, was run remotely by Bilal Shafqat from Dubai, with clients in the UAE, the UK and beyond.",
       },
     ],
-    ctaLead: "Got a catalogue nobody can read?",
+    storyCta: {
+      heading: "Got a catalogue nobody can read?",
+      body: "I design and build websites for manufacturers and B2B companies, where the product list is the hard part. One person from the first sketch to the live site, and the campaigns after it.",
+      service: "custom-web-development",
+    },
+    ctaLead: "Starting your digital marketing from scratch?",
     projects: [],
     keywords: [
       "digital marketing case study",

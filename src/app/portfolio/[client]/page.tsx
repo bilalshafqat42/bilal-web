@@ -22,6 +22,7 @@ import Eyebrow from "@/components/ui/Eyebrow";
 import SecondaryButton from "@/components/ui/SecondaryButton";
 import CaseStudyShowcase from "@/components/portfolio/CaseStudyShowcase";
 import LinkedText from "@/components/ui/LinkedText";
+import { bookingHref, consultLabel } from "@/data/consult";
 import CaseStudyStory from "@/components/portfolio/CaseStudyStory";
 
 const SITE = SITE_URL;
@@ -223,6 +224,29 @@ export default async function ClientCaseStudy({ params }: Props) {
         {/* The slide case study with the reasoning between the slides, first
             after the opener, because it is the strongest thing on the page. */}
         {c.story ? <CaseStudyStory story={c.story} /> : null}
+
+        {c.story && c.storyCta ? (
+          <section className="relative section-tight">
+            <div className="site-container">
+              <Reveal>
+                <div className="flex flex-col gap-6 r-panel surface-2 px-7 py-9 sm:px-10 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+                  <div className="max-w-2xl">
+                    <h2 className="t-h3 text-ink">{c.storyCta.heading}</h2>
+                    <p className="mt-3 text-base leading-relaxed text-muted">{c.storyCta.body}</p>
+                  </div>
+                  <div className="flex shrink-0 flex-wrap items-center gap-4">
+                    <CtaButton href={bookingHref(c.storyCta.service)}>
+                      {consultLabel(c.storyCta.service)}
+                    </CtaButton>
+                    <SecondaryButton href={`/services/${c.storyCta.service}`}>
+                      How I build websites
+                    </SecondaryButton>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+          </section>
+        ) : null}
 
         <section className="relative section">
           <div className="site-container">
@@ -604,7 +628,9 @@ export default async function ClientCaseStudy({ params }: Props) {
                     <span className="text-gradient">Let&apos;s talk.</span>
                   </h2>
                   <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-                    <CtaButton href="/appointment">Book a free consultation</CtaButton>
+                    <CtaButton href={bookingHref(c.ctaService ?? "digital-marketing")}>
+                      {consultLabel(c.ctaService ?? "digital-marketing")}
+                    </CtaButton>
                     <SecondaryButton href="/portfolio">See all work</SecondaryButton>
                   </div>
                 </div>

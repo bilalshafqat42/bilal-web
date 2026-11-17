@@ -264,7 +264,7 @@ export default function AppointmentPage() {
                   platforms are one topic here ("CMS Development"), and a
                   dropdown of twenty is a worse question than one of
                   seventeen. */}
-              <AppointmentBooking services={menuGroups().map((g) => g.title)} />
+              <AppointmentBooking services={menuGroups().map((g) => ({ slug: g.slug, title: g.title }))} />
             </div>
 
             <div className="min-w-0 lg:col-start-1 lg:row-start-2">

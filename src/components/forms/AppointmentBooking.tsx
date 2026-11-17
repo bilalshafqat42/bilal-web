@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { trackSchedule } from "@/lib/analytics";
 import { BUDGET_OPTIONS, TIMELINE_OPTIONS } from "@/data/leadOptions";
@@ -23,8 +23,24 @@ import CalBooking from "@/components/forms/CalBooking";
  *  picker it used to carry — see the note at the bottom of this file. */
 const CAL_LINK = process.env.NEXT_PUBLIC_CALCOM_LINK;
 
-export default function AppointmentBooking({ services }: { services: string[] }) {
-  const [topic, setTopic] = useState(services[0]);
+export default function AppointmentBooking({
+  services,
+}: {
+  services: { slug: string; title: string }[];
+}) {
+  const [topic, setTopic] = useState(services[0].title);
+
+  // `?service=<slug>` pre-selects the service (2026-11-17). Every "Book a free
+  // ... consultation" button carries it, so someone arriving from the SEO page
+  // finds SEO already chosen. Read after mount rather than from searchParams on
+  // the server, which would turn this static page into a per-request render;
+  // the dropdown shows the first service for the moment before it switches.
+  useEffect(() => {
+    const wanted = new URLSearchParams(window.location.search).get("service");
+    const match = services.find((s) => s.slug === wanted);
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-off sync from the URL after hydration
+    if (match) setTopic(match.title);
+  }, [services]);
   const [budget, setBudget] = useState(BUDGET_OPTIONS[0]);
   const [timeline, setTimeline] = useState(TIMELINE_OPTIONS[0]);
   // The Cal.com embed pulls roughly 4.9MB of third-party JavaScript. That is
@@ -54,8 +70,8 @@ export default function AppointmentBooking({ services }: { services: string[] })
           onChange={(e) => setTopic(e.target.value)}
           className="mt-2 w-full rounded-xl surface-2 px-4 py-3 text-sm text-ink outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20 [color-scheme:dark]"
         >
-          {services.map((t) => (
-            <option key={t}>{t}</option>
+          {services.map((s) => (
+            <option key={s.slug}>{s.title}</option>
           ))}
         </select>
       </div>
