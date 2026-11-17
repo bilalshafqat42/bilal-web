@@ -75,6 +75,11 @@ export const CARDS = {
     lines: ["Your CRM is the", "*only honest* lead count."],
     kicker: "Marketing tip",
   },
+  "ai-automation": {
+    slug: "ai-marketing-automation-workflows",
+    lines: ["Let AI *draft* the work.", "Keep a person *on send.*"],
+    kicker: "AI marketing automation",
+  },
 };
 
 const BRAND = {

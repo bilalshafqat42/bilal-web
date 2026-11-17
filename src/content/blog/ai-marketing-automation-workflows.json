@@ -1,0 +1,151 @@
+{
+  "slug": "ai-marketing-automation-workflows",
+  "title": "AI Marketing Automation: Five Workflows a Small Team Can Set Up This Week",
+  "metaTitle": "AI Marketing Automation: 5 Workflows to Set Up This Week",
+  "description": "AI marketing automation for small teams: five workflows for lead replies, CRM tagging, reports, posts and reviews, and where a person must stay in the loop.",
+  "published": "2026-11-17",
+  "updatedAt": "2026-11-17",
+  "tags": [
+    "AI",
+    "Digital Marketing",
+    "Dubai"
+  ],
+  "blocks": [
+    {
+      "t": "p",
+      "v": "Most of the talk about AI in marketing is about content: AI-written ads, AI images, AI video. The part that saves a small team the most time gets far less attention, because it is boring. It is the work between the ad and the sale: replying to leads, sorting them, reporting on them and keeping every channel fed."
+    },
+    {
+      "t": "p",
+      "v": "That is where AI marketing automation earns its keep. Not by replacing the marketer, but by doing the first draft of every repetitive job so the person only has to check and send. Here are five workflows a business with one or two marketers can set up in a week, with the tools most teams already pay for."
+    },
+    {
+      "t": "h2",
+      "v": "Why automation is the part of AI that pays first"
+    },
+    {
+      "t": "p",
+      "v": "An AI tool on its own waits for you to open it and type. An automation runs when something happens: a form is submitted, a lead lands in the CRM, it is Monday morning. Connect the two and the AI starts working on events rather than on your free time."
+    },
+    {
+      "t": "p",
+      "v": "The connectors are tools like Zapier, Make and n8n, which watch one app and act in another. The AI step is a model such as ChatGPT, Claude or Gemini, called inside that flow with a written instruction. None of the five workflows below needs a developer, though each one needs an hour of careful setup and a week of watching it before you trust it."
+    },
+    {
+      "t": "h2",
+      "v": "Workflow 1: does every new lead get a reply within minutes?"
+    },
+    {
+      "t": "p",
+      "v": "Speed to reply is the cheapest conversion fix there is, and most businesses lose it at night and at weekends. The workflow: a new form entry or WhatsApp message triggers the automation, the AI reads what the person asked and drafts a reply that answers it, and the draft lands in your inbox or a shared channel for one tap to approve."
+    },
+    {
+      "t": "p",
+      "v": "Keep the approval step. A reply that quotes the wrong price or promises a viewing that is not available costs more than a slow reply. Once a month, read back what the AI drafted against what was sent, and tighten the instruction where you had to edit."
+    },
+    {
+      "t": "h2",
+      "v": "Workflow 2: can AI sort leads before the sales team sees them?"
+    },
+    {
+      "t": "p",
+      "v": "Yes, and this is where most teams see the biggest change. Before a lead is written to the CRM, an AI step reads the enquiry and adds fields: the service asked about, the budget if stated, the timeline, the language, and a simple hot, warm or cold tag based on rules you write."
+    },
+    {
+      "t": "p",
+      "v": "Sales then starts the day with a sorted list instead of a pile. This only works if the CRM is the single place leads live, which is the same rule that makes [[tracking your marketing honestly|/what-to-track-in-marketing-uae]] possible. If leads still sit in three inboxes, fix that first; automation on top of a mess just produces a faster mess."
+    },
+    {
+      "t": "h2",
+      "v": "Workflow 3: the Monday report writes itself"
+    },
+    {
+      "t": "p",
+      "v": "Every Monday someone exports numbers from Google Ads, Meta and Analytics, pastes them into a sheet and writes three lines about what changed. An automation can pull the same figures on a schedule, and an AI step can write the three lines: what moved, by how much, and which campaign caused it."
+    },
+    {
+      "t": "p",
+      "v": "Give the AI the numbers, never ask it to find them. A model asked for your figures without being given them may make some up; a model handed a table and asked what changed is reliable at describing it. Send the summary to the channel where decisions are made, with a link to the raw data underneath."
+    },
+    {
+      "t": "h2",
+      "v": "Workflow 4: one article becomes a week of posts"
+    },
+    {
+      "t": "p",
+      "v": "When a blog post is published, the automation sends its text to an AI step with your house style and the rules for each platform: a LinkedIn post of 150 to 250 words, a short caption for Instagram and Facebook, a title and description for Pinterest. The drafts go into a document or a scheduling tool for review."
+    },
+    {
+      "t": "p",
+      "v": "This is the workflow that most often goes wrong on tone, so write the style down properly: words you use, words you never use, the length of a sentence, whether you use emojis. Then edit every draft before it goes out. The AI saves the blank page, not the judgement."
+    },
+    {
+      "t": "h2",
+      "v": "Workflow 5: reviews and comments get a first draft, not a blank box"
+    },
+    {
+      "t": "p",
+      "v": "New Google reviews, comments on ads and replies to posts can all trigger a drafted response. For a five-star review the draft is a thank-you that mentions what the person actually said. For a complaint it should be a holding reply and an alert to a person, never an automatic answer."
+    },
+    {
+      "t": "h2",
+      "v": "Where AI marketing automation goes wrong"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Sending without a person checking. Keep approval on anything a customer will read until you have weeks of drafts that needed no edits.",
+        "Feeding it personal data carelessly. Send the AI step only the fields it needs, check the tool's data settings, and make sure you have consent to message people under the UAE's data protection law and each platform's own rules. This is not legal advice; ask a qualified adviser if you are unsure.",
+        "Asking it for facts it was not given. Prices, availability and results must come from your systems, not from the model.",
+        "Automating a broken process. If nobody follows up leads today, an automation will not make them."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "If you want help connecting the pieces, [[CRM and marketing automation|/services/crm-marketing-automation]] is the work I do most often for UAE businesses, and the [[marketing automation|/services/marketing-automation]] page shows the flows I build."
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "What is AI marketing automation?"
+    },
+    {
+      "t": "p",
+      "v": "It is marketing work that runs on a trigger, with an AI model doing one of the steps. A form submission, a new lead or a schedule starts the flow, a connector such as Zapier, Make or n8n moves the data, and an AI model drafts, sorts or summarises it for a person to check."
+    },
+    {
+      "t": "h3",
+      "v": "Do I need a developer to set it up?"
+    },
+    {
+      "t": "p",
+      "v": "Not for the five workflows here. They are built in no-code tools. A developer helps when you need a custom connection to a system without a ready-made integration, or when volumes grow large enough that per-task pricing becomes expensive."
+    },
+    {
+      "t": "h3",
+      "v": "Which workflow should a small business start with?"
+    },
+    {
+      "t": "p",
+      "v": "The lead reply. It is quick to build, easy to check, and speed of reply is one of the few things that improves enquiries without spending more on ads."
+    },
+    {
+      "t": "h3",
+      "v": "Is it safe to put customer data through AI tools?"
+    },
+    {
+      "t": "p",
+      "v": "It can be, if you send only the fields a step needs, use business accounts with data settings you have checked, and have consent to contact people. Keep a person approving anything a customer will see."
+    }
+  ],
+  "words": 1021,
+  "image": {
+    "src": "/blog/ai-marketing-automation/card.jpg",
+    "alt": "AI marketing automation card reading: let AI draft the work, keep a person on send",
+    "width": 1200,
+    "height": 630
+  }
+}
