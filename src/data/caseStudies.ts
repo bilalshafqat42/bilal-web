@@ -1242,6 +1242,7 @@ export const clients: Client[] = [
     },
     socialDesigns: {
       heading: "Meta campaign and social creatives",
+      href: "/portfolio/aks-chemicals/social-media-marketing",
       body: "A set of nine square creatives built from the same identity as the website: the AKS wordmark, the navy, the dye-orange accent and the same type. One for the brand, one for each of the five ranges, and one each for toll manufacturing, standards and the markets beyond textiles, used as posts and as the Meta campaign on Facebook and Instagram.",
       basePath: "/portfolio/aks-chemicals/social",
       width: 1080,
@@ -1334,19 +1335,9 @@ export const clients: Client[] = [
           "Their digital marketing from end to end: the strategy, a new website designed and built in Next.js to replace their WordPress site, SEO and AI search optimisation, social media, Google Ads, Meta ads with a set of nine creatives, and a mobile app designed in the same identity.",
       },
       {
-        question: "Why replace a working WordPress site?",
+        question: "Who designed and built the AKS Chemicals website?",
         answer:
-          "The old site depended on a page builder and plugins that needed regular updates, and most of its content dated from 2021. The new site is static files with nothing to patch, loads quickly on a phone, and keeps every product range and contact detail in one place, so it stays accurate as AKS changes.",
-      },
-      {
-        question: "Did the move to a new website lose search rankings?",
-        answer:
-          "It was built not to. Every old WordPress address redirects permanently to the new page, the site has a sitemap and a single HTTPS domain, and titles and descriptions were rewritten for what buyers search, so the links the old site earned are passed on.",
-      },
-      {
-        question: "How does the website turn a visit into an enquiry?",
-        answer:
-          "The enquiry form is headed Send us the cloth and asks for the company, the process and the result the mill needs. A technician replies with a trial recipe, which matches how textile chemicals are actually bought: trial first, bulk order after.",
+          "Bilal Shafqat, a freelance digital marketer based in Dubai, did the strategy, design and Next.js build for akschemicals.com. The same person runs AKS's SEO, AI search, social media and Google and Meta campaigns.",
       },
       {
         question: "How is the site optimised for AI search?",
@@ -1360,7 +1351,570 @@ export const clients: Client[] = [
       },
     ],
     ctaLead: "Marketing a manufacturer to technical buyers?",
-    projects: [],
+    // 2026-11-17: split like Texdale (Bilal: "do the AKS Chemicals things the
+    // same way"). The 11 design slides live on /website, the identity on
+    // /branding and the nine creatives on /social-media-marketing; this page is
+    // the overview. No app page: no app screens have been supplied.
+    subPages: true,
+    projectsIntro: {
+      eyebrow: "The work",
+      heading: "Three parts of one engagement",
+      body: "The website, the brand system and the social media and Meta ads each have their own page, with the decisions behind them. They were planned together and run by one person, so they read as one company.",
+    },
+    projects: [
+    {
+      slug: "website",
+      name: "Website",
+      kind: "website",
+      eyebrow: "Website design and build",
+      genre: "Website design case study",
+      service: "custom-web-development",
+      metaTitle: "AKS Chemicals Website: Manufacturer Web Design Case Study",
+      cardImage: "/portfolio/aks-chemicals/case-study/aks-01-cover.avif",
+      cardImageAlt: "AKS Chemicals case study cover: The chemistry behind the cloth, beside a laptop showing the new homepage",
+      cardImageFit: "contain",
+      cardBlurb:
+        "AKS Chemicals website case study: a dated WordPress site rebuilt in Next.js for a Lahore textile chemicals maker, with five ranges in one scroll.",
+      headline: "A website for a textile chemicals manufacturer: five ranges, six sections, one route to a trial",
+      summary:
+        "The website I designed and built for AKS Chemicals, a textile chemicals manufacturer in Lahore since 1987. The design case study from the old WordPress site to what shipped: the four phases, the colour and type, the homepage, the six sections, the range, the mobile layout and the blocks that carry the pitch.",
+      facts: [
+        { label: "Client", value: "AKS Chemicals" },
+        { label: "Scope", value: "Rebuild, SEO, content" },
+        { label: "Stack", value: "Next.js, static export" },
+        { label: "Ranges", value: "5, plus toll manufacturing" },
+        { label: "Live", value: "akschemicals.com" },
+      ],
+      story: [
+        {
+          type: "full",
+          image: {
+            src: "/portfolio/aks-chemicals/case-study/aks-01-cover.avif",
+            width: 3200,
+            height: 2000,
+            alt: "AKS Chemicals case study cover: The chemistry behind the cloth. A website for a Lahore textile chemicals manufacturer running since 1987, beside a laptop showing the new homepage",
+            caption: "The chemistry behind the cloth: a brand site designed and built for AKS Chemicals, akschemicals.com.",
+          },
+        },
+        {
+          type: "text",
+          eyebrow: "01 Overview",
+          heading: "Website redesign for a textile chemicals manufacturer",
+          paragraphs: [
+            "AKS Chemicals has made textile auxiliaries in Lahore since 1987, in the heartland of Pakistan's textile industry. The chemistry was never the problem. The problem was a dated WordPress site that said almost nothing about the five ranges, the plant, or the toll manufacturing service buyers actually come for.",
+            "The rebuild puts the wet process at the centre: a numbered sequence from who AKS is to what it makes, with the standards and the plant visible on the way through. A serif for authority, a monospace for precision, and photography from their own floor.",
+          ],
+        },
+        {
+          type: "full",
+          image: {
+            src: "/portfolio/aks-chemicals/case-study/aks-02-overview.avif",
+            width: 3200,
+            height: 2000,
+            alt: "AKS Chemicals overview slide: client AKS Chemicals, sector textile chemicals B2B, location Lahore Pakistan, established 1987, scope site rebuild SEO and content, year 2026, under the headline Forty years of chemistry, trapped in an old site, above a photo of the plant",
+            caption: "The brief: forty years of chemistry, trapped in an old site.",
+          },
+        },
+        {
+          type: "text",
+          eyebrow: "02 Project scope",
+          heading: "From a dated WordPress site in four phases",
+          paragraphs: [
+            "Each phase closed with something the client could use. The audit reviewed the old site, the buyers' needs and the search gaps, and produced a content map and rebuild brief. Structure set the five ranges, the toll service, compliance and the sitemap into a six-section page. Design produced the type system, the dark palette, the photography and a clickable prototype. Build and grow delivered the Next.js site, SEO, enquiry routing and content.",
+            "One decision shaped the rest: dark, not clinical. Every competitor sells white laboratories; AKS sells a plant that runs. The test for success was just as plain: a mill reads the ranges, trusts the standards and sends cloth.",
+          ],
+        },
+        {
+          type: "full",
+          image: {
+            src: "/portfolio/aks-chemicals/case-study/aks-03-scope.avif",
+            width: 3200,
+            height: 2000,
+            alt: "AKS Chemicals project scope slide: four phases on a timeline, Audit, Structure, Design, and Build and grow, each with its tasks and output, under the headline From a dated WordPress to a working shopfront",
+            caption: "Four phases, each closing with something the client could use.",
+          },
+        },
+        {
+          type: "text",
+          eyebrow: "03 Colour",
+          heading: "A dark palette lit like a dye house",
+          paragraphs: [
+            "The palette is a dark plant floor lit by two sources: an indigo cast from the dye house and a rust that stands in for the dye liquor itself. Ink carries every page and a second ink lifts cards off it by one step. Bone is used for headings and body text, and a dim grey for the monospace index.",
+            "The rust is kept for section numbers and nothing else, so it keeps its weight. Navy and rust wash the corners as gradients, never as blocks. Six colours in total: ink #0A0E16, ink 3 #1B2434, navy #163464, dye #C2552B, bone #EFEBE3 and dim #79828F.",
+          ],
+        },
+        {
+          type: "full",
+          image: {
+            src: "/portfolio/aks-chemicals/case-study/aks-04-colour.avif",
+            width: 3200,
+            height: 2000,
+            alt: "AKS Chemicals colour slide: six swatches, Ink #0A0E16, Ink 3 #1B2434, Navy #163464, Dye #C2552B, Bone #EFEBE3 and Dim #79828F, with notes on ground, type, accent and light, under the headline Ink, bone, and a dye bath",
+            caption: "Ink, bone and a dye bath: six colours, each with one job.",
+          },
+        },
+        {
+          type: "text",
+          eyebrow: "04 Typography",
+          heading: "A serif for authority, a monospace for precision",
+          paragraphs: [
+            "Newsreader sets the headlines, large and close, so the homepage opens like the front page of a technical journal rather than a template. Inter carries the body copy at 17px for easy reading. JetBrains Mono labels every figure, section and photograph in small spaced capitals.",
+            "The serif says the company has been doing this for decades. The monospace says it measures things. Together they suit a buyer who judges a supplier on whether it understands their process.",
+          ],
+        },
+        {
+          type: "full",
+          image: {
+            src: "/portfolio/aks-chemicals/case-study/aks-05-typography.avif",
+            width: 3200,
+            height: 2000,
+            alt: "AKS Chemicals typography slide: Newsreader for display, Inter for body and JetBrains Mono for the index, with the homepage headline The chemistry behind the cloth set in Newsreader on dark ink",
+            caption: "Newsreader for headlines, Inter for reading, JetBrains Mono for the index.",
+          },
+        },
+        {
+          type: "text",
+          eyebrow: "05 Homepage",
+          heading: "One line, then the numbers that back it",
+          paragraphs: [
+            "The headline sells the idea: The chemistry behind the cloth. The strip under it proves the company: founded 1987, five ranges, ISO registered, a REACH programme and a toll manufacturing service.",
+            "The navigation is five plain links, Who we are, What we do, Toll manufacturing, Compliance and Contact, and the two routes under the headline are What we do and Send us the cloth. A mill manager knows within one screen whether this is a supplier worth a trial.",
+          ],
+        },
+        {
+          type: "full",
+          image: {
+            src: "/portfolio/aks-chemicals/case-study/aks-06-homepage.avif",
+            width: 3200,
+            height: 2000,
+            alt: "AKS Chemicals homepage design at 1440px desktop width: the navigation with Contact, the line Manufacturer of textile chemicals, Lahore, Pakistan, the headline The chemistry behind the cloth and the links What we do and Send us the cloth",
+            caption: "The headline sells the idea; the strip under it proves the company.",
+          },
+        },
+        {
+          type: "text",
+          eyebrow: "06 Page system",
+          heading: "Six sections, read in one scroll",
+          paragraphs: [
+            "The homepage runs in six sections: Who we are, What we do, Beyond textiles, Toll, Standards and Contact. Each opens the same way, with a number in rust, a serif heading and then the substance, so the page never asks the reader to learn it again.",
+            "One page, six sections was a deliberate limit. A technical buyer scrolls once rather than hunting through a menu, and everything they need before an enquiry is on the way down.",
+          ],
+        },
+        {
+          type: "full",
+          image: {
+            src: "/portfolio/aks-chemicals/case-study/aks-07-page-system.avif",
+            width: 3200,
+            height: 2000,
+            alt: "AKS Chemicals page system slide: three homepage sections in browser frames, Who we are, What we do and Beyond textiles, above the full homepage sequence from 01 Who we are to 06 Contact",
+            caption: "Three of the six sections: the 1987 story, the five ranges and the markets beyond textiles.",
+          },
+        },
+        {
+          type: "text",
+          eyebrow: "07 The range",
+          heading: "Five ranges in the order cloth meets them",
+          paragraphs: [
+            "The old site listed products. The new one tells a buyer where each range sits in their own process, which is the only question a mill actually has. Pretreatment for grey cloth, dyeing auxiliaries for the dye house, finishes for the stenter, denim washing for the laundry and special finishing for the finished fabric.",
+            "Below the ranges sit the markets beyond textiles: chemistry for tissue manufacture, formulations for wet wipe producers and chemicals for cleaning products, made on the same plant.",
+          ],
+        },
+        {
+          type: "full",
+          image: {
+            src: "/portfolio/aks-chemicals/case-study/aks-08-the-range.avif",
+            width: 3200,
+            height: 2000,
+            alt: "AKS Chemicals range slide: five numbered ranges, Pretreatment, Dyeing Auxiliaries, Finishes, Denim Washing and Special Finishing, each with what it does and its stage from grey cloth to finished fabric, above tissue, wet wipes and cleaning",
+            caption: "Five ranges, one wet process, from grey cloth to finished fabric.",
+          },
+        },
+        {
+          type: "text",
+          eyebrow: "08 Mobile",
+          heading: "The same page, one column wide",
+          paragraphs: [
+            "On a phone the serif headline runs at full width, the proof strip folds into two columns, and the five ranges become a numbered index that can be read in a second.",
+            "The menu opens to five large links in the same serif, with the works address and phone numbers at the foot, so a buyer standing at a machine can call the plant without looking for a contact page.",
+          ],
+        },
+        {
+          type: "full",
+          image: {
+            src: "/portfolio/aks-chemicals/case-study/aks-09-mobile.avif",
+            width: 3200,
+            height: 2000,
+            alt: "AKS Chemicals mobile design at 390 by 844: three phone screens showing the homepage with its proof strip, the open navigation menu, and the What we do range index",
+            caption: "Home, navigation and the range index on a phone.",
+          },
+        },
+        {
+          type: "text",
+          eyebrow: "09 Components",
+          heading: "Toll manufacturing, standards and the enquiry form",
+          paragraphs: [
+            "Three blocks carry the whole pitch. Toll manufacturing, under the line Your formula. Our plant., speaks to formulators who want their own product made confidentially. Standards gives the compliance team ISO 9001:2008 and the REACH programme up front.",
+            "The enquiry form, headed Send us the cloth, asks for the substrate, the process and the result the mill needs, and says what happens next: a technician comes back with a trial recipe. Each enquiry arrives already tagged with its process.",
+          ],
+        },
+        {
+          type: "full",
+          image: {
+            src: "/portfolio/aks-chemicals/case-study/aks-10-components.avif",
+            width: 3200,
+            height: 2000,
+            alt: "AKS Chemicals components slide: the toll manufacturing block Your formula. Our plant., the standards block with ISO 9001:2008 and REACH compliance, and the Send us the cloth enquiry form with a process dropdown",
+            caption: "Toll for the formulators, standards for compliance, one form for the enquiry.",
+          },
+        },
+        {
+          type: "text",
+          eyebrow: "10 Outcome",
+          heading: "A plant that finally looks like itself",
+          paragraphs: [
+            "What shipped: the 1987 founding as the first thing the page proves, five ranges mapped to the stage of the process they serve, six sections read in one scroll, ISO 9001:2008 and REACH stated up front, and toll manufacturing given a section of its own. AKS can now send a mill one link and have it answer the questions a technical buyer asks before the first email.",
+            "The site is also the base for the rest of the marketing. The [Google and Meta campaigns](/services/paid-marketing), [SEO](/services/seo) and AI search work all point at these pages, and every old WordPress address redirects to its new page, so the rankings the old site earned carry over.",
+          ],
+        },
+        {
+          type: "full",
+          image: {
+            src: "/portfolio/aks-chemicals/case-study/aks-11-outcome.avif",
+            width: 3200,
+            height: 2000,
+            alt: "AKS Chemicals outcome slide: 1987 founded, 05 ranges, 06 sections, ISO 9001:2008 and REACH, and Toll manufacturing with its own section, above a photo of process vessels in Lahore",
+            caption: "What shipped: 1987, five ranges, six sections, ISO, toll.",
+          },
+        },
+      ],
+      storyCta: {
+        heading: "Is your website doing your plant justice?",
+        body: "I design and build websites for manufacturers and B2B companies, where the buyer is a technician and the process is the product. One person from the first sketch to the live site, and the campaigns after it.",
+        service: "custom-web-development",
+      },
+      ctaLead: "Building a website for a manufacturer?",
+      faqs: [
+        {
+          question: "Why replace a working WordPress site?",
+          answer:
+            "The old site depended on a page builder and plugins that needed regular updates, and most of its content dated from 2021. The new site is static files with nothing to patch, loads quickly on a phone, and keeps every product range and contact detail in one place, so it stays accurate as AKS changes.",
+        },
+        {
+          question: "Did the move to a new website lose search rankings?",
+          answer:
+            "It was built not to. Every old WordPress address redirects permanently to the new page, the site has a sitemap and a single HTTPS domain, and titles and descriptions were rewritten for what buyers search, so the links the old site earned are passed on.",
+        },
+        {
+          question: "How does the AKS website turn a visit into an enquiry?",
+          answer:
+            "The enquiry form is headed Send us the cloth and asks for the substrate, the process and the result the mill needs. A technician replies with a trial recipe, which matches how textile chemicals are bought: trial first, bulk order after.",
+        },
+        {
+          question: "How was the AKS Chemicals website project run?",
+          answer:
+            "In four phases, each ending with something the client could use: an audit (old site, buyer needs and search gaps), structure (five ranges, toll service, compliance and sitemap in six sections), design (type, a dark palette, photography and a clickable prototype) and build and grow (Next.js, SEO, enquiry routing and content).",
+        },
+      ],
+      keywords: ["manufacturer website design", "textile chemicals website", "WordPress to Next.js migration", "B2B website case study", "AKS Chemicals"],
+    },
+    {
+      slug: "branding",
+      name: "Branding",
+      kind: "brand system",
+      eyebrow: "Brand system",
+      genre: "Brand design case study",
+      service: "graphic-design-branding",
+      metaTitle: "AKS Chemicals Branding: One Identity for Web and Ads",
+      cardImage: "/portfolio/aks-chemicals/case-study/aks-04-colour.avif",
+      cardImageAlt: "AKS Chemicals colour palette: ink, ink 3, navy, dye, bone and dim swatches with their hex codes",
+      cardImageFit: "contain",
+      cardBlurb:
+        "How the AKS logo became one identity: six colours with a job each and three typefaces, shared by the website and the Meta creatives.",
+      headline: "One identity for a textile chemicals manufacturer, from the website to the ads",
+      summary:
+        "The AKS Chemicals logo, built out into a system of colour, type and layout that the website and the Meta campaign creatives share, so every channel looks like the same plant in Lahore.",
+      facts: [
+        { label: "Client", value: "AKS Chemicals" },
+        { label: "Starting point", value: "The AKS logo" },
+        { label: "Palette", value: "6 colours" },
+        { label: "Type", value: "Newsreader, Inter, JetBrains Mono" },
+        { label: "Used on", value: "Website, Meta ads, social" },
+      ],
+      story: [
+        {
+          type: "text",
+          eyebrow: "Brand system",
+          heading: "One identity across the website and the ads",
+          paragraphs: [
+            "The site's identity is built on the AKS logo: the brand navy taken from the mark, a warm dye-orange accent, dark ink and bone sections, and a serif display face. The work was to turn that into a system every channel could use, so the website, the social posts and the Meta campaign all look like the same company.",
+            "The system sets the colours, the typefaces and the layout rules, and gives each one a single job. A buyer who sees an ad, opens the website and later checks a profile should never wonder whether it is the same supplier.",
+          ],
+        },
+        {
+          type: "full",
+          image: {
+            src: "/portfolio/aks-chemicals/case-study/aks-04-colour.avif",
+            width: 3200,
+            height: 2000,
+            alt: "AKS Chemicals colour slide: six swatches, Ink #0A0E16, Ink 3 #1B2434, Navy #163464, Dye #C2552B, Bone #EFEBE3 and Dim #79828F, with notes on ground, type, accent and light, under the headline Ink, bone, and a dye bath",
+            caption: "Ink, bone and a dye bath: six colours, each with one job.",
+          },
+        },
+        {
+          type: "text",
+          eyebrow: "Colour",
+          heading: "Dark, not clinical",
+          paragraphs: [
+            "Competitors in textile chemicals tend to sell white laboratories. AKS sells a plant that runs, so the palette is a dark plant floor lit by an indigo cast from the dye house and a rust that stands in for the dye liquor.",
+            "Each colour has one job: ink carries every page, a second ink lifts cards, bone is for reading, dim grey is for the index, and the rust marks section numbers and nothing else. The palette is ink #0A0E16, ink 3 #1B2434, navy #163464, dye #C2552B, bone #EFEBE3 and dim #79828F.",
+          ],
+        },
+        {
+          type: "full",
+          image: {
+            src: "/portfolio/aks-chemicals/case-study/aks-05-typography.avif",
+            width: 3200,
+            height: 2000,
+            alt: "AKS Chemicals typography slide: Newsreader for display, Inter for body and JetBrains Mono for the index, with the homepage headline The chemistry behind the cloth set in Newsreader on dark ink",
+            caption: "Newsreader for headlines, Inter for reading, JetBrains Mono for the index.",
+          },
+        },
+        {
+          type: "text",
+          eyebrow: "Typography",
+          heading: "Three typefaces, each with a clear role",
+          paragraphs: [
+            "Newsreader sets the headlines and gives the brand the authority of a company that has done this since 1987. Inter carries the body copy for easy reading. JetBrains Mono labels figures, sections and photographs in small spaced capitals, which gives the brand the precision a technical buyer looks for.",
+            "The same three faces run through the website and the social creatives, so the type alone tells a buyer whose material they are looking at.",
+          ],
+        },
+        {
+          type: "full",
+          image: {
+            src: "/portfolio/aks-chemicals/case-study/aks-07-page-system.avif",
+            width: 3200,
+            height: 2000,
+            alt: "AKS Chemicals page system slide: three homepage sections in browser frames, Who we are, What we do and Beyond textiles, above the full homepage sequence from 01 Who we are to 06 Contact",
+            caption: "A rust number, a serif heading, then the substance: the rule every section follows.",
+          },
+        },
+        {
+          type: "text",
+          eyebrow: "Across channels",
+          heading: "The same brand on social and in the Meta ads",
+          paragraphs: [
+            "The nine Meta campaign creatives use the same wordmark, colours and type as the website: one for the brand, one for each of the five ranges, and one each for toll manufacturing, standards and the markets beyond textiles.",
+            "For a B2B manufacturer this consistency is not decoration. Technical buyers judge a supplier on precision, and a brand that looks the same everywhere reads as a company that is careful about details. See the [website](/portfolio/aks-chemicals/website) and the [social media work](/portfolio/aks-chemicals/social-media-marketing) in full.",
+          ],
+        },
+        {
+          type: "pair",
+          images: [
+            {
+              src: "/portfolio/aks-chemicals/social/aks-01-brand.avif",
+              width: 1080,
+              height: 1080,
+              alt: "AKS Chemicals brand creative: the white AKS Chemicals wordmark on dark ink, with the lines Manufacturer of textile chemicals, Lahore, Pakistan, established 1987",
+              caption: "The brand creative",
+            },
+            {
+              src: "/portfolio/aks-chemicals/social/aks-03-dyeing-auxiliaries.avif",
+              width: 1080,
+              height: 1080,
+              alt: "AKS Chemicals Dyeing Auxiliaries creative on navy, range 02 of 05, listing levelling, dispersing, sequestering and fixing",
+              caption: "Range 02: Dyeing Auxiliaries",
+            },
+          ],
+        },
+      ],
+      ctaLead: "Want your brand to look the same everywhere?",
+      faqs: [
+        {
+          question: "What fonts and colours does the AKS Chemicals website use?",
+          answer:
+            "Newsreader for headlines, Inter for body copy and JetBrains Mono for labels and figures. The palette is dark ink with bone text, a navy from the logo, and a rust dye colour used only for section numbers.",
+        },
+        {
+          question: "Why does the AKS website use a dark design?",
+          answer:
+            "Most textile chemicals suppliers present white, clinical laboratories. AKS sells a working plant, so the site is a dark plant floor lit by an indigo dye-house cast and a rust accent, which sets it apart and suits its own photography.",
+        },
+        {
+          question: "How do you keep a B2B brand consistent across the website and ads?",
+          answer:
+            "Write the rules down once and give each part one job. For AKS each colour has a fixed role, three typefaces each have a fixed role, and the same rules are applied to the website and every Meta creative, so a buyer sees one company wherever they meet it.",
+        },
+      ],
+      keywords: ["brand system design", "B2B brand consistency", "brand colour palette", "industrial brand identity", "AKS Chemicals"],
+    },
+    {
+      slug: "social-media-marketing",
+      name: "Social media marketing",
+      kind: "social media work",
+      eyebrow: "Social media and Meta ads",
+      genre: "Social media marketing case study",
+      service: "social-media-marketing",
+      metaTitle: "AKS Chemicals Social Media: Meta Ads for a Manufacturer",
+      cardImage: "/portfolio/aks-chemicals/social/aks-01-brand.avif",
+      cardImageAlt: "AKS Chemicals brand creative: the white wordmark on dark ink",
+      cardImageFit: "contain",
+      cardBlurb:
+        "AKS Chemicals' Meta ads on Facebook and Instagram: nine creatives for the brand, five ranges, toll manufacturing, standards and new markets.",
+      headline: "Social media and Meta ads for a textile chemicals manufacturer",
+      summary:
+        "The creatives behind AKS Chemicals' social channels and Meta campaign on Facebook and Instagram: one for the brand, one for each of the five ranges, and one each for toll manufacturing, standards and the markets beyond textiles, in the same identity as the website.",
+      facts: [
+        { label: "Client", value: "AKS Chemicals" },
+        { label: "Channels", value: "Facebook, Instagram" },
+        { label: "Creatives", value: "9" },
+        { label: "Set", value: "Brand, 5 ranges, 3 services" },
+        { label: "Results", value: "AKS's to share" },
+      ],
+      story: [
+        {
+          type: "text",
+          eyebrow: "Overview",
+          heading: "Meta campaign creatives for a B2B manufacturer",
+          paragraphs: [
+            "AKS Chemicals' social channels and its Meta campaign on Facebook and Instagram run in the same identity as the website: the AKS wordmark, the navy, the dye-orange accent and the same type. A buyer who checks a profile after seeing an ad meets the same company the website describes.",
+            "The set is nine square creatives, used as posts and as the Meta campaign: one for the brand, one for each of the five ranges, and one each for toll manufacturing, standards and the markets beyond textiles.",
+          ],
+        },
+        {
+          type: "full",
+          image: {
+            src: "/portfolio/aks-chemicals/social/aks-01-brand.avif",
+            width: 1080,
+            height: 1080,
+            alt: "AKS Chemicals brand creative: the white AKS Chemicals wordmark on dark ink, with the lines Manufacturer of textile chemicals, Lahore, Pakistan, established 1987",
+            caption: "The brand creative",
+          },
+        },
+        {
+          type: "text",
+          eyebrow: "The range set",
+          heading: "One creative for each of the five ranges",
+          paragraphs: [
+            "Each range creative carries its number out of five, the processes it covers and one plain line on what it is for, from clean, even, absorbent cloth in pretreatment to cloth that has to do a job in special finishing. That is what a technical buyer scans for: whether the range covers their process.",
+            "Every creative follows the same layout, so the set works as a series in a feed and each one still stands alone as an ad.",
+          ],
+        },
+        {
+          type: "pair",
+          images: [
+            {
+              src: "/portfolio/aks-chemicals/social/aks-02-pretreatment.avif",
+              width: 1080,
+              height: 1080,
+              alt: "AKS Chemicals Pretreatment creative, range 01 of 05, listing desizing, scouring, bleaching and mercerising: clean, even, absorbent cloth before any colour goes near it",
+              caption: "Range 01: Pretreatment",
+            },
+            {
+              src: "/portfolio/aks-chemicals/social/aks-03-dyeing-auxiliaries.avif",
+              width: 1080,
+              height: 1080,
+              alt: "AKS Chemicals Dyeing Auxiliaries creative on navy, range 02 of 05, listing levelling, dispersing, sequestering and fixing: so the shade is right first time and holds across the batch",
+              caption: "Range 02: Dyeing Auxiliaries",
+            },
+          ],
+        },
+        {
+          type: "pair",
+          images: [
+            {
+              src: "/portfolio/aks-chemicals/social/aks-04-finishes.avif",
+              width: 1080,
+              height: 1080,
+              alt: "AKS Chemicals Finishes creative, range 03 of 05, listing softening, handle building, hydrophilic finishing and resin finishing: the handle, the drape, the way a buyer feels it",
+              caption: "Range 03: Finishes",
+            },
+            {
+              src: "/portfolio/aks-chemicals/social/aks-05-denim-washing.avif",
+              width: 1080,
+              height: 1080,
+              alt: "AKS Chemicals Denim Washing creative on dark ink, range 04 of 05, listing desizing, enzyme wash, bleaching and neutralising: an honest wash-down without wrecking the garment",
+              caption: "Range 04: Denim Washing",
+            },
+          ],
+        },
+        {
+          type: "full",
+          image: {
+            src: "/portfolio/aks-chemicals/social/aks-06-special-finishing.avif",
+            width: 1080,
+            height: 1080,
+            alt: "AKS Chemicals Special Finishing creative, range 05 of 05, listing water repellents, oil repellents and flame retardants: for cloth that has to do a job",
+            caption: "Range 05: Special Finishing",
+          },
+        },
+        {
+          type: "text",
+          eyebrow: "Beyond the ranges",
+          heading: "Toll manufacturing, standards and new markets",
+          paragraphs: [
+            "Three more creatives speak to buyers who are not shopping for a range. Toll manufacturing, Your formula. Our plant., is for formulators who want their product made confidentially. Standards puts ISO 9001 and REACH in front of compliance teams. Beyond textiles shows the same plant serving tissue, wet wipes and cleaning.",
+          ],
+        },
+        {
+          type: "pair",
+          images: [
+            {
+              src: "/portfolio/aks-chemicals/social/aks-07-toll-manufacturing.avif",
+              width: 1080,
+              height: 1080,
+              alt: "AKS Chemicals toll manufacturing creative on navy: Your formula. Our plant. Confidential, quality driven, cost effective",
+              caption: "Toll manufacturing",
+            },
+            {
+              src: "/portfolio/aks-chemicals/social/aks-08-standards.avif",
+              width: 1080,
+              height: 1080,
+              alt: "AKS Chemicals standards creative on dark ink: ISO 9001 and REACH, with an ISO 9001 registration and a REACH compliance programme",
+              caption: "Standards",
+            },
+          ],
+        },
+        {
+          type: "full",
+          image: {
+            src: "/portfolio/aks-chemicals/social/aks-09-beyond-textiles.avif",
+            width: 1080,
+            height: 1080,
+            alt: "AKS Chemicals beyond textiles creative: Same plant. Other markets. Tissue, wet wipes and cleaning",
+            caption: "Beyond textiles",
+          },
+        },
+        {
+          type: "text",
+          eyebrow: "How it runs",
+          heading: "Search, social and paid saying one thing",
+          paragraphs: [
+            "The [SEO](/services/seo), the social posts and the paid campaigns on Google and Meta carry one message, and every ad points at a page on the [website](/portfolio/aks-chemicals/website) that answers a technical buyer quickly.",
+            "There are no performance figures here. The results belong to AKS Chemicals, and none are published without their agreement.",
+          ],
+        },
+      ],
+      ctaLead: "Need social media that looks like your brand?",
+      faqs: [
+        {
+          question: "What social media creatives were made for AKS Chemicals?",
+          answer:
+            "Nine creatives for posts and the Meta campaign: one for the brand, one for each of the five ranges from pretreatment to special finishing, and one each for toll manufacturing, standards and the markets beyond textiles, in the same identity as the website.",
+        },
+        {
+          question: "Which platforms does the AKS Chemicals campaign run on?",
+          answer:
+            "Meta: Facebook and Instagram. AKS's Google Ads, SEO and AI search work run alongside it and point at the same website.",
+        },
+        {
+          question: "Are there results for the AKS Chemicals campaign?",
+          answer:
+            "None are published on this page. The results belong to AKS Chemicals, and no figures are shared without their agreement.",
+        },
+      ],
+      keywords: ["Meta ads creatives", "social media marketing for manufacturers", "B2B social media", "Facebook and Instagram ads", "AKS Chemicals"],
+    },
+    ],
     keywords: [
       "textile chemicals digital marketing",
       "B2B manufacturer website design",

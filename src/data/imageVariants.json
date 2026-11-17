@@ -150,6 +150,159 @@
    1600
   ]
  },
+ "/portfolio/aks-chemicals/case-study/aks-01-cover.avif": {
+  "w": 3200,
+  "v": "eea5883d",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/aks-chemicals/case-study/aks-02-overview.avif": {
+  "w": 3200,
+  "v": "fffb401d",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/aks-chemicals/case-study/aks-03-scope.avif": {
+  "w": 3200,
+  "v": "c3cfb0bd",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/aks-chemicals/case-study/aks-04-colour.avif": {
+  "w": 3200,
+  "v": "89207e32",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/aks-chemicals/case-study/aks-05-typography.avif": {
+  "w": 3200,
+  "v": "fed0683a",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/aks-chemicals/case-study/aks-06-homepage.avif": {
+  "w": 3200,
+  "v": "5a302c95",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/aks-chemicals/case-study/aks-07-page-system.avif": {
+  "w": 3200,
+  "v": "4181a31e",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/aks-chemicals/case-study/aks-08-the-range.avif": {
+  "w": 3200,
+  "v": "282a20d1",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/aks-chemicals/case-study/aks-09-mobile.avif": {
+  "w": 3200,
+  "v": "5ba207ca",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/aks-chemicals/case-study/aks-10-components.avif": {
+  "w": 3200,
+  "v": "5e15e78c",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/aks-chemicals/case-study/aks-11-outcome.avif": {
+  "w": 3200,
+  "v": "a8df3419",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
  "/portfolio/aks-chemicals/logo/aks-logo-white.png": {
   "w": 403,
   "v": "a1f88e11",

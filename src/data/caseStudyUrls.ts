@@ -34,7 +34,13 @@ type PublishedCaseStudy = {
 export const PUBLISHED_CASE_STUDIES: readonly PublishedCaseStudy[] = [
   // Single-page, as Texdale. Published 2026-11-06. First because it sits
   // first in caseStudies.ts, and the build checks the order matches.
-  { client: "aks-chemicals", mobileApp: false, projects: [] },
+  {
+    client: "aks-chemicals",
+    mobileApp: false,
+    // Split into sub-pages on 2026-11-17, like Texdale; still one case study.
+    projects: ["website", "branding", "social-media-marketing"],
+    countAsOne: true,
+  },
   {
     client: "leos-developments",
     mobileApp: true,
