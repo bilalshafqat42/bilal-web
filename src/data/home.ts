@@ -285,6 +285,17 @@ export const homeFaqs = [
     a: "It depends on what you need, so I quote rather than publish a price list. After a free 30-minute call you get a price range, then a fixed price in writing once the scope is agreed, by the project or by the month, sized to your goals and your budget. Smaller businesses often start with one campaign or one landing page and grow from there. Ad spend is always separate and paid directly by you.",
   },
   {
+    // Added 2026-11-17, daily keyword push. "digital marketing consultant
+    // dubai" is a target with no impressions in 28 days of Search Console
+    // data, and the homepage scored 33/100 for it: the phrase was in no
+    // heading and not in the first 100 words. FAQ questions render as h3, so
+    // this puts it in a heading with a direct answer to quote. Every claim is
+    // already on /pricing ("Consulting & Advisory", fixed-fee advisory
+    // sessions) or elsewhere on this page.
+    q: "Are you a digital marketing consultant in Dubai or a freelancer?",
+    a: "Both, and you choose which you need. As a digital marketing consultant in Dubai, I can review your ads, tracking and website in an advisory session at a fixed fee agreed in advance, and your own team runs the plan. As a freelancer, I do the work myself: the campaigns, the landing pages and the reporting. Many clients start with the free consultation and decide from there. Either way you deal with one person, not an account manager. [How pricing works](/pricing) explains both options.",
+  },
+  {
     q: "Do you build mobile apps?",
     // From the website-app-development FAQ, kept whole. The second half is the
     // part worth keeping: telling someone they do not need an app is the
