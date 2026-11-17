@@ -30,7 +30,10 @@ const clientCount = published.length;
 const sectorCount = new Set(published.map((c) => c.industry)).size;
 // Launch pages: the projects under a client other than its featured one (the
 // LEOS sales application is featured, and is a tool rather than a launch).
+// Real estate only since 2026-11-17: Texdale's sub-pages are projects too,
+// and a website or an app design is not an off-plan launch.
 const launchCount = published
+  .filter((c) => c.industry === "Real Estate & Property")
   .flatMap((c) => c.projects.filter((p) => p.slug !== c.featured?.projectSlug))
   .length;
 

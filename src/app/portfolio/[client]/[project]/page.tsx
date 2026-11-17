@@ -12,6 +12,8 @@ import Reveal from "@/components/ui/Reveal";
 import Surface from "@/components/ui/Surface";
 import PageOpener from "@/components/layout/PageOpener";
 import FaqSection from "@/components/ui/FaqSection";
+import BookingPanel from "@/components/portfolio/BookingPanel";
+import { bookingHref, consultLabel } from "@/data/consult";
 import CaseStudyStory from "@/components/portfolio/CaseStudyStory";
 import { CaptureFrame, GalleryGrid, FactStrip } from "@/components/portfolio/CaseStudyParts";
 import { getProject, routableClients, SHOW_DRAFTS } from "@/data/caseStudies";
@@ -54,7 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       // Per-project card where one exists, the client's generic card otherwise.
       // Every project used to share one LEOS image, so a link posted anywhere
       // showed the same unbranded card whichever development it pointed at.
-      images: [{ url: og, width: 1200, height: 630, alt: `${p.name}, campaign landing page` }],
+      images: [{ url: og, width: 1200, height: 630, alt: p.cardImageAlt ?? `${p.name}, campaign landing page` }],
     },
     twitter: { card: "summary_large_image", title, description: p.cardBlurb, images: [og] },
   };
@@ -95,7 +97,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
-    name: `${p.name}: campaign case study`,
+    name: p.genre ? `${c.name}: ${p.name}` : `${p.name}: campaign case study`,
     headline: p.headline,
     description: p.summary,
     url,
@@ -103,7 +105,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
     // When the case study data last changed, not the build date. `new Date()`
     // told search engines every case study changed on every deploy.
     dateModified: clientContentDate(client),
-    genre: "Real estate marketing case study",
+    genre: p.genre ?? "Real estate marketing case study",
     image: `${SITE}${p.cardImage}`,
     creator: { "@id": `${SITE}/#person`, "@type": "Person" },
     about: { "@type": "Organization", name: c.name },
@@ -156,7 +158,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
             { label: c.name, href: `/portfolio/${c.slug}` },
             { label: p.name },
           ]}
-          eyebrow="Development campaign"
+          eyebrow={p.eyebrow ?? "Development campaign"}
           above={
             p.logo ? (
               <Image
@@ -175,6 +177,17 @@ export default async function ProjectCaseStudy({ params }: Props) {
                 // first bytes (audit batch 2).
                 loading="eager"
                 className="client-mark h-16 w-auto"
+              />
+            ) : c.logo ? (
+              // No mark of its own (Texdale's sub-pages): the client's, shown
+              // the way the client page shows it.
+              <Image
+                src={c.logo}
+                alt={c.name}
+                width={c.logoWidth ?? 2000}
+                height={c.logoHeight ?? 551}
+                loading="eager"
+                className={`h-10 w-auto ${c.logo.endsWith("-white.svg") ? "client-mark" : ""}`}
               />
             ) : null
           }
@@ -226,6 +239,8 @@ export default async function ProjectCaseStudy({ params }: Props) {
         />
 
         {p.story ? <CaseStudyStory story={p.story} /> : null}
+
+        {p.story && p.storyCta ? <BookingPanel {...p.storyCta} /> : null}
 
         {depth ? (
           <section className="relative section">
@@ -398,9 +413,11 @@ export default async function ProjectCaseStudy({ params }: Props) {
                 <div className="relative">
                   <Eyebrow>Next step</Eyebrow>
                   <h2 className="t-h2 mt-4 text-ink">
-                    Need this for your {p.kind ?? "launch"}? <span className="text-gradient">Let&apos;s talk.</span>
+                    {p.ctaLead ?? `Need this for your ${p.kind ?? "launch"}?`} <span className="text-gradient">Let&apos;s talk.</span>
                   </h2>
-                  <CtaButton href="/appointment" className="mt-9">Book a free consultation</CtaButton>
+                  <CtaButton href={bookingHref(p.service ?? "digital-marketing")} className="mt-9">
+                    {consultLabel(p.service ?? "digital-marketing")}
+                  </CtaButton>
                 </div>
               </div>
             </Reveal>

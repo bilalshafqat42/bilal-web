@@ -23,6 +23,7 @@ import SecondaryButton from "@/components/ui/SecondaryButton";
 import CaseStudyShowcase from "@/components/portfolio/CaseStudyShowcase";
 import LinkedText from "@/components/ui/LinkedText";
 import { bookingHref, consultLabel } from "@/data/consult";
+import BookingPanel from "@/components/portfolio/BookingPanel";
 import CaseStudyStory from "@/components/portfolio/CaseStudyStory";
 
 const SITE = SITE_URL;
@@ -225,28 +226,7 @@ export default async function ClientCaseStudy({ params }: Props) {
             after the opener, because it is the strongest thing on the page. */}
         {c.story ? <CaseStudyStory story={c.story} /> : null}
 
-        {c.story && c.storyCta ? (
-          <section className="relative section-tight">
-            <div className="site-container">
-              <Reveal>
-                <div className="flex flex-col gap-6 r-panel surface-2 px-7 py-9 sm:px-10 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
-                  <div className="max-w-2xl">
-                    <h2 className="t-h3 text-ink">{c.storyCta.heading}</h2>
-                    <p className="mt-3 text-base leading-relaxed text-muted">{c.storyCta.body}</p>
-                  </div>
-                  <div className="flex shrink-0 flex-wrap items-center gap-4">
-                    <CtaButton href={bookingHref(c.storyCta.service)}>
-                      {consultLabel(c.storyCta.service)}
-                    </CtaButton>
-                    <SecondaryButton href={`/services/${c.storyCta.service}`}>
-                      How I build websites
-                    </SecondaryButton>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-          </section>
-        ) : null}
+        {c.story && c.storyCta ? <BookingPanel {...c.storyCta} /> : null}
 
         <section className="relative section">
           <div className="site-container">
@@ -316,7 +296,7 @@ export default async function ClientCaseStudy({ params }: Props) {
 
         {/* With a story, the slides already show the homepage on desktop and
             on a phone, so the scrolling capture would show it a second time. */}
-        {c.website && !c.story ? (
+        {c.website && !c.story && !c.subPages ? (
           <section className="relative section">
             <div className="site-container">
               <Reveal>
@@ -429,7 +409,7 @@ export default async function ClientCaseStudy({ params }: Props) {
             of its own. The status line sits directly under the intro so nobody
             reads the mockups as a store listing. `id` is what the discipline
             pages link to. */}
-        {c.appDesign ? (
+        {c.appDesign && !c.subPages ? (
           <section id="mobile-app" className="relative section scroll-mt-28">
             <div className="site-container">
               <Reveal>
@@ -456,7 +436,7 @@ export default async function ClientCaseStudy({ params }: Props) {
           </section>
         ) : null}
 
-        {c.brandSocial ? (
+        {c.brandSocial && !c.subPages ? (
           <section className="relative section">
             <div className="site-container">
               <Reveal>
@@ -476,7 +456,7 @@ export default async function ClientCaseStudy({ params }: Props) {
           </section>
         ) : null}
 
-        {c.socialDesigns ? (
+        {c.socialDesigns && !c.subPages ? (
           <section id="campaign-creative" className="relative section scroll-mt-28">
             <div className="site-container">
               <Reveal>
@@ -509,6 +489,16 @@ export default async function ClientCaseStudy({ params }: Props) {
                     is by definition not a launch, so one `some()` keeps the
                     wording true without a second template or a per-client
                     override. */}
+                {c.projectsIntro ? (
+                  // A client whose page is an overview of sub-pages (Texdale)
+                  // names its own section; the launch wording below is LEOS's.
+                  <>
+                    <Eyebrow>{c.projectsIntro.eyebrow}</Eyebrow>
+                    <h2 className="t-h2 mt-4 text-ink">{c.projectsIntro.heading}</h2>
+                    <p className="mt-4 max-w-2xl text-lg text-muted leading-relaxed">{c.projectsIntro.body}</p>
+                  </>
+                ) : (
+                  <>
                 <Eyebrow>{hasNonCampaign ? "The work" : "Campaigns"}</Eyebrow>
                 <h2 className="t-h2 mt-4 text-ink">
                   {hasNonCampaign
@@ -535,9 +525,13 @@ export default async function ClientCaseStudy({ params }: Props) {
                   How an off-plan launch is run, start to finish
                   <ArrowRight size={15} />
                 </Link>
+                  </>
+                )}
               </Reveal>
 
-              <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {/* Two across for an overview of sub-pages: four cards in a row of
+                  three left one alone on the second row. */}
+              <div className={`mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 ${c.subPages ? "" : "lg:grid-cols-3"}`}>
                 {gridProjects.map((p, i) => (
                   <Reveal key={p.slug} delay={i * 0.08}>
                     <Link

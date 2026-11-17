@@ -142,7 +142,7 @@ export function allItems(): Item[] {
           alt: item.alt,
           label: `${g.name} app: design and prototype`,
           meta: item.caption,
-          href: `/portfolio/${c.slug}#mobile-app`,
+          href: g.href ?? `/portfolio/${c.slug}#mobile-app`,
           alsoProves: g.alsoProves,
         });
       }
@@ -165,7 +165,7 @@ export function allItems(): Item[] {
           alt: item.alt,
           label: `${c.name}: brand`,
           meta: item.caption,
-          href: `/portfolio/${c.slug}`,
+          href: social.href ?? `/portfolio/${c.slug}`,
           alsoProves: social.alsoProves,
           group: social.heading,
         });

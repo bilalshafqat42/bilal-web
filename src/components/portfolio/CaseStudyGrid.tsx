@@ -108,7 +108,7 @@ function buildCards(): Card[] {
         height: 1000,
         alt: p.cardImageAlt ?? `${p.name} campaign creative`,
         position: p.cardImagePosition ?? "top",
-        eyebrow: "Launch campaign",
+        eyebrow: p.eyebrow ?? "Launch campaign",
         name: p.name,
         summary: p.summary,
         tags: disciplinesInWork(c.slug, p.slug).map((d) => d.title),

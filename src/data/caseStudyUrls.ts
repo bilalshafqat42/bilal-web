@@ -25,6 +25,10 @@ type PublishedCaseStudy = {
   mobileApp: boolean;
   /** Project slugs, in the order `caseStudies.ts` lists them. */
   projects: readonly string[];
+  /** The projects are parts of one engagement (Texdale's website, branding,
+   *  app and social pages), not separate case studies, so the client counts
+   *  once in "N case studies". LEOS's projects are separate launches. */
+  countAsOne?: boolean;
 };
 
 export const PUBLISHED_CASE_STUDIES: readonly PublishedCaseStudy[] = [
@@ -42,9 +46,14 @@ export const PUBLISHED_CASE_STUDIES: readonly PublishedCaseStudy[] = [
       "weybridge-gardens-2",
     ],
   },
-  // A single-page case study: no app page and no projects under it, so the
-  // overview is the case study (see `caseStudyCount`).
-  { client: "texdale", mobileApp: false, projects: [] },
+  // An overview with four sub-pages since 2026-11-17, counted once: they are
+  // parts of one engagement, not four case studies.
+  {
+    client: "texdale",
+    mobileApp: false,
+    projects: ["website", "branding", "mobile-app-design", "social-media-marketing"],
+    countAsOne: true,
+  },
   // Single-page, as Texdale. Published 2026-10-26.
   { client: "nextgen-hr", mobileApp: false, projects: [] },
   // Single-page, as Texdale. Published 2026-11-12.
@@ -71,6 +80,7 @@ export function caseStudyUrls(): string[] {
  *  number entirely. */
 export function caseStudyCount(): number {
   return PUBLISHED_CASE_STUDIES.reduce((n, c) => {
+    if (c.countAsOne) return n + 1;
     const below = c.projects.length + (c.mobileApp ? 1 : 0);
     return n + (below > 0 ? below : 1);
   }, 0);
