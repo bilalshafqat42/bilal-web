@@ -80,6 +80,11 @@ export const CARDS = {
     lines: ["Let AI *draft* the work.", "Keep a person *on send.*"],
     kicker: "AI marketing automation",
   },
+  "chatgpt-see": {
+    slug: "can-chatgpt-see-your-website",
+    lines: ["If ChatGPT cannot *read* your site,", "it cannot *recommend* you."],
+    kicker: "Four checks to run today",
+  },
 };
 
 const BRAND = {

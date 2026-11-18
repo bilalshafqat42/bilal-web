@@ -1,0 +1,196 @@
+{
+  "slug": "can-chatgpt-see-your-website",
+  "title": "Can ChatGPT See Your Website? Four Checks to Run Today",
+  "metaTitle": "Can ChatGPT See Your Website? 4 Checks to Run Today",
+  "description": "Can ChatGPT see your website? Four checks: robots.txt, firewall, JavaScript and clear answers, with a five-minute test you can run yourself.",
+  "published": "2026-11-18",
+  "updatedAt": "2026-11-18",
+  "tags": [
+    "AI",
+    "Digital Marketing",
+    "Dubai"
+  ],
+  "image": {
+    "src": "/blog/can-chatgpt-see-your-website/card.jpg",
+    "alt": "Can ChatGPT see your website? Card reading: if ChatGPT cannot read your site, it cannot recommend you",
+    "width": 1200,
+    "height": 630
+  },
+  "blocks": [
+    {
+      "t": "p",
+      "v": "More of your customers now ask ChatGPT before they ask Google. \"Who builds websites for manufacturers in Dubai?\" \"Which clinic in JLT does teeth whitening?\" ChatGPT answers by reading websites, and it can only recommend the ones it can actually read."
+    },
+    {
+      "t": "p",
+      "v": "Plenty of businesses are invisible to it without knowing. Not because their content is weak, but because a setting, a security tool or the way the site was built stops the page from reaching ChatGPT at all. Below are the four checks I run on every site I audit."
+    },
+    {
+      "t": "h2",
+      "v": "Can ChatGPT see your website? The short answer"
+    },
+    {
+      "t": "list",
+      "v": [
+        "ChatGPT reads your site through OpenAI's own crawlers. If they are blocked, you are left out of its search answers.",
+        "The most common blocks are a line in robots.txt, a firewall or bot setting, and content that only appears after JavaScript runs.",
+        "Blocking the training crawler is fine. It does not take you out of ChatGPT search.",
+        "Once the crawlers can get in, clear pages that answer one question each are the ones that get quoted."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "Which OpenAI crawlers visit your website?"
+    },
+    {
+      "t": "p",
+      "v": "OpenAI publishes the crawlers it uses. Three matter for a business website, and they do different jobs:"
+    },
+    {
+      "t": "table",
+      "head": [
+        "Crawler",
+        "What it does",
+        "Does robots.txt control it?"
+      ],
+      "rows": [
+        [
+          "OAI-SearchBot",
+          "Finds pages to show in ChatGPT search answers",
+          "Yes"
+        ],
+        [
+          "GPTBot",
+          "Collects pages that may be used to train future models",
+          "Yes"
+        ],
+        [
+          "ChatGPT-User",
+          "Opens a page because a person in ChatGPT asked about it",
+          "Not reliably, because a person started the visit"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "v": "The one to protect is OAI-SearchBot. OpenAI says sites that block it will not be shown in ChatGPT search answers. GPTBot is a separate choice: blocking it opts your content out of training, not out of search. OpenAI also notes that a change to robots.txt can take about 24 hours to be picked up."
+    },
+    {
+      "t": "h2",
+      "v": "Check 1: is robots.txt turning ChatGPT away?"
+    },
+    {
+      "t": "p",
+      "v": "Open yourwebsite.com/robots.txt in a browser. It is a short text file that tells crawlers where they may go. Look for two things:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "\"User-agent: *\" followed by \"Disallow: /\". That blocks every crawler from the whole site, ChatGPT included. It is often left behind from when the site was being built.",
+        "A block naming OAI-SearchBot with \"Disallow: /\" under it. Remove it if you want to appear in ChatGPT answers."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "A block under GPTBot alone is a reasonable choice if you do not want your content used for training. It will not hide you from ChatGPT search."
+    },
+    {
+      "t": "h2",
+      "v": "Check 2: is a firewall or security plugin blocking the crawlers?"
+    },
+    {
+      "t": "p",
+      "v": "robots.txt is a polite request. Firewalls are not polite. Cloudflare, hosting firewalls and WordPress security plugins can all turn bots away before they reach the page, and several now have settings aimed specifically at AI crawlers. Some of these are switched on by default."
+    },
+    {
+      "t": "p",
+      "v": "Open the bot or AI crawler settings in whichever of these you use. Search crawlers such as OAI-SearchBot should be allowed. If your host gives you access logs, search them for \"OAI-SearchBot\": you want to see visits, and a status of 200, which means the page was served. A status of 403 means the door was shut."
+    },
+    {
+      "t": "h2",
+      "v": "Check 3: is your content in the page, or only in JavaScript?"
+    },
+    {
+      "t": "p",
+      "v": "This is the one that catches modern websites. Many sites send the browser an almost empty page and let JavaScript fill it in. Google runs that JavaScript before it reads the page. A study of crawler traffic by Vercel, the company behind Next.js, found that the major AI crawlers, including OpenAI's, do not run it. They read the page as it first arrives, and if your services, prices and contact details are not in that first version, they do not exist to ChatGPT."
+    },
+    {
+      "t": "p",
+      "v": "The five-minute test: open your homepage, right-click and choose View Page Source. Press Ctrl+F (Cmd+F on a Mac) and search for a sentence you can see on the page, such as your main service. If you find it, the crawlers can too. If the source is mostly code and your sentence is missing, your content is loaded by JavaScript. The same test from a terminal:"
+    },
+    {
+      "t": "code",
+      "v": "curl -s https://yourwebsite.com | grep -i \"your main service\""
+    },
+    {
+      "t": "p",
+      "v": "The fix is to have the server send the finished page, which is called server-side rendering. WordPress does this by default. Sites built with React, Next.js or similar tools can do it too, if they are set up for it. It is one of the first things I check in a [[website rebuild|/services/website-app-development]], because it decides whether the content is visible to anything that does not run JavaScript."
+    },
+    {
+      "t": "h2",
+      "v": "Check 4: does each page answer one question clearly?"
+    },
+    {
+      "t": "p",
+      "v": "Once ChatGPT can read a page, it still has to find an answer in it. The pages it quotes tend to have the answer near the top, in plain text:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "One main topic per page, with a heading that says what the page is about.",
+        "Prices, locations and opening hours written as text, not only inside images or PDFs.",
+        "A short FAQ at the end that answers the questions customers actually ask.",
+        "Your business name, area and what you do stated plainly on the homepage and about page."
+      ]
+    },
+    {
+      "t": "h2",
+      "v": "What this looks like on my own site"
+    },
+    {
+      "t": "p",
+      "v": "I log every AI crawler visit to this website. In the 28 days to 17 November, OAI-SearchBot fetched pages 2,183 times, and ChatGPT-User opened pages 111 times, each one a real person asking ChatGPT something and ChatGPT reading this site to answer. None of that would happen if the site failed any of the four checks above. The pages it reads most are the ones that answer a clear question: the homepage, the services pages and the pricing page."
+    },
+    {
+      "t": "p",
+      "v": "If you would like someone to run these checks for you, the [[free website health check|/free-website-health-check]] covers them, and I do this as part of my work as a [[digital marketing freelancer in Dubai|/]] for businesses that want to be found in ChatGPT as well as Google."
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "How do I know if ChatGPT can see my website?"
+    },
+    {
+      "t": "p",
+      "v": "Run the four checks: robots.txt does not block OAI-SearchBot, your firewall allows it, your main text appears in View Page Source, and your server logs show visits from OAI-SearchBot. If all four pass, ChatGPT can read the site."
+    },
+    {
+      "t": "h3",
+      "v": "Does blocking GPTBot remove me from ChatGPT?"
+    },
+    {
+      "t": "p",
+      "v": "No. GPTBot collects content for training future models. ChatGPT search uses OAI-SearchBot. You can block one and allow the other."
+    },
+    {
+      "t": "h3",
+      "v": "How long does it take for ChatGPT to see changes?"
+    },
+    {
+      "t": "p",
+      "v": "OpenAI says a robots.txt change takes about 24 hours to be picked up. New or updated pages appear once the crawler visits them again, which depends on how often it already visits your site."
+    },
+    {
+      "t": "h3",
+      "v": "Is being seen by ChatGPT different from ranking on Google?"
+    },
+    {
+      "t": "p",
+      "v": "Partly. Most of what helps one helps the other: fast pages, clear answers, text in the page rather than in images. The main difference is JavaScript. Google runs it and the AI crawlers do not, so a site can rank on Google and still be invisible to ChatGPT."
+    }
+  ],
+  "words": 1004
+}

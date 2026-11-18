@@ -12,6 +12,7 @@
  * To add a post: `node scripts/new-post.mjs <slug>` writes the file and the two
  * lines here. See docs/adding-a-blog-post.md.
  */
+import p_can_chatgpt_see_your_website from "./can-chatgpt-see-your-website.json";
 import p_ai_marketing_automation_workflows from "./ai-marketing-automation-workflows.json";
 import p_ga4_data_manager from "./ga4-data-manager.json";
 import p_google_analytics_mcp_server from "./google-analytics-mcp-server.json";
@@ -90,6 +91,7 @@ import p_8_must_have_free_icon_libraries_for_designers from "./8-must-have-free-
 
 /** Untyped here; `src/data/blogPosts.ts` applies the `BlogPost` type. */
 export const postsInOrder = [
+  p_can_chatgpt_see_your_website,
   p_ai_marketing_automation_workflows,
   p_ga4_data_manager,
   p_google_analytics_mcp_server,
