@@ -1726,9 +1726,32 @@ export const clients: Client[] = [
             },
           ],
         },
+        {
+          type: "text",
+          eyebrow: "Starting point",
+          heading: "Built on the logo AKS already had, not a new one",
+          paragraphs: [
+            "AKS Chemicals did not need a new logo. Its customers already know the mark, and changing it would have cost recognition the company has built with mills over many years. So the work started from the existing AKS logo and asked a different question: what does the rest of the brand need to look like so that everything around the logo feels as considered as the product?",
+            "The navy came straight from the mark. Everything else was chosen to sit beside it: the dark ink and bone that carry the pages, the dye colour that marks sections, and the three typefaces. Keeping the logo and building the system around it is often the better answer for an established manufacturer, because buyers trust what they recognise.",
+          ],
+        },
+        {
+          type: "text",
+          eyebrow: "Rules, not a mood board",
+          heading: "Written down so every channel follows the same rules",
+          paragraphs: [
+            "A brand system only works if someone other than the designer can apply it. So each decision is written as a rule with a reason: which colour is for reading, which is for labels, which is reserved for section numbers, which typeface sets headlines and which sets figures, and how every section opens with a rust number and a serif heading before the substance.",
+            "Those rules are what the website, the nine Meta creatives, the social posts and the app design were all built from. When a new page or a new creative is needed, nobody has to guess what it should look like.",
+          ],
+        },
       ],
       ctaLead: "Want your brand to look the same everywhere?",
       faqs: [
+        {
+          question: "Did AKS Chemicals get a new logo?",
+          answer:
+            "No. The work started from the existing AKS logo, which customers already recognise, and built the colours, typefaces and layout rules around it. The brand navy is taken directly from the mark.",
+        },
         {
           question: "What fonts and colours does the AKS Chemicals website use?",
           answer:
@@ -1893,9 +1916,32 @@ export const clients: Client[] = [
             "There are no performance figures here. The results belong to AKS Chemicals, and none are published without their agreement.",
           ],
         },
+        {
+          type: "text",
+          eyebrow: "Creative decisions",
+          heading: "Made for a technical buyer scrolling on a phone",
+          paragraphs: [
+            "The people AKS wants to reach on Facebook and Instagram are dyehouse managers, finishing technicians and buyers at mills, often scrolling on a phone between jobs. They do not stop for lifestyle photography. They stop when they see their own process named. So every range creative leads with the range name and the processes it covers, in type large enough to read at feed size, and says one plain thing about what the range is for.",
+            "Each creative makes one point only. A buyer who needs pretreatment chemistry should recognise the pretreatment creative in a second, without reading the other four ranges first.",
+          ],
+        },
+        {
+          type: "text",
+          eyebrow: "One campaign",
+          heading: "Planned with the website, not after it",
+          paragraphs: [
+            "The creatives and the website were designed together, in the same identity, so the promise an ad makes is answered by the page it opens. A buyer who taps through from the toll manufacturing creative should land on a company that clearly does toll manufacturing, not on a generic homepage that makes them search for it.",
+            "The square format was chosen so the same nine designs work as organic posts and as Meta ads, which keeps the profile and the campaign consistent and avoids paying twice for creative that says the same thing.",
+          ],
+        },
       ],
       ctaLead: "Need social media that looks like your brand?",
       faqs: [
+        {
+          question: "Why make one creative for each product range?",
+          answer:
+            "Because a technical buyer is looking for their own process. A single general advert asks them to imagine whether AKS covers it; a creative for each range answers that straight away, and lets the campaign show the right range to the right buyer.",
+        },
         {
           question: "What social media creatives were made for AKS Chemicals?",
           answer:
@@ -3143,9 +3189,32 @@ export const clients: Client[] = [
               caption: "Home and product overview, close up.",
             },
         },
+        {
+          type: "text",
+          eyebrow: "What the prototype is for",
+          heading: "Settling the hard questions before any code is written",
+          paragraphs: [
+            "Building an app is expensive and changing one after it is built is more expensive. A prototype is the cheap stage, where the sales team and a few friendly mills can tap through the screens and say what is missing, what is in the wrong place and what they would never use.",
+            "For Texdale Field, the prototype puts the main tasks one tap from the home screen, scanning a drum and browsing the range, and keeps everything a technician needs about a product on one page in four tabs. Whether those are the right tasks is exactly what testing the prototype is meant to confirm.",
+          ],
+        },
+        {
+          type: "text",
+          eyebrow: "Next steps",
+          heading: "What happens between the prototype and the app stores",
+          paragraphs: [
+            "Before Texdale Field is built, three decisions remain. Texdale's own product photography and specifications replace the placeholder content. The platform is chosen, whether native apps for iPhone and Android or one cross-platform build. And the app is connected to the same product data as the website, so a change to a data sheet appears in both places at once.",
+            "Until then it stays a design and prototype, and this page describes it that way.",
+          ],
+        },
       ],
       ctaLead: "Planning an app for your sales team?",
       faqs: [
+        {
+          question: "Which platform will Texdale Field be built on?",
+          answer:
+            "That has not been decided yet. The prototype comes first, so the screens and tasks are agreed with the sales team before choosing between native iPhone and Android apps or a single cross-platform build.",
+        },
           {
             question: "Is the Texdale Field app live?",
             answer:
@@ -3306,9 +3375,32 @@ export const clients: Client[] = [
             "There are no performance figures here. The results belong to Texdale, and none are published without their agreement.",
           ],
         },
+        {
+          type: "text",
+          eyebrow: "Creative decisions",
+          heading: "Designed for a technical buyer's feed",
+          paragraphs: [
+            "Texdale's buyers are technicians and buyers in dyehouses and finishing plants. On Facebook and Instagram they scroll past lifestyle imagery but stop when they recognise their own process. So each creative leads with the range name, its number out of eight and the products it covers, written large enough to read on a phone at feed size.",
+            "The process colours on the creatives are the same ones the website uses to colour code each stage of the wet process. A buyer who taps from the pretreatment creative sees the same colour on the page it opens, which tells them at a glance they are in the right place.",
+          ],
+        },
+        {
+          type: "text",
+          eyebrow: "Why a set, not one advert",
+          heading: "Eight ranges, eight reasons to stop scrolling",
+          paragraphs: [
+            "A single advert for a company with eight product ranges has to be general, and general adverts are easy to ignore. A set of nine lets the campaign show the denim washing creative to people interested in denim and the printing creative to printers, while the brand creative introduces the company to everyone else.",
+            "The same square designs serve as organic posts on Texdale's profiles and as Meta ads, so the profile a buyer checks after seeing an ad looks exactly like the campaign that brought them there.",
+          ],
+        },
       ],
       ctaLead: "Need social media that looks like your brand?",
       faqs: [
+        {
+          question: "Why do the Texdale creatives use different colours for each range?",
+          answer:
+            "Each colour matches the process stage it belongs to on the Texdale website, so the colour coding on the ads and on the site is the same. A buyer who taps an ad lands on a page in the same colour, which makes the connection between the two obvious.",
+        },
           {
             question: "What social media creatives were made for Texdale?",
             answer:
