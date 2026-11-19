@@ -63,11 +63,11 @@ export default function CtaButton({
   );
 
   return isRoute(href) ? (
-    <Link href={href} className={cls}>
+    <Link href={href} className={cls} data-cta="primary">
       {inner}
     </Link>
   ) : (
-    <a href={href} className={cls} target={target} rel={rel}>
+    <a href={href} className={cls} target={target} rel={rel} data-cta="primary">
       {inner}
     </a>
   );

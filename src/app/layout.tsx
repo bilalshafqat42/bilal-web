@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import LeadFormPopup from "@/components/forms/LeadFormPopup";
+import SiteEvents from "@/components/seo/SiteEvents";
 import WhatsAppFloat from "@/components/ui/WhatsAppFloat";
 import CookieConsent from "@/components/layout/CookieConsent";
 import LogoIntro from "@/components/ui/LogoIntro";
@@ -167,6 +168,7 @@ export default function RootLayout({
 
         <Analytics />
         <MetaPixel />
+        <SiteEvents />
         <ContactClickTracker />
         <RouteHistory />
         {/* The header and footer live here, not in each page.

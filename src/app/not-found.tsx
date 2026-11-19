@@ -4,6 +4,7 @@ import { pillars } from "@/data/pillars";
 import CtaButton from "@/components/ui/CtaButton";
 import PageOpener from "@/components/layout/PageOpener";
 import SecondaryButton from "@/components/ui/SecondaryButton";
+import NotFoundEvent from "@/components/seo/NotFoundEvent";
 
 export const metadata: Metadata = {
   title: "Page not found | Bilal Shafqat",
@@ -22,6 +23,7 @@ export default function NotFound() {
   return (
     <>
       <main id="main" tabIndex={-1} className="flex-1 pb-16 sm:pb-20">
+        <NotFoundEvent />
         <PageOpener
           eyebrow="404"
           title={<>That page isn&apos;t here any more</>}

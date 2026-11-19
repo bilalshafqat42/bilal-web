@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { MessageSquarePlus, X, Loader2, CheckCircle2, AlertCircle, MessageCircle } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { SITE_EMAIL } from "@/lib/contact";
+import { track } from "@/lib/analytics";
 import { useLeadSubmit, TURNSTILE_ENABLED } from "@/lib/useLeadSubmit";
 import WhatsAppLink from "@/components/ui/WhatsAppLink";
 import { useFocusTrap } from "@/lib/focusTrap";
@@ -141,7 +142,10 @@ export default function LeadFormPopup() {
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          setOpen(true);
+          track("quick_enquiry_open", { page_path: window.location.pathname });
+        }}
         // Stands down while the consent banner is up. Two competing calls to
         // action at once is the wrong ask, and on a phone the banner covered
         // this button outright (roadmap 213.35). It returns as soon as the

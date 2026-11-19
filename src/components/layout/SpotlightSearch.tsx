@@ -8,6 +8,7 @@ import { search, type Chunk } from "@/lib/searchRank";
 import { loadSearchIndex } from "@/lib/searchData";
 import { SEARCH_OPEN_EVENT } from "@/lib/searchPanel";
 import { useFocusTrap } from "@/lib/focusTrap";
+import { track } from "@/lib/analytics";
 
 const STARTERS = [
   "I need a website",
@@ -59,6 +60,15 @@ export default function SpotlightSearch() {
   // Only while a query is waiting on the fetch. An empty box shows the
   // starters, which is the right thing whether or not the index has arrived.
   const loading = Boolean(query.trim()) && index === null;
+
+  // GA4's recommended `search` event, once the visitor stops typing for 1.5s,
+  // so "s", "se", "seo" count as one search rather than three (2026-11-19).
+  useEffect(() => {
+    const term = query.trim();
+    if (term.length < 3) return;
+    const t = window.setTimeout(() => track("search", { search_term: term.slice(0, 100) }), 1500);
+    return () => window.clearTimeout(t);
+  }, [query]);
 
   const close = useCallback(() => {
     setOpen(false);

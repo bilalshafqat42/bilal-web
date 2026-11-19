@@ -79,11 +79,11 @@ export default function SecondaryButton({
 
   const href = rest.href as string;
   return isRoute(href) ? (
-    <Link href={href} className={cls}>
+    <Link href={href} className={cls} data-cta="secondary">
       {children}
     </Link>
   ) : (
-    <a href={href} className={cls} target={rest.target} rel={rest.rel}>
+    <a href={href} className={cls} target={rest.target} rel={rest.rel} data-cta="secondary">
       {children}
     </a>
   );
