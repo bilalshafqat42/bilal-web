@@ -510,8 +510,8 @@ export const pillars: Pillar[] = [
       "Your marketing, site and sales data connected, so leads are tracked and followed up without anyone remembering to.",
     ledgerTags: [
       { label: "HubSpot, Zoho & Salesforce", href: "/services/crm-marketing-automation" },
-      { label: "Email & WhatsApp", href: "/services/email-marketing" },
-      { label: "Lead generation", href: "/services/digital-marketing" },
+      { label: "WhatsApp marketing", href: "/services/whatsapp-marketing" },
+      { label: "Email marketing", href: "/services/email-marketing" },
     ],
     heroDescription:
       "Most of the leads a business loses aren't lost to bad marketing, they're lost to a follow-up that never happened because nothing was tracking them properly. This pillar connects everything else, campaigns, website, and CRM, into one system that doesn't rely on someone remembering to check a spreadsheet.",

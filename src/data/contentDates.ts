@@ -87,6 +87,7 @@ export const SERVICES_CONTENT_DATE = "2026-10-13";
  *  other fourteen changed when they did not. */
 export const SERVICE_CONTENT_DATES: Record<string, string> = {
   "email-marketing": "2026-11-11",
+  "whatsapp-marketing": "2026-11-19",
   "cms-development": "2026-11-11",
   "wordpress-development": "2026-10-26",
   "wix-development": "2026-10-16",

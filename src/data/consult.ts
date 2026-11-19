@@ -36,6 +36,7 @@ const TOPIC: Record<string, string> = {
   "crm-marketing-automation": "CRM",
   seo: "SEO",
   "email-marketing": "email marketing",
+  "whatsapp-marketing": "WhatsApp marketing",
   "marketing-automation": "automation",
   "video-conversion": "video",
   "wordpress-development": "WordPress",

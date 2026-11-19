@@ -22,6 +22,7 @@ export const TRACKED = [
   ["/services/seo", "seo consultant dubai"],
   ["/services/social-media-marketing", "social media marketing in dubai"],
   ["/services/email-marketing", "email marketing dubai"],
+  ["/services/whatsapp-marketing", "whatsapp marketing dubai"],
   ["/services/paid-marketing", "paid marketing dubai"],
   ["/services/google-ads", "google ads dubai"],
   ["/services/facebook-ads", "facebook ads dubai"],

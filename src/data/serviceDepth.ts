@@ -2092,7 +2092,7 @@ export const serviceDepth: Record<string, Depth> = {
       {
         heading: "Where email sits in a UAE setup",
         paragraphs: [
-          "WhatsApp is the default business channel here, and pretending otherwise produces an email programme nobody reads. But WhatsApp is the wrong tool for the long middle of a buying decision. A fourteen-message nurture on WhatsApp is an intrusion, and most people will block rather than unsubscribe. Email carries the contacts who are months from deciding; WhatsApp carries the ones who are minutes from it.",
+          "[WhatsApp](/services/whatsapp-marketing) is the default business channel here, and pretending otherwise produces an email programme nobody reads. But WhatsApp is the wrong tool for the long middle of a buying decision. A fourteen-message nurture on WhatsApp is an intrusion, and most people will block rather than unsubscribe. Email carries the contacts who are months from deciding; WhatsApp carries the ones who are minutes from it.",
           "The CRM is what decides which channel a contact is on, and when they move between them. That is a configuration decision rather than a writing one, which is why this page keeps returning to the plumbing rather than the prose.",
         ],
       },
@@ -2122,6 +2122,74 @@ export const serviceDepth: Record<string, Depth> = {
       },
     ],
   },
+  /** Added 2026-11-19 with the page. Method, not results: see the note on
+   *  the category in `serviceCategories.ts`. Facts here follow Meta's own
+   *  WhatsApp Business Platform rules (templates reviewed before sending, an
+   *  opt-out on marketing templates, per-message pricing by country, sending
+   *  limits that rise with verification and quality). No prices or limits are
+   *  printed as numbers, because Meta changes both. */
+  "whatsapp-marketing": {
+    blocks: [
+      {
+        heading: "WhatsApp marketing in Dubai starts with choosing the right account",
+        paragraphs: [
+          "There are two kinds of WhatsApp for business, and most problems start with using the wrong one. The WhatsApp Business app is free and runs on one phone. It is right for a shop or a small team replying to customers by hand. Its broadcast lists only reach people who have saved your number, and it was never built for sending one message to hundreds of people.",
+          "The WhatsApp Business Platform is Meta's official route for businesses that message at scale. It runs through a provider with a simple dashboard, sends under a verified business name, and gives you delivery and read reports. It is the only proper way to run a WhatsApp campaign to a large list, and it is what I set up.",
+        ],
+        table: {
+          caption: "The WhatsApp Business app and the WhatsApp Business Platform",
+          head: ["", "WhatsApp Business app", "WhatsApp Business Platform"],
+          rows: [
+            ["Best for", "Replying to customers by hand", "Campaigns, automation and teams"],
+            ["Broadcasts", "Only to people who saved your number", "To anyone who agreed to hear from you, using approved templates"],
+            ["Who can reply", "Whoever holds the phone", "A whole team, from one shared inbox"],
+            ["Reports", "None to speak of", "Sent, delivered, read and replied, per message"],
+            ["Connects to your CRM", "No", "Yes"],
+            ["Cost", "Free", "Per message to Meta, plus a provider plan"],
+          ],
+        },
+      },
+      {
+        heading: "Broadcast campaigns that do not get the number blocked",
+        paragraphs: [
+          "Every marketing message on the platform starts as a template: the text, an image or document, buttons such as Register or Call, and an opt-out button Meta requires on marketing messages. Meta reviews each template before it can be sent. A promotion dressed up as a service update is still a promotion, and Meta classes and charges it that way, so I write it honestly from the start.",
+          "How many people you can message in a day depends on the account. A new, unverified business starts with a low daily limit, verifying the business with its trade licence raises it, and it keeps rising while people read your messages rather than block or report them. That is why the list matters more than the message. Customers, registered visitors and past exhibitors who expect to hear from you keep the quality rating high. A bought list brings reports, and reports bring the limit down.",
+          "Before a campaign goes out, the list is cleaned into one international format, duplicates and landlines are removed, and the template is tested on a handful of numbers. Large lists are sent in batches that respect the daily limit, and anyone who taps the opt-out is removed before the next send.",
+        ],
+      },
+      {
+        heading: "Automated replies and leads that reach a person",
+        paragraphs: [
+          "A campaign is only half the job. The replies are where the enquiries are, and on a busy day they arrive faster than anyone can answer by hand. On the platform, the first reply can be automatic: an answer to the common questions, a few quick buttons to find out what the person wants, and a hand-over to the right member of your team with the conversation attached.",
+          "The same setup works for Meta ads that open a WhatsApp chat instead of a form, which suits the UAE, where many people would rather message than fill in fields. Each conversation is saved to your CRM with the ad or campaign it came from, which is the job of [CRM integration](/services/crm-integration), so you can see which campaigns produce real conversations. The wider follow-up process is covered on the [marketing automation](/services/marketing-automation) page.",
+        ],
+      },
+      {
+        heading: "What a WhatsApp campaign costs, and who owns it",
+        paragraphs: [
+          "Meta charges per message for the templates a business sends, at rates that depend on the country and the type of message. Marketing messages are the most expensive type, and service replies to someone who messaged you first cost little or nothing. Meta publishes the rates and changes them from time to time, so I quote them at cost on the day, separately from my own fee.",
+          "The WhatsApp account, the phone number and the Meta business portfolio are always created in your name, not mine. If we stop working together, everything stays with you, including the contact list and the message history. The same rule applies to ad accounts and analytics in every engagement I take on.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What do you need from me to start?",
+        answer:
+          "Your trade licence for Meta's business verification, access to your Meta business portfolio or permission to create one in your name, a phone number that is not already used on the WhatsApp app, and the list with a note of where it came from.",
+      },
+      {
+        question: "Will every person on the list receive the message?",
+        answer:
+          "Not always. Meta limits how many marketing messages each person receives from businesses, and some numbers on any list are no longer on WhatsApp. The report shows exactly how many were sent, delivered and read, so you know the real reach rather than the size of the list.",
+      },
+      {
+        question: "Can I keep using WhatsApp on my phone?",
+        answer:
+          "Keep your existing number for personal or day-to-day chats and use a separate number for the platform. That keeps campaigns, team replies and reports in one place without mixing them with your own conversations.",
+      },
+    ],
+  },
   // Added 2026-10-29 with the page. General on purpose, at Bilal's request: it
   // describes what he builds, with no client names, demos or results. The AI
   // block says plainly what an assistant should not do, because a bot that
@@ -2139,7 +2207,7 @@ export const serviceDepth: Record<string, Depth> = {
         heading: "Lead automation: from enquiry to the right person in minutes",
         paragraphs: [
           "A lead can arrive from a Meta lead form, a Google Ads landing page, a WhatsApp click, a portal or a phone call. Each source is connected to the CRM so the lead arrives with its campaign, which is the job of [CRM integration](/services/crm-integration). On top of that sit the rules: who gets the lead, what counts as a duplicate, what the first message says, and what happens if nobody responds.",
-          "In Dubai the first reply usually belongs on WhatsApp, because that is where people actually answer. Longer nurture belongs in [email marketing](/services/email-marketing), for the contacts who are months away from a decision. The CRM decides which channel a contact is on and when they move between them.",
+          "In Dubai the first reply usually belongs on [WhatsApp](/services/whatsapp-marketing), because that is where people actually answer. Longer nurture belongs in [email marketing](/services/email-marketing), for the contacts who are months away from a decision. The CRM decides which channel a contact is on and when they move between them.",
         ],
         table: {
           caption: "What lead automation changes, step by step",

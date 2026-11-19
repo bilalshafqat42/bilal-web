@@ -1737,13 +1737,65 @@ export const megaMenuGroups: MegaMenuGroup[] = [
           "Both, and they are hard to separate usefully, because the sequence structure is a writing decision. If you have a brand voice or an in-house writer, I will build to it and say where the structure is fighting the copy.",
       },
     ],
+    related: {
+      heading: "Where email hands over to WhatsApp",
+      intro: "Email carries the contacts who are months from deciding. WhatsApp carries the ones who are ready to talk now.",
+      slugs: ["whatsapp-marketing", "marketing-automation", "crm-integration"],
+    },
     items: [
       { title: "Email Marketing", pillarSlug: "paid-marketing" },
-      { title: "WhatsApp Marketing", pillarSlug: "paid-marketing" },
+      // WhatsApp Marketing moved to its own page on 2026-11-19.
       // "CRM & MarTech Integration" was listed here until 2026-10-24. No section
       // on either pillar has that title, so the page silently dropped it while
       // the menu rail, /services and llms.txt still listed it (audit batch 2).
     ],
+  },
+  {
+    /** Added 2026-11-19 at Bilal's request, after an enquiry for a bulk
+     *  WhatsApp invitation campaign. Method, not results, like email above: no
+     *  WhatsApp campaign is published on this site, and the page says so. Every
+     *  claim is about how the work is done on Meta's official WhatsApp Business
+     *  Platform. No per-message prices are printed: Meta changes them, so the
+     *  page says they are quoted at cost on the day. */
+    slug: "whatsapp-marketing",
+    title: "WhatsApp Marketing",
+    accent: "gold",
+    headline: "WhatsApp marketing in Dubai, sent the official way so the number survives the campaign",
+    intro:
+      "WhatsApp is where people in the UAE actually answer, which is exactly why it is so easy to get wrong. A broadcast from a personal number or a bulk-sender app reaches a few hundred people, collects a few reports, and the number is blocked halfway through. I run WhatsApp marketing in Dubai on Meta's official WhatsApp Business Platform: a verified business name, approved message templates, broadcast campaigns that reach the people who agreed to hear from you, and replies that land in your CRM instead of on someone's phone.",
+    metaTitle: "WhatsApp Marketing in Dubai | Bilal Shafqat",
+    metaDescription:
+      "WhatsApp marketing in Dubai on the official Business Platform: broadcast campaigns, approved templates, auto-replies and leads in your CRM.",
+    depthHeading: "How WhatsApp marketing works on the official platform",
+    related: {
+      heading: "What WhatsApp marketing connects to",
+      intro:
+        "WhatsApp works best as one part of a setup: ads that open a chat, automation that answers it, and a CRM that keeps the conversation.",
+      slugs: ["marketing-automation", "crm-integration", "facebook-ads", "email-marketing"],
+    },
+    faqs: [
+      {
+        question: "Do you have a published WhatsApp case study?",
+        answer:
+          "Not yet. The work on this site is websites, apps, social and paid campaigns, and none of those write-ups is a WhatsApp campaign. This page describes how I do the work rather than claiming results you cannot check. If WhatsApp is the main thing you need, ask on the call and I will be straight about what to expect.",
+      },
+      {
+        question: "Can you send a WhatsApp campaign to a list of numbers I already have?",
+        answer:
+          "Yes, if the people on it agreed to hear from you, for example customers, registered visitors or past exhibitors. WhatsApp's rules expect that permission, and UAE data protection law covers personal phone numbers. A bought or scraped list is the fastest way to get a number blocked, so I will ask where the list came from before anything is sent.",
+      },
+      {
+        question: "What does WhatsApp marketing cost?",
+        answer:
+          "Three parts. Meta charges per message for the templates you send, with marketing messages the most expensive category, and publishes its rates by country. The WhatsApp provider has a monthly plan. My work is one fixed fee for the setup, the campaign and the report. Meta's and the provider's charges are passed on at cost, checked on the day I quote, because Meta changes them.",
+      },
+      {
+        question: "How long does it take to start?",
+        answer:
+          "Usually a few working days, most of it waiting on Meta. The business has to be verified with its trade licence, and each message template is reviewed before it can be sent. Writing the message and cleaning the list happen while that is in progress.",
+      },
+    ],
+    items: [{ title: "WhatsApp Marketing", pillarSlug: "paid-marketing" }],
   },
   // Added 2026-10-29 at Bilal's request: one page that says "if it can be
   // automated, ask me", covering lead automation, AI assistants, ads and
@@ -1768,6 +1820,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       slugs: [
         "crm-integration",
         "custom-crm-development",
+        "whatsapp-marketing",
         "email-marketing",
         "custom-web-development",
         "mobile-app-development",

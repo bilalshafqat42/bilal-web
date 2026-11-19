@@ -46,6 +46,7 @@ const HOME_ANCHOR: Record<string, string> = {
   "linkedin-marketing": "digital marketing consultant in Dubai",
   "social-media-marketing": "digital marketing freelancer in Dubai",
   "email-marketing": "freelance digital marketing expert in Dubai",
+  "whatsapp-marketing": "freelance digital marketer in Dubai",
   "paid-marketing": "digital marketing specialist in Dubai",
   "marketing-automation": "digital marketing consultant in Dubai",
 };
