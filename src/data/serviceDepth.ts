@@ -2124,10 +2124,10 @@ export const serviceDepth: Record<string, Depth> = {
   },
   /** Added 2026-11-19 with the page. Method, not results: see the note on
    *  the category in `serviceCategories.ts`. Facts here follow Meta's own
-   *  WhatsApp Business Platform rules (templates reviewed before sending, an
-   *  opt-out on marketing templates, per-message pricing by country, sending
-   *  limits that rise with verification and quality). No prices or limits are
-   *  printed as numbers, because Meta changes both. */
+   *  WhatsApp Business Platform docs, checked 2026-11-19: templates reviewed
+   *  within 24 hours, opt-outs honoured, per-message pricing in AED, a new
+   *  portfolio limited to 250 people a day and 2,000 after verification. No
+   *  prices are printed, because Meta changes them. */
   "whatsapp-marketing": {
     blocks: [
       {
@@ -2152,8 +2152,8 @@ export const serviceDepth: Record<string, Depth> = {
       {
         heading: "Broadcast campaigns that do not get the number blocked",
         paragraphs: [
-          "Every marketing message on the platform starts as a template: the text, an image or document, buttons such as Register or Call, and an opt-out button Meta requires on marketing messages. Meta reviews each template before it can be sent. A promotion dressed up as a service update is still a promotion, and Meta classes and charges it that way, so I write it honestly from the start.",
-          "How many people you can message in a day depends on the account. A new, unverified business starts with a low daily limit, verifying the business with its trade licence raises it, and it keeps rising while people read your messages rather than block or report them. That is why the list matters more than the message. Customers, registered visitors and past exhibitors who expect to hear from you keep the quality rating high. A bought list brings reports, and reports bring the limit down.",
+          "Every marketing message on the platform starts as a template: the text, an image or document, buttons such as Register or Call, and a clear way to stop receiving messages, because Meta requires businesses to honour every opt-out. Meta reviews each template before it can be sent, and says a decision can take up to 24 hours. A promotion dressed up as a service update is still a promotion, and Meta classes and charges it that way, so I write it honestly from the start.",
+          "How many people you can message in a day depends on the account. Meta starts a new business at 250 people in any 24 hours, verifying the business with its trade licence is one way to raise that to 2,000, and it keeps rising while people read your messages rather than block or report them. That is why the list matters more than the message. Customers, registered visitors and past exhibitors who expect to hear from you keep the quality rating high. A bought list brings reports, and reports bring the limit down.",
           "Before a campaign goes out, the list is cleaned into one international format, duplicates and landlines are removed, and the template is tested on a handful of numbers. Large lists are sent in batches that respect the daily limit, and anyone who taps the opt-out is removed before the next send.",
         ],
       },
@@ -2167,7 +2167,7 @@ export const serviceDepth: Record<string, Depth> = {
       {
         heading: "What a WhatsApp campaign costs, and who owns it",
         paragraphs: [
-          "Meta charges per message for the templates a business sends, at rates that depend on the country and the type of message. Marketing messages are the most expensive type, and service replies to someone who messaged you first cost little or nothing. Meta publishes the rates and changes them from time to time, so I quote them at cost on the day, separately from my own fee.",
+          "Meta charges per message for the templates a business sends, at rates that depend on the country and the type of message. Marketing messages are the most expensive type. Replies to someone who messaged you first are much cheaper, and Meta gives each business number a monthly allowance of free ones. Meta publishes its rates in dirhams and changes them from time to time, so I quote them at cost on the day, separately from my own fee.",
           "The WhatsApp account, the phone number and the Meta business portfolio are always created in your name, not mine. If we stop working together, everything stays with you, including the contact list and the message history. The same rule applies to ad accounts and analytics in every engagement I take on.",
         ],
       },
@@ -2181,7 +2181,7 @@ export const serviceDepth: Record<string, Depth> = {
       {
         question: "Will every person on the list receive the message?",
         answer:
-          "Not always. Meta limits how many marketing messages each person receives from businesses, and some numbers on any list are no longer on WhatsApp. The report shows exactly how many were sent, delivered and read, so you know the real reach rather than the size of the list.",
+          "Not always. Meta may limit how many marketing messages each person receives from businesses, people can turn off offers in their WhatsApp settings, and some numbers on any list are no longer on WhatsApp. The report shows exactly how many were sent, delivered and read, so you know the real reach rather than the size of the list.",
       },
       {
         question: "Can I keep using WhatsApp on my phone?",

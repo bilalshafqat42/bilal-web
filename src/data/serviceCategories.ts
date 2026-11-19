@@ -1792,7 +1792,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       {
         question: "How long does it take to start?",
         answer:
-          "Usually a few working days, most of it waiting on Meta. The business has to be verified with its trade licence, and each message template is reviewed before it can be sent. Writing the message and cleaning the list happen while that is in progress.",
+          "Usually a few working days, most of it waiting on Meta. The business should be verified with its trade licence, and each message template is reviewed before it can be sent, which Meta says can take up to 24 hours. Writing the message and cleaning the list happen while that is in progress.",
       },
     ],
     items: [{ title: "WhatsApp Marketing", pillarSlug: "paid-marketing" }],
