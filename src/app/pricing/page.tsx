@@ -256,7 +256,7 @@ export default function PricingPage() {
           </div>
         </section>
 
-        <FaqSection eyebrow="Questions" title="Pricing questions" faqs={faqs} className="section" />
+        <FaqSection eyebrow="Questions" title="Digital marketing pricing in Dubai: your questions" faqs={faqs} className="section" />
 
         <section className="relative section">
           <div className="site-container">
