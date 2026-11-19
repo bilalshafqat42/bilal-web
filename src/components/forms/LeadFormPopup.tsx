@@ -253,7 +253,9 @@ export default function LeadFormPopup() {
                       autoComplete="tel"
                       className="mt-1.5 w-full rounded-xl surface-2 px-4 py-2.5 text-sm text-ink placeholder:text-faint outline-none transition focus:border-gold/50 focus:ring-2 focus:ring-gold/20"
                       placeholder="+971 5X XXX XXXX"
+                      aria-describedby="lead-phone-hint"
                     />
+                    <p id="lead-phone-hint" className="mt-1 text-xs text-faint">With country code, e.g. +971 for the UAE.</p>
                   </div>
 
                   <div>

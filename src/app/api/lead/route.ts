@@ -153,6 +153,25 @@ const LIMITS = { name: 120, email: 254, phone: 40, message: 4000, generic: 200 }
  *
  *  `keepNewlines` is for the message body alone, where line breaks are real
  *  content — there they are normalised to \n rather than removed. */
+/**
+ * Puts a phone number in international form so a lead can be called or
+ * messaged on WhatsApp straight from Performo (2026-11-19: leads arrived as
+ * "0501234567" or "8054002077" with no country code). UAE numbers typed the
+ * local way (05x, 5x, 971..., 00971...) become +971. Anything else that already
+ * starts with + or 00 keeps its own code. A number we cannot place is kept as
+ * typed rather than guessed, because a wrong country code is worse than none.
+ */
+function normalisePhone(raw: string | undefined): string | undefined {
+  if (!raw) return raw;
+  const digits = raw.replace(/[^\d+]/g, "");
+  if (digits.startsWith("+")) return "+" + digits.slice(1).replace(/\+/g, "");
+  if (digits.startsWith("00")) return "+" + digits.slice(2);
+  if (/^971\d{8,9}$/.test(digits)) return "+" + digits;
+  if (/^0?5\d{8}$/.test(digits)) return "+971" + digits.replace(/^0/, "");
+  if (/^0[2-9]\d{7}$/.test(digits)) return "+971" + digits.slice(1);
+  return raw;
+}
+
 function clean(value: unknown, max: number, keepNewlines = false): string | undefined {
   if (typeof value !== "string") return undefined;
   let out = value.normalize("NFC");
@@ -418,7 +437,7 @@ export async function POST(request: Request) {
   // characters before it goes anywhere. Nothing below is used as received.
   const name = clean(body.name, LIMITS.name);
   const email = clean(body.email, LIMITS.email);
-  const phone = clean(body.phone, LIMITS.phone);
+  const phone = normalisePhone(clean(body.phone, LIMITS.phone));
   const message = clean(body.message, LIMITS.message, true);
 
   if (!name || !email) {

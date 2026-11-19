@@ -152,7 +152,8 @@ export default function HealthCheckForm() {
           <label htmlFor="hc-phone" className={labelClass}>
             Phone or WhatsApp
           </label>
-          <input id="hc-phone" type="tel" value={values.phone} onChange={set("phone")} className={`mt-2 ${fieldClass}`} placeholder="+971 50 123 4567" autoComplete="tel" maxLength={40} />
+          <input id="hc-phone" type="tel" value={values.phone} onChange={set("phone")} className={`mt-2 ${fieldClass}`} placeholder="+971 50 123 4567" autoComplete="tel" aria-describedby="hc-phone-hint" maxLength={40} />
+          <p id="hc-phone-hint" className="mt-1.5 text-xs text-faint">With country code, e.g. +971 for the UAE.</p>
         </div>
         <div className="sm:col-span-2">
           <label htmlFor="hc-goal" className={labelClass}>

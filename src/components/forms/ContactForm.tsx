@@ -180,7 +180,8 @@ export default function ContactForm({ serviceOptions }: { serviceOptions: Servic
           <label htmlFor="phone" className="block text-xs font-medium uppercase tracking-wide text-muted">
             Phone or WhatsApp
           </label>
-          <input id="phone" type="tel" value={values.phone} onChange={set("phone")} className={`mt-2 ${fieldClass}`} placeholder="+971 50 123 4567" autoComplete="tel" />
+          <input id="phone" type="tel" value={values.phone} onChange={set("phone")} className={`mt-2 ${fieldClass}`} placeholder="+971 50 123 4567" autoComplete="tel" aria-describedby="phone-hint" />
+          <p id="phone-hint" className="mt-1.5 text-xs text-faint">With country code, e.g. +971 for the UAE.</p>
         </div>
         <div>
           <label htmlFor="service" className="block text-xs font-medium uppercase tracking-wide text-muted">
