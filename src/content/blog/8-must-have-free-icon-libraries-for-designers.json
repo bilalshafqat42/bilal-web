@@ -3,11 +3,11 @@
   "title": "8 Must-Have Free Icon Libraries for Designers",
   "description": "Eight free icon libraries for UI design, compared on style, file format and licence, plus how to choose an icon library that fits your project.",
   "published": "2025-01-13",
-  "updatedAt": "2026-10-19",
+  "updatedAt": "2026-11-20",
   "tags": [
     "UI UX Design"
   ],
-  "words": 1583,
+  "words": 1798,
   "blocks": [
     {
       "t": "p",
@@ -254,6 +254,30 @@
     {
       "t": "h2",
       "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "What icon libraries do UX teams use?"
+    },
+    {
+      "t": "p",
+      "v": "Most UX and product teams pick one open-source set that fits their stack and stick to it. Material Symbols is common on Android and Material-based products, Heroicons on projects built with Tailwind, and Lucide or Feather for clean, minimal interfaces. For a rare icon the main set lacks, teams often find one on the Noun Project and redraw it to match their grid and stroke, so the set stays consistent."
+    },
+    {
+      "t": "h3",
+      "v": "How do free icon libraries handle free tiers and pricing?"
+    },
+    {
+      "t": "p",
+      "v": "Open-source libraries such as Heroicons, Lucide, Feather and Material Symbols are free in full, with no paid tier, under licences like MIT or Apache 2.0. Marketplaces such as Flaticon and the Noun Project work on a free tier: you can download icons at no cost but must credit the creator, and a paid plan removes the credit and usually adds more formats or downloads. Animated sets like Lordicon also limit what the free tier includes. Prices and limits change, so check the current plan on each site before a project ships."
+    },
+    {
+      "t": "h3",
+      "v": "Which icon libraries suit client websites?"
+    },
+    {
+      "t": "p",
+      "v": "For a client website, choose a set with a permissive licence so nothing needs crediting on the page and nothing changes if the client takes the site to another developer. Heroicons, Lucide and Material Symbols all fit. Use marketplace icons only if the client holds the paid plan, or if visible credit is acceptable."
     },
     {
       "t": "h3",
