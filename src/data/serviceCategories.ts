@@ -1038,15 +1038,21 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     shortTitle: "Android",
     accent: "gold",
     parent: "mobile-app-development",
-    headline: "An Android developer in Dubai, testing on the phones your customers carry",
+    headline: "Android app development in Dubai, tested on the phones your customers carry",
     intro:
-      "Android is often treated as the port that follows the iPhone version. It should not be: it runs on a far wider range of phones, screen sizes and OS versions, and plenty of your customers are on one of them. As an Android developer in Dubai, I build in React Native from the same codebase as iOS, test on real devices including older and budget models, and publish through Google Play Console under your account, with install tracking in place so every download and lead can be traced to the campaign that brought it.",
+      "Android is often treated as the port that follows the iPhone version. It should not be: it runs on a far wider range of phones, screen sizes and OS versions, and plenty of your customers are on one of them. For Android app development in Dubai, I build in React Native from the same codebase as iOS, test on real devices including older and budget models, and publish through Google Play Console under your account, with install tracking in place so every download and lead can be traced to the campaign that brought it.",
     // Retitled 2026-10-16, for the same reason as the iOS page above.
     // 2026-10-19: "App Developer" dropped, for the same reason as iOS above.
-    metaTitle: "Android Developer in Dubai | Bilal Shafqat",
+    // 2026-11-24: retargeted to "android app development in dubai". Search
+    // Console (26 Aug to 24 Nov) gave this page 484 impressions across 13
+    // Android queries at position 51, led by that exact phrase and its
+    // variants (about 360 together), while the mobile hub it was deferring
+    // to had 1 impression. The protection was holding back the page Google
+    // actually ranks. On-page score for the phrase was 29/100.
+    metaTitle: "Android App Development in Dubai | Bilal Shafqat",
     metaDescription:
-      "Android developer in Dubai building in React Native: Google Play submission, testing on real devices, Play Console and install tracking.",
-    depthHeading: "How an Android app build works in practice",
+      "Android app development in Dubai with React Native: Google Play submission, testing on real devices, Play Console and install tracking.",
+    depthHeading: "How Android app development in Dubai works in practice",
     related: {
       heading: "The rest of the app",
       intro:
