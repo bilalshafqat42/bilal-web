@@ -4,7 +4,7 @@
   "metaTitle": "How Much Does a Website Cost in Dubai? (2026)",
   "description": "How much does a website cost in Dubai in 2026? What moves the price and what the quote leaves out, from a digital marketer who builds sites.",
   "published": "2026-10-01",
-  "updatedAt": "2026-11-11",
+  "updatedAt": "2026-11-24",
   "tags": [
     "Dubai",
     "Web Development",
@@ -281,9 +281,25 @@
       "v": "A straightforward brochure site is usually a few weeks once content exists. The delay is almost never the build. It is waiting for copy, photographs and decisions, which is why the question of who owns the content matters so much at the quoting stage."
     },
     {
+      "t": "h3",
+      "v": "كم تكلفة تطبيق الويب في دبي؟"
+    },
+    {
       "t": "p",
-      "v": "Last updated 11 November 2026. AED figures are general market guidance, not a quote and not a market survey."
+      "v": "تعتمد التكلفة على ما يفعله التطبيق أكثر من عدد صفحاته. الموقع التعريفي للشركات في دبي يكلّف عادةً بين 5,000 و150,000 درهم حسب من يبنيه. أما تطبيق الويب الذي يحتوي على وظائف مخصصة، مثل الحجوزات أو بوابات الدفع أو لوحات تحكم للعملاء أو الربط مع نظام CRM، فيقع غالبًا في الطرف الأعلى من هذا النطاق، لأن كل وظيفة تحتاج إلى بناء واختبار وصيانة. الطريقة الأدق لمعرفة السعر هي عرض مكتوب بعد تحديد ما يجب أن يفعله التطبيق."
+    },
+    {
+      "t": "h3",
+      "v": "كم تكلفة تصميم موقع إلكتروني في دبي؟"
+    },
+    {
+      "t": "p",
+      "v": "تتراوح تكلفة موقع الشركة في دبي عادةً بين 5,000 و150,000 درهم. القالب الجاهز هو الأرخص، والمستقل في المنتصف، والوكالات في دبي في الأعلى بسبب تكاليف المكتب وإدارة الحساب. إضافة اللغة العربية تزيد التكلفة لأن التصميم ينعكس من اليمين إلى اليسار ويحتاج إلى محتوى مكتوب بالعربية وليس ترجمة آلية. اسأل دائمًا عمّا يشمله العرض: الاستضافة، والمحتوى، والتتبّع، والدعم بعد الإطلاق."
+    },
+    {
+      "t": "p",
+      "v": "Last updated 24 November 2026. AED figures are general market guidance, not a quote and not a market survey."
     }
   ],
-  "words": 1437
+  "words": 1572
 }

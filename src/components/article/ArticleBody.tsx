@@ -58,6 +58,21 @@ function withLinks(text: string) {
   return out;
 }
 
+/**
+ * `lang="ar"` and `dir="rtl"` for a block whose first letter is Arabic.
+ *
+ * Added 2026-11-24 for Arabic FAQ answers (Search Console showed Arabic
+ * cost queries reaching the website-cost article at position 9). Without
+ * it an Arabic paragraph inherits the page's `lang="en"` and left-to-right
+ * base, so punctuation lands on the wrong end and a screen reader reads it
+ * with English rules. Keyed on the first letter rather than set on every
+ * block (`dir="auto"`), so English blocks render exactly as before.
+ */
+const ARABIC_FIRST = /^[^A-Za-z؀-ۿ]*[؀-ۿ]/;
+function langAttrs(text: string) {
+  return ARABIC_FIRST.test(text) ? ({ lang: "ar", dir: "rtl" } as const) : {};
+}
+
 export default function ArticleBody({ blocks }: { blocks: Block[] }) {
   // Ids come from `headingIdMap`, built by the same function the contents list
   // reads, so a link in the sidebar cannot point at an anchor the body never
@@ -96,11 +111,11 @@ export default function ArticleBody({ blocks }: { blocks: Block[] }) {
           );
 
           return b.t === "h2" ? (
-            <h2 key={i} id={id} className="t-h3 mt-14 scroll-mt-28 text-ink first:mt-0">
+            <h2 key={i} id={id} {...langAttrs(b.v)} className="t-h3 mt-14 scroll-mt-28 text-ink first:mt-0">
               {label}
             </h2>
           ) : (
-            <h3 key={i} id={id} className="t-h5 mt-10 scroll-mt-28 text-ink first:mt-0">
+            <h3 key={i} id={id} {...langAttrs(b.v)} className="t-h5 mt-10 scroll-mt-28 text-ink first:mt-0">
               {label}
             </h3>
           );
@@ -108,7 +123,7 @@ export default function ArticleBody({ blocks }: { blocks: Block[] }) {
 
         if (b.t === "p") {
           return (
-            <p key={i} className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
+            <p key={i} {...langAttrs(b.v)} className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
               {withLinks(b.v)}
             </p>
           );

@@ -318,7 +318,7 @@ export function moreLikeThis(slug: string, count = 3): BlogPost[] {
  *
  *   - the section is an `h2` reading "Frequently asked questions", "FAQ" or
  *     "FAQs" (with or without a trailing qualifier), and runs to the next `h2`;
- *   - each question is an `h3` ending in "?";
+ *   - each question is an `h3` ending in "?" (or the Arabic "؟");
  *   - its answer is the `p` blocks under it, joined, with `[[label|/path]]`
  *     reduced to the label the page shows;
  *   - a question whose answer holds anything else (a list, code) is left
@@ -356,7 +356,8 @@ export function faqOf(post: BlogPost): { question: string; answer: string }[] {
       if (last.t === "p" && DATELINE.test(last.v)) body.pop();
       else break;
     }
-    if (!q.v.trim().endsWith("?") || q.href) continue;
+    // "?" or the Arabic "؟" (U+061F), so Arabic FAQ answers reach the schema too.
+    if (!/[?؟]$/.test(q.v.trim()) || q.href) continue;
     if (!body.length || body.some((b) => b.t !== "p")) continue;
     // A numbered step written as a paragraph ("2. Click on Resources") is a
     // list that lost its other items in the WordPress recovery. The page still
