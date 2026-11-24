@@ -98,12 +98,30 @@ function detectBot(userAgent: string): string | null {
  * each. Real crawlers rarely exceed this from one address; the request itself
  * is still served, only the report is skipped. In memory, per instance.
  */
+/*
+ * 2026-11-24: changed from "20 per IP per minute" to "each path once per IP
+ * per 10 minutes". The flat cap undercounted real crawls: OAI-SearchBot
+ * fetches 150 to 900 distinct pages in one burst, so from 11 Nov every burst
+ * was recorded as 1 to 9 hits (last full burst counted: 10 Nov, 205), and the
+ * weekly answer-fetch figure fell from 2,156 to 4 while the crawls carried
+ * on. A fake loop repeats the same URL and still counts once; a crawl walks
+ * distinct URLs and is counted in full. The per-IP ceiling stays as a
+ * backstop against a fake client cycling through random paths.
+ */
+const BOT_HIT_DEDUPE_MS = 10 * 60_000;
 const BOT_HIT_WINDOW_MS = 60_000;
-const BOT_HITS_PER_WINDOW = 20;
+const BOT_HITS_PER_WINDOW = 300;
+const botSeen = new Map<string, number>();
 const botHits = new Map<string, { start: number; count: number }>();
 
-function botHitAllowed(ip: string): boolean {
+function botHitAllowed(ip: string, path: string): boolean {
   const now = Date.now();
+  const key = `${ip} ${path}`;
+  const seenAt = botSeen.get(key);
+  if (seenAt !== undefined && now - seenAt < BOT_HIT_DEDUPE_MS) return false;
+  if (botSeen.size > 20_000) botSeen.clear();
+  botSeen.set(key, now);
+
   const entry = botHits.get(ip);
   if (!entry || now - entry.start > BOT_HIT_WINDOW_MS) {
     if (botHits.size > 5_000) botHits.clear();
@@ -185,7 +203,7 @@ export function proxy(request: NextRequest, event: NextFetchEvent) {
       request.headers.get("cf-connecting-ip") ||
       request.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
       "unknown";
-    if (botHitAllowed(ip)) reportBotHit(botName, userAgent, request.nextUrl.pathname, event);
+    if (botHitAllowed(ip, request.nextUrl.pathname)) reportBotHit(botName, userAgent, request.nextUrl.pathname, event);
   }
 
   // Case-sensitive on purpose. A next.config redirect cannot tell "/About"
