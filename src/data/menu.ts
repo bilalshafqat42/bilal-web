@@ -96,8 +96,6 @@ export const serviceMenuColumns: ServiceMenuColumn[] = [
     title: "Marketing",
     slugs: [
       "digital-marketing",
-      // Added 2026-11-25: the senior, whole-marketing offer.
-      "fractional-head-of-marketing",
       "seo",
       "social-media-marketing",
       "email-marketing",

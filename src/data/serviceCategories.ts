@@ -460,66 +460,6 @@ export const megaMenuGroups: MegaMenuGroup[] = [
     ],
   },
   {
-    /** Added 2026-11-25 at Bilal's request: the senior, whole-marketing offer
-     *  (strategy, brand, budget, team, reporting to owners) for startups,
-     *  SMEs and founders, sold per project, as a monthly fee or as a full
-     *  retainer. Targets "fractional head of marketing / fractional cmo dubai",
-     *  NOT the main keyword: the homepage and the vs-agency article keep
-     *  "freelance digital marketer in Dubai", and this page links to the
-     *  article with that anchor. Claims are what Bilal stated he does
-     *  (planning, budgets, managing the people doing the work, reporting to
-     *  owners), his stated figures (AED 5 million+ in budgets managed, teams
-     *  of 10, given 2026-11-25) and the published case studies. Years come
-     *  from yearsExperience(). */
-    slug: "fractional-head-of-marketing",
-    title: "Fractional Head of Marketing",
-    accent: "gold",
-    headline: "A fractional head of marketing in Dubai: one senior person running all of your marketing",
-    intro: `Most startups and growing companies in Dubai reach the same point: marketing is spread across an agency, two freelancers and a founder who has no time for it, and nobody owns the result. A full-time head of marketing is a large salary, a visa and months of hiring. As a fractional head of marketing, I take that seat for a part of the cost: the strategy, the brand, the budget, the people doing the work and the monthly report to the owners, with ${yearsExperience()} years in marketing, more than AED 5 million in marketing budgets managed and teams of 10 led, plus the hands-on skills to build what the plan needs myself.`,
-    metaTitle: "Fractional Head of Marketing in Dubai | Bilal Shafqat",
-    metaDescription:
-      "A fractional head of marketing in Dubai for startups and SMEs: strategy, brand, budget, team and reporting, per project, monthly or as a retainer.",
-    depthHeading: "How a fractional head of marketing works in practice",
-    related: {
-      heading: "What the role covers, service by service",
-      intro:
-        "A head of marketing decides what to do and makes sure it gets done. These are the parts I plan, run or build myself.",
-      slugs: [
-        "digital-marketing",
-        "graphic-design-branding",
-        "paid-marketing",
-        "seo",
-        "social-media-marketing",
-        "website-app-development",
-      ],
-    },
-    faqs: [
-      {
-        question: "What is a fractional head of marketing?",
-        answer:
-          "A senior marketer who leads your marketing part-time or on a set number of days, instead of as a full-time employee. You get the same job done, the plan, the brand, the budget, the team and the reporting, at a fraction of a full salary, and you can scale it up or down as the business changes.",
-      },
-      {
-        question: "Who is it for?",
-        answer:
-          "Startups, small and medium businesses and founders in Dubai and the UAE who need one senior person to own marketing, but are not ready for a full-time head of marketing, or are tired of managing several agencies and freelancers themselves.",
-      },
-      {
-        question: "How can we work together?",
-        answer:
-          "Three ways. A fixed-price project, such as a launch, a rebrand or a marketing plan. A monthly fee for running a defined part of the marketing. Or a full retainer, where I act as your head of marketing across everything. Every option starts with a free call, and the price is agreed in writing before any work starts.",
-      },
-      {
-        question: "Do you only advise, or do you do the work too?",
-        answer:
-          "Both, depending on what you need. I can plan and manage the people doing the work, in-house or freelancers, or do the hands-on work myself: campaigns, websites, design and tracking. Most clients use a mix of the two.",
-      },
-    ],
-    items: [
-      { title: "Fractional Head of Marketing", pillarSlug: "paid-marketing" },
-    ],
-  },
-  {
     slug: "website-app-development",
     title: "Website & App Development",
     headline: "Web development in Dubai by a freelance web developer who builds for the marketing",
@@ -1843,7 +1783,7 @@ export const megaMenuGroups: MegaMenuGroup[] = [
       {
         question: "Do you have a published WhatsApp case study?",
         answer:
-          "Yes. A bilingual vendor invite for an event in Abu Dhabi, sent to 723 numbers from the client's verified business number, is written up in full in my portfolio, with Meta's own delivery, read, click and reply figures, and linked from this page.",
+          "Not yet. The work on this site is websites, apps, social and paid campaigns, and none of those write-ups is a WhatsApp campaign. This page describes how I do the work rather than claiming results you cannot check. If WhatsApp is the main thing you need, ask on the call and I will be straight about what to expect.",
       },
       {
         question: "Can you send a WhatsApp campaign to a list of numbers I already have?",
