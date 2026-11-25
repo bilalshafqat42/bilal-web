@@ -38,6 +38,10 @@ import LinkedText from "@/components/ui/LinkedText";
  * the other nine all used one anchor. Each page gets a different variant, in a
  * sentence that is true on that page: one person plans and does the work.
  */
+// 2026-11-25: these anchors now link to /freelance-digital-marketer-vs-agency-dubai,
+// not the homepage. Search Console shows Google ranks that article (not the
+// homepage) for the main keyword group, and the blog's keyword links were
+// moved to it the same day. The name is kept to keep the diff small.
 const HOME_ANCHOR: Record<string, string> = {
   "digital-marketing": "digital marketing freelancer in Dubai",
   "seo": "freelance digital marketing expert in Dubai",
@@ -187,6 +191,11 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
           }
         />
 
+        {/* Only when there is something under the heading (2026-11-25): pages
+            whose menu items resolve to no pillar section and that carry no
+            HOME_ANCHOR line (Fractional Head of Marketing) rendered an empty
+            "What this covers" heading. */}
+        {sections.length || HOME_ANCHOR[category.slug] ? (
         <section className="relative section">
           <div className="site-container">
             <Reveal>
@@ -215,7 +224,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
             {HOME_ANCHOR[category.slug] ? (
               <p className="mt-10 max-w-2xl border-t border-border pt-8 text-base leading-relaxed text-muted">
                 Every part of this is planned and done by one person. I work as a{" "}
-                <Link href="/" className="text-ink underline decoration-gold/40 underline-offset-[6px] hover:text-gold">
+                <Link href="/freelance-digital-marketer-vs-agency-dubai" className="text-ink underline decoration-gold/40 underline-offset-[6px] hover:text-gold">
                   {HOME_ANCHOR[category.slug]}
                 </Link>
                 , so there is no account manager between you and the work.
@@ -223,6 +232,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
             ) : null}
           </div>
         </section>
+        ) : null}
 
         {related.length && category.related ? (
           <section className="relative section">

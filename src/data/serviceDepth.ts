@@ -988,6 +988,77 @@ export const serviceDepth: Record<string, Depth> = {
     ],
   },
 
+  // Added 2026-11-25 with the page. Every claim is something Bilal stated he
+  // does (incl. AED 5M+ budgets and teams of 10, given 2026-11-25) or a
+  // published case study shows. No salaries or client results. Client names limited to those already public on /about and in
+  // the portfolio; LEOS is not named off the portfolio, The Scene Popup is
+  // not named off its own case study (both at Bilal's request).
+  "fractional-head-of-marketing": {
+    blocks: [
+      {
+        heading: "What a fractional head of marketing in Dubai actually owns",
+        paragraphs: [
+          "A head of marketing is not the person who posts on Instagram. It is the person who decides who the business is selling to, what it says, where the budget goes, who does the work and how everyone will know whether it worked. When nobody owns those five things, each agency and freelancer optimises their own channel, the founder becomes the project manager, and the money is spent without a plan behind it.",
+          "As your fractional head of marketing, I own all five, and report on them to the owners every month in plain numbers: what was spent, what it produced and what changes next.",
+        ],
+        table: {
+          caption: "Four ways to cover marketing in a Dubai startup or SME",
+          head: ["", "Agency", "Task freelancer", "Full-time head of marketing", "Fractional head of marketing"],
+          rows: [
+            ["Who owns the strategy", "The account team, inside their own services", "Usually nobody", "The hire", "Me, across every channel"],
+            ["Who does the work", "Mostly junior staff", "The freelancer, on one task", "A team they build", "Me, or the people I manage"],
+            ["Cost", "Retainer plus each service", "Low per task", "Full salary, visa and hiring time", "Part of a salary, scaled to the work"],
+            ["Time to start", "Weeks of onboarding", "Days", "Months to hire", "After one call"],
+            ["Reports to the owners", "On their own channels", "Rarely", "Yes", "Yes, monthly"],
+          ],
+        },
+      },
+      {
+        heading: "Strategy, brand and budget before campaigns",
+        paragraphs: [
+          "The first month is spent on the decisions everything else depends on: who the customer is, what the business is up against, how it should sound, and how the budget is split across channels. The output is a written plan with the goals, the channels, the monthly budget, the people involved and the numbers that will decide what counts as success.",
+          "Brand comes into that plan as a business decision, not a logo. For [Texdale](/portfolio/texdale) that meant a brand, a website, an app design and the social and paid campaigns, built as one identity. For [Homemaid](/portfolio/homemaid) it meant the booking platform, the automation and the Google and Meta campaigns that fill it. Both are on this site in full.",
+        ],
+      },
+      {
+        heading: "Managing the team, or doing the work",
+        paragraphs: [
+          "Every business starts from a different place. Some already have a designer, a videographer or a junior marketer; some have nobody. I plan the work and manage the people doing it, in-house staff or freelancers, with clear briefs, deadlines and a weekly check on what shipped. I have led marketing teams of 10, with designers, developers, content writers, videographers, animators, SEO specialists and media buyers, and managed more than AED 5 million in marketing budgets.",
+          "Where there is nobody to do it, I build it myself: the website, the landing pages, the campaigns, the tracking and the CRM. That is the difference from a consultant who only writes the plan. If you want the details of that hands-on side, my [freelance digital marketer in Dubai](/freelance-digital-marketer-vs-agency-dubai) comparison covers when one person is enough and when you need an agency.",
+        ],
+      },
+      {
+        heading: "Three ways to work together",
+        paragraphs: [
+          "A fixed-price project suits a single job with an end: a launch, a rebrand, a website, a marketing plan or a campaign. A monthly fee suits ongoing work on part of the marketing, such as paid ads and SEO. A full retainer makes me your head of marketing across everything, with the plan, the budget, the team and the monthly report to the owners.",
+          "All three start with a free call. The price is agreed in writing before any work starts, ad spend is always paid by you directly, and every account, from Google Ads to the CRM, is created in your company's name so it stays with you. The same approach is behind the [property launches](/portfolio), platforms and campaigns in my portfolio.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "How much does a fractional head of marketing cost in Dubai?",
+        answer:
+          "Less than a full-time head of marketing, because you pay for the time the business needs rather than a full salary, a visa and the hiring. The fee depends on the scope and how much hands-on work is included, and is agreed in writing after a free call.",
+      },
+      {
+        question: "How many hours or days do you work for one company?",
+        answer:
+          "It is agreed by scope, not by the clock. A project has a fixed end, a monthly engagement covers a defined set of work, and a full retainer covers everything a head of marketing does, with the reporting rhythm set at the start.",
+      },
+      {
+        question: "Can you hire and manage a marketing team for us?",
+        answer:
+          "Yes. I have led marketing teams of 10, including designers, developers, content writers, videographers, animators, SEO specialists and media buyers. I can manage your existing staff and freelancers, help you decide which roles to hire, write the job briefs and run the first weeks of a new person's work.",
+      },
+      {
+        question: "Which industries do you work with?",
+        answer:
+          "My work so far has included Dubai real estate, home services, B2B and events, and the method suits any business that sells to customers who search, scroll and message before they buy.",
+      },
+    ],
+  },
+
   "digital-marketing": {
     blocks: [
       {

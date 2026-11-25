@@ -1213,6 +1213,7 @@ export const clients: Client[] = [
     ],
     services: [
       "digital-marketing",
+      "fractional-head-of-marketing",
       "paid-marketing",
       "google-ads",
       "facebook-ads",
@@ -2453,6 +2454,7 @@ export const clients: Client[] = [
     // not decided.
     services: [
       "digital-marketing",
+      "fractional-head-of-marketing",
       "paid-marketing",
       "google-ads",
       "facebook-ads",
@@ -3523,6 +3525,7 @@ export const clients: Client[] = [
     ],
     services: [
       "digital-marketing",
+      "fractional-head-of-marketing",
       "paid-marketing",
       "google-ads",
       "facebook-ads",
@@ -3728,6 +3731,7 @@ export const clients: Client[] = [
     ],
     services: [
       "digital-marketing",
+      "fractional-head-of-marketing",
       "paid-marketing",
       "google-ads",
       "facebook-ads",
