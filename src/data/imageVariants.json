@@ -1501,5 +1501,49 @@
    1080,
    1280
   ]
+ },
+ "/portfolio/the-scene-popup/button-clicks.avif": {
+  "w": 1128,
+  "v": "dccfb77e",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1128
+  ]
+ },
+ "/portfolio/the-scene-popup/campaign-results.avif": {
+  "w": 1128,
+  "v": "8d98f3ab",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1128
+  ]
+ },
+ "/portfolio/the-scene-popup/desert-in-bloom-banner.avif": {
+  "w": 1600,
+  "v": "91ff3782",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/the-scene-popup/whatsapp-message.avif": {
+  "w": 608,
+  "v": "518cc494",
+  "widths": [
+   256,
+   384,
+   608
+  ]
  }
 }

@@ -283,7 +283,9 @@ export type Industry =
   | "Professional Services"
   | "Home Services"
   | "Manufacturing & Industrial"
-  | "Media & Production";
+  | "Media & Production"
+  // Added 2026-11-25 for The Scene Popup, an Abu Dhabi pop-up market organiser.
+  | "Events & Experiences";
 
 export type Client = {
   slug: string;
@@ -4024,6 +4026,205 @@ export const clients: Client[] = [
       "Meta campaign creatives",
       "digital marketing case study Dubai",
       "Homemaid",
+    ],
+  },
+  {
+    // Published 2026-11-25, after the client agreed to be named with results.
+    // Figures are Meta's campaign insights as of 25 Nov 2026, while the
+    // campaign was still open (it closes 27 Nov). Applications are counted on
+    // the client's own website and are not claimed here. Deliberately absent:
+    // the vendor list and any vendor's name.
+    slug: "the-scene-popup",
+    name: "The Scene Popup",
+    industry: "Events & Experiences",
+    siteUrl: "https://www.thescenepopup.com",
+    ogImage: "/portfolio/the-scene-popup/og-the-scene-popup.jpg",
+    ogImageAlt:
+      "The Desert in Bloom banner: The Scene 02, 29 to 31 January 2027, Marriott Hotel Al Forsan, Abu Dhabi, now accepting vendors",
+    title: "The Scene Popup: WhatsApp Marketing Campaign in the UAE",
+    description:
+      "A bilingual WhatsApp campaign inviting 723 vendors to an Abu Dhabi pop-up event: 82% delivered, 46% read and 106 taps to apply, for AED 79.62.",
+    headline: "One WhatsApp message to 723 vendors: 46% read it and 106 tapped through to apply",
+    intro:
+      "The Scene Popup runs pop-up markets in the UAE, and its second event, Desert in Bloom, takes place at the Marriott Hotel Al Forsan in Abu Dhabi from 29 to 31 January 2027. They needed vendors to apply for booths. I ran the WhatsApp campaign end to end: cleaning their list of vendor numbers, writing the Arabic and English message, designing the banner, getting the template approved by Meta, sending it from their verified business number and reporting the results.",
+    facts: [
+      { label: "Client", value: "The Scene Popup" },
+      { label: "Sector", value: "Events and pop-up markets" },
+      { label: "Market", value: "Abu Dhabi, UAE" },
+      { label: "Channel", value: "WhatsApp Business Platform" },
+      { label: "Languages", value: "Arabic and English" },
+      { label: "Role", value: "WhatsApp campaign, end to end" },
+    ],
+    scopeIntro:
+      "A vendor invite only works if it arrives, gets opened and makes applying one tap away. Every part of this campaign was built around those three steps, on the client's own verified number, so replies came straight back to their inbox.",
+    scope: [
+      {
+        heading: "List preparation",
+        body: "722 vendor numbers supplied in a spreadsheet, cleaned into one international format with duplicates and broken numbers removed, and uploaded as a custom audience. Nothing was bought or scraped: every number came from the client.",
+      },
+      {
+        heading: "Bilingual message",
+        body: "One message in Arabic and English, with the dates, venue, categories and booth prices in the first screen, a bold call to apply, and links that stay clickable. The English lines carry direction marks so they read left to right inside an Arabic message.",
+      },
+      {
+        heading: "Banner design",
+        body: "A Desert in Bloom banner in the event's look, sized for the WhatsApp message header, with the dates, venue and \"Now accepting vendors\" readable on a phone.",
+      },
+      {
+        heading: "Template approval",
+        body: "Submitted as a marketing template in WhatsApp Manager and approved by Meta, within the platform's limits on emojis and buttons.",
+      },
+      {
+        heading: "Sending and budget",
+        body: "Sent from The Scene Popup's verified business number through Meta Business Suite, with a budget cap of AED 170 and a maximum of AED 0.23 per message, over four days.",
+      },
+      {
+        heading: "Replies and reporting",
+        body: "Guidance for the client's team on reading and answering replies in the WhatsApp inbox, and a branded report with delivery, reads, clicks, replies and cost.",
+      },
+    ],
+    services: ["whatsapp-marketing", "digital-marketing", "graphic-design-branding"],
+    depth: [
+      {
+        heading: "Why WhatsApp for a vendor invite",
+        paragraphs: [
+          "The client already had the numbers of hundreds of small businesses who sell at markets like theirs, and those owners live on WhatsApp. An email would have sat unopened and a post would have reached followers, not vendors. A WhatsApp message from a verified business number lands in the same place their customers message them.",
+          "It also brings the conversation back. Vendors who had a question replied to the message itself, and those replies arrived in the client's own inbox the same afternoon.",
+        ],
+      },
+      {
+        heading: "What the numbers say",
+        paragraphs: [
+          "By 25 November, 591 of the 723 numbers had received the invite. 271 opened it, 106 tapped \"Apply for a space\", 11 more tapped the website link in the text, and 34 wrote back. The spend was AED 79.62, which is AED 0.13 per message delivered and AED 0.77 per tap on the button.",
+          "The button did ten times the work of the link in the text, which is the lesson for the next send: make the button the one thing to do. The weakest step was opening the message, so the next version leads with the price and the dates in the first two lines.",
+          "These are Meta's figures while the campaign was still open. Completed applications are counted on the client's website, so this page does not claim a number of applications.",
+        ],
+      },
+      {
+        heading: "One person, from list to report",
+        paragraphs: [
+          "The list, the copy in two languages, the banner, the approval, the send and the report were all done by one person, in the client's own Meta account, so the number, the template and the audience stay theirs for the next event. I work as a [freelance digital marketer in Dubai](/freelance-digital-marketer-vs-agency-dubai), and this is the kind of fast, measurable campaign that model suits.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What did Bilal Shafqat do for The Scene Popup?",
+        answer:
+          "Ran their WhatsApp vendor invite for Desert in Bloom end to end: cleaned the list of 722 vendor numbers, wrote the Arabic and English message, designed the banner, got the template approved by Meta, sent it from their verified business number and reported the results.",
+      },
+      {
+        question: "What were the results of the WhatsApp campaign?",
+        answer:
+          "By 25 November 2026, 591 of 723 numbers had received the message (82%), 271 read it (46%), 106 tapped Apply for a space (18%) and 34 replied, for AED 79.62.",
+      },
+      {
+        question: "How much did the WhatsApp campaign cost to send?",
+        answer:
+          "AED 79.62 in Meta message fees by 25 November, against a cap of AED 170: AED 0.13 per message delivered and AED 0.77 per tap on the apply button. My fee for running the campaign is separate.",
+      },
+      {
+        question: "Why was the message in Arabic and English?",
+        answer:
+          "The vendors are a mix of Arabic and English speakers across the UAE, so one message carried both, with the English lines marked to read left to right inside the Arabic layout.",
+      },
+      {
+        question: "Did every number receive the message?",
+        answer:
+          "No. 132 did not, which is normal for a list collected over time: some numbers are not on WhatsApp, some people have turned off business marketing messages, WhatsApp limits how many marketing messages one person receives, and Meta held 6 numbers back for its own testing.",
+      },
+    ],
+    ctaLead: "Need a WhatsApp campaign people actually open?",
+    ctaService: "whatsapp-marketing",
+    showcase: [
+      {
+        at: "opener",
+        kind: "stats",
+        items: [
+          { value: "591", label: "vendors reached, 82% of the list" },
+          { value: "46%", label: "read the message" },
+          { value: "106", label: "taps on Apply for a space" },
+          { value: "AED 79.62", label: "spent on messages, AED 0.77 per tap" },
+        ],
+      },
+      {
+        at: "scope",
+        kind: "flow",
+        eyebrow: "Campaign build",
+        heading: "From a spreadsheet of numbers to a message in 723 inboxes",
+        body: "Every step ran in the client's own Meta account, on their verified business number, so the audience and the template are theirs for the next event.",
+        steps: ["Clean the list", "Write in Arabic and English", "Design the banner", "Meta approval", "Upload the audience", "Send with a budget cap", "Read the replies", "Report"],
+        screens: [
+          {
+            src: "/portfolio/the-scene-popup/whatsapp-message.avif",
+            // From Meta's template preview, with the one line that preview
+            // repeated by mistake (the venue) shown once, as vendors received it.
+            width: 608,
+            height: 1532,
+            alt: "The approved Desert in Bloom WhatsApp message: the banner, the invitation in Arabic and English, the dates, venue and hours, the categories, booths from AED 3,500 to 5,000, Apply now, the website, Instagram and WhatsApp links, and the Apply for a space button",
+            label: "The approved message",
+          },
+        ],
+        notes: [
+          {
+            title: "Key facts first",
+            body: "Dates, venue, categories and booth prices high in the message, because WhatsApp folds long messages behind Read more.",
+          },
+          {
+            title: "Two languages, one message",
+            body: "Arabic and English together, with direction marks so each line reads the right way on every phone.",
+          },
+          {
+            title: "One clear button",
+            body: "Apply for a space opens the application page. It drew 106 taps against 11 for the link in the text.",
+          },
+        ],
+      },
+      {
+        at: "scope",
+        kind: "screens",
+        eyebrow: "Results",
+        heading: "Meta's own figures, as of 25 November 2026",
+        body: "Screens from the campaign's insights in Meta Business Suite. Meta's dashboard shows one more delivered than sent; every figure is shown exactly as Meta reports it.",
+        desktop: {
+          src: "/portfolio/the-scene-popup/campaign-results.avif",
+          width: 1128,
+          height: 236,
+          alt: "Meta campaign insights for Desert in Bloom: AED 79.62 spent, AED 0.13 per message delivered, AED 0.77 per button click, 590 sent, 591 delivered, 271 read and 34 unique replies",
+          label: "Campaign insights",
+        },
+        points: [
+          { title: "Delivered", body: "591 of 723 numbers, 82%." },
+          { title: "Read", body: "271, 46% of those delivered." },
+          { title: "Taps to apply", body: "106 on the button, 18% of those delivered, plus 11 on the website link." },
+          { title: "Replies", body: "34 vendors wrote back on WhatsApp." },
+        ],
+      },
+      {
+        at: "scope",
+        kind: "timeline",
+        eyebrow: "Timeline",
+        heading: "Approved one day, replies the next afternoon",
+        items: [
+          { when: "23 Nov", title: "Approved and set up", body: "Template approved by Meta, audience of 723 uploaded, budget and dates set." },
+          { when: "24 Nov, 10:00", title: "Sent", body: "The invite starts going out from the client's verified number." },
+          { when: "24 Nov, afternoon", title: "First replies", body: "Vendors, an events company and a content creator write back in the inbox." },
+          { when: "25 Nov", title: "Results", body: "591 delivered, 271 read, 106 taps to apply, 34 replies, AED 79.62 spent." },
+          { when: "27 Nov", title: "Campaign closes", body: "Open until 02:26 Dubai time." },
+        ],
+      },
+    ],
+    projects: [],
+    keywords: [
+      "WhatsApp marketing UAE",
+      "WhatsApp campaign case study",
+      "WhatsApp Business Platform",
+      "bulk WhatsApp messages Dubai",
+      "event marketing Abu Dhabi",
+      "vendor recruitment campaign",
+      "Arabic and English WhatsApp message",
+      "The Scene Popup",
+      "Desert in Bloom",
     ],
   },
 ];

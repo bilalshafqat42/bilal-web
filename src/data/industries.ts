@@ -56,4 +56,8 @@ export const industriesWorkedIn: IndustryEntry[] = [
     sector: "Home services, Dubai",
     companies: [{ name: "Homemaid", href: "/portfolio/homemaid" }],
   },
+  {
+    sector: "Events, Abu Dhabi",
+    companies: [{ name: "The Scene Popup", href: "/portfolio/the-scene-popup" }],
+  },
 ];
