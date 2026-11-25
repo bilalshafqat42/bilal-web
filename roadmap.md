@@ -12109,3 +12109,18 @@ this positioning is in Claude Docs ("Bilal Shafqat - CV").
 - [ ] Post own content daily from the weekly cards, not reposts
 - [ ] Comment on 5 posts a day from marketing leaders and Dubai developers
 - [ ] Recheck profile views and search appearances weekly (27 Oct baseline: 173 views, 75 search appearances, 11,590 followers)
+
+## Senior positioning: Fractional Head of Marketing (added 2026-11-25)
+
+Bilal wants to be seen as a 360 marketer (strategy, brand, budget, team, reporting to owners) for startups, SMEs and founders, while the site keeps ranking for "freelance digital marketer in Dubai". Offers: per project, monthly fee, full retainer. Stated facts: 17 years, AED 5M+ budgets managed, teams of 10 (designers, developers, content writers, videographers, animators, SEO, media buyers).
+
+**Waiting until Monday 30 Nov 2026.** 25 Nov already changed the blog's keyword links and published The Scene case study. One change at a time, so ranking moves can be traced.
+
+1. [ ] Mon 30 Nov: check rankings after the 25 Nov changes (main keyword, CRM article, Android page, AI fetches). If stable or better, go to 2.
+2. [ ] Publish the Fractional Head of Marketing hub. Built and tested on branch `fractional-head-of-marketing` (commit e956327, reverted on sunday-fixes in 2b7dc42). Includes: the page (on-page 96 for "fractional head of marketing dubai"), Marketing menu entry, proof tags on AKS, Texdale, NextGen HR and Homemaid, the 10 service-page "freelance digital marketer in Dubai" links moved from the homepage to the vs-agency article, the empty "What this covers" heading fix, and the WhatsApp FAQ update. To publish: revert 2b7dc42 (or cherry-pick e956327), build, checks, "make it live".
+3. [ ] Marketing Strategy sub-page under the hub (`parent: "fractional-head-of-marketing"`). Check "marketing strategy dubai" in Keyword Planner first.
+4. [ ] Upgrade the existing Branding page (graphic-design-branding) with brand strategy. No second branding page.
+5. [ ] About page: leadership section with the stated facts above.
+6. [ ] Homepage: one section under the hero, "From one campaign to your whole marketing", with the three ways to work. Title, h1 and hero animation untouched.
+
+Not pages: budget, team management, reporting. Nobody searches for them; they stay as sections on the hub.
