@@ -12,6 +12,11 @@
  * To add a post: `node scripts/new-post.mjs <slug>` writes the file and the two
  * lines here. See docs/adding-a-blog-post.md.
  */
+import p_what_is_browserstack from "./what-is-browserstack.json";
+import p_how_to_use_browserstack from "./how-to-use-browserstack.json";
+import p_browserstack_pros_and_cons from "./browserstack-pros-and-cons.json";
+import p_free_browserstack_alternatives from "./free-browserstack-alternatives.json";
+import p_browserstack_vs_lambdatest from "./browserstack-vs-lambdatest.json";
 import p_can_chatgpt_see_your_website from "./can-chatgpt-see-your-website.json";
 import p_ai_marketing_automation_workflows from "./ai-marketing-automation-workflows.json";
 import p_ga4_data_manager from "./ga4-data-manager.json";
@@ -91,6 +96,11 @@ import p_8_must_have_free_icon_libraries_for_designers from "./8-must-have-free-
 
 /** Untyped here; `src/data/blogPosts.ts` applies the `BlogPost` type. */
 export const postsInOrder = [
+  p_what_is_browserstack,
+  p_how_to_use_browserstack,
+  p_browserstack_pros_and_cons,
+  p_free_browserstack_alternatives,
+  p_browserstack_vs_lambdatest,
   p_can_chatgpt_see_your_website,
   p_ai_marketing_automation_workflows,
   p_ga4_data_manager,

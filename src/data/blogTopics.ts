@@ -63,6 +63,7 @@ export const TAG_TOPIC: Record<string, TopicSlug | null> = {
   Redux: "development",
   Typescript: "development",
   "Node JS": "development",
+  Testing: "development",
   // Design
   "UI UX Design": "design",
   Design: "design",

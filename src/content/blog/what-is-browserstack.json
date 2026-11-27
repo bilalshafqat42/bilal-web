@@ -1,0 +1,251 @@
+{
+  "slug": "what-is-browserstack",
+  "title": "What Is BrowserStack? What It Does and Who Uses It",
+  "metaTitle": "What Is BrowserStack? Products, Uses and Pricing",
+  "description": "What is BrowserStack? A plain guide to the cloud testing platform: what it does, who uses it, its main products and what it costs in November 2026.",
+  "published": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "tags": [
+    "Testing",
+    "Web Development"
+  ],
+  "image": {
+    "src": "/blog/what-is-browserstack/card.jpg",
+    "alt": "What is BrowserStack? Card reading: real phones and browsers, in a browser tab",
+    "width": 1200,
+    "height": 630
+  },
+  "blocks": [
+    {
+      "t": "p",
+      "v": "What is BrowserStack? It is a cloud testing platform that lets you open your website or app on real phones, tablets and desktop browsers without owning any of them. You pick a device in your browser, BrowserStack starts it in one of its data centres, and you control it remotely as if it were in front of you."
+    },
+    {
+      "t": "p",
+      "v": "I build websites and run marketing for businesses, and checking a page on the devices people actually use is part of every launch. This guide explains what BrowserStack does, who it is for, the products worth knowing and what it costs, without the sales language."
+    },
+    {
+      "t": "h2",
+      "v": "What does BrowserStack actually do?"
+    },
+    {
+      "t": "p",
+      "v": "Every browser draws a page slightly differently. Safari on an iPhone, Chrome on a Samsung phone and Edge on a Windows laptop can show the same page with different spacing, different fonts or a broken layout. The only way to be sure a page works is to look at it on each one."
+    },
+    {
+      "t": "p",
+      "v": "Buying and maintaining all those devices is expensive and slow. BrowserStack keeps the devices for you. You sign in, choose a device and a browser, type in a web address, and the real device loads it. What you see is streamed back to your screen, and your clicks and typing are sent to the device."
+    },
+    {
+      "t": "p",
+      "v": "That is the manual side. The other side is automation. Instead of clicking through pages yourself, you write test scripts with tools such as Selenium, Playwright, Cypress or Appium, and BrowserStack runs them on many browsers and devices at the same time."
+    },
+    {
+      "t": "h2",
+      "v": "Does BrowserStack use real devices or emulators?"
+    },
+    {
+      "t": "p",
+      "v": "Real devices, for its mobile testing, and that is the main reason people pay for it. An emulator or simulator imitates a phone on a computer. A real device is the actual phone with its actual browser, screen and hardware. Some bugs, such as how a page behaves when the on-screen keyboard opens, only show up properly on the real thing."
+    },
+    {
+      "t": "p",
+      "v": "Desktop browsers run on real machines too, across Windows and macOS versions. BrowserStack quotes different device counts on different pages of its own site, so I would not lean on any single number. What matters is whether the devices your customers use are available, and you can check that during the free trial before you pay anything."
+    },
+    {
+      "t": "h2",
+      "v": "Who uses BrowserStack?"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Front-end developers checking that a layout, menu or form works across browsers before a release.",
+        "QA testers running manual test passes and automated regression suites on many devices.",
+        "Agencies and freelancers who build sites for clients and need to check them on phones they do not own.",
+        "Product teams shipping mobile apps who need to test on many Android and iOS versions.",
+        "Business owners who want to see their own website on an iPhone or Android phone before a campaign goes live."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "The company was founded in 2011 by Ritesh Arora and Nakul Aggarwal. Its own company page says it is trusted by more than 50,000 customers across 135+ countries. That is BrowserStack's figure, not an independent one, but it gives a sense of how widely the platform is used."
+    },
+    {
+      "t": "h2",
+      "v": "What are BrowserStack's main products?"
+    },
+    {
+      "t": "p",
+      "v": "BrowserStack sells a long list of products, and some of the names overlap. These are the ones most people mean when they talk about BrowserStack:"
+    },
+    {
+      "t": "table",
+      "head": [
+        "Product",
+        "What it does",
+        "Who it is for"
+      ],
+      "rows": [
+        [
+          "Live",
+          "Manual testing of websites on real desktop and mobile browsers",
+          "Developers, testers, business owners"
+        ],
+        [
+          "App Live",
+          "Manual testing of mobile apps on real phones and tablets",
+          "App developers and testers"
+        ],
+        [
+          "Automate",
+          "Runs automated website tests on many browsers in parallel",
+          "QA and engineering teams"
+        ],
+        [
+          "App Automate",
+          "Runs automated mobile app tests on real devices",
+          "Mobile QA teams"
+        ],
+        [
+          "Percy",
+          "Visual testing that compares screenshots between versions to catch layout changes",
+          "Front-end teams"
+        ],
+        [
+          "Accessibility Testing",
+          "Checks pages for accessibility problems",
+          "Teams with accessibility requirements"
+        ],
+        [
+          "Test Management",
+          "Organises test cases and test runs in one place",
+          "QA leads"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "v": "Its company page also lists newer products, including low-code automation, load testing and Requestly, a tool for intercepting and changing network requests. Most people will never need all of them."
+    },
+    {
+      "t": "p",
+      "v": "If you are new to it, start with Live. It needs no code and shows you in minutes what the product is. My [[step-by-step guide to using BrowserStack|/how-to-use-browserstack]] walks through a first session on an iPhone."
+    },
+    {
+      "t": "h2",
+      "v": "How does BrowserStack work behind the scenes?"
+    },
+    {
+      "t": "p",
+      "v": "When you start a Live session, BrowserStack connects you to a device in one of its data centres and streams its screen to your browser. Nothing needs to be installed on your computer to test a public website."
+    },
+    {
+      "t": "p",
+      "v": "For sites that are not public yet, such as a staging site or something running on your own computer, there is a tool called BrowserStack Local. It creates a secure connection between your machine or network and BrowserStack, so a remote device can open an address that only you can reach. This matters a lot for developers, because most testing happens before a site goes live."
+    },
+    {
+      "t": "p",
+      "v": "For automated tests, your test script connects to BrowserStack's grid instead of to a browser on your own machine. You tell it which browsers and devices to use, and it runs the tests and keeps videos, logs and screenshots of each run so you can see what failed and why."
+    },
+    {
+      "t": "h2",
+      "v": "How much does BrowserStack cost?"
+    },
+    {
+      "t": "p",
+      "v": "Prices change, so treat these as a snapshot. As of November 2026, BrowserStack's official pricing page lists these starting prices in US dollars, billed annually unless stated:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Live Desktop: $29 a month for one user, desktop browsers only.",
+        "Live Desktop & Mobile: $39 a month for one user, adding real mobile devices.",
+        "Live Freelancer: $12.50 a month billed annually, or $19 month to month, for 100 minutes of Live on desktop and mobile and one user.",
+        "Automate Desktop: $99 a month for one parallel test.",
+        "Percy: a free plan with 5,000 screenshots a month, and paid plans from $199 a month."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "There is also a free trial, which BrowserStack's support pages limit to 30 minutes of Live, 60 minutes of Automate and 30 minutes of App Live, and a free programme for open source projects. Check the current figures on the official page before you budget."
+    },
+    {
+      "t": "h3",
+      "v": "BrowserStack pricing (official page)",
+      "href": "https://www.browserstack.com/pricing"
+    },
+    {
+      "t": "p",
+      "v": "Whether those prices are worth it depends on how often you test. I cover that in [[BrowserStack pros and cons|/browserstack-pros-and-cons]]."
+    },
+    {
+      "t": "h2",
+      "v": "What are the alternatives to BrowserStack?"
+    },
+    {
+      "t": "p",
+      "v": "The closest direct rival is LambdaTest, which renamed itself TestMu AI in January 2026. Sauce Labs is another long-standing option. I put the first two side by side in [[BrowserStack vs LambdaTest|/browserstack-vs-lambdatest]]."
+    },
+    {
+      "t": "p",
+      "v": "You do not always need a paid cloud. Browser developer tools, Apple's iOS Simulator and Android's emulator cover a lot of everyday checks for free. The guide to [[free BrowserStack alternatives|/free-browserstack-alternatives]] sets out what each one can and cannot catch."
+    },
+    {
+      "t": "h2",
+      "v": "Do you actually need BrowserStack?"
+    },
+    {
+      "t": "p",
+      "v": "If you release website or app changes every week, test for clients, or your audience uses a wide spread of devices, a cloud like BrowserStack saves real time. If you run one business website and change it twice a year, the free trial or a free tool is usually enough."
+    },
+    {
+      "t": "p",
+      "v": "Either way the principle is the same: check your site on the devices your customers use before you spend money sending them to it. Testing on real devices before launch is a standard step in my [[web development|/services/website-app-development]] projects, for exactly that reason."
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "Is BrowserStack free?"
+    },
+    {
+      "t": "p",
+      "v": "Not fully. It has a free trial with limited minutes, a free Percy plan for visual testing and a free programme for open source projects. Ongoing manual or automated testing needs a paid plan."
+    },
+    {
+      "t": "h3",
+      "v": "Is BrowserStack a real device or an emulator?"
+    },
+    {
+      "t": "p",
+      "v": "BrowserStack's mobile testing runs on real phones and tablets held in its data centres, not on emulators. That is its main selling point, because some bugs only appear on real hardware."
+    },
+    {
+      "t": "h3",
+      "v": "Do I need to know how to code to use BrowserStack?"
+    },
+    {
+      "t": "p",
+      "v": "No. Live and App Live are manual: you click and type on the device inside your browser. You only need code for Automate and App Automate, which run test scripts."
+    },
+    {
+      "t": "h3",
+      "v": "Can BrowserStack test a website that is not live yet?"
+    },
+    {
+      "t": "p",
+      "v": "Yes. BrowserStack Local creates a secure connection so its devices can open a staging site or a site running on your own computer."
+    },
+    {
+      "t": "h3",
+      "v": "What is BrowserStack used for?"
+    },
+    {
+      "t": "p",
+      "v": "Mostly cross-browser testing: checking that a website or app looks and works correctly on different browsers, operating systems and devices, either by hand or with automated tests."
+    }
+  ],
+  "words": 1222
+}

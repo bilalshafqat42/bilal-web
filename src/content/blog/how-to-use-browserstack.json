@@ -1,0 +1,223 @@
+{
+  "slug": "how-to-use-browserstack",
+  "title": "How to Use BrowserStack to Test a Website on iPhone Without an iPhone",
+  "metaTitle": "How to Use BrowserStack: Test on iPhone Without One",
+  "description": "How to use BrowserStack step by step: test a website on iPhone without an iPhone, plus the free checks to run first. Written for beginners.",
+  "published": "2026-11-27",
+  "updatedAt": "2026-11-27",
+  "tags": [
+    "Testing",
+    "Web Development"
+  ],
+  "image": {
+    "src": "/blog/how-to-use-browserstack/card.jpg",
+    "alt": "How to use BrowserStack to test a website on iPhone without an iPhone. Card reading: test on an iPhone without owning one",
+    "width": 1200,
+    "height": 630
+  },
+  "blocks": [
+    {
+      "t": "p",
+      "v": "This guide shows how to use BrowserStack to test a website on iPhone without an iPhone of your own, using a real device in the cloud. It is written for beginners: developers, testers and business owners who want to see their site the way an iPhone user sees it before a launch or an ad campaign."
+    },
+    {
+      "t": "p",
+      "v": "You need a computer, a web browser and a BrowserStack account. No coding, and nothing to install for a public website. If you are not sure what the platform is, start with [[what BrowserStack is|/what-is-browserstack]] and come back."
+    },
+    {
+      "t": "h2",
+      "v": "Why test your website on a real iPhone at all?"
+    },
+    {
+      "t": "p",
+      "v": "Because iPhones show pages through WebKit, the engine behind Safari, and it behaves differently from Chrome on a laptop. Outside the EU, every browser on an iPhone has to use WebKit, so even Chrome on an iPhone shows broadly what Safari shows. A page that looks perfect on your desktop can still break on an iPhone."
+    },
+    {
+      "t": "p",
+      "v": "These are common problems that often only show up there:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "The page zooms in when someone taps a form field, because the text in that field is smaller than 16 pixels.",
+        "Sections set to full screen height jump or get cut off as the address bar shows and hides.",
+        "Sticky headers and fixed buttons sit under the notch or the home bar.",
+        "The keyboard covers the field being typed in, or the submit button.",
+        "Videos do not play automatically, or open full screen, because of iPhone video rules.",
+        "Date pickers, drop-down menus and file uploads look and behave differently from desktop."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "Shrinking your desktop browser window, or switching on device mode in Chrome, changes the screen size but not the browser engine. Google's own documentation calls device mode a first-order approximation. It is a good first check, not the final one."
+    },
+    {
+      "t": "h2",
+      "v": "How to use BrowserStack, step 1: create an account"
+    },
+    {
+      "t": "p",
+      "v": "Go to browserstack.com and sign up for the free trial. As of November 2026, BrowserStack's support pages say the trial includes 30 minutes of Live, the product for manual website testing. That is enough for a careful first pass on one or two iPhones, so plan what you will check before you start the clock."
+    },
+    {
+      "t": "h2",
+      "v": "Step 2: Open Live and choose an iPhone"
+    },
+    {
+      "t": "p",
+      "v": "After signing in, open the Live product. You will see a list of operating systems and devices. Choose iOS, pick an iPhone model and an iOS version, then choose Safari as the browser."
+    },
+    {
+      "t": "p",
+      "v": "Which iPhone should you pick? Start with a recent model on the current iOS version, then try one older, smaller iPhone. If you have analytics, check which devices your visitors actually use and test those first. In Google Analytics 4 that information is in the Tech details report."
+    },
+    {
+      "t": "h2",
+      "v": "Step 3: Load your website on the iPhone"
+    },
+    {
+      "t": "p",
+      "v": "The phone starts inside your browser window. Type your website address into Safari on the device, the same way you would on a phone in your hand. You control it with your mouse and keyboard: click to tap, scroll with the mouse wheel or trackpad, and type into fields with your own keyboard."
+    },
+    {
+      "t": "p",
+      "v": "It is a real device in a data centre, streamed to you, so expect a small delay compared with a phone in your hand. That delay comes from the connection, not from your website. Judge your site's speed with proper speed tools, not by how the stream feels."
+    },
+    {
+      "t": "h2",
+      "v": "Step 4: Work through a short checklist"
+    },
+    {
+      "t": "p",
+      "v": "Random scrolling misses things. Go through the page in the order a customer would, and check each of these:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "The first screen: is the headline readable, and is the main button visible without scrolling?",
+        "The menu: does it open, close and link to the right pages?",
+        "Every form: tap each field, check the keyboard does not hide it, submit a test entry and confirm it arrives.",
+        "Phone and WhatsApp links: do they open the right app and the right number?",
+        "Images and video: do they load, and is anything stretched or badly cropped?",
+        "Rotation: turn the device to landscape and check the layout still holds.",
+        "Your most important page after the homepage, usually pricing, booking or contact."
+      ],
+      "ordered": true
+    },
+    {
+      "t": "p",
+      "v": "Tools for rotating the device, taking screenshots and switching devices sit on the toolbar beside the phone. The toolbar changes from time to time, so spend a minute hovering over each icon in your first session."
+    },
+    {
+      "t": "h2",
+      "v": "Step 5: Test a site that is not live yet"
+    },
+    {
+      "t": "p",
+      "v": "If your new site is on a staging address on the public internet, Live can open it like any other site. If it only runs on your own computer, or sits behind a company firewall, you need BrowserStack Local. It is an app that creates a secure connection between your network and BrowserStack, so the remote iPhone can reach addresses only you can see. BrowserStack's documentation walks through the setup, including for sites behind a proxy or VPN."
+    },
+    {
+      "t": "p",
+      "v": "For developers this is the step that matters most, because the best time to find an iPhone bug is before your customers do."
+    },
+    {
+      "t": "h2",
+      "v": "Step 6: Record what you find"
+    },
+    {
+      "t": "p",
+      "v": "Take a screenshot of each problem and note the device, the iOS version, the page and what you did just before it happened. A bug report without the device and version usually cannot be reproduced, and a bug nobody can reproduce rarely gets fixed. BrowserStack's team plans add integrations with tools such as Jira and Slack, but a shared document works fine for a small site."
+    },
+    {
+      "t": "h2",
+      "v": "Free ways to test a website on iPhone without an iPhone"
+    },
+    {
+      "t": "p",
+      "v": "BrowserStack is not the only option, and for some checks it is more than you need:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Xcode's iOS Simulator: free, runs Safari on simulated iPhones, but only on a Mac. Close to the real thing for layout, less so for hardware behaviour.",
+        "Safari's Responsive Design Mode on a Mac: quick checks at iPhone screen sizes using the real Safari engine.",
+        "Chrome or Firefox device mode: fine for layout at phone widths, but it is not Safari.",
+        "Borrowing an iPhone: still the most honest test of all, if someone near you has one."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "I compare these and other options in more detail in [[free BrowserStack alternatives|/free-browserstack-alternatives]]."
+    },
+    {
+      "t": "h2",
+      "v": "What happens when the free trial runs out?"
+    },
+    {
+      "t": "p",
+      "v": "If you only check a site before launches, the trial or a free tool may be all you need. If you test regularly, BrowserStack's Live plans start at $29 a month for desktop browsers only and $39 a month with real mobile devices, for one user billed annually, as of November 2026. There is also a Freelancer plan at $12.50 a month billed annually, or $19 month to month, with 100 minutes of Live on desktop and mobile. All prices are in US dollars and change from time to time, so check the official page."
+    },
+    {
+      "t": "h3",
+      "v": "BrowserStack pricing (official page)",
+      "href": "https://www.browserstack.com/pricing"
+    },
+    {
+      "t": "p",
+      "v": "Whether that is good value is a separate question, which I answer in [[BrowserStack pros and cons|/browserstack-pros-and-cons]]."
+    },
+    {
+      "t": "h2",
+      "v": "What if you would rather not test it yourself?"
+    },
+    {
+      "t": "p",
+      "v": "If you run a business and do not want to do this yourself, ask whoever builds your site how they test on iPhones and Android phones before launch. It belongs on any list of [[questions to ask a web developer before hiring|/questions-to-ask-a-web-developer-before-hiring]]. Real-device testing is part of every build in my [[web development in Dubai|/services/website-app-development]] work."
+    },
+    {
+      "t": "h2",
+      "v": "Frequently asked questions"
+    },
+    {
+      "t": "h3",
+      "v": "Can I test my website on an iPhone without owning one?"
+    },
+    {
+      "t": "p",
+      "v": "Yes. BrowserStack Live lets you open your site on a real iPhone in a data centre and control it from your browser. Free options include Apple's iOS Simulator on a Mac and Safari's Responsive Design Mode."
+    },
+    {
+      "t": "h3",
+      "v": "Is BrowserStack free to use?"
+    },
+    {
+      "t": "p",
+      "v": "There is a free trial. As of November 2026, BrowserStack's support pages say it includes 30 minutes of Live and 30 minutes of App Live. After that you need a paid plan."
+    },
+    {
+      "t": "h3",
+      "v": "Does Chrome DevTools show how my site looks on an iPhone?"
+    },
+    {
+      "t": "p",
+      "v": "Only roughly. Device mode changes the screen size but still uses Chrome's engine on your computer. iPhones use WebKit, so some bugs only appear in Safari or on a real device."
+    },
+    {
+      "t": "h3",
+      "v": "Can BrowserStack test a website on localhost?"
+    },
+    {
+      "t": "p",
+      "v": "Yes, with BrowserStack Local, which creates a secure connection between your computer and BrowserStack so its devices can open local and staging addresses."
+    },
+    {
+      "t": "h3",
+      "v": "Which iPhone should I test on first?"
+    },
+    {
+      "t": "p",
+      "v": "The one your visitors use most, which your analytics will show. With no data, start with a recent iPhone on the current iOS version, then an older, smaller model."
+    }
+  ],
+  "words": 1272
+}

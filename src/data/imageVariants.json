@@ -21,6 +21,28 @@
    1200
   ]
  },
+ "/blog/browserstack-pros-and-cons/card.jpg": {
+  "w": 1200,
+  "v": "e11edb96",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1200
+  ]
+ },
+ "/blog/browserstack-vs-lambdatest/card.jpg": {
+  "w": 1200,
+  "v": "dff86a00",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1200
+  ]
+ },
  "/blog/can-chatgpt-see-your-website/card.jpg": {
   "w": 1200,
   "v": "60bbd07f",
@@ -35,6 +57,17 @@
  "/blog/cost-per-lead/card.jpg": {
   "w": 1200,
   "v": "da3eaf2d",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1200
+  ]
+ },
+ "/blog/free-browserstack-alternatives/card.jpg": {
+  "w": 1200,
+  "v": "b42b8126",
   "widths": [
    256,
    384,
@@ -76,9 +109,31 @@
    1200
   ]
  },
+ "/blog/how-to-use-browserstack/card.jpg": {
+  "w": 1200,
+  "v": "13cf441a",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1200
+  ]
+ },
  "/blog/landing-page-ad-spend/card.jpg": {
   "w": 1200,
   "v": "f3a51948",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1200
+  ]
+ },
+ "/blog/what-is-browserstack/card.jpg": {
+  "w": 1200,
+  "v": "a2bfc524",
   "widths": [
    256,
    384,

@@ -85,6 +85,31 @@ export const CARDS = {
     lines: ["If ChatGPT cannot *read* your site,", "it cannot *recommend* you."],
     kicker: "Four checks to run today",
   },
+  "what-is-browserstack": {
+    slug: "what-is-browserstack",
+    lines: ["Real phones and browsers,", "*in a browser tab.*"],
+    kicker: "What is BrowserStack",
+  },
+  "how-to-use-browserstack": {
+    slug: "how-to-use-browserstack",
+    lines: ["Test on an iPhone", "*without owning one.*"],
+    kicker: "How to use BrowserStack",
+  },
+  "browserstack-pros-and-cons": {
+    slug: "browserstack-pros-and-cons",
+    lines: ["Worth it if you *test weekly.*", "Overkill for *one site a year.*"],
+    kicker: "BrowserStack pros and cons",
+  },
+  "free-browserstack-alternatives": {
+    slug: "free-browserstack-alternatives",
+    lines: ["Free tools cover *most of it.*", "Real devices cover *the rest.*"],
+    kicker: "Free BrowserStack alternatives",
+  },
+  "browserstack-vs-lambdatest": {
+    slug: "browserstack-vs-lambdatest",
+    lines: ["Same job, different prices.", "*Trial both first.*"],
+    kicker: "BrowserStack vs LambdaTest",
+  },
 };
 
 const BRAND = {
