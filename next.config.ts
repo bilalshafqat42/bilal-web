@@ -212,7 +212,8 @@ const nextConfig: NextConfig = {
        *
        *   max-age=0                  browsers always revalidate, so a visitor
        *                              never reads a stale page
-       *   s-maxage=600               a CDN serves it for ten minutes, which still
+       *   s-maxage=86400             a CDN serves it for a day (was ten minutes; see
+       *                              the note on the value below), which
        *                              absorbs essentially all traffic
        *   stale-while-revalidate     for a day after that the CDN may serve the
        *                              old copy *while* fetching a new one in the
@@ -238,7 +239,15 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=0, s-maxage=600, stale-while-revalidate=86400",
+            // s-maxage raised from 600 to 86400 on 2026-11-27. Hostinger
+            // rate-limits automated traffic at the origin (373 HTTP 429s on
+            // 23-27 Nov, GPTBot and some real browsers among them) and cannot
+            // exempt a crawler. A crawler reads each page about once a day, so
+            // a 10-minute edge copy was almost always gone and every request
+            // reached the origin. Safe because pages only change on deploy and
+            // .github/workflows/purge-cache.yml purges Cloudflare after each
+            // deploy (confirmed running without warnings on f4871ca).
+            value: "public, max-age=0, s-maxage=86400, stale-while-revalidate=86400",
           },
         ],
       },
