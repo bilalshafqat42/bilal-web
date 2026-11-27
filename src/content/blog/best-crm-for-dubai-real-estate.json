@@ -4,7 +4,7 @@
   "metaTitle": "Best Real Estate CRM in Dubai (2026): How to Choose",
   "description": "Choosing a real estate CRM in Dubai? HubSpot, Zoho, Salesforce and property CRMs compared, plus the three setup decisions that matter more.",
   "published": "2026-10-04",
-  "updatedAt": "2026-11-25",
+  "updatedAt": "2026-11-27",
   "tags": [
     "Dubai",
     "Real Estate",
@@ -73,6 +73,30 @@
     {
       "t": "p",
       "v": "I set up HubSpot, Zoho and Salesforce for businesses here, so this is a view of real estate CRM in Dubai from the setup side. If you push me for one answer without seeing your setup: Zoho if budget leads and someone will own the configuration, HubSpot if marketing leads and you want the reporting to work without a specialist. Neither is the right answer for every business, which is why the real work is the next three sections rather than the choice itself. How each lead source reaches whichever CRM you choose is covered on my [[CRM integration|/services/crm-integration]] page."
+    },
+    {
+      "t": "h2",
+      "v": "What real estate CRM software in Dubai has to handle"
+    },
+    {
+      "t": "p",
+      "v": "Whichever product you choose, a property CRM in Dubai has to cope with how this market actually works. Before you sign up to anything, check it can do these, either out of the box or with a reasonable amount of setup:"
+    },
+    {
+      "t": "list",
+      "v": [
+        "Leads from the portals, such as Property Finder, Bayut and Dubizzle, arriving automatically and tagged with the portal they came from, instead of being retyped from an email.",
+        "WhatsApp conversations stored against the contact, not on an agent's personal phone.",
+        "Duplicate matching on phone number, so one buyer is one record however many listings they enquire on.",
+        "Campaign data from your own website forms and ads carried into the record.",
+        "A mobile app agents will actually use between viewings.",
+        "Pipeline stages you can rename to match how your team sells off-plan and secondary property.",
+        "Reports by source and campaign, so marketing spend is judged on deals rather than form fills."
+      ]
+    },
+    {
+      "t": "p",
+      "v": "If a product cannot do the first three, it will cost you more in workarounds than it saves in licence fees. The rest of this guide is about getting those three right."
     },
     {
       "t": "h2",
@@ -156,6 +180,14 @@
     },
     {
       "t": "h3",
+      "v": "What software do real estate agents in Dubai use?"
+    },
+    {
+      "t": "p",
+      "v": "Most agencies run on four kinds of tool: the listing portals, such as Property Finder, Bayut and Dubizzle; a CRM, either a mainstream one like HubSpot, Zoho or Salesforce or a property-specific system; WhatsApp Business for most client conversations; and the ad platforms, usually Google and Meta. The CRM should be the one that connects the other three, and in most agencies it is the one that does not."
+    },
+    {
+      "t": "h3",
       "v": "Can I migrate from one CRM to another later?"
     },
     {
@@ -196,8 +228,8 @@
     },
     {
       "t": "p",
-      "v": "Last updated 25 November 2026."
+      "v": "Last updated 27 November 2026."
     }
   ],
-  "words": 1233
+  "words": 1485
 }
