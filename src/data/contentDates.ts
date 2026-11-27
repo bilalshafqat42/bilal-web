@@ -187,8 +187,8 @@ export const CLIENT_CONTENT_DATES: Record<string, string> = {
   // Published 2026-11-06. Texdale and NextGen moved to the same date for
   // their new FAQ sections.
   "aks-chemicals": "2026-11-17",
-  // Published 2026-11-12.
-  homemaid: "2026-11-12",
+  // Published 2026-11-12; split into four sub-pages 2026-11-27.
+  homemaid: "2026-11-27",
 };
 
 export function clientContentDate(clientSlug: string): string {

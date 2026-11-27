@@ -75,6 +75,9 @@ const SUB_TAGS: Record<string, string[]> = {
   "graphic-design-branding": ["UI / UX Design", "Web Designing"],
   "mobile-app-development": ["Mobile Development", "UI / UX Design"],
   "social-media-marketing": ["Social Media Marketing"],
+  // Added 2026-11-27 for the Homemaid sub-pages.
+  "ui-ux-design": ["UI / UX Design", "Web Designing"],
+  "paid-marketing": ["Paid Marketing", "Social Media Marketing"],
 };
 
 function buildCards(): Card[] {

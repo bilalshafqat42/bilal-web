@@ -428,6 +428,331 @@
    1080
   ]
  },
+ "/portfolio/homemaid/case-study/homemaid-bs-01-cover.avif": {
+  "w": 3200,
+  "v": "586895ec",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-bs-02-architecture.avif": {
+  "w": 3200,
+  "v": "9499a34e",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-bs-03-payments.avif": {
+  "w": 3200,
+  "v": "29a174a1",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-bs-04-automation.avif": {
+  "w": 3200,
+  "v": "cdacdcc9",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-bs-05-admin.avif": {
+  "w": 3200,
+  "v": "7342db1c",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-bs-06-app.avif": {
+  "w": 3200,
+  "v": "2955b755",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-mk-01-cover.avif": {
+  "w": 3200,
+  "v": "c29c9f3b",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-mk-02-search.avif": {
+  "w": 3200,
+  "v": "2fbde48e",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-ui-01-cover.avif": {
+  "w": 3200,
+  "v": "096b0ac1",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-ui-02-overview.avif": {
+  "w": 3200,
+  "v": "0a790a9d",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-ui-03-scope.avif": {
+  "w": 3200,
+  "v": "0f1103c4",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-ui-04-colour.avif": {
+  "w": 3200,
+  "v": "842f7149",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-ui-05-type.avif": {
+  "w": 3200,
+  "v": "693f18b3",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-ui-06-components.avif": {
+  "w": 3200,
+  "v": "254fc1f8",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-ui-07-desktop.avif": {
+  "w": 3200,
+  "v": "4994bb0b",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-ui-08-mobile.avif": {
+  "w": 3200,
+  "v": "5897999e",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-ui-09-arabic.avif": {
+  "w": 3200,
+  "v": "67ecb538",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-uj-01-cover.avif": {
+  "w": 3200,
+  "v": "136d1c6b",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-uj-02-map.avif": {
+  "w": 3200,
+  "v": "9cb2bb3e",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600,
+   3200
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-uj-03-step1.avif": {
+  "w": 3200,
+  "v": "4c302bbb",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-uj-04-step23.avif": {
+  "w": 3200,
+  "v": "fa307f84",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-uj-05-checkout.avif": {
+  "w": 3200,
+  "v": "85c50271",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-uj-06-after.avif": {
+  "w": 3200,
+  "v": "4c15a43e",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
+ "/portfolio/homemaid/case-study/homemaid-uj-07-arabic.avif": {
+  "w": 3200,
+  "v": "456c9c90",
+  "widths": [
+   256,
+   384,
+   640,
+   800,
+   1080,
+   1280,
+   1600
+  ]
+ },
  "/portfolio/homemaid/homemaid-card.avif": {
   "w": 1600,
   "v": "0f34ac1c",

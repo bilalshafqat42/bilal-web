@@ -62,8 +62,14 @@ export const PUBLISHED_CASE_STUDIES: readonly PublishedCaseStudy[] = [
   },
   // Single-page, as Texdale. Published 2026-10-26.
   { client: "nextgen-hr", mobileApp: false, projects: [] },
-  // Single-page, as Texdale. Published 2026-11-12.
-  { client: "homemaid", mobileApp: false, projects: [] },
+  // Published 2026-11-12; split into four sub-pages on 2026-11-27, like
+  // Texdale, and still counted once.
+  {
+    client: "homemaid",
+    mobileApp: false,
+    projects: ["ui-ux-design", "user-journey", "booking-system", "marketing"],
+    countAsOne: true,
+  },
   // Single-page, as Texdale. Published 2026-11-25.
   { client: "the-scene-popup", mobileApp: false, projects: [] },
 ];
